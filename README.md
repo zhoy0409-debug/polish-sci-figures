@@ -1,0 +1,105 @@
+# polish-sci-figures
+
+A reusable Codex skill for creating, redrawing, arranging, auditing, and
+delivering publication-grade scientific figures.
+
+用于 SCI 论文配图、科研作图、组图、重绘、统一风格和投稿前质量检查的 Codex 技能。
+
+## Preview
+
+All values shown below are deterministic synthetic demonstration data.
+
+![Efficacy figure](demo/Fig1_Efficacy.png)
+
+![Mechanism figure](demo/Fig2_Mechanism.png)
+
+![Validation figure](demo/Fig3_Validation.png)
+
+## Highlights
+
+- Strict mathematical alignment for multi-panel labels.
+- Publication-oriented typography, spacing, color semantics, and export sizes.
+- Scientifically appropriate plot selection instead of repetitive bar charts.
+- Exact italic *P* formatting and final-size readability checks.
+- Editable SVG/PDF plus 300-600 dpi PNG delivery.
+- SVG editability audit and post-insertion DOCX/PPTX/PDF rendering checks.
+- PyMuPDF rendering with an automatic Poppler `pdftoppm` fallback.
+
+## Install
+
+Clone or download this repository, then copy only the skill folder.
+
+### Windows PowerShell
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.codex\skills" | Out-Null
+Copy-Item -Recurse -Force ".\skills\polish-sci-figures" "$HOME\.codex\skills\"
+```
+
+### macOS / Linux
+
+```bash
+mkdir -p ~/.codex/skills
+cp -R skills/polish-sci-figures ~/.codex/skills/
+```
+
+Start a new Codex session after installation.
+
+Install the core Python dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+For PDF rendering without Poppler, optionally install PyMuPDF:
+
+```bash
+python -m pip install pymupdf
+```
+
+## Use
+
+Example requests:
+
+```text
+Use $polish-sci-figures to turn these result plots into a journal-ready 2×2 figure.
+Use $polish-sci-figures to audit this SVG/PDF figure before submission.
+用 $polish-sci-figures 把这些结果图统一成可投稿的多面板主图。
+```
+
+The skill should always follow the current project's data, journal, manuscript,
+and visual conventions over its defaults.
+
+## Reproduce the demo
+
+Install the skill first, then run:
+
+```bash
+python demo/figure_sources/make_demo_suite.py
+```
+
+The script writes PNG, SVG, and PDF files to `demo/final_figures/`. It uses
+synthetic data and runs the bundled panel-label alignment audit before export.
+
+## Repository layout
+
+```text
+skills/polish-sci-figures/   installable skill package
+demo/                        preview images and reproducible source
+requirements.txt             core Python dependencies
+```
+
+## Publish on GitHub
+
+Create an empty GitHub repository, then run from this folder:
+
+```bash
+git init -b main
+git add .
+git commit -m "Initial release"
+git remote add origin https://github.com/YOUR_ACCOUNT/polish-sci-figures.git
+git push -u origin main
+```
+
+Choose and add an open-source license before publishing if you want to grant
+others redistribution or modification rights.

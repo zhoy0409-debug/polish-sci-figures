@@ -1,0 +1,4 @@
+interface:
+  display_name: "SCI 图件精修"
+  short_description: "按你的标准生成、拼版、复核并交付投稿级可编辑科研图件"
+  default_prompt: "Use $polish-sci-figures to create or polish this scientific figure into a publication-ready, fully checked deliverable."

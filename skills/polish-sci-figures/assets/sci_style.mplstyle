@@ -1,0 +1,74 @@
+# Publication-grade matplotlib style for scientific figures.
+# Load with:  plt.style.use("assets/sci_style.mplstyle")
+#
+# This is a STARTING DEFAULT, not a mandate. Font family and size are
+# journal-dependent -- always override per the target profile
+# (references/journal_specs.md); the user's/project's explicit choice wins.
+#
+# Family: sans-serif is a common default for figure text (many journals set
+# figure labels in sans-serif even when body text is serif), but do not treat
+# any single family as universally correct. Switch to a serif family, or a
+# journal-mandated one, when the target requires it -- do not force Arial or
+# Times New Roman globally.
+
+# --- Fonts -------------------------------------------------------------------
+font.family        : sans-serif
+font.sans-serif    : Arial, Helvetica, Helvetica Neue, Nimbus Sans, DejaVu Sans
+# Sizes below suit the compact Nature family (min ~5-7 pt at final width).
+# There is NO universal size -- override per target, e.g.:
+#   Nature:   5-7 pt      (this default is fine)
+#   Frontiers: >= 8 pt    plt.rcParams.update({"font.size":8, ...})
+#   PLOS:     8-12 pt     plt.rcParams.update({"font.size":9, ...})
+# Apply an >=8 pt override for Frontiers/PLOS after loading this style:
+#   plt.rcParams.update({"font.size":8,"axes.labelsize":8,"axes.titlesize":9,
+#                        "xtick.labelsize":8,"ytick.labelsize":8,"legend.fontsize":8})
+font.size          : 7          # base pt for axis/tick labels at final size
+axes.titlesize     : 8
+axes.labelsize     : 7
+xtick.labelsize    : 6.5
+ytick.labelsize    : 6.5
+legend.fontsize    : 6.5
+figure.titlesize   : 9
+# 'regular' keeps digits/units upright (log$_2$, mg L$^{-1}$). It also makes a
+# bare $P$ upright, so italicize statistical P explicitly as $\mathit{P}$.
+mathtext.default   : regular
+
+# --- Lines & markers ---------------------------------------------------------
+axes.linewidth     : 0.6
+lines.linewidth    : 1.0
+lines.markersize   : 3.0
+patch.linewidth     : 0.5
+grid.linewidth     : 0.4
+
+# --- Ticks -------------------------------------------------------------------
+xtick.direction    : out
+ytick.direction    : out
+xtick.major.width  : 0.6
+ytick.major.width  : 0.6
+xtick.major.size   : 2.5
+ytick.major.size   : 2.5
+
+# --- Axes / spines -----------------------------------------------------------
+axes.spines.top    : False
+axes.spines.right  : False
+axes.grid          : False
+axes.axisbelow     : True
+axes.titleweight   : bold
+axes.labelpad      : 2.0
+
+# --- Legend ------------------------------------------------------------------
+legend.frameon     : False
+legend.handlelength: 1.2
+legend.columnspacing: 1.0
+legend.labelspacing: 0.3
+
+# --- Figure / saving ---------------------------------------------------------
+figure.dpi         : 150        # on-screen preview
+savefig.dpi        : 600        # export; >=300 required, 600 for line art
+savefig.bbox       : tight
+savefig.pad_inches : 0.02
+figure.facecolor   : white
+savefig.facecolor  : white
+svg.fonttype       : none       # keep SVG text as editable <text>, not paths
+pdf.fonttype       : 42         # embed TrueType so text stays selectable
+ps.fonttype        : 42
