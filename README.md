@@ -101,5 +101,6 @@ git remote add origin https://github.com/YOUR_ACCOUNT/polish-sci-figures.git
 git push -u origin main
 ```
 
-Choose and add an open-source license before publishing if you want to grant
-others redistribution or modification rights.
+## License
+
+MIT License. See [LICENSE](LICENSE).
