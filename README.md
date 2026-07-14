@@ -89,18 +89,6 @@ demo/                        preview images and reproducible source
 requirements.txt             core Python dependencies
 ```
 
-## Publish on GitHub
-
-Create an empty GitHub repository, then run from this folder:
-
-```bash
-git init -b main
-git add .
-git commit -m "Initial release"
-git remote add origin https://github.com/YOUR_ACCOUNT/polish-sci-figures.git
-git push -u origin main
-```
-
 ## License
 
 MIT License. See [LICENSE](LICENSE).
