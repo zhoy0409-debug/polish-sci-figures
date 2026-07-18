@@ -3,7 +3,7 @@
 A reusable Codex skill for creating, redrawing, arranging, auditing, and
 delivering publication-grade scientific figures.
 
-用于 SCI 论文配图、科研作图、组图、重绘、统一风格和投稿前质量检查的 Codex 技能。
+用于 SCI 论文图片、科研绘图、可编辑 SVG、论文组图和多面板图片质量检查的 Codex Skill。
 
 ## Preview
 
