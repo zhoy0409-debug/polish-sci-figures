@@ -7,13 +7,24 @@ delivering publication-grade scientific figures.
 
 ## Preview
 
-All values shown below are deterministic synthetic demonstration data.
+Publication-ready examples spanning efficacy, mechanism, validation,
+single-cell and spatial analysis, systems biology, and interpretable modeling.
+All values are deterministic synthetic demonstration data.
 
-![Efficacy figure](demo/Fig1_Efficacy.png)
-
-![Mechanism figure](demo/Fig2_Mechanism.png)
-
-![Validation figure](demo/Fig3_Validation.png)
+<table>
+  <tr>
+    <td width="50%"><img src="demo/Fig1_Efficacy.png" alt="Efficacy figure"><br><b>Efficacy</b> — distributions, paired response, dose-response, and forest plot</td>
+    <td width="50%"><img src="demo/Fig2_Mechanism.png" alt="Mechanism figure"><br><b>Mechanism</b> — kinetics, coupling, enrichment, and expression heatmap</td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="demo/Fig3_Validation.png" alt="Validation figure"><br><b>Validation</b> — volcano, ROC, survival, and multivariable estimates</td>
+    <td width="50%"><img src="demo/Fig4_CellAtlas.png" alt="Single-cell and spatial figure"><br><b>Cell atlas</b> — UMAP, trajectories, spatial niches, and marker map</td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="demo/Fig5_SystemsMap.png" alt="Systems biology figure"><br><b>Systems map</b> — signaling network, multi-omics, mediation, and response landscape</td>
+    <td width="50%"><img src="demo/Fig6_ModelInsight.png" alt="Interpretable modeling figure"><br><b>Model insight</b> — feature impact, calibration, decision curves, and transportability</td>
+  </tr>
+</table>
 
 ## Highlights
 
@@ -84,7 +95,7 @@ python demo/figure_sources/make_demo_suite.py
 The script writes PNG, SVG, and PDF files to `demo/final_figures/`. It uses
 synthetic data and runs the bundled panel-label alignment audit before export.
 
-Verify that the three demo figures share one physical canvas:
+Verify that all six demo figures share one physical canvas:
 
 ```bash
 python skills/polish-sci-figures/scripts/check_svg_canvas.py demo/final_figures/*.svg

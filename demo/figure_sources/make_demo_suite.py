@@ -1,4 +1,4 @@
-"""Generate a three-figure publication-style demo suite.
+"""Generate a six-figure publication-style demo suite.
 
 All values are deterministic synthetic data for visual demonstration only.
 """
@@ -12,7 +12,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.patches import Patch
+from matplotlib.patches import Circle, FancyArrowPatch, Patch
 from matplotlib.ticker import NullFormatter
 
 
@@ -35,12 +35,16 @@ BLUE = "#2F6FB3"
 GRAY = "#8B929B"
 DARK = "#252A31"
 LIGHT = "#D9DDE2"
+TEAL = "#238B8E"
+GOLD = "#D79A2B"
+PURPLE = "#775DA6"
+GREEN = "#4F8A5B"
 rng = np.random.default_rng(20260715)
 
 
-def finish(fig, axes, stem: str) -> None:
+def finish(fig, axes, stem: str, *, label_dx: float = -0.018) -> None:
     """Apply the shared release checks and export all master formats."""
-    add_panel_labels(fig, axes, style="(a)", dx=-0.018, dy=0.008,
+    add_panel_labels(fig, axes, style="(a)", dx=label_dx, dy=0.008,
                      fontsize=9, grid_cluster=0.10)
     warnings = audit_label_alignment(fig)
     assert not warnings, warnings
@@ -48,6 +52,9 @@ def finish(fig, axes, stem: str) -> None:
         path = OUT / f"{stem}.{ext}"
         fig.savefig(path, dpi=300 if ext == "png" else None)
         print(f"wrote {path}")
+    preview = ROOT / f"{stem}.png"
+    fig.savefig(preview, dpi=300)
+    print(f"wrote {preview}")
     plt.close(fig)
 
 
@@ -287,8 +294,316 @@ def figure_3_validation() -> None:
     finish(fig, [a, b, c, d], "Fig3_Validation")
 
 
+def figure_4_cell_atlas() -> None:
+    fig, axs = plt.subplots(2, 2, figsize=(7.1, 5.3), constrained_layout=True)
+    a, b, c, d = axs.ravel()
+
+    # Synthetic low-dimensional cell atlas.
+    centers = np.array([[-2.1, 1.0], [-0.5, -1.2], [1.7, 1.1], [2.2, -1.4]])
+    names = ["T cell", "Myeloid", "Tumor", "Stromal"]
+    colors = [BLUE, GOLD, RED, TEAL]
+    for i, (center, name, color) in enumerate(zip(centers, names, colors)):
+        cloud = rng.normal(size=(150, 2)) @ np.array([[0.58, 0.10], [0.0, 0.38]])
+        cloud += center
+        a.scatter(cloud[:, 0], cloud[:, 1], s=7, color=color, alpha=0.64,
+                  edgecolor="none", rasterized=False)
+        offset = (0.0, 0.74 if i != 1 else -0.74)
+        a.text(center[0] + offset[0], center[1] + offset[1], name,
+               ha="center", va="center", color=color, fontsize=6.5,
+               fontweight="bold")
+    a.set(xlabel="UMAP 1", ylabel="UMAP 2", title="Single-cell atlas")
+    a.set_xticks([])
+    a.set_yticks([])
+
+    # Branched pseudotime with discrete color steps to keep SVG fully vector.
+    t = np.linspace(0, 1, 95)
+    trunk_x = -2.7 + 3.0 * t
+    trunk_y = -0.6 + 0.55 * np.sin(np.pi * t)
+    branches = [
+        (trunk_x, trunk_y),
+        (0.15 + 2.4 * t, -0.08 + 1.45 * t + 0.12 * np.sin(5 * t)),
+        (0.15 + 2.4 * t, -0.08 - 1.35 * t + 0.10 * np.sin(5 * t)),
+    ]
+    time_colors = ["#D9E8F5", "#A7CBE5", "#6EA7D0", "#3E7EB6", "#1F568B"]
+    for j, (x, y) in enumerate(branches):
+        b.plot(x, y, color=LIGHT, lw=2.0, zorder=1)
+        for k, color in enumerate(time_colors):
+            mask = (t >= k / 5) & (t <= (k + 1) / 5)
+            jitter_x = rng.normal(0, 0.035, mask.sum())
+            jitter_y = rng.normal(0, 0.045, mask.sum())
+            b.scatter(x[mask] + jitter_x, y[mask] + jitter_y, s=8,
+                      color=color, edgecolor="none", zorder=2)
+        if j:
+            b.annotate("", xy=(x[-1], y[-1]), xytext=(x[-8], y[-8]),
+                       arrowprops={"arrowstyle": "-|>", "color": DARK,
+                                   "lw": 0.8})
+    b.text(-2.65, -0.92, "Early", color=GRAY, fontsize=6)
+    b.text(2.55, 1.54, "Inflammatory", color=BLUE, fontsize=6, ha="right")
+    b.text(2.55, -1.62, "Exhausted", color=BLUE, fontsize=6, ha="right")
+    b.set(xlabel="Latent dimension 1", ylabel="Latent dimension 2",
+          title="Branched cell-state trajectory")
+    b.set_xticks([])
+    b.set_yticks([])
+
+    # Spatial cell neighborhoods inside a tissue boundary.
+    points = rng.uniform([-2.5, -1.7], [2.5, 1.7], size=(900, 2))
+    inside = (points[:, 0] / 2.45) ** 2 + (points[:, 1] / 1.55) ** 2 < 1
+    points = points[inside]
+    score = (np.exp(-((points[:, 0] - 0.7) ** 2 +
+                      (points[:, 1] - 0.25) ** 2) / 0.75)
+             + 0.55 * np.exp(-((points[:, 0] + 1.1) ** 2 +
+                               (points[:, 1] + 0.55) ** 2) / 0.45))
+    groups = np.digitize(score, [0.18, 0.48])
+    spatial_colors = np.array(["#D7DCE2", "#7FC2C2", "#C43C2F"])
+    c.scatter(points[:, 0], points[:, 1], s=9, color=spatial_colors[groups],
+              edgecolor="white", linewidth=0.12)
+    theta = np.linspace(0, 2 * np.pi, 240)
+    c.plot(2.45 * np.cos(theta), 1.55 * np.sin(theta), color=DARK, lw=0.85)
+    c.legend(handles=[
+        Patch(facecolor=spatial_colors[0], label="Background"),
+        Patch(facecolor=spatial_colors[1], label="Immune niche"),
+        Patch(facecolor=spatial_colors[2], label="Tumor core"),
+    ], loc="upper left", fontsize=6.2)
+    c.set_aspect("equal")
+    c.set(xlabel="Spatial x", ylabel="Spatial y", title="Spatial neighborhoods")
+    c.set_xticks([])
+    c.set_yticks([])
+
+    # Cell-type marker dot plot.
+    cell_types = ["T cell", "Myeloid", "Tumor", "Stromal", "Endothelial"]
+    genes = ["CD3D", "LST1", "EPCAM", "COL1A1", "VWF", "CXCL9"]
+    expression = np.array([
+        [0.92, 0.08, 0.05, 0.04, 0.03, 0.78],
+        [0.10, 0.94, 0.08, 0.12, 0.06, 0.58],
+        [0.05, 0.08, 0.96, 0.10, 0.04, 0.22],
+        [0.04, 0.16, 0.08, 0.92, 0.12, 0.17],
+        [0.03, 0.06, 0.05, 0.14, 0.95, 0.27],
+    ])
+    fraction = np.clip(expression + rng.normal(0, 0.08, expression.shape), 0.04, 1)
+    palette = np.array(["#E6E8EB", "#B9D6E8", "#72A9CF", "#2F6FB3"])
+    for iy in range(len(cell_types)):
+        for ix in range(len(genes)):
+            level = min(int(expression[iy, ix] * 4), 3)
+            d.scatter(ix, iy, s=18 + 120 * fraction[iy, ix],
+                      color=palette[level], edgecolor="white", linewidth=0.4)
+    d.set(xticks=np.arange(len(genes)), xticklabels=genes,
+          yticks=np.arange(len(cell_types)), yticklabels=cell_types,
+          title="Marker expression map")
+    d.tick_params(axis="x", rotation=42)
+    d.set_xlim(-0.65, len(genes) - 0.35)
+    d.set_ylim(len(cell_types) - 0.35, -0.65)
+    d.grid(color="#ECEEF1", lw=0.45)
+    d.legend(handles=[
+        plt.Line2D([], [], marker="o", ls="", ms=4, color=GRAY,
+                   label="25% cells"),
+        plt.Line2D([], [], marker="o", ls="", ms=8, color=GRAY,
+                   label="75% cells"),
+    ], loc="lower right", fontsize=6.2)
+
+    finish(fig, [a, b, c, d], "Fig4_CellAtlas")
+
+
+def figure_5_systems_map() -> None:
+    fig, axs = plt.subplots(2, 2, figsize=(7.1, 5.3), constrained_layout=True)
+    a, b, c, d = axs.ravel()
+
+    # Directed intercellular signaling map.
+    labels = ["Tumor", "T cell", "Myeloid", "Stromal", "Endothelial", "NK"]
+    node_colors = [RED, BLUE, GOLD, TEAL, PURPLE, GREEN]
+    angles = np.linspace(np.pi / 2, np.pi / 2 + 2 * np.pi, len(labels), endpoint=False)
+    coords = np.c_[1.18 * np.cos(angles), 1.18 * np.sin(angles)]
+    edges = [(0, 1, 4.8), (2, 0, 4.0), (3, 0, 3.3), (1, 2, 2.8),
+             (4, 3, 2.3), (5, 0, 3.6), (0, 4, 2.1), (2, 1, 2.5)]
+    for source, target, weight in edges:
+        start, end = coords[source], coords[target]
+        curve = 0.20 if (source + target) % 2 else -0.20
+        arrow = FancyArrowPatch(start, end, connectionstyle=f"arc3,rad={curve}",
+                                arrowstyle="-|>", mutation_scale=6,
+                                lw=0.35 + 0.32 * weight, color=node_colors[source],
+                                alpha=0.48, shrinkA=15, shrinkB=15)
+        a.add_patch(arrow)
+    for angle, (x, y), label, color in zip(angles, coords, labels, node_colors):
+        a.add_patch(Circle((x, y), 0.14, facecolor=color, edgecolor="white", lw=1.0,
+                           zorder=3))
+        tx, ty = 1.48 * np.cos(angle), 1.48 * np.sin(angle)
+        ha = "center" if abs(tx) < 0.25 else ("left" if tx > 0 else "right")
+        a.text(tx, ty, label, ha=ha, va="center", fontsize=5.8,
+               color=color, fontweight="bold", zorder=4)
+    a.set_xlim(-1.6, 1.6)
+    a.set_ylim(-1.55, 1.55)
+    a.set_aspect("equal")
+    a.set_xticks([])
+    a.set_yticks([])
+    for spine in a.spines.values():
+        spine.set_visible(False)
+    a.set_title("Cell-cell communication network", pad=4)
+
+    # Multi-omic pathway activity matrix.
+    pathways = ["MAPK", "Apoptosis", "IFN", "Cell cycle", "Hypoxia", "EMT"]
+    layers = ["RNA", "Protein", "ATAC", "Metabolite"]
+    activity = np.array([
+        [-1.7, -1.3, -0.9, -0.4],
+        [1.6, 1.3, 0.8, 0.5],
+        [1.1, 0.7, 1.5, 0.2],
+        [-1.4, -1.1, -0.7, -0.3],
+        [0.4, 0.9, 0.3, 1.4],
+        [0.7, 0.4, 1.0, 0.8],
+    ])
+    b.pcolormesh(np.arange(5), np.arange(7), activity, cmap="RdBu_r",
+                 vmin=-2, vmax=2, shading="flat", edgecolors="white", linewidth=0.8)
+    for iy in range(activity.shape[0]):
+        for ix in range(activity.shape[1]):
+            b.text(ix + 0.5, iy + 0.5, f"{activity[iy, ix]:+.1f}",
+                   ha="center", va="center", fontsize=5.8,
+                   color="white" if abs(activity[iy, ix]) > 1.0 else DARK)
+    b.set(xticks=np.arange(len(layers)) + 0.5, xticklabels=layers,
+          yticks=np.arange(len(pathways)) + 0.5, yticklabels=pathways,
+          title="Cross-platform pathway activity")
+    b.set_ylim(len(pathways), 0)
+    b.tick_params(length=0)
+
+    # Causal mediation diagram with effect sizes.
+    nodes = {
+        "CX-17": (0.12, 0.60, BLUE),
+        "Target\nsuppression": (0.38, 0.78, TEAL),
+        "Apoptosis": (0.66, 0.78, RED),
+        "Tumor\nresponse": (0.87, 0.46, PURPLE),
+        "Immune\nactivation": (0.50, 0.25, GOLD),
+    }
+    links = [
+        ("CX-17", "Target\nsuppression", "0.74"),
+        ("Target\nsuppression", "Apoptosis", "0.61"),
+        ("Apoptosis", "Tumor\nresponse", "0.49"),
+        ("CX-17", "Immune\nactivation", "0.38"),
+        ("Immune\nactivation", "Tumor\nresponse", "0.27"),
+    ]
+    for source, target, effect in links:
+        x0, y0, color = nodes[source]
+        x1, y1, _ = nodes[target]
+        c.annotate("", xy=(x1, y1), xytext=(x0, y0),
+                   arrowprops={"arrowstyle": "-|>", "color": color,
+                               "lw": 1.0, "shrinkA": 15, "shrinkB": 15})
+        c.text((x0 + x1) / 2, (y0 + y1) / 2 + 0.045, effect,
+               fontsize=5.8, color=DARK, ha="center", va="center",
+               bbox={"boxstyle": "round,pad=0.12", "fc": "white",
+                     "ec": "none", "alpha": 0.9})
+    for label, (x, y, color) in nodes.items():
+        c.add_patch(Circle((x, y), 0.083, facecolor=color, edgecolor="white", lw=1.0,
+                           transform=c.transAxes, zorder=3))
+        c.text(x, y, label, transform=c.transAxes, ha="center", va="center",
+               fontsize=5.1, color="white", fontweight="bold", zorder=4)
+    c.text(0.98, 0.03, "Standardized path coefficients", transform=c.transAxes,
+           ha="right", color=GRAY, fontsize=6)
+    c.axis("off")
+    c.set_title("Causal mediation model", pad=4)
+
+    # Vector response landscape with two optimization trajectories.
+    x = np.linspace(-2.5, 2.5, 80)
+    y = np.linspace(-2.1, 2.1, 70)
+    xx, yy = np.meshgrid(x, y)
+    zz = (1.25 * np.exp(-((xx - 0.85) ** 2 + (yy - 0.5) ** 2) / 0.75)
+          + 0.85 * np.exp(-((xx + 1.1) ** 2 + (yy + 0.65) ** 2) / 1.0)
+          - 0.16 * (xx ** 2 + yy ** 2))
+    d.contourf(xx, yy, zz, levels=9,
+               colors=["#F3F4F6", "#E6EDF3", "#D1E1EC", "#B6D1E1", "#95BED3",
+                       "#70A6C1", "#4C8CAE", "#347497", "#245C7B"])
+    d.contour(xx, yy, zz, levels=7, colors="white", linewidths=0.45, alpha=0.8)
+    paths = [np.c_[np.linspace(-2.0, 0.8, 16),
+                   np.linspace(1.5, 0.5, 16) + 0.12 * np.sin(np.linspace(0, 3, 16))],
+             np.c_[np.linspace(2.0, 0.8, 16),
+                   np.linspace(-1.5, 0.5, 16) - 0.10 * np.sin(np.linspace(0, 3, 16))]]
+    for path, color, label in zip(paths, [GOLD, RED], ["Schedule A", "Schedule B"]):
+        d.plot(path[:, 0], path[:, 1], "o-", color=color, ms=2.5, lw=1.0,
+               label=label, markeredgecolor="white", markeredgewidth=0.25)
+    d.scatter([0.85], [0.5], s=34, marker="*", color="white", edgecolor=DARK,
+              linewidth=0.5, zorder=5)
+    d.set(xlabel="Target engagement", ylabel="Immune activation",
+          title="Therapeutic response landscape")
+    d.legend(loc="lower right", fontsize=6.2)
+
+    finish(fig, [a, b, c, d], "Fig5_SystemsMap", label_dx=0.014)
+
+
+def figure_6_model_insight() -> None:
+    fig, axs = plt.subplots(2, 2, figsize=(7.1, 5.3), constrained_layout=True)
+    a, b, c, d = axs.ravel()
+
+    # SHAP-style feature impact map.
+    features = ["Target score", "T-cell state", "Tumor burden", "IFN module", "Age"]
+    spreads = [0.78, 0.62, 0.48, 0.40, 0.28]
+    for y0, (feature, spread) in enumerate(zip(features, spreads)):
+        values = np.clip(rng.normal(0, spread, 90), -1.8, 1.8)
+        feature_value = np.clip(0.5 + 0.28 * values / spread + rng.normal(0, 0.12, 90), 0, 1)
+        jitter = rng.normal(0, 0.085, len(values))
+        bins = np.digitize(feature_value, [0.25, 0.50, 0.75])
+        point_colors = np.array([BLUE, "#7EA5C8", "#C49A9A", RED])[bins]
+        a.scatter(values, y0 + jitter, s=9, color=point_colors, alpha=0.72,
+                  edgecolor="none")
+    a.axvline(0, color=GRAY, lw=0.7)
+    a.set(yticks=np.arange(len(features)), yticklabels=features,
+          xlabel="Feature contribution", title="Model explanation map")
+    a.set_ylim(len(features) - 0.45, -0.55)
+    a.text(0.02, 0.02, "Low feature value", transform=a.transAxes,
+           color=BLUE, fontsize=6)
+    a.text(0.98, 0.02, "High feature value", transform=a.transAxes,
+           color=RED, fontsize=6, ha="right")
+
+    # Calibration curves with uncertainty envelopes.
+    predicted = np.linspace(0.05, 0.95, 10)
+    observed_internal = np.clip(predicted + 0.03 * np.sin(6 * predicted), 0, 1)
+    observed_external = np.clip(predicted ** 1.10 + 0.035 * np.cos(5 * predicted), 0, 1)
+    b.plot([0, 1], [0, 1], color=GRAY, lw=0.7, ls="--", label="Ideal")
+    for observed, color, label, band in [
+        (observed_internal, RED, "Internal", 0.045),
+        (observed_external, BLUE, "External", 0.065),
+    ]:
+        b.fill_between(predicted, np.clip(observed - band, 0, 1),
+                       np.clip(observed + band, 0, 1), color=color, alpha=0.14)
+        b.plot(predicted, observed, "o-", color=color, ms=3.2, lw=1.15, label=label)
+    b.set(xlabel="Predicted probability", ylabel="Observed probability",
+          xlim=(0, 1), ylim=(0, 1), title="Cross-cohort calibration")
+    b.set_aspect("equal", adjustable="box")
+    b.legend(loc="upper left", fontsize=6.2)
+
+    # Decision-curve analysis.
+    threshold = np.linspace(0.05, 0.80, 90)
+    model = 0.22 * np.exp(-1.7 * threshold) - 0.025 * threshold
+    clinical = 0.15 * np.exp(-2.5 * threshold) - 0.045 * threshold
+    treat_all = 0.16 - 0.27 * threshold / (1 - threshold)
+    c.plot(threshold, model, color=RED, lw=1.35, label="Integrated model")
+    c.plot(threshold, clinical, color=BLUE, lw=1.2, label="Clinical model")
+    c.plot(threshold, treat_all, color=GRAY, lw=0.9, ls="--", label="Treat all")
+    c.axhline(0, color=DARK, lw=0.7, label="Treat none")
+    c.fill_between(threshold, clinical, model, where=model >= clinical,
+                   color=RED, alpha=0.10)
+    c.set(xlabel="Risk threshold", ylabel="Net benefit", ylim=(-0.08, 0.24),
+          title="Clinical utility")
+    c.legend(loc="upper right", fontsize=6.2)
+
+    # Repeated external validation as estimates with confidence intervals.
+    cohorts = ["Discovery", "Hospital A", "Hospital B", "Prospective"]
+    auc = np.array([0.89, 0.85, 0.82, 0.84])
+    lo = np.array([0.85, 0.80, 0.76, 0.78])
+    hi = np.array([0.93, 0.90, 0.88, 0.90])
+    ypos = np.arange(len(cohorts))
+    d.hlines(ypos, lo, hi, color=[RED, BLUE, BLUE, TEAL], lw=1.6)
+    d.scatter(auc, ypos, s=30, color=[RED, BLUE, BLUE, TEAL],
+              edgecolor="white", linewidth=0.55, zorder=3)
+    for y0, value in zip(ypos, auc):
+        d.text(value + 0.012, y0, f"{value:.2f}", va="center", fontsize=6.2)
+    d.axvline(0.80, color=GRAY, lw=0.7, ls="--")
+    d.set(yticks=ypos, yticklabels=cohorts, xlabel="AUC (95% CI)",
+          xlim=(0.68, 0.98), title="Transportability across cohorts")
+    d.invert_yaxis()
+
+    finish(fig, [a, b, c, d], "Fig6_ModelInsight")
+
+
 if __name__ == "__main__":
     figure_1_efficacy()
     figure_2_mechanism()
     figure_3_validation()
+    figure_4_cell_atlas()
+    figure_5_systems_map()
+    figure_6_model_insight()
     print("all panel-alignment audits passed")
