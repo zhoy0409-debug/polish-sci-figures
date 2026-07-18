@@ -11,20 +11,29 @@ Publication-ready examples spanning efficacy, mechanism, validation,
 single-cell and spatial analysis, systems biology, and interpretable modeling.
 All values are deterministic synthetic demonstration data.
 
-<table>
-  <tr>
-    <td width="50%"><img src="demo/Fig1_Efficacy.png" alt="Efficacy figure"><br><b>Efficacy</b> — distributions, paired response, dose-response, and forest plot</td>
-    <td width="50%"><img src="demo/Fig2_Mechanism.png" alt="Mechanism figure"><br><b>Mechanism</b> — kinetics, coupling, enrichment, and expression heatmap</td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="demo/Fig3_Validation.png" alt="Validation figure"><br><b>Validation</b> — volcano, ROC, survival, and multivariable estimates</td>
-    <td width="50%"><img src="demo/Fig4_CellAtlas.png" alt="Single-cell and spatial figure"><br><b>Cell atlas</b> — UMAP, trajectories, spatial niches, and marker map</td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="demo/Fig5_SystemsMap.png" alt="Systems biology figure"><br><b>Systems map</b> — signaling network, multi-omics, mediation, and response landscape</td>
-    <td width="50%"><img src="demo/Fig6_ModelInsight.png" alt="Interpretable modeling figure"><br><b>Model insight</b> — feature impact, calibration, decision curves, and transportability</td>
-  </tr>
-</table>
+### Efficacy
+
+![Efficacy figure](demo/Fig1_Efficacy.png)
+
+### Mechanism
+
+![Mechanism figure](demo/Fig2_Mechanism.png)
+
+### Validation
+
+![Validation figure](demo/Fig3_Validation.png)
+
+### Single-cell and spatial atlas
+
+![Single-cell and spatial figure](demo/Fig4_CellAtlas.png)
+
+### Systems biology
+
+![Systems biology figure](demo/Fig5_SystemsMap.png)
+
+### Interpretable modeling
+
+![Interpretable modeling figure](demo/Fig6_ModelInsight.png)
 
 ## Highlights
 

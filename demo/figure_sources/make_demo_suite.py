@@ -12,7 +12,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.patches import Circle, FancyArrowPatch, Patch
+from matplotlib.path import Path as MplPath
+from matplotlib.patches import Circle, FancyArrowPatch, Patch, Polygon
 from matplotlib.ticker import NullFormatter
 
 
@@ -298,86 +299,135 @@ def figure_4_cell_atlas() -> None:
     fig, axs = plt.subplots(2, 2, figsize=(7.1, 5.3), constrained_layout=True)
     a, b, c, d = axs.ravel()
 
-    # Synthetic low-dimensional cell atlas.
-    centers = np.array([[-2.1, 1.0], [-0.5, -1.2], [1.7, 1.1], [2.2, -1.4]])
-    names = ["T cell", "Myeloid", "Tumor", "Stromal"]
-    colors = [BLUE, GOLD, RED, TEAL]
-    for i, (center, name, color) in enumerate(zip(centers, names, colors)):
-        cloud = rng.normal(size=(150, 2)) @ np.array([[0.58, 0.10], [0.0, 0.38]])
-        cloud += center
-        a.scatter(cloud[:, 0], cloud[:, 1], s=7, color=color, alpha=0.64,
+    # Organic, non-isotropic UMAP-like manifolds with related immune states nearby.
+    specs = [
+        ("CD4 T", BLUE, (-2.55, 1.10), (0.68, 0.30), 18, 0.22, 260),
+        ("CD8 T", "#6FA4D1", (-1.35, 1.55), (0.74, 0.26), -12, -0.18, 280),
+        ("NK", GREEN, (-0.25, 1.28), (0.40, 0.22), 6, 0.12, 150),
+        ("B", PURPLE, (-2.80, -0.12), (0.40, 0.27), -8, -0.10, 135),
+        ("Myeloid", GOLD, (-1.10, -0.75), (0.92, 0.48), -14, 0.28, 420),
+        ("Tumor", RED, (1.45, 0.48), (1.10, 0.58), 14, -0.34, 520),
+        ("Fibroblast", TEAL, (1.55, -1.18), (0.78, 0.27), 17, 0.22, 230),
+        ("Endothelial", "#7B8794", (0.20, -1.18), (0.44, 0.23), -8, -0.12, 140),
+    ]
+    label_positions = {
+        "CD4 T": (-3.25, 1.95), "CD8 T": (-1.55, 2.20), "NK": (-0.18, 1.95),
+        "B": (-3.35, -0.72), "Myeloid": (-1.30, -1.85), "Tumor": (2.45, 1.70),
+        "Fibroblast": (2.20, -1.80), "Endothelial": (0.15, -1.78),
+    }
+    for name, color, center, scale, angle, bend, n in specs:
+        z = rng.normal(size=(n, 2))
+        z[:, 0] += bend * (z[:, 1] ** 2 - 1) + 0.08 * np.sin(3 * z[:, 1])
+        z[:, 1] += 0.09 * np.sin(2.2 * z[:, 0])
+        z *= np.asarray(scale)
+        radians = np.deg2rad(angle)
+        rotation = np.array([[np.cos(radians), -np.sin(radians)],
+                             [np.sin(radians), np.cos(radians)]])
+        cloud = z @ rotation.T + np.asarray(center)
+        a.scatter(cloud[:, 0], cloud[:, 1], s=3.4, color=color, alpha=0.70,
                   edgecolor="none", rasterized=False)
-        offset = (0.0, 0.74 if i != 1 else -0.74)
-        a.text(center[0] + offset[0], center[1] + offset[1], name,
-               ha="center", va="center", color=color, fontsize=6.5,
-               fontweight="bold")
-    a.set(xlabel="UMAP 1", ylabel="UMAP 2", title="Single-cell atlas")
+        a.annotate(name, xy=center, xytext=label_positions[name],
+                   color=color, fontsize=5.8, fontweight="bold", ha="center",
+                   arrowprops={"arrowstyle": "-", "color": color, "lw": 0.55})
+    a.set(xlabel="UMAP 1", ylabel="UMAP 2", title="Integrated cell atlas",
+          xlim=(-3.9, 3.1), ylim=(-2.15, 2.45))
     a.set_xticks([])
     a.set_yticks([])
 
-    # Branched pseudotime with discrete color steps to keep SVG fully vector.
-    t = np.linspace(0, 1, 95)
-    trunk_x = -2.7 + 3.0 * t
-    trunk_y = -0.6 + 0.55 * np.sin(np.pi * t)
-    branches = [
-        (trunk_x, trunk_y),
-        (0.15 + 2.4 * t, -0.08 + 1.45 * t + 0.12 * np.sin(5 * t)),
-        (0.15 + 2.4 * t, -0.08 - 1.35 * t + 0.10 * np.sin(5 * t)),
-    ]
+    # Myeloid subclustering with a fitted principal trajectory over the embedding.
+    t_main = rng.uniform(0, 1, 620)
+    main_x = -2.55 + 4.75 * t_main + 0.18 * np.sin(3 * np.pi * t_main)
+    main_y = 0.62 * np.sin(1.35 * np.pi * t_main) - 0.22 * t_main
+    main_x += rng.normal(0, 0.13, len(t_main))
+    main_y += rng.normal(0, 0.15, len(t_main))
+    t_branch = rng.uniform(0.42, 1, 230)
+    s = (t_branch - 0.42) / 0.58
+    branch_x = -0.55 + 2.25 * s + rng.normal(0, 0.13, len(s))
+    branch_y = 0.48 - 1.55 * s + 0.10 * np.sin(2 * np.pi * s)
+    branch_y += rng.normal(0, 0.13, len(s))
+    tx = np.r_[main_x, branch_x]
+    ty = np.r_[main_y, branch_y]
+    pseudotime = np.r_[t_main, t_branch]
     time_colors = ["#D9E8F5", "#A7CBE5", "#6EA7D0", "#3E7EB6", "#1F568B"]
-    for j, (x, y) in enumerate(branches):
-        b.plot(x, y, color=LIGHT, lw=2.0, zorder=1)
-        for k, color in enumerate(time_colors):
-            mask = (t >= k / 5) & (t <= (k + 1) / 5)
-            jitter_x = rng.normal(0, 0.035, mask.sum())
-            jitter_y = rng.normal(0, 0.045, mask.sum())
-            b.scatter(x[mask] + jitter_x, y[mask] + jitter_y, s=8,
-                      color=color, edgecolor="none", zorder=2)
-        if j:
-            b.annotate("", xy=(x[-1], y[-1]), xytext=(x[-8], y[-8]),
-                       arrowprops={"arrowstyle": "-|>", "color": DARK,
-                                   "lw": 0.8})
-    b.text(-2.65, -0.92, "Early", color=GRAY, fontsize=6)
-    b.text(2.55, 1.54, "Inflammatory", color=BLUE, fontsize=6, ha="right")
-    b.text(2.55, -1.62, "Exhausted", color=BLUE, fontsize=6, ha="right")
-    b.set(xlabel="Latent dimension 1", ylabel="Latent dimension 2",
-          title="Branched cell-state trajectory")
+    for k, color in enumerate(time_colors):
+        mask = (pseudotime >= k / 5) & (pseudotime <= (k + 1) / 5)
+        b.scatter(tx[mask], ty[mask], s=4.2, color=color, edgecolor="none", alpha=0.76)
+    curve_t = np.linspace(0, 1, 160)
+    b.plot(-2.55 + 4.75 * curve_t + 0.18 * np.sin(3 * np.pi * curve_t),
+           0.62 * np.sin(1.35 * np.pi * curve_t) - 0.22 * curve_t,
+           color=DARK, lw=0.8)
+    curve_s = np.linspace(0, 1, 100)
+    b.plot(-0.55 + 2.25 * curve_s,
+           0.48 - 1.55 * curve_s + 0.10 * np.sin(2 * np.pi * curve_s),
+           color=DARK, lw=0.8)
+    b.text(-2.58, -0.28, "Mono", color=GRAY, fontsize=6)
+    b.text(2.18, -0.20, "TAM", color=BLUE, fontsize=6, ha="right")
+    b.text(2.34, -1.43, "DC-like", color=BLUE, fontsize=6, ha="right",
+           va="bottom")
+    b.legend(handles=[Patch(facecolor=color, edgecolor="none", label=label)
+                      for color, label in zip(time_colors, ["0", ".25", ".5", ".75", "1"])],
+             title="Pseudotime", ncol=5, loc="lower left", fontsize=5.1,
+             title_fontsize=5.4, handlelength=0.7, columnspacing=0.55)
+    b.set(xlabel="UMAP 1", ylabel="UMAP 2", title="Myeloid-state trajectory",
+          xlim=(-2.9, 2.5), ylim=(-1.55, 1.05))
     b.set_xticks([])
     b.set_yticks([])
 
-    # Spatial cell neighborhoods inside a tissue boundary.
-    points = rng.uniform([-2.5, -1.7], [2.5, 1.7], size=(900, 2))
-    inside = (points[:, 0] / 2.45) ** 2 + (points[:, 1] / 1.55) ** 2 < 1
-    points = points[inside]
-    score = (np.exp(-((points[:, 0] - 0.7) ** 2 +
-                      (points[:, 1] - 0.25) ** 2) / 0.75)
-             + 0.55 * np.exp(-((points[:, 0] + 1.1) ** 2 +
-                               (points[:, 1] + 0.55) ** 2) / 0.45))
-    groups = np.digitize(score, [0.18, 0.48])
-    spatial_colors = np.array(["#D7DCE2", "#7FC2C2", "#C43C2F"])
-    c.scatter(points[:, 0], points[:, 1], s=9, color=spatial_colors[groups],
-              edgecolor="white", linewidth=0.12)
+    # Hexagonal spatial spots on an irregular tissue section, with a scale bar.
     theta = np.linspace(0, 2 * np.pi, 240)
-    c.plot(2.45 * np.cos(theta), 1.55 * np.sin(theta), color=DARK, lw=0.85)
-    c.legend(handles=[
-        Patch(facecolor=spatial_colors[0], label="Background"),
-        Patch(facecolor=spatial_colors[1], label="Immune niche"),
-        Patch(facecolor=spatial_colors[2], label="Tumor core"),
-    ], loc="upper left", fontsize=6.2)
+    radius = 1 + 0.11 * np.sin(3 * theta + 0.5) + 0.07 * np.cos(5 * theta)
+    boundary = np.c_[2.30 * radius * np.cos(theta), 1.50 * radius * np.sin(theta)]
+    tissue_path = MplPath(boundary, closed=True)
+    c.add_patch(Polygon(boundary, closed=True, facecolor="#F6EEEA", edgecolor=DARK,
+                        linewidth=0.75, zorder=0))
+    spots = []
+    for row, y0 in enumerate(np.arange(-1.62, 1.63, 0.16)):
+        xs = np.arange(-2.55, 2.56, 0.16) + (0.08 if row % 2 else 0)
+        spots.extend((x0, y0) for x0 in xs)
+    spots = np.asarray(spots)
+    spots = spots[tissue_path.contains_points(spots)]
+    tumor_score = np.exp(-((spots[:, 0] - 0.70) ** 2 / 0.80 +
+                           (spots[:, 1] - 0.15) ** 2 / 0.48))
+    immune_score = np.exp(-((spots[:, 0] + 0.35) ** 2 / 0.34 +
+                            (spots[:, 1] - 0.55) ** 2 / 0.22))
+    myeloid_score = np.exp(-((spots[:, 0] - 0.05) ** 2 / 0.50 +
+                             (spots[:, 1] + 0.65) ** 2 / 0.25))
+    domain = np.full(len(spots), 3)
+    domain[myeloid_score > 0.42] = 2
+    domain[immune_score > 0.38] = 1
+    domain[tumor_score > 0.36] = 0
+    spatial_colors = np.array([RED, BLUE, GOLD, TEAL])
+    c.scatter(spots[:, 0], spots[:, 1], s=7.2, color=spatial_colors[domain],
+              edgecolor="white", linewidth=0.22, zorder=2)
+    tumor_outline = 1 + 0.09 * np.sin(4 * theta)
+    c.plot(0.70 + 0.95 * tumor_outline * np.cos(theta),
+           0.15 + 0.68 * tumor_outline * np.sin(theta),
+           color=RED, lw=0.65, ls="--", zorder=3)
+    c.legend(handles=[Patch(facecolor=color, edgecolor="none", label=label)
+                      for color, label in zip(spatial_colors,
+                                              ["Tumor", "T cell", "Myeloid", "Stroma"])],
+             loc="upper left", ncol=2, fontsize=5.4, handlelength=0.8,
+             columnspacing=0.8)
+    c.plot([1.25, 2.00], [-1.47, -1.47], color=DARK, lw=1.8)
+    c.text(1.625, -1.39, "500 µm", ha="center", va="bottom", fontsize=5.6)
     c.set_aspect("equal")
-    c.set(xlabel="Spatial x", ylabel="Spatial y", title="Spatial neighborhoods")
+    c.set(xlim=(-2.65, 2.65), ylim=(-1.75, 1.75), title="Spatially mapped cell states")
     c.set_xticks([])
     c.set_yticks([])
+    for spine in c.spines.values():
+        spine.set_visible(False)
 
     # Cell-type marker dot plot.
-    cell_types = ["T cell", "Myeloid", "Tumor", "Stromal", "Endothelial"]
-    genes = ["CD3D", "LST1", "EPCAM", "COL1A1", "VWF", "CXCL9"]
+    cell_types = ["CD4 T", "CD8 T", "NK", "Myeloid", "Tumor", "Fibroblast", "Endothelial"]
+    genes = ["CD3D", "CD8A", "NKG7", "LST1", "EPCAM", "COL1A1", "VWF"]
     expression = np.array([
-        [0.92, 0.08, 0.05, 0.04, 0.03, 0.78],
-        [0.10, 0.94, 0.08, 0.12, 0.06, 0.58],
-        [0.05, 0.08, 0.96, 0.10, 0.04, 0.22],
-        [0.04, 0.16, 0.08, 0.92, 0.12, 0.17],
-        [0.03, 0.06, 0.05, 0.14, 0.95, 0.27],
+        [0.95, 0.20, 0.12, 0.05, 0.03, 0.03, 0.02],
+        [0.88, 0.92, 0.42, 0.05, 0.03, 0.03, 0.02],
+        [0.20, 0.55, 0.95, 0.08, 0.03, 0.02, 0.03],
+        [0.05, 0.04, 0.18, 0.96, 0.05, 0.10, 0.05],
+        [0.03, 0.03, 0.05, 0.06, 0.97, 0.08, 0.03],
+        [0.03, 0.02, 0.03, 0.12, 0.05, 0.96, 0.10],
+        [0.02, 0.02, 0.04, 0.08, 0.04, 0.12, 0.97],
     ])
     fraction = np.clip(expression + rng.normal(0, 0.08, expression.shape), 0.04, 1)
     palette = np.array(["#E6E8EB", "#B9D6E8", "#72A9CF", "#2F6FB3"])
@@ -388,9 +438,9 @@ def figure_4_cell_atlas() -> None:
                       color=palette[level], edgecolor="white", linewidth=0.4)
     d.set(xticks=np.arange(len(genes)), xticklabels=genes,
           yticks=np.arange(len(cell_types)), yticklabels=cell_types,
-          title="Marker expression map")
+          title="Canonical marker expression")
     d.tick_params(axis="x", rotation=42)
-    d.set_xlim(-0.65, len(genes) - 0.35)
+    d.set_xlim(-0.65, len(genes) + 1.45)
     d.set_ylim(len(cell_types) - 0.35, -0.65)
     d.grid(color="#ECEEF1", lw=0.45)
     d.legend(handles=[
@@ -398,7 +448,7 @@ def figure_4_cell_atlas() -> None:
                    label="25% cells"),
         plt.Line2D([], [], marker="o", ls="", ms=8, color=GRAY,
                    label="75% cells"),
-    ], loc="lower right", fontsize=6.2)
+    ], loc="center right", fontsize=5.8)
 
     finish(fig, [a, b, c, d], "Fig4_CellAtlas")
 
@@ -590,7 +640,8 @@ def figure_6_model_insight() -> None:
     d.scatter(auc, ypos, s=30, color=[RED, BLUE, BLUE, TEAL],
               edgecolor="white", linewidth=0.55, zorder=3)
     for y0, value in zip(ypos, auc):
-        d.text(value + 0.012, y0, f"{value:.2f}", va="center", fontsize=6.2)
+        d.text(0.972, y0, f"{value:.2f}", ha="right", va="center",
+               fontsize=6.2, fontweight="bold")
     d.axvline(0.80, color=GRAY, lw=0.7, ls="--")
     d.set(yticks=ypos, yticklabels=cohorts, xlabel="AUC (95% CI)",
           xlim=(0.68, 0.98), title="Transportability across cohorts")
