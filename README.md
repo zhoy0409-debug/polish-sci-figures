@@ -39,6 +39,7 @@ All values are deterministic synthetic demonstration data.
 
 - No panel letters, serial labels, or internal titles unless the target explicitly requires them.
 - Arial by default, with one-place global switching for Times New Roman or another required journal font.
+- Equal main-axes geometry across regular grids, with aspect-ratio shrinkage and accidental whitespace blocked.
 - Collision and clipping checks for labels, annotations, legends, and panel letters.
 - Scientific italics, capitalization, symbols, units, subscripts, and superscripts.
 - Publication-oriented typography, spacing, color semantics, and export sizes.

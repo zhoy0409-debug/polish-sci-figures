@@ -1,4 +1,4 @@
-"""Fail fast on titles, text collisions, clipping, and scientific typography."""
+"""Fail fast on titles, grid geometry, collisions, and scientific typography."""
 from __future__ import annotations
 
 from collections.abc import Iterable
@@ -24,6 +24,7 @@ def audit_figure_text(
     *,
     allow_panel_labels: bool = False,
     allow_panel_titles: bool = False,
+    require_aligned_grid: bool = True,
     required_font_family: str | None = None,
 ) -> list[str]:
     """Return title and notation failures found in a Matplotlib figure."""
@@ -51,6 +52,33 @@ def audit_figure_text(
 
     renderer = fig.canvas.get_renderer()
     figure_box = fig.bbox
+
+    if require_aligned_grid:
+        boxes = [ax.get_position() for ax in checked_axes]
+        # ponytail: center clustering targets ordinary grids; disable this gate
+        # for deliberate spanning or irregular layouts.
+        for index, first in enumerate(boxes):
+            first_x = first.x0 + first.width / 2
+            first_y = first.y0 + first.height / 2
+            for other_index, second in enumerate(boxes[index + 1:], index + 1):
+                second_x = second.x0 + second.width / 2
+                second_y = second.y0 + second.height / 2
+                same_column = abs(first_x - second_x) < 0.15
+                same_row = abs(first_y - second_y) < 0.15
+                if same_column and max(
+                    abs(first.x0 - second.x0), abs(first.x1 - second.x1),
+                ) > 0.02:
+                    issues.append(
+                        f"grid column axes {index + 1} and {other_index + 1} "
+                        "have unequal widths or horizontal edges"
+                    )
+                if same_row and max(
+                    abs(first.y0 - second.y0), abs(first.y1 - second.y1),
+                ) > 0.02:
+                    issues.append(
+                        f"grid row axes {index + 1} and {other_index + 1} "
+                        "have unequal heights or vertical edges"
+                    )
     tick_labels = {
         text for ax in fig.axes
         for text in (*ax.get_xticklabels(), *ax.get_yticklabels())
@@ -129,6 +157,7 @@ def assert_figure_text_qa(
     *,
     allow_panel_labels: bool = False,
     allow_panel_titles: bool = False,
+    require_aligned_grid: bool = True,
     required_font_family: str | None = None,
 ) -> None:
     """Raise when a figure fails the title or typography release gate."""
@@ -136,6 +165,7 @@ def assert_figure_text_qa(
         fig, axes,
         allow_panel_labels=allow_panel_labels,
         allow_panel_titles=allow_panel_titles,
+        require_aligned_grid=require_aligned_grid,
         required_font_family=required_font_family,
     )
     if issues:

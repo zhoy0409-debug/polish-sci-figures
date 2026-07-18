@@ -249,7 +249,6 @@ def figure_3_validation() -> None:
     b.plot([0, 1], [0, 1], color=GRAY, lw=0.7, ls="--")
     b.set(xlabel="1 - specificity", ylabel="Sensitivity", xlim=(0, 1),
           ylim=(0, 1.02))
-    b.set_aspect("equal", adjustable="box")
     b.legend(loc="lower right")
 
     # Kaplan-Meier style survival curves.
@@ -403,7 +402,7 @@ def figure_4_cell_atlas() -> None:
              columnspacing=0.8)
     c.plot([1.25, 2.00], [-1.47, -1.47], color=DARK, lw=1.8)
     c.text(1.625, -1.39, "500 µm", ha="center", va="bottom", fontsize=5.6)
-    c.set_aspect("equal")
+    c.set_aspect("equal", adjustable="datalim")
     c.set(xlim=(-2.65, 2.65), ylim=(-1.75, 1.75))
     c.set_xticks([])
     c.set_yticks([])
@@ -474,7 +473,7 @@ def figure_5_systems_map() -> None:
                color=color, fontweight="bold", zorder=4)
     a.set_xlim(-1.6, 1.6)
     a.set_ylim(-1.55, 1.55)
-    a.set_aspect("equal")
+    a.set_aspect("equal", adjustable="datalim")
     a.set_xticks([])
     a.set_yticks([])
     for spine in a.spines.values():
@@ -601,7 +600,6 @@ def figure_6_model_insight() -> None:
         b.plot(predicted, observed, "o-", color=color, ms=3.2, lw=1.15, label=label)
     b.set(xlabel="Predicted probability", ylabel="Observed probability",
           xlim=(0, 1), ylim=(0, 1))
-    b.set_aspect("equal", adjustable="box")
     b.legend(loc="upper left", fontsize=6.2)
 
     # Decision-curve analysis.

@@ -1,6 +1,6 @@
 ---
 name: polish-sci-figures
-description: Create, redraw, compare, arrange, audit, and package publication-grade scientific figures for manuscripts, posters, Word documents, PowerPoint slides, and public showcases. Use for SCI figures, 论文配图, 科研作图, 结果可视化, 组图, 重绘, figure polishing, title-free and serial-label-free panels, collision-free annotations, Arial or journal-specific font control, scientific typography and nomenclature, consistent canvas sizing, final-size typography, editable SVG/PDF/PNG, manuscript or presentation figure QA, and original-versus-redesign selection.
+description: Create, redraw, compare, arrange, audit, and package publication-grade scientific figures for manuscripts, posters, Word documents, PowerPoint slides, and public showcases. Use for SCI figures, 论文配图, 科研作图, 结果可视化, 组图, 重绘, figure polishing, aligned multipanel grids, whitespace control, title-free and serial-label-free panels, collision-free annotations, Arial or journal-specific font control, scientific typography and nomenclature, consistent canvas sizing, final-size typography, editable SVG/PDF/PNG, manuscript or presentation figure QA, and original-versus-redesign selection.
 ---
 
 # Polish Scientific Figures
@@ -11,7 +11,7 @@ Deliver the near-final figure in one internal pass: establish the claim and fina
 
 - Load `assets/sci_style.mplstyle` as a baseline; override it for a verified journal, deck, or user requirement.
 - Do not add panel letters or serial labels by default. Use `scripts/panel_labels.py` only when the user or verified target explicitly requires them, preferably at final composite assembly.
-- Run `scripts/figure_text_qa.py` before saving Matplotlib figures; block export on unrequested panel titles or common baseline scientific notation.
+- Run `scripts/figure_text_qa.py` before saving Matplotlib figures; block export on grid-geometry drift, unrequested panel titles, collisions, or common baseline scientific notation.
 - Use `scripts/make_montage.py` to compare a figure series.
 - Run `scripts/check_svg_canvas.py` on every independently editable SVG series intended for one grid or repeated slot.
 - Run `scripts/check_svg_editability.py --require-fully-editable` when fully editable SVG is requested.
@@ -123,6 +123,10 @@ Zero unintended overlap is mandatory. Check text against text, markers, error ba
 - Prefer low-saturation, high-contrast colors with stable semantics, dark text/axes, subtle grids, and few accent colors. Match the approved palette first.
 - Avoid default card grids, excessive white boxes, gradients, and decorative frames. For slides, prefer transparent figure backgrounds over a very light slide background unless the template requires otherwise.
 - Build the panel grid before plotting: aligned outer edges, equal gutters, balanced weight, and intentional whitespace only.
+- Distinguish the figure canvas, allocated subplot slot, and actual axes box. Equal canvas or GridSpec cells do not pass when one plotted axes is visibly narrower, shorter, shifted, or surrounded by avoidable blank space.
+- In a regular multipanel grid, require all main axes in each column to share left/right edges and width, and all axes in each row to share top/bottom edges and height. Keep gutters uniform and content optically balanced.
+- Do not let `set_aspect("equal", adjustable="box")` silently shrink one panel. Use the normal automatic aspect when equal data units are not scientifically required; when geometry must stay undistorted, use `adjustable="datalim"` or allocate a deliberately matching slot.
+- Treat whitespace as a budget. Keep only space reserved for labels, legends, colorbars, annotations, or scientifically necessary geometry; remove accidental or one-sided empty regions before delivery.
 - Keep legends in reserved space and all text, annotations, colorbars, and connectors inside a visible safety margin. Lines must never cross cards, labels, or unrelated objects.
 - Reserve a separate annotation column for numeric labels beside forest plots, intervals, and lollipops; never print values on top of markers or confidence intervals.
 - Use the form that best answers the claim: points plus distributions, rainclouds, paired slopes or estimation plots, lollipops/forest plots, 100% composition plots, vector heatmaps, and lines with uncertainty. Do not add novelty that weakens comparison.
@@ -172,6 +176,7 @@ Do not deliver while any of these is true:
 - The data, denominator, statistical scope, group order, units, or direction is wrong or unverified.
 - A manuscript or showcase panel contains an unrequested title, subtitle, panel letter, sequence number, or serial label.
 - Same-slot SVGs differ in physical canvas or `viewBox`, or require post-hoc scaling to align.
+- Main axes in a regular grid have unequal widths, heights, outer edges, gutters, or avoidable asymmetric whitespace.
 - Necessary text is unreadable at final size, clipped, overlapping, fragmented into characters, or using an unintended fallback font.
 - Any text, marker, interval, data line, axis, legend, colorbar, panel letter, connector, scale bar, title, or caption overlaps or ambiguously touches another element.
 - Scientific notation has incorrect italics, case, capitalization, subscript, superscript, sign, spacing, acronym, gene/protein/species convention, or unit formatting.
