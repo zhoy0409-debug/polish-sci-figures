@@ -2,8 +2,8 @@
 # deck, final placement, or explicit user requirement.
 
 # --- Fonts -------------------------------------------------------------------
-font.family        : sans-serif
-font.sans-serif    : Arial, Helvetica, Helvetica Neue, Nimbus Sans, DejaVu Sans
+font.family        : Arial
+font.sans-serif    : Arial
 font.size          : 9.5
 axes.titlesize     : 12
 axes.labelsize     : 10
@@ -11,9 +11,12 @@ xtick.labelsize    : 8.5
 ytick.labelsize    : 8.5
 legend.fontsize    : 9
 figure.titlesize   : 15
-# Keep editable SVG phrases out of Matplotlib mathtext when possible: mathtext
-# can split one phrase into one <tspan> per character. Use one plain text object
-# with fontstyle="italic", or apply a style run later in the vector editor.
+mathtext.fontset   : custom
+mathtext.rm        : Arial
+mathtext.it        : Arial:italic
+mathtext.bf        : Arial:bold
+# Use mathtext only for semantic italic/subscript/superscript runs that Arial
+# cannot represent as plain Unicode. Keep ordinary phrases as plain live text.
 mathtext.default   : regular
 
 # --- Lines and markers -------------------------------------------------------

@@ -23,10 +23,9 @@ SKILL = Path(os.environ.get(
 ))
 sys.path.insert(0, str(SKILL / "scripts"))
 from figure_text_qa import assert_figure_text_qa  # noqa: E402
-from panel_labels import add_panel_labels, audit_label_alignment  # noqa: E402
 
 plt.style.use(SKILL / "assets" / "sci_style.mplstyle")
-plt.rcParams.update({"font.family": "DejaVu Serif", "axes.titlesize": 8})
+plt.rcParams.update({"axes.titlesize": 8})
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "final_figures"
@@ -44,16 +43,12 @@ GREEN = "#4F8A5B"
 rng = np.random.default_rng(20260715)
 
 
-def finish(fig, axes, stem: str, *, label_dx: float = -0.004) -> None:
+def finish(fig, axes, stem: str) -> None:
     """Apply the shared release checks and export all master formats."""
     fig.set_constrained_layout_pads(
         w_pad=0.28, h_pad=0.22, wspace=0.08, hspace=0.16,
     )
-    add_panel_labels(fig, axes, style="(a)", dx=label_dx, dy=0.006,
-                     fontsize=9, va="bottom", grid_cluster=0.10)
-    assert_figure_text_qa(fig, axes)
-    warnings = audit_label_alignment(fig)
-    assert not warnings, warnings
+    assert_figure_text_qa(fig, axes, required_font_family="Arial")
     for ext in ("png", "svg", "pdf"):
         path = OUT / f"{stem}.{ext}"
         fig.savefig(path, dpi=300 if ext == "png" else None)
@@ -88,7 +83,7 @@ def figure_1_efficacy() -> None:
                   edgecolor="white", linewidth=0.25, zorder=3)
     y = 1.48
     a.plot([0, 0, 1, 1], [y - 0.025, y, y, y - 0.025], color=DARK, lw=0.7)
-    a.text(0.5, y + 0.025, "𝑃 = 4.8 × 10⁻⁴",
+    a.text(0.5, y + 0.025, r"$\mathit{P}\,=\,4.8 \times 10^{-4}$",
            ha="center", va="bottom")
     a.set(xticks=[0, 1], xticklabels=["Vehicle", "CX-17"],
           ylabel="Relative tumor volume", ylim=(0.25, 1.62))
@@ -100,7 +95,7 @@ def figure_1_efficacy() -> None:
         b.plot([0, 1], [p0, p1], color=GRAY, lw=0.75, zorder=1)
     b.scatter(np.zeros_like(pre), pre, s=18, color=GRAY, zorder=2)
     b.scatter(np.ones_like(post), post, s=18, color=RED, zorder=2)
-    b.text(0.5, 2.05, "𝑃 = 0.002", ha="center", va="top")
+    b.text(0.5, 2.05, r"$\mathit{P}\,=\,0.002$", ha="center", va="top")
     b.set(xlim=(-0.35, 1.35), ylim=(0.55, 2.08), xticks=[0, 1],
           xticklabels=["Baseline", "Day 14"], ylabel="CD8 activation score")
 
@@ -114,7 +109,7 @@ def figure_1_efficacy() -> None:
     c.plot(dose, mean, "o-", color=BLUE, ms=3.6, lw=1.2)
     c.axhline(50, color=LIGHT, lw=0.7)
     c.axvline(0.72, color=LIGHT, lw=0.7)
-    c.text(0.62, 0.84, "IC₅₀ = 0.72 µM", transform=c.transAxes,
+    c.text(0.62, 0.84, r"$\mathrm{IC}_{50}$ = 0.72 µM", transform=c.transAxes,
            ha="left")
     c.set_xscale("log")
     c.set_xticks([0.03, 0.1, 1, 10])
@@ -165,7 +160,7 @@ def figure_2_mechanism() -> None:
     b.scatter(suppression, apoptosis, s=18, color=GRAY, alpha=0.82,
               edgecolor="white", linewidth=0.25)
     b.plot(xx, slope * xx + intercept, color=RED, lw=1.2)
-    b.text(0.05, 0.93, f"𝑟 = {r:.2f}", transform=b.transAxes,
+    b.text(0.05, 0.93, fr"$\mathit{{r}}\,=\,{r:.2f}$", transform=b.transAxes,
            ha="left", va="top")
     b.set(xlabel="Target suppression (%)", ylabel="Apoptotic cells (%)",
           xlim=(5, 90), ylim=(5, 75))
@@ -238,7 +233,7 @@ def figure_3_validation() -> None:
         a.annotate(name, (x0, y0), xytext=(3 if x0 > 0 else -3, 3),
                    textcoords="offset points", ha="left" if x0 > 0 else "right",
                    fontsize=6, color=DARK)
-    a.set(xlabel="log₂ fold change", ylabel="−log₁₀(FDR)",
+    a.set(xlabel=r"$\log_{2}$ fold change", ylabel=r"$-\log_{10}(\mathrm{FDR})$",
           xlim=(-3.5, 3.5), ylim=(0, 6.4))
 
     # ROC curves without an extra dependency.
@@ -265,7 +260,7 @@ def figure_3_validation() -> None:
     c.step(months, high, where="post", color=RED, lw=1.4, label="High-risk score")
     c.plot(months[[4, 8, 11]], low[[4, 8, 11]], "+", color=BLUE, ms=5)
     c.plot(months[[3, 7, 10]], high[[3, 7, 10]], "+", color=RED, ms=5)
-    c.text(0.97, 0.95, "Log-rank 𝑃 = 0.012", transform=c.transAxes,
+    c.text(0.97, 0.95, r"Log-rank $\mathit{P}\,=\,0.012$", transform=c.transAxes,
            ha="right", va="top")
     c.set(xlabel="Time (months)", ylabel="Overall survival", xlim=(0, 36),
           ylim=(0, 1.03))
@@ -650,4 +645,4 @@ if __name__ == "__main__":
     figure_4_cell_atlas()
     figure_5_systems_map()
     figure_6_model_insight()
-    print("all panel-alignment audits passed")
+    print("all figure text QA checks passed")

@@ -37,8 +37,8 @@ All values are deterministic synthetic demonstration data.
 
 ## Highlights
 
-- Strict mathematical alignment for multi-panel labels.
-- Title-free manuscript/showcase panels unless the target explicitly requires titles.
+- No panel letters, serial labels, or internal titles unless the target explicitly requires them.
+- Arial by default, with one-place global switching for Times New Roman or another required journal font.
 - Collision and clipping checks for labels, annotations, legends, and panel letters.
 - Scientific italics, capitalization, symbols, units, subscripts, and superscripts.
 - Publication-oriented typography, spacing, color semantics, and export sizes.

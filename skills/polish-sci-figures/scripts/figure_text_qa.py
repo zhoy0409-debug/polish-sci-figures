@@ -2,10 +2,12 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+import re
 import warnings
 
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+from matplotlib import font_manager
 from matplotlib.text import Text
 
 
@@ -13,17 +15,29 @@ FORBIDDEN_TEXT = (
     "IC50", "EC50", "ED50", "LD50", "log2", "log10", "CO2",
     "cm^2", " x 10", "10^-", "P =", "p =", "r =", "AUC=",
 )
+PANEL_LABEL = re.compile(r"\(?[A-Za-z]\)?")
 
 
 def audit_figure_text(
     fig: Figure,
     axes: Iterable[Axes] | None = None,
     *,
+    allow_panel_labels: bool = False,
     allow_panel_titles: bool = False,
+    required_font_family: str | None = None,
 ) -> list[str]:
     """Return title and notation failures found in a Matplotlib figure."""
     issues: list[str] = []
     checked_axes = list(fig.axes if axes is None else axes)
+
+    if required_font_family is not None:
+        try:
+            font_manager.findfont(
+                font_manager.FontProperties(family=required_font_family),
+                fallback_to_default=False,
+            )
+        except ValueError:
+            issues.append(f"required font is not installed: {required_font_family!r}")
 
     with warnings.catch_warnings():
         warnings.filterwarnings(
@@ -84,8 +98,21 @@ def audit_figure_text(
         if fig._suptitle is not None and fig._suptitle.get_text().strip():
             issues.append("figure contains a forbidden internal title")
 
+    if not allow_panel_labels:
+        for text in fig.texts:
+            value = text.get_text().strip()
+            if PANEL_LABEL.fullmatch(value):
+                issues.append(f"figure contains a forbidden panel label: {value!r}")
+
     for text in fig.findobj(Text):
         value = text.get_text()
+        if (required_font_family is not None
+                and required_font_family.casefold() not in {
+                    family.casefold() for family in text.get_fontfamily()
+                }):
+            issues.append(
+                f"text {value!r} does not use required font {required_font_family!r}"
+            )
         for token in FORBIDDEN_TEXT:
             if token in value:
                 issues.append(f"replace {token!r} with publication notation in {value!r}")
@@ -100,11 +127,16 @@ def assert_figure_text_qa(
     fig: Figure,
     axes: Iterable[Axes] | None = None,
     *,
+    allow_panel_labels: bool = False,
     allow_panel_titles: bool = False,
+    required_font_family: str | None = None,
 ) -> None:
     """Raise when a figure fails the title or typography release gate."""
     issues = audit_figure_text(
-        fig, axes, allow_panel_titles=allow_panel_titles,
+        fig, axes,
+        allow_panel_labels=allow_panel_labels,
+        allow_panel_titles=allow_panel_titles,
+        required_font_family=required_font_family,
     )
     if issues:
         raise AssertionError("\n".join(issues))

@@ -1,4 +1,4 @@
 interface:
   display_name: "Polish Scientific Figures"
-  short_description: "Title-free, collision-safe scientific figure QA"
-  default_prompt: "Use $polish-sci-figures to create or polish publication figures with no panel subtitles or overlaps and with correct scientific typography, canvas sizing, and editable exports."
+  short_description: "Serial-free, collision-safe scientific figure QA"
+  default_prompt: "Use $polish-sci-figures to create publication figures without internal titles or panel labels, using Arial unless the verified target requires another font."
