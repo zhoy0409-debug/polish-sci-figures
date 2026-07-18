@@ -19,6 +19,7 @@ pip install python-docx python-pptx
 | Render DOCX/PPTX/PDF pages to PNG | `pymupdf` (`import fitz`) **or** Poppler `pdftoppm` | `scripts/render_doc_pages.py` |
 | DOCX/PPTX -> PDF conversion | **LibreOffice** (`soffice` on PATH) | `scripts/render_doc_pages.py` (only for .docx/.pptx input) |
 | SVG editability audit | stdlib only | `scripts/check_svg_editability.py` |
+| SVG physical-canvas audit | stdlib only | `scripts/check_svg_canvas.py` |
 
 Notes
 - **Fonts.** matplotlib silently falls back when a named font is missing, which

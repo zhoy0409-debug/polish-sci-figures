@@ -13,6 +13,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Patch
+from matplotlib.ticker import NullFormatter
 
 
 SKILL = Path(os.environ.get(
@@ -74,8 +75,8 @@ def figure_1_efficacy() -> None:
                   edgecolor="white", linewidth=0.25, zorder=3)
     y = 1.48
     a.plot([0, 0, 1, 1], [y - 0.025, y, y, y - 0.025], color=DARK, lw=0.7)
-    a.text(0.5, y + 0.025, r"$\mathit{P} = 4.8 \times 10^{-4}$",
-           ha="center", va="bottom")
+    a.text(0.5, y + 0.025, "P = 4.8 x 10^-4",
+           ha="center", va="bottom", fontstyle="italic")
     a.set(xticks=[0, 1], xticklabels=["Vehicle", "CX-17"],
           ylabel="Relative tumor volume", ylim=(0.25, 1.62),
           title="Tumor response")
@@ -87,7 +88,8 @@ def figure_1_efficacy() -> None:
         b.plot([0, 1], [p0, p1], color=GRAY, lw=0.75, zorder=1)
     b.scatter(np.zeros_like(pre), pre, s=18, color=GRAY, zorder=2)
     b.scatter(np.ones_like(post), post, s=18, color=RED, zorder=2)
-    b.text(0.5, 2.05, r"$\mathit{P} = 0.002$", ha="center", va="top")
+    b.text(0.5, 2.05, "P = 0.002", ha="center", va="top",
+           fontstyle="italic")
     b.set(xlim=(-0.35, 1.35), ylim=(0.55, 2.08), xticks=[0, 1],
           xticklabels=["Baseline", "Day 14"], ylabel="CD8 activation score",
           title="Paired pharmacodynamic response")
@@ -102,9 +104,11 @@ def figure_1_efficacy() -> None:
     c.plot(dose, mean, "o-", color=BLUE, ms=3.6, lw=1.2)
     c.axhline(50, color=LIGHT, lw=0.7)
     c.axvline(0.72, color=LIGHT, lw=0.7)
-    c.text(0.84, 0.84, "IC$_{50}$ = 0.72 µM", transform=c.transAxes,
+    c.text(0.84, 0.84, "IC50 = 0.72 µM", transform=c.transAxes,
            ha="right")
     c.set_xscale("log")
+    c.set_xticks([0.03, 0.1, 1, 10])
+    c.set_xticklabels(["0.03", "0.1", "1", "10"])
     c.set(xlabel="CX-17 (µM)", ylabel="Cell viability (%)", ylim=(0, 106),
           title="Dose-response")
 
@@ -228,15 +232,15 @@ def figure_3_validation() -> None:
         a.annotate(name, (x0, y0), xytext=(3 if x0 > 0 else -3, 3),
                    textcoords="offset points", ha="left" if x0 > 0 else "right",
                    fontsize=6, color=DARK)
-    a.set(xlabel="log$_2$ fold change", ylabel="-log$_{10}$(FDR)",
+    a.set(xlabel="log2 fold change", ylabel="-log10(FDR)",
           xlim=(-3.5, 3.5), ylim=(0, 6.4), title="Differential expression")
 
     # ROC curves without an extra dependency.
     fpr = np.linspace(0, 1, 101)
     discovery = 1 - (1 - fpr) ** 5.2
     validation = 1 - (1 - fpr) ** 3.8
-    auc_discovery = np.trapz(discovery, fpr)
-    auc_validation = np.trapz(validation, fpr)
+    auc_discovery = np.sum((discovery[1:] + discovery[:-1]) * np.diff(fpr) / 2)
+    auc_validation = np.sum((validation[1:] + validation[:-1]) * np.diff(fpr) / 2)
     b.plot(fpr, discovery, color=RED, lw=1.3,
            label=f"Discovery  AUC={auc_discovery:.2f}")
     b.plot(fpr, validation, color=BLUE, lw=1.3,
@@ -255,8 +259,8 @@ def figure_3_validation() -> None:
     c.step(months, high, where="post", color=RED, lw=1.4, label="High-risk score")
     c.plot(months[[4, 8, 11]], low[[4, 8, 11]], "+", color=BLUE, ms=5)
     c.plot(months[[3, 7, 10]], high[[3, 7, 10]], "+", color=RED, ms=5)
-    c.text(0.97, 0.95, r"Log-rank $\mathit{P} = 0.012$", transform=c.transAxes,
-           ha="right", va="top")
+    c.text(0.97, 0.95, "Log-rank P = 0.012", transform=c.transAxes,
+           ha="right", va="top", fontstyle="italic")
     c.set(xlabel="Time (months)", ylabel="Overall survival", xlim=(0, 36),
           ylim=(0, 1.03), title="Risk stratification")
     c.legend(loc="lower left")
@@ -277,6 +281,7 @@ def figure_3_validation() -> None:
           xlim=(0.25, 5.0), title="Multivariable model")
     d.set_xticks([0.5, 1, 2, 4])
     d.set_xticklabels(["0.5", "1", "2", "4"])
+    d.xaxis.set_minor_formatter(NullFormatter())
     d.invert_yaxis()
 
     finish(fig, [a, b, c, d], "Fig3_Validation")

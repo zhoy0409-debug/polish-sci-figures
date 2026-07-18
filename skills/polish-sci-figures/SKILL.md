@@ -1,136 +1,142 @@
 ---
 name: polish-sci-figures
-description: Create, redraw, arrange, audit, and deliver publication-grade scientific figures and multi-panel composites for manuscripts, Word documents, and academic PowerPoint slides. Use for SCI/论文配图/科研作图/结果可视化/组图/图件优化/重绘/拼版/统一配色/figure polishing, especially when the user wants a clean square layout, strict panel-label alignment, legible text at final size, varied but scientifically appropriate chart types, consistent styling, exact P values, and editable SVG/PDF/PNG deliverables. Also use when integrating new and old figures into a manuscript or PPT, repairing cropped or flattened legacy figures, or performing final visual QA before submission or presentation.
+description: Create, redraw, compare, arrange, audit, and package publication-grade scientific figures for manuscripts, posters, Word documents, PowerPoint slides, and public showcases. Use for SCI figures, 论文配图, 科研作图, 结果可视化, 组图, 重绘, figure polishing, consistent canvas sizing, final-size typography, editable SVG/PDF/PNG, manuscript or presentation figure QA, and original-versus-redesign selection.
 ---
 
-# Polish SCI Figures
+# Polish Scientific Figures
 
-Produce the near-final figure in one internal pass: understand the scientific claim, reuse the best available source, draw, assemble, render, inspect, correct, and package. Do not make the user discover basic alignment, clipping, font, whitespace, or editability problems.
+Deliver the near-final figure in one internal pass: establish the claim and final placement, trace the authoritative data, compare the existing and proposed forms, draw, export, inspect at real size, correct, and package. Do not make the user rediscover alignment, canvas, font, overlap, scientific-label, or editability defects.
 
-**Bundled resources — use them, do not reinvent them:**
+## Use the bundled resources
 
-- `assets/sci_style.mplstyle` — matplotlib rcParams: sans-serif default, editable SVG/PDF text, sensible line widths. Load first: `plt.style.use(...)`. Override font family and size per the target journal (see `references/journal_specs.md`).
-- `scripts/panel_labels.py` — place panel labels on a mathematically shared grid, plus `audit_label_alignment()` which groups labels by row/column and flags any deviation.
-- `scripts/make_montage.py` — contact sheet for cross-figure consistency QA.
-- `scripts/render_doc_pages.py` — render DOCX/PPTX/PDF pages to PNG so the figure is inspected *after insertion*; it prefers PyMuPDF and falls back to Poppler `pdftoppm`.
-- `scripts/check_svg_editability.py` — objective FULLY / PARTIALLY / RASTER-ONLY verdict so editability is never overstated.
-- `references/journal_specs.md` — per-journal column widths, font sizes, dpi, TIFF requirements.
-- `references/dependencies.md` — packages and font-availability check.
-- `examples/example_figure.py` — runnable end-to-end reference (box+points, paired slopes, ranked lollipop, heatmap) using the style + `panel_labels.py`; run it to regenerate the example figure.
+- Load `assets/sci_style.mplstyle` as a baseline; override it for a verified journal, deck, or user requirement.
+- Use `scripts/panel_labels.py` when panel labels are required.
+- Use `scripts/make_montage.py` to compare a figure series.
+- Run `scripts/check_svg_canvas.py` on every independently editable SVG series intended for one grid or repeated slot.
+- Run `scripts/check_svg_editability.py --require-fully-editable` when fully editable SVG is requested.
+- Use `scripts/render_doc_pages.py` after insertion into an existing DOCX, PPTX, or PDF.
+- Read `references/canvas_profiles.md` whenever delivering multiple standalone panels, a manuscript composite assembled later, or figures that will be placed into PPT slots.
+- Read `references/journal_specs.md` for a submission and verify the current official instructions.
 
-## Resolve the figure contract
+## Choose the delivery mode
 
-Inspect the project before drawing:
+| Mode | Use when | Required behavior |
+| --- | --- | --- |
+| `manuscript` | Paper, supplement, or journal submission | Follow the current journal and manuscript conventions. Keep long titles, interpretation, and the figure legend outside the artwork. |
+| `presentation` | Talk, poster, or slide deck | Follow the deck grid and inspect every figure at its actual slide position and audience size. |
+| `showcase` | GitHub gallery or standalone public image | Optimize for immediate reading at 1200 px wide; keep captions and provenance outside the image. |
 
-1. Locate the authoritative latest manuscript/PPT, source data, plotting scripts, native AI/SVG/PDF/PPT assets, and user-approved reference figures.
-2. Trace which output file is actually embedded or delivered. Do not polish an obsolete intermediate file.
-3. Reuse the existing plotting backend and style helpers. With no backend signal, default to Python/matplotlib; use R when the source is R-native.
-4. Record before writing code: the figure's core conclusion, each panel's role, the target container and size, palette semantics, the panel-label convention, and required exports.
+Do not mix these modes. A clean manuscript panel and a presentation result slide require different surrounding text, background, and font sizing.
 
-Apply the user's explicit current-project instruction over every default here. Preserve an approved visual system instead of redesigning it gratuitously. Ask only when a missing choice materially changes the result.
+## Establish the figure contract before drawing
+
+Record or infer:
+
+1. The authoritative latest data, plotting source, and scientific claim.
+2. The final container: journal width, document position, poster region, or slide grid.
+3. Each panel's **slot class and exact final width × height**.
+4. Final-size font hierarchy, palette semantics, group order, label convention, background, and export formats.
+5. Whether a user-approved reference image or existing project visual system is the style target.
+
+Trace the file that is actually delivered or embedded; never polish an obsolete intermediate. Reuse plotting code plus data first, then native vector, then high-resolution raster. Preserve an approved visual system unless the user asks for a redesign.
 
 ## Protect scientific meaning
 
-- Verify the comparison, sample size, biological vs technical replicates, group direction, statistical test, units, and label-to-data mapping before styling.
-- Never invent values, significance, labels, trends, error bars, or missing observations.
-- Correct a scientifically wrong legacy figure from source data; do not preserve an error merely because it appeared in the original.
-- Keep microscopy, blot, and structure image content unchanged except for disclosed, non-misleading layout/annotation work. Retain scale bars and required context.
-- Use exact italic *P* values when available; use threshold symbols only when exact values are unavailable or the target convention requires them.
-- Every color, line, arrow, annotation, and highlighted point must carry a defined meaning. Distinguish analysis from decoration.
+- Verify groups, denominators, units, sample sizes, biological versus technical replicates, statistical tests, uncertainty, and label-to-data mapping before styling.
+- Use the latest authoritative result. Correct a scientifically wrong legacy figure from source data and disclose the changed statistical scope; do not preserve an error cosmetically.
+- Never invent observations, effects, significance, labels, error bars, or missing data.
+- Keep group order and effect direction stable across the series. Follow the user's order; otherwise put reference/control before disease/treatment and state contrasts explicitly.
+- Distinguish primary, sensitivity, exploratory, apparent, cross-validated, and externally validated results. Do not overstate a nominal or in-sample result.
+- Keep raw microscopy, blots, and structural images faithful, preserve scale bars, and disclose meaningful processing.
+- Use exact italic *P* values when available. Every color, line, arrow, annotation, and highlighted point must have scientific meaning.
 
-## Choose the visual form by the message
+## Make the candidate compete with the original
 
-Avoid a deck or paper made entirely of interchangeable bar charts. Vary form only when the data and claim support it:
+For an existing figure series, compare original and candidate at the same final size.
 
-- Distributions: points plus box/violin/raincloud, not bars alone.
-- Paired samples: paired points or slope lines.
-- Up/down direction: arrows, diverging bars, or lollipops — make it unambiguous.
-- Ranked effects: lollipops or horizontal bars.
-- Many features across conditions: heatmaps or dot plots.
-- Enrichment: dot/lollipop plots; networks only when topology is the claim.
-- Time courses: lines with uncertainty; keep labels off the lines.
-- Effect estimates with central uncertainty: forest plots.
-- Keep comparable panels comparable; do not add novelty that weakens cross-panel reading.
+- First confirm whether data, statistics, and conclusions are identical.
+- If identical, replace only when the candidate is materially better in readability, spacing, hierarchy, editability, or target compliance.
+- If results changed, explain the authoritative source and treat the change as a scientific update, not a cosmetic win.
+- Use a supplied reference image as an explicit visual benchmark: extract palette, line weight, information density, whitespace, typography, and annotation style without copying irrelevant decoration.
+- Keep the best parts of competing versions; do not replace a whole set merely because one source produced it.
 
-## House visual standard
+## Lock canvas and typography at final size
 
-**Typography.** Match the target journal/template or an approved existing figure first. Do not hard-code one family across all projects — neither Arial nor Times New Roman is universally correct. When nothing is specified, a sans-serif family (Arial/Helvetica) is a safe default for figure text because many journals set figure labels in sans-serif even when body text is serif; switch to serif only when the target calls for it. Size text for the final container, not a maximized preview; every necessary label must be readable at 100% on the page or from the audience. Prefer shrinking the plot area or tick density over shrinking essential text. Keep weight consistent. Confirm the intended font is actually installed — matplotlib falls back silently (`references/dependencies.md`). Italicize statistical *P* and other notation that needs it, and verify the *rendered* font: with the bundled style (`mathtext.default: regular`) a bare `$P$` renders upright, so write `$\mathit{P}$` to get an italic *P* while digits and units stay upright.
+This is a release blocker, not a finishing preference.
 
-**Color.** Match the approved project/reference palette across old and new figures. With no palette and where biology fits, use a restrained red/blue/gray system: red = positive/tumor/high/up, blue = negative/normal/low/down, gray = neutral/nonsignificant. Keep semantic roles stable across every panel. Use colorblind-safe contrasts and retain meaning in grayscale where feasible.
+- Define the final slot before plotting. Every SVG in the same slot class must have identical physical `width`, `height`, and `viewBox` dimensions.
+- Create figures at that physical size and reserve margins inside the fixed canvas. Never use `bbox_inches="tight"` or automatic tight cropping for panels that will be assembled later; it silently creates different canvases.
+- Insert each asset at its declared physical size (100% scale). If the target slot changes, regenerate for the new slot instead of resizing the SVG in Word, PowerPoint, Illustrator, or layout software.
+- Use separate slot classes for equal, wide, or tall panels; keep each class internally identical and keep typography defined at its final physical size.
+- Run `check_svg_canvas.py` separately for every slot class and block delivery on any mismatch.
 
-**Panel labels & captions.** Give every real analytical or image subpanel its own label — do not hide three independent plots under one "A". Follow the target convention; for manuscripts with no rule, bold lowercase in parentheses `(a)` `(b)` `(c)`; for PPT, the deck's A/B/C/D. Put labels on a shared grid (same row = identical y, same column = identical x) using `scripts/panel_labels.py`, and verify with `audit_label_alignment()`. One label size across main and supplementary. Keep labels near their panels without overlapping plots/axes/legends. Put interpretation in the legend/caption/slide title, not beside the label.
+See `references/canvas_profiles.md` for exact matplotlib and audit commands.
 
-**Lines, legends, annotations.** Keep axes, brackets, connectors, and leader lines continuous, clean, and correctly anchored; remove meaningless dashed guides. Place legends in deliberate free space, never covering data, axes, uncertainty bands, or another legend; lowering legend opacity is not a fix for a collision. Every annotated gene/protein name must clearly map to its point. Use standard hyphens and supported glyphs — reject mojibake, missing symbols, and fallback boxes. Keep labels off plotted lines and outside confidence bands.
+## Use a restrained editorial visual language
 
-## Compose a strict grid
+- Prefer low-saturation, high-contrast colors with stable semantics, dark text/axes, subtle grids, and few accent colors. Match the approved palette first.
+- Avoid default card grids, excessive white boxes, gradients, and decorative frames. For slides, prefer transparent figure backgrounds over a very light slide background unless the template requires otherwise.
+- Build the panel grid before plotting: aligned outer edges, equal gutters, balanced weight, and intentional whitespace only.
+- Keep legends in reserved space and all text, annotations, colorbars, and connectors inside a visible safety margin. Lines must never cross cards, labels, or unrelated objects.
+- Use the form that best answers the claim: points plus distributions, rainclouds, paired slopes or estimation plots, lollipops/forest plots, 100% composition plots, vector heatmaps, and lines with uncertainty. Do not add novelty that weakens comparison.
+- Make panels on the same page visibly related: same font hierarchy, line weights, palette, statistical syntax, axes treatment, canvas class, and information density.
 
-Plan panel rectangles before drawing.
+## Separate artwork from narrative without deleting evidence
 
-- Make composites compact, balanced, and as square as content and target allow; avoid a needlessly long banner.
-- Use equal gutters, aligned outer edges, consistent panel heights/widths.
-- A lower full-width panel equals the total visual width of the panels above it — not wider, not detached by a large gap.
-- Remove internal blank canvas from cropped source images before laying out; crop microscopy/images from measured bounds, preserving aspect ratio.
-- Treat unexplained whitespace as a defect: every large empty area must be intentional breathing room, a reserved legend lane, or an aspect-ratio requirement.
-- Maintain a visible safety margin around all text, legends, arrows, labels, and image features after the final export crop.
-- Keep all content inside the target page or slide.
+For manuscript-ready or reusable SVG panels:
 
-## Integrate into manuscripts and PPTs
+- Do not embed long titles, conclusions, explanatory sentences, captions, slide takeaways, or internal file IDs such as `P01` in the artwork.
+- Keep the minimum evidence needed to interpret the data: group labels, units, sample size when material, effect estimate, uncertainty, exact *P* value, AUC/CI, or other result-specific statistics.
+- Add only the panel label required by the target convention.
 
-**Manuscript.** Compose for the journal's single-/double-column width and the actual A4/Letter insertion size (`references/journal_specs.md`). Keep main and supplementary figures related and nonredundant; remove duplicated panels unless repetition is required. Keep panel explanations in the legend and cross-refs synchronized with the final panel structure.
+For presentations, put the conclusion-style slide title, per-panel explanation, key finding, and takeaway in editable PPT text layers outside the SVG. Removing long titles does **not** authorize removing statistical evidence.
 
-**PPT.** Group panels supporting one narrative block on one slide when legibility permits. Integrate new results into the existing story rather than appending slides. Match the deck's title, footer, palette, margins, and rhythm. Use abbreviations when space is tight and define them in the caption/footer. Plots may shrink if still clear, but keep all text large and crisp. Fit the composite into the reserved slide area without overlap, clipping, or empty gaps.
+## Preserve practical editability
 
-## Prefer editable sources
+- Keep SVG text as live text (`svg.fonttype: none`), not path outlines.
+- Keep complete phrases as continuous text objects. Do not export sentences as one character per `<tspan>`; Illustrator users must be able to edit a phrase in one operation.
+- Do not call an SVG fully editable when it wraps a PNG or contains raster heatmaps/colorbars. Convert analytical heatmaps and color scales to vector geometry when full editability is required.
+- If only a raster source exists, report the result as partially editable and preserve the raster faithfully.
 
-Use the highest-quality source, in order:
+## Mode-specific composition
 
-1. Existing plotting script plus source data.
-2. Native vector (AI, SVG, editable PDF, PPT shapes, R/Python figure object).
-3. High-resolution raster only when no native source exists.
+**Manuscript.** Use the verified single- or double-column dimensions, keep the figure legend outside the artwork, synchronize all panel references, and inspect at final print width.
 
-Do not patch a flattened PNG when a native source exists. If only a flattened raster exists: state that its pixels are not fully editable; ask for the AI/SVG/PDF/PPT or source data when full editability is required; if work must proceed, keep the raster background intact, make new text/annotation layers editable, and report the result as **partially editable**. Never claim that wrapping a PNG inside SVG makes the underlying image editable — verify the true status with `scripts/check_svg_editability.py`. For Python SVG output, keep text as text (`svg.fonttype: none`, set in the style), embed/resolve fonts, and confirm the SVG parses and renders independently.
+**Presentation.** Derive panel canvases from the slide grid before drawing. Use a conclusion-style slide title, figure, then concise per-panel meaning and key finding. Group related results for the available speaking time; keep secondary evidence in backup rather than making the main slide unreadable. Do not show internal file-order numbers on the slide. Name editable files in PPT reading order so the user can locate them.
 
-## Internal QA loop
+**Showcase.** Keep the image self-explanatory at 1200 px, disclose synthetic data, and package provenance for published-figure reproductions.
 
-Successful code execution is not a finished figure. Build assets before the document in dependency order (never generate assets and assemble the document that reads them in parallel), then:
+## Produce and inspect
 
-1. Generate from the authoritative source; export high-res PNG plus SVG/PDF.
-2. Open every final PNG and inspect it visually. Build a montage (`scripts/make_montage.py`) for multi-figure consistency.
-3. Inspect at the actual insertion/slide size, not only enlarged.
-4. Embed into the real DOCX/PPT/PDF and render the pages (`scripts/render_doc_pages.py`) — a standalone figure can fail after insertion. Note: DOCX/PPTX are rendered through LibreOffice, so those page images are a **LibreOffice compatibility preview, not native Word/PowerPoint rendering**; confirm final layout in the actual application when fidelity matters.
-5. For raster+vector repairs, measure coordinates against the original crop or a debug grid; never restore axes or lines by visual guess alone.
-6. Use OCR only when a real OCR backend is available; otherwise state the review was structural + visual, not OCR-based.
-7. Correct every failure and repeat the relevant checks before delivery.
+1. Generate from the authoritative source at the declared canvas and final-size typography.
+2. Export SVG/PDF plus PNG; preserve the source code and data.
+3. Compare old and new at the same physical size and keep only the winning candidate.
+4. Open every final image and inspect a montage for cross-figure typography, canvas rhythm, palette, and margins.
+5. Run panel-label, SVG editability, and canvas audits.
+6. Insert into the actual manuscript page or slide at 100% declared size and render that container. LibreOffice output is a compatibility preview, not native PowerPoint/Word rendering.
+7. Correct every failure and rerun the relevant checks before delivery.
 
-## Release checklist (blockers)
+## Acceptance gate
 
-Do not deliver while any of these is true. This is the single acceptance gate.
+Do not deliver while any of these is true:
 
-- [ ] A true subpanel is missing its label, or has more than one.
-- [ ] Same-row / same-column labels are not mathematically aligned (`audit_label_alignment` returns warnings).
-- [ ] Necessary text is clipped, overlapping, or unreadable at final size.
-- [ ] Font family or size is wrong for the target journal, or a font fell back silently.
-- [ ] *P* is not rendered italic, or units/subscripts are wrongly italicized.
-- [ ] Sample sizes, groups, directions, units, or statistics are wrong or unverified.
-- [ ] A legend/annotation covers data, a confidence band, an axis, or another label.
-- [ ] An unexplained large blank area, a detached panel, or content crowding the export edge.
-- [ ] A missing or floating axis, or a broken/garbled connector/glyph.
-- [ ] A raster-only deliverable is described as fully editable (`check_svg_editability.py` disagrees).
-- [ ] The real manuscript page or slide has not been rendered and inspected.
+- The data, denominator, statistical scope, group order, units, or direction is wrong or unverified.
+- Same-slot SVGs differ in physical canvas or `viewBox`, or require post-hoc scaling to align.
+- Necessary text is unreadable at final size, clipped, overlapping, fragmented into characters, or using an unintended fallback font.
+- A legend, annotation, connector, title, or caption covers data or another element.
+- Panels on one page use inconsistent spacing, line weights, palette semantics, statistical syntax, or visual density.
+- The artwork contains presentation prose or internal IDs, or essential statistical evidence was removed in the name of cleanliness.
+- A raster-only/partially editable file is called fully editable.
+- The real manuscript page, poster, or slide has not been rendered and inspected at the intended placement.
 
 ## Package the deliverables
 
-Follow an existing project convention; otherwise:
+Follow the project convention; otherwise use:
 
 ```text
 final_figures/   FigX.png  FigX.pdf  FigX.svg
 figure_sources/  FigX.py (or FigX.R)  source_data.*
-qa/              final_montage.png   pages/ (rendered document pages)
+qa/              original_vs_new.png  final_montage.png  rendered_pages/
 ```
 
-- PNG >=300 dpi for presentation/routine publication, 600 dpi for line art or when the journal requires it; SVG/PDF as editable/vector masters.
-- Add TIFF only when the target journal requires it (`references/journal_specs.md`).
-- Keep debug crops, failed variants, and temporary renders out of the delivery folder.
-- Report which files are fully editable, partially editable, or raster-only.
-
-Return the final files first, then only the key scientific or editability limitations that remain.
+For a slide series, name editable files in reading order, for example `01_S12_A_marker_distribution.svg`; keep that identifier out of the artwork. Keep failed variants and debug renders outside the delivery folder. Return final files first and state only material scientific, source, or editability limitations.

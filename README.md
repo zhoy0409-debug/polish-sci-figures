@@ -20,9 +20,11 @@ All values shown below are deterministic synthetic demonstration data.
 - Strict mathematical alignment for multi-panel labels.
 - Publication-oriented typography, spacing, color semantics, and export sizes.
 - Scientifically appropriate plot selection instead of repetitive bar charts.
+- Original-versus-redesign A/B selection at the same final size.
 - Exact italic *P* formatting and final-size readability checks.
 - Editable SVG/PDF plus 300-600 dpi PNG delivery.
-- SVG editability audit and post-insertion DOCX/PPTX/PDF rendering checks.
+- Fixed physical canvas profiles so equal font sizes stay equal after assembly.
+- SVG canvas, continuous-text, raster/editability, and post-insertion checks.
 - PyMuPDF rendering with an automatic Poppler `pdftoppm` fallback.
 
 ## Install
@@ -64,6 +66,7 @@ Example requests:
 ```text
 Use $polish-sci-figures to turn these result plots into a journal-ready 2×2 figure.
 Use $polish-sci-figures to audit this SVG/PDF figure before submission.
+Use $polish-sci-figures to export these slide panels on one fixed canvas profile.
 用 $polish-sci-figures 把这些结果图统一成可投稿的多面板主图。
 ```
 
@@ -80,6 +83,12 @@ python demo/figure_sources/make_demo_suite.py
 
 The script writes PNG, SVG, and PDF files to `demo/final_figures/`. It uses
 synthetic data and runs the bundled panel-label alignment audit before export.
+
+Verify that the three demo figures share one physical canvas:
+
+```bash
+python skills/polish-sci-figures/scripts/check_svg_canvas.py demo/final_figures/*.svg
+```
 
 ## Repository layout
 

@@ -14,6 +14,7 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -44,8 +45,8 @@ a.set_ylabel("Expression (a.u.)")
 # overlapping the top whisker/outlier (a release-blocker if it did).
 ymin, ymax = a.get_ylim()
 a.set_ylim(ymin, ymax + 0.28 * (ymax - ymin))
-a.text(0.5, a.get_ylim()[1], r"$\mathit{P} = 3.2 \times 10^{-4}$",
-       ha="center", va="top", fontsize=6)
+a.text(0.5, a.get_ylim()[1], "P = 3.2 x 10^-4",
+       ha="center", va="top", fontsize=6, fontstyle="italic")
 
 # (b) Paired samples: slope lines.
 pre = rng.normal(2.0, 0.4, 10)
@@ -57,7 +58,8 @@ b.set_xlim(-0.3, 1.3); b.set_xticks([0, 1]); b.set_xticklabels(["Pre", "Post"])
 b.set_ylabel("Activity")
 ymin, ymax = b.get_ylim()
 b.set_ylim(ymin, ymax + 0.12 * (ymax - ymin))
-b.text(0.5, b.get_ylim()[1], r"$\mathit{P} = 0.006$", ha="center", va="top", fontsize=6)
+b.text(0.5, b.get_ylim()[1], "P = 0.006", ha="center", va="top",
+       fontsize=6, fontstyle="italic")
 
 # (c) Ranked effects: horizontal lollipop, direction by color.
 genes = ["Gene F", "Gene E", "Gene D", "Gene C", "Gene B", "Gene A"]
@@ -69,15 +71,27 @@ for y, (v, col) in enumerate(zip(lfc, cols)):
     c.plot(v, y, "o", ms=3.5, color=col)
 c.axvline(0, color="k", lw=0.5)
 c.set_yticks(range(len(genes))); c.set_yticklabels(genes)
-c.set_xlabel("log$_2$ fold change")
+c.set_xlabel("log2 fold change")
 
-# (d) Many features x conditions: heatmap.
+# (d) Many features x conditions: vector heatmap.
 mat = rng.normal(0, 1, (6, 5))
-im = d.imshow(mat, cmap="RdBu_r", vmin=-2.5, vmax=2.5, aspect="auto")
-d.set_xticks(range(5)); d.set_xticklabels([f"C{i+1}" for i in range(5)])
-d.set_yticks(range(6)); d.set_yticklabels(genes, fontsize=5.5)
-cb = fig.colorbar(im, ax=d, fraction=0.046, pad=0.04)
-cb.set_label("z-score", fontsize=6); cb.ax.tick_params(labelsize=5)
+mesh = d.pcolormesh(
+    np.arange(6), np.arange(7), mat,
+    cmap="RdBu_r", vmin=-2.5, vmax=2.5, shading="flat",
+)
+d.set_xticks(np.arange(5) + 0.5); d.set_xticklabels([f"C{i+1}" for i in range(5)])
+d.set_yticks(np.arange(6) + 0.5); d.set_yticklabels(genes, fontsize=5.5)
+d.set_ylim(6, 0)
+cmap = plt.get_cmap("RdBu_r")
+d.legend(
+    handles=[
+        Patch(facecolor=cmap(0.95), edgecolor="none", label="+2.5"),
+        Patch(facecolor=cmap(0.50), edgecolor="0.7", label="0"),
+        Patch(facecolor=cmap(0.05), edgecolor="none", label="-2.5"),
+    ],
+    title="z-score", loc="center left", bbox_to_anchor=(1.01, 0.5),
+    handlelength=0.8, fontsize=5,
+)
 
 add_panel_labels(fig, [a, b, c, d], style="(a)", dx=-0.02, dy=0.005)
 
