@@ -22,10 +22,11 @@ SKILL = Path(os.environ.get(
     str(Path.home() / ".codex" / "skills" / "polish-sci-figures"),
 ))
 sys.path.insert(0, str(SKILL / "scripts"))
+from figure_text_qa import assert_figure_text_qa  # noqa: E402
 from panel_labels import add_panel_labels, audit_label_alignment  # noqa: E402
 
 plt.style.use(SKILL / "assets" / "sci_style.mplstyle")
-plt.rcParams.update({"font.family": "Arial", "axes.titlesize": 8})
+plt.rcParams.update({"font.family": "DejaVu Serif", "axes.titlesize": 8})
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "final_figures"
@@ -43,10 +44,14 @@ GREEN = "#4F8A5B"
 rng = np.random.default_rng(20260715)
 
 
-def finish(fig, axes, stem: str, *, label_dx: float = -0.018) -> None:
+def finish(fig, axes, stem: str, *, label_dx: float = -0.004) -> None:
     """Apply the shared release checks and export all master formats."""
-    add_panel_labels(fig, axes, style="(a)", dx=label_dx, dy=0.008,
-                     fontsize=9, grid_cluster=0.10)
+    fig.set_constrained_layout_pads(
+        w_pad=0.28, h_pad=0.22, wspace=0.08, hspace=0.16,
+    )
+    add_panel_labels(fig, axes, style="(a)", dx=label_dx, dy=0.006,
+                     fontsize=9, va="bottom", grid_cluster=0.10)
+    assert_figure_text_qa(fig, axes)
     warnings = audit_label_alignment(fig)
     assert not warnings, warnings
     for ext in ("png", "svg", "pdf"):
@@ -83,11 +88,10 @@ def figure_1_efficacy() -> None:
                   edgecolor="white", linewidth=0.25, zorder=3)
     y = 1.48
     a.plot([0, 0, 1, 1], [y - 0.025, y, y, y - 0.025], color=DARK, lw=0.7)
-    a.text(0.5, y + 0.025, "P = 4.8 x 10^-4",
-           ha="center", va="bottom", fontstyle="italic")
+    a.text(0.5, y + 0.025, "𝑃 = 4.8 × 10⁻⁴",
+           ha="center", va="bottom")
     a.set(xticks=[0, 1], xticklabels=["Vehicle", "CX-17"],
-          ylabel="Relative tumor volume", ylim=(0.25, 1.62),
-          title="Tumor response")
+          ylabel="Relative tumor volume", ylim=(0.25, 1.62))
 
     # Paired pre/post response.
     pre = rng.normal(1.0, 0.18, 14)
@@ -96,11 +100,9 @@ def figure_1_efficacy() -> None:
         b.plot([0, 1], [p0, p1], color=GRAY, lw=0.75, zorder=1)
     b.scatter(np.zeros_like(pre), pre, s=18, color=GRAY, zorder=2)
     b.scatter(np.ones_like(post), post, s=18, color=RED, zorder=2)
-    b.text(0.5, 2.05, "P = 0.002", ha="center", va="top",
-           fontstyle="italic")
+    b.text(0.5, 2.05, "𝑃 = 0.002", ha="center", va="top")
     b.set(xlim=(-0.35, 1.35), ylim=(0.55, 2.08), xticks=[0, 1],
-          xticklabels=["Baseline", "Day 14"], ylabel="CD8 activation score",
-          title="Paired pharmacodynamic response")
+          xticklabels=["Baseline", "Day 14"], ylabel="CD8 activation score")
 
     # Dose-response with uncertainty.
     dose = np.geomspace(0.03, 10, 9)
@@ -112,13 +114,12 @@ def figure_1_efficacy() -> None:
     c.plot(dose, mean, "o-", color=BLUE, ms=3.6, lw=1.2)
     c.axhline(50, color=LIGHT, lw=0.7)
     c.axvline(0.72, color=LIGHT, lw=0.7)
-    c.text(0.84, 0.84, "IC50 = 0.72 µM", transform=c.transAxes,
-           ha="right")
+    c.text(0.62, 0.84, "IC₅₀ = 0.72 µM", transform=c.transAxes,
+           ha="left")
     c.set_xscale("log")
     c.set_xticks([0.03, 0.1, 1, 10])
     c.set_xticklabels(["0.03", "0.1", "1", "10"])
-    c.set(xlabel="CX-17 (µM)", ylabel="Cell viability (%)", ylim=(0, 106),
-          title="Dose-response")
+    c.set(xlabel="CX-17 (µM)", ylabel="Cell viability (%)", ylim=(0, 106))
 
     # Forest plot: point estimates and confidence intervals.
     groups = ["All tumors", "Target-high", "Target-low", "Prior therapy"]
@@ -132,11 +133,8 @@ def figure_1_efficacy() -> None:
                    color=color, ecolor=color, capsize=2, ms=4, lw=1.1)
     d.axvline(0, color=DARK, lw=0.7)
     d.set(yticks=ypos, yticklabels=groups,
-          xlabel="Standardized treatment effect (95% CI)", xlim=(-1.55, 0.35),
-          title="Subgroup consistency")
+          xlabel="Effect (95% CI; <0 favors CX-17)", xlim=(-1.55, 0.35))
     d.invert_yaxis()
-    d.text(0.02, 0.02, "Favors CX-17", transform=d.transAxes,
-           ha="left", va="bottom", color=BLUE)
 
     finish(fig, [a, b, c, d], "Fig1_Efficacy")
 
@@ -155,7 +153,7 @@ def figure_2_mechanism() -> None:
         a.fill_between(time, values - err, values + err, color=color, alpha=0.16)
         a.plot(time, values, "o-", color=color, label=label, ms=3.4)
     a.set(xlabel="Time after CX-17 (h)", ylabel="Relative signal",
-          xticks=time, ylim=(0.15, 2.25), title="Pathway kinetics")
+          xticks=time, ylim=(0.15, 2.25))
     a.legend(loc="upper left")
 
     # Correlation with fitted relationship.
@@ -167,10 +165,10 @@ def figure_2_mechanism() -> None:
     b.scatter(suppression, apoptosis, s=18, color=GRAY, alpha=0.82,
               edgecolor="white", linewidth=0.25)
     b.plot(xx, slope * xx + intercept, color=RED, lw=1.2)
-    b.text(0.05, 0.93, f"r = {r:.2f}", transform=b.transAxes,
+    b.text(0.05, 0.93, f"𝑟 = {r:.2f}", transform=b.transAxes,
            ha="left", va="top")
     b.set(xlabel="Target suppression (%)", ylabel="Apoptotic cells (%)",
-          xlim=(5, 90), ylim=(5, 75), title="Target-response coupling")
+          xlim=(5, 90), ylim=(5, 75))
 
     # Enrichment bubble plot.
     pathways = ["Oxidative phosphorylation", "Cell cycle", "MYC targets",
@@ -184,7 +182,7 @@ def figure_2_mechanism() -> None:
               linewidth=0.45, zorder=3)
     c.axvline(0, color=DARK, lw=0.6)
     c.set(yticks=ypos, yticklabels=pathways, xlabel="Normalized enrichment score",
-          xlim=(-2.8, 2.8), title="Pathway enrichment")
+          xlim=(-2.8, 2.8))
     c.text(0.98, 0.02, "Bubble area = gene ratio", transform=c.transAxes,
            ha="right", va="bottom", color=GRAY, fontsize=6)
 
@@ -202,7 +200,7 @@ def figure_2_mechanism() -> None:
                  vmin=-2.2, vmax=2.2, shading="flat")
     d.set(xticks=np.arange(5) + 0.5, xticklabels=["0", "2", "6", "12", "24"],
           yticks=np.arange(len(genes)) + 0.5, yticklabels=genes,
-          xlabel="Time (h)", title="Transcriptional program")
+          xlabel="Time (h)")
     d.set_ylim(len(genes), 0)
     cmap = plt.get_cmap("RdBu_r")
     d.legend(handles=[
@@ -240,8 +238,8 @@ def figure_3_validation() -> None:
         a.annotate(name, (x0, y0), xytext=(3 if x0 > 0 else -3, 3),
                    textcoords="offset points", ha="left" if x0 > 0 else "right",
                    fontsize=6, color=DARK)
-    a.set(xlabel="log2 fold change", ylabel="-log10(FDR)",
-          xlim=(-3.5, 3.5), ylim=(0, 6.4), title="Differential expression")
+    a.set(xlabel="log₂ fold change", ylabel="−log₁₀(FDR)",
+          xlim=(-3.5, 3.5), ylim=(0, 6.4))
 
     # ROC curves without an extra dependency.
     fpr = np.linspace(0, 1, 101)
@@ -250,12 +248,12 @@ def figure_3_validation() -> None:
     auc_discovery = np.sum((discovery[1:] + discovery[:-1]) * np.diff(fpr) / 2)
     auc_validation = np.sum((validation[1:] + validation[:-1]) * np.diff(fpr) / 2)
     b.plot(fpr, discovery, color=RED, lw=1.3,
-           label=f"Discovery  AUC={auc_discovery:.2f}")
+           label=f"Discovery  AUC = {auc_discovery:.2f}")
     b.plot(fpr, validation, color=BLUE, lw=1.3,
-           label=f"Validation  AUC={auc_validation:.2f}")
+           label=f"Validation  AUC = {auc_validation:.2f}")
     b.plot([0, 1], [0, 1], color=GRAY, lw=0.7, ls="--")
     b.set(xlabel="1 - specificity", ylabel="Sensitivity", xlim=(0, 1),
-          ylim=(0, 1.02), title="Independent classifier validation")
+          ylim=(0, 1.02))
     b.set_aspect("equal", adjustable="box")
     b.legend(loc="lower right")
 
@@ -267,10 +265,10 @@ def figure_3_validation() -> None:
     c.step(months, high, where="post", color=RED, lw=1.4, label="High-risk score")
     c.plot(months[[4, 8, 11]], low[[4, 8, 11]], "+", color=BLUE, ms=5)
     c.plot(months[[3, 7, 10]], high[[3, 7, 10]], "+", color=RED, ms=5)
-    c.text(0.97, 0.95, "Log-rank P = 0.012", transform=c.transAxes,
-           ha="right", va="top", fontstyle="italic")
+    c.text(0.97, 0.95, "Log-rank 𝑃 = 0.012", transform=c.transAxes,
+           ha="right", va="top")
     c.set(xlabel="Time (months)", ylabel="Overall survival", xlim=(0, 36),
-          ylim=(0, 1.03), title="Risk stratification")
+          ylim=(0, 1.03))
     c.legend(loc="lower left")
 
     # Multivariable model forest plot.
@@ -286,7 +284,7 @@ def figure_3_validation() -> None:
     d.axvline(1, color=DARK, lw=0.7)
     d.set_xscale("log")
     d.set(yticks=ypos, yticklabels=features, xlabel="Adjusted hazard ratio (95% CI)",
-          xlim=(0.25, 5.0), title="Multivariable model")
+          xlim=(0.25, 5.0))
     d.set_xticks([0.5, 1, 2, 4])
     d.set_xticklabels(["0.5", "1", "2", "4"])
     d.xaxis.set_minor_formatter(NullFormatter())
@@ -329,7 +327,7 @@ def figure_4_cell_atlas() -> None:
         a.annotate(name, xy=center, xytext=label_positions[name],
                    color=color, fontsize=5.8, fontweight="bold", ha="center",
                    arrowprops={"arrowstyle": "-", "color": color, "lw": 0.55})
-    a.set(xlabel="UMAP 1", ylabel="UMAP 2", title="Integrated cell atlas",
+    a.set(xlabel="UMAP 1", ylabel="UMAP 2",
           xlim=(-3.9, 3.1), ylim=(-2.15, 2.45))
     a.set_xticks([])
     a.set_yticks([])
@@ -368,7 +366,7 @@ def figure_4_cell_atlas() -> None:
                       for color, label in zip(time_colors, ["0", ".25", ".5", ".75", "1"])],
              title="Pseudotime", ncol=5, loc="lower left", fontsize=5.1,
              title_fontsize=5.4, handlelength=0.7, columnspacing=0.55)
-    b.set(xlabel="UMAP 1", ylabel="UMAP 2", title="Myeloid-state trajectory",
+    b.set(xlabel="UMAP 1", ylabel="UMAP 2",
           xlim=(-2.9, 2.5), ylim=(-1.55, 1.05))
     b.set_xticks([])
     b.set_yticks([])
@@ -411,7 +409,7 @@ def figure_4_cell_atlas() -> None:
     c.plot([1.25, 2.00], [-1.47, -1.47], color=DARK, lw=1.8)
     c.text(1.625, -1.39, "500 µm", ha="center", va="bottom", fontsize=5.6)
     c.set_aspect("equal")
-    c.set(xlim=(-2.65, 2.65), ylim=(-1.75, 1.75), title="Spatially mapped cell states")
+    c.set(xlim=(-2.65, 2.65), ylim=(-1.75, 1.75))
     c.set_xticks([])
     c.set_yticks([])
     for spine in c.spines.values():
@@ -437,9 +435,9 @@ def figure_4_cell_atlas() -> None:
             d.scatter(ix, iy, s=18 + 120 * fraction[iy, ix],
                       color=palette[level], edgecolor="white", linewidth=0.4)
     d.set(xticks=np.arange(len(genes)), xticklabels=genes,
-          yticks=np.arange(len(cell_types)), yticklabels=cell_types,
-          title="Canonical marker expression")
-    d.tick_params(axis="x", rotation=42)
+          yticks=np.arange(len(cell_types)), yticklabels=cell_types)
+    plt.setp(d.get_xticklabels(), rotation=58, ha="right",
+             rotation_mode="anchor", fontsize=5.8)
     d.set_xlim(-0.65, len(genes) + 1.45)
     d.set_ylim(len(cell_types) - 0.35, -0.65)
     d.grid(color="#ECEEF1", lw=0.45)
@@ -486,7 +484,6 @@ def figure_5_systems_map() -> None:
     a.set_yticks([])
     for spine in a.spines.values():
         spine.set_visible(False)
-    a.set_title("Cell-cell communication network", pad=4)
 
     # Multi-omic pathway activity matrix.
     pathways = ["MAPK", "Apoptosis", "IFN", "Cell cycle", "Hypoxia", "EMT"]
@@ -507,8 +504,7 @@ def figure_5_systems_map() -> None:
                    ha="center", va="center", fontsize=5.8,
                    color="white" if abs(activity[iy, ix]) > 1.0 else DARK)
     b.set(xticks=np.arange(len(layers)) + 0.5, xticklabels=layers,
-          yticks=np.arange(len(pathways)) + 0.5, yticklabels=pathways,
-          title="Cross-platform pathway activity")
+          yticks=np.arange(len(pathways)) + 0.5, yticklabels=pathways)
     b.set_ylim(len(pathways), 0)
     b.tick_params(length=0)
 
@@ -545,7 +541,6 @@ def figure_5_systems_map() -> None:
     c.text(0.98, 0.03, "Standardized path coefficients", transform=c.transAxes,
            ha="right", color=GRAY, fontsize=6)
     c.axis("off")
-    c.set_title("Causal mediation model", pad=4)
 
     # Vector response landscape with two optimization trajectories.
     x = np.linspace(-2.5, 2.5, 80)
@@ -567,11 +562,10 @@ def figure_5_systems_map() -> None:
                label=label, markeredgecolor="white", markeredgewidth=0.25)
     d.scatter([0.85], [0.5], s=34, marker="*", color="white", edgecolor=DARK,
               linewidth=0.5, zorder=5)
-    d.set(xlabel="Target engagement", ylabel="Immune activation",
-          title="Therapeutic response landscape")
+    d.set(xlabel="Target engagement", ylabel="Immune activation")
     d.legend(loc="lower right", fontsize=6.2)
 
-    finish(fig, [a, b, c, d], "Fig5_SystemsMap", label_dx=0.014)
+    finish(fig, [a, b, c, d], "Fig5_SystemsMap")
 
 
 def figure_6_model_insight() -> None:
@@ -591,7 +585,7 @@ def figure_6_model_insight() -> None:
                   edgecolor="none")
     a.axvline(0, color=GRAY, lw=0.7)
     a.set(yticks=np.arange(len(features)), yticklabels=features,
-          xlabel="Feature contribution", title="Model explanation map")
+          xlabel="Feature contribution")
     a.set_ylim(len(features) - 0.45, -0.55)
     a.text(0.02, 0.02, "Low feature value", transform=a.transAxes,
            color=BLUE, fontsize=6)
@@ -611,7 +605,7 @@ def figure_6_model_insight() -> None:
                        np.clip(observed + band, 0, 1), color=color, alpha=0.14)
         b.plot(predicted, observed, "o-", color=color, ms=3.2, lw=1.15, label=label)
     b.set(xlabel="Predicted probability", ylabel="Observed probability",
-          xlim=(0, 1), ylim=(0, 1), title="Cross-cohort calibration")
+          xlim=(0, 1), ylim=(0, 1))
     b.set_aspect("equal", adjustable="box")
     b.legend(loc="upper left", fontsize=6.2)
 
@@ -626,8 +620,7 @@ def figure_6_model_insight() -> None:
     c.axhline(0, color=DARK, lw=0.7, label="Treat none")
     c.fill_between(threshold, clinical, model, where=model >= clinical,
                    color=RED, alpha=0.10)
-    c.set(xlabel="Risk threshold", ylabel="Net benefit", ylim=(-0.08, 0.24),
-          title="Clinical utility")
+    c.set(xlabel="Risk threshold", ylabel="Net benefit", ylim=(-0.08, 0.24))
     c.legend(loc="upper right", fontsize=6.2)
 
     # Repeated external validation as estimates with confidence intervals.
@@ -644,7 +637,7 @@ def figure_6_model_insight() -> None:
                fontsize=6.2, fontweight="bold")
     d.axvline(0.80, color=GRAY, lw=0.7, ls="--")
     d.set(yticks=ypos, yticklabels=cohorts, xlabel="AUC (95% CI)",
-          xlim=(0.68, 0.98), title="Transportability across cohorts")
+          xlim=(0.68, 0.98))
     d.invert_yaxis()
 
     finish(fig, [a, b, c, d], "Fig6_ModelInsight")

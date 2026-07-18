@@ -38,6 +38,9 @@ All values are deterministic synthetic demonstration data.
 ## Highlights
 
 - Strict mathematical alignment for multi-panel labels.
+- Title-free manuscript/showcase panels unless the target explicitly requires titles.
+- Collision and clipping checks for labels, annotations, legends, and panel letters.
+- Scientific italics, capitalization, symbols, units, subscripts, and superscripts.
 - Publication-oriented typography, spacing, color semantics, and export sizes.
 - Scientifically appropriate plot selection instead of repetitive bar charts.
 - Original-versus-redesign A/B selection at the same final size.

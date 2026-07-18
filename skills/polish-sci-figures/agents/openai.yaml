@@ -1,4 +1,4 @@
 interface:
   display_name: "Polish Scientific Figures"
-  short_description: "Scientific figures with fixed-canvas and editability QA"
-  default_prompt: "Use $polish-sci-figures to create or polish these figures at their final canvas size and validate scientific accuracy, consistent typography, and editability."
+  short_description: "Title-free, collision-safe scientific figure QA"
+  default_prompt: "Use $polish-sci-figures to create or polish publication figures with no panel subtitles or overlaps and with correct scientific typography, canvas sizing, and editable exports."

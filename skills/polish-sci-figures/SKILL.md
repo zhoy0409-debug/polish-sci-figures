@@ -1,6 +1,6 @@
 ---
 name: polish-sci-figures
-description: Create, redraw, compare, arrange, audit, and package publication-grade scientific figures for manuscripts, posters, Word documents, PowerPoint slides, and public showcases. Use for SCI figures, 论文配图, 科研作图, 结果可视化, 组图, 重绘, figure polishing, consistent canvas sizing, final-size typography, editable SVG/PDF/PNG, manuscript or presentation figure QA, and original-versus-redesign selection.
+description: Create, redraw, compare, arrange, audit, and package publication-grade scientific figures for manuscripts, posters, Word documents, PowerPoint slides, and public showcases. Use for SCI figures, 论文配图, 科研作图, 结果可视化, 组图, 重绘, figure polishing, title-free panels, collision-free annotations, scientific typography and nomenclature, consistent canvas sizing, final-size typography, editable SVG/PDF/PNG, manuscript or presentation figure QA, and original-versus-redesign selection.
 ---
 
 # Polish Scientific Figures
@@ -11,6 +11,7 @@ Deliver the near-final figure in one internal pass: establish the claim and fina
 
 - Load `assets/sci_style.mplstyle` as a baseline; override it for a verified journal, deck, or user requirement.
 - Use `scripts/panel_labels.py` when panel labels are required.
+- Run `scripts/figure_text_qa.py` before saving Matplotlib figures; block export on unrequested panel titles or common baseline scientific notation.
 - Use `scripts/make_montage.py` to compare a figure series.
 - Run `scripts/check_svg_canvas.py` on every independently editable SVG series intended for one grid or repeated slot.
 - Run `scripts/check_svg_editability.py --require-fully-editable` when fully editable SVG is requested.
@@ -49,6 +50,7 @@ Trace the file that is actually delivered or embedded; never polish an obsolete 
 - Distinguish primary, sensitivity, exploratory, apparent, cross-validated, and externally validated results. Do not overstate a nominal or in-sample result.
 - Keep raw microscopy, blots, and structural images faithful, preserve scale bars, and disclose meaningful processing.
 - Use exact italic *P* values when available. Every color, line, arrow, annotation, and highlighted point must have scientific meaning.
+- Use correct scientific typography for standard notation such as IC₅₀, EC₅₀, log₂, and CO₂. When live editable SVG text is required, prefer the appropriate Unicode subscript or superscript instead of baseline digits or fragmented mathtext.
 
 ## Make the candidate compete with the original
 
@@ -72,6 +74,31 @@ This is a release blocker, not a finishing preference.
 
 See `references/canvas_profiles.md` for exact matplotlib and audit commands.
 
+## Enforce scientific typography and nomenclature
+
+Treat notation as scientific content, not decoration. Build a terminology and case map from the authoritative source before plotting, then apply it consistently across the series.
+
+- Italicize only symbols that conventionally require it, such as *P*, *n*, *r*, *t*, *F*, and *z*. Keep their numbers, operators, punctuation, units, descriptive words, and surrounding sentences upright. Never italicize a whole annotation merely because it contains *P*.
+- Use true subscript and superscript characters where they remain live and editable: IC₅₀, EC₅₀, ED₅₀, LD₅₀, log₂, log₁₀, CO₂, cm², and 10⁻⁴. Do not deliver baseline forms such as `IC50`, `log2`, `CO2`, `cm^2`, or `10^-4` in figure text.
+- Confirm that the chosen font contains every required scientific glyph and treat any missing-glyph warning as a release failure. Use a portable font with the needed coverage or a verified target font; never accept tofu boxes, blanks, or silent fallback.
+- Use proper mathematical signs and spacing: `×`, `−`, `±`, `≤`, and `≥`; put spaces around `=`, `<`, and `>` and between values and units, for example `AUC = 0.84`, `P < 0.001`, and `0.72 µM`. Do not use the letter `x` as a multiplication sign.
+- Use exact statistical values and the target journal's capitalization; default to italic capital *P*, not lowercase `p`. State the statistic or interval unambiguously, for example `HR (95% CI)` or `AUC (95% CI)`.
+- Italicize genus/species binomials, but keep strain designations and surrounding prose upright unless the field convention says otherwise.
+- Verify organism- and discipline-specific gene/protein conventions before changing case or italics. Preserve authoritative labels when uncertain: gene symbols and protein names are not interchangeable, and human, mouse, plant, and microbial capitalization rules differ.
+- Preserve intended acronym, treatment, cohort, gene, protein, and cell-state case exactly across panels. Do not auto-title-case biological labels or silently normalize an unfamiliar term.
+- Block delivery when the required case, italics, subscript, superscript, symbol, or unit convention is uncertain or inconsistent.
+
+## Prevent every overlap at final placement
+
+Zero unintended overlap is mandatory. Check text against text, markers, error bars, confidence intervals, data lines, axes, legends, colorbars, panel letters, arrows, connectors, scale bars, and neighboring panels.
+
+- Reserve dedicated layout zones for axes, legends, colorbars, labels, and annotations before drawing data. Put forest-plot values in a separate annotation column rather than on the marker or confidence interval.
+- Keep panel letters in a fixed outer margin and keep all other content outside that margin. Keep legends, colorbars, and callouts in reserved blank regions or outside the plotting area without changing the declared canvas.
+- Move a colliding annotation to a reserved label column, axis label, legend, figure legend, or editable slide text. If no valid space exists, redesign the layout or regenerate for a larger slot; do not solve collisions by blindly shrinking text.
+- Inspect the rendered image at the actual manuscript, README, poster, or slide size. A source canvas that looks clean while zoomed in does not pass.
+- Treat touching or ambiguous proximity as a failure when it can make a label appear attached to the wrong line, point, group, or panel.
+- Block export and delivery until every unintended collision is removed.
+
 ## Use a restrained editorial visual language
 
 - Prefer low-saturation, high-contrast colors with stable semantics, dark text/axes, subtle grids, and few accent colors. Match the approved palette first.
@@ -87,6 +114,7 @@ See `references/canvas_profiles.md` for exact matplotlib and audit commands.
 
 For manuscript-ready or reusable SVG panels:
 
+- Default to no per-panel subtitles or headings inside manuscript and showcase artwork. Use panel letters only and put panel descriptions in the figure legend, README, or editable slide text. Treat any internal panel title as a release failure unless the user or verified target format explicitly requires it.
 - Do not embed long titles, conclusions, explanatory sentences, captions, slide takeaways, or internal file IDs such as `P01` in the artwork.
 - Keep the minimum evidence needed to interpret the data: group labels, units, sample size when material, effect estimate, uncertainty, exact *P* value, AUC/CI, or other result-specific statistics.
 - Add only the panel label required by the target convention.
@@ -123,9 +151,11 @@ For presentations, put the conclusion-style slide title, per-panel explanation, 
 Do not deliver while any of these is true:
 
 - The data, denominator, statistical scope, group order, units, or direction is wrong or unverified.
+- A manuscript or showcase panel contains an unrequested subtitle or heading beyond its panel letter.
 - Same-slot SVGs differ in physical canvas or `viewBox`, or require post-hoc scaling to align.
 - Necessary text is unreadable at final size, clipped, overlapping, fragmented into characters, or using an unintended fallback font.
-- A legend, annotation, connector, title, or caption covers data or another element.
+- Any text, marker, interval, data line, axis, legend, colorbar, panel letter, connector, scale bar, title, or caption overlaps or ambiguously touches another element.
+- Scientific notation has incorrect italics, case, capitalization, subscript, superscript, sign, spacing, acronym, gene/protein/species convention, or unit formatting.
 - Panels on one page use inconsistent spacing, line weights, palette semantics, statistical syntax, or visual density.
 - The artwork contains presentation prose or internal IDs, or essential statistical evidence was removed in the name of cleanliness.
 - A raster-only/partially editable file is called fully editable.
