@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "source": {
+    "label": "Scientific plotting template collection 1-124",
+    "template_count": 124,
+    "use": "Visual archetypes were audited and transformed into original scientific workflows. Source artwork and proprietary Prism files are not redistributed."
+  },
+  "families": [
+    {
+      "id": "survival",
+      "source_template_ids": [1, 82],
+      "route": "advanced_template_workbench.py survival",
+      "contract": "one row per biological unit with time, event indicator, group, and unit ID",
+      "candidates": ["Kaplan-Meier curve with pointwise CI", "Kaplan-Meier curve with number-at-risk table"],
+      "upgrade": "Preserve censoring and risk sets; do not infer Cox effects from a decorative curve."
+    },
+    {
+      "id": "composition",
+      "source_template_ids": [2, 8, 16, 25, 26, 54, 83, 120],
+      "route": "data_family_workbench.py composition",
+      "contract": "sample, category, non-negative value, and optional group",
+      "candidates": ["sample-level 100% stack", "normalized sample-by-category heatmap"],
+      "upgrade": "Replace donuts and decorative stacks with comparable sample-level compositions and enforce positive totals."
+    },
+    {
+      "id": "continuous-distribution",
+      "source_template_ids": [3, 9, 12, 29, 33, 34, 36, 37, 39, 42, 47, 49, 51, 52, 65, 67, 69, 70, 79, 81, 84, 90, 93, 95, 96, 101, 102, 103, 105, 111, 113, 114, 122],
+      "route": "figure_workbench.py generate",
+      "contract": "continuous value, group, biological-unit ID, design, and authoritative order",
+      "candidates": ["estimation graphic", "raw points with interval", "raincloud or violin when sample size supports density", "paired trajectories when matched"],
+      "upgrade": "Show biological-unit observations and estimates; remove watercolor, flower, card, and bar-only decoration."
+    },
+    {
+      "id": "timecourse",
+      "source_template_ids": [4, 5, 7, 14, 32, 44, 48, 60, 61, 64, 72, 75, 77, 86, 107, 112],
+      "route": "data_family_workbench.py timecourse",
+      "contract": "time, value, group, and biological-unit ID",
+      "candidates": ["individual trajectories with group interval", "within-unit change from baseline"],
+      "upgrade": "Retain within-unit structure and uncertainty; do not hide replication behind smoothed decorative lines."
+    },
+    {
+      "id": "matrix",
+      "source_template_ids": [6, 10, 21, 41, 56, 66, 76, 87, 91, 97, 119],
+      "route": "data_family_workbench.py matrix",
+      "contract": "unique row, column, and numeric value cells",
+      "candidates": ["cluster-aware heatmap", "signed magnitude dot matrix"],
+      "upgrade": "Record ordering and clustering; use a centered diverging scale only when values cross zero."
+    },
+    {
+      "id": "paired-contrast",
+      "source_template_ids": [11, 24, 89, 116],
+      "route": "figure_workbench.py generate --design paired",
+      "contract": "two conditions, continuous value, and stable paired biological-unit ID",
+      "candidates": ["paired estimation", "paired trajectories", "within-unit difference"],
+      "upgrade": "Replace bars and dumbbells detached from raw pairs with explicit matched trajectories and effect intervals."
+    },
+    {
+      "id": "relationship",
+      "source_template_ids": [13, 35, 50],
+      "route": "data_family_workbench.py relationship",
+      "contract": "numeric x, numeric y, one row per biological unit, and optional group",
+      "candidates": ["group-aware fit with confidence band", "joint scatter and marginal distributions"],
+      "upgrade": "Record Pearson, Spearman, and slope as association; require a declared nonlinear model for spline claims."
+    },
+    {
+      "id": "forest",
+      "source_template_ids": [15, 45, 63, 117],
+      "route": "advanced_template_workbench.py forest",
+      "contract": "term, estimate, lower CI, upper CI, and optional group",
+      "candidates": ["interval forest", "reference-linked effect display"],
+      "upgrade": "Reserve a label/value column and never print values over intervals."
+    },
+    {
+      "id": "volcano",
+      "source_template_ids": [17, 74, 98],
+      "route": "advanced_template_workbench.py volcano",
+      "contract": "feature, effect size, and adjusted P value",
+      "candidates": ["threshold-aware volcano", "ranked hit summary"],
+      "upgrade": "Use adjusted P values, explicit thresholds, restrained highlighting, and collision-free hit labels."
+    },
+    {
+      "id": "confusion-matrix",
+      "source_template_ids": [18],
+      "route": "advanced_template_workbench.py confusion",
+      "contract": "one row per independent case with observed and predicted class",
+      "candidates": ["count matrix", "row-normalized matrix"],
+      "upgrade": "Show denominators and class order; do not use color intensity without cell values."
+    },
+    {
+      "id": "enrichment",
+      "source_template_ids": [19, 22, 23, 27, 31, 55, 59, 99, 115],
+      "route": "advanced_template_workbench.py enrichment",
+      "contract": "term, effect or enrichment score, adjusted P value, count, and optional ontology",
+      "candidates": ["effect-significance bubble", "ranked lollipop"],
+      "upgrade": "Encode effect, evidence, and count separately; limit displayed terms using a declared ranking rule."
+    },
+    {
+      "id": "dose-response",
+      "source_template_ids": [20, 43, 78, 104],
+      "route": "advanced_template_workbench.py dose-response",
+      "contract": "positive dose, response, group, and biological-unit ID when replicates exist",
+      "candidates": ["four-parameter logistic fit with EC50 or IC50 interval", "fit residual diagnostic"],
+      "upgrade": "Fit on the log-dose scale, retain observations, and write 50 as a scientific subscript."
+    },
+    {
+      "id": "roc",
+      "source_template_ids": [28, 108],
+      "route": "advanced_template_workbench.py roc",
+      "contract": "binary outcome, continuous score, biological-unit ID, and optional cohort",
+      "candidates": ["ROC with bootstrap AUC interval", "precision-recall curve"],
+      "upgrade": "Preserve independent cases and prevalence; do not present internally tuned performance as external validation."
+    },
+    {
+      "id": "feature-rank",
+      "source_template_ids": [30, 80],
+      "route": "advanced_template_workbench.py feature-rank",
+      "contract": "feature and numeric score with optional interval and class",
+      "candidates": ["ranked lollipop", "interval-aware rank plot"],
+      "upgrade": "Use a declared ordering rule and label only a readable number of features."
+    },
+    {
+      "id": "embedding",
+      "source_template_ids": [38],
+      "route": "advanced_template_workbench.py embedding",
+      "contract": "precomputed embedding x, embedding y, and group label",
+      "candidates": ["low-alpha embedding with group centroids", "centroid-separation summary"],
+      "upgrade": "Visualize supplied coordinates without inventing clusters or relabeling cell states."
+    },
+    {
+      "id": "dual-axis-replacement",
+      "source_template_ids": [40, 73, 109],
+      "route": "advanced_template_workbench.py aligned-series",
+      "contract": "shared x plus two numeric outcomes and optional group",
+      "candidates": ["vertically aligned panels with shared x", "standardized single-axis overlay"],
+      "upgrade": "Do not use arbitrary dual-axis scaling; show native units in aligned panels or compare standardized trajectories explicitly."
+    },
+    {
+      "id": "diverging-comparison",
+      "source_template_ids": [46, 57, 68, 85],
+      "route": "advanced_template_workbench.py diverging",
+      "contract": "item, signed value, and optional group",
+      "candidates": ["zero-centered diverging bars", "zero-centered lollipops"],
+      "upgrade": "Use a meaningful zero and stable left/right semantics; avoid mirrored decoration without a shared scale."
+    },
+    {
+      "id": "assay-composite",
+      "source_template_ids": [58, 62, 71, 88, 92, 94, 100, 106, 110, 118, 121, 124],
+      "route": "standardize-sci-images then figure_workbench.py or data_family_workbench.py",
+      "contract": "immutable assay image, lane/sample map, quantitative table, biological-unit ID, and calibration or normalization rule",
+      "candidates": ["standardized assay image plus aligned quantification", "matrix or distribution view of quantified signal"],
+      "upgrade": "Keep raw blots immutable, align lanes with quantification, disclose normalization, and remove watercolor styling."
+    },
+    {
+      "id": "cumulative-distribution",
+      "source_template_ids": [53],
+      "route": "advanced_template_workbench.py cumulative",
+      "contract": "continuous value, group, and biological-unit ID",
+      "candidates": ["empirical cumulative distribution", "upper-tail complementary distribution"],
+      "upgrade": "Use empirical steps rather than decorative smoothing and retain sample counts."
+    },
+    {
+      "id": "swimmer",
+      "source_template_ids": [123],
+      "route": "advanced_template_workbench.py swimmer",
+      "contract": "unit, start, end, status, optional event time, and optional group",
+      "candidates": ["subject-level swimmer timeline", "duration and event summary"],
+      "upgrade": "Keep censoring/status symbols explicit and sort by a declared clinical rule."
+    }
+  ]
+}

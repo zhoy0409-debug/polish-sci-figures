@@ -1,0 +1,21 @@
+{
+  "source_file": "synthetic_dose_response.csv",
+  "source_sha256": "b12a6e32bdb49722b8103b06f55416e336eef5abcf1cf07dfc6b75684ca15cf0",
+  "rows_input": 60,
+  "rows_used": 60,
+  "rows_excluded_for_missing_required_values": 0,
+  "columns_used": [
+    "Dose (µM)",
+    "Viability (%)",
+    "compound",
+    "unit"
+  ],
+  "duplicate_rows": 0,
+  "font": {
+    "requested": "Arial",
+    "actual": "Arial",
+    "file": "arial.ttf",
+    "warning": null
+  },
+  "synthetic_example": true
+}

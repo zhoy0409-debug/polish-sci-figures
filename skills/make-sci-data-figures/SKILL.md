@@ -1,6 +1,6 @@
 ---
 name: make-sci-data-figures
-description: Turn minimally structured CSV, TSV, or Excel data into scientifically defensible, publication-ready figure candidates with fixed canvases, editable SVG, analysis records, and one-command palette switching. Use for continuous group comparisons, paired data, numeric relationships, longitudinal trajectories, compositions, tidy matrices, chart selection, statistical figure planning, and reproducible SCI result graphics.
+description: Turn minimally structured CSV, TSV, or Excel data into scientifically defensible, publication-ready figure candidates with fixed canvases, editable SVG, analysis records, and one-command palette switching. Use for continuous or paired comparisons, relationships, longitudinal data, compositions, matrices, survival, dose-response, ROC/PR, forest, volcano, enrichment, embeddings, cumulative distributions, swimmer plots, chart selection, statistical planning, and reproducible SCI result graphics.
 ---
 
 # Make SCI Data Figures
@@ -18,6 +18,10 @@ Accept tidy CSV, TSV, or XLSX. Route the table by scientific structure rather th
 | Longitudinal response | time, value, group, biological-unit ID | `data_family_workbench.py timecourse` |
 | Composition | sample, category, non-negative value; optional group | `data_family_workbench.py composition` |
 | Tidy matrix | row, column, value; explicit or automatic display clustering | `data_family_workbench.py matrix` |
+| Survival | follow-up time, 0/1 event, group, biological-unit ID | `advanced_template_workbench.py survival` |
+| Dose-response | positive dose, response, group; optional unit ID | `advanced_template_workbench.py dose-response` |
+| Classification | binary outcome, score, biological-unit ID; optional cohort | `advanced_template_workbench.py roc` |
+| Supplied specialist results | family-specific estimate/result columns | `advanced_template_workbench.py FAMILY` |
 
 Before inferential statistics, establish:
 
@@ -73,6 +77,28 @@ These commands generate two complementary views instead of one default chart: fi
 
 These families are not a license to invent specialist inference. Relationship statistics are association summaries; longitudinal ribbons are descriptive pointwise intervals; compositions are normalized but not tested component by component; matrix clustering is exploratory and records its method and order.
 
+## Use the upgraded 1-124 template atlas
+
+The audited atlas maps every source template number exactly once into 20 scientific families. Resolve a remembered template number before drawing:
+
+```bash
+python ../polish-sci-figures/scripts/template_router.py resolve --template 73
+python ../polish-sci-figures/scripts/template_router.py self-check
+```
+
+The router converts decorative variants into input contracts and executable workflows; it does not copy source artwork. Families already handled above stay on their established workbenches. Use `scripts/advanced_template_workbench.py` for:
+
+- Kaplan-Meier plus risk table; forest intervals; volcano; confusion matrices; enrichment;
+- four-parameter dose-response plus residuals; ROC plus precision-recall;
+- feature ranking; supplied embeddings; aligned replacements for dual axes;
+- signed diverging comparisons; empirical cumulative distributions; swimmer plots.
+
+Every advanced command validates its scientific contract and creates two fixed-canvas candidate views, editable PNG/SVG/PDF exports, `data_profile.json`, `analysis_plan.json`, `figure_recipe.json`, and a comparison gallery. Use `advanced_template_workbench.py recolor RECIPE --palette PALETTE --outdir OUTPUT` for palette-only rerendering.
+
+Read `references/advanced_template_contracts.md` before running an advanced family or describing its statistical meaning.
+
+Do not turn the atlas into a style menu. Select the family from the question, experimental unit, measurement structure, and intended claim. Decorative bars, donuts, flowers, watercolor fills, and dual y-axes are replaced when they hide distributions, uncertainty, denominators, or incompatible units.
+
 ## Change the palette without changing the science
 
 ```bash
@@ -80,7 +106,7 @@ python scripts/figure_workbench.py recolor results/figure_recipe.json \
   --palette okabe_ito --outdir results_okabe_ito
 ```
 
-For relationship, time-course, composition, or matrix recipes, use `scripts/data_family_workbench.py recolor` with the same arguments.
+For relationship, time-course, composition, or matrix recipes, use `scripts/data_family_workbench.py recolor`; for the advanced families, use `scripts/advanced_template_workbench.py recolor` with the same arguments.
 
 Use `assets/palettes.json` as the single palette registry. A palette change must not alter filtering, order, estimand, uncertainty, axes, annotations, or canvas. User/project colors override bundled defaults.
 
@@ -99,6 +125,11 @@ Use `assets/palettes.json` as the single palette registry. A palette change must
 - For longitudinal data, preserve individual trajectories and refuse duplicate unit-time cells. Do not generate a repeated-measures *P* value without a declared longitudinal model.
 - For compositions, enforce non-negative components and positive sample totals, normalize within sample, and state the sum-to-one dependence. Do not run naive component-wise tests.
 - For matrices, reject duplicate cells, preserve or record clustering order, and refuse a density that would make the fixed publication canvas unreadable.
+- For survival, preserve censoring and risk sets, use pointwise log-log Greenwood intervals, and limit automatic inference to an unadjusted two-group log-rank result. Require a declared specialist model for adjusted effects.
+- For dose-response, fit a four-parameter logistic model on positive log-dose values, report a generic midpoint with covariance interval, and use IC₅₀/EC₅₀ terminology only when the endpoint and direction justify it.
+- For ROC/PR, require one prediction per biological unit, record prevalence, and use deterministic unit-level bootstrap intervals. Never call internal performance external validation.
+- For volcano, enrichment, forest, feature-rank, and embedding inputs, treat supplied results and coordinates as authoritative. Do not recreate differential models, ontologies, uncertainty, clusters, or causal claims from display columns.
+- Replace dual y-axes with aligned original-unit panels and an explicitly standardized overlay; standardization is not an effect-size estimate.
 
 Use the worked independent, paired, and multi-group examples in `references/statistics_and_chart_selection.md` to explain the statistical match. State what the skill selected, why it matches the experimental unit, what it refused to infer, and which output makes that decision visible.
 

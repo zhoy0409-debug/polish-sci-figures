@@ -1,0 +1,10 @@
+{
+  "family": "enrichment",
+  "displayed_terms": 12,
+  "selection_rule": "Smallest adjusted_p, capped at 12 terms",
+  "inference_scope": "display of supplied enrichment results",
+  "limitations": [
+    "The upstream universe, ontology version, redundancy handling, and multiplicity method must be verified.",
+    "Bubble size encodes supplied count and does not imply independent replication."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "family": "survival",
+  "input": "..\\..\\..\\skills\\make-sci-data-figures\\examples\\synthetic_survival.csv",
+  "palette": "zhoy_muted",
+  "colors": null,
+  "font": "Arial",
+  "figsize_inches": [
+    4.8,
+    3.6
+  ],
+  "parameters": {
+    "time": "time_months",
+    "event": "event",
+    "group": "group",
+    "unit": "unit"
+  },
+  "note": "Palette changes preserve data, ordering, statistics, labels, and geometry."
+}

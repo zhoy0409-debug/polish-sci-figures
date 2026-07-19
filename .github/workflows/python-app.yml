@@ -27,9 +27,17 @@ jobs:
         run: python skills/make-sci-data-figures/scripts/test_figure_workbench.py
       - name: Test relationship, longitudinal, composition, and matrix families
         run: python skills/make-sci-data-figures/scripts/test_data_family_workbench.py
+      - name: Validate complete 1-124 template routing
+        run: python skills/polish-sci-figures/scripts/template_router.py self-check
+      - name: Test advanced template families and palette-only rerendering
+        run: python skills/make-sci-data-figures/scripts/test_advanced_template_workbench.py
       - name: Check deterministic family example data
         run: |
           python skills/make-sci-data-figures/examples/make_family_examples.py
+          git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
+      - name: Check deterministic advanced example data
+        run: |
+          python skills/make-sci-data-figures/examples/make_advanced_examples.py
           git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
       - name: Test scientific-image standardization
         run: python skills/standardize-sci-images/scripts/test_standardize_images.py

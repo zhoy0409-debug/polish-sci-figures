@@ -1,0 +1,21 @@
+{
+  "source_file": "synthetic_roc.csv",
+  "source_sha256": "1d3be5619cde88d5bc10d707c1f0bc5b02296df7aaa7ab29d77a3c6cfefb40a0",
+  "rows_input": 120,
+  "rows_used": 120,
+  "rows_excluded_for_missing_required_values": 0,
+  "columns_used": [
+    "outcome",
+    "score",
+    "unit",
+    "cohort"
+  ],
+  "duplicate_rows": 0,
+  "font": {
+    "requested": "Arial",
+    "actual": "Arial",
+    "file": "arial.ttf",
+    "warning": null
+  },
+  "synthetic_example": true
+}

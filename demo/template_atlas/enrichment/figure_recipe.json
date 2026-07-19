@@ -1,0 +1,20 @@
+{
+  "family": "enrichment",
+  "input": "..\\..\\..\\skills\\make-sci-data-figures\\examples\\synthetic_enrichment.csv",
+  "palette": "zhoy_muted",
+  "colors": null,
+  "font": "Arial",
+  "figsize_inches": [
+    4.8,
+    3.6
+  ],
+  "parameters": {
+    "term": "term",
+    "effect": "enrichment_ratio",
+    "adjusted_p": "adjusted_p",
+    "count": "count",
+    "category": "ontology",
+    "top": 12
+  },
+  "note": "Palette changes preserve data, ordering, statistics, labels, and geometry."
+}

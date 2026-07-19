@@ -1,0 +1,27 @@
+{
+  "family": "dose-response",
+  "model": "four-parameter logistic on log10 dose",
+  "fits": {
+    "Compound A": {
+      "midpoint": 0.549415043538632,
+      "midpoint_95_ci": [
+        0.5162190901537081,
+        0.5847456938810162
+      ],
+      "direction": "decreasing"
+    },
+    "Compound B": {
+      "midpoint": 1.5573176746629982,
+      "midpoint_95_ci": [
+        1.4629168976527946,
+        1.6578100531267284
+      ],
+      "direction": "decreasing"
+    }
+  },
+  "experimental_unit_column": "unit",
+  "limitations": [
+    "Midpoint is labelled generically; call it IC50/EC50 only when the endpoint and direction justify that term.",
+    "Replicate hierarchy is preserved only when the supplied unit column identifies it; verify weighting and repeated-measures structure."
+  ]
+}

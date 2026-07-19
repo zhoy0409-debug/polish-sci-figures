@@ -1,0 +1,15 @@
+{
+  "family": "survival",
+  "groups": [
+    "Control",
+    "Treatment"
+  ],
+  "experimental_unit_column": "unit",
+  "log_rank_p_two_groups": 0.0010559616056588523,
+  "confidence_interval": "pointwise 95% log-log Greenwood interval",
+  "inference_scope": "Kaplan-Meier descriptive estimates; unadjusted log-rank only for exactly two groups",
+  "limitations": [
+    "Independent censoring and correct event coding must be justified.",
+    "Use a prespecified Cox model for adjusted effects; this workflow does not invent hazard ratios."
+  ]
+}

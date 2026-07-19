@@ -39,6 +39,42 @@ python -m pip install -r requirements.txt
 python demo/figure_sources/make_demo_suite.py
 ```
 
+## 124-template scientific atlas
+
+All 124 reference templates were audited, assigned exactly once to 20 scientific families, and rebuilt as original data-driven workflows. The atlas keeps useful chart ideas while replacing decorative bars, donuts, watercolor effects, dual y-axes, hidden raw data, unsupported density estimates, and unverified inference with validated input contracts and reproducible candidates.
+
+```bash
+python skills/polish-sci-figures/scripts/template_router.py self-check
+python skills/polish-sci-figures/scripts/template_router.py resolve --template 73
+python skills/make-sci-data-figures/scripts/advanced_template_workbench.py --help
+```
+
+The machine-readable catalog is [`template_catalog.json`](skills/polish-sci-figures/assets/template_catalog.json). Source artwork and proprietary Prism files are not redistributed.
+
+### Survival with a number-at-risk table
+
+Kaplan-Meier estimates, censor marks, pointwise log-log Greenwood intervals, and aligned risk sets; adjusted effects remain a declared specialist-model task.
+
+![Synthetic Kaplan-Meier example](demo/template_atlas/survival/kaplan_meier_risk_table.png)
+
+### Dose-response with model diagnostics
+
+Raw replicates and a four-parameter logistic fit on positive log-dose values, paired with a residual diagnostic and a machine-readable midpoint interval.
+
+![Synthetic dose-response example](demo/template_atlas/dose_response/dose_response.png)
+
+### Classification evaluated in declared cohorts
+
+ROC and precision-recall candidates require one prediction per biological unit and record prevalence, AUC, and deterministic unit-bootstrap intervals without relabeling internal results as external validation.
+
+![Synthetic ROC example](demo/template_atlas/roc/roc.png)
+
+### Enrichment results without decorative clutter
+
+Supplied adjusted probabilities, effect magnitudes, and counts remain separately encoded; ontology choice, universe, redundancy handling, and multiplicity method stay explicit upstream responsibilities.
+
+![Synthetic enrichment example](demo/template_atlas/enrichment/enrichment_bubble.png)
+
 ## Three-skill pipeline
 
 | Skill | What it does | Main outputs |
@@ -70,6 +106,10 @@ Demonstration datasets in this section are deterministic and synthetic.
 | Longitudinal response | time, value, group, biological-unit ID | Individual trajectories plus group mean/95% CI; within-unit change from baseline | Duplicate unit-time cells and cross-group unit reuse rejected; model-based inference requires a specified longitudinal model |
 | Composition | sample, category, non-negative count/abundance; optional group | Sample-level 100% stack; normalized sample-by-category heatmap | Unique sample-category cells, positive sample totals, and sum-to-one dependence enforced; no naive component-wise tests |
 | Tidy matrix | row, column, numeric value | Cluster-aware heatmap; signed magnitude dot matrix | Duplicate cells rejected; clustering method and final order recorded; dimension limits protect final-size legibility |
+| Survival/event history | follow-up time, 0/1 event, group, biological-unit ID | Kaplan-Meier with pointwise CI; Kaplan-Meier with number-at-risk table | One row per unit; censoring preserved; automatic inference limited to unadjusted two-group log-rank |
+| Dose-response | positive dose, response, group; optional unit ID | Four-parameter logistic curve with raw replicates; residual diagnostic | Minimum dose support enforced; midpoint terminology remains endpoint-aware; replicate hierarchy recorded |
+| Binary prediction | outcome, score, biological-unit ID; optional cohort | ROC; precision-recall | One prediction per unit; prevalence and deterministic unit-bootstrap AUC interval recorded |
+| Supplied specialist results | family-specific estimate/result columns | Forest, volcano, confusion, enrichment, feature rank, embedding, aligned series, diverging, ECDF, or swimmer candidates | Display validation never fabricates upstream models, uncertainty, clusters, validation status, or causal meaning |
 
 <table>
   <tr>
@@ -164,6 +204,19 @@ python skills/make-sci-data-figures/scripts/data_family_workbench.py matrix \
   skills/make-sci-data-figures/examples/synthetic_matrix.csv \
   --row pathway --column condition --value z_score --cluster auto \
   --outdir demo/data_families/matrix
+
+# Advanced atlas examples: create deterministic inputs, then choose a family
+python skills/make-sci-data-figures/examples/make_advanced_examples.py
+
+python skills/make-sci-data-figures/scripts/advanced_template_workbench.py survival \
+  skills/make-sci-data-figures/examples/synthetic_survival.csv \
+  --time time_months --event event --group group --unit unit \
+  --outdir demo/template_atlas/survival
+
+python skills/make-sci-data-figures/scripts/advanced_template_workbench.py dose-response \
+  skills/make-sci-data-figures/examples/synthetic_dose_response.csv \
+  --dose "Dose (µM)" --response "Viability (%)" --group compound --unit unit \
+  --outdir demo/template_atlas/dose_response
 ```
 
 Palette-only render:
@@ -176,7 +229,7 @@ python skills/make-sci-data-figures/scripts/figure_workbench.py recolor \
 
 ![The same estimation graphic recolored without changing the analysis](demo/workbench_okabe_ito/estimation_graphic.png)
 
-Validated visualization scope: continuous group comparisons, numeric relationships, longitudinal trajectories, compositions, and tidy matrices. Automated confirmatory inference remains deliberately narrower: common continuous-outcome independent and paired group comparisons. Survival, event-history, generalized mixed, causal, spatial, and high-dimensional differential models require a declared specialist workflow.
+Validated visualization scope includes continuous and paired comparisons, relationships, longitudinal trajectories, compositions, matrices, survival, dose-response, classification, interval estimates, differential-result displays, enrichment, embeddings, cumulative distributions, and individual event timelines. Automated confirmatory inference remains deliberately narrower: common continuous-outcome independent and paired comparisons. Adjusted survival, generalized mixed, causal, spatial, high-dimensional differential, and ontology analyses still require declared specialist workflows; the skill faithfully validates and displays their supplied results.
 
 ## Scientific image standardization
 

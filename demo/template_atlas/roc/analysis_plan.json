@@ -1,0 +1,29 @@
+{
+  "family": "roc",
+  "positive_label": "1",
+  "metrics": {
+    "Discovery": {
+      "n": 60,
+      "prevalence": 0.45,
+      "auc": 0.9180695847362513,
+      "bootstrap_95_ci": [
+        0.8364418125447536,
+        0.9778875641144481
+      ]
+    },
+    "Validation": {
+      "n": 60,
+      "prevalence": 0.48333333333333334,
+      "auc": 0.8565072302558399,
+      "bootstrap_95_ci": [
+        0.7474774553571429,
+        0.9400580416987536
+      ]
+    }
+  },
+  "experimental_unit_column": "unit",
+  "limitations": [
+    "Bootstrap intervals are internal and do not establish external validity.",
+    "Declare training, tuning, and held-out cohorts; repeated measurements require unit-level resampling."
+  ]
+}

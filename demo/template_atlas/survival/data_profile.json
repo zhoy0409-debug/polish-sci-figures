@@ -1,0 +1,21 @@
+{
+  "source_file": "synthetic_survival.csv",
+  "source_sha256": "0b866465050912de468a915d1f815a8eb67a0f9549ee85ade67f674d6e8ebee3",
+  "rows_input": 84,
+  "rows_used": 84,
+  "rows_excluded_for_missing_required_values": 0,
+  "columns_used": [
+    "time_months",
+    "event",
+    "group",
+    "unit"
+  ],
+  "duplicate_rows": 0,
+  "font": {
+    "requested": "Arial",
+    "actual": "Arial",
+    "file": "arial.ttf",
+    "warning": null
+  },
+  "synthetic_example": true
+}

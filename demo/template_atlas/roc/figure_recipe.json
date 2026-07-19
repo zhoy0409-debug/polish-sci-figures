@@ -1,0 +1,19 @@
+{
+  "family": "roc",
+  "input": "..\\..\\..\\skills\\make-sci-data-figures\\examples\\synthetic_roc.csv",
+  "palette": "zhoy_muted",
+  "colors": null,
+  "font": "Arial",
+  "figsize_inches": [
+    4.8,
+    3.6
+  ],
+  "parameters": {
+    "outcome": "outcome",
+    "score": "score",
+    "unit": "unit",
+    "cohort": "cohort",
+    "positive": "1"
+  },
+  "note": "Palette changes preserve data, ordering, statistics, labels, and geometry."
+}
