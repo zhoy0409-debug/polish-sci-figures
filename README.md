@@ -2,6 +2,14 @@
 
 An original, runnable Codex skill suite for turning raw research data and scientific images into publication-ready figures, then auditing the final artwork.
 
+![Reproducible scientific-figure showcase](demo/Homepage_Hero.png)
+
+Every panel in this hero is generated from deterministic synthetic data by `demo/figure_sources/make_demo_suite.py`; no image model invents observations, labels, networks, or statistics. Reproduce the complete showcase after installing `requirements.txt`:
+
+```bash
+python demo/figure_sources/make_demo_suite.py
+```
+
 中文简介：从原始表格自动生成多种可靠的 SCI 图候选并一键换色；批量统一显微、荧光、电镜等科研图片的尺寸、显示参数和规范标尺；最后完成可编辑 SVG、固定画布、字体、留白、重叠与组图质控。
 
 ## Three-skill pipeline

@@ -1,0 +1,14 @@
+{
+  "output": "Homepage_Hero.png",
+  "size_px": [
+    1800,
+    820
+  ],
+  "rng_seed": 20260715,
+  "sources": [
+    "Fig4_CellAtlas.png",
+    "Fig5_SystemsMap.png"
+  ],
+  "content": "Deterministic synthetic showcase; source chart data and labels are unchanged.",
+  "generator": "figure_sources/make_demo_suite.py::homepage_hero"
+}

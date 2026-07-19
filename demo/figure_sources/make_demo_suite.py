@@ -4,6 +4,7 @@ All values are deterministic synthetic data for visual demonstration only.
 """
 from __future__ import annotations
 
+import json
 import os
 import sys
 from pathlib import Path
@@ -12,14 +13,17 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import font_manager
 from matplotlib.path import Path as MplPath
 from matplotlib.patches import Circle, FancyArrowPatch, Patch, Polygon
 from matplotlib.ticker import NullFormatter
+from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
 SKILL = Path(os.environ.get(
     "POLISH_SCI_SKILL",
-    str(Path.home() / ".codex" / "skills" / "polish-sci-figures"),
+    str(REPO_ROOT / "skills" / "polish-sci-figures"),
 ))
 sys.path.insert(0, str(SKILL / "scripts"))
 from figure_text_qa import assert_figure_text_qa  # noqa: E402
@@ -636,6 +640,105 @@ def figure_6_model_insight() -> None:
     finish(fig, [a, b, c, d], "Fig6_ModelInsight")
 
 
+def homepage_hero() -> None:
+    """Build the README hero from exact crops of reproducible demo figures."""
+    width, height = 1800, 820
+    yy, xx = np.mgrid[:height, :width]
+    glow = np.clip(1 - np.hypot((xx - 1420) / 1180, (yy - 130) / 760), 0, 1)
+    accent = np.clip(1 - np.hypot((xx - 420) / 720, (yy - 760) / 620), 0, 1)
+    background = np.empty((height, width, 3), dtype=np.uint8)
+    background[..., 0] = 6 + 5 * glow + 7 * accent
+    background[..., 1] = 14 + 23 * glow + 5 * accent
+    background[..., 2] = 28 + 38 * glow + 17 * accent
+    canvas = Image.fromarray(background, "RGB").convert("RGBA")
+    draw = ImageDraw.Draw(canvas, "RGBA")
+    for x0 in range(40, width, 120):
+        draw.line((x0, 0, x0, height), fill=(124, 202, 255, 7), width=1)
+    for y0 in range(20, height, 120):
+        draw.line((0, y0, width, y0), fill=(124, 202, 255, 6), width=1)
+    for x0, y0, radius in [(90, 690, 4), (260, 640, 3), (420, 735, 5),
+                           (610, 665, 3), (735, 745, 4)]:
+        draw.ellipse((x0 - radius, y0 - radius, x0 + radius, y0 + radius),
+                     fill=(81, 211, 255, 150))
+    draw.line([(90, 690), (260, 640), (420, 735), (610, 665), (735, 745)],
+              fill=(81, 211, 255, 55), width=2)
+
+    def font(size: int, bold: bool = False):
+        prop = font_manager.FontProperties(family="Arial", weight="bold" if bold else "normal")
+        return ImageFont.truetype(font_manager.findfont(prop), size)
+
+    def card(source_name: str, crop: tuple[int, int, int, int],
+             box: tuple[int, int, int, int]) -> None:
+        x0, y0, card_width, card_height = box
+        shadow = Image.new("RGBA", (card_width + 44, card_height + 44))
+        ImageDraw.Draw(shadow).rounded_rectangle(
+            (22, 18, card_width + 22, card_height + 18), radius=26,
+            fill=(0, 0, 0, 150),
+        )
+        shadow = shadow.filter(ImageFilter.GaussianBlur(18))
+        canvas.alpha_composite(shadow, (x0 - 22, y0 - 12))
+        layer = Image.new("RGBA", (card_width, card_height), (247, 250, 253, 255))
+        content = ImageOps.fit(
+            Image.open(ROOT / source_name).convert("RGB").crop(crop),
+            (card_width - 22, card_height - 22),
+            method=Image.Resampling.LANCZOS,
+        )
+        mask = Image.new("L", content.size)
+        ImageDraw.Draw(mask).rounded_rectangle((0, 0, *content.size), radius=18, fill=255)
+        layer.paste(content, (11, 11), mask)
+        ImageDraw.Draw(layer, "RGBA").rounded_rectangle(
+            (0, 0, card_width - 1, card_height - 1), radius=24,
+            outline=(156, 211, 239, 105), width=2,
+        )
+        canvas.alpha_composite(layer, (x0, y0))
+
+    card("Fig4_CellAtlas.png", (0, 0, 1065, 795), (760, 58, 610, 450))
+    card("Fig5_SystemsMap.png", (0, 0, 920, 740), (1215, 398, 500, 390))
+    card("Fig5_SystemsMap.png", (900, 0, 2130, 720), (1290, 82, 440, 305))
+
+    draw = ImageDraw.Draw(canvas, "RGBA")
+    draw.text((96, 76), "SCI FIGURE SKILLS", font=font(25, True),
+              fill=(91, 214, 255, 255), stroke_width=0)
+    draw.text((96, 132), "From raw data to", font=font(58, True),
+              fill=(247, 250, 255, 255))
+    draw.text((96, 198), "publication-grade", font=font(58, True),
+              fill=(247, 250, 255, 255))
+    draw.text((96, 264), "evidence", font=font(58, True),
+              fill=(247, 250, 255, 255))
+    draw.text((98, 366),
+              "Advanced scientific graphics, defensible statistical matching,\n"
+              "and editable outputs—without plotting by trial and error.",
+              font=font(22), fill=(191, 207, 224, 255), spacing=10)
+
+    chips = [("STATISTICS MATCHED", 98), ("EDITABLE SVG", 322), ("FIXED-CANVAS QA", 495)]
+    chip_font = font(15, True)
+    for label, x0 in chips:
+        right = x0 + draw.textbbox((0, 0), label, font=chip_font)[2] + 34
+        draw.rounded_rectangle((x0, 494, right, 538), radius=22,
+                               fill=(20, 54, 79, 220), outline=(81, 211, 255, 105), width=2)
+        draw.ellipse((x0 + 13, 510, x0 + 21, 518), fill=(81, 211, 255, 255))
+        draw.text((x0 + 27, 507), label, font=chip_font, fill=(224, 243, 255, 255))
+    draw.text((98, 583), "SYNTHETIC DEMO  •  REPRODUCIBLE SOURCE INCLUDED",
+              font=font(15, True), fill=(129, 157, 182, 255))
+
+    output = ROOT / "Homepage_Hero.png"
+    canvas.convert("RGB").save(output, optimize=True, compress_level=9)
+    with Image.open(output) as rendered:
+        assert rendered.size == (width, height)
+    manifest = {
+        "output": output.name,
+        "size_px": [width, height],
+        "rng_seed": 20260715,
+        "sources": ["Fig4_CellAtlas.png", "Fig5_SystemsMap.png"],
+        "content": "Deterministic synthetic showcase; source chart data and labels are unchanged.",
+        "generator": "figure_sources/make_demo_suite.py::homepage_hero",
+    }
+    (ROOT / "Homepage_Hero_manifest.json").write_text(
+        json.dumps(manifest, indent=2) + "\n", encoding="utf-8",
+    )
+    print(f"wrote {output}")
+
+
 if __name__ == "__main__":
     figure_1_efficacy()
     figure_2_mechanism()
@@ -643,4 +746,5 @@ if __name__ == "__main__":
     figure_4_cell_atlas()
     figure_5_systems_map()
     figure_6_model_insight()
+    homepage_hero()
     print("all figure text QA checks passed")
