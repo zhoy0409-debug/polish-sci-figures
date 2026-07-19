@@ -72,6 +72,13 @@ def _label_margin(labels: list[str], minimum: float = 0.24) -> float:
     return min(0.46, max(minimum, 0.16 + 0.0095 * longest))
 
 
+def _trapezoid(y: np.ndarray, x: np.ndarray) -> float:
+    """Integrate on both legacy NumPy and NumPy >=2.0/2.4."""
+    if hasattr(np, "trapezoid"):
+        return float(np.trapezoid(y, x))
+    return float(np.trapz(y, x))
+
+
 def forest(
     input_path: Path,
     term: str,
@@ -899,13 +906,13 @@ def roc(
         if len(np.unique(truth)) != 2:
             raise ValueError(f"Cohort '{level}' must contain both classes.")
         fpr, tpr, precision, _ = _roc_points(truth, values)
-        auc = float(np.trapz(tpr, fpr))
+        auc = _trapezoid(tpr, fpr)
         boot = []
         for _ in range(500):
             index = rng.integers(0, len(truth), len(truth))
             if len(np.unique(truth[index])) == 2:
                 bfpr, btpr, _, _ = _roc_points(truth[index], values[index])
-                boot.append(float(np.trapz(btpr, bfpr)))
+                boot.append(_trapezoid(btpr, bfpr))
         ci = np.quantile(boot, [0.025, 0.975]).tolist() if boot else [None, None]
         ax.plot(
             fpr, tpr, color=color, linewidth=1.55, label=f"{level}  AUC = {auc:.2f}"
