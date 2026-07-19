@@ -1,0 +1,49 @@
+sample_id,condition,Response
+V01,Vehicle,10.0
+V02,Vehicle,10.6
+V03,Vehicle,9.7
+V04,Vehicle,10.3
+V05,Vehicle,9.4
+V06,Vehicle,10.8
+V07,Vehicle,9.9
+V08,Vehicle,10.2
+V09,Vehicle,9.5
+V10,Vehicle,10.4
+V11,Vehicle,9.8
+V12,Vehicle,10.1
+L01,Low dose,10.5
+L02,Low dose,11.1
+L03,Low dose,10.0
+L04,Low dose,10.8
+L05,Low dose,10.3
+L06,Low dose,11.3
+L07,Low dose,10.6
+L08,Low dose,10.9
+L09,Low dose,10.2
+L10,Low dose,11.0
+L11,Low dose,10.4
+L12,Low dose,10.7
+M01,Mid dose,11.2
+M02,Mid dose,11.8
+M03,Mid dose,10.9
+M04,Mid dose,11.5
+M05,Mid dose,11.0
+M06,Mid dose,12.1
+M07,Mid dose,11.4
+M08,Mid dose,11.7
+M09,Mid dose,10.8
+M10,Mid dose,11.9
+M11,Mid dose,11.3
+M12,Mid dose,11.6
+H01,High dose,12.0
+H02,High dose,12.8
+H03,High dose,11.7
+H04,High dose,12.4
+H05,High dose,11.9
+H06,High dose,13.1
+H07,High dose,12.3
+H08,High dose,12.6
+H09,High dose,11.8
+H10,High dose,12.9
+H11,High dose,12.1
+H12,High dose,12.5

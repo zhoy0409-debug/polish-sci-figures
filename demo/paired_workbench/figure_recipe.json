@@ -1,0 +1,23 @@
+{
+  "input": "..\\..\\skills\\make-sci-data-figures\\examples\\synthetic_paired_response.csv",
+  "group": "condition",
+  "value": "Response",
+  "design": "paired",
+  "subject": "subject_id",
+  "order": [
+    "Before",
+    "After"
+  ],
+  "palette": "zhoy_muted",
+  "colors": null,
+  "unit_label": "normalized units",
+  "font": "Arial",
+  "outcome_type": "continuous",
+  "scope": "exploratory",
+  "show_p_value": false,
+  "figsize_inches": [
+    4.8,
+    3.6
+  ],
+  "note": "Recoloring must not change data, statistics, geometry, labels, or group order."
+}

@@ -18,7 +18,7 @@
     ],
     "ci_method": "Welch-Satterthwaite",
     "bootstrap_ci95_sensitivity": [
-      2.0000000000000036,
+      2.0000000000000018,
       2.9416666666666664
     ]
   },
@@ -62,6 +62,6 @@
     "file": "arial.ttf"
   },
   "source_file": "synthetic_group_comparison.csv",
-  "source_sha256": "879fdcd49e31703b2bdfbcc4f2c83739cebd8ff973f99cb413d7e219887eccbd",
+  "source_sha256": "e040e35285e7ade3d6bded4314c7dc8e828726af98fd5fb9fec85701d8559e57",
   "synthetic_example": true
 }

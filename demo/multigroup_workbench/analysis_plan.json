@@ -1,0 +1,120 @@
+{
+  "design": "independent",
+  "group_order": [
+    "Vehicle",
+    "Low dose",
+    "Mid dose",
+    "High dose"
+  ],
+  "group_n": {
+    "Vehicle": 12,
+    "Low dose": 12,
+    "Mid dose": 12,
+    "High dose": 12
+  },
+  "rows_dropped_for_missing_group_or_outcome": 0,
+  "primary_estimand": {
+    "name": "group means with 95% t confidence intervals",
+    "groups": {
+      "Vehicle": {
+        "mean": 10.058333333333334,
+        "ci95": [
+          9.786790633970968,
+          10.329876032695699
+        ],
+        "bootstrap_ci95_sensitivity": [
+          9.825000000000001,
+          10.291666666666664
+        ]
+      },
+      "Low dose": {
+        "mean": 10.65,
+        "ci95": [
+          10.402435490851191,
+          10.89756450914881
+        ],
+        "bootstrap_ci95_sensitivity": [
+          10.441666666666666,
+          10.858333333333334
+        ]
+      },
+      "Mid dose": {
+        "mean": 11.433333333333332,
+        "ci95": [
+          11.173003222195396,
+          11.693663444471268
+        ],
+        "bootstrap_ci95_sensitivity": [
+          11.208333333333334,
+          11.65
+        ]
+      },
+      "High dose": {
+        "mean": 12.341666666666669,
+        "ci95": [
+          12.053088582127915,
+          12.630244751205423
+        ],
+        "bootstrap_ci95_sensitivity": [
+          12.100000000000001,
+          12.591666666666667
+        ]
+      }
+    }
+  },
+  "primary_test": {
+    "name": "Welch one-way ANOVA",
+    "statistic": 58.37494300778161,
+    "p_value": 2.7926815214302228e-11,
+    "df1": 3.0,
+    "df2": 24.410652846056074
+  },
+  "sensitivity_test": {
+    "name": "Kruskal-Wallis rank/distribution test",
+    "statistic": 39.02517474286543,
+    "p_value": 1.7144813599019545e-08
+  },
+  "multiplicity": "No pairwise family was tested by this workbench.",
+  "assumption_diagnostics": {
+    "Vehicle": {
+      "n": 12,
+      "skewness": 0.13557747962616662,
+      "iqr_rule_outlier_count": 0,
+      "shape_warning": null
+    },
+    "Low dose": {
+      "n": 12,
+      "skewness": -2.0623950680741387e-15,
+      "iqr_rule_outlier_count": 0,
+      "shape_warning": null
+    },
+    "Mid dose": {
+      "n": 12,
+      "skewness": -0.04934127248454995,
+      "iqr_rule_outlier_count": 0,
+      "shape_warning": null
+    },
+    "High dose": {
+      "n": 12,
+      "skewness": 0.19151695518989598,
+      "iqr_rule_outlier_count": 0,
+      "shape_warning": null
+    }
+  },
+  "limitations": [
+    "A global test does not identify pairwise differences; no post-hoc claims were made.",
+    "Exploratory scope: P values are recorded for transparency but are not displayed or treated as confirmatory."
+  ],
+  "experimental_unit_column": "sample_id",
+  "outcome_type": "continuous",
+  "scope": "exploratory",
+  "display_p_value": false,
+  "font": {
+    "requested": "Arial",
+    "actual": "Arial",
+    "file": "arial.ttf"
+  },
+  "source_file": "synthetic_multigroup_response.csv",
+  "source_sha256": "dae660a96bcfb7ff7820fd2a6c83d402d0517d80f5dc22505a6917d9e16805c0",
+  "synthetic_example": true
+}

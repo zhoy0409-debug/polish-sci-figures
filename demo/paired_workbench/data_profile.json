@@ -1,0 +1,36 @@
+{
+  "rows": 24,
+  "columns": [
+    "subject_id",
+    "condition",
+    "Response"
+  ],
+  "column_types": {
+    "subject_id": "object",
+    "condition": "object",
+    "Response": "float64"
+  },
+  "missing": {
+    "subject_id": 0,
+    "condition": 0,
+    "Response": 0
+  },
+  "duplicate_rows": 0,
+  "warnings": [],
+  "group_counts": {
+    "Before": 12,
+    "After": 12
+  },
+  "non_numeric_outcomes": 0,
+  "outcome_summary": {
+    "n": 24,
+    "mean": 8.970833333333335,
+    "sd": 0.8363893240885344,
+    "median": 8.95,
+    "min": 7.5,
+    "max": 10.4
+  },
+  "subjects": 12,
+  "subjects_in_multiple_groups": 12,
+  "duplicate_unit_group_rows": 0
+}

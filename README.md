@@ -14,24 +14,80 @@ An original, runnable Codex skill suite for turning raw research data and scient
 
 These are not renamed copies of third-party skills. The workflow and code were written for this repository around recurring real-world pain points: wrong statistical units, hidden distributions, inconsistent palettes, unequal canvases, changing apparent font sizes, internal mini-titles, panel numbers, overlaps, broken scientific notation, uneditable SVG text, guessed scale bars, and unfair per-image contrast tuning.
 
-## Raw data to figure candidates
+## What makes the data-figure workbench different
 
-The bundled example is deterministic synthetic demonstration data.
+Give it a tidy table, name the group, outcome, biological experimental unit, and whether observations are independent or paired. It profiles the data, matches a defensible analysis, generates several genuinely different figure types, and preserves the decision in a machine-readable analysis plan. The result is not a decorative chart template: raw observations, effect size, uncertainty, design, exclusions, sensitivity analysis, canvas, typography, and palette semantics stay connected.
 
-Top to bottom: raw observations with estimate and 95% CI, box plot with raw observations, and violin plot with raw observations. The descriptions stay outside the reusable artwork.
+- **High-information alternatives:** estimation graphics, rainclouds, paired estimation graphics, group-estimate intervals, raw-data summaries, box plots, and violins are generated only when the design and sample size support them.
+- **Statistics before decoration:** the biological unit and pairing determine the analysis; the preferred visual style cannot silently change the test.
+- **One-command restyling:** palette changes leave data, statistics, axes, labels, ordering, and geometry untouched.
+- **Manuscript-ready construction:** identical physical canvases, readable Arial text, no internal mini-titles or panel numbers, live SVG text, and editable PDF/SVG output.
+- **Refuses false certainty:** unsupported repeated measures, mixed models, survival analysis, count models, compositional data, and high-dimensional omics are routed to specialist analysis instead of receiving an invented automatic test.
 
-![Candidate gallery](demo/workbench/candidate_gallery.png)
+All values below are deterministic synthetic demonstration data. Descriptions remain outside the reusable artwork.
+
+### Estimation-first two-group comparison
+
+Raw observations and group estimates are shown beside the bootstrap distribution of the treatment-minus-control effect. In the bundled example the estimated mean difference is 2.48 a.u. (95% CI 1.95 to 3.00), so the figure communicates magnitude and uncertainty rather than relying on a significance star.
+
+![Two-group estimation graphic](demo/workbench/estimation_graphic.png)
+
+### Raincloud distribution view
+
+Half-violin density, every observation, interquartile range, and median are combined without hiding the sample. The workbench does not generate this density view when a group has fewer than 10 observations.
+
+![Raincloud figure](demo/workbench/raincloud.png)
+
+### Paired estimation view
+
+Subject-level trajectories preserve the matching, while the second axis shows the within-subject mean difference and 95% CI. In the example the paired change is 1.14 normalized units (95% CI 0.978 to 1.31).
+
+![Paired estimation graphic](demo/paired_workbench/paired_estimation.png)
+
+### Multi-group effect intervals
+
+Every biological sample remains visible behind the group mean and 95% CI. The global analysis is kept global; the skill does not manufacture pairwise claims that were never specified.
+
+![Multi-group estimates with confidence intervals](demo/multigroup_workbench/group_estimate_forest.png)
+
+These choices follow estimation-first reporting described in [Ho et al., *Nature Methods* (2019)](https://www.nature.com/articles/s41592-019-0470-3), the transparent distribution logic of [raincloud plots](https://pmc.ncbi.nlm.nih.gov/articles/PMC6480976/), and the editable-text, accessible-color, compact-layout guidance in the [Nature Research figure guide](https://research-figure-guide.nature.com/figures/preparing-figures-our-specifications/). A good figure cannot rescue a weak experimental design or guarantee acceptance, but it can remove avoidable statistical and artwork failures.
+
+## Statistical matching in seconds
+
+| Research situation | Minimal user input | Automatic match and concrete example | Scientific guardrail |
+| --- | --- | --- | --- |
+| Control vs treatment using different biological samples | `condition`, `Response`, `sample_id`, `independent` | Treatment-minus-control mean difference and 95% CI; Welch two-sample test; Mann-Whitney sensitivity analysis. Example effect: 2.48 a.u. (1.95 to 3.00). | Repeated unit IDs are rejected instead of being counted as independent replication. |
+| Before vs after on the same subjects | `condition`, `Response`, `subject_id`, `paired` | Within-subject mean difference and 95% CI; paired test; Wilcoxon sensitivity analysis. Example change: 1.14 normalized units (0.978 to 1.31). | Duplicate subject-condition rows are rejected; incomplete pairs are counted and reported. |
+| Vehicle plus three independent dose groups | `condition`, `Response`, `sample_id`, `independent` | Group means and 95% CIs; global Welch ANOVA; Kruskal-Wallis sensitivity analysis. | A global result never becomes an undeclared pairwise claim; multiplicity remains explicit. |
+
+Exact tests, effect direction, sample counts, exclusions, diagnostics, limitations, analysis scope, and multiplicity status are written to `analysis_plan.json`. Exploratory results show the effect and interval on the artwork while keeping *P* values in the analysis record; `--scope confirmatory --show-p-value` is available only after a pre-specified confirmatory family is declared.
+
+### Run the reproducible examples
 
 ```bash
+# Independent two-group comparison: creates five candidates
 python skills/make-sci-data-figures/scripts/figure_workbench.py generate \
   skills/make-sci-data-figures/examples/synthetic_group_comparison.csv \
-  --group condition --value response --unit sample_id \
-  --design independent --outcome-type continuous \
-  --order Control,Treatment --unit-label "a.u." --palette zhoy_muted \
+  --group condition --value Response --unit sample_id \
+  --design independent --order Control,Treatment --unit-label "a.u." \
   --outdir demo/workbench
+
+# Paired before/after comparison: creates paired effect and trajectory views
+python skills/make-sci-data-figures/scripts/figure_workbench.py generate \
+  skills/make-sci-data-figures/examples/synthetic_paired_response.csv \
+  --group condition --value Response --unit subject_id \
+  --design paired --order Before,After --unit-label "normalized units" \
+  --outdir demo/paired_workbench
+
+# Four independent groups: creates group-interval and distribution views
+python skills/make-sci-data-figures/scripts/figure_workbench.py generate \
+  skills/make-sci-data-figures/examples/synthetic_multigroup_response.csv \
+  --group condition --value Response --unit sample_id --design independent \
+  --order "Vehicle,Low dose,Mid dose,High dose" --unit-label "a.u." \
+  --outdir demo/multigroup_workbench
 ```
 
-Change only the palette while keeping the data, statistics, order, labels, axes, and canvas unchanged:
+Change only the palette while keeping the analysis and geometry fixed:
 
 ```bash
 python skills/make-sci-data-figures/scripts/figure_workbench.py recolor \
@@ -39,9 +95,9 @@ python skills/make-sci-data-figures/scripts/figure_workbench.py recolor \
   --outdir demo/workbench_okabe_ito
 ```
 
-![The same candidates recolored without changing the analysis](demo/workbench_okabe_ito/candidate_gallery.png)
+![The same estimation graphic recolored without changing the analysis](demo/workbench_okabe_ito/estimation_graphic.png)
 
-The workbench intentionally covers common independent and paired group comparisons. It reports limitations instead of pretending to automate mixed models, survival analysis, compositional data, high-dimensional omics, or other specialist designs.
+The current automatic inference scope is deliberately limited to common continuous-outcome independent and paired group comparisons. Unsupported specialist designs receive an explicit limitation instead of a plausible-looking but scientifically unsafe answer.
 
 ## Scientific image standardization
 

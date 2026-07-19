@@ -1,0 +1,25 @@
+{
+  "input": "..\\..\\skills\\make-sci-data-figures\\examples\\synthetic_multigroup_response.csv",
+  "group": "condition",
+  "value": "Response",
+  "design": "independent",
+  "subject": "sample_id",
+  "order": [
+    "Vehicle",
+    "Low dose",
+    "Mid dose",
+    "High dose"
+  ],
+  "palette": "zhoy_muted",
+  "colors": null,
+  "unit_label": "a.u.",
+  "font": "Arial",
+  "outcome_type": "continuous",
+  "scope": "exploratory",
+  "show_p_value": false,
+  "figsize_inches": [
+    4.8,
+    3.6
+  ],
+  "note": "Recoloring must not change data, statistics, geometry, labels, or group order."
+}

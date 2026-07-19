@@ -39,7 +39,7 @@ For paired data, use the same biological-unit ID in both conditions and pass `--
 - `data_profile.json`, `analysis_plan.json`, and `figure_recipe.json`;
 - a deterministic rendering recipe that can be recolored without changing data, statistics, geometry, or group order.
 
-Candidate types are conditional, not decorative: raw points with estimate and 95% CI; box plus raw observations; violin plus raw observations only when group sizes support a distribution shape; and paired trajectories only for complete paired observations. Never default to a bar chart when the raw distribution can be shown.
+Candidate types are conditional, not decorative: two-group estimation graphics; rainclouds when group sizes support density estimation; raw points with estimate and 95% CI; box/violin plus raw observations; paired estimation graphics and trajectories for complete pairs; and horizontal group-estimate intervals for multi-group designs. Never default to a bar chart when the raw distribution can be shown.
 
 ## Change the palette without changing the science
 
@@ -61,6 +61,8 @@ Use `assets/palettes.json` as the single palette registry. A palette change must
 - Do not pool technical replicates as biological replicates. Do not average or impute missing values without an explicit rule.
 - Keep exact test names, biological-unit counts, exclusions, effect direction, uncertainty definition, diagnostics, analysis scope, and multiplicity status in `analysis_plan.json`.
 - Synthetic example data must remain labeled synthetic. Never relabel it as experimental data.
+
+Use the worked independent, paired, and multi-group examples in `references/statistics_and_chart_selection.md` to explain the statistical match. State what the skill selected, why it matches the experimental unit, what it refused to infer, and which output makes that decision visible.
 
 ## Artwork rules
 

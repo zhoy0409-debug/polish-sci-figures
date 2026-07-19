@@ -1,7 +1,7 @@
 {
   "input": "..\\..\\skills\\make-sci-data-figures\\examples\\synthetic_group_comparison.csv",
   "group": "condition",
-  "value": "response",
+  "value": "Response",
   "design": "independent",
   "subject": "sample_id",
   "order": [

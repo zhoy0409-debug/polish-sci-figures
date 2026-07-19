@@ -171,6 +171,17 @@ def bootstrap_ci(values: np.ndarray, statistic=np.mean, seed: int = RNG_SEED,
     return tuple(np.percentile(estimates, [2.5, 97.5]))
 
 
+def bootstrap_mean_difference(reference: np.ndarray, comparison: np.ndarray,
+                              iterations: int = 5000) -> np.ndarray:
+    """Deterministic bootstrap distribution for comparison minus reference."""
+    reference = np.asarray(reference, dtype=float)
+    comparison = np.asarray(comparison, dtype=float)
+    rng = np.random.default_rng(RNG_SEED)
+    ref = reference[rng.integers(0, len(reference), size=(iterations, len(reference)))]
+    cmp = comparison[rng.integers(0, len(comparison), size=(iterations, len(comparison)))]
+    return cmp.mean(axis=1) - ref.mean(axis=1)
+
+
 def mean_ci(values: np.ndarray) -> tuple[float, float]:
     values = np.asarray(values, dtype=float)
     if len(values) < 2:
@@ -277,11 +288,7 @@ def analyse(df: pd.DataFrame, group: str, value: str, order: list[str], design: 
         a, b = arrays
         diff = float(np.mean(b) - np.mean(a))
         ci_low, ci_high, welch_df = welch_difference_ci(a, b)
-        rng = np.random.default_rng(RNG_SEED)
-        boot = np.array([
-            np.mean(rng.choice(b, len(b), replace=True)) - np.mean(rng.choice(a, len(a), replace=True))
-            for _ in range(5000)
-        ])
+        boot = bootstrap_mean_difference(a, b)
         t = stats.ttest_ind(b, a, equal_var=False, nan_policy="omit")
         mw = stats.mannwhitneyu(b, a, alternative="two-sided")
         result["primary_estimand"] = {"name": f"mean({order[1]}) - mean({order[0]})", "estimate": diff,
@@ -351,9 +358,12 @@ def add_stat_line(fig, analysis: dict) -> None:
     estimand = analysis.get("primary_estimand") or {}
     if "estimate" in estimand and "ci95" in estimand:
         low, high = estimand["ci95"]
-        line = f"Mean difference = {estimand['estimate']:.3g} (95% CI {low:.3g} to {high:.3g})"
+        label = "Paired mean difference" if analysis.get("design") == "paired" else "Mean difference"
+        line = f"{label} = {estimand['estimate']:.3g} (95% CI {low:.3g} to {high:.3g})"
     else:
-        line = "Group estimates with 95% CIs"
+        if not analysis.get("display_p_value"):
+            return
+        line = primary.get("name", "Global test")
     if analysis.get("display_p_value"):
         line += f"; $\\it{{P}}$ = {format_p_value(p)}"
     # Align the evidence line to the plotting area's left edge.  This keeps a
@@ -363,14 +373,121 @@ def add_stat_line(fig, analysis: dict) -> None:
              ha="left", va="top", fontsize=9.5, color="#333333")
 
 
+def difference_axis_label(ylabel: str) -> str:
+    """Keep effect-axis labels compact while retaining the supplied unit."""
+    unit = ylabel[ylabel.rfind("("):] if ylabel.endswith(")") and "(" in ylabel else ""
+    return f"Difference {unit}".rstrip()
+
+
+def clean_axis(ax) -> None:
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    for name in ("left", "bottom"):
+        ax.spines[name].set_color("#252A31")
+        ax.spines[name].set_linewidth(0.9)
+    ax.tick_params(direction="out", length=4, width=0.8, color="#252A31", pad=4)
+    ax.grid(False)
+    ax.set_axisbelow(True)
+
+
 def finish_axes(fig, ax, ylabel: str) -> None:
     ax.set_ylabel(ylabel)
     ax.set_xlabel("")
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.grid(axis="y", color="#D9DEE4", linewidth=0.6, alpha=0.75, zorder=0)
-    ax.set_axisbelow(True)
+    clean_axis(ax)
     fig.subplots_adjust(left=0.20, right=0.96, bottom=0.20, top=0.82)
+
+
+def plot_estimation_graphic(work: pd.DataFrame, group: str, value: str, order: list[str],
+                            colors: list[str], ylabel: str, analysis: dict):
+    arrays = [work.loc[work[group].astype(str) == g, value].to_numpy(float) for g in order]
+    boot = bootstrap_mean_difference(arrays[0], arrays[1])
+    fig = plt.figure(figsize=FIGSIZE)
+    grid = fig.add_gridspec(1, 2, left=0.17, right=0.96, bottom=0.20, top=0.82,
+                            width_ratios=[1.35, 1.0], wspace=0.42)
+    raw_ax = fig.add_subplot(grid[0, 0])
+    effect_ax = fig.add_subplot(grid[0, 1])
+    rng = np.random.default_rng(RNG_SEED)
+    for i, (values, color) in enumerate(zip(arrays, colors)):
+        raw_ax.scatter(i + rng.uniform(-0.13, 0.13, len(values)), values, s=27,
+                       color=color, alpha=0.76, edgecolor="white", linewidth=0.35, zorder=3)
+        mean = float(np.mean(values))
+        low, high = mean_ci(values)
+        raw_ax.errorbar(i, mean, yerr=[[mean - low], [high - mean]], fmt="o",
+                        color="#20242A", markerfacecolor="white", markeredgewidth=1.2,
+                        markersize=5.8, capsize=4, linewidth=1.3, zorder=5)
+    raw_ax.set_xticks(range(2), order)
+    raw_ax.set_ylabel(ylabel)
+    clean_axis(raw_ax)
+
+    violin = effect_ax.violinplot([boot], positions=[0], widths=0.72,
+                                  showmeans=False, showmedians=False, showextrema=False)
+    body = violin["bodies"][0]
+    body.set_facecolor(colors[1])
+    body.set_edgecolor(colors[1])
+    body.set_alpha(0.22)
+    effect = float(analysis["primary_estimand"]["estimate"])
+    low, high = analysis["primary_estimand"]["ci95"]
+    effect_ax.errorbar(0, effect, yerr=[[effect - low], [high - effect]], fmt="o",
+                       color="#20242A", markerfacecolor=colors[1], markeredgecolor="white",
+                       markeredgewidth=0.7, markersize=6.5, capsize=4, linewidth=1.5, zorder=5)
+    effect_ax.axhline(0, color="#8E98A3", linewidth=0.9, linestyle=(0, (3, 2)), zorder=1)
+    effect_ax.set_xticks([0], [f"{order[1]} −\n{order[0]}"])
+    effect_ax.set_ylabel(difference_axis_label(ylabel))
+    effect_ax.set_xlim(-0.58, 0.58)
+    clean_axis(effect_ax)
+    add_stat_line(fig, analysis)
+    return fig
+
+
+def plot_raincloud(work: pd.DataFrame, group: str, value: str, order: list[str],
+                   colors: list[str], ylabel: str, analysis: dict):
+    arrays = [work.loc[work[group].astype(str) == g, value].to_numpy(float) for g in order]
+    positions = np.arange(len(order), dtype=float)
+    fig, ax = plt.subplots(figsize=FIGSIZE)
+    clouds = ax.violinplot(arrays, positions=positions + 0.08, widths=0.66,
+                           showmeans=False, showmedians=False, showextrema=False)
+    rng = np.random.default_rng(RNG_SEED)
+    for i, (body, values, color) in enumerate(zip(clouds["bodies"], arrays, colors)):
+        center = positions[i] + 0.08
+        vertices = body.get_paths()[0].vertices
+        vertices[:, 0] = np.maximum(vertices[:, 0], center)
+        body.set_facecolor(color)
+        body.set_edgecolor(color)
+        body.set_alpha(0.22)
+        ax.scatter(i - 0.10 - rng.uniform(0.02, 0.22, len(values)), values, s=23,
+                   color=color, alpha=0.72, edgecolor="white", linewidth=0.3, zorder=3)
+        q1, median, q3 = np.percentile(values, [25, 50, 75])
+        ax.vlines(i + 0.06, q1, q3, color=color, linewidth=6, alpha=0.38, zorder=4)
+        ax.hlines(median, i - 0.01, i + 0.14, color="#20242A", linewidth=1.6, zorder=5)
+    ax.set_xticks(positions, order)
+    ax.set_xlim(-0.5, len(order) - 0.42)
+    finish_axes(fig, ax, ylabel)
+    add_stat_line(fig, analysis)
+    return fig
+
+
+def plot_group_estimates(work: pd.DataFrame, group: str, value: str, order: list[str],
+                         colors: list[str], ylabel: str, analysis: dict):
+    fig, ax = plt.subplots(figsize=FIGSIZE)
+    rng = np.random.default_rng(RNG_SEED)
+    positions = np.arange(len(order))
+    for y, (name, color) in enumerate(zip(order, colors)):
+        values = work.loc[work[group].astype(str) == name, value].to_numpy(float)
+        ax.scatter(values, y + rng.uniform(-0.13, 0.13, len(values)), s=18,
+                   color=color, alpha=0.28, edgecolor="none", zorder=2)
+        mean = float(np.mean(values))
+        low, high = mean_ci(values)
+        ax.errorbar(mean, y, xerr=[[mean - low], [high - mean]], fmt="o", color=color,
+                    markeredgecolor="white", markeredgewidth=0.7, markersize=7,
+                    capsize=4, linewidth=1.7, zorder=5)
+    ax.set_yticks(positions, order)
+    ax.invert_yaxis()
+    ax.set_xlabel(ylabel)
+    ax.set_ylabel("")
+    clean_axis(ax)
+    fig.subplots_adjust(left=0.25, right=0.96, bottom=0.20, top=0.82)
+    add_stat_line(fig, analysis)
+    return fig
 
 
 def plot_points_ci(work: pd.DataFrame, group: str, value: str, order: list[str], colors: list[str],
@@ -443,6 +560,49 @@ def plot_paired(complete: pd.DataFrame, subject: str, order: list[str], colors: 
                    edgecolor="white", linewidth=0.35, zorder=3)
     ax.set_xticks([0, 1], order)
     finish_axes(fig, ax, ylabel)
+    add_stat_line(fig, analysis)
+    return fig
+
+
+def plot_paired_estimation(complete: pd.DataFrame, order: list[str], colors: list[str],
+                           ylabel: str, analysis: dict):
+    before = complete[order[0]].to_numpy(float)
+    after = complete[order[1]].to_numpy(float)
+    differences = after - before
+    rng = np.random.default_rng(RNG_SEED)
+    indices = rng.integers(0, len(differences), size=(5000, len(differences)))
+    boot = differences[indices].mean(axis=1)
+    fig = plt.figure(figsize=FIGSIZE)
+    grid = fig.add_gridspec(1, 2, left=0.17, right=0.96, bottom=0.20, top=0.82,
+                            width_ratios=[1.35, 1.0], wspace=0.42)
+    raw_ax = fig.add_subplot(grid[0, 0])
+    effect_ax = fig.add_subplot(grid[0, 1])
+    for left, right in zip(before, after):
+        raw_ax.plot([0, 1], [left, right], color="#A7AFB8", linewidth=1.0, alpha=0.8, zorder=1)
+    raw_ax.scatter(np.zeros(len(before)), before, s=28, color=colors[0], edgecolor="white",
+                   linewidth=0.35, zorder=3)
+    raw_ax.scatter(np.ones(len(after)), after, s=28, color=colors[1], edgecolor="white",
+                   linewidth=0.35, zorder=3)
+    raw_ax.set_xticks([0, 1], order)
+    raw_ax.set_ylabel(ylabel)
+    clean_axis(raw_ax)
+
+    violin = effect_ax.violinplot([boot], positions=[0], widths=0.72,
+                                  showmeans=False, showmedians=False, showextrema=False)
+    body = violin["bodies"][0]
+    body.set_facecolor(colors[1])
+    body.set_edgecolor(colors[1])
+    body.set_alpha(0.22)
+    effect = float(analysis["primary_estimand"]["estimate"])
+    low, high = analysis["primary_estimand"]["ci95"]
+    effect_ax.errorbar(0, effect, yerr=[[effect - low], [high - effect]], fmt="o",
+                       color="#20242A", markerfacecolor=colors[1], markeredgecolor="white",
+                       markeredgewidth=0.7, markersize=6.5, capsize=4, linewidth=1.5, zorder=5)
+    effect_ax.axhline(0, color="#8E98A3", linewidth=0.9, linestyle=(0, (3, 2)), zorder=1)
+    effect_ax.set_xticks([0], [f"{order[1]} −\n{order[0]}"])
+    effect_ax.set_ylabel(difference_axis_label(ylabel))
+    effect_ax.set_xlim(-0.58, 0.58)
+    clean_axis(effect_ax)
     add_stat_line(fig, analysis)
     return fig
 
@@ -552,6 +712,9 @@ def generate(input_path: Path, group: str, value: str, design: str, outdir: Path
     ylabel = value if not unit_label else f"{value} ({unit_label})"
     figures = []
     if design == "paired":
+        stem = outdir / "paired_estimation"
+        save_figure(plot_paired_estimation(plotting_data, order, colors, ylabel, analysis), stem)
+        figures.append(stem.with_suffix(".png"))
         stem = outdir / "paired_trajectories"
         save_figure(plot_paired(plotting_data, subject, order, colors, ylabel, analysis), stem)
         figures.append(stem.with_suffix(".png"))
@@ -559,13 +722,31 @@ def generate(input_path: Path, group: str, value: str, design: str, outdir: Path
         save_figure(plot_paired_difference(plotting_data, order, colors[1], ylabel, analysis), stem)
         figures.append(stem.with_suffix(".png"))
     else:
+        counts = [int((plotting_data[group].astype(str) == g).sum()) for g in order]
+        if len(order) == 2:
+            stem = outdir / "estimation_graphic"
+            save_figure(plot_estimation_graphic(
+                plotting_data, group, value, order, colors, ylabel, analysis
+            ), stem)
+            figures.append(stem.with_suffix(".png"))
+        else:
+            stem = outdir / "group_estimate_forest"
+            save_figure(plot_group_estimates(
+                plotting_data, group, value, order, colors, ylabel, analysis
+            ), stem)
+            figures.append(stem.with_suffix(".png"))
+        if min(counts) >= 10:
+            stem = outdir / "raincloud"
+            save_figure(plot_raincloud(
+                plotting_data, group, value, order, colors, ylabel, analysis
+            ), stem)
+            figures.append(stem.with_suffix(".png"))
         stem = outdir / "raw_points_estimate_ci"
         save_figure(plot_points_ci(plotting_data, group, value, order, colors, ylabel, analysis), stem)
         figures.append(stem.with_suffix(".png"))
         stem = outdir / "box_raw_points"
         save_figure(plot_box_points(plotting_data, group, value, order, colors, ylabel, analysis), stem)
         figures.append(stem.with_suffix(".png"))
-        counts = [int((plotting_data[group].astype(str) == g).sum()) for g in order]
         if min(counts) >= 10:
             stem = outdir / "violin_raw_points"
             save_figure(plot_violin_points(plotting_data, group, value, order, colors, ylabel, analysis), stem)

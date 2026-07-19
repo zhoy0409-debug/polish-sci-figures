@@ -3,17 +3,17 @@
   "columns": [
     "sample_id",
     "condition",
-    "response"
+    "Response"
   ],
   "column_types": {
     "sample_id": "object",
     "condition": "object",
-    "response": "float64"
+    "Response": "float64"
   },
   "missing": {
     "sample_id": 0,
     "condition": 0,
-    "response": 0
+    "Response": 0
   },
   "duplicate_rows": 0,
   "warnings": [],

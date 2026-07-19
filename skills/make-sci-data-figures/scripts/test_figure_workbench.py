@@ -23,12 +23,14 @@ def main() -> None:
     source = root / "examples" / "synthetic_group_comparison.csv"
     with TemporaryDirectory() as tmp:
         out = Path(tmp) / "figures"
-        pngs = generate(source, "condition", "response", "independent", out,
+        pngs = generate(source, "condition", "Response", "independent", out,
                         subject="sample_id", order_text="Control,Treatment", palette_name="zhoy_muted")
         expected = [out / "analysis_plan.json", out / "data_profile.json",
                     out / "figure_recipe.json", out / "candidate_gallery.png"]
-        assert len(pngs) == 3, pngs
+        assert len(pngs) == 5, pngs
         assert all(path.exists() and path.stat().st_size > 0 for path in expected + pngs)
+        assert (out / "estimation_graphic.svg").is_file()
+        assert (out / "raincloud.svg").is_file()
         with Image.open(pngs[0]) as panel, Image.open(out / "candidate_gallery.png") as gallery:
             assert gallery.width == panel.width
             assert gallery.height == panel.height * len(pngs) + 24 * (len(pngs) - 1)
@@ -36,7 +38,7 @@ def main() -> None:
         assert "<text" in svg_text or "<tspan" in svg_text
         assert "width=\"345.6pt\"" in svg_text and "height=\"259.2pt\"" in svg_text
         recolored = Path(tmp) / "recolored"
-        generate(source, "condition", "response", "independent", recolored,
+        generate(source, "condition", "Response", "independent", recolored,
                  subject="sample_id", order_text="Control,Treatment", palette_name="okabe_ito")
         first_analysis = json.loads((out / "analysis_plan.json").read_text(encoding="utf-8"))
         second_analysis = json.loads((recolored / "analysis_plan.json").read_text(encoding="utf-8"))
@@ -57,7 +59,7 @@ def main() -> None:
         repeated_source = Path(tmp) / "repeated_unit.csv"
         repeated_unit.to_csv(repeated_source, index=False)
         try:
-            generate(repeated_source, "condition", "response", "independent", Path(tmp) / "bad_independent",
+            generate(repeated_source, "condition", "Response", "independent", Path(tmp) / "bad_independent",
                      subject="sample_id", order_text="Control,Treatment")
         except ValueError as exc:
             assert "repeated experimental-unit IDs" in str(exc)
@@ -73,6 +75,7 @@ def main() -> None:
         paired_out = Path(tmp) / "paired"
         generate(paired_source, "condition", "response", "paired", paired_out,
                  subject="subject", order_text="Before,After")
+        assert (paired_out / "paired_estimation.svg").is_file()
         assert (paired_out / "paired_trajectories.svg").is_file()
         duplicate_source = Path(tmp) / "paired_duplicate.csv"
         duplicate = pd.read_csv(paired_source)
@@ -84,6 +87,18 @@ def main() -> None:
             assert "multiple rows for the same subject and group" in str(exc)
         else:
             raise AssertionError("Ambiguous technical/repeated rows were silently pooled")
+
+        multigroup_source = root / "examples" / "synthetic_multigroup_response.csv"
+        multigroup_out = Path(tmp) / "multigroup"
+        multi_pngs = generate(
+            multigroup_source, "condition", "Response", "independent", multigroup_out,
+            subject="sample_id", order_text="Vehicle,Low dose,Mid dose,High dose",
+        )
+        assert len(multi_pngs) == 5
+        assert (multigroup_out / "group_estimate_forest.svg").is_file()
+        multi_analysis = json.loads((multigroup_out / "analysis_plan.json").read_text(encoding="utf-8"))
+        assert multi_analysis["primary_test"]["name"] == "Welch one-way ANOVA"
+        assert multi_analysis["multiplicity"] == "No pairwise family was tested by this workbench."
     print("make-sci-data-figures self-check passed")
 
 

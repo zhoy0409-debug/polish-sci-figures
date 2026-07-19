@@ -1,0 +1,67 @@
+{
+  "design": "paired",
+  "group_order": [
+    "Before",
+    "After"
+  ],
+  "group_n": {
+    "Before": 12,
+    "After": 12
+  },
+  "rows_dropped_for_missing_group_or_outcome": 0,
+  "primary_estimand": {
+    "name": "paired mean(After - Before)",
+    "estimate": 1.1416666666666668,
+    "ci95": [
+      0.9780816388203089,
+      1.3052516945130248
+    ],
+    "ci_method": "paired t interval",
+    "bootstrap_ci95_sensitivity": [
+      0.9999999999999999,
+      1.275
+    ]
+  },
+  "primary_test": {
+    "name": "Paired t-test",
+    "statistic": 15.36076634993002,
+    "p_value": 8.87186859748718e-09
+  },
+  "sensitivity_test": {
+    "name": "Wilcoxon signed-rank test",
+    "statistic": 0.0,
+    "p_value": 0.00048828125
+  },
+  "multiplicity": "No pairwise family was tested by this workbench.",
+  "assumption_diagnostics": {
+    "Before": {
+      "n": 12,
+      "skewness": 0.02754610271505289,
+      "iqr_rule_outlier_count": 0,
+      "shape_warning": null
+    },
+    "After": {
+      "n": 12,
+      "skewness": -0.1279833348079969,
+      "iqr_rule_outlier_count": 0,
+      "shape_warning": null
+    }
+  },
+  "limitations": [
+    "Exploratory scope: P values are recorded for transparency but are not displayed or treated as confirmatory."
+  ],
+  "complete_pairs": 12,
+  "incomplete_subjects_excluded": 0,
+  "experimental_unit_column": "subject_id",
+  "outcome_type": "continuous",
+  "scope": "exploratory",
+  "display_p_value": false,
+  "font": {
+    "requested": "Arial",
+    "actual": "Arial",
+    "file": "arial.ttf"
+  },
+  "source_file": "synthetic_paired_response.csv",
+  "source_sha256": "6420f74e0f7416fc09e559bdcbf82b9f024a3dbfa031207b700385728db48c4a",
+  "synthetic_example": true
+}
