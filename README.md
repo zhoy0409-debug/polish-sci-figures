@@ -1,12 +1,33 @@
-# SCI Figure Skills
+<div align="center">
 
-Publication-grade scientific visualization for raw data, microscopy, multimodal analysis, and multi-panel figure assembly.
+<h1>SCI Figure Skills</h1>
 
-中文简介：从原始表格自动生成多种可靠的 SCI 图候选并一键换色；批量统一显微、荧光、电镜等科研图片的尺寸、显示参数和规范标尺；最后完成可编辑 SVG、固定画布、字体、留白、重叠与组图质控。
+<p><strong>Raw data → defensible statistics → editable figures → final-size QA</strong></p>
 
-## Advanced reproducible figures
+<p>Publication-grade scientific visualization for tables, microscopy, multimodal analysis, and manuscript-ready figure assembly.</p>
 
-Deterministic synthetic datasets, fixed random seeds, source-controlled rendering, and matched 180.34 × 134.62 mm PNG/SVG/PDF exports.
+[![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
+[![Release](https://img.shields.io/github/v/release/zhoy0409-debug/polish-sci-figures)](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![License](https://img.shields.io/github/license/zhoy0409-debug/polish-sci-figures)](LICENSE)
+
+<p>中文：从原始数据和科研图像出发，完成统计匹配、多款候选图、一键换色、规范标尺、固定画布、可编辑 SVG 与组图质控。</p>
+
+</div>
+
+---
+
+## Start with the problem, not a chart template
+
+- **Raw CSV/TSV/XLSX:** use `make-sci-data-figures` to identify the experimental unit, validate the design, and generate several defensible candidates.
+- **Microscopy, fluorescence, histology, or EM:** use `standardize-sci-images` for non-destructive batch normalization, equal dimensions, calibrated scale bars, and an audit trail.
+- **Existing figures or a final multi-panel layout:** use `polish-sci-figures` for typography, scientific notation, canvas consistency, whitespace, overlap, SVG editability, and real-size QA.
+
+The suite does not turn every dataset into the same fashionable plot. It preserves the scientific question, biological unit, uncertainty, group order, and validation scope first; appearance comes after meaning.
+
+## Reproducible showcase
+
+Every showcase below is generated from deterministic synthetic data and source-controlled code. No panel titles or serial labels are baked into reusable artwork.
 
 ### Longitudinal multimodal ecosystem
 
@@ -14,264 +35,102 @@ Conserved cell-state flows, directional ligand–receptor interactions, RNA–AT
 
 ![Longitudinal multimodal transition figure](demo/Fig7_MultimodalTransition.png)
 
-### Single-cell and spatial atlas
+<details>
+<summary><strong>More systems-level examples</strong></summary>
 
-Bent single-cell manifolds, pseudotime branching, spatial domains with a declared synthetic scale, and marker-expression dot plots.
+### Single-cell and spatial atlas
 
 ![Single-cell and spatial atlas figure](demo/Fig4_CellAtlas.png)
 
 ### Systems biology integration
 
-Directional cell communication, cross-platform pathway activity, causal mediation, and response-surface optimization.
-
 ![Systems biology integration figure](demo/Fig5_SystemsMap.png)
 
-### Interpretable and externally validated modeling
-
-Feature contributions, calibration, decision-curve analysis, and repeated external validation.
+### Interpretable modeling across declared cohorts
 
 ![Interpretable modeling figure](demo/Fig6_ModelInsight.png)
 
-### Reproduce
+</details>
 
-```bash
-python -m pip install -r requirements.txt
-python demo/figure_sources/make_demo_suite.py
-```
+## One workflow, three focused skills
+
+| Stage | Skill | What it delivers |
+| --- | --- | --- |
+| 1. Data | `make-sci-data-figures` | Structure-aware candidates, effect estimates, diagnostics, analysis record, and palette recipe |
+| 2. Images | `standardize-sci-images` | Equal-size scientific images, calibrated scale bars, montage, and SHA-256 processing audit |
+| 3. Finish | `polish-sci-figures` | Fixed-canvas SVG/PDF/PNG, final typography, assembly, editability checks, and container QA |
+
+All three stages use Arial by default, allow one-place journal-font replacement, keep SVG text live, and reject unintended overlap.
 
 ## 124-template scientific atlas
 
-All 124 reference templates were audited, assigned exactly once to 20 scientific families, and rebuilt as original data-driven workflows. The atlas keeps useful chart ideas while replacing decorative bars, donuts, watercolor effects, dual y-axes, hidden raw data, unsupported density estimates, and unverified inference with validated input contracts and reproducible candidates.
+The purchased 1–124 reference collection was audited in full. Every number is assigned exactly once to one of 20 scientific families; none of the source PDF or proprietary Prism files is redistributed. Useful chart ideas were retained, while decorative bars, donuts, watercolor effects, unsafe dual axes, hidden raw data, and unsupported inference were replaced with original reproducible workflows.
 
 ```bash
 python skills/polish-sci-figures/scripts/template_router.py self-check
 python skills/polish-sci-figures/scripts/template_router.py resolve --template 73
-python skills/make-sci-data-figures/scripts/advanced_template_workbench.py --help
 ```
 
-The machine-readable catalog is [`template_catalog.json`](skills/polish-sci-figures/assets/template_catalog.json). Source artwork and proprietary Prism files are not redistributed.
+The complete mapping is machine-readable in [`template_catalog.json`](skills/polish-sci-figures/assets/template_catalog.json).
 
-### Survival with a number-at-risk table
+### Kaplan–Meier estimates with an aligned number-at-risk table
 
-Kaplan-Meier estimates, censor marks, pointwise log-log Greenwood intervals, and aligned risk sets; adjusted effects remain a declared specialist-model task.
+The display preserves censoring, risk sets, and pointwise log-log Greenwood intervals. Adjusted effects remain a declared specialist-model task.
 
 ![Synthetic Kaplan-Meier example](demo/template_atlas/survival/kaplan_meier_risk_table.png)
 
-### Dose-response with model diagnostics
+<details>
+<summary><strong>More atlas workflows</strong></summary>
 
-Raw replicates and a four-parameter logistic fit on positive log-dose values, paired with a residual diagnostic and a machine-readable midpoint interval.
+### Four-parameter dose-response with raw replicates
 
 ![Synthetic dose-response example](demo/template_atlas/dose_response/dose_response.png)
 
-### Classification evaluated in declared cohorts
-
-ROC and precision-recall candidates require one prediction per biological unit and record prevalence, AUC, and deterministic unit-bootstrap intervals without relabeling internal results as external validation.
+### ROC performance in declared cohorts
 
 ![Synthetic ROC example](demo/template_atlas/roc/roc.png)
 
-### Enrichment results without decorative clutter
-
-Supplied adjusted probabilities, effect magnitudes, and counts remain separately encoded; ontology choice, universe, redundancy handling, and multiplicity method stay explicit upstream responsibilities.
+### Enrichment magnitude, evidence, and count kept separate
 
 ![Synthetic enrichment example](demo/template_atlas/enrichment/enrichment_bubble.png)
 
-## Three-skill pipeline
+</details>
 
-| Skill | What it does | Main outputs |
+The advanced workbench also implements forest intervals, volcano plots, confusion matrices, precision–recall curves, feature ranks, supplied embeddings, aligned alternatives to dual axes, diverging comparisons, empirical cumulative distributions, and swimmer plots. These are executable families, not a closed list of decorative presets.
+
+## Validated scientific coverage
+
+| Data structure | Minimal declaration | Defensible outputs |
 | --- | --- | --- |
-| `make-sci-data-figures` | Profiles CSV/TSV/XLSX data, records the experimental design, chooses defensible statistics, and creates several chart candidates from the same data | PNG/SVG/PDF candidates, gallery, analysis plan, reproducible recipe |
-| `standardize-sci-images` | Non-destructively standardizes microscopy, fluorescence, histology, and electron-microscopy images | Equal-size panels, calibrated scale bars, montage, SHA-256 processing audit |
-| `polish-sci-figures` | Redraws, assembles, and audits final manuscript, slide, poster, or showcase figures | Fixed-canvas editable files and final-size QA |
+| Independent, paired, or multi-group continuous outcomes | group, value, biological-unit ID, design, order | Estimation graphics, raw points with intervals, raincloud/violin when supported, paired trajectories, group estimates |
+| Numeric relationships and longitudinal responses | x/y or time/value, group, biological-unit ID | Association with uncertainty, joint distributions, individual trajectories, change from baseline |
+| Compositions and tidy matrices | sample/category/value or row/column/value | 100% composition, normalized heatmap, cluster-aware heatmap, signed-magnitude dot matrix |
+| Survival and dose-response | time/event/group/unit or positive dose/response/group | Kaplan–Meier with risk table; four-parameter logistic curve with residual diagnostic |
+| Prediction and supplied model results | outcome/score/unit or estimate/result columns | ROC/PR, confusion matrix, forest, volcano, enrichment, feature-rank candidates |
+| Embeddings, cumulative data, and event timelines | family-specific tidy coordinates or intervals | Faithful embedding views, ECDF/CCDF, swimmer timelines, safer aligned-series comparisons |
+| Scientific image batches | image manifest plus calibration when scale bars are required | Locked display settings, equal dimensions, editable scale-bar layers, processing audit |
 
-The suite enforces experimental-unit integrity, stable palette semantics, equal physical canvases, live SVG text, scientific notation, and final-size collision and whitespace QA.
-
-## Raw data to figures and statistics
-
-Input: tidy CSV, TSV, or XLSX matching one of the validated contracts below. Output: structure-matched figure candidates, editable masters, a machine-readable analysis plan, and a reproducible palette recipe.
-
-- **Design-driven figure generation:** produces multiple scientifically appropriate candidates from the same dataset while preserving raw observations, effect estimates, uncertainty, pairing, and group structure.
-- **Design-aware inference:** experimental unit and pairing determine the estimand, confidence interval, primary test, and sensitivity analysis.
-- **Palette-only rendering:** color changes preserve data, statistics, axes, ordering, labels, and geometry.
-- **Production geometry:** identical physical canvases, Arial typography, live SVG text, and editable PDF/SVG output.
-- **Scope control:** longitudinal and compositional structures receive rigorous descriptive views, while mixed-model, survival, count, compositional-inference, and high-dimensional claims are routed to a pre-specified specialist analysis.
-
-Demonstration datasets in this section are deterministic and synthetic.
-
-### Validated raw-data families
-
-| Data structure | Minimal columns | Generated candidates | Scientific safeguard |
-| --- | --- | --- | --- |
-| Independent, paired, or multi-group continuous outcome | group, value, biological-unit ID, design | Estimation, raw-data/interval, raincloud, box/violin, paired trajectories, or group intervals as supported by the design and sample size | Experimental-unit, pairing, group-order, and confirmatory-scope checks; effect estimates and sensitivity analyses recorded |
-| Numeric relationship | x, y, biological-unit ID; optional group | Group-aware fitted relationship with 95% confidence band; joint scatter and marginal distributions | One row per biological unit; Pearson, Spearman, and slope recorded as association rather than causation |
-| Longitudinal response | time, value, group, biological-unit ID | Individual trajectories plus group mean/95% CI; within-unit change from baseline | Duplicate unit-time cells and cross-group unit reuse rejected; model-based inference requires a specified longitudinal model |
-| Composition | sample, category, non-negative count/abundance; optional group | Sample-level 100% stack; normalized sample-by-category heatmap | Unique sample-category cells, positive sample totals, and sum-to-one dependence enforced; no naive component-wise tests |
-| Tidy matrix | row, column, numeric value | Cluster-aware heatmap; signed magnitude dot matrix | Duplicate cells rejected; clustering method and final order recorded; dimension limits protect final-size legibility |
-| Survival/event history | follow-up time, 0/1 event, group, biological-unit ID | Kaplan-Meier with pointwise CI; Kaplan-Meier with number-at-risk table | One row per unit; censoring preserved; automatic inference limited to unadjusted two-group log-rank |
-| Dose-response | positive dose, response, group; optional unit ID | Four-parameter logistic curve with raw replicates; residual diagnostic | Minimum dose support enforced; midpoint terminology remains endpoint-aware; replicate hierarchy recorded |
-| Binary prediction | outcome, score, biological-unit ID; optional cohort | ROC; precision-recall | One prediction per unit; prevalence and deterministic unit-bootstrap AUC interval recorded |
-| Supplied specialist results | family-specific estimate/result columns | Forest, volcano, confusion, enrichment, feature rank, embedding, aligned series, diverging, ECDF, or swimmer candidates | Display validation never fabricates upstream models, uncertainty, clusters, validation status, or causal meaning |
-
-<table>
-  <tr>
-    <td width="50%"><img src="demo/Fig8_Relationship.png" alt="Group-aware relationship with confidence bands"></td>
-    <td width="50%"><img src="demo/Fig9_Timecourse.png" alt="Longitudinal individual trajectories and uncertainty"></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="demo/Fig10_Composition.png" alt="Sample-level composition"></td>
-    <td width="50%"><img src="demo/Fig11_Matrix.png" alt="Clustered signed matrix"></td>
-  </tr>
-</table>
-
-### Estimation-first two-group comparison
-
-Raw observations, group estimates, and the bootstrap distribution of the treatment-minus-control effect: mean difference 2.48 a.u. (95% CI 1.95 to 3.00).
-
-![Two-group estimation graphic](demo/workbench/estimation_graphic.png)
-
-### Raincloud distribution view
-
-Half-violin density, individual observations, interquartile range, and median. Density views require at least 10 observations per group.
-
-![Raincloud figure](demo/workbench/raincloud.png)
-
-### Paired estimation view
-
-Subject-level trajectories with paired mean difference 1.14 normalized units (95% CI 0.978 to 1.31).
-
-![Paired estimation graphic](demo/paired_workbench/paired_estimation.png)
-
-### Multi-group effect intervals
-
-Biological-unit observations, group means, and 95% CIs. Global inference remains separate from pairwise contrasts.
-
-![Multi-group estimates with confidence intervals](demo/multigroup_workbench/group_estimate_forest.png)
-
-Scientific basis: estimation-first reporting in [Ho et al., *Nature Methods* (2019)](https://www.nature.com/articles/s41592-019-0470-3), [raincloud plots](https://pmc.ncbi.nlm.nih.gov/articles/PMC6480976/), and the [Nature Research figure guide](https://research-figure-guide.nature.com/figures/preparing-figures-our-specifications/).
-
-## Statistical design matching
-
-| Design | Minimum declaration | Analysis | Validation |
-| --- | --- | --- | --- |
-| Control vs treatment using different biological samples | `condition`, `Response`, `sample_id`, `independent` | Treatment-minus-control mean difference and 95% CI; Welch two-sample test; Mann-Whitney sensitivity analysis. Example effect: 2.48 a.u. (1.95 to 3.00). | Repeated unit IDs are rejected instead of being counted as independent replication. |
-| Before vs after on the same subjects | `condition`, `Response`, `subject_id`, `paired` | Within-subject mean difference and 95% CI; paired test; Wilcoxon sensitivity analysis. Example change: 1.14 normalized units (0.978 to 1.31). | Duplicate subject-condition rows are rejected; incomplete pairs are counted and reported. |
-| Vehicle plus three independent dose groups | `condition`, `Response`, `sample_id`, `independent` | Group means and 95% CIs; global Welch ANOVA; Kruskal-Wallis sensitivity analysis. | Global inference reported separately from pairwise contrasts; multiplicity status explicit. |
-
-Exact tests, effect direction, sample counts, exclusions, diagnostics, limitations, analysis scope, and multiplicity status are written to `analysis_plan.json`. Exploratory results show the effect and interval on the artwork while keeping *P* values in the analysis record; `--scope confirmatory --show-p-value` is available only after a pre-specified confirmatory family is declared.
-
-### Reproducible examples
-
-```bash
-# Independent two-group comparison: creates five candidates
-python skills/make-sci-data-figures/scripts/figure_workbench.py generate \
-  skills/make-sci-data-figures/examples/synthetic_group_comparison.csv \
-  --group condition --value Response --unit sample_id \
-  --design independent --order Control,Treatment --unit-label "a.u." \
-  --outdir demo/workbench
-
-# Paired before/after comparison: creates paired effect and trajectory views
-python skills/make-sci-data-figures/scripts/figure_workbench.py generate \
-  skills/make-sci-data-figures/examples/synthetic_paired_response.csv \
-  --group condition --value Response --unit subject_id \
-  --design paired --order Before,After --unit-label "normalized units" \
-  --outdir demo/paired_workbench
-
-# Four independent groups: creates group-interval and distribution views
-python skills/make-sci-data-figures/scripts/figure_workbench.py generate \
-  skills/make-sci-data-figures/examples/synthetic_multigroup_response.csv \
-  --group condition --value Response --unit sample_id --design independent \
-  --order "Vehicle,Low dose,Mid dose,High dose" --unit-label "a.u." \
-  --outdir demo/multigroup_workbench
-
-# Relationship: fitted confidence bands plus joint distributions
-python skills/make-sci-data-figures/scripts/data_family_workbench.py relationship \
-  skills/make-sci-data-figures/examples/synthetic_relationship.csv \
-  --x exposure --y response --unit unit --group cohort \
-  --outdir demo/data_families/relationship
-
-# Longitudinal: individual trajectories plus change from baseline
-python skills/make-sci-data-figures/scripts/data_family_workbench.py timecourse \
-  skills/make-sci-data-figures/examples/synthetic_timecourse.csv \
-  --time day --value signal --group group --unit unit \
-  --outdir demo/data_families/timecourse
-
-# Composition and matrix families
-python skills/make-sci-data-figures/scripts/data_family_workbench.py composition \
-  skills/make-sci-data-figures/examples/synthetic_composition.csv \
-  --sample sample --category cell_type --value count --group group \
-  --outdir demo/data_families/composition
-
-python skills/make-sci-data-figures/scripts/data_family_workbench.py matrix \
-  skills/make-sci-data-figures/examples/synthetic_matrix.csv \
-  --row pathway --column condition --value z_score --cluster auto \
-  --outdir demo/data_families/matrix
-
-# Advanced atlas examples: create deterministic inputs, then choose a family
-python skills/make-sci-data-figures/examples/make_advanced_examples.py
-
-python skills/make-sci-data-figures/scripts/advanced_template_workbench.py survival \
-  skills/make-sci-data-figures/examples/synthetic_survival.csv \
-  --time time_months --event event --group group --unit unit \
-  --outdir demo/template_atlas/survival
-
-python skills/make-sci-data-figures/scripts/advanced_template_workbench.py dose-response \
-  skills/make-sci-data-figures/examples/synthetic_dose_response.csv \
-  --dose "Dose (µM)" --response "Viability (%)" --group compound --unit unit \
-  --outdir demo/template_atlas/dose_response
-```
-
-Palette-only render:
-
-```bash
-python skills/make-sci-data-figures/scripts/figure_workbench.py recolor \
-  demo/workbench/figure_recipe.json --palette okabe_ito \
-  --outdir demo/workbench_okabe_ito
-```
-
-![The same estimation graphic recolored without changing the analysis](demo/workbench_okabe_ito/estimation_graphic.png)
-
-Validated visualization scope includes continuous and paired comparisons, relationships, longitudinal trajectories, compositions, matrices, survival, dose-response, classification, interval estimates, differential-result displays, enrichment, embeddings, cumulative distributions, and individual event timelines. Automated confirmatory inference remains deliberately narrower: common continuous-outcome independent and paired comparisons. Adjusted survival, generalized mixed, causal, spatial, high-dimensional differential, and ontology analyses still require declared specialist workflows; the skill faithfully validates and displays their supplied results.
+This table describes validated routes, not the limit of what the skills can draw. New chart forms are accepted when the data contract, estimand, uncertainty, and final-size QA remain explicit.
 
 ## Scientific image standardization
 
-Demonstration asset: deterministic synthetic fluorescence imagery.
+Microscopy, fluorescence, histology, and electron-microscopy batches keep raw pixels authoritative while sharing declared crop geometry, display settings, dimensions, and calibrated scale-bar rules. Every transformation and source hash is recorded.
 
-![Standardized image montage](demo/image_standardization/montage.png)
+![Standardized synthetic fluorescence montage](demo/image_standardization/montage.png)
 
-```bash
-python skills/standardize-sci-images/scripts/make_example_data.py \
-  --outdir demo/image_inputs
+## Statistics are matched to the design
 
-python skills/standardize-sci-images/scripts/standardize_images.py \
-  demo/image_inputs/manifest.csv --scale-bar-um 20 \
-  --outdir demo/image_standardization
-```
+| Example | Automatic behavior | Guardrail |
+| --- | --- | --- |
+| Control vs treatment, independent samples | Mean difference with 95% CI; Welch test; Mann–Whitney sensitivity analysis | Repeated unit IDs are rejected instead of counted as independent replication |
+| Before vs after, same subjects | Paired mean difference with 95% CI; paired test; Wilcoxon sensitivity analysis | Duplicate subject-condition rows are rejected; incomplete pairs are reported |
+| Binary predictions in declared cohorts | ROC and PR curves; prevalence; unit-bootstrap AUC interval | One prediction per unit; internal performance is never renamed external validation |
 
-Processing is non-destructive and batch-consistent. The audit records source hashes, crop boxes, display parameters, calibration, and scale-bar geometry. Scale bars require explicit calibration. Outputs include an unannotated raster, review preview, and SVG with editable scale-bar and text layers.
-
-## Additional reproducible manuscript examples
-
-Deterministic synthetic manuscript examples:
-
-![Efficacy figure](demo/Fig1_Efficacy.png)
-
-![Mechanism figure](demo/Fig2_Mechanism.png)
-
-![Validation figure](demo/Fig3_Validation.png)
-
-## Shared quality rules
-
-- No panel letters, serial labels, internal titles, or subtitles unless the verified target explicitly requires them.
-- Arial by default, with one-place switching to Times New Roman or another verified journal font.
-- Correct scientific case, italics, symbols, units, subscripts, and superscripts.
-- Zero unintended overlap at final placement.
-- Equal physical canvases and axes geometry for panels that will be assembled together; no tight-crop export.
-- Editable SVG/PDF plus high-resolution PNG, with live continuous text.
-- Stable group order, color meaning, uncertainty definition, and statistical scope.
-- Raw scientific data and images remain authoritative; examples stay clearly labeled synthetic.
+Exploratory and confirmatory scopes remain separate. Adjusted survival, generalized mixed, causal, spatial, high-dimensional differential, and ontology analyses require a declared specialist workflow; the skills validate and display their supplied results without inventing upstream methods.
 
 ## Install
 
-Clone or download the repository, install dependencies, then copy all three skill folders.
+Download the [latest release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest) or clone the repository, then install the dependencies and copy the three skill folders.
 
 ### Windows PowerShell
 
@@ -283,7 +142,8 @@ Copy-Item -Recurse -Force ".\skills\standardize-sci-images" "$HOME\.codex\skills
 Copy-Item -Recurse -Force ".\skills\polish-sci-figures" "$HOME\.codex\skills\"
 ```
 
-### macOS / Linux
+<details>
+<summary><strong>macOS / Linux</strong></summary>
 
 ```bash
 python -m pip install -r requirements.txt
@@ -293,32 +153,44 @@ cp -R skills/standardize-sci-images ~/.codex/skills/
 cp -R skills/polish-sci-figures ~/.codex/skills/
 ```
 
+</details>
+
 Start a new Codex session after installation.
 
 ## Call the skills
 
 ```text
-Use $make-sci-data-figures to profile this table and make several publication-ready candidates.
+Use $make-sci-data-figures to profile this table and generate several publication-ready candidates.
 Use $make-sci-data-figures to rerender the selected figure with the okabe_ito palette only.
 Use $standardize-sci-images to standardize this microscopy batch and add calibrated 20 µm scale bars.
-Use $polish-sci-figures to assemble the chosen panels and audit the final editable SVGs.
+Use $polish-sci-figures to assemble the selected panels and audit the final editable SVGs.
 ```
 
-## Verify the repository
+## Reproduce and verify
 
 ```bash
+# Rebuild deterministic showcase data and figures
+python skills/make-sci-data-figures/examples/make_advanced_examples.py
+python demo/figure_sources/make_demo_suite.py
+
+# Run repository checks
 python skills/make-sci-data-figures/scripts/test_figure_workbench.py
 python skills/make-sci-data-figures/scripts/test_data_family_workbench.py
+python skills/make-sci-data-figures/scripts/test_advanced_template_workbench.py
 python skills/standardize-sci-images/scripts/test_standardize_images.py
-python -m compileall -q demo skills
+python skills/polish-sci-figures/scripts/template_router.py self-check
 ```
 
-For a set of independently editable SVG panels intended for the same slot:
+Each generated data-figure bundle contains fixed-canvas PNG/SVG/PDF candidates, a same-size gallery, `data_profile.json`, `analysis_plan.json`, and `figure_recipe.json`. Palette-only rerendering preserves filtering, statistics, ordering, labels, geometry, and canvas.
 
-```bash
-python skills/polish-sci-figures/scripts/check_svg_canvas.py path/to/panels/*.svg
-python skills/polish-sci-figures/scripts/check_svg_editability.py --require-fully-editable path/to/panels/*.svg
-```
+## Release gates
+
+- No unrequested panel letters, serial numbers, internal titles, or subtitles.
+- No hidden biological-unit duplication, invented statistics, labels, clusters, or validation claims.
+- No text–text, text–data, legend, scale-bar, axis, or annotation collisions at final size.
+- Equal physical canvas and axes geometry for panels intended for the same slot.
+- Correct case, italics, units, symbols, subscripts, superscripts, and journal font.
+- Editable SVG/PDF plus high-resolution PNG; raster content is never mislabeled fully editable.
 
 ## Repository layout
 
@@ -326,8 +198,7 @@ python skills/polish-sci-figures/scripts/check_svg_editability.py --require-full
 skills/make-sci-data-figures/   raw data, statistics, candidate charts, palette recipes
 skills/standardize-sci-images/  calibrated image standardization and processing audit
 skills/polish-sci-figures/      final drawing, assembly, export, and QA
-demo/                           reproducible synthetic previews
-requirements.txt                Python dependencies
+demo/                           deterministic synthetic previews and sources
 ```
 
 ## License

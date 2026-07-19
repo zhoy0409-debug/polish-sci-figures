@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import numpy as np
@@ -56,6 +57,27 @@ def verify(outdir: Path, family: str, stems: set[str]) -> None:
         with Image.open(outdir / f"{stem}.png") as image:
             sizes.add(image.size)
     assert len(sizes) == 1, sizes
+
+
+def verify_risk_table_spacing(svg_path: Path) -> None:
+    root = ET.parse(svg_path).getroot()
+    texts = [node for node in root.iter() if node.tag.endswith("text")]
+    bottom_risk = max(
+        (
+            node
+            for node in texts
+            if (node.text or "").isdigit() and "#b72230" in node.get("style", "")
+        ),
+        key=lambda node: float(node.get("y", 0)),
+    )
+    x_tick = next(
+        node
+        for node in texts
+        if node.text == "0"
+        and "#b72230" not in node.get("style", "")
+        and float(node.get("y", 0)) > float(bottom_risk.get("y", 0))
+    )
+    assert float(x_tick.get("y")) - float(bottom_risk.get("y")) >= 16
 
 
 def main() -> None:
@@ -163,6 +185,7 @@ def main() -> None:
         verify(
             root / "survival", "survival", {"kaplan_meier", "kaplan_meier_risk_table"}
         )
+        verify_risk_table_spacing(root / "survival" / "kaplan_meier_risk_table.svg")
 
         rows = []
         for group, midpoint in [("Drug A", 0.7), ("Drug B", 1.8)]:

@@ -673,11 +673,13 @@ def survival(
                 color=color,
             )
     ax_risk.set_yticks(range(len(levels)), levels)
-    ax_risk.invert_yaxis()
+    ax_risk.set_ylim(len(levels) - 0.5, -0.5)
     ax_risk.set_xticks(ticks)
     ax_risk.set_xlabel(_display_label(time))
     ax_risk.set_ylabel("At risk")
     _axis(ax_risk)
+    ax_risk.spines["left"].set_visible(False)
+    ax_risk.tick_params(axis="y", length=0, pad=5)
     fig_risk.subplots_adjust(
         left=_label_margin(levels, 0.2), right=0.96, bottom=0.19, top=0.96
     )
