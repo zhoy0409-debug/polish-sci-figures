@@ -1,0 +1,5 @@
+file,output_name,batch,um_per_pixel,display_min,display_max,gamma,lut,label
+control_1.png,control_1,synthetic_batch,0.25,5,210,1.0,magenta,
+control_2.png,control_2,synthetic_batch,0.25,5,210,1.0,magenta,
+treated_1.png,treated_1,synthetic_batch,0.25,5,210,1.0,magenta,
+treated_2.png,treated_2,synthetic_batch,0.25,5,210,1.0,magenta,

@@ -1,0 +1,23 @@
+{
+  "input": "..\\..\\skills\\make-sci-data-figures\\examples\\synthetic_group_comparison.csv",
+  "group": "condition",
+  "value": "response",
+  "design": "independent",
+  "subject": "sample_id",
+  "order": [
+    "Control",
+    "Treatment"
+  ],
+  "palette": "zhoy_muted",
+  "colors": null,
+  "unit_label": "a.u.",
+  "font": "Arial",
+  "outcome_type": "continuous",
+  "scope": "exploratory",
+  "show_p_value": false,
+  "figsize_inches": [
+    4.8,
+    3.6
+  ],
+  "note": "Recoloring must not change data, statistics, geometry, labels, or group order."
+}

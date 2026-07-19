@@ -1,0 +1,4 @@
+interface:
+  display_name: "Standardize SCI Images"
+  short_description: "Prepare scientific images with honest scale bars"
+  default_prompt: "Use $standardize-sci-images to standardize my microscopy images, scale bars, tone, and panel layout."

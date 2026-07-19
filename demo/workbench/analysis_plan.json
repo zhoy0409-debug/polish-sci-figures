@@ -1,0 +1,67 @@
+{
+  "design": "independent",
+  "group_order": [
+    "Control",
+    "Treatment"
+  ],
+  "group_n": {
+    "Control": 12,
+    "Treatment": 12
+  },
+  "rows_dropped_for_missing_group_or_outcome": 0,
+  "primary_estimand": {
+    "name": "mean(Treatment) - mean(Control)",
+    "estimate": 2.4750000000000014,
+    "ci95": [
+      1.948615474768736,
+      3.0013845252312668
+    ],
+    "ci_method": "Welch-Satterthwaite",
+    "bootstrap_ci95_sensitivity": [
+      2.0000000000000036,
+      2.9416666666666664
+    ]
+  },
+  "primary_test": {
+    "name": "Welch two-sample t-test",
+    "statistic": 9.761463169689193,
+    "degrees_of_freedom": 21.6049342843536,
+    "p_value": 2.234883390359086e-09
+  },
+  "sensitivity_test": {
+    "name": "Mann-Whitney U rank/distribution test",
+    "statistic": 144.0,
+    "p_value": 3.6584553538971e-05
+  },
+  "multiplicity": "No pairwise family was tested by this workbench.",
+  "assumption_diagnostics": {
+    "Control": {
+      "n": 12,
+      "skewness": -0.09215318777795435,
+      "iqr_rule_outlier_count": 0,
+      "shape_warning": null
+    },
+    "Treatment": {
+      "n": 12,
+      "skewness": -0.03882068254182978,
+      "iqr_rule_outlier_count": 0,
+      "shape_warning": null
+    }
+  },
+  "limitations": [
+    "Independence is a user-declared assumption; verify the biological unit.",
+    "Exploratory scope: P values are recorded for transparency but are not displayed or treated as confirmatory."
+  ],
+  "experimental_unit_column": "sample_id",
+  "outcome_type": "continuous",
+  "scope": "exploratory",
+  "display_p_value": false,
+  "font": {
+    "requested": "Arial",
+    "actual": "Arial",
+    "file": "arial.ttf"
+  },
+  "source_file": "synthetic_group_comparison.csv",
+  "source_sha256": "879fdcd49e31703b2bdfbcc4f2c83739cebd8ff973f99cb413d7e219887eccbd",
+  "synthetic_example": true
+}

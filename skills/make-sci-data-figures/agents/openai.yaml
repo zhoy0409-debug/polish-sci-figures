@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make SCI Data Figures"
+  short_description: "Turn raw data into tested figure candidates"
+  default_prompt: "Use $make-sci-data-figures to inspect my raw data and generate publication-ready chart alternatives."

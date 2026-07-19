@@ -1,0 +1,214 @@
+[
+  {
+    "source": "control_1.png",
+    "source_sha256": "312dae27b3cc40fa876abe0d22a826a1a8c9cfb37bc3862bbf5e26d776957a5c",
+    "source_mode": "L",
+    "source_width": 520,
+    "source_height": 390,
+    "display_raster": "control_1_display.png",
+    "annotated_preview": "control_1_preview.png",
+    "editable_panel_svg": "control_1.svg",
+    "optional_archival_raster": null,
+    "output_width": 500,
+    "output_height": 390,
+    "panel_width_mm": 42.333333333333336,
+    "panel_height_mm": 33.02,
+    "effective_raster_dpi_at_panel_size": 299.99999999999994,
+    "crop_box_source_pixels": [
+      10,
+      0,
+      510,
+      390
+    ],
+    "batch": "synthetic_batch",
+    "um_per_pixel": 0.25,
+    "display_min": 5.0,
+    "display_max": 210.0,
+    "gamma": 1.0,
+    "lut": "magenta",
+    "scale_bar": {
+      "scale_bar_um": 20.0,
+      "scale_bar_pixels": 80,
+      "scale_bar_box": [
+        406,
+        371,
+        486,
+        376
+      ],
+      "scale_bar_color": "white",
+      "scale_bar_label": "20 µm",
+      "scale_bar_label_box": [
+        408.0,
+        339,
+        484.0,
+        364
+      ],
+      "font_size_pixels": 27,
+      "scale_bar_label_alignment": "centered_over_scale_bar",
+      "font_file": "arial.ttf"
+    },
+    "optional_label": null,
+    "resampled": false,
+    "raw_modified": false,
+    "svg_editability": "Raster image content with editable vector scale bar and live text overlays."
+  },
+  {
+    "source": "control_2.png",
+    "source_sha256": "000606ed2c8d55df0822ae5b97bbb8fca11703fe5133d570ab210480f3398996",
+    "source_mode": "L",
+    "source_width": 500,
+    "source_height": 400,
+    "display_raster": "control_2_display.png",
+    "annotated_preview": "control_2_preview.png",
+    "editable_panel_svg": "control_2.svg",
+    "optional_archival_raster": null,
+    "output_width": 500,
+    "output_height": 390,
+    "panel_width_mm": 42.333333333333336,
+    "panel_height_mm": 33.02,
+    "effective_raster_dpi_at_panel_size": 299.99999999999994,
+    "crop_box_source_pixels": [
+      0,
+      5,
+      500,
+      395
+    ],
+    "batch": "synthetic_batch",
+    "um_per_pixel": 0.25,
+    "display_min": 5.0,
+    "display_max": 210.0,
+    "gamma": 1.0,
+    "lut": "magenta",
+    "scale_bar": {
+      "scale_bar_um": 20.0,
+      "scale_bar_pixels": 80,
+      "scale_bar_box": [
+        406,
+        371,
+        486,
+        376
+      ],
+      "scale_bar_color": "white",
+      "scale_bar_label": "20 µm",
+      "scale_bar_label_box": [
+        408.0,
+        339,
+        484.0,
+        364
+      ],
+      "font_size_pixels": 27,
+      "scale_bar_label_alignment": "centered_over_scale_bar",
+      "font_file": "arial.ttf"
+    },
+    "optional_label": null,
+    "resampled": false,
+    "raw_modified": false,
+    "svg_editability": "Raster image content with editable vector scale bar and live text overlays."
+  },
+  {
+    "source": "treated_1.png",
+    "source_sha256": "02197113791c6eee6a2fbddd666e3044c871428dd3f54d6599b4de5688f4756e",
+    "source_mode": "L",
+    "source_width": 510,
+    "source_height": 395,
+    "display_raster": "treated_1_display.png",
+    "annotated_preview": "treated_1_preview.png",
+    "editable_panel_svg": "treated_1.svg",
+    "optional_archival_raster": null,
+    "output_width": 500,
+    "output_height": 390,
+    "panel_width_mm": 42.333333333333336,
+    "panel_height_mm": 33.02,
+    "effective_raster_dpi_at_panel_size": 299.99999999999994,
+    "crop_box_source_pixels": [
+      5,
+      2,
+      505,
+      392
+    ],
+    "batch": "synthetic_batch",
+    "um_per_pixel": 0.25,
+    "display_min": 5.0,
+    "display_max": 210.0,
+    "gamma": 1.0,
+    "lut": "magenta",
+    "scale_bar": {
+      "scale_bar_um": 20.0,
+      "scale_bar_pixels": 80,
+      "scale_bar_box": [
+        406,
+        371,
+        486,
+        376
+      ],
+      "scale_bar_color": "white",
+      "scale_bar_label": "20 µm",
+      "scale_bar_label_box": [
+        408.0,
+        339,
+        484.0,
+        364
+      ],
+      "font_size_pixels": 27,
+      "scale_bar_label_alignment": "centered_over_scale_bar",
+      "font_file": "arial.ttf"
+    },
+    "optional_label": null,
+    "resampled": false,
+    "raw_modified": false,
+    "svg_editability": "Raster image content with editable vector scale bar and live text overlays."
+  },
+  {
+    "source": "treated_2.png",
+    "source_sha256": "472cce1106b1a1cef0dd432b2e16b8e0bcc3786a7c1d73bc844999bf4a1d045c",
+    "source_mode": "L",
+    "source_width": 530,
+    "source_height": 405,
+    "display_raster": "treated_2_display.png",
+    "annotated_preview": "treated_2_preview.png",
+    "editable_panel_svg": "treated_2.svg",
+    "optional_archival_raster": null,
+    "output_width": 500,
+    "output_height": 390,
+    "panel_width_mm": 42.333333333333336,
+    "panel_height_mm": 33.02,
+    "effective_raster_dpi_at_panel_size": 299.99999999999994,
+    "crop_box_source_pixels": [
+      15,
+      7,
+      515,
+      397
+    ],
+    "batch": "synthetic_batch",
+    "um_per_pixel": 0.25,
+    "display_min": 5.0,
+    "display_max": 210.0,
+    "gamma": 1.0,
+    "lut": "magenta",
+    "scale_bar": {
+      "scale_bar_um": 20.0,
+      "scale_bar_pixels": 80,
+      "scale_bar_box": [
+        406,
+        371,
+        486,
+        376
+      ],
+      "scale_bar_color": "white",
+      "scale_bar_label": "20 µm",
+      "scale_bar_label_box": [
+        408.0,
+        339,
+        484.0,
+        364
+      ],
+      "font_size_pixels": 27,
+      "scale_bar_label_alignment": "centered_over_scale_bar",
+      "font_file": "arial.ttf"
+    },
+    "optional_label": null,
+    "resampled": false,
+    "raw_modified": false,
+    "svg_editability": "Raster image content with editable vector scale bar and live text overlays."
+  }
+]

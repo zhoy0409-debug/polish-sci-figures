@@ -1,4 +1,6 @@
 matplotlib
 numpy
+openpyxl
 pandas
 Pillow
+scipy

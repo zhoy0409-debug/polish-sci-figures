@@ -9,6 +9,9 @@ Deliver the near-final figure in one internal pass: establish the claim and fina
 
 ## Use the bundled resources
 
+- Use `$make-sci-data-figures` first when the input is raw CSV/TSV/XLSX data or the user needs statistical design checks, several chart forms from the same data, or palette-only rerendering.
+- Use `$standardize-sci-images` first when the input is microscopy, fluorescence, histology, or electron-microscopy imagery that needs locked batch display settings, equal dimensions, calibrated scale bars, or a processing audit.
+- Return the selected outputs from either companion skill to this skill for final canvas, typography, overlap, editability, and real-container QA.
 - Load `assets/sci_style.mplstyle` as a baseline; override it for a verified journal, deck, or user requirement.
 - Do not add panel letters or serial labels by default. Use `scripts/panel_labels.py` only when the user or verified target explicitly requires them, preferably at final composite assembly.
 - Run `scripts/figure_text_qa.py` before saving Matplotlib figures; block export on grid-geometry drift, unrequested panel titles, collisions, or common baseline scientific notation.
@@ -48,7 +51,7 @@ Trace the file that is actually delivered or embedded; never polish an obsolete 
 - Never invent observations, effects, significance, labels, error bars, or missing data.
 - Keep group order and effect direction stable across the series. Follow the user's order; otherwise put reference/control before disease/treatment and state contrasts explicitly.
 - Distinguish primary, sensitivity, exploratory, apparent, cross-validated, and externally validated results. Do not overstate a nominal or in-sample result.
-- Keep raw microscopy, blots, and structural images faithful, preserve scale bars, and disclose meaningful processing.
+- Keep raw microscopy, blots, and structural images immutable. Require authoritative calibration before drawing a scale bar; lock display settings within comparison batches; disclose crop, tone, LUT, and resampling operations.
 - Use exact italic *P* values when available. Every color, line, arrow, annotation, and highlighted point must have scientific meaning.
 - Use correct scientific typography for standard notation such as IC₅₀, EC₅₀, log₂, and CO₂. Use live Unicode when the selected font supports it; otherwise use semantic italic/subscript/superscript text runs, not baseline digits or character-by-character fragmentation.
 
@@ -115,6 +118,7 @@ Zero unintended overlap is mandatory. Check text against text, markers, error ba
 - Omit panel letters and serial labels by default. When explicitly required, add them at final composite assembly in a fixed outer margin and rerun collision checks.
 - Move a colliding annotation to a reserved label column, axis label, legend, figure legend, or editable slide text. If no valid space exists, redesign the layout or regenerate for a larger slot; do not solve collisions by blindly shrinking text.
 - Inspect the rendered image at the actual manuscript, README, poster, or slide size. A source canvas that looks clean while zoomed in does not pass.
+- Do not use a horizontal contact sheet when it reduces each panel below a readable final preview size. Prefer a vertical stack or separate full-width previews, with descriptions outside the artwork.
 - Treat touching or ambiguous proximity as a failure when it can make a label appear attached to the wrong line, point, group, or panel.
 - Block export and delivery until every unintended collision is removed.
 
