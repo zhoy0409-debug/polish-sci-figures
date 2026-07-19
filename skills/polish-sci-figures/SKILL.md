@@ -134,6 +134,7 @@ Zero unintended overlap is mandatory. Check text against text, markers, error ba
 - Keep legends in reserved space and all text, annotations, colorbars, and connectors inside a visible safety margin. Lines must never cross cards, labels, or unrelated objects.
 - Reserve a separate annotation column for numeric labels beside forest plots, intervals, and lollipops; never print values on top of markers or confidence intervals.
 - Use the form that best answers the claim: points plus distributions, rainclouds, paired slopes or estimation plots, lollipops/forest plots, 100% composition plots, vector heatmaps, and lines with uncertainty. Do not add novelty that weakens comparison.
+- For longitudinal state changes, use alluvial flows only when adjacent matrices conserve every state total; for multimodal integration, preserve direction and scale explicitly in communication networks, cross-modal concordance maps, and ridgeline distributions. Keep the generating values and conservation checks in the reproducible source.
 - Make panels on the same page visibly related: same font hierarchy, line weights, palette, statistical syntax, axes treatment, canvas class, and information density.
 - Treat domain-standard geometry as part of scientific credibility. Benchmark published examples before making a public domain-specific showcase; synthetic single-cell or spatial demos must be clearly disclosed and must not substitute regular Gaussian islands or generic geometric tissue outlines for a plausible atlas or spatial map.
 

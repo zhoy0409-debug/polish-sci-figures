@@ -4,7 +4,6 @@ All values are deterministic synthetic data for visual demonstration only.
 """
 from __future__ import annotations
 
-import json
 import os
 import sys
 from pathlib import Path
@@ -13,11 +12,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib import font_manager
 from matplotlib.path import Path as MplPath
-from matplotlib.patches import Circle, FancyArrowPatch, Patch, Polygon
+from matplotlib.patches import Circle, FancyArrowPatch, Patch, PathPatch, Polygon
 from matplotlib.ticker import NullFormatter
-from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -640,103 +637,157 @@ def figure_6_model_insight() -> None:
     finish(fig, [a, b, c, d], "Fig6_ModelInsight")
 
 
-def homepage_hero() -> None:
-    """Build the README hero from exact crops of reproducible demo figures."""
-    width, height = 1800, 820
-    yy, xx = np.mgrid[:height, :width]
-    glow = np.clip(1 - np.hypot((xx - 1420) / 1180, (yy - 130) / 760), 0, 1)
-    accent = np.clip(1 - np.hypot((xx - 420) / 720, (yy - 760) / 620), 0, 1)
-    background = np.empty((height, width, 3), dtype=np.uint8)
-    background[..., 0] = 6 + 5 * glow + 7 * accent
-    background[..., 1] = 14 + 23 * glow + 5 * accent
-    background[..., 2] = 28 + 38 * glow + 17 * accent
-    canvas = Image.fromarray(background, "RGB").convert("RGBA")
-    draw = ImageDraw.Draw(canvas, "RGBA")
-    for x0 in range(40, width, 120):
-        draw.line((x0, 0, x0, height), fill=(124, 202, 255, 7), width=1)
-    for y0 in range(20, height, 120):
-        draw.line((0, y0, width, y0), fill=(124, 202, 255, 6), width=1)
-    for x0, y0, radius in [(90, 690, 4), (260, 640, 3), (420, 735, 5),
-                           (610, 665, 3), (735, 745, 4)]:
-        draw.ellipse((x0 - radius, y0 - radius, x0 + radius, y0 + radius),
-                     fill=(81, 211, 255, 150))
-    draw.line([(90, 690), (260, 640), (420, 735), (610, 665), (735, 745)],
-              fill=(81, 211, 255, 55), width=2)
+def figure_7_multimodal_transition() -> None:
+    """Reproducible multimodal ecosystem transition from synthetic observations."""
+    local_rng = np.random.default_rng(20260719)
+    fig, axs = plt.subplots(2, 2, figsize=(7.1, 5.3), constrained_layout=True)
+    a, b, c, d = axs.ravel()
 
-    def font(size: int, bold: bool = False):
-        prop = font_manager.FontProperties(family="Arial", weight="bold" if bold else "normal")
-        return ImageFont.truetype(font_manager.findfont(prop), size)
+    # Longitudinal alluvial map; adjacent flow matrices conserve every state total.
+    state_labels = ["Tumor-prolif.", "Tumor-stressed", "CD8 exhausted", "CD8 effector"]
+    state_colors = [RED, GOLD, PURPLE, TEAL]
+    totals = [
+        np.array([0.45, 0.15, 0.30, 0.10]),
+        np.array([0.25, 0.25, 0.22, 0.28]),
+        np.array([0.10, 0.20, 0.14, 0.56]),
+    ]
+    flows = [
+        np.array([[0.23, 0.16, 0.02, 0.04],
+                  [0.01, 0.08, 0.01, 0.05],
+                  [0.01, 0.00, 0.17, 0.12],
+                  [0.00, 0.01, 0.02, 0.07]]),
+        np.array([[0.08, 0.09, 0.02, 0.06],
+                  [0.02, 0.09, 0.03, 0.11],
+                  [0.00, 0.01, 0.08, 0.13],
+                  [0.00, 0.01, 0.01, 0.26]]),
+    ]
+    scale, gap = 0.82, 0.06
 
-    def card(source_name: str, crop: tuple[int, int, int, int],
-             box: tuple[int, int, int, int]) -> None:
-        x0, y0, card_width, card_height = box
-        shadow = Image.new("RGBA", (card_width + 44, card_height + 44))
-        ImageDraw.Draw(shadow).rounded_rectangle(
-            (22, 18, card_width + 22, card_height + 18), radius=26,
-            fill=(0, 0, 0, 150),
-        )
-        shadow = shadow.filter(ImageFilter.GaussianBlur(18))
-        canvas.alpha_composite(shadow, (x0 - 22, y0 - 12))
-        layer = Image.new("RGBA", (card_width, card_height), (247, 250, 253, 255))
-        content = ImageOps.fit(
-            Image.open(ROOT / source_name).convert("RGB").crop(crop),
-            (card_width - 22, card_height - 22),
-            method=Image.Resampling.LANCZOS,
-        )
-        mask = Image.new("L", content.size)
-        ImageDraw.Draw(mask).rounded_rectangle((0, 0, *content.size), radius=18, fill=255)
-        layer.paste(content, (11, 11), mask)
-        ImageDraw.Draw(layer, "RGBA").rounded_rectangle(
-            (0, 0, card_width - 1, card_height - 1), radius=24,
-            outline=(156, 211, 239, 105), width=2,
-        )
-        canvas.alpha_composite(layer, (x0, y0))
+    def state_bottoms(values):
+        bottoms, cursor = [], 1.0
+        for value in values:
+            bottom = cursor - value * scale
+            bottoms.append(bottom)
+            cursor = bottom - gap
+        return np.asarray(bottoms)
 
-    card("Fig4_CellAtlas.png", (0, 0, 1065, 795), (760, 58, 610, 450))
-    card("Fig5_SystemsMap.png", (0, 0, 920, 740), (1215, 398, 500, 390))
-    card("Fig5_SystemsMap.png", (900, 0, 2130, 720), (1290, 82, 440, 305))
+    bottoms = [state_bottoms(values) for values in totals]
 
-    draw = ImageDraw.Draw(canvas, "RGBA")
-    draw.text((96, 76), "SCI FIGURE SKILLS", font=font(25, True),
-              fill=(91, 214, 255, 255), stroke_width=0)
-    draw.text((96, 132), "From raw data to", font=font(58, True),
-              fill=(247, 250, 255, 255))
-    draw.text((96, 198), "publication-grade", font=font(58, True),
-              fill=(247, 250, 255, 255))
-    draw.text((96, 264), "evidence", font=font(58, True),
-              fill=(247, 250, 255, 255))
-    draw.text((98, 366),
-              "Advanced scientific graphics, defensible statistical matching,\n"
-              "and editable outputs—without plotting by trial and error.",
-              font=font(22), fill=(191, 207, 224, 255), spacing=10)
+    def ribbon(x0, x1, low0, high0, low1, high1, color):
+        bend = 0.38 * (x1 - x0)
+        vertices = [(x0, low0), (x0 + bend, low0), (x1 - bend, low1), (x1, low1),
+                    (x1, high1), (x1 - bend, high1), (x0 + bend, high0), (x0, high0),
+                    (x0, low0)]
+        codes = [MplPath.MOVETO, MplPath.CURVE4, MplPath.CURVE4, MplPath.CURVE4,
+                 MplPath.LINETO, MplPath.CURVE4, MplPath.CURVE4, MplPath.CURVE4,
+                 MplPath.CLOSEPOLY]
+        a.add_patch(PathPatch(MplPath(vertices, codes), facecolor=color,
+                              edgecolor="none", alpha=0.30, zorder=1))
 
-    chips = [("STATISTICS MATCHED", 98), ("EDITABLE SVG", 322), ("FIXED-CANVAS QA", 495)]
-    chip_font = font(15, True)
-    for label, x0 in chips:
-        right = x0 + draw.textbbox((0, 0), label, font=chip_font)[2] + 34
-        draw.rounded_rectangle((x0, 494, right, 538), radius=22,
-                               fill=(20, 54, 79, 220), outline=(81, 211, 255, 105), width=2)
-        draw.ellipse((x0 + 13, 510, x0 + 21, 518), fill=(81, 211, 255, 255))
-        draw.text((x0 + 27, 507), label, font=chip_font, fill=(224, 243, 255, 255))
-    draw.text((98, 583), "SYNTHETIC DEMO  •  REPRODUCIBLE SOURCE INCLUDED",
-              font=font(15, True), fill=(129, 157, 182, 255))
+    for interval, matrix in enumerate(flows):
+        source_cursor = bottoms[interval].copy()
+        target_cursor = bottoms[interval + 1].copy()
+        for source in range(4):
+            for target in range(4):
+                height0 = matrix[source, target] * scale
+                if height0 == 0:
+                    continue
+                ribbon(interval + 0.055, interval + 0.945,
+                       source_cursor[source], source_cursor[source] + height0,
+                       target_cursor[target], target_cursor[target] + height0,
+                       state_colors[source])
+                source_cursor[source] += height0
+                target_cursor[target] += height0
+    for timepoint, values in enumerate(totals):
+        for state, value in enumerate(values):
+            a.bar(timepoint, value * scale, bottom=bottoms[timepoint][state], width=0.11,
+                  color=state_colors[state], edgecolor="white", linewidth=0.45, zorder=3)
+    centers = bottoms[0] + totals[0] * scale / 2
+    a.set_yticks(centers, state_labels)
+    a.set_xticks([0, 1, 2], ["Baseline", "Day 7", "Day 21"])
+    for state, value in enumerate(totals[-1]):
+        a.text(2.09, bottoms[-1][state] + value * scale / 2, f"{value:.0%}",
+               va="center", ha="left", fontsize=5.8, color=state_colors[state])
+    a.set_xlim(-0.10, 2.28)
+    a.set_ylim(-0.04, 1.03)
+    a.tick_params(axis="y", length=0)
+    for spine in a.spines.values():
+        spine.set_visible(False)
 
-    output = ROOT / "Homepage_Hero.png"
-    canvas.convert("RGB").save(output, optimize=True, compress_level=9)
-    with Image.open(output) as rendered:
-        assert rendered.size == (width, height)
-    manifest = {
-        "output": output.name,
-        "size_px": [width, height],
-        "rng_seed": 20260715,
-        "sources": ["Fig4_CellAtlas.png", "Fig5_SystemsMap.png"],
-        "content": "Deterministic synthetic showcase; source chart data and labels are unchanged.",
-        "generator": "figure_sources/make_demo_suite.py::homepage_hero",
-    }
-    (ROOT / "Homepage_Hero_manifest.json").write_text(
-        json.dumps(manifest, indent=2) + "\n", encoding="utf-8",
-    )
-    print(f"wrote {output}")
+    # Directional ligand-receptor communication network.
+    node_labels = ["Tumor", "CD8 T", "NK", "Myeloid", "Fibroblast", "Endothelial"]
+    node_colors = [RED, BLUE, GREEN, GOLD, TEAL, PURPLE]
+    angles = np.linspace(np.pi / 2, np.pi / 2 + 2 * np.pi, len(node_labels), endpoint=False)
+    xy = np.c_[1.10 * np.cos(angles), 1.10 * np.sin(angles)]
+    links = [(0, 1, 5.0), (3, 0, 4.2), (4, 0, 3.5), (1, 3, 2.8),
+             (2, 0, 3.4), (5, 4, 2.4), (0, 5, 2.2), (3, 1, 3.1)]
+    for index, (source, target, weight) in enumerate(links):
+        b.add_patch(FancyArrowPatch(
+            xy[source], xy[target], arrowstyle="-|>", mutation_scale=6,
+            connectionstyle=f"arc3,rad={0.22 if index % 2 else -0.22}",
+            color=node_colors[source], linewidth=0.45 + 0.34 * weight,
+            alpha=0.48, shrinkA=13, shrinkB=13,
+        ))
+    strength = np.zeros(len(node_labels))
+    for source, target, weight in links:
+        strength[source] += weight
+        strength[target] += weight
+    for (x0, y0), label, color, node_strength in zip(xy, node_labels, node_colors, strength):
+        b.scatter(x0, y0, s=38 + 7 * node_strength, color=color, edgecolor="white",
+                  linewidth=0.65, zorder=4)
+        factor = 1.28
+        b.text(factor * x0, factor * y0, label, color=color, fontsize=5.8,
+               fontweight="bold", ha="center", va="center")
+    b.set_xlim(-1.55, 1.55)
+    b.set_ylim(-1.48, 1.48)
+    b.set_aspect("equal")
+    b.axis("off")
+
+    # Cross-modal gene regulation: RNA effect versus chromatin accessibility.
+    n_genes = 560
+    rna = local_rng.normal(0, 1.12, n_genes)
+    atac = 0.70 * rna + local_rng.normal(0, 0.62, n_genes)
+    concordant_up = (rna > 1.15) & (atac > 0.95)
+    concordant_down = (rna < -1.15) & (atac < -0.95)
+    point_colors = np.where(concordant_up, RED,
+                            np.where(concordant_down, BLUE, "#D5DAE0"))
+    c.scatter(rna, atac, s=8.5, color=point_colors, alpha=0.72,
+              edgecolor="none", rasterized=False)
+    c.axhline(0, color=GRAY, lw=0.55, ls="--")
+    c.axvline(0, color=GRAY, lw=0.55, ls="--")
+    slope, intercept = np.polyfit(rna, atac, 1)
+    xx_line = np.linspace(-3.2, 3.2, 100)
+    c.plot(xx_line, slope * xx_line + intercept, color=DARK, lw=0.75)
+    correlation = np.corrcoef(rna, atac)[0, 1]
+    c.text(0.04, 0.94, fr"$\mathit{{r}}$ = {correlation:.2f}", transform=c.transAxes,
+           ha="left", va="top")
+    c.set(xlabel=r"RNA $\log_{2}$ fold change",
+          ylabel=r"ATAC $\log_{2}$ accessibility", xlim=(-3.4, 3.4), ylim=(-3.2, 3.2))
+
+    # Ridgeline distributions of a treatment-response program across cell states.
+    ridge_labels = ["Tumor", "Myeloid", "CD8 exhausted", "CD8 effector", "NK"]
+    ridge_colors = [RED, GOLD, PURPLE, TEAL, GREEN]
+    means = [-0.85, -0.28, 0.05, 0.78, 1.08]
+    grid = np.linspace(-2.6, 2.7, 65)
+    for level, (label, color, mean) in enumerate(zip(ridge_labels, ridge_colors, means)):
+        values = local_rng.normal(mean, 0.58, 170)
+        hist, edges = np.histogram(values, bins=grid, density=True)
+        smooth = np.convolve(hist, np.array([1, 2, 3, 2, 1]) / 9, mode="same")
+        centers_x = (edges[:-1] + edges[1:]) / 2
+        density = smooth / smooth.max() * 0.70
+        d.fill_between(centers_x, level, level + density, color=color, alpha=0.30)
+        d.plot(centers_x, level + density, color=color, lw=1.0)
+    d.axvline(0, color=GRAY, lw=0.6, ls="--")
+    d.set_yticks(np.arange(len(ridge_labels)), ridge_labels)
+    d.set(xlabel="Interferon-response activity", xlim=(-2.6, 2.7), ylim=(-0.08, 5.0))
+    d.tick_params(axis="y", length=0)
+    d.spines["left"].set_visible(False)
+
+    assert np.allclose(flows[0].sum(axis=1), totals[0])
+    assert np.allclose(flows[0].sum(axis=0), totals[1])
+    assert np.allclose(flows[1].sum(axis=1), totals[1])
+    assert np.allclose(flows[1].sum(axis=0), totals[2])
+    finish(fig, [a, b, c, d], "Fig7_MultimodalTransition")
 
 
 if __name__ == "__main__":
@@ -746,5 +797,5 @@ if __name__ == "__main__":
     figure_4_cell_atlas()
     figure_5_systems_map()
     figure_6_model_insight()
-    homepage_hero()
+    figure_7_multimodal_transition()
     print("all figure text QA checks passed")
