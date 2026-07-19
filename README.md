@@ -53,7 +53,7 @@ The suite enforces experimental-unit integrity, stable palette semantics, equal 
 
 Input: tidy CSV, TSV, or XLSX with group, outcome, biological experimental-unit ID, and design. Output: design-matched statistics, multiple figure forms, editable masters, and a machine-readable analysis plan.
 
-- **Candidate selection:** estimation graphics, rainclouds, paired estimation graphics, group-estimate intervals, raw-data summaries, box plots, and violins selected by design and sample size.
+- **Design-driven figure generation:** produces multiple scientifically appropriate candidates from the same dataset while preserving raw observations, effect estimates, uncertainty, pairing, and group structure.
 - **Design-aware inference:** experimental unit and pairing determine the estimand, confidence interval, primary test, and sensitivity analysis.
 - **Palette-only rendering:** color changes preserve data, statistics, axes, ordering, labels, and geometry.
 - **Production geometry:** identical physical canvases, Arial typography, live SVG text, and editable PDF/SVG output.
