@@ -1,4 +1,4 @@
 interface:
   display_name: "Make SCI Data Figures"
   short_description: "Match statistics and create advanced figure candidates"
-  default_prompt: "Use $make-sci-data-figures to identify my experimental unit and design, match a defensible statistical analysis, and generate advanced publication-ready figure alternatives from the same data."
+  default_prompt: "Use $make-sci-data-figures to identify my experimental unit and data family, apply the validated scientific guardrails, and generate advanced publication-ready figure alternatives with an honest analysis record."

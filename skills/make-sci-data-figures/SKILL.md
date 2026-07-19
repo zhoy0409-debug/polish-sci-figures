@@ -1,6 +1,6 @@
 ---
 name: make-sci-data-figures
-description: Turn minimally structured CSV, TSV, or Excel data into scientifically defensible, publication-ready figure candidates with fixed canvases, editable SVG, effect estimates, uncertainty, statistical sensitivity checks, and one-command palette switching. Use for raw-data plotting, chart selection, group comparisons, paired data, figure alternatives, statistical figure planning, and reproducible SCI result graphics.
+description: Turn minimally structured CSV, TSV, or Excel data into scientifically defensible, publication-ready figure candidates with fixed canvases, editable SVG, analysis records, and one-command palette switching. Use for continuous group comparisons, paired data, numeric relationships, longitudinal trajectories, compositions, tidy matrices, chart selection, statistical figure planning, and reproducible SCI result graphics.
 ---
 
 # Make SCI Data Figures
@@ -9,7 +9,17 @@ Start from the biological question and experimental unit, not from a preferred c
 
 ## Minimum intake
 
-Accept tidy CSV, TSV, or XLSX. The minimum scientifically useful columns are one continuous outcome, one grouping variable, and one biological experimental-unit ID. Before inferential statistics, establish:
+Accept tidy CSV, TSV, or XLSX. Route the table by scientific structure rather than forcing every dataset into a group comparison:
+
+| Structure | Required declarations | Script command |
+| --- | --- | --- |
+| Continuous group comparison | group, value, biological-unit ID, independent/paired design, authoritative order | `figure_workbench.py generate` |
+| Numeric relationship | x, y, biological-unit ID; optional group | `data_family_workbench.py relationship` |
+| Longitudinal response | time, value, group, biological-unit ID | `data_family_workbench.py timecourse` |
+| Composition | sample, category, non-negative value; optional group | `data_family_workbench.py composition` |
+| Tidy matrix | row, column, value; explicit or automatic display clustering | `data_family_workbench.py matrix` |
+
+Before inferential statistics, establish:
 
 1. the outcome, unit, and intended claim;
 2. the biological experimental unit;
@@ -17,7 +27,7 @@ Accept tidy CSV, TSV, or XLSX. The minimum scientifically useful columns are one
 4. the reference group and group order;
 5. whether endpoints or contrasts were pre-specified or exploratory.
 
-Run `scripts/figure_workbench.py profile INPUT` immediately. Ask only for high-impact facts that the file cannot reveal. Do not silently treat cells, fields, wells, repeated measurements, or technical replicates as independent biological units.
+For a group comparison, run `scripts/figure_workbench.py profile INPUT` immediately. For another family, run its generator only after identifying the required columns; the command performs family-specific validation before drawing. Ask only for high-impact facts that the file cannot reveal. Do not silently treat cells, fields, wells, repeated measurements, or technical replicates as independent biological units.
 
 Read `references/data_contract.md` for accepted layouts. Read `references/statistics_and_chart_selection.md` before selecting a statistical design or making significance claims.
 
@@ -41,12 +51,36 @@ For paired data, use the same biological-unit ID in both conditions and pass `--
 
 Candidate types are conditional, not decorative: two-group estimation graphics; rainclouds when group sizes support density estimation; raw points with estimate and 95% CI; box/violin plus raw observations; paired estimation graphics and trajectories for complete pairs; and horizontal group-estimate intervals for multi-group designs. Never default to a bar chart when the raw distribution can be shown.
 
+## Generate other validated data families
+
+Use the smallest command matching the declared structure:
+
+```bash
+python scripts/data_family_workbench.py relationship data.csv \
+  --x exposure --y response --unit sample_id --group cohort --outdir relationship_results
+
+python scripts/data_family_workbench.py timecourse data.csv \
+  --time day --value signal --group condition --unit subject_id --outdir timecourse_results
+
+python scripts/data_family_workbench.py composition data.csv \
+  --sample sample_id --category cell_type --value count --group condition --outdir composition_results
+
+python scripts/data_family_workbench.py matrix data.csv \
+  --row pathway --column condition --value z_score --cluster auto --outdir matrix_results
+```
+
+These commands generate two complementary views instead of one default chart: fitted relationship plus joint distributions; individual time trajectories plus within-unit change; whole-sample composition plus normalized heatmap; or heatmap plus signed-magnitude dot matrix. Each command creates fixed-canvas PNG/SVG/PDF, a comparison gallery, `data_profile.json`, `analysis_plan.json`, and `figure_recipe.json`.
+
+These families are not a license to invent specialist inference. Relationship statistics are association summaries; longitudinal ribbons are descriptive pointwise intervals; compositions are normalized but not tested component by component; matrix clustering is exploratory and records its method and order.
+
 ## Change the palette without changing the science
 
 ```bash
 python scripts/figure_workbench.py recolor results/figure_recipe.json \
   --palette okabe_ito --outdir results_okabe_ito
 ```
+
+For relationship, time-course, composition, or matrix recipes, use `scripts/data_family_workbench.py recolor` with the same arguments.
 
 Use `assets/palettes.json` as the single palette registry. A palette change must not alter filtering, order, estimand, uncertainty, axes, annotations, or canvas. User/project colors override bundled defaults.
 
@@ -61,6 +95,10 @@ Use `assets/palettes.json` as the single palette registry. A palette change must
 - Do not pool technical replicates as biological replicates. Do not average or impute missing values without an explicit rule.
 - Keep exact test names, biological-unit counts, exclusions, effect direction, uncertainty definition, diagnostics, analysis scope, and multiplicity status in `analysis_plan.json`.
 - Synthetic example data must remain labeled synthetic. Never relabel it as experimental data.
+- For relationships, report Pearson, Spearman, and slope as association summaries and refuse repeated biological-unit IDs.
+- For longitudinal data, preserve individual trajectories and refuse duplicate unit-time cells. Do not generate a repeated-measures *P* value without a declared longitudinal model.
+- For compositions, enforce non-negative components and positive sample totals, normalize within sample, and state the sum-to-one dependence. Do not run naive component-wise tests.
+- For matrices, reject duplicate cells, preserve or record clustering order, and refuse a density that would make the fixed publication canvas unreadable.
 
 Use the worked independent, paired, and multi-group examples in `references/statistics_and_chart_selection.md` to explain the statistical match. State what the skill selected, why it matches the experimental unit, what it refused to infer, and which output makes that decision visible.
 
@@ -82,4 +120,4 @@ Read `references/professional_basis.md` for the reporting, experimental-unit, *P
 
 ## Acceptance gate
 
-Do not deliver if the experimental unit/design is unresolved, a required group is missing, statistics are presented as confirmatory without declared scope, raw observations are hidden unnecessarily, candidate canvases differ, palette switching changes semantics, final-size text is small or ragged, or any title/number/overlap appears in the artwork.
+Do not deliver if the experimental unit/design is unresolved, a required group is missing, a family-specific uniqueness/positivity check fails, specialist inference has been substituted with a descriptive shortcut, statistics are presented as confirmatory without declared scope, raw observations are hidden unnecessarily, candidate canvases differ, palette switching changes semantics, final-size text is small or ragged, or any title/number/overlap appears in the artwork.

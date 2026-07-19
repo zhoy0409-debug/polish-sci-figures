@@ -20,6 +20,15 @@ Add these when applicable:
 | biological unit | Several rows can come from one animal, donor, culture, or specimen |
 | technical replicate | Repeated measurement of the same biological material |
 
+Additional validated tidy contracts:
+
+| Family | One row represents | Required uniqueness |
+| --- | --- | --- |
+| Relationship | One biological unit with numeric x and y | biological-unit ID is unique |
+| Longitudinal | One biological unit at one time value | biological-unit ID + time is unique; each unit belongs to one group |
+| Composition | One category within one sample | sample + category is unique; values are non-negative and each sample total is positive |
+| Matrix | One row-feature by column-feature cell | row + column is unique |
+
 Rules:
 
 - Keep raw values. Do not pre-round, convert missing values to zero, or paste means in place of observations.
@@ -27,7 +36,8 @@ Rules:
 - Put units in metadata or a column name, not inside numeric cells.
 - Keep group labels and order authoritative; do not alphabetically reorder a known control/treatment sequence.
 - Technical replicate rows require a declared aggregation/modeling rule before inferential statistics.
-- Binary, count, proportion, survival, compositional, repeated, nested, clustered, and high-dimensional outcomes require a domain-specific analysis; this compact workbench profiles but does not infer from them.
+- Longitudinal and compositional structures can be validated and visualized descriptively by `data_family_workbench.py`; their inferential claims still require a declared domain-specific model.
+- Binary, count, survival, nested, clustered, spatial, and high-dimensional differential outcomes require a domain-specific analysis; do not infer from a generic display.
 - Wide data can be reshaped, but the resulting long table and transformation record must be saved.
 
-The profiler reports column types, missingness, group counts, duplicate rows, and paired completeness. It cannot infer whether a row is a biological or technical replicate; ask the user when that distinction is not explicit.
+The group-comparison profiler reports column types, missingness, group counts, duplicate rows, and paired completeness. Family generators add unit/cell uniqueness, positivity, normalization, clustering, and display-density checks as relevant. No script can infer whether a row is a biological or technical replicate; ask the user when that distinction is not explicit.

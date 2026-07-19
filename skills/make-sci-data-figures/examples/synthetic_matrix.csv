@@ -1,0 +1,49 @@
+pathway,condition,z_score
+IFN response,Baseline,1.2158
+IFN response,2 h,0.7637
+IFN response,8 h,-0.3616
+IFN response,24 h,-1.0708
+IFN response,72 h,-1.4508
+IFN response,Recovery,-0.5735
+Apoptosis,Baseline,-1.4363
+Apoptosis,2 h,-0.7582
+Apoptosis,8 h,0.1286
+Apoptosis,24 h,0.4866
+Apoptosis,72 h,0.9395
+Apoptosis,Recovery,0.5094
+Cell cycle,Baseline,-0.2562
+Cell cycle,2 h,-0.5101
+Cell cycle,8 h,-0.2659
+Cell cycle,24 h,0.5091
+Cell cycle,72 h,0.9136
+Cell cycle,Recovery,0.1961
+Hypoxia,Baseline,0.9483
+Hypoxia,2 h,0.5615
+Hypoxia,8 h,-0.5817
+Hypoxia,24 h,-0.3802
+Hypoxia,72 h,-1.1439
+Hypoxia,Recovery,-0.2814
+EMT,Baseline,0.6886
+EMT,2 h,0.0644
+EMT,8 h,0.2229
+EMT,24 h,-0.3642
+EMT,72 h,-0.324
+EMT,Recovery,0.0183
+DNA repair,Baseline,-0.7738
+DNA repair,2 h,-0.3057
+DNA repair,8 h,0.3747
+DNA repair,24 h,0.758
+DNA repair,72 h,0.831
+DNA repair,Recovery,0.2772
+T-cell activation,Baseline,1.2184
+T-cell activation,2 h,0.6187
+T-cell activation,8 h,-0.3027
+T-cell activation,24 h,-1.1098
+T-cell activation,72 h,-1.4872
+T-cell activation,Recovery,-0.3396
+Oxidative stress,Baseline,-0.1221
+Oxidative stress,2 h,-0.2771
+Oxidative stress,8 h,-0.2199
+Oxidative stress,24 h,0.2076
+Oxidative stress,72 h,0.5223
+Oxidative stress,Recovery,0.207

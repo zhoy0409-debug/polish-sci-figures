@@ -1,0 +1,61 @@
+sample,group,cell_type,count
+P01,Baseline,CD8 T,1823.69
+P01,Baseline,CD4 T,760.81
+P01,Baseline,NK,435.82
+P01,Baseline,Myeloid,712.26
+P01,Baseline,B cell,179.43
+P02,Baseline,CD8 T,489.71
+P02,Baseline,CD4 T,471.78
+P02,Baseline,NK,1277.52
+P02,Baseline,Myeloid,811.78
+P02,Baseline,B cell,516.2
+P03,Baseline,CD8 T,896.53
+P03,Baseline,CD4 T,1135.49
+P03,Baseline,NK,457.16
+P03,Baseline,Myeloid,196.56
+P03,Baseline,B cell,228.26
+P04,Baseline,CD8 T,1715.17
+P04,Baseline,CD4 T,636.44
+P04,Baseline,NK,845.48
+P04,Baseline,Myeloid,706.76
+P04,Baseline,B cell,211.14
+P05,Baseline,CD8 T,485.26
+P05,Baseline,CD4 T,492.75
+P05,Baseline,NK,87.02
+P05,Baseline,Myeloid,666.47
+P05,Baseline,B cell,159.49
+P06,Baseline,CD8 T,1033.29
+P06,Baseline,CD4 T,428.23
+P06,Baseline,NK,963.79
+P06,Baseline,Myeloid,857.32
+P06,Baseline,B cell,823.37
+P07,On-treatment,CD8 T,1903.5
+P07,On-treatment,CD4 T,444.72
+P07,On-treatment,NK,722.74
+P07,On-treatment,Myeloid,460.32
+P07,On-treatment,B cell,440.71
+P08,On-treatment,CD8 T,1492.81
+P08,On-treatment,CD4 T,1099.98
+P08,On-treatment,NK,998.47
+P08,On-treatment,Myeloid,249.42
+P08,On-treatment,B cell,184.31
+P09,On-treatment,CD8 T,513.93
+P09,On-treatment,CD4 T,661.97
+P09,On-treatment,NK,207.09
+P09,On-treatment,Myeloid,501.57
+P09,On-treatment,B cell,145.43
+P10,On-treatment,CD8 T,554.5
+P10,On-treatment,CD4 T,744.59
+P10,On-treatment,NK,255.45
+P10,On-treatment,Myeloid,181.34
+P10,On-treatment,B cell,111.13
+P11,On-treatment,CD8 T,504.17
+P11,On-treatment,CD4 T,282.54
+P11,On-treatment,NK,771.7
+P11,On-treatment,Myeloid,138.65
+P11,On-treatment,B cell,549.95
+P12,On-treatment,CD8 T,1481.77
+P12,On-treatment,CD4 T,219.13
+P12,On-treatment,NK,462.4
+P12,On-treatment,Myeloid,160.43
+P12,On-treatment,B cell,308.28

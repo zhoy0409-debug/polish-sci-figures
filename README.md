@@ -51,15 +51,36 @@ The suite enforces experimental-unit integrity, stable palette semantics, equal 
 
 ## Raw data to figures and statistics
 
-Input: tidy CSV, TSV, or XLSX with group, outcome, biological experimental-unit ID, and design. Output: design-matched statistics, multiple figure forms, editable masters, and a machine-readable analysis plan.
+Input: tidy CSV, TSV, or XLSX matching one of the validated contracts below. Output: structure-matched figure candidates, editable masters, a machine-readable analysis plan, and a reproducible palette recipe.
 
 - **Design-driven figure generation:** produces multiple scientifically appropriate candidates from the same dataset while preserving raw observations, effect estimates, uncertainty, pairing, and group structure.
 - **Design-aware inference:** experimental unit and pairing determine the estimand, confidence interval, primary test, and sensitivity analysis.
 - **Palette-only rendering:** color changes preserve data, statistics, axes, ordering, labels, and geometry.
 - **Production geometry:** identical physical canvases, Arial typography, live SVG text, and editable PDF/SVG output.
-- **Scope control:** repeated-measures models, survival analysis, count models, compositional data, and high-dimensional omics are flagged for domain-specific analysis.
+- **Scope control:** longitudinal and compositional structures receive rigorous descriptive views, while mixed-model, survival, count, compositional-inference, and high-dimensional claims are routed to a pre-specified specialist analysis.
 
 Demonstration datasets in this section are deterministic and synthetic.
+
+### Validated raw-data families
+
+| Data structure | Minimal columns | Generated candidates | Scientific safeguard |
+| --- | --- | --- | --- |
+| Independent, paired, or multi-group continuous outcome | group, value, biological-unit ID, design | Estimation, raw-data/interval, raincloud, box/violin, paired trajectories, or group intervals as supported by the design and sample size | Experimental-unit, pairing, group-order, and confirmatory-scope checks; effect estimates and sensitivity analyses recorded |
+| Numeric relationship | x, y, biological-unit ID; optional group | Group-aware fitted relationship with 95% confidence band; joint scatter and marginal distributions | One row per biological unit; Pearson, Spearman, and slope recorded as association rather than causation |
+| Longitudinal response | time, value, group, biological-unit ID | Individual trajectories plus group mean/95% CI; within-unit change from baseline | Duplicate unit-time cells and cross-group unit reuse rejected; model-based inference requires a specified longitudinal model |
+| Composition | sample, category, non-negative count/abundance; optional group | Sample-level 100% stack; normalized sample-by-category heatmap | Unique sample-category cells, positive sample totals, and sum-to-one dependence enforced; no naive component-wise tests |
+| Tidy matrix | row, column, numeric value | Cluster-aware heatmap; signed magnitude dot matrix | Duplicate cells rejected; clustering method and final order recorded; dimension limits protect final-size legibility |
+
+<table>
+  <tr>
+    <td width="50%"><img src="demo/Fig8_Relationship.png" alt="Group-aware relationship with confidence bands"></td>
+    <td width="50%"><img src="demo/Fig9_Timecourse.png" alt="Longitudinal individual trajectories and uncertainty"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="demo/Fig10_Composition.png" alt="Sample-level composition"></td>
+    <td width="50%"><img src="demo/Fig11_Matrix.png" alt="Clustered signed matrix"></td>
+  </tr>
+</table>
 
 ### Estimation-first two-group comparison
 
@@ -120,6 +141,29 @@ python skills/make-sci-data-figures/scripts/figure_workbench.py generate \
   --group condition --value Response --unit sample_id --design independent \
   --order "Vehicle,Low dose,Mid dose,High dose" --unit-label "a.u." \
   --outdir demo/multigroup_workbench
+
+# Relationship: fitted confidence bands plus joint distributions
+python skills/make-sci-data-figures/scripts/data_family_workbench.py relationship \
+  skills/make-sci-data-figures/examples/synthetic_relationship.csv \
+  --x exposure --y response --unit unit --group cohort \
+  --outdir demo/data_families/relationship
+
+# Longitudinal: individual trajectories plus change from baseline
+python skills/make-sci-data-figures/scripts/data_family_workbench.py timecourse \
+  skills/make-sci-data-figures/examples/synthetic_timecourse.csv \
+  --time day --value signal --group group --unit unit \
+  --outdir demo/data_families/timecourse
+
+# Composition and matrix families
+python skills/make-sci-data-figures/scripts/data_family_workbench.py composition \
+  skills/make-sci-data-figures/examples/synthetic_composition.csv \
+  --sample sample --category cell_type --value count --group group \
+  --outdir demo/data_families/composition
+
+python skills/make-sci-data-figures/scripts/data_family_workbench.py matrix \
+  skills/make-sci-data-figures/examples/synthetic_matrix.csv \
+  --row pathway --column condition --value z_score --cluster auto \
+  --outdir demo/data_families/matrix
 ```
 
 Palette-only render:
@@ -132,7 +176,7 @@ python skills/make-sci-data-figures/scripts/figure_workbench.py recolor \
 
 ![The same estimation graphic recolored without changing the analysis](demo/workbench_okabe_ito/estimation_graphic.png)
 
-Supported inferential scope: common continuous-outcome independent and paired group comparisons. Specialist designs are flagged for domain-specific analysis.
+Validated visualization scope: continuous group comparisons, numeric relationships, longitudinal trajectories, compositions, and tidy matrices. Automated confirmatory inference remains deliberately narrower: common continuous-outcome independent and paired group comparisons. Survival, event-history, generalized mixed, causal, spatial, and high-dimensional differential models require a declared specialist workflow.
 
 ## Scientific image standardization
 
@@ -211,6 +255,7 @@ Use $polish-sci-figures to assemble the chosen panels and audit the final editab
 
 ```bash
 python skills/make-sci-data-figures/scripts/test_figure_workbench.py
+python skills/make-sci-data-figures/scripts/test_data_family_workbench.py
 python skills/standardize-sci-images/scripts/test_standardize_images.py
 python -m compileall -q demo skills
 ```

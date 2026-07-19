@@ -25,5 +25,11 @@ jobs:
         run: python -m compileall -q demo skills
       - name: Test raw-data figure workbench
         run: python skills/make-sci-data-figures/scripts/test_figure_workbench.py
+      - name: Test relationship, longitudinal, composition, and matrix families
+        run: python skills/make-sci-data-figures/scripts/test_data_family_workbench.py
+      - name: Check deterministic family example data
+        run: |
+          python skills/make-sci-data-figures/examples/make_family_examples.py
+          git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
       - name: Test scientific-image standardization
         run: python skills/standardize-sci-images/scripts/test_standardize_images.py
