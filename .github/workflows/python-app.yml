@@ -23,6 +23,10 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Check Python syntax
         run: python -m compileall -q demo skills
+      - name: Test release QA gates
+        run: |
+          python skills/polish-sci-figures/scripts/test_figure_text_qa.py
+          python skills/polish-sci-figures/scripts/test_check_source_portability.py
       - name: Test raw-data figure workbench
         run: python skills/make-sci-data-figures/scripts/test_figure_workbench.py
       - name: Test relationship, longitudinal, composition, and matrix families

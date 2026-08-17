@@ -16,6 +16,10 @@ FORBIDDEN_TEXT = (
     "cm^2", " x 10", "10^-", "P =", "p =", "r =", "AUC=",
 )
 PANEL_LABEL = re.compile(r"\(?[A-Za-z]\)?")
+MISSING_GLYPH = re.compile(
+    r"Glyph\s+\d+.*?missing from (?:current )?font(?:\(s\))?",
+    re.IGNORECASE,
+)
 
 
 def audit_figure_text(
@@ -40,15 +44,20 @@ def audit_figure_text(
         except ValueError:
             issues.append(f"required font is not installed: {required_font_family!r}")
 
+    # Matplotlib has emitted both "missing from current font" and
+    # "missing from font(s) FAMILY" across releases. Match both without
+    # suppressing unrelated warnings from the renderer.
     with warnings.catch_warnings():
         warnings.filterwarnings(
-            "error", message=r"Glyph .* missing from current font",
-            category=UserWarning,
+            "error", message=MISSING_GLYPH.pattern, category=UserWarning,
         )
         try:
             fig.canvas.draw()
         except UserWarning as exc:
-            issues.append(f"font lacks a required scientific glyph: {exc}")
+            if MISSING_GLYPH.search(str(exc)):
+                issues.append(f"font lacks a required glyph: {exc}")
+            else:
+                raise
 
     renderer = fig.canvas.get_renderer()
     figure_box = fig.bbox
