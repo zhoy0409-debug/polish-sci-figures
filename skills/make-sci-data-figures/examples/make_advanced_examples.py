@@ -10,6 +10,10 @@ import numpy as np
 import pandas as pd
 
 
+def write(frame: pd.DataFrame, path: Path) -> None:
+    frame.to_csv(path, index=False, float_format="%.15g")
+
+
 def generate(outdir: Path) -> None:
     outdir.mkdir(parents=True, exist_ok=True)
     rng = np.random.default_rng(20260720)
@@ -26,7 +30,7 @@ def generate(outdir: Path) -> None:
                     "group": group,
                 }
             )
-    pd.DataFrame(survival_rows).to_csv(outdir / "synthetic_survival.csv", index=False)
+    write(pd.DataFrame(survival_rows), outdir / "synthetic_survival.csv")
 
     dose_rows = []
     for group, midpoint in (("Compound A", 0.55), ("Compound B", 1.6)):
@@ -41,23 +45,23 @@ def generate(outdir: Path) -> None:
                         "compound": group,
                     }
                 )
-    pd.DataFrame(dose_rows).to_csv(outdir / "synthetic_dose_response.csv", index=False)
+    write(pd.DataFrame(dose_rows), outdir / "synthetic_dose_response.csv")
 
     outcome = rng.integers(0, 2, 120)
     discovery_score = 0.5 + 0.36 * (outcome[:60] - 0.5) + rng.normal(0, 0.25, 60)
     validation_score = 0.5 + 0.3 * (outcome[60:] - 0.5) + rng.normal(0, 0.28, 60)
     score = np.clip(np.r_[discovery_score, validation_score], 0, 1)
-    pd.DataFrame(
+    write(pd.DataFrame(
         {
             "unit": [f"P{index:03d}" for index in range(120)],
             "outcome": outcome,
             "score": score,
             "cohort": ["Discovery"] * 60 + ["Validation"] * 60,
         }
-    ).to_csv(outdir / "synthetic_roc.csv", index=False)
+    ), outdir / "synthetic_roc.csv")
 
     effects = rng.uniform(0.45, 2.4, 14)
-    pd.DataFrame(
+    write(pd.DataFrame(
         {
             "term": [f"Pathway {index + 1}" for index in range(14)],
             "enrichment_ratio": effects,
@@ -65,7 +69,7 @@ def generate(outdir: Path) -> None:
             "count": rng.integers(8, 70, 14),
             "ontology": ["GO", "KEGG"] * 7,
         }
-    ).to_csv(outdir / "synthetic_enrichment.csv", index=False)
+    ), outdir / "synthetic_enrichment.csv")
 
 
 def main() -> None:
