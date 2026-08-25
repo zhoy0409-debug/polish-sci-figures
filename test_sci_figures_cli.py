@@ -14,6 +14,7 @@ def run(*args, check=True):
     return p
 def run_argv(argv):
     command=[PYTHON,*argv[1:]] if argv and argv[0]=="python" else argv
+    command=[*command,"--font","DejaVu Sans"]
     return subprocess.run(command,cwd=ROOT,text=True,encoding="utf-8",errors="replace",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 
 def main():

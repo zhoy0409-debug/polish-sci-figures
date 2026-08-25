@@ -157,6 +157,7 @@ def style(font: str) -> None:
         "mathtext.rm": font,
         "mathtext.it": f"{font}:italic",
         "mathtext.bf": f"{font}:bold",
+        "mathtext.cal": font,
         "axes.linewidth": 0.8,
         "xtick.major.width": 0.8,
         "ytick.major.width": 0.8,
