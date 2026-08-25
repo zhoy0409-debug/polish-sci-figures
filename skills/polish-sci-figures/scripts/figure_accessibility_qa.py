@@ -31,6 +31,7 @@ UNIT_TO_MM = {
     "mm": 1.0,
 }
 HEX_COLOR = re.compile(r"#[0-9A-Fa-f]{6}\b")
+FONT_STYLE_RE = re.compile(r"font-family\s*:\s*([^;}\"']+)", re.IGNORECASE)
 
 
 def _local(tag: str) -> str:
@@ -86,7 +87,7 @@ def _embedded_image_size(href: str) -> tuple[int, int] | None:
         return None
 
 
-def audit_svg(path: str | Path, min_dpi: float = 300.0) -> dict:
+def audit_svg(path: str | Path, min_dpi: float = 300.0, required_font: str | None = None) -> dict:
     path = Path(path)
     raw = path.read_text(encoding="utf-8", errors="replace")
     root = ET.fromstring(raw)
@@ -95,9 +96,37 @@ def audit_svg(path: str | Path, min_dpi: float = 300.0) -> dict:
     viewbox = _viewbox(root)
     issues: list[dict] = []
     manual_review = [
-        "Confirm that key group differences are not communicated by color alone.",
-        "Draft alt text from the figure legend and verified results; do not invent conclusions.",
+        "Check collisions, clipping, and minimum text size at final physical size.",
+        "Check scientific symbols, italic variables, and true subscript/superscript semantics.",
+        "Confirm that key differences are not communicated by color alone.",
+        "Draft alt text from the verified figure legend and results.",
     ]
+
+    text_elements = [element for element in root.iter() if _local(element.tag) in {"text", "tspan"}]
+    live_text = sum(_local(element.tag) == "text" for element in text_elements)
+    fragmented_text = sum(_local(element.tag) == "tspan" for element in text_elements)
+    font_declarations: set[str] = set()
+    for element in text_elements:
+        if family := element.get("font-family"):
+            font_declarations.add(family.strip(" '\""))
+        for family in FONT_STYLE_RE.findall(element.get("style", "")):
+            font_declarations.add(family.strip(" '\""))
+    for family in FONT_STYLE_RE.findall(raw):
+        font_declarations.add(family.strip(" '\""))
+    if required_font:
+        normalized = required_font.casefold()
+        if not font_declarations:
+            issues.append({"severity": "FAIL", "code": "SVG_FONT_UNDECLARED",
+                           "message": f"required font {required_font!r} cannot be verified because no font-family is declared"})
+        elif not any(normalized in family.casefold() for family in font_declarations):
+            issues.append({"severity": "FAIL", "code": "SVG_FONT_MISMATCH",
+                           "message": f"required font {required_font!r}; declared {sorted(font_declarations)}"})
+    if not live_text:
+        issues.append({"severity": "WARN", "code": "SVG_NO_LIVE_TEXT",
+                       "message": "No live <text> elements found; text may be outlined or absent"})
+    if fragmented_text > max(12, live_text * 8):
+        issues.append({"severity": "WARN", "code": "SVG_FRAGMENTED_TEXT",
+                       "message": f"{fragmented_text} tspan elements may make text difficult to edit"})
 
     colors = sorted(set(HEX_COLOR.findall(raw)))
     for color in colors:
@@ -174,6 +203,9 @@ def audit_svg(path: str | Path, min_dpi: float = 300.0) -> dict:
         "embedded_rasters": embedded_rasters,
         "external_resources": external_resources,
         "embedded_raster_dpi": raster_dpi,
+        "live_text_elements": live_text,
+        "tspan_elements": fragmented_text,
+        "font_declarations": sorted(font_declarations),
         "issues": issues,
         "manual_review": manual_review,
     }
@@ -205,6 +237,9 @@ def self_test() -> None:
         )
         linked_report = audit_svg(linked)
         assert any(issue["code"] == "SVG_EXTERNAL_RESOURCE" for issue in linked_report["issues"])
+        fonted = root / "fonted.svg"
+        fonted.write_text('<svg xmlns="http://www.w3.org/2000/svg"><text style="font-family:Arial">A</text></svg>', encoding="utf-8")
+        assert audit_svg(fonted, required_font="Arial")["font_declarations"] == ["Arial"]
     print("figure accessibility QA self-test passed")
 
 
@@ -213,6 +248,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("paths", nargs="*", help="SVG files to audit")
     parser.add_argument("--min-dpi", type=float, default=300.0)
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--font", help="required final SVG font-family")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args(argv)
     if args.self_test:
@@ -220,10 +256,31 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if not args.paths:
         parser.error("provide one or more SVG files, or use --self-test")
-    reports = [audit_svg(path, args.min_dpi) for path in args.paths]
-    failed = any(issue["severity"] == "FAIL" for report in reports for issue in report["issues"])
+    results = []
+    reports = []
+    for path in args.paths:
+        try:
+            report = audit_svg(path, args.min_dpi, args.font)
+            reports.append(report)
+            for issue in report["issues"]:
+                results.append({"status": issue["severity"], "code": issue["code"], "name": "SVG delivery QA",
+                                "detail": issue["message"], "path": report["path"],
+                                "blocking": issue["severity"] == "FAIL", "manual_review": False})
+            for message in report["manual_review"]:
+                results.append({"status": "MANUAL_REVIEW", "code": "SVG_MANUAL_REVIEW", "name": "SVG manual review",
+                                "detail": message, "path": report["path"], "blocking": False, "manual_review": True})
+            if not report["issues"]:
+                results.append({"status": "PASS", "code": "SVG_AUTOMATED_CHECKS", "name": "SVG automated checks",
+                                "detail": "No blocking automated finding", "path": report["path"], "blocking": False, "manual_review": False})
+        except (OSError, ET.ParseError, ValueError) as exc:
+            results.append({"status": "FAIL", "code": "SVG_PARSE_ERROR", "name": "SVG input",
+                            "detail": str(exc), "path": str(path), "blocking": True, "manual_review": False})
+    failed = any(item["blocking"] for item in results)
+    summary = {"total": len(results), "blocking": sum(item["blocking"] for item in results),
+               "warnings": sum(item["status"] in {"WARN", "MANUAL_REVIEW"} for item in results),
+               "manual_review": sum(item["manual_review"] for item in results), "exit_code": 2 if failed else 0}
     if args.json:
-        print(json.dumps({"reports": reports}, indent=2, ensure_ascii=False))
+        print(json.dumps({"schema_version": "1.3.1", "results": results, "summary": summary, "reports": reports}, indent=2, ensure_ascii=False))
     else:
         for report in reports:
             print(f"[ACCESSIBILITY] {report['path']}")
@@ -231,7 +288,7 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"  [{issue['severity']}] {issue['code']}: {issue['message']}")
             for item in report["manual_review"]:
                 print(f"  [REVIEW] {item}")
-    return 2 if failed else 0
+    return summary["exit_code"]
 
 
 if __name__ == "__main__":
