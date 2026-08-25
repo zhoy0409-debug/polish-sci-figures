@@ -1,6 +1,6 @@
 ---
 name: standardize-sci-images
-description: Standardize microscopy, fluorescence, histology, and electron-microscopy images without compromising scientific integrity. Use for locked batch tone settings, equal pixel dimensions, calibrated scale bars, consistent crops, non-destructive processing, image manifests, scientific montages, and auditable publication-image preparation.
+description: Scientific image standardization for microscopy, fluorescence, histology, pathology, and electron-microscopy image batches. Use when the user has raw or derived scientific raster images needing non-destructive processing, locked tone settings, equal dimensions, calibrated scale bars, manifests, montages, or image audit trails. Do not use for raw CSV/Excel charting or final-only SVG layout polishing.
 ---
 
 # Standardize Scientific Images
@@ -17,6 +17,8 @@ python scripts/standardize_images.py manifest.csv \
 ```
 
 The command center-crops every image to a common pixel canvas and writes three practical derivatives: an unannotated display raster, a labelled preview, and an SVG panel whose faithful raster content remains embedded while scale bars and text stay editable vector/live layers. It also builds a montage and writes CSV/JSON audits containing source hashes and every operation. It never overwrites the source.
+
+The requested overlay font defaults to Arial and must be installed. Use `--allow-font-fallback` only for draft previews; the audit records requested font, actual font, font file, fallback status, and whether the output is allowed for final delivery.
 
 By default, the SVG physical width is set to the largest size that preserves 300 dpi. Use `--panel-width-mm` only for a known final slot; the command refuses a width that would fall below 300 dpi instead of inventing pixels.
 

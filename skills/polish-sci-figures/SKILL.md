@@ -1,6 +1,6 @@
 ---
 name: polish-sci-figures
-description: Create, redraw, compare, arrange, audit, and package publication-grade scientific figures for manuscripts, posters, Word documents, PowerPoint slides, and public showcases. Use for SCI figures, 论文配图, 科研作图, 结果可视化, 组图, 重绘, figure polishing, aligned multipanel grids, whitespace control, title-free and serial-label-free panels, collision-free annotations, Arial or journal-specific font control, scientific typography and nomenclature, consistent canvas sizing, final-size typography, editable SVG/PDF/PNG, manuscript or presentation figure QA, and original-versus-redesign selection.
+description: Final scientific figure polishing and QA for existing figures, SVG/PDF/PNG panels, multipanel layouts, manuscripts, slides, and posters. Use for SCI figures, 论文配图, 组图, figure polishing, canvas consistency, final-size typography, collision checks, SVG editability, accessibility/delivery QA, and source portability. Route raw CSV/Excel data to make-sci-data-figures and microscopy image batches to standardize-sci-images first.
 ---
 
 # Polish Scientific Figures
@@ -15,10 +15,12 @@ Deliver the near-final figure in one internal pass: establish the claim and fina
 - Return the selected outputs from either companion skill to this skill for final canvas, typography, overlap, editability, and real-container QA.
 - Load `assets/sci_style.mplstyle` as a baseline; override it for a verified journal, deck, or user requirement.
 - Do not add panel letters or serial labels by default. Use `scripts/panel_labels.py` only when the user or verified target explicitly requires them, preferably at final composite assembly.
-- Run `scripts/figure_text_qa.py` before saving Matplotlib figures; block export on grid-geometry drift, unrequested panel titles, collisions, or common baseline scientific notation.
+- Use `scripts/figure_text_qa.py` as an authoring-time release gate before accepting Matplotlib exports; block delivery on grid-geometry drift, unrequested panel titles, collisions, or common baseline scientific notation. Run the skill copy from the agent/test harness, not by making the delivered plotting source search for or import the installed skill.
+- Run `scripts/check_source_portability.py` on every delivered plotting source. Treat skill/plugin runtime paths, home-directory support lookups, and machine-specific absolute private paths as release failures. Dynamic imports, `sys.path` mutation, and external processes are advisory unless the user or delivery contract explicitly requires a fully self-contained source; only then add `--strict`.
 - Use `scripts/make_montage.py` to compare a figure series.
 - Run `scripts/check_svg_canvas.py` on every independently editable SVG series intended for one grid or repeated slot.
 - Run `scripts/check_svg_editability.py --require-fully-editable` when fully editable SVG is requested.
+- Run `scripts/figure_accessibility_qa.py` for SVG external-resource, embedded-raster DPI, grayscale separation, basic contrast, and manual review flags.
 - Use `scripts/render_doc_pages.py` after insertion into an existing DOCX, PPTX, or PDF.
 - Read `references/canvas_profiles.md` whenever delivering multiple standalone panels, a manuscript composite assembled later, or figures that will be placed into PPT slots.
 - Read `references/journal_specs.md` for a submission and verify the current official instructions.
@@ -44,6 +46,16 @@ Record or infer:
 5. Whether a user-approved reference image or existing project visual system is the style target.
 
 Trace the file that is actually delivered or embedded; never polish an obsolete intermediate. Reuse plotting code plus data first, then native vector, then high-resolution raster. Preserve an approved visual system unless the user asks for a redesign.
+
+## Keep delivered sources portable
+
+Separate skill-side preflight from project-side source:
+
+- Treat bundled scripts, references, styles, and templates as authoring-time resources. Do not make a delivered source locate `~/.codex`, `$CODEX_HOME`, plugin caches, skill folders, or another private workspace at runtime.
+- Resolve project inputs relative to the delivered source or a declared project root. Do not hard-code user-specific absolute paths or mutate `sys.path` to reach a skill.
+- Translate required style settings into the plotting source or copy a redistributable asset into the project. If live-object QA must remain rerunnable, include the required helper in a project-local QA folder; never depend on the installed plugin copy.
+- Run skill QA from the agent/test harness, then run `check_source_portability.py` on the final source. Moving the complete project directory to another machine must not require this skill or plugin to be installed. Use `--strict` only when the user or delivery contract prohibits `sys.path` mutation, dynamic imports, or external executables.
+- Treat declared Python/R runtimes, packages, fonts, and system executables as normal environment prerequisites, not private dependencies. Keep them explicit in a project dependency file or handoff note, and do not silently skip a release gate when an optional dependency is absent.
 
 ## Protect scientific meaning
 
@@ -84,6 +96,7 @@ See `references/canvas_profiles.md` for exact matplotlib and audit commands.
 - Replace Arial globally with Times New Roman or another required family when an explicit user, journal, institutional, or deck specification requires it. Change the shared style/source configuration once; do not edit individual labels.
 - Apply the selected family to every visible text object, including axes, ticks, legends, colorbars, annotations, statistical symbols, and mathtext. Do not mix families or accept an unintended fallback.
 - Verify that the selected font is installed and contains or can correctly compose every required scientific glyph. After any font change, regenerate and rerun final-size clipping, collision, glyph, SVG-editability, and container checks because text metrics change.
+- Do not accept a fallback font as final output. If a draft uses explicit fallback, record requested font, actual font, font file, fallback status, and `final_delivery_allowed: false`.
 
 Set the family once in Matplotlib and switch only `FONT` when the verified target changes:
 
@@ -190,6 +203,7 @@ Do not deliver while any of these is true:
 - Panels on one page use inconsistent spacing, line weights, palette semantics, statistical syntax, or visual density.
 - The artwork contains presentation prose or internal IDs, or essential statistical evidence was removed in the name of cleanliness.
 - A raster-only/partially editable file is called fully editable.
+- A delivered source reads a skill/plugin cache, home-directory support file, or machine-specific absolute private path, or changes behavior merely because this skill is installed.
 - The real manuscript page, poster, or slide has not been rendered and inspected at the intended placement.
 
 ## Package the deliverables

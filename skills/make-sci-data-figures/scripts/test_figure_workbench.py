@@ -11,6 +11,8 @@ from PIL import Image, ImageChops
 
 from figure_workbench import generate, welch_anova
 
+TEST_FONT = "DejaVu Sans"
+
 
 def main() -> None:
     f_value, p_value, df1, df2 = welch_anova([
@@ -24,7 +26,8 @@ def main() -> None:
     with TemporaryDirectory() as tmp:
         out = Path(tmp) / "figures"
         pngs = generate(source, "condition", "Response", "independent", out,
-                        subject="sample_id", order_text="Control,Treatment", palette_name="zhoy_muted")
+                        subject="sample_id", order_text="Control,Treatment", palette_name="zhoy_muted",
+                        font_requested=TEST_FONT)
         expected = [out / "analysis_plan.json", out / "data_profile.json",
                     out / "figure_recipe.json", out / "candidate_gallery.png"]
         assert len(pngs) == 5, pngs
@@ -39,7 +42,8 @@ def main() -> None:
         assert "width=\"345.6pt\"" in svg_text and "height=\"259.2pt\"" in svg_text
         recolored = Path(tmp) / "recolored"
         generate(source, "condition", "Response", "independent", recolored,
-                 subject="sample_id", order_text="Control,Treatment", palette_name="okabe_ito")
+                 subject="sample_id", order_text="Control,Treatment", palette_name="okabe_ito",
+                 font_requested=TEST_FONT)
         first_analysis = json.loads((out / "analysis_plan.json").read_text(encoding="utf-8"))
         second_analysis = json.loads((recolored / "analysis_plan.json").read_text(encoding="utf-8"))
         assert first_analysis == second_analysis
@@ -60,7 +64,7 @@ def main() -> None:
         repeated_unit.to_csv(repeated_source, index=False)
         try:
             generate(repeated_source, "condition", "Response", "independent", Path(tmp) / "bad_independent",
-                     subject="sample_id", order_text="Control,Treatment")
+                     subject="sample_id", order_text="Control,Treatment", font_requested=TEST_FONT)
         except ValueError as exc:
             assert "repeated experimental-unit IDs" in str(exc)
         else:
@@ -74,7 +78,7 @@ def main() -> None:
         }).to_csv(paired_source, index=False)
         paired_out = Path(tmp) / "paired"
         generate(paired_source, "condition", "response", "paired", paired_out,
-                 subject="subject", order_text="Before,After")
+                 subject="subject", order_text="Before,After", font_requested=TEST_FONT)
         assert (paired_out / "paired_estimation.svg").is_file()
         assert (paired_out / "paired_trajectories.svg").is_file()
         duplicate_source = Path(tmp) / "paired_duplicate.csv"
@@ -82,7 +86,7 @@ def main() -> None:
         pd.concat([duplicate, duplicate.iloc[[0]]], ignore_index=True).to_csv(duplicate_source, index=False)
         try:
             generate(duplicate_source, "condition", "response", "paired", Path(tmp) / "bad_paired",
-                     subject="subject", order_text="Before,After")
+                     subject="subject", order_text="Before,After", font_requested=TEST_FONT)
         except ValueError as exc:
             assert "multiple rows for the same subject and group" in str(exc)
         else:
@@ -93,6 +97,7 @@ def main() -> None:
         multi_pngs = generate(
             multigroup_source, "condition", "Response", "independent", multigroup_out,
             subject="sample_id", order_text="Vehicle,Low dose,Mid dose,High dose",
+            font_requested=TEST_FONT,
         )
         assert len(multi_pngs) == 5
         assert (multigroup_out / "group_estimate_forest.svg").is_file()

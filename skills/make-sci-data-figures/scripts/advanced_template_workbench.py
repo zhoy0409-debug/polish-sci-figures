@@ -6,7 +6,28 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
+import tempfile
 from pathlib import Path
+
+
+def _ensure_mpl_config_dir() -> None:
+    if os.environ.get("MPLCONFIGDIR"):
+        return
+    repo_root = Path(__file__).resolve().parents[3]
+    for candidate in (
+        repo_root / ".cache" / "matplotlib",
+        Path(tempfile.gettempdir()) / "polish-sci-figures-mplconfig",
+    ):
+        try:
+            candidate.mkdir(parents=True, exist_ok=True)
+            os.environ["MPLCONFIGDIR"] = str(candidate)
+            return
+        except OSError:
+            continue
+
+
+_ensure_mpl_config_dir()
 
 import matplotlib
 
@@ -21,7 +42,7 @@ from scipy import optimize, stats
 from data_family_workbench import (
     _axis,
     _display_label,
-    _font_profile,
+    _font_profile as _family_font_profile,
     _profile,
     _relative_input,
     _require_columns,
@@ -31,6 +52,11 @@ from data_family_workbench import (
 from figure_workbench import DEFAULT_FONT, FIGSIZE, read_table, resolve_palette
 
 RNG_SEED = 20260719
+_ALLOW_FONT_FALLBACK = False
+
+
+def _font_profile(requested: str) -> tuple[str, dict]:
+    return _family_font_profile(requested, _ALLOW_FONT_FALLBACK)
 
 
 def _prepare(
@@ -61,6 +87,7 @@ def _base_recipe(
         "palette": palette,
         "colors": colors,
         "font": font,
+        "allow_font_fallback": _ALLOW_FONT_FALLBACK,
         "figsize_inches": FIGSIZE,
         "parameters": parameters,
         "note": "Palette changes preserve data, ordering, statistics, labels, and geometry.",
@@ -1638,6 +1665,8 @@ def _shared(parser: argparse.ArgumentParser) -> None:
         "--colors", help="Comma-separated hex colors; overrides --palette"
     )
     parser.add_argument("--font", default=DEFAULT_FONT)
+    parser.add_argument("--allow-font-fallback", action="store_true",
+                        help="permit a draft-only fallback font when --font is not installed")
     parser.add_argument("--outdir", required=True)
 
 
@@ -1763,8 +1792,12 @@ def parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
+    global _ALLOW_FONT_FALLBACK
     args = parser().parse_args()
+    _ALLOW_FONT_FALLBACK = bool(getattr(args, "allow_font_fallback", False))
     if args.command == "recolor":
+        recipe = json.loads(Path(args.recipe).read_text(encoding="utf-8"))
+        _ALLOW_FONT_FALLBACK = _ALLOW_FONT_FALLBACK or bool(recipe.get("allow_font_fallback", False))
         files = recolor(
             Path(args.recipe).resolve(), Path(args.outdir), args.palette, args.colors
         )
@@ -1772,6 +1805,7 @@ def main() -> None:
         values = vars(args).copy()
         function = values.pop("func")
         values.pop("command")
+        values.pop("allow_font_fallback", None)
         values["input_path"] = Path(values.pop("input"))
         values["outdir"] = Path(values["outdir"])
         values["colors_text"] = values.pop("colors")

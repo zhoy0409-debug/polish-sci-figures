@@ -1,0 +1,26 @@
+name: Figure request
+description: Request a new validated figure family or workflow
+title: "[Figure]: "
+labels: ["figure-request"]
+body:
+  - type: textarea
+    id: scientific_question
+    attributes:
+      label: Scientific question
+      description: What claim or comparison should the figure support?
+    validations:
+      required: true
+  - type: textarea
+    id: data_contract
+    attributes:
+      label: Data contract
+      description: Columns, experimental unit, design, required metadata, and example rows
+    validations:
+      required: true
+  - type: textarea
+    id: guardrails
+    attributes:
+      label: Guardrails
+      description: What must not be inferred, hidden, or changed?
+    validations:
+      required: true

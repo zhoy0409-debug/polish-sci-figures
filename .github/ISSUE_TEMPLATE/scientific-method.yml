@@ -1,0 +1,19 @@
+name: Scientific method question
+description: Ask about a statistical, imaging, or figure-method guardrail
+title: "[Method]: "
+labels: ["method"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Study design, data structure, or image workflow
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What scientific decision needs clarification?
+    validations:
+      required: true

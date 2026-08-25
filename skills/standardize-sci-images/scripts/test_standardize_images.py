@@ -11,6 +11,8 @@ from PIL import Image
 from make_example_data import create
 from standardize_images import sha256, standardize
 
+TEST_FONT = "DejaVu Sans"
+
 
 def main() -> None:
     with TemporaryDirectory() as tmp:
@@ -18,7 +20,7 @@ def main() -> None:
         manifest = create(root / "inputs")
         sources = list((root / "inputs").glob("*.png"))
         before = {path: sha256(path) for path in sources}
-        records = standardize(manifest, root / "outputs", scale_bar_um=20)
+        records = standardize(manifest, root / "outputs", scale_bar_um=20, font=TEST_FONT)
         assert len(records) == 4
         assert all(record["output_width"] == 500 and record["output_height"] == 390 for record in records)
         assert all(record["scale_bar"]["scale_bar_pixels"] == 80 for record in records)
@@ -49,7 +51,7 @@ def main() -> None:
         invalid_manifest = root / "inputs" / "invalid_manifest.csv"
         invalid.to_csv(invalid_manifest, index=False)
         try:
-            standardize(invalid_manifest, root / "invalid_outputs", scale_bar_um=20)
+            standardize(invalid_manifest, root / "invalid_outputs", scale_bar_um=20, font=TEST_FONT)
         except ValueError as exc:
             assert "mixed display_max" in str(exc)
         else:
@@ -57,27 +59,30 @@ def main() -> None:
 
         high_bit = (np.arange(120 * 160, dtype=np.uint16).reshape(120, 160) % 4096)
         high_path = root / "inputs" / "high_bit.tif"
-        Image.fromarray(high_bit, mode="I;16").save(high_path)
+        Image.fromarray(high_bit).save(high_path)
         high_manifest = root / "inputs" / "high_manifest.csv"
         pd.DataFrame([{
             "file": high_path.name, "output_name": "high", "batch": "high_batch",
             "um_per_pixel": 0.5, "display_min": 100, "display_max": 4000,
             "gamma": 1.0, "lut": "gray",
         }]).to_csv(high_manifest, index=False)
-        high_records = standardize(high_manifest, root / "high_outputs", scale_bar_um=10)
+        high_records = standardize(high_manifest, root / "high_outputs", scale_bar_um=10,
+                                   font=TEST_FONT)
         assert high_records[0]["source_mode"] in {"I;16", "I"}
         missing_window = pd.read_csv(high_manifest).drop(columns=["display_min", "display_max"])
         missing_manifest = root / "inputs" / "high_missing_window.csv"
         missing_window.to_csv(missing_manifest, index=False)
         try:
-            standardize(missing_manifest, root / "high_invalid", scale_bar_um=10)
+            standardize(missing_manifest, root / "high_invalid", scale_bar_um=10,
+                        font=TEST_FONT)
         except ValueError as exc:
             assert "require explicit batch-locked display_min and display_max" in str(exc)
         else:
             raise AssertionError("Higher-bit-depth data were silently truncated without a display window")
 
         try:
-            standardize(manifest, root / "too_wide", scale_bar_um=20, panel_width_mm=100)
+            standardize(manifest, root / "too_wide", scale_bar_um=20,
+                        panel_width_mm=100, font=TEST_FONT)
         except ValueError as exc:
             assert "pixels will not be invented" in str(exc)
         else:

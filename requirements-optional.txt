@@ -1,0 +1,6 @@
+# Optional integrations used by doctor/QA when available.
+# The core figure workbenches do not require these packages.
+PyMuPDF>=1.23,<2
+python-docx>=1.1,<2
+python-pptx>=0.6.23,<2
+tifffile>=2024.0

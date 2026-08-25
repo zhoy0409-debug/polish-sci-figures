@@ -14,6 +14,7 @@ import pandas as pd
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import advanced_template_workbench as workbench
 from advanced_template_workbench import (
     aligned_series,
     confusion,
@@ -30,6 +31,8 @@ from advanced_template_workbench import (
     swimmer,
     volcano,
 )
+
+workbench._ALLOW_FONT_FALLBACK = True
 
 
 def write(root: Path, name: str, frame: pd.DataFrame) -> Path:

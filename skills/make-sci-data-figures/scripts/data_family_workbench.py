@@ -13,7 +13,27 @@ import argparse
 import json
 import math
 import os
+import tempfile
 from pathlib import Path
+
+
+def _ensure_mpl_config_dir() -> None:
+    if os.environ.get("MPLCONFIGDIR"):
+        return
+    repo_root = Path(__file__).resolve().parents[3]
+    for candidate in (
+        repo_root / ".cache" / "matplotlib",
+        Path(tempfile.gettempdir()) / "polish-sci-figures-mplconfig",
+    ):
+        try:
+            candidate.mkdir(parents=True, exist_ok=True)
+            os.environ["MPLCONFIGDIR"] = str(candidate)
+            return
+        except OSError:
+            continue
+
+
+_ensure_mpl_config_dir()
 
 import matplotlib
 
@@ -31,6 +51,7 @@ from figure_workbench import (
     FIGSIZE,
     clean_axis,
     file_sha256,
+    font_audit,
     make_gallery,
     mean_ci,
     read_table,
@@ -59,18 +80,14 @@ def _numeric(series: pd.Series, name: str) -> pd.Series:
     return converted
 
 
-def _font_profile(requested: str) -> tuple[str, dict]:
-    actual, path = resolve_font(requested)
-    payload = {
-        "requested": requested,
-        "actual": actual,
-        "file": Path(path).name if path else None,
-        "warning": None,
-    }
-    if actual != requested:
+def _font_profile(requested: str, allow_fallback: bool = False) -> tuple[str, dict]:
+    actual, path, fallback, _ = resolve_font(requested, allow_fallback)
+    payload = font_audit(requested, actual, path, fallback, allow_fallback)
+    payload["warning"] = None
+    if fallback:
         payload["warning"] = (
-            f"Requested font '{requested}' was unavailable; rendered with '{actual}'. "
-            "Regenerate where the target font is installed before submission."
+            f"Requested font '{requested}' was unavailable; rendered with '{actual}' because "
+            "--allow-font-fallback was set. This output is not approved as a final submission file."
         )
     style(actual)
     return actual, payload
@@ -254,6 +271,7 @@ def relationship(
     palette: str = "zhoy_muted",
     colors_text: str | None = None,
     font: str = DEFAULT_FONT,
+    allow_font_fallback: bool = False,
 ) -> list[Path]:
     df = read_table(input_path)
     columns = [unit, x, y] + ([group] if group else [])
@@ -271,7 +289,7 @@ def relationship(
     levels = ["all"] if group is None else data[group].astype(str).drop_duplicates().tolist()
     if group and any((data[group].astype(str) == level).sum() < 4 for level in levels):
         raise ValueError("Each displayed group needs at least four complete biological units.")
-    _, font_info = _font_profile(font)
+    _, font_info = _font_profile(font, allow_font_fallback)
     colors = resolve_palette(palette, colors_text, len(levels))
     estimates = {"overall": _fit_summary(data[x].to_numpy(float), data[y].to_numpy(float))}
     if group:
@@ -309,6 +327,7 @@ def relationship(
         "palette": palette,
         "colors": colors_text,
         "font": font,
+        "allow_font_fallback": allow_font_fallback,
         "figsize_inches": FIGSIZE,
         "note": "Palette changes preserve data, fits, limits, labels, and grouping.",
     }
@@ -427,6 +446,7 @@ def timecourse(
     palette: str = "zhoy_muted",
     colors_text: str | None = None,
     font: str = DEFAULT_FONT,
+    allow_font_fallback: bool = False,
 ) -> list[Path]:
     df = read_table(input_path)
     columns = [unit, group, time, value]
@@ -447,7 +467,7 @@ def timecourse(
         raise ValueError("Each group needs at least three biological units.")
     if any(data.loc[data[group].astype(str) == level, time].nunique() < 2 for level in levels):
         raise ValueError("Each group needs at least two observed time values.")
-    _, font_info = _font_profile(font)
+    _, font_info = _font_profile(font, allow_font_fallback)
     colors = resolve_palette(palette, colors_text, len(levels))
     analysis = {
         "family": "timecourse",
@@ -476,6 +496,7 @@ def timecourse(
         "palette": palette,
         "colors": colors_text,
         "font": font,
+        "allow_font_fallback": allow_font_fallback,
         "figsize_inches": FIGSIZE,
         "note": "Palette changes preserve observations, summaries, intervals, labels, and group order.",
     }
@@ -586,6 +607,7 @@ def composition(
     palette: str = "zhoy_muted",
     colors_text: str | None = None,
     font: str = DEFAULT_FONT,
+    allow_font_fallback: bool = False,
 ) -> list[Path]:
     df = read_table(input_path)
     columns = [sample, category, value] + ([group] if group else [])
@@ -617,7 +639,7 @@ def composition(
             "More than 12 categories would make the fixed publication canvas unreadable; "
             "pre-specify aggregation or use a specialist composition view."
         )
-    _, font_info = _font_profile(font)
+    _, font_info = _font_profile(font, allow_font_fallback)
     colors = resolve_palette(palette, colors_text, len(categories))
     analysis = {
         "family": "composition",
@@ -652,6 +674,7 @@ def composition(
         "palette": palette,
         "colors": colors_text,
         "font": font,
+        "allow_font_fallback": allow_font_fallback,
         "figsize_inches": FIGSIZE,
         "note": "Palette changes preserve normalized values, sample/category order, labels, and geometry.",
     }
@@ -741,6 +764,7 @@ def matrix(
     palette: str = "zhoy_muted",
     colors_text: str | None = None,
     font: str = DEFAULT_FONT,
+    allow_font_fallback: bool = False,
 ) -> list[Path]:
     df = read_table(input_path)
     columns = [row, column, value]
@@ -777,7 +801,7 @@ def matrix(
     if actual_cluster in {"columns", "both"}:
         column_index = _cluster_order(pivot.to_numpy(float), axis=1)
     pivot = pivot.iloc[row_index, column_index]
-    _, font_info = _font_profile(font)
+    _, font_info = _font_profile(font, allow_font_fallback)
     colors = resolve_palette(palette, colors_text, 2)
     analysis = {
         "family": "matrix",
@@ -811,6 +835,7 @@ def matrix(
         "palette": palette,
         "colors": colors_text,
         "font": font,
+        "allow_font_fallback": allow_font_fallback,
         "figsize_inches": FIGSIZE,
         "note": "Palette changes preserve values, clustering, order, labels, and geometry.",
     }
@@ -830,6 +855,7 @@ def recolor(recipe_path: Path, outdir: Path, palette: str, colors: str | None) -
         "palette": palette,
         "colors_text": colors,
         "font": recipe.get("font", DEFAULT_FONT),
+        "allow_font_fallback": recipe.get("allow_font_fallback", False),
     }
     family = recipe["family"]
     if family == "relationship":
@@ -866,6 +892,8 @@ def _shared(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--palette", default="zhoy_muted")
     parser.add_argument("--colors", help="Comma-separated hex colors; overrides --palette")
     parser.add_argument("--font", default=DEFAULT_FONT)
+    parser.add_argument("--allow-font-fallback", action="store_true",
+                        help="permit a draft-only fallback font when --font is not installed")
     parser.add_argument("--outdir", required=True)
 
 
@@ -880,7 +908,16 @@ def parser() -> argparse.ArgumentParser:
     rel.add_argument("--group")
     rel.set_defaults(
         func=lambda a: relationship(
-            Path(a.input), a.x, a.y, a.unit, Path(a.outdir), a.group, a.palette, a.colors, a.font
+            Path(a.input),
+            a.x,
+            a.y,
+            a.unit,
+            Path(a.outdir),
+            a.group,
+            a.palette,
+            a.colors,
+            a.font,
+            a.allow_font_fallback,
         )
     )
     time = sub.add_parser("timecourse", help="Individual trajectories and change from baseline")
@@ -900,6 +937,7 @@ def parser() -> argparse.ArgumentParser:
             a.palette,
             a.colors,
             a.font,
+            a.allow_font_fallback,
         )
     )
     comp = sub.add_parser("composition", help="Normalized stacked composition and heatmap")
@@ -919,6 +957,7 @@ def parser() -> argparse.ArgumentParser:
             a.palette,
             a.colors,
             a.font,
+            a.allow_font_fallback,
         )
     )
     mat = sub.add_parser("matrix", help="Cluster-aware heatmap and dot matrix")
@@ -940,6 +979,7 @@ def parser() -> argparse.ArgumentParser:
             a.palette,
             a.colors,
             a.font,
+            a.allow_font_fallback,
         )
     )
     color = sub.add_parser("recolor", help="Rerender any saved family recipe with a new palette")

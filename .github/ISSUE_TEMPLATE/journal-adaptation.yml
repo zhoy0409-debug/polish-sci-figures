@@ -1,0 +1,25 @@
+name: Journal adaptation
+description: Request support for a journal or publisher requirement
+title: "[Journal]: "
+labels: ["journal"]
+body:
+  - type: input
+    id: journal
+    attributes:
+      label: Journal or publisher
+    validations:
+      required: true
+  - type: textarea
+    id: official_requirements
+    attributes:
+      label: Official current requirements
+      description: Link to official author instructions and note the date checked
+    validations:
+      required: true
+  - type: textarea
+    id: requested_behavior
+    attributes:
+      label: Requested behavior
+      description: Font, canvas, file format, color, panel label, or submission rule to support
+    validations:
+      required: true

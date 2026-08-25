@@ -9,6 +9,8 @@ import hashlib
 import io
 import json
 import math
+import os
+import tempfile
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -16,7 +18,29 @@ import numpy as np
 import pandas as pd
 from PIL import Image, ImageDraw, ImageFont
 
+
+def _ensure_mpl_config_dir() -> None:
+    if os.environ.get("MPLCONFIGDIR"):
+        return
+    repo_root = Path(__file__).resolve().parents[3]
+    for candidate in (
+        repo_root / ".cache" / "matplotlib",
+        Path(tempfile.gettempdir()) / "polish-sci-figures-mplconfig",
+    ):
+        try:
+            candidate.mkdir(parents=True, exist_ok=True)
+            os.environ["MPLCONFIGDIR"] = str(candidate)
+            return
+        except OSError:
+            continue
+
+
+_ensure_mpl_config_dir()
+
+import matplotlib.font_manager as fm
+
 LOCKED_COLUMNS = ["um_per_pixel", "display_min", "display_max", "gamma", "lut", "scale_bar_um"]
+DEFAULT_FONT = "Arial"
 
 
 def sha256(path: Path) -> str:
@@ -127,7 +151,7 @@ def apply_display(image: Image.Image, display_min, display_max, gamma: float, lu
             return image.convert("RGB")
         arr = np.asarray(image.convert("RGB"), dtype=float)
         arr = np.clip((arr - lo) / (hi - lo), 0, 1) ** (1.0 / gamma)
-        return Image.fromarray(np.round(arr * 255).astype(np.uint8), "RGB")
+        return Image.fromarray(np.round(arr * 255).astype(np.uint8))
     arr = np.asarray(image if high_bit else image.convert("L"), dtype=float)
     arr = np.clip((arr - lo) / (hi - lo), 0, 1) ** (1.0 / gamma)
     gray = np.round(arr * 255).astype(np.uint8)
@@ -141,20 +165,39 @@ def apply_display(image: Image.Image, display_min, display_max, gamma: float, lu
         rgb = np.stack([np.zeros_like(gray), gray, gray], axis=-1)
     else:
         raise ValueError("lut must be gray, green, magenta, or cyan.")
-    return Image.fromarray(rgb, "RGB")
+    return Image.fromarray(rgb)
 
 
-def find_font(size: int) -> tuple[ImageFont.ImageFont, str]:
-    candidates = [
-        Path("C:/Windows/Fonts/arial.ttf"),
-        Path("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf"),
-        Path("/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf"),
-        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
-    ]
-    for path in candidates:
-        if path.is_file():
-            return ImageFont.truetype(str(path), size=size), str(path)
-    return ImageFont.load_default(), "Pillow default bitmap font"
+def font_audit(requested: str, actual: str, font_path: str | None,
+               fallback: bool, allow_fallback: bool) -> dict:
+    return {
+        "requested": requested,
+        "actual": actual,
+        "file": Path(font_path).name if font_path else None,
+        "font_file": str(font_path) if font_path else None,
+        "fallback": bool(fallback),
+        "allow_font_fallback": bool(allow_fallback),
+        "final_delivery_allowed": not fallback,
+    }
+
+
+def find_font(size: int, requested: str = DEFAULT_FONT,
+              allow_fallback: bool = False) -> tuple[ImageFont.ImageFont, dict]:
+    try:
+        path = fm.findfont(fm.FontProperties(family=requested), fallback_to_default=False)
+        actual = requested
+        fallback = False
+    except ValueError as exc:
+        if not allow_fallback:
+            raise ValueError(
+                f"Required font '{requested}' is not installed. Install the target font, pass "
+                "--font with an installed publication-approved family, or add --allow-font-fallback "
+                "only for draft previews that are not final submission files."
+            ) from exc
+        actual = "DejaVu Sans"
+        path = fm.findfont(fm.FontProperties(family=actual), fallback_to_default=False)
+        fallback = True
+    return ImageFont.truetype(path, size=size), font_audit(requested, actual, path, fallback, allow_fallback)
 
 
 def contrast_color(image: Image.Image, box: tuple[int, int, int, int]) -> str:
@@ -163,7 +206,8 @@ def contrast_color(image: Image.Image, box: tuple[int, int, int, int]) -> str:
 
 
 def draw_scale_bar(image: Image.Image, um_per_pixel: float, bar_um: float,
-                   label_bar: bool = True) -> tuple[Image.Image, dict]:
+                   label_bar: bool = True, font_name: str = DEFAULT_FONT,
+                   allow_font_fallback: bool = False) -> tuple[Image.Image, dict]:
     out = image.copy().convert("RGB")
     length_px = int(round(bar_um / um_per_pixel))
     margin = max(12, int(round(min(out.size) * 0.035)))
@@ -181,7 +225,7 @@ def draw_scale_bar(image: Image.Image, um_per_pixel: float, bar_um: float,
     draw = ImageDraw.Draw(out)
     draw.rectangle((x0, y0, x1, y1), fill=color)
     font_size = max(18, int(round(out.height * 0.070)))
-    font, font_path = find_font(font_size)
+    font, font_info = find_font(font_size, font_name, allow_font_fallback)
     label = f"{bar_um:g} µm"
     label_box = None
     if label_bar:
@@ -198,18 +242,20 @@ def draw_scale_bar(image: Image.Image, um_per_pixel: float, bar_um: float,
         "scale_bar_label": label if label_bar else None,
         "scale_bar_label_box": label_box, "font_size_pixels": font_size,
         "scale_bar_label_alignment": "centered_over_scale_bar",
-        "font_file": Path(font_path).name if Path(font_path).suffix else font_path,
+        "font": font_info,
+        "font_file": font_info["file"],
     }
 
 
-def draw_optional_label(image: Image.Image, text: str) -> tuple[Image.Image, dict | None]:
+def draw_optional_label(image: Image.Image, text: str, font_name: str = DEFAULT_FONT,
+                        allow_font_fallback: bool = False) -> tuple[Image.Image, dict | None]:
     text = str(clean_scalar(text, "")).strip()
     if not text:
         return image, None
     out = image.copy()
     draw = ImageDraw.Draw(out)
     font_size = max(14, int(round(out.height * 0.050)))
-    font, font_path = find_font(font_size)
+    font, font_info = find_font(font_size, font_name, allow_font_fallback)
     margin = max(12, int(round(min(out.size) * 0.035)))
     bounds = draw.textbbox((0, 0), text, font=font)
     w, h = bounds[2] - bounds[0], bounds[3] - bounds[1]
@@ -218,12 +264,14 @@ def draw_optional_label(image: Image.Image, text: str) -> tuple[Image.Image, dic
     draw.text((margin, margin), text, font=font, fill=color)
     return out, {"label": text, "label_box": [margin, margin, margin + w, margin + h],
                  "label_color": color, "font_size_pixels": font_size,
-                 "font_file": Path(font_path).name if Path(font_path).suffix else font_path}
+                 "font": font_info,
+                 "font_file": font_info["file"]}
 
 
 def write_editable_panel_svg(display_image: Image.Image, output: Path,
                              scale_bar: dict | None, label: dict | None,
-                             panel_width_mm: float, panel_height_mm: float) -> None:
+                             panel_width_mm: float, panel_height_mm: float,
+                             font_family: str) -> None:
     """Embed the faithful raster while keeping bar and text as vector/live layers."""
     buffer = io.BytesIO()
     display_image.convert("RGB").save(buffer, format="PNG")
@@ -237,7 +285,7 @@ def write_editable_panel_svg(display_image: Image.Image, output: Path,
         f'<image id="display-raster" x="0" y="0" width="{width}" height="{height}" '
         f'href="data:image/png;base64,{encoded}"/>',
         '</g>',
-        '<g id="editable-overlays" font-family="Arial, Helvetica, sans-serif">',
+        f'<g id="editable-overlays" font-family="{escape(font_family)}">',
     ]
     if scale_bar:
         x0, y0, x1, y1 = scale_bar["scale_bar_box"]
@@ -279,7 +327,8 @@ def make_montage(files: list[Path], output: Path, columns: int = 2, gutter: int 
 def standardize(manifest: Path, outdir: Path, target_width: int | None = None,
                 target_height: int | None = None, scale_bar_um: float | None = None,
                 label_scale_bar: bool = True, output_format: str = "png",
-                panel_width_mm: float | None = None) -> list[dict]:
+                panel_width_mm: float | None = None, font: str = DEFAULT_FONT,
+                allow_font_fallback: bool = False) -> list[dict]:
     raw = pd.read_csv(manifest)
     row_scale = "scale_bar_um" in raw and pd.to_numeric(raw["scale_bar_um"], errors="coerce").notna().any()
     df = validate_manifest(raw, manifest, require_scale=scale_bar_um is not None or row_scale)
@@ -316,8 +365,15 @@ def standardize(manifest: Path, outdir: Path, target_width: int | None = None,
         bar_audit = None
         if bar_value is not None:
             preview, bar_audit = draw_scale_bar(preview, float(row["um_per_pixel"]),
-                                                float(bar_value), label_scale_bar)
-        preview, label_audit = draw_optional_label(preview, row.get("label", ""))
+                                                float(bar_value), label_scale_bar,
+                                                font, allow_font_fallback)
+        preview, label_audit = draw_optional_label(preview, row.get("label", ""),
+                                                   font, allow_font_fallback)
+        font_info = (
+            bar_audit.get("font") if bar_audit else
+            label_audit.get("font") if label_audit else
+            font_audit(font, font, None, False, allow_font_fallback)
+        )
         stem = str(row["output_name"])
         display_png = outdir / f"{stem}_display.png"
         preview_output = outdir / f"{stem}_preview.png"
@@ -325,7 +381,8 @@ def standardize(manifest: Path, outdir: Path, target_width: int | None = None,
         display.save(display_png)
         preview.save(preview_output)
         write_editable_panel_svg(display, svg_output, bar_audit, label_audit,
-                                 physical_width_mm, physical_height_mm)
+                                 physical_width_mm, physical_height_mm,
+                                 font_info["actual"])
         archival_output = None
         if output_format == "tiff":
             archival_output = outdir / f"{stem}_display.tif"
@@ -349,6 +406,7 @@ def standardize(manifest: Path, outdir: Path, target_width: int | None = None,
             "gamma": float(clean_scalar(row.get("gamma"), 1.0)),
             "lut": str(clean_scalar(row.get("lut"), "gray")),
             "scale_bar": bar_audit, "optional_label": label_audit,
+            "font": font_info,
             "resampled": False, "raw_modified": False,
             "svg_editability": "Raster image content with editable vector scale bar and live text overlays.",
         }
@@ -373,6 +431,9 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--format", choices=["png", "tiff"], default="png")
     p.add_argument("--panel-width-mm", type=float,
                    help="Final SVG panel width; omitted means the largest width that preserves 300 dpi")
+    p.add_argument("--font", default=DEFAULT_FONT)
+    p.add_argument("--allow-font-fallback", action="store_true",
+                   help="permit a draft-only fallback font when --font is not installed")
     return p
 
 
@@ -380,7 +441,8 @@ def main() -> None:
     args = parser().parse_args()
     records = standardize(Path(args.manifest), Path(args.outdir), args.target_width,
                           args.target_height, args.scale_bar_um, not args.no_scale_bar_label,
-                          args.format, args.panel_width_mm)
+                          args.format, args.panel_width_mm, args.font,
+                          args.allow_font_fallback)
     print(f"Standardized {len(records)} images in {Path(args.outdir).resolve()}")
 
 

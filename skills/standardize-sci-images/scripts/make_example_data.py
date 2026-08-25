@@ -22,7 +22,7 @@ def synthetic_field(seed: int, width: int, height: int, shift: int) -> Image.Ima
         amplitude = rng.uniform(90, 220)
         field += amplitude * np.exp(-((xx - cx) ** 2 + (yy - cy) ** 2) / (2 * sigma**2))
     field += rng.normal(8, 3, field.shape)
-    image = Image.fromarray(np.clip(field, 0, 255).astype(np.uint8), "L")
+    image = Image.fromarray(np.clip(field, 0, 255).astype(np.uint8))
     return image.filter(ImageFilter.GaussianBlur(radius=0.45))
 
 
