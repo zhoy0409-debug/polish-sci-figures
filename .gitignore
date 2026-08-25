@@ -1,6 +1,8 @@
 __pycache__/
 *.py[cod]
+.cache/
 .venv/
+dist/
 .DS_Store
 Thumbs.db
 demo/final_figures/

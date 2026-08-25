@@ -17,6 +17,33 @@
 
 ---
 
+## Choose your entry
+
+### I have raw CSV or Excel data
+
+Start with `make-sci-data-figures` or the unified inspector:
+
+```bash
+python sci_figures.py inspect data.csv
+python sci_figures.py route data.csv
+```
+
+### I have microscopy, fluorescence, pathology, or EM images
+
+Start with `standardize-sci-images` and a manifest. Scale bars require authoritative calibration.
+
+```bash
+python skills/standardize-sci-images/scripts/standardize_images.py manifest.csv --outdir standardized --scale-bar-um 20
+```
+
+### I already have a Figure/SVG and need final QA
+
+Start with `polish-sci-figures` or the unified QA command:
+
+```bash
+python sci_figures.py qa figure.svg
+```
+
 ## Start with the problem, not a chart template
 
 - **Raw CSV/TSV/XLSX:** use `make-sci-data-figures` to identify the experimental unit, validate the design, and generate several defensible candidates.
@@ -60,7 +87,7 @@ Conserved cell-state flows, directional ligand–receptor interactions, RNA–AT
 | 2. Images | `standardize-sci-images` | Equal-size scientific images, calibrated scale bars, montage, and SHA-256 processing audit |
 | 3. Finish | `polish-sci-figures` | Fixed-canvas SVG/PDF/PNG, final typography, assembly, editability checks, and container QA |
 
-All three stages use Arial by default, allow one-place journal-font replacement, keep SVG text live, and reject unintended overlap.
+All three stages use Arial by default, allow one-place journal-font replacement, keep SVG text live, and reject unintended overlap. In v1.3.0 the requested font must be installed; fallback is a draft-only opt-in and is recorded as not approved for final delivery.
 
 ## 124-template scientific atlas
 
@@ -132,14 +159,18 @@ Exploratory and confirmatory scopes remain separate. Adjusted survival, generali
 
 Download the [latest release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest) or clone the repository, then install the dependencies and copy the three skill folders.
 
+OpenAI's current Skills documentation says Skills are supported in Codex and the API, and that Plugins package Skills for broader workflows across ChatGPT and Codex. Checked: 2026-08-25.
+
+Use `$HOME/.agents/skills` as the primary local install path. Some older Codex builds may still read `$HOME/.codex/skills`; that path is kept only as a legacy compatibility note.
+
 ### Windows PowerShell
 
 ```powershell
 python -m pip install -r requirements.txt
-New-Item -ItemType Directory -Force "$HOME\.codex\skills" | Out-Null
-Copy-Item -Recurse -Force ".\skills\make-sci-data-figures" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\skills\standardize-sci-images" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\skills\polish-sci-figures" "$HOME\.codex\skills\"
+New-Item -ItemType Directory -Force "$HOME\.agents\skills" | Out-Null
+Copy-Item -Recurse -Force ".\skills\make-sci-data-figures" "$HOME\.agents\skills\"
+Copy-Item -Recurse -Force ".\skills\standardize-sci-images" "$HOME\.agents\skills\"
+Copy-Item -Recurse -Force ".\skills\polish-sci-figures" "$HOME\.agents\skills\"
 ```
 
 <details>
@@ -147,13 +178,24 @@ Copy-Item -Recurse -Force ".\skills\polish-sci-figures" "$HOME\.codex\skills\"
 
 ```bash
 python -m pip install -r requirements.txt
-mkdir -p ~/.codex/skills
-cp -R skills/make-sci-data-figures ~/.codex/skills/
-cp -R skills/standardize-sci-images ~/.codex/skills/
-cp -R skills/polish-sci-figures ~/.codex/skills/
+mkdir -p "$HOME/.agents/skills"
+cp -R skills/make-sci-data-figures "$HOME/.agents/skills/"
+cp -R skills/standardize-sci-images "$HOME/.agents/skills/"
+cp -R skills/polish-sci-figures "$HOME/.agents/skills/"
 ```
 
 </details>
+
+Legacy Codex compatibility, only if your local build documents it:
+
+```bash
+mkdir -p "$HOME/.codex/skills"
+cp -R skills/make-sci-data-figures "$HOME/.codex/skills/"
+cp -R skills/standardize-sci-images "$HOME/.codex/skills/"
+cp -R skills/polish-sci-figures "$HOME/.codex/skills/"
+```
+
+For ChatGPT Web, ChatGPT Work, or wider workspace distribution, package these Skills as a Plugin in a future release. This repository does not claim that a Plugin has already been published.
 
 Start a new Codex session after installation.
 
@@ -165,6 +207,80 @@ Use $make-sci-data-figures to rerender the selected figure with the okabe_ito pa
 Use $standardize-sci-images to standardize this microscopy batch and add calibrated 20 µm scale bars.
 Use $polish-sci-figures to assemble the selected panels and audit the final editable SVGs.
 ```
+
+## Unified CLI
+
+```bash
+python sci_figures.py doctor --font Arial
+python sci_figures.py inspect data.xlsx
+python sci_figures.py route data.xlsx
+python sci_figures.py qa figure.svg
+```
+
+Use `--help` on any subcommand. `doctor` reports PASS/WARN/FAIL for Python, core and optional dependencies, Matplotlib cache, fonts, LibreOffice, PDF renderers, SVG QA tools, platform, skill folders, and key resources. `inspect` reads CSV/TSV/XLSX, reports columns, types, missingness, duplicates, candidate roles, and next commands without running inferential analysis. `route` suggests an existing workbench route. `qa` runs applicable font/source/SVG/raster/accessibility checks and returns a non-zero exit code on blocking failures.
+
+## Shortest Successful Path
+
+```bash
+python sci_figures.py doctor --font "DejaVu Sans"
+python sci_figures.py inspect skills/make-sci-data-figures/examples/synthetic_group_comparison.csv
+python skills/make-sci-data-figures/scripts/figure_workbench.py generate \
+  skills/make-sci-data-figures/examples/synthetic_group_comparison.csv \
+  --group condition --value Response --unit sample_id \
+  --design independent --order Control,Treatment \
+  --outcome-type continuous --font "DejaVu Sans" --outdir demo_run
+python sci_figures.py qa demo_run/raw_points_estimate_ci.svg
+```
+
+Use Arial or a journal-required font for final submission files. `DejaVu Sans` is used above only because it is bundled with Matplotlib and works on CI systems that do not install Arial.
+
+## Complete Reproducible Example
+
+```bash
+python skills/make-sci-data-figures/examples/make_family_examples.py
+python skills/make-sci-data-figures/scripts/data_family_workbench.py relationship \
+  skills/make-sci-data-figures/examples/synthetic_relationship.csv \
+  --x exposure --y response --unit unit --group cohort \
+  --font "DejaVu Sans" --outdir relationship_results
+python sci_figures.py qa relationship_results/relationship_regression.svg
+```
+
+Chinese prompt example:
+
+```text
+Use $make-sci-data-figures 先检查这个 CSV 的实验单位、分组和值列，再生成候选 SCI 图并保留分析记录。
+```
+
+English prompt example:
+
+```text
+Use $polish-sci-figures to audit this SVG for canvas consistency, live text, font fallback, accessibility, and final delivery readiness.
+```
+
+## Common Failures
+
+| Message | Meaning | Fix |
+| --- | --- | --- |
+| `Required font 'Arial' is not installed` | The target font is missing and fallback is blocked | Install the font, choose an installed final font, or use `--allow-font-fallback` only for drafts |
+| `Legacy .xls is not a tested v1.3.0 input` | Old Excel format is outside the tested core path | Convert to `.xlsx`, CSV, or TSV |
+| `A scale bar requires an authoritative um_per_pixel column` | Calibration is missing | Add calibration from acquisition metadata or records |
+| `Independent data contain repeated experimental-unit IDs` | Possible pseudoreplication | Declare paired/repeated/nested design or aggregate technical replicates explicitly |
+| `SVG contains embedded raster layer(s)` | The SVG is partially editable | Do not describe it as fully vector editable |
+
+## Data Privacy And Local Processing
+
+The command-line scripts process local files on the machine where you run them. They do not intentionally upload data. Codex, ChatGPT, GitHub Actions, or any future Plugin surface may have separate data-handling behavior; review that environment before using sensitive patient, genomic, unpublished, or proprietary research data.
+
+## Version Compatibility
+
+| Component | v1.3.0 tested range |
+| --- | --- |
+| Python | 3.10-3.12 |
+| OS CI matrix | Ubuntu, Windows, macOS |
+| Tables | CSV, TSV, XLSX |
+| Legacy `.xls` | Not supported; convert first |
+| Core dependencies | See `requirements.txt` |
+| Optional integrations | See `requirements-optional.txt` |
 
 ## Reproduce and verify
 

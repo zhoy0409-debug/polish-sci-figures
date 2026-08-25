@@ -14,8 +14,28 @@ import json
 import logging
 import math
 import os
+import tempfile
 import warnings
 from pathlib import Path
+
+
+def _ensure_mpl_config_dir() -> None:
+    if os.environ.get("MPLCONFIGDIR"):
+        return
+    repo_root = Path(__file__).resolve().parents[3]
+    for candidate in (
+        repo_root / ".cache" / "matplotlib",
+        Path(tempfile.gettempdir()) / "polish-sci-figures-mplconfig",
+    ):
+        try:
+            candidate.mkdir(parents=True, exist_ok=True)
+            os.environ["MPLCONFIGDIR"] = str(candidate)
+            return
+        except OSError:
+            continue
+
+
+_ensure_mpl_config_dir()
 
 import matplotlib
 matplotlib.use("Agg")
@@ -43,8 +63,14 @@ def read_table(path: Path, sheet: str | int = 0) -> pd.DataFrame:
         return pd.read_csv(path)
     if suffix in {".tsv", ".txt"}:
         return pd.read_csv(path, sep="\t")
-    if suffix in {".xlsx", ".xls"}:
+    if suffix == ".xlsx":
         return pd.read_excel(path, sheet_name=sheet)
+    if suffix == ".xls":
+        raise ValueError(
+            "Legacy .xls workbooks are not officially supported in v1.3.0 because the required "
+            "engine path is not part of the tested core dependency set. Convert the file to .xlsx, "
+            "CSV, or TSV before running the workbench."
+        )
     raise ValueError(f"Unsupported input type: {suffix}. Use CSV, TSV, or XLSX.")
 
 
@@ -90,13 +116,33 @@ def resolve_palette(name: str, colors: str | None, n: int) -> list[str]:
     return palette[:n]
 
 
-def resolve_font(requested: str) -> tuple[str, str | None]:
+def resolve_font(requested: str, allow_fallback: bool = False) -> tuple[str, str | None, bool, bool]:
     try:
-        path = fm.findfont(requested, fallback_to_default=False)
-        return requested, path
-    except ValueError:
-        fallback_path = fm.findfont("DejaVu Sans")
-        return "DejaVu Sans", fallback_path
+        path = fm.findfont(fm.FontProperties(family=requested), fallback_to_default=False)
+        return requested, path, False, True
+    except ValueError as exc:
+        if not allow_fallback:
+            raise ValueError(
+                f"Required font '{requested}' is not installed. Install the target font, pass "
+                "--font with an installed publication-approved family, or add --allow-font-fallback "
+                "only for drafts that are not final submission files."
+            ) from exc
+        fallback = "DejaVu Sans"
+        fallback_path = fm.findfont(fm.FontProperties(family=fallback), fallback_to_default=False)
+        return fallback, fallback_path, True, False
+
+
+def font_audit(requested: str, actual: str, font_path: str | None,
+               fallback: bool, allow_fallback: bool) -> dict:
+    return {
+        "requested": requested,
+        "actual": actual,
+        "file": Path(font_path).name if font_path else None,
+        "font_file": str(font_path) if font_path else None,
+        "fallback": bool(fallback),
+        "allow_font_fallback": bool(allow_fallback),
+        "final_delivery_allowed": not fallback,
+    }
 
 
 def style(font: str) -> None:
@@ -661,7 +707,7 @@ def generate(input_path: Path, group: str, value: str, design: str, outdir: Path
              palette_name: str = "zhoy_muted", colors_text: str | None = None,
              unit_label: str | None = None, font_requested: str = DEFAULT_FONT,
              outcome_type: str = "continuous", scope: str = "exploratory",
-             show_p_value: bool = False) -> list[Path]:
+             show_p_value: bool = False, allow_font_fallback: bool = False) -> list[Path]:
     df = read_table(input_path)
     if group not in df or value not in df:
         raise ValueError(f"Expected columns '{group}' and '{value}'. Found: {list(df.columns)}")
@@ -680,10 +726,12 @@ def generate(input_path: Path, group: str, value: str, design: str, outdir: Path
         raise ValueError("--show-p-value requires --scope confirmatory and a pre-specified analysis family.")
     outdir.mkdir(parents=True, exist_ok=True)
     profile = profile_data(df, group, value, subject)
-    actual_font, font_path = resolve_font(font_requested)
-    if actual_font != font_requested:
+    actual_font, font_path, fallback, final_ok = resolve_font(font_requested, allow_font_fallback)
+    font_info = font_audit(font_requested, actual_font, font_path, fallback, allow_font_fallback)
+    if fallback:
         profile["warnings"].append(
-            f"Requested font '{font_requested}' was unavailable; rendered with '{actual_font}'. Regenerate on a system with the target font before submission."
+            f"Requested font '{font_requested}' was unavailable; rendered with '{actual_font}' because "
+            "--allow-font-fallback was set. This output is not approved as a final submission file."
         )
     style(actual_font)
     analysis, plotting_data = analyse(df, group, value, order, design, subject)
@@ -700,11 +748,7 @@ def generate(input_path: Path, group: str, value: str, design: str, outdir: Path
             "Confirmatory scope is user-declared. Verify that the outcome, contrast, analysis family, stopping rule, "
             "and any multiplicity control were pre-specified; this workbench cannot infer a study protocol."
         )
-    analysis["font"] = {
-        "requested": font_requested,
-        "actual": actual_font,
-        "file": Path(font_path).name if font_path else None,
-    }
+    analysis["font"] = font_info
     analysis["source_file"] = input_path.name
     analysis["source_sha256"] = file_sha256(input_path)
     analysis["synthetic_example"] = "synthetic" in input_path.name.lower()
@@ -763,7 +807,9 @@ def generate(input_path: Path, group: str, value: str, design: str, outdir: Path
         "input": recipe_input, "group": group, "value": value, "design": design,
         "subject": subject, "order": order, "palette": palette_name, "colors": colors_text,
         "unit_label": unit_label, "font": font_requested, "outcome_type": outcome_type,
-        "scope": scope, "show_p_value": show_p_value, "figsize_inches": FIGSIZE,
+        "scope": scope, "show_p_value": show_p_value,
+        "allow_font_fallback": allow_font_fallback,
+        "figsize_inches": FIGSIZE,
         "note": "Recoloring must not change data, statistics, geometry, labels, or group order.",
     }
     write_json(outdir / "figure_recipe.json", recipe)
@@ -783,7 +829,7 @@ def run_profile(args) -> None:
 def run_generate(args) -> None:
     files = generate(Path(args.input), args.group, args.value, args.design, Path(args.outdir),
                      args.subject, args.order, args.palette, args.colors, args.unit_label, args.font,
-                     args.outcome_type, args.scope, args.show_p_value)
+                     args.outcome_type, args.scope, args.show_p_value, args.allow_font_fallback)
     print(f"Generated {len(files)} candidates in {Path(args.outdir).resolve()}")
 
 
@@ -797,7 +843,8 @@ def run_recolor(args) -> None:
              Path(args.outdir), recipe.get("subject"), ",".join(recipe["order"]),
              args.palette, args.colors, recipe.get("unit_label"), recipe.get("font", DEFAULT_FONT),
              recipe.get("outcome_type", "continuous"), recipe.get("scope", "exploratory"),
-             recipe.get("show_p_value", False))
+             recipe.get("show_p_value", False),
+             args.allow_font_fallback or recipe.get("allow_font_fallback", False))
     print(f"Recolored figures written to {Path(args.outdir).resolve()}")
 
 
@@ -826,12 +873,16 @@ def parser() -> argparse.ArgumentParser:
     gen.add_argument("--colors", help="Comma-separated hex colors; overrides --palette")
     gen.add_argument("--unit-label")
     gen.add_argument("--font", default=DEFAULT_FONT)
+    gen.add_argument("--allow-font-fallback", action="store_true",
+                     help="permit a draft-only fallback font when --font is not installed")
     gen.add_argument("--outdir", required=True)
     gen.set_defaults(func=run_generate)
     recolor = sub.add_parser("recolor", help="Rerender a saved recipe using a new palette")
     recolor.add_argument("recipe")
     recolor.add_argument("--palette", default="okabe_ito")
     recolor.add_argument("--colors")
+    recolor.add_argument("--allow-font-fallback", action="store_true",
+                         help="permit a draft-only fallback font when the recipe font is not installed")
     recolor.add_argument("--outdir", required=True)
     recolor.set_defaults(func=run_recolor)
     return p

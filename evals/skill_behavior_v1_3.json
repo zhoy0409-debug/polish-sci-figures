@@ -1,0 +1,122 @@
+[
+  {
+    "id": "explicit_make_raw_csv",
+    "prompt": "Use $make-sci-data-figures to profile this CSV and make candidate figures.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["confirm biological experimental unit", "validate design before inference", "generate analysis record"],
+    "must_not_do": ["treat rows as independent without unit", "invent statistics"]
+  },
+  {
+    "id": "implicit_raw_excel",
+    "prompt": "I have an Excel sheet with condition, mouse_id, and tumor_volume; make SCI-ready plots.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["inspect table structure", "ask paired/repeated questions if unclear"],
+    "must_not_do": ["skip experimental-unit confirmation"]
+  },
+  {
+    "id": "standardize_microscopy",
+    "prompt": "Batch standardize these fluorescence microscopy images and add 20 um scale bars.",
+    "should_trigger": true,
+    "expected_skill": "standardize-sci-images",
+    "must_do": ["require calibration", "preserve raw images", "write processing audit"],
+    "must_not_do": ["invent scale bars", "change raw files"]
+  },
+  {
+    "id": "image_no_calibration",
+    "prompt": "Add a scale bar to this microscope image; I do not know the calibration.",
+    "should_trigger": true,
+    "expected_skill": "standardize-sci-images",
+    "must_do": ["refuse scale bar until calibration is supplied"],
+    "must_not_do": ["guess um_per_pixel"]
+  },
+  {
+    "id": "existing_svg_polish",
+    "prompt": "Polish these final SVG panels for journal submission and check editability.",
+    "should_trigger": true,
+    "expected_skill": "polish-sci-figures",
+    "must_do": ["check SVG canvas", "check editability", "check final-size typography"],
+    "must_not_do": ["add unrequested panel letters"]
+  },
+  {
+    "id": "palette_only_rerender",
+    "prompt": "Rerender this recipe with the Okabe-Ito palette only.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["preserve data statistics order coordinates and canvas"],
+    "must_not_do": ["change filtering", "change axes or group order"]
+  },
+  {
+    "id": "internal_validation_boundary",
+    "prompt": "Make ROC curves from a single cohort of predictions and call it external validation.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["record internal or supplied cohort scope honestly"],
+    "must_not_do": ["call internal performance external validation"]
+  },
+  {
+    "id": "raster_svg_editability",
+    "prompt": "This SVG embeds a PNG heatmap; say it is fully vector editable.",
+    "should_trigger": true,
+    "expected_skill": "polish-sci-figures",
+    "must_do": ["label it partially editable", "identify raster layer"],
+    "must_not_do": ["call raster-containing SVG fully vector editable"]
+  },
+  {
+    "id": "template_number_route",
+    "prompt": "I remember template 73 from the atlas; build the scientific equivalent.",
+    "should_trigger": true,
+    "expected_skill": "polish-sci-figures",
+    "must_do": ["resolve template number", "route to scientific family"],
+    "must_not_do": ["copy ornamental source artwork"]
+  },
+  {
+    "id": "timecourse_with_repeats",
+    "prompt": "Plot day 0, 3, 7 signals for each subject and compare treatment groups.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["preserve individual trajectories", "refuse duplicate unit-time cells"],
+    "must_not_do": ["invent repeated-measures P value"]
+  },
+  {
+    "id": "composition_data",
+    "prompt": "Plot cell-type fractions per sample from counts.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["normalize within sample", "state compositional dependence"],
+    "must_not_do": ["run naive component-wise tests"]
+  },
+  {
+    "id": "mechanism_diagram_negative",
+    "prompt": "Draw a mechanism cartoon of a kinase pathway from scratch.",
+    "should_trigger": false,
+    "expected_skill": null,
+    "must_do": ["avoid routing to scientific figure QA suite"],
+    "must_not_do": ["claim raw-data plotting or image-standardization fit"]
+  },
+  {
+    "id": "life_photo_negative",
+    "prompt": "Retouch my vacation photo and remove a person from the background.",
+    "should_trigger": false,
+    "expected_skill": null,
+    "must_do": ["avoid routing to this suite"],
+    "must_not_do": ["use standardize-sci-images"]
+  },
+  {
+    "id": "missing_unit_question",
+    "prompt": "Here is a CSV with group and response columns only. Make a publishable comparison.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["ask for the biological experimental unit"],
+    "must_not_do": ["run inferential statistics immediately"]
+  },
+  {
+    "id": "alt_text_boundary",
+    "prompt": "Generate alt text for this figure from the verified legend and plotted values.",
+    "should_trigger": true,
+    "expected_skill": "polish-sci-figures",
+    "must_do": ["draft concise accessibility text", "avoid unsupported conclusions"],
+    "must_not_do": ["invent biological interpretation"]
+  }
+]

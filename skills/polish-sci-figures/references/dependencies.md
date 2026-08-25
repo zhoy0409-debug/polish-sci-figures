@@ -3,12 +3,10 @@
 Install once into the active Python environment:
 
 ```bash
-pip install matplotlib numpy pandas Pillow
+pip install -r requirements.txt
 # optional but recommended for direct PDF rendering:
-pip install pymupdf
+pip install -r requirements-optional.txt
 # optional, when the source workflow is R-native: use R + ggplot2 instead
-# optional, for DOCX/PPTX authoring:
-pip install python-docx python-pptx
 ```
 
 | Capability | Package | Used by |
@@ -20,13 +18,14 @@ pip install python-docx python-pptx
 | DOCX/PPTX -> PDF conversion | **LibreOffice** (`soffice` on PATH) | `scripts/render_doc_pages.py` (only for .docx/.pptx input) |
 | SVG editability audit | stdlib only | `scripts/check_svg_editability.py` |
 | SVG physical-canvas audit | stdlib only | `scripts/check_svg_canvas.py` |
+| Source portability audit | stdlib only | `scripts/check_source_portability.py` |
+| Accessibility/delivery QA | stdlib + Pillow | `scripts/figure_accessibility_qa.py` |
 
 Notes
-- **Fonts.** matplotlib silently falls back when a named font is missing, which
-  is a common source of inconsistent figures. Confirm the intended family is
-  installed (`python -c "from matplotlib import font_manager as fm; print([f.name for f in fm.fontManager.ttflist if 'Arial' in f.name or 'Helvetica' in f.name])"`).
-  If Arial/Helvetica are absent, install them or fall back deliberately to
-  `Nimbus Sans`/`DejaVu Sans` and say so — do not let the fallback happen silently.
+- **Fonts.** v1.3.0 fails by default when the requested font is missing. Use
+  `--allow-font-fallback` only for draft previews; audits must record requested
+  font, actual font, font file, fallback status, and whether the output is
+  allowed for final delivery.
 - **LibreOffice** is only needed to render Word/PowerPoint pages. If it is not
   installed, export the document to PDF manually and pass the PDF instead.
 - **PDF renderer.** `render_doc_pages.py` prefers PyMuPDF and automatically

@@ -1,6 +1,6 @@
 ---
 name: polish-sci-figures
-description: Create, redraw, compare, arrange, audit, and package publication-grade scientific figures for manuscripts, posters, Word documents, PowerPoint slides, and public showcases. Use for SCI figures, 论文配图, 科研作图, 结果可视化, 组图, 重绘, figure polishing, aligned multipanel grids, whitespace control, title-free and serial-label-free panels, collision-free annotations, Arial or journal-specific font control, scientific typography and nomenclature, consistent canvas sizing, final-size typography, editable SVG/PDF/PNG, manuscript or presentation figure QA, and original-versus-redesign selection.
+description: Final scientific figure polishing and QA for existing figures, SVG/PDF/PNG panels, multipanel layouts, manuscripts, slides, and posters. Use for SCI figures, 论文配图, 组图, figure polishing, canvas consistency, final-size typography, collision checks, SVG editability, accessibility/delivery QA, and source portability. Route raw CSV/Excel data to make-sci-data-figures and microscopy image batches to standardize-sci-images first.
 ---
 
 # Polish Scientific Figures
@@ -20,6 +20,7 @@ Deliver the near-final figure in one internal pass: establish the claim and fina
 - Use `scripts/make_montage.py` to compare a figure series.
 - Run `scripts/check_svg_canvas.py` on every independently editable SVG series intended for one grid or repeated slot.
 - Run `scripts/check_svg_editability.py --require-fully-editable` when fully editable SVG is requested.
+- Run `scripts/figure_accessibility_qa.py` for SVG external-resource, embedded-raster DPI, grayscale separation, basic contrast, and manual review flags.
 - Use `scripts/render_doc_pages.py` after insertion into an existing DOCX, PPTX, or PDF.
 - Read `references/canvas_profiles.md` whenever delivering multiple standalone panels, a manuscript composite assembled later, or figures that will be placed into PPT slots.
 - Read `references/journal_specs.md` for a submission and verify the current official instructions.
@@ -95,6 +96,7 @@ See `references/canvas_profiles.md` for exact matplotlib and audit commands.
 - Replace Arial globally with Times New Roman or another required family when an explicit user, journal, institutional, or deck specification requires it. Change the shared style/source configuration once; do not edit individual labels.
 - Apply the selected family to every visible text object, including axes, ticks, legends, colorbars, annotations, statistical symbols, and mathtext. Do not mix families or accept an unintended fallback.
 - Verify that the selected font is installed and contains or can correctly compose every required scientific glyph. After any font change, regenerate and rerun final-size clipping, collision, glyph, SVG-editability, and container checks because text metrics change.
+- Do not accept a fallback font as final output. If a draft uses explicit fallback, record requested font, actual font, font file, fallback status, and `final_delivery_allowed: false`.
 
 Set the family once in Matplotlib and switch only `FONT` when the verified target changes:
 

@@ -10,31 +10,62 @@ permissions:
   contents: read
 
 jobs:
-  check:
+  basic:
+    name: basic (${{ matrix.os }}, py${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Validate Skill folders
+        run: python scripts/validate_skill_structure.py
+      - name: Check Python syntax
+        run: python -m compileall -q sci_figures.py scripts skills demo
+      - name: Unified CLI smoke test
+        run: python test_sci_figures_cli.py
+      - name: Release QA gates
+        run: |
+          python skills/polish-sci-figures/scripts/test_figure_text_qa.py
+          python skills/polish-sci-figures/scripts/test_font_policy.py
+          python skills/polish-sci-figures/scripts/test_check_source_portability.py
+          python skills/polish-sci-figures/scripts/figure_accessibility_qa.py --self-test
+      - name: Validate skill behavior evals
+        run: python scripts/validate_skill_evals.py
+      - name: Doctor
+        run: python sci_figures.py doctor --font "DejaVu Sans"
+
+  integration:
+    name: full integration (ubuntu, py3.12)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
           cache: pip
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
-      - name: Check Python syntax
-        run: python -m compileall -q demo skills
-      - name: Test release QA gates
-        run: |
-          python skills/polish-sci-figures/scripts/test_figure_text_qa.py
-          python skills/polish-sci-figures/scripts/test_check_source_portability.py
       - name: Test raw-data figure workbench
         run: python skills/make-sci-data-figures/scripts/test_figure_workbench.py
-      - name: Test relationship, longitudinal, composition, and matrix families
+      - name: Test relationship, timecourse, composition, and matrix families
         run: python skills/make-sci-data-figures/scripts/test_data_family_workbench.py
       - name: Validate complete 1-124 template routing
         run: python skills/polish-sci-figures/scripts/template_router.py self-check
       - name: Test advanced template families and palette-only rerendering
         run: python skills/make-sci-data-figures/scripts/test_advanced_template_workbench.py
+      - name: Test scientific-image standardization
+        run: python skills/standardize-sci-images/scripts/test_standardize_images.py
       - name: Check deterministic family example data
         run: |
           python skills/make-sci-data-figures/examples/make_family_examples.py
@@ -43,5 +74,7 @@ jobs:
         run: |
           python skills/make-sci-data-figures/examples/make_advanced_examples.py
           git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
-      - name: Test scientific-image standardization
-        run: python skills/standardize-sci-images/scripts/test_standardize_images.py
+      - name: Build compact release bundle
+        run: python scripts/build_release.py --version v1.3.0
+      - name: Whitespace check
+        run: git diff --check

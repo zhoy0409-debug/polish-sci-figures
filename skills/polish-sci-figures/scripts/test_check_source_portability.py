@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from contextlib import redirect_stdout
 from io import StringIO
+import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -15,6 +16,13 @@ def run_check(path: Path, *, strict: bool = False) -> tuple[int, str]:
     args = [str(path)]
     if strict:
         args.append("--strict")
+    output = StringIO()
+    with redirect_stdout(output):
+        status = main(args)
+    return status, output.getvalue()
+
+
+def run_args(args: list[str]) -> tuple[int, str]:
     output = StringIO()
     with redirect_stdout(output):
         status = main(args)
@@ -34,6 +42,17 @@ def main_test() -> None:
         )
         status, output = run_check(project_local)
         assert status == 0 and "[PASS]" in output and "portable=True" in output
+
+        status, output = run_args([str(root), "--json"])
+        payload = json.loads(output)
+        assert status == 0
+        assert payload["portable"] is True
+        assert payload["summary"]["PASS"] >= 1
+
+        status, output = run_args([str(root / "*.py"), "--json"])
+        payload = json.loads(output)
+        assert status == 0
+        assert any(Path(item["path"]).name == "project_local.py" for item in payload["results"])
 
         private_runtime = root / "private_runtime.py"
         private_runtime.write_text(

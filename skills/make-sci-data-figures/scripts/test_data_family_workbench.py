@@ -15,6 +15,8 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from data_family_workbench import composition, matrix, recolor, relationship, timecourse
 
+TEST_FONT = "DejaVu Sans"
+
 
 def expect_error(callable_, phrase: str) -> None:
     try:
@@ -62,7 +64,8 @@ def main() -> None:
         )
         relationship_df.to_csv(relationship_csv, index=False)
         relationship(
-            relationship_csv, "exposure", "response", "unit", root / "relationship", group="cohort"
+            relationship_csv, "exposure", "response", "unit", root / "relationship",
+            group="cohort", font=TEST_FONT,
         )
         verify_bundle(
             root / "relationship",
@@ -75,7 +78,8 @@ def main() -> None:
         duplicated.to_csv(duplicated_csv, index=False)
         expect_error(
             lambda: relationship(
-                duplicated_csv, "exposure", "response", "unit", root / "bad_relationship"
+                duplicated_csv, "exposure", "response", "unit", root / "bad_relationship",
+                font=TEST_FONT,
             ),
             "one row per biological unit",
         )
@@ -96,7 +100,8 @@ def main() -> None:
                     )
         time_df = pd.DataFrame(rows)
         time_df.to_csv(time_csv, index=False)
-        timecourse(time_csv, "time", "signal", "group", "unit", root / "timecourse")
+        timecourse(time_csv, "time", "signal", "group", "unit", root / "timecourse",
+                   font=TEST_FONT)
         verify_bundle(
             root / "timecourse",
             "timecourse",
@@ -107,7 +112,8 @@ def main() -> None:
         time_duplicate.to_csv(time_duplicate_csv, index=False)
         expect_error(
             lambda: timecourse(
-                time_duplicate_csv, "time", "signal", "group", "unit", root / "bad_time"
+                time_duplicate_csv, "time", "signal", "group", "unit", root / "bad_time",
+                font=TEST_FONT,
             ),
             "only one observation",
         )
@@ -129,7 +135,8 @@ def main() -> None:
         composition_df = pd.DataFrame(rows)
         composition_df.to_csv(composition_csv, index=False)
         composition(
-            composition_csv, "sample", "cell_type", "count", root / "composition", group="group"
+            composition_csv, "sample", "cell_type", "count", root / "composition",
+            group="group", font=TEST_FONT,
         )
         verify_bundle(
             root / "composition", "composition", {"composition_stacked", "composition_heatmap"}
@@ -140,7 +147,8 @@ def main() -> None:
         negative.to_csv(negative_csv, index=False)
         expect_error(
             lambda: composition(
-                negative_csv, "sample", "cell_type", "count", root / "bad_composition"
+                negative_csv, "sample", "cell_type", "count", root / "bad_composition",
+                font=TEST_FONT,
             ),
             "non-negative",
         )
@@ -158,7 +166,8 @@ def main() -> None:
             ]
         )
         matrix_df.to_csv(matrix_csv, index=False)
-        matrix(matrix_csv, "feature", "condition", "z_score", root / "matrix")
+        matrix(matrix_csv, "feature", "condition", "z_score", root / "matrix",
+               font=TEST_FONT)
         verify_bundle(root / "matrix", "matrix", {"matrix_heatmap", "matrix_dotmap"})
         recolor(
             root / "matrix" / "figure_recipe.json", root / "matrix_recolored", "okabe_ito", None
@@ -176,7 +185,8 @@ def main() -> None:
         duplicate_cell.to_csv(duplicate_cell_csv, index=False)
         expect_error(
             lambda: matrix(
-                duplicate_cell_csv, "feature", "condition", "z_score", root / "bad_matrix"
+                duplicate_cell_csv, "feature", "condition", "z_score", root / "bad_matrix",
+                font=TEST_FONT,
             ),
             "cell must be unique",
         )

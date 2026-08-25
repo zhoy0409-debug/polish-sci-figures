@@ -1,6 +1,6 @@
 ---
 name: make-sci-data-figures
-description: Turn minimally structured CSV, TSV, or Excel data into scientifically defensible, publication-ready figure candidates with fixed canvases, editable SVG, analysis records, and one-command palette switching. Use for continuous or paired comparisons, relationships, longitudinal data, compositions, matrices, survival, dose-response, ROC/PR, forest, volcano, enrichment, embeddings, cumulative distributions, swimmer plots, chart selection, statistical planning, and reproducible SCI result graphics.
+description: Raw-data SCI figure workbench for CSV/TSV/XLSX tables. Use when the user has 原始数据, Excel/CSV data, statistical design questions, group comparisons, relationships, time-course data, compositions, matrices, survival, dose-response, ROC/PR, or supplied specialist results that need defensible publication figure candidates. Do not use for microscopy image standardization or final-only SVG polishing.
 ---
 
 # Make SCI Data Figures
@@ -135,7 +135,7 @@ Use the worked independent, paired, and multi-group examples in `references/stat
 
 ## Artwork rules
 
-- Use Arial by default, or replace the global font once when the verified target requires another family.
+- Use Arial by default, or replace the global font once when the verified target requires another family. The requested font must be installed; use `--allow-font-fallback` only for draft previews and never label fallback output as final submission-ready.
 - Do not place panel letters, serial numbers, per-panel titles, subtitles, or conclusions inside reusable artwork.
 - Use correct case, italics, symbols, units, subscripts, and superscripts.
 - Reserve a non-data annotation margin for compact statistical evidence; never print text over points, lines, intervals, or markers.

@@ -11,6 +11,8 @@ from __future__ import annotations
 import argparse
 import ast
 from dataclasses import dataclass
+import glob
+import json
 from pathlib import Path
 import re
 import sys
@@ -97,6 +99,14 @@ class Issue:
     line: int
     code: str
     message: str
+
+    def to_json(self) -> dict:
+        return {
+            "severity": self.severity,
+            "line": self.line,
+            "code": self.code,
+            "message": self.message,
+        }
 
 
 def dotted_name(node: ast.AST) -> str:
@@ -349,39 +359,99 @@ def scan(path: Path) -> list[Issue]:
     return deduplicate(scan_text(path, text))
 
 
+TEXT_SUFFIXES = {
+    ".py", ".r", ".R", ".txt", ".md", ".qmd", ".sh", ".bash", ".zsh",
+    ".ps1", ".bat", ".cmd", ".yaml", ".yml", ".json", ".toml",
+}
+
+
+def expand_sources(items: list[str]) -> list[Path]:
+    paths: list[Path] = []
+    for item in items:
+        matches = [Path(match) for match in glob.glob(item, recursive=True)]
+        if not matches:
+            matches = [Path(item)]
+        for path in matches:
+            if path.is_dir():
+                paths.extend(
+                    child for child in path.rglob("*")
+                    if child.is_file() and child.suffix in TEXT_SUFFIXES
+                )
+            else:
+                paths.append(path)
+    seen: set[Path] = set()
+    unique: list[Path] = []
+    for path in paths:
+        normalized = path.resolve() if path.exists() else path
+        if normalized not in seen:
+            seen.add(normalized)
+            unique.append(path)
+    return unique
+
+
+def severity_counts(results: list[dict]) -> dict[str, int]:
+    counts = {"FAIL": 0, "WARN": 0, "PASS": 0}
+    for result in results:
+        issues = result["issues"]
+        if not issues:
+            counts["PASS"] += 1
+        for issue in issues:
+            counts[issue["severity"]] = counts.get(issue["severity"], 0) + 1
+    return counts
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="Reject private runtime dependencies and report advisory environment coupling."
     )
-    parser.add_argument("sources", nargs="+", type=Path)
+    parser.add_argument("sources", nargs="+",
+                        help="Source files, directories, or glob patterns to scan")
     parser.add_argument(
         "--strict",
         action="store_true",
         help="also fail on advisory coupling such as dynamic imports or external processes",
     )
+    parser.add_argument("--json", action="store_true",
+                        help="emit a machine-readable JSON report")
     args = parser.parse_args(argv)
 
     blocked = False
-    for path in args.sources:
+    results: list[dict] = []
+    for path in expand_sources(args.sources):
         if not path.is_file():
-            print(f"[FAIL] {path}: source file does not exist")
+            issue = Issue("FAIL", 1, "SOURCE_NOT_FOUND", "source file does not exist")
+            results.append({"path": str(path), "issues": [issue.to_json()]})
             blocked = True
             continue
         issues = scan(path)
-        if not issues:
-            print(f"[PASS] {path}: no non-portable runtime dependency detected")
-            continue
-        for issue in issues:
-            print(
-                f"[{issue.severity}] {path}:{issue.line} "
-                f"{issue.code}: {issue.message}"
-            )
+        issue_json = [issue.to_json() for issue in issues]
+        results.append({"path": str(path), "issues": issue_json})
         if any(issue.severity == "FAIL" for issue in issues):
             blocked = True
         if args.strict and issues:
             blocked = True
 
-    print(f"portable={not blocked}")
+    payload = {
+        "portable": not blocked,
+        "strict": bool(args.strict),
+        "summary": severity_counts(results),
+        "results": results,
+    }
+    if args.json:
+        print(json.dumps(payload, indent=2, ensure_ascii=False))
+    else:
+        for result in results:
+            path = result["path"]
+            issues = result["issues"]
+            if not issues:
+                print(f"[PASS] {path}: no non-portable runtime dependency detected")
+                continue
+            for issue in issues:
+                print(
+                    f"[{issue['severity']}] {path}:{issue['line']} "
+                    f"{issue['code']}: {issue['message']}"
+                )
+        print(f"portable={not blocked}")
     return 1 if blocked else 0
 
 
