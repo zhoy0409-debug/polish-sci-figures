@@ -2,8 +2,20 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
+import os
 import re
+import tempfile
 import warnings
+from pathlib import Path
+
+_repo_cache = Path(__file__).resolve().parents[3] / ".cache" / "matplotlib"
+for _candidate in (Path(os.environ["MPLCONFIGDIR"]) if os.environ.get("MPLCONFIGDIR") else _repo_cache,
+                   _repo_cache, Path(tempfile.gettempdir()) / "polish-sci-figures-mplconfig"):
+    try:
+        _candidate.mkdir(parents=True, exist_ok=True)
+        _probe = _candidate / ".write-test"; _probe.write_text("ok", encoding="utf-8"); _probe.unlink()
+        os.environ["MPLCONFIGDIR"] = str(_candidate); break
+    except OSError: continue
 
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure

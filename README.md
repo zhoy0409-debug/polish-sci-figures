@@ -87,7 +87,7 @@ Conserved cell-state flows, directional ligand–receptor interactions, RNA–AT
 | 2. Images | `standardize-sci-images` | Equal-size scientific images, calibrated scale bars, montage, and SHA-256 processing audit |
 | 3. Finish | `polish-sci-figures` | Fixed-canvas SVG/PDF/PNG, final typography, assembly, editability checks, and container QA |
 
-All three stages use Arial by default, allow one-place journal-font replacement, keep SVG text live, and reject unintended overlap. In v1.3.0 the requested font must be installed; fallback is a draft-only opt-in and is recorded as not approved for final delivery.
+All three stages use Arial by default, allow one-place journal-font replacement, keep SVG text live, and reject unintended overlap. Since v1.3.0 the requested font must be installed; fallback is a draft-only opt-in and is recorded as not approved for final delivery.
 
 ## 124-template scientific atlas
 
@@ -212,12 +212,15 @@ Use $polish-sci-figures to assemble the selected panels and audit the final edit
 
 ```bash
 python sci_figures.py doctor --font Arial
-python sci_figures.py inspect data.xlsx
-python sci_figures.py route data.xlsx
-python sci_figures.py qa figure.svg
+python sci_figures.py doctor --font Arial --json
+python sci_figures.py inspect data.xlsx --sheet 0 --json
+python sci_figures.py route data.xlsx --structure group-comparison --design paired
+python sci_figures.py qa figure.svg --font Arial --json
 ```
 
-Use `--help` on any subcommand. `doctor` reports PASS/WARN/FAIL for Python, core and optional dependencies, Matplotlib cache, fonts, LibreOffice, PDF renderers, SVG QA tools, platform, skill folders, and key resources. `inspect` reads CSV/TSV/XLSX, reports columns, types, missingness, duplicates, candidate roles, and next commands without running inferential analysis. `route` suggests an existing workbench route. `qa` runs applicable font/source/SVG/raster/accessibility checks and returns a non-zero exit code on blocking failures.
+Use `--help` on any subcommand. `doctor` reports dependencies, writable Matplotlib cache, fonts, renderers, platform, and Skill structure. `inspect` uses exact column-name tokens plus dtype, missingness, cardinality, and repetition to provide evidence-backed candidates. `route` never runs inferred statistics and never defaults to an independent design: it withholds the runnable command until structure, columns, and design are confirmed. Statuses are `CONFIRMED`, `SUGGESTION`, `NEEDS_CONFIRMATION`, `MANUAL_REVIEW`, `WARN`, and blocking `FAIL`/`UNSAFE`.
+
+`doctor --json` and `qa --json` write JSON only. Blocking findings exit 2; warnings and manual-review items exit 0. SVG automation checks parse canvas-related metadata, live/fragmented text, font-family declarations, raster resources and effective DPI, plus basic contrast/grayscale signals. Collision, final-size legibility, scientific notation, sub/superscripts, and color-only meaning remain explicit `MANUAL_REVIEW` tasks. Raster DPI requires `--width-mm`; metadata alone is not accepted as final-size proof. PDF embedding uses only the `pdffonts` `emb` column; when the tool is missing, QA requires manual review.
 
 ## Shortest Successful Path
 
@@ -262,7 +265,7 @@ Use $polish-sci-figures to audit this SVG for canvas consistency, live text, fon
 | Message | Meaning | Fix |
 | --- | --- | --- |
 | `Required font 'Arial' is not installed` | The target font is missing and fallback is blocked | Install the font, choose an installed final font, or use `--allow-font-fallback` only for drafts |
-| `Legacy .xls is not a tested v1.3.0 input` | Old Excel format is outside the tested core path | Convert to `.xlsx`, CSV, or TSV |
+| `Legacy .xls is not a tested v1.3.1 input` | Old Excel format is outside the tested core path | Convert to `.xlsx`, CSV, or TSV |
 | `A scale bar requires an authoritative um_per_pixel column` | Calibration is missing | Add calibration from acquisition metadata or records |
 | `Independent data contain repeated experimental-unit IDs` | Possible pseudoreplication | Declare paired/repeated/nested design or aggregate technical replicates explicitly |
 | `SVG contains embedded raster layer(s)` | The SVG is partially editable | Do not describe it as fully vector editable |
@@ -273,7 +276,7 @@ The command-line scripts process local files on the machine where you run them. 
 
 ## Version Compatibility
 
-| Component | v1.3.0 tested range |
+| Component | v1.3.1 tested range |
 | --- | --- |
 | Python | 3.10-3.12 |
 | OS CI matrix | Ubuntu, Windows, macOS |
@@ -281,6 +284,14 @@ The command-line scripts process local files on the machine where you run them. 
 | Legacy `.xls` | Not supported; convert first |
 | Core dependencies | See `requirements.txt` |
 | Optional integrations | See `requirements-optional.txt` |
+
+Python 3.10 and 3.12 are tested as compatibility endpoints on every supported OS; 3.11 lies inside that supported interval. The endpoint strategy limits CI cost while testing both ends of the declared range.
+
+## Skill behavior evaluation
+
+- Schema validation checks the eval case contract in `evals/skill_behavior_v1_3_1.json`.
+- Replay evaluation scores captured outputs, expected Skill activation, required behavior, and forbidden behavior with `scripts/score_skill_evals.py`.
+- Live Codex evaluation is optional and must be reported as not run unless a real runner captured the outputs. Replay fixtures test the scorer; they are not evidence that a live model passed.
 
 ## Reproduce and verify
 
@@ -307,6 +318,10 @@ Each generated data-figure bundle contains fixed-canvas PNG/SVG/PDF candidates, 
 - Equal physical canvas and axes geometry for panels intended for the same slot.
 - Correct case, italics, units, symbols, subscripts, superscripts, and journal font.
 - Editable SVG/PDF plus high-resolution PNG; raster content is never mislabeled fully editable.
+
+## Acknowledgments
+
+Thanks to Gliese-876 for proposing the private-runtime dependency and source-portability QA that was integrated in PR #1. v1.3.1 preserves that contribution and extends its regression coverage.
 
 ## Repository layout
 

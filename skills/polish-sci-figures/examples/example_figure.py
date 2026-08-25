@@ -9,6 +9,10 @@ This is a reference for *form and styling*, not real data. Numbers are synthetic
 """
 import os
 import sys
+import tempfile
+from pathlib import Path
+
+os.environ.setdefault("MPLCONFIGDIR", str(Path(tempfile.gettempdir()) / "polish-sci-figures-mplconfig"))
 
 import numpy as np
 import matplotlib

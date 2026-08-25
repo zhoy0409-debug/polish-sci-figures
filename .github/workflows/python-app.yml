@@ -40,7 +40,11 @@ jobs:
           python skills/polish-sci-figures/scripts/test_check_source_portability.py
           python skills/polish-sci-figures/scripts/figure_accessibility_qa.py --self-test
       - name: Validate skill behavior evals
-        run: python scripts/validate_skill_evals.py
+        run: |
+          python scripts/validate_skill_evals.py
+          python scripts/test_skill_eval_scorer.py
+      - name: Test Matplotlib runtime environment
+        run: python scripts/test_runtime_env.py
       - name: Doctor
         run: python sci_figures.py doctor --font "DejaVu Sans"
 
@@ -75,6 +79,6 @@ jobs:
           python skills/make-sci-data-figures/examples/make_advanced_examples.py
           git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
       - name: Build compact release bundle
-        run: python scripts/build_release.py --version v1.3.0
+        run: python scripts/build_release.py --version v1.3.1
       - name: Whitespace check
         run: git diff --check

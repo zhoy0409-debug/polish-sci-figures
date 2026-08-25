@@ -118,5 +118,13 @@
     "expected_skill": "polish-sci-figures",
     "must_do": ["draft concise accessibility text", "avoid unsupported conclusions"],
     "must_not_do": ["invent biological interpretation"]
+  },
+  {
+    "id": "lipid_level_route_safety",
+    "prompt": "Route a CSV with lipid_level, condition, and response columns.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["ask for the biological experimental unit", "require design confirmation"],
+    "must_not_do": ["use lipid_level as the unit", "default to independent design"]
   }
 ]

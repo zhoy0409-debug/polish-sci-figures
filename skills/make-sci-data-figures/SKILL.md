@@ -7,6 +7,8 @@ description: Raw-data SCI figure workbench for CSV/TSV/XLSX tables. Use when the
 
 Start from the biological question and experimental unit, not from a preferred chart type. Produce several honest candidates from the same data, keep their canvas and typography identical, and explain why each candidate is or is not appropriate.
 
+For unified CLI inspection and confirmation states, read `references/safe_cli_routing.md`. Never treat a role inferred from a column name as a declared experimental unit or design.
+
 ## Minimum intake
 
 Accept tidy CSV, TSV, or XLSX. Route the table by scientific structure rather than forcing every dataset into a group comparison:

@@ -20,15 +20,15 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 def _ensure_mpl_config_dir() -> None:
-    if os.environ.get("MPLCONFIGDIR"):
-        return
     repo_root = Path(__file__).resolve().parents[3]
     for candidate in (
+        Path(os.environ["MPLCONFIGDIR"]) if os.environ.get("MPLCONFIGDIR") else repo_root / ".cache" / "matplotlib",
         repo_root / ".cache" / "matplotlib",
         Path(tempfile.gettempdir()) / "polish-sci-figures-mplconfig",
     ):
         try:
             candidate.mkdir(parents=True, exist_ok=True)
+            probe = candidate / ".write-test"; probe.write_text("ok", encoding="utf-8"); probe.unlink()
             os.environ["MPLCONFIGDIR"] = str(candidate)
             return
         except OSError:

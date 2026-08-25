@@ -3,7 +3,18 @@
 
 from __future__ import annotations
 
+import os
+import tempfile
 import warnings
+from pathlib import Path
+
+_cache = Path(tempfile.gettempdir()) / "polish-sci-figures-test-mplconfig"
+try:
+    configured = Path(os.environ.get("MPLCONFIGDIR", _cache)); configured.mkdir(parents=True, exist_ok=True)
+    probe = configured / ".write-test"; probe.write_text("ok", encoding="utf-8"); probe.unlink()
+except OSError:
+    configured = _cache; configured.mkdir(parents=True, exist_ok=True)
+os.environ["MPLCONFIGDIR"] = str(configured)
 
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.figure import Figure

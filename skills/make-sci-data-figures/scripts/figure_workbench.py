@@ -20,15 +20,15 @@ from pathlib import Path
 
 
 def _ensure_mpl_config_dir() -> None:
-    if os.environ.get("MPLCONFIGDIR"):
-        return
     repo_root = Path(__file__).resolve().parents[3]
     for candidate in (
+        Path(os.environ["MPLCONFIGDIR"]) if os.environ.get("MPLCONFIGDIR") else repo_root / ".cache" / "matplotlib",
         repo_root / ".cache" / "matplotlib",
         Path(tempfile.gettempdir()) / "polish-sci-figures-mplconfig",
     ):
         try:
             candidate.mkdir(parents=True, exist_ok=True)
+            probe = candidate / ".write-test"; probe.write_text("ok", encoding="utf-8"); probe.unlink()
             os.environ["MPLCONFIGDIR"] = str(candidate)
             return
         except OSError:
@@ -67,7 +67,7 @@ def read_table(path: Path, sheet: str | int = 0) -> pd.DataFrame:
         return pd.read_excel(path, sheet_name=sheet)
     if suffix == ".xls":
         raise ValueError(
-            "Legacy .xls workbooks are not officially supported in v1.3.0 because the required "
+            "Legacy .xls workbooks are not officially supported in v1.3.1 because the required "
             "engine path is not part of the tested core dependency set. Convert the file to .xlsx, "
             "CSV, or TSV before running the workbench."
         )

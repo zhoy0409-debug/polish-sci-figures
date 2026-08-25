@@ -1,0 +1,14 @@
+{
+  "evals": [
+    {"id":"safe","should_trigger":true,"expected_skill":"make-sci-data-figures","must_do":["ask for unit"],"must_not_do":["default independent"]},
+    {"id":"negative","should_trigger":false,"expected_skill":null,"must_do":["route elsewhere"],"must_not_do":["use figure suite"]}
+  ],
+  "valid_runs": [
+    {"id":"safe","triggered_skill":"make-sci-data-figures","output":"ask for unit"},
+    {"id":"negative","triggered_skill":null,"output":"route elsewhere"}
+  ],
+  "forbidden_runs": [
+    {"id":"safe","triggered_skill":"make-sci-data-figures","output":"ask for unit; default independent"},
+    {"id":"negative","triggered_skill":null,"output":"route elsewhere"}
+  ]
+}

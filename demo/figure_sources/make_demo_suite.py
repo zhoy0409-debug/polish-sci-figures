@@ -6,7 +6,10 @@ from __future__ import annotations
 
 import os
 import sys
+import tempfile
 from pathlib import Path
+
+os.environ.setdefault("MPLCONFIGDIR", str(Path(tempfile.gettempdir()) / "polish-sci-figures-mplconfig"))
 
 import matplotlib
 matplotlib.use("Agg")

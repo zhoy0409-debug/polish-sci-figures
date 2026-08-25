@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this scientific figure skill suite, please cite this repository."
 title: "SCI Figure Skills"
-version: "1.3.0"
+version: "1.3.1"
 date-released: "2026-08-25"
 authors:
   - name: "zhoy0409-debug"
