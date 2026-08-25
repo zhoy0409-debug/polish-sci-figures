@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a compact installable skill bundle for release review."""
+"""Build the complete CLI plus three-Skill suite for release review."""
 
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
+ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "LICENSE", "CITATION.cff")
 
 
 def include_file(path: Path) -> bool:
@@ -31,8 +32,10 @@ def include_file(path: Path) -> bool:
 
 def build(version: str, outdir: Path) -> Path:
     outdir.mkdir(parents=True, exist_ok=True)
-    archive = outdir / f"sci-figure-skills-{version}.zip"
+    archive = outdir / f"sci-figure-suite-{version}.zip"
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as handle:
+        for name in ROOT_FILES:
+            handle.write(ROOT / name, name)
         for skill_name in SKILL_NAMES:
             skill_root = ROOT / "skills" / skill_name
             for path in sorted(skill_root.rglob("*")):
@@ -43,7 +46,7 @@ def build(version: str, outdir: Path) -> Path:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", default="v1.3.1")
+    parser.add_argument("--version", default="v1.3.2")
     parser.add_argument("--outdir", default="dist")
     args = parser.parse_args()
     archive = build(args.version, Path(args.outdir))

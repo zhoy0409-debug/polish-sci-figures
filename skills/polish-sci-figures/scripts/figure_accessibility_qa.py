@@ -31,7 +31,9 @@ UNIT_TO_MM = {
     "mm": 1.0,
 }
 HEX_COLOR = re.compile(r"#[0-9A-Fa-f]{6}\b")
-FONT_STYLE_RE = re.compile(r"font-family\s*:\s*([^;}\"']+)", re.IGNORECASE)
+FONT_FAMILY_RE = re.compile(r"(?:^|[;{])\s*font-family\s*:\s*([^;}]+)", re.IGNORECASE)
+FONT_SHORTHAND_RE = re.compile(r"(?:^|[;{])\s*font\s*:\s*([^;}]+)", re.IGNORECASE)
+FONT_SIZE_RE = re.compile(r"(?:^|\s)(?:xx-small|x-small|small|medium|large|x-large|xx-large|smaller|larger|\d*\.?\d+(?:px|pt|pc|em|rem|%))(?:\s*/\s*[^\s]+)?\s+(.+)$", re.IGNORECASE)
 
 
 def _local(tag: str) -> str:
@@ -76,6 +78,26 @@ def contrast(a: str, b: str) -> float:
     return (first + 0.05) / (second + 0.05)
 
 
+def _font_families(value: str) -> list[str]:
+    families = []
+    for item in re.split(r"\s*,\s*", value.strip()):
+        normalized = re.sub(r"\s+", " ", item.strip().strip("'\""))
+        if normalized:
+            families.append(normalized)
+    return families
+
+
+def _families_from_css(css: str) -> list[str]:
+    families = []
+    for value in FONT_FAMILY_RE.findall(";" + css):
+        families.extend(_font_families(value))
+    for shorthand in FONT_SHORTHAND_RE.findall(";" + css):
+        match = FONT_SIZE_RE.search(shorthand.strip())
+        if match:
+            families.extend(_font_families(match.group(1)))
+    return families
+
+
 def _embedded_image_size(href: str) -> tuple[int, int] | None:
     if not href.startswith("data:image/"):
         return None
@@ -108,17 +130,17 @@ def audit_svg(path: str | Path, min_dpi: float = 300.0, required_font: str | Non
     font_declarations: set[str] = set()
     for element in text_elements:
         if family := element.get("font-family"):
-            font_declarations.add(family.strip(" '\""))
-        for family in FONT_STYLE_RE.findall(element.get("style", "")):
-            font_declarations.add(family.strip(" '\""))
-    for family in FONT_STYLE_RE.findall(raw):
-        font_declarations.add(family.strip(" '\""))
+            font_declarations.update(_font_families(family))
+        font_declarations.update(_families_from_css(element.get("style", "")))
+    for element in root.iter():
+        if _local(element.tag) == "style":
+            font_declarations.update(_families_from_css("".join(element.itertext())))
     if required_font:
-        normalized = required_font.casefold()
+        normalized = re.sub(r"\s+", " ", required_font.strip().strip("'\"")).casefold()
         if not font_declarations:
             issues.append({"severity": "FAIL", "code": "SVG_FONT_UNDECLARED",
                            "message": f"required font {required_font!r} cannot be verified because no font-family is declared"})
-        elif not any(normalized in family.casefold() for family in font_declarations):
+        elif normalized not in {family.casefold() for family in font_declarations}:
             issues.append({"severity": "FAIL", "code": "SVG_FONT_MISMATCH",
                            "message": f"required font {required_font!r}; declared {sorted(font_declarations)}"})
     if not live_text:
@@ -280,7 +302,7 @@ def main(argv: list[str] | None = None) -> int:
                "warnings": sum(item["status"] in {"WARN", "MANUAL_REVIEW"} for item in results),
                "manual_review": sum(item["manual_review"] for item in results), "exit_code": 2 if failed else 0}
     if args.json:
-        print(json.dumps({"schema_version": "1.3.1", "results": results, "summary": summary, "reports": reports}, indent=2, ensure_ascii=False))
+        print(json.dumps({"schema_version": "1.3.2", "results": results, "summary": summary, "reports": reports}, indent=2, ensure_ascii=False))
     else:
         for report in reports:
             print(f"[ACCESSIBILITY] {report['path']}")

@@ -11,7 +11,7 @@ def main():
     fixture=json.loads((ROOT/"evals"/"scorer_fixture.json").read_text(encoding="utf-8"))
     assert score(fixture["evals"],fixture["valid_runs"])["summary"]["failed"]==0
     assert score(fixture["evals"],fixture["forbidden_runs"])["summary"]["failed"]==1
-    cases=json.loads((ROOT/"evals"/"skill_behavior_v1_3_1.json").read_text(encoding="utf-8"))
+    cases=json.loads((ROOT/"evals"/"skill_behavior_v1_3_2.json").read_text(encoding="utf-8"))
     good=[{"id":c["id"],"triggered_skill":c["expected_skill"] if c["should_trigger"] else None,
            "output":"; ".join(c["must_do"])} for c in cases]
     assert score(cases,good)["summary"]["failed"]==0

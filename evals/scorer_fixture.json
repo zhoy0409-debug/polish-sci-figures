@@ -1,14 +1,16 @@
 {
   "evals": [
-    {"id":"safe","should_trigger":true,"expected_skill":"make-sci-data-figures","must_do":["ask for unit"],"must_not_do":["default independent"]},
+    {"id":"safe","should_trigger":true,"expected_skill":"make-sci-data-figures","must_do":[],"must_not_do":[],
+     "required_all":[{"any":["ask for unit","confirm experimental unit"]}],"required_any":[{"regex":"design (confirmation|required)"}],
+     "forbidden_any":[{"regex":"(?:default|assume).{0,12}independent"}]},
     {"id":"negative","should_trigger":false,"expected_skill":null,"must_do":["route elsewhere"],"must_not_do":["use figure suite"]}
   ],
   "valid_runs": [
-    {"id":"safe","triggered_skill":"make-sci-data-figures","output":"ask for unit"},
+    {"id":"safe","triggered_skill":"make-sci-data-figures","output":"confirm experimental unit; design confirmation is required"},
     {"id":"negative","triggered_skill":null,"output":"route elsewhere"}
   ],
   "forbidden_runs": [
-    {"id":"safe","triggered_skill":"make-sci-data-figures","output":"ask for unit; default independent"},
+    {"id":"safe","triggered_skill":"make-sci-data-figures","output":"ask for unit; design required; assume an independent design"},
     {"id":"negative","triggered_skill":null,"output":"route elsewhere"}
   ]
 }

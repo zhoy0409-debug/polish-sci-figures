@@ -34,8 +34,11 @@ def validate(path: Path) -> list[str]:
         if item.get("should_trigger") and not item.get("expected_skill"):
             errors.append(f"{item.get('id', index)} triggered case needs expected_skill")
         for field in ("must_do", "must_not_do"):
-            if not isinstance(item.get(field), list) or not item.get(field):
-                errors.append(f"{item.get('id', index)} {field} must be a non-empty list")
+            if not isinstance(item.get(field), list):
+                errors.append(f"{item.get('id', index)} {field} must be a list")
+        for field in ("required_all", "required_any", "forbidden_any"):
+            if field in item and not isinstance(item[field], list):
+                errors.append(f"{item.get('id', index)} {field} must be a list")
     if len(payload) < 15:
         errors.append("at least 15 eval prompts are required")
     return errors
@@ -43,7 +46,7 @@ def validate(path: Path) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("path", nargs="?", default="evals/skill_behavior_v1_3_1.json")
+    parser.add_argument("path", nargs="?", default="evals/skill_behavior_v1_3_2.json")
     args = parser.parse_args()
     errors = validate(Path(args.path))
     if errors:

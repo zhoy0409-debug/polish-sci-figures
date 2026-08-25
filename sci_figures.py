@@ -27,7 +27,7 @@ def emit(items: list[dict[str, Any]], json_mode: bool, extra: dict[str, Any] | N
     warnings = sum(x["status"] in {"WARN", "NEEDS_CONFIRMATION", "MANUAL_REVIEW"} for x in items)
     manual = sum(bool(x["manual_review"]) for x in items)
     code = 2 if blocking else 0
-    payload = {"schema_version": "1.3.1", "results": items,
+    payload = {"schema_version": "1.3.2", "results": items,
                "summary": {"total": len(items), "blocking": blocking, "warnings": warnings,
                            "manual_review": manual, "exit_code": code}}
     payload.update(extra or {})
@@ -52,7 +52,7 @@ def read_table(path: Path, sheet: str | int = 0):
         if suffix == ".csv": return pd.read_csv(path)
         if suffix in {".tsv", ".txt"}: return pd.read_csv(path, sep="\t")
         if suffix == ".xlsx": return pd.read_excel(path, sheet_name=parse_sheet(sheet))
-        if suffix == ".xls": raise ValueError("Legacy .xls is not a tested v1.3.1 input. Convert it to .xlsx, CSV, or TSV.")
+        if suffix == ".xls": raise ValueError("Legacy .xls is not a tested v1.3.2 input. Convert it to .xlsx, CSV, or TSV.")
         raise ValueError(f"Unsupported input type {suffix!r}. Use CSV, TSV, or XLSX.")
     except ValueError as exc:
         if suffix == ".xlsx" and ("worksheet" in str(exc).lower() or "sheet" in str(exc).lower()):
@@ -108,8 +108,10 @@ def tokenize(name: str) -> list[str]:
 
 TOKENS = {
  "group":{"group","condition","treatment","cohort","arm","class"}, "value":{"value","response","signal","count","intensity","score","measurement","abundance"},
- "unit":{"unit","sample","subject","patient","mouse","participant","specimen","animal","id"}, "time":{"time","day","week","month","followup","visit"},
- "category":{"category","celltype","term","pathway","feature","class"}, "x":{"x","dose","exposure","concentration"}, "y":{"y","response","signal","value"},
+ "unit":{"unit","sample","subject","patient","mouse","participant","specimen","animal","id"}, "sample":{"sample","specimen"},
+ "time":{"time","day","week","month","followup","follow up","visit"},
+ "category":{"category","celltype","cell type","term","pathway","feature","class"}, "x":{"x","dose","exposure","concentration"}, "y":{"y","response","signal","value"},
+ "dose":{"dose","concentration"}, "response":{"response","signal"}, "term":{"term","feature","label"},
  "row":{"row","pathway","gene","feature","term"}, "column":{"column","condition","sample","time","group"}, "event":{"event","status","death","censor"},
  "outcome":{"outcome","truth","observed","label"}, "score":{"score","probability","prediction","risk"}, "estimate":{"estimate","effect","coefficient","ratio"},
  "low":{"low","lower","lcl"}, "high":{"high","upper","ucl"}}
@@ -127,14 +129,18 @@ def role_candidates(frame) -> dict[str, list[dict[str, Any]]]:
     profiles = column_profiles(frame); out = {role: [] for role in TOKENS}
     for role, aliases in TOKENS.items():
         for column, p in profiles.items():
-            matched = sorted(set(p["tokens"]) & aliases)
+            token_set=set(p["tokens"]); phrase=" ".join(p["tokens"])
+            matched = sorted(alias for alias in aliases if (" " in alias and alias==phrase) or (" " not in alias and alias in token_set))
             if not matched: continue
             score = .62 + min(.18, .06*len(matched)); evidence = ["name token(s): " + ", ".join(matched)]
             if role == "unit":
                 if p["numeric"] and matched == ["id"]: score -= .18; evidence.append("numeric ID is ambiguous")
                 if p["unique_fraction"] >= .8: score += .12; evidence.append("mostly unique values")
                 elif p["has_repeats"]: evidence.append("repeated values may encode repeated measures")
-            elif role in {"value","x","y","time","event","score","estimate","low","high"}:
+            elif role == "sample":
+                if p["has_repeats"]: score += .12; evidence.append("repeated sample IDs are expected in long-form data")
+                elif p["unique_fraction"] >= .8: score += .08; evidence.append("mostly unique sample IDs")
+            elif role in {"value","x","y","dose","response","time","event","score","estimate","low","high"}:
                 score += .12 if p["numeric"] else -.2; evidence.append("numeric dtype" if p["numeric"] else "non-numeric dtype")
             elif role in {"group","category","row","column","outcome"} and p["has_repeats"]: score += .08; evidence.append("repeated levels")
             score = max(0., min(score, .98)); out[role].append({"column":column,"confidence":round(score,2),"evidence":evidence,"ambiguous":score<.75})
@@ -148,13 +154,13 @@ REQUIRED = {"group-comparison":["group","value","unit","design"], "relationship"
 
 def candidates_for_routes(c):
     mapping={"group-comparison":["group","value","unit"],"relationship":["x","y","unit"],"timecourse":["time","value","group","unit"],
-             "composition":["unit","category","value"],"matrix":["row","column","value"],"survival":["time","event","group","unit"],
-             "dose-response":["x","y","group"],"roc-pr":["outcome","score","unit"],"supplied-results":["row","estimate","low","high"]}
+             "composition":["sample","category","value"],"matrix":["row","column","value"],"survival":["time","event","group","unit"],
+             "dose-response":["dose","response","group"],"roc-pr":["outcome","score","unit"],"supplied-results":["term","estimate","low","high"]}
     out=[]
     for name, roles in mapping.items():
-        present=[r for r in roles if c.get(r)]
-        if len(present)>=max(2,len(roles)-1):
-            missing=[r for r in roles if not c.get(r)]; out.append({"structure":name,"confidence":round(len(present)/len(roles),2),"evidence":present,"missing":missing,"ambiguous":bool(missing)})
+        present=[r for r in roles if len(c.get(r,[]))==1 and not c[r][0]["ambiguous"]]
+        if len(present)==len(roles):
+            out.append({"structure":name,"confidence":1.0,"evidence":present,"missing":[],"ambiguous":False})
     return sorted(out,key=lambda x:(-x["confidence"],x["structure"]))
 
 def inspect_payload(path, sheet, frame):
@@ -194,9 +200,73 @@ def route_argv(structure,path,f,outdir):
     for name in fields: argv += ["--"+name,f[name]]
     return argv+["--outdir",outdir]
 
+def preflight_route(frame, structure, fields):
+    import pandas as pd
+    findings=[]; available=[str(x) for x in frame.columns]
+    column_args=set().union(*(set(x) for x in REQUIRED.values()))-{"design"}
+    supplied={name:value for name,value in fields.items() if name in column_args}
+    missing=sorted({value for value in supplied.values() if value not in available})
+    if missing:
+        return [finding("FAIL","ROUTE_COLUMN_NOT_FOUND","Route columns",f"Missing columns: {missing}; available columns: {available}")]
+    conflict_groups={
+        "group-comparison":[["group","value","unit"]], "relationship":[["x","y"]],
+        "timecourse":[["time","value"]], "composition":[["sample","category","value"]],
+        "matrix":[["row","column"]], "survival":[["time","event"]],
+        "dose-response":[["dose","response","group"]], "roc-pr":[["outcome","score"]],
+        "supplied-results":[["estimate","low","high"]],
+    }
+    for roles in conflict_groups[structure]:
+        values=[fields[x] for x in roles]
+        if len(values)!=len(set(values)):
+            findings.append(finding("UNSAFE","ROUTE_ROLE_CONFLICT","Route role conflict",f"These roles must use distinct columns: {roles}; received {values}"))
+    if findings: return findings
+    numeric={
+        "group-comparison":["value"], "relationship":["x","y"], "timecourse":["time","value"],
+        "composition":["value"], "matrix":["value"], "survival":["time"],
+        "dose-response":["dose","response"], "roc-pr":["score"],
+        "supplied-results":["estimate","low","high"],
+    }[structure]
+    converted={}
+    for role in numeric:
+        series=frame[fields[role]]; values=pd.to_numeric(series,errors="coerce")
+        if series.notna().any() and values[series.notna()].isna().any():
+            findings.append(finding("FAIL","ROUTE_NON_NUMERIC",f"Route {role}",f"Column {fields[role]!r} must be numeric or numeric-convertible"))
+        elif not values.notna().any():
+            findings.append(finding("FAIL","ROUTE_EMPTY_COLUMN",f"Route {role}",f"Column {fields[role]!r} has no usable values"))
+        converted[role]=values
+    for role in ({"group","category","row","column","unit","sample"}&set(REQUIRED[structure])):
+        if not frame[fields[role]].notna().any():
+            findings.append(finding("FAIL","ROUTE_EMPTY_COLUMN",f"Route {role}",f"Column {fields[role]!r} is entirely empty"))
+    if findings: return findings
+    if structure=="dose-response" and (converted["dose"].dropna()<=0).any():
+        findings.append(finding("FAIL","ROUTE_NONPOSITIVE_DOSE","Dose-response preflight","Dose values must be positive"))
+    if structure=="composition" and (converted["value"].dropna()<0).any():
+        findings.append(finding("FAIL","ROUTE_NEGATIVE_COMPOSITION","Composition preflight","Composition values must be non-negative"))
+    if structure=="survival":
+        if (converted["time"].dropna()<0).any(): findings.append(finding("FAIL","ROUTE_NEGATIVE_TIME","Survival preflight","Survival time must be non-negative"))
+        if frame[fields["event"]].dropna().nunique()!=2: findings.append(finding("FAIL","ROUTE_EVENT_NOT_BINARY","Survival preflight","Event must contain exactly two non-missing levels"))
+    if structure=="roc-pr" and frame[fields["outcome"]].dropna().nunique()!=2:
+        findings.append(finding("FAIL","ROUTE_OUTCOME_NOT_BINARY","ROC/PR preflight","Outcome must contain exactly two non-missing levels"))
+    if structure=="supplied-results":
+        valid=converted["low"].notna()&converted["estimate"].notna()&converted["high"].notna()
+        if ((converted["low"][valid]>converted["estimate"][valid])|(converted["estimate"][valid]>converted["high"][valid])).any():
+            findings.append(finding("FAIL","ROUTE_INTERVAL_ORDER","Supplied-results preflight","Require low <= estimate <= high for every complete row"))
+    if structure=="group-comparison":
+        design=fields["design"]; subset=frame[[fields["unit"],fields["group"]]].dropna().drop_duplicates()
+        groups=subset.groupby(fields["unit"])[fields["group"]].nunique()
+        if design=="independent" and (groups>1).any():
+            findings.append(finding("FAIL","ROUTE_INDEPENDENT_UNIT_CROSSES_GROUPS","Group-comparison design","Independent units must not appear in multiple groups"))
+        if design=="paired":
+            group_count=subset[fields["group"]].nunique()
+            if group_count<2 or groups.empty or groups.max()<2:
+                findings.append(finding("FAIL","ROUTE_NO_VALID_PAIRS","Group-comparison design","Paired design requires units observed in multiple groups"))
+            elif (groups<group_count).any():
+                findings.append(finding("NEEDS_CONFIRMATION","ROUTE_INCOMPLETE_PAIRS","Group-comparison design","Some paired units are incomplete; confirm the intended handling",blocking=False))
+    return findings
+
 def route(args):
-    payload=inspect_payload(args.input,args.sheet,read_table(Path(args.input),args.sheet)); c=payload["candidate_roles"]
-    selected=args.structure; fields={k:v for k,v in vars(args).items() if isinstance(v,str) and v}; aliases={"sample":"unit","dose":"x","response":"y","term":"row"}
+    frame=read_table(Path(args.input),args.sheet); payload=inspect_payload(args.input,args.sheet,frame); c=payload["candidate_roles"]
+    selected=args.structure; fields={k:v for k,v in vars(args).items() if isinstance(v,str) and v}; aliases={}
     if not selected:
         routes=payload["candidate_routes"]
         selected=routes[0]["structure"] if len(routes)==1 and not routes[0]["ambiguous"] else None
@@ -211,8 +281,12 @@ def route(args):
         argv=command=None
     elif missing: items=[finding("NEEDS_CONFIRMATION","ROUTE_FIELDS_MISSING","Route selection","Required declarations: "+", ".join(missing),blocking=False)]; argv=command=None
     else:
-        argv=route_argv(selected,args.input,fields,args.outdir); command=format_command(argv,args.command_platform)
-        items=[finding("CONFIRMED","ROUTE_CONFIRMED",f"Route {selected}","All required columns and scientific-design declarations are present.")]
+        items=preflight_route(frame,selected,fields)
+        if items:
+            argv=command=None
+        else:
+            argv=route_argv(selected,args.input,fields,args.outdir); command=format_command(argv,args.command_platform)
+            items=[finding("CONFIRMED","ROUTE_CONFIRMED",f"Route {selected}","Required declarations, columns, role separation, data preflight, and design checks passed.")]
     extra={"candidate_routes":payload["candidate_routes"],"selected_structure":selected,"missing_declarations":missing,"questions":payload["questions"],"command":command,"argv":argv}
     code=emit(items,args.json,extra)
     if not args.json: print(command or "Command template withheld until the missing declarations are confirmed.")
@@ -221,11 +295,16 @@ def route(args):
 def parse_pdffonts(output):
     lines=[x for x in output.splitlines() if x.strip()]; idx=next((i for i,x in enumerate(lines) if "name" in x.lower() and "emb" in x.lower()),-1)
     if idx<0: raise ValueError("pdffonts output did not contain a recognizable header")
-    header=lines[idx].split(); emb=next(i for i,x in enumerate(header) if x.lower()=="emb"); rows=[]
+    rows=[]
+    tail=re.compile(r"^(?P<prefix>.+?)\s+(?P<emb>yes|no)\s+(?P<sub>yes|no)\s+(?P<uni>yes|no)\s+(?P<object>\d+)\s+(?P<generation>\d+)\s*$",re.I)
     for line in lines[idx+1:]:
         if set(line.strip())<={"-"," "}: continue
-        parts=line.split()
-        if len(parts)>emb: rows.append({"name":parts[0],"emb":parts[emb].lower()})
+        match=tail.match(line)
+        if not match: raise ValueError(f"could not parse pdffonts data row: {line}")
+        prefix=match.group("prefix").split()
+        if len(prefix)<3: raise ValueError(f"pdffonts row lacks name/type/encoding fields: {line}")
+        rows.append({"name":prefix[0],"emb":match.group("emb").lower(),"sub":match.group("sub").lower(),
+                     "uni":match.group("uni").lower(),"object":match.group("object"),"generation":match.group("generation")})
     return rows
 
 def raster_qa(path,width):
@@ -239,7 +318,9 @@ def pdf_qa(path):
     if not tool: return [finding("MANUAL_REVIEW","PDF_FONTS_TOOL_MISSING","PDF font embedding","pdffonts unavailable; inspect manually",path=str(path),blocking=False,manual_review=True)]
     p=subprocess.run([tool,str(path)],text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
     if p.returncode: return [finding("FAIL","PDF_FONTS_READ_ERROR","PDF font embedding",p.stdout.strip(),path=str(path))]
-    fonts=parse_pdffonts(p.stdout); bad=[x["name"] for x in fonts if x["emb"]!="yes"]
+    fonts=parse_pdffonts(p.stdout)
+    if not fonts: return [finding("MANUAL_REVIEW","PDF_NO_FONT_OBJECTS","PDF font embedding","pdffonts reported no font objects; verify whether the PDF is intentionally pure graphics",path=str(path),blocking=False,manual_review=True)]
+    bad=[x["name"] for x in fonts if x["emb"]!="yes"]
     return [finding("FAIL" if bad else "PASS","PDF_FONT_EMBEDDING","PDF font embedding","not embedded: "+", ".join(bad) if bad else f"{len(fonts)} font entries embedded",path=str(path))]
 
 def qa(args):

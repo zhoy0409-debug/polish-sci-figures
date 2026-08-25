@@ -67,7 +67,7 @@ def read_table(path: Path, sheet: str | int = 0) -> pd.DataFrame:
         return pd.read_excel(path, sheet_name=sheet)
     if suffix == ".xls":
         raise ValueError(
-            "Legacy .xls workbooks are not officially supported in v1.3.1 because the required "
+            "Legacy .xls workbooks are not officially supported in v1.3.2 because the required "
             "engine path is not part of the tested core dependency set. Convert the file to .xlsx, "
             "CSV, or TSV before running the workbench."
         )
