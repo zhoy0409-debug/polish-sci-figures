@@ -133,7 +133,7 @@ The advanced workbench also implements forest intervals, volcano plots, confusio
 | Numeric relationships and longitudinal responses | x/y or time/value, group, biological-unit ID | Association with uncertainty, joint distributions, individual trajectories, change from baseline |
 | Compositions and tidy matrices | sample/category/value or row/column/value | 100% composition, normalized heatmap, cluster-aware heatmap, signed-magnitude dot matrix |
 | Survival and dose-response | time/event/group/unit or positive dose/response/group | Kaplan–Meier with risk table; four-parameter logistic curve with residual diagnostic |
-| Prediction and supplied model results | outcome/score/unit or estimate/result columns | ROC/PR, confusion matrix, forest, volcano, enrichment, feature-rank candidates |
+| Prediction and supplied model results | outcome/score/unit/positive class or estimate/result columns | ROC/PR, confusion matrix, forest, volcano, enrichment, feature-rank candidates |
 | Embeddings, cumulative data, and event timelines | family-specific tidy coordinates or intervals | Faithful embedding views, ECDF/CCDF, swimmer timelines, safer aligned-series comparisons |
 | Scientific image batches | image manifest plus calibration when scale bars are required | Locked display settings, equal dimensions, editable scale-bar layers, processing audit |
 
@@ -157,7 +157,7 @@ Exploratory and confirmatory scopes remain separate. Adjusted survival, generali
 
 ## Install
 
-Download the complete `sci-figure-suite-v1.3.2.zip` from the [latest release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest), or clone the repository. The suite archive includes the unified CLI, dependency files, README, LICENSE, citation metadata, and all three installable Skill folders.
+Download the complete `sci-figure-suite-v1.3.3.zip` from the [latest release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest), or clone the repository. The suite archive includes the unified CLI, dependency files, README, LICENSE, citation metadata, and all three installable Skill folders.
 
 OpenAI's current Skills documentation says Skills are supported in Codex and the API, and that Plugins package Skills for broader workflows across ChatGPT and Codex. Checked: 2026-08-25.
 
@@ -218,7 +218,7 @@ python sci_figures.py route data.xlsx --structure group-comparison --design pair
 python sci_figures.py qa figure.svg --font Arial --json
 ```
 
-Use `--help` on any subcommand. `doctor` reports dependencies, writable Matplotlib cache, fonts, renderers, platform, and Skill structure. `inspect` uses exact token and multi-token aliases plus dtype, missingness, cardinality, and repetition to provide evidence-backed candidates. `route` never runs inferred statistics and never defaults to an independent design. It withholds the command until structure and required fields are unambiguous, declared columns exist, roles do not conflict, basic type/value checks pass, and an independent/paired declaration is consistent with the observed unit/group structure. Statuses are `CONFIRMED`, `SUGGESTION`, `NEEDS_CONFIRMATION`, `MANUAL_REVIEW`, `WARN`, and blocking `FAIL`/`UNSAFE`.
+Use `--help` on any subcommand. `doctor` reports dependencies, writable Matplotlib cache, fonts, renderers, platform, and Skill structure. `inspect` uses exact token and multi-token aliases plus dtype, missingness, cardinality, and repetition to provide evidence-backed candidates. `route` never runs inferred statistics and never defaults to an independent design. It withholds the command until structure and required fields are unambiguous, declared columns exist, roles do not conflict, route-specific type/value checks pass, and the declared design is compatible with the downstream workbench. Survival requires explicit numeric 0/1 events, while ROC/PR requires `--positive` for nonstandard class labels. Statuses are `CONFIRMED`, `SUGGESTION`, `NEEDS_CONFIRMATION`, `MANUAL_REVIEW`, `WARN`, and blocking `FAIL`/`UNSAFE`.
 
 `doctor --json` and `qa --json` write JSON only. Blocking findings exit 2; warnings and manual-review items exit 0. SVG automation checks parse canvas-related metadata, live/fragmented text, font-family declarations, raster resources and effective DPI, plus basic contrast/grayscale signals. Collision, final-size legibility, scientific notation, sub/superscripts, and color-only meaning remain explicit `MANUAL_REVIEW` tasks. Raster DPI requires `--width-mm`; metadata alone is not accepted as final-size proof. PDF embedding uses only the `pdffonts` `emb` column; when the tool is missing, QA requires manual review.
 
@@ -265,7 +265,7 @@ Use $polish-sci-figures to audit this SVG for canvas consistency, live text, fon
 | Message | Meaning | Fix |
 | --- | --- | --- |
 | `Required font 'Arial' is not installed` | The target font is missing and fallback is blocked | Install the font, choose an installed final font, or use `--allow-font-fallback` only for drafts |
-| `Legacy .xls is not a tested v1.3.2 input` | Old Excel format is outside the tested core path | Convert to `.xlsx`, CSV, or TSV |
+| `Legacy .xls is not a tested v1.3.3 input` | Old Excel format is outside the tested core path | Convert to `.xlsx`, CSV, or TSV |
 | `A scale bar requires an authoritative um_per_pixel column` | Calibration is missing | Add calibration from acquisition metadata or records |
 | `Independent data contain repeated experimental-unit IDs` | Possible pseudoreplication | Declare paired/repeated/nested design or aggregate technical replicates explicitly |
 | `SVG contains embedded raster layer(s)` | The SVG is partially editable | Do not describe it as fully vector editable |
@@ -276,7 +276,7 @@ The command-line scripts process local files on the machine where you run them. 
 
 ## Version Compatibility
 
-| Component | v1.3.2 tested range |
+| Component | v1.3.3 tested range |
 | --- | --- |
 | Python | 3.10-3.12 |
 | OS CI matrix | Ubuntu, Windows, macOS |
@@ -289,7 +289,7 @@ Python 3.10 and 3.12 are tested as compatibility endpoints on every supported OS
 
 ## Skill behavior evaluation
 
-- Schema validation checks the eval case contract in `evals/skill_behavior_v1_3_2.json`.
+- Schema validation checks the eval case contract in `evals/skill_behavior_v1_3_3.json`.
 - Replay evaluation supports required-all/any, forbidden rules, regular expressions, and explicit synonym groups while retaining raw output and match evidence.
 - Live Codex capture is not bundled in this hotfix. It must be reported as `live_eval_run: false` unless a separately verified official runner captured real outputs; replay fixtures are not live-model evidence.
 

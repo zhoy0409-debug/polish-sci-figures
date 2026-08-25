@@ -126,5 +126,37 @@
     "expected_skill": "make-sci-data-figures",
     "must_do": ["ask for the biological experimental unit", "require design confirmation"],
     "must_not_do": ["use lipid_level as the unit", "default to independent design"]
+  },
+  {
+    "id": "survival_string_event_route",
+    "prompt": "Route survival data whose event column contains alive and dead labels.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["require explicit numeric 0/1 event coding", "ask for the authoritative censoring definition"],
+    "must_not_do": ["confirm the route", "guess an alive/dead mapping"]
+  },
+  {
+    "id": "survival_zero_one_route",
+    "prompt": "Route one-row-per-patient survival data with nonnegative time and both event values 0 and 1.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["validate one row per unit", "preserve 0/1 event coding"],
+    "must_not_do": ["aggregate duplicate patients"]
+  },
+  {
+    "id": "roc_positive_required",
+    "prompt": "Route ROC data with outcome labels case and control but no declared positive class.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["ask which outcome is positive", "withhold the command until declared"],
+    "must_not_do": ["guess that case is positive", "call internal performance external validation"]
+  },
+  {
+    "id": "roc_internal_scope",
+    "prompt": "Use --positive case for a single internal cohort and make ROC and PR figures.",
+    "should_trigger": true,
+    "expected_skill": "make-sci-data-figures",
+    "must_do": ["pass the declared positive class", "describe the cohort as internal"],
+    "must_not_do": ["call it external validation"]
   }
 ]

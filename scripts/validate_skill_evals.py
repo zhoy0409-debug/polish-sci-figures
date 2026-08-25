@@ -46,7 +46,7 @@ def validate(path: Path) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("path", nargs="?", default="evals/skill_behavior_v1_3_2.json")
+    parser.add_argument("path", nargs="?", default="evals/skill_behavior_v1_3_3.json")
     args = parser.parse_args()
     errors = validate(Path(args.path))
     if errors:

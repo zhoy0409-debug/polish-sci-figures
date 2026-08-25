@@ -22,7 +22,7 @@ pip install -r requirements-optional.txt
 | Accessibility/delivery QA | stdlib + Pillow | `scripts/figure_accessibility_qa.py` |
 
 Notes
-- **Fonts.** v1.3.2 fails by default when the requested font is missing. Use
+- **Fonts.** v1.3.3 fails by default when the requested font is missing. Use
   `--allow-font-fallback` only for draft previews; audits must record requested
   font, actual font, font file, fallback status, and whether the output is
   allowed for final delivery.

@@ -913,7 +913,15 @@ def roc(
     frame, data = _prepare(input_path, columns, [score])
     if data[unit].duplicated().any():
         raise ValueError("ROC input must contain one prediction per experimental unit.")
-    y = (data[outcome].astype(str) == str(positive)).astype(int)
+    def class_label(value: object) -> str:
+        if isinstance(value, (int, float, np.integer, np.floating)) and not isinstance(value, (bool, np.bool_)):
+            number = float(value)
+            if number.is_integer():
+                return str(int(number))
+        return str(value).strip()
+
+    positive_label = class_label(positive)
+    y = data[outcome].map(class_label).eq(positive_label).astype(int)
     if y.nunique() != 2:
         raise ValueError("Outcome must contain both positive and negative classes.")
     data = data.assign(_truth=y)
@@ -965,7 +973,7 @@ def roc(
         figure.subplots_adjust(left=0.18, right=0.96, bottom=0.17, top=0.96)
     analysis = {
         "family": "roc",
-        "positive_label": str(positive),
+        "positive_label": positive_label,
         "metrics": metrics,
         "experimental_unit_column": unit,
         "limitations": [

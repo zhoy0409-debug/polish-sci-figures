@@ -27,7 +27,7 @@ def emit(items: list[dict[str, Any]], json_mode: bool, extra: dict[str, Any] | N
     warnings = sum(x["status"] in {"WARN", "NEEDS_CONFIRMATION", "MANUAL_REVIEW"} for x in items)
     manual = sum(bool(x["manual_review"]) for x in items)
     code = 2 if blocking else 0
-    payload = {"schema_version": "1.3.2", "results": items,
+    payload = {"schema_version": "1.3.3", "results": items,
                "summary": {"total": len(items), "blocking": blocking, "warnings": warnings,
                            "manual_review": manual, "exit_code": code}}
     payload.update(extra or {})
@@ -52,7 +52,7 @@ def read_table(path: Path, sheet: str | int = 0):
         if suffix == ".csv": return pd.read_csv(path)
         if suffix in {".tsv", ".txt"}: return pd.read_csv(path, sep="\t")
         if suffix == ".xlsx": return pd.read_excel(path, sheet_name=parse_sheet(sheet))
-        if suffix == ".xls": raise ValueError("Legacy .xls is not a tested v1.3.2 input. Convert it to .xlsx, CSV, or TSV.")
+        if suffix == ".xls": raise ValueError("Legacy .xls is not a tested v1.3.3 input. Convert it to .xlsx, CSV, or TSV.")
         raise ValueError(f"Unsupported input type {suffix!r}. Use CSV, TSV, or XLSX.")
     except ValueError as exc:
         if suffix == ".xlsx" and ("worksheet" in str(exc).lower() or "sheet" in str(exc).lower()):
@@ -163,10 +163,28 @@ def candidates_for_routes(c):
             out.append({"structure":name,"confidence":1.0,"evidence":present,"missing":[],"ambiguous":False})
     return sorted(out,key=lambda x:(-x["confidence"],x["structure"]))
 
+ROUTE_QUESTIONS = {
+    "group-comparison": ["Confirm the biological experimental-unit column and outcome meaning.", "Declare independent, paired, repeated, nested, or technical-replicate design.", "Confirm group order and reference group."],
+    "relationship": ["Confirm the scientific meaning of x and y and the experimental-unit column.", "Confirm whether units have repeated observations.", "Declare association or prediction intent; do not imply causation from association."],
+    "timecourse": ["Confirm the experimental-unit column and repeated-measures structure.", "Confirm the time unit, ordering, and any missing time points."],
+    "composition": ["Confirm the sample and category columns.", "Declare whether values are counts, fractions, or percentages and whether within-sample normalization is required."],
+    "matrix": ["Confirm row and column identities, value meaning, ordering, and any intended normalization."],
+    "survival": ["Define event coding explicitly: event must be 0/1 and state whether 0 is censoring or event.", "Confirm follow-up time units and that each experimental unit has one row."],
+    "dose-response": ["Confirm dose units, response meaning, group identity, and whether a log-dose scale is scientifically valid."],
+    "roc-pr": ["Confirm the positive class and whether score is a probability or continuous discrimination score.", "Declare whether the cohort is internal, cross-validated, or external and confirm one prediction per experimental unit."],
+    "supplied-results": ["Confirm term meaning, estimate scale, interval type, reference level, and whether ratios require a log scale."],
+}
+
+def questions_for(structure=None, candidate_count=0):
+    if structure: return ROUTE_QUESTIONS[structure]
+    questions=["Confirm the biological experimental-unit column where applicable."]
+    if candidate_count!=1: questions.append("Confirm which scientific structure matches the intended claim.")
+    return questions
+
 def inspect_payload(path, sheet, frame):
     c=role_candidates(frame); routes=candidates_for_routes(c)
-    questions=["Confirm the biological experimental-unit column.","Declare whether the design is independent, paired, repeated, nested, or technical replicate."]
-    if len(routes)!=1: questions.append("Confirm which scientific structure matches the intended claim.")
+    suggested=routes[0]["structure"] if len(routes)==1 else None
+    questions=questions_for(suggested,candidate_count=len(routes))
     return {"file":path,"sheet":parse_sheet(sheet),"rows":int(len(frame)),"columns":column_profiles(frame),"duplicate_rows":int(frame.duplicated().sum()),
             "candidate_roles":c,"candidate_routes":routes,"candidate_structures":[r["structure"] for r in routes],
             "risks":["Column names and data profiles are suggestions, not experimental-design declarations."],"questions":questions,
@@ -188,6 +206,20 @@ def format_command(argv, target=None):
 def top(c, role):
     items=c.get(role,[]); return items[0]["column"] if len(items)==1 and not items[0]["ambiguous"] else None
 
+def route_top(c, role, structure):
+    items=c.get(role,[])
+    if len(items)==1 and (not items[0]["ambiguous"] or (structure=="timecourse" and role=="unit")):
+        return items[0]["column"]
+    return None
+
+def normalize_class_label(value):
+    """Match downstream class labels without merging distinct text labels."""
+    import numbers
+    if isinstance(value, numbers.Real) and not isinstance(value, (bool,)):
+        number=float(value)
+        if number.is_integer(): return str(int(number))
+    return str(value).strip()
+
 def route_argv(structure,path,f,outdir):
     if structure=="group-comparison": return ["python","skills/make-sci-data-figures/scripts/figure_workbench.py","generate",path,"--group",f["group"],"--value",f["value"],"--unit",f["unit"],"--design",f["design"],"--outcome-type","continuous","--outdir",outdir]
     if structure in {"relationship","timecourse","composition","matrix"}:
@@ -198,6 +230,7 @@ def route_argv(structure,path,f,outdir):
         fields={"survival":["time","event","group","unit"],"dose-response":["dose","response","group"],"roc-pr":["outcome","score","unit"],"supplied-results":["term","estimate","low","high"]}[structure]
         argv=["python","skills/make-sci-data-figures/scripts/advanced_template_workbench.py",cmd,path]
     for name in fields: argv += ["--"+name,f[name]]
+    if structure=="roc-pr": argv += ["--positive",f["positive"]]
     return argv+["--outdir",outdir]
 
 def preflight_route(frame, structure, fields):
@@ -244,9 +277,52 @@ def preflight_route(frame, structure, fields):
         findings.append(finding("FAIL","ROUTE_NEGATIVE_COMPOSITION","Composition preflight","Composition values must be non-negative"))
     if structure=="survival":
         if (converted["time"].dropna()<0).any(): findings.append(finding("FAIL","ROUTE_NEGATIVE_TIME","Survival preflight","Survival time must be non-negative"))
-        if frame[fields["event"]].dropna().nunique()!=2: findings.append(finding("FAIL","ROUTE_EVENT_NOT_BINARY","Survival preflight","Event must contain exactly two non-missing levels"))
-    if structure=="roc-pr" and frame[fields["outcome"]].dropna().nunique()!=2:
-        findings.append(finding("FAIL","ROUTE_OUTCOME_NOT_BINARY","ROC/PR preflight","Outcome must contain exactly two non-missing levels"))
+        raw_event=frame[fields["event"]].dropna()
+        numeric_event=pd.to_numeric(raw_event,errors="coerce")
+        observed=sorted({normalize_class_label(x) for x in raw_event})
+        valid_event=(not raw_event.empty and not numeric_event.isna().any()
+                     and not pd.api.types.is_bool_dtype(raw_event.dtype)
+                     and set(numeric_event.astype(float).unique())=={0.0,1.0})
+        if not valid_event:
+            findings.append(finding("FAIL","ROUTE_EVENT_NOT_ZERO_ONE","Survival preflight",f"Observed event values: {observed}. The downstream survival workbench requires both numeric 0 and 1; re-encode only after the authoritative event/censor definition is known."))
+        unit=frame[fields["unit"]]
+        if unit.isna().any(): findings.append(finding("FAIL","ROUTE_EMPTY_UNIT","Survival preflight","Every survival row must identify an experimental unit"))
+        elif unit.duplicated().any(): findings.append(finding("FAIL","ROUTE_SURVIVAL_DUPLICATE_UNIT","Survival preflight","Survival input requires exactly one row per experimental unit; route will not aggregate or remove duplicates"))
+        group=frame[fields["group"]]
+        if group.isna().any(): findings.append(finding("FAIL","ROUTE_EMPTY_GROUP","Survival preflight","Every survival row must identify a group"))
+        group_count=group.dropna().astype(str).nunique()
+        if not 1<=group_count<=6: findings.append(finding("FAIL","ROUTE_SURVIVAL_GROUP_COUNT","Survival preflight",f"Observed {group_count} groups; downstream publication-size survival display supports 1-6"))
+    if structure=="roc-pr":
+        outcome=frame[fields["outcome"]].dropna()
+        labels=[]
+        for value in outcome:
+            label=normalize_class_label(value)
+            if label not in labels: labels.append(label)
+        if len(labels)!=2:
+            findings.append(finding("FAIL","ROUTE_OUTCOME_NOT_BINARY","ROC/PR preflight",f"Outcome must contain exactly two non-missing classes; observed: {labels}"))
+        else:
+            requested=fields.get("positive")
+            if requested is None and set(labels)=={"0","1"}:
+                fields["positive"]="1"
+            elif requested is None:
+                findings.append(finding("NEEDS_CONFIRMATION","ROUTE_POSITIVE_CLASS_REQUIRED","ROC/PR preflight",f"Observed outcome classes: {labels}. Supply --positive explicitly; route will not guess the positive class.",blocking=False))
+            else:
+                positive=normalize_class_label(requested)
+                if positive not in labels:
+                    findings.append(finding("FAIL","ROUTE_POSITIVE_CLASS_NOT_FOUND","ROC/PR preflight",f"Positive class {requested!r} was not found in observed classes: {labels}"))
+                else: fields["positive"]=positive
+        unit=frame[fields["unit"]]
+        if unit.isna().any(): findings.append(finding("FAIL","ROUTE_EMPTY_UNIT","ROC/PR preflight","Every ROC/PR row must identify an experimental unit"))
+        elif unit.duplicated().any(): findings.append(finding("FAIL","ROUTE_ROC_DUPLICATE_UNIT","ROC/PR preflight","ROC/PR input requires one prediction per experimental unit"))
+    if structure=="timecourse":
+        unit=frame[fields["unit"]]; time=frame[fields["time"]]
+        if unit.isna().any(): findings.append(finding("FAIL","ROUTE_EMPTY_UNIT","Timecourse preflight","Every timecourse row must identify an experimental unit"))
+        if frame[fields["group"]].isna().any(): findings.append(finding("FAIL","ROUTE_EMPTY_GROUP","Timecourse preflight","Every timecourse row must identify a group"))
+        if frame.duplicated([fields["unit"],fields["time"]]).any():
+            findings.append(finding("FAIL","ROUTE_DUPLICATE_UNIT_TIME","Timecourse preflight","Each experimental unit-time cell must be unique; route will not aggregate duplicates"))
+        observations=frame.loc[unit.notna()&time.notna()].groupby(fields["unit"])[fields["time"]].nunique()
+        if not observations.empty and (observations<2).any():
+            findings.append(finding("NEEDS_CONFIRMATION","ROUTE_NOT_LONGITUDINAL","Timecourse preflight","Some experimental units occur at fewer than two time points; confirm that the data are longitudinal",blocking=False))
     if structure=="supplied-results":
         valid=converted["low"].notna()&converted["estimate"].notna()&converted["high"].notna()
         if ((converted["low"][valid]>converted["estimate"][valid])|(converted["estimate"][valid]>converted["high"][valid])).any():
@@ -272,7 +348,7 @@ def route(args):
         selected=routes[0]["structure"] if len(routes)==1 and not routes[0]["ambiguous"] else None
     if selected:
         for name in REQUIRED[selected]:
-            if name not in fields and (value:=top(c,aliases.get(name,name))): fields[name]=value
+            if name not in fields and (value:=route_top(c,aliases.get(name,name),selected)): fields[name]=value
     missing=["structure"] if not selected else [x for x in REQUIRED[selected] if x not in fields]
     unsupported_design = selected == "group-comparison" and fields.get("design") in {"repeated", "nested", "technical-replicate"}
     if unsupported_design:
@@ -287,7 +363,7 @@ def route(args):
         else:
             argv=route_argv(selected,args.input,fields,args.outdir); command=format_command(argv,args.command_platform)
             items=[finding("CONFIRMED","ROUTE_CONFIRMED",f"Route {selected}","Required declarations, columns, role separation, data preflight, and design checks passed.")]
-    extra={"candidate_routes":payload["candidate_routes"],"selected_structure":selected,"missing_declarations":missing,"questions":payload["questions"],"command":command,"argv":argv}
+    extra={"candidate_routes":payload["candidate_routes"],"selected_structure":selected,"missing_declarations":missing,"questions":questions_for(selected,len(payload["candidate_routes"])),"effective_positive_class":fields.get("positive") if selected=="roc-pr" else None,"command":command,"argv":argv}
     code=emit(items,args.json,extra)
     if not args.json: print(command or "Command template withheld until the missing declarations are confirmed.")
     return code
@@ -354,6 +430,7 @@ def parser():
     p=sub.add_parser("inspect"); p.add_argument("input"); p.add_argument("--sheet",default=0); p.add_argument("--json",action="store_true"); p.set_defaults(func=inspect_data)
     p=sub.add_parser("route"); p.add_argument("input"); p.add_argument("--sheet",default=0); p.add_argument("--json",action="store_true"); p.add_argument("--structure",choices=list(REQUIRED)); p.add_argument("--design",choices=["independent","paired","repeated","nested","technical-replicate"])
     for name in sorted(set().union(*(set(v) for v in REQUIRED.values()))-{"design"}): p.add_argument("--"+name)
+    p.add_argument("--positive",help="positive outcome class value for ROC/PR; this is not a column name")
     p.add_argument("--outdir",default="results"); p.add_argument("--command-platform",choices=["windows","posix"]); p.set_defaults(func=route)
     p=sub.add_parser("qa"); p.add_argument("paths",nargs="+"); p.add_argument("--width-mm",type=float); p.add_argument("--font"); p.add_argument("--strict-sources",action="store_true"); p.add_argument("--json",action="store_true"); p.set_defaults(func=qa)
     return root

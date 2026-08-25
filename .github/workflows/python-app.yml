@@ -81,7 +81,7 @@ jobs:
           git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
       - name: Build and test complete release bundle
         run: |
-          python scripts/build_release.py --version v1.3.2
+          python scripts/build_release.py --version v1.3.3
           python scripts/test_release_bundle.py
       - name: Whitespace check
         run: git diff --check

@@ -9,8 +9,8 @@ from build_release import ROOT_FILES, SKILL_NAMES, build
 
 def main():
     with tempfile.TemporaryDirectory() as tmp:
-        base=Path(tmp); archive=build("v1.3.2",base/"dist")
-        assert archive.name=="sci-figure-suite-v1.3.2.zip"
+        base=Path(tmp); archive=build("v1.3.3",base/"dist")
+        assert archive.name=="sci-figure-suite-v1.3.3.zip"
         with zipfile.ZipFile(archive) as handle:
             names=set(handle.namelist())
             for name in ROOT_FILES: assert name in names,name

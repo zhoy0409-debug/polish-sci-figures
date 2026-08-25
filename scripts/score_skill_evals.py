@@ -41,11 +41,11 @@ def score(evals:list[dict],runs:list[dict])->dict:
         results.append({"id":case["id"],"passed":not reasons,"triggered_skill":triggered,"expected_skill":expected,
                         "raw_output":raw_output,"evidence":evidence,"reasons":reasons})
     passed=sum(x["passed"] for x in results)
-    return {"schema_version":"1.3.2","mode":"replay","live_eval_run":False,"cases":results,
+    return {"schema_version":"1.3.3","mode":"replay","live_eval_run":False,"cases":results,
             "summary":{"total":len(results),"passed":passed,"failed":len(results)-passed,"score":passed/len(results) if results else 0.0}}
 
 def main()->int:
-    p=argparse.ArgumentParser(description=__doc__); p.add_argument("runs"); p.add_argument("--evals",default="evals/skill_behavior_v1_3_2.json"); p.add_argument("--report")
+    p=argparse.ArgumentParser(description=__doc__); p.add_argument("runs"); p.add_argument("--evals",default="evals/skill_behavior_v1_3_3.json"); p.add_argument("--report")
     a=p.parse_args(); report=score(json.loads(Path(a.evals).read_text(encoding="utf-8")),json.loads(Path(a.runs).read_text(encoding="utf-8")))
     text=json.dumps(report,indent=2,ensure_ascii=False); print(text)
     if a.report: Path(a.report).write_text(text+"\n",encoding="utf-8")

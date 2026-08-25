@@ -302,7 +302,7 @@ def main(argv: list[str] | None = None) -> int:
                "warnings": sum(item["status"] in {"WARN", "MANUAL_REVIEW"} for item in results),
                "manual_review": sum(item["manual_review"] for item in results), "exit_code": 2 if failed else 0}
     if args.json:
-        print(json.dumps({"schema_version": "1.3.2", "results": results, "summary": summary, "reports": reports}, indent=2, ensure_ascii=False))
+        print(json.dumps({"schema_version": "1.3.3", "results": results, "summary": summary, "reports": reports}, indent=2, ensure_ascii=False))
     else:
         for report in reports:
             print(f"[ACCESSIBILITY] {report['path']}")

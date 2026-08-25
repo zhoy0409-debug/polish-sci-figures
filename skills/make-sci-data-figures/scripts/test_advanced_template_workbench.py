@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import sys
 import tempfile
 import xml.etree.ElementTree as ET
@@ -84,6 +85,11 @@ def verify_risk_table_spacing(svg_path: Path) -> None:
 
 
 def main() -> None:
+    font_messages: list[str] = []
+    handler = logging.Handler()
+    handler.emit = lambda record: font_messages.append(record.getMessage())
+    font_logger = logging.getLogger("matplotlib.font_manager")
+    font_logger.addHandler(handler)
     rng = np.random.default_rng(20260719)
     with tempfile.TemporaryDirectory() as temporary:
         root = Path(temporary)
@@ -351,6 +357,8 @@ def main() -> None:
         )
         verify(root / "roc_recolored", "roc", {"roc", "precision_recall"})
 
+    font_logger.removeHandler(handler)
+    assert not any("cursive" in message.casefold() for message in font_messages), font_messages
     print("advanced template workbench checks passed")
 
 
