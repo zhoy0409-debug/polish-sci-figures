@@ -9,8 +9,8 @@ import sci_figures as sf
 
 ROOT=Path(__file__).resolve().parent; CLI=ROOT/"sci_figures.py"; PYTHON=sys.executable
 def run(*args, check=True):
-    p=subprocess.run([PYTHON,str(CLI),*map(str,args)],cwd=ROOT,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
-    if check and p.returncode: raise AssertionError(p.stdout)
+    p=subprocess.run([PYTHON,str(CLI),*map(str,args)],cwd=ROOT,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    if check and p.returncode: raise AssertionError(p.stdout+"\nSTDERR:\n"+p.stderr)
     return p
 
 def main():

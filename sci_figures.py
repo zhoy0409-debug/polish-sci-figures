@@ -13,6 +13,9 @@ SUPPORTED_PYTHON = ((3, 10), (3, 12))
 CORE = {"matplotlib": "matplotlib", "numpy": "numpy", "openpyxl": "openpyxl", "pandas": "pandas", "Pillow": "PIL", "scipy": "scipy"}
 OPTIONAL = {"PyMuPDF": "fitz", "python-docx": "docx", "python-pptx": "pptx", "tifffile": "tifffile"}
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 def finding(status: str, code: str, name: str, detail: str, *, path: str | None = None,
             blocking: bool | None = None, manual_review: bool = False) -> dict[str, Any]:
     return {"status": status, "code": code, "name": name, "detail": detail, "path": path,
@@ -72,6 +75,7 @@ def version_of(name: str) -> str:
 
 def doctor(args) -> int:
     items = []
+    cache_ok, cache_detail = ensure_mpl_config()
     current, (low, high) = sys.version_info[:2], SUPPORTED_PYTHON
     ok = low <= current <= high
     items.append(finding("PASS" if ok else "FAIL", "PYTHON_VERSION", "Python version", platform.python_version()))
@@ -81,7 +85,7 @@ def doctor(args) -> int:
     for label, module in OPTIONAL.items():
         try: items.append(finding("PASS", "OPTIONAL_DEPENDENCY", f"optional dependency {label}", version_of(module)))
         except Exception: items.append(finding("WARN", "OPTIONAL_DEPENDENCY_MISSING", f"optional dependency {label}", "not installed", blocking=False))
-    ok, detail = ensure_mpl_config(); items.append(finding("PASS" if ok else "FAIL", "MPL_CACHE", "Matplotlib writable cache", detail))
+    items.append(finding("PASS" if cache_ok else "FAIL", "MPL_CACHE", "Matplotlib writable cache", cache_detail))
     try:
         from matplotlib import font_manager
         path = font_manager.findfont(font_manager.FontProperties(family=args.font), fallback_to_default=False)
