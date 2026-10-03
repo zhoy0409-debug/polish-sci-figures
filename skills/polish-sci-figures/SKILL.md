@@ -122,6 +122,7 @@ Treat notation as scientific content, not decoration. Build a terminology and ca
 - Italicize genus/species binomials, but keep strain designations and surrounding prose upright unless the field convention says otherwise.
 - Verify organism- and discipline-specific gene/protein conventions before changing case or italics. Preserve authoritative labels when uncertain: gene symbols and protein names are not interchangeable, and human, mouse, plant, and microbial capitalization rules differ.
 - Preserve intended acronym, treatment, cohort, gene, protein, and cell-state case exactly across panels. Do not auto-title-case biological labels or silently normalize an unfamiliar term.
+- Keep multiplicity language exact: distinguish raw *P*, adjusted *P*, q value, and FDR, and show the measure that actually drives the axis, color, threshold, or claim. Do not stamp `FDR` onto every panel when adjustment is reported elsewhere, but verify that every figure abbreviation is defined on first use in the figure-caption-text system; use a full label in the artwork when an unexplained abbreviation would be ambiguous.
 - Block delivery when the required case, italics, subscript, superscript, symbol, or unit convention is uncertain or inconsistent.
 
 ## Prevent every overlap at final placement
@@ -131,6 +132,7 @@ Zero unintended overlap is mandatory. Check text against text, markers, error ba
 - Reserve dedicated layout zones for axes, legends, colorbars, labels, and annotations before drawing data. Put forest-plot values in a separate annotation column rather than on the marker or confidence interval.
 - Omit panel letters and serial labels by default. When explicitly required, add them at final composite assembly in a fixed outer margin and rerun collision checks.
 - Move a colliding annotation to a reserved label column, axis label, legend, figure legend, or editable slide text. If no valid space exists, redesign the layout or regenerate for a larger slot; do not solve collisions by blindly shrinking text.
+- Place multiple comparison brackets and exact *P* values on distinct levels derived from the compared groups' observed maxima, uncertainty bars, and existing annotations. Keep a visible offset above each bracket; never align unrelated comparisons into one crowded row or let the value touch the rule.
 - Inspect the rendered image at the actual manuscript, README, poster, or slide size. A source canvas that looks clean while zoomed in does not pass.
 - Do not use a horizontal contact sheet when it reduces each panel below a readable final preview size. Prefer a vertical stack or separate full-width previews, with descriptions outside the artwork.
 - Treat touching or ambiguous proximity as a failure when it can make a label appear attached to the wrong line, point, group, or panel.
@@ -139,6 +141,7 @@ Zero unintended overlap is mandatory. Check text against text, markers, error ba
 ## Use a restrained editorial visual language
 
 - Prefer low-saturation, high-contrast colors with stable semantics, dark text/axes, subtle grids, and few accent colors. Match the approved palette first.
+- Set sequential and diverging heatmap limits from the declared scientific scale or the displayed data distribution. A correlation matrix keeps its meaningful domain when appropriate, but a narrow observed range must not collapse into an unreadable single-color block; record any clipping, centering, or robust quantile rule.
 - Avoid default card grids, excessive white boxes, gradients, and decorative frames. For slides, prefer transparent figure backgrounds over a very light slide background unless the template requires otherwise.
 - Build the panel grid before plotting: aligned outer edges, equal gutters, balanced weight, and intentional whitespace only.
 - Distinguish the figure canvas, allocated subplot slot, and actual axes box. Equal canvas or GridSpec cells do not pass when one plotted axes is visibly narrower, shorter, shifted, or surrounded by avoidable blank space.
@@ -146,6 +149,7 @@ Zero unintended overlap is mandatory. Check text against text, markers, error ba
 - Do not let `set_aspect("equal", adjustable="box")` silently shrink one panel. Use the normal automatic aspect when equal data units are not scientifically required; when geometry must stay undistorted, use `adjustable="datalim"` or allocate a deliberately matching slot.
 - Treat whitespace as a budget. Keep only space reserved for labels, legends, colorbars, annotations, or scientifically necessary geometry; remove accidental or one-sided empty regions before delivery.
 - Keep legends in reserved space and all text, annotations, colorbars, and connectors inside a visible safety margin. Lines must never cross cards, labels, or unrelated objects.
+- Treat PCA scores, group ellipses, loading arrows, loading labels, marginal distributions, and the legend as one coordinated layout. Loading labels stay attached to their arrow endpoints, ellipses remain subordinate to points, and marginal axes must not shrink or displace the main score axes unexpectedly.
 - Reserve a separate annotation column for numeric labels beside forest plots, intervals, and lollipops; never print values on top of markers or confidence intervals.
 - Use the form that best answers the claim: points plus distributions, rainclouds, paired slopes or estimation plots, lollipops/forest plots, 100% composition plots, vector heatmaps, and lines with uncertainty. Do not add novelty that weakens comparison.
 - For longitudinal state changes, use alluvial flows only when adjacent matrices conserve every state total; for multimodal integration, preserve direction and scale explicitly in communication networks, cross-modal concordance maps, and ridgeline distributions. Keep the generating values and conservation checks in the reproducible source.

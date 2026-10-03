@@ -128,6 +128,11 @@ def audit_figure_text(
             if text.get_visible() and text.get_text()
             and y0 <= text.get_position()[1] <= y1
         )
+    for text in rendered_ticks:
+        box = text.get_window_extent(renderer)
+        if (box.x0 < figure_box.x0 - 1 or box.y0 < figure_box.y0 - 1
+                or box.x1 > figure_box.x1 + 1 or box.y1 > figure_box.y1 + 1):
+            issues.append(f"tick label is clipped by the canvas: {text.get_text()!r}")
     visible_text.extend(
         (text, text.get_window_extent(renderer).padded(-1))
         for text in rendered_ticks

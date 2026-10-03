@@ -54,7 +54,22 @@ The suite does not turn every dataset into the same fashionable plot. It preserv
 
 ## Reproducible showcase
 
-Every showcase below is generated from deterministic synthetic data and source-controlled code. No panel titles or serial labels are baked into reusable artwork.
+All showcase data below are synthetic. The executable repository demos are generated from source-controlled code; the composite gallery is presented as a design demonstration and is not biological evidence. Panel letters appear only in explicitly assembled composite examples; reusable source panels remain free of baked-in titles and serial labels.
+
+### Publication-scale composite figures
+
+Three coordinated 3 x 3 examples cover common bioinformatics, basic-research, and sequencing workflows. The source package used calculated statistics from deterministic synthetic data, consistent typography and canvas geometry, editable vector exports, and final-width visual QA. The repository includes the reviewed PNG previews; they are design demonstrations, not biological findings.
+
+![Synthetic bioinformatics composite figure](demo/composite_showcase/Figure_1_Bioinformatics.png)
+
+<details>
+<summary><strong>Basic-research and sequencing composites</strong></summary>
+
+![Synthetic basic-research composite figure](demo/composite_showcase/Figure_2_Basic_research.png)
+
+![Synthetic sequencing composite figure](demo/composite_showcase/Figure_3_Sequencing.png)
+
+</details>
 
 ### Longitudinal multimodal ecosystem
 

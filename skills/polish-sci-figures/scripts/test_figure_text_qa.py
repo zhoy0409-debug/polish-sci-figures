@@ -61,6 +61,14 @@ def main() -> None:
         else:
             raise AssertionError("an unrelated renderer warning was swallowed")
 
+    clipped = Figure(figsize=(2, 2))
+    clipped_canvas = FigureCanvasAgg(clipped)
+    clipped.set_canvas(clipped_canvas)
+    axis = clipped.add_axes([0.02, 0.12, 0.9, 0.8])
+    axis.set_yticks([0], ["long tick label outside canvas"])
+    issues = audit_figure_text(clipped, [axis], require_aligned_grid=False)
+    assert any("tick label is clipped by the canvas" in issue for issue in issues), issues
+
     print("figure_text_qa missing-glyph regression checks passed")
 
 
