@@ -6,10 +6,13 @@ Each renderer consumes measurements or declared analysis results, never pixels.
 from pathlib import Path
 import argparse
 import json
+import textwrap
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, Normalize
+from matplotlib.patches import Rectangle
+from matplotlib.ticker import MaxNLocator
 from scipy import stats
 from figure_workbench import style, resolve_palette
 from data_family_workbench import _save_bundle, _relative_input
@@ -116,10 +119,42 @@ def finish(ax,x=None,y=None):
     if x: ax.set_xlabel(x,fontsize=9,labelpad=7)
     if y: ax.set_ylabel(y,fontsize=9,labelpad=7)
 
-def render(data,view,colors=None):
+def _wrap(value,width=16):
+    return '\n'.join(textwrap.wrap(str(value),width=width,break_long_words=True))
+
+def _top_legend(ax,ncol=2):
+    handles,labels=ax.get_legend_handles_labels();labels=[_wrap(x,16) for x in labels]
+    longest=max((max(map(len,x.splitlines())) for x in labels),default=0)
+    available=ax.figure.get_size_inches()[0]*72-60
+    while ncol>1 and ncol*(longest*4.1+24)>available:ncol-=1
+    return ax.legend(handles,labels,loc='lower left',bbox_to_anchor=(0,1.02),ncol=ncol,fontsize=8,frameon=False,borderaxespad=0,columnspacing=1.1,handlelength=1.7)
+
+def _fixed_colorbar(fig,ax,artist,label):
+    """Keep a geometry-locked panel and its colour bar together when widened."""
+    from mpl_toolkits.axes_grid1 import make_axes_locatable
+    divider=make_axes_locatable(ax);cax=divider.append_axes('right',size='4%',pad=.10)
+    cb=fig.colorbar(artist,cax=cax,label=label);cb.solids.set_rasterized(False)
+    fig._studio_right_pad_inches=.68
+    return cb
+
+def _finalize(fig):
+    """Lay out actual artists within the requested physical canvas."""
+    fig.set_layout_engine('constrained')
+    fig.get_layout_engine().set(w_pad=.08,h_pad=.08,wspace=.08,hspace=.10)
+    if getattr(fig,'_studio_right_pad_inches',0):
+        fig.get_layout_engine().set(rect=(0,0,1-fig._studio_right_pad_inches/fig.get_size_inches()[0],1))
+    for axis in fig.axes:
+        axis.tick_params(labelsize=8)
+        if axis.get_legend():
+            for text in axis.get_legend().get_texts():text.set_fontsize(8)
+        for text in axis.texts:
+            if text.get_fontsize()<8:text.set_fontsize(8)
+    return fig
+
+def render(data,view,colors=None,figsize=(4.8,3.6)):
     d=validate(data,view);colors=colors or resolve_palette('zhoy_muted',None,8)
     # Compact, consistent type sizes; complex panels receive actual extra space.
-    fig,ax=plt.subplots(figsize=(4.8,3.6));fig.subplots_adjust(left=.18,right=.94,bottom=.19,top=.88)
+    fig,ax=plt.subplots(figsize=figsize,layout='constrained')
     seq=LinearSegmentedColormap.from_list('studio_sequential',['#f0f3f8',colors[0]])
     div=LinearSegmentedColormap.from_list('studio_diverging',[colors[0],'#f5f6f8',colors[1]])
     rng=np.random.default_rng(2317)
@@ -128,42 +163,44 @@ def render(data,view,colors=None):
             x=(d.method_a+d.method_b)/2;y=d.method_b-d.method_a;bias=y.mean();sd=y.std(ddof=1)
             ax.scatter(x,y,s=19,color=colors[0],alpha=.7,edgecolor='white',lw=.35)
             for value,label,ls in [(bias,'Bias','-'),(bias+1.96*sd,'Upper LoA','--'),(bias-1.96*sd,'Lower LoA','--')]:
-                ax.axhline(value,color='#67758a',ls=ls,lw=.85)
-                ax.annotate(f'{label} {value:.2f}',xy=(1,value),xycoords=('axes fraction','data'),xytext=(-3,5),textcoords='offset points',ha='right',fontsize=7.5,bbox=dict(fc='white',ec='none',pad=1))
-            ax.margins(y=.25);finish(ax,'Mean of methods','Method B − method A')
+                ax.axhline(value,color='#67758a',ls=ls,lw=.85,label=f'{label}: {value:.2f}')
+            _top_legend(ax,ncol=3);ax.margins(y=.18);finish(ax,'Mean of methods','Method B − method A')
         elif view=='prediction_intervals':
             x=d.x.to_numpy();y=d.y.to_numpy();fit=stats.linregress(x,y);gx=np.linspace(x.min(),x.max(),150);fitted=fit.intercept+fit.slope*gx
             se=np.sqrt(np.sum((y-fit.intercept-fit.slope*x)**2)/(len(x)-2));h=1/len(x)+(gx-x.mean())**2/np.sum((x-x.mean())**2);t=stats.t.ppf(.975,len(x)-2)
             ax.fill_between(gx,fitted-t*se*np.sqrt(1+h),fitted+t*se*np.sqrt(1+h),color='#e8ecf1',label='95% prediction interval')
             ax.fill_between(gx,fitted-t*se*np.sqrt(h),fitted+t*se*np.sqrt(h),color=colors[0],alpha=.25,label='Mean 95% CI')
             ax.scatter(x,y,s=12,color=colors[0],alpha=.65);ax.plot(gx,fitted,color=colors[0],lw=1.3)
-            ax.legend(loc='upper left',bbox_to_anchor=(0,1.20),ncol=1,fontsize=7,frameon=False);finish(ax,'X','Y')
+            _top_legend(ax,ncol=1);finish(ax,'X','Y')
         else:
-            fig.subplots_adjust(right=.80)
-            hb=ax.hexbin(d.x,d.y,gridsize=22,mincnt=1,cmap=seq,linewidths=.2);fig.colorbar(hb,ax=ax,pad=.035,fraction=.04,label='Count').solids.set_rasterized(False);finish(ax,'X','Y')
+            # Fixed binning and a matching box aspect keep hexagons regular at
+            # every canvas size, without changing the aggregation on resize.
+            hb=ax.hexbin(d.x,d.y,gridsize=(22,13),mincnt=1,cmap=seq,linewidths=.2)
+            dx=np.ptp(ax.get_xlim());dy=np.ptp(ax.get_ylim());ax.set_aspect(np.sqrt(3)*13/22*dx/dy,adjustable='box')
+            _fixed_colorbar(fig,ax,hb,'Count');finish(ax,'X','Y')
     elif view in {'correlation_circles','correlation_values'}:
-        m=d.pivot(index='unit',columns='variable',values='value').corr();n=len(m);fig.set_size_inches(max(4.8,.40*n+1.5),max(3.6,.40*n+1.2));fig.subplots_adjust(right=.80)
+        m=d.pivot(index='unit',columns='variable',values='value').corr();n=len(m)
         if view=='correlation_values':
             ax.pcolormesh(np.arange(n+1)-.5,np.arange(n+1)-.5,m,vmin=-1,vmax=1,cmap=div,edgecolors='white',linewidth=.5,rasterized=False)
             for i in range(n):
-                for j in range(n):ax.text(j,i,f'{m.iloc[i,j]:.2f}',ha='center',va='center',fontsize=7.5,color='white' if abs(m.iloc[i,j])>.7 else '#23344c')
+                for j in range(n):ax.text(j,i,f'{m.iloc[i,j]:.2f}',ha='center',va='center',fontsize=8,color='white' if abs(m.iloc[i,j])>.7 else '#23344c')
         else:
             for i in range(n):
                 for j in range(i+1):ax.scatter(j,i,s=260*abs(m.iloc[i,j]),c=[m.iloc[i,j]],cmap=div,vmin=-1,vmax=1,edgecolor='white',lw=.6)
         ax.set(xticks=range(n),yticks=range(n),xticklabels=m.columns,yticklabels=m.columns,xlim=(-.5,n-.5),ylim=(n-.5,-.5));ax.tick_params(axis='x',rotation=45);ax.set_aspect('equal')
-        fig.colorbar(plt.cm.ScalarMappable(norm=Normalize(-1,1),cmap=div),ax=ax,pad=.035,fraction=.04,label='Pearson r').solids.set_rasterized(False);finish(ax)
+        _fixed_colorbar(fig,ax,plt.cm.ScalarMappable(norm=Normalize(-1,1),cmap=div),r'Pearson $r$');finish(ax)
     elif view=='upset_intersections':
         from collections import Counter
         sets=sorted(d['set'].unique());members=d.groupby('sample')['set'].apply(frozenset);counts=Counter(members);combos=sorted(counts,key=lambda c:(-counts[c],tuple(sorted(c))))
         if len(combos)>24:raise ValueError('At most 24 nonempty intersections per panel; filter sets or split the panel')
-        fig.delaxes(ax);fig.set_size_inches(max(4.8,.22*len(combos)+1.5),4.0)
+        fig.delaxes(ax);fig.set_size_inches(figsize)
         grid=fig.add_gridspec(2,2,left=.20,right=.97,bottom=.16,top=.93,width_ratios=[1,3],height_ratios=[2,1.6],hspace=.10,wspace=.18)
         bars=fig.add_subplot(grid[0,1]);dots=fig.add_subplot(grid[1,1],sharex=bars);sizes=fig.add_subplot(grid[1,0],sharey=dots)
         bars.bar(range(len(combos)),[counts[c] for c in combos],color=colors[0],width=.65);finish(bars,y='Intersection size');bars.tick_params(axis='x',bottom=False,labelbottom=False)
         for j,c in enumerate(combos):
             rows=[i for i,s in enumerate(sets) if s in c];dots.scatter([j]*len(sets),range(len(sets)),s=12,color='#e1e6ed');dots.plot([j,j],[min(rows),max(rows)],color='#344054',lw=1);dots.scatter([j]*len(rows),rows,s=22,color=colors[0],zorder=3)
         dots.set(xticks=[],yticks=range(len(sets)),ylim=(len(sets)-.5,-.5));dots.tick_params(left=False,labelleft=False);dots.spines[:].set_visible(False)
-        sizes.barh(range(len(sets)),[sum(s in c for c in members) for s in sets],color='#a9b9ce',height=.65);sizes.invert_xaxis();sizes.set_yticks(range(len(sets)),sets);finish(sizes,'Set size');sizes.tick_params(axis='y',length=0);return fig
+        sizes.barh(range(len(sets)),[sum(s in c for c in members) for s in sets],color='#a9b9ce',height=.65);sizes.invert_xaxis();sizes.set_yticks(range(len(sets)),sets);finish(sizes,'Set size');sizes.tick_params(axis='y',length=0);return _finalize(fig)
     elif view in {'ma_expression','pvalue_quantiles','variance_scree','genome_manhattan'}:
         if view=='ma_expression':
             sig=d.adjusted_p<.05;cc=np.where(sig& (d.log2fc>0),colors[1],np.where(sig&(d.log2fc<0),colors[0],'#cfd6df'))
@@ -172,12 +209,15 @@ def render(data,view,colors=None):
             expected=-np.log10((np.arange(1,len(d)+1)-.5)/len(d));observed=-np.log10(np.sort(d.p));ax.scatter(expected,observed,s=16,color=colors[0],alpha=.7)
             lim=max(max(expected),max(observed));ax.plot([0,lim],[0,lim],ls=':',lw=1,color='#9aa6b7');finish(ax,r'Expected $-\log_{10} P$',r'Observed $-\log_{10} P$')
         elif view=='variance_scree':
-            ax.bar(np.arange(len(d)),100*d.proportion,color='#a9b9ce',width=.6,label='Individual');ax.plot(np.arange(len(d)),100*d.proportion.cumsum(),'-o',ms=3,color=colors[0],label='Cumulative');ax.set_xticks(range(len(d)),d.component);ax.set_ylim(0,105);ax.legend(frameon=False,fontsize=8);finish(ax,'Component','Explained variance (%)')
+            ax.bar(np.arange(len(d)),100*d.proportion,color='#a9b9ce',width=.6,label='Individual');ax.plot(np.arange(len(d)),100*d.proportion.cumsum(),'-o',ms=3,color=colors[0],label='Cumulative');ax.set_xticks(range(len(d)),d.component);ax.set_ylim(0,105);_top_legend(ax);finish(ax,'Component','Explained variance (%)')
         else:
             chrom=list(dict.fromkeys(d.chromosome));offset=0;ticks=[]
             for i,c in enumerate(chrom):
                 q=d[d.chromosome==c].sort_values('position');span=max(q.position.max(),1);xx=q.position+offset;ax.scatter(xx,-np.log10(q.p),s=5,color=[colors[0],'#a9b9ce'][i%2],lw=0,alpha=.8);ticks.append(offset+span/2);offset+=span*1.04
-            ax.set_xticks(ticks,chrom);ax.tick_params(axis='x',labelsize=6.5);finish(ax,'Chromosome',r'$-\log_{10} P$')
+            stride=max(1,int(np.ceil(len(chrom)/max(6,int(figsize[0]*4)))))
+            shown=list(range(0,len(chrom),stride))
+            if shown[-1]!=len(chrom)-1:shown.append(len(chrom)-1)
+            ax.set_xticks([ticks[i] for i in shown],[chrom[i] for i in shown]);ax.tick_params(axis='x',labelsize=8);finish(ax,'Chromosome',r'$-\log_{10} P$')
     elif view in {'composition_ring','composition_waffle','ternary_composition'}:
         if view=='ternary_composition':
             a=d[['a','b','c']].to_numpy();a=a/a.sum(axis=1,keepdims=True);x=a[:,1]+a[:,2]/2;y=a[:,2]*np.sqrt(3)/2
@@ -187,21 +227,19 @@ def render(data,view,colors=None):
             for i,g in enumerate(d.group.unique()):
                 mask=d.group==g;ax.scatter(x[mask],y[mask],s=22,color=colors[i%len(colors)],label=g,alpha=.8,edgecolor='white',lw=.35)
             for xx,yy,label in [(0,-.06,'A'),(1,-.06,'B'),(.5,.93,'C')]:ax.text(xx,yy,label,ha='center',fontsize=9)
-            ax.legend(loc='lower left',bbox_to_anchor=(0,1.04),ncol=3,fontsize=8,frameon=False);ax.set_aspect('equal');ax.axis('off')
+            _top_legend(ax);ax.set_aspect('equal');ax.axis('off')
         else:
-            shares=d['count']/d['count'].sum();labels=[f'{n}  {v:.1%}' for n,v in zip(d.category,shares)]
+            shares=d['count']/d['count'].sum();labels=[f'{_wrap(n,14)}  {v:.1%}' for n,v in zip(d.category,shares)]
             if view=='composition_ring':
                 wedges,_=ax.pie(d['count'],colors=colors[:len(d)],startangle=90,counterclock=False,wedgeprops={'width':.25,'edgecolor':'white','linewidth':2});ax.text(0,.07,f'{d["count"].sum():g}',ha='center',va='center',fontsize=16,color='#344054');ax.text(0,-.17,'Total',ha='center',fontsize=8,color='#718096');ax.legend(wedges,labels,loc='center left',bbox_to_anchor=(.98,.5),frameon=False,fontsize=8)
             else:
                 raw=100*shares.to_numpy();alloc=np.floor(raw).astype(int);alloc[np.argsort(-(raw-alloc),kind='stable')[:100-alloc.sum()]]+=1;indices=np.repeat(np.arange(len(d)),alloc)
-                ax.scatter(np.tile(np.arange(10),10),np.repeat(np.arange(10),10),c=[colors[i] for i in indices],s=130,marker='s',edgecolor='white',lw=1.2)
-                for i,label in enumerate(labels):ax.scatter([],[],s=35,marker='s',color=colors[i],label=label)
-                ax.legend(loc='center left',bbox_to_anchor=(1,.5),frameon=False,fontsize=8);ax.set_aspect('equal');ax.axis('off')
-            fig.subplots_adjust(left=.04,right=.61,bottom=.10,top=.94)
+                for j,i in enumerate(indices):ax.add_patch(Rectangle((j%10,j//10),1,1,fc=colors[i],ec='white',lw=.9))
+                handles=[Rectangle((0,0),1,1,fc=colors[i]) for i in range(len(labels))]
+                ax.legend(handles,labels,loc='center left',bbox_to_anchor=(1,.5),frameon=False,fontsize=8);ax.set(xlim=(0,10),ylim=(0,10));ax.set_aspect('equal');ax.axis('off')
     elif view in {'paired_dumbbell','study_gantt'}:
-        fig.set_size_inches(4.8,max(3.6,.27*len(d)+1.1));fig.subplots_adjust(left=.28,right=.94,bottom=.17,top=.91)
         if view=='paired_dumbbell':
-            q=d.assign(delta=d.after-d.before).sort_values('delta');yy=np.arange(len(q));ax.hlines(yy,q.before,q.after,color='#c3ccd8',lw=1.7);ax.scatter(q.before,yy,s=25,color=colors[0],label='Before');ax.scatter(q.after,yy,s=25,color=colors[1],label='After');ax.set_yticks(yy,q.unit);ax.legend(loc='lower left',bbox_to_anchor=(0,1.01),ncol=2,frameon=False,fontsize=8);finish(ax,'Value')
+            q=d.assign(delta=d.after-d.before).sort_values('delta');yy=np.arange(len(q));ax.hlines(yy,q.before,q.after,color='#c3ccd8',lw=1.7);ax.scatter(q.before,yy,s=25,color=colors[0],label='Before');ax.scatter(q.after,yy,s=25,color=colors[1],label='After');ax.set_yticks(yy,q.unit);_top_legend(ax);finish(ax,'Value')
         else:ax.barh(range(len(d)),d.end-d.start,left=d.start,color=colors[0],alpha=.75,height=.5);ax.set_yticks(range(len(d)),d.task);ax.invert_yaxis();finish(ax,'Time')
     elif view in {'superplot','grouped_observations'}:
         if view=='superplot':
@@ -214,7 +252,7 @@ def render(data,view,colors=None):
                     center=i+(j-(len(experiments)-1)/2)*min(.15,.6/max(1,len(experiments)-1));color=colors[j%len(colors)]
                     ax.scatter(center+rng.uniform(-.035,.035,len(v)),v,s=12,color=color,alpha=.42,lw=0)
                     ax.scatter(center,np.mean(v),s=42,color=color,edgecolor='white',lw=.8,marker=['o','s','^','D'][j%4],zorder=5,label=e if i==0 else None)
-            ax.set_xticks(range(len(groups)),groups);ax.legend(loc='lower left',bbox_to_anchor=(0,1.01),ncol=min(4,len(experiments)),fontsize=7,frameon=False);finish(ax,y='Value')
+            ax.set_xticks(range(len(groups)),groups);_top_legend(ax,ncol=min(3,len(experiments)));finish(ax,y='Value')
         else:
             factors=list(d.factor.unique());groups=list(d.group.unique());width=.7/len(groups)
             for j,g in enumerate(groups):
@@ -223,28 +261,30 @@ def render(data,view,colors=None):
                     if len(v)<2:raise ValueError('Each factor-group cell requires at least two independent observations')
                     pos=i+(j-(len(groups)-1)/2)*width;c=colors[j%len(colors)];ax.bar(pos,v.mean(),width*.8,color=c,alpha=.65,label=g if i==0 else None)
                     ax.errorbar(pos,v.mean(),yerr=v.std(ddof=1),fmt='none',color='#344054',lw=.8,capsize=2);ax.scatter(pos+rng.uniform(-width*.22,width*.22,len(v)),v,s=15,facecolor='white',edgecolor=c,lw=.7,zorder=3)
-            ax.set_xticks(range(len(factors)),factors);ax.set_ylim(min(0,d.value.min()*1.1),max(0,d.value.max()*1.2));ax.legend(loc='lower left',bbox_to_anchor=(0,1.01),ncol=len(groups),fontsize=8,frameon=False);finish(ax,y='Value')
+            ax.set_xticks(range(len(factors)),factors);ax.set_ylim(min(0,d.value.min()*1.1),max(0,d.value.max()*1.2));_top_legend(ax,ncol=len(groups));finish(ax,y='Value')
     elif view=='gsea_tracks':
         q=d.sort_values('rank');fig.delaxes(ax);grid=fig.add_gridspec(3,1,left=.18,right=.94,bottom=.19,top=.93,height_ratios=[3,.5,1],hspace=.08)
         a=fig.add_subplot(grid[0]);h=fig.add_subplot(grid[1],sharex=a);r=fig.add_subplot(grid[2],sharex=a)
         a.plot(q['rank'],q.running_score,color=colors[1],lw=1.6);a.axhline(0,color='#b9c4d3',lw=.7);finish(a,y='Running enrichment score');a.tick_params(labelbottom=False)
         h.vlines(q.loc[q['hit']==1,'rank'],0,1,color='#526173',lw=.65);h.axis('off')
-        r.fill_between(q['rank'],q.rank_metric,color=colors[0],alpha=.3);finish(r,'Ranked feature list','Rank metric');return fig
+        r.fill_between(q['rank'],q.rank_metric,color=colors[0],alpha=.3);finish(r,'Ranked feature list','Rank metric');return _finalize(fig)
     elif view=='coverage_tracks':
         tracks=list(d.track.unique());maximum=d.coverage.max()
         if maximum<=0:raise ValueError('At least one positive coverage value required')
-        fig.set_size_inches(4.8,max(3.6,.42*len(tracks)+1));fig.subplots_adjust(left=.24,right=.95,bottom=.18,top=.93)
         for i,t in enumerate(tracks):
             q=d[d.track==t].sort_values('position');ax.fill_between(q.position,i,i+.78*q.coverage/maximum,color=colors[i%len(colors)],alpha=.7,lw=0);ax.plot(q.position,i+.78*q.coverage/maximum,color=colors[i%len(colors)],lw=.65)
-        ax.set_yticks(range(len(tracks)),tracks);ax.spines[['left','top','right']].set_visible(False);ax.tick_params(axis='y',length=0);finish(ax,'Genomic position');fig.text(.24,.97,f'Common scale · maximum coverage {maximum:g}',fontsize=8,color='#526173')
+        ax.set_yticks(range(len(tracks)),tracks);ax.spines[['left','top','right']].set_visible(False);ax.tick_params(axis='y',length=0);finish(ax,'Genomic position');ax.set_title(f'Common scale · maximum coverage {maximum:g}',fontsize=8,color='#526173',loc='left',pad=10)
     elif view=='quality_profiles':
         for i,(g,p) in enumerate(d.groupby('group',sort=False)):
             for _,q in p.groupby('sample'):q=q.sort_values('position');ax.plot(q.position,q.quality,color=colors[i%len(colors)],alpha=.2,lw=.6)
             q=p.groupby('position').quality.mean();ax.plot(q.index,q.values,color=colors[i%len(colors)],lw=1.6,label=g)
-        ax.legend(loc='lower left',bbox_to_anchor=(0,1.01),ncol=3,frameon=False,fontsize=8);finish(ax,'Read position (bp)','Phred quality')
+        _top_legend(ax,ncol=3);finish(ax,'Read position (bp)','Phred quality')
     elif view=='pca_loadings':
-        fig.delaxes(ax);grid=fig.add_gridspec(4,4,left=.18,right=.93,bottom=.19,top=.94,hspace=.14,wspace=.14)
-        ax=fig.add_subplot(grid[1:,:3]);top=fig.add_subplot(grid[0,:3],sharex=ax);right=fig.add_subplot(grid[1:,3],sharey=ax)
+        from mpl_toolkits.axes_grid1 import make_axes_locatable
+        ax.set_aspect('equal',adjustable='box')
+        divider=make_axes_locatable(ax)
+        top=divider.append_axes('top',size='22%',pad=.08,sharex=ax)
+        right=divider.append_axes('right',size='22%',pad=.08,sharey=ax)
         for i,(g,p) in enumerate(d[d.role=='score'].groupby('group',sort=False)):
             c=colors[i%len(colors)];ax.scatter(p.x,p.y,s=13,color=c,alpha=.65,label=g,lw=0)
             for field,axis in [('x',top),('y',right)]:
@@ -255,14 +295,18 @@ def render(data,view,colors=None):
                     else:axis.plot(yy,xx,color=c,lw=.9);axis.fill_betweenx(xx,yy,color=c,alpha=.12)
         for _,row in d[d.role=='loading'].iterrows():
             ax.annotate('',xy=(row.x,row.y),xytext=(0,0),arrowprops={'arrowstyle':'->','color':'#526173','lw':.8})
+        # Supplied loading endpoints can extend beyond the observed score cloud.
+        # Include both in the bounds; annotations do not update data limits.
+        for column,setter in [('x',ax.set_xlim),('y',ax.set_ylim)]:
+            lo=float(d[column].min());hi=float(d[column].max());pad=max((hi-lo)*.18,.2);setter(lo-pad,hi+pad)
         # Label arrows in a reserved footer key; close endpoints never overlap text.
-        load=d[d.role=='loading'];fig.subplots_adjust(bottom=.24)
+        load=d[d.role=='loading']
         for i,(_,row) in enumerate(load.iterrows()):
             dx,dy=(7 if row.x>=0 else -7),(7 if row.y>=0 else -7)
-            ax.annotate(str(i+1),(row.x,row.y),xytext=(dx,dy),textcoords='offset points',fontsize=7,color='#344054',ha='center',va='center',zorder=8,bbox={'boxstyle':'round,pad=.15','fc':'white','ec':'none','alpha':.95})
-        fig.text(.18,.035,'  ·  '.join(f'{i+1}: {v}' for i,v in enumerate(load.id)),fontsize=7,color='#526173',wrap=True)
-        ax.axhline(0,color='#dce2eb',ls=':',lw=.7);ax.axvline(0,color='#dce2eb',ls=':',lw=.7);finish(ax,'Component 1','Component 2');ax.legend(loc='best',fontsize=6.5,frameon=False);top.axis('off');right.axis('off')
-    return fig
+            ax.annotate(str(i+1),(row.x,row.y),xytext=(dx,dy),textcoords='offset points',fontsize=8,color='#344054',ha='center',va='center',zorder=8,bbox={'boxstyle':'round,pad=.15','fc':'white','ec':'none','alpha':.95})
+        fig.supxlabel(textwrap.fill('  ·  '.join(f'{i+1}: {v}' for i,v in enumerate(load.id)),max(25,int(figsize[0]*10))),fontsize=8,color='#526173')
+        ax.axhline(0,color='#dce2eb',ls=':',lw=.7);ax.axvline(0,color='#dce2eb',ls=':',lw=.7);finish(ax,'Component 1','Component 2');ax.legend(loc='best',fontsize=8,frameon=False);top.axis('off');right.axis('off')
+    return _finalize(fig)
 
 def generate(input_path,outdir,view,palette='zhoy_muted',colors_text=None,font='Arial'):
     style(font);d=pd.read_csv(input_path);colors=resolve_palette(palette,colors_text,8)

@@ -47,7 +47,7 @@ def main():
         else:raise AssertionError('Accepted missing schema '+view)
     # The display coordinates and numerical estimates must reflect the table.
     d=tables['bland_altman'];fig=render(d,'bland_altman');pts=fig.axes[0].collections[0].get_offsets();np.testing.assert_allclose(pts[:,0],(d.method_a+d.method_b)/2);np.testing.assert_allclose(pts[:,1],d.method_b-d.method_a);plt.close(fig)
-    d=tables['composition_waffle'];fig=render(d,'composition_waffle');assert len(fig.axes[0].collections[0].get_offsets())==100;plt.close(fig)
+    d=tables['composition_waffle'];fig=render(d,'composition_waffle');assert len(fig.axes[0].patches)==100;plt.close(fig)
     d=tables['gsea_tracks'];assert abs(d.running_score.iloc[-1])<1e-12
     d=tables['upset_intersections'];fig=render(d,'upset_intersections');assert sum(p.get_height() for p in fig.axes[0].patches)==d['sample'].nunique();plt.close(fig)
     for view,(data,options) in roc_fixtures().items():fig=render_roc(data,view,**options);bounds(fig,'roc_'+view);plt.close(fig)

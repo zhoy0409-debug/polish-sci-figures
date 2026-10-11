@@ -237,7 +237,11 @@ One candidate directory becomes one panel, with real same-bundle SVG previews. C
 
 The interface supports Chinese and English, local autosaving with persistent undo/redo, named checkpoints, and optional preference learning from intentional saves. Preference suggestions require explicit selection.
 
-This editor preserves the original AI-driven workflow and adds direct manual refinement. It does not rerun statistics, make raster text editable, or infer new chart families. Candidate directories require the original recipe and analysis plan; fonts and final-size scientific/visual QA still apply. See [usage and boundaries](skills/polish-sci-figures/references/figure_studio.md). This is a development addition, not a claim that the existing v1.3.3 release archive already contains it.
+The gallery now includes 218 editable starters: 191 original table-driven layouts and 27 ROC/precision–recall presentations. These cover all 187 archive entries and the 100 chart references in the older collection; duplicate references share a renderer. Preview cards, inserted panels and data replacements use the same drawing code. Seven native canvas sizes support spanning panels without stretching text, markers or shape geometry.
+
+Run `python skills/polish-sci-figures/scripts/studio_server.py figure-studio.html --port 8768` for local data editing. Enter or leaving a cell updates the figure and creates an undoable revision. Supported observation-based recipes recompute their documented results; specialist templates draw the supplied model results and do not refit an unspecified model. Standalone HTML supports visual editing without the local data engine. Imported raster images do not acquire editable text or inferred data.
+
+For AI-assisted template preparation, `python skills/make-sci-data-figures/scripts/gallery_cli.py --list` exposes the bilingual input contracts. Use `--view TEMPLATE --input TABLE.csv --out NEW_DIRECTORY` to create an editable bundle. See [usage, validation and boundaries](skills/polish-sci-figures/references/figure_studio.md). This remains a development addition, not a claim that the existing v1.3.3 archive already contains it.
 
 ## Unified CLI
 

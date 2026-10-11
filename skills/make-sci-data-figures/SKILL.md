@@ -9,6 +9,8 @@ Start from the biological question and experimental unit, not from a preferred c
 
 For unified CLI inspection and confirmation states, read `references/safe_cli_routing.md`. Never treat a role inferred from a column name as a declared experimental unit or design.
 
+For the original editable gallery, run `scripts/gallery_cli.py --list` to inspect the 191 bilingual data contracts, then `scripts/gallery_cli.py --view TEMPLATE --input TABLE.csv --out NEW_DIRECTORY`. The bundle opens in Figure Studio; its local data engine prepares seven canvas sizes and enables table editing. Validate the scientific meanings of required columns before choosing a template. Model-result templates require those results; changing an input table must not be described as refitting an upstream model. Inspect normal, narrow, wide and tall renders and a valid data replacement before delivering a new template.
+
 ## Minimum intake
 
 Accept tidy CSV, TSV, or XLSX. Route the table by scientific structure rather than forcing every dataset into a group comparison:

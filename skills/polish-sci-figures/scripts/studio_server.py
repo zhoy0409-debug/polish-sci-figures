@@ -33,7 +33,7 @@ def regenerate(recipe,rows):
                 order=[x for x in r['order'] if x in observed]+[x for x in observed if x not in r['order']]
                 wb.generate(source,r['group'],r['value'],r['design'],out,r['subject'],','.join(order),palette,colors,r.get('unit_label'),r.get('font','Arial'),r.get('outcome_type','continuous'),r.get('scope','exploratory'),r.get('show_p_value',False),True)
             elif family=='gallery':
-                from gallery_workbench import generate
+                from gallery_registry import generate
                 params=r.get('parameters',{})
                 if set(params)!={'view'} or not isinstance(params['view'],str):raise ValueError('Gallery recipe requires one declared view')
                 generate(source,out,**params,palette=palette,colors_text=colors,font=r.get('font','Arial'))
@@ -60,7 +60,22 @@ def regenerate(recipe,rows):
                 from studio_sizes import render_sizes
                 for name,size,raw in render_sizes(out,panel['recipe'],panel['analysis'],panel['variants'],allowed_sizes={'originalBars'}):
                     panel['variants'].append({**inspect_svg_bytes(raw,name),'size':size})
-            # Dynamic axes fitting supplies span geometry, without pre-rendering every size.
+            if family=='gallery':
+                import gallery_registry as registry
+                data=__import__('pandas').read_csv(source,keep_default_na=False)
+                colors=registry.colors_for(palette,r.get('colors'))
+                for key in [params['view']]:
+                    for name,size,raw in registry.render_sizes(data,key,colors,r.get('font','Arial')):
+                        panel['variants'].append({**inspect_svg_bytes(raw,name),'size':size,'preserveAspect':True})
+            if family in ('roc','roc_results'):
+                from studio_roc_sizes import render_sizes
+                for name,size,raw in render_sizes(source,r,panel['analysis']):
+                    panel['variants'].append({**inspect_svg_bytes(raw,name),'size':size,'preserveAspect':True})
+            requested=r.get('studio_view')
+            if isinstance(requested,str):
+                panel['initialVariant']=next((i for i,v in enumerate(panel['variants']) if v['name']==requested),panel['initialVariant'])
+                panel['recipe']['studio_view']=requested
+            # Gallery dimensions are newly rendered axes, not affine-stretched artwork.
             panel['recipe']['input']='data.csv';panel['name']='Updated data';panel['provenance']='local-recomputed'
             panel['analysis']['data_revision']={'source_sha256':panel['table']['sha256'],'engine':'existing-workbench','updated_at':time.strftime('%Y-%m-%dT%H:%M:%S')}
             return panel

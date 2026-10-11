@@ -5,7 +5,8 @@ import numpy as np
 import pandas as pd
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'skills/make-sci-data-figures/scripts'))
-from gallery_workbench import CONTRACTS,NOTES,render,style
+from gallery_workbench import CONTRACTS as BASE_CONTRACTS,style
+from gallery_registry import CONTRACTS,NOTES,render,MODULES,SOURCE_MAP
 import matplotlib.pyplot as plt
 
 def fixtures():
@@ -57,20 +58,52 @@ def fixtures():
         for i in range(30):rows.append([f'{g}-{i}','score',g,float(rng.normal([-2,0,2][j],.6)),float(rng.normal([1,-1,1][j],.65))])
     for i,(xx,yy) in enumerate([(-1.5,1.5),(1.5,.8),(.8,-1.5),(-1,-1)]):rows.append([f'Feature {i+1}','loading','Loading',xx,yy])
     out['pca_loadings']=pd.DataFrame(rows,columns=['id','role','group','x','y'])
-    assert set(out)==set(CONTRACTS)
+    assert set(out)==set(BASE_CONTRACTS)
     return out
 
 def main():
     assets=ROOT/'skills/polish-sci-figures/assets/figure-studio';previews=json.loads((assets/'catalogue-previews.json').read_text(encoding='utf-8'));starters={};meta={}
     proof=ROOT/'.cache/gallery-originals';proof.mkdir(parents=True,exist_ok=True);style('Arial')
-    for key,data in fixtures().items():
+    all_tables=fixtures()
+    for module in MODULES[1:]:all_tables.update(module.fixtures())
+    assert set(all_tables)==set(CONTRACTS)
+    for key,data in all_tables.items():
         fig=render(data,key);fig.canvas.draw();s=io.StringIO();fig.savefig(s,format='svg',metadata={'Date':None});fig.savefig(proof/(key+'.png'),dpi=130);plt.close(fig);previews[key]=s.getvalue()
         starters[key]={'recipe':{'family':'gallery','font':'Arial','parameters':{'view':key}},'rows':[list(data.columns)]+data.astype(str).values.tolist()}
         title,en,category,fields,_=CONTRACTS[key]
-        meta[key]={'category':category,'zh-CN':[title,NOTES[key][0],'数据列：'+fields.replace(' ', '、')],'en':[en,NOTES[key][1],'Columns: '+fields.replace(' ', ', ')]}
+        meta[key]={'category':category,'columns':getattr(next(m for m in MODULES if key in m.CONTRACTS),'COLUMN_LABELS',{}),'zh-CN':[title,NOTES[key][0],'数据列：'+fields.replace(' ', '、')],'en':[en,NOTES[key][1],'Columns: '+fields.replace(' ', ', ')]}
     # ROC result templates use exactly the same import/recompute path.
     from build_original_roc_styles import fixtures as roc_fixtures
-    for key,(data,options) in roc_fixtures().items():starters['roc_'+key]={'recipe':{'family':'roc_results','font':'Arial','parameters':{'view':key,'method':'Supplied analysis results; replace the synthetic table with matching results',**options}},'rows':[list(data.columns)]+data.astype(str).values.tolist()}
+    from roc_contract_workbench import render as render_roc
+    for key,(data,options) in roc_fixtures().items():
+        starters['roc_'+key]={'recipe':{'family':'roc_results','font':'Arial','parameters':{'view':key,'method':'Supplied analysis results; replace the synthetic table with matching results',**options}},'rows':[list(data.columns)]+data.astype(str).values.tolist()}
+        fig=render_roc(data,key,**options);s=io.StringIO();fig.savefig(s,format='svg',metadata={'Date':None});fig.savefig(proof/('roc_'+key+'.png'),dpi=130);plt.close(fig);previews['roc_'+key]=s.getvalue()
+    # All empirical ROC views share one raw-observation contract. The requested
+    # style is explicit so a starter opens the selected visualization.
+    rng=np.random.default_rng(973);raw=[]
+    for cohort in ['Discovery','Validation']:
+        for i in range(96):
+            truth=i%2;raw.append([cohort+str(i),cohort,truth,float(rng.normal(truth*1.5,1))])
+    roc_data=pd.DataFrame(raw,columns=['unit','cohort','outcome','score'])
+    from advanced_template_workbench import roc
+    raw_dir=ROOT/'.cache/roc-gallery-build';raw_dir.mkdir(parents=True,exist_ok=True)
+    raw_path=raw_dir/'data.csv';roc_data.to_csv(raw_path,index=False)
+    roc(raw_path,'outcome','score','unit',raw_dir,cohort='cohort',font='Arial')
+    for path in raw_dir.glob('*.svg'):previews[path.stem]=path.read_text(encoding='utf-8')
+    for key in ['roc','precision_recall','roc_auc_fill','roc_threshold_points','roc_threshold_color','roc_threshold_labels','roc_youden','roc_pointwise_band','roc_direct_labels','roc_bootstrap_curves','roc_with_auc_forest','roc_log_fpr','roc_confusion','roc_score_distribution','roc_two_graph']:
+        starters[key]={'recipe':{'family':'roc','font':'Arial','studio_view':key,'parameters':{'outcome':'outcome','score':'score','unit':'unit','cohort':'cohort','positive':'1'}},'rows':[list(roc_data.columns)]+roc_data.astype(str).values.tolist()}
+    index_path=ROOT/'skills/polish-sci-figures/references/chart-gallery-index.json'
+    index=json.loads(index_path.read_text(encoding='utf-8'))
+    roc_map=['roc','roc_smooth','roc_auc_fill','roc_threshold_points','roc_threshold_color','roc_threshold_labels','roc_youden','roc_pointwise_band','roc_cutoff_ci','roc_cost','roc','roc_direct_labels','roc_training_validation','roc_subgroups','roc_cv','roc_bootstrap_curves','roc_with_auc_forest','roc_partial','roc_convex','roc_log_fpr','roc_probit','roc_confusion','roc_score_distribution','roc_two_graph','roc_time','roc_multi','roc_sroc']
+    mapping={**SOURCE_MAP,**{f'I{i+1:02}':key for i,key in enumerate(roc_map)}}
+    for item in index['items']:
+        key=mapping[item['id']];assert key in starters,(item['id'],key)
+        item.update(renderer=key,related_renderer=key,status='editable-original-template',note='Original table-driven SVG implementation; reference artwork and code are not distributed.')
+    index['coverage']={'reference_entries':len(mapping),'unique_templates':len(set(mapping.values()))}
+    index_path.write_text(json.dumps(index,ensure_ascii=False,indent=2),encoding='utf-8')
+    # Legacy reference coverage is finalized once its remaining model families are registered.
+    from gallery_reference_map import write_coverage
+    write_coverage(ROOT,MODULES,starters)
     (assets/'catalogue-previews.json').write_text(json.dumps(previews,ensure_ascii=False),encoding='utf-8')
     (assets/'template-starters.json').write_text(json.dumps(starters,ensure_ascii=False),encoding='utf-8')
     (assets/'gallery-contracts.js').write_text('/* Original layouts; contracts are not inferred from image pixels. */\nconst StudioGalleryContracts='+json.dumps(meta,ensure_ascii=False)+';\nif(typeof module!=="undefined")module.exports=StudioGalleryContracts;\n',encoding='utf-8')

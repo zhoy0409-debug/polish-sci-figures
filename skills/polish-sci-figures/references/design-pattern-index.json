@@ -1,1 +1,1942 @@
-[{"id": "reference_01_superplot", "number": 1, "title": {"zh": "重复实验分层散点", "en": "SuperPlot"}, "inputs": {"zh": "组别、独立实验编号、实验内观测值", "en": "Groups, independent experiment IDs and within-experiment observations"}, "category": "distribution", "renderer": null, "kind": "chart-reference", "source": "cards_01_18/01_superplot.png", "sha256": "2ebadb9f346b63f146bee06b2dae27e20b6feea8ad4c3169e2a142196c68b300", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_02_raincloud", "number": 2, "title": {"zh": "雨云图", "en": "Raincloud plot"}, "inputs": {"zh": "组别与连续观测值", "en": "Groups and continuous observations"}, "category": "distribution", "renderer": "raincloud", "kind": "chart-reference", "source": "cards_01_18/02_raincloud.png", "sha256": "caa843f2f499d09e482a0acf2efdce1fd711f3e74945123a17250b88c17829fd", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_03_upset", "number": 3, "title": {"zh": "集合交集图", "en": "UpSet plot"}, "inputs": {"zh": "样本编号与集合成员关系", "en": "Sample IDs and set memberships"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_01_18/03_upset.png", "sha256": "b19fde7c279d5505f982c27d3b963646aea4d4db1f57be1a2f346c6820f8a0d8", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_04_gardner_altman", "number": 4, "title": {"zh": "Gardner–Altman 估计图", "en": "Gardner–Altman"}, "inputs": {"zh": "两组原始观测；配对设计需配对编号", "en": "Two groups of observations; pairing IDs for paired designs"}, "category": "effects", "renderer": "estimation_graphic", "kind": "chart-reference", "source": "cards_01_18/04_gardner_altman.png", "sha256": "b1fc3108fc3b1f58c304b61aaaa6497fc004d301b0e29e224ffcff640b854df3", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_05_sina", "number": 5, "title": {"zh": "Sina 分布散点", "en": "Sina plot"}, "inputs": {"zh": "组别与连续观测值", "en": "Groups and continuous observations"}, "category": "distribution", "renderer": null, "kind": "chart-reference", "source": "cards_01_18/05_sina.png", "sha256": "4829c397ae1e3c81753aa9902710ae48f493428301745145b42e2c99065fdb6a", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_06_wong_palette", "number": 6, "title": {"zh": "色觉友好配色", "en": "Wong palette"}, "inputs": {"zh": "分类数量与色觉可辨识要求", "en": "Number of categories and color-vision requirements"}, "category": "other", "renderer": null, "kind": "design-guide", "source": "cards_01_18/06_wong_palette.png", "sha256": "feb93056931995054d4df1bcb9dd037ff46d2cd55cc6b138ee1421580f538aa4", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_07_cumming", "number": 7, "title": {"zh": "Cumming 估计图", "en": "Cumming plot"}, "inputs": {"zh": "多组观测与预设比较", "en": "Observations across groups and planned comparisons"}, "category": "effects", "renderer": "group_estimate_forest", "kind": "chart-reference", "source": "cards_01_18/07_cumming.png", "sha256": "6af7ff1f9ce343063b6de5c083cf5507139686e141cf1033436d48cb548787da", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_08_dot_plot", "number": 8, "title": {"zh": "原始观测散点", "en": "Dot plot"}, "inputs": {"zh": "组别与原始观测值", "en": "Groups and raw observations"}, "category": "distribution", "renderer": "raw_points_estimate_ci", "kind": "chart-reference", "source": "cards_01_18/08_dot_plot.png", "sha256": "52090dd31035ef7ba1601ec16a1b3d4631cd6032639c1e01f5038e6251ae6884", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_09_bland_altman", "number": 9, "title": {"zh": "Bland–Altman 一致性图", "en": "Bland–Altman"}, "inputs": {"zh": "同一样本的两种测量结果", "en": "Two measurements on the same samples"}, "category": "paired", "renderer": null, "kind": "chart-reference", "source": "cards_01_18/09_bland_altman.png", "sha256": "9e48a4a53f8b83955e2e2782d188da20221b9205a1d77c11f346e28fa0d960bf", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_10_forest_plot", "number": 10, "title": {"zh": "森林图", "en": "Forest plot"}, "inputs": {"zh": "效应值、置信区间及效应尺度", "en": "Effect estimates, confidence intervals and effect scale"}, "category": "effects", "renderer": "forest_intervals", "kind": "chart-reference", "source": "cards_01_18/10_forest_plot.png", "sha256": "99669ef9ed08d0e0b336803912bbc1527a9d642da78bfe3d64b4116019c1d9c3", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_11_colour_maps", "number": 11, "title": {"zh": "连续色阶指南", "en": "Colour maps"}, "inputs": {"zh": "数值范围、顺序或中心参考值", "en": "Numeric range, ordering or reference midpoint"}, "category": "other", "renderer": null, "kind": "design-guide", "source": "cards_01_18/11_colour_maps.png", "sha256": "90837dd559874dd4e867eab587e5dc35460b13a439f1bddf7dbdb7782135db30", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_12_cleveland_dot", "number": 12, "title": {"zh": "Cleveland 点图", "en": "Cleveland dot plot"}, "inputs": {"zh": "类别与数值", "en": "Categories and values"}, "category": "distribution", "renderer": null, "kind": "chart-reference", "source": "cards_01_18/12_cleveland_dot.png", "sha256": "21c1318e2491ce1108256081305f816ddcc89597ee931001c196c26653e535e9", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_13_volcano", "number": 13, "title": {"zh": "火山图", "en": "Volcano plot"}, "inputs": {"zh": "效应量与多重比较校正结果", "en": "Effect sizes and multiplicity-adjusted results"}, "category": "omics", "renderer": "volcano", "kind": "chart-reference", "source": "cards_01_18/13_volcano.png", "sha256": "dca6856391ad7e9535afa0d2a5f4dea69dbc67d88d288325138dfc2a7307a22a", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_14_kaplan_meier", "number": 14, "title": {"zh": "Kaplan–Meier 生存曲线", "en": "Kaplan–Meier"}, "inputs": {"zh": "随访时间与结局指示", "en": "Follow-up times and event indicators"}, "category": "longitudinal", "renderer": "kaplan_meier_risk_table", "kind": "chart-reference", "source": "cards_01_18/14_kaplan_meier.png", "sha256": "7c28d2ad5468ea42a7e104b0a54e371c74146e37013ec65d6fea671c7ca4b25e", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_15_funnel_plot", "number": 15, "title": {"zh": "Meta 分析漏斗图", "en": "Funnel plot"}, "inputs": {"zh": "研究效应与标准误", "en": "Study effects and standard errors"}, "category": "effects", "renderer": null, "kind": "chart-reference", "source": "cards_01_18/15_funnel_plot.png", "sha256": "36dfb24c26129cc4d842a9cfc13988c4180f7ca1df6776880f27b1cb415d4d35", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_16_roc", "number": 16, "title": {"zh": "ROC 曲线", "en": "ROC curve"}, "inputs": {"zh": "二分类真值与预测分数", "en": "Binary outcomes and prediction scores"}, "category": "roc", "renderer": "roc", "kind": "chart-reference", "source": "cards_01_18/16_roc.png", "sha256": "778fcd58d0214ba7b4053372654601ec110fd5de6a14680ada61ccedab460a23", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_17_calibration", "number": 17, "title": {"zh": "校准曲线", "en": "Calibration plot"}, "inputs": {"zh": "结局与预测概率", "en": "Outcomes and predicted probabilities"}, "category": "roc", "renderer": null, "kind": "chart-reference", "source": "cards_01_18/17_calibration.png", "sha256": "4a62e96d58e2ca1d7fb4866161e3a6bca7a628df108871f815d458e30b7cd06d", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_18_decision_curve", "number": 18, "title": {"zh": "决策曲线", "en": "Decision curve"}, "inputs": {"zh": "结局、预测概率与决策阈值", "en": "Outcomes, predicted probabilities and decision thresholds"}, "category": "roc", "renderer": null, "kind": "chart-reference", "source": "cards_01_18/18_decision_curve.png", "sha256": "776756c596f19706a58cca686c4e550dc1b1ff4d5bccf1a9f183e24a9e407042", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_19_clustered_heatmap", "number": 19, "title": {"zh": "聚类热图", "en": "Clustered heatmap"}, "inputs": {"zh": "数值矩阵、距离与聚类规则", "en": "Numeric matrix, distance and clustering rules"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/19_clustered_heatmap.png", "sha256": "b7a97994f66d779a0fbcee1ab18c8f00e7f554fa99e325cc0622e5667e0442b7", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_20_pca_biplot", "number": 20, "title": {"zh": "PCA 双标图", "en": "PCA biplot"}, "inputs": {"zh": "原始特征矩阵、标准化规则与载荷", "en": "Feature matrix, scaling rules and component loadings"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/20_pca_biplot.png", "sha256": "170c50312135ec3db52e857c926f3b37cd3a8ed35a23edb9e64262e5ca8770b8", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_21_qq_plot", "number": 21, "title": {"zh": "Q–Q 图", "en": "Q–Q plot"}, "inputs": {"zh": "观测值与指定参考分布", "en": "Observations and a specified reference distribution"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/21_qq_plot.png", "sha256": "b0d8f311a573e05533745d08198f1b538ccc046a886d6b632ce5862e7c7ecfc1", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_22_notched_box", "number": 22, "title": {"zh": "缺口箱线图", "en": "Notched box plot"}, "inputs": {"zh": "各组连续观测值", "en": "Continuous observations by group"}, "category": "distribution", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/22_notched_box.png", "sha256": "052219a81f4f859837ca5619c3fb55a38b536a1bdd8e1d24288ee41d37974b05", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_23_dose_response", "number": 23, "title": {"zh": "剂量反应曲线", "en": "Dose–response curve"}, "inputs": {"zh": "剂量、响应及拟合模型", "en": "Dose, response and fitted model"}, "category": "longitudinal", "renderer": "dose_response", "kind": "chart-reference", "source": "cards_19_30/23_dose_response.png", "sha256": "8c827be8a86fc7b95ca48b6088874bc4cde3c17de534fa6f6e6f6c8de77da691", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_24_checkerboard", "number": 24, "title": {"zh": "棋盘稀释试验", "en": "Checkerboard & isobologram"}, "inputs": {"zh": "双药浓度矩阵与抑制结果", "en": "Two-drug concentration matrix and inhibition results"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/24_checkerboard.png", "sha256": "f5f586d805f3986ba3a130a8f29fd58dc7d043ed9528bae7fa7934af15177b12", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_25_mosaic", "number": 25, "title": {"zh": "马赛克图", "en": "Mosaic plot"}, "inputs": {"zh": "列联计数", "en": "Contingency counts"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/25_mosaic.png", "sha256": "dc703a87d16a4b14464ea98465829842b536901da4d91e7193cc66781b85056f", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_26_alluvial", "number": 26, "title": {"zh": "桑基与流向图", "en": "Alluvial plot"}, "inputs": {"zh": "阶段、类别及流量", "en": "Stages, categories and flow quantities"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/26_alluvial.png", "sha256": "4733ee7dffd8b208e6ebc03a3f0d009e7f62bdace2dc4ca71d428dcbcd0d3530", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_27_corrgram", "number": 27, "title": {"zh": "相关矩阵", "en": "Corrgram"}, "inputs": {"zh": "变量矩阵与相关方法", "en": "Variable matrix and correlation method"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/27_corrgram.png", "sha256": "90096b862bee7ad28d7262286cedbcdee6c74ce15c5bce9c513fd223470fd03c", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_28_rcs", "number": 28, "title": {"zh": "限制性立方样条", "en": "Restricted cubic spline"}, "inputs": {"zh": "结局、自变量、协变量与结点设置", "en": "Outcome, predictors, covariates and knot specification"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/28_rcs.png", "sha256": "0992ae36ac2de71cf8e6907954b11cf018aa0ae32caceb89c47e2f0ccb188b16", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_29_nomogram", "number": 29, "title": {"zh": "列线图", "en": "Nomogram"}, "inputs": {"zh": "已拟合模型及预测转换规则", "en": "Fitted model and prediction conversion rules"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/29_nomogram.png", "sha256": "da2242785cffb2bfbe6aa516d0844f26c549a51b53398a8dce48ad968003f193", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_30_shap_summary", "number": 30, "title": {"zh": "SHAP 汇总图", "en": "SHAP summary plot"}, "inputs": {"zh": "模型、特征值与 SHAP 值", "en": "Model, feature values and SHAP values"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_19_30/30_shap_summary.png", "sha256": "d6ec962f7d259d8ce238db48e32470e0766ef9a3c719436427819d963cb35627", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_31_growth_curve", "number": 31, "title": {"zh": "生长曲线", "en": "Growth curve"}, "inputs": {"zh": "时间、观测与重复编号", "en": "Time, observations and replicate IDs"}, "category": "longitudinal", "renderer": "timecourse_trajectories", "kind": "chart-reference", "source": "cards_31_42/31_growth_curve.png", "sha256": "f15140f3156920e8eff45c76d9f4a9944d39880e833e674c30ba4b53b7047f6c", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_32_time_kill", "number": 32, "title": {"zh": "时间杀菌曲线", "en": "Time–kill curve"}, "inputs": {"zh": "时间、药物条件与菌落计数", "en": "Time, drug conditions and colony counts"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_31_42/32_time_kill.png", "sha256": "a3b92d9ce3db11e5313071735a162a5e086dedda6434144709ea383a303aa91f", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_33_mic_ecoff", "number": 33, "title": {"zh": "MIC 分布与 ECOFF", "en": "MIC distribution & ECOFF"}, "inputs": {"zh": "MIC 分布及 ECOFF 估计依据", "en": "MIC distribution and documented ECOFF estimation"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_31_42/33_mic_ecoff.png", "sha256": "46b854a9d420b07c0afd1f6bac780d60d7da2d5b47702389e0f954a063fdca58", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_34_paired_slope", "number": 34, "title": {"zh": "配对斜率图", "en": "Paired slope plot"}, "inputs": {"zh": "配对编号与前后测量", "en": "Pair IDs and before/after measurements"}, "category": "paired", "renderer": "paired_trajectories", "kind": "chart-reference", "source": "cards_31_42/34_paired_slope.png", "sha256": "2648e444c98faf03df1d3f9baae8613857af1b71ca543da0114529b54a2ea932", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_35_stacked_abundance", "number": 35, "title": {"zh": "堆叠丰度图", "en": "Stacked relative abundance"}, "inputs": {"zh": "样本、分类与丰度", "en": "Samples, categories and abundances"}, "category": "matrix", "renderer": "composition_stacked", "kind": "chart-reference", "source": "cards_31_42/35_stacked_abundance.png", "sha256": "8dd1eec36b5d944ca63db0d3b1f2367b20d8449178bc0250365aee8ff7dde336", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_36_rarefaction", "number": 36, "title": {"zh": "稀释曲线", "en": "Rarefaction curve"}, "inputs": {"zh": "抽样深度与物种观测", "en": "Sampling depth and observed taxa"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_31_42/36_rarefaction.png", "sha256": "4caa0cee94b4e89e7a9db5dd9116641290cf890cd5788e0b50bd907a3fe297ef", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_37_pcoa_permanova", "number": 37, "title": {"zh": "PCoA 排序图", "en": "PCoA + PERMANOVA"}, "inputs": {"zh": "距离矩阵与分组；检验需置换设计", "en": "Distance matrix and groups; permutation design for inference"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_31_42/37_pcoa_permanova.png", "sha256": "9245270c8e6af8f2c52c7ddd42d81fea2af6be7f2410193c875c462ca2f1e05a", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_38_tree_gene_matrix", "number": 38, "title": {"zh": "系统树与基因矩阵", "en": "Tree + gene matrix"}, "inputs": {"zh": "系统树及对齐的基因存在矩阵", "en": "Phylogenetic tree and aligned gene-presence matrix"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_31_42/38_tree_gene_matrix.png", "sha256": "9886d37c5d106ae398e19aca7a4b0505e9a0293b987d10e84b02a88430d23ad0", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_39_lollipop", "number": 39, "title": {"zh": "棒棒糖图", "en": "Lollipop plot"}, "inputs": {"zh": "类别与数值", "en": "Categories and values"}, "category": "effects", "renderer": "feature_lollipop", "kind": "chart-reference", "source": "cards_31_42/39_lollipop.png", "sha256": "a802e43f4a13089721b5eb51e651328d415c8b014495f7b3a5059ee641c33e19", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_40_enrichment_bubble", "number": 40, "title": {"zh": "富集气泡图", "en": "Enrichment bubble plot"}, "inputs": {"zh": "通路、效应、条目数与校正 P 值", "en": "Pathways, effects, counts and adjusted P values"}, "category": "omics", "renderer": "enrichment_bubble", "kind": "chart-reference", "source": "cards_31_42/40_enrichment_bubble.png", "sha256": "06d4da7cf107bbde82e9b71ba64dcb5aac652165c41cdc2575b1532f56baf9c5", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_41_cumulative_incidence", "number": 41, "title": {"zh": "累积发生函数", "en": "Cumulative incidence"}, "inputs": {"zh": "随访时间及互斥事件类型", "en": "Follow-up times and mutually exclusive event types"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_31_42/41_cumulative_incidence.png", "sha256": "dfbed6f38d30fa5dd3ff4896d2b40059b56b9485427776ad6a68d88d4aadf7a3", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_42_ridgeline", "number": 42, "title": {"zh": "山脊图", "en": "Ridgeline plot"}, "inputs": {"zh": "组别与连续观测值", "en": "Groups and continuous observations"}, "category": "distribution", "renderer": null, "kind": "chart-reference", "source": "cards_31_42/42_ridgeline.png", "sha256": "6c35616d90563ef52f777be207be16be31aef68acf0536024cd2e2d029c4ee3a", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_43_waterfall", "number": 43, "title": {"zh": "瀑布图", "en": "Waterfall plot"}, "inputs": {"zh": "个体变化值及参考基线", "en": "Individual changes and baseline reference"}, "category": "effects", "renderer": "diverging_bars", "kind": "chart-reference", "source": "cards_43_54/43_waterfall.png", "sha256": "ea3b83719952193f6463c9d6e05a636997308d3a0e8dd8124e22b1345cb0d120", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_44_diverging_likert", "number": 44, "title": {"zh": "发散式 Likert 图", "en": "Diverging stacked bar"}, "inputs": {"zh": "有序响应等级及频数", "en": "Ordered response levels and counts"}, "category": "other", "renderer": null, "kind": "chart-reference", "source": "cards_43_54/44_diverging_likert.png", "sha256": "7c18184d8f09232b9034b18903e4df1b19d80b9a84d253300a6fc48c91a0a452", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_45_manhattan", "number": 45, "title": {"zh": "曼哈顿图", "en": "Manhattan plot"}, "inputs": {"zh": "基因组位置与关联 P 值", "en": "Genomic positions and association P values"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_43_54/45_manhattan.png", "sha256": "df263d3a11946b18024a9c3e585f3b10708bcfb1dc69f8b2d2ef7ff3f80148b2", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_46_ma_plot", "number": 46, "title": {"zh": "MA 图", "en": "MA plot"}, "inputs": {"zh": "平均表达及对数表达变化", "en": "Mean expression and log expression changes"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_43_54/46_ma_plot.png", "sha256": "a30d800b87367ceb2030180a9fb1b47098c84abb949ac597a78d7acf332c270f", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_47_antibiogram", "number": 47, "title": {"zh": "药敏谱矩阵", "en": "Cumulative antibiogram"}, "inputs": {"zh": "菌株、药物及药敏类别", "en": "Isolates, drugs and susceptibility categories"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_43_54/47_antibiogram.png", "sha256": "10ebefbd490f9be42d411cd318fbd5bbb0d6a54eadcf69a068ab574ac00ffc8b", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_48_schoenfeld", "number": 48, "title": {"zh": "Schoenfeld 残差图", "en": "Schoenfeld residual plot"}, "inputs": {"zh": "生存模型与 Schoenfeld 残差", "en": "Survival model and Schoenfeld residuals"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_43_54/48_schoenfeld.png", "sha256": "dc811c5661100b6a5d47a6a32b0e3a3fe64763efde53b4fe3c9ebad7c201bf53", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_49_precision_recall", "number": 49, "title": {"zh": "精确率–召回率曲线", "en": "Precision–recall curve"}, "inputs": {"zh": "二分类真值与预测分数", "en": "Binary outcomes and prediction scores"}, "category": "roc", "renderer": "precision_recall", "kind": "chart-reference", "source": "cards_43_54/49_precision_recall.png", "sha256": "5d1d27de41153130120e0b3441907297b92b2240a2afd1a08245f8dde20d20ae", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_50_violin", "number": 50, "title": {"zh": "小提琴图", "en": "Violin plot"}, "inputs": {"zh": "组别与连续观测值", "en": "Groups and continuous observations"}, "category": "distribution", "renderer": "violin_raw_points", "kind": "chart-reference", "source": "cards_43_54/50_violin.png", "sha256": "39a25ffa3bf10ab79a695fffb90ffae55f64263aaaa13e6f88d2a6a3dc6e425c", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_51_anscombe", "number": 51, "title": {"zh": "Anscombe 四重奏", "en": "Anscombe's quartet"}, "inputs": {"zh": "四组演示数据；用于说明汇总统计局限", "en": "Four demonstration datasets illustrating summary-statistic limitations"}, "category": "relationship", "renderer": null, "kind": "design-guide", "source": "cards_43_54/51_anscombe.png", "sha256": "7edebaab9a9a358767fd1f1183cd0931891f5fea0ef9ca9843db8601c2dde552", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_52_gene_arrows", "number": 52, "title": {"zh": "基因箭头图", "en": "Gene arrow map"}, "inputs": {"zh": "基因位置、方向与注释", "en": "Gene coordinates, directions and annotations"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_43_54/52_gene_arrows.png", "sha256": "fb14a9aa6d041944fcb24edee6f3bd8d8c94237d6aa2606aa37b58721d830f2f", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_53_stl", "number": 53, "title": {"zh": "STL 时间序列分解", "en": "STL decomposition"}, "inputs": {"zh": "规则时间序列及周期", "en": "Regular time series and seasonal period"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_43_54/53_stl.png", "sha256": "8f589f070b29c81ebfdd8b72bd22e344cd346aa1fc2b524427e4efbf4c9b913f", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_54_hexbin", "number": 54, "title": {"zh": "六边形分箱图", "en": "Hexbin plot"}, "inputs": {"zh": "成对连续变量", "en": "Paired continuous variables"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_43_54/54_hexbin.png", "sha256": "d1dddf39b55765af1378c7f5f48fcae323d642f9f81f1f3721a88e8397f0b144", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_55_pk_ftmic", "number": 55, "title": {"zh": "药代动力学与 fT > MIC", "en": "Concentration–time curve"}, "inputs": {"zh": "浓度–时间数据、游离比例与 MIC", "en": "Concentration-time data, free fraction and MIC"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/55_pk_ftmic.png", "sha256": "276f831d37b04a306508c13e543829333300f1ff381ea63bb570df09bacd76c2", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_56_msw", "number": 56, "title": {"zh": "突变选择窗", "en": "Mutant selection window"}, "inputs": {"zh": "浓度–时间数据、MIC 与 MPC", "en": "Concentration-time data, MIC and MPC"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/56_msw.png", "sha256": "d967e4344a1b421c2f8828fbf74ecc7b577a7dd51b39c6fb7e4798d8b9e64cdc", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_57_gsea", "number": 57, "title": {"zh": "GSEA 富集曲线", "en": "GSEA enrichment plot"}, "inputs": {"zh": "排序统计量及基因集成员", "en": "Ranked statistics and gene-set memberships"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/57_gsea.png", "sha256": "12b6e24e1ff68e0437117cae45559b8e8b55247f24a0f79861d737ace87da2de", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_58_sc_dotplot", "number": 58, "title": {"zh": "单细胞点图", "en": "Dot plot (marker genes)"}, "inputs": {"zh": "细胞群、表达均值与表达比例", "en": "Cell groups, mean expression and expression fractions"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/58_sc_dotplot.png", "sha256": "bf669158c54e50e3c15c2088d27c05f884f1abb08d936b57fad783b6e095d9e3", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_59_umap", "number": 59, "title": {"zh": "UMAP 嵌入", "en": "UMAP embedding"}, "inputs": {"zh": "已计算嵌入坐标及参数记录", "en": "Computed embedding coordinates and parameter records"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/59_umap.png", "sha256": "f23baddc1ae4430716c12379c4d056eed4f71769e6aa701370478bd453244cb6", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_60_ternary", "number": 60, "title": {"zh": "三元图", "en": "Ternary plot"}, "inputs": {"zh": "总和固定的三个组分", "en": "Three components with a fixed total"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/60_ternary.png", "sha256": "e27c7546516a9fd98d61297f81ac0993fbeb8f85517e427dc420ae78ffb1826c", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_61_treemap", "number": 61, "title": {"zh": "矩形树图", "en": "Treemap"}, "inputs": {"zh": "层级类别与非负权重", "en": "Hierarchical categories and nonnegative weights"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/61_treemap.png", "sha256": "c51074ecdedf74950b42f42af17e567893f820900e75a6efb9ce8529b5cb5328", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_62_parallel", "number": 62, "title": {"zh": "平行坐标", "en": "Parallel coordinates"}, "inputs": {"zh": "多个数值变量与缩放规则", "en": "Multiple numeric variables and scaling rules"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/62_parallel.png", "sha256": "496629134470dee2cfd6b42ea3350c71ba0360710c3180628c487a7121a974f4", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_63_network", "number": 63, "title": {"zh": "网络图", "en": "Co-occurrence network"}, "inputs": {"zh": "节点与边表", "en": "Node and edge tables"}, "category": "other", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/63_network.png", "sha256": "f8a2c6dc9f2a9162a45b51b62fcfe2137144dd2169e8130824842f1db4d0ce15", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_64_u_chart", "number": 64, "title": {"zh": "u 控制图", "en": "Control chart (u-chart)"}, "inputs": {"zh": "事件计数及暴露量", "en": "Event counts and exposure denominators"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/64_u_chart.png", "sha256": "4654fa9ef7a7efba3ce70699859ca744d7e2e739a5e25f86a59449fd0e3ca21b", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_65_dag", "number": 65, "title": {"zh": "因果有向无环图", "en": "Causal diagram (DAG)"}, "inputs": {"zh": "变量与有向边；需研究假设", "en": "Variables and directed edges justified by study assumptions"}, "category": "other", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/65_dag.png", "sha256": "d1da99bc0c52a8bde49f0ca1c9cc37f40bcbbed4693909e27f7755f1541af9a1", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_66_prisma", "number": 66, "title": {"zh": "PRISMA 流程图", "en": "PRISMA 2020 flow diagram"}, "inputs": {"zh": "检索、筛选与纳入排除计数", "en": "Search, screening, inclusion and exclusion counts"}, "category": "other", "renderer": null, "kind": "chart-reference", "source": "cards_55_66/66_prisma.png", "sha256": "563671bf8897e532f138d0507055bfa5ad04587927b1662dffaf0ae013214024", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_67_bump", "number": 67, "title": {"zh": "排名变化图", "en": "Bump chart"}, "inputs": {"zh": "各时间点排名", "en": "Ranks at successive time points"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_67_78/67_bump.png", "sha256": "54ad7ede808d0928d361bcbf96f50781b9ffb5dbd539d6004e1a7f4366d302f7", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_68_epicurve", "number": 68, "title": {"zh": "流行曲线", "en": "Epidemic curve"}, "inputs": {"zh": "发病日期与分层计数", "en": "Onset dates and stratified counts"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_67_78/68_epicurve.png", "sha256": "b1365649064172034dde40ba1a6ddcf852b2ca3576082c7d28343a038763a9f9", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_69_calendar", "number": 69, "title": {"zh": "日历热图", "en": "Calendar heatmap"}, "inputs": {"zh": "日期与数值", "en": "Dates and values"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_67_78/69_calendar.png", "sha256": "c9087c6a71a7122692e43b7d50ca0045c8719bfadf325b20b606e30d06ab6052", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_70_icon_array", "number": 70, "title": {"zh": "图标阵列", "en": "Icon array"}, "inputs": {"zh": "人群总数与事件计数", "en": "Population total and event counts"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_67_78/70_icon_array.png", "sha256": "884ca5e7149555aa6e8c41cf7682426542caddbbb17db0e9d89542f549c654e8", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_71_rose", "number": 71, "title": {"zh": "玫瑰图", "en": "Nightingale rose"}, "inputs": {"zh": "周期位置与频数", "en": "Cyclic positions and frequencies"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_67_78/71_rose.png", "sha256": "ba6278993a4e9dae612283ddde437a1a240f49d26e909c4be7c05c6c4361ff9c", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_72_deming", "number": 72, "title": {"zh": "Deming 回归", "en": "Deming regression"}, "inputs": {"zh": "两种测量与误差方差比", "en": "Two measurements and their error-variance ratio"}, "category": "paired", "renderer": null, "kind": "chart-reference", "source": "cards_67_78/72_deming.png", "sha256": "45749e093298a5a59962ba62759320c698a4a5167e8cd98d2afd0c7c31a40269", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_73_ecdf", "number": 73, "title": {"zh": "经验累积分布", "en": "ECDF"}, "inputs": {"zh": "连续观测值", "en": "Continuous observations"}, "category": "distribution", "renderer": "ecdf", "kind": "chart-reference", "source": "cards_67_78/73_ecdf.png", "sha256": "4f2166dd5d56dab4ad82e9278ddfc7e11e95e69917b6e4a779d071f32cd98ec4", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_74_spaghetti", "number": 74, "title": {"zh": "个体轨迹图", "en": "Spaghetti plot"}, "inputs": {"zh": "个体编号、时间与观测", "en": "Individual IDs, times and observations"}, "category": "longitudinal", "renderer": "timecourse_trajectories", "kind": "chart-reference", "source": "cards_67_78/74_spaghetti.png", "sha256": "834056e570d2addc0750886b0daf775abd5d3582256c8c7779cc51c3879936a7", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_75_funnel_inst", "number": 75, "title": {"zh": "机构比较漏斗图", "en": "Funnel plot (institutions)"}, "inputs": {"zh": "机构样本量、率及参考模型", "en": "Institution sample sizes, rates and reference model"}, "category": "effects", "renderer": null, "kind": "chart-reference", "source": "cards_67_78/75_funnel_inst.png", "sha256": "4f51e2c97c709a6745ff0c13dbd7a94d2c1c0d64b2b7f327d58b6bacd11232c1", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_76_ice_pdp", "number": 76, "title": {"zh": "ICE 与 PDP", "en": "ICE + PDP plot"}, "inputs": {"zh": "拟合模型与特征数据", "en": "Fitted model and feature data"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_67_78/76_ice_pdp.png", "sha256": "02f90e65a8a70cd4371b984dd49bd00ae5deeaed6bf69985a863bb434697ab97", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_77_synergy", "number": 77, "title": {"zh": "药物协同作用曲面", "en": "Synergy landscape"}, "inputs": {"zh": "双药剂量响应及协同参考模型", "en": "Two-drug dose-response data and synergy reference model"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_67_78/77_synergy.png", "sha256": "77b1fabb20ad4a5511891faf54ec4d2092f8fa73f247db449522c1cff089e37b", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_78_missing", "number": 78, "title": {"zh": "缺失数据图", "en": "Missing data pattern"}, "inputs": {"zh": "原始表格及缺失掩码", "en": "Original table and missingness mask"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_67_78/78_missing.png", "sha256": "fd219428b64d15cbaac0de0d036b7efad0d3453a638f1c650fd68afd3999759e", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_79_swimmer", "number": 79, "title": {"zh": "泳道图", "en": "Swimmer plot"}, "inputs": {"zh": "个体随访区间与事件", "en": "Individual follow-up intervals and events"}, "category": "longitudinal", "renderer": "swimmer", "kind": "chart-reference", "source": "cards_79_90/79_swimmer.png", "sha256": "bc4799a01b5ec14cce083c722d402a41c3c74fccd0dec2a321eb8d7b854999a6", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_80_dumbbell", "number": 80, "title": {"zh": "哑铃图", "en": "Dumbbell plot"}, "inputs": {"zh": "类别与两端测量值", "en": "Categories and two endpoint values"}, "category": "paired", "renderer": null, "kind": "chart-reference", "source": "cards_79_90/80_dumbbell.png", "sha256": "655ffe8f0c8c314cd7070bdff579fa70b197b39812be3a555ee81a734a642f65", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_81_error_bars", "number": 81, "title": {"zh": "误差棒表达", "en": "Error bars: SD vs SEM vs CI"}, "inputs": {"zh": "估计值及明确的 SD、SE 或 CI", "en": "Estimates and explicitly identified SD, SE or CI"}, "category": "effects", "renderer": null, "kind": "design-guide", "source": "cards_79_90/81_error_bars.png", "sha256": "994032e949f08247d8cdf71b7c83d029b77748c159beb01c809014f10f3c6dd3", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_82_interaction", "number": 82, "title": {"zh": "交互作用图", "en": "Interaction plot"}, "inputs": {"zh": "因素组合与模型估计及区间", "en": "Factor combinations, model estimates and intervals"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_79_90/82_interaction.png", "sha256": "0b0fc45011d31dbfb1d8c2985b0d4855ad2af79bad954ac5fc7e5925eb4b5524", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_83_euler", "number": 83, "title": {"zh": "Euler 集合图", "en": "Euler diagram"}, "inputs": {"zh": "集合成员或交集计数", "en": "Set memberships or intersection counts"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_79_90/83_euler.png", "sha256": "680a1bfdca355df2f5d971bf69fb6bb768e31f92453cf42567f3a98a872a64e9", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_84_coef_plot", "number": 84, "title": {"zh": "回归系数图", "en": "Coefficient plot"}, "inputs": {"zh": "系数、区间与效应尺度", "en": "Coefficients, intervals and effect scale"}, "category": "effects", "renderer": "forest_intervals", "kind": "chart-reference", "source": "cards_79_90/84_coef_plot.png", "sha256": "e5d074bc0460bfd2d780daf9f31dc62efe7f134f1c10542ae06086c6668af323", "dataKind": "synthetic", "status": "related-renderer"}, {"id": "reference_85_scree", "number": 85, "title": {"zh": "碎石图", "en": "Scree plot"}, "inputs": {"zh": "各主成分特征值", "en": "Eigenvalues by component"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_79_90/85_scree.png", "sha256": "09dac1589da6a9ad3b506ff21967b43c537377026593c84b5d9bae53af0568dd", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_86_small_multiples", "number": 86, "title": {"zh": "分面小多图", "en": "Small multiples"}, "inputs": {"zh": "统一字段及分面变量", "en": "Consistent variables and faceting field"}, "category": "other", "renderer": null, "kind": "design-guide", "source": "cards_79_90/86_small_multiples.png", "sha256": "229a2cf572bafb5e8249add45ce468d349c48323bdf37ea82d44f49aee7b633b", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_87_lorenz", "number": 87, "title": {"zh": "Lorenz 曲线", "en": "Lorenz curve"}, "inputs": {"zh": "非负值或累计份额", "en": "Nonnegative values or cumulative shares"}, "category": "other", "renderer": null, "kind": "chart-reference", "source": "cards_79_90/87_lorenz.png", "sha256": "9c5eeb81dedbe62229fc9bf893762cabd35808cbf9edd923a2bb2e444b4042fe", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_88_partial_residual", "number": 88, "title": {"zh": "偏残差图", "en": "Partial residual plot"}, "inputs": {"zh": "已拟合回归模型与残差", "en": "Fitted regression model and residuals"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_79_90/88_partial_residual.png", "sha256": "0a5646ef55620dc049c382637ca379033316a25cb302c149a7348e67d9f9be66", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_89_loess", "number": 89, "title": {"zh": "LOESS 平滑", "en": "LOESS smoother"}, "inputs": {"zh": "成对观测及平滑参数", "en": "Paired observations and smoothing parameters"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_79_90/89_loess.png", "sha256": "392ae6534ca56d7bc631f5d956d13f7f716a53815562da321d470afa1b75267a", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_90_cumulative_meta", "number": 90, "title": {"zh": "累积 Meta 分析", "en": "Cumulative meta-analysis"}, "inputs": {"zh": "按时间排序的研究效应与标准误", "en": "Studies ordered by time with effects and standard errors"}, "category": "effects", "renderer": null, "kind": "chart-reference", "source": "cards_79_90/90_cumulative_meta.png", "sha256": "e0a958940b0a6fc329f6e26efe7939f40a8569296f8ecad84468c3cc217e44de", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_91_rank_abundance", "number": 91, "title": {"zh": "秩丰度曲线", "en": "Rank–abundance curve"}, "inputs": {"zh": "分类丰度", "en": "Taxon abundances"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/91_rank_abundance.png", "sha256": "bdaa50a75af8665a02b90ce7711b357d1365f6bce47f51f2d1db320d44f79fdc", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_92_hill_profile", "number": 92, "title": {"zh": "Hill 多样性谱", "en": "Hill diversity profile"}, "inputs": {"zh": "分类丰度及多样性阶数", "en": "Taxon abundances and diversity orders"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/92_hill_profile.png", "sha256": "24e798806ea40966bf0ede0b3e7ca4a3fbeb9fb670b299e384dad4d2c8b51604", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_93_muller", "number": 93, "title": {"zh": "Muller 演化图", "en": "Muller plot"}, "inputs": {"zh": "谱系关系及时间丰度", "en": "Lineage relationships and abundances over time"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/93_muller.png", "sha256": "296445bf7d1ccc12f1c4c481dece9e426fbb1815e949bdbbd326a4d33ade35c6", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_94_plasmid_map", "number": 94, "title": {"zh": "环状质粒图", "en": "Circular plasmid map"}, "inputs": {"zh": "环状序列长度及注释坐标", "en": "Circular sequence length and annotation coordinates"}, "category": "omics", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/94_plasmid_map.png", "sha256": "88f3d264ed2fce1dcd1d455af9d789f733a19f16696aad06adddb50f84249c31", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_95_chord", "number": 95, "title": {"zh": "弦图", "en": "Chord diagram"}, "inputs": {"zh": "节点间非负流量矩阵", "en": "Nonnegative flow matrix between nodes"}, "category": "matrix", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/95_chord.png", "sha256": "306d83d9795c9599fd014af0339a0f2655f26a77ae330e69d491997a316e9b19", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_96_cusum", "number": 96, "title": {"zh": "CUSUM 控制图", "en": "CUSUM chart"}, "inputs": {"zh": "有序观测、目标值及控制参数", "en": "Ordered observations, target and control parameters"}, "category": "longitudinal", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/96_cusum.png", "sha256": "6fb3989321fd73ea64afe4c3ce6fcfb8a0240ad1d93af7b744946830d2708ddd", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_97_mediation", "number": 97, "title": {"zh": "中介路径图", "en": "Mediation path diagram"}, "inputs": {"zh": "已拟合中介模型及路径估计", "en": "Fitted mediation model and path estimates"}, "category": "other", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/97_mediation.png", "sha256": "2b2aebf09e6f12b31b5a095ddb7c2100fe4fbc2e5221b05b3e5f3dd5beb92618", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_98_fagan", "number": 98, "title": {"zh": "Fagan 列线图", "en": "Fagan nomogram"}, "inputs": {"zh": "验前概率及似然比", "en": "Pretest probability and likelihood ratio"}, "category": "roc", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/98_fagan.png", "sha256": "90aaec0e37b3dc03c411df3dbc3116892a8e7520e0e65e0f27032f3ed8aadc4f", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_99_tornado", "number": 99, "title": {"zh": "龙卷风图", "en": "Tornado diagram"}, "inputs": {"zh": "基准结果及单因素敏感性分析", "en": "Baseline result and one-way sensitivity analyses"}, "category": "effects", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/99_tornado.png", "sha256": "e80ace032067add1d41bfd30718068c2026a3bffcb8f437c206cd48c59dcab5f", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_100_quantile_reg", "number": 100, "title": {"zh": "分位数回归", "en": "Quantile regression"}, "inputs": {"zh": "结局、自变量及指定分位数", "en": "Outcome, predictors and specified quantiles"}, "category": "relationship", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/100_quantile_reg.png", "sha256": "2b1f811e67f0cf075a45f5a648120c95b5e8c65f8977718079ea317799794502", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_101_bootstrap", "number": 101, "title": {"zh": "Bootstrap 分布", "en": "Bootstrap distribution"}, "inputs": {"zh": "重抽样估计值及区间方法", "en": "Resampled estimates and interval method"}, "category": "effects", "renderer": null, "kind": "chart-reference", "source": "cards_91_102/101_bootstrap.png", "sha256": "5772b3f7356ef73cd205b41a86ee3ec3b38c62f422c63f4ed820c653dda4c7d1", "dataKind": "synthetic", "status": "design-backlog"}, {"id": "reference_102_two_graph_roc", "number": 102, "title": {"zh": "双图 ROC", "en": "Two-graph ROC"}, "inputs": {"zh": "真值、分数与有限阈值", "en": "Outcomes, scores and finite thresholds"}, "category": "roc", "renderer": "roc_two_graph", "kind": "chart-reference", "source": "cards_91_102/102_two_graph_roc.png", "sha256": "4185ad96583b8aa06e885bdb766c77504ab8bbf9aba353f64de903b849d924a6", "dataKind": "synthetic", "status": "related-renderer"}]
+[
+  {
+    "id": "reference_01_superplot",
+    "number": 1,
+    "title": {
+      "zh": "重复实验分层散点",
+      "en": "SuperPlot"
+    },
+    "inputs": {
+      "zh": "组别、独立实验编号、实验内观测值",
+      "en": "Groups, independent experiment IDs and within-experiment observations"
+    },
+    "category": "distribution",
+    "renderer": "superplot",
+    "kind": "chart-reference",
+    "source": "cards_01_18/01_superplot.png",
+    "sha256": "2ebadb9f346b63f146bee06b2dae27e20b6feea8ad4c3169e2a142196c68b300",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_02_raincloud",
+    "number": 2,
+    "title": {
+      "zh": "雨云图",
+      "en": "Raincloud plot"
+    },
+    "inputs": {
+      "zh": "组别与连续观测值",
+      "en": "Groups and continuous observations"
+    },
+    "category": "distribution",
+    "renderer": "compare_raincloud",
+    "kind": "chart-reference",
+    "source": "cards_01_18/02_raincloud.png",
+    "sha256": "caa843f2f499d09e482a0acf2efdce1fd711f3e74945123a17250b88c17829fd",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_03_upset",
+    "number": 3,
+    "title": {
+      "zh": "集合交集图",
+      "en": "UpSet plot"
+    },
+    "inputs": {
+      "zh": "样本编号与集合成员关系",
+      "en": "Sample IDs and set memberships"
+    },
+    "category": "matrix",
+    "renderer": "upset_intersections",
+    "kind": "chart-reference",
+    "source": "cards_01_18/03_upset.png",
+    "sha256": "b19fde7c279d5505f982c27d3b963646aea4d4db1f57be1a2f346c6820f8a0d8",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_04_gardner_altman",
+    "number": 4,
+    "title": {
+      "zh": "Gardner–Altman 估计图",
+      "en": "Gardner–Altman"
+    },
+    "inputs": {
+      "zh": "两组原始观测；配对设计需配对编号",
+      "en": "Two groups of observations; pairing IDs for paired designs"
+    },
+    "category": "effects",
+    "renderer": "compare_gardner_altman",
+    "kind": "chart-reference",
+    "source": "cards_01_18/04_gardner_altman.png",
+    "sha256": "b1fc3108fc3b1f58c304b61aaaa6497fc004d301b0e29e224ffcff640b854df3",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_05_sina",
+    "number": 5,
+    "title": {
+      "zh": "Sina 分布散点",
+      "en": "Sina plot"
+    },
+    "inputs": {
+      "zh": "组别与连续观测值",
+      "en": "Groups and continuous observations"
+    },
+    "category": "distribution",
+    "renderer": "distribution_sina",
+    "kind": "chart-reference",
+    "source": "cards_01_18/05_sina.png",
+    "sha256": "4829c397ae1e3c81753aa9902710ae48f493428301745145b42e2c99065fdb6a",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_06_wong_palette",
+    "number": 6,
+    "title": {
+      "zh": "色觉友好配色",
+      "en": "Wong palette"
+    },
+    "inputs": {
+      "zh": "分类数量与色觉可辨识要求",
+      "en": "Number of categories and color-vision requirements"
+    },
+    "category": "other",
+    "renderer": null,
+    "kind": "design-guide",
+    "source": "cards_01_18/06_wong_palette.png",
+    "sha256": "feb93056931995054d4df1bcb9dd037ff46d2cd55cc6b138ee1421580f538aa4",
+    "dataKind": "synthetic",
+    "status": "design-system-guidance",
+    "feature": "palette-editor"
+  },
+  {
+    "id": "reference_07_cumming",
+    "number": 7,
+    "title": {
+      "zh": "Cumming 估计图",
+      "en": "Cumming plot"
+    },
+    "inputs": {
+      "zh": "多组观测与预设比较",
+      "en": "Observations across groups and planned comparisons"
+    },
+    "category": "effects",
+    "renderer": "compare_cumming",
+    "kind": "chart-reference",
+    "source": "cards_01_18/07_cumming.png",
+    "sha256": "6af7ff1f9ce343063b6de5c083cf5507139686e141cf1033436d48cb548787da",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_08_dot_plot",
+    "number": 8,
+    "title": {
+      "zh": "原始观测散点",
+      "en": "Dot plot"
+    },
+    "inputs": {
+      "zh": "组别与原始观测值",
+      "en": "Groups and raw observations"
+    },
+    "category": "distribution",
+    "renderer": "compare_strip_median",
+    "kind": "chart-reference",
+    "source": "cards_01_18/08_dot_plot.png",
+    "sha256": "52090dd31035ef7ba1601ec16a1b3d4631cd6032639c1e01f5038e6251ae6884",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_09_bland_altman",
+    "number": 9,
+    "title": {
+      "zh": "Bland–Altman 一致性图",
+      "en": "Bland–Altman"
+    },
+    "inputs": {
+      "zh": "同一样本的两种测量结果",
+      "en": "Two measurements on the same samples"
+    },
+    "category": "paired",
+    "renderer": "bland_altman",
+    "kind": "chart-reference",
+    "source": "cards_01_18/09_bland_altman.png",
+    "sha256": "9e48a4a53f8b83955e2e2782d188da20221b9205a1d77c11f346e28fa0d960bf",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_10_forest_plot",
+    "number": 10,
+    "title": {
+      "zh": "森林图",
+      "en": "Forest plot"
+    },
+    "inputs": {
+      "zh": "效应值、置信区间及效应尺度",
+      "en": "Effect estimates, confidence intervals and effect scale"
+    },
+    "category": "effects",
+    "renderer": "meta_forest",
+    "kind": "chart-reference",
+    "source": "cards_01_18/10_forest_plot.png",
+    "sha256": "99669ef9ed08d0e0b336803912bbc1527a9d642da78bfe3d64b4116019c1d9c3",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_11_colour_maps",
+    "number": 11,
+    "title": {
+      "zh": "连续色阶指南",
+      "en": "Colour maps"
+    },
+    "inputs": {
+      "zh": "数值范围、顺序或中心参考值",
+      "en": "Numeric range, ordering or reference midpoint"
+    },
+    "category": "other",
+    "renderer": null,
+    "kind": "design-guide",
+    "source": "cards_01_18/11_colour_maps.png",
+    "sha256": "90837dd559874dd4e867eab587e5dc35460b13a439f1bddf7dbdb7782135db30",
+    "dataKind": "synthetic",
+    "status": "design-system-guidance",
+    "feature": "palette-editor"
+  },
+  {
+    "id": "reference_12_cleveland_dot",
+    "number": 12,
+    "title": {
+      "zh": "Cleveland 点图",
+      "en": "Cleveland dot plot"
+    },
+    "inputs": {
+      "zh": "类别与数值",
+      "en": "Categories and values"
+    },
+    "category": "distribution",
+    "renderer": "compare_cleveland",
+    "kind": "chart-reference",
+    "source": "cards_01_18/12_cleveland_dot.png",
+    "sha256": "21c1318e2491ce1108256081305f816ddcc89597ee931001c196c26653e535e9",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_13_volcano",
+    "number": 13,
+    "title": {
+      "zh": "火山图",
+      "en": "Volcano plot"
+    },
+    "inputs": {
+      "zh": "效应量与多重比较校正结果",
+      "en": "Effect sizes and multiplicity-adjusted results"
+    },
+    "category": "omics",
+    "renderer": "volcano_labels",
+    "kind": "chart-reference",
+    "source": "cards_01_18/13_volcano.png",
+    "sha256": "dca6856391ad7e9535afa0d2a5f4dea69dbc67d88d288325138dfc2a7307a22a",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_14_kaplan_meier",
+    "number": 14,
+    "title": {
+      "zh": "Kaplan–Meier 生存曲线",
+      "en": "Kaplan–Meier"
+    },
+    "inputs": {
+      "zh": "随访时间与结局指示",
+      "en": "Follow-up times and event indicators"
+    },
+    "category": "longitudinal",
+    "renderer": "survival_risk_counts",
+    "kind": "chart-reference",
+    "source": "cards_01_18/14_kaplan_meier.png",
+    "sha256": "7c28d2ad5468ea42a7e104b0a54e371c74146e37013ec65d6fea671c7ca4b25e",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_15_funnel_plot",
+    "number": 15,
+    "title": {
+      "zh": "Meta 分析漏斗图",
+      "en": "Funnel plot"
+    },
+    "inputs": {
+      "zh": "研究效应与标准误",
+      "en": "Study effects and standard errors"
+    },
+    "category": "effects",
+    "renderer": "meta_funnel",
+    "kind": "chart-reference",
+    "source": "cards_01_18/15_funnel_plot.png",
+    "sha256": "36dfb24c26129cc4d842a9cfc13988c4180f7ca1df6776880f27b1cb415d4d35",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_16_roc",
+    "number": 16,
+    "title": {
+      "zh": "ROC 曲线",
+      "en": "ROC curve"
+    },
+    "inputs": {
+      "zh": "二分类真值与预测分数",
+      "en": "Binary outcomes and prediction scores"
+    },
+    "category": "roc",
+    "renderer": "roc",
+    "kind": "chart-reference",
+    "source": "cards_01_18/16_roc.png",
+    "sha256": "778fcd58d0214ba7b4053372654601ec110fd5de6a14680ada61ccedab460a23",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_17_calibration",
+    "number": 17,
+    "title": {
+      "zh": "校准曲线",
+      "en": "Calibration plot"
+    },
+    "inputs": {
+      "zh": "结局与预测概率",
+      "en": "Outcomes and predicted probabilities"
+    },
+    "category": "roc",
+    "renderer": "calibration_results",
+    "kind": "chart-reference",
+    "source": "cards_01_18/17_calibration.png",
+    "sha256": "4a62e96d58e2ca1d7fb4866161e3a6bca7a628df108871f815d458e30b7cd06d",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_18_decision_curve",
+    "number": 18,
+    "title": {
+      "zh": "决策曲线",
+      "en": "Decision curve"
+    },
+    "inputs": {
+      "zh": "结局、预测概率与决策阈值",
+      "en": "Outcomes, predicted probabilities and decision thresholds"
+    },
+    "category": "roc",
+    "renderer": "decision_curve_results",
+    "kind": "chart-reference",
+    "source": "cards_01_18/18_decision_curve.png",
+    "sha256": "776756c596f19706a58cca686c4e550dc1b1ff4d5bccf1a9f183e24a9e407042",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_19_clustered_heatmap",
+    "number": 19,
+    "title": {
+      "zh": "聚类热图",
+      "en": "Clustered heatmap"
+    },
+    "inputs": {
+      "zh": "数值矩阵、距离与聚类规则",
+      "en": "Numeric matrix, distance and clustering rules"
+    },
+    "category": "matrix",
+    "renderer": "clustered_matrix",
+    "kind": "chart-reference",
+    "source": "cards_19_30/19_clustered_heatmap.png",
+    "sha256": "b7a97994f66d779a0fbcee1ab18c8f00e7f554fa99e325cc0622e5667e0442b7",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_20_pca_biplot",
+    "number": 20,
+    "title": {
+      "zh": "PCA 双标图",
+      "en": "PCA biplot"
+    },
+    "inputs": {
+      "zh": "原始特征矩阵、标准化规则与载荷",
+      "en": "Feature matrix, scaling rules and component loadings"
+    },
+    "category": "relationship",
+    "renderer": "pca_loadings",
+    "kind": "chart-reference",
+    "source": "cards_19_30/20_pca_biplot.png",
+    "sha256": "170c50312135ec3db52e857c926f3b37cd3a8ed35a23edb9e64262e5ca8770b8",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_21_qq_plot",
+    "number": 21,
+    "title": {
+      "zh": "Q–Q 图",
+      "en": "Q–Q plot"
+    },
+    "inputs": {
+      "zh": "观测值与指定参考分布",
+      "en": "Observations and a specified reference distribution"
+    },
+    "category": "relationship",
+    "renderer": "relation_residual_qq",
+    "kind": "chart-reference",
+    "source": "cards_19_30/21_qq_plot.png",
+    "sha256": "b0d8f311a573e05533745d08198f1b538ccc046a886d6b632ce5862e7c7ecfc1",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_22_notched_box",
+    "number": 22,
+    "title": {
+      "zh": "缺口箱线图",
+      "en": "Notched box plot"
+    },
+    "inputs": {
+      "zh": "各组连续观测值",
+      "en": "Continuous observations by group"
+    },
+    "category": "distribution",
+    "renderer": "compare_notched_box",
+    "kind": "chart-reference",
+    "source": "cards_19_30/22_notched_box.png",
+    "sha256": "052219a81f4f859837ca5619c3fb55a38b536a1bdd8e1d24288ee41d37974b05",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_23_dose_response",
+    "number": 23,
+    "title": {
+      "zh": "剂量反应曲线",
+      "en": "Dose–response curve"
+    },
+    "inputs": {
+      "zh": "剂量、响应及拟合模型",
+      "en": "Dose, response and fitted model"
+    },
+    "category": "longitudinal",
+    "renderer": "dose_response_result",
+    "kind": "chart-reference",
+    "source": "cards_19_30/23_dose_response.png",
+    "sha256": "8c827be8a86fc7b95ca48b6088874bc4cde3c17de534fa6f6e6f6c8de77da691",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_24_checkerboard",
+    "number": 24,
+    "title": {
+      "zh": "棋盘稀释试验",
+      "en": "Checkerboard & isobologram"
+    },
+    "inputs": {
+      "zh": "双药浓度矩阵与抑制结果",
+      "en": "Two-drug concentration matrix and inhibition results"
+    },
+    "category": "matrix",
+    "renderer": "checkerboard_assay",
+    "kind": "chart-reference",
+    "source": "cards_19_30/24_checkerboard.png",
+    "sha256": "f5f586d805f3986ba3a130a8f29fd58dc7d043ed9528bae7fa7934af15177b12",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_25_mosaic",
+    "number": 25,
+    "title": {
+      "zh": "马赛克图",
+      "en": "Mosaic plot"
+    },
+    "inputs": {
+      "zh": "列联计数",
+      "en": "Contingency counts"
+    },
+    "category": "matrix",
+    "renderer": "composition_mosaic",
+    "kind": "chart-reference",
+    "source": "cards_19_30/25_mosaic.png",
+    "sha256": "dc703a87d16a4b14464ea98465829842b536901da4d91e7193cc66781b85056f",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_26_alluvial",
+    "number": 26,
+    "title": {
+      "zh": "桑基与流向图",
+      "en": "Alluvial plot"
+    },
+    "inputs": {
+      "zh": "阶段、类别及流量",
+      "en": "Stages, categories and flow quantities"
+    },
+    "category": "matrix",
+    "renderer": "flow_alluvial",
+    "kind": "chart-reference",
+    "source": "cards_19_30/26_alluvial.png",
+    "sha256": "4733ee7dffd8b208e6ebc03a3f0d009e7f62bdace2dc4ca71d428dcbcd0d3530",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_27_corrgram",
+    "number": 27,
+    "title": {
+      "zh": "相关矩阵",
+      "en": "Corrgram"
+    },
+    "inputs": {
+      "zh": "变量矩阵与相关方法",
+      "en": "Variable matrix and correlation method"
+    },
+    "category": "relationship",
+    "renderer": "correlation_values",
+    "kind": "chart-reference",
+    "source": "cards_19_30/27_corrgram.png",
+    "sha256": "90096b862bee7ad28d7262286cedbcdee6c74ce15c5bce9c513fd223470fd03c",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_28_rcs",
+    "number": 28,
+    "title": {
+      "zh": "限制性立方样条",
+      "en": "Restricted cubic spline"
+    },
+    "inputs": {
+      "zh": "结局、自变量、协变量与结点设置",
+      "en": "Outcome, predictors, covariates and knot specification"
+    },
+    "category": "relationship",
+    "renderer": "spline_effect_results",
+    "kind": "chart-reference",
+    "source": "cards_19_30/28_rcs.png",
+    "sha256": "0992ae36ac2de71cf8e6907954b11cf018aa0ae32caceb89c47e2f0ccb188b16",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_29_nomogram",
+    "number": 29,
+    "title": {
+      "zh": "列线图",
+      "en": "Nomogram"
+    },
+    "inputs": {
+      "zh": "已拟合模型及预测转换规则",
+      "en": "Fitted model and prediction conversion rules"
+    },
+    "category": "relationship",
+    "renderer": "model_nomogram",
+    "kind": "chart-reference",
+    "source": "cards_19_30/29_nomogram.png",
+    "sha256": "da2242785cffb2bfbe6aa516d0844f26c549a51b53398a8dce48ad968003f193",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_30_shap_summary",
+    "number": 30,
+    "title": {
+      "zh": "SHAP 汇总图",
+      "en": "SHAP summary plot"
+    },
+    "inputs": {
+      "zh": "模型、特征值与 SHAP 值",
+      "en": "Model, feature values and SHAP values"
+    },
+    "category": "relationship",
+    "renderer": "model_shap_summary",
+    "kind": "chart-reference",
+    "source": "cards_19_30/30_shap_summary.png",
+    "sha256": "d6ec962f7d259d8ce238db48e32470e0766ef9a3c719436427819d963cb35627",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_31_growth_curve",
+    "number": 31,
+    "title": {
+      "zh": "生长曲线",
+      "en": "Growth curve"
+    },
+    "inputs": {
+      "zh": "时间、观测与重复编号",
+      "en": "Time, observations and replicate IDs"
+    },
+    "category": "longitudinal",
+    "renderer": "time_supplied_fit",
+    "kind": "chart-reference",
+    "source": "cards_31_42/31_growth_curve.png",
+    "sha256": "f15140f3156920e8eff45c76d9f4a9944d39880e833e674c30ba4b53b7047f6c",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_32_time_kill",
+    "number": 32,
+    "title": {
+      "zh": "时间杀菌曲线",
+      "en": "Time–kill curve"
+    },
+    "inputs": {
+      "zh": "时间、药物条件与菌落计数",
+      "en": "Time, drug conditions and colony counts"
+    },
+    "category": "longitudinal",
+    "renderer": "time_kill",
+    "kind": "chart-reference",
+    "source": "cards_31_42/32_time_kill.png",
+    "sha256": "a3b92d9ce3db11e5313071735a162a5e086dedda6434144709ea383a303aa91f",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_33_mic_ecoff",
+    "number": 33,
+    "title": {
+      "zh": "MIC 分布与 ECOFF",
+      "en": "MIC distribution & ECOFF"
+    },
+    "inputs": {
+      "zh": "MIC 分布及 ECOFF 估计依据",
+      "en": "MIC distribution and documented ECOFF estimation"
+    },
+    "category": "omics",
+    "renderer": "mic_distribution",
+    "kind": "chart-reference",
+    "source": "cards_31_42/33_mic_ecoff.png",
+    "sha256": "46b854a9d420b07c0afd1f6bac780d60d7da2d5b47702389e0f954a063fdca58",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_34_paired_slope",
+    "number": 34,
+    "title": {
+      "zh": "配对斜率图",
+      "en": "Paired slope plot"
+    },
+    "inputs": {
+      "zh": "配对编号与前后测量",
+      "en": "Pair IDs and before/after measurements"
+    },
+    "category": "paired",
+    "renderer": "compare_paired_lines",
+    "kind": "chart-reference",
+    "source": "cards_31_42/34_paired_slope.png",
+    "sha256": "2648e444c98faf03df1d3f9baae8613857af1b71ca543da0114529b54a2ea932",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_35_stacked_abundance",
+    "number": 35,
+    "title": {
+      "zh": "堆叠丰度图",
+      "en": "Stacked relative abundance"
+    },
+    "inputs": {
+      "zh": "样本、分类与丰度",
+      "en": "Samples, categories and abundances"
+    },
+    "category": "matrix",
+    "renderer": "taxa_composition",
+    "kind": "chart-reference",
+    "source": "cards_31_42/35_stacked_abundance.png",
+    "sha256": "8dd1eec36b5d944ca63db0d3b1f2367b20d8449178bc0250365aee8ff7dde336",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_36_rarefaction",
+    "number": 36,
+    "title": {
+      "zh": "稀释曲线",
+      "en": "Rarefaction curve"
+    },
+    "inputs": {
+      "zh": "抽样深度与物种观测",
+      "en": "Sampling depth and observed taxa"
+    },
+    "category": "omics",
+    "renderer": "rarefaction_result",
+    "kind": "chart-reference",
+    "source": "cards_31_42/36_rarefaction.png",
+    "sha256": "4caa0cee94b4e89e7a9db5dd9116641290cf890cd5788e0b50bd907a3fe297ef",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_37_pcoa_permanova",
+    "number": 37,
+    "title": {
+      "zh": "PCoA 排序图",
+      "en": "PCoA + PERMANOVA"
+    },
+    "inputs": {
+      "zh": "距离矩阵与分组；检验需置换设计",
+      "en": "Distance matrix and groups; permutation design for inference"
+    },
+    "category": "relationship",
+    "renderer": "pcoa_spider",
+    "kind": "chart-reference",
+    "source": "cards_31_42/37_pcoa_permanova.png",
+    "sha256": "9245270c8e6af8f2c52c7ddd42d81fea2af6be7f2410193c875c462ca2f1e05a",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_38_tree_gene_matrix",
+    "number": 38,
+    "title": {
+      "zh": "系统树与基因矩阵",
+      "en": "Tree + gene matrix"
+    },
+    "inputs": {
+      "zh": "系统树及对齐的基因存在矩阵",
+      "en": "Phylogenetic tree and aligned gene-presence matrix"
+    },
+    "category": "omics",
+    "renderer": "phylogeny_traits",
+    "kind": "chart-reference",
+    "source": "cards_31_42/38_tree_gene_matrix.png",
+    "sha256": "9886d37c5d106ae398e19aca7a4b0505e9a0293b987d10e84b02a88430d23ad0",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_39_lollipop",
+    "number": 39,
+    "title": {
+      "zh": "棒棒糖图",
+      "en": "Lollipop plot"
+    },
+    "inputs": {
+      "zh": "类别与数值",
+      "en": "Categories and values"
+    },
+    "category": "effects",
+    "renderer": "mutation_lollipop",
+    "kind": "chart-reference",
+    "source": "cards_31_42/39_lollipop.png",
+    "sha256": "a802e43f4a13089721b5eb51e651328d415c8b014495f7b3a5059ee641c33e19",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_40_enrichment_bubble",
+    "number": 40,
+    "title": {
+      "zh": "富集气泡图",
+      "en": "Enrichment bubble plot"
+    },
+    "inputs": {
+      "zh": "通路、效应、条目数与校正 P 值",
+      "en": "Pathways, effects, counts and adjusted P values"
+    },
+    "category": "omics",
+    "renderer": "enrichment_dots",
+    "kind": "chart-reference",
+    "source": "cards_31_42/40_enrichment_bubble.png",
+    "sha256": "06d4da7cf107bbde82e9b71ba64dcb5aac652165c41cdc2575b1532f56baf9c5",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_41_cumulative_incidence",
+    "number": 41,
+    "title": {
+      "zh": "累积发生函数",
+      "en": "Cumulative incidence"
+    },
+    "inputs": {
+      "zh": "随访时间及互斥事件类型",
+      "en": "Follow-up times and mutually exclusive event types"
+    },
+    "category": "longitudinal",
+    "renderer": "competing_incidence",
+    "kind": "chart-reference",
+    "source": "cards_31_42/41_cumulative_incidence.png",
+    "sha256": "dfbed6f38d30fa5dd3ff4896d2b40059b56b9485427776ad6a68d88d4aadf7a3",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_42_ridgeline",
+    "number": 42,
+    "title": {
+      "zh": "山脊图",
+      "en": "Ridgeline plot"
+    },
+    "inputs": {
+      "zh": "组别与连续观测值",
+      "en": "Groups and continuous observations"
+    },
+    "category": "distribution",
+    "renderer": "compare_ridgeline",
+    "kind": "chart-reference",
+    "source": "cards_31_42/42_ridgeline.png",
+    "sha256": "6c35616d90563ef52f777be207be16be31aef68acf0536024cd2e2d029c4ee3a",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_43_waterfall",
+    "number": 43,
+    "title": {
+      "zh": "瀑布图",
+      "en": "Waterfall plot"
+    },
+    "inputs": {
+      "zh": "个体变化值及参考基线",
+      "en": "Individual changes and baseline reference"
+    },
+    "category": "effects",
+    "renderer": "response_waterfall",
+    "kind": "chart-reference",
+    "source": "cards_43_54/43_waterfall.png",
+    "sha256": "ea3b83719952193f6463c9d6e05a636997308d3a0e8dd8124e22b1345cb0d120",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_44_diverging_likert",
+    "number": 44,
+    "title": {
+      "zh": "发散式 Likert 图",
+      "en": "Diverging stacked bar"
+    },
+    "inputs": {
+      "zh": "有序响应等级及频数",
+      "en": "Ordered response levels and counts"
+    },
+    "category": "other",
+    "renderer": "composition_likert",
+    "kind": "chart-reference",
+    "source": "cards_43_54/44_diverging_likert.png",
+    "sha256": "7c18184d8f09232b9034b18903e4df1b19d80b9a84d253300a6fc48c91a0a452",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_45_manhattan",
+    "number": 45,
+    "title": {
+      "zh": "曼哈顿图",
+      "en": "Manhattan plot"
+    },
+    "inputs": {
+      "zh": "基因组位置与关联 P 值",
+      "en": "Genomic positions and association P values"
+    },
+    "category": "omics",
+    "renderer": "genome_manhattan",
+    "kind": "chart-reference",
+    "source": "cards_43_54/45_manhattan.png",
+    "sha256": "df263d3a11946b18024a9c3e585f3b10708bcfb1dc69f8b2d2ef7ff3f80148b2",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_46_ma_plot",
+    "number": 46,
+    "title": {
+      "zh": "MA 图",
+      "en": "MA plot"
+    },
+    "inputs": {
+      "zh": "平均表达及对数表达变化",
+      "en": "Mean expression and log expression changes"
+    },
+    "category": "omics",
+    "renderer": "ma_expression",
+    "kind": "chart-reference",
+    "source": "cards_43_54/46_ma_plot.png",
+    "sha256": "a30d800b87367ceb2030180a9fb1b47098c84abb949ac597a78d7acf332c270f",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_47_antibiogram",
+    "number": 47,
+    "title": {
+      "zh": "药敏谱矩阵",
+      "en": "Cumulative antibiogram"
+    },
+    "inputs": {
+      "zh": "菌株、药物及药敏类别",
+      "en": "Isolates, drugs and susceptibility categories"
+    },
+    "category": "matrix",
+    "renderer": "antibiogram_matrix",
+    "kind": "chart-reference",
+    "source": "cards_43_54/47_antibiogram.png",
+    "sha256": "10ebefbd490f9be42d411cd318fbd5bbb0d6a54eadcf69a068ab574ac00ffc8b",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_48_schoenfeld",
+    "number": 48,
+    "title": {
+      "zh": "Schoenfeld 残差图",
+      "en": "Schoenfeld residual plot"
+    },
+    "inputs": {
+      "zh": "生存模型与 Schoenfeld 残差",
+      "en": "Survival model and Schoenfeld residuals"
+    },
+    "category": "relationship",
+    "renderer": "schoenfeld_results",
+    "kind": "chart-reference",
+    "source": "cards_43_54/48_schoenfeld.png",
+    "sha256": "dc811c5661100b6a5d47a6a32b0e3a3fe64763efde53b4fe3c9ebad7c201bf53",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_49_precision_recall",
+    "number": 49,
+    "title": {
+      "zh": "精确率–召回率曲线",
+      "en": "Precision–recall curve"
+    },
+    "inputs": {
+      "zh": "二分类真值与预测分数",
+      "en": "Binary outcomes and prediction scores"
+    },
+    "category": "roc",
+    "renderer": "precision_recall",
+    "kind": "chart-reference",
+    "source": "cards_43_54/49_precision_recall.png",
+    "sha256": "5d1d27de41153130120e0b3441907297b92b2240a2afd1a08245f8dde20d20ae",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_50_violin",
+    "number": 50,
+    "title": {
+      "zh": "小提琴图",
+      "en": "Violin plot"
+    },
+    "inputs": {
+      "zh": "组别与连续观测值",
+      "en": "Groups and continuous observations"
+    },
+    "category": "distribution",
+    "renderer": "compare_violin",
+    "kind": "chart-reference",
+    "source": "cards_43_54/50_violin.png",
+    "sha256": "39a25ffa3bf10ab79a695fffb90ffae55f64263aaaa13e6f88d2a6a3dc6e425c",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_51_anscombe",
+    "number": 51,
+    "title": {
+      "zh": "Anscombe 四重奏",
+      "en": "Anscombe's quartet"
+    },
+    "inputs": {
+      "zh": "四组演示数据；用于说明汇总统计局限",
+      "en": "Four demonstration datasets illustrating summary-statistic limitations"
+    },
+    "category": "relationship",
+    "renderer": "model_facet_relationship",
+    "kind": "design-guide",
+    "source": "cards_43_54/51_anscombe.png",
+    "sha256": "7edebaab9a9a358767fd1f1183cd0931891f5fea0ef9ca9843db8601c2dde552",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_52_gene_arrows",
+    "number": 52,
+    "title": {
+      "zh": "基因箭头图",
+      "en": "Gene arrow map"
+    },
+    "inputs": {
+      "zh": "基因位置、方向与注释",
+      "en": "Gene coordinates, directions and annotations"
+    },
+    "category": "omics",
+    "renderer": "gene_arrows",
+    "kind": "chart-reference",
+    "source": "cards_43_54/52_gene_arrows.png",
+    "sha256": "fb14a9aa6d041944fcb24edee6f3bd8d8c94237d6aa2606aa37b58721d830f2f",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_53_stl",
+    "number": 53,
+    "title": {
+      "zh": "STL 时间序列分解",
+      "en": "STL decomposition"
+    },
+    "inputs": {
+      "zh": "规则时间序列及周期",
+      "en": "Regular time series and seasonal period"
+    },
+    "category": "longitudinal",
+    "renderer": "time_stl_components",
+    "kind": "chart-reference",
+    "source": "cards_43_54/53_stl.png",
+    "sha256": "8f589f070b29c81ebfdd8b72bd22e344cd346aa1fc2b524427e4efbf4c9b913f",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_54_hexbin",
+    "number": 54,
+    "title": {
+      "zh": "六边形分箱图",
+      "en": "Hexbin plot"
+    },
+    "inputs": {
+      "zh": "成对连续变量",
+      "en": "Paired continuous variables"
+    },
+    "category": "relationship",
+    "renderer": "hexbin_density",
+    "kind": "chart-reference",
+    "source": "cards_43_54/54_hexbin.png",
+    "sha256": "d1dddf39b55765af1378c7f5f48fcae323d642f9f81f1f3721a88e8397f0b144",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_55_pk_ftmic",
+    "number": 55,
+    "title": {
+      "zh": "药代动力学与 fT > MIC",
+      "en": "Concentration–time curve"
+    },
+    "inputs": {
+      "zh": "浓度–时间数据、游离比例与 MIC",
+      "en": "Concentration-time data, free fraction and MIC"
+    },
+    "category": "longitudinal",
+    "renderer": "time_pk_target",
+    "kind": "chart-reference",
+    "source": "cards_55_66/55_pk_ftmic.png",
+    "sha256": "276f831d37b04a306508c13e543829333300f1ff381ea63bb570df09bacd76c2",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_56_msw",
+    "number": 56,
+    "title": {
+      "zh": "突变选择窗",
+      "en": "Mutant selection window"
+    },
+    "inputs": {
+      "zh": "浓度–时间数据、MIC 与 MPC",
+      "en": "Concentration-time data, MIC and MPC"
+    },
+    "category": "longitudinal",
+    "renderer": "time_mutant_window",
+    "kind": "chart-reference",
+    "source": "cards_55_66/56_msw.png",
+    "sha256": "d967e4344a1b421c2f8828fbf74ecc7b577a7dd51b39c6fb7e4798d8b9e64cdc",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_57_gsea",
+    "number": 57,
+    "title": {
+      "zh": "GSEA 富集曲线",
+      "en": "GSEA enrichment plot"
+    },
+    "inputs": {
+      "zh": "排序统计量及基因集成员",
+      "en": "Ranked statistics and gene-set memberships"
+    },
+    "category": "omics",
+    "renderer": "gsea_tracks",
+    "kind": "chart-reference",
+    "source": "cards_55_66/57_gsea.png",
+    "sha256": "12b6e24e1ff68e0437117cae45559b8e8b55247f24a0f79861d737ace87da2de",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_58_sc_dotplot",
+    "number": 58,
+    "title": {
+      "zh": "单细胞点图",
+      "en": "Dot plot (marker genes)"
+    },
+    "inputs": {
+      "zh": "细胞群、表达均值与表达比例",
+      "en": "Cell groups, mean expression and expression fractions"
+    },
+    "category": "omics",
+    "renderer": "singlecell_dots",
+    "kind": "chart-reference",
+    "source": "cards_55_66/58_sc_dotplot.png",
+    "sha256": "bf669158c54e50e3c15c2088d27c05f884f1abb08d936b57fad783b6e095d9e3",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_59_umap",
+    "number": 59,
+    "title": {
+      "zh": "UMAP 嵌入",
+      "en": "UMAP embedding"
+    },
+    "inputs": {
+      "zh": "已计算嵌入坐标及参数记录",
+      "en": "Computed embedding coordinates and parameter records"
+    },
+    "category": "relationship",
+    "renderer": "embedding_map",
+    "kind": "chart-reference",
+    "source": "cards_55_66/59_umap.png",
+    "sha256": "f23baddc1ae4430716c12379c4d056eed4f71769e6aa701370478bd453244cb6",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_60_ternary",
+    "number": 60,
+    "title": {
+      "zh": "三元图",
+      "en": "Ternary plot"
+    },
+    "inputs": {
+      "zh": "总和固定的三个组分",
+      "en": "Three components with a fixed total"
+    },
+    "category": "matrix",
+    "renderer": "ternary_composition",
+    "kind": "chart-reference",
+    "source": "cards_55_66/60_ternary.png",
+    "sha256": "e27c7546516a9fd98d61297f81ac0993fbeb8f85517e427dc420ae78ffb1826c",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_61_treemap",
+    "number": 61,
+    "title": {
+      "zh": "矩形树图",
+      "en": "Treemap"
+    },
+    "inputs": {
+      "zh": "层级类别与非负权重",
+      "en": "Hierarchical categories and nonnegative weights"
+    },
+    "category": "matrix",
+    "renderer": "composition_treemap",
+    "kind": "chart-reference",
+    "source": "cards_55_66/61_treemap.png",
+    "sha256": "c51074ecdedf74950b42f42af17e567893f820900e75a6efb9ce8529b5cb5328",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_62_parallel",
+    "number": 62,
+    "title": {
+      "zh": "平行坐标",
+      "en": "Parallel coordinates"
+    },
+    "inputs": {
+      "zh": "多个数值变量与缩放规则",
+      "en": "Multiple numeric variables and scaling rules"
+    },
+    "category": "relationship",
+    "renderer": "parallel_coordinates",
+    "kind": "chart-reference",
+    "source": "cards_55_66/62_parallel.png",
+    "sha256": "496629134470dee2cfd6b42ea3350c71ba0360710c3180628c487a7121a974f4",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_63_network",
+    "number": 63,
+    "title": {
+      "zh": "网络图",
+      "en": "Co-occurrence network"
+    },
+    "inputs": {
+      "zh": "节点与边表",
+      "en": "Node and edge tables"
+    },
+    "category": "other",
+    "renderer": "cooccurrence_network",
+    "kind": "chart-reference",
+    "source": "cards_55_66/63_network.png",
+    "sha256": "f8a2c6dc9f2a9162a45b51b62fcfe2137144dd2169e8130824842f1db4d0ce15",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_64_u_chart",
+    "number": 64,
+    "title": {
+      "zh": "u 控制图",
+      "en": "Control chart (u-chart)"
+    },
+    "inputs": {
+      "zh": "事件计数及暴露量",
+      "en": "Event counts and exposure denominators"
+    },
+    "category": "longitudinal",
+    "renderer": "control_u_results",
+    "kind": "chart-reference",
+    "source": "cards_55_66/64_u_chart.png",
+    "sha256": "4654fa9ef7a7efba3ce70699859ca744d7e2e739a5e25f86a59449fd0e3ca21b",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_65_dag",
+    "number": 65,
+    "title": {
+      "zh": "因果有向无环图",
+      "en": "Causal diagram (DAG)"
+    },
+    "inputs": {
+      "zh": "变量与有向边；需研究假设",
+      "en": "Variables and directed edges justified by study assumptions"
+    },
+    "category": "other",
+    "renderer": "causal_dag",
+    "kind": "chart-reference",
+    "source": "cards_55_66/65_dag.png",
+    "sha256": "d1da99bc0c52a8bde49f0ca1c9cc37f40bcbbed4693909e27f7755f1541af9a1",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_66_prisma",
+    "number": 66,
+    "title": {
+      "zh": "PRISMA 流程图",
+      "en": "PRISMA 2020 flow diagram"
+    },
+    "inputs": {
+      "zh": "检索、筛选与纳入排除计数",
+      "en": "Search, screening, inclusion and exclusion counts"
+    },
+    "category": "other",
+    "renderer": "study_flow",
+    "kind": "chart-reference",
+    "source": "cards_55_66/66_prisma.png",
+    "sha256": "563671bf8897e532f138d0507055bfa5ad04587927b1662dffaf0ae013214024",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_67_bump",
+    "number": 67,
+    "title": {
+      "zh": "排名变化图",
+      "en": "Bump chart"
+    },
+    "inputs": {
+      "zh": "各时间点排名",
+      "en": "Ranks at successive time points"
+    },
+    "category": "longitudinal",
+    "renderer": "time_rank_changes",
+    "kind": "chart-reference",
+    "source": "cards_67_78/67_bump.png",
+    "sha256": "54ad7ede808d0928d361bcbf96f50781b9ffb5dbd539d6004e1a7f4366d302f7",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_68_epicurve",
+    "number": 68,
+    "title": {
+      "zh": "流行曲线",
+      "en": "Epidemic curve"
+    },
+    "inputs": {
+      "zh": "发病日期与分层计数",
+      "en": "Onset dates and stratified counts"
+    },
+    "category": "longitudinal",
+    "renderer": "time_epidemic",
+    "kind": "chart-reference",
+    "source": "cards_67_78/68_epicurve.png",
+    "sha256": "b1365649064172034dde40ba1a6ddcf852b2ca3576082c7d28343a038763a9f9",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_69_calendar",
+    "number": 69,
+    "title": {
+      "zh": "日历热图",
+      "en": "Calendar heatmap"
+    },
+    "inputs": {
+      "zh": "日期与数值",
+      "en": "Dates and values"
+    },
+    "category": "longitudinal",
+    "renderer": "time_calendar",
+    "kind": "chart-reference",
+    "source": "cards_67_78/69_calendar.png",
+    "sha256": "c9087c6a71a7122692e43b7d50ca0045c8719bfadf325b20b606e30d06ab6052",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_70_icon_array",
+    "number": 70,
+    "title": {
+      "zh": "图标阵列",
+      "en": "Icon array"
+    },
+    "inputs": {
+      "zh": "人群总数与事件计数",
+      "en": "Population total and event counts"
+    },
+    "category": "matrix",
+    "renderer": "composition_pictogram",
+    "kind": "chart-reference",
+    "source": "cards_67_78/70_icon_array.png",
+    "sha256": "884ca5e7149555aa6e8c41cf7682426542caddbbb17db0e9d89542f549c654e8",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_71_rose",
+    "number": 71,
+    "title": {
+      "zh": "玫瑰图",
+      "en": "Nightingale rose"
+    },
+    "inputs": {
+      "zh": "周期位置与频数",
+      "en": "Cyclic positions and frequencies"
+    },
+    "category": "longitudinal",
+    "renderer": "rose_frequency",
+    "kind": "chart-reference",
+    "source": "cards_67_78/71_rose.png",
+    "sha256": "ba6278993a4e9dae612283ddde437a1a240f49d26e909c4be7c05c6c4361ff9c",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_72_deming",
+    "number": 72,
+    "title": {
+      "zh": "Deming 回归",
+      "en": "Deming regression"
+    },
+    "inputs": {
+      "zh": "两种测量与误差方差比",
+      "en": "Two measurements and their error-variance ratio"
+    },
+    "category": "paired",
+    "renderer": "model_deming_results",
+    "kind": "chart-reference",
+    "source": "cards_67_78/72_deming.png",
+    "sha256": "45749e093298a5a59962ba62759320c698a4a5167e8cd98d2afd0c7c31a40269",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_73_ecdf",
+    "number": 73,
+    "title": {
+      "zh": "经验累积分布",
+      "en": "ECDF"
+    },
+    "inputs": {
+      "zh": "连续观测值",
+      "en": "Continuous observations"
+    },
+    "category": "distribution",
+    "renderer": "compare_ecdf",
+    "kind": "chart-reference",
+    "source": "cards_67_78/73_ecdf.png",
+    "sha256": "4f2166dd5d56dab4ad82e9278ddfc7e11e95e69917b6e4a779d071f32cd98ec4",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_74_spaghetti",
+    "number": 74,
+    "title": {
+      "zh": "个体轨迹图",
+      "en": "Spaghetti plot"
+    },
+    "inputs": {
+      "zh": "个体编号、时间与观测",
+      "en": "Individual IDs, times and observations"
+    },
+    "category": "longitudinal",
+    "renderer": "time_individual_paths",
+    "kind": "chart-reference",
+    "source": "cards_67_78/74_spaghetti.png",
+    "sha256": "834056e570d2addc0750886b0daf775abd5d3582256c8c7779cc51c3879936a7",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_75_funnel_inst",
+    "number": 75,
+    "title": {
+      "zh": "机构比较漏斗图",
+      "en": "Funnel plot (institutions)"
+    },
+    "inputs": {
+      "zh": "机构样本量、率及参考模型",
+      "en": "Institution sample sizes, rates and reference model"
+    },
+    "category": "effects",
+    "renderer": "institution_funnel",
+    "kind": "chart-reference",
+    "source": "cards_67_78/75_funnel_inst.png",
+    "sha256": "4f51e2c97c709a6745ff0c13dbd7a94d2c1c0d64b2b7f327d58b6bacd11232c1",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_76_ice_pdp",
+    "number": 76,
+    "title": {
+      "zh": "ICE 与 PDP",
+      "en": "ICE + PDP plot"
+    },
+    "inputs": {
+      "zh": "拟合模型与特征数据",
+      "en": "Fitted model and feature data"
+    },
+    "category": "relationship",
+    "renderer": "model_ice_pdp",
+    "kind": "chart-reference",
+    "source": "cards_67_78/76_ice_pdp.png",
+    "sha256": "02f90e65a8a70cd4371b984dd49bd00ae5deeaed6bf69985a863bb434697ab97",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_77_synergy",
+    "number": 77,
+    "title": {
+      "zh": "药物协同作用曲面",
+      "en": "Synergy landscape"
+    },
+    "inputs": {
+      "zh": "双药剂量响应及协同参考模型",
+      "en": "Two-drug dose-response data and synergy reference model"
+    },
+    "category": "matrix",
+    "renderer": "synergy_surface_result",
+    "kind": "chart-reference",
+    "source": "cards_67_78/77_synergy.png",
+    "sha256": "77b1fabb20ad4a5511891faf54ec4d2092f8fa73f247db449522c1cff089e37b",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_78_missing",
+    "number": 78,
+    "title": {
+      "zh": "缺失数据图",
+      "en": "Missing data pattern"
+    },
+    "inputs": {
+      "zh": "原始表格及缺失掩码",
+      "en": "Original table and missingness mask"
+    },
+    "category": "matrix",
+    "renderer": "missingness_matrix",
+    "kind": "chart-reference",
+    "source": "cards_67_78/78_missing.png",
+    "sha256": "fd219428b64d15cbaac0de0d036b7efad0d3453a638f1c650fd68afd3999759e",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_79_swimmer",
+    "number": 79,
+    "title": {
+      "zh": "泳道图",
+      "en": "Swimmer plot"
+    },
+    "inputs": {
+      "zh": "个体随访区间与事件",
+      "en": "Individual follow-up intervals and events"
+    },
+    "category": "longitudinal",
+    "renderer": "time_swimmer",
+    "kind": "chart-reference",
+    "source": "cards_79_90/79_swimmer.png",
+    "sha256": "bc4799a01b5ec14cce083c722d402a41c3c74fccd0dec2a321eb8d7b854999a6",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_80_dumbbell",
+    "number": 80,
+    "title": {
+      "zh": "哑铃图",
+      "en": "Dumbbell plot"
+    },
+    "inputs": {
+      "zh": "类别与两端测量值",
+      "en": "Categories and two endpoint values"
+    },
+    "category": "paired",
+    "renderer": "paired_dumbbell",
+    "kind": "chart-reference",
+    "source": "cards_79_90/80_dumbbell.png",
+    "sha256": "655ffe8f0c8c314cd7070bdff579fa70b197b39812be3a555ee81a734a642f65",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_81_error_bars",
+    "number": 81,
+    "title": {
+      "zh": "误差棒表达",
+      "en": "Error bars: SD vs SEM vs CI"
+    },
+    "inputs": {
+      "zh": "估计值及明确的 SD、SE 或 CI",
+      "en": "Estimates and explicitly identified SD, SE or CI"
+    },
+    "category": "effects",
+    "renderer": "compare_uncertainty",
+    "kind": "design-guide",
+    "source": "cards_79_90/81_error_bars.png",
+    "sha256": "994032e949f08247d8cdf71b7c83d029b77748c159beb01c809014f10f3c6dd3",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_82_interaction",
+    "number": 82,
+    "title": {
+      "zh": "交互作用图",
+      "en": "Interaction plot"
+    },
+    "inputs": {
+      "zh": "因素组合与模型估计及区间",
+      "en": "Factor combinations, model estimates and intervals"
+    },
+    "category": "relationship",
+    "renderer": "compare_interaction",
+    "kind": "chart-reference",
+    "source": "cards_79_90/82_interaction.png",
+    "sha256": "0b0fc45011d31dbfb1d8c2985b0d4855ad2af79bad954ac5fc7e5925eb4b5524",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_83_euler",
+    "number": 83,
+    "title": {
+      "zh": "Euler 集合图",
+      "en": "Euler diagram"
+    },
+    "inputs": {
+      "zh": "集合成员或交集计数",
+      "en": "Set memberships or intersection counts"
+    },
+    "category": "matrix",
+    "renderer": "euler_two_sets",
+    "kind": "chart-reference",
+    "source": "cards_79_90/83_euler.png",
+    "sha256": "680a1bfdca355df2f5d971bf69fb6bb768e31f92453cf42567f3a98a872a64e9",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_84_coef_plot",
+    "number": 84,
+    "title": {
+      "zh": "回归系数图",
+      "en": "Coefficient plot"
+    },
+    "inputs": {
+      "zh": "系数、区间与效应尺度",
+      "en": "Coefficients, intervals and effect scale"
+    },
+    "category": "effects",
+    "renderer": "coefficient_forest",
+    "kind": "chart-reference",
+    "source": "cards_79_90/84_coef_plot.png",
+    "sha256": "e5d074bc0460bfd2d780daf9f31dc62efe7f134f1c10542ae06086c6668af323",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_85_scree",
+    "number": 85,
+    "title": {
+      "zh": "碎石图",
+      "en": "Scree plot"
+    },
+    "inputs": {
+      "zh": "各主成分特征值",
+      "en": "Eigenvalues by component"
+    },
+    "category": "relationship",
+    "renderer": "variance_scree",
+    "kind": "chart-reference",
+    "source": "cards_79_90/85_scree.png",
+    "sha256": "09dac1589da6a9ad3b506ff21967b43c537377026593c84b5d9bae53af0568dd",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_86_small_multiples",
+    "number": 86,
+    "title": {
+      "zh": "分面小多图",
+      "en": "Small multiples"
+    },
+    "inputs": {
+      "zh": "统一字段及分面变量",
+      "en": "Consistent variables and faceting field"
+    },
+    "category": "other",
+    "renderer": "time_small_multiples",
+    "kind": "design-guide",
+    "source": "cards_79_90/86_small_multiples.png",
+    "sha256": "229a2cf572bafb5e8249add45ce468d349c48323bdf37ea82d44f49aee7b633b",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_87_lorenz",
+    "number": 87,
+    "title": {
+      "zh": "Lorenz 曲线",
+      "en": "Lorenz curve"
+    },
+    "inputs": {
+      "zh": "非负值或累计份额",
+      "en": "Nonnegative values or cumulative shares"
+    },
+    "category": "other",
+    "renderer": "lorenz_curve",
+    "kind": "chart-reference",
+    "source": "cards_79_90/87_lorenz.png",
+    "sha256": "9c5eeb81dedbe62229fc9bf893762cabd35808cbf9edd923a2bb2e444b4042fe",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_88_partial_residual",
+    "number": 88,
+    "title": {
+      "zh": "偏残差图",
+      "en": "Partial residual plot"
+    },
+    "inputs": {
+      "zh": "已拟合回归模型与残差",
+      "en": "Fitted regression model and residuals"
+    },
+    "category": "relationship",
+    "renderer": "model_partial_residual",
+    "kind": "chart-reference",
+    "source": "cards_79_90/88_partial_residual.png",
+    "sha256": "0a5646ef55620dc049c382637ca379033316a25cb302c149a7348e67d9f9be66",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_89_loess",
+    "number": 89,
+    "title": {
+      "zh": "LOESS 平滑",
+      "en": "LOESS smoother"
+    },
+    "inputs": {
+      "zh": "成对观测及平滑参数",
+      "en": "Paired observations and smoothing parameters"
+    },
+    "category": "relationship",
+    "renderer": "relation_loess",
+    "kind": "chart-reference",
+    "source": "cards_79_90/89_loess.png",
+    "sha256": "392ae6534ca56d7bc631f5d956d13f7f716a53815562da321d470afa1b75267a",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_90_cumulative_meta",
+    "number": 90,
+    "title": {
+      "zh": "累积 Meta 分析",
+      "en": "Cumulative meta-analysis"
+    },
+    "inputs": {
+      "zh": "按时间排序的研究效应与标准误",
+      "en": "Studies ordered by time with effects and standard errors"
+    },
+    "category": "effects",
+    "renderer": "meta_cumulative",
+    "kind": "chart-reference",
+    "source": "cards_79_90/90_cumulative_meta.png",
+    "sha256": "e0a958940b0a6fc329f6e26efe7939f40a8569296f8ecad84468c3cc217e44de",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_91_rank_abundance",
+    "number": 91,
+    "title": {
+      "zh": "秩丰度曲线",
+      "en": "Rank–abundance curve"
+    },
+    "inputs": {
+      "zh": "分类丰度",
+      "en": "Taxon abundances"
+    },
+    "category": "omics",
+    "renderer": "rank_abundance",
+    "kind": "chart-reference",
+    "source": "cards_91_102/91_rank_abundance.png",
+    "sha256": "bdaa50a75af8665a02b90ce7711b357d1365f6bce47f51f2d1db320d44f79fdc",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_92_hill_profile",
+    "number": 92,
+    "title": {
+      "zh": "Hill 多样性谱",
+      "en": "Hill diversity profile"
+    },
+    "inputs": {
+      "zh": "分类丰度及多样性阶数",
+      "en": "Taxon abundances and diversity orders"
+    },
+    "category": "omics",
+    "renderer": "hill_diversity",
+    "kind": "chart-reference",
+    "source": "cards_91_102/92_hill_profile.png",
+    "sha256": "24e798806ea40966bf0ede0b3e7ca4a3fbeb9fb670b299e384dad4d2c8b51604",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_93_muller",
+    "number": 93,
+    "title": {
+      "zh": "Muller 演化图",
+      "en": "Muller plot"
+    },
+    "inputs": {
+      "zh": "谱系关系及时间丰度",
+      "en": "Lineage relationships and abundances over time"
+    },
+    "category": "omics",
+    "renderer": "muller_lineages",
+    "kind": "chart-reference",
+    "source": "cards_91_102/93_muller.png",
+    "sha256": "296445bf7d1ccc12f1c4c481dece9e426fbb1815e949bdbbd326a4d33ade35c6",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_94_plasmid_map",
+    "number": 94,
+    "title": {
+      "zh": "环状质粒图",
+      "en": "Circular plasmid map"
+    },
+    "inputs": {
+      "zh": "环状序列长度及注释坐标",
+      "en": "Circular sequence length and annotation coordinates"
+    },
+    "category": "omics",
+    "renderer": "plasmid_features",
+    "kind": "chart-reference",
+    "source": "cards_91_102/94_plasmid_map.png",
+    "sha256": "88f3d264ed2fce1dcd1d455af9d789f733a19f16696aad06adddb50f84249c31",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_95_chord",
+    "number": 95,
+    "title": {
+      "zh": "弦图",
+      "en": "Chord diagram"
+    },
+    "inputs": {
+      "zh": "节点间非负流量矩阵",
+      "en": "Nonnegative flow matrix between nodes"
+    },
+    "category": "matrix",
+    "renderer": "chord_flows",
+    "kind": "chart-reference",
+    "source": "cards_91_102/95_chord.png",
+    "sha256": "306d83d9795c9599fd014af0339a0f2655f26a77ae330e69d491997a316e9b19",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_96_cusum",
+    "number": 96,
+    "title": {
+      "zh": "CUSUM 控制图",
+      "en": "CUSUM chart"
+    },
+    "inputs": {
+      "zh": "有序观测、目标值及控制参数",
+      "en": "Ordered observations, target and control parameters"
+    },
+    "category": "longitudinal",
+    "renderer": "control_cusum_results",
+    "kind": "chart-reference",
+    "source": "cards_91_102/96_cusum.png",
+    "sha256": "6fb3989321fd73ea64afe4c3ce6fcfb8a0240ad1d93af7b744946830d2708ddd",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_97_mediation",
+    "number": 97,
+    "title": {
+      "zh": "中介路径图",
+      "en": "Mediation path diagram"
+    },
+    "inputs": {
+      "zh": "已拟合中介模型及路径估计",
+      "en": "Fitted mediation model and path estimates"
+    },
+    "category": "other",
+    "renderer": "mediation_paths_result",
+    "kind": "chart-reference",
+    "source": "cards_91_102/97_mediation.png",
+    "sha256": "2b2aebf09e6f12b31b5a095ddb7c2100fe4fbc2e5221b05b3e5f3dd5beb92618",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_98_fagan",
+    "number": 98,
+    "title": {
+      "zh": "Fagan 列线图",
+      "en": "Fagan nomogram"
+    },
+    "inputs": {
+      "zh": "验前概率及似然比",
+      "en": "Pretest probability and likelihood ratio"
+    },
+    "category": "roc",
+    "renderer": "fagan_nomogram",
+    "kind": "chart-reference",
+    "source": "cards_91_102/98_fagan.png",
+    "sha256": "90aaec0e37b3dc03c411df3dbc3116892a8e7520e0e65e0f27032f3ed8aadc4f",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_99_tornado",
+    "number": 99,
+    "title": {
+      "zh": "龙卷风图",
+      "en": "Tornado diagram"
+    },
+    "inputs": {
+      "zh": "基准结果及单因素敏感性分析",
+      "en": "Baseline result and one-way sensitivity analyses"
+    },
+    "category": "effects",
+    "renderer": "tornado_sensitivity",
+    "kind": "chart-reference",
+    "source": "cards_91_102/99_tornado.png",
+    "sha256": "e80ace032067add1d41bfd30718068c2026a3bffcb8f437c206cd48c59dcab5f",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_100_quantile_reg",
+    "number": 100,
+    "title": {
+      "zh": "分位数回归",
+      "en": "Quantile regression"
+    },
+    "inputs": {
+      "zh": "结局、自变量及指定分位数",
+      "en": "Outcome, predictors and specified quantiles"
+    },
+    "category": "relationship",
+    "renderer": "model_quantile_results",
+    "kind": "chart-reference",
+    "source": "cards_91_102/100_quantile_reg.png",
+    "sha256": "2b1f811e67f0cf075a45f5a648120c95b5e8c65f8977718079ea317799794502",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_101_bootstrap",
+    "number": 101,
+    "title": {
+      "zh": "Bootstrap 分布",
+      "en": "Bootstrap distribution"
+    },
+    "inputs": {
+      "zh": "重抽样估计值及区间方法",
+      "en": "Resampled estimates and interval method"
+    },
+    "category": "effects",
+    "renderer": "model_bootstrap_distribution",
+    "kind": "chart-reference",
+    "source": "cards_91_102/101_bootstrap.png",
+    "sha256": "5772b3f7356ef73cd205b41a86ee3ec3b38c62f422c63f4ed820c653dda4c7d1",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  },
+  {
+    "id": "reference_102_two_graph_roc",
+    "number": 102,
+    "title": {
+      "zh": "双图 ROC",
+      "en": "Two-graph ROC"
+    },
+    "inputs": {
+      "zh": "真值、分数与有限阈值",
+      "en": "Outcomes, scores and finite thresholds"
+    },
+    "category": "roc",
+    "renderer": "roc_two_graph",
+    "kind": "chart-reference",
+    "source": "cards_91_102/102_two_graph_roc.png",
+    "sha256": "4185ad96583b8aa06e885bdb766c77504ab8bbf9aba353f64de903b849d924a6",
+    "dataKind": "synthetic",
+    "status": "editable-original-template"
+  }
+]

@@ -7,6 +7,7 @@ Use raw-observation `roc` for binary analysis. This renderer does not fit time-
 dependent or diagnostic meta-analysis models from curve coordinates.
 """
 from pathlib import Path
+import textwrap
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -21,6 +22,7 @@ def validate(frame,view):
     required=['series','role','x','y']
     if view=='cutoff_ci':required+=['x_low','x_high','y_low','y_high']
     if not set(required)<=set(frame.columns):raise ValueError('Required columns: '+', '.join(required))
+    if frame.empty:raise ValueError('At least one ROC result is required')
     if frame[required].isna().any().any():raise ValueError('Required ROC fields cannot be missing')
     frame=frame.copy()
     for field in [c for c in frame if c in {'x','y','x_low','x_high','y_low','y_high','weight'}]:
@@ -61,31 +63,32 @@ def partial_area(x,y,maximum):
     standardized=.5*(1+(area-.5*maximum**2)/(maximum-.5*maximum**2))
     return xx,yy,area,standardized
 
-def render(frame,view,colors=None,max_fpr=.2,prevalence=None,cost_fn=None,cost_fp=None):
+def render(frame,view,colors=None,max_fpr=.2,prevalence=None,cost_fn=None,cost_fp=None,figsize=FIGSIZE):
     data=validate(frame,view);colors=colors or resolve_palette('zhoy_muted',None,6)
-    fig=plt.figure(figsize=FIGSIZE)
+    fig=plt.figure(figsize=figsize)
     # Fixed physical footer reserves annotation space without crowding the data.
-    ax=fig.add_axes([.17,.27,.77,.65]);footer=fig.add_axes([.17,.035,.77,.115]);footer.set_axis_off()
+    ax=fig.add_axes([.18,.34,.76,.58]);footer=fig.add_axes([.18,.025,.76,.16]);footer.set_axis_off()
     extent=[-2.5,2.5] if view=='probit' else [0,1]
     ax.plot(extent,extent,color='#c1c8d1',ls=':',lw=.75,zorder=0)
     curves=data[data.role.isin(['curve','empirical','fit','fold'])]
     groups=list(curves.groupby(['series','role'],sort=False));notes=[]
     if view=='subgroups':
         fig.delaxes(ax)
+        if not groups or len(groups)>6:raise ValueError('A subgroup panel requires one to six supplied curves')
         columns=min(2,len(groups));rows=(len(groups)+columns-1)//columns
-        grid=fig.add_gridspec(rows,columns,left=.14,right=.96,bottom=.17,top=.90,hspace=.75,wspace=.55)
+        grid=fig.add_gridspec(rows,columns,left=.16,right=.96,bottom=.18,top=.89,hspace=.90,wspace=.62)
         for i,((label,_),g) in enumerate(groups):
             small=fig.add_subplot(grid[i//columns,i%columns]);small.plot(g.x,g.y,lw=1.3,color=colors[i%len(colors)])
             small.plot([0,1],[0,1],ls=':',color='#c1c8d1',lw=.6)
             small.set(xlim=(0,1),ylim=(0,1.02),xticks=[0,.5,1],yticks=[0,.5,1])
-            small.set_title(label,fontsize=7,pad=4);small.tick_params(labelsize=6,length=2)
+            small.set_title(textwrap.fill(str(label),18),fontsize=8,pad=5);small.tick_params(labelsize=8,length=2)
             small.spines[['top','right']].set_visible(False)
         fig.text(.55,.035,'1 − specificity',ha='center',fontsize=8)
         fig.text(.035,.54,'Sensitivity',va='center',rotation=90,fontsize=8)
         fig.delaxes(footer);return fig
     if view=='cv':
         grid=np.linspace(0,1,151);ys=[]
-        for i,((label,_),g) in enumerate(groups):
+        for i,((label,_),g) in enumerate([(key,g) for key,g in groups if key[1]=='fold']):
             ax.plot(g.x,g.y,color=colors[0],alpha=.18,lw=.7)
             ys.append(np.interp(grid,g.x,g.y))
         mean=np.mean(ys,axis=0);sd=np.std(ys,axis=0,ddof=1)
@@ -131,10 +134,13 @@ def render(frame,view,colors=None,max_fpr=.2,prevalence=None,cost_fn=None,cost_f
     else:ax.set(xlim=(0,1),ylim=(0,1.02),xticks=[0,.25,.5,.75,1],yticks=[0,.25,.5,.75,1])
     ax.set_xlabel('1 − specificity'+(' (probit)' if view=='probit' else ''),fontsize=8)
     ax.set_ylabel('Sensitivity'+(' (probit)' if view=='probit' else ''),fontsize=8)
-    ax.tick_params(labelsize=7);ax.spines[['top','right']].set_visible(False)
+    ax.tick_params(labelsize=8);ax.spines[['top','right']].set_visible(False)
     handles,labels=ax.get_legend_handles_labels()
-    if handles:ax.legend(handles,labels,frameon=False,fontsize=6.5,loc='lower right',labelspacing=.6,handlelength=1.8)
-    for i,line in enumerate(notes[:2]):footer.text(0,.8-i*.48,line,fontsize=6.5,color='#526173',va='center')
+    width=max(26,int(figsize[0]*.76*72/4.8))
+    if handles:ax.legend(handles,[textwrap.fill(str(x),max(18,width//2)) for x in labels],frameon=False,fontsize=8,loc='lower right',labelspacing=.5,handlelength=1.5)
+    lines=[wrapped for line in notes[:2] for wrapped in textwrap.wrap(line,width=width)]
+    line_height=10/(figsize[1]*72*.16)
+    for i,line in enumerate(lines):footer.text(0,.97-i*line_height,line,fontsize=8,color='#526173',va='top')
     return fig
 
 def generate(input_path,outdir,view,method,palette='zhoy_muted',colors_text=None,font='Arial',max_fpr=.2,prevalence=None,cost_fn=None,cost_fp=None):

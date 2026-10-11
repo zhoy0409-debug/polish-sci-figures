@@ -100,13 +100,22 @@ def panel_from_path(path: Path, index: int, with_layouts: bool = False) -> dict:
         selected = next((i for i, v in enumerate(variants) if v['name'] in (requested, 'roc_' + str(requested))), selected)
     for v in variants:
         v['size'] = 'original'
-        if v['name'] in ('composition_ring', 'composition_waffle', 'ternary_composition', 'correlation_circles', 'correlation_values', 'hexbin_density', 'pca_loadings'):
+        if recipe.get('family') in ('gallery','roc','roc_results') or v['name'] in ('composition_ring', 'composition_waffle', 'ternary_composition', 'correlation_circles', 'correlation_values', 'hexbin_density', 'pca_loadings'):
             v['preserveAspect'] = True
     if with_layouts and path.is_dir():
-        from studio_sizes import render_sizes
-        for name, size, raw in render_sizes(path, recipe, analysis, variants):
+        if recipe.get('family')=='gallery' and table:
+            sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'make-sci-data-figures/scripts'))
+            import pandas as pd
+            from gallery_registry import render_sizes,colors_for
+            sizes=render_sizes(pd.read_csv(source,keep_default_na=False),requested,
+                colors_for(recipe.get('palette','zhoy_muted'),recipe.get('colors')),recipe.get('font','Arial'))
+        else:
+            from studio_sizes import render_sizes
+            sizes=render_sizes(path, recipe, analysis, variants)
+        for name, size, raw in sizes:
             v = inspect_svg_bytes(raw, name)
             v['size'] = size
+            if recipe.get('family')=='gallery':v['preserveAspect']=True
             variants.append(v)
     return {"id": f"panel-{index}", "name": path.name, "variants": variants,
             "initialVariant": selected, "recipe": recipe, "analysis": analysis, "table": table,
