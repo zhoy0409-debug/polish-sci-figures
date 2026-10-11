@@ -45,3 +45,47 @@ const overlap=copyForTest(five);overlap.grid.places['panel-1']=copyForTest(overl
 function copyForTest(x){return JSON.parse(JSON.stringify(x));}
 const timeline=new History(five);timeline.commit(large);timeline.undo();assert.deepEqual(timeline.current,five);timeline.redo();assert.deepEqual(timeline.current,large);
 console.log('15-panel grid, spanning slots, swaps, empty moves, overlap bounds and undo passed');
+const fs=require('node:fs');
+const i18n=require('../skills/polish-sci-figures/assets/figure-studio/i18n.js');
+assert.equal(i18n.choose(null,'zh-TW'),'zh-CN');
+assert.equal(i18n.choose(null,'fr-FR'),'en');
+assert.equal(i18n.choose('en','zh-CN'),'en');
+i18n.setLanguage('en');assert.equal(i18n.t('行数'),'Rows');
+assert.equal(i18n.t('已保存命名版本「{0}」','我的中文版本'),'Saved version “我的中文版本”');
+assert.equal(i18n.t('unknown-family'),'unknown-family');
+i18n.setLanguage('zh-CN');assert.equal(i18n.t('已选 {0} 个元素',3),'已选 3 个元素');
+const js=fs.readFileSync('skills/polish-sci-figures/assets/figure-studio/studio.js','utf8');
+for(const match of js.matchAll(/'([^'\r\n]*[\u4e00-\u9fff][^'\r\n]*)'/g))assert.ok(Object.hasOwn(i18n.en,match[1]),'Missing English message: '+match[1]);
+const html=fs.readFileSync('skills/polish-sci-figures/assets/figure-studio/studio.html','utf8');
+for(const match of html.matchAll(/>([^<>]*[\u4e00-\u9fff][^<>]*)</g)){const key=match[1].trim();if(key!=='中文')assert.ok(Object.hasOwn(i18n.en,key),'Missing static English text: '+key);}
+console.log('Bilingual catalog coverage, locale selection and user-text preservation passed');
+const restored=History.restore(JSON.parse(JSON.stringify(timeline)),multi,timeline.current);
+restored.undo();assert.deepEqual(restored.current,five);restored.redo();assert.deepEqual(restored.current,large);
+const pendingRedo=new History(five);pendingRedo.commit(large);pendingRedo.undo();
+const reopened=History.restore(JSON.parse(JSON.stringify(pendingRedo)),multi,five);reopened.redo();assert.deepEqual(reopened.current,large);
+assert.throws(()=>History.restore({states:[large],index:0},multi,five),/不一致/);
+assert.throws(()=>History.restore({states:[five],index:5},multi,five),/无效/);
+const Preferences=require('../skills/polish-sci-figures/assets/figure-studio/memory.js');
+const prefs=new Preferences(),palette=JSON.stringify(['#4477aa','#ee7733']);
+const features={palette:[palette,palette],typography:[JSON.stringify(['Arial',12])],chart:['raincloud'],canvas:['portrait'],layout:[JSON.stringify([2,2,[[1,1],[1,1]]])]};
+assert.equal(prefs.record(Preferences.fingerprint('project-a-state-1'),features),true);
+assert.equal(prefs.record(Preferences.fingerprint('project-a-state-1'),features),false);
+assert.deepEqual(prefs.top('palette'),[]);
+prefs.record(Preferences.fingerprint('project-a-state-2'),features);
+assert.deepEqual(prefs.top('palette'),[[palette,2]]);
+prefs.enabled=false;assert.equal(prefs.record(Preferences.fingerprint('project-b'),features),false);
+const remembered=new Preferences(JSON.parse(JSON.stringify(prefs)));assert.equal(remembered.enabled,false);assert.deepEqual(remembered.top('chart'),[['raincloud',2]]);
+assert.equal(Preferences.valid('chart','<script>bad</script>'),false);
+assert.equal(Preferences.valid('typography',JSON.stringify(['unknown',900])),false);
+assert.equal(Preferences.valid('palette',JSON.stringify(['url(https://bad.test)'])),false);
+remembered.clear();assert.deepEqual(remembered.top('palette'),[]);assert.equal(remembered.seen.length,0);
+assert.equal(JSON.stringify(prefs).includes('svg'),false);
+console.log('Persistent undo/redo, preference deduplication, pause, restore and clear passed');
+
+const discovery=require('../skills/polish-sci-figures/assets/figure-studio/discovery.js');
+assert.ok(Object.keys(discovery).length>=30);
+for(const [stem,entry]of Object.entries(discovery)){
+ assert.match(stem,/^[a-z0-9_]+$/);
+ for(const lang of ['zh-CN','en']){assert.equal(entry[lang].length,3);for(const text of entry[lang])assert.ok(typeof text==='string'&&text.trim().length>0);}
+}
+console.log('Candidate discovery bilingual metadata passed');

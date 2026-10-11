@@ -4,8 +4,8 @@
 <title>Figure Studio · 科研组图微调</title><style>/*__STUDIO_CSS__*/</style></head>
 <body>
 <header><div class="brand"><span class="mark">F</span><div><strong>Figure Studio</strong><small>POLISH SCI FIGURES / 交互微调</small></div></div>
-<div class="toolbar"><button id="undo" title="Ctrl / Cmd + Z">↶ 撤销</button><button id="redo" title="Ctrl / Cmd + Shift + Z">↷ 重做</button><button id="compare">查看原版</button><button id="reset">恢复首版</button><button id="save">保存工程</button><button id="load">打开工程</button><button class="primary" id="export">导出 SVG</button><button id="png">PNG</button></div>
-<input type="file" id="projectFile" accept=".json" hidden></header>
+<div class="toolbar"><label class="language-picker" aria-label="Language / 语言"><select id="language" aria-label="Language / 语言"><option value="zh-CN">中文</option><option value="en">English</option></select></label><button id="undo" title="Ctrl / Cmd + Z">↶ 撤销</button><button id="redo" title="Ctrl / Cmd + Shift + Z">↷ 重做</button><button id="compare">查看原版</button><button id="reset">恢复首版</button><button id="save">保存工程</button><button id="load">打开工程</button><button class="primary" id="export">导出 SVG</button><button id="png">PNG</button></div>
+<span id="autosaveStatus" role="status" class="autosave"></span><input type="file" id="projectFile" accept=".json" hidden></header>
 <div class="workspace">
 <aside class="navigator"><div class="eyebrow">FIGURE / 面板</div><h1 id="projectTitle"></h1><p class="muted">选中小图，再点选图内元素。<br>Shift + 点击可多选。</p><div id="panels"></div>
 <section><h2>母版与叙事顺序</h2><p class="muted">悬停母版看整图，点击应用。空位保留；数字表示阅读顺序，不进入导出。</p><div id="masters"></div>
@@ -18,6 +18,7 @@
 <section><h2>命名版本</h2><input id="versionName" placeholder="例如：蓝橙配色" aria-label="版本名称" maxlength="60"><button id="checkpoint">保存当前版本</button><div id="versions"></div><p class="muted">一个工程保存原图与样式差异，版本不重复存整张图。</p></section></aside>
 <main><div class="canvasbar"><span id="dimensions"></span><label>预览缩放<select id="zoom"><option value="fit">适合窗口</option><option value="1">100%</option><option value="1.5">150%</option><option value="2">200%</option></select></label></div><div id="viewport"><div id="artboard"></div></div><div class="status" id="status" role="status">本地编辑 · 无需 API · 原始文件保持不变</div></main>
 <aside class="inspector"><div class="eyebrow">INSPECTOR / 检查器</div><h2 id="selectionTitle">选择一个元素</h2>
+<details id="memoryDetails"><summary>个人偏好与推荐</summary><label><input id="rememberPreferences" type="checkbox" checked> 从主动保存的选择中学习</label><p class="muted">偏好仅存于本地浏览器。自动保存、悬停和撤销不计入；同一状态重复保存只计一次。积累两次后显示常用选项，始终由你决定是否应用。</p><p class="muted" id="memorySummary"></p><div id="recommendations"></div><button id="clearPreferences">清除偏好记忆</button><button id="restorePreferences" hidden>恢复刚清除的偏好</button></details>
 <nav class="row inspector-tabs" aria-label="编辑模式"><button data-tab="explore">表达探索</button><button data-tab="detail">细节编辑</button><button data-tab="palette">配色比较</button></nav>
 <label>应用范围<select id="scope"><option value="element">已选元素</option><option value="sameColor">当前小图：与选中元素同色</option><option value="panel">当前小图</option><option value="all">整张组图</option></select></label>
 <label>文字类别<select id="textRole"><option value="all">所有文字</option><option value="ticks">坐标刻度</option><option value="axis">坐标轴标题</option><option value="legend">图例文字</option></select></label>
@@ -28,4 +29,7 @@
 <details><summary>数据与分析记录</summary><div id="dataInfo"></div></details>
 <details><summary>交付前检查</summary><p class="muted">导出为编辑稿。请按最终尺寸核对字体、碰撞、颜色语义、科学符号及栅格分辨率，再运行原 skill 的 QA。</p><ul id="qa"></ul></details>
 </aside></div>
-<script type="application/json" id="project">__STUDIO_PROJECT__</script><script>/*__STUDIO_JS__*/</script></body></html>
+<script type="application/json" id="project">__STUDIO_PROJECT__</script><script>/*__STUDIO_I18N__*/
+/*__STUDIO_MEMORY__*/
+/*__STUDIO_DISCOVERY__*/
+/*__STUDIO_JS__*/</script></body></html>

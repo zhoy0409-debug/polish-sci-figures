@@ -49,3 +49,12 @@ The new `layout-studio.html` adds row/column master previews, spanning slots, po
 - Suite archive extraction, CLI, and skill-structure checks passed. No claim of cross-platform visual completion, journal-ready typography for every arbitrary dataset, or automatic evidence-group arrangement.
 
 The two new TomatoSCI links were inspected only to the extent available in the browser: title, author, text and cover images. Full video playback and before/after transformations were not available. Evidence-group design principles are explicitly recorded as our inference from the user's requirements and visible material, not a verified video transcript.
+
+
+## Bilingual interface, local memory, and recovery (2026-10-11)
+
+- Browser checks: English interface and candidate descriptions; project/scientific labels retained; explicit language choice survived reload.
+- Changed gutter with keyboard input, reloaded, undid, reloaded again, and redid: saved edits and both history directions survived. Named checkpoints restored in the UI.
+- Two distinct intentional checkpoint states produced preference suggestions; saving the same state again did not increase the count. Autosaving did not count as preference approval.
+- State tests cover persisted undo/redo, invalid histories, preference deduplication/pause/clear/restore, bilingual UI keys, and bilingual discovery metadata. Seven builder tests and release-bundle tests passed.
+- The embedded browser's native confirmation dialog blocked further interactions during preference-clear QA. Preference clearing now uses inline two-step confirmation plus same-session restore. End-to-end browser revalidation of these replacement controls remains pending; preference-model clear/restore tests pass. No claim of account sync or background chart-library harvesting.
