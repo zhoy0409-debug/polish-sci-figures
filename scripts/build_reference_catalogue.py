@@ -1,20 +1,17 @@
-"""Package user-supplied scientific design cards; never execute their R sources.
+"""Index design requirements from user-supplied cards; never embed their images or execute R.
 
 Usage: python scripts/build_reference_catalogue.py SOURCE_DIRECTORY
 The local reference cards use synthetic data. They are visual references, not
 computed results or automatically applicable statistical analyses.
 """
-import base64
 import hashlib
-import io
 import json
 import re
 import sys
 from pathlib import Path
-from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / 'skills/polish-sci-figures/assets/figure-studio/reference-catalogue.json'
+OUTPUT = ROOT / 'skills/polish-sci-figures/references/design-pattern-index.json'
 # Curated terminology and input contracts. No heuristics are inferred from images.
 TITLES = '''重复实验分层散点|雨云图|集合交集图|Gardner–Altman 估计图|Sina 分布散点|色觉友好配色|Cumming 估计图|原始观测散点|Bland–Altman 一致性图|森林图|连续色阶指南|Cleveland 点图|火山图|Kaplan–Meier 生存曲线|Meta 分析漏斗图|ROC 曲线|校准曲线|决策曲线|聚类热图|PCA 双标图|Q–Q 图|缺口箱线图|剂量反应曲线|棋盘稀释试验|马赛克图|桑基与流向图|相关矩阵|限制性立方样条|列线图|SHAP 汇总图|生长曲线|时间杀菌曲线|MIC 分布与 ECOFF|配对斜率图|堆叠丰度图|稀释曲线|PCoA 排序图|系统树与基因矩阵|棒棒糖图|富集气泡图|累积发生函数|山脊图|瀑布图|发散式 Likert 图|曼哈顿图|MA 图|药敏谱矩阵|Schoenfeld 残差图|精确率–召回率曲线|小提琴图|Anscombe 四重奏|基因箭头图|STL 时间序列分解|六边形分箱图|药代动力学与 fT > MIC|突变选择窗|GSEA 富集曲线|单细胞点图|UMAP 嵌入|三元图|矩形树图|平行坐标|网络图|u 控制图|因果有向无环图|PRISMA 流程图|排名变化图|流行曲线|日历热图|图标阵列|玫瑰图|Deming 回归|经验累积分布|个体轨迹图|机构比较漏斗图|ICE 与 PDP|药物协同作用曲面|缺失数据图|泳道图|哑铃图|误差棒表达|交互作用图|Euler 集合图|回归系数图|碎石图|分面小多图|Lorenz 曲线|偏残差图|LOESS 平滑|累积 Meta 分析|秩丰度曲线|Hill 多样性谱|Muller 演化图|环状质粒图|弦图|CUSUM 控制图|中介路径图|Fagan 列线图|龙卷风图|分位数回归|Bootstrap 分布|双图 ROC'''.split('|')
 CATEGORIES = {
@@ -47,21 +44,17 @@ def main(source):
     for path in sorted(source.rglob('*.png')):
         match = re.match(r'(\d+)_(.+)', path.stem)
         if not match: continue
-        number = int(match[1]); image = Image.open(path).convert('RGB')
-        # Full reference card retains labels, data requirements and source attribution.
-        image.thumbnail((810,1080),Image.Resampling.LANCZOS)
-        stream = io.BytesIO(); image.save(stream,format='WEBP',quality=83,method=6)
+        number = int(match[1])
         records.append(dict(id='reference_'+path.stem,number=number,
             title={'zh':TITLES[number-1],'en':titles.get(number,match[2].replace('_',' ').title())},
             inputs={'zh':INPUTS[number-1],'en':INPUTS_EN[number-1]},
             category=next(key for key,values in CATEGORIES.items() if number in values),
             renderer=MATCHES.get(number),kind='design-guide' if number in (6,11,51,81,86) else 'chart-reference',
             source=path.relative_to(source).as_posix(),sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
-            image='data:image/webp;base64,'+base64.b64encode(stream.getvalue()).decode(),
-            dataKind='synthetic',applicability='reference-only'))
+            dataKind='synthetic',status='related-renderer' if MATCHES.get(number) else 'design-backlog'))
     records.sort(key=lambda x:x['number'])
     assert [r['number'] for r in records] == list(range(1,103))
     OUTPUT.write_text(json.dumps(records,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
-    print(f'Packaged {len(records)} reference cards; {OUTPUT.stat().st_size/1e6:.1f} MB, offline previews')
+    print(f'Packaged {len(records)} reference cards; {OUTPUT.stat().st_size/1e6:.1f} MB, design requirements only; no source images')
 
 if __name__=='__main__':main(sys.argv[1])

@@ -95,8 +95,13 @@ def panel_from_path(path: Path, index: int, with_layouts: bool = False) -> dict:
         if any(not math.isclose(variant[k], first[k], rel_tol=1e-5) for k in ("width", "height")) or variant["viewBox"] != first["viewBox"]:
             raise ValueError(f"{path.name}: candidate canvases differ; regenerate for the same slot before switching")
     selected = next((i for i, v in enumerate(variants) if v["name"] in ("raw_points_estimate_ci", "paired_trajectories")), 0)
+    requested = recipe.get('parameters', {}).get('view')
+    if recipe.get('family') in ('gallery', 'roc_results'):
+        selected = next((i for i, v in enumerate(variants) if v['name'] in (requested, 'roc_' + str(requested))), selected)
     for v in variants:
         v['size'] = 'original'
+        if v['name'] in ('composition_ring', 'composition_waffle', 'ternary_composition', 'correlation_circles', 'correlation_values', 'hexbin_density', 'pca_loadings'):
+            v['preserveAspect'] = True
     if with_layouts and path.is_dir():
         from studio_sizes import render_sizes
         for name, size, raw in render_sizes(path, recipe, analysis, variants):
@@ -131,12 +136,13 @@ def write_html(project: dict, output: Path) -> None:
     html = html.replace("/*__STUDIO_MEMORY__*/", (ASSETS / "memory.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_DISCOVERY__*/", (ASSETS / "discovery.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_CATALOGUE__*/", (ASSETS / "catalogue.js").read_text(encoding="utf-8-sig"))
+    html = html.replace("/*__STUDIO_GALLERY__*/", (ASSETS / "gallery-contracts.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_LIBRARY__*/", (ASSETS / "library.js").read_text(encoding="utf-8"))
     html = html.replace("__STUDIO_PROJECT__", payload)
     templates = (ASSETS / "catalogue-previews.json").read_text(encoding="utf-8") if (ASSETS / "catalogue-previews.json").exists() else '{}'
     html = html.replace("__STUDIO_TEMPLATES__", templates.replace('<', '\\u003c'))
-    references = (ASSETS / "reference-catalogue.json").read_text(encoding="utf-8")
-    html = html.replace("__STUDIO_REFERENCES__", references.replace("<", "\\u003c"))
+    starters = (ASSETS / "template-starters.json").read_text(encoding="utf-8")
+    html = html.replace("__STUDIO_STARTERS__", starters.replace('<', '\\u003c'))
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(html, encoding="utf-8")
 

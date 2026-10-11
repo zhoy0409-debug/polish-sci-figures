@@ -32,6 +32,17 @@ def regenerate(recipe,rows):
                 group_column=header.index(r['group']);observed=list(dict.fromkeys(row[group_column] for row in rows[1:] if row[group_column]))
                 order=[x for x in r['order'] if x in observed]+[x for x in observed if x not in r['order']]
                 wb.generate(source,r['group'],r['value'],r['design'],out,r['subject'],','.join(order),palette,colors,r.get('unit_label'),r.get('font','Arial'),r.get('outcome_type','continuous'),r.get('scope','exploratory'),r.get('show_p_value',False),True)
+            elif family=='gallery':
+                from gallery_workbench import generate
+                params=r.get('parameters',{})
+                if set(params)!={'view'} or not isinstance(params['view'],str):raise ValueError('Gallery recipe requires one declared view')
+                generate(source,out,**params,palette=palette,colors_text=colors,font=r.get('font','Arial'))
+            elif family=='roc_results':
+                from roc_contract_workbench import generate
+                params=r.get('parameters',{})
+                allowed={'view','method','max_fpr','prevalence','cost_fn','cost_fp'}
+                if set(params)-allowed or any(isinstance(v,(dict,list)) for v in params.values()):raise ValueError('Invalid ROC result parameters')
+                generate(source,out,**params,palette=palette,colors_text=colors,font=r.get('font','Arial'))
             elif family in aw.FAMILY_FUNCTIONS:
                 # Only declared scalar plotting parameters may enter a known Python function.
                 params=r.get('parameters',{})

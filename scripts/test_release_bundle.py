@@ -15,7 +15,7 @@ def main():
             names=set(handle.namelist())
             for name in ROOT_FILES: assert name in names,name
             for skill in SKILL_NAMES: assert f"skills/{skill}/SKILL.md" in names,skill
-            for asset in ("studio.html", "studio.css", "studio.js", "i18n.js", "memory.js", "discovery.js", "library.js", "catalogue.js", "catalogue-previews.json", "reference-catalogue.json"):
+            for asset in ("studio.html", "studio.css", "studio.js", "i18n.js", "memory.js", "discovery.js", "library.js", "catalogue.js", "catalogue-previews.json", "gallery-contracts.js", "template-starters.json"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             assert not any("__pycache__" in name or name.endswith((".pyc",".pyo")) or "/examples/" in name or name.startswith("dist/") for name in names)
             extracted=base/"suite"; handle.extractall(extracted)

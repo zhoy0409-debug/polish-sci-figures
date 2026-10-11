@@ -1002,6 +1002,11 @@ def roc(
     )
     from roc_explorer import render_views
     exploration = render_views(exploration_records, FIGSIZE)
+    from roc_contract_workbench import render as render_roc_results
+    curve_table=pd.DataFrame([{'series':r['label'],'role':'curve','x':float(x),'y':float(y)} for r in exploration_records for x,y in zip(r['fpr'],r['tpr'])])
+    for view in ('convex','probit'):
+        exploration.append(('roc_'+view,render_roc_results(curve_table,view,[r['color'] for r in exploration_records])))
+
     analysis['roc_display_bootstrap'] = {'repetitions':500,'seed':20261012,'resampling':'stratified by observed binary class','predictions':'fixed; no model refitting','band':'pointwise 2.5 and 97.5 percentiles; not simultaneous','displayed_replicates':100}
     analysis['exploration'] = {'score_direction':'higher predicts positive', 'threshold_rule':'score >= threshold', 'youden':'exploratory in-sample maximum; not a validated clinical cutoff', 'low_fpr_window':[0,0.2], 'auc_intervals':'same bootstrap intervals as primary ROC', 'views':[name for name, _ in exploration]}
     return _save_bundle(

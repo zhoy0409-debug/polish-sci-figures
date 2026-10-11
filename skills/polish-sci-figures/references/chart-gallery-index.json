@@ -1,0 +1,1502 @@
+{
+  "source_archive": "chart_gallery.zip",
+  "sha256": "15fea7c0d372d117e4a7cb80e779f4191dee101b4c5f14684f30f6f6aae74e13",
+  "items": [
+    {
+      "id": "A01",
+      "source_title": "柱状图 ± SD（“炸药包”）",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A02",
+      "source_title": "柱状图 + 散点",
+      "source_script": "f1_compare.R",
+      "related_renderer": "bar_raw_points",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A03",
+      "source_title": "均值点 ± SD",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A04",
+      "source_title": "均值 ± 95% CI",
+      "source_script": "f1_compare.R",
+      "related_renderer": "raw_points_estimate_ci",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A05",
+      "source_title": "箱线图",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A06",
+      "source_title": "箱线图 + 抖动点",
+      "source_script": "f1_compare.R",
+      "related_renderer": "box_raw_points",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A07",
+      "source_title": "缺口箱线图",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A08",
+      "source_title": "小提琴图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "violin_raw_points",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A09",
+      "source_title": "小提琴 + 内嵌箱线",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A10",
+      "source_title": "蜂群图 + 均值 ± SD",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A11",
+      "source_title": "条带图 + 中位数线",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A12",
+      "source_title": "云雨图（Raincloud）",
+      "source_script": "f1_compare.R",
+      "related_renderer": "raincloud",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A13",
+      "source_title": "显著性星号括号",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A14",
+      "source_title": "精确 P 值括号",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A15",
+      "source_title": "与对照比较 · 组上标注",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A16",
+      "source_title": "Gardner–Altman 估计图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "estimation_graphic",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A17",
+      "source_title": "Cumming 估计图",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A18",
+      "source_title": "配对连线图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "paired_trajectories",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A19",
+      "source_title": "配对 + 差值图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "paired_estimation",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A20",
+      "source_title": "SuperPlot",
+      "source_script": "f1_compare.R",
+      "related_renderer": "superplot",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A21",
+      "source_title": "分组柱状图 + 散点",
+      "source_script": "f1_compare.R",
+      "related_renderer": "grouped_observations",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A22",
+      "source_title": "交互作用图",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A23",
+      "source_title": "箱线 + 点 · 分面",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A24",
+      "source_title": "剂量梯度 + 趋势检验",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A25",
+      "source_title": "对数纵轴",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A26",
+      "source_title": "山脊图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "ridgeline",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A27",
+      "source_title": "直方图分面",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A28",
+      "source_title": "密度曲线叠加",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A29",
+      "source_title": "累积分布（ECDF）",
+      "source_script": "f1_compare.R",
+      "related_renderer": "group_ecdf",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "A30",
+      "source_title": "Cleveland 点图",
+      "source_script": "f1_compare.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B01",
+      "source_title": "基础散点图",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B02",
+      "source_title": "散点 + 回归线 + 95% CI",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relationship_regression",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B03",
+      "source_title": "预测区间 vs 置信区间",
+      "source_script": "f2_relation.R",
+      "related_renderer": "prediction_intervals",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B04",
+      "source_title": "LOESS 平滑",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B05",
+      "source_title": "按组着色 + 分组回归",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B06",
+      "source_title": "连续变量着色",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B07",
+      "source_title": "气泡图",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B08",
+      "source_title": "边际直方图",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relationship_joint_distribution",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B09",
+      "source_title": "边际箱线图（分组）",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B10",
+      "source_title": "二维密度等高线",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B11",
+      "source_title": "二维密度填充",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B12",
+      "source_title": "六边形分箱",
+      "source_script": "f2_relation.R",
+      "related_renderer": "hexbin_density",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B13",
+      "source_title": "半透明散点",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B14",
+      "source_title": "Bland–Altman 一致性图",
+      "source_script": "f2_relation.R",
+      "related_renderer": "bland_altman",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B15",
+      "source_title": "一致性散点 + 恒等线",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B16",
+      "source_title": "相关矩阵热图",
+      "source_script": "f2_relation.R",
+      "related_renderer": "correlation_values",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B17",
+      "source_title": "下三角相关图 · 圆圈",
+      "source_script": "f2_relation.R",
+      "related_renderer": "correlation_circles",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B18",
+      "source_title": "散点矩阵",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B19",
+      "source_title": "残差 vs 拟合值",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B20",
+      "source_title": "残差 Q–Q 图",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B21",
+      "source_title": "杠杆–影响点图",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B22",
+      "source_title": "多模型拟合对比",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "B23",
+      "source_title": "散点 + 离群点标注",
+      "source_script": "f2_relation.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C01",
+      "source_title": "折线图 ± SD",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C02",
+      "source_title": "折线 + 误差带",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C03",
+      "source_title": "均值线 + 全部重复",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C04",
+      "source_title": "原始点 + 拟合曲线",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C05",
+      "source_title": "阶梯线",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C06",
+      "source_title": "曲线下面积（AUC）汇总",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C07",
+      "source_title": "意大利面图（个体轨迹）",
+      "source_script": "f3_time.R",
+      "related_renderer": "timecourse_trajectories",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C08",
+      "source_title": "基线校正变化量",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C09",
+      "source_title": "时间序列折线",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C10",
+      "source_title": "移动平均",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C11",
+      "source_title": "中断时间序列（ITS）",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C12",
+      "source_title": "季节图（逐年叠加）",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C13",
+      "source_title": "年 × 月热图",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C14",
+      "source_title": "流行曲线（Epi curve）",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C15",
+      "source_title": "累积病例曲线",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C16",
+      "source_title": "堆叠面积图",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C17",
+      "source_title": "百分比堆叠面积",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C18",
+      "source_title": "斜率图（两时间点）",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C19",
+      "source_title": "哑铃图",
+      "source_script": "f3_time.R",
+      "related_renderer": "paired_dumbbell",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C20",
+      "source_title": "小多图（共享坐标）",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C21",
+      "source_title": "凹凸图（排名变化）",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C22",
+      "source_title": "泳道图",
+      "source_script": "f3_time.R",
+      "related_renderer": "swimmer",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "C23",
+      "source_title": "日历热图",
+      "source_script": "f3_time.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D01",
+      "source_title": "条形图（排序）",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D02",
+      "source_title": "饼图",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D03",
+      "source_title": "环形图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_ring",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D04",
+      "source_title": "华夫图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_waffle",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D05",
+      "source_title": "堆叠条形图",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D06",
+      "source_title": "百分比堆叠条形图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_stacked",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D07",
+      "source_title": "分组条形图（并列）",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D08",
+      "source_title": "分面条形图",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D09",
+      "source_title": "马赛克 / Marimekko 图",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D10",
+      "source_title": "发散堆叠条形（李克特）",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D11",
+      "source_title": "矩形树图",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D12",
+      "source_title": "旭日图（嵌套环）",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D13",
+      "source_title": "单根 100% 条（比例尺）",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D14",
+      "source_title": "象形 / 点阵图",
+      "source_script": "f4_comp.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "D15",
+      "source_title": "三元图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "ternary_composition",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E01",
+      "source_title": "Kaplan–Meier 曲线",
+      "source_script": "f5_clin.R",
+      "related_renderer": "kaplan_meier",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E02",
+      "source_title": "KM + 95% 置信带",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E03",
+      "source_title": "KM + 风险人数表",
+      "source_script": "f5_clin.R",
+      "related_renderer": "kaplan_meier_risk_table",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E04",
+      "source_title": "KM + 中位生存时间",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E05",
+      "source_title": "累积事件曲线（1 − KM）",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E06",
+      "source_title": "累积风险（Nelson–Aalen）",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E07",
+      "source_title": "log(−log S) 图",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E08",
+      "source_title": "Schoenfeld 残差图",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E09",
+      "source_title": "竞争风险累积发生率",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E10",
+      "source_title": "亚组森林图",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E11",
+      "source_title": "回归系数森林图",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E12",
+      "source_title": "校准曲线",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E13",
+      "source_title": "决策曲线（DCA）",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E14",
+      "source_title": "临床影响曲线",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E15",
+      "source_title": "限制性立方样条（RCS）",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E16",
+      "source_title": "瀑布图",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "E17",
+      "source_title": "混淆矩阵",
+      "source_script": "f5_clin.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F01",
+      "source_title": "火山图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "volcano",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F02",
+      "source_title": "火山图 + 基因标注",
+      "source_script": "f6_omics.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F03",
+      "source_title": "MA 图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "ma_expression",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F04",
+      "source_title": "聚类热图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "matrix_heatmap",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F05",
+      "source_title": "PCA 得分图 + 置信椭圆",
+      "source_script": "f6_omics.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F06",
+      "source_title": "碎石图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "variance_scree",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F07",
+      "source_title": "PCoA + 蜘蛛线",
+      "source_script": "f6_omics.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F08",
+      "source_title": "UMAP / t-SNE 散点",
+      "source_script": "f6_omics.R",
+      "related_renderer": "embedding_groups",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F09",
+      "source_title": "单细胞点图",
+      "source_script": "f6_omics.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F10",
+      "source_title": "富集条形图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "enrichment_lollipop",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F11",
+      "source_title": "富集气泡图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "enrichment_bubble",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F12",
+      "source_title": "GSEA 富集图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "gsea_tracks",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F13",
+      "source_title": "曼哈顿图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "genome_manhattan",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F14",
+      "source_title": "P 值 Q–Q 图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "pvalue_quantiles",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F15",
+      "source_title": "维恩图",
+      "source_script": "f6_omics.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F16",
+      "source_title": "UpSet 图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "upset_intersections",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F17",
+      "source_title": "棒棒糖突变图",
+      "source_script": "f6_omics.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F18",
+      "source_title": "LEfSe LDA 条形图",
+      "source_script": "f6_omics.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F19",
+      "source_title": "共现网络",
+      "source_script": "f6_omics.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "F20",
+      "source_title": "OncoPrint 式基因矩阵",
+      "source_script": "f6_omics.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G01",
+      "source_title": "Meta 分析森林图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "forest_intervals",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G02",
+      "source_title": "亚组 Meta 森林图",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G03",
+      "source_title": "累积 Meta 分析",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G04",
+      "source_title": "留一法敏感性分析",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G05",
+      "source_title": "漏斗图",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G06",
+      "source_title": "等高线增强漏斗图",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G07",
+      "source_title": "Galbraith 径向图",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G08",
+      "source_title": "Meta 回归气泡图",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G09",
+      "source_title": "偏倚风险“红绿灯”图",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G10",
+      "source_title": "偏倚风险汇总条形图",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G11",
+      "source_title": "PRISMA 2020 流程图",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "G12",
+      "source_title": "诊断 Meta：成对森林图",
+      "source_script": "f7_meta.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H01",
+      "source_title": "剂量反应曲线（IC₅₀）",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H02",
+      "source_title": "时间杀菌曲线",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H03",
+      "source_title": "MIC 分布 + ECOFF",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H04",
+      "source_title": "棋盘法（联合药敏）",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H05",
+      "source_title": "等效线图（Isobologram）",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H06",
+      "source_title": "抑菌圈直径 + 折点",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H07",
+      "source_title": "累积药敏表（热图）",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H08",
+      "source_title": "稀释曲线",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H09",
+      "source_title": "堆叠相对丰度柱图",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H10",
+      "source_title": "α 多样性箱线图",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H11",
+      "source_title": "进化树 + 基因矩阵",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H12",
+      "source_title": "基因箭头比较图",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H13",
+      "source_title": "环形质粒图",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H14",
+      "source_title": "蛋白结构域 + 突变",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H15",
+      "source_title": "冲积 / 桑基图",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H16",
+      "source_title": "南丁格尔玫瑰图",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H17",
+      "source_title": "雷达图",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H18",
+      "source_title": "因果图（DAG）",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H19",
+      "source_title": "研究设计时间轴",
+      "source_script": "f8_special.R",
+      "related_renderer": null,
+      "status": "design-review-pending",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "H20",
+      "source_title": "甘特图",
+      "source_script": "f8_special.R",
+      "related_renderer": "study_gantt",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I01",
+      "source_title": "经验 ROC（阶梯线）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I02",
+      "source_title": "平滑 ROC（双正态拟合）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_smooth",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I03",
+      "source_title": "AUC 面积填充",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_auc_fill",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I04",
+      "source_title": "阈值点 ROC",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_threshold_points",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I05",
+      "source_title": "阈值渐变着色",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_threshold_color",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I06",
+      "source_title": "关键阈值标注",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_threshold_labels",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I07",
+      "source_title": "Youden 最佳截断点",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_youden",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I08",
+      "source_title": "置信带 ROC",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_pointwise_band",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I09",
+      "source_title": "截断点 CI 十字",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_cutoff_ci",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I10",
+      "source_title": "等成本线最佳点",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_cost",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I11",
+      "source_title": "多模型对比（图例）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I12",
+      "source_title": "多模型 · 线上标注",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_direct_labels",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I13",
+      "source_title": "训练集 vs 验证集",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_training_validation",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I14",
+      "source_title": "亚组小多图",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_subgroups",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I15",
+      "source_title": "交叉验证 ROC",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_cv",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I16",
+      "source_title": "Bootstrap 意大利面图",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_bootstrap_curves",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I17",
+      "source_title": "ROC + AUC 森林图",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_auc_intervals",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I18",
+      "source_title": "部分 AUC（pAUC）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_partial",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I19",
+      "source_title": "ROC 凸包",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_convex",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I20",
+      "source_title": "对数 FPR 轴",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_log_fpr",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I21",
+      "source_title": "双正态概率坐标",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_probit",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I22",
+      "source_title": "ROC + 混淆矩阵",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_confusion",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I23",
+      "source_title": "分布 + ROC 联动",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_score_distribution",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I24",
+      "source_title": "双图 ROC（Two-graph）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_two_graph",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I25",
+      "source_title": "时间依赖 ROC",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_time",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I26",
+      "source_title": "多分类 ROC",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_multi",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    },
+    {
+      "id": "I27",
+      "source_title": "汇总 ROC（SROC）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_sroc",
+      "status": "related-renderer",
+      "note": "Relationship only; original statistical claims, numerical results and artwork are not imported."
+    }
+  ]
+}

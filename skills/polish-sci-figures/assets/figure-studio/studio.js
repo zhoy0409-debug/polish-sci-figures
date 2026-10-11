@@ -393,6 +393,7 @@ if (typeof document !== 'undefined') (async () => {
   }
 
   function plotFrame(svg,v){
+    if(v.preserveAspect)return null;
     if(svg.querySelector('image')||svg.querySelectorAll('[id^="axes_"]').length!==1)return null;
     const rects=[...svg.querySelectorAll('clipPath rect')];if(!rects.length)return null;
     const r=rects.sort((a,b)=>(+b.getAttribute('width'))*(+b.getAttribute('height'))-(+a.getAttribute('width'))*(+a.getAttribute('height')))[0];
@@ -892,42 +893,33 @@ if (typeof document !== 'undefined') (async () => {
   };
   function insertOverlay(type,cell=null){const next=copy(state()),l=layout(),box=cell?l.cells.find(c=>c.row===cell.row&&c.col===cell.col):l.positions.find(p=>p.id===selectedPanel);const x=(box?box.x+box.width*.15:l.width*.3)/l.width,y=(box?box.y+box.height*.2:l.height*.3)/l.height;const a={id:'annotation-'+Date.now(),type,x,y,w:Math.min(.15,1-x),h:type==='line'?0:Math.min(.08,1-y),text:type==='text'?T('文本'):'',font:'Arial',size:10/currentOutput().scale,stroke:1/currentOutput().scale,color:'#253247',opacity:1,fill:false,bold:false,locked:false};next.overlays=[...(next.overlays||[]),a];selectedAnnotations=[a.id];activePane='annotation';commit(next,T('已插入标注'));}
   $('addOverlay').onclick=()=>insertOverlay($('overlayType').value);
-  $('applyOverlay').onclick=()=>{const next=copy(state());for(const a of next.overlays||[])if(selectedAnnotations.includes(a.id)&&!a.locked){Object.assign(a,{font:$('overlayFont').value,size:+$('overlaySize').value/currentOutput().scale,color:$('overlayColor').value,stroke:+$('overlayStroke').value/currentOutput().scale,opacity:+$('overlayOpacity').value,fill:$('overlayFill').checked,bold:$('overlayBold').checked});if(a.type==='text'&&selectedAnnotations.length===1)a.text=$('overlayText').value;}commit(next,T('已更新标注'));};
+  const updateOverlay=(previewOnly=false)=>{const next=copy(state());for(const a of next.overlays||[])if(selectedAnnotations.includes(a.id)&&!a.locked){Object.assign(a,{font:$('overlayFont').value,size:+$('overlaySize').value/currentOutput().scale,color:$('overlayColor').value,stroke:+$('overlayStroke').value/currentOutput().scale,opacity:+$('overlayOpacity').value,fill:$('overlayFill').checked,bold:$('overlayBold').checked});if(a.type==='text'&&selectedAnnotations.length===1)a.text=$('overlayText').value;}if(previewOnly){try{validateState(next,project);renderCanvas(next);}catch{}}else commit(next,T('已更新标注'));};
+  $('applyOverlay').onclick=()=>updateOverlay();
+  $('overlayOpacity').oninput=()=>updateOverlay(true);
   for(const id of ['overlayFont','overlaySize','overlayColor','overlayStroke','overlayOpacity','overlayFill','overlayBold'])$(id).onchange=()=>$('applyOverlay').click();
   for(const [id,value]of [['lockOverlay',true],['unlockOverlay',false]])$(id).onclick=()=>{const next=copy(state());for(const a of next.overlays||[])if(selectedAnnotations.includes(a.id))a.locked=value;commit(next,T(value?'已锁定所选内容':'已解锁所选内容'));};
   $('deleteOverlay').onclick=()=>{const next=copy(state());next.overlays=(next.overlays||[]).filter(a=>!selectedAnnotations.includes(a.id)||a.locked);commit(next,T('已删除未锁定标注'));};
   $('chartGoal').onchange=()=>render();$('topCount').onchange=()=>render();
   const templatePreviews=JSON.parse($('templatePreviews').textContent);
-  const referenceCatalogue=JSON.parse($('referenceCatalogue').textContent);
+  const templateStarters=JSON.parse($('templateStarters').textContent);
   let catalogueCategory='current';
   function renderChartLibrary(){
     const pan=panel(selectedPanel),ranked=StudioCatalogue.rank(pan,$('chartGoal').value),available=new Map(ranked.map(x=>[x.v.name,x]));$('chartCategories').replaceChildren();
-    const categories={current:[T('当前数据可用'),T('当前数据可用')],references:['参考图集 · 102','Reference collection · 102'],...StudioCatalogue.labels};
+    const categories={current:[T('当前数据可用'),T('当前数据可用')],...StudioCatalogue.labels};
     for(const [key,names]of Object.entries(categories)){const b=button(names[StudioI18n.language==='en'?1:0],()=>{catalogueCategory=key;renderChartLibrary();});b.setAttribute('aria-pressed',String(catalogueCategory===key));$('chartCategories').append(b);}
     const query=$('chartSearch').value.trim().toLocaleLowerCase(),language=StudioI18n.language==='en'?'en':'zh';
     $('allCharts').replaceChildren();const names=(catalogueCategory==='current'?[...available.keys()]:[...new Set([...available.keys(),...Object.keys(StudioDiscovery),...StudioCatalogue.names])].filter(name=>StudioCatalogue.category(name)===catalogueCategory)).filter(name=>!query||[name,chartName(name),...Object.values(StudioDiscovery[name]||{}).flat()].join(' ').toLocaleLowerCase().includes(query));
     for(const name of names){const entry=StudioDiscovery[name]?.[StudioI18n.language],candidate=available.get(name),card=document.createElement('article');card.className='catalogue-card';const heading=document.createElement('h3');heading.textContent=entry?.[0]||chartName(name);card.append(heading);const badge=document.createElement('span');badge.className='preview-badge';badge.textContent=T(candidate?'当前数据':templatePreviews[name]?'示例数据':'样式示意');card.append(badge);
-      if(candidate){card.append(preview(editedSvg(selectedPanel,candidate.i)));const apply=button(T('应用这个图型'),()=>{const next=copy(state());next.panels[selectedPanel].variant=candidate.i;selected=[];$('chartLibrary').close();commit(next,T('已切换候选图'));});apply.disabled=state().panels[selectedPanel].locked;card.append(apply);}else{const sample=templatePreviews[name]||StudioCatalogue.schematic(name);if(sample){const thumb=preview(sanitize(sample));thumb.classList.add('template-thumbnail');card.append(thumb);}const unavailable=button(T('查看所需数据'),()=>{description.scrollIntoView({block:'nearest'});description.classList.add('requirements-active');});card.append(unavailable);}
-      const description=document.createElement('p');description.textContent=(candidate?T('当前数据可用'):T('需要相应数据或计算结果'))+' · '+(entry?entry.slice(1).join(' — '):T('请查看分析记录'));card.append(description);$('allCharts').append(card);
-    }
-    const references=catalogueCategory==='current'?[]:referenceCatalogue.filter(ref=>(catalogueCategory==='references'||ref.category===catalogueCategory)&&(!query||[ref.id,...Object.values(ref.title),...Object.values(ref.inputs)].join(' ').toLocaleLowerCase().includes(query)));
-    for(const ref of references){
-      const card=document.createElement('article');card.className='catalogue-card reference-card';card.dataset.reference=ref.id;
-      const title=document.createElement('h3');title.textContent=ref.title[language];
-      const badge=document.createElement('span');badge.className='preview-badge';badge.textContent=T('参考模板 · 示例数据');
-      const img=document.createElement('img');img.src=ref.image;img.alt=ref.title[language];img.loading='lazy';img.decoding='async';img.width=810;img.height=1080;
-      const view=button('',()=>{ $('referenceTitle').textContent=ref.title[language];$('referenceImage').src=ref.image;$('referenceImage').alt=ref.title[language];$('referenceInputs').textContent=T('所需数据：')+ref.inputs[language];$('referenceSource').textContent=T('本地图集 · 示例数据 · 原卡片保留中文说明和来源标注')+' · '+ref.source;$('referenceDetail').showModal();});view.className='reference-preview';view.setAttribute('aria-label',T('放大预览：')+ref.title[language]);view.append(img);
-      const description=document.createElement('p');description.textContent=T('所需数据：')+ref.inputs[language];
-      card.append(title,badge,view,description);
-      const match=available.get(ref.renderer);
-      if(match){const apply=button(T('使用当前数据的对应图表'),()=>{const next=copy(state());next.panels[selectedPanel].variant=match.i;selected=[];$('chartLibrary').close();commit(next,T('已切换候选图'));});apply.disabled=state().panels[selectedPanel].locked;card.append(apply);}
-      else {const note=document.createElement('span');note.className='preview-badge';note.textContent=T('模板参考；尚未连接当前数据');card.append(note);}
+      if(candidate){const choose=button('',()=>{const next=copy(state());next.panels[selectedPanel].variant=candidate.i;selected=[];$('chartLibrary').close();commit(next,T('已切换候选图'));});choose.className='chart-choice';choose.setAttribute('aria-label',T('选择样式：')+chartName(name));choose.append(preview(editedSvg(selectedPanel,candidate.i)));choose.disabled=state().panels[selectedPanel].locked;card.append(choose);}else{const sample=templatePreviews[name]||StudioCatalogue.schematic(name);if(sample){const thumb=preview(sanitize(sample));thumb.classList.add('template-thumbnail');card.append(thumb);}if(templateStarters[name]){const start=button(T('使用示例开始'),guard(async()=>{const destination=selectedPanel,projectId=project.id;start.disabled=true;try{const starter=templateStarters[name];const response=await fetch(localEngine.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify(starter)});const result=await response.json();if(!response.ok)throw Error(result.error);if(project.id!==projectId||!state().order.includes(destination))throw Error(T('目标已变化，请重新选择导入位置'));result.panel.name=T('示例：')+chartName(name);result.panel.provenance='synthetic-template';installAsset(result.panel,destination,null,T('已载入示例；请替换为自己的数据'));$('chartLibrary').close();showPane('data');}finally{start.disabled=false;}}));start.disabled=!localEngine||state().panels[selectedPanel].locked;card.append(start);}else{const unavailable=button(T('查看所需数据'),()=>{description.scrollIntoView({block:'nearest'});description.classList.add('requirements-active');});card.append(unavailable);}}
+      const description=document.createElement('p');description.textContent=(candidate?T('当前数据可用'):T('需要相应数据或计算结果'))+' · '+(entry?entry.slice(1).join(' — '):T('请查看分析记录'));card.append(description);
+      if(card.querySelector('svg')){const enlarge=button(T('放大预览'),()=>{$('chartDetailTitle').textContent=heading.textContent;$('chartDetailBadge').textContent=badge.textContent;$('chartDetailDescription').textContent=description.textContent;$('chartDetailArt').replaceChildren(namespace(card.querySelector('svg').cloneNode(true)));$('chartDetail').showModal();});enlarge.className='preview-enlarge';enlarge.setAttribute('aria-label',T('放大预览')+' · '+heading.textContent);card.append(enlarge);}
       $('allCharts').append(card);
     }
-    $('chartCount').textContent=T('{0} 个图表 · {1} 张参考卡',names.length,references.length);
-    if(!names.length&&!references.length){const empty=document.createElement('p');empty.textContent=T('没有匹配的图表，请调整搜索词或类别。');$('allCharts').append(empty);}
+    $('chartCount').textContent=T('{0} 个图表样式',names.length);
+    if(!names.length){const empty=document.createElement('p');empty.textContent=T('没有匹配的图表，请调整搜索词或类别。');$('allCharts').append(empty);}
   }
-  $('chartSearch').oninput=renderChartLibrary;$('closeReference').onclick=()=>$('referenceDetail').close();
+  $('closeChartDetail').onclick=()=>$('chartDetail').close();
+  $('chartSearch').oninput=renderChartLibrary;
   $('moreCharts').onclick=()=>{catalogueCategory='current';$('chartSearch').value='';renderChartLibrary();$('chartLibrary').showModal();};$('closeCharts').onclick=()=>$('chartLibrary').close();
   let dataDrafts={},dataPage=0,dataTimer=null,dataBusy=false,dataSerial=0;
   const localEngine=$('local-engine')?JSON.parse($('local-engine').textContent):null;
@@ -1137,6 +1129,14 @@ if (typeof document !== 'undefined') (async () => {
   $('exportHeight').onchange=()=>{const l=layout();setOutputWidth(+$('exportHeight').value*l.width/l.height);};
   $('exportDpi').onchange=()=>setOutputWidth(currentOutput().widthMm);
   $('exportPreset').onchange=()=>{if($('exportPreset').value)setOutputWidth(+$('exportPreset').value);};
+  // Property choices apply immediately. Numeric/text fields commit on Enter or blur.
+  const directProperties={applyGrid:['rows','columns'],applySpan:['rowSpan','colSpan'],applyPanelLabel:['panelLabel','labelX','labelY','labelSize','labelBold'],applyText:['textContent'],applyOverlay:['overlayText']};
+  for(const [action,fields] of Object.entries(directProperties))for(const id of fields){const input=$(id);input.onchange=()=>$(action).click();}
+  for(const input of document.querySelectorAll('.navigator input,.inspector input')){
+    if(['number','text'].includes(input.type)&&!input.onkeydown&&input.onchange)input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();input.blur();}};
+  }
+  for(const id of ['applyGrid','applySpan','applyPanelLabel','applyText','applyOverlay','applyFont','applyColor','applyStroke','applyScale'])$(id).hidden=true;
+
   $('resetOutputSize').onclick=()=>{const next=copy(state());delete next.exportSettings;commit(next,T('已恢复原始物理尺寸'));};
   async function rasterResolution(svg,dpi){
     const images=[...svg.querySelectorAll('image')];if(!images.length)return '';

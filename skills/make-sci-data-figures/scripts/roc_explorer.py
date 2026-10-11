@@ -7,9 +7,44 @@ from figure_workbench import sequential_cmap
 KINDS = ('auc_fill','threshold_points','threshold_color','threshold_labels','youden',
          'direct_labels','facets','low_fpr','log_fpr','auc_intervals','two_graph','confusion')
 
+def operating_point_figure(records, figsize, matrix=False):
+    """Separate the data plot from the numeric summary; no text placed over curves."""
+    fig=plt.figure(figsize=figsize)
+    columns=min(2,len(records));rows=(len(records)+columns-1)//columns
+    grid=fig.add_gridspec(rows,columns,left=.13,right=.97,bottom=.045,top=.9,wspace=.45,hspace=.55)
+    for i,r in enumerate(records):
+        cell=grid[i//columns,i%columns].subgridspec(2,1,height_ratios=[3,1.35],hspace=.53)
+        ax=fig.add_subplot(cell[0]);info=fig.add_subplot(cell[1]);info.set_axis_off()
+        x,y,t=r['fpr'],r['tpr'],r['thresholds'];indices=np.flatnonzero(np.isfinite(t))
+        k=indices[np.argmax((y-x)[indices])];cut=t[k];color=r['color']
+        ax.plot(x,y,color=color,lw=1.3);ax.plot([0,1],[0,1],ls=':',color='#bdc4ce',lw=.65)
+        ax.scatter(x[k],y[k],s=22,color=color,edgecolor='white',linewidth=.5,zorder=4)
+        if not matrix:ax.plot([x[k],x[k]],[x[k],y[k]],color=color,lw=.85)
+        ax.set(xlim=(0,1),ylim=(0,1.02),xticks=[0,.5,1],yticks=[0,.5,1])
+        ax.set_title(r['label'],fontsize=8,pad=6);ax.set_xlabel('1 − specificity',fontsize=7,labelpad=3)
+        ax.set_ylabel('Sensitivity' if i%columns==0 else '',fontsize=7,labelpad=3)
+        ax.tick_params(labelsize=6.5,length=2.5);ax.spines[['top','right']].set_visible(False)
+        if matrix:
+            positive=r['scores']>=cut;truth=np.asarray(r['truth'],dtype=bool)
+            cells=[[np.sum(truth&positive),np.sum(truth&~positive)],[np.sum(~truth&positive),np.sum(~truth&~positive)]]
+            table=info.table(cellText=cells,colLabels=['Pred +','Pred −'],rowLabels=['Actual +','Actual −'],cellLoc='center',bbox=[.30,.02,.68,.73])
+            table.auto_set_font_size(False);table.set_fontsize(6.5)
+            for (row,col),patch in table.get_celld().items():
+                patch.set_edgecolor('#dce2ea');patch.set_linewidth(.5)
+                patch.set_facecolor('#f0f3f8' if row==0 or col==-1 else 'white')
+            info.text(.5,.93,f'Cut-off {cut:.3g} · max J',ha='center',fontsize=7,color='#465568')
+        else:
+            for y_pos,left,right in [( .84,'Max J',f'{y[k]-x[k]:.2f}'),(.53,'Cut-off',f'{cut:.3g}'),(.22,'Se / Sp',f'{y[k]:.2f} / {1-x[k]:.2f}')]:
+                info.text(.02,y_pos,left,fontsize=7,color='#697586',va='center')
+                info.text(.98,y_pos,right,fontsize=7,color='#273449',ha='right',va='center')
+    return fig
+
 def render_views(records, figsize):
     outputs=[]
     for kind in KINDS:
+        if kind in {'youden','confusion'}:
+            outputs.append(('roc_'+kind,operating_point_figure(records,figsize,kind=='confusion')))
+            continue
         faceted=kind in {'threshold_color','threshold_labels','youden','facets','two_graph','confusion'}
         n=len(records) if faceted else 1
         cols=min(n,2);rows=(n+cols-1)//cols

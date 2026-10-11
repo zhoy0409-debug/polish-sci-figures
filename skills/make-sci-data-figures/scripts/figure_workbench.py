@@ -14,9 +14,15 @@ import json
 import logging
 import math
 import os
+import sys
 import tempfile
 import warnings
 from pathlib import Path
+
+# The CLI and the studio also load this module by absolute file path.
+_SCRIPT_DIR = str(Path(__file__).resolve().parent)
+if _SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPT_DIR)
 
 
 def _ensure_mpl_config_dir() -> None:
@@ -827,6 +833,12 @@ def generate(input_path: Path, group: str, value: str, design: str, outdir: Path
             figures.append(stem.with_suffix(".png"))
         else:
             analysis["limitations"].append("Violin candidate omitted because at least one group had fewer than 10 observations.")
+    if design == "independent":
+        from distribution_styles import render as render_distributions
+        for name, fig in render_distributions(plotting_data, group, value, order, colors, ylabel, analysis, FIGSIZE):
+            stem = outdir / name
+            save_figure(fig, stem)
+            figures.append(stem.with_suffix(".png"))
     write_json(outdir / "data_profile.json", profile)
     write_json(outdir / "analysis_plan.json", analysis)
     try:
