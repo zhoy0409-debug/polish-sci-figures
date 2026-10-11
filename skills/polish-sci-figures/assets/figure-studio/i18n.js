@@ -173,10 +173,32 @@ const StudioI18n = (() => {
   Object.assign(en,{"分析选择无效": "Invalid analysis selection", "统计方法与分析结果": "Statistical methods and results", "按研究问题和数据结构排序，不按 P 值大小排序。这里比较已有分析结果，未运行的方法不会显示虚构结果。": "Ranked by research question and data structure, never by P value. Only computed results are compared.", "关注的问题": "Research target", "均值差异": "Mean differences", "秩／分布差异": "Rank / distribution differences", "选择理由": "Selection rationale", "与研究问题、设计和假设的关系": "Relationship to the question, design and assumptions", "此图没有可比较的检验结果。先确认研究设计与分析目标。": "No comparable tests are available. Confirm the design and target first.", "条件推荐：": "Conditional recommendation: ", "备选／敏感性分析：": "Alternative / sensitivity analysis: ", "针对均值问题；独立性或配对结构由分析方案确认。小样本、强偏态和极端值需结合诊断判断。": "Targets means. Independence or pairing must be confirmed by the analysis plan. Evaluate small samples, skew and extreme observations using diagnostics.", "配对秩方法关注差值的秩结构；Wilcoxon 的位置解释需要差值分布对称，不能仅凭“不正态”选择。": "Paired rank methods assess ranked differences. A location interpretation of Wilcoxon requires symmetric differences; non-normality alone is not a selection rule.", "秩方法关注分布差异，不能无条件解释为均值或中位数差异。": "Rank methods address distributional differences, not unconditionally means or medians.", "当前分析包未提供该秩方法的独立效应量区间；不借用均值差 CI。": "This bundle has no separate rank-effect interval; mean-difference CIs are not reused.", "当前选择": "Selected method", "采用这个已计算方法": "Select this computed method", "请填写方法选择与研究问题的关系": "Explain how the method matches the research question", "分析选择已记录，请重新确认统计标注": "Analysis choice recorded; reconfirm statistical annotations", "其他方向需补充条件：协变量调整／ANCOVA 需协变量与模型；混合模型需重复或层级结构；置换检验需可交换性与重排单位；稳健／截尾方法需明确目标量；分类结局需列联表或广义线性模型；生存分析需时间与删失信息。": "Other methods need more context: ANCOVA needs covariates and a model; mixed models need repeated/hierarchical structure; permutation tests need exchangeability and resampling units; robust/trimmed methods need an estimand; categorical outcomes need contingency or generalised linear models; survival methods need times and censoring."});
   en['原图已嵌入主分析 P 值，请先由分析流程重绘']='The artwork contains primary-analysis P values. Regenerate it through the analysis pipeline first.';
   Object.assign(en,{'应用跨格':'Apply span','拖动画布小图移动／交换；拖右边、下边或角点吸附跨格。Shift 多选。也可用行列定位。':'Drag panels to move or swap. Drag right, bottom or corner handles to snap across cells. Shift-select or use row/column controls.'});
+  en['图层']='Layers';
+  const panelLabels={
+    independent:['独立样本比较','Independent-samples comparison'],
+    paired:['配对比较','Paired comparison'],
+    paired_workbench:['配对比较','Paired comparison'],
+    multigroup:['多组比较','Multiple-group comparison'],
+    roc:['ROC','ROC'],
+    survival:['生存分析','Survival analysis'],
+    enrichment:['富集分析','Enrichment analysis'],
+    relationship:['相关与回归','Association and regression'],
+    timecourse:['时间序列','Time course'],
+    composition:['组成比例','Composition'],
+    matrix:['矩阵图','Matrix plot']
+  };
+  function panelName(panel){
+    // Localize only recognized generated bundle identifiers; retain stored names.
+    if(!['upstream-bundle','local-recomputed'].includes(panel.provenance))return panel.name;
+    const recipe=panel.recipe||{},key=panel.name;
+    const expected=key==='multigroup'?'independent':key==='paired_workbench'?'paired':key;
+    if(recipe.design!==expected&&recipe.family!==expected)return panel.name;
+    return panelLabels[key]?.[language==='en'?1:0]||panel.name;
+  }
   let language='zh-CN';
   function choose(saved,preferred='en'){return ['zh-CN','en'].includes(saved)?saved:/^zh\b/i.test(preferred)?'zh-CN':'en';}
   function setLanguage(value){language=value==='en'?'en':'zh-CN';return language;}
   function t(text,...values){let result=language==='en'?(en[text]??text):text;return result.replace(/\{(\d+)\}/g,(_,n)=>String(values[+n]??''));}
-  return {t,choose,setLanguage,get language(){return language;},en};
+  return {t,choose,setLanguage,panelName,get language(){return language;},en};
 })();
 if(typeof module!=='undefined')module.exports=StudioI18n;
