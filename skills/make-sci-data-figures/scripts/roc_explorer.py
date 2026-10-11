@@ -1,6 +1,8 @@
 """Empirical ROC views: no smoothing, invented cohorts, or new inference."""
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.colors import Normalize
+from figure_workbench import sequential_cmap
 
 KINDS = ('auc_fill','threshold_points','threshold_color','threshold_labels','youden',
          'direct_labels','facets','low_fpr','log_fpr','auc_intervals','two_graph','confusion')
@@ -13,6 +15,13 @@ def render_views(records, figsize):
         cols=min(n,2);rows=(n+cols-1)//cols
         fig,axes=plt.subplots(rows,cols,figsize=figsize,squeeze=False)
         fig.subplots_adjust(left=.16,right=.96,bottom=.19,top=.88,wspace=.55,hspace=.7)
+        if kind=='threshold_color':
+            # One shared numeric scale and a dedicated colourbar strip prevent
+            # per-facet colour meanings and overlapping y-axis/colourbar labels.
+            thresholds=np.concatenate([r['thresholds'][np.isfinite(r['thresholds'])] for r in records])
+            norm=Normalize(float(thresholds.min()),float(thresholds.max()))
+            cmap=sequential_cmap(records[0]['color'])
+            fig.subplots_adjust(left=.14,right=.96,bottom=.33,top=.88,wspace=.36,hspace=.8)
         for ax in axes.flat[n:]:ax.set_visible(False)
         for i,r in enumerate(records):
             ax=axes.flat[i if faceted else 0]
@@ -26,12 +35,11 @@ def render_views(records, figsize):
                 ci=r['ci'];ax.errorbar(r['auc'],i,xerr=[[max(0,r['auc']-ci[0])],[max(0,ci[1]-r['auc'])]],fmt='o',color=color,capsize=3)
                 ax.set(xlim=(0,1),xlabel='AUC (bootstrap 95% CI)',yticks=range(len(records)),yticklabels=[v['label'] for v in records]);ax.axvline(.5,color='#aaaaaa',ls=':',lw=.7)
             else:
-                ax.plot(x,y,color=color,lw=1.4,label=f"{label}  AUC {r['auc']:.2f}")
+                ax.plot(x,y,color='#9faab5' if kind=='threshold_color' else color,lw=1.4,label=f"{label}  AUC {r['auc']:.2f}")
                 if kind=='auc_fill':ax.fill_between(x,y,alpha=.12,color=color)
                 if kind=='threshold_points':ax.scatter(x[finite],y[finite],s=8,color=color)
                 if kind=='threshold_color':
-                    dots=ax.scatter(x[finite],y[finite],c=t[finite],cmap='viridis',s=9,zorder=3)
-                    fig.colorbar(dots,ax=ax,fraction=.055,pad=.025,label='Threshold')
+                    dots=ax.scatter(x[finite],y[finite],c=t[finite],cmap=cmap,norm=norm,s=11,zorder=3)
                 if kind=='threshold_labels':
                     for k in idx[np.unique(np.linspace(0,len(idx)-1,min(4,len(idx))).astype(int))]:
                         ax.scatter(x[k],y[k],s=10,color=color);ax.annotate(f'{t[k]:.2g}',(x[k],y[k]),xytext=(3,-9),textcoords='offset points',fontsize=6)
@@ -56,6 +64,15 @@ def render_views(records, figsize):
                 if not faceted and kind!='direct_labels':ax.legend(frameon=False,fontsize=6,loc='lower right')
             if faceted:ax.set_title(label,fontsize=8)
             ax.spines[['top','right']].set_visible(False);ax.tick_params(labelsize=7)
+            if kind=='threshold_color':
+                ax.set_xticks([0,.5,1]);ax.set_yticks([0,.5,1])
+                ax.set_xlabel('1 − specificity',fontsize=8)
+                ax.set_ylabel('Sensitivity' if i%cols==0 else '',fontsize=8)
+        if kind=='threshold_color':
+            cax=fig.add_axes([.30,.12,.50,.025])
+            bar=fig.colorbar(dots,cax=cax,orientation='horizontal')
+            bar.set_label('Score threshold',fontsize=7,labelpad=2)
+            bar.ax.tick_params(labelsize=6,pad=2,length=2);bar.outline.set_linewidth(.5)
         if kind=='low_fpr':fig.suptitle('Low false-positive region (FPR ≤ 0.20)',fontsize=9)
         if kind=='log_fpr':fig.suptitle('Log FPR scale; zero-FPR points outside view',fontsize=8)
         outputs.append(('roc_'+kind,fig))

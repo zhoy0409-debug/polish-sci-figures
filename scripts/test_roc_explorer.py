@@ -16,3 +16,24 @@ assert curves.shape==(40,101)
 assert np.allclose(curves,grid[None,:])
 assert np.all(np.diff(curves,axis=1)>=0)
 print("Stratified bootstrap tied-score invariance and monotonicity passed")
+
+import matplotlib.pyplot as plt
+plt.close('all')
+from figure_workbench import sequential_cmap
+from matplotlib.colors import to_rgb
+for accent in ['#376795','#B72230','#222222']:
+    colors=sequential_cmap(accent)(np.linspace(0,1,256))[:,:3]
+    assert np.all(np.diff(colors,axis=0)<=1e-12)
+    assert np.allclose(colors[-1],to_rgb(accent))
+shifted={**r,'label':'Higher score scale','thresholds':r['thresholds']+2,'scores':r['scores']+2}
+facets=dict(render_views([r,shifted],(4.8,3.6)))['roc_threshold_color']
+facets.canvas.draw();left,right,bar=facets.axes
+assert left.collections[0].norm is right.collections[0].norm
+assert left.collections[0].cmap.name=='studio_sequential'
+assert bar.get_position().y1 < min(left.get_position().y0,right.get_position().y0)
+renderer=facets.canvas.get_renderer()
+assert not left.xaxis.label.get_window_extent(renderer).overlaps(bar.get_window_extent(renderer))
+assert not right.xaxis.label.get_window_extent(renderer).overlaps(bar.get_window_extent(renderer))
+print('Palette-linked monotonic colour scale, shared threshold normalization and colourbar spacing passed')
+
+plt.close('all')

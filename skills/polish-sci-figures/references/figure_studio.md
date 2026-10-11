@@ -159,3 +159,16 @@ Right-click a canvas cell or use Insert rows / columns. Enter a positive integer
 ## Contextual shortcuts
 
 Right-click selects the clicked panel or source element, retaining an existing multiple selection when applicable. Contextual color, typography, chart previews, spans, labels, statistical annotations, scale bars, group/ungroup, lock/unlock and undo/redo reuse the sidebar controls and history. Detail actions open and focus the existing inspector; unavailable actions are disabled. Empty grid cells retain insertion and history actions. Both entry points support Chinese/English.
+
+
+## Reference collection and refined previews (2026-10-12)
+
+The gallery now includes 102 user-supplied scientific reference cards, grouped into the existing nine subject categories and searchable by Chinese/English names and input requirements. Cards preserve their original synthetic-data label and source credits; click a card to enlarge it. English UI metadata and input contracts are provided; the original illustrated cards retain their Chinese explanatory text. Five cards are presentation/teaching guides, not additional analysis engines.
+
+`reference-catalogue.json` packages offline WebP previews, relative source filenames and source SHA-256 hashes. `scripts/build_reference_catalogue.py SOURCE_DIRECTORY` rebuilds this asset from the user's card folders without executing their R scripts. The unrelated motion videos and archive were not imported as scientific charts. Reference images do not become editable statistical plots. A corresponding current-data chart action is offered only when that renderer already appears in the panel's successfully computed candidates. Other cards remain explicit reference templates, with required input fields displayed.
+
+Layout thumbnails use neutral gray surfaces and muted blue emphasis, with numerical labels centered in each occupied rectangle including spanning panels. Plot data colors remain independent of this interface styling.
+
+Raincloud and violin previews now use 256-point Gaussian KDE outlines with Scott bandwidth and tails extended by three kernel bandwidths. The density estimate can extend beyond observed values; plotted observations and quartiles remain unchanged. Constant samples omit the density rather than inventing a shape. See the [SciPy gaussian_kde documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html) for the bandwidth definition. Rainclouds separate raw points, quartile summaries and half densities; violins use narrower outlines and lighter fills.
+
+Enrichment bubbles and threshold-colored ROC previews use a palette-linked sequential light-to-dark scale. Threshold facets share a numerical normalization and one horizontal colorbar. Existing saved SVG assets are retained as versioned resources; use Data table → Recompute now to regenerate from the unchanged table with the current renderer. This is an undoable asset revision, not an automatic overwrite of saved designs.

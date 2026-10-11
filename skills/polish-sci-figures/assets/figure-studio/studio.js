@@ -633,10 +633,10 @@ if (typeof document !== 'undefined') (async () => {
     $('masters').replaceChildren();
     for(const [label,rows,cols,kind]of [[T('2 行 × 2 列'),2,2,'regular'],[T('3 行 × 3 列'),3,3,'regular'],[T('4 行 × 3 列'),4,3,'regular'],[T('5 行 × 3 列'),5,3,'regular'],[T('横向并列'),1,Math.min(6,state().order.length),'regular'],[T('纵向叙事'),state().order.length,1,'regular'],[T('上方宽图'),Math.max(2,Math.ceil((state().order.length+1)/2)),2,'wide'],[T('左侧长图'),Math.max(2,Math.ceil((state().order.length+1)/2)),2,'tall'],[T('重点大图'),Math.max(2,Math.ceil((state().order.length+3)/3)),3,'hero']]){
       let next;try{next=matchSizes(arrange(state(),rows,cols,kind));}catch{continue;}
-      const b=button('',()=>{selected=[];commit(next,T('已应用母版 ')+label);});b.className='master';b.setAttribute('aria-label',T('母版 ')+label);
+      const b=button('',()=>{selected=[];commit(next,T('已应用母版 ')+label);});b.className='master';b.setAttribute('aria-pressed',String(JSON.stringify(next.grid)===JSON.stringify(gridFor(state()))));b.setAttribute('aria-label',T('母版 ')+label);
       const icon=document.createElementNS(NS,'svg');icon.setAttribute('viewBox',`0 0 ${cols*20} ${rows*20}`);
-      for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const rect=document.createElementNS(NS,'rect');rect.setAttribute('x',c*20+1);rect.setAttribute('y',r*20+1);rect.setAttribute('width',18);rect.setAttribute('height',18);rect.setAttribute('fill','#f3f5f4');rect.setAttribute('stroke','#d6dfda');icon.append(rect);}
-      for(const [i,id]of next.order.entries()){const p=next.grid.places[id],rect=document.createElementNS(NS,'rect');rect.setAttribute('x',p.col*20+1);rect.setAttribute('y',p.row*20+1);rect.setAttribute('width',p.cs*20-2);rect.setAttribute('height',p.rs*20-2);rect.setAttribute('fill',id===selectedPanel?'#77aa94':'#b8d0c2');rect.setAttribute('stroke','#fff');icon.append(rect);const t=document.createElementNS(NS,'text');t.setAttribute('x',p.col*20+5);t.setAttribute('y',p.row*20+13);t.setAttribute('font-size',9);t.textContent=i+1;icon.append(t);}
+      for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const rect=document.createElementNS(NS,'rect');rect.setAttribute('x',c*20+1);rect.setAttribute('y',r*20+1);rect.setAttribute('width',18);rect.setAttribute('height',18);rect.setAttribute('fill','#f7f8fa');rect.setAttribute('stroke','#dce0e6');rect.setAttribute('stroke-width','.6');icon.append(rect);}
+      for(const [i,id]of next.order.entries()){const p=next.grid.places[id],rect=document.createElementNS(NS,'rect');rect.setAttribute('x',p.col*20+1);rect.setAttribute('y',p.row*20+1);rect.setAttribute('width',p.cs*20-2);rect.setAttribute('height',p.rs*20-2);rect.setAttribute('fill',id===selectedPanel?'#b9c8df':'#e1e5ec');rect.setAttribute('stroke','#c6ceda');rect.setAttribute('stroke-width','.6');icon.append(rect);const t=document.createElementNS(NS,'text');t.setAttribute('x',(p.col+p.cs/2)*20);t.setAttribute('y',(p.row+p.rs/2)*20);t.setAttribute('text-anchor','middle');t.setAttribute('dominant-baseline','central');t.setAttribute('font-family','Arial, sans-serif');t.setAttribute('font-weight','500');t.setAttribute('fill','#344054');t.setAttribute('font-size',8);t.textContent=i+1;icon.append(t);}
       const text=document.createElement('span');text.textContent=label;b.append(icon,text);
       b.onmouseenter=()=>{renderCanvas(next);say(T('母版预览：')+label+T(' · 点击应用，移开还原'));};b.onmouseleave=()=>{renderCanvas();say(T('已返回当前布局'));};$('masters').append(b);
     }
@@ -898,18 +898,37 @@ if (typeof document !== 'undefined') (async () => {
   $('deleteOverlay').onclick=()=>{const next=copy(state());next.overlays=(next.overlays||[]).filter(a=>!selectedAnnotations.includes(a.id)||a.locked);commit(next,T('已删除未锁定标注'));};
   $('chartGoal').onchange=()=>render();$('topCount').onchange=()=>render();
   const templatePreviews=JSON.parse($('templatePreviews').textContent);
+  const referenceCatalogue=JSON.parse($('referenceCatalogue').textContent);
   let catalogueCategory='current';
   function renderChartLibrary(){
     const pan=panel(selectedPanel),ranked=StudioCatalogue.rank(pan,$('chartGoal').value),available=new Map(ranked.map(x=>[x.v.name,x]));$('chartCategories').replaceChildren();
-    const categories={current:[T('当前数据可用'),T('当前数据可用')],...StudioCatalogue.labels};
+    const categories={current:[T('当前数据可用'),T('当前数据可用')],references:['参考图集 · 102','Reference collection · 102'],...StudioCatalogue.labels};
     for(const [key,names]of Object.entries(categories)){const b=button(names[StudioI18n.language==='en'?1:0],()=>{catalogueCategory=key;renderChartLibrary();});b.setAttribute('aria-pressed',String(catalogueCategory===key));$('chartCategories').append(b);}
-    $('allCharts').replaceChildren();const names=catalogueCategory==='current'?[...available.keys()]:[...new Set([...available.keys(),...Object.keys(StudioDiscovery),...StudioCatalogue.names])].filter(name=>StudioCatalogue.category(name)===catalogueCategory);
+    const query=$('chartSearch').value.trim().toLocaleLowerCase(),language=StudioI18n.language==='en'?'en':'zh';
+    $('allCharts').replaceChildren();const names=(catalogueCategory==='current'?[...available.keys()]:[...new Set([...available.keys(),...Object.keys(StudioDiscovery),...StudioCatalogue.names])].filter(name=>StudioCatalogue.category(name)===catalogueCategory)).filter(name=>!query||[name,chartName(name),...Object.values(StudioDiscovery[name]||{}).flat()].join(' ').toLocaleLowerCase().includes(query));
     for(const name of names){const entry=StudioDiscovery[name]?.[StudioI18n.language],candidate=available.get(name),card=document.createElement('article');card.className='catalogue-card';const heading=document.createElement('h3');heading.textContent=entry?.[0]||chartName(name);card.append(heading);const badge=document.createElement('span');badge.className='preview-badge';badge.textContent=T(candidate?'当前数据':templatePreviews[name]?'示例数据':'样式示意');card.append(badge);
       if(candidate){card.append(preview(editedSvg(selectedPanel,candidate.i)));const apply=button(T('应用这个图型'),()=>{const next=copy(state());next.panels[selectedPanel].variant=candidate.i;selected=[];$('chartLibrary').close();commit(next,T('已切换候选图'));});apply.disabled=state().panels[selectedPanel].locked;card.append(apply);}else{const sample=templatePreviews[name]||StudioCatalogue.schematic(name);if(sample){const thumb=preview(sanitize(sample));thumb.classList.add('template-thumbnail');card.append(thumb);}const unavailable=button(T('查看所需数据'),()=>{description.scrollIntoView({block:'nearest'});description.classList.add('requirements-active');});card.append(unavailable);}
       const description=document.createElement('p');description.textContent=(candidate?T('当前数据可用'):T('需要相应数据或计算结果'))+' · '+(entry?entry.slice(1).join(' — '):T('请查看分析记录'));card.append(description);$('allCharts').append(card);
     }
+    const references=catalogueCategory==='current'?[]:referenceCatalogue.filter(ref=>(catalogueCategory==='references'||ref.category===catalogueCategory)&&(!query||[ref.id,...Object.values(ref.title),...Object.values(ref.inputs)].join(' ').toLocaleLowerCase().includes(query)));
+    for(const ref of references){
+      const card=document.createElement('article');card.className='catalogue-card reference-card';card.dataset.reference=ref.id;
+      const title=document.createElement('h3');title.textContent=ref.title[language];
+      const badge=document.createElement('span');badge.className='preview-badge';badge.textContent=T('参考模板 · 示例数据');
+      const img=document.createElement('img');img.src=ref.image;img.alt=ref.title[language];img.loading='lazy';img.decoding='async';img.width=810;img.height=1080;
+      const view=button('',()=>{ $('referenceTitle').textContent=ref.title[language];$('referenceImage').src=ref.image;$('referenceImage').alt=ref.title[language];$('referenceInputs').textContent=T('所需数据：')+ref.inputs[language];$('referenceSource').textContent=T('本地图集 · 示例数据 · 原卡片保留中文说明和来源标注')+' · '+ref.source;$('referenceDetail').showModal();});view.className='reference-preview';view.setAttribute('aria-label',T('放大预览：')+ref.title[language]);view.append(img);
+      const description=document.createElement('p');description.textContent=T('所需数据：')+ref.inputs[language];
+      card.append(title,badge,view,description);
+      const match=available.get(ref.renderer);
+      if(match){const apply=button(T('使用当前数据的对应图表'),()=>{const next=copy(state());next.panels[selectedPanel].variant=match.i;selected=[];$('chartLibrary').close();commit(next,T('已切换候选图'));});apply.disabled=state().panels[selectedPanel].locked;card.append(apply);}
+      else {const note=document.createElement('span');note.className='preview-badge';note.textContent=T('模板参考；尚未连接当前数据');card.append(note);}
+      $('allCharts').append(card);
+    }
+    $('chartCount').textContent=T('{0} 个图表 · {1} 张参考卡',names.length,references.length);
+    if(!names.length&&!references.length){const empty=document.createElement('p');empty.textContent=T('没有匹配的图表，请调整搜索词或类别。');$('allCharts').append(empty);}
   }
-  $('moreCharts').onclick=()=>{catalogueCategory='current';renderChartLibrary();$('chartLibrary').showModal();};$('closeCharts').onclick=()=>$('chartLibrary').close();
+  $('chartSearch').oninput=renderChartLibrary;$('closeReference').onclick=()=>$('referenceDetail').close();
+  $('moreCharts').onclick=()=>{catalogueCategory='current';$('chartSearch').value='';renderChartLibrary();$('chartLibrary').showModal();};$('closeCharts').onclick=()=>$('chartLibrary').close();
   let dataDrafts={},dataPage=0,dataTimer=null,dataBusy=false,dataSerial=0;
   const localEngine=$('local-engine')?JSON.parse($('local-engine').textContent):null;
   function dataRows(){return dataDrafts[selectedPanel]||panel(selectedPanel)?.table?.rows;}
@@ -941,7 +960,7 @@ if (typeof document !== 'undefined') (async () => {
   $('addDataRow').onclick=()=>{const rows=copy(dataRows());rows.push(rows[0].map(()=>''));dataPage=Math.floor((rows.length-2)/20);editData(rows);renderDataEditor();};
   $('addDataColumn').onclick=()=>{const name=$('newColumnName').value.trim(),rows=copy(dataRows());if(!name||rows[0].includes(name))return;rows[0].push(name);for(const row of rows.slice(1))row.push('');editData(rows);renderDataEditor();};
   $('discardData').onclick=()=>{delete dataDrafts[selectedPanel];dataSerial++;clearTimeout(dataTimer);persist();renderDataEditor();$('dataEditStatus').textContent=T('已恢复上次有效数据');};
-  $('recomputeData').onclick=recomputeData;$('dataPrev').onclick=()=>{dataPage--;renderDataEditor();};$('dataNext').onclick=()=>{dataPage++;renderDataEditor();};
+  $('recomputeData').onclick=()=>{if(!dataDrafts[selectedPanel]&&dataRows()){dataDrafts[selectedPanel]=copy(dataRows());dataSerial++;refreshDataExport();}recomputeData();};$('dataPrev').onclick=()=>{dataPage--;renderDataEditor();};$('dataNext').onclick=()=>{dataPage++;renderDataEditor();};
   $('importData').onclick=()=>{$('dataFile').value='';$('dataFile').click();};
   $('dataFile').onchange=guard(async()=>{const file=$('dataFile').files[0];if(!file)return;if(file.size>2000000)throw Error(T('数据表不能超过 2 MB'));editData(parseDelimited(await file.text(),file.name.endsWith('.tsv')?'\t':','));dataPage=0;renderDataEditor();});
   let imageDestination=null;

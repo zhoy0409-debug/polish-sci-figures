@@ -28,7 +28,7 @@ def main():
     from studio_server import regenerate
     recipe=json.loads((ROOT/'demo/workbench/figure_recipe.json').read_text())
     rows=list(csv.reader((ROOT/'skills/make-sci-data-figures/examples/synthetic_group_comparison.csv').open()))
-    for variant in regenerate(recipe,rows)['variants']:previews.setdefault(variant['name'],variant['svg'])
+    for variant in regenerate(recipe,rows)['variants']:previews[variant['name']]=variant['svg'] if variant.get('size','original')=='original' else previews.get(variant['name'],variant['svg'])
     OUTPUT.write_text(json.dumps(previews,ensure_ascii=False),encoding='utf-8')
     print(f'Bundled {len(previews)} synthetic template previews')
 if __name__=='__main__':main()

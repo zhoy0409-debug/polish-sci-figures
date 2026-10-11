@@ -94,3 +94,13 @@ Validated in the local browser: text selection, Shift multiselect, multi-object 
 The categorized gallery was inspected in every category. It contains 69 preview cards, including 27 ROC-related presentations (18 computed templates and 9 additional-analysis illustrations). Templates are labelled separately from current-data previews. All 60 synthetic template assets were captured from successful renderer regressions and bundled for offline use. Chinese and English navigation labels retain a single line.
 
 Remaining scope boundaries: error direction currently uses the bar workbench's semantic group IDs; embedded raster-image text is not separately editable; illustrative advanced ROC cards require the indicated inputs and analyses before application. These are not claims of universal object interpretation or of scientific validation of arbitrary imported figures.
+
+
+## Reference collection and visual refinement — 2026-10-12
+
+- Browser inspection verified all 36 numerical labels across nine layout thumbnails are centered in their occupied rectangles (zero x/y offset); including two-row/two-column hero layouts. Gray/blue styling replaces green in this chooser. Hover preview returns to the saved layout on pointer exit.
+- The local gallery displays 102 reference cards. Chinese raincloud search returns one reference; enlargement opens the full original card. English search displays English title and input requirements. Actual-data actions appear only for already-computed matching variants. Reference counts are separate from the existing 69 chart/illustrative entries; this does not mean 102 new analysis engines.
+- The current independent-comparison panel was recomputed with its existing 24 observations in the browser. Updated raincloud/violin previews were visually inspected; the previous asset remains in undo history. Regression tests check unchanged raw point y-values and exact quartiles, smooth density sampling and degenerate-sample fallback.
+- Sequential colormap regressions verify monotonic channels and theme endpoints; ROC facets share the same threshold norm and colorbar labels do not intersect x-axis labels.
+- All 102 embedded reference previews decode successfully; IDs, source hashes, bilingual input contracts and renderer links pass validation. Studio state/history/bilingual checks, seven HTML-builder tests, data-engine regression and extracted-release tests pass.
+- Reference-card illustrations remain raster previews with original Chinese explanatory text and credits. They are separate from the editable current-data renderers. No claim is made that every referenced statistical method has been implemented or validated.

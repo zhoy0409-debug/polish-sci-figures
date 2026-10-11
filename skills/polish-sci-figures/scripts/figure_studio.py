@@ -135,6 +135,8 @@ def write_html(project: dict, output: Path) -> None:
     html = html.replace("__STUDIO_PROJECT__", payload)
     templates = (ASSETS / "catalogue-previews.json").read_text(encoding="utf-8") if (ASSETS / "catalogue-previews.json").exists() else '{}'
     html = html.replace("__STUDIO_TEMPLATES__", templates.replace('<', '\\u003c'))
+    references = (ASSETS / "reference-catalogue.json").read_text(encoding="utf-8")
+    html = html.replace("__STUDIO_REFERENCES__", references.replace("<", "\\u003c"))
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(html, encoding="utf-8")
 

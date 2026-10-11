@@ -49,7 +49,7 @@ from data_family_workbench import (
     _save_bundle,
     _numeric,
 )
-from figure_workbench import DEFAULT_FONT, FIGSIZE, read_table, resolve_palette
+from figure_workbench import DEFAULT_FONT, FIGSIZE, read_table, resolve_palette, sequential_cmap
 
 RNG_SEED = 20260719
 _ALLOW_FONT_FALLBACK = False
@@ -508,7 +508,7 @@ def enrichment(
         y,
         s=sizes,
         c=logp,
-        cmap="viridis",
+        cmap=sequential_cmap(colors[0]),
         edgecolor="white",
         linewidth=0.4,
     )

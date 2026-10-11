@@ -1,6 +1,8 @@
 /* Bilingual explanations for implemented upstream candidates, not permissions to render unsuitable data. */
 'use strict';
 const StudioDiscovery = {
+ raincloud:{'zh-CN':['雨云图','分开呈现原始观测、分布估计与中位数及四分位距','高斯核密度使用 Scott 带宽；曲线尾部可超出观测范围。'],en:['Raincloud plot','Separate raw observations, estimated distribution and median with interquartile range','Gaussian KDE uses Scott bandwidth; density tails may extend beyond observed values.']},
+ violin_raw_points:{'zh-CN':['小提琴图＋原始点','细轮廓分布、原始观测与中位数及四分位距','高斯核密度使用 Scott 带宽；曲线尾部可超出观测范围。'],en:['Violin with raw points','Outlined distribution, raw observations and median with interquartile range','Gaussian KDE uses Scott bandwidth; density tails may extend beyond observed values.']},
 bar_raw_points:{'zh-CN':['均值柱形＋原始点','同时观察均值、95% CI 和原始观测','柱宽按物理尺寸自动校准；可在细节编辑中调柱宽和组间距。'],en:['Mean bars with raw points','View means, 95% CIs and observations together','Physical bar widths adapt to the canvas; width and group spacing are editable.']},
   confusion_counts:{'zh-CN':['混淆矩阵：计数','观察真实类别与预测类别的对应数量','保留样本量信息，适合定位错误集中在哪些类别。'],en:['Confusion matrix: counts','Inspecting observed versus predicted class counts','Preserves sample counts and highlights where errors concentrate.']},
   confusion_row_normalized:{'zh-CN':['混淆矩阵：行比例','在类别样本量不同时比较分类表现','每个真实类别单独归一化；需结合计数理解样本量。'],en:['Confusion matrix: row proportions','Comparing classification patterns across unequally sized classes','Normalises each observed class separately; consult counts for sample sizes.']},

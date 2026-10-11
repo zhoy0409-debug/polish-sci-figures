@@ -116,6 +116,14 @@ def resolve_palette(name: str, colors: str | None, n: int) -> list[str]:
     return palette[:n]
 
 
+def sequential_cmap(accent: str):
+    """Palette-linked light-to-dark scale, preserving continuous numeric encoding."""
+    from matplotlib.colors import LinearSegmentedColormap, to_rgb
+    rgb = np.asarray(to_rgb(accent))
+    light = 0.84 + 0.16 * rgb
+    return LinearSegmentedColormap.from_list("studio_sequential", [light, rgb])
+
+
 def resolve_font(requested: str, allow_fallback: bool = False) -> tuple[str, str | None, bool, bool]:
     try:
         path = fm.findfont(fm.FontProperties(family=requested), fallback_to_default=False)
@@ -486,26 +494,45 @@ def plot_estimation_graphic(work: pd.DataFrame, group: str, value: str, order: l
     return fig
 
 
+def density_outline(values: np.ndarray):
+    """Scott Gaussian KDE with visible tails; coordinates are estimates, not observations.
+
+    Evaluate at 256 positions, extending three bandwidths past observed extrema.
+    Degenerate samples have no estimated density (their raw points still render).
+    """
+    from scipy.stats import gaussian_kde
+    values = np.asarray(values, dtype=float)
+    if len(values) < 2 or np.ptp(values) <= np.finfo(float).eps * max(1, abs(values).max()):
+        return None
+    kde = gaussian_kde(values, bw_method='scott')
+    bandwidth = float(np.sqrt(kde.covariance[0, 0]))
+    support = np.linspace(values.min() - 3 * bandwidth, values.max() + 3 * bandwidth, 256)
+    density = kde(support)
+    return support, density / density.max()
+
+
+def distribution_summary(ax, x, values, color):
+    q1, median, q3 = np.percentile(values, [25, 50, 75])
+    ax.plot([x, x], [q1, q3], color=color, linewidth=3, solid_capstyle='round', zorder=4)
+    ax.scatter([x], [median], s=17, facecolor='white', edgecolor=color, linewidth=.9, zorder=5)
+
+
 def plot_raincloud(work: pd.DataFrame, group: str, value: str, order: list[str],
                    colors: list[str], ylabel: str, analysis: dict):
     arrays = [work.loc[work[group].astype(str) == g, value].to_numpy(float) for g in order]
     positions = np.arange(len(order), dtype=float)
     fig, ax = plt.subplots(figsize=FIGSIZE)
-    clouds = ax.violinplot(arrays, positions=positions + 0.08, widths=0.66,
-                           showmeans=False, showmedians=False, showextrema=False)
     rng = np.random.default_rng(RNG_SEED)
-    for i, (body, values, color) in enumerate(zip(clouds["bodies"], arrays, colors)):
-        center = positions[i] + 0.08
-        vertices = body.get_paths()[0].vertices
-        vertices[:, 0] = np.maximum(vertices[:, 0], center)
-        body.set_facecolor(color)
-        body.set_edgecolor(color)
-        body.set_alpha(0.22)
-        ax.scatter(i - 0.10 - rng.uniform(0.02, 0.22, len(values)), values, s=23,
-                   color=color, alpha=0.72, edgecolor="white", linewidth=0.3, zorder=3)
-        q1, median, q3 = np.percentile(values, [25, 50, 75])
-        ax.vlines(i + 0.06, q1, q3, color=color, linewidth=6, alpha=0.38, zorder=4)
-        ax.hlines(median, i - 0.01, i + 0.14, color="#20242A", linewidth=1.6, zorder=5)
+    for i, (values, color) in enumerate(zip(arrays, colors)):
+        outline = density_outline(values)
+        if outline is not None:
+            support, density = outline
+            ax.fill_betweenx(support, i + .10, i + .10 + .27 * density,
+                             facecolor=color, alpha=.16, linewidth=0, zorder=1)
+            ax.plot(i + .10 + .27 * density, support, color=color, alpha=.65, linewidth=.8)
+        ax.scatter(i - rng.uniform(.10, .28, len(values)), values, s=19,
+                   color=color, alpha=.85, edgecolor='white', linewidth=.45, zorder=3)
+        distribution_summary(ax, i + .015, values, color)
     ax.set_xticks(positions, order)
     ax.set_xlim(-0.5, len(order) - 0.42)
     finish_axes(fig, ax, ylabel)
@@ -580,18 +607,20 @@ def plot_violin_points(work: pd.DataFrame, group: str, value: str, order: list[s
                        ylabel: str, analysis: dict):
     fig, ax = plt.subplots(figsize=FIGSIZE)
     arrays = [work.loc[work[group].astype(str) == g, value].to_numpy(float) for g in order]
-    vp = ax.violinplot(arrays, positions=range(len(order)), widths=0.74,
-                       showmeans=False, showmedians=True, showextrema=False)
-    for body, color in zip(vp["bodies"], colors):
-        body.set_facecolor(color)
-        body.set_edgecolor(color)
-        body.set_alpha(0.20)
-    vp["cmedians"].set_color("#20242A")
     rng = np.random.default_rng(RNG_SEED)
     for i, (vals, color) in enumerate(zip(arrays, colors)):
-        ax.scatter(np.full(len(vals), i) + rng.uniform(-0.12, 0.12, len(vals)), vals,
-                   s=21, color=color, alpha=0.72, edgecolor="white", linewidth=0.3, zorder=3)
+        outline = density_outline(vals)
+        if outline is not None:
+            support, density = outline
+            ax.fill_betweenx(support, i - .25*density, i + .25*density,
+                             facecolor=color, alpha=.13, linewidth=0, zorder=1)
+            for side in (-1, 1):
+                ax.plot(i + side*.25*density, support, color=color, alpha=.55, linewidth=.75)
+        ax.scatter(np.full(len(vals), i) + rng.uniform(-.14, .14, len(vals)), vals,
+                   s=18, color=color, alpha=.85, edgecolor='white', linewidth=.45, zorder=3)
+        distribution_summary(ax, i, vals, color)
     ax.set_xticks(range(len(order)), order)
+    ax.set_xlim(-.5, len(order)-.5)
     finish_axes(fig, ax, ylabel)
     add_stat_line(fig, analysis)
     return fig
