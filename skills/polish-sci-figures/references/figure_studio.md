@@ -28,6 +28,27 @@ The builder refuses to overwrite an existing file. After the initial page is gen
 
 ## Interaction contract
 
+### Local data editing and object properties
+
+For table editing and automatic recomputation, run:
+
+```sh
+python sci_figures.py studio-serve figure-studio.html --port 8767
+```
+
+Open the printed localhost URL. The engine binds only to `127.0.0.1`, checks Host, Origin and a per-process token, and invokes known workbench functions. It never executes submitted analysis code. Standalone HTML supports layout, styling and image import; data recomputation requires this local Python service.
+
+- Data table edits, CSV/TSV replacement and row/column changes are drafts until validation and analysis succeed. Statistics and candidates update together. Invalid drafts preserve the last valid figure and disable figure export. Drafts are included in project downloads and browser autosaves.
+- Right-click an occupied panel to replace it, or an empty grid cell to import PNG, JPEG, WebP or sanitized SVG. Replacement appends an immutable asset revision, so undo can restore the previous figure. Raster images remain raster images; their embedded labels cannot be edited separately.
+- The chart browser shows the highest-ranked 3 or 5 **available, data-backed** alternatives. The full categorized library also describes alternatives requiring additional inputs. Rankings consider the expression goal and available data, never the smallest P value.
+- Every library card has a preview: 60 bundled synthetic-data templates plus 9 ROC layout illustrations for analyses requiring additional inputs. Available variants use the current data instead. Badges distinguish current data, example data and illustrative layouts; example/illustration cards cannot be applied as results. Template assets are bundled offline and generated with `scripts/build_catalogue_previews.py` from renderer regression fixtures.
+- Drag a selection rectangle, or Shift-click to select multiple objects. Selected SVG objects and added text/shapes can move together. Object alignment uses the selected set's bounding box; text alignment controls the text anchor. Locked objects remain fixed.
+- Properties include final-size stroke width, solid/no fill and text alignment. Hollow bars retain a clickable interior. Bar-workbench error bars support positive, negative and both directions, anchored to the estimate, with matching end caps. This direction control is currently restricted to these semantically identified bars; arbitrary imported error-bar paths are not inferred or rotated.
+- Annotation text, lines, rectangles and ellipses are vector objects included in exports. They have independent colour, opacity, stroke width, typography, fill and lock controls.
+- Browser persistence uses IndexedDB for asset-bearing history. Saving a project downloads a portable JSON backup, including data drafts and undo history.
+
+ROC exploration includes 16 views in addition to the primary ROC and PR plots when inputs support them. Added pointwise 95% bootstrap bands and bootstrap curves condition on fixed prediction scores; they do not represent model-refitting uncertainty or simultaneous confidence coverage. AUC intervals retain the upstream calculation.
+
 1. Select a panel in the left navigation. Click a plot object; Shift-click to select several.
 2. Choose the operation scope: selected elements, same-colour elements in this panel, current panel, or whole composite. Same colour is a visual match, not inferred biological identity.
 3. Change fill/stroke, opacity, font, point size, or weight. Font and size changes preserve existing italic runs; explicit sub/superscript font-size ratios are retained. Whole-panel colour changes target chromatic elements, preserving neutral axes/backgrounds. Explicit element selection can edit neutral colours too.

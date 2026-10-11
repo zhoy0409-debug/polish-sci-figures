@@ -25,6 +25,21 @@ for(const bad of [
 ]) assert.throws(()=>validateState(bad,project));
 assert.equal(complementary('#4477aa'),'#aa7744');
 console.log('Figure Studio state/history validation passed');
+const galleryCatalogue=require('../skills/polish-sci-figures/assets/figure-studio/catalogue.js');
+const galleryMetadata=require('../skills/polish-sci-figures/assets/figure-studio/discovery.js');
+const galleryPreviews=require('../skills/polish-sci-figures/assets/figure-studio/catalogue-previews.json');
+for(const name of new Set([...galleryCatalogue.names,...Object.keys(galleryMetadata)])){
+  assert.ok(galleryPreviews[name]||galleryCatalogue.schematic(name),'missing template preview: '+name);
+}
+assert.ok(Object.keys(galleryPreviews).length>=60);
+const appearance=clone(initial);
+appearance.panels['panel-0'].edits={0:{e5:{fill:'none','stroke-width':'2','text-anchor':'middle','offset-x':'12'}}};
+appearance.panels['panel-0'].errorDirection='positive';
+validateState(appearance,project);
+const appearanceHistory=new History(initial);appearanceHistory.commit(appearance);
+assert.deepEqual(appearanceHistory.undo(),initial);assert.deepEqual(appearanceHistory.redo(),appearance);
+for(const invalid of ['-1','NaN','101']){const bad=clone(appearance);bad.panels['panel-0'].edits[0].e5['stroke-width']=invalid;assert.throws(()=>validateState(bad,project));}
+const badDirection=clone(appearance);badDirection.panels['panel-0'].errorDirection='rotate';assert.throws(()=>validateState(badDirection,project));
 const ids=Array.from({length:15},(_,i)=>'panel-'+i);
 const multi={panels:ids.map(id=>({id,variants:[{}]}))};
 const base={order:ids,columns:3,gap:12,panels:Object.fromEntries(ids.map(id=>[id,{variant:0,edits:{}}]))};
@@ -159,3 +174,17 @@ const png600=Buffer.from(pngWithDpi(png,600)),pos=png600.indexOf(Buffer.from('pH
 assert.ok(pos>0);assert.equal(png600.readUInt32BE(pos+4),23622);assert.equal(png600[pos+12],1);
 const png1200=Buffer.from(pngWithDpi(png600,1200));assert.equal(png1200.length,png600.length);assert.equal(png1200.readUInt32BE(pos+4),47244);
 console.log('Proportional publication sizing and real PNG DPI metadata passed');
+// Asset revisions retain the original project and use one history entry.
+const {installPanelState,parseDelimited}=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+const originalProject={panels:[{id:'panel-0',variants:[{}]}]},originalState={order:['panel-0'],columns:2,gap:12,grid:{rows:1,places:{'panel-0':{row:0,col:0,rs:1,cs:1}}},panels:{'panel-0':{variant:0,edits:{}}}};
+const assetProject={panels:[...originalProject.panels,{id:'panel-1',variants:[{}]}]};
+const imported=installPanelState(originalState,null,'panel-1',0,{row:0,col:1});validateState(imported,assetProject);validateState(originalState,assetProject);
+const replaced=installPanelState(originalState,'panel-0','panel-1',0);validateState(replaced,assetProject);assert.equal(replaced.grid.places['panel-1'].col,0);assert.deepEqual(originalState.order,['panel-0']);
+const revisions=new History(originalState);revisions.commit(replaced);assert.deepEqual(revisions.undo(),originalState);assert.deepEqual(revisions.redo(),replaced);
+assert.throws(()=>installPanelState({...originalState,panels:{'panel-0':{variant:0,edits:{},locked:true}}},'panel-0','panel-1',0));
+assert.throws(()=>installPanelState(originalState,null,'panel-1',0,{row:0,col:0}));
+assert.deepEqual(parseDelimited('a,b\r\n"x,y","z"\r\n'),[['a','b'],['x,y','z']]);assert.throws(()=>parseDelimited('a,b\n"broken'));
+const catalogue=require('../skills/polish-sci-figures/assets/figure-studio/catalogue.js');
+const rankPanel={variants:['roc','roc_two_graph','roc_pointwise_band','roc_auc_intervals','roc_requires_time'].slice(0,4).map(name=>({name})),analysis:{family:'roc',metrics:{}},table:{rows:[]}};
+assert.equal(catalogue.rank(rankPanel,'threshold')[0].v.name,'roc_two_graph');assert.equal(catalogue.rank(rankPanel,'uncertainty')[0].v.name,'roc_pointwise_band');assert.equal(catalogue.rank(rankPanel).length,4);
+console.log('Asset replacement/insertion history, locked destinations, table parsing and eligible recommendation ranking passed');

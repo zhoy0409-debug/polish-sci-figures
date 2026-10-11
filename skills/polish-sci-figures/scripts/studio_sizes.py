@@ -6,7 +6,7 @@ from pathlib import Path
 import textwrap
 
 
-def render_sizes(path, recipe, analysis, variants):
+def render_sizes(path, recipe, analysis, variants, allowed_sizes=None):
     source = path / str(recipe.get('input', '')).replace('\\', '/')
     if not source.is_file() or not analysis.get('source_sha256'):
         return []
@@ -61,6 +61,8 @@ def render_sizes(path, recipe, analysis, variants):
                              ('spanThree',(width*3+24/72,height)),
                              ('spanTall',(width,height*2+12/72)),
                              ('large',(width*2+12/72,height*2+12/72))]:
+        if allowed_sizes is not None and size not in allowed_sizes:
+            continue
         wb.FIGSIZE = dimensions
         for v in variants:
             name = v['name']

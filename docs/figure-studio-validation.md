@@ -87,3 +87,10 @@ Browser method cards showed the existing Welch and Mann–Whitney results with d
 
 - Browser export at 180.00 × 139.41 mm produced a 4252 × 3293 PNG. Pillow read 599.9988 dpi (integer pixels/metre rounding); all PNG chunk CRCs passed and exactly one pHYs chunk was present. Export was visually inspected. Changing publication width preserved all internal path geometry and transforms. The prior 300 dpi check above describes the older revision.
 - Right-clicking a text object selected that object and exposed contextual editing. Font adjustment through the inspector committed successfully; right-click Undo used the same history and restored the preceding state. Menu actions delegate to existing sidebar handlers instead of introducing separate state mutations.
+# Interactive editing and visual catalogue checks — 2026-10-12
+
+Validated in the local browser: text selection, Shift multiselect, multi-object dragging, top alignment, text anchors, hollow bar hit testing, final-size stroke width, positive error-bar segment/end-cap coordination, image replacement, undo/redo and recovery after reload. Data-engine regression confirms changed observations produce changed statistics and SVG candidates; malformed drafts are rejected without changing source files.
+
+The categorized gallery was inspected in every category. It contains 69 preview cards, including 27 ROC-related presentations (18 computed templates and 9 additional-analysis illustrations). Templates are labelled separately from current-data previews. All 60 synthetic template assets were captured from successful renderer regressions and bundled for offline use. Chinese and English navigation labels retain a single line.
+
+Remaining scope boundaries: error direction currently uses the bar workbench's semantic group IDs; embedded raster-image text is not separately editable; illustrative advanced ROC cards require the indicated inputs and analyses before application. These are not claims of universal object interpretation or of scientific validation of arbitrary imported figures.

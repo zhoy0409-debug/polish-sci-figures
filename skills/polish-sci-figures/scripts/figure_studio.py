@@ -130,8 +130,11 @@ def write_html(project: dict, output: Path) -> None:
     html = html.replace("/*__STUDIO_I18N__*/", (ASSETS / "i18n.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_MEMORY__*/", (ASSETS / "memory.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_DISCOVERY__*/", (ASSETS / "discovery.js").read_text(encoding="utf-8"))
+    html = html.replace("/*__STUDIO_CATALOGUE__*/", (ASSETS / "catalogue.js").read_text(encoding="utf-8-sig"))
     html = html.replace("/*__STUDIO_LIBRARY__*/", (ASSETS / "library.js").read_text(encoding="utf-8"))
     html = html.replace("__STUDIO_PROJECT__", payload)
+    templates = (ASSETS / "catalogue-previews.json").read_text(encoding="utf-8") if (ASSETS / "catalogue-previews.json").exists() else '{}'
+    html = html.replace("__STUDIO_TEMPLATES__", templates.replace('<', '\\u003c'))
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(html, encoding="utf-8")
 

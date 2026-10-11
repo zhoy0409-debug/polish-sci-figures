@@ -59,4 +59,52 @@ def render_views(records, figsize):
         if kind=='low_fpr':fig.suptitle('Low false-positive region (FPR ≤ 0.20)',fontsize=9)
         if kind=='log_fpr':fig.suptitle('Log FPR scale; zero-FPR points outside view',fontsize=8)
         outputs.append(('roc_'+kind,fig))
+    outputs.extend(render_uncertainty_views(records, figsize))
     return outputs
+
+
+def bootstrap_curves(truth, scores, repetitions=500):
+    """Stratified observation bootstrap for independent units, fixed scores (no model refit)."""
+    truth=np.asarray(truth,dtype=bool);scores=np.asarray(scores,dtype=float)
+    pos=np.flatnonzero(truth);neg=np.flatnonzero(~truth)
+    if len(pos)<2 or len(neg)<2:raise ValueError('At least two observations per class are required')
+    grid=np.linspace(0,1,101);rng=np.random.default_rng(20261012);curves=[]
+    for _ in range(repetitions):
+        index=np.r_[rng.choice(pos,len(pos)),rng.choice(neg,len(neg))]
+        order=np.argsort(-scores[index],kind='stable');y=truth[index][order];z=scores[index][order]
+        ends=np.r_[np.flatnonzero(np.diff(z)),len(z)-1]
+        tpr=np.r_[0,np.cumsum(y)[ends]/len(pos)];fpr=np.r_[0,np.cumsum(~y)[ends]/len(neg)]
+        curves.append(np.interp(grid,fpr,tpr))
+    return grid,np.asarray(curves)
+
+
+def render_uncertainty_views(records,figsize):
+    outputs=[];eligible=all(np.sum(r['truth'])>=2 and np.sum(~np.asarray(r['truth'],dtype=bool))>=2 for r in records)
+    if eligible:
+        resamples=[bootstrap_curves(r['truth'],r['scores']) for r in records]
+        for kind in ('pointwise_band','bootstrap_curves'):
+            fig,axes=plt.subplots(1,len(records),figsize=figsize,squeeze=False)
+            for ax,r,(grid,curves) in zip(axes.flat,records,resamples):
+                if kind=='pointwise_band':
+                    lo,hi=np.quantile(curves,[.025,.975],axis=0);ax.fill_between(grid,lo,hi,color=r['color'],alpha=.2,label='Pointwise 95% interval')
+                else:
+                    for curve in curves[:100]:ax.plot(grid,curve,color=r['color'],alpha=.06,lw=.5)
+                ax.plot(r['fpr'],r['tpr'],color=r['color'],lw=1.5);ax.plot([0,1],[0,1],ls=':',color='#999999',lw=.7)
+                ax.set(xlabel='1 − specificity',ylabel='Sensitivity',xlim=(0,1),ylim=(0,1.02),title=r['label']);ax.spines[['top','right']].set_visible(False)
+            fig.suptitle('500 stratified bootstrap samples · fixed predictions'+(' · pointwise, not simultaneous' if kind=='pointwise_band' else ' · first 100 displayed'),fontsize=7)
+            fig.tight_layout(rect=[0,0,1,.92]);outputs.append(('roc_'+kind,fig))
+    fig,axes=plt.subplots(2,len(records),figsize=figsize,squeeze=False)
+    for j,r in enumerate(records):
+        truth=np.asarray(r['truth'],dtype=bool);scores=np.asarray(r['scores']);bins=np.histogram_bin_edges(scores,bins='auto')
+        for mask,label,color in [(~truth,'Negative','#466a90'),(truth,'Positive',r['color'])]:axes[0,j].hist(scores[mask],bins=bins,density=True,histtype='step',lw=1.3,color=color,label=label)
+        axes[0,j].set(xlabel='Prediction score',ylabel='Density',title=r['label']);axes[0,j].legend(frameon=False,fontsize=7)
+        axes[1,j].plot(r['fpr'],r['tpr'],color=r['color']);axes[1,j].plot([0,1],[0,1],ls=':',color='#999999',lw=.7);axes[1,j].set(xlabel='1 − specificity',ylabel='Sensitivity',xlim=(0,1),ylim=(0,1.02))
+        for ax in axes[:,j]:ax.spines[['top','right']].set_visible(False)
+    fig.tight_layout();outputs.append(('roc_score_distribution',fig))
+    fig,(ax,forest)=plt.subplots(1,2,figsize=figsize,gridspec_kw={'width_ratios':[1.6,1]})
+    for i,r in enumerate(records):
+        ax.plot(r['fpr'],r['tpr'],color=r['color'],label=r['label']);lo,hi=r['ci'];forest.errorbar(r['auc'],i,xerr=[[max(0,r['auc']-lo)],[max(0,hi-r['auc'])]],fmt='o',color=r['color'],capsize=3)
+    ax.plot([0,1],[0,1],ls=':',color='#999999',lw=.7);ax.set(xlabel='1 − specificity',ylabel='Sensitivity',xlim=(0,1),ylim=(0,1.02));ax.legend(frameon=False,fontsize=7)
+    forest.set(yticks=range(len(records)),yticklabels=[r['label'] for r in records],xlim=(0,1),xlabel='AUC (95% CI)');forest.axvline(.5,ls=':',color='#999999')
+    for a in (ax,forest):a.spines[['top','right']].set_visible(False)
+    fig.tight_layout();outputs.append(('roc_with_auc_forest',fig));return outputs
