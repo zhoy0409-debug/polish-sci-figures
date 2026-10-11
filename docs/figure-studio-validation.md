@@ -58,3 +58,17 @@ The two new TomatoSCI links were inspected only to the extent available in the b
 - Two distinct intentional checkpoint states produced preference suggestions; saving the same state again did not increase the count. Autosaving did not count as preference approval.
 - State tests cover persisted undo/redo, invalid histories, preference deduplication/pause/clear/restore, bilingual UI keys, and bilingual discovery metadata. Seven builder tests and release-bundle tests passed.
 - The embedded browser's native confirmation dialog blocked further interactions during preference-clear QA. Preference clearing now uses inline two-step confirmation plus same-session restore. End-to-end browser revalidation of these replacement controls remains pending; preference-model clear/restore tests pass. No claim of account sync or background chart-library harvesting.
+
+
+## Canvas interaction and discovery expansion (2026-10-11)
+
+- State tests passed for 8 panels in 3 × 3 with a two-cell panel, three-cell full-row placement, insufficient-capacity rejection, and undo.
+- Browser drag from a panel's right handle to the third column set column span to 3 and selected a 1060.8 pt redraw; switching to mean bars showed geometry controls. Width changes updated horizontal transforms, and locking blocked subsequent geometry changes.
+- Browser-generated formal A–D labels and two-group letter/numeric P annotations exported to live-text SVG. P symbol alone was italic; original recorded P = 2.234883390359084e-09 displayed as P = 2.23e-9.
+- Calibration fixture: a 260-unit-wide image representing 1000 μm produced a 26-unit bar for 100 μm, with separate background and live text.
+- State tests validate labels/scales/locks and persistence. Letter-group tests cover the non-transitive a/ab/b case and reject incomplete comparisons.
+- All 12 new ROC view renderers passed a tied-score fixture (AUC 0.5). Full advanced workbench regression checks passed. Browser grouping translation with undo and label dragging subsequently passed; scale-background removal persisted through reload. Complex transformed-image calibration and multi-group statistical export still need broader interaction coverage; no blanket Prism/PowerPoint feature parity is claimed.
+
+Method-order tests verify that changing P values does not affect target-based ranking. The method explorer currently compares already computed primary/sensitivity results; it does not run general model selection.
+
+Browser method cards showed the existing Welch and Mann–Whitney results with distinct interpretations; target-driven ordering, rationale capture and undo passed. The new gutter slider committed and undid successfully. Exported composite SVG passed physical-canvas and live-text editability checks.

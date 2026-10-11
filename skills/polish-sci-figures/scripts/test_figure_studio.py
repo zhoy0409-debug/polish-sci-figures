@@ -76,11 +76,11 @@ class StudioTests(unittest.TestCase):
         self.assertEqual(pan['analysis'],original)
         self.assertEqual(before,{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in bundle.iterdir() if p.is_file()})
         points=[v for v in pan['variants'] if v['name']=='raw_points_estimate_ci']
-        self.assertEqual({v['size'] for v in points},{'original','portrait','wide','spanWide','spanTall','large'})
-        self.assertEqual(len({v['sha256'] for v in points}),6)
+        self.assertEqual({v['size'] for v in points},{'original','portrait','wide','spanWide','spanThree','spanTall','large'})
+        self.assertEqual(len({v['sha256'] for v in points}),7)
         for v in points:
             self.assertIn('<text',v['svg'])
-            ratios={'original':4/3,'portrait':3/4,'wide':2,'spanWide':(9.6+1/6)/3.6,'spanTall':4.8/(7.2+1/6),'large':(9.6+1/6)/(7.2+1/6)}
+            ratios={'spanThree':(14.4+1/3)/3.6,'original':4/3,'portrait':3/4,'wide':2,'spanWide':(9.6+1/6)/3.6,'spanTall':4.8/(7.2+1/6),'large':(9.6+1/6)/(7.2+1/6)}
             self.assertAlmostEqual(v['width']/v['height'],ratios[v['size']])
 
 

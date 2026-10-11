@@ -1,0 +1,62 @@
+"""Empirical ROC views: no smoothing, invented cohorts, or new inference."""
+import numpy as np
+import matplotlib.pyplot as plt
+
+KINDS = ('auc_fill','threshold_points','threshold_color','threshold_labels','youden',
+         'direct_labels','facets','low_fpr','log_fpr','auc_intervals','two_graph','confusion')
+
+def render_views(records, figsize):
+    outputs=[]
+    for kind in KINDS:
+        faceted=kind in {'threshold_color','threshold_labels','youden','facets','two_graph','confusion'}
+        n=len(records) if faceted else 1
+        cols=min(n,2);rows=(n+cols-1)//cols
+        fig,axes=plt.subplots(rows,cols,figsize=figsize,squeeze=False)
+        fig.subplots_adjust(left=.16,right=.96,bottom=.19,top=.88,wspace=.55,hspace=.7)
+        for ax in axes.flat[n:]:ax.set_visible(False)
+        for i,r in enumerate(records):
+            ax=axes.flat[i if faceted else 0]
+            x,y,t=r['fpr'],r['tpr'],r['thresholds'];color=r['color'];label=r['label']
+            finite=np.isfinite(t);idx=np.flatnonzero(finite)
+            if kind=='two_graph':
+                ax.plot(t[finite],y[finite],color=color,label='Sensitivity')
+                ax.plot(t[finite],1-x[finite],color=color,ls='--',label='Specificity')
+                ax.set(xlabel='Score threshold',ylabel='Rate',ylim=(0,1.02));ax.legend(frameon=False,fontsize=6)
+            elif kind=='auc_intervals':
+                ci=r['ci'];ax.errorbar(r['auc'],i,xerr=[[max(0,r['auc']-ci[0])],[max(0,ci[1]-r['auc'])]],fmt='o',color=color,capsize=3)
+                ax.set(xlim=(0,1),xlabel='AUC (bootstrap 95% CI)',yticks=range(len(records)),yticklabels=[v['label'] for v in records]);ax.axvline(.5,color='#aaaaaa',ls=':',lw=.7)
+            else:
+                ax.plot(x,y,color=color,lw=1.4,label=f"{label}  AUC {r['auc']:.2f}")
+                if kind=='auc_fill':ax.fill_between(x,y,alpha=.12,color=color)
+                if kind=='threshold_points':ax.scatter(x[finite],y[finite],s=8,color=color)
+                if kind=='threshold_color':
+                    dots=ax.scatter(x[finite],y[finite],c=t[finite],cmap='viridis',s=9,zorder=3)
+                    fig.colorbar(dots,ax=ax,fraction=.055,pad=.025,label='Threshold')
+                if kind=='threshold_labels':
+                    for k in idx[np.unique(np.linspace(0,len(idx)-1,min(4,len(idx))).astype(int))]:
+                        ax.scatter(x[k],y[k],s=10,color=color);ax.annotate(f'{t[k]:.2g}',(x[k],y[k]),xytext=(3,-9),textcoords='offset points',fontsize=6)
+                if kind in {'youden','confusion'}:
+                    k=idx[np.argmax((y-x)[finite])];cut=t[k]
+                    ax.scatter(x[k],y[k],s=20,color=color,zorder=4)
+                    if kind=='youden':
+                        ax.plot([x[k],x[k]],[x[k],y[k]],color=color,lw=.9)
+                        ax.text(.98,.05,f'Exploratory max J = {y[k]-x[k]:.2f}\nThreshold {cut:.3g}\nSe {y[k]:.2f}; Sp {1-x[k]:.2f}',ha='right',transform=ax.transAxes,fontsize=6)
+                    else:
+                        positive=r['scores']>=cut;truth=r['truth'].astype(bool)
+                        cells=[[int(np.sum(truth&positive)),int(np.sum(truth&~positive))],[int(np.sum(~truth&positive)),int(np.sum(~truth&~positive))]]
+                        ax.table(cellText=cells,rowLabels=['Actual +','Actual -'],colLabels=['Pred +','Pred -'],bbox=[.40,.07,.56,.28])
+                        ax.text(.98,.40,f'Exploratory max J\nThreshold {cut:.3g}',ha='right',transform=ax.transAxes,fontsize=6)
+                if kind=='direct_labels':
+                    k=idx[min(len(idx)-1,int((i+1)/(len(records)+1)*len(idx)))];ax.annotate(label,(x[k],y[k]),xytext=(4,-8-i*5),textcoords='offset points',color=color,fontsize=7)
+                ax.set(xlabel='1 − specificity',ylabel='Sensitivity',ylim=(0,1.02))
+                if kind!='log_fpr':ax.set_xlim(0,1)
+                if kind=='low_fpr':ax.set_xlim(0,.2)
+                if kind=='log_fpr':ax.set_xscale('log');ax.set_xlim(max(min(v['fpr'][v['fpr']>0].min() for v in records)/2,1e-5),1)
+                if i==0 or faceted:ax.plot([0,1],[0,1],color='#aaaaaa',ls='--',lw=.6)
+                if not faceted and kind!='direct_labels':ax.legend(frameon=False,fontsize=6,loc='lower right')
+            if faceted:ax.set_title(label,fontsize=8)
+            ax.spines[['top','right']].set_visible(False);ax.tick_params(labelsize=7)
+        if kind=='low_fpr':fig.suptitle('Low false-positive region (FPR ≤ 0.20)',fontsize=9)
+        if kind=='log_fpr':fig.suptitle('Log FPR scale; zero-FPR points outside view',fontsize=8)
+        outputs.append(('roc_'+kind,fig))
+    return outputs

@@ -89,3 +89,39 @@ for(const [stem,entry]of Object.entries(discovery)){
  for(const lang of ['zh-CN','en']){assert.equal(entry[lang].length,3);for(const text of entry[lang])assert.ok(typeof text==='string'&&text.trim().length>0);}
 }
 console.log('Candidate discovery bilingual metadata passed');
+
+const {resizePanel}=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+const eight={order:Array.from({length:8},(_,i)=>'p'+i),columns:3,gap:12,panels:Object.fromEntries(Array.from({length:8},(_,i)=>['p'+i,{variant:0,edits:{}}]))};
+const eightProject={panels:eight.order.map(id=>({id,variants:[{}]}))};
+const gridEight=arrange(eight,3,3),wideEight=resizePanel(gridEight,'p7',1,2);
+validateState(wideEight,eightProject);assert.equal(wideEight.grid.places.p7.cs,2);
+for(const id of eight.order.slice(0,7))assert.deepEqual(wideEight.grid.places[id],gridEight.grid.places[id]);
+assert.throws(()=>resizePanel(gridEight,'p7',1,3),/不足/);
+const four=clone(eight);four.order=four.order.slice(0,4);for(const key of Object.keys(four.panels))if(!four.order.includes(key))delete four.panels[key];
+const whole=resizePanel(arrange(four,3,3),'p3',1,3);assert.deepEqual(whole.grid.places.p3,{row:1,col:0,rs:1,cs:3});
+validateState(whole,{panels:four.order.map(id=>({id,variants:[{}]}))});
+const resizeHistory=new History(gridEight);resizeHistory.commit(wideEight);resizeHistory.undo();assert.deepEqual(resizeHistory.current,gridEight);
+console.log('Eight panels in 3x3, full-row panel, capacity rejection and resize undo passed');
+
+const rich=clone(initial);rich.panels['panel-0'].label={text:'A',x:2,y:5,size:12,font:'Arial',bold:true};
+rich.panels['panel-0'].scales={0:{e4:{calibration:1000,length:100,thickness:2,size:9,alpha:.7,position:'bl',font:'Arial',color:'#000000',bold:false,background:true}}};
+rich.panels['panel-0'].locked=true;rich.panels['panel-0'].lockedElements={0:['e4']};rich.panels['panel-0'].elementGroups={0:[['e4','e5']]};validateState(rich,project);
+const badScale=clone(rich);badScale.panels['panel-0'].scales[0].e4.calibration=0;assert.throws(()=>validateState(badScale,project));
+const badLabel=clone(rich);badLabel.panels['panel-0'].label.x=101;assert.throws(()=>validateState(badLabel,project));
+const richHistory=new History(initial);richHistory.commit(rich);const richRestored=History.restore(JSON.parse(JSON.stringify(richHistory)),project,rich);assert.deepEqual(richRestored.current,rich);
+assert.throws(()=>resizePanel(rich,'panel-0',1,1),/锁定/);
+assert.ok(!js.includes('[data-key=")'));
+console.log('Labels, calibrated scales, locks and persistent feature state passed');
+
+const {comparisonLetters}=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+assert.deepEqual(comparisonLetters(3,[{a:0,b:1,p:.1},{a:1,b:2,p:.1},{a:0,b:2,p:.01}]),['a','ab','b']);
+assert.throws(()=>comparisonLetters(3,[{a:0,b:1,p:.1}]),/完整/);
+assert.deepEqual(comparisonLetters(2,[{a:0,b:1,p:.001}]),['a','b']);
+console.log('Complete-comparison letter assignments and missing-result rejection passed');
+
+const {methodOrder}=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+const methods={primary_test:{p_value:.5},sensitivity_test:{p_value:.001}};
+assert.deepEqual(methodOrder(methods,'mean'),['primary_test','sensitivity_test']);
+assert.deepEqual(methodOrder(methods,'distribution'),['sensitivity_test','primary_test']);
+methods.primary_test.p_value=.0000001;assert.deepEqual(methodOrder(methods,'distribution'),['sensitivity_test','primary_test']);
+console.log('Method recommendations follow target, never smallest P');

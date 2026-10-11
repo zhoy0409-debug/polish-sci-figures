@@ -9,6 +9,7 @@ Deliver the near-final figure in one internal pass: establish the claim and fina
 
 ## Use the bundled resources
 
+- Rank statistical alternatives by the declared estimand, design, experimental unit and method assumptions, never by P value. Compare existing primary/sensitivity results with their own effect measures; retain every method considered and the user’s selection rationale. Missing paired, repeated, covariate or censoring information gates unsupported models. A global test cannot supply pairwise letters. Read the method-comparison section of `references/figure_studio.md`.
 - Preserve bilingual UI selection, local autosaved undo/redo, named checkpoints, and intentional-save preference memory in interactive workflows. Never treat hovering or autosaving as aesthetic approval. For candidate-library expansion, read `references/chart_discovery_curation.md`; only offer scientifically suitable, actually rendered candidates.
 - For interactive multipanel layout, offer master thumbnails, explicit rows × columns, spanning slots, and drag/keyboard position changes in Figure Studio. Use `--with-layouts` with supported workbench recipes and verified source data to prepare true portrait/wide redraws. Preview both the individual panel and its composite context. Never substitute SVG stretching or bitmap rotation for a layout-aware redraw; preserve manual choices and undo history.
 

@@ -30,15 +30,42 @@ def render_sizes(path, recipe, analysis, variants):
     colors = wb.resolve_palette(recipe.get('palette', 'zhoy_muted'), recipe.get('colors'), len(order))
     ylabel = recipe['value'] + (f" ({recipe['unit_label']})" if recipe.get('unit_label') else '')
     outputs = []
+    # Bars keep a physical width cap as the plotting canvas grows.
+    def plot_bars(data, group, value, order, colors, ylabel, analysis):
+        import numpy as np
+        fig, ax = wb.plt.subplots(figsize=wb.FIGSIZE)
+        physical_plot_width = wb.FIGSIZE[0]*72*.70
+        width = min(.60, 18/(physical_plot_width/max(len(order),1)))
+        rng = np.random.default_rng(wb.RNG_SEED)
+        for i,(label,color) in enumerate(zip(order,colors)):
+            vals=data.loc[data[group].astype(str)==label,value].to_numpy(float)
+            mean=vals.mean();lo,hi=wb.mean_ci(vals)
+            patch=ax.bar(i,mean,width=width,color=color,alpha=.45)[0];patch.set_gid(f'studio-bar-{i}')
+            dots=ax.scatter(i+rng.uniform(-width*.35,width*.35,len(vals)),vals,s=12,color=color,zorder=3);dots.set_gid(f'studio-group-{i}-points')
+            err=ax.errorbar(i,mean,yerr=[[mean-lo],[hi-mean]],fmt='none',color='#20242A',capsize=3,lw=1)
+            for j,line in enumerate([*err.lines[1],*err.lines[2]]):line.set_gid(f'studio-group-{i}-error-{j}')
+        ax.set_xticks(range(len(order)),order);ax.set_xlim(-.6,len(order)-.4)
+        wb.finish_axes(fig,ax,ylabel);wb.add_stat_line(fig,analysis)
+        for i,tick in enumerate(ax.xaxis.get_major_ticks()):
+            tick.label1.set_gid(f'studio-group-{i}-label');tick.tick1line.set_gid(f'studio-group-{i}-tick')
+        return fig
+    if recipe['design']=='independent':
+        wb.plot_studio_bars=plot_bars
+        supported['bar_raw_points']='plot_studio_bars'
+        variants=[*variants,{'name':'bar_raw_points'}]
+
     # Prepared once; the offline editor subsequently switches immediately.
     width,height=variants[0]['width']/72,variants[0]['height']/72
-    for size, dimensions in [('portrait', (3.6, 4.8)), ('wide', (7.2, 3.6)),
+    for size, dimensions in [('originalBars',(width,height)), ('portrait', (3.6, 4.8)), ('wide', (7.2, 3.6)),
                              ('spanWide',(width*2+12/72,height)),
+                             ('spanThree',(width*3+24/72,height)),
                              ('spanTall',(width,height*2+12/72)),
                              ('large',(width*2+12/72,height*2+12/72))]:
         wb.FIGSIZE = dimensions
         for v in variants:
             name = v['name']
+            if size=='originalBars' and name!='bar_raw_points':
+                continue
             if name not in supported:
                 continue
             fn = getattr(wb, supported[name])
@@ -66,7 +93,7 @@ def render_sizes(path, recipe, analysis, variants):
                     label.set_position((.06, .98)); label.set_verticalalignment('top')
                 output = io.StringIO()
                 fig.savefig(output, format='svg', metadata={'Date':None})
-                outputs.append((name, size, output.getvalue().encode('utf-8')))
+                outputs.append((name, 'original' if size=='originalBars' else size, output.getvalue().encode('utf-8')))
             finally:
                 wb.plt.close(fig)
     return outputs
