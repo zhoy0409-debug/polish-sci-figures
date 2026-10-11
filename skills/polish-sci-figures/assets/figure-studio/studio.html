@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Figure Studio · 科研组图微调</title><style>/*__STUDIO_CSS__*/</style></head>
+<body>
+<header><div class="brand"><span class="mark">F</span><div><strong>Figure Studio</strong><small>POLISH SCI FIGURES / 交互微调</small></div></div>
+<div class="toolbar"><button id="undo" title="Ctrl / Cmd + Z">↶ 撤销</button><button id="redo" title="Ctrl / Cmd + Shift + Z">↷ 重做</button><button id="compare">查看原版</button><button id="reset">恢复首版</button><button id="save">保存工程</button><button id="load">打开工程</button><button class="primary" id="export">导出 SVG</button><button id="png">PNG</button></div>
+<input type="file" id="projectFile" accept=".json" hidden></header>
+<div class="workspace">
+<aside class="navigator"><div class="eyebrow">FIGURE / 面板</div><h1 id="projectTitle"></h1><p class="muted">选中小图，再点选图内元素。<br>Shift + 点击可多选。</p><div id="panels"></div>
+<section><h2>组图布局</h2><label>列数<select id="columns"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label><label>间距（pt）<input id="gap" type="number" min="0" max="100" step="1"></label><div class="row"><button id="moveUp">面板前移</button><button id="moveDown">面板后移</button></div><p class="muted">保留小图原始物理尺寸；画面缩放只影响预览。</p></section>
+<section><h2>命名版本</h2><input id="versionName" placeholder="例如：蓝橙配色" aria-label="版本名称" maxlength="60"><button id="checkpoint">保存当前版本</button><div id="versions"></div><p class="muted">一个工程保存原图与样式差异，版本不重复存整张图。</p></section></aside>
+<main><div class="canvasbar"><span id="dimensions"></span><label>预览缩放<select id="zoom"><option value="fit">适合窗口</option><option value="1">100%</option><option value="1.5">150%</option><option value="2">200%</option></select></label></div><div id="viewport"><div id="artboard"></div></div><div class="status" id="status" role="status">本地编辑 · 无需 API · 原始文件保持不变</div></main>
+<aside class="inspector"><div class="eyebrow">INSPECTOR / 检查器</div><h2 id="selectionTitle">选择一个元素</h2>
+<nav class="row inspector-tabs" aria-label="编辑模式"><button data-tab="explore">表达探索</button><button data-tab="detail">细节编辑</button><button data-tab="palette">配色比较</button></nav>
+<label>应用范围<select id="scope"><option value="element">已选元素</option><option value="sameColor">当前小图：与选中元素同色</option><option value="panel">当前小图</option><option value="all">整张组图</option></select></label>
+<label>文字类别<select id="textRole"><option value="all">所有文字</option><option value="ticks">坐标刻度</option><option value="axis">坐标轴标题</option><option value="legend">图例文字</option></select></label>
+<section data-pane="detail"><h2>外观</h2><div class="row"><label>颜色<input type="color" id="color" value="#4477aa"></label><label>通道<select id="channel"><option value="both">填充与描边</option><option value="fill">仅填充</option><option value="stroke">仅描边</option></select></label></div><button id="applyColor">应用颜色</button><label>不透明度 <output id="opacityValue">100%</output><input type="range" min="5" max="100" value="100" id="opacity"></label><p class="muted">按原有可见通道改色；不会给空心图形添加填充。</p></section>
+<section data-pane="detail"><h2>文字</h2><label>字体<select id="font"><option>Arial</option><option>Times New Roman</option><option>DejaVu Sans</option><option>Calibri</option><option>SimSun</option></select></label><label>字号（最终成图 pt）<input id="fontSize" type="number" min="4" max="72" step="0.5" value="10"></label><div class="row"><button id="applyFont">应用字体 / 字号</button><button id="bold">加粗 / 还原</button></div><label>所选文字内容<input id="textContent" placeholder="点选一个文字或文字片段" aria-label="所选文字内容"></label><button id="applyText">修改该文字</button><p class="muted">含上下标 / 斜体的文字请选择具体片段；不把整段格式抹平。</p></section>
+<section data-pane="explore"><h2>这组数据，还能怎么看？</h2><p class="muted">不必先知道图名。悬停看整图效果，点击保留；先比较表达的信息，再选样式。</p><p class="muted" id="candidateHint"></p><div id="candidates"></div></section>
+<section data-pane="palette"><h2>配色预览</h2><p class="muted">按范围预览；整图跨面板颜色对应需核对分组语义。连续色标保持原样。</p><div id="palettes"></div><button id="complement">预览互补色</button><div id="complementPreview"></div></section>
+<details><summary>数据与分析记录</summary><div id="dataInfo"></div></details>
+<details><summary>交付前检查</summary><p class="muted">导出为编辑稿。请按最终尺寸核对字体、碰撞、颜色语义、科学符号及栅格分辨率，再运行原 skill 的 QA。</p><ul id="qa"></ul></details>
+</aside></div>
+<script type="application/json" id="project">__STUDIO_PROJECT__</script><script>/*__STUDIO_JS__*/</script></body></html>

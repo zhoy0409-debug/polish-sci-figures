@@ -15,10 +15,17 @@ def main():
             names=set(handle.namelist())
             for name in ROOT_FILES: assert name in names,name
             for skill in SKILL_NAMES: assert f"skills/{skill}/SKILL.md" in names,skill
+            for asset in ("studio.html", "studio.css", "studio.js"):
+                assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             assert not any("__pycache__" in name or name.endswith((".pyc",".pyo")) or "/examples/" in name or name.startswith("dist/") for name in names)
             extracted=base/"suite"; handle.extractall(extracted)
         help_run=subprocess.run([sys.executable,"sci_figures.py","--help"],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         assert help_run.returncode==0 and "usage:" in help_run.stdout.lower(),help_run.stderr
+        sample=base/"sample.svg"
+        sample.write_text('<svg xmlns="http://www.w3.org/2000/svg" width="100pt" height="80pt" viewBox="0 0 100 80"><text x="5" y="15">Response</text></svg>', encoding="utf-8")
+        studio=subprocess.run([sys.executable,"sci_figures.py","studio",str(sample.resolve()),"--out",str((base/"studio.html").resolve())],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        assert studio.returncode==0,studio.stderr
+        assert "figure-studio/1" in (base/"studio.html").read_text(encoding="utf-8")
         doctor=subprocess.run([sys.executable,"sci_figures.py","doctor","--font","DejaVu Sans","--json"],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         payload=json.loads(doctor.stdout); assert doctor.returncode==0 and payload["summary"]["blocking"]==0,(payload,doctor.stderr)
     print("complete release bundle tests passed")

@@ -9,6 +9,8 @@ Deliver the near-final figure in one internal pass: establish the claim and fina
 
 ## Use the bundled resources
 
+- When the user wants direct visual editing after the AI first draft, read `references/human_ai_figure_workflow.md` and `references/figure_studio.md`, then build the offline editor with `scripts/figure_studio.py`. It accepts reviewed candidate directories or standalone SVG panels and supports selection-scoped colour/opacity/text edits, real candidate previews, undo/redo, named versions, and editable export. Keep the original AI-only workflow available. Never claim a flattened PNG is element-editable or that browser styling reruns statistics. Preserve the user's manual choices when resuming AI finalization.
+
 - Use `$make-sci-data-figures` first when the input is raw CSV/TSV/XLSX data or the user needs statistical design checks, several chart forms from the same data, or palette-only rerendering.
 - When the user cites a template number from the audited 1-124 collection or asks for template-based alternatives, run `scripts/template_router.py resolve --template NUMBER`. Use its upgraded scientific family and input contract; never copy ornamental styling or redistribute the source PDF/Prism files.
 - Use `$standardize-sci-images` first when the input is microscopy, fluorescence, histology, or electron-microscopy imagery that needs locked batch display settings, equal dimensions, calibrated scale bars, or a processing audit.

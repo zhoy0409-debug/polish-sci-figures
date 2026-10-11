@@ -223,6 +223,18 @@ Use $standardize-sci-images to standardize this microscopy batch and add calibra
 Use $polish-sci-figures to assemble the selected panels and audit the final editable SVGs.
 ```
 
+## Figure Studio: refine the AI first draft yourself
+
+Generate the first candidates with the existing skills, then open a local visual editor:
+
+```sh
+python sci_figures.py studio results/panel1 results/panel2 --out figure-studio.html
+```
+
+One candidate directory becomes one panel, with real same-bundle SVG previews. Click plot elements to edit colour, opacity, text, font, size, or weight; apply changes to selected elements, matching colours, one panel, or the composite. Switch candidates, preview palettes, reorder panels, and save named versions inside one project. Original assets are stored once, with reversible style differences. The self-contained page works offline with no API key or new dependencies.
+
+This editor preserves the original AI-driven workflow and adds direct manual refinement. It does not rerun statistics, make raster text editable, or infer new chart families. Candidate directories require the original recipe and analysis plan; fonts and final-size scientific/visual QA still apply. See [usage and boundaries](skills/polish-sci-figures/references/figure_studio.md). This is a development addition, not a claim that the existing v1.3.3 release archive already contains it.
+
 ## Unified CLI
 
 ```bash
