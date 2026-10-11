@@ -72,3 +72,18 @@ The two new TomatoSCI links were inspected only to the extent available in the b
 Method-order tests verify that changing P values does not affect target-based ranking. The method explorer currently compares already computed primary/sensitivity results; it does not run general model selection.
 
 Browser method cards showed the existing Welch and Mann–Whitney results with distinct interpretations; target-driven ordering, rationale capture and undo passed. The new gutter slider committed and undid successfully. Exported composite SVG passed physical-canvas and live-text editability checks.
+
+
+## Collection, interaction fixes and expandable grids (2026-10-11)
+
+- The first fitting attempt incorrectly reused large native margins across panels and compressed small plots; it was withdrawn from the live page. Subsequent work was checked on a separate QA URL and project ID.
+- Browser verified a spanning single-axis plot against two stacked neighbours, physical-size glyph compensation, and data-anchored letters/brackets. Raster and multi-axis fallback is intentional. Arbitrary source SVGs, dense real-world labels and complex multi-axis reflow have not received blanket visual validation.
+- Reproduced a font-save failure caused by generated annotations with no persistent source element IDs. Source-object filtering and separate annotation font state fixed it. Browser checks passed for panel font input at 14 pt, direct single-axis-title selection at 12 pt, undo and English UI. SVG DOM showed the requested font sizes while other panels retained 9 pt.
+- Browser collection tests passed: capture preset, import a second project, open it, paste layout/styles, reopen a saved figure, and archive the synthetic test entries. Cross-project text/data/analysis are not copied by the preset path. Whole-library backup import and quota/error recovery still need broader browser coverage.
+- Right-click insertion of three rows produced 6 × 3; insertion of two columns produced 3 × 5; undo restored 3 × 3. A subsequent check confirmed physical canvas width grows while old track widths are retained.
+- Node regressions cover track insertion, crossing spans, locks, bounds, preserved state/data, undo, explicit track dimensions and annotation-font validation. Existing bilingual/state tests, seven HTML builder tests, structure validation and archive-content checks passed during this revision.
+
+## Publication export and contextual actions (2026-10-12)
+
+- Browser export at 180.00 × 139.41 mm produced a 4252 × 3293 PNG. Pillow read 599.9988 dpi (integer pixels/metre rounding); all PNG chunk CRCs passed and exactly one pHYs chunk was present. Export was visually inspected. Changing publication width preserved all internal path geometry and transforms. The prior 300 dpi check above describes the older revision.
+- Right-clicking a text object selected that object and exposed contextual editing. Font adjustment through the inspector committed successfully; right-click Undo used the same history and restored the preceding state. Menu actions delegate to existing sidebar handlers instead of introducing separate state mutations.

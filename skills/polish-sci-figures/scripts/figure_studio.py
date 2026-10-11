@@ -130,6 +130,7 @@ def write_html(project: dict, output: Path) -> None:
     html = html.replace("/*__STUDIO_I18N__*/", (ASSETS / "i18n.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_MEMORY__*/", (ASSETS / "memory.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_DISCOVERY__*/", (ASSETS / "discovery.js").read_text(encoding="utf-8"))
+    html = html.replace("/*__STUDIO_LIBRARY__*/", (ASSETS / "library.js").read_text(encoding="utf-8"))
     html = html.replace("__STUDIO_PROJECT__", payload)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(html, encoding="utf-8")

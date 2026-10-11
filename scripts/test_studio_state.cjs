@@ -125,3 +125,37 @@ assert.deepEqual(methodOrder(methods,'mean'),['primary_test','sensitivity_test']
 assert.deepEqual(methodOrder(methods,'distribution'),['sensitivity_test','primary_test']);
 methods.primary_test.p_value=.0000001;assert.deepEqual(methodOrder(methods,'distribution'),['sensitivity_test','primary_test']);
 console.log('Method recommendations follow target, never smallest P');
+
+// Inserting tracks shifts downstream panels, preserves data and expands crossing spans.
+const {insertTracks}=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+const insertedRows=insertTracks(gridEight,'row',1,3);
+assert.equal(insertedRows.grid.rows,6);assert.equal(insertedRows.grid.places.p3.row,4);
+assert.deepEqual(insertedRows.order,gridEight.order);assert.deepEqual(insertedRows.panels,gridEight.panels);
+validateState(insertedRows,eightProject);
+const insertedColumns=insertTracks(gridEight,'column',0,2);
+assert.equal(insertedColumns.columns,5);assert.equal(insertedColumns.grid.places.p0.col,2);
+validateState(insertedColumns,eightProject);
+const crossing=insertTracks(wideEight,'column',2,2);
+assert.equal(crossing.grid.places.p7.cs,4);validateState(crossing,eightProject);
+const lockedGrid=clone(gridEight);lockedGrid.panels.p3.locked=true;
+assert.throws(()=>insertTracks(lockedGrid,'row',1,2),/锁定/);
+assert.throws(()=>insertTracks(gridEight,'column',1,4),/容量/);
+assert.throws(()=>insertTracks(gridEight,'row',1,1.5),/容量/);
+const insertHistory=new History(gridEight);insertHistory.commit(insertedRows);insertHistory.undo();assert.deepEqual(insertHistory.current,gridEight);
+const fontState=clone(initial);fontState.panels['panel-0'].annotationFont={font:'Arial',size:14};validateState(fontState,project);
+fontState.panels['panel-0'].annotationFont.size=0;assert.throws(()=>validateState(fontState,project));
+console.log('Multi-track insertion, crossing spans, capacity, locks, undo and annotation font validation passed');
+
+const fixedInsertion=insertTracks(gridEight,'column',1,2,{widths:[100,120,140],heights:[150,160,170]});
+assert.deepEqual(fixedInsertion.grid.widths,[100,120,120,120,140]);validateState(fixedInsertion,eightProject);
+console.log('Inserted tracks retain existing physical dimensions');
+
+const {exportGeometry,pngWithDpi}=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+const sized=exportGeometry(720,360,{widthMm:180,dpi:600});
+assert.equal(sized.heightMm,90);assert.equal(sized.widthPx,4252);assert.equal(sized.heightPx,2126);
+assert.equal(exportGeometry(720,360).dpi,600);
+const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a4xQAAAAASUVORK5CYII=','base64');
+const png600=Buffer.from(pngWithDpi(png,600)),pos=png600.indexOf(Buffer.from('pHYs'));
+assert.ok(pos>0);assert.equal(png600.readUInt32BE(pos+4),23622);assert.equal(png600[pos+12],1);
+const png1200=Buffer.from(pngWithDpi(png600,1200));assert.equal(png1200.length,png600.length);assert.equal(png1200.readUInt32BE(pos+4),47244);
+console.log('Proportional publication sizing and real PNG DPI metadata passed');

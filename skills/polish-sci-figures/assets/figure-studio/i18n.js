@@ -2,6 +2,27 @@
 'use strict';
 const StudioI18n = (() => {
   const en = {
+'快捷操作':'Quick actions',
+'颜色与透明度…':'Color & opacity…','字体与字号…':'Font & size…','图型与横竖预览…':'Chart & orientation previews…','位置与跨格…':'Position & span…','图号与位置…':'Panel label & position…','统计标注…':'Statistical annotations…','图像比例尺…':'Image scale bar…',
+'点击更改投稿尺寸':'Click to change publication size',
+
+"导出尺寸或分辨率无效":"Invalid export dimensions or resolution","{0} × {1} px · {2} dpi · 锁定纵横比":"{0} \u00d7 {1} px \u00b7 {2} dpi \u00b7 Aspect ratio locked","缩放后最小文字约 {0} pt；请按期刊要求核对。":"Smallest scaled text is approximately {0} pt; check your journal requirements.","已等比例调整投稿尺寸":"Publication size changed proportionally","已恢复原始物理尺寸":"Original physical dimensions restored","原始栅格图像无法解码":"The source raster image could not be decoded","{0} 张原始图片不足目标分辨率，最低约 {1} dpi；放大不能补回细节。":"{0} source images fall below the target resolution; minimum about {1} dpi. Upscaling cannot restore detail.","输出超过浏览器画布容量，请保留投稿尺寸并导出 SVG 后转换。":"Output exceeds browser canvas capacity. Keep the publication size and export SVG for external conversion.","已导出 {0} × {1} px，{2} dpi；物理尺寸 {3} × {4} mm。":"Exported {0} \u00d7 {1} px at {2} dpi; physical size {3} \u00d7 {4} mm.","投稿尺寸与导出":"Publication size & export","整体等比例缩放，保留内部排版。快捷尺寸仅作示例，以目标期刊要求为准。":"Scale proportionally, preserving the composition. Preset widths are examples; follow your journal requirements.","尺寸快捷值":"Preset width","自定义尺寸":"Custom size","成图宽度（mm）":"Figure width (mm)","成图高度（mm）":"Figure height (mm)","PNG 分辨率":"PNG resolution","恢复原始物理尺寸":"Restore original physical size",
+
+"插入方向无效":"Invalid insertion direction","插入数量超出当前母版容量":"The insertion exceeds the grid capacity","插入会移动或扩展已锁定小图，请先解锁":"Insertion would move or expand a locked panel. Unlock it first.","当前还可插入 {0} 行、{1} 列；跨越插入位置的小图会扩展。":"Room for {0} more rows and {1} columns. Panels spanning the insertion expand.","已插入 {0} {1}":"Inserted {0} {1}","行":"rows","列":"columns","插入行／列":"Insert rows / columns","插入行或列":"Insert rows or columns","扩展母版":"Extend layout","插入数量":"Number to insert","↑ 在上方插入行":"\u2191 Rows above","↓ 在下方插入行":"\u2193 Rows below","← 在左侧插入列":"\u2190 Columns left","→ 在右侧插入列":"\u2192 Columns right","关闭":"Close",
+
+'恢复该成稿全部参数':'Restore exact source settings','显示已归档组图':'Show archived figures','恢复归档':'Unarchive','归档':'Archive','完整恢复仅适用于该预设的原工程；其他工程请粘贴可迁移样式。':'Exact restoration applies to the source project only. Paste transferable styles onto other projects.','已恢复成稿全部参数':'Exact source settings restored',
+
+'将修改 {0} 个文字对象；输入后回车或移开即可应用。':'Editing {0} text objects. Press Enter or leave the field to apply.',
+'当前未选中文字。请点选文字，或将范围改为当前小图。':'No text selected. Select text or choose the current panel scope.',
+
+'统计标注与柱形布局':'Statistical labels & bars',
+'单坐标绘图区自动对齐网格边界，文字与点标记保持物理尺寸；图像和多坐标图保留原比例。':'Single-axis plots align to the grid with fixed-size text and markers. Images and multi-axis figures retain their aspect ratio.',
+
+"总览保存失败，请下载工程备份。":"Collection save failed. Download a project backup.","打开并细调":"Open to refine","该工程需要重新导入":"This project needs to be imported again","本地总览：{0} 张组图，{1} 个预设。":"Local collection: {0} figures, {1} presets.","已粘贴编辑预设":"Edit preset pasted","已粘贴可迁移样式；数据、文字与统计结果保留。锁定小图跳过 {0} 张。":"Transferable styles pasted; data, text and statistical results retained. Skipped {0} locked panels.","请输入预设名称":"Enter a preset name","组图总览／编辑预设":"Collection / presets","组图总览与编辑预设":"Figure collection & presets","返回编辑":"Back to editor","集中查看所有组图，点开继续细调。预设按小图顺序匹配可迁移样式；数据、文字内容、统计结果和图像标定保留目标工程自己的值。":"Review all figures together and open any to refine. Presets match transferable styles by panel order, preserving target data, text, statistics and image calibration.","收录／更新当前组图":"Add / update this figure","导入多个工程／总览包":"Import projects / collection","备份整个总览":"Back up collection","成稿预设名称":"Preset name","例如：论文主图统一样式":"e.g. Main manuscript figures","保存当前成稿参数":"Save current edit preset","使用预设":"Choose preset","粘贴到当前组图":"Paste onto current figure","同时应用布局（小图数量相同时）":"Include layout (matching panel count)",
+
+    'HEX 色值':'HEX color','常用色板':'Swatches','最近使用':'Recent colors',
+    '请输入有效的 HEX 色值，例如 #4477AA。':'Enter a valid HEX color, such as #4477AA.',
+
     'Figure Studio · 科研组图微调':'Figure Studio · Scientific figure refinement',
     'POLISH SCI FIGURES / 交互微调':'POLISH SCI FIGURES / VISUAL REFINEMENT',
     '↶ 撤销':'↶ Undo','↷ 重做':'↷ Redo','查看原版':'View original','返回编辑版':'Back to edits',
