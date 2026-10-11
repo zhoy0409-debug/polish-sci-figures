@@ -61,5 +61,27 @@ class StudioTests(unittest.TestCase):
         self.assertNotEqual(first['id'],build_project([self.svg],'B')['id'])
         self.assertEqual(first['panels'][0]['variants'][0]['svg'],SIMPLE)
 
+    def test_real_size_redraws_preserve_sources_and_analysis(self):
+        import importlib.util
+        workbench = Path(__file__).resolve().parents[2]/'make-sci-data-figures/scripts/figure_workbench.py'
+        spec=importlib.util.spec_from_file_location('test_studio_workbench',workbench)
+        wb=importlib.util.module_from_spec(spec);spec.loader.exec_module(wb)
+        source=workbench.parent.parent/'examples/synthetic_group_comparison.csv'
+        bundle=self.root/'bundle'
+        wb.generate(source,'condition','Response','independent',bundle,subject='sample_id',order_text='Control,Treatment',font_requested='DejaVu Sans')
+        before={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in bundle.iterdir() if p.is_file()}
+        original=json.loads((bundle/'analysis_plan.json').read_text(encoding='utf-8'))
+        project=build_project([bundle],'Layout',with_layouts=True)
+        pan=project['panels'][0]
+        self.assertEqual(pan['analysis'],original)
+        self.assertEqual(before,{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in bundle.iterdir() if p.is_file()})
+        points=[v for v in pan['variants'] if v['name']=='raw_points_estimate_ci']
+        self.assertEqual({v['size'] for v in points},{'original','portrait','wide','spanWide','spanTall','large'})
+        self.assertEqual(len({v['sha256'] for v in points}),6)
+        for v in points:
+            self.assertIn('<text',v['svg'])
+            ratios={'original':4/3,'portrait':3/4,'wide':2,'spanWide':(9.6+1/6)/3.6,'spanTall':4.8/(7.2+1/6),'large':(9.6+1/6)/(7.2+1/6)}
+            self.assertAlmostEqual(v['width']/v['height'],ratios[v['size']])
+
 
 if __name__=='__main__':unittest.main()

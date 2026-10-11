@@ -38,27 +38,30 @@ def length_pt(raw: str) -> float:
 
 
 def inspect_svg(path: Path) -> dict:
-    raw = path.read_bytes()
+    return inspect_svg_bytes(path.read_bytes(), path.stem)
+
+
+def inspect_svg_bytes(raw: bytes, name: str) -> dict:
     if len(raw) > 20_000_000:
-        raise ValueError(f"SVG exceeds 20 MB: {path.name}")
+        raise ValueError(f"SVG exceeds 20 MB: {name}")
     text = raw.decode("utf-8-sig")
     if re.search(r"<!ENTITY", text, re.I):
         raise ValueError("XML entity declarations are not supported")
     root = ET.fromstring(text)
     if root.tag != f"{{{SVG}}}svg":
-        raise ValueError(f"Not an SVG: {path.name}")
+        raise ValueError(f"Not an SVG: {name}")
     width, height = length_pt(root.get("width", "")), length_pt(root.get("height", ""))
     box = [float(x) for x in re.split(r"[\s,]+", root.get("viewBox", "").strip()) if x]
     if len(box) != 4 or not all(math.isfinite(x) for x in box) or min(box[2:]) <= 0:
-        raise ValueError(f"SVG requires a finite positive viewBox: {path.name}")
+        raise ValueError(f"SVG requires a finite positive viewBox: {name}")
     if not math.isclose(width/box[2], height/box[3], rel_tol=1e-5):
         raise ValueError("Physical canvas and viewBox aspect ratios must agree")
     # Browser-side strict allowlist is applied again, including restored projects.
-    return {"name": path.stem, "svg": text, "sha256": digest(raw),
+    return {"name": name, "svg": text, "sha256": digest(raw),
             "width": width, "height": height, "viewBox": box}
 
 
-def panel_from_path(path: Path, index: int) -> dict:
+def panel_from_path(path: Path, index: int, with_layouts: bool = False) -> dict:
     if not path.exists():
         raise ValueError(f"Panel input not found: {path}")
     recipe, analysis, table = {}, {}, None
@@ -92,17 +95,25 @@ def panel_from_path(path: Path, index: int) -> dict:
         if any(not math.isclose(variant[k], first[k], rel_tol=1e-5) for k in ("width", "height")) or variant["viewBox"] != first["viewBox"]:
             raise ValueError(f"{path.name}: candidate canvases differ; regenerate for the same slot before switching")
     selected = next((i for i, v in enumerate(variants) if v["name"] in ("raw_points_estimate_ci", "paired_trajectories")), 0)
+    for v in variants:
+        v['size'] = 'original'
+    if with_layouts and path.is_dir():
+        from studio_sizes import render_sizes
+        for name, size, raw in render_sizes(path, recipe, analysis, variants):
+            v = inspect_svg_bytes(raw, name)
+            v['size'] = size
+            variants.append(v)
     return {"id": f"panel-{index}", "name": path.name, "variants": variants,
             "initialVariant": selected, "recipe": recipe, "analysis": analysis, "table": table,
             "provenance": "upstream-bundle" if path.is_dir() else "standalone-svg"}
 
 
-def build_project(paths: list[Path], title: str, columns: int = 2) -> dict:
+def build_project(paths: list[Path], title: str, columns: int = 2, with_layouts: bool = False) -> dict:
     if not paths or len(paths) > 24:
         raise ValueError("Choose 1–24 panels")
     if not 1 <= columns <= 6:
         raise ValueError("Columns must be between 1 and 6")
-    panels = [panel_from_path(path, i) for i, path in enumerate(paths)]
+    panels = [panel_from_path(path, i, with_layouts) for i, path in enumerate(paths)]
     identity = digest(json.dumps({"panels": panels, "title": title, "columns": columns}, sort_keys=True, ensure_ascii=False).encode())[:20]
     return {"schema": "figure-studio/1", "id": identity, "title": title, "panels": panels,
             "initialState": {"order": [p["id"] for p in panels], "columns": columns, "gap": 12,
@@ -129,9 +140,10 @@ def main(argv=None) -> int:
     parser.add_argument("--out", required=True, type=Path, help="New standalone HTML file (never overwrites)")
     parser.add_argument("--title", default="Figure Studio")
     parser.add_argument("--columns", type=int, default=2)
+    parser.add_argument("--with-layouts", action="store_true", help="Prepare portrait and wide canvases from supported workbench recipes and verified source data")
     args = parser.parse_args(argv)
     try:
-        write_html(build_project(args.panels, args.title, args.columns), args.out)
+        write_html(build_project(args.panels, args.title, args.columns, args.with_layouts), args.out)
     except (ValueError, OSError, ET.ParseError) as exc:
         parser.error(str(exc))
     print(f"Figure Studio: {args.out.resolve()}")

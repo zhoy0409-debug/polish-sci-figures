@@ -37,3 +37,15 @@ python sci_figures.py studio path/to/reviewed-candidates panel2.svg --out figure
 ```
 
 On a restricted host where the system temporary directory is not writable, use a permitted workspace temporary directory for Python's test harness. This environment issue is separate from test assertions.
+
+## Layout update — 2026-10-11
+
+The new `layout-studio.html` adds row/column master previews, spanning slots, pointer dragging on the canvas, navigation drag/drop, direct row/column placement, and per-family canvas alternatives. The original limitations above describe the initial preview: supported workbench bundles now redraw portrait, wide, two-column, two-row, and large canvases from verified source data. Other SVG inputs retain their physical dimensions.
+
+- Seven Python tests pass, including real redraws, unchanged source bundle hashes and unchanged analysis records.
+- Node tests cover 15-panel 5 × 3 placement, capacity rejection, spanning swaps, empty moves, self-drop, overlap/bounds rejection, and undo/redo without asset duplication.
+- Current Windows browser: an actual pointer drag swapped the first and fourth panels; undo restored them. Five-row/three-column master selection, tall/wide master matching, explicit row/column swap, and undo verified through visible UI state.
+- SVG exported while layout guides were active passed physical-canvas and editability checks: 248.073 × 282.787 mm, 45 live text elements, no embedded raster. Guides and temporary order numbers are excluded from export. Browser error/warning log was empty during these checks.
+- Suite archive extraction, CLI, and skill-structure checks passed. No claim of cross-platform visual completion, journal-ready typography for every arbitrary dataset, or automatic evidence-group arrangement.
+
+The two new TomatoSCI links were inspected only to the extent available in the browser: title, author, text and cover images. Full video playback and before/after transformations were not available. Evidence-group design principles are explicitly recorded as our inference from the user's requirements and visible material, not a verified video transcript.

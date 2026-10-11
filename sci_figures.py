@@ -436,8 +436,9 @@ def parser():
     p=sub.add_parser("studio", help="Build an offline visual editor from existing SVG candidate bundles")
     p.add_argument("panels", nargs="+"); p.add_argument("--out", required=True)
     p.add_argument("--title", default="Figure Studio"); p.add_argument("--columns", type=int, default=2)
+    p.add_argument("--with-layouts", action="store_true", help="Prepare portrait and wide canvas alternatives from source data")
     p.set_defaults(func=lambda args: subprocess.call([sys.executable, str(POLISH/"scripts"/"figure_studio.py"),
-        *args.panels, "--out", args.out, "--title", args.title, "--columns", str(args.columns)]))
+        *args.panels, "--out", args.out, "--title", args.title, "--columns", str(args.columns), *(["--with-layouts"] if args.with_layouts else [])]))
     return root
 def main():
     args=parser().parse_args()

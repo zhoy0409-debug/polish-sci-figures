@@ -229,6 +229,8 @@ Generate the first candidates with the existing skills, then open a local visual
 
 ```sh
 python sci_figures.py studio results/panel1 results/panel2 --out figure-studio.html
+# Add portrait/wide redraws from supported source recipes:
+python sci_figures.py studio results/panel1 results/panel2 --with-layouts --out figure-studio-layouts.html
 ```
 
 One candidate directory becomes one panel, with real same-bundle SVG previews. Click plot elements to edit colour, opacity, text, font, size, or weight; apply changes to selected elements, matching colours, one panel, or the composite. Switch candidates, preview palettes, reorder panels, and save named versions inside one project. Original assets are stored once, with reversible style differences. The self-contained page works offline with no API key or new dependencies.

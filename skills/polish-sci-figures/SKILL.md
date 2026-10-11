@@ -9,6 +9,8 @@ Deliver the near-final figure in one internal pass: establish the claim and fina
 
 ## Use the bundled resources
 
+- For interactive multipanel layout, offer master thumbnails, explicit rows × columns, spanning slots, and drag/keyboard position changes in Figure Studio. Use `--with-layouts` with supported workbench recipes and verified source data to prepare true portrait/wide redraws. Preview both the individual panel and its composite context. Never substitute SVG stretching or bitmap rotation for a layout-aware redraw; preserve manual choices and undo history.
+
 - When the user wants direct visual editing after the AI first draft, read `references/human_ai_figure_workflow.md` and `references/figure_studio.md`, then build the offline editor with `scripts/figure_studio.py`. It accepts reviewed candidate directories or standalone SVG panels and supports selection-scoped colour/opacity/text edits, real candidate previews, undo/redo, named versions, and editable export. Keep the original AI-only workflow available. Never claim a flattened PNG is element-editable or that browser styling reruns statistics. Preserve the user's manual choices when resuming AI finalization.
 
 - Use `$make-sci-data-figures` first when the input is raw CSV/TSV/XLSX data or the user needs statistical design checks, several chart forms from the same data, or palette-only rerendering.
