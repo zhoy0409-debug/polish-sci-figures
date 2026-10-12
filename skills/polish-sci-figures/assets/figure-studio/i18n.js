@@ -175,7 +175,7 @@ const StudioI18n = (() => {
     '恢复刚清除的偏好':'Restore just-cleared preferences',
     '偏好记忆已恢复。':'Preference memory restored.',
     '撤销记录无效':'Invalid undo history','撤销记录与当前状态不一致':'Undo history does not match the current state',
-    '已自动保存 · 含撤销记录':'Autosaved · Undo history included',
+    '已自动保存 · 含撤销记录':'Saved locally · Undo history kept',
     '自动保存失败 · 请下载工程':'Autosave failed · Download your project',
     '其他窗口已更新 · 请先下载当前工程':'Another window saved changes · Download this project first',
     '当前编辑已恢复，但旧撤销记录不可用。':'Current edits were restored, but previous undo history was unavailable.',
@@ -327,6 +327,14 @@ const StudioI18n = (() => {
     '已自动收紧留白':'Unused margins trimmed','已恢复原始留白':'Original margins restored'
   });
   en['图形已更新，请关闭后重新打开导出预览']='The figure changed. Close and reopen the export preview.';
+  Object.assign(en,{
+    '工程操作':'Project actions','撤销':'Undo','重做':'Redo','撤销 · Ctrl / Cmd + Z':'Undo · Ctrl / Cmd + Z','重做 · Ctrl / Cmd + Shift + Z':'Redo · Ctrl / Cmd + Shift + Z',
+    '对照原图':'Compare','返回编辑':'Back to edits','对照原始外观；不改变当前编辑':'Compare the original appearance without changing your edits',
+    '项目':'Project','保存':'Save','导出':'Export','可编辑矢量':'Editable vector','无损图像':'Lossless image','投稿级图像':'Publication image',
+    '恢复此工程的初始版本；可撤销':'Restore this project’s initial version; this action can be undone',
+    '下载工程文件，保留数据、编辑与撤销记录':'Download the project with its data, edits and undo history',
+    '自动保存包含当前编辑与撤销记录；使用“保存”下载工程备份。':'Your edits and undo history are saved locally. Use Save to download a project backup.'
+  });
   let language='zh-CN';
   function choose(saved,preferred='en'){return ['zh-CN','en'].includes(saved)?saved:/^zh\b/i.test(preferred)?'zh-CN':'en';}
   function setLanguage(value){language=value==='en'?'en':'zh-CN';return language;}

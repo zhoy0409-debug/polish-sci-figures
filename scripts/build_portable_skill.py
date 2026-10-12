@@ -11,7 +11,7 @@ import zipfile
 from build_release import ROOT, archive_bytes, release_files
 
 SKILL_NAME = "polish-sci-figures"
-VERSION = "v1.4.1"
+VERSION = "v1.4.2"
 ENTRYPOINT = ROOT / "adapters/portable-skill/SKILL.md"
 
 
@@ -52,7 +52,7 @@ def portable_bytes(path: Path, included: set[str], version: str) -> bytes:
 
 def build(version: str = VERSION, outdir: Path = ROOT / "dist") -> Path:
     if not re.fullmatch(r"v\d+\.\d+\.\d+(?:[-+][A-Za-z0-9.-]+)?", version):
-        raise ValueError("Use a version such as v1.4.1")
+        raise ValueError("Use a version such as v1.4.2")
     files = list(suite_files())
     included = {path.relative_to(ROOT).as_posix() for path in files}
     for path in [ENTRYPOINT, *files]:

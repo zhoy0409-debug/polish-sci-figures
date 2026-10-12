@@ -22,7 +22,7 @@ WORK = ROOT / '.cache' / 'desktop-build'
 STAGE = WORK / 'suite'
 DIST = ROOT / 'dist' / 'desktop'
 APP = DIST / 'Figure Studio'
-VERSION = '0.1.1'
+VERSION = '0.1.2'
 PACKAGES = ('numpy', 'scipy', 'pandas', 'matplotlib', 'openpyxl', 'Pillow',
             'contourpy', 'cycler', 'fonttools', 'kiwisolver', 'packaging',
             'python-dateutil', 'pytz', 'tzdata', 'six', 'et_xmlfile', 'pyparsing', 'PyYAML',
@@ -56,9 +56,16 @@ def clean_build_dir(path):
 def copy_suite():
     clean_build_dir(STAGE)
     sys.path.insert(0, str(ROOT / 'scripts'))
-    from build_release import SKILL_NAMES, ROOT_FILES, include_file
-    for name in ROOT_FILES:
-        shutil.copy2(ROOT / name, STAGE / name)
+    from build_release import SKILL_NAMES, ROOT_FILES, SUPPORT_FILES, archive_bytes, include_file
+    included = {*ROOT_FILES, *SUPPORT_FILES}
+    included.update(source.relative_to(ROOT).as_posix()
+                    for skill in SKILL_NAMES
+                    for source in (ROOT / 'skills' / skill).rglob('*')
+                    if source.is_file() and include_file(source))
+    for name in (*ROOT_FILES, *SUPPORT_FILES):
+        target = STAGE / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(archive_bytes(ROOT / name, included, 'v1.4.2'))
     for name in SKILL_NAMES:
         for source in (ROOT / 'skills' / name).rglob('*'):
             if source.is_file() and include_file(source):

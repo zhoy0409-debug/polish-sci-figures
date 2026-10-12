@@ -12,8 +12,8 @@ def main():
     assert test_tmp.is_relative_to(ROOT.resolve())
     test_tmp.mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(dir=test_tmp) as tmp:
-        base=Path(tmp); archive=build("v1.4.1",base/"dist")
-        assert archive.name=="sci-figure-suite-v1.4.1.zip"
+        base=Path(tmp); archive=build("v1.4.2",base/"dist")
+        assert archive.name=="sci-figure-suite-v1.4.2.zip"
         with zipfile.ZipFile(archive) as handle:
             names=set(handle.namelist())
             for name in (*ROOT_FILES, *SUPPORT_FILES): assert name in names,name
@@ -28,7 +28,7 @@ def main():
                            "gallery_layout", "gallery_fonts"):
                 assert f"skills/make-sci-data-figures/scripts/{module}.py" in names,module
             assert not any(set(Path(name).parts)&{"__pycache__",".cache",".git",".venv","examples","dist"} or
-                           (name.endswith((".pyc",".pyo",".csv",".tsv",".xlsx",".zip",".png",".jpg",".pdf")) and name not in SUPPORT_FILES) or
+                           (name.endswith((".pyc",".pyo",".csv",".tsv",".xlsx",".zip",".png",".jpg",".gif",".pdf")) and name not in SUPPORT_FILES) or
                            Path(name).name.startswith(".env") for name in names), "Generated/private data in source release"
             extracted=base/"suite"; handle.extractall(extracted)
         help_run=subprocess.run([sys.executable,"sci_figures.py","--help"],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
@@ -82,5 +82,5 @@ print(json.dumps({'templates':len(registry.CONTRACTS),'gallery_variants':len(sec
         runtime=subprocess.run([sys.executable,"-c",probe],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         assert runtime.returncode==0,(runtime.stdout,runtime.stderr)
         report=json.loads(runtime.stdout);assert report["templates"]>=190,report
-    print("complete v1.4.1 source release, extracted CLI and bytecode runtime tests passed:",report)
+    print("complete v1.4.2 source release, extracted CLI and bytecode runtime tests passed:",report)
 if __name__=="__main__": main()

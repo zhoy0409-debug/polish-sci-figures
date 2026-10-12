@@ -9,17 +9,17 @@ polish-sci-figures brings scientific plotting, image standardization, and figure
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Suite v1.4.1 · Figure Studio 0.1.1 (Windows desktop edition)**
+**Suite v1.4.2 · Figure Studio 0.1.2 (Windows desktop edition)**
 
-[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-v1.4.1.en.md)
+[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-v1.4.2.en.md)
 
 ## Choose your workflow
 
 | How you want to work | Start here | Requirements |
 | --- | --- | --- |
 | Preview, replace data, edit, and assemble figures directly | Figure Studio Windows installer | Windows 10/11 x64; no Codex, separate Python installation, account, or API key |
-| Upload a skill to Claude or WorkBuddy | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.1/polish-sci-figures-v1.4.1-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
-| Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.1.zip` | A compatible AI environment and the suite's Python dependencies |
+| Upload a skill to Claude or WorkBuddy | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.2/polish-sci-figures-v1.4.2-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
+| Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.2.zip` | A compatible AI environment and the suite's Python dependencies |
 | Refine an existing SVG manually | Generate a self-contained Studio page with AI or the CLI | Layout and appearance editing work offline; data recomputation requires the local engine |
 
 Figure Studio is the official visual editor for polish-sci-figures. The original AI/CLI workflow remains available through the three-skill suite. Model-result templates display supplied analysis outputs; they do not fit unspecified models.
@@ -34,12 +34,12 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 
 ## Install and start
 
-1. Download `polish-sci-figures-Studio-0.1.1-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
+1. Download `polish-sci-figures-Studio-0.1.2-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
 2. Install it and open the **polish-sci-figures Studio** shortcut. The launcher opens the editor in your default browser.
 3. Choose **Start from a template**, inspect the preview, and replace the example data with your own. You can also import an existing image or SVG.
-4. Export SVG / PNG / TIFF and use **Save project** to download an editable JSON backup.
+4. Export SVG / PNG / TIFF and use **Save** to download an editable JSON backup.
 
-The portable edition is `polish-sci-figures-Studio-0.1.1-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The browser data editor supports individual cells and CSV/TSV replacement; export Excel files as CSV/TSV first.
+The portable edition is `polish-sci-figures-Studio-0.1.2-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The browser data editor supports individual cells and CSV/TSV replacement; export Excel files as CSV/TSV first.
 
 Closing the browser does not stop the local service; close the launcher when you finish. Autosaves live in the browser's local storage. Clearing site data, switching browsers, or using a private window can lose those records. **Download JSON backups of important projects.** See the [English quick start](desktop/QUICKSTART.en.md).
 
@@ -82,7 +82,7 @@ The following composites use synthetic data to demonstrate assembly capabilities
 - **Bring groups closer together.** The shared Group spacing control in Properties moves supported horizontal or vertical category groups in real time, including existing bar charts. Points and intervals retain their sizes; comparison labels and connecting lines follow the groups. One undo restores the previous spacing. Numeric axes, matrices, and plots with insufficient space are not forced to move.
 - **Keep changes reversible.** Undo, redo, named versions, a project overview, and appearance presets support continued editing. Pasting appearance across figures retains the destination's data, statistics, and calibration.
 - **Adjust horizontal and vertical panel gaps separately.** The left pane provides independent controls. Enable **Trim unused margins** for a tighter layout based on visible content, retaining glyph and artwork sizes. Spanning panels or annotations crossing cells keep their original margins with an explanation.
-- **Export at publication dimensions.** Right-click a panel cell and choose **Save panel as…** to export SVG, lossless RGB TIFF, or PNG; use the top toolbar for whole-figure TIFF. Single-panel output uses the current cell crop and retains its label, statistical annotations, condition table, and edits. The export dialog locks the aspect ratio, accepts width in mm, offers 600 / 900 / 1200 dpi for raster formats, and shows actual pixel dimensions. SVG retains existing vectors and live text; TIFF rasterizes vectors at the selected dpi and cannot restore detail missing from low-resolution source images.
+- **Export at publication dimensions.** Right-click a panel cell and choose **Save panel as…** to export SVG, lossless RGB TIFF, or PNG; choose **Export → TIF** for whole-figure TIFF. Single-panel output uses the current cell crop and retains its label, statistical annotations, condition table, and edits. The export dialog locks the aspect ratio, accepts width in mm, offers 600 / 900 / 1200 dpi for raster formats, and shows actual pixel dimensions. SVG retains existing vectors and live text; TIFF rasterizes vectors at the selected dpi and cannot restore detail missing from low-resolution source images.
 
 Switch between Chinese and English interfaces. Your data, project names, and figure text are not translated without your instruction. See the full [Figure Studio reference](skills/polish-sci-figures/references/figure_studio.md).
 
@@ -107,7 +107,7 @@ The original skill workflows for independent, paired, multigroup, relationship, 
 
 The three skills retain their existing roles. Figure Studio is the visual entry point to the same product, not a mandatory fourth skill.
 
-**Claude / WorkBuddy users:** download [polish-sci-figures-v1.4.1-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.1/polish-sci-figures-v1.4.1-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. v1.4.1 fixes Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status. WorkBuddy is not installed on the current test machine and has not been tested within the host.
+**Claude / WorkBuddy users:** download [polish-sci-figures-v1.4.2-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.2/polish-sci-figures-v1.4.2-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status. WorkBuddy is not installed on the current test machine and has not been tested within the host.
 
 | Skill | Role |
 | --- | --- |
@@ -115,7 +115,7 @@ The three skills retain their existing roles. Figure Studio is the visual entry 
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | Microscopy / pathology image standardization, consistent display settings, authoritatively calibrated scale bars, and processing audits |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | Refinement and assembly, Figure Studio, text and geometry checks, and quality checks at final dimensions |
 
-Download `sci-figure-suite-v1.4.1.zip` from the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) and extract the whole suite. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
+Download `sci-figure-suite-v1.4.2.zip` from the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) and extract the whole suite. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
 
 ```powershell
 python -m pip install -r requirements.txt

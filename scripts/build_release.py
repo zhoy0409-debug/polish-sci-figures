@@ -26,6 +26,18 @@ SUPPORT_FILES = (
     "docs/release-v1.4.0.en.md",
     "docs/release-v1.4.1.md",
     "docs/release-v1.4.1.en.md",
+    "docs/release-v1.4.2.md",
+    "docs/release-v1.4.2.en.md",
+    "docs/editor-tour.en.md",
+    "docs/editor-tour.zh-CN.md",
+    "docs/media/figure-studio-overview.png",
+    "docs/media/figure-studio-walkthrough.gif",
+    "docs/media/figure-studio-start.png",
+    "docs/media/figure-studio-template.png",
+    "docs/media/figure-studio-data.png",
+    "docs/media/figure-studio-refine.png",
+    "docs/media/figure-studio-export.png",
+    "docs/media/demo-observations.csv",
     "docs/windows-resource-benchmark.md",
     "docs/windows-resource-benchmark.en.md",
     "desktop/QUICKSTART.zh-CN.md",
@@ -96,7 +108,7 @@ def build(version: str, outdir: Path) -> Path:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", default="v1.4.1")
+    parser.add_argument("--version", default="v1.4.2")
     parser.add_argument("--outdir", default="dist")
     args = parser.parse_args()
     archive = build(args.version, Path(args.outdir))

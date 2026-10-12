@@ -71,7 +71,7 @@ def main():
                 assert path.parts[0] == SKILL_NAME and not path.is_absolute() and ".." not in path.parts
                 assert not set(path.parts) & {".git", ".cache", ".venv", "__pycache__", "examples"}
                 relative = "/".join(path.parts[2:])
-                assert not (path.suffix.lower() in {".pyc", ".pyo", ".csv", ".tsv", ".xlsx", ".zip", ".png", ".jpg", ".pdf"}
+                assert not (path.suffix.lower() in {".pyc", ".pyo", ".csv", ".tsv", ".xlsx", ".zip", ".png", ".jpg", ".gif", ".pdf"}
                             and relative not in SUPPORT_FILES), name
                 assert not path.name.startswith(".env")
             for name, path in originals.items():
