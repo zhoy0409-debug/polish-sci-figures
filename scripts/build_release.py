@@ -56,6 +56,7 @@ SUPPORT_FILES = (
     "demo/composite_showcase/Figure_1_Bioinformatics.png",
     "demo/composite_showcase/Figure_2_Basic_research.png",
     "demo/composite_showcase/Figure_3_Sequencing.png",
+    "demo/image_standardization/montage.png",
 )
 
 
