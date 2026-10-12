@@ -40,7 +40,7 @@ function harness(){
     overlayNode:()=>el('g',{annotation:'note'},noteBox),commit(next){commits++;Object.assign(s,copy(next));},
     editsFor:()=>({}),setEdit(next,id,vi,key,prop,value){((next.panels[id].edits[vi]??={})[key]??={})[prop]=value;},
     selectPanelLabel(){},at:()=>null,destination:()=>null,zoomView:{},
-  };vm.createContext(ctx);
+  };ctx.overlayEditingSpace=require(path).overlayEditingSpace;vm.createContext(ctx);
   const groups=source.slice(source.indexOf('  function selectionGroups('),source.indexOf('  const sizeNames='))+source.slice(source.indexOf('  function refreshOverlaySelection('),source.indexOf('  function renderOverlayProperties('));
   const local=source.slice(source.indexOf('    const screenRect=el=>'),source.indexOf('    let resizeDrag=null,panelDrag='));
   const handlers=source.slice(source.indexOf('    svg.onpointerdown=e=>'),source.indexOf('  function renderMethods(){'));

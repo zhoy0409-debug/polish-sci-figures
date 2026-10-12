@@ -279,7 +279,9 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
         tracks=list(d.track.unique());maximum=d.coverage.max()
         if maximum<=0:raise ValueError('At least one positive coverage value required')
         for i,t in enumerate(tracks):
-            q=d[d.track==t].sort_values('position');ax.fill_between(q.position,i,i+.78*q.coverage/maximum,color=colors[i%len(colors)],alpha=.7,lw=0);ax.plot(q.position,i+.78*q.coverage/maximum,color=colors[i%len(colors)],lw=.65)
+            q=d[d.track==t].sort_values('position')
+            ax.fill_between(q.position,i,i+.78*q.coverage/maximum,color=colors[i%len(colors)],alpha=.7,lw=0,gid=f'studio-spacing-group-{i}-density')
+            ax.plot(q.position,i+.78*q.coverage/maximum,color=colors[i%len(colors)],lw=.65,gid=f'studio-spacing-group-{i}-outline')
         ax.set_yticks(range(len(tracks)),tracks);ax.set_xlim(d.position.min(),d.position.max());ax.set_ylim(-.12,len(tracks)-.08);ax.spines[['left','top','right']].set_visible(False);ax.tick_params(axis='y',length=0);finish(ax,'Genomic position');ax.set_title(f'Common scale · maximum coverage {maximum:g}',fontsize=8,color='#526173',loc='left',pad=10)
     elif view=='quality_profiles':
         for i,(g,p) in enumerate(d.groupby('group',sort=False)):

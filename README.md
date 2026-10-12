@@ -1,5 +1,7 @@
 # polish-sci-figures
 
+[中文](README.md) | [English](README.en.md)
+
 **从数据到组图：可编辑模板、明确的统计分析、可逆的精细排版。**
 
 polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一工作流中。普通用户可直接安装 **Figure Studio**，在浏览器中编辑；AI 用户继续使用三个配套技能，从数据分析到最终交付。两种入口使用同一套本地图形与分析代码。
@@ -7,17 +9,17 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**套件 v1.4.0 · Figure Studio 0.1.0（Windows 桌面初版）**
+**套件 v1.4.1 · Figure Studio 0.1.1（Windows 桌面版）**
 
-[官方下载 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版更新](docs/release-v1.4.0.md)
+[官方下载 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版更新](docs/release-v1.4.1.md)
 
 ## 选择入口 / Choose your workflow
 
 | 你的工作方式 | 从这里开始 | 本机要求 |
 | --- | --- | --- |
 | 直接预览、换数据、编辑和排版 | Figure Studio Windows 安装包 | Windows 10/11 x64；无需 Codex、Python、账号或 API 密钥 |
-| Claude / WorkBuddy 中直接上传技能 | [自包含技能上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.0/polish-sci-figures-v1.4.0-skill.zip) | 宿主支持技能与代码执行；参见 [平台安装](docs/platform-installation.md) |
-| 让 AI 分析数据、生成候选图、完成质控 | 三技能套件 `sci-figure-suite-v1.4.0.zip` | 支持技能的 AI 环境，以及套件 Python 依赖 |
+| Claude / WorkBuddy 中直接上传技能 | [自包含技能上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.1/polish-sci-figures-v1.4.1-skill.zip) | 宿主支持技能与代码执行；参见 [平台安装](docs/platform-installation.md) |
+| 让 AI 分析数据、生成候选图、完成质控 | 三技能套件 `sci-figure-suite-v1.4.1.zip` | 支持技能的 AI 环境，以及套件 Python 依赖 |
 | 已有 SVG，希望手动精修 | AI/CLI 生成自包含 Studio 页面 | 页面可离线编辑；重新计算数据需本机引擎 |
 
 **English:** Figure Studio is the official visual editor for polish-sci-figures. Install it on Windows and work locally without Codex or a separate Python installation. The original AI/CLI workflow remains available through the three-skill suite. Model-result templates display supplied analysis outputs; they do not fit unspecified models.
@@ -32,12 +34,12 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 ## 安装即用
 
-1. 从 [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) 下载 `polish-sci-figures-Studio-0.1.0-Setup-x64.exe`。
+1. 从 [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) 下载 `polish-sci-figures-Studio-0.1.1-Setup-x64.exe`。
 2. 安装后打开 **polish-sci-figures Studio** 快捷方式。启动窗口会打开默认浏览器中的编辑器。
 3. 选择 **从模板开始**，浏览真实预览，再将示例数据替换为自己的数据；也可导入现有图片或 SVG。
-4. 编辑完成后导出 SVG / PNG，并用 **保存工程** 下载可继续编辑的 JSON 备份。
+4. 编辑完成后导出 SVG / PNG / TIFF，并用 **保存工程** 下载可继续编辑的 JSON 备份。
 
-便携版为 `polish-sci-figures-Studio-0.1.0-Portable-x64.zip`。完整解压后运行 `Figure Studio.exe`，保留旁边的 `_internal` 文件夹。桌面包自带绘图与统计运行环境，可离线使用。网页数据入口支持单元格编辑和 CSV/TSV 替换；Excel 文件请先导出为 CSV/TSV。
+便携版为 `polish-sci-figures-Studio-0.1.1-Portable-x64.zip`。完整解压后运行 `Figure Studio.exe`，保留旁边的 `_internal` 文件夹。桌面包自带绘图与统计运行环境，可离线使用。网页数据入口支持单元格编辑和 CSV/TSV 替换；Excel 文件请先导出为 CSV/TSV。
 
 关闭浏览器不会关闭本机服务；使用结束时关闭启动小窗口。自动保存位于所用浏览器的本地存储中，清理网站数据、切换浏览器或使用隐私窗口可能丢失记录。**重要工程请下载 JSON 备份。** 详见 [中文入门](desktop/QUICKSTART.zh-CN.md)。
 
@@ -54,7 +56,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 | 生存、综合与模型解释 | 生存曲线与风险表、森林图、SHAP、PCA、列线图 | 原始生存记录或明确的模型、汇总和解释结果 |
 | 组成与连接关系 | 组成图、UpSet、流向图、网络及结构图 | 集合成员、组成、边或流量等相应数据 |
 
-预览、应用后的图形与替换数据后的输出共用渲染器。适合当前数据的候选优先展示，完整仓库提供分类浏览和放大预览。兼容候选由明确的数据与科学含义约束，不能因为列名相同就任意切换。
+预览、应用后的图形与替换数据后的输出共用渲染器。适合当前数据的候选优先展示，完整仓库提供跨类别搜索、分类浏览和放大预览。兼容候选由明确的数据与科学含义约束，不能因为列名相同就任意切换。
 
 模板数量不是 218 种统计模型，也不意味着任意数据、标签长度和尺寸都已人工验收。[输入合同与实现说明](skills/polish-sci-figures/references/figure_studio.md#original-editable-gallery-2026-10-12) 记录具体边界；旧 1–124 参考编号仍可通过 `template_router.py` 查找对应科学工作流。
 
@@ -73,12 +75,14 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 ## 从数据更新到最终排版
 
-- **数据与图形相连。** 编辑单元格、增删表格或替换 CSV/TSV 后，本机引擎校验并重绘。无效修改保留上一版有效图形；当前数据绑定的比较分析同步重算。
+- **数据与图形相连。** 编辑单元格、增删表格或替换 CSV/TSV 后，本机引擎校验并重绘。无效修改保留上一版有效图形；当前数据绑定的比较分析同步重算。本机服务断线时保留工程和数据草稿，重新连接后继续操作。
 - **母版可调整。** 拖动换位、跨行跨列、增添行列、调整间距；支持的模板按真实尺寸重绘，其他素材保留原有比例。指定分面比较可拆成横排独立面板，保留原比较家族的统计记录。
 - **直接编辑对象。** 框选、多选、对齐、分组与锁定；移动已有对象，插入文字、线条和形状，使用方向键微调。双击文本可就地编辑，字符级加粗、斜体、上下标保留科学记号的局部格式。
 - **细节有对应控制。** 支持的轴可调整真实范围、首组间距和数据坐标参考线；热图可切换连续配色、显示真实格值并调整数字格式。比例尺需用户提供校准，图号可自动编号或手动编辑。
+- **组别太远可直接收紧。** 属性页的统一组间距滑块可实时平移支持的横向或纵向分类图整组元素，已有柱形图也使用这一入口。散点和区间保持大小，比较标注与连接线同步调整；一次撤销恢复之前的间距。连续数值轴、矩阵及空间不足的图形不会被强行移动。
 - **修改可追回。** 撤销、重做、命名版本、项目总览和外观预设支持连续工作；跨图粘贴外观保留目标数据、统计和校准信息。
-- **按出版尺寸输出。** SVG 保留输入已有的矢量和活文字；PNG 默认 600 dpi，支持 900 / 1200 dpi。导入位图仍是位图，放大不会补回原本缺失的细节。
+- **图与图之间的间距分开调整。** 左侧分别设置横向、纵向间距；需要更紧凑时启用“自动收紧留白”，按可见内容收掉外部空白，保留字形与图形大小。跨格小图或跨图标注暂保留原留白并提示。
+- **按出版尺寸输出。** 右键小图所在单元格，选择“单图另存为…”可导出 SVG、无损 RGB TIFF 或 PNG；整组 TIFF 使用顶部工具栏。单图按当前单元格裁切，保留图号、统计标注、条件表及当前编辑。导出框锁定纵横比，可设宽度（mm），栅格格式可选 600 / 900 / 1200 dpi，并显示实际像素尺寸。SVG 保留已有矢量和活文字；TIFF 按所选 dpi 栅格化矢量，不会补回低分辨率原图缺失的细节。
 
 中文和 English 界面可切换；用户自己的数据、项目名和图内文字不会被擅自翻译。完整功能说明见 [Figure Studio](skills/polish-sci-figures/references/figure_studio.md)。
 
@@ -103,7 +107,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 三个技能保留原来的分工，Figure Studio 是同一产品的可视化入口，不是必须安装的第四个技能。
 
-**Claude / WorkBuddy 用户：** 下载 [polish-sci-figures-v1.4.0-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.0/polish-sci-figures-v1.4.0-skill.zip)，直接按平台的技能上传入口导入。单入口包内置完整三技能与 CLI，无需重新打包。Claude Code 也可使用个人或项目技能目录。具体步骤与官方依据见 [平台安装指南](docs/platform-installation.md)；入口已按文档核对，未声称宿主实机验收。
+**Claude / WorkBuddy 用户：** 下载 [polish-sci-figures-v1.4.1-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.1/polish-sci-figures-v1.4.1-skill.zip)，直接按平台的技能上传入口导入。单入口包内置完整三技能工作流与 CLI，无需重新打包。v1.4.1 修复了旧上传包内含多个 `SKILL.md` 导致 Claude 拒绝的问题，已在 Claude 实际调用技能绘图，PNG 视觉检查通过；HTML 交付与下载链路的具体验证范围见平台指南。Claude Code 也可使用个人或项目技能目录。具体步骤、官方依据与宿主验证状态见 [平台安装指南](docs/platform-installation.md)。当前测试机尚未安装 WorkBuddy，其宿主内运行尚未实测。
 
 | 技能 | 负责内容 |
 | --- | --- |
@@ -111,7 +115,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | 显微 / 病理图像规范化、统一显示设置、权威校准比例尺与处理审计 |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | 精修与组图、Figure Studio、文字与几何检查、最终尺寸质控 |
 
-从 [官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases) 下载 `sci-figure-suite-v1.4.0.zip`，解压完整套件。AI/CLI 路径需要自行安装依赖；Windows 桌面包已包含运行环境。
+从 [官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases) 下载 `sci-figure-suite-v1.4.1.zip`，解压完整套件。AI/CLI 路径需要自行安装依赖；Windows 桌面包已包含运行环境。
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -121,11 +125,13 @@ Copy-Item -Recurse -Force ./skills/standardize-sci-images "$HOME/.agents/skills/
 Copy-Item -Recurse -Force ./skills/polish-sci-figures "$HOME/.agents/skills/"
 ```
 
-在支持技能的 AI 环境中，不必编写专业提示词。上传表格后可以直接说：
+在支持技能的 AI 环境中，不必编写专业提示词。Claude 用户先在输入框旁点击 `+` → Skills → polish-sci-figures 选择技能；其他宿主按其入口启用。上传表格后可以直接说：
 
 > 帮我把这张表画成适合论文的图，给我几个合适的样式选一下。
 
-技能会先读表，筛出少量适合的候选，再说明各自能看出什么。设计不清楚时，只确认会影响分析的事实，例如“这两列是同一批对象处理前后，还是两批不同对象？”颜色、字号和位置等后续修改可在编辑器中直接完成，无需反复调用 AI。
+安装成功不保证普通请求会自动调用技能。先从菜单选择，再使用日常表达，无需记忆专业调用语法。
+
+技能会自动检查字体和依赖，再读表、筛出少量适合的候选，并说明各自能看出什么。设计不清楚时，只确认会影响分析的事实，例如“这两列是同一批对象处理前后，还是两批不同对象？”颜色、字号和位置等后续修改可在编辑器中直接完成，无需反复调用 AI。
 
 保留整套技能以便相互调用。macOS / Linux 可将这三个目录复制到 `~/.agents/skills/`；具体技能目录以所用 AI 工具的配置为准。桌面安装包当前只提供 Windows x64 版。
 
@@ -159,7 +165,7 @@ python sci_figures.py qa final.svg --font Arial
 
 - **桌面运行环境：** Windows 10/11 x64 分发目标，冻结的 CPython 3.12 运行时；实际测试环境与结果以发行记录为准。
 - **技能与 CLI：** CI 配置覆盖 Python 3.10 / 3.12 和 Windows / macOS / Ubuntu；本版最终 CI 状态见页首检查链接，不能把矩阵配置当成已完成测试。
-- **输出：** Studio 当前提供 SVG、PNG 和工程 JSON；PDF/TIFF 可使用适合的原绘图流程处理，不是当前编辑器导出按钮。
+- **输出：** Studio 当前提供 SVG、PNG、TIFF 和工程 JSON；PDF 可使用适合的原绘图流程处理，尚无编辑器 PDF 导出按钮。
 - **输入图像：** 普通 PNG/JPEG 的内部文字不能自动转为独立可编辑对象。SVG 支持受限的静态子集，不执行脚本或外部资源。
 - **分析：** 重复测量、层级、协变量调整、复杂预测模型等需明确的专业工作流；界面不会凭图形形式补造统计结果。
 

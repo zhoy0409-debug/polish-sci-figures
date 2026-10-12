@@ -15,13 +15,13 @@ When scientific design is genuinely missing, ask only 1–2 concrete questions, 
 
 ## Check the runtime
 
-Paths below are relative to this SKILL.md. Keep the complete `suite/` directory together. Use the host's available Python 3.10–3.12 executable; `python` in examples stands for that executable. Run the doctor before executing a workflow:
+Paths below are relative to this SKILL.md. Keep the complete `suite/` directory together. Select an existing Python runtime yourself: prefer the current project's `.venv/Scripts/python.exe` (Windows) or `.venv/bin/python`, then the host's dependency-tool runtime, then registered Python launchers or `python3`. Check `sys.executable` and `sys.version` before running suite code; bare `python` can resolve to Python 2, and a host-bundled Python can lack SciPy. Use Python 3.10–3.12 and actually import `numpy`, `pandas`, `scipy`, `matplotlib`, `openpyxl` and `PIL`. Try the next existing interpreter if a check fails instead of asking a novice to discover paths. Reuse the successful executable, with `-X utf8` on Windows; `python` below means that executable. Run the doctor before executing a workflow:
 
 ```bash
 python suite/sci_figures.py doctor --font "DejaVu Sans" --json
 ```
 
-If required packages are missing, use the host-approved installation process or a task-local environment with the same interpreter:
+If no existing interpreter has the required packages, explain the missing component and use a host-approved installation process or a task-local environment with the same interpreter. Do not run this command against a global interpreter or change PATH:
 
 ```bash
 python -m pip install -r suite/requirements.txt
@@ -33,9 +33,9 @@ Install optional dependencies only for a workflow that requires them, from `suit
 
 | Input or task | Local instructions |
 | --- | --- |
-| Raw CSV/TSV/XLSX, chart choice or statistical analysis | [Data figure workbench](suite/skills/make-sci-data-figures/SKILL.md) |
-| Calibrated microscopy or pathology images | [Scientific image preparation](suite/skills/standardize-sci-images/SKILL.md) |
-| Existing SVG, visual refinement, composition or Studio editing | [Figure polishing and editing](suite/skills/polish-sci-figures/SKILL.md) |
+| Raw CSV/TSV/XLSX, chart choice or statistical analysis | [Data figure workbench](suite/skills/make-sci-data-figures/WORKFLOW.md) |
+| Calibrated microscopy or pathology images | [Scientific image preparation](suite/skills/standardize-sci-images/WORKFLOW.md) |
+| Existing SVG, visual refinement, composition or Studio editing | [Figure polishing and editing](suite/skills/polish-sci-figures/WORKFLOW.md) |
 
 These are local instructions, not separately installed skills. A companion-skill reference in a nested document means reading the corresponding bundled document above. Resolve its `scripts/`, `references/` and `assets/` paths relative to that document. Run commands beginning with `skills/` from `suite/`; resolve user input and output paths before changing working directory. Save task outputs in the user's workspace, not in the installed skill directory.
 
@@ -48,11 +48,13 @@ Confirm experimental design and units before inference. Choose methods for the r
 
 ## Deliver editable outputs
 
-Generate an optional self-contained editing page:
+Generate an optional self-contained editing page from the final reviewed SVG:
 
 ```bash
 python suite/sci_figures.py studio FIGURE_OR_BUNDLE --out figure-studio.html
 ```
+
+When retaining a candidate bundle, pass `--view SELECTED_VARIANT` using the exact filename stem of the approved SVG (for example, `--view estimation_graphic`). Never assume the bundle's default is the final choice. A single panel defaults to one column; use `--columns` only for an intentional layout. Open the delivered HTML and verify that its initial chart, labels, units and styling match the final SVG/PNG, and that there are no unintended empty grid cells. If the final SVG was edited after generating the bundle, regenerate the matching candidate or package that reviewed SVG directly; do not hand off an older version.
 
 The HTML supports offline appearance and layout editing. Data recomputation needs the local service, with the browser and service on the same accessible host:
 

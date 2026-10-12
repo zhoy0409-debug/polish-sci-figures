@@ -43,6 +43,22 @@ class LauncherTests(unittest.TestCase):
         with mock.patch.dict(app.os.environ, {'LOCALAPPDATA': str(self.root)}):
             self.assertEqual(app.default_data_dir(), self.root / 'Figure Studio')
 
+    def test_numeric_threads_default_and_explicit_configuration(self):
+        before = dict(app.os.environ)
+        with mock.patch.dict(app.os.environ, {'BENCHMARK_SENTINEL': 'untouched'}, clear=True):
+            app.configure_numeric_threads()
+            self.assertEqual({name: app.os.environ[name] for name in app.NUMERIC_THREAD_ENV},
+                             {name: '1' for name in app.NUMERIC_THREAD_ENV})
+            self.assertEqual(app.os.environ['BENCHMARK_SENTINEL'], 'untouched')
+        with mock.patch.dict(app.os.environ, {'OPENBLAS_NUM_THREADS': '4',
+                                             'OMP_NUM_THREADS': '2'}, clear=True):
+            app.configure_numeric_threads()
+            self.assertEqual(app.os.environ['OPENBLAS_NUM_THREADS'], '4')
+            self.assertEqual(app.os.environ['OMP_NUM_THREADS'], '2')
+            self.assertEqual(app.os.environ['MKL_NUM_THREADS'], '1')
+            self.assertEqual(app.os.environ['NUMEXPR_NUM_THREADS'], '1')
+        self.assertEqual(dict(app.os.environ), before)
+
     def test_official_brand_resources_and_explicit_project_action(self):
         window = mock.Mock()
         with mock.patch.object(app.webbrowser, 'open', return_value=True) as browser:

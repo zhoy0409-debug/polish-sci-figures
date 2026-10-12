@@ -22,6 +22,10 @@ for(const [id,kind,legacy]of [['H','diverging',false],['S','sequential',false],[
   root.objects=[box,scale,label];root.meta=meta;assets[id]=root;
 }
 assets.C=new Node();assets.C.objects=[new Node('','cat1','#3f6da3'),new Node('','cat2','#c95770'),new Node('','axis','#000000')];
+const axisGroup=new Node('matplotlib.axis_1'),spineGroup=new Node('patch_2');axisGroup.parentElement=assets.C;spineGroup.parentElement=assets.C;
+const axisText=new Node('','axisText','#3f6da3'),titleText=new Node('','titleText','#25344a'),legendText=new Node('','legendText','#3f6da3'),spine=new Node('','spine','none');
+for(const el of [axisText,titleText,legendText])el.localName='text';axisText.parentElement=axisGroup;titleText.parentElement=assets.C;legendText.parentElement=assets.C;spine.parentElement=spineGroup;spine.stroke='#3f6da3';
+assets.C.objects.push(axisText,titleText,legendText,spine);
 assets.R=new Node();assets.R.objects=Array.from({length:9},(_,i)=>new Node('','e'+i,'#'+(0x254f90+i*0x070501).toString(16)));
 for(const root of Object.values(assets))root.querySelector=selector=>selector.includes('studio-heat-value-')?root.meta||null:root.objects.find(el=>el.key===selector.match(/"([^"]+)"/)?.[1])||null;
 let chart={order:Object.keys(assets),panels:Object.fromEntries(Object.keys(assets).map(id=>[id,{variant:0,edits:{}}]))};
@@ -55,6 +59,15 @@ assert.equal(JSON.stringify(history.current),original,'Hover-preview state must 
 elements.scope.value='all';const all=context.paletteState(SWATCH_SCHEMES[1].colors,SWATCH_SCHEMES[1]);
 assert.deepEqual(clone(all.panels.S.heatmapPalette.stops),SWATCH_SCHEMES[1].sequentialStops);
 assert.equal(all.panels.C.edits[0].cat1.fill,SWATCH_SCHEMES[1].colors[0]);
+assert.equal(all.panels.C.edits[0].axisText,undefined,'axis lettering keeps its color even when it matches a series');
+assert.equal(all.panels.C.edits[0].titleText,undefined,'dark blue titles are not extra series colors');
+assert.equal(all.panels.C.edits[0].spine,undefined,'axis spines retain their original color');
+assert.equal(all.panels.C.edits[0].legendText.fill,SWATCH_SCHEMES[1].colors[0],'matching series legends follow their data');
+// An explicit text selection still supports color changes, including axis text.
+elements.scope.value='element';context.selectedPanel='C';const normalTargets=context.targetObjects;context.targetObjects=()=>[axisText];
+assert.equal(context.paletteState(SWATCH_SCHEMES[1].colors,SWATCH_SCHEMES[1]).panels.C.edits[0].axisText.fill,SWATCH_SCHEMES[1].colors[0]);
+context.targetObjects=normalTargets;context.selectedPanel='H';
+
 assert.deepEqual(clone(all.panels.R.edits),{});assert.equal(all.panels.L.heatmapPalette,undefined);
 elements.scope.value='element';const cell=context.paletteState(SWATCH_SCHEMES[1].colors,SWATCH_SCHEMES[1]);
 assert.equal(cell.panels.H.heatmapPalette,undefined,'A selected cell must not recolor the entire matrix');

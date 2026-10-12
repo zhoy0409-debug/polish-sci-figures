@@ -109,7 +109,7 @@ for(const [id,name,fontSize]of [['a','three_facets',9],['b','raincloud',32]]){
 }
 const mixed={order:['a','b'],columns:2,gap:12,grid:{rows:1,widths:[550,550],places:{a:{row:0,col:0,rs:1,cs:1},b:{row:0,col:1,rs:1,cs:1}}},panels:states};
 const layoutContext={copy:x=>JSON.parse(JSON.stringify(x)),gridFor:s=>s.grid,panel:id=>assets[id],conditionMatrixHeight:()=>0,annotationHeight:id=>metricsById[id].totalHeader,annotationTopHeight:id=>metricsById[id].totalHeader,annotationFirstTopHeight:id=>metricsById[id].header,statisticalAnnotationInfo:()=>({placement:'facets'})};
-vm.createContext(layoutContext);vm.runInContext(range('  function layout(s=state())','  function plotFrame(')+'\n'+range('  function reflowSpec(','  function currentHeatmapMetadata('),layoutContext);
+vm.createContext(layoutContext);vm.runInContext(range('  function layout(s=state(),','  function plotFrame(')+'\n'+range('  function reflowSpec(','  function currentHeatmapMetadata('),layoutContext);
 const mixedLayout=layoutContext.layout(mixed),firstMax=Math.max(...Object.values(metricsById).map(m=>m.header)),innerMax=Math.max(...Object.values(metricsById).map(m=>m.totalHeader-m.header)),bodyTops=[];
 const positionLine=source.split('\n').find(line=>line.includes('const height=fitted?fitPos.height:')&&line.includes('statisticsFirstTop'));
 assert.ok(positionLine);
@@ -144,7 +144,7 @@ assert.ok(Math.abs(titleBaselines[0]-titleBaselines[1])<1e-8,'adjacent letter an
 // User-facing facet titles are presentation, not analysis identifiers. Resolve
 // the edited source with stable axis/tick/key identity after changing its text.
 const hideTitleLine=source.split('\n').find(line=>line.includes('showFacetTitles===false')&&line.includes('title.style.display'));
-assert.ok(hideTitleLine);const editBlock=range('    if (!raw) for (const [key, props]','    if(!raw&&s.panels[id].annotationStyle');
+assert.ok(hideTitleLine);const editBlock=range('    if (!raw) for (const [key, props]','    // Work on complete category groups');
 const keyTree=node=>{let n=0;const visit=el=>{el.setAttribute('data-key','e'+n++);for(const child of el.children)if(child.localName)visit(child);};visit(node);return node;};
 let titleEditCases=0;
 for(const fixture of fixtures.filter(f=>f.name!=='raincloud'))for(const fontSize of [9,24,32])for(const show of [true,false]){

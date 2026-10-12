@@ -23,7 +23,7 @@ The tested browser is the current Codex in-app browser on Windows. Other operati
 
 Automatic SVG QA does not approve scientific meaning, collision-free final placement, colour-only encoding, glyph coverage, or journal compliance. The demo preserves each source panel's physical size; it does not implement plot-area reflow. Its 248 mm composite is a functionality demonstration, not a prescribed journal width.
 
-Original AI generation remains available. Manual edits are kept in a separate project; the next AI step must inspect those choices and run final QA. Live in-page AI/MCP control, automatic Python/R source rewriting, automatic generation of additional chart families, PDF/TIFF export, and editable raster text are not part of this preview.
+Original AI generation remains available. Manual edits are kept in a separate project; the next AI step must inspect those choices and run final QA. Live in-page AI/MCP control, automatic Python/R source rewriting, automatic generation of additional chart families, PDF export, and editable raster text are not part of this preview.
 
 ## Reproduce
 
@@ -225,3 +225,26 @@ A fresh application-data directory and empty browser origin were used for the fi
 Separate browser and export checks verified the corrected raincloud density/annotation clearance, immediate data/statistics updates, and deletion/undo of user text, shapes, a mixed selection, guides and an imported image. Locked objects and active text editing were protected. See [deletion and contour checks](figure-studio-deletion-and-contour-qa.md) for the bounded cases.
 
 The portable skill archive also completed inspection of 16 synthetic raw rows, three actual candidate previews and a self-contained editable page without changing its source table. Claude and WorkBuddy installation guidance was checked against official documentation; account-level installation and low-quota model behavior were not tested in those hosts. Their supported upload format is distinguished from a live-host acceptance claim.
+
+
+## Independent panel gaps, compact margins and TIFF — 2026-10-12
+
+In the actual browser check, margin trimming changed the example composition from 248.1 × 187.1 mm to 239.6 × 174.4 mm, reporting 24.1 pt trimmed horizontally and 36.0 pt vertically. Changing the horizontal gap from 12 pt to 0 moved only the right column by −12 pt; all vertical coordinates and glyph SVG stayed unchanged. Setting the vertical gap to 0 then produced 235.3 × 170.2 mm. Actual TIFF exports were obtained for the whole figure (4252 × 3207 px at 600 dpi) and a single panel (2880 × 2813 px at 600 dpi). These dimensions reflect the respective test figures and export settings; they are not fixed output sizes.
+
+The compact planner measures the current rendered text, images and vector geometry, including statistical and condition decorations and panel labels. Rectangular SVG clip paths are respected. Unused space is trimmed consistently per row/column; source SVG artwork keeps its original size and receives only a translated, clipped viewport. The cell clip prevents an original full-page background from painting over its neighbours. Spanning panels, cross-cell overlays and out-of-cell content receive an explicit unchanged-layout status.
+
+Scripted checks cover separate X/Y values, zero/decimal limits, legacy project and preset handling, one-step undo, source-coordinate overlay/label dragging, resizing, insertion and keyboard positioning. The production compact-cache check confirms that five gutter-preview frames reuse local bounds without DOM remeasurement, while typography, reflow assets and loaded fonts invalidate them. These regressions run through `test_studio_panel_gaps.cjs`, `test_studio_compact_whitespace.cjs`, and `test_studio_compact_interactions.cjs`; the latter has 102 geometry/state assertions. Browser screenshot: `.cache/export-proof/compact-spacing-ui.png`. The TIFF checks above are actual exported files, distinct from the separate scripted TIFF encoder/dialog checks.
+
+Actual compact-mode interaction checks then passed in panel D: inserted “Alignment check” text moved from x = 489.70547 to 490.70547 SVG pt with one Right key, with identical y. Mouse dragging retained its 10 pt font size. Delete removed it and Undo restored it. The exported whole-figure SVG had viewBox 667.1280 × 482.4386, 68 text nodes, no raster image nodes and no editor data attributes; panel labels and clipping were visually checked.
+
+## Expanded category spacing — 2026-10-12
+
+`build_group_spacing_fixtures.py` and `test_studio_group_spacing_gallery.cjs` exercised 107 actual SVGs across 59 categorical or track-plot types. The final run passed 96,222 geometry assertions: 106 assets were movable and one extremely narrow three-facet asset was safely rejected for insufficient space. The run checked 211 paired/interaction connecting paths and 58 vertical category axes. Movement changes category coordinates while retaining response coordinates and glyph dimensions. Cumming's empty reference-category glyph no longer excludes its effect axis: both rows participate, and every matching category center is checked for alignment.
+
+The actual browser exercised group-spacing controls in six chart types. The canonical bar chart now uses the same Properties control, with a 65%–105% range and no duplicate visible spacing control. At 75%, bar path definitions and the existing fit transform remained unchanged while category groups translated by 15 pt; one Undo returned to 100%. A portrait forest plot and a data replacement retained a 70% spacing setting. These checks cover category spacing on the tested assets, not every possible data-column rename or all 218 templates. Continuous axes and adjacency-dependent matrix structures are outside this operation; geometry checks are separate from visual acceptance.
+
+## Codex data update, text retention and actual exports — 2026-10-12
+
+The actual browser workflow changed the vertical-axis title from `Value` to `Response`, italicized only `R`, and updated C01 from 9.5 to 9.4 with Enter. Recalculation completed in 6.72 seconds in this run and retained the title and partial italics; Undo restored 9.5 and Redo restored 9.4. This is a single observed duration, not a performance target. The targeted regression passed 41 guard assertions and six actual SVG fixtures, restricting migration to unambiguous matching semantic text and excluding old numerical ticks and statistical results.
+
+The downloaded SVG was parsed: seven live text elements, no raster images, and the italic `R` within `Response` were present. The downloaded PNG measured 2880 × 2160 px at approximately 600 dpi, corresponding to 121.92 × 91.44 mm, and was visually inspected without clipping or overlap. Saved project JSON retained C01 = 9.4, rich-text formatting and six history states. These checks used the actual editor's downloads; they do not change the separate unverified Claude download-path status. Evidence: `.cache/codex-novice-qa/browser-qa.json` and `.cache/codex-novice-qa/browser-edit-data-export.png`.

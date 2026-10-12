@@ -16,10 +16,17 @@ EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    "README.en.md",
     "docs/figure-studio-validation.md",
     "docs/figure-studio-deletion-and-contour-qa.md",
     "docs/platform-installation.md",
+    "docs/platform-installation.en.md",
     "docs/release-v1.4.0.md",
+    "docs/release-v1.4.0.en.md",
+    "docs/release-v1.4.1.md",
+    "docs/release-v1.4.1.en.md",
+    "docs/windows-resource-benchmark.md",
+    "docs/windows-resource-benchmark.en.md",
     "desktop/QUICKSTART.zh-CN.md",
     "desktop/QUICKSTART.en.md",
     "desktop/BUILD.md",
@@ -88,7 +95,7 @@ def build(version: str, outdir: Path) -> Path:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", default="v1.4.0")
+    parser.add_argument("--version", default="v1.4.1")
     parser.add_argument("--outdir", default="dist")
     args = parser.parse_args()
     archive = build(args.version, Path(args.outdir))

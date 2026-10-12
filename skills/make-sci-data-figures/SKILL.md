@@ -9,11 +9,19 @@ Start from the biological question and experimental unit, not from a preferred c
 
 An ordinary request such as “帮我把这张表画成适合论文的图” is enough to begin. Read the table before asking questions; when design is unresolved, ask concretely whether records describe the same objects before/after or different objects. Offer a small useful shortlist and explain what each reveals instead of requiring statistical jargon or an elaborate prompt.
 
+## Verify the agent's Python runtime first
+
+Before profiling or generating, select an existing interpreter yourself: prefer the current project's `.venv/Scripts/python.exe` (Windows) or `.venv/bin/python`, then a runtime exposed by the host's dependency tools, then registered Python launchers or `python3`. Do not assume bare `python` is compatible or that the host runtime contains SciPy. Run the candidate with `-c "import sys; print(sys.executable); print(sys.version); sys.exit(0 if (3,10) <= sys.version_info[:2] <= (3,12) else 2)"`, then actually import `numpy`, `pandas`, `scipy`, `matplotlib`, `openpyxl` and `PIL`. Try the next existing candidate if either check fails.
+
+Use the verified executable for the full suite's `sci_figures.py doctor --font SELECTED_FONT --json` when available, and for every later script/subprocess; use `-X utf8` on Windows. All `python` examples below refer to this executable. Do not ask the user to discover paths or write an environment-check prompt. If no candidate works, identify the missing component and propose a task-local environment or the installed Figure Studio option; never silently install globally or change PATH.
+
 For unified CLI inspection and confirmation states, read `references/safe_cli_routing.md`. Never treat a role inferred from a column name as a declared experimental unit or design.
 
 For the original editable gallery, run `scripts/gallery_cli.py --list` to inspect the 191 bilingual data contracts, then `scripts/gallery_cli.py --view TEMPLATE --input TABLE.csv --out NEW_DIRECTORY`. The bundle opens in Figure Studio; its local data engine prepares seven canvas sizes and enables table editing. Together with 27 ROC/PR presentations, the editor provides 218 starters. Read [editable gallery and Studio contracts](references/editable_gallery_and_studio.md) before template selection or interactive statistical analysis. Validate the scientific meanings of required columns before choosing a template. Model-result templates require those results; changing an input table must not be described as refitting an upstream model. Inspect normal, narrow, wide and tall renders and a valid data replacement before delivering a new template.
 
-This skill remains the AI/CLI data entry point in suite v1.4.0. Figure Studio 0.1.0 is the official Windows companion in the [same repository's releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases); it bundles this engine for users who want an installed visual editor without Python or an AI environment. It does not replace this skill or require a fourth skill. Keep all three suite folders together for the original source workflow.
+The gallery CLI accepts `--palette NAME`, using the registry's existing palette validation. Its default `zhoy_muted` keeps the gallery's blue/red display colors (`#3f6da3`, `#c95770`); the legacy workbench's palette of the same name has its own established colors. Do not silently recolor existing figures to make these entry points identical.
+
+This skill remains the AI/CLI data entry point in suite v1.4.1. Figure Studio 0.1.1 is the official Windows companion in the [same repository's releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases); it bundles this engine for users who want an installed visual editor without Python or an AI environment. It does not replace this skill or require a fourth skill. Keep all three suite folders together for the original source workflow.
 
 ## Minimum intake
 

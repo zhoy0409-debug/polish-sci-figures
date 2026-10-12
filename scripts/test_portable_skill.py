@@ -14,7 +14,7 @@ import tempfile
 from urllib.parse import unquote
 import zipfile
 
-from build_portable_skill import ENTRYPOINT, ROOT, SKILL_NAME, VERSION, build, suite_files
+from build_portable_skill import ENTRYPOINT, ROOT, SKILL_NAME, VERSION, build, suite_files, portable_name, portable_bytes
 from build_release import SUPPORT_FILES, archive_bytes
 
 
@@ -29,11 +29,24 @@ def run(args, cwd):
 
 def relative_links(document, boundary):
     text = document.read_text(encoding="utf-8")
+    checked = 0
     for target in re.findall(r"\]\(([^)\s]+)\)", text):
         if target.startswith(("#", "https:", "http:", "mailto:")):
             continue
         path = (document.parent / unquote(target.split("#")[0])).resolve()
         assert path.is_relative_to(boundary.resolve()) and path.is_file(), (document, target)
+        checked += 1
+    return checked
+
+
+def bundled_markdown_links(skill):
+    """Check the actual extracted documents, including nested workflow guides."""
+    suite = skill / "suite"
+    documents = sorted(path for path in skill.rglob("*")
+                       if path.is_file() and path.suffix.lower() == ".md")
+    checked = sum(relative_links(document, suite if document.is_relative_to(suite) else skill)
+                  for document in documents)
+    return {"markdown_files": len(documents), "relative_links": checked}
 
 
 def main():
@@ -46,10 +59,11 @@ def main():
         assert archive.name == f"{SKILL_NAME}-{VERSION}-skill.zip"
         originals = {p.relative_to(ROOT).as_posix(): p for p in suite_files()}
         expected = {f"{SKILL_NAME}/SKILL.md"} | {
-            f"{SKILL_NAME}/suite/{name}" for name in originals}
+            f"{SKILL_NAME}/suite/{portable_name(name)}" for name in originals}
         extracted = workspace / "extracted"
         with zipfile.ZipFile(archive) as handle:
             names = handle.namelist()
+            assert [name for name in names if PurePosixPath(name).name.casefold() == 'skill.md'] == [f'{SKILL_NAME}/SKILL.md'], 'Claude requires exactly one SKILL.md across the entire archive'
             assert len(names) == len(set(names))
             assert set(names) == expected
             for name in names:
@@ -61,7 +75,9 @@ def main():
                             and relative not in SUPPORT_FILES), name
                 assert not path.name.startswith(".env")
             for name, path in originals.items():
-                assert handle.read(f"{SKILL_NAME}/suite/{name}") == archive_bytes(path, set(originals), VERSION)
+                assert handle.read(f"{SKILL_NAME}/suite/{portable_name(name)}") == portable_bytes(path, set(originals), VERSION)
+                if path.suffix != '.md':
+                    assert handle.read(f"{SKILL_NAME}/suite/{portable_name(name)}") == path.read_bytes()
             assert handle.read(f"{SKILL_NAME}/SKILL.md") == ENTRYPOINT.read_bytes()
             handle.extractall(extracted)
 
@@ -74,11 +90,7 @@ def main():
         assert 0 < len(description) <= 200
         for token in ("doctor", "localhost", "2–3", "1–2", "experimental-unit", "host permissions"):
             assert token in entry, token
-        relative_links(skill / "SKILL.md", skill)
-        relative_links(suite / "README.md", suite)
-        for name in SUPPORT_FILES:
-            if name.endswith(".md"):
-                relative_links(suite / name, suite)
+        bundled_markdown_links(skill)
         assert "Copyright (c) 2026 Wenting Zhou" in (suite / "LICENSE").read_text(encoding="utf-8")
         assert "usage:" in run([suite / "sci_figures.py", "--help"], workspace).lower()
         doctor = json.loads(run([suite / "sci_figures.py", "doctor", "--font", "DejaVu Sans", "--json"], workspace))

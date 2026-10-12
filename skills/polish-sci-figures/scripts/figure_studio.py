@@ -65,7 +65,7 @@ def inspect_svg_bytes(raw: bytes, name: str) -> dict:
     return result
 
 
-def panel_from_path(path: Path, index: int, with_layouts: bool = False) -> dict:
+def panel_from_path(path: Path, index: int, with_layouts: bool = False, view: str | None = None) -> dict:
     if not path.exists():
         raise ValueError(f"Panel input not found: {path}")
     recipe, analysis, table = {}, {}, None
@@ -102,6 +102,19 @@ def panel_from_path(path: Path, index: int, with_layouts: bool = False) -> dict:
     requested = recipe.get('parameters', {}).get('view')
     if recipe.get('family') in ('gallery', 'roc_results'):
         selected = next((i for i, v in enumerate(variants) if v['name'] in (requested, 'roc_' + str(requested))), selected)
+    initial_view = view if view is not None else recipe.get('studio_view')
+    if initial_view is not None:
+        match = next((i for i, candidate in enumerate(variants) if candidate['name'] == initial_view), None)
+        if match is None and view is not None:
+            available = ', '.join(candidate['name'] for candidate in variants)
+            raise ValueError(f"{path.name}: unknown initial view {view!r}. Available views: {available}")
+        if match is not None:
+            selected = match
+            if recipe:
+                recipe['studio_view'] = initial_view
+                if recipe.get('family') in ('gallery', 'roc_results'):
+                    requested = initial_view.removeprefix('roc_') if recipe['family'] == 'roc_results' else initial_view
+                    recipe['parameters'] = {**recipe.get('parameters', {}), 'view': requested}
     for v in variants:
         v['size'] = 'original'
         if recipe.get('family') in ('gallery','roc','roc_results') or v['name'] in ('composition_ring', 'composition_waffle', 'ternary_composition', 'correlation_circles', 'correlation_values', 'hexbin_density', 'pca_loadings'):
@@ -127,12 +140,14 @@ def panel_from_path(path: Path, index: int, with_layouts: bool = False) -> dict:
             "provenance": "upstream-bundle" if path.is_dir() else "standalone-svg"}
 
 
-def build_project(paths: list[Path], title: str, columns: int = 2, with_layouts: bool = False) -> dict:
+def build_project(paths: list[Path], title: str, columns: int | None = None, with_layouts: bool = False, view: str | None = None) -> dict:
     if not paths or len(paths) > 24:
         raise ValueError("Choose 1–24 panels")
+    if columns is None:
+        columns = min(2, len(paths))
     if not 1 <= columns <= 6:
         raise ValueError("Columns must be between 1 and 6")
-    panels = [panel_from_path(path, i, with_layouts) for i, path in enumerate(paths)]
+    panels = [panel_from_path(path, i, with_layouts, view) for i, path in enumerate(paths)]
     identity = digest(json.dumps({"panels": panels, "title": title, "columns": columns}, sort_keys=True, ensure_ascii=False).encode())[:20]
     return {"schema": "figure-studio/1", "id": identity, "title": title, "panels": panels,
             "initialState": {"order": [p["id"] for p in panels], "columns": columns, "gap": 12,
@@ -145,7 +160,7 @@ def write_html(project: dict, output: Path) -> None:
     payload = json.dumps(project, ensure_ascii=False, allow_nan=False).replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
     html = (ASSETS / "studio.html").read_text(encoding="utf-8")
     html = html.replace("/*__STUDIO_CSS__*/", '\n'.join((ASSETS / name).read_text(encoding="utf-8") for name in ['studio.css', 'rich-text.css', 'workspace-layout.css']))
-    html = html.replace("/*__STUDIO_JS__*/", '\n'.join((ASSETS / name).read_text(encoding="utf-8") for name in ['rich-text.js', 'workspace-layout.js', 'studio.js']))
+    html = html.replace("/*__STUDIO_JS__*/", '\n'.join((ASSETS / name).read_text(encoding="utf-8") for name in ['rich-text.js', 'workspace-layout.js', 'group-spacing.js', 'tiff-export.js', 'compact-whitespace.js', 'studio.js']))
     html = html.replace("/*__STUDIO_I18N__*/", (ASSETS / "i18n.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_MEMORY__*/", (ASSETS / "memory.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_DISCOVERY__*/", (ASSETS / "discovery.js").read_text(encoding="utf-8"))
@@ -168,11 +183,12 @@ def main(argv=None) -> int:
     parser.add_argument("panels", nargs="+", type=Path)
     parser.add_argument("--out", required=True, type=Path, help="New standalone HTML file (never overwrites)")
     parser.add_argument("--title", default="Figure Studio")
-    parser.add_argument("--columns", type=int, default=2)
+    parser.add_argument("--columns", type=int, help="Grid columns: default 1 for one panel, otherwise 2")
+    parser.add_argument("--view", help="Initial SVG variant name; must exist in every input panel")
     parser.add_argument("--with-layouts", action="store_true", help="Prepare portrait and wide canvases from supported workbench recipes and verified source data")
     args = parser.parse_args(argv)
     try:
-        write_html(build_project(args.panels, args.title, args.columns, args.with_layouts), args.out)
+        write_html(build_project(args.panels, args.title, args.columns, args.with_layouts, args.view), args.out)
     except (ValueError, OSError, ET.ParseError) as exc:
         parser.error(str(exc))
     print(f"Figure Studio: {args.out.resolve()}")

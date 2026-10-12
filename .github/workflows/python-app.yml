@@ -33,8 +33,12 @@ jobs:
         run: python -m compileall -q sci_figures.py scripts skills demo
       - name: Unified CLI smoke test
         run: python test_sci_figures_cli.py
+      - name: Gallery CLI UTF-8 and palette regression
+        run: python scripts/test_gallery_cli_encoding.py
       - name: Figure Studio packaging and provenance
         run: python skills/polish-sci-figures/scripts/test_figure_studio.py
+      - name: Desktop launcher lifecycle and local authorization
+        run: python desktop/test_figure_studio_app.py
       - name: Release QA gates
         run: |
           python skills/polish-sci-figures/scripts/test_figure_text_qa.py
@@ -83,9 +87,9 @@ jobs:
           git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
       - name: Build and test complete release bundle
         run: |
-          python scripts/build_release.py --version v1.4.0
+          python scripts/build_release.py --version v1.4.1
           python scripts/test_release_bundle.py
-          python scripts/build_portable_skill.py --version v1.4.0
+          python scripts/build_portable_skill.py --version v1.4.1
           python scripts/test_portable_skill.py
       - name: Compute synthetic results for composite statistics layout
         # The Node layout test consumes these freshly analyzed observations.
@@ -97,11 +101,26 @@ jobs:
           node scripts/test_studio_delete_labels.cjs
           node scripts/test_studio_keyboard_nudge.cjs
           node scripts/test_studio_new_project.cjs
+          node scripts/test_studio_beginner_flow.cjs
           node scripts/test_studio_stat_layout.cjs
           node scripts/test_studio_composite_stat_layout.cjs
           node scripts/test_studio_workspace_selection.cjs
           node scripts/test_studio_heatmap_palettes.cjs
           node scripts/test_studio_rich_text_regression.cjs
+          node scripts/test_studio_data_text_preservation.cjs
+          node scripts/test_studio_tiff_export.cjs
+          node scripts/test_studio_panel_export.cjs
+          node scripts/test_studio_panel_gaps.cjs
+          node scripts/test_studio_compact_whitespace.cjs
+          node scripts/test_studio_compact_interactions.cjs
+      - name: Category spacing metadata and editable group geometry
+        # The SVG geometry tests consume these fresh canonical legacy assets.
+        run: |
+          python scripts/test_legacy_group_metadata.py
+          node scripts/test_studio_group_spacing.cjs
+          node scripts/test_studio_group_spacing_controls.cjs
+          python scripts/build_group_spacing_fixtures.py
+          node scripts/test_studio_group_spacing_gallery.cjs
       - name: Figure Studio analysis and data reflow
         run: |
           python scripts/test_studio_statistics.py

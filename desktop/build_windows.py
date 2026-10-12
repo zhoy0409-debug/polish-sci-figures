@@ -22,7 +22,7 @@ WORK = ROOT / '.cache' / 'desktop-build'
 STAGE = WORK / 'suite'
 DIST = ROOT / 'dist' / 'desktop'
 APP = DIST / 'Figure Studio'
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 PACKAGES = ('numpy', 'scipy', 'pandas', 'matplotlib', 'openpyxl', 'Pillow',
             'contourpy', 'cycler', 'fonttools', 'kiwisolver', 'packaging',
             'python-dateutil', 'pytz', 'tzdata', 'six', 'et_xmlfile', 'pyparsing', 'PyYAML',
