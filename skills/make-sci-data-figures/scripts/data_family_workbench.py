@@ -593,6 +593,10 @@ def _composition_figures(
     colorbar = fig_heat.colorbar(image, ax=ax_heat, fraction=0.045, pad=0.03)
     colorbar.set_label("Proportion")
     colorbar.outline.set_linewidth(0.6)
+    from gallery_heatmap import cell_values
+    cell_values(ax_heat, pivot.to_numpy(float), image)
+    from gallery_heatmap import tag_heatmap_colorbars
+    tag_heatmap_colorbars(fig_heat)
     fig_heat.subplots_adjust(left=0.18, right=0.91, bottom=0.24, top=0.96)
     return [("composition_stacked", fig), ("composition_heatmap", fig_heat)]
 
@@ -718,6 +722,10 @@ def _matrix_figures(pivot: pd.DataFrame, colors: list[str]) -> list[tuple[str, p
     colorbar = fig.colorbar(image, ax=ax, fraction=0.045, pad=0.03)
     colorbar.set_label("Value")
     colorbar.outline.set_linewidth(0.6)
+    from gallery_heatmap import cell_values
+    cell_values(ax, values, image)
+    from gallery_heatmap import tag_heatmap_colorbars
+    tag_heatmap_colorbars(fig)
     longest_row = max(len(str(label)) for label in pivot.index)
     left_margin = min(0.42, max(0.22, 0.16 + 0.0105 * longest_row))
     fig.subplots_adjust(left=left_margin, right=0.91, bottom=0.24, top=0.96)

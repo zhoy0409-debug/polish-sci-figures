@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+import re
+from urllib.parse import quote, unquote
 import zipfile
 
 
@@ -13,6 +15,18 @@ SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-fi
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "LICENSE", "CITATION.cff")
+SUPPORT_FILES = (
+    "docs/figure-studio-validation.md",
+    "docs/figure-studio-deletion-and-contour-qa.md",
+    "docs/platform-installation.md",
+    "docs/release-v1.4.0.md",
+    "desktop/QUICKSTART.zh-CN.md",
+    "desktop/QUICKSTART.en.md",
+    "desktop/BUILD.md",
+    "demo/composite_showcase/Figure_1_Bioinformatics.png",
+    "demo/composite_showcase/Figure_2_Basic_research.png",
+    "demo/composite_showcase/Figure_3_Sequencing.png",
+)
 
 
 def include_file(path: Path) -> bool:
@@ -30,23 +44,51 @@ def include_file(path: Path) -> bool:
     return True
 
 
+def release_files():
+    for name in (*ROOT_FILES, *SUPPORT_FILES):
+        yield ROOT / name
+    for skill_name in SKILL_NAMES:
+        for path in sorted((ROOT / "skills" / skill_name).rglob("*")):
+            if path.is_file() and include_file(path):
+                yield path
+
+
+def archive_bytes(path: Path, included: set[str], version: str) -> bytes:
+    """Keep runtime sources exact; link omitted maintainer files to this release."""
+    relative = path.relative_to(ROOT).as_posix()
+    if path.suffix != ".md" or not (relative == "README.md" or relative in SUPPORT_FILES):
+        return path.read_bytes()
+    content = path.read_text(encoding="utf-8")
+    def resolve_link(match):
+        target = match.group(1)
+        if target.startswith(("#", "/", "http:", "https:", "mailto:")):
+            return match.group(0)
+        address, _, anchor = target.partition("#")
+        local = (path.parent / unquote(address)).resolve()
+        if not local.is_relative_to(ROOT.resolve()):
+            raise ValueError(f"Documentation link escapes release: {relative}: {target}")
+        name = local.relative_to(ROOT.resolve()).as_posix()
+        if name in included:
+            return match.group(0)
+        url = f"https://github.com/zhoy0409-debug/polish-sci-figures/blob/{quote(version)}/{quote(name)}"
+        return "](" + url + ("#" + anchor if anchor else "") + ")"
+    return re.sub(r"\]\(([^)\s]+)\)", resolve_link, content).encode("utf-8")
+
+
 def build(version: str, outdir: Path) -> Path:
     outdir.mkdir(parents=True, exist_ok=True)
     archive = outdir / f"sci-figure-suite-{version}.zip"
+    files = list(release_files())
+    included = {path.relative_to(ROOT).as_posix() for path in files}
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as handle:
-        for name in ROOT_FILES:
-            handle.write(ROOT / name, name)
-        for skill_name in SKILL_NAMES:
-            skill_root = ROOT / "skills" / skill_name
-            for path in sorted(skill_root.rglob("*")):
-                if path.is_file() and include_file(path):
-                    handle.write(path, path.relative_to(ROOT))
+        for path in files:
+            handle.writestr(path.relative_to(ROOT).as_posix(), archive_bytes(path, included, version))
     return archive
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", default="v1.3.3")
+    parser.add_argument("--version", default="v1.4.0")
     parser.add_argument("--outdir", default="dist")
     args = parser.parse_args()
     archive = build(args.version, Path(args.outdir))

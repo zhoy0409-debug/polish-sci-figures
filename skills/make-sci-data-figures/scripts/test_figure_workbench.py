@@ -30,7 +30,10 @@ def main() -> None:
                         font_requested=TEST_FONT)
         expected = [out / "analysis_plan.json", out / "data_profile.json",
                     out / "figure_recipe.json", out / "candidate_gallery.png"]
-        assert len(pngs) == 5, pngs
+        expected_candidates = {"estimation_graphic", "raincloud", "raw_points_estimate_ci",
+                               "box_raw_points", "violin_raw_points", "group_ecdf",
+                               "quantile_intervals", "raincloud_horizontal", "sina_points", "ridgeline"}
+        assert {path.stem for path in pngs} == expected_candidates, pngs
         assert all(path.exists() and path.stat().st_size > 0 for path in expected + pngs)
         assert (out / "estimation_graphic.svg").is_file()
         assert (out / "raincloud.svg").is_file()
@@ -99,7 +102,7 @@ def main() -> None:
             subject="sample_id", order_text="Vehicle,Low dose,Mid dose,High dose",
             font_requested=TEST_FONT,
         )
-        assert len(multi_pngs) == 5
+        assert {path.stem for path in multi_pngs} == (expected_candidates - {"estimation_graphic"}) | {"group_estimate_forest"}
         assert (multigroup_out / "group_estimate_forest.svg").is_file()
         multi_analysis = json.loads((multigroup_out / "analysis_plan.json").read_text(encoding="utf-8"))
         assert multi_analysis["primary_test"]["name"] == "Welch one-way ANOVA"

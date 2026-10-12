@@ -1,352 +1,174 @@
-<div align="center">
+# polish-sci-figures
 
-<h1>SCI Figure Skills</h1>
+**从数据到组图：可编辑模板、明确的统计分析、可逆的精细排版。**
 
-<p><strong>Raw data → defensible statistics → editable figures → final-size QA</strong></p>
-
-<p>Publication-grade scientific visualization for tables, microscopy, multimodal analysis, and manuscript-ready figure assembly.</p>
+polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一工作流中。普通用户可直接安装 **Figure Studio**，在浏览器中编辑；AI 用户继续使用三个配套技能，从数据分析到最终交付。两种入口使用同一套本地图形与分析代码。
 
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
-[![Release](https://img.shields.io/github/v/release/zhoy0409-debug/polish-sci-figures)](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![License](https://img.shields.io/github/license/zhoy0409-debug/polish-sci-figures)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-<p>中文：从原始数据和科研图像出发，完成统计匹配、多款候选图、一键换色、规范标尺、固定画布、可编辑 SVG 与组图质控。</p>
+**套件 v1.4.0 · Figure Studio 0.1.0（Windows 桌面初版）**
 
-</div>
+[官方下载 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版更新](docs/release-v1.4.0.md)
 
----
+## 选择入口 / Choose your workflow
 
-## Choose your entry
+| 你的工作方式 | 从这里开始 | 本机要求 |
+| --- | --- | --- |
+| 直接预览、换数据、编辑和排版 | Figure Studio Windows 安装包 | Windows 10/11 x64；无需 Codex、Python、账号或 API 密钥 |
+| Claude / WorkBuddy 中直接上传技能 | [自包含技能上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.0/polish-sci-figures-v1.4.0-skill.zip) | 宿主支持技能与代码执行；参见 [平台安装](docs/platform-installation.md) |
+| 让 AI 分析数据、生成候选图、完成质控 | 三技能套件 `sci-figure-suite-v1.4.0.zip` | 支持技能的 AI 环境，以及套件 Python 依赖 |
+| 已有 SVG，希望手动精修 | AI/CLI 生成自包含 Studio 页面 | 页面可离线编辑；重新计算数据需本机引擎 |
 
-### I have raw CSV or Excel data
+**English:** Figure Studio is the official visual editor for polish-sci-figures. Install it on Windows and work locally without Codex or a separate Python installation. The original AI/CLI workflow remains available through the three-skill suite. Model-result templates display supplied analysis outputs; they do not fit unspecified models.
 
-Start with `make-sci-data-figures` or the unified inspector:
+- [安装即用](#安装即用)
+- [可编辑的图形仓库](#可编辑的图形仓库)
+- [从数据更新到最终排版](#从数据更新到最终排版)
+- [统计分析与证据边界](#统计分析与证据边界)
+- [AI 与命令行工作流](#ai-与命令行工作流)
+- [验证范围与当前边界](#验证范围与当前边界)
+- [官方发行与许可](#官方发行与许可)
 
-```bash
-python sci_figures.py inspect data.csv
-python sci_figures.py route data.csv
-```
+## 安装即用
 
-### I have microscopy, fluorescence, pathology, or EM images
+1. 从 [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) 下载 `polish-sci-figures-Studio-0.1.0-Setup-x64.exe`。
+2. 安装后打开 **polish-sci-figures Studio** 快捷方式。启动窗口会打开默认浏览器中的编辑器。
+3. 选择 **从模板开始**，浏览真实预览，再将示例数据替换为自己的数据；也可导入现有图片或 SVG。
+4. 编辑完成后导出 SVG / PNG，并用 **保存工程** 下载可继续编辑的 JSON 备份。
 
-Start with `standardize-sci-images` and a manifest. Scale bars require authoritative calibration.
+便携版为 `polish-sci-figures-Studio-0.1.0-Portable-x64.zip`。完整解压后运行 `Figure Studio.exe`，保留旁边的 `_internal` 文件夹。桌面包自带绘图与统计运行环境，可离线使用。网页数据入口支持单元格编辑和 CSV/TSV 替换；Excel 文件请先导出为 CSV/TSV。
 
-```bash
-python skills/standardize-sci-images/scripts/standardize_images.py manifest.csv --outdir standardized --scale-bar-um 20
-```
+关闭浏览器不会关闭本机服务；使用结束时关闭启动小窗口。自动保存位于所用浏览器的本地存储中，清理网站数据、切换浏览器或使用隐私窗口可能丢失记录。**重要工程请下载 JSON 备份。** 详见 [中文入门](desktop/QUICKSTART.zh-CN.md)。
 
-### I already have a Figure/SVG and need final QA
+## 可编辑的图形仓库
 
-Start with `polish-sci-figures` or the unified QA command:
+当前提供 **218 个可编辑模板起点**：191 个表格驱动模板，以及 15 个基于观察数据的 ROC / PR 展示和 12 个已有 ROC 结果展示。每个起点都附输入要求和示例预览；示例数据明确标注，插入模板不会把示例冒充为用户结果。
 
-```bash
-python sci_figures.py qa figure.svg
-```
+| 科学问题 | 图形示例 | 输入边界 |
+| --- | --- | --- |
+| 分布与组间比较 | 原始点、箱线、雨云、小提琴、效应量与区间、分面比较 | 观察值、组别及真实实验单位；推断需确认设计 |
+| 关系、时间与剂量 | 散点、轨迹、时间带、剂量反应、分解与诊断图 | 原始观察值或模板要求的拟合结果 |
+| 分类与诊断表现 | ROC、PR、阈值、混淆矩阵、置信带、部分 AUC、交叉验证等 | 根据模板提供预测观察值或已计算结果；并非所有方法自动拟合 |
+| 组学与矩阵 | 热图、火山图、曼哈顿图、富集图、GSEA、基因组覆盖轨迹 | 对应数值矩阵、统计结果或轨迹数据 |
+| 生存、综合与模型解释 | 生存曲线与风险表、森林图、SHAP、PCA、列线图 | 原始生存记录或明确的模型、汇总和解释结果 |
+| 组成与连接关系 | 组成图、UpSet、流向图、网络及结构图 | 集合成员、组成、边或流量等相应数据 |
 
-## Start with the problem, not a chart template
+预览、应用后的图形与替换数据后的输出共用渲染器。适合当前数据的候选优先展示，完整仓库提供分类浏览和放大预览。兼容候选由明确的数据与科学含义约束，不能因为列名相同就任意切换。
 
-- **Raw CSV/TSV/XLSX:** use `make-sci-data-figures` to identify the experimental unit, validate the design, and generate several defensible candidates.
-- **Microscopy, fluorescence, histology, or EM:** use `standardize-sci-images` for non-destructive batch normalization, equal dimensions, calibrated scale bars, and an audit trail.
-- **Existing figures or a final multi-panel layout:** use `polish-sci-figures` for typography, scientific notation, canvas consistency, whitespace, overlap, SVG editability, and real-size QA.
+模板数量不是 218 种统计模型，也不意味着任意数据、标签长度和尺寸都已人工验收。[输入合同与实现说明](skills/polish-sci-figures/references/figure_studio.md#original-editable-gallery-2026-10-12) 记录具体边界；旧 1–124 参考编号仍可通过 `template_router.py` 查找对应科学工作流。
 
-The suite does not turn every dataset into the same fashionable plot. It preserves the scientific question, biological unit, uncertainty, group order, and validation scope first; appearance comes after meaning.
+以下为合成数据示范，用于展示组合能力，不是生物学证据：
 
-## Reproducible showcase
-
-All showcase data below are synthetic. The executable repository demos are generated from source-controlled code; the composite gallery is presented as a design demonstration and is not biological evidence. Panel letters appear only in explicitly assembled composite examples; reusable source panels remain free of baked-in titles and serial labels.
-
-### Publication-scale composite figures
-
-Three coordinated 3 x 3 examples cover common bioinformatics, basic-research, and sequencing workflows. The source package used calculated statistics from deterministic synthetic data, consistent typography and canvas geometry, editable vector exports, and final-width visual QA. The repository includes the reviewed PNG previews; they are design demonstrations, not biological findings.
-
-![Synthetic bioinformatics composite figure](demo/composite_showcase/Figure_1_Bioinformatics.png)
+![Synthetic bioinformatics composite](demo/composite_showcase/Figure_1_Bioinformatics.png)
 
 <details>
-<summary><strong>Basic-research and sequencing composites</strong></summary>
+<summary>基础研究与测序组图示范</summary>
 
-![Synthetic basic-research composite figure](demo/composite_showcase/Figure_2_Basic_research.png)
+![Synthetic basic-research composite](demo/composite_showcase/Figure_2_Basic_research.png)
 
-![Synthetic sequencing composite figure](demo/composite_showcase/Figure_3_Sequencing.png)
+![Synthetic sequencing composite](demo/composite_showcase/Figure_3_Sequencing.png)
 
 </details>
 
-### Longitudinal multimodal ecosystem
+## 从数据更新到最终排版
 
-Conserved cell-state flows, directional ligand–receptor interactions, RNA–ATAC concordance, and treatment-response distributions in one coordinated figure.
+- **数据与图形相连。** 编辑单元格、增删表格或替换 CSV/TSV 后，本机引擎校验并重绘。无效修改保留上一版有效图形；当前数据绑定的比较分析同步重算。
+- **母版可调整。** 拖动换位、跨行跨列、增添行列、调整间距；支持的模板按真实尺寸重绘，其他素材保留原有比例。指定分面比较可拆成横排独立面板，保留原比较家族的统计记录。
+- **直接编辑对象。** 框选、多选、对齐、分组与锁定；移动已有对象，插入文字、线条和形状，使用方向键微调。双击文本可就地编辑，字符级加粗、斜体、上下标保留科学记号的局部格式。
+- **细节有对应控制。** 支持的轴可调整真实范围、首组间距和数据坐标参考线；热图可切换连续配色、显示真实格值并调整数字格式。比例尺需用户提供校准，图号可自动编号或手动编辑。
+- **修改可追回。** 撤销、重做、命名版本、项目总览和外观预设支持连续工作；跨图粘贴外观保留目标数据、统计和校准信息。
+- **按出版尺寸输出。** SVG 保留输入已有的矢量和活文字；PNG 默认 600 dpi，支持 900 / 1200 dpi。导入位图仍是位图，放大不会补回原本缺失的细节。
 
-![Longitudinal multimodal transition figure](demo/Fig7_MultimodalTransition.png)
+中文和 English 界面可切换；用户自己的数据、项目名和图内文字不会被擅自翻译。完整功能说明见 [Figure Studio](skills/polish-sci-figures/references/figure_studio.md)。
 
-<details>
-<summary><strong>More systems-level examples</strong></summary>
+## 统计分析与证据边界
 
-### Single-cell and spatial atlas
+原始数据分析要求用户确认独立或配对设计，并指定组别、数值与真实实验单位。软件不会从行号猜测独立性，也不会将技术重复当成独立样本。当前交互分析支持：
 
-![Single-cell and spatial atlas figure](demo/Fig4_CellAtlas.png)
-
-### Systems biology integration
-
-![Systems biology integration figure](demo/Fig5_SystemsMap.png)
-
-### Interpretable modeling across declared cohorts
-
-![Interpretable modeling figure](demo/Fig6_ModelInsight.png)
-
-</details>
-
-## One workflow, three focused skills
-
-| Stage | Skill | What it delivers |
+| 设计 | 方法 | 主要比较目标 |
 | --- | --- | --- |
-| 1. Data | `make-sci-data-figures` | Structure-aware candidates, effect estimates, diagnostics, analysis record, and palette recipe |
-| 2. Images | `standardize-sci-images` | Equal-size scientific images, calibrated scale bars, montage, and SHA-256 processing audit |
-| 3. Finish | `polish-sci-figures` | Fixed-canvas SVG/PDF/PNG, final typography, assembly, editability checks, and container QA |
+| 独立组 | Welch *t* 检验 | 均值差异 |
+| 独立组 | Mann–Whitney *U* 检验 | 分布或秩差异，通常不等同于中位数检验 |
+| 配对 | 配对 *t* 检验 | 配对均值差异 |
+| 配对 | Wilcoxon 符号秩检验 | 配对差值的秩位置；需相应方法假设 |
 
-All three stages use Arial by default, allow one-place journal-font replacement, keep SVG text live, and reject unintended overlap. Since v1.3.0 the requested font must be installed; fallback is a draft-only opt-in and is recorded as not approved for final delivery.
+选择全部两两比较或与指定对照比较时，**一次 Holm 校正覆盖本次请求的全部比较，包括各分面**。不同分面不会被合并成跨分面比较。方法按设计与估计目标推荐，不按最小 *P* 值推荐。完整两两结果可切换字母分组、井号、星号和具体 *P* 值；总体 ANOVA 的 *P* 值不能冒充两两结果，共享字母也不证明等效。
 
-## 124-template scientific atlas
+已有比较结果可按列映射接入，须声明方法及数值是否已校正。外部结果与拆分分面保存的结果在对应数据改变后会失效并提示更新，不沿用旧显著性。SHAP、GSEA、模型区间、诊断综合等结果类模板负责规范呈现已有结果，不代替上游专业模型。详情见 [本机分析协议与方法边界](skills/polish-sci-figures/references/figure_studio.md#analyze-observations-or-connect-comparison-results)。
 
-The purchased 1–124 reference collection was audited in full. Every number is assigned exactly once to one of 20 scientific families; none of the source PDF or proprietary Prism files is redistributed. Useful chart ideas were retained, while decorative bars, donuts, watercolor effects, unsafe dual axes, hidden raw data, and unsupported inference were replaced with original reproducible workflows.
+原技能的独立、配对、多组、关系、生存与剂量等工作流继续保留其各自分析合同。显微图先按真实校准规范化，再进入组图；不要从图片外观反推比例尺。
 
-```bash
-python skills/polish-sci-figures/scripts/template_router.py self-check
-python skills/polish-sci-figures/scripts/template_router.py resolve --template 73
-```
+## AI 与命令行工作流
 
-The complete mapping is machine-readable in [`template_catalog.json`](skills/polish-sci-figures/assets/template_catalog.json).
+三个技能保留原来的分工，Figure Studio 是同一产品的可视化入口，不是必须安装的第四个技能。
 
-### Kaplan–Meier estimates with an aligned number-at-risk table
+**Claude / WorkBuddy 用户：** 下载 [polish-sci-figures-v1.4.0-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.0/polish-sci-figures-v1.4.0-skill.zip)，直接按平台的技能上传入口导入。单入口包内置完整三技能与 CLI，无需重新打包。Claude Code 也可使用个人或项目技能目录。具体步骤与官方依据见 [平台安装指南](docs/platform-installation.md)；入口已按文档核对，未声称宿主实机验收。
 
-The display preserves censoring, risk sets, and pointwise log-log Greenwood intervals. Adjusted effects remain a declared specialist-model task.
+| 技能 | 负责内容 |
+| --- | --- |
+| [`make-sci-data-figures`](skills/make-sci-data-figures/SKILL.md) | 数据与设计核查、统计记录、候选图、图形仓库与可重绘数据包 |
+| [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | 显微 / 病理图像规范化、统一显示设置、权威校准比例尺与处理审计 |
+| [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | 精修与组图、Figure Studio、文字与几何检查、最终尺寸质控 |
 
-![Synthetic Kaplan-Meier example](demo/template_atlas/survival/kaplan_meier_risk_table.png)
-
-<details>
-<summary><strong>More atlas workflows</strong></summary>
-
-### Four-parameter dose-response with raw replicates
-
-![Synthetic dose-response example](demo/template_atlas/dose_response/dose_response.png)
-
-### ROC performance in declared cohorts
-
-![Synthetic ROC example](demo/template_atlas/roc/roc.png)
-
-### Enrichment magnitude, evidence, and count kept separate
-
-![Synthetic enrichment example](demo/template_atlas/enrichment/enrichment_bubble.png)
-
-</details>
-
-The advanced workbench also implements forest intervals, volcano plots, confusion matrices, precision–recall curves, feature ranks, supplied embeddings, aligned alternatives to dual axes, diverging comparisons, empirical cumulative distributions, and swimmer plots. These are executable families, not a closed list of decorative presets.
-
-## Validated scientific coverage
-
-| Data structure | Minimal declaration | Defensible outputs |
-| --- | --- | --- |
-| Independent, paired, or multi-group continuous outcomes | group, value, biological-unit ID, design, order | Estimation graphics, raw points with intervals, raincloud/violin when supported, paired trajectories, group estimates |
-| Numeric relationships and longitudinal responses | x/y or time/value, group, biological-unit ID | Association with uncertainty, joint distributions, individual trajectories, change from baseline |
-| Compositions and tidy matrices | sample/category/value or row/column/value | 100% composition, normalized heatmap, cluster-aware heatmap, signed-magnitude dot matrix |
-| Survival and dose-response | time/event/group/unit or positive dose/response/group | Kaplan–Meier with risk table; four-parameter logistic curve with residual diagnostic |
-| Prediction and supplied model results | outcome/score/unit/positive class or estimate/result columns | ROC/PR, confusion matrix, forest, volcano, enrichment, feature-rank candidates |
-| Embeddings, cumulative data, and event timelines | family-specific tidy coordinates or intervals | Faithful embedding views, ECDF/CCDF, swimmer timelines, safer aligned-series comparisons |
-| Scientific image batches | image manifest plus calibration when scale bars are required | Locked display settings, equal dimensions, editable scale-bar layers, processing audit |
-
-This table describes validated routes, not the limit of what the skills can draw. New chart forms are accepted when the data contract, estimand, uncertainty, and final-size QA remain explicit.
-
-## Scientific image standardization
-
-Microscopy, fluorescence, histology, and electron-microscopy batches keep raw pixels authoritative while sharing declared crop geometry, display settings, dimensions, and calibrated scale-bar rules. Every transformation and source hash is recorded.
-
-![Standardized synthetic fluorescence montage](demo/image_standardization/montage.png)
-
-## Statistics are matched to the design
-
-| Example | Automatic behavior | Guardrail |
-| --- | --- | --- |
-| Control vs treatment, independent samples | Mean difference with 95% CI; Welch test; Mann–Whitney sensitivity analysis | Repeated unit IDs are rejected instead of counted as independent replication |
-| Before vs after, same subjects | Paired mean difference with 95% CI; paired test; Wilcoxon sensitivity analysis | Duplicate subject-condition rows are rejected; incomplete pairs are reported |
-| Binary predictions in declared cohorts | ROC and PR curves; prevalence; unit-bootstrap AUC interval | One prediction per unit; internal performance is never renamed external validation |
-
-Exploratory and confirmatory scopes remain separate. Adjusted survival, generalized mixed, causal, spatial, high-dimensional differential, and ontology analyses require a declared specialist workflow; the skills validate and display their supplied results without inventing upstream methods.
-
-## Install
-
-Download the complete `sci-figure-suite-v1.3.3.zip` from the [latest release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest), or clone the repository. The suite archive includes the unified CLI, dependency files, README, LICENSE, citation metadata, and all three installable Skill folders.
-
-OpenAI's current Skills documentation says Skills are supported in Codex and the API, and that Plugins package Skills for broader workflows across ChatGPT and Codex. Checked: 2026-08-25.
-
-Use `$HOME/.agents/skills` as the primary local install path. Some older Codex builds may still read `$HOME/.codex/skills`; that path is kept only as a legacy compatibility note.
-
-### Windows PowerShell
+从 [官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases) 下载 `sci-figure-suite-v1.4.0.zip`，解压完整套件。AI/CLI 路径需要自行安装依赖；Windows 桌面包已包含运行环境。
 
 ```powershell
 python -m pip install -r requirements.txt
-New-Item -ItemType Directory -Force "$HOME\.agents\skills" | Out-Null
-Copy-Item -Recurse -Force ".\skills\make-sci-data-figures" "$HOME\.agents\skills\"
-Copy-Item -Recurse -Force ".\skills\standardize-sci-images" "$HOME\.agents\skills\"
-Copy-Item -Recurse -Force ".\skills\polish-sci-figures" "$HOME\.agents\skills\"
+New-Item -ItemType Directory -Force "$HOME/.agents/skills" | Out-Null
+Copy-Item -Recurse -Force ./skills/make-sci-data-figures "$HOME/.agents/skills/"
+Copy-Item -Recurse -Force ./skills/standardize-sci-images "$HOME/.agents/skills/"
+Copy-Item -Recurse -Force ./skills/polish-sci-figures "$HOME/.agents/skills/"
 ```
 
-<details>
-<summary><strong>macOS / Linux</strong></summary>
+在支持技能的 AI 环境中，不必编写专业提示词。上传表格后可以直接说：
 
-```bash
-python -m pip install -r requirements.txt
-mkdir -p "$HOME/.agents/skills"
-cp -R skills/make-sci-data-figures "$HOME/.agents/skills/"
-cp -R skills/standardize-sci-images "$HOME/.agents/skills/"
-cp -R skills/polish-sci-figures "$HOME/.agents/skills/"
-```
+> 帮我把这张表画成适合论文的图，给我几个合适的样式选一下。
 
-</details>
+技能会先读表，筛出少量适合的候选，再说明各自能看出什么。设计不清楚时，只确认会影响分析的事实，例如“这两列是同一批对象处理前后，还是两批不同对象？”颜色、字号和位置等后续修改可在编辑器中直接完成，无需反复调用 AI。
 
-Legacy Codex compatibility, only if your local build documents it:
+保留整套技能以便相互调用。macOS / Linux 可将这三个目录复制到 `~/.agents/skills/`；具体技能目录以所用 AI 工具的配置为准。桌面安装包当前只提供 Windows x64 版。
 
-```bash
-mkdir -p "$HOME/.codex/skills"
-cp -R skills/make-sci-data-figures "$HOME/.codex/skills/"
-cp -R skills/standardize-sci-images "$HOME/.codex/skills/"
-cp -R skills/polish-sci-figures "$HOME/.codex/skills/"
-```
-
-For ChatGPT Web, ChatGPT Work, or wider workspace distribution, package these Skills as a Plugin in a future release. This repository does not claim that a Plugin has already been published.
-
-If a newly installed or updated Skill is not yet visible, refresh or reopen the Skills page.
-
-## Call the skills
-
-```text
-Use $make-sci-data-figures to profile this table and generate several publication-ready candidates.
-Use $make-sci-data-figures to rerender the selected figure with the okabe_ito palette only.
-Use $standardize-sci-images to standardize this microscopy batch and add calibrated 20 µm scale bars.
-Use $polish-sci-figures to assemble the selected panels and audit the final editable SVGs.
-```
-
-## Unified CLI
+### 检查数据与生成模板
 
 ```bash
 python sci_figures.py doctor --font Arial
-python sci_figures.py doctor --font Arial --json
 python sci_figures.py inspect data.xlsx --sheet 0 --json
-python sci_figures.py route data.xlsx --structure group-comparison --design paired
-python sci_figures.py qa figure.svg --font Arial --json
+python sci_figures.py route data.csv --structure group-comparison --design paired
+python skills/make-sci-data-figures/scripts/gallery_cli.py --list
+python skills/make-sci-data-figures/scripts/gallery_cli.py --view compare_raincloud --input observations.csv --out results/raincloud
 ```
 
-Use `--help` on any subcommand. `doctor` reports dependencies, writable Matplotlib cache, fonts, renderers, platform, and Skill structure. `inspect` uses exact token and multi-token aliases plus dtype, missingness, cardinality, and repetition to provide evidence-backed candidates. `route` never runs inferred statistics and never defaults to an independent design. It withholds the command until structure and required fields are unambiguous, declared columns exist, roles do not conflict, route-specific type/value checks pass, and the declared design is compatible with the downstream workbench. Survival requires explicit numeric 0/1 events, while ROC/PR requires `--positive` for nonstandard class labels. Statuses are `CONFIRMED`, `SUGGESTION`, `NEEDS_CONFIRMATION`, `MANUAL_REVIEW`, `WARN`, and blocking `FAIL`/`UNSAFE`.
+`inspect` / `route` 提供结构证据和待确认项，不擅自执行推断设计。图形仓库 CLI 的表格须符合所选模板列合同；例如雨云图使用 `group,unit,value`。CLI 数据巡检接受 CSV/TSV/XLSX；模板 CLI 使用 CSV。
 
-`doctor --json` and `qa --json` write JSON only. Blocking findings exit 2; warnings and manual-review items exit 0. SVG automation checks parse canvas-related metadata, live/fragmented text, font-family declarations, raster resources and effective DPI, plus basic contrast/grayscale signals. Collision, final-size legibility, scientific notation, sub/superscripts, and color-only meaning remain explicit `MANUAL_REVIEW` tasks. Raster DPI requires `--width-mm`; metadata alone is not accepted as final-size proof. PDF embedding uses only the `pdffonts` `emb` column; when the tool is missing, QA requires manual review.
-
-## Shortest Successful Path
+### 交付可继续编辑的页面
 
 ```bash
-python sci_figures.py doctor --font "DejaVu Sans"
-python sci_figures.py inspect skills/make-sci-data-figures/examples/synthetic_group_comparison.csv
-python skills/make-sci-data-figures/scripts/figure_workbench.py generate \
-  skills/make-sci-data-figures/examples/synthetic_group_comparison.csv \
-  --group condition --value Response --unit sample_id \
-  --design independent --order Control,Treatment \
-  --outcome-type continuous --font "DejaVu Sans" --outdir demo_run
-python sci_figures.py qa demo_run/raw_points_estimate_ci.svg
+python sci_figures.py studio results/raincloud panel2.svg --out figure-studio.html
+python sci_figures.py studio-serve figure-studio.html --port 8767
+python sci_figures.py qa final.svg --font Arial
 ```
 
-Use Arial or a journal-required font for final submission files. `DejaVu Sans` is used above only because it is bundled with Matplotlib and works on CI systems that do not install Arial.
+一个候选目录成为一个小图。生成的 HTML 可离线进行布局和外观编辑；数据重算需启动本机服务，桌面版会自动启动它。原始数据、分析与配方保存在数据包中，浏览器差异不会自动重写 Python/R 源码。AI 接回工程时应保留用户选择，再做终稿检查。
 
-## Complete Reproducible Example
+## 验证范围与当前边界
 
-```bash
-python skills/make-sci-data-figures/examples/make_family_examples.py
-python skills/make-sci-data-figures/scripts/data_family_workbench.py relationship \
-  skills/make-sci-data-figures/examples/synthetic_relationship.csv \
-  --x exposure --y response --unit unit --group cohort \
-  --font "DejaVu Sans" --outdir relationship_results
-python sci_figures.py qa relationship_results/relationship_regression.svg
-```
+本版测试包含输入合同、真实重绘、数据替换、SVG 文本与尺寸、统计绑定、撤销和本机服务。浏览器检查覆盖选中对象编辑、热图数值及配色、统计重算、分面拆分、轴设置、字符格式和导出等具体场景。详细记录见 [验证记录](docs/figure-studio-validation.md)；可重现的源码与打包检查见 [构建说明](desktop/BUILD.md)。
 
-Chinese prompt example:
+这些记录不是所有模板、数据、标签长度、导入 SVG 或浏览器均已视觉验收的声明。自动边界检查不能代替实际尺寸下的可读性、图例含义、重叠和期刊要求检查。统一精确绘图区仅应用于明确支持的模板；其余素材使用已有画布或本身几何，避免非等比拉伸。
 
-```text
-Use $make-sci-data-figures 先检查这个 CSV 的实验单位、分组和值列，再生成候选 SCI 图并保留分析记录。
-```
+- **桌面运行环境：** Windows 10/11 x64 分发目标，冻结的 CPython 3.12 运行时；实际测试环境与结果以发行记录为准。
+- **技能与 CLI：** CI 配置覆盖 Python 3.10 / 3.12 和 Windows / macOS / Ubuntu；本版最终 CI 状态见页首检查链接，不能把矩阵配置当成已完成测试。
+- **输出：** Studio 当前提供 SVG、PNG 和工程 JSON；PDF/TIFF 可使用适合的原绘图流程处理，不是当前编辑器导出按钮。
+- **输入图像：** 普通 PNG/JPEG 的内部文字不能自动转为独立可编辑对象。SVG 支持受限的静态子集，不执行脚本或外部资源。
+- **分析：** 重复测量、层级、协变量调整、复杂预测模型等需明确的专业工作流；界面不会凭图形形式补造统计结果。
 
-English prompt example:
+自动保存与本机计算不等于云端备份。桌面编辑与分析在本机进行，官方项目链接只有点击时才打开。AI 工作流所用的 Codex、其他 AI 环境或外部服务有各自的数据处理规则。
 
-```text
-Use $polish-sci-figures to audit this SVG for canvas consistency, live text, font fallback, accessibility, and final delivery readiness.
-```
+## 官方发行与许可
 
-## Common Failures
+[zhoy0409-debug/polish-sci-figures](https://github.com/zhoy0409-debug/polish-sci-figures) 是本项目唯一的官方维护与发布入口。维护版本通过该仓库 Releases 分发；安装包、便携包和技能套件保持各自的版本标识。
 
-| Message | Meaning | Fix |
-| --- | --- | --- |
-| `Required font 'Arial' is not installed` | The target font is missing and fallback is blocked | Install the font, choose an installed final font, or use `--allow-font-fallback` only for drafts |
-| `Legacy .xls is not a tested v1.3.3 input` | Old Excel format is outside the tested core path | Convert to `.xlsx`, CSV, or TSV |
-| `A scale bar requires an authoritative um_per_pixel column` | Calibration is missing | Add calibration from acquisition metadata or records |
-| `Independent data contain repeated experimental-unit IDs` | Possible pseudoreplication | Declare paired/repeated/nested design or aggregate technical replicates explicitly |
-| `SVG contains embedded raster layer(s)` | The SVG is partially editable | Do not describe it as fully vector editable |
+本项目继续采用 [MIT License](LICENSE)，保留版权与许可声明。打包的第三方组件附有各自许可说明，不能把它们一概称为 MIT。官方标识、固定仓库入口和 SHA-256 校验值方便核对来源与文件，不是 DRM，也不保证软件不能被复制；校验值不是发布者数字签名。当前构建未做代码签名，Windows 可能显示未知发布者或信誉提示。
 
-## Data Privacy And Local Processing
-
-The command-line scripts process local files on the machine where you run them. They do not intentionally upload data. Codex, ChatGPT, GitHub Actions, or any future Plugin surface may have separate data-handling behavior; review that environment before using sensitive patient, genomic, unpublished, or proprietary research data.
-
-## Version Compatibility
-
-| Component | v1.3.3 tested range |
-| --- | --- |
-| Python | 3.10-3.12 |
-| OS CI matrix | Ubuntu, Windows, macOS |
-| Tables | CSV, TSV, XLSX |
-| Legacy `.xls` | Not supported; convert first |
-| Core dependencies | See `requirements.txt` |
-| Optional integrations | See `requirements-optional.txt` |
-
-Python 3.10 and 3.12 are tested as compatibility endpoints on every supported OS; 3.11 lies inside that supported interval. The endpoint strategy limits CI cost while testing both ends of the declared range.
-
-## Skill behavior evaluation
-
-- Schema validation checks the eval case contract in `evals/skill_behavior_v1_3_3.json`.
-- Replay evaluation supports required-all/any, forbidden rules, regular expressions, and explicit synonym groups while retaining raw output and match evidence.
-- Live Codex capture is not bundled in this hotfix. It must be reported as `live_eval_run: false` unless a separately verified official runner captured real outputs; replay fixtures are not live-model evidence.
-
-## Reproduce and verify
-
-```bash
-# Rebuild deterministic showcase data and figures
-python skills/make-sci-data-figures/examples/make_advanced_examples.py
-python demo/figure_sources/make_demo_suite.py
-
-# Run repository checks
-python skills/make-sci-data-figures/scripts/test_figure_workbench.py
-python skills/make-sci-data-figures/scripts/test_data_family_workbench.py
-python skills/make-sci-data-figures/scripts/test_advanced_template_workbench.py
-python skills/standardize-sci-images/scripts/test_standardize_images.py
-python skills/polish-sci-figures/scripts/template_router.py self-check
-```
-
-Each generated data-figure bundle contains fixed-canvas PNG/SVG/PDF candidates, a same-size gallery, `data_profile.json`, `analysis_plan.json`, and `figure_recipe.json`. Palette-only rerendering preserves filtering, statistics, ordering, labels, geometry, and canvas.
-
-## Release gates
-
-- No unrequested panel letters, serial numbers, internal titles, or subtitles.
-- No hidden biological-unit duplication, invented statistics, labels, clusters, or validation claims.
-- No text–text, text–data, legend, scale-bar, axis, or annotation collisions at final size.
-- Equal physical canvas and axes geometry for panels intended for the same slot.
-- Correct case, italics, units, symbols, subscripts, superscripts, and journal font.
-- Editable SVG/PDF plus high-resolution PNG; raster content is never mislabeled fully editable.
-
-## Acknowledgments
-
-Thanks to Gliese-876 for proposing the private-runtime dependency and source-portability QA that was integrated in PR #1. v1.3.1 preserves that contribution and extends its regression coverage.
-
-## Repository layout
-
-```text
-skills/make-sci-data-figures/   raw data, statistics, candidate charts, palette recipes
-skills/standardize-sci-images/  calibrated image standardization and processing audit
-skills/polish-sci-figures/      final drawing, assembly, export, and QA
-demo/                           deterministic synthetic previews and sources
-```
-
-## License
-
-MIT License. See [LICENSE](LICENSE).
+引用信息见 [CITATION.cff](CITATION.cff)。感谢 Gliese-876 提出的运行时依赖与源码可移植性检查建议；原技能的贡献与许可记录继续保留。

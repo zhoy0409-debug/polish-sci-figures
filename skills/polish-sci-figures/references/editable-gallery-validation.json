@@ -1,0 +1,1494 @@
+{
+  "date": "2026-10-12",
+  "scope": "Original editable gallery and Figure Studio integration",
+  "coverage": {
+    "gallery_templates": 191,
+    "roc_starters": 27,
+    "editable_starters": 218,
+    "archive_entries_mapped": 187,
+    "older_chart_entries_mapped": 100,
+    "palette_guides": 2
+  },
+  "checks": {
+    "gallery_engine_round_trips": 191,
+    "gallery_size_variants": 1337,
+    "roc_engine_round_trips_including_replacements": 31,
+    "roc_size_variants": 217,
+    "template_render_cases": {
+      "compare": 368,
+      "clinical": 232,
+      "model_extras": 64,
+      "time_composition": 272,
+      "original_gallery": 168,
+      "temporal_extras": 72,
+      "omics_and_structure": 210,
+      "misc": 16
+    },
+    "multilingual_render_cases": 36,
+    "final_regular_bold_font_cases": 2
+  },
+  "browser_checks": [
+    "Original preview and enlarged vector preview",
+    "Apply a synthetic template into a spanning panel",
+    "Switch a current-data candidate while preserving wide canvas",
+    "Change observation, press Enter, verify chart update and selected view",
+    "Undo restores previous data",
+    "Change master columns and reselect the matching canvas",
+    "Move panel and span three columns with a real wide redraw",
+    "Chinese and English interface labels",
+    "Restore initial demonstration"
+  ],
+  "boundaries": [
+    "Model-result tables visualize supplied results; they do not automatically refit upstream models.",
+    "Synthetic fixtures test declared input contracts, not all conceivable datasets.",
+    "Visual review accompanies geometry checks; arbitrary user text and styling still require final-size review."
+  ],
+  "gallery_engine": [
+    {
+      "template": "prediction_intervals",
+      "sizes": 7,
+      "seconds": 1.61
+    },
+    {
+      "template": "hexbin_density",
+      "sizes": 7,
+      "seconds": 2.52
+    },
+    {
+      "template": "bland_altman",
+      "sizes": 7,
+      "seconds": 1.42
+    },
+    {
+      "template": "superplot",
+      "sizes": 7,
+      "seconds": 1.31
+    },
+    {
+      "template": "grouped_observations",
+      "sizes": 7,
+      "seconds": 2.34
+    },
+    {
+      "template": "correlation_circles",
+      "sizes": 7,
+      "seconds": 2.97
+    },
+    {
+      "template": "correlation_values",
+      "sizes": 7,
+      "seconds": 2.14
+    },
+    {
+      "template": "upset_intersections",
+      "sizes": 7,
+      "seconds": 2.95
+    },
+    {
+      "template": "ma_expression",
+      "sizes": 7,
+      "seconds": 1.67
+    },
+    {
+      "template": "pvalue_quantiles",
+      "sizes": 7,
+      "seconds": 1.42
+    },
+    {
+      "template": "variance_scree",
+      "sizes": 7,
+      "seconds": 1.23
+    },
+    {
+      "template": "composition_ring",
+      "sizes": 7,
+      "seconds": 1.23
+    },
+    {
+      "template": "composition_waffle",
+      "sizes": 7,
+      "seconds": 1.53
+    },
+    {
+      "template": "ternary_composition",
+      "sizes": 7,
+      "seconds": 0.62
+    },
+    {
+      "template": "paired_dumbbell",
+      "sizes": 7,
+      "seconds": 1.66
+    },
+    {
+      "template": "study_gantt",
+      "sizes": 7,
+      "seconds": 1.11
+    },
+    {
+      "template": "genome_manhattan",
+      "sizes": 7,
+      "seconds": 2.19
+    },
+    {
+      "template": "gsea_tracks",
+      "sizes": 7,
+      "seconds": 1.81
+    },
+    {
+      "template": "coverage_tracks",
+      "sizes": 7,
+      "seconds": 0.95
+    },
+    {
+      "template": "quality_profiles",
+      "sizes": 7,
+      "seconds": 1.5
+    },
+    {
+      "template": "pca_loadings",
+      "sizes": 7,
+      "seconds": 3.06
+    },
+    {
+      "template": "compare_bar_sd",
+      "sizes": 7,
+      "seconds": 3.44
+    },
+    {
+      "template": "compare_bar_points",
+      "sizes": 7,
+      "seconds": 0.69
+    },
+    {
+      "template": "compare_mean_sd",
+      "sizes": 7,
+      "seconds": 0.61
+    },
+    {
+      "template": "compare_mean_ci",
+      "sizes": 7,
+      "seconds": 0.73
+    },
+    {
+      "template": "compare_box",
+      "sizes": 7,
+      "seconds": 0.66
+    },
+    {
+      "template": "compare_box_points",
+      "sizes": 7,
+      "seconds": 0.77
+    },
+    {
+      "template": "compare_notched_box",
+      "sizes": 7,
+      "seconds": 0.66
+    },
+    {
+      "template": "compare_violin",
+      "sizes": 7,
+      "seconds": 0.7
+    },
+    {
+      "template": "compare_violin_box",
+      "sizes": 7,
+      "seconds": 0.83
+    },
+    {
+      "template": "compare_swarm",
+      "sizes": 7,
+      "seconds": 0.75
+    },
+    {
+      "template": "compare_strip_median",
+      "sizes": 7,
+      "seconds": 0.7
+    },
+    {
+      "template": "compare_raincloud",
+      "sizes": 7,
+      "seconds": 0.98
+    },
+    {
+      "template": "compare_log_points",
+      "sizes": 7,
+      "seconds": 1.28
+    },
+    {
+      "template": "compare_ridgeline",
+      "sizes": 7,
+      "seconds": 0.75
+    },
+    {
+      "template": "compare_hist_facets",
+      "sizes": 7,
+      "seconds": 1.28
+    },
+    {
+      "template": "compare_density",
+      "sizes": 7,
+      "seconds": 0.86
+    },
+    {
+      "template": "compare_ecdf",
+      "sizes": 7,
+      "seconds": 0.67
+    },
+    {
+      "template": "compare_cleveland",
+      "sizes": 7,
+      "seconds": 0.58
+    },
+    {
+      "template": "compare_paired_lines",
+      "sizes": 7,
+      "seconds": 1.0
+    },
+    {
+      "template": "compare_paired_change",
+      "sizes": 7,
+      "seconds": 1.09
+    },
+    {
+      "template": "compare_interaction",
+      "sizes": 7,
+      "seconds": 1.22
+    },
+    {
+      "template": "compare_facet_boxes",
+      "sizes": 7,
+      "seconds": 1.53
+    },
+    {
+      "template": "compare_dose_trend",
+      "sizes": 7,
+      "seconds": 0.91
+    },
+    {
+      "template": "compare_bracket_stars",
+      "sizes": 7,
+      "seconds": 0.94
+    },
+    {
+      "template": "compare_bracket_p",
+      "sizes": 7,
+      "seconds": 0.75
+    },
+    {
+      "template": "compare_control_symbols",
+      "sizes": 7,
+      "seconds": 0.59
+    },
+    {
+      "template": "compare_gardner_altman",
+      "sizes": 7,
+      "seconds": 1.03
+    },
+    {
+      "template": "compare_cumming",
+      "sizes": 7,
+      "seconds": 1.09
+    },
+    {
+      "template": "relation_scatter",
+      "sizes": 7,
+      "seconds": 0.97
+    },
+    {
+      "template": "relation_regression_ci",
+      "sizes": 7,
+      "seconds": 0.45
+    },
+    {
+      "template": "relation_marginal_hist",
+      "sizes": 7,
+      "seconds": 0.69
+    },
+    {
+      "template": "relation_density_contour",
+      "sizes": 7,
+      "seconds": 0.52
+    },
+    {
+      "template": "relation_density_fill",
+      "sizes": 7,
+      "seconds": 0.55
+    },
+    {
+      "template": "relation_transparent",
+      "sizes": 7,
+      "seconds": 0.53
+    },
+    {
+      "template": "relation_identity",
+      "sizes": 7,
+      "seconds": 0.44
+    },
+    {
+      "template": "relation_group_regression",
+      "sizes": 7,
+      "seconds": 0.64
+    },
+    {
+      "template": "relation_marginal_box",
+      "sizes": 7,
+      "seconds": 0.94
+    },
+    {
+      "template": "relation_color",
+      "sizes": 7,
+      "seconds": 0.89
+    },
+    {
+      "template": "relation_bubble",
+      "sizes": 7,
+      "seconds": 0.7
+    },
+    {
+      "template": "relation_labelled",
+      "sizes": 7,
+      "seconds": 0.8
+    },
+    {
+      "template": "relation_scatter_matrix",
+      "sizes": 7,
+      "seconds": 1.88
+    },
+    {
+      "template": "relation_loess",
+      "sizes": 7,
+      "seconds": 0.61
+    },
+    {
+      "template": "relation_model_compare",
+      "sizes": 7,
+      "seconds": 0.56
+    },
+    {
+      "template": "relation_residual_fitted",
+      "sizes": 7,
+      "seconds": 0.64
+    },
+    {
+      "template": "relation_residual_qq",
+      "sizes": 7,
+      "seconds": 0.48
+    },
+    {
+      "template": "relation_influence",
+      "sizes": 7,
+      "seconds": 0.72
+    },
+    {
+      "template": "time_mean_band",
+      "sizes": 7,
+      "seconds": 1.2
+    },
+    {
+      "template": "time_small_multiples",
+      "sizes": 7,
+      "seconds": 0.8
+    },
+    {
+      "template": "time_individual_paths",
+      "sizes": 7,
+      "seconds": 0.66
+    },
+    {
+      "template": "time_auc_summary",
+      "sizes": 7,
+      "seconds": 0.55
+    },
+    {
+      "template": "time_baseline_change",
+      "sizes": 7,
+      "seconds": 0.81
+    },
+    {
+      "template": "time_mean_sd",
+      "sizes": 7,
+      "seconds": 0.83
+    },
+    {
+      "template": "time_mean_replicates",
+      "sizes": 7,
+      "seconds": 0.98
+    },
+    {
+      "template": "time_supplied_fit",
+      "sizes": 7,
+      "seconds": 1.05
+    },
+    {
+      "template": "time_steps",
+      "sizes": 7,
+      "seconds": 1.42
+    },
+    {
+      "template": "time_series",
+      "sizes": 7,
+      "seconds": 1.0
+    },
+    {
+      "template": "time_moving_average",
+      "sizes": 7,
+      "seconds": 1.16
+    },
+    {
+      "template": "time_interrupted",
+      "sizes": 7,
+      "seconds": 1.14
+    },
+    {
+      "template": "time_seasonal",
+      "sizes": 7,
+      "seconds": 1.09
+    },
+    {
+      "template": "time_month_matrix",
+      "sizes": 7,
+      "seconds": 1.44
+    },
+    {
+      "template": "time_epidemic",
+      "sizes": 7,
+      "seconds": 1.08
+    },
+    {
+      "template": "time_cumulative",
+      "sizes": 7,
+      "seconds": 0.58
+    },
+    {
+      "template": "time_stacked_area",
+      "sizes": 7,
+      "seconds": 1.14
+    },
+    {
+      "template": "time_percent_area",
+      "sizes": 7,
+      "seconds": 0.52
+    },
+    {
+      "template": "paired_slope",
+      "sizes": 7,
+      "seconds": 0.58
+    },
+    {
+      "template": "time_rank_changes",
+      "sizes": 7,
+      "seconds": 0.83
+    },
+    {
+      "template": "time_swimmer",
+      "sizes": 7,
+      "seconds": 1.23
+    },
+    {
+      "template": "time_calendar",
+      "sizes": 7,
+      "seconds": 9.67
+    },
+    {
+      "template": "category_ranked_bars",
+      "sizes": 7,
+      "seconds": 0.89
+    },
+    {
+      "template": "composition_pie",
+      "sizes": 7,
+      "seconds": 1.59
+    },
+    {
+      "template": "composition_single_bar",
+      "sizes": 7,
+      "seconds": 1.11
+    },
+    {
+      "template": "composition_pictogram",
+      "sizes": 7,
+      "seconds": 0.86
+    },
+    {
+      "template": "composition_percent_bars",
+      "sizes": 7,
+      "seconds": 1.73
+    },
+    {
+      "template": "composition_grouped_bars",
+      "sizes": 7,
+      "seconds": 0.8
+    },
+    {
+      "template": "composition_facets",
+      "sizes": 7,
+      "seconds": 1.5
+    },
+    {
+      "template": "composition_count_bars",
+      "sizes": 7,
+      "seconds": 0.91
+    },
+    {
+      "template": "composition_mosaic",
+      "sizes": 7,
+      "seconds": 0.78
+    },
+    {
+      "template": "composition_likert",
+      "sizes": 7,
+      "seconds": 1.16
+    },
+    {
+      "template": "composition_treemap",
+      "sizes": 7,
+      "seconds": 0.95
+    },
+    {
+      "template": "composition_sunburst",
+      "sizes": 7,
+      "seconds": 0.91
+    },
+    {
+      "template": "survival_steps",
+      "sizes": 7,
+      "seconds": 2.73
+    },
+    {
+      "template": "survival_intervals",
+      "sizes": 7,
+      "seconds": 1.53
+    },
+    {
+      "template": "survival_risk_counts",
+      "sizes": 7,
+      "seconds": 1.81
+    },
+    {
+      "template": "survival_median",
+      "sizes": 7,
+      "seconds": 1.36
+    },
+    {
+      "template": "survival_events",
+      "sizes": 7,
+      "seconds": 1.98
+    },
+    {
+      "template": "survival_hazard",
+      "sizes": 7,
+      "seconds": 1.36
+    },
+    {
+      "template": "survival_loglog",
+      "sizes": 7,
+      "seconds": 0.83
+    },
+    {
+      "template": "schoenfeld_results",
+      "sizes": 7,
+      "seconds": 0.98
+    },
+    {
+      "template": "competing_incidence",
+      "sizes": 7,
+      "seconds": 1.19
+    },
+    {
+      "template": "clinical_subgroup_forest",
+      "sizes": 7,
+      "seconds": 1.16
+    },
+    {
+      "template": "coefficient_forest",
+      "sizes": 7,
+      "seconds": 1.41
+    },
+    {
+      "template": "meta_forest",
+      "sizes": 7,
+      "seconds": 1.28
+    },
+    {
+      "template": "meta_subgroup_forest",
+      "sizes": 7,
+      "seconds": 1.3
+    },
+    {
+      "template": "meta_cumulative",
+      "sizes": 7,
+      "seconds": 1.5
+    },
+    {
+      "template": "meta_leave_one_out",
+      "sizes": 7,
+      "seconds": 1.33
+    },
+    {
+      "template": "calibration_results",
+      "sizes": 7,
+      "seconds": 1.02
+    },
+    {
+      "template": "decision_curve_results",
+      "sizes": 7,
+      "seconds": 1.11
+    },
+    {
+      "template": "clinical_impact_results",
+      "sizes": 7,
+      "seconds": 1.05
+    },
+    {
+      "template": "spline_effect_results",
+      "sizes": 7,
+      "seconds": 1.12
+    },
+    {
+      "template": "response_waterfall",
+      "sizes": 7,
+      "seconds": 0.84
+    },
+    {
+      "template": "classification_counts",
+      "sizes": 7,
+      "seconds": 0.52
+    },
+    {
+      "template": "meta_funnel",
+      "sizes": 7,
+      "seconds": 1.27
+    },
+    {
+      "template": "meta_contour_funnel",
+      "sizes": 7,
+      "seconds": 2.02
+    },
+    {
+      "template": "meta_radial",
+      "sizes": 7,
+      "seconds": 1.48
+    },
+    {
+      "template": "meta_regression_results",
+      "sizes": 7,
+      "seconds": 0.56
+    },
+    {
+      "template": "bias_risk_matrix",
+      "sizes": 7,
+      "seconds": 2.8
+    },
+    {
+      "template": "bias_risk_summary",
+      "sizes": 7,
+      "seconds": 1.27
+    },
+    {
+      "template": "study_flow",
+      "sizes": 7,
+      "seconds": 0.5
+    },
+    {
+      "template": "diagnostic_paired_forest",
+      "sizes": 7,
+      "seconds": 0.7
+    },
+    {
+      "template": "volcano_plain",
+      "sizes": 7,
+      "seconds": 0.89
+    },
+    {
+      "template": "volcano_labels",
+      "sizes": 7,
+      "seconds": 1.16
+    },
+    {
+      "template": "clustered_matrix",
+      "sizes": 7,
+      "seconds": 1.33
+    },
+    {
+      "template": "pca_ellipse",
+      "sizes": 7,
+      "seconds": 1.28
+    },
+    {
+      "template": "pcoa_spider",
+      "sizes": 7,
+      "seconds": 1.08
+    },
+    {
+      "template": "embedding_map",
+      "sizes": 7,
+      "seconds": 0.75
+    },
+    {
+      "template": "singlecell_dots",
+      "sizes": 7,
+      "seconds": 1.05
+    },
+    {
+      "template": "enrichment_bars",
+      "sizes": 7,
+      "seconds": 0.59
+    },
+    {
+      "template": "enrichment_dots",
+      "sizes": 7,
+      "seconds": 1.25
+    },
+    {
+      "template": "venn_membership",
+      "sizes": 7,
+      "seconds": 0.25
+    },
+    {
+      "template": "mutation_lollipop",
+      "sizes": 7,
+      "seconds": 0.64
+    },
+    {
+      "template": "lefse_scores",
+      "sizes": 7,
+      "seconds": 0.59
+    },
+    {
+      "template": "cooccurrence_network",
+      "sizes": 7,
+      "seconds": 0.58
+    },
+    {
+      "template": "oncoprint_matrix",
+      "sizes": 7,
+      "seconds": 0.92
+    },
+    {
+      "template": "dose_response_result",
+      "sizes": 7,
+      "seconds": 1.45
+    },
+    {
+      "template": "time_kill",
+      "sizes": 7,
+      "seconds": 0.72
+    },
+    {
+      "template": "mic_distribution",
+      "sizes": 7,
+      "seconds": 0.75
+    },
+    {
+      "template": "checkerboard_assay",
+      "sizes": 7,
+      "seconds": 0.78
+    },
+    {
+      "template": "isobologram",
+      "sizes": 7,
+      "seconds": 0.66
+    },
+    {
+      "template": "zone_diameters",
+      "sizes": 7,
+      "seconds": 0.62
+    },
+    {
+      "template": "antibiogram_matrix",
+      "sizes": 7,
+      "seconds": 1.41
+    },
+    {
+      "template": "rarefaction_result",
+      "sizes": 7,
+      "seconds": 0.81
+    },
+    {
+      "template": "taxa_composition",
+      "sizes": 7,
+      "seconds": 0.97
+    },
+    {
+      "template": "alpha_diversity",
+      "sizes": 7,
+      "seconds": 0.67
+    },
+    {
+      "template": "phylogeny_traits",
+      "sizes": 7,
+      "seconds": 0.78
+    },
+    {
+      "template": "gene_arrows",
+      "sizes": 7,
+      "seconds": 0.88
+    },
+    {
+      "template": "plasmid_features",
+      "sizes": 7,
+      "seconds": 0.75
+    },
+    {
+      "template": "protein_domains",
+      "sizes": 7,
+      "seconds": 1.55
+    },
+    {
+      "template": "flow_alluvial",
+      "sizes": 7,
+      "seconds": 1.0
+    },
+    {
+      "template": "rose_frequency",
+      "sizes": 7,
+      "seconds": 1.19
+    },
+    {
+      "template": "radar_profile",
+      "sizes": 7,
+      "seconds": 1.27
+    },
+    {
+      "template": "causal_dag",
+      "sizes": 7,
+      "seconds": 1.77
+    },
+    {
+      "template": "study_timeline",
+      "sizes": 7,
+      "seconds": 1.7
+    },
+    {
+      "template": "distribution_sina",
+      "sizes": 7,
+      "seconds": 1.23
+    },
+    {
+      "template": "compare_uncertainty",
+      "sizes": 7,
+      "seconds": 1.92
+    },
+    {
+      "template": "model_nomogram",
+      "sizes": 7,
+      "seconds": 1.61
+    },
+    {
+      "template": "model_shap_summary",
+      "sizes": 7,
+      "seconds": 1.52
+    },
+    {
+      "template": "model_facet_relationship",
+      "sizes": 7,
+      "seconds": 2.48
+    },
+    {
+      "template": "model_deming_results",
+      "sizes": 7,
+      "seconds": 0.78
+    },
+    {
+      "template": "model_ice_pdp",
+      "sizes": 7,
+      "seconds": 1.28
+    },
+    {
+      "template": "model_partial_residual",
+      "sizes": 7,
+      "seconds": 0.88
+    },
+    {
+      "template": "model_quantile_results",
+      "sizes": 7,
+      "seconds": 1.09
+    },
+    {
+      "template": "model_bootstrap_distribution",
+      "sizes": 7,
+      "seconds": 1.22
+    },
+    {
+      "template": "time_stl_components",
+      "sizes": 7,
+      "seconds": 2.23
+    },
+    {
+      "template": "time_pk_target",
+      "sizes": 7,
+      "seconds": 1.0
+    },
+    {
+      "template": "time_mutant_window",
+      "sizes": 7,
+      "seconds": 1.2
+    },
+    {
+      "template": "control_u_results",
+      "sizes": 7,
+      "seconds": 0.67
+    },
+    {
+      "template": "institution_funnel",
+      "sizes": 7,
+      "seconds": 0.8
+    },
+    {
+      "template": "lorenz_curve",
+      "sizes": 7,
+      "seconds": 0.78
+    },
+    {
+      "template": "rank_abundance",
+      "sizes": 7,
+      "seconds": 1.31
+    },
+    {
+      "template": "hill_diversity",
+      "sizes": 7,
+      "seconds": 0.59
+    },
+    {
+      "template": "control_cusum_results",
+      "sizes": 7,
+      "seconds": 0.58
+    },
+    {
+      "template": "parallel_coordinates",
+      "sizes": 7,
+      "seconds": 0.92
+    },
+    {
+      "template": "synergy_surface_result",
+      "sizes": 7,
+      "seconds": 1.7
+    },
+    {
+      "template": "missingness_matrix",
+      "sizes": 7,
+      "seconds": 1.02
+    },
+    {
+      "template": "euler_two_sets",
+      "sizes": 7,
+      "seconds": 0.39
+    },
+    {
+      "template": "muller_lineages",
+      "sizes": 7,
+      "seconds": 1.41
+    },
+    {
+      "template": "chord_flows",
+      "sizes": 7,
+      "seconds": 0.69
+    },
+    {
+      "template": "mediation_paths_result",
+      "sizes": 7,
+      "seconds": 1.23
+    },
+    {
+      "template": "fagan_nomogram",
+      "sizes": 7,
+      "seconds": 0.97
+    },
+    {
+      "template": "tornado_sensitivity",
+      "sizes": 7,
+      "seconds": 0.86
+    }
+  ],
+  "roc_engine": [
+    {
+      "template": "roc_partial",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.41,
+      "table_sha256": "c3da8c34f853f09c9c3111ccc6deb0947b5e6343350ec76d5e71804633440f75"
+    },
+    {
+      "template": "roc_convex",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.53,
+      "table_sha256": "c3da8c34f853f09c9c3111ccc6deb0947b5e6343350ec76d5e71804633440f75"
+    },
+    {
+      "template": "roc_probit",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.5,
+      "table_sha256": "c3da8c34f853f09c9c3111ccc6deb0947b5e6343350ec76d5e71804633440f75"
+    },
+    {
+      "template": "roc_cost",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.67,
+      "table_sha256": "c3da8c34f853f09c9c3111ccc6deb0947b5e6343350ec76d5e71804633440f75"
+    },
+    {
+      "template": "roc_smooth",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.66,
+      "table_sha256": "0c1b5d08ea60e56ba7c67e35efbb5801817e0e6dd9097d5cbc9e87e57b09ce8d"
+    },
+    {
+      "template": "roc_cutoff_ci",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.66,
+      "table_sha256": "6e993a9ba85a19c83c77ebf1b28fa5e88493c9e87ad5c0b86a5597d541554168"
+    },
+    {
+      "template": "roc_cv",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.84,
+      "table_sha256": "bf942c0af84eb0492558bf57c72c830cd6851a2e7e156bdf98a676ffcbdfc8ed"
+    },
+    {
+      "template": "roc_subgroups",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 1.27,
+      "table_sha256": "67b32e2dc4845217112b0232ba52cbd0a0ac753d74e304007e33cba7262b9ad8"
+    },
+    {
+      "template": "roc_training_validation",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.59,
+      "table_sha256": "ae7c701a56c656455fafdbdaed03cf49c7bafef4a6420efa94aeaff85ccb5cb4"
+    },
+    {
+      "template": "roc_multi",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.78,
+      "table_sha256": "1aba5fb3b27ade4b34f609bde7c18887de029f9073c65df205361447df2fe644"
+    },
+    {
+      "template": "roc_time",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.56,
+      "table_sha256": "e72e2d76e5f31b21e861c10d9a9a0b60d58eba98900f1b65cbb52d0aaf4f9fa0"
+    },
+    {
+      "template": "roc_sroc",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 0.47,
+      "table_sha256": "f2e0dc640725c3bfbcbc589b1c2402e5b36885e3513353a2691357a205b6a47b"
+    },
+    {
+      "template": "roc",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 2.91,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "precision_recall",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 2.61,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_auc_fill",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 2.56,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_threshold_points",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 2.52,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_threshold_color",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 3.66,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_threshold_labels",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 3.75,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_youden",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 3.53,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_pointwise_band",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 3.45,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_direct_labels",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 2.88,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_bootstrap_curves",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 3.94,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_with_auc_forest",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 2.48,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_log_fpr",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 2.23,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_confusion",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 2.69,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_score_distribution",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 3.03,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_two_graph",
+      "revision": "initial",
+      "sizes": 7,
+      "seconds": 3.0,
+      "table_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3"
+    },
+    {
+      "template": "roc_youden",
+      "revision": "replacement",
+      "sizes": 7,
+      "seconds": 2.72,
+      "table_sha256": "00ae928bdc471ad11752a8c983aef0ac73c1d3324eb7795d1b810825dfeccbaa"
+    },
+    {
+      "template": "roc_with_auc_forest",
+      "revision": "replacement",
+      "sizes": 7,
+      "seconds": 2.81,
+      "table_sha256": "00ae928bdc471ad11752a8c983aef0ac73c1d3324eb7795d1b810825dfeccbaa"
+    },
+    {
+      "template": "roc_partial",
+      "revision": "replacement",
+      "sizes": 7,
+      "seconds": 0.69,
+      "table_sha256": "dd810ad9424b2f375a15d083a8375bdcfaf6851eebfb07bc908221aaf6105399"
+    },
+    {
+      "template": "roc_cutoff_ci",
+      "revision": "replacement",
+      "sizes": 7,
+      "seconds": 0.59,
+      "table_sha256": "9df621bf73130d6076ca1d1024e267cc6df648a7b73276026e30f01832113f94"
+    }
+  ],
+  "interaction_and_layout_review": {
+    "date": "2026-10-12",
+    "scope": "27 reviewed physical plot frames and the explicitly recorded editor workflows; not a full 191-template alignment certification.",
+    "script_checks": {
+      "physical_frames": {
+        "report": ".cache/composite-alignment-qa/measurements.json",
+        "margins_pt": {
+          "left": 60.0,
+          "right": 44.0,
+          "top": 56.0,
+          "bottom": 42.0
+        },
+        "cases": 36,
+        "views": [
+          "clustered_matrix",
+          "compare_raincloud",
+          "coverage_tracks",
+          "flow_alluvial",
+          "genome_manhattan",
+          "meta_forest",
+          "model_shap_summary",
+          "pca_loadings",
+          "roc_pointwise_band"
+        ],
+        "data_revisions": [
+          "original",
+          "edited"
+        ],
+        "sizes": [
+          "normal",
+          "wide"
+        ],
+        "maximum_absolute_frame_error_pt": 5.684341886080802e-14,
+        "failures": []
+      },
+      "exact_reflow": {
+        "report": ".cache/studio-reflow-qa/report.json",
+        "reviewed_gallery_views": 25,
+        "reviewed_empirical_roc_views": [
+          "roc_pointwise_band",
+          "roc_bootstrap_curves"
+        ],
+        "render_checks": 83,
+        "rejected_invalid_inputs": 49,
+        "http_checks": 12,
+        "legacy_size_variants": 6
+      },
+      "control_styles": {
+        "method": "Static CSS review and diff validation",
+        "checks": [
+          "Enabled control hover/pressed/selected states and keyboard focus-visible",
+          "Reduced-motion rules; no layout-shifting feedback",
+          "Canvas-only native text selection and image dragging suppression",
+          "Marquee and individual element outline rules leave source artwork colors intact"
+        ]
+      },
+      "color_swatches": {
+        "method": "Node syntax check and isolated drawColorSwatches behavior checks",
+        "checks": [
+          "Eight muted blue/red/slate/neutral defaults",
+          "Case-insensitive recent-color deduplication, invalid HEX filtering and preserved user colors",
+          "HEX title and accessible label on each swatch",
+          "Applying a swatch changes color only after explicit user selection",
+          "Selected indicator synchronization and Chinese/English initial empty-state labels"
+        ]
+      },
+      "preview_zoom": {
+        "method": "Node helper tests, source-path guards, syntax checks and existing selection/state regression checks",
+        "test": "scripts/test_studio_zoom.cjs",
+        "checks": [
+          "10%–400% bounds, reciprocal wheel increments and pixel/line/page units",
+          "Pointer anchor math with scrolled artwork and centered-to-overflow auto-margin changes",
+          "Scroll-bound clamping and invalid geometry handling",
+          "Wheel path updates the existing SVG CSS dimensions without renderer, history or export-settings writes",
+          "Only Alt/Ctrl-modified wheels are intercepted; English tooltip translations exist"
+        ],
+        "browser_status": "Native browser Alt-wheel and touchpad-pinch gestures have not been exercised by available browser automation. Node event-handler simulation is recorded separately from the actual browser selection workflow.",
+        "event_handler_test": "scripts/test_studio_zoom_events.cjs",
+        "event_handler_method": "Current source controller, wheel listener, zoom-selector callback, pointer-down handler, selection-outline drawing and resize listener executed in a bounded Node DOM mock; source plot generation is stubbed.",
+        "event_handler_checks": [
+          "Multiple modified wheels schedule one animation frame and one SVG width/height update.",
+          "Unmodified and Shift-only wheels are not prevented; Alt/Ctrl wheels are canceled through a passive:false listener.",
+          "Wheel events with nonzero pointer buttons do not queue zoom.",
+          "Starting box selection cancels a pending zoom before capturing geometry; the control retains the applied fit or numeric state.",
+          "A newer dropdown choice is retained when canceling an older queued wheel.",
+          "Dynamic percentages reuse one option; zoom clamps to 10% and 400%.",
+          "Resize recomputes fit zoom; a fixed numeric zoom remains fixed.",
+          "Fresh selection coordinates and independently refreshed existing outlines retain 2 px padding at tested 10%, 37%, 100% and 400% zoom; chart generation is not called by the zoom path."
+        ]
+      },
+      "deletion_and_panel_labels": {
+        "test": "scripts/test_studio_delete_labels.cjs",
+        "method": "Pure reducers plus actual source-edit application, keyboard listener, label controls and pointer handlers in bounded Node mocks",
+        "checks": [
+          "Deleting selected source elements writes hidden overrides and preserves the source asset, panel count, grid and data.",
+          "Locked source elements, annotations and panels are protected; undo/redo and serialized history restore hidden elements.",
+          "Native text inputs, textarea, select, contenteditable and IME composition do not invoke canvas deletion.",
+          "Automatic labels use row/column position rather than panel id or stale array order.",
+          "Legacy labels are compared with project.initialState; unchanged text becomes automatic and changed text remains manual.",
+          "Manual labels survive movement; restore-auto, numeric/lowercase choices and manual freeze work.",
+          "Actual label pointer handlers select without a history step, ignore subthreshold movement, preserve pointer offset while dragging and focus the text input on double-click.",
+          "The full down/up/click sequence repeated twice before dblclick keeps pointer capture on the label text; single click does not steal focus and unrelated double-clicks do not focus an old label."
+        ],
+        "browser_status": "Implementation-agent checks use Node mocks; native browser verification is performed separately."
+      },
+      "panel_drag": {
+        "test": "scripts/test_studio_panel_drag.cjs",
+        "method": "Production canvas pointer/native drag handlers and mode controls executed in a bounded Node DOM mock",
+        "passed": true,
+        "checks": [
+          "Arrange mode routes chart marks, labels and annotations to whole-panel movement; direct frame grip works without changing modes.",
+          "Occupied slots exchange complete positions/spans; empty cells accept the source panel; locked destinations are rejected.",
+          "Source data and element edits are preserved; visual-order numbering updates and undo/redo restores state.",
+          "The 3 px threshold, original-slot drop, out-of-canvas release and cancellation do not add history.",
+          "Pointer movement reuses a candidate inside the same target cell and does not render the canvas/inspector; successful release renders once.",
+          "Capture loss, zero pointer buttons, Escape, window blur and canvas repaint cancel the panel gesture without a commit.",
+          "Cancelled native sidebar drag clears its preview; completed native drop does not render again on dragend.",
+          "Resize click or return to the original span preserves fixed grid.widths and grid.heights.",
+          "Arrange mode and element selection are mutually exclusive; whole-panel selection restores Panel property scope."
+        ],
+        "browser_status": "Native-browser verification is recorded separately by the main thread."
+      }
+    },
+    "browser_checks": {
+      "method": "Actual browser pointer and inspector interactions",
+      "proof": ".cache/marquee-axis-font-proof.png",
+      "cases": [
+        "Marquee selected five vertical-axis numbers in panel A; setting 12 pt changed only those five.",
+        "Shift-click on Feature 1 in panel B extended the selected text set to six objects; setting 10 pt changed all six.",
+        "A single undo restored the preceding text sizes for that six-object edit.",
+        "Native browser text selection remained empty during the canvas selection workflow."
+      ]
+    },
+    "implementation_details": [
+      "Grid guides default to visible, can be toggled and are omitted from figure exports.",
+      "Marquee candidate feedback and per-element rectangular outlines are editor overlays.",
+      "The common swatch set uses muted blue, red, slate and neutrals; custom and recent user colors remain available."
+    ],
+    "boundaries": [
+      "Shared-frame alignment is reviewed for 27 named views, not all 191 gallery templates.",
+      "CSS state coverage is a static inspection; the browser workflow above is the explicitly exercised interaction scope.",
+      "The historical clustered_matrix layout case does not certify new heatmap editing functionality.",
+      "Arbitrary data, labels and imported SVG structures still require final-size visual review."
+    ]
+  },
+  "workspace_selection_2026_10_12": {
+    "state": "implemented and tested",
+    "script_checks": {
+      "test": "scripts/test_studio_workspace_selection.cjs",
+      "method": "Production viewport and SVG event handlers, hit testing and overlay drawing executed in a bounded Node DOM mock",
+      "passed": true,
+      "cases": [
+        "Gray workspace origin selects source elements across the figure boundary",
+        "Pointer movement coalesces into one pending animation frame; candidate outlines become final outlines and chosen state",
+        "First ordinary click after marquee clears selection; the following click selects normally",
+        "Gray and figure blank clicks clear selection and disable Delete without data or history changes",
+        "Shift retains source selection while adding inserted annotations; mixed and annotation-only selection are consistent",
+        "SVG bubbling, toolbar controls, middle/right buttons and scrollbar hit regions are excluded",
+        "Scroll, pointer cancellation, capture loss and released buttons cancel unfinished selection",
+        "Selection rectangle remains clipped to the viewport content area",
+        "Previously selected chart elements can still be dragged; simple taps add no history"
+      ]
+    },
+    "browser_checks": {
+      "performed_by": "main thread",
+      "method": "Actual browser pointer interactions",
+      "proof": ".cache/viewport-selection-proof.png",
+      "cases": [
+        "Selection mode showed crosshair in both gray viewport and SVG",
+        "Gray-origin drag selected exactly five vertical-axis values, five final outlines and enabled Delete",
+        "A second gray-origin drag selected those five values plus the axis title",
+        "Clicking gray space and clicking inside the figure cleared chosen objects and outlines and disabled Delete",
+        "Native browser text selection remained empty"
+      ]
+    },
+    "boundaries": [
+      "Workspace marquee feedback is outside the exported artboard SVG",
+      "The actual browser cases verify the recorded axis-selection workflow, not every imported SVG structure"
+    ]
+  },
+  "heatmap_cell_values_2026_10_12": {
+    "state": "implemented and tested",
+    "features": [
+      "Immediate cell-value visibility",
+      "0–6 display decimals without changing data",
+      "Font size with cell-bound fitting",
+      "Automatic contrast or custom HEX color",
+      "Panel-state persistence, undo/redo, data-replacement retention, editable SVG export",
+      "Immediate valid font-size/decimal input",
+      "Uniform fitted numeric font and actual-size reporting",
+      "True continuous palette remapping with unchanged scale and geometry"
+    ],
+    "metadata_checks": {
+      "test": "scripts/test_heatmap_values.py",
+      "passed": 54,
+      "types": [
+        "matrix_heatmap",
+        "correlation_values",
+        "clustered_matrix",
+        "checkerboard_assay",
+        "antibiogram_matrix",
+        "classification_counts",
+        "time_month_matrix",
+        "time_calendar",
+        "missingness_matrix"
+      ],
+      "data": [
+        "original",
+        "changed"
+      ],
+      "sizes": [
+        "normal",
+        "wide",
+        "portrait"
+      ],
+      "evidence": ".cache/heatmap-qa/metadata-results.json",
+      "checks": [
+        "Exact ordered cell-to-mesh/image value equality",
+        "Original normalized scalar per cell",
+        "Original normalized scalar per colorbar segment",
+        "Missing-cell exclusion",
+        "Unique SVG IDs"
+      ]
+    },
+    "state_checks": {
+      "test": "scripts/test_studio_heatmap.cjs",
+      "passed": true,
+      "checks": [
+        "exact IEEE-754 decoding",
+        "rounding and negative zero",
+        "contrast",
+        "invalid input rejection",
+        "undo/redo",
+        "JSON restore",
+        "data-replacement settings retention",
+        "Separate sequential/diverging palette validation",
+        "Interpolation uses original zero midpoint",
+        "Real renderer metadata updates all vector cells and colorbar segments",
+        "Palette undo/restore and data replacement",
+        "Font/decimal live-input production binding"
+      ]
+    },
+    "browser_checks": {
+      "performed_by": "main thread",
+      "cases": [
+        "56 clustered-matrix cells toggled visible",
+        "One decimal place displayed without overlap",
+        "0.82 data edit retained visible labels after recomputation",
+        "SVG export contained 56 visible editable labels without editor guides or selection outlines"
+      ]
+    },
+    "boundaries": [
+      "Categorical matrices are not assigned numeric labels",
+      "Old generated SVGs need local regeneration to receive numerical metadata",
+      "Additional isolated --browser test mode was not run in this handoff",
+      "Font size is an upper bound; a uniform actual fitted size is reported when the cell capacity is smaller",
+      "Automatic uniform fitting applies to matrix defaults; explicit element font sizes are honored directly and may require final-size review."
+    ],
+    "element_override_checks": {
+      "test": "scripts/test_studio_heatmap_overrides.cjs",
+      "method": "Execute production editedSvg with controlled vector-cell fixtures",
+      "passed": true,
+      "cases": [
+        "1 selected cell changes from 8 to 12 pt; 55 remain 8 pt",
+        "5 selected cells change from 8 to 12 pt; 51 remain 8 pt",
+        "Hidden labels stay hidden after contrast refresh",
+        "User opacity and text color remain unchanged",
+        "Matrix default updates preserve explicit cell sizes",
+        "Visibility off/on does not resurrect deleted labels"
+      ]
+    }
+  }
+}

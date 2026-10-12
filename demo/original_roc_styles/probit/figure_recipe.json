@@ -1,0 +1,9 @@
+{
+  "family": "roc_results",
+  "input": "data.csv",
+  "font": "Arial",
+  "parameters": {
+    "view": "probit",
+    "method": "Deterministic synthetic analysis-result fixture; not clinical data"
+  }
+}

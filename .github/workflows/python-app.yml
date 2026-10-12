@@ -33,6 +33,8 @@ jobs:
         run: python -m compileall -q sci_figures.py scripts skills demo
       - name: Unified CLI smoke test
         run: python test_sci_figures_cli.py
+      - name: Figure Studio packaging and provenance
+        run: python skills/polish-sci-figures/scripts/test_figure_studio.py
       - name: Release QA gates
         run: |
           python skills/polish-sci-figures/scripts/test_figure_text_qa.py
@@ -81,7 +83,29 @@ jobs:
           git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
       - name: Build and test complete release bundle
         run: |
-          python scripts/build_release.py --version v1.3.3
+          python scripts/build_release.py --version v1.4.0
           python scripts/test_release_bundle.py
+          python scripts/build_portable_skill.py --version v1.4.0
+          python scripts/test_portable_skill.py
+      - name: Compute synthetic results for composite statistics layout
+        # The Node layout test consumes these freshly analyzed observations.
+        # A clean checkout must never depend on a developer's .cache contents.
+        run: python scripts/test_composite_statistics.py
+      - name: Figure Studio history and state validation
+        run: |
+          node scripts/test_studio_state.cjs
+          node scripts/test_studio_delete_labels.cjs
+          node scripts/test_studio_keyboard_nudge.cjs
+          node scripts/test_studio_new_project.cjs
+          node scripts/test_studio_stat_layout.cjs
+          node scripts/test_studio_composite_stat_layout.cjs
+          node scripts/test_studio_workspace_selection.cjs
+          node scripts/test_studio_heatmap_palettes.cjs
+          node scripts/test_studio_rich_text_regression.cjs
+      - name: Figure Studio analysis and data reflow
+        run: |
+          python scripts/test_studio_statistics.py
+          python scripts/test_studio_reflow.py
+          python scripts/test_studio_axes_regression.py
       - name: Whitespace check
         run: git diff --check

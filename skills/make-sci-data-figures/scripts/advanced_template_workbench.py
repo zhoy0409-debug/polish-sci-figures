@@ -49,7 +49,7 @@ from data_family_workbench import (
     _save_bundle,
     _numeric,
 )
-from figure_workbench import DEFAULT_FONT, FIGSIZE, read_table, resolve_palette
+from figure_workbench import DEFAULT_FONT, FIGSIZE, read_table, resolve_palette, sequential_cmap
 
 RNG_SEED = 20260719
 _ALLOW_FONT_FALLBACK = False
@@ -508,7 +508,7 @@ def enrichment(
         y,
         s=sizes,
         c=logp,
-        cmap="viridis",
+        cmap=sequential_cmap(colors[0]),
         edgecolor="white",
         linewidth=0.4,
     )
@@ -888,12 +888,14 @@ def _roc_points(
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     order = np.argsort(-scores, kind="mergesort")
     y = y_true[order]
-    thresholds = np.r_[np.inf, scores[order]]
+    # Equal scores share a threshold: their internal row order must not change AUC.
+    ends = np.r_[np.flatnonzero(np.diff(scores[order])), len(y)-1]
+    thresholds = np.r_[np.inf, scores[order][ends]]
     positives = max(1, int(np.sum(y == 1)))
     negatives = max(1, int(np.sum(y == 0)))
-    tpr = np.r_[0.0, np.cumsum(y == 1) / positives]
-    fpr = np.r_[0.0, np.cumsum(y == 0) / negatives]
-    precision = np.r_[1.0, np.cumsum(y == 1) / np.arange(1, len(y) + 1)]
+    tpr = np.r_[0.0, np.cumsum(y == 1)[ends] / positives]
+    fpr = np.r_[0.0, np.cumsum(y == 0)[ends] / negatives]
+    precision = np.r_[1.0, np.cumsum(y == 1)[ends] / (ends+1)]
     return fpr, tpr, precision, thresholds
 
 
@@ -921,6 +923,8 @@ def roc(
         return str(value).strip()
 
     positive_label = class_label(positive)
+    if data[outcome].map(class_label).nunique() != 2:
+        raise ValueError("Binary ROC requires exactly two outcome classes.")
     y = data[outcome].map(class_label).eq(positive_label).astype(int)
     if y.nunique() != 2:
         raise ValueError("Outcome must contain both positive and negative classes.")
@@ -935,6 +939,7 @@ def roc(
     fig, ax = plt.subplots(figsize=FIGSIZE)
     fig_pr, ax_pr = plt.subplots(figsize=FIGSIZE)
     metrics = {}
+    exploration_records = []
     rng = np.random.default_rng(RNG_SEED)
     for color, level in zip(colors, levels):
         subset = data if cohort is None else data[data[cohort].astype(str) == level]
@@ -942,7 +947,7 @@ def roc(
         values = subset[score].to_numpy(float)
         if len(np.unique(truth)) != 2:
             raise ValueError(f"Cohort '{level}' must contain both classes.")
-        fpr, tpr, precision, _ = _roc_points(truth, values)
+        fpr, tpr, precision, thresholds = _roc_points(truth, values)
         auc = _trapezoid(tpr, fpr)
         boot = []
         for _ in range(500):
@@ -951,6 +956,7 @@ def roc(
                 bfpr, btpr, _, _ = _roc_points(truth[index], values[index])
                 boot.append(_trapezoid(btpr, bfpr))
         ci = np.quantile(boot, [0.025, 0.975]).tolist() if boot else [None, None]
+        exploration_records.append(dict(fpr=fpr,tpr=tpr,thresholds=thresholds,color=color,label=level,auc=auc,ci=ci,truth=truth,scores=values))
         ax.plot(
             fpr, tpr, color=color, linewidth=1.55, label=f"{level}  AUC = {auc:.2f}"
         )
@@ -994,9 +1000,18 @@ def roc(
         cohort=cohort,
         positive=positive,
     )
+    from roc_explorer import render_views
+    exploration = render_views(exploration_records, FIGSIZE)
+    from roc_contract_workbench import render as render_roc_results
+    curve_table=pd.DataFrame([{'series':r['label'],'role':'curve','x':float(x),'y':float(y)} for r in exploration_records for x,y in zip(r['fpr'],r['tpr'])])
+    for view in ('convex','probit'):
+        exploration.append(('roc_'+view,render_roc_results(curve_table,view,[r['color'] for r in exploration_records])))
+
+    analysis['roc_display_bootstrap'] = {'repetitions':500,'seed':20261012,'resampling':'stratified by observed binary class','predictions':'fixed; no model refitting','band':'pointwise 2.5 and 97.5 percentiles; not simultaneous','displayed_replicates':100}
+    analysis['exploration'] = {'score_direction':'higher predicts positive', 'threshold_rule':'score >= threshold', 'youden':'exploratory in-sample maximum; not a validated clinical cutoff', 'low_fpr_window':[0,0.2], 'auc_intervals':'same bootstrap intervals as primary ROC', 'views':[name for name, _ in exploration]}
     return _save_bundle(
         outdir,
-        [("roc", fig), ("precision_recall", fig_pr)],
+        [("roc", fig), ("precision_recall", fig_pr)] + exploration,
         _profile(input_path, frame, data.drop(columns="_truth"), font_info, columns),
         analysis,
         recipe,

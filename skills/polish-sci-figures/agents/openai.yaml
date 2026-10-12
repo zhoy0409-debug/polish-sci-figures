@@ -1,4 +1,4 @@
 interface:
   display_name: "Polish Scientific Figures"
-  short_description: "Final SVG/PDF figure polishing and QA"
+  short_description: "Scientific figure QA and direct visual refinement"
   default_prompt: "Use $polish-sci-figures to audit my existing scientific figure panels for canvas, typography, editability, accessibility, and final delivery readiness."

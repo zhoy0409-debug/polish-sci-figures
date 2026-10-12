@@ -1,0 +1,1693 @@
+{
+  "source_archive": "chart_gallery.zip",
+  "sha256": "15fea7c0d372d117e4a7cb80e779f4191dee101b4c5f14684f30f6f6aae74e13",
+  "items": [
+    {
+      "id": "A01",
+      "source_title": "柱状图 ± SD（“炸药包”）",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_bar_sd",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_bar_sd"
+    },
+    {
+      "id": "A02",
+      "source_title": "柱状图 + 散点",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_bar_points",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_bar_points"
+    },
+    {
+      "id": "A03",
+      "source_title": "均值点 ± SD",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_mean_sd",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_mean_sd"
+    },
+    {
+      "id": "A04",
+      "source_title": "均值 ± 95% CI",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_mean_ci",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_mean_ci"
+    },
+    {
+      "id": "A05",
+      "source_title": "箱线图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_box",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_box"
+    },
+    {
+      "id": "A06",
+      "source_title": "箱线图 + 抖动点",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_box_points",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_box_points"
+    },
+    {
+      "id": "A07",
+      "source_title": "缺口箱线图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_notched_box",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_notched_box"
+    },
+    {
+      "id": "A08",
+      "source_title": "小提琴图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_violin",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_violin"
+    },
+    {
+      "id": "A09",
+      "source_title": "小提琴 + 内嵌箱线",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_violin_box",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_violin_box"
+    },
+    {
+      "id": "A10",
+      "source_title": "蜂群图 + 均值 ± SD",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_swarm",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_swarm"
+    },
+    {
+      "id": "A11",
+      "source_title": "条带图 + 中位数线",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_strip_median",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_strip_median"
+    },
+    {
+      "id": "A12",
+      "source_title": "云雨图（Raincloud）",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_raincloud",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_raincloud"
+    },
+    {
+      "id": "A13",
+      "source_title": "显著性星号括号",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_bracket_stars",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_bracket_stars"
+    },
+    {
+      "id": "A14",
+      "source_title": "精确 P 值括号",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_bracket_p",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_bracket_p"
+    },
+    {
+      "id": "A15",
+      "source_title": "与对照比较 · 组上标注",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_control_symbols",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_control_symbols"
+    },
+    {
+      "id": "A16",
+      "source_title": "Gardner–Altman 估计图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_gardner_altman",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_gardner_altman"
+    },
+    {
+      "id": "A17",
+      "source_title": "Cumming 估计图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_cumming",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_cumming"
+    },
+    {
+      "id": "A18",
+      "source_title": "配对连线图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_paired_lines",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_paired_lines"
+    },
+    {
+      "id": "A19",
+      "source_title": "配对 + 差值图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_paired_change",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_paired_change"
+    },
+    {
+      "id": "A20",
+      "source_title": "SuperPlot",
+      "source_script": "f1_compare.R",
+      "related_renderer": "superplot",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "superplot"
+    },
+    {
+      "id": "A21",
+      "source_title": "分组柱状图 + 散点",
+      "source_script": "f1_compare.R",
+      "related_renderer": "grouped_observations",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "grouped_observations"
+    },
+    {
+      "id": "A22",
+      "source_title": "交互作用图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_interaction",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_interaction"
+    },
+    {
+      "id": "A23",
+      "source_title": "箱线 + 点 · 分面",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_facet_boxes",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_facet_boxes"
+    },
+    {
+      "id": "A24",
+      "source_title": "剂量梯度 + 趋势检验",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_dose_trend",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_dose_trend"
+    },
+    {
+      "id": "A25",
+      "source_title": "对数纵轴",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_log_points",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_log_points"
+    },
+    {
+      "id": "A26",
+      "source_title": "山脊图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_ridgeline",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_ridgeline"
+    },
+    {
+      "id": "A27",
+      "source_title": "直方图分面",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_hist_facets",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_hist_facets"
+    },
+    {
+      "id": "A28",
+      "source_title": "密度曲线叠加",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_density",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_density"
+    },
+    {
+      "id": "A29",
+      "source_title": "累积分布（ECDF）",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_ecdf",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_ecdf"
+    },
+    {
+      "id": "A30",
+      "source_title": "Cleveland 点图",
+      "source_script": "f1_compare.R",
+      "related_renderer": "compare_cleveland",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "compare_cleveland"
+    },
+    {
+      "id": "B01",
+      "source_title": "基础散点图",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_scatter",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_scatter"
+    },
+    {
+      "id": "B02",
+      "source_title": "散点 + 回归线 + 95% CI",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_regression_ci",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_regression_ci"
+    },
+    {
+      "id": "B03",
+      "source_title": "预测区间 vs 置信区间",
+      "source_script": "f2_relation.R",
+      "related_renderer": "prediction_intervals",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "prediction_intervals"
+    },
+    {
+      "id": "B04",
+      "source_title": "LOESS 平滑",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_loess",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_loess"
+    },
+    {
+      "id": "B05",
+      "source_title": "按组着色 + 分组回归",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_group_regression",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_group_regression"
+    },
+    {
+      "id": "B06",
+      "source_title": "连续变量着色",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_color",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_color"
+    },
+    {
+      "id": "B07",
+      "source_title": "气泡图",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_bubble",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_bubble"
+    },
+    {
+      "id": "B08",
+      "source_title": "边际直方图",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_marginal_hist",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_marginal_hist"
+    },
+    {
+      "id": "B09",
+      "source_title": "边际箱线图（分组）",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_marginal_box",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_marginal_box"
+    },
+    {
+      "id": "B10",
+      "source_title": "二维密度等高线",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_density_contour",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_density_contour"
+    },
+    {
+      "id": "B11",
+      "source_title": "二维密度填充",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_density_fill",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_density_fill"
+    },
+    {
+      "id": "B12",
+      "source_title": "六边形分箱",
+      "source_script": "f2_relation.R",
+      "related_renderer": "hexbin_density",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "hexbin_density"
+    },
+    {
+      "id": "B13",
+      "source_title": "半透明散点",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_transparent",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_transparent"
+    },
+    {
+      "id": "B14",
+      "source_title": "Bland–Altman 一致性图",
+      "source_script": "f2_relation.R",
+      "related_renderer": "bland_altman",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "bland_altman"
+    },
+    {
+      "id": "B15",
+      "source_title": "一致性散点 + 恒等线",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_identity",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_identity"
+    },
+    {
+      "id": "B16",
+      "source_title": "相关矩阵热图",
+      "source_script": "f2_relation.R",
+      "related_renderer": "correlation_values",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "correlation_values"
+    },
+    {
+      "id": "B17",
+      "source_title": "下三角相关图 · 圆圈",
+      "source_script": "f2_relation.R",
+      "related_renderer": "correlation_circles",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "correlation_circles"
+    },
+    {
+      "id": "B18",
+      "source_title": "散点矩阵",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_scatter_matrix",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_scatter_matrix"
+    },
+    {
+      "id": "B19",
+      "source_title": "残差 vs 拟合值",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_residual_fitted",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_residual_fitted"
+    },
+    {
+      "id": "B20",
+      "source_title": "残差 Q–Q 图",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_residual_qq",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_residual_qq"
+    },
+    {
+      "id": "B21",
+      "source_title": "杠杆–影响点图",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_influence",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_influence"
+    },
+    {
+      "id": "B22",
+      "source_title": "多模型拟合对比",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_model_compare",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_model_compare"
+    },
+    {
+      "id": "B23",
+      "source_title": "散点 + 离群点标注",
+      "source_script": "f2_relation.R",
+      "related_renderer": "relation_labelled",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "relation_labelled"
+    },
+    {
+      "id": "C01",
+      "source_title": "折线图 ± SD",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_mean_sd",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_mean_sd"
+    },
+    {
+      "id": "C02",
+      "source_title": "折线 + 误差带",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_mean_band",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_mean_band"
+    },
+    {
+      "id": "C03",
+      "source_title": "均值线 + 全部重复",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_mean_replicates",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_mean_replicates"
+    },
+    {
+      "id": "C04",
+      "source_title": "原始点 + 拟合曲线",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_supplied_fit",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_supplied_fit"
+    },
+    {
+      "id": "C05",
+      "source_title": "阶梯线",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_steps",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_steps"
+    },
+    {
+      "id": "C06",
+      "source_title": "曲线下面积（AUC）汇总",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_auc_summary",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_auc_summary"
+    },
+    {
+      "id": "C07",
+      "source_title": "意大利面图（个体轨迹）",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_individual_paths",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_individual_paths"
+    },
+    {
+      "id": "C08",
+      "source_title": "基线校正变化量",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_baseline_change",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_baseline_change"
+    },
+    {
+      "id": "C09",
+      "source_title": "时间序列折线",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_series",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_series"
+    },
+    {
+      "id": "C10",
+      "source_title": "移动平均",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_moving_average",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_moving_average"
+    },
+    {
+      "id": "C11",
+      "source_title": "中断时间序列（ITS）",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_interrupted",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_interrupted"
+    },
+    {
+      "id": "C12",
+      "source_title": "季节图（逐年叠加）",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_seasonal",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_seasonal"
+    },
+    {
+      "id": "C13",
+      "source_title": "年 × 月热图",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_month_matrix",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_month_matrix"
+    },
+    {
+      "id": "C14",
+      "source_title": "流行曲线（Epi curve）",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_epidemic",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_epidemic"
+    },
+    {
+      "id": "C15",
+      "source_title": "累积病例曲线",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_cumulative",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_cumulative"
+    },
+    {
+      "id": "C16",
+      "source_title": "堆叠面积图",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_stacked_area",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_stacked_area"
+    },
+    {
+      "id": "C17",
+      "source_title": "百分比堆叠面积",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_percent_area",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_percent_area"
+    },
+    {
+      "id": "C18",
+      "source_title": "斜率图（两时间点）",
+      "source_script": "f3_time.R",
+      "related_renderer": "paired_slope",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "paired_slope"
+    },
+    {
+      "id": "C19",
+      "source_title": "哑铃图",
+      "source_script": "f3_time.R",
+      "related_renderer": "paired_dumbbell",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "paired_dumbbell"
+    },
+    {
+      "id": "C20",
+      "source_title": "小多图（共享坐标）",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_small_multiples",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_small_multiples"
+    },
+    {
+      "id": "C21",
+      "source_title": "凹凸图（排名变化）",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_rank_changes",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_rank_changes"
+    },
+    {
+      "id": "C22",
+      "source_title": "泳道图",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_swimmer",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_swimmer"
+    },
+    {
+      "id": "C23",
+      "source_title": "日历热图",
+      "source_script": "f3_time.R",
+      "related_renderer": "time_calendar",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_calendar"
+    },
+    {
+      "id": "D01",
+      "source_title": "条形图（排序）",
+      "source_script": "f4_comp.R",
+      "related_renderer": "category_ranked_bars",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "category_ranked_bars"
+    },
+    {
+      "id": "D02",
+      "source_title": "饼图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_pie",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_pie"
+    },
+    {
+      "id": "D03",
+      "source_title": "环形图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_ring",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_ring"
+    },
+    {
+      "id": "D04",
+      "source_title": "华夫图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_waffle",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_waffle"
+    },
+    {
+      "id": "D05",
+      "source_title": "堆叠条形图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_count_bars",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_count_bars"
+    },
+    {
+      "id": "D06",
+      "source_title": "百分比堆叠条形图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_percent_bars",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_percent_bars"
+    },
+    {
+      "id": "D07",
+      "source_title": "分组条形图（并列）",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_grouped_bars",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_grouped_bars"
+    },
+    {
+      "id": "D08",
+      "source_title": "分面条形图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_facets",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_facets"
+    },
+    {
+      "id": "D09",
+      "source_title": "马赛克 / Marimekko 图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_mosaic",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_mosaic"
+    },
+    {
+      "id": "D10",
+      "source_title": "发散堆叠条形（李克特）",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_likert",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_likert"
+    },
+    {
+      "id": "D11",
+      "source_title": "矩形树图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_treemap",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_treemap"
+    },
+    {
+      "id": "D12",
+      "source_title": "旭日图（嵌套环）",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_sunburst",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_sunburst"
+    },
+    {
+      "id": "D13",
+      "source_title": "单根 100% 条（比例尺）",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_single_bar",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_single_bar"
+    },
+    {
+      "id": "D14",
+      "source_title": "象形 / 点阵图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "composition_pictogram",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "composition_pictogram"
+    },
+    {
+      "id": "D15",
+      "source_title": "三元图",
+      "source_script": "f4_comp.R",
+      "related_renderer": "ternary_composition",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "ternary_composition"
+    },
+    {
+      "id": "E01",
+      "source_title": "Kaplan–Meier 曲线",
+      "source_script": "f5_clin.R",
+      "related_renderer": "survival_steps",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "survival_steps"
+    },
+    {
+      "id": "E02",
+      "source_title": "KM + 95% 置信带",
+      "source_script": "f5_clin.R",
+      "related_renderer": "survival_intervals",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "survival_intervals"
+    },
+    {
+      "id": "E03",
+      "source_title": "KM + 风险人数表",
+      "source_script": "f5_clin.R",
+      "related_renderer": "survival_risk_counts",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "survival_risk_counts"
+    },
+    {
+      "id": "E04",
+      "source_title": "KM + 中位生存时间",
+      "source_script": "f5_clin.R",
+      "related_renderer": "survival_median",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "survival_median"
+    },
+    {
+      "id": "E05",
+      "source_title": "累积事件曲线（1 − KM）",
+      "source_script": "f5_clin.R",
+      "related_renderer": "survival_events",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "survival_events"
+    },
+    {
+      "id": "E06",
+      "source_title": "累积风险（Nelson–Aalen）",
+      "source_script": "f5_clin.R",
+      "related_renderer": "survival_hazard",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "survival_hazard"
+    },
+    {
+      "id": "E07",
+      "source_title": "log(−log S) 图",
+      "source_script": "f5_clin.R",
+      "related_renderer": "survival_loglog",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "survival_loglog"
+    },
+    {
+      "id": "E08",
+      "source_title": "Schoenfeld 残差图",
+      "source_script": "f5_clin.R",
+      "related_renderer": "schoenfeld_results",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "schoenfeld_results"
+    },
+    {
+      "id": "E09",
+      "source_title": "竞争风险累积发生率",
+      "source_script": "f5_clin.R",
+      "related_renderer": "competing_incidence",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "competing_incidence"
+    },
+    {
+      "id": "E10",
+      "source_title": "亚组森林图",
+      "source_script": "f5_clin.R",
+      "related_renderer": "clinical_subgroup_forest",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "clinical_subgroup_forest"
+    },
+    {
+      "id": "E11",
+      "source_title": "回归系数森林图",
+      "source_script": "f5_clin.R",
+      "related_renderer": "coefficient_forest",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "coefficient_forest"
+    },
+    {
+      "id": "E12",
+      "source_title": "校准曲线",
+      "source_script": "f5_clin.R",
+      "related_renderer": "calibration_results",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "calibration_results"
+    },
+    {
+      "id": "E13",
+      "source_title": "决策曲线（DCA）",
+      "source_script": "f5_clin.R",
+      "related_renderer": "decision_curve_results",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "decision_curve_results"
+    },
+    {
+      "id": "E14",
+      "source_title": "临床影响曲线",
+      "source_script": "f5_clin.R",
+      "related_renderer": "clinical_impact_results",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "clinical_impact_results"
+    },
+    {
+      "id": "E15",
+      "source_title": "限制性立方样条（RCS）",
+      "source_script": "f5_clin.R",
+      "related_renderer": "spline_effect_results",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "spline_effect_results"
+    },
+    {
+      "id": "E16",
+      "source_title": "瀑布图",
+      "source_script": "f5_clin.R",
+      "related_renderer": "response_waterfall",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "response_waterfall"
+    },
+    {
+      "id": "E17",
+      "source_title": "混淆矩阵",
+      "source_script": "f5_clin.R",
+      "related_renderer": "classification_counts",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "classification_counts"
+    },
+    {
+      "id": "F01",
+      "source_title": "火山图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "volcano_plain",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "volcano_plain"
+    },
+    {
+      "id": "F02",
+      "source_title": "火山图 + 基因标注",
+      "source_script": "f6_omics.R",
+      "related_renderer": "volcano_labels",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "volcano_labels"
+    },
+    {
+      "id": "F03",
+      "source_title": "MA 图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "ma_expression",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "ma_expression"
+    },
+    {
+      "id": "F04",
+      "source_title": "聚类热图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "clustered_matrix",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "clustered_matrix"
+    },
+    {
+      "id": "F05",
+      "source_title": "PCA 得分图 + 置信椭圆",
+      "source_script": "f6_omics.R",
+      "related_renderer": "pca_ellipse",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "pca_ellipse"
+    },
+    {
+      "id": "F06",
+      "source_title": "碎石图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "variance_scree",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "variance_scree"
+    },
+    {
+      "id": "F07",
+      "source_title": "PCoA + 蜘蛛线",
+      "source_script": "f6_omics.R",
+      "related_renderer": "pcoa_spider",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "pcoa_spider"
+    },
+    {
+      "id": "F08",
+      "source_title": "UMAP / t-SNE 散点",
+      "source_script": "f6_omics.R",
+      "related_renderer": "embedding_map",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "embedding_map"
+    },
+    {
+      "id": "F09",
+      "source_title": "单细胞点图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "singlecell_dots",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "singlecell_dots"
+    },
+    {
+      "id": "F10",
+      "source_title": "富集条形图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "enrichment_bars",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "enrichment_bars"
+    },
+    {
+      "id": "F11",
+      "source_title": "富集气泡图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "enrichment_dots",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "enrichment_dots"
+    },
+    {
+      "id": "F12",
+      "source_title": "GSEA 富集图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "gsea_tracks",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "gsea_tracks"
+    },
+    {
+      "id": "F13",
+      "source_title": "曼哈顿图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "genome_manhattan",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "genome_manhattan"
+    },
+    {
+      "id": "F14",
+      "source_title": "P 值 Q–Q 图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "pvalue_quantiles",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "pvalue_quantiles"
+    },
+    {
+      "id": "F15",
+      "source_title": "维恩图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "venn_membership",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "venn_membership"
+    },
+    {
+      "id": "F16",
+      "source_title": "UpSet 图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "upset_intersections",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "upset_intersections"
+    },
+    {
+      "id": "F17",
+      "source_title": "棒棒糖突变图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "mutation_lollipop",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "mutation_lollipop"
+    },
+    {
+      "id": "F18",
+      "source_title": "LEfSe LDA 条形图",
+      "source_script": "f6_omics.R",
+      "related_renderer": "lefse_scores",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "lefse_scores"
+    },
+    {
+      "id": "F19",
+      "source_title": "共现网络",
+      "source_script": "f6_omics.R",
+      "related_renderer": "cooccurrence_network",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "cooccurrence_network"
+    },
+    {
+      "id": "F20",
+      "source_title": "OncoPrint 式基因矩阵",
+      "source_script": "f6_omics.R",
+      "related_renderer": "oncoprint_matrix",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "oncoprint_matrix"
+    },
+    {
+      "id": "G01",
+      "source_title": "Meta 分析森林图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "meta_forest",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "meta_forest"
+    },
+    {
+      "id": "G02",
+      "source_title": "亚组 Meta 森林图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "meta_subgroup_forest",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "meta_subgroup_forest"
+    },
+    {
+      "id": "G03",
+      "source_title": "累积 Meta 分析",
+      "source_script": "f7_meta.R",
+      "related_renderer": "meta_cumulative",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "meta_cumulative"
+    },
+    {
+      "id": "G04",
+      "source_title": "留一法敏感性分析",
+      "source_script": "f7_meta.R",
+      "related_renderer": "meta_leave_one_out",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "meta_leave_one_out"
+    },
+    {
+      "id": "G05",
+      "source_title": "漏斗图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "meta_funnel",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "meta_funnel"
+    },
+    {
+      "id": "G06",
+      "source_title": "等高线增强漏斗图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "meta_contour_funnel",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "meta_contour_funnel"
+    },
+    {
+      "id": "G07",
+      "source_title": "Galbraith 径向图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "meta_radial",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "meta_radial"
+    },
+    {
+      "id": "G08",
+      "source_title": "Meta 回归气泡图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "meta_regression_results",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "meta_regression_results"
+    },
+    {
+      "id": "G09",
+      "source_title": "偏倚风险“红绿灯”图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "bias_risk_matrix",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "bias_risk_matrix"
+    },
+    {
+      "id": "G10",
+      "source_title": "偏倚风险汇总条形图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "bias_risk_summary",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "bias_risk_summary"
+    },
+    {
+      "id": "G11",
+      "source_title": "PRISMA 2020 流程图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "study_flow",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "study_flow"
+    },
+    {
+      "id": "G12",
+      "source_title": "诊断 Meta：成对森林图",
+      "source_script": "f7_meta.R",
+      "related_renderer": "diagnostic_paired_forest",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "diagnostic_paired_forest"
+    },
+    {
+      "id": "H01",
+      "source_title": "剂量反应曲线（IC₅₀）",
+      "source_script": "f8_special.R",
+      "related_renderer": "dose_response_result",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "dose_response_result"
+    },
+    {
+      "id": "H02",
+      "source_title": "时间杀菌曲线",
+      "source_script": "f8_special.R",
+      "related_renderer": "time_kill",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "time_kill"
+    },
+    {
+      "id": "H03",
+      "source_title": "MIC 分布 + ECOFF",
+      "source_script": "f8_special.R",
+      "related_renderer": "mic_distribution",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "mic_distribution"
+    },
+    {
+      "id": "H04",
+      "source_title": "棋盘法（联合药敏）",
+      "source_script": "f8_special.R",
+      "related_renderer": "checkerboard_assay",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "checkerboard_assay"
+    },
+    {
+      "id": "H05",
+      "source_title": "等效线图（Isobologram）",
+      "source_script": "f8_special.R",
+      "related_renderer": "isobologram",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "isobologram"
+    },
+    {
+      "id": "H06",
+      "source_title": "抑菌圈直径 + 折点",
+      "source_script": "f8_special.R",
+      "related_renderer": "zone_diameters",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "zone_diameters"
+    },
+    {
+      "id": "H07",
+      "source_title": "累积药敏表（热图）",
+      "source_script": "f8_special.R",
+      "related_renderer": "antibiogram_matrix",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "antibiogram_matrix"
+    },
+    {
+      "id": "H08",
+      "source_title": "稀释曲线",
+      "source_script": "f8_special.R",
+      "related_renderer": "rarefaction_result",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "rarefaction_result"
+    },
+    {
+      "id": "H09",
+      "source_title": "堆叠相对丰度柱图",
+      "source_script": "f8_special.R",
+      "related_renderer": "taxa_composition",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "taxa_composition"
+    },
+    {
+      "id": "H10",
+      "source_title": "α 多样性箱线图",
+      "source_script": "f8_special.R",
+      "related_renderer": "alpha_diversity",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "alpha_diversity"
+    },
+    {
+      "id": "H11",
+      "source_title": "进化树 + 基因矩阵",
+      "source_script": "f8_special.R",
+      "related_renderer": "phylogeny_traits",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "phylogeny_traits"
+    },
+    {
+      "id": "H12",
+      "source_title": "基因箭头比较图",
+      "source_script": "f8_special.R",
+      "related_renderer": "gene_arrows",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "gene_arrows"
+    },
+    {
+      "id": "H13",
+      "source_title": "环形质粒图",
+      "source_script": "f8_special.R",
+      "related_renderer": "plasmid_features",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "plasmid_features"
+    },
+    {
+      "id": "H14",
+      "source_title": "蛋白结构域 + 突变",
+      "source_script": "f8_special.R",
+      "related_renderer": "protein_domains",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "protein_domains"
+    },
+    {
+      "id": "H15",
+      "source_title": "冲积 / 桑基图",
+      "source_script": "f8_special.R",
+      "related_renderer": "flow_alluvial",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "flow_alluvial"
+    },
+    {
+      "id": "H16",
+      "source_title": "南丁格尔玫瑰图",
+      "source_script": "f8_special.R",
+      "related_renderer": "rose_frequency",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "rose_frequency"
+    },
+    {
+      "id": "H17",
+      "source_title": "雷达图",
+      "source_script": "f8_special.R",
+      "related_renderer": "radar_profile",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "radar_profile"
+    },
+    {
+      "id": "H18",
+      "source_title": "因果图（DAG）",
+      "source_script": "f8_special.R",
+      "related_renderer": "causal_dag",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "causal_dag"
+    },
+    {
+      "id": "H19",
+      "source_title": "研究设计时间轴",
+      "source_script": "f8_special.R",
+      "related_renderer": "study_timeline",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "study_timeline"
+    },
+    {
+      "id": "H20",
+      "source_title": "甘特图",
+      "source_script": "f8_special.R",
+      "related_renderer": "study_gantt",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "study_gantt"
+    },
+    {
+      "id": "I01",
+      "source_title": "经验 ROC（阶梯线）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc"
+    },
+    {
+      "id": "I02",
+      "source_title": "平滑 ROC（双正态拟合）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_smooth",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_smooth"
+    },
+    {
+      "id": "I03",
+      "source_title": "AUC 面积填充",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_auc_fill",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_auc_fill"
+    },
+    {
+      "id": "I04",
+      "source_title": "阈值点 ROC",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_threshold_points",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_threshold_points"
+    },
+    {
+      "id": "I05",
+      "source_title": "阈值渐变着色",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_threshold_color",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_threshold_color"
+    },
+    {
+      "id": "I06",
+      "source_title": "关键阈值标注",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_threshold_labels",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_threshold_labels"
+    },
+    {
+      "id": "I07",
+      "source_title": "Youden 最佳截断点",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_youden",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_youden"
+    },
+    {
+      "id": "I08",
+      "source_title": "置信带 ROC",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_pointwise_band",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_pointwise_band"
+    },
+    {
+      "id": "I09",
+      "source_title": "截断点 CI 十字",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_cutoff_ci",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_cutoff_ci"
+    },
+    {
+      "id": "I10",
+      "source_title": "等成本线最佳点",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_cost",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_cost"
+    },
+    {
+      "id": "I11",
+      "source_title": "多模型对比（图例）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc"
+    },
+    {
+      "id": "I12",
+      "source_title": "多模型 · 线上标注",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_direct_labels",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_direct_labels"
+    },
+    {
+      "id": "I13",
+      "source_title": "训练集 vs 验证集",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_training_validation",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_training_validation"
+    },
+    {
+      "id": "I14",
+      "source_title": "亚组小多图",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_subgroups",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_subgroups"
+    },
+    {
+      "id": "I15",
+      "source_title": "交叉验证 ROC",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_cv",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_cv"
+    },
+    {
+      "id": "I16",
+      "source_title": "Bootstrap 意大利面图",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_bootstrap_curves",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_bootstrap_curves"
+    },
+    {
+      "id": "I17",
+      "source_title": "ROC + AUC 森林图",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_with_auc_forest",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_with_auc_forest"
+    },
+    {
+      "id": "I18",
+      "source_title": "部分 AUC（pAUC）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_partial",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_partial"
+    },
+    {
+      "id": "I19",
+      "source_title": "ROC 凸包",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_convex",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_convex"
+    },
+    {
+      "id": "I20",
+      "source_title": "对数 FPR 轴",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_log_fpr",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_log_fpr"
+    },
+    {
+      "id": "I21",
+      "source_title": "双正态概率坐标",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_probit",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_probit"
+    },
+    {
+      "id": "I22",
+      "source_title": "ROC + 混淆矩阵",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_confusion",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_confusion"
+    },
+    {
+      "id": "I23",
+      "source_title": "分布 + ROC 联动",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_score_distribution",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_score_distribution"
+    },
+    {
+      "id": "I24",
+      "source_title": "双图 ROC（Two-graph）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_two_graph",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_two_graph"
+    },
+    {
+      "id": "I25",
+      "source_title": "时间依赖 ROC",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_time",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_time"
+    },
+    {
+      "id": "I26",
+      "source_title": "多分类 ROC",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_multi",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_multi"
+    },
+    {
+      "id": "I27",
+      "source_title": "汇总 ROC（SROC）",
+      "source_script": "roc_gallery.R",
+      "related_renderer": "roc_sroc",
+      "status": "editable-original-template",
+      "note": "Original table-driven SVG implementation; reference artwork and code are not distributed.",
+      "renderer": "roc_sroc"
+    }
+  ],
+  "coverage": {
+    "reference_entries": 187,
+    "unique_templates": 186
+  }
+}

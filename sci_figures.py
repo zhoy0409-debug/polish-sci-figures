@@ -433,6 +433,15 @@ def parser():
     p.add_argument("--positive",help="positive outcome class value for ROC/PR; this is not a column name")
     p.add_argument("--outdir",default="results"); p.add_argument("--command-platform",choices=["windows","posix"]); p.set_defaults(func=route)
     p=sub.add_parser("qa"); p.add_argument("paths",nargs="+"); p.add_argument("--width-mm",type=float); p.add_argument("--font"); p.add_argument("--strict-sources",action="store_true"); p.add_argument("--json",action="store_true"); p.set_defaults(func=qa)
+    p=sub.add_parser("studio", help="Build an offline visual editor from existing SVG candidate bundles")
+    p.add_argument("panels", nargs="+"); p.add_argument("--out", required=True)
+    p.add_argument("--title", default="Figure Studio"); p.add_argument("--columns", type=int, default=2)
+    p.add_argument("--with-layouts", action="store_true", help="Prepare portrait and wide canvas alternatives from source data")
+    p.set_defaults(func=lambda args: subprocess.call([sys.executable, str(POLISH/"scripts"/"figure_studio.py"),
+        *args.panels, "--out", args.out, "--title", args.title, "--columns", str(args.columns), *(["--with-layouts"] if args.with_layouts else [])]))
+    p=sub.add_parser("studio-serve", help="Open a loopback-only data editing engine for an existing Studio HTML")
+    p.add_argument("html"); p.add_argument("--port",type=int,default=8767)
+    p.set_defaults(func=lambda args: subprocess.call([sys.executable,str(POLISH/"scripts"/"studio_server.py"),args.html,"--port",str(args.port)]))
     return root
 def main():
     args=parser().parse_args()
