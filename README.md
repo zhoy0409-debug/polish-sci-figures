@@ -5,7 +5,8 @@
 **Scientific figures, thoughtfully made.**
 
 Turn research data and scientific images into clear, editable figures.<br>
-Explore the right chart, refine every detail, and bring your results together.
+Explore the right chart, refine every detail, and bring your results together.<br>
+AI skills for plotting, scientific image preparation, and figure refinement, with Figure Studio for hands-on editing.
 
 [English](#polish-sci-figures) · [中文](#中文)
 
@@ -17,11 +18,31 @@ Explore the right chart, refine every detail, and bring your results together.
 
 </div>
 
+[Core capabilities](#from-source-material-to-publication) · [Watch the workflow](#see-figure-studio-in-action) · [What you can make](#what-you-can-make) · [Get started](#get-started) · [Guides and project](#guides-and-project)
+
+## From source material to publication
+
+The original scientific figure skills remain at the heart of **polish-sci-figures**. Start with a table, a batch of scientific images, or figures you already have. The AI workflow covers preparation through final review; **Figure Studio** adds direct visual editing whenever you want to adjust the details yourself.
+
+- **Plot from your data.** Inspect CSV, TSV, or Excel tables, clarify the experimental design, and compare suitable chart candidates. The data workflows retain analysis records, effect estimates, uncertainty, and plotting recipes so the chosen figure can be regenerated.
+- **Prepare scientific images.** Process microscopy, fluorescence, histology, pathology, and electron-microscopy images in batches. Apply a consistent crop and display policy, match panel dimensions, and add scale bars from supplied calibration. Preserve the originals and record the processing steps.
+- **Refine existing figures and assemble panels.** Work from plotting source or editable artwork to unify fonts, colors, scientific notation, and physical canvas sizes. Align axes and panel boundaries, balance whitespace, and adapt the composition to a manuscript, poster, or presentation while preserving the reported results.
+- **Check the final figure and keep its source.** Combine font, SVG editability, and canvas checks with visual review at the intended publication size for clipping, overlap, and readability. Source workflows deliver SVG/PDF/PNG, with plotting code, source data, and relevant analysis or image-processing records.
+
+The three skills cover [data plotting](skills/make-sci-data-figures/SKILL.md), [scientific image preparation](skills/standardize-sci-images/SKILL.md), and [figure refinement and quality checks](skills/polish-sci-figures/SKILL.md). [Use them with AI](#work-with-ai) or follow the [command-line guide](README.en.md#ai-and-command-line-workflows).
+
+<details>
+<summary>Scientific image example: consistent panels and calibrated scale bars</summary>
+
+![Four synthetic fluorescence images prepared with equal panel dimensions and consistently placed 20 µm scale bars.](demo/image_standardization/montage.png)
+
+Synthetic image demonstration. The example uses a supplied calibration and shared display settings; the underlying image remains raster content, with editable scale bars and labels in its SVG panel.
+
+</details>
+
 ![Figure Studio in use: templates and layout on the left, an editable scientific figure in the center, and controls for the selected panel on the right.](docs/media/figure-studio-overview.png)
 
 <p align="center"><sub>Figure Studio · Actual editor interface · Synthetic demonstration data</sub></p>
-
-[Watch the workflow](#see-figure-studio-in-action) · [What you can make](#what-you-can-make) · [Get started](#get-started) · [Guides and project](#guides-and-project)
 
 ## See Figure Studio in action
 
@@ -94,6 +115,12 @@ Use the companion skills in **Codex**, **Claude**, or another compatible environ
 
 > Help me turn this table into a figure for my paper. Show me a few suitable styles, and let me edit the result.
 
+For scientific images or existing figures, everyday requests work too:
+
+> Make these microscopy panels the same size and add scale bars using the calibration I supplied. Keep the originals and processing record.
+
+> These figures are already plotted. Unify their fonts and colors, arrange them for my journal's figure width, and check for overlap and unreadable labels.
+
 The suite covers plotting and analysis, calibrated image preparation, and final figure refinement through three cooperating skills. You can continue adjusting the result in Figure Studio without another AI call. Host requirements, WorkBuddy setup, and actual testing coverage are listed in the platform guide.
 
 [Codex / CLI setup](README.en.md#ai-and-command-line-workflows) · [Claude / WorkBuddy upload package](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip)
@@ -114,7 +141,27 @@ Official downloads and updates come from [this repository's Releases](https://gi
 
 **[下载 Figure Studio](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest)** · **[使用 AI 技能](docs/platform-installation.md)** · **[阅读完整指南](README.zh-CN.md)**
 
-[观看操作演示](#看看编辑器怎么用) · [能做什么](#能做什么) · [开始使用](#开始使用) · [指南与项目](#指南与项目)
+[核心能力](#从原始素材到投稿成图) · [观看操作演示](#看看编辑器怎么用) · [能做什么](#能做什么) · [开始使用](#开始使用) · [指南与项目](#指南与项目)
+
+### 从原始素材到投稿成图
+
+原有的科研作图技能仍是 **polish-sci-figures** 的核心。无论手里是数据表、一批科研图像，还是已经画好的图，都可以用 AI 工作流完成素材处理、绘图与终稿检查；需要自己手动精修时，可以打开配套的 **Figure Studio** 调整细节。
+
+- **从数据开始作图。** 检查 CSV、TSV 或 Excel 表格，确认实验设计，比较适合数据的候选图。数据工作流保留分析记录、效应估计、不确定性和绘图配方，方便重新生成与继续修改。
+- **批量规范科研图像。** 处理显微、荧光、组织学、病理和电镜图像，统一裁剪与显示设置、匹配小图尺寸，并根据提供的校准信息添加比例尺。原始文件保留，处理过程有记录可查。
+- **精修已有图形并完成组图。** 从绘图源码或可编辑图形出发，统一字体、配色、科学符号和实际画布尺寸；对齐坐标轴与小图边界、调整留白，适配论文、海报或汇报版面，同时保留已有结果。
+- **检查终稿并保留可复现材料。** 结合字体、SVG 可编辑性和画布检查，在实际发表尺寸下查看裁切、重叠及可读性。源码工作流交付 SVG/PDF/PNG，并保留绘图代码、源数据及相应的分析或图像处理记录。
+
+三个技能分别负责[数据作图](skills/make-sci-data-figures/SKILL.md)、[科学图像处理](skills/standardize-sci-images/SKILL.md)和[图形精修与质检](skills/polish-sci-figures/SKILL.md)。可以[用日常语言交给 AI](#开始使用)，也可以查看[命令行指南](README.zh-CN.md#ai-与命令行工作流)。
+
+<details>
+<summary>科研图像示例：统一小图尺寸与校准比例尺</summary>
+
+![四张合成荧光图像采用统一小图尺寸与位置一致的 20 µm 比例尺。](demo/image_standardization/montage.png)
+
+此处为合成图像演示，使用提供的校准信息和一致的显示设置。图像内容保持为栅格图，SVG 小图中的比例尺与标签可继续编辑。
+
+</details>
 
 ### 看看编辑器怎么用
 
@@ -163,6 +210,12 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 **让 AI 协助作图。** 在 **Codex**、**Claude** 或其他兼容环境中，按[平台指南](docs/platform-installation.md)安装并选用技能，附上数据，用日常语言描述需求即可：
 
 > 帮我把这张表画成适合论文的图，给我几个合适的样式选一下，最后让我自己继续编辑。
+
+处理科研图像或已有图形，也可以直接这样说：
+
+> 把这批显微图统一成相同尺寸，按我提供的校准信息加比例尺，保留原图和处理记录。
+
+> 这些图已经画好了，帮我统一字体和配色，按期刊要求的宽度组图，再检查有没有重叠或看不清的字。
 
 三个配套技能分别负责数据作图与分析、带校准的图像处理，以及最终精修和组图。生成后可以直接在 Figure Studio 中继续调整，无需每次修改都重新请求 AI。宿主要求、WorkBuddy 安装方式及实际测试范围见平台指南。
 
