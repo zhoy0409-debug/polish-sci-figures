@@ -2,7 +2,7 @@
 
 [English](platform-installation.en.md) | [中文](platform-installation.md)
 
-套件 v1.4.3 提供一个自包含上传包，内含入口技能和完整本机绘图资源。Claude 与 WorkBuddy 用户可直接上传，不必手工重打 ZIP 或让宿主分别寻找三个技能。想直接操作图形的 Windows 用户请使用 [Figure Studio 安装包](../desktop/QUICKSTART.zh-CN.md)，无需安装 AI 技能。
+套件 v1.4.3 提供一个自包含上传包，内含入口技能和完整本机绘图资源。Claude 用户可直接上传，不必手工重打 ZIP 或让宿主分别寻找三个技能。想直接操作图形的 Windows 用户请使用 [Figure Studio 安装包](../desktop/QUICKSTART.zh-CN.md)，无需安装 AI 技能。
 
 ## 下载哪个包
 
@@ -18,12 +18,11 @@ v1.4.0 上传包内含四个 `SKILL.md`，已在真实 Claude 上传中确认被
 | --- | --- | --- |
 | Claude | Customize → Skills → Yours → Add skill → Upload skill，上传上述 ZIP | 开启代码执行；以账户实际可用功能为准 |
 | Claude Code | 解压单入口包，使 `~/.claude/skills/polish-sci-figures/SKILL.md` 存在；也可放在项目 `.claude/skills/` 下 | 本机允许执行 Python，并安装套件所需依赖 |
-| WorkBuddy | 技能 → 添加技能 → 上传技能，上传上述 ZIP | 本机执行权限和 Python 依赖可用；项目技能路径为 `.codebuddy/skills/<name>/SKILL.md` |
 | Codex 等文件夹技能环境 | 将完整源码套件的三个 `skills/` 子目录放入工具配置的技能目录 | 保留三个配套技能并安装 Python 依赖；参见 [产品指南](../README.zh-CN.md#ai-与命令行工作流) |
 
 Claude 上传入口按本次实际界面记录，其他入口依据官方文档核对。首次运行时，技能要求代理先检查现有 Python 和依赖：优先项目虚拟环境，再检查工具提供的运行时，实际导入科学计算包后复用同一个解释器。不能假定系统的 `python` 就是合适版本，也不能假定工具自带 Python 已安装 SciPy。随后检查字体并处理数据，无需用户猜路径或另写检查提示词；不会自动修改系统 PATH 或全局安装包。
 
-官方依据：[Claude 使用技能](https://support.claude.com/en/articles/12512180-use-skills-in-claude)、[Claude 上传包结构](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)、[Claude Code 技能目录](https://code.claude.com/docs/en/skills)、[WorkBuddy 技能市场](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market)、[WorkBuddy 项目技能](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Project)。
+官方依据：[Claude 使用技能](https://support.claude.com/en/articles/12512180-use-skills-in-claude)、[Claude 上传包结构](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)、[Claude Code 技能目录](https://code.claude.com/docs/en/skills)。
 
 ## 第一次使用
 
@@ -43,6 +42,4 @@ Codex 本机新手流程已复测图库入口：使用实际通过依赖导入�
 
 Claude Sonnet 5.5 Medium 中，先从菜单选择技能，再提供 16 行合成数据和普通中文请求，并确认独立实验单位及 mg/L 单位。宿主实际运行了 `doctor`、`workflow` 和 `candidate`，生成 PNG/PDF/SVG、候选 ZIP 和 HTML；PNG 已完成视觉检查。使用日常语言反馈后，HTML 已以一列打开选定的估计图，并通过英文界面视觉检查。CLI 现支持保留显式选定的候选图，单面板默认一列。Claude 下载链路尚未验证，因此不称整条交付流程一次通过。
 
-当前测试机尚未安装 WorkBuddy，未开展其宿主内实测。
-
-这些技能由本项目维护，并非 Claude、WorkBuddy 或 Codex 的官方内置产品。下载与更新统一来自 [polish-sci-figures 官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases)。
+这些技能由本项目维护，并非 Claude 或 Codex 的官方内置产品。下载与更新统一来自 [polish-sci-figures 官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases)。

@@ -18,7 +18,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 | 你的工作方式 | 从这里开始 | 本机要求 |
 | --- | --- | --- |
 | 直接预览、换数据、编辑和排版 | Figure Studio Windows 安装包 | Windows 10/11 x64；无需 Codex、Python、账号或 API 密钥 |
-| Claude / WorkBuddy 中直接上传技能 | [自包含技能上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip) | 宿主支持技能与代码执行；参见 [平台安装](docs/platform-installation.md) |
+| Claude 中直接上传技能 | [自包含技能上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip) | 宿主支持技能与代码执行；参见 [平台安装](docs/platform-installation.md) |
 | 让 AI 分析数据、生成候选图、完成质控 | 三技能套件 `sci-figure-suite-v1.4.3.zip` | 支持技能的 AI 环境，以及套件 Python 依赖 |
 | 已有 SVG，希望手动精修 | AI/CLI 生成自包含 Studio 页面 | 页面可离线编辑；重新计算数据需本机引擎 |
 
@@ -109,7 +109,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 三个技能保留原来的分工，Figure Studio 是同一产品的可视化入口，不是必须安装的第四个技能。
 
-**Claude / WorkBuddy 用户：** 下载 [polish-sci-figures-v1.4.3-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip)，直接按平台的技能上传入口导入。单入口包内置完整三技能工作流与 CLI，无需重新打包。此前 v1.4.1 已修复旧上传包内含多个 `SKILL.md` 导致 Claude 拒绝的问题，已在 Claude 实际调用技能绘图，PNG 视觉检查通过；HTML 交付与下载链路的具体验证范围见平台指南。Claude Code 也可使用个人或项目技能目录。具体步骤、官方依据与宿主验证状态见 [平台安装指南](docs/platform-installation.md)。当前测试机尚未安装 WorkBuddy，其宿主内运行尚未实测。
+**Claude 用户：** 下载 [polish-sci-figures-v1.4.3-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip)，直接按平台的技能上传入口导入。单入口包内置完整三技能工作流与 CLI，无需重新打包。此前 v1.4.1 已修复旧上传包内含多个 `SKILL.md` 导致 Claude 拒绝的问题，已在 Claude 实际调用技能绘图，PNG 视觉检查通过；HTML 交付与下载链路的具体验证范围见平台指南。Claude Code 也可使用个人或项目技能目录。具体步骤、官方依据与宿主验证状态见 [平台安装指南](docs/platform-installation.md)。
 
 | 技能 | 负责内容 |
 | --- | --- |

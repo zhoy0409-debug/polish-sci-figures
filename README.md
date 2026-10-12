@@ -18,6 +18,10 @@ AI skills for plotting, scientific image preparation, and figure refinement, wit
 
 </div>
 
+[![A finished nine-panel scientific figure in the signature blue–red palette, bringing together genomic associations, differential expression, enrichment, correlations, ROC curves, effect estimates, and PCA.](demo/composite_showcase/Figure_1_Bioinformatics.png)](demo/composite_showcase/Figure_1_Bioinformatics.png)
+
+<p align="center"><sub>From individual results to a coherent figure · Synthetic demonstration data · Click the figure to view it in full resolution</sub></p>
+
 [Core capabilities](#from-source-material-to-publication) · [Watch the workflow](#see-figure-studio-in-action) · [What you can make](#what-you-can-make) · [Get started](#get-started) · [Guides and project](#guides-and-project)
 
 ## From source material to publication
@@ -31,22 +35,13 @@ The original scientific figure skills remain at the heart of **polish-sci-figure
 
 The three skills cover [data plotting](skills/make-sci-data-figures/SKILL.md), [scientific image preparation](skills/standardize-sci-images/SKILL.md), and [figure refinement and quality checks](skills/polish-sci-figures/SKILL.md). [Use them with AI](#work-with-ai) or follow the [command-line guide](README.en.md#ai-and-command-line-workflows).
 
-<details>
-<summary>Scientific image example: consistent panels and calibrated scale bars</summary>
+## See Figure Studio in action
 
-![Four synthetic fluorescence images prepared with equal panel dimensions and consistently placed 20 µm scale bars.](demo/image_standardization/montage.png)
-
-Synthetic image demonstration. The example uses a supplied calibration and shared display settings; the underlying image remains raster content, with editable scale bars and labels in its SVG panel.
-
-</details>
+Start with a template, bring in your data, and shape the figure directly on the canvas.
 
 ![Figure Studio in use: templates and layout on the left, an editable scientific figure in the center, and controls for the selected panel on the right.](docs/media/figure-studio-overview.png)
 
 <p align="center"><sub>Figure Studio · Actual editor interface · Synthetic demonstration data</sub></p>
-
-## See Figure Studio in action
-
-Start with a template, bring in your data, and shape the figure directly on the canvas.
 
 https://github.com/user-attachments/assets/c073bae3-fce8-41c7-84aa-a569a07a5872
 
@@ -83,10 +78,6 @@ The [current library](README.en.md#editable-chart-library) offers **218 editable
 <details>
 <summary><strong>See more examples</strong></summary>
 
-**Bioinformatics** — genomic associations, differential expression, enrichment, correlations, ROC curves, effect estimates and PCA.
-
-![Scientific figure showcase in the signature blue–red palette: genomic associations, differential expression, enrichment, correlations, ROC curves, effect estimates and PCA. Synthetic demonstration data.](demo/composite_showcase/Figure_1_Bioinformatics.png)
-
 **Experimental biology** — group comparisons, dose response, distributions, expression and time courses.
 
 ![Experimental biology figure with blue–red comparisons, dose response, heatmap and time course. Synthetic demonstration data.](demo/composite_showcase/Figure_2_Basic_research.png)
@@ -121,9 +112,9 @@ For scientific images or existing figures, everyday requests work too:
 
 > These figures are already plotted. Unify their fonts and colors, arrange them for my journal's figure width, and check for overlap and unreadable labels.
 
-The suite covers plotting and analysis, calibrated image preparation, and final figure refinement through three cooperating skills. You can continue adjusting the result in Figure Studio without another AI call. Host requirements, WorkBuddy setup, and actual testing coverage are listed in the platform guide.
+The suite covers plotting and analysis, calibrated image preparation, and final figure refinement through three cooperating skills. You can continue adjusting the result in Figure Studio without another AI call. Host requirements, installation steps, and actual testing coverage are listed in the platform guide.
 
-[Codex / CLI setup](README.en.md#ai-and-command-line-workflows) · [Claude / WorkBuddy upload package](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip)
+[Codex / CLI setup](README.en.md#ai-and-command-line-workflows) · [Claude upload package](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip)
 
 ## Guides and project
 
@@ -141,6 +132,10 @@ Official downloads and updates come from [this repository's Releases](https://gi
 
 **[下载 Figure Studio](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest)** · **[使用 AI 技能](docs/platform-installation.md)** · **[阅读完整指南](README.zh-CN.md)**
 
+[![红蓝配色的九联科研组图，包含基因组关联、差异表达、富集、相关性、ROC 曲线、效应估计和 PCA。](demo/composite_showcase/Figure_1_Bioinformatics.png)](demo/composite_showcase/Figure_1_Bioinformatics.png)
+
+<p align="center"><sub>从单项结果到完整组图 · 合成数据演示 · 点击图片查看高清原图</sub></p>
+
 [核心能力](#从原始素材到投稿成图) · [观看操作演示](#看看编辑器怎么用) · [能做什么](#能做什么) · [开始使用](#开始使用) · [指南与项目](#指南与项目)
 
 ### 从原始素材到投稿成图
@@ -153,15 +148,6 @@ Official downloads and updates come from [this repository's Releases](https://gi
 - **检查终稿并保留可复现材料。** 结合字体、SVG 可编辑性和画布检查，在实际发表尺寸下查看裁切、重叠及可读性。源码工作流交付 SVG/PDF/PNG，并保留绘图代码、源数据及相应的分析或图像处理记录。
 
 三个技能分别负责[数据作图](skills/make-sci-data-figures/SKILL.md)、[科学图像处理](skills/standardize-sci-images/SKILL.md)和[图形精修与质检](skills/polish-sci-figures/SKILL.md)。可以[用日常语言交给 AI](#开始使用)，也可以查看[命令行指南](README.zh-CN.md#ai-与命令行工作流)。
-
-<details>
-<summary>科研图像示例：统一小图尺寸与校准比例尺</summary>
-
-![四张合成荧光图像采用统一小图尺寸与位置一致的 20 µm 比例尺。](demo/image_standardization/montage.png)
-
-此处为合成图像演示，使用提供的校准信息和一致的显示设置。图像内容保持为栅格图，SVG 小图中的比例尺与标签可继续编辑。
-
-</details>
 
 ### 看看编辑器怎么用
 
@@ -217,9 +203,9 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 
 > 这些图已经画好了，帮我统一字体和配色，按期刊要求的宽度组图，再检查有没有重叠或看不清的字。
 
-三个配套技能分别负责数据作图与分析、带校准的图像处理，以及最终精修和组图。生成后可以直接在 Figure Studio 中继续调整，无需每次修改都重新请求 AI。宿主要求、WorkBuddy 安装方式及实际测试范围见平台指南。
+三个配套技能分别负责数据作图与分析、带校准的图像处理，以及最终精修和组图。生成后可以直接在 Figure Studio 中继续调整，无需每次修改都重新请求 AI。宿主要求、安装步骤及实际测试范围见平台指南。
 
-[Codex / 命令行安装](README.zh-CN.md#ai-与命令行工作流) · [Claude / WorkBuddy 上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip)
+[Codex / 命令行安装](README.zh-CN.md#ai-与命令行工作流) · [Claude 上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip)
 
 ### 指南与项目
 

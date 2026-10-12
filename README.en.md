@@ -18,7 +18,7 @@ polish-sci-figures brings scientific plotting, image standardization, and figure
 | How you want to work | Start here | Requirements |
 | --- | --- | --- |
 | Preview, replace data, edit, and assemble figures directly | Figure Studio Windows installer | Windows 10/11 x64; no Codex, separate Python installation, account, or API key |
-| Upload a skill to Claude or WorkBuddy | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
+| Upload a skill to Claude | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
 | Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.3.zip` | A compatible AI environment and the suite's Python dependencies |
 | Refine an existing SVG manually | Generate a self-contained Studio page with AI or the CLI | Layout and appearance editing work offline; data recomputation requires the local engine |
 
@@ -111,7 +111,7 @@ The original skill workflows for independent, paired, multigroup, relationship, 
 
 The three skills retain their existing roles. Figure Studio is the visual entry point to the same product, not a mandatory fourth skill.
 
-**Claude / WorkBuddy users:** download [polish-sci-figures-v1.4.3-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status. WorkBuddy is not installed on the current test machine and has not been tested within the host.
+**Claude users:** download [polish-sci-figures-v1.4.3-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status.
 
 | Skill | Role |
 | --- | --- |
