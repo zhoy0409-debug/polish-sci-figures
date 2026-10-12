@@ -87,6 +87,10 @@ jobs:
           python scripts/test_release_bundle.py
           python scripts/build_portable_skill.py --version v1.4.0
           python scripts/test_portable_skill.py
+      - name: Compute synthetic results for composite statistics layout
+        # The Node layout test consumes these freshly analyzed observations.
+        # A clean checkout must never depend on a developer's .cache contents.
+        run: python scripts/test_composite_statistics.py
       - name: Figure Studio history and state validation
         run: |
           node scripts/test_studio_state.cjs
