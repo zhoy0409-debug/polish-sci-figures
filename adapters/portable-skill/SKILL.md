@@ -15,13 +15,13 @@ When scientific design is genuinely missing, ask only 1–2 concrete questions, 
 
 ## Check the runtime
 
-Paths below are relative to this SKILL.md. Keep the complete `suite/` directory together. Use the host's available Python 3.10–3.12 executable; `python` in examples stands for that executable. Run the doctor before executing a workflow:
+Paths below are relative to this SKILL.md. Keep the complete `suite/` directory together. Select an existing Python runtime yourself: prefer the current project's `.venv/Scripts/python.exe` (Windows) or `.venv/bin/python`, then the host's dependency-tool runtime, then registered Python launchers or `python3`. Check `sys.executable` and `sys.version` before running suite code; bare `python` can resolve to Python 2, and a host-bundled Python can lack SciPy. Use Python 3.10–3.12 and actually import `numpy`, `pandas`, `scipy`, `matplotlib`, `openpyxl` and `PIL`. Try the next existing interpreter if a check fails instead of asking a novice to discover paths. Reuse the successful executable, with `-X utf8` on Windows; `python` below means that executable. Run the doctor before executing a workflow:
 
 ```bash
 python suite/sci_figures.py doctor --font "DejaVu Sans" --json
 ```
 
-If required packages are missing, use the host-approved installation process or a task-local environment with the same interpreter:
+If no existing interpreter has the required packages, explain the missing component and use a host-approved installation process or a task-local environment with the same interpreter. Do not run this command against a global interpreter or change PATH:
 
 ```bash
 python -m pip install -r suite/requirements.txt

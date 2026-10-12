@@ -458,7 +458,7 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
         for i,name in enumerate(tracks):
             ax.hlines(i,xmin,xmax,color='#d6dee8',lw=.7)
             for j,r in enumerate(d[d.track==name].itertuples()):
-                start,end=(r.start,r.end) if r.strand==1 else (r.end,r.start);arrow=FancyArrowPatch((start,i),(end,i),arrowstyle='-|>',mutation_scale=12,lw=5,color=c[j%len(PALETTE)],shrinkA=0,shrinkB=0);ax.add_patch(arrow);ax.text((r.start+r.end)/2,i-.25,_wrap(r.gene,9),ha='center',va='bottom',fontsize=8)
+                start,end=(r.start,r.end) if r.strand==1 else (r.end,r.start);arrow=FancyArrowPatch((start,i),(end,i),arrowstyle='-|>',mutation_scale=12,lw=5,color=c[j%len(PALETTE)],shrinkA=0,shrinkB=0);ax.add_patch(arrow);ax.text((r.start+r.end)/2,i-.25,_wrap(r.gene,9),ha='center',va='bottom',fontsize=8,gid=f'studio-spacing-group-{i}-label-{j}')
         ax.set(yticks=range(len(tracks)),yticklabels=[_wrap(t,12) for t in tracks],ylim=(len(tracks)-.5,-.8),xlim=(xmin-span*.02,xmax+span*.02));_finish(ax,'Genomic position','');ax.spines['left'].set_visible(False);ax.tick_params(axis='y',length=0)
     elif view=='plasmid_features':
         ax.axis('off');ax.set(xlim=(-1.7,1.7),ylim=(-1.6,1.6),aspect='equal');length=d.genome_length.iloc[0];ax.add_patch(Circle((0,0),1,fc='none',ec='#c8d2df',lw=1.2));handles=[];labels=[]

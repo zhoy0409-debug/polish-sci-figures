@@ -82,7 +82,7 @@ for(const [width,height]of [[259.2,388.8],[345.6,259.2],[703.2,259.2]])for(const
 
 // The whole ending row receives the same physical footer reservation. Reflow
 // requests only the unchanged chart body, never compresses it to include text.
-const layoutStart=source.indexOf('  function layout(s=state())'),layoutEnd=source.indexOf('  function plotFrame(',layoutStart);
+const layoutStart=source.indexOf('  function layout(s=state(),'),layoutEnd=source.indexOf('  function plotFrame(',layoutStart);
 const reflowStart=source.indexOf('  function reflowSpec('),reflowEnd=source.indexOf('  function currentHeatmapMetadata(',reflowStart);
 assert.ok(layoutStart>0&&layoutEnd>layoutStart&&reflowStart>0);
 const assets={a:{table:{rows:input.rows},recipe:input.recipe,variants:[{name:'compare_facet_boxes',width:345.6,height:259.2,viewBox:[0,0,345.6,259.2],preserveAspect:true,svg:'studio-plot-frame',sha256:'a'}]},b:{table:{rows:input.rows},recipe:input.recipe,variants:[{name:'compare_facet_boxes',width:345.6,height:259.2,viewBox:[0,0,345.6,259.2],preserveAspect:true,svg:'studio-plot-frame',sha256:'b'}]}};

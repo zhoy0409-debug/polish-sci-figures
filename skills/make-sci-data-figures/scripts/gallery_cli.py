@@ -1,6 +1,13 @@
 """List input contracts or generate an original editable gallery bundle."""
-import argparse,json
+import argparse,json,sys
 from pathlib import Path
+
+# Emit the same UTF-8 protocol on Windows consoles and redirected subprocess
+# pipes; GBK cannot represent some scientific symbols in the bilingual catalogue.
+for stream in (sys.stdout,sys.stderr):
+    if hasattr(stream,'reconfigure'):
+        stream.reconfigure(encoding='utf-8')
+
 from gallery_registry import CONTRACTS,NOTES,generate
 
 def main():
@@ -10,13 +17,14 @@ def main():
     parser.add_argument('--input',type=Path)
     parser.add_argument('--out',type=Path)
     parser.add_argument('--font',default='Arial')
+    parser.add_argument('--palette',default='zhoy_muted',help='Named palette; default keeps the gallery blue/red style')
     args=parser.parse_args()
     if args.list:
         print(json.dumps({k:{'zh':v[0],'en':v[1],'category':v[2],'columns':v[3].split(),'numeric':v[4].split(),'notes':NOTES[k]} for k,v in CONTRACTS.items()},ensure_ascii=False,indent=2));return
     if not all([args.view,args.input,args.out]):parser.error('--view, --input and --out are required')
     if args.out.exists() and any(args.out.iterdir()):parser.error('Choose a new or empty output directory')
     try:
-        for path in generate(args.input,args.out,args.view,font=args.font):print(path)
+        for path in generate(args.input,args.out,args.view,font=args.font,palette=args.palette):print(path)
     except (ValueError,KeyError) as exc:parser.error(str(exc))
 
 if __name__=='__main__':main()

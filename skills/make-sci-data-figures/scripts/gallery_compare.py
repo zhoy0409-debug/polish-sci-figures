@@ -265,8 +265,10 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
             for j,(g,r) in enumerate(comparisons):
                 x=names.index(g);ref=names.index(r.reference);y=base+j*.19*span
                 label=('****' if r.p<.0001 else '***' if r.p<.001 else '**' if r.p<.01 else '*' if r.p<.05 else 'ns') if view!='compare_bracket_p' else _ptext(r.p)
-                if view=='compare_control_symbols':ax.text(x,base,label,ha='center',va='bottom',fontsize=9)
-                else:ax.plot([ref,ref,x,x],[y,y+.025*span,y+.025*span,y],color='#526078',lw=.8);ax.text((x+ref)/2,y+.045*span,label,ha='center',va='bottom',fontsize=8)
+                if view=='compare_control_symbols':ax.text(x,base,label,ha='center',va='bottom',fontsize=9,gid=f'studio-spacing-group-{x}-label')
+                else:
+                    ax.plot([ref,ref,x,x],[y,y+.025*span,y+.025*span,y],color='#526078',lw=.8)
+                    ax.text((x+ref)/2,y+.045*span,label,ha='center',va='bottom',fontsize=8,gid=f'studio-spacing-comparison-label-{ref}-{x}')
             ax.set_ylim(top=base+max(1,len(comparisons))*.19*span)
             if view=='compare_control_symbols' and d.reference.nunique()==1:ax.set_title('Compared with '+_wrap(d.reference.iloc[0],30),fontsize=8,pad=10,loc='left')
     elif view in {'compare_gardner_altman','compare_cumming'}:
@@ -318,7 +320,11 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
                 elif view=='compare_hist_facets':a=axes[i];a.hist(v,bins=edges,color=c[i],alpha=.7,edgecolor='white',lw=.6);a.text(.98,.72,_wrap(names[i],22),transform=a.transAxes,ha='right',va='center',fontsize=8,bbox=dict(fc='white',ec='none',alpha=.8,pad=2));_style(a,'Value' if i==len(names)-1 else None,'Count');a.yaxis.set_major_locator(MaxNLocator(2,integer=True))
                 else:
                     gx,dd=_kde(v)
-                    if view=='compare_ridgeline':dd=dd/dd.max()*.78;ax.fill_between(gx,i,i+dd,color=c[i],alpha=.28);ax.plot(gx,i+dd,color=c[i],lw=1.1);ax.plot([np.median(v)]*2,[i,i+.12],color=c[i],lw=1.4)
+                    if view=='compare_ridgeline':
+                        dd=dd/dd.max()*.78
+                        ax.fill_between(gx,i,i+dd,color=c[i],alpha=.28,gid=f'studio-spacing-group-{i}-density')
+                        ax.plot(gx,i+dd,color=c[i],lw=1.1,gid=f'studio-spacing-group-{i}-outline')
+                        ax.plot([np.median(v)]*2,[i,i+.12],color=c[i],lw=1.4,gid=f'studio-spacing-group-{i}-median')
                     else:ax.fill_between(gx,0,dd,color=c[i],alpha=.08);ax.plot(gx,dd,color=c[i],lw=1.4,ls=['-','--',':','-.','-','--'][i],label=names[i])
             if view=='compare_ridgeline':_style(ax,'Value');_categorical(ax,names,'y');ax.tick_params(axis='y',length=0);ax.spines['left'].set_visible(False)
             elif view!='compare_hist_facets':_style(ax,'Value','Cumulative proportion' if view=='compare_ecdf' else 'Density');_legend(ax,columns=min(3,len(names)));ax.set_ylim(bottom=0,top=1.04 if view=='compare_ecdf' else None)

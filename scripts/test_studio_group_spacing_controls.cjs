@@ -36,4 +36,29 @@ assert.ok(edited.indexOf('if(spacingSource)return svg')<edited.indexOf('StudioGr
 assert.ok(edited.indexOf('StudioGroupSpacing.apply')<edited.indexOf('appendAnchoredStatistics'));
 assert.match(source,/data-studio-category-center/);
 const generator=fs.readFileSync(require.resolve('../skills/polish-sci-figures/scripts/figure_studio.py'),'utf8');assert.ok(generator.indexOf("'group-spacing.js'")<generator.indexOf("'studio.js'"));
-console.log('PASS category spacing controls: RAF local redraw, one undo per gesture, Enter/blur, stale panel/project-state guards, locks, unavailable geometry, original mode, reset, data replacement, stable source data and module bundling.');
+// Existing bars use their established geometry reducer through the same visible
+// control. A second generic group transform must never accumulate on top of it.
+let barPlans=0,barPreviews=[];
+ctx.StudioGroupSpacing.inspect=()=>({available:false,reason:'existing-bar-layout',axes:[]});
+ctx.StudioGroupSpacing.plan=()=>{barPlans++;throw Error('Generic spacing may not transform existing bars');};
+ctx.editedSvg=(id,vi,s,raw,flow,inspect)=>{if(!inspect)barPreviews.push(copy(s.panels[id]));return new Svg();};
+const barStart=copy(initial);barStart.panels.p.geometry={barWidth:1.32,groupGap:.95};barStart.panels.p.groupSpacing={factor:.8};history.commit(barStart);vm.runInContext('categorySpacingCache=null',ctx);ctx.renderGroupSpacingControls();
+assert.equal(fields.categorySpacing.disabled,false);assert.equal(fields.categorySpacing.min,.65);assert.equal(fields.categorySpacing.max,1.05);assert.equal(fields.categorySpacingPercent.min,65);assert.equal(fields.categorySpacingPercent.max,105);assert.equal(fields.categorySpacingPercent.value,95,'bar geometry is the sole displayed spacing source');
+const beforeBars={commits,redraws,localDraws,states:history.states.length};
+for(const value of [.9,.8,.65]){fields.categorySpacing.value=value;fields.categorySpacing.oninput();}assert.equal(callbacks.size,1);flush();
+assert.equal(localDraws,beforeBars.localDraws+1);assert.equal(redraws,beforeBars.redraws,'bar drag only replaces its selected panel preview');assert.equal(commits,beforeBars.commits);assert.equal(barPreviews.at(-1).geometry.barWidth,1.32);assert.equal(barPreviews.at(-1).geometry.groupGap,.65);assert.equal(barPreviews.at(-1).groupSpacing,undefined);
+fields.categorySpacing.onchange();assert.equal(commits,beforeBars.commits+1);assert.equal(history.states.length,beforeBars.states+1);assert.deepEqual(history.current.panels.p.geometry,{barWidth:1.32,groupGap:.65});assert.equal(history.current.panels.p.groupSpacing,undefined);assert.equal(barPlans,0);assert.deepEqual(history.undo(),barStart,'one undo restores both legacy spacing and its original stored state');history.redo();
+const invalidBefore=commits;for(const value of [64,106]){fields.categorySpacingPercent.value=value;fields.categorySpacingPercent.onchange();assert.equal(commits,invalidBefore);assert.match(notices.at(-1),/65%–105%/);}
+fields.categorySpacingPercent.value=105;fields.categorySpacingPercent.onkeydown({key:'Enter',preventDefault(){}});assert.equal(history.current.panels.p.geometry.groupGap,1.05);assert.equal(history.current.panels.p.geometry.barWidth,1.32);const enterCommits=commits;fields.categorySpacingPercent.onchange();assert.equal(commits,enterCommits);
+fields.resetGroupSpacing.onclick();assert.deepEqual(history.current.panels.p.geometry,{barWidth:1.32,groupGap:1},'reset restores spacing alone and preserves edited bar width');assert.equal(history.current.panels.p.groupSpacing,undefined);history.undo();assert.equal(history.current.panels.p.geometry.groupGap,1.05);
+for(const lockedElements of [false,true]){const lockedBar=copy(history.current);if(lockedElements)lockedBar.panels.p.lockedElements={0:['e7']};else lockedBar.panels.p.locked=true;history.commit(lockedBar);ctx.renderGroupSpacingControls();assert.equal(fields.categorySpacing.disabled,true);const beforeLocked=commits;fields.categorySpacing.value=.8;fields.categorySpacing.oninput();fields.categorySpacing.onchange();fields.resetGroupSpacing.onclick();assert.equal(callbacks.size,0);assert.equal(commits,beforeLocked);history.undo();}
+assert.equal(JSON.stringify({table,analysis}),originalEvidence);assert.equal(barPlans,0);
+// Linked pair lines and statistical labels belong to the geometry that would
+// move too, so either lock must block the whole operation without partial edits.
+for(const kind of ['connections','annotations']){
+  const lockedNode=new Svg({'data-key':kind==='connections'?'paired-line':'comparison-p'}),groups=[{nodes:[new Svg({'data-key':'points'})]}];
+  ctx.StudioGroupSpacing.inspect=()=>({available:true,axes:[{groups,[kind]:[{node:lockedNode}]}]});ctx.StudioGroupSpacing.plan=info=>info;
+  const ss=copy(initial);ss.panels.p.lockedElements={0:[lockedNode.getAttribute('data-key')]};history.commit(ss);vm.runInContext('categorySpacingCache=null',ctx);ctx.renderGroupSpacingControls();
+  assert.equal(fields.categorySpacing.disabled,true,kind+' lock disables the slider');assert.match(fields.categorySpacingStatus.textContent,/锁定/);const before=commits;fields.categorySpacing.value=.8;fields.categorySpacing.oninput();fields.categorySpacing.onchange();fields.resetGroupSpacing.onclick();assert.equal(callbacks.size,0);assert.equal(commits,before,kind+' cannot be partially moved');assert.deepEqual(history.current,ss);history.undo();
+}
+console.log('PASS category spacing controls: RAF local redraw, one undo per gesture, Enter/blur, stale guards, point/connection/P-label locks, reset, data replacement; unified bar spacing 65–105%, retained bar width, no second transform, and unchanged scientific data.');

@@ -32,6 +32,7 @@ function harness(){
     document:{body,createElement:tag=>node(tag),querySelector:s=>s==='[data-placement-preview]'?body.children.find(n=>n.dataset.placementPreview):null,addEventListener:(type,fn)=>docEvents[type]=fn},
     window:{innerWidth:1000,innerHeight:800,getSelection:()=>({removeAllRanges(){clears++;}}),addEventListener:(type,fn)=>winEvents[type]=fn},
   };
+  ctx.overlayInsertionGeometry=require(path).overlayInsertionGeometry;
   vm.createContext(ctx);
   vm.runInContext(`let original=false,layoutMode=true,boxSelect=true,selectedPanel='p0',selected=[],elementSelections=[],selectedAnnotations=[],selectedPanelLabel=null,activePane='detail';
     const setElementSelection=g=>{elementSelections=g;selected=g[0]?.keys||[];};

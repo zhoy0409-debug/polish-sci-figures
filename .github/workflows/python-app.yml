@@ -33,6 +33,8 @@ jobs:
         run: python -m compileall -q sci_figures.py scripts skills demo
       - name: Unified CLI smoke test
         run: python test_sci_figures_cli.py
+      - name: Gallery CLI UTF-8 and palette regression
+        run: python scripts/test_gallery_cli_encoding.py
       - name: Figure Studio packaging and provenance
         run: python skills/polish-sci-figures/scripts/test_figure_studio.py
       - name: Desktop launcher lifecycle and local authorization
@@ -105,12 +107,20 @@ jobs:
           node scripts/test_studio_workspace_selection.cjs
           node scripts/test_studio_heatmap_palettes.cjs
           node scripts/test_studio_rich_text_regression.cjs
+          node scripts/test_studio_data_text_preservation.cjs
+          node scripts/test_studio_tiff_export.cjs
+          node scripts/test_studio_panel_export.cjs
+          node scripts/test_studio_panel_gaps.cjs
+          node scripts/test_studio_compact_whitespace.cjs
+          node scripts/test_studio_compact_interactions.cjs
       - name: Category spacing metadata and editable group geometry
         # The SVG geometry tests consume these fresh canonical legacy assets.
         run: |
           python scripts/test_legacy_group_metadata.py
           node scripts/test_studio_group_spacing.cjs
           node scripts/test_studio_group_spacing_controls.cjs
+          python scripts/build_group_spacing_fixtures.py
+          node scripts/test_studio_group_spacing_gallery.cjs
       - name: Figure Studio analysis and data reflow
         run: |
           python scripts/test_studio_statistics.py

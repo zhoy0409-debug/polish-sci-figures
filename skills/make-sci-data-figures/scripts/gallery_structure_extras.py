@@ -114,7 +114,7 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
         for sample,row in normed.iterrows():
             group=d.loc[d['sample']==sample,'group'].iloc[0];ax.plot(range(len(variables)),row.to_numpy(),color=c[groups.index(group)],alpha=.35,lw=.8)
         for i,name in enumerate(variables):
-            ax.vlines(i,0,1,lw=.75,color='#9eabbd');ax.text(i,1.055,f'{bounds.loc[name,"axis_max"]:g}',ha='center',fontsize=8);ax.text(i,-.065,f'{bounds.loc[name,"axis_min"]:g}',ha='center',va='top',fontsize=8)
+            ax.vlines(i,0,1,lw=.75,color='#9eabbd');ax.text(i,1.055,f'{bounds.loc[name,"axis_max"]:g}',ha='center',fontsize=8,gid=f'studio-spacing-group-{i}-label-0');ax.text(i,-.065,f'{bounds.loc[name,"axis_min"]:g}',ha='center',va='top',fontsize=8,gid=f'studio-spacing-group-{i}-label-1')
         ax.set(xticks=range(len(variables)),xticklabels=[_wrap(x,12) for x in variables],ylim=(-.13,1.12));ax.set_yticks([]);ax.spines[['left','right','top','bottom']].set_visible(False);ax.tick_params(axis='x',length=0,pad=5);ax.set_xlim(-.25,len(variables)-.75);_legend(fig,[Line2D([],[],color=c[i]) for i in range(len(groups))],groups)
     elif view=='synergy_surface_result':
         ax.remove();ax=fig.add_axes([.03,.11,.90,.72],projection='3d');m=d.pivot(index='dose_b',columns='dose_a',values='score');x,y=np.meshgrid(m.columns.to_numpy(),m.index.to_numpy());z=m.to_numpy();limit=max(abs(z.min()),abs(z.max()),1e-9)

@@ -37,7 +37,7 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 1. Download `polish-sci-figures-Studio-0.1.1-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
 2. Install it and open the **polish-sci-figures Studio** shortcut. The launcher opens the editor in your default browser.
 3. Choose **Start from a template**, inspect the preview, and replace the example data with your own. You can also import an existing image or SVG.
-4. Export SVG / PNG and use **Save project** to download an editable JSON backup.
+4. Export SVG / PNG / TIFF and use **Save project** to download an editable JSON backup.
 
 The portable edition is `polish-sci-figures-Studio-0.1.1-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The browser data editor supports individual cells and CSV/TSV replacement; export Excel files as CSV/TSV first.
 
@@ -79,9 +79,10 @@ The following composites use synthetic data to demonstrate assembly capabilities
 - **Layouts remain adjustable.** Drag panels, span rows or columns, insert rows and columns, and change spacing. Supported templates redraw at the actual physical size; other assets retain their proportions. A supported faceted comparison can split into separate panels in one row while retaining its original comparison-family record.
 - **Edit objects directly.** Marquee-select, multi-select, align, group, and lock objects. Move existing objects, add text, lines, and shapes, and nudge with arrow keys. Double-click text to edit in place; character-level bold, italic, superscript, and subscript preserve local scientific formatting.
 - **Control the details.** Supported axes expose true limits, first-group spacing, and reference lines in data coordinates. Heatmaps offer continuous palettes, real cell values, and numeric formatting. Scale bars require user-supplied calibration; panel labels support automatic numbering and manual edits.
-- **Bring groups closer together.** In Properties, the group-spacing slider moves complete supported categorical groups in real time without stretching points or intervals. Generated comparison annotations follow the groups, and one undo restores the previous spacing.
+- **Bring groups closer together.** The shared Group spacing control in Properties moves supported horizontal or vertical category groups in real time, including existing bar charts. Points and intervals retain their sizes; comparison labels and connecting lines follow the groups. One undo restores the previous spacing. Numeric axes, matrices, and plots with insufficient space are not forced to move.
 - **Keep changes reversible.** Undo, redo, named versions, a project overview, and appearance presets support continued editing. Pasting appearance across figures retains the destination's data, statistics, and calibration.
-- **Export at publication dimensions.** SVG retains the input's existing vectors and live text. PNG defaults to 600 dpi, with 900 / 1200 dpi options. Imported raster images remain raster images; enlargement cannot restore missing detail.
+- **Adjust horizontal and vertical panel gaps separately.** The left pane provides independent controls. Enable **Trim unused margins** for a tighter layout based on visible content, retaining glyph and artwork sizes. Spanning panels or annotations crossing cells keep their original margins with an explanation.
+- **Export at publication dimensions.** Right-click a panel cell and choose **Save panel as…** to export SVG, lossless RGB TIFF, or PNG; use the top toolbar for whole-figure TIFF. Single-panel output uses the current cell crop and retains its label, statistical annotations, condition table, and edits. The export dialog locks the aspect ratio, accepts width in mm, offers 600 / 900 / 1200 dpi for raster formats, and shows actual pixel dimensions. SVG retains existing vectors and live text; TIFF rasterizes vectors at the selected dpi and cannot restore detail missing from low-resolution source images.
 
 Switch between Chinese and English interfaces. Your data, project names, and figure text are not translated without your instruction. See the full [Figure Studio reference](skills/polish-sci-figures/references/figure_studio.md).
 
@@ -164,7 +165,7 @@ These records do not mean every template, dataset, label length, imported SVG, o
 
 - **Desktop runtime:** Windows 10/11 x64 distribution target with a frozen CPython 3.12 runtime; the release record identifies the environments actually tested.
 - **Skills and CLI:** CI is configured for Python 3.10 / 3.12 on Windows / macOS / Ubuntu. Consult the check link above for the final run status; a configured matrix is not itself evidence that the tests passed.
-- **Output:** Studio currently exports SVG, PNG, and project JSON. PDF/TIFF can be produced by suitable original plotting workflows; they are not current editor export buttons.
+- **Output:** Studio currently exports SVG, PNG, TIFF, and project JSON. PDF can be produced by suitable original plotting workflows; the editor does not yet have a PDF export button.
 - **Image input:** Text inside a regular PNG/JPEG does not automatically become an editable object. SVG import accepts a restricted static subset and does not execute scripts or external resources.
 - **Analysis:** Repeated measures, hierarchical data, covariate adjustment, and complex prediction models need an explicit specialist workflow. The interface does not invent statistical results from a chart's appearance.
 

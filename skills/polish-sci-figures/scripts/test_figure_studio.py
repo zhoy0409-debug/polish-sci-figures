@@ -36,6 +36,11 @@ class StudioTests(unittest.TestCase):
         self.assertNotIn('/*__STUDIO_',html)
         self.assertNotIn('__STUDIO_PROJECT__',html)
         self.assertIn("connect-src 'none'",html)
+        self.assertIn('root.StudioTiff = api',html)
+        self.assertIn('async function encodeAsync(options)',html)
+        self.assertIn('root.StudioCompactWhitespace=api',html)
+        self.assertIn('id="compactWhitespace"',html)
+        self.assertIn('function overlayInsertionGeometry(',html)
         with self.assertRaises(ValueError):write_html(project,out)
         self.assertEqual(self.svg.read_text(encoding='utf-8'),SIMPLE)
 

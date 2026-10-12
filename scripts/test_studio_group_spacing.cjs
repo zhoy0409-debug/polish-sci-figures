@@ -37,8 +37,10 @@ class Node{
     if(this.localName==='rect')return {x:num('x'),y:num('y'),width:num('width'),height:num('height')};
     if(this.localName==='text'){const size=Number((a.style||'').match(/(?:font-size:|font:)\s*([.\d]+)px/)?.[1]||a['font-size']||9),w=this.textContent.length*size*.53,anchor=(a.style||'').match(/text-anchor:\s*(\w+)/)?.[1]||a['text-anchor'];return {x:num('x')-(anchor==='middle'?w/2:anchor==='end'?w:0),y:num('y')-size*.8,width:w,height:size};}
     if(this.localName==='use'){const svg=this.closest('svg'),ref=svg.querySelector(`[id="${a.href?.slice(1)}"]`),b=ref?.getBBox()||{x:0,y:0,width:0,height:0};return {...b,x:b.x+num('x'),y:b.y+num('y')};}
-    if(this.localName==='path'){const d=a.d||'';assert.ok(!/[a-bd-kn-ru-y]/i.test(d.replace(/[eE][-+]?\d+/g,'')), 'Adapter only supports absolute M/L/C/Q/Z paths');const values=(d.match(/[-+]?(?:\d*\.)?\d+(?:[eE][-+]?\d+)?/g)||[]).map(Number),pts=[];for(let i=0;i<values.length;i+=2)pts.push({x:values[i],y:values[i+1],width:0,height:0});return combine(pts);}
-    return combine(this.children.filter(c=>!['defs','metadata'].includes(c.localName)).map(c=>transformed(c.getBBox(),transform(c.attrs.transform))));
+    if(this.localName==='path'){const d=a.d||'';assert.ok((d.replace(/[eE][-+]?\d+/g,'').match(/[a-z]/ig)||[]).every(command=>'MLCQZz'.includes(command)), 'Adapter only supports absolute M/L/C/Q/Z paths');const values=(d.match(/[-+]?(?:\d*\.)?\d+(?:[eE][-+]?\d+)?/g)||[]).map(Number),pts=[];for(let i=0;i<values.length;i+=2)pts.push({x:values[i],y:values[i+1],width:0,height:0});return combine(pts);}
+    // Empty Matplotlib tick-line groups have no rendered geometry. Unlike an
+    // actual point/line, they must not pull a parent bounding box to (0, 0).
+    return combine(this.children.filter(c=>!['defs','metadata'].includes(c.localName)).map(c=>transformed(c.getBBox(),transform(c.attrs.transform))).filter(b=>b.width||b.height));
   }
 }
 const fixtureTrees=JSON.parse(result.stdout),fresh=i=>new Node(fixtureTrees[i]);
@@ -60,6 +62,7 @@ for(let i=0;i<fixtureTrees.length;i++){
   const plan=spacing.plan(info,10);assert.ok(plan.factor<10&&plan.factor>=1);for(const ax of plan.axes)for(const g of ax.groups){assert.ok(g.dataBounds.left+g.delta>=ax.frame.left-.5);assert.ok(g.dataBounds.right+g.delta<=ax.frame.right+.5);}
 }
 const numericSvg=fresh(0);numericSvg.querySelector('[id="xtick_1"] text').textContent='0';numericSvg.querySelector('[id="xtick_2"] text').textContent='1';eq(spacing.inspect(numericSvg).available,false,'Numeric axis is not inferred as categories');eq(spacing.inspect(numericSvg,{orders:[['0','1']]}).available,true,'Explicit group labels permit numeric names');
+const unknownMatrix=fresh(0);unknownMatrix.querySelectorAll('[id^="ytick_"]').forEach((tick,i)=>tick.querySelector('text').textContent='Feature '+i);eq(spacing.inspect(unknownMatrix).reason,'coordinate-structure-must-remain-fixed','An unnamed imported matrix cannot be misidentified as independent groups');
 const lineSvg=fresh(0),axis=lineSvg.querySelector('[id="axes_1"]'),clip=axis.querySelector('[clip-path]').getAttribute('clip-path'),cross=new Node({tag:'g',attrs:{id:'line2d_cross'},children:[{tag:'path',attrs:{d:'M 108 150 L 290 100','clip-path':clip}}]});cross.parentNode=cross.parentElement=axis;axis.children.push(cross);eq(spacing.inspect(lineSvg).available,false,'Paired lines cannot be assigned to one group');
 const bar=fresh(0);bar.querySelector('[id="PathCollection_1"]').setAttribute('id','studio-bar-0');eq(spacing.inspect(bar).reason,'existing-bar-layout','No double application to existing bar geometry');
 const zoomed=fresh(0);zoomed.setAttribute('transform','matrix(0.3 0 0 0.3 170 20)');const ordinary=spacing.apply(fresh(0),.7),zoomPlan=spacing.apply(zoomed,.7);near(ordinary.factor,zoomPlan.factor);ordinary.axes[0].groups.forEach((g,i)=>near(g.newCenter,zoomPlan.axes[0].groups[i].newCenter));

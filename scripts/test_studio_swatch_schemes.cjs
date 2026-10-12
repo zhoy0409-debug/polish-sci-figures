@@ -59,7 +59,7 @@ const reducer={$:()=>({value:'all'}),copy:x=>JSON.parse(JSON.stringify(x)),state
   hex:value=>/^#[\da-f]{6}$/.test(value)?value:null,paint:(el,prop)=>el[prop],
   chromatic:value=>{const rgb=value.slice(1).match(/../g).map(n=>parseInt(n,16));return Math.max(...rgb)-Math.min(...rgb)>18;},
   setEdit:(next,id,vi,key,prop,value)=>{next.panels[id].edits[vi]??={};next.panels[id].edits[vi][key]??={};next.panels[id].edits[vi][key][prop]=value;}};
-const paletteStart=source.indexOf('  function preparePaletteTargets('),paletteEnd=source.indexOf('  function preview(',paletteStart);
+const paletteStart=source.indexOf('  function paletteFixedDecoration('),paletteEnd=source.indexOf('  function preview(',paletteStart);
 vm.createContext(reducer);vm.runInContext(source.slice(paletteStart,paletteEnd),reducer);
 const changed=reducer.paletteState(SWATCH_SCHEMES[1].colors);
 assert.equal(changed.panels.A.edits[0].e1.fill,SWATCH_SCHEMES[1].colors[0]);
