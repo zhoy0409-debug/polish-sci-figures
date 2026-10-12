@@ -27,9 +27,9 @@ Explore the right chart, refine every detail, and bring your results together.
 
 Start with a template, bring in your data, and shape the figure directly on the canvas.
 
-![Figure Studio walkthrough: choose a template, replace example data, refine the figure, and open the export controls.](docs/media/figure-studio-walkthrough.gif)
+![Actual mouse dragging in Figure Studio: the two groups move closer together and farther apart.](docs/media/figure-studio-walkthrough.gif)
 
-<p align="center"><sub>Key steps captured in the working editor · Synthetic demonstration data</sub></p>
+<p align="center"><sub>Continuous capture of actual editor interaction · Synthetic demonstration data</sub></p>
 
 1. **Choose a starting point.** Preview a suitable template and add it to your figure.
 2. **Make it your data.** Replace the example values and see the plot update.
@@ -109,9 +109,9 @@ Official downloads and updates come from [this repository's Releases](https://gi
 
 选一个合适的模板，换成自己的数据，再直接在画布上调整细节。
 
-![Figure Studio 实际操作演示：选择模板、替换示例数据、精修图形并打开导出设置。](docs/media/figure-studio-walkthrough.gif)
+![Figure Studio 中的实际鼠标拖动：两组图形连续靠近、分开。](docs/media/figure-studio-walkthrough.gif)
 
-<p align="center"><sub>实际编辑器中的关键操作步骤 · 合成数据演示</sub></p>
+<p align="center"><sub>实际编辑器交互的连续画面 · 合成数据演示</sub></p>
 
 1. **选模板。** 预览适合数据的图形，加入当前组图。
 2. **换数据。** 替换示例数值，查看图形更新。

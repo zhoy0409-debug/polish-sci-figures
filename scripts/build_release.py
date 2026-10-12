@@ -32,6 +32,7 @@ SUPPORT_FILES = (
     "docs/editor-tour.zh-CN.md",
     "docs/media/figure-studio-overview.png",
     "docs/media/figure-studio-walkthrough.gif",
+    "docs/media/figure-studio-walkthrough.mp4",
     "docs/media/figure-studio-start.png",
     "docs/media/figure-studio-template.png",
     "docs/media/figure-studio-data.png",
