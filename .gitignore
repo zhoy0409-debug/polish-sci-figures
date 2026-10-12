@@ -11,3 +11,7 @@ demo/data_families/
 demo/figure_studio/
 
 /demo/roc_explorer/
+
+# Generated desktop payload; rebuilt from source for each Windows package.
+/desktop/resources/starter.html
+/desktop/resources/version-info.txt

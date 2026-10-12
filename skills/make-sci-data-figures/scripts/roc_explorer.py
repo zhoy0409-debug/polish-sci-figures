@@ -4,13 +4,14 @@ import textwrap
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 from figure_workbench import sequential_cmap
+from gallery_layout import apply_layout
 
 KINDS = ('auc_fill','threshold_points','threshold_color','threshold_labels','youden',
          'direct_labels','facets','low_fpr','log_fpr','auc_intervals','two_graph','confusion')
 
 
 def _facet_grid(records,figsize,bottom=.23,top=.86):
-    columns=min(len(records),2);rows=(len(records)+columns-1)//columns
+    columns=1 if figsize[0]<figsize[1] else min(len(records),2);rows=(len(records)+columns-1)//columns
     fig,axes=plt.subplots(rows,columns,figsize=figsize,squeeze=False)
     fig.subplots_adjust(left=.16,right=.96,bottom=bottom,top=top,wspace=.56,hspace=.80)
     for ax in axes.flat[len(records):]:ax.set_visible(False)
@@ -24,7 +25,11 @@ def _axis(ax,x='1 − specificity',y='Sensitivity',small=False):
 
 
 def _caption(fig,text,y=.02):
-    width=max(32,int(fig.get_figwidth()*72/4.8));fig.text(.5,y,textwrap.fill(text,width),ha='center',va='bottom',fontsize=8,color='#65748a')
+    # Method notes occupy the header strip, not the axis-label baseline.
+    w,h=fig.get_size_inches()*72
+    width=max(30,int((w-104)/3.6))
+    fig.text(60/w,1-10/h,textwrap.fill(text,width),ha='left',va='top',
+             fontsize=7,color='#65748a')
 
 def operating_point_figure(records, figsize, matrix=False):
     """Separate the data plot from the numeric summary; no text placed over curves."""
@@ -141,6 +146,8 @@ def render_views(records, figsize=(4.8,3.6), views=None):
         if kind=='log_fpr':fig.suptitle('Log FPR scale; zero-FPR points outside view',fontsize=8)
         outputs.append(('roc_'+kind,fig))
     outputs.extend(render_uncertainty_views(records, figsize,views=views))
+    for name, fig in outputs:
+        apply_layout(fig, name)
     return outputs
 
 

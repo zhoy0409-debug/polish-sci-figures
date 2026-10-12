@@ -20,7 +20,7 @@ def fixtures():
         for j in range(3):
             for v in rng.normal(10+2*i+j*.25,.5,6):rows.append([g,f'Experiment {j+1}',v])
     out['superplot']=pd.DataFrame(rows,columns=['group','experiment','value'])
-    out['grouped_observations']=pd.DataFrame([[f'Line {i+1}',g,f'U{k+1}',float(rng.normal(10+2*i-3*j,1))] for i in range(3) for j,g in enumerate(['Control','Stress','Rescue']) for k in range(6)],columns=['factor','group','unit','value'])
+    out['grouped_observations']=pd.DataFrame([[f'Line {i+1}',g,f'L{i+1}-{g}-U{k+1:02}',float(rng.normal(10+2*i-3*j,1))] for i in range(3) for j,g in enumerate(['Control','Stress','Rescue']) for k in range(6)],columns=['factor','group','unit','value'])
     a=rng.normal(size=(50,5));a[:,1]=.65*a[:,0]+.6*a[:,1]
     matrix=pd.DataFrame([[f'S{i+1}',f'Feature {j+1}',a[i,j]] for i in range(50) for j in range(5)],columns=['unit','variable','value'])
     for k in ['correlation_circles','correlation_values']:out[k]=matrix

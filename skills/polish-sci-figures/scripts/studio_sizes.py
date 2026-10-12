@@ -21,6 +21,8 @@ def render_sizes(path, recipe, analysis, variants, allowed_sizes=None):
     if not all(k in recipe for k in ('group','value','design','subject','order')):
         return []
     module_path = Path(__file__).resolve().parents[2] / 'make-sci-data-figures/scripts/figure_workbench.py'
+    if not module_path.is_file():
+        module_path = module_path.with_suffix('.pyc')
     spec = importlib.util.spec_from_file_location('studio_workbench', module_path)
     wb = importlib.util.module_from_spec(spec); spec.loader.exec_module(wb)
     actual, _, _, _ = wb.resolve_font(recipe.get('font', 'Arial'), recipe.get('allow_font_fallback', False))

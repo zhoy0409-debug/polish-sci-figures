@@ -94,7 +94,12 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
   features=d.groupby('feature').shap_value.apply(lambda v:abs(v).mean()).sort_values().index;cmap=LinearSegmentedColormap.from_list('shap_original',[c[0],'#EDF0F5',c[1]])
   for i,name in enumerate(features):
    q=d[d.feature==name];values=q.feature_value.to_numpy();relative=(values-values.min())/(np.ptp(values) or 1);ax.scatter(q.shap_value,i+_swarm(q.shap_value,width=.27),c=relative,cmap=cmap,vmin=0,vmax=1,s=14,alpha=.85,lw=.15,edgecolors='white')
-  ax.axvline(0,color='#B8C2CF',lw=.8);_style(ax,'SHAP contribution');ax.set_yticks(range(len(features)),[_wrap(v,20) for v in features]);ax.margins(y=.13);cb=fig.colorbar(plt.cm.ScalarMappable(norm=Normalize(0,1),cmap=cmap),ax=ax,fraction=.03,pad=.035,aspect=28);cb.set_ticks([0,1],labels=['Low','High']);cb.set_label('Feature value (within feature)',fontsize=8);cb.ax.tick_params(labelsize=8,length=0);cb.solids.set_rasterized(False)
+  ax.axvline(0,color='#B8C2CF',lw=.8);_style(ax,'SHAP contribution');ax.set_yticks(range(len(features)),[_wrap(v,20) for v in features]);ax.margins(y=.13);cb=fig.colorbar(plt.cm.ScalarMappable(norm=Normalize(0,1),cmap=cmap),ax=ax,fraction=.03,pad=.035,aspect=28);cb.set_ticks([0,1],labels=['Low','High']);cb.set_label('Feature value',fontsize=8,labelpad=3);cb.ax.tick_params(labelsize=8,length=0,pad=1);cb.solids.set_rasterized(False)
+  def compound_layout(frame):
+   left,bottom,width,height=frame;page_width=fig.get_figwidth()*72
+   ax.set_position(frame);cb.ax.set_axes_locator(None);cb.ax.set_box_aspect(None);cb.ax.set_aspect('auto')
+   cb.ax.set_position((left+width+8/page_width,bottom,7/page_width,height))
+  fig._studio_main_axes=[ax];fig._studio_compound_layout=compound_layout
  elif view=='model_facet_relationship':
   names=list(d.facet.unique());fig.delaxes(ax);axes=fig.subplots(2 if len(names)>2 else 1,2,sharex=True,sharey=True,squeeze=False).ravel()
   for i,name in enumerate(names):

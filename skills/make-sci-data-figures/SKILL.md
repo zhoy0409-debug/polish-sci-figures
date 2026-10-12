@@ -1,15 +1,19 @@
 ---
 name: make-sci-data-figures
-description: Raw-data SCI figure workbench for CSV/TSV/XLSX tables. Use when the user has 原始数据, Excel/CSV data, statistical design questions, group comparisons, relationships, time-course data, compositions, matrices, survival, dose-response, ROC/PR, or supplied specialist results that need defensible publication figure candidates. Do not use for microscopy image standardization or final-only SVG polishing.
+description: Raw-data scientific figure workbench and editable template engine for CSV/TSV/XLSX tables. Use for 原始数据, Excel/CSV, design checks, group comparisons, relationships, time-course, compositions, matrices, survival, dose-response, ROC/PR and supplied specialist results. Generate data-backed candidates and Figure Studio bundles with explicit analysis provenance. Route microscopy standardization and final-only SVG polishing to the companion skills.
 ---
 
 # Make SCI Data Figures
 
 Start from the biological question and experimental unit, not from a preferred chart type. Produce several honest candidates from the same data, keep their canvas and typography identical, and explain why each candidate is or is not appropriate.
 
+An ordinary request such as “帮我把这张表画成适合论文的图” is enough to begin. Read the table before asking questions; when design is unresolved, ask concretely whether records describe the same objects before/after or different objects. Offer a small useful shortlist and explain what each reveals instead of requiring statistical jargon or an elaborate prompt.
+
 For unified CLI inspection and confirmation states, read `references/safe_cli_routing.md`. Never treat a role inferred from a column name as a declared experimental unit or design.
 
-For the original editable gallery, run `scripts/gallery_cli.py --list` to inspect the 191 bilingual data contracts, then `scripts/gallery_cli.py --view TEMPLATE --input TABLE.csv --out NEW_DIRECTORY`. The bundle opens in Figure Studio; its local data engine prepares seven canvas sizes and enables table editing. Validate the scientific meanings of required columns before choosing a template. Model-result templates require those results; changing an input table must not be described as refitting an upstream model. Inspect normal, narrow, wide and tall renders and a valid data replacement before delivering a new template.
+For the original editable gallery, run `scripts/gallery_cli.py --list` to inspect the 191 bilingual data contracts, then `scripts/gallery_cli.py --view TEMPLATE --input TABLE.csv --out NEW_DIRECTORY`. The bundle opens in Figure Studio; its local data engine prepares seven canvas sizes and enables table editing. Together with 27 ROC/PR presentations, the editor provides 218 starters. Read [editable gallery and Studio contracts](references/editable_gallery_and_studio.md) before template selection or interactive statistical analysis. Validate the scientific meanings of required columns before choosing a template. Model-result templates require those results; changing an input table must not be described as refitting an upstream model. Inspect normal, narrow, wide and tall renders and a valid data replacement before delivering a new template.
+
+This skill remains the AI/CLI data entry point in suite v1.4.0. Figure Studio 0.1.0 is the official Windows companion in the [same repository's releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases); it bundles this engine for users who want an installed visual editor without Python or an AI environment. It does not replace this skill or require a fourth skill. Keep all three suite folders together for the original source workflow.
 
 ## Minimum intake
 
@@ -121,6 +125,7 @@ Use `assets/palettes.json` as the single palette registry. A palette change must
 - For two independent groups, use the mean difference with bootstrap CI and Welch's test, with Mann–Whitney as a labeled sensitivity analysis.
 - For paired groups, use the paired mean difference with bootstrap CI and a paired test, with Wilcoxon as a labeled sensitivity analysis.
 - For more than two independent groups, use a global Welch ANOVA and Kruskal–Wallis sensitivity result. Do not invent pairwise post-hoc claims.
+- The preceding primary/sensitivity behavior describes the legacy `figure_workbench` route. The separate Studio analysis dialog/API supports explicitly requested Welch, Mann–Whitney, paired t or Wilcoxon pairwise comparisons. It requires declared design and genuine unit roles, and applies one Holm correction across the complete requested family, including facets. Do not silently add these comparisons to a legacy omnibus-only result. Follow [the Studio analysis contract](references/editable_gallery_and_studio.md#local-analysis-and-result-binding).
 - Do not switch tests solely because a small-sample normality test crossed 0.05.
 - Do not pool technical replicates as biological replicates. Do not average or impute missing values without an explicit rule.
 - Keep exact test names, biological-unit counts, exclusions, effect direction, uncertainty definition, diagnostics, analysis scope, and multiplicity status in `analysis_plan.json`.

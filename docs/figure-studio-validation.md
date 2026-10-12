@@ -1,8 +1,8 @@
-# Figure Studio preview validation — 2026-10-11
+# Figure Studio validation record
 
-Status: local development preview on branch `codex/figure-studio`; not a published release.
+Updated: 2026-10-12. This is a chronological record of source, browser and template checks for suite v1.4.0 / Figure Studio 0.1.0. Early sections describe the initial preview and retain their original scope; later sections record subsequent implementation and checks. They are not an all-template, all-browser visual certification. Release packaging and distribution details are separate in [the v1.4.0 release notes](release-v1.4.0.md) and [desktop build guide](../desktop/BUILD.md).
 
-## Verified
+## Initial preview checks — 2026-10-11
 
 - Six Python packaging tests: complete offline HTML, safe JSON embedding, overwrite refusal, original asset preservation, source hash mismatch rejection, candidate canvas mismatch rejection, required analysis/recipe declarations, physical units, and XML entity rejection.
 - Node history/state tests: independent snapshots, undo/redo, discarded redo branches, bounded history without copied SVGs, invalid edits, invalid layouts, and complementary colour conversion.
@@ -108,3 +108,108 @@ This revision supersedes the earlier embedded reference-card gallery. The origin
 - Browser inspection confirmed the recomputed Youden and confusion-matrix cards have separate plot/result regions. The PCA enlarged preview was inspected at full dialog size; loading labels were moved outward and given a small white backing for legibility over observations. Enlarging a preview does not replace the selected panel.
 
 The shipped gallery contains 98 SVG previews. The 187 reference entries are not 187 new implemented engines. Result-based ROC templates require correctly computed source results; no new inferential results are fabricated for preview. Existing saved assets are preserved; local recomputation is an undoable revision.
+
+
+## Heatmap cell-value controls — 2026-10-12
+
+- Numerical heatmaps carry exact IEEE-754 cell values and transparent cell geometry in their SVG metadata. Values follow the actual rendered order, including clustering and percentage conversion; missing observations remain unlabelled. Categorical risk/event matrices are not assigned invented numerical values.
+- The inspector now offers an immediate show/hide control, 0–6 decimal places, font size, automatic black/white contrast or a custom HEX color. The color control reuses the existing compact swatch style. Valid numeric input updates immediately; Enter/change use the same state path. Matrix-wide text is fitted inside its cells, so the requested size is an upper limit for dense matrices; explicit selected-element sizes retain priority.
+- The settings belong to panel state: undo/redo, JSON project restore, data replacement and SVG export use the same values. Labels remain vector text. The scientific data are never rounded or altered by display settings.
+- `scripts/test_heatmap_values.py`: 54 exact-value/metadata checks passed across nine numerical heatmap types, original and changed data, and normal/wide/portrait canvases. The checks compare label values directly with plotted mesh/image values and cover missing cells and duplicate SVG IDs. This is geometry/data binding coverage, not a visual guarantee for arbitrary datasets.
+- `node scripts/test_studio_heatmap.cjs`: exact float decoding, negative-zero formatting, decimal rounding, automatic contrast, invalid settings, undo/redo, JSON history restoration and appearance retention after data replacement passed. The existing state/history regression suite also passed.
+- Main-thread browser checks confirmed 56 clustered-matrix labels, one decimal place, a changed value of 0.82 after table recomputation with visibility retained, and SVG export with 56 visible editable labels and no editor guides or selection overlays. The optional `--browser` mode in the new Node script is an additional isolated SVG check; it was not run as part of this handoff.
+
+### Heatmap palette and live font follow-up
+
+The font-size and decimal-place fields now respond to each valid input event, with Enter/change deduplicated by the shared history. A single fitted font size is used across the matrix, and the inspector reports the actual size when the requested maximum exceeds cell capacity. Safe requested sizes are used directly.
+
+Continuous heatmap colors now use each cell's original normalized scalar, the original scale domain, and its zero midpoint where applicable. Vector cell overlays replace the original mesh/image colors; colorbar segments use the same original normalized positions, preserving all scale labels and geometry. Palette changes precede individual element edits, while automatic numeric-text contrast follows the final cell fill. Sequential and diverging palettes have separate stops.
+
+The 54 metadata cases were rerun with exact, ordered cell-to-mesh comparisons plus cell and colorbar normalization checks; all passed. Node checks additionally verify palette interpolation at a noncentral zero midpoint, real renderer metadata driving every cell/colorbar segment, palette-state undo/restore and retention after data replacement, and production live-input bindings. Visual palette-preview and inspector font input verification is handled by the main-thread browser QA.
+
+### Explicit cell-text edits preserve priority
+
+Matrix-wide numeric formatting now runs before per-element edits. The final heatmap pass adjusts only inherited automatic text contrast; it does not reset font sizes, opacity, or visibility. An explicitly selected cell therefore keeps its requested font size even when the other cells use the recommended uniform default. These explicit sizes are respected directly rather than silently reduced to the size of unselected cells.
+
+`node scripts/test_studio_heatmap_overrides.cjs` executes the production `editedSvg` function and passes: one of 56 cells from 8 to 12 pt (other 55 unchanged), five cells from 8 to 12 pt (other 51 unchanged), hidden/deleted labels remaining hidden, explicit opacity and text color retained, later matrix-default changes preserving local edits, and visibility-off/on preserving deleted labels. This regression verifies production pipeline precedence; the main thread performs browser interaction confirmation.
+
+
+## Browser confirmation of heatmap edits, source deletion and panel labels — 2026-10-12
+
+The following checks were performed by the main thread in the actual editor:
+
+- Entering 12 in the heatmap font field immediately changed all 56 numeric labels to 12 pt, without pressing Enter. Selecting one cell and setting its text to 14 pt changed that cell while the other 55 remained at 12 pt; undo restored the preceding state.
+- A saved project containing older heatmap metadata was upgraded while preserving the project.
+- All eight palette previews displayed different colors in both the actual heatmap cells and their colorbar. Clicking the blue-orange card and then leaving the palette pane retained the new cell/scale colors, all 56 values and the 18 pt setting; undo restored the previous red-blue colors.
+- Selecting an original ROC caption and pressing Delete removed it; undo restored the source caption.
+- The nine visible panel labels were A–I. Manually changing a label to B1 worked and was undone. Moving the panel down swapped the B/C ordering and updated automatic labels; undo restored the preceding order.
+
+Double-clicking the B label focused the label input with B populated. A separate browser page also confirmed that double-clicking the original D label focused the input with D populated. Repeated label clicks now reuse the inspector rather than rebuilding every preview.
+
+Regression commands rerun for this confirmation: `node scripts/test_studio_heatmap_palettes.cjs` passed, including the startup guard that permits swatch rendering before project/history selection exists, all eight real-color preview cards, sequential/diverging scope handling, old-metadata/ROC guards, retained styles, single-cell editing, locks and palette-state undo/redo. `node scripts/test_studio_heatmap_overrides.cjs` also passed against the current production `editedSvg` pipeline, including selected-cell font priority and deleted-label preservation.
+
+## Canvas rearrangement and inspector layout — 2026-10-12
+
+Native browser dragging was checked in both entry paths. In Arrange panels mode, dragging inside heatmap B to occupied cell F exchanged the panels and updated their letters, retaining all 56 cell values and the 18 pt setting. In ordinary editing mode, dragging the six-dot top handle exchanged B with D without enabling Arrange mode. Undo restored each original arrangement. A further final-build check moved ROC C to E, verified panel-wide scope, and undid it. Browser computed cursors were `grab` for arrangement and handles, and `crosshair` for the SVG, text and handles in marquee mode. Active grabbing and invalid-drop cursor states are covered in the production-handler/CSS regression, not a held-pointer browser screenshot.
+
+The inspector header now separates “Adjustments”, the selected-object title and the tab bar. Delete is a compact, labelled icon aligned at the right of the header; preferences are below the editing sections. The ROC selection was visually checked at the live viewport size, with no title/button overlap or repeated Properties heading.
+
+## Gray-workspace selection and final UI check — 2026-10-12
+
+In the native browser, dragging from the gray area above panel A selected exactly its five y-axis tick labels (7.5, 10.0, 12.5, 15.0, 17.5), with five persistent outlines and an enabled Delete action. Starting in the left gray area selected the same five ticks plus the y-axis title, matching the drawn rectangle. Native browser text selection remained empty. Clicking either the gray background or inside the chart cleared all outlines and chosen objects and disabled Delete. The five-tick selection also worked with the explicit marquee button off, in ordinary editing mode. With marquee mode on, both the gray viewport and SVG reported `crosshair`.
+
+The brand subtitle was separately typeset with a local system sans-serif stack, distinct Latin/Chinese tracking and a quieter separator. The actual 1330 px editor view was inspected together with the reorganized inspector. Screenshot: `.cache/viewport-selection-proof.png`. These checks only changed transient selection; they did not change chart data or layout.
+
+### Inspector disclosure rows
+
+Preferences, delivery checks and the other sidebar disclosures now share a 34 px header, a small rotating outline chevron and an in-bounds hover background. Preferences and statistics no longer introduce a separate filled outer card. Keyboard focus remains visible as a thin inset outline. Opening Preferences in the actual browser confirmed consistent left edges, separators and spacing with the adjacent delivery-check and analysis rows.
+
+## Statistical annotation controls and layout — 2026-10-12
+
+Statistics now has a visible section under Properties and a direct panel context-menu entry. Five illustrated choices cover no annotation, compact letters, stars, hashes and exact P values. Bracket, horizontal line and rounded bracket forms are separate immediate choices. The first implementation required recorded comparisons and reliable single-axis group anchors, extending eligible legacy point, box, violin, raincloud and paired plots beyond bar charts. The local-analysis workflow below now also connects calculated or imported comparisons to compound templates; missing results are not inferred from artwork.
+
+Browser verification used an isolated copy of the existing synthetic independent/paired/multigroup/ROC project; source tables and recorded analysis results were unchanged. In the two-group scatter plot, choosing letters displayed `a` and `b` above their actual groups; hashes displayed `####`, stars `****`, and exact P displayed `P = 2.23 × 10⁻⁹` with only P italic. Horizontal and rounded connecting lines updated immediately. Setting the selected generated P label to 32 pt preserved separate space for the effect summary and statistic. Delete hid the selected generated label and Undo restored it. The four-group fixture has only an omnibus test: automatic comparison choices remained disabled with an explicit missing-pairwise explanation. The panel context menu successfully opened the statistics section. Screenshot: `.cache/statistical-annotation-proof.png`.
+
+The independent Node regressions `test_studio_statistical_annotations.cjs` and `test_studio_stat_layout.cjs` cover complete/nontransitive letters, invalid and incomplete result families, selected-method isolation, unrounded P preservation, immediate state changes, generated deletion, 9/24/32 pt spacing for 1/3/6 comparisons, summary separation and retained reflow dimensions. These are bounded production-helper/DOM checks; the browser inspection above does not claim validation for arbitrary datasets or all gallery templates. Main editor pages were regenerated with their original project IDs and restored browser autosaves.
+
+## Local statistical analysis and compound-template results — 2026-10-12
+
+The loopback service now exposes `/api/analyze` for declared raw-observation analysis or a supplied comparison table. The request contains `recipe`, `rows` and `config`; its response contains `analysis`, the confirmed `config` and a canonical CSV `data_sha256`. `/api/render` accepts an optional statistics configuration and returns newly computed results in `panel.statistics`, separate from the existing plot analysis and estimates. Host, Origin and per-process token checks apply to both endpoints; submitted code is never executed.
+
+- Raw analysis requires explicit independent/paired design, a genuine experimental-unit column, group/outcome mappings and a comparison family. Repeated records for the same unit/group/facet, cross-group reuse of an independent unit, incomplete pairing, missing/nonfinite outcomes and undefined constant-data tests are rejected. Pairing follows unit identity, not row order. No observation is silently dropped; an optional, declared row filter records included/excluded counts.
+- Implemented methods are Welch two-sample t, Mann–Whitney U, paired t and Wilcoxon signed-rank. Recommendations use the declared design and mean-versus-distribution goal, never the smallest P value. Small tied-sample rank tests use bounded, reproducible permutation calculations where needed. Canonical internal ordering prevents table sorting from changing seeded results. Method assumptions and method-specific interpretations remain visible in the configuration/results.
+- All requested pairs, including pairs in different facets, receive one Holm adjustment. Facet records retain separate group orders and named comparisons; the engine does not manufacture cross-facet contrasts. All-pairs and control-only families are explicit. Compact letters require complete all-pairs results; an omnibus P value is not a substitute. Welch/paired-t effect intervals are labelled as unadjusted pairwise 95% intervals, not simultaneous intervals.
+- Existing-result import requires group A/group B/P column mappings, method description, family and confirmation of provenance. Raw P values can receive Holm adjustment; already-adjusted P values retain their supplied values and require a named correction method. An unadjusted import is limited to a single comparison. Duplicate or incomplete declared comparison families are rejected.
+- A current-table binding recomputes statistics with its figure revision. An external-observation or supplied-result binding becomes stale when the plotted table changes; its previous automatic result display is removed until the source is updated. Undo/redo restores the corresponding figure and statistical state. Analysis failure preserves the last valid figure rather than attaching old P values to new data.
+
+Actual browser checks by the main thread passed: the raincloud's raw table was analyzed, exact-P presentation selected, and the generated text changed to 24 pt. Editing a value recomputed the comparison P values; undo and redo restored the corresponding revisions. PCA was analyzed after explicitly selecting `role = score`, and letter presentation worked in a separate named results area. These are tests of the selected score coordinate, not evidence of overall PCA group separation. An external Holm-adjusted comparison table was connected; changing the plotted x value removed the old result area and displayed the update-required message.
+
+Compound templates no longer require manual statistical text solely because they preserve aspect ratio or lack a categorical axis. Charts such as PCA keep their existing geometry and use a named results area. Direct above-axis placement for recognized single-/multiple-facet categorical charts is being checked separately; the browser evidence in this section does not certify that new placement across all facet layouts.
+
+Backend validation: `scripts/test_studio_statistics.py` passed 15 tests covering the four methods against SciPy/known examples, Holm/control families, imported-result declarations, unit/pairing guards, PCA filtering, row-order stability, bounded permutation work, actual local HTTP authorization/validation and two actual figure/data recomputations. `scripts/test_composite_statistics.py` passed independent checks on two outcomes and three groups with one global Holm family. Its `--render` run additionally passed two actual compound-facet gallery recomputations, analysis/table hash agreement and preserved vector size variants. PCA score filtering excluded loadings; changing loading values left the score tests unchanged while updating the full-table hash.
+
+Independent synthetic starter identities were corrected in 27 templates: group/condition prefixes now distinguish independent units. `scripts/test_synthetic_gallery_units.py` verified that every affected template accepts its declared independent analysis, all measurements and supplied P/CI values remain unchanged, both paired fixture hashes remain unchanged, and SuperPlot technical-repeat identities are retained. Saved user observations are not relabelled by this fix.
+
+Statistical implementation references: [Welch two-sample t](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html), [Mann–Whitney U](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html), [paired t](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_rel.html), [Wilcoxon signed-rank](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html) and [Holm adjustment](https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html).
+
+
+## Direct manipulation, coordinate controls and split facets — 2026-10-12
+
+Browser checks on the synthetic editing fixture confirmed bars above and below zero, an editable zero baseline, and logarithmic-axis reference lines. Entering 1.2 as the first-group spacing regenerated the actual chart. Optional PBS/dose condition rows followed their three categorical anchors; they were then disabled on the negative-value example because they did not belong to that example's scientific message. Group-condition and statistical decorations are independent opt-ins.
+
+Canvas insertion was exercised by placing text, entering content and pressing Enter. Selected-range character edits made only `bind` subscript and only `G` italic, preserving the remaining characters. Two editor guides were added. Dragging the inserted text onto the horizontal guide aligned its centre to the guide (screen y 376.54 versus 376.50). Guide isolation from exports and 1,200-guide state handling are covered by the separate Node regression.
+
+The actual browser separators changed the navigator from 220 to 293 px and inspector from 320 to 420 px; reload retained both values. The production-handler regression covers animation-frame coalescing, immediate reverse motion at a limit, lost capture/Escape/blur cancellation, persistence, mobile-window restoration and keyboard access. English mode displayed translated panel names and the current-panel header, including the regenerated negative-value revision. All eight visible layout cards had scroll width equal to client width (117 px), with no horizontal text overflow.
+
+The three-factor comparison panel was split through its real UI/API into Day 1, Day 7 and Day 14 in three consecutive horizontal cells. Both pre-existing panels retained their cells. One Undo returned to three original panels; Redo restored five panels and the horizontal facet row. The three child plots shared their y range, and their titles, tick labels and nine comparison annotations were inspected in the rendered canvas. The backend regression verifies exact preservation of all nine globally Holm-adjusted comparisons, original-row filtering without value changes, supplied results, stale/hash rejection and loopback authentication. Three child panels and square/wide/tall reflows were also rendered and inspected; contact sheet: `.cache/facet-split-qa/contact.png`.
+
+These checks cover the named fixtures and supported facet template. They do not certify every possible imported SVG, data table or long user-authored label.
+
+
+### Keyboard positioning and inline text — 2026-10-12
+
+In the actual browser, double-clicking an existing added text object opened its inline editor. Selecting only `G` and pressing the toolbar Bold button made that character bold while preserving its italic style, the `bind` subscript and normal remaining text. A prior tap/full-SVG replacement and pointer-capture retargeting issue was fixed so the browser retains the double-click target.
+
+Arrow positioning was measured on the canvas: Right moved a selected text object by 0.7264 screen px at the current fit zoom (1 final pt), Shift+Right by 7.2640 px (10 pt), and Alt+Up by 0.0727 px (0.1 pt). Undo restored the vertical move. A generated P label moved upward by the same 1 pt and Undo restored its original position and unmodified text. Two selected y-axis numbers moved together by equal distances. A direction key used while the font input held focus did not move either chart object. Temporary inserted test text and editor guides were removed after verification.
+
+The dedicated keyboard regression additionally exercises original elements, statistical e9 and condition e8 nodes, mixed selections, panel labels, guide axes, physical export scale, changing preview zoom, lock and input/IME guards, animation-frame coalescing, repeat-key history, cancellation and stale-target protection. These scripted paths are distinguished from the specific browser measurements above.

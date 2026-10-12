@@ -165,6 +165,12 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
    strata=list(dict.fromkeys(d.subgroup))
    if len(strata)>1:
     handles=[Line2D([],[],marker='s',ls='',color=cs[j%len(cs)],markersize=5) for j in range(len(strata))];columns=1 if figsize[0]<5 and any(has_cjk(v) for v in strata) else min(2,len(strata));ax.legend(handles,[wrap(v,18) for v in strata],loc='lower left',bbox_to_anchor=(0,1.02),ncol=columns,frameon=False,fontsize=8)
+   if view=='meta_forest':
+    def compound_layout(frame):
+     ax.set_position(frame);leg=ax.get_legend()
+     if leg:
+      leg.borderaxespad=0;leg.set_bbox_to_anchor((frame[0],frame[1]+frame[3]+12/(fig.get_figheight()*72)),transform=fig.transFigure)
+    fig._studio_main_axes=[ax];fig._studio_compound_layout=compound_layout
  elif view=='calibration_results':
   ax.plot([0,1],[0,1],color='#aab5c5',ls=':',lw=.9);ax.errorbar(d.predicted,d.observed,yerr=[d.observed-d.lower,d.upper-d.observed],fmt='o-',color=cs[0],lw=1,ms=4,capsize=2);ax.set(xlim=(0,1),ylim=(0,1));clean(ax,'Predicted probability','Observed probability')
  elif view=='decision_curve_results':
@@ -179,9 +185,9 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
   if len(groups)>1:ax.legend([Rectangle((0,0),1,1,color=cs[i%len(cs)]) for i in range(len(groups))],[wrap(g) for g in groups],loc='lower left',bbox_to_anchor=(0,1.02),ncol=2,frameon=False,fontsize=8)
  elif view=='classification_counts':
   labels=sorted(set(d.actual)|set(d.predicted));m=d.pivot(index='actual',columns='predicted',values='count').reindex(index=labels,columns=labels).fillna(0).to_numpy();from matplotlib.colors import LinearSegmentedColormap
-  ax.pcolormesh(m,cmap=LinearSegmentedColormap.from_list('count',['#f0f3f8',cs[0]]),edgecolors='white',linewidth=1)
-  for i in range(len(labels)):
-   for j in range(len(labels)):ax.text(j+.5,i+.5,str(int(m[i,j])),ha='center',va='center',fontsize=9,color='white' if m[i,j]>.6*m.max() else '#344054')
+  mesh=ax.pcolormesh(m,cmap=LinearSegmentedColormap.from_list('count',['#f0f3f8',cs[0]]),edgecolors='white',linewidth=1)
+  from gallery_heatmap import cell_values
+  cell_values(ax,m,mesh,visible=True,decimals=0,x0=0,y0=0,fontsize=9)
   ax.set_xticks(np.arange(len(labels))+.5,[wrap(v,11) for v in labels]);ax.set_yticks(np.arange(len(labels))+.5,[wrap(v,11) for v in labels]);ax.invert_yaxis();ax.set_aspect('equal');clean(ax,'Predicted','Actual')
  elif view in {'meta_funnel','meta_contour_funnel','meta_radial'}:
   if view=='meta_radial':x=1/d.se;y=d.effect/d.se;ax.scatter(x,y,s=24,color=cs[0],alpha=.7);xx=np.linspace(0,x.max()*1.08,100);ax.plot(xx,d.pooled.iloc[0]*xx,color=cs[1]);ax.fill_between(xx,d.pooled.iloc[0]*xx-1.96,d.pooled.iloc[0]*xx+1.96,color=cs[0],alpha=.1);clean(ax,'1 / Standard error','Effect / Standard error')

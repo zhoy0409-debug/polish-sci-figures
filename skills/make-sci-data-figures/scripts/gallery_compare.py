@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from gallery_fonts import font_families
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.lines import Line2D
-from matplotlib.ticker import MaxNLocator
+from matplotlib.ticker import MaxNLocator, FuncFormatter
 from scipy import stats
 
 PALETTE = ['#426B9D', '#C35E70', '#93A8C4', '#947DAB', '#A8864F', '#5F728A']
@@ -253,7 +253,13 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
             if view in {'compare_strip_median','compare_log_points','compare_bracket_stars','compare_bracket_p','compare_control_symbols'}:ax.plot([i-.19,i+.19],[np.median(v)]*2,color='#23344C',lw=1.4,zorder=4)
         _style(ax,y='Value');_categorical(ax,names);ax.set_xlim(-.62,len(names)-.38);ax.margins(y=.12)
         if view.startswith('compare_bar'):ax.set_ylim(bottom=min(0,float(d.value.min())*1.1))
-        if view=='compare_log_points':ax.set_yscale('log');ax.set_ylabel('Value (log scale)')
+        if view=='compare_log_points':
+            ax.set_yscale('log');ax.set_ylabel('Value (log scale)')
+            # Keep ordinary magnitudes compact without changing log positions.
+            # Math-text minor labels such as 1.2 x 10^1 otherwise consume the
+            # shared left margin and collide with the axis title after resizing.
+            compact=FuncFormatter(lambda value,position:format(value,'.4g'))
+            ax.yaxis.set_major_formatter(compact);ax.yaxis.set_minor_formatter(compact)
         if view in {'compare_bracket_stars','compare_bracket_p','compare_control_symbols'}:
             rows=d.groupby('group',sort=False).first();comparisons=[(g,r) for g,r in rows.iterrows() if g!=r.reference];span=np.ptp(d.value) or max(1,abs(d.value.mean()));base=d.value.max()+.12*span
             for j,(g,r) in enumerate(comparisons):
@@ -379,14 +385,14 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
 
 def fixtures():
     """Synthetic, seeded, editable examples. No values originate from a study."""
-    rng=np.random.default_rng(1031);groups=['Control','Treatment','Rescue'];base=pd.DataFrame([{'group':g,'unit':f'U{i+1:02}','value':float(v)} for j,g in enumerate(groups) for i,v in enumerate(rng.normal([10,13,11][j],[.85,1.1,.75][j],24))]);out={}
+    rng=np.random.default_rng(1031);groups=['Control','Treatment','Rescue'];base=pd.DataFrame([{'group':g,'unit':f'{g}-U{i+1:02}','value':float(v)} for j,g in enumerate(groups) for i,v in enumerate(rng.normal([10,13,11][j],[.85,1.1,.75][j],24))]);out={}
     for k in CONTRACTS:
         if CONTRACTS[k][3]=='group unit value':out[k]=base.copy()
     paired=pd.DataFrame({'unit':[f'S{i+1:02}' for i in range(20)],'before':rng.normal(10,1,20)});paired['after']=paired.before+rng.normal(1.4,.8,len(paired))
     for k in ['compare_paired_lines','compare_paired_change']:out[k]=paired.copy()
-    factorial=pd.concat([base.assign(factor=f,value=base.value*(1+i*.13)) for i,f in enumerate(['Day 1','Day 7','Day 14'])],ignore_index=True)
+    factorial=pd.concat([base.assign(factor=f,unit=f'D{i+1}-'+base.unit,value=base.value*(1+i*.13)) for i,f in enumerate(['Day 1','Day 7','Day 14'])],ignore_index=True)
     for k in ['compare_interaction','compare_facet_boxes']:out[k]=factorial.copy()
-    dose=pd.DataFrame([{'dose':dose,'unit':f'U{i:02}','value':float(v)} for dose in [0,1,3,10] for i,v in enumerate(rng.normal(10+dose*.32,.9,12))]);dose['trend_p']=stats.linregress(dose.dose,dose.value).pvalue;dose['trend_method']='OLS slope test on synthetic data';out['compare_dose_trend']=dose
+    dose=pd.DataFrame([{'dose':dose,'unit':f'D{dose}-U{i+1:02}','value':float(v)} for dose in [0,1,3,10] for i,v in enumerate(rng.normal(10+dose*.32,.9,12))]);dose['trend_p']=stats.linregress(dose.dose,dose.value).pvalue;dose['trend_method']='OLS slope test on synthetic data';out['compare_dose_trend']=dose
     reference=base.loc[base.group=='Control','value'].to_numpy();contrast={};rawp={}
     for name in groups[1:]:
         values=base.loc[base.group==name,'value'].to_numpy();v1=reference.var(ddof=1)/len(reference);v2=values.var(ddof=1)/len(values);se=np.sqrt(v1+v2);df=(v1+v2)**2/(v1*v1/(len(reference)-1)+v2*v2/(len(values)-1));delta=values.mean()-reference.mean();half=stats.t.ppf(.975,df)*se;contrast[name]=(delta,delta-half,delta+half);rawp[name]=stats.ttest_ind(reference,values,equal_var=False).pvalue

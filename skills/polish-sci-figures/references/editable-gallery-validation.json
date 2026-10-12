@@ -1218,5 +1218,277 @@
       "seconds": 0.59,
       "table_sha256": "9df621bf73130d6076ca1d1024e267cc6df648a7b73276026e30f01832113f94"
     }
-  ]
+  ],
+  "interaction_and_layout_review": {
+    "date": "2026-10-12",
+    "scope": "27 reviewed physical plot frames and the explicitly recorded editor workflows; not a full 191-template alignment certification.",
+    "script_checks": {
+      "physical_frames": {
+        "report": ".cache/composite-alignment-qa/measurements.json",
+        "margins_pt": {
+          "left": 60.0,
+          "right": 44.0,
+          "top": 56.0,
+          "bottom": 42.0
+        },
+        "cases": 36,
+        "views": [
+          "clustered_matrix",
+          "compare_raincloud",
+          "coverage_tracks",
+          "flow_alluvial",
+          "genome_manhattan",
+          "meta_forest",
+          "model_shap_summary",
+          "pca_loadings",
+          "roc_pointwise_band"
+        ],
+        "data_revisions": [
+          "original",
+          "edited"
+        ],
+        "sizes": [
+          "normal",
+          "wide"
+        ],
+        "maximum_absolute_frame_error_pt": 5.684341886080802e-14,
+        "failures": []
+      },
+      "exact_reflow": {
+        "report": ".cache/studio-reflow-qa/report.json",
+        "reviewed_gallery_views": 25,
+        "reviewed_empirical_roc_views": [
+          "roc_pointwise_band",
+          "roc_bootstrap_curves"
+        ],
+        "render_checks": 83,
+        "rejected_invalid_inputs": 49,
+        "http_checks": 12,
+        "legacy_size_variants": 6
+      },
+      "control_styles": {
+        "method": "Static CSS review and diff validation",
+        "checks": [
+          "Enabled control hover/pressed/selected states and keyboard focus-visible",
+          "Reduced-motion rules; no layout-shifting feedback",
+          "Canvas-only native text selection and image dragging suppression",
+          "Marquee and individual element outline rules leave source artwork colors intact"
+        ]
+      },
+      "color_swatches": {
+        "method": "Node syntax check and isolated drawColorSwatches behavior checks",
+        "checks": [
+          "Eight muted blue/red/slate/neutral defaults",
+          "Case-insensitive recent-color deduplication, invalid HEX filtering and preserved user colors",
+          "HEX title and accessible label on each swatch",
+          "Applying a swatch changes color only after explicit user selection",
+          "Selected indicator synchronization and Chinese/English initial empty-state labels"
+        ]
+      },
+      "preview_zoom": {
+        "method": "Node helper tests, source-path guards, syntax checks and existing selection/state regression checks",
+        "test": "scripts/test_studio_zoom.cjs",
+        "checks": [
+          "10%–400% bounds, reciprocal wheel increments and pixel/line/page units",
+          "Pointer anchor math with scrolled artwork and centered-to-overflow auto-margin changes",
+          "Scroll-bound clamping and invalid geometry handling",
+          "Wheel path updates the existing SVG CSS dimensions without renderer, history or export-settings writes",
+          "Only Alt/Ctrl-modified wheels are intercepted; English tooltip translations exist"
+        ],
+        "browser_status": "Native browser Alt-wheel and touchpad-pinch gestures have not been exercised by available browser automation. Node event-handler simulation is recorded separately from the actual browser selection workflow.",
+        "event_handler_test": "scripts/test_studio_zoom_events.cjs",
+        "event_handler_method": "Current source controller, wheel listener, zoom-selector callback, pointer-down handler, selection-outline drawing and resize listener executed in a bounded Node DOM mock; source plot generation is stubbed.",
+        "event_handler_checks": [
+          "Multiple modified wheels schedule one animation frame and one SVG width/height update.",
+          "Unmodified and Shift-only wheels are not prevented; Alt/Ctrl wheels are canceled through a passive:false listener.",
+          "Wheel events with nonzero pointer buttons do not queue zoom.",
+          "Starting box selection cancels a pending zoom before capturing geometry; the control retains the applied fit or numeric state.",
+          "A newer dropdown choice is retained when canceling an older queued wheel.",
+          "Dynamic percentages reuse one option; zoom clamps to 10% and 400%.",
+          "Resize recomputes fit zoom; a fixed numeric zoom remains fixed.",
+          "Fresh selection coordinates and independently refreshed existing outlines retain 2 px padding at tested 10%, 37%, 100% and 400% zoom; chart generation is not called by the zoom path."
+        ]
+      },
+      "deletion_and_panel_labels": {
+        "test": "scripts/test_studio_delete_labels.cjs",
+        "method": "Pure reducers plus actual source-edit application, keyboard listener, label controls and pointer handlers in bounded Node mocks",
+        "checks": [
+          "Deleting selected source elements writes hidden overrides and preserves the source asset, panel count, grid and data.",
+          "Locked source elements, annotations and panels are protected; undo/redo and serialized history restore hidden elements.",
+          "Native text inputs, textarea, select, contenteditable and IME composition do not invoke canvas deletion.",
+          "Automatic labels use row/column position rather than panel id or stale array order.",
+          "Legacy labels are compared with project.initialState; unchanged text becomes automatic and changed text remains manual.",
+          "Manual labels survive movement; restore-auto, numeric/lowercase choices and manual freeze work.",
+          "Actual label pointer handlers select without a history step, ignore subthreshold movement, preserve pointer offset while dragging and focus the text input on double-click.",
+          "The full down/up/click sequence repeated twice before dblclick keeps pointer capture on the label text; single click does not steal focus and unrelated double-clicks do not focus an old label."
+        ],
+        "browser_status": "Implementation-agent checks use Node mocks; native browser verification is performed separately."
+      },
+      "panel_drag": {
+        "test": "scripts/test_studio_panel_drag.cjs",
+        "method": "Production canvas pointer/native drag handlers and mode controls executed in a bounded Node DOM mock",
+        "passed": true,
+        "checks": [
+          "Arrange mode routes chart marks, labels and annotations to whole-panel movement; direct frame grip works without changing modes.",
+          "Occupied slots exchange complete positions/spans; empty cells accept the source panel; locked destinations are rejected.",
+          "Source data and element edits are preserved; visual-order numbering updates and undo/redo restores state.",
+          "The 3 px threshold, original-slot drop, out-of-canvas release and cancellation do not add history.",
+          "Pointer movement reuses a candidate inside the same target cell and does not render the canvas/inspector; successful release renders once.",
+          "Capture loss, zero pointer buttons, Escape, window blur and canvas repaint cancel the panel gesture without a commit.",
+          "Cancelled native sidebar drag clears its preview; completed native drop does not render again on dragend.",
+          "Resize click or return to the original span preserves fixed grid.widths and grid.heights.",
+          "Arrange mode and element selection are mutually exclusive; whole-panel selection restores Panel property scope."
+        ],
+        "browser_status": "Native-browser verification is recorded separately by the main thread."
+      }
+    },
+    "browser_checks": {
+      "method": "Actual browser pointer and inspector interactions",
+      "proof": ".cache/marquee-axis-font-proof.png",
+      "cases": [
+        "Marquee selected five vertical-axis numbers in panel A; setting 12 pt changed only those five.",
+        "Shift-click on Feature 1 in panel B extended the selected text set to six objects; setting 10 pt changed all six.",
+        "A single undo restored the preceding text sizes for that six-object edit.",
+        "Native browser text selection remained empty during the canvas selection workflow."
+      ]
+    },
+    "implementation_details": [
+      "Grid guides default to visible, can be toggled and are omitted from figure exports.",
+      "Marquee candidate feedback and per-element rectangular outlines are editor overlays.",
+      "The common swatch set uses muted blue, red, slate and neutrals; custom and recent user colors remain available."
+    ],
+    "boundaries": [
+      "Shared-frame alignment is reviewed for 27 named views, not all 191 gallery templates.",
+      "CSS state coverage is a static inspection; the browser workflow above is the explicitly exercised interaction scope.",
+      "The historical clustered_matrix layout case does not certify new heatmap editing functionality.",
+      "Arbitrary data, labels and imported SVG structures still require final-size visual review."
+    ]
+  },
+  "workspace_selection_2026_10_12": {
+    "state": "implemented and tested",
+    "script_checks": {
+      "test": "scripts/test_studio_workspace_selection.cjs",
+      "method": "Production viewport and SVG event handlers, hit testing and overlay drawing executed in a bounded Node DOM mock",
+      "passed": true,
+      "cases": [
+        "Gray workspace origin selects source elements across the figure boundary",
+        "Pointer movement coalesces into one pending animation frame; candidate outlines become final outlines and chosen state",
+        "First ordinary click after marquee clears selection; the following click selects normally",
+        "Gray and figure blank clicks clear selection and disable Delete without data or history changes",
+        "Shift retains source selection while adding inserted annotations; mixed and annotation-only selection are consistent",
+        "SVG bubbling, toolbar controls, middle/right buttons and scrollbar hit regions are excluded",
+        "Scroll, pointer cancellation, capture loss and released buttons cancel unfinished selection",
+        "Selection rectangle remains clipped to the viewport content area",
+        "Previously selected chart elements can still be dragged; simple taps add no history"
+      ]
+    },
+    "browser_checks": {
+      "performed_by": "main thread",
+      "method": "Actual browser pointer interactions",
+      "proof": ".cache/viewport-selection-proof.png",
+      "cases": [
+        "Selection mode showed crosshair in both gray viewport and SVG",
+        "Gray-origin drag selected exactly five vertical-axis values, five final outlines and enabled Delete",
+        "A second gray-origin drag selected those five values plus the axis title",
+        "Clicking gray space and clicking inside the figure cleared chosen objects and outlines and disabled Delete",
+        "Native browser text selection remained empty"
+      ]
+    },
+    "boundaries": [
+      "Workspace marquee feedback is outside the exported artboard SVG",
+      "The actual browser cases verify the recorded axis-selection workflow, not every imported SVG structure"
+    ]
+  },
+  "heatmap_cell_values_2026_10_12": {
+    "state": "implemented and tested",
+    "features": [
+      "Immediate cell-value visibility",
+      "0–6 display decimals without changing data",
+      "Font size with cell-bound fitting",
+      "Automatic contrast or custom HEX color",
+      "Panel-state persistence, undo/redo, data-replacement retention, editable SVG export",
+      "Immediate valid font-size/decimal input",
+      "Uniform fitted numeric font and actual-size reporting",
+      "True continuous palette remapping with unchanged scale and geometry"
+    ],
+    "metadata_checks": {
+      "test": "scripts/test_heatmap_values.py",
+      "passed": 54,
+      "types": [
+        "matrix_heatmap",
+        "correlation_values",
+        "clustered_matrix",
+        "checkerboard_assay",
+        "antibiogram_matrix",
+        "classification_counts",
+        "time_month_matrix",
+        "time_calendar",
+        "missingness_matrix"
+      ],
+      "data": [
+        "original",
+        "changed"
+      ],
+      "sizes": [
+        "normal",
+        "wide",
+        "portrait"
+      ],
+      "evidence": ".cache/heatmap-qa/metadata-results.json",
+      "checks": [
+        "Exact ordered cell-to-mesh/image value equality",
+        "Original normalized scalar per cell",
+        "Original normalized scalar per colorbar segment",
+        "Missing-cell exclusion",
+        "Unique SVG IDs"
+      ]
+    },
+    "state_checks": {
+      "test": "scripts/test_studio_heatmap.cjs",
+      "passed": true,
+      "checks": [
+        "exact IEEE-754 decoding",
+        "rounding and negative zero",
+        "contrast",
+        "invalid input rejection",
+        "undo/redo",
+        "JSON restore",
+        "data-replacement settings retention",
+        "Separate sequential/diverging palette validation",
+        "Interpolation uses original zero midpoint",
+        "Real renderer metadata updates all vector cells and colorbar segments",
+        "Palette undo/restore and data replacement",
+        "Font/decimal live-input production binding"
+      ]
+    },
+    "browser_checks": {
+      "performed_by": "main thread",
+      "cases": [
+        "56 clustered-matrix cells toggled visible",
+        "One decimal place displayed without overlap",
+        "0.82 data edit retained visible labels after recomputation",
+        "SVG export contained 56 visible editable labels without editor guides or selection outlines"
+      ]
+    },
+    "boundaries": [
+      "Categorical matrices are not assigned numeric labels",
+      "Old generated SVGs need local regeneration to receive numerical metadata",
+      "Additional isolated --browser test mode was not run in this handoff",
+      "Font size is an upper bound; a uniform actual fitted size is reported when the cell capacity is smaller",
+      "Automatic uniform fitting applies to matrix defaults; explicit element font sizes are honored directly and may require final-size review."
+    ],
+    "element_override_checks": {
+      "test": "scripts/test_studio_heatmap_overrides.cjs",
+      "method": "Execute production editedSvg with controlled vector-cell fixtures",
+      "passed": true,
+      "cases": [
+        "1 selected cell changes from 8 to 12 pt; 55 remain 8 pt",
+        "5 selected cells change from 8 to 12 pt; 51 remain 8 pt",
+        "Hidden labels stay hidden after contrast refresh",
+        "User opacity and text color remain unchanged",
+        "Matrix default updates preserve explicit cell sizes",
+        "Visibility off/on does not resurrect deleted labels"
+      ]
+    }
+  }
 }

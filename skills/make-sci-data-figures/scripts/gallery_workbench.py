@@ -110,7 +110,9 @@ def validate(data, view):
     if view=='quality_profiles' and (data.groupby('sample').group.nunique()>1).any(): raise ValueError('A sample cannot change groups')
     if view=='superplot' and data.groupby('group').experiment.nunique().min()<2: raise ValueError('At least two independent experiments per group required')
     for c,maximum in [('group',6),('experiment',6),('factor',6),('track',12),('task',30)]:
-        if c in fields and data[c].nunique()>maximum:raise ValueError(f'At most {maximum} {c} labels per panel; split the data into panels')
+        if c not in fields:continue
+        labels=data.loc[data.role=='score',c] if view=='pca_loadings' and c=='group' else data[c]
+        if labels.nunique()>maximum:raise ValueError(f'At most {maximum} {c} labels per panel; split the data into panels')
     return data
 
 def finish(ax,x=None,y=None):
@@ -139,22 +141,27 @@ def _fixed_colorbar(fig,ax,artist,label):
 
 def _finalize(fig):
     """Lay out actual artists within the requested physical canvas."""
-    fig.set_layout_engine('constrained')
-    fig.get_layout_engine().set(w_pad=.08,h_pad=.08,wspace=.08,hspace=.10)
-    if getattr(fig,'_studio_right_pad_inches',0):
-        fig.get_layout_engine().set(rect=(0,0,1-fig._studio_right_pad_inches/fig.get_size_inches()[0],1))
+    if hasattr(fig,'_studio_compound_layout'):
+        fig.set_layout_engine(None)
+    else:
+        fig.set_layout_engine('constrained')
+        fig.get_layout_engine().set(w_pad=.08,h_pad=.08,wspace=.08,hspace=.10)
+        if getattr(fig,'_studio_right_pad_inches',0):
+            fig.get_layout_engine().set(rect=(0,0,1-fig._studio_right_pad_inches/fig.get_size_inches()[0],1))
     for axis in fig.axes:
         axis.tick_params(labelsize=8)
         if axis.get_legend():
             for text in axis.get_legend().get_texts():text.set_fontsize(8)
         for text in axis.texts:
             if text.get_fontsize()<8:text.set_fontsize(8)
-    return fig
+    from gallery_layout import apply_layout
+    return apply_layout(fig,getattr(fig,'_studio_view',None))
 
 def render(data,view,colors=None,figsize=(4.8,3.6)):
     d=validate(data,view);colors=colors or resolve_palette('zhoy_muted',None,8)
     # Compact, consistent type sizes; complex panels receive actual extra space.
     fig,ax=plt.subplots(figsize=figsize,layout='constrained')
+    fig._studio_view=view
     seq=LinearSegmentedColormap.from_list('studio_sequential',['#f0f3f8',colors[0]])
     div=LinearSegmentedColormap.from_list('studio_diverging',[colors[0],'#f5f6f8',colors[1]])
     rng=np.random.default_rng(2317)
@@ -181,9 +188,9 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
     elif view in {'correlation_circles','correlation_values'}:
         m=d.pivot(index='unit',columns='variable',values='value').corr();n=len(m)
         if view=='correlation_values':
-            ax.pcolormesh(np.arange(n+1)-.5,np.arange(n+1)-.5,m,vmin=-1,vmax=1,cmap=div,edgecolors='white',linewidth=.5,rasterized=False)
-            for i in range(n):
-                for j in range(n):ax.text(j,i,f'{m.iloc[i,j]:.2f}',ha='center',va='center',fontsize=8,color='white' if abs(m.iloc[i,j])>.7 else '#23344c')
+            mesh=ax.pcolormesh(np.arange(n+1)-.5,np.arange(n+1)-.5,m,vmin=-1,vmax=1,cmap=div,edgecolors='white',linewidth=.5,rasterized=False)
+            from gallery_heatmap import cell_values
+            cell_values(ax,m,mesh,visible=True)
         else:
             for i in range(n):
                 for j in range(i+1):ax.scatter(j,i,s=260*abs(m.iloc[i,j]),c=[m.iloc[i,j]],cmap=div,vmin=-1,vmax=1,edgecolor='white',lw=.6)
@@ -211,13 +218,13 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
         elif view=='variance_scree':
             ax.bar(np.arange(len(d)),100*d.proportion,color='#a9b9ce',width=.6,label='Individual');ax.plot(np.arange(len(d)),100*d.proportion.cumsum(),'-o',ms=3,color=colors[0],label='Cumulative');ax.set_xticks(range(len(d)),d.component);ax.set_ylim(0,105);_top_legend(ax);finish(ax,'Component','Explained variance (%)')
         else:
-            chrom=list(dict.fromkeys(d.chromosome));offset=0;ticks=[]
+            chrom=list(dict.fromkeys(d.chromosome));offset=0;ticks=[];last_position=0
             for i,c in enumerate(chrom):
-                q=d[d.chromosome==c].sort_values('position');span=max(q.position.max(),1);xx=q.position+offset;ax.scatter(xx,-np.log10(q.p),s=5,color=[colors[0],'#a9b9ce'][i%2],lw=0,alpha=.8);ticks.append(offset+span/2);offset+=span*1.04
-            stride=max(1,int(np.ceil(len(chrom)/max(6,int(figsize[0]*4)))))
+                q=d[d.chromosome==c].sort_values('position');span=max(q.position.max(),1);xx=q.position+offset;ax.scatter(xx,-np.log10(q.p),s=5,color=[colors[0],'#a9b9ce'][i%2],lw=0,alpha=.8);ticks.append(offset+span/2);last_position=offset+span;offset+=span*1.04
+            stride=max(1,int(np.ceil(len(chrom)/max(6,int((figsize[0]*72-104)/15)))))
             shown=list(range(0,len(chrom),stride))
             if shown[-1]!=len(chrom)-1:shown.append(len(chrom)-1)
-            ax.set_xticks([ticks[i] for i in shown],[chrom[i] for i in shown]);ax.tick_params(axis='x',labelsize=8);finish(ax,'Chromosome',r'$-\log_{10} P$')
+            ax.set_xticks([ticks[i] for i in shown],[chrom[i] for i in shown]);ax.set_xlim(-last_position*.005,last_position*1.005);ax.set_ylim(0,max(1,float((-np.log10(d.p)).max()))*1.06);ax.tick_params(axis='x',labelsize=8);finish(ax,'Chromosome',r'$-\log_{10} P$')
     elif view in {'composition_ring','composition_waffle','ternary_composition'}:
         if view=='ternary_composition':
             a=d[['a','b','c']].to_numpy();a=a/a.sum(axis=1,keepdims=True);x=a[:,1]+a[:,2]/2;y=a[:,2]*np.sqrt(3)/2
@@ -273,18 +280,18 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
         if maximum<=0:raise ValueError('At least one positive coverage value required')
         for i,t in enumerate(tracks):
             q=d[d.track==t].sort_values('position');ax.fill_between(q.position,i,i+.78*q.coverage/maximum,color=colors[i%len(colors)],alpha=.7,lw=0);ax.plot(q.position,i+.78*q.coverage/maximum,color=colors[i%len(colors)],lw=.65)
-        ax.set_yticks(range(len(tracks)),tracks);ax.spines[['left','top','right']].set_visible(False);ax.tick_params(axis='y',length=0);finish(ax,'Genomic position');ax.set_title(f'Common scale · maximum coverage {maximum:g}',fontsize=8,color='#526173',loc='left',pad=10)
+        ax.set_yticks(range(len(tracks)),tracks);ax.set_xlim(d.position.min(),d.position.max());ax.set_ylim(-.12,len(tracks)-.08);ax.spines[['left','top','right']].set_visible(False);ax.tick_params(axis='y',length=0);finish(ax,'Genomic position');ax.set_title(f'Common scale · maximum coverage {maximum:g}',fontsize=8,color='#526173',loc='left',pad=10)
     elif view=='quality_profiles':
         for i,(g,p) in enumerate(d.groupby('group',sort=False)):
             for _,q in p.groupby('sample'):q=q.sort_values('position');ax.plot(q.position,q.quality,color=colors[i%len(colors)],alpha=.2,lw=.6)
             q=p.groupby('position').quality.mean();ax.plot(q.index,q.values,color=colors[i%len(colors)],lw=1.6,label=g)
         _top_legend(ax,ncol=3);finish(ax,'Read position (bp)','Phred quality')
     elif view=='pca_loadings':
-        from mpl_toolkits.axes_grid1 import make_axes_locatable
-        ax.set_aspect('equal',adjustable='box')
-        divider=make_axes_locatable(ax)
-        top=divider.append_axes('top',size='22%',pad=.08,sharex=ax)
-        right=divider.append_axes('right',size='22%',pad=.08,sharey=ax)
+        # The data axes keep the common physical frame. Marginals occupy the
+        # surrounding auxiliary bands, rather than shrinking the scatter plot.
+        fig.set_layout_engine(None)
+        top=fig.add_axes((.15,.8,.6,.12),sharex=ax)
+        right=fig.add_axes((.8,.2,.1,.6),sharey=ax)
         for i,(g,p) in enumerate(d[d.role=='score'].groupby('group',sort=False)):
             c=colors[i%len(colors)];ax.scatter(p.x,p.y,s=13,color=c,alpha=.65,label=g,lw=0)
             for field,axis in [('x',top),('y',right)]:
@@ -297,15 +304,73 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
             ax.annotate('',xy=(row.x,row.y),xytext=(0,0),arrowprops={'arrowstyle':'->','color':'#526173','lw':.8})
         # Supplied loading endpoints can extend beyond the observed score cloud.
         # Include both in the bounds; annotations do not update data limits.
-        for column,setter in [('x',ax.set_xlim),('y',ax.set_ylim)]:
-            lo=float(d[column].min());hi=float(d[column].max());pad=max((hi-lo)*.18,.2);setter(lo-pad,hi+pad)
-        # Label arrows in a reserved footer key; close endpoints never overlap text.
+        limits=[]
+        for column in ['x','y']:
+            lo=min(0,float(d[column].min()));hi=max(0,float(d[column].max()));pad=max((hi-lo)*.18,.2);limits.append((lo-pad,hi+pad))
+        # Numbered loading arrows use one concise key outside the data frame.
         load=d[d.role=='loading']
+        arrow_labels=[]
         for i,(_,row) in enumerate(load.iterrows()):
             dx,dy=(7 if row.x>=0 else -7),(7 if row.y>=0 else -7)
-            ax.annotate(str(i+1),(row.x,row.y),xytext=(dx,dy),textcoords='offset points',fontsize=8,color='#344054',ha='center',va='center',zorder=8,bbox={'boxstyle':'round,pad=.15','fc':'white','ec':'none','alpha':.95})
-        fig.supxlabel(textwrap.fill('  ·  '.join(f'{i+1}: {v}' for i,v in enumerate(load.id)),max(25,int(figsize[0]*10))),fontsize=8,color='#526173')
-        ax.axhline(0,color='#dce2eb',ls=':',lw=.7);ax.axvline(0,color='#dce2eb',ls=':',lw=.7);finish(ax,'Component 1','Component 2');ax.legend(loc='best',fontsize=8,frameon=False);top.axis('off');right.axis('off')
+            arrow_labels.append(ax.annotate(str(i+1),(row.x,row.y),xytext=(dx,dy),textcoords='offset points',fontsize=8,color='#344054',ha='center',va='center',zorder=8,bbox={'boxstyle':'round,pad=.15','fc':'white','ec':'none','alpha':.95}))
+        footer=fig.text(.5,.02,'',ha='center',va='center',fontsize=8,color='#526173')
+        ax.axhline(0,color='#dce2eb',ls=':',lw=.7);ax.axvline(0,color='#dce2eb',ls=':',lw=.7);finish(ax,'Component 1','Component 2');ax.xaxis.labelpad=5;top.axis('off');right.axis('off')
+        handles,groups=ax.get_legend_handles_labels();legend=None
+
+        def compound_layout(frame):
+            nonlocal legend
+            fig.set_layout_engine(None)
+            left,bottom,width,height=frame;wp,hp=fig.get_size_inches()*72
+            ax.set_position(frame);ax.set_aspect('equal',adjustable='datalim')
+            top.set_position((left,bottom+height+4/hp,width,24/hp))
+            right.set_position((left+width+4/wp,bottom,24/wp,height))
+            # Equal coordinate units are obtained by extending limits, never
+            # by reducing or stretching the common data rectangle.
+            xlo,xhi=limits[0];ylo,yhi=limits[1];ratio=width*wp/(height*hp)
+            xspan=xhi-xlo;yspan=yhi-ylo
+            if xspan/yspan<ratio:
+                center=(xlo+xhi)/2;xspan=yspan*ratio;xlo=center-xspan/2;xhi=center+xspan/2
+            else:
+                center=(ylo+yhi)/2;yspan=xspan/ratio;ylo=center-yspan/2;yhi=center+yspan/2
+            ax.set_xlim(xlo,xhi);ax.set_ylim(ylo,yhi)
+            ax.xaxis.set_major_locator(MaxNLocator(nbins=max(3,int(width*wp/43))))
+            ax.yaxis.set_major_locator(MaxNLocator(nbins=max(3,int(height*hp/34))))
+            if legend is not None:legend.remove()
+            from matplotlib.textpath import TextPath
+            prop=footer.get_fontproperties();available=wp*(1-left)-6
+            labels=[str(g) for g in groups]
+            longest=max((TextPath((0,0),g,prop=prop).get_extents().width for g in labels),default=0)
+            ncol=max(int(np.ceil(len(groups)/2)),min(len(groups),int(available/(longest+26))))
+            label_width=max(12,(available-(ncol-1)*8)/ncol-22)
+            for i,label in enumerate(labels):
+                end=len(label)
+                while end>2 and TextPath((0,0),labels[i],prop=prop).get_extents().width>label_width:
+                    end-=1;labels[i]=label[:end]+'…'
+            legend=fig.legend(handles,labels,loc='upper left',bbox_to_anchor=(left,1-3/hp),ncol=ncol,frameon=False,fontsize=8,borderaxespad=0,borderpad=0,columnspacing=1,handlelength=1.2,handletextpad=.4,labelspacing=.3)
+            # Keep the loading key to one line at the outer bottom edge. Long
+            # names are abbreviated here; the full IDs remain in the data.
+            names=[str(v) for v in load.id];max_len=max(map(len,names),default=0)
+            while True:
+                names_short=[name if len(name)<=max_len else name[:max(1,max_len-1)]+'…' for name in names]
+                key='  ·  '.join(f'{i+1}: {name}' for i,name in enumerate(names_short))
+                if TextPath((0,0),key,prop=prop).get_extents().width<=wp-12 or max_len<=2:break
+                max_len-=1
+            footer.set_text(key);footer.set_position((.5,6/hp))
+            # Resolve neighbouring endpoint badges in physical point space.
+            occupied=[]
+            for label,(_,row) in zip(arrow_labels,load.iterrows()):
+                px=(row.x-xlo)/(xhi-xlo)*width*wp;py=(row.y-ylo)/(yhi-ylo)*height*hp
+                sx=1 if row.x>=0 else -1;sy=1 if row.y>=0 else -1
+                options=[(sx*7,sy*7),(sx*14,0),(0,sy*14),(-sx*7,sy*7),(sx*7,-sy*7),(-sx*14,0),(0,-sy*14)]
+                chosen=options[0]
+                for dx,dy in options:
+                    center=(px+dx,py+dy)
+                    if not 5<center[0]<width*wp-5 or not 5<center[1]<height*hp-5:continue
+                    if all(abs(center[0]-a)>11 or abs(center[1]-b)>11 for a,b in occupied):chosen=(dx,dy);break
+                label.set_position(chosen);occupied.append((px+chosen[0],py+chosen[1]))
+
+        fig._studio_compound_layout=compound_layout
+        fig._studio_main_axes=[ax]
     return _finalize(fig)
 
 def generate(input_path,outdir,view,palette='zhoy_muted',colors_text=None,font='Arial'):

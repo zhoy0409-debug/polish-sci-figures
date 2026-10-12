@@ -57,8 +57,12 @@ def inspect_svg_bytes(raw: bytes, name: str) -> dict:
     if not math.isclose(width/box[2], height/box[3], rel_tol=1e-5):
         raise ValueError("Physical canvas and viewBox aspect ratios must agree")
     # Browser-side strict allowlist is applied again, including restored projects.
-    return {"name": name, "svg": text, "sha256": digest(raw),
-            "width": width, "height": height, "viewBox": box}
+    result = {"name": name, "svg": text, "sha256": digest(raw),
+              "width": width, "height": height, "viewBox": box}
+    axis_metadata = next((n for n in root.iter() if n.attrib.get('id') == 'studio-axis-controls'), None)
+    if axis_metadata is not None and axis_metadata.text:
+        result['axis_controls'] = json.loads(axis_metadata.text)
+    return result
 
 
 def panel_from_path(path: Path, index: int, with_layouts: bool = False) -> dict:
@@ -108,7 +112,7 @@ def panel_from_path(path: Path, index: int, with_layouts: bool = False) -> dict:
             import pandas as pd
             from gallery_registry import render_sizes,colors_for
             sizes=render_sizes(pd.read_csv(source,keep_default_na=False),requested,
-                colors_for(recipe.get('palette','zhoy_muted'),recipe.get('colors')),recipe.get('font','Arial'))
+                colors_for(recipe.get('palette','zhoy_muted'),recipe.get('colors')),recipe.get('font','Arial'),axes=recipe.get('axis_settings'))
         else:
             from studio_sizes import render_sizes
             sizes=render_sizes(path, recipe, analysis, variants)
@@ -119,6 +123,7 @@ def panel_from_path(path: Path, index: int, with_layouts: bool = False) -> dict:
             variants.append(v)
     return {"id": f"panel-{index}", "name": path.name, "variants": variants,
             "initialVariant": selected, "recipe": recipe, "analysis": analysis, "table": table,
+            "axis_controls": variants[selected].get('axis_controls'),
             "provenance": "upstream-bundle" if path.is_dir() else "standalone-svg"}
 
 
@@ -139,8 +144,8 @@ def write_html(project: dict, output: Path) -> None:
         raise ValueError(f"Refusing to overwrite {output}; choose a new output path")
     payload = json.dumps(project, ensure_ascii=False, allow_nan=False).replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
     html = (ASSETS / "studio.html").read_text(encoding="utf-8")
-    html = html.replace("/*__STUDIO_CSS__*/", (ASSETS / "studio.css").read_text(encoding="utf-8"))
-    html = html.replace("/*__STUDIO_JS__*/", (ASSETS / "studio.js").read_text(encoding="utf-8"))
+    html = html.replace("/*__STUDIO_CSS__*/", '\n'.join((ASSETS / name).read_text(encoding="utf-8") for name in ['studio.css', 'rich-text.css', 'workspace-layout.css']))
+    html = html.replace("/*__STUDIO_JS__*/", '\n'.join((ASSETS / name).read_text(encoding="utf-8") for name in ['rich-text.js', 'workspace-layout.js', 'studio.js']))
     html = html.replace("/*__STUDIO_I18N__*/", (ASSETS / "i18n.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_MEMORY__*/", (ASSETS / "memory.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_DISCOVERY__*/", (ASSETS / "discovery.js").read_text(encoding="utf-8"))

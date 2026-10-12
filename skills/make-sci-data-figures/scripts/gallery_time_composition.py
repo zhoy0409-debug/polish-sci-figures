@@ -328,6 +328,8 @@ def render(data, view, colors=None, figsize=(4.8,3.6)):
             ax.set_xticks([1,3,5,7,9,11],['Jan','Mar','May','Jul','Sep','Nov']);ax.set_ylabel('Value');_legend(ax,ncol=3)
         else:
             mesh=ax.pcolormesh(np.arange(13),np.arange(len(m)+1),m,cmap=seq,edgecolors='white',linewidth=.8,rasterized=False)
+            from gallery_heatmap import cell_values
+            cell_values(ax,m.to_numpy(),mesh,x0=0,y0=0)
             ax.set_xticks(np.arange(12)+.5,[str(i) for i in range(1,13)]);ax.set_xlabel('Month');ax.set_yticks(np.arange(len(m))+.5,[str(int(y)) for y in m.index]);ax.invert_yaxis();ax.tick_params(length=0);ax.spines[:].set_visible(False)
             cb=fig.colorbar(mesh,ax=ax,orientation='horizontal',fraction=.065,pad=.12,aspect=30);cb.set_label('Value',fontsize=8);cb.ax.tick_params(labelsize=8);cb.solids.set_rasterized(False)
     elif view in {'time_epidemic','time_cumulative'}:
@@ -373,6 +375,9 @@ def render(data, view, colors=None, figsize=(4.8,3.6)):
                 for weekday,date in enumerate(days):
                     if date.month!=month:continue
                     val=lookup.get(date);a.add_patch(Rectangle((weekday+.03,week+.03),.94,.94,facecolor=seq(norm(val)) if val is not None else '#f1f2f5',edgecolor='white',lw=.3))
+                    if val is not None:
+                        from gallery_heatmap import cell_values
+                        cell_values(a,[[val]],plt.cm.ScalarMappable(norm=norm,cmap=seq),decimals=0,x0=weekday+.03,y0=week+.03,cell_width=.94,cell_height=.94)
         cb=fig.colorbar(plt.cm.ScalarMappable(norm=norm,cmap=seq),ax=list(axes.flat),orientation='horizontal',fraction=.045,pad=.035,aspect=35);cb.set_label('Daily value · Monday → Sunday',fontsize=8);cb.ax.tick_params(labelsize=8);cb.solids.set_rasterized(False)
     elif view=='category_ranked_bars':
         d=d.sort_values('value');ax.barh(np.arange(len(d)),d.value,color=[colors[1] if x<0 else colors[0] for x in d.value],height=.60)

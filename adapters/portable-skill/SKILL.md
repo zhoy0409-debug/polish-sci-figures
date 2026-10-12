@@ -1,0 +1,65 @@
+---
+name: polish-sci-figures
+description: Create, refine and assemble scientific figures from data, calibrated images or editable artwork; deliver publication-ready outputs and an optional Figure Studio editing page.
+---
+
+# polish-sci-figures
+
+Use the bundled suite for scientific data charts, calibrated images, figure refinement and multi-panel composition. It needs host file access and Python execution, without a Codex account or a particular computer.
+
+## Start from the user's data
+
+Accept ordinary requests such as “把这个表画成合适的图” or “Make a suitable figure from this table.” Inspect/profile the table once, then produce 2–3 suitable candidates with previews rendered from the actual data when the data support them. Explain briefly what each reveals and identify the recommended starting point. Do not require the user to supply commands, template IDs or statistical terminology.
+
+When scientific design is genuinely missing, ask only 1–2 concrete questions, such as whether rows are different experimental objects or repeated observations of the same object. Do not invent experimental-unit IDs, units of measurement, pairing or results. Preserve valid existing analyses. Batch local rendering where practical; use the editor for ordinary font, colour and position changes instead of repeatedly recomputing analyses or calling an AI model.
+
+## Check the runtime
+
+Paths below are relative to this SKILL.md. Keep the complete `suite/` directory together. Use the host's available Python 3.10–3.12 executable; `python` in examples stands for that executable. Run the doctor before executing a workflow:
+
+```bash
+python suite/sci_figures.py doctor --font "DejaVu Sans" --json
+```
+
+If required packages are missing, use the host-approved installation process or a task-local environment with the same interpreter:
+
+```bash
+python -m pip install -r suite/requirements.txt
+```
+
+Install optional dependencies only for a workflow that requires them, from `suite/requirements-optional.txt`. Respect host permissions. If execution or installation is unavailable, identify the specific missing capability; do not claim to have rendered or analysed data. Do not automatically install this skill elsewhere or change global configuration.
+
+## Read the relevant bundled workflow
+
+| Input or task | Local instructions |
+| --- | --- |
+| Raw CSV/TSV/XLSX, chart choice or statistical analysis | [Data figure workbench](suite/skills/make-sci-data-figures/SKILL.md) |
+| Calibrated microscopy or pathology images | [Scientific image preparation](suite/skills/standardize-sci-images/SKILL.md) |
+| Existing SVG, visual refinement, composition or Studio editing | [Figure polishing and editing](suite/skills/polish-sci-figures/SKILL.md) |
+
+These are local instructions, not separately installed skills. A companion-skill reference in a nested document means reading the corresponding bundled document above. Resolve its `scripts/`, `references/` and `assets/` paths relative to that document. Run commands beginning with `skills/` from `suite/`; resolve user input and output paths before changing working directory. Save task outputs in the user's workspace, not in the installed skill directory.
+
+```bash
+python suite/sci_figures.py inspect INPUT.csv --json
+python suite/skills/make-sci-data-figures/scripts/gallery_cli.py --list
+```
+
+Confirm experimental design and units before inference. Choose methods for the research question, not the smallest P value. Preserve source data and calibration. Read each template's input contract, distinguish raw observations from supplied model results, and check actual rendered output for overlap, clipping and readable physical sizes before delivery.
+
+## Deliver editable outputs
+
+Generate an optional self-contained editing page:
+
+```bash
+python suite/sci_figures.py studio FIGURE_OR_BUNDLE --out figure-studio.html
+```
+
+The HTML supports offline appearance and layout editing. Data recomputation needs the local service, with the browser and service on the same accessible host:
+
+```bash
+python suite/sci_figures.py studio-serve figure-studio.html
+```
+
+A cloud execution environment's localhost is not the user's computer. In cloud hosts, provide downloadable SVG and applicable PDF/PNG outputs, the editing HTML, and the accompanying data/recipe/analysis JSON through the host's download mechanism. Do not promise that a cloud localhost page opens on the user's computer, or upload research data to another service merely to provide a preview.
+
+The complete suite retains its [MIT license](suite/LICENSE), Copyright (c) 2026 Wenting Zhou. Preserve original and applicable third-party notices. [Citation metadata](suite/CITATION.cff) accompanies the source.

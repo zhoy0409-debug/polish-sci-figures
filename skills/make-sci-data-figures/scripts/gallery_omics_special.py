@@ -269,7 +269,7 @@ def _colorbar(fig,ax,mappable,label):
     return cb
 
 
-def _matrix(ax,values,rows,cols,cmap,vmin=None,vmax=None,numbers=False):
+def _matrix(ax,values,rows,cols,cmap,vmin=None,vmax=None,numbers=False,labels=True):
     rows=[_wrap(v,13) for v in rows];cols=[_wrap(v,10) for v in cols]
     h,w=values.shape
     mesh=ax.pcolormesh(np.arange(w+1)-.5,np.arange(h+1)-.5,values,cmap=cmap,vmin=vmin,vmax=vmax,edgecolor='white',lw=.7,rasterized=False)
@@ -277,9 +277,9 @@ def _matrix(ax,values,rows,cols,cmap,vmin=None,vmax=None,numbers=False):
     ax.tick_params(axis='both',length=0,labelsize=8);ax.tick_params(axis='x',rotation=45)
     for tick in ax.get_xticklabels():tick.set_ha('right')
     for sp in ax.spines.values():sp.set_visible(False)
-    if numbers:
-        for i in range(h):
-            for j in range(w):ax.text(j,i,f'{values[i,j]:.0f}',ha='center',va='center',fontsize=8,color='#22354d')
+    if labels:
+        from gallery_heatmap import cell_values
+        cell_values(ax,values,mesh,visible=numbers,decimals=0 if numbers else 2)
     return mesh
 
 
@@ -308,14 +308,50 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
         _legend(fig,*ax.get_legend_handles_labels())
     elif view=='clustered_matrix':
         m=d.pivot(index='feature',columns='sample',values='value');rl=linkage(pdist(m),'average');cl=linkage(pdist(m.T),'average');ri=leaves_list(rl);ci=leaves_list(cl)
-        ax.set_position([.23,.23,.65,.53]);mesh=_matrix(ax,m.to_numpy()[ri][:,ci],m.index[ri],m.columns[ci],div)
-        top=fig.add_axes([.23,.77,.65,.13]);dendrogram(cl,ax=top,no_labels=True,color_threshold=0,above_threshold_color='#78889c');top.axis('off')
-        left=fig.add_axes([.08,.23,.13,.53]);dendrogram(rl,ax=left,orientation='left',no_labels=True,color_threshold=0,above_threshold_color='#78889c');left.invert_yaxis();left.axis('off')
-        ax.yaxis.tick_right();ax.tick_params(axis='y',labelright=False,labelleft=False)
-        for i,name in enumerate(m.index[ri]):ax.text(-.6,i,_wrap(name,11),transform=ax.transData,ha='right',va='center',fontsize=8)
-        # Row names stay between dendrogram and heatmap, never through branches.
-        left.set_position([.015,.23,.065,.53]);ax.set_position([.30,.23,.60,.53]);top.set_position([.30,.77,.60,.13])
-        cbax=fig.add_axes([.30,.96,.38,.018]);cb=fig.colorbar(mesh,cax=cbax,orientation='horizontal');cb.ax.tick_params(labelsize=8,length=2);cb.outline.set_visible(False);cb.solids.set_rasterized(False)
+        mesh=_matrix(ax,m.to_numpy()[ri][:,ci],m.index[ri],m.columns[ci],div)
+        # The matrix itself shares the primary data frame with other chart types.
+        # Trees and labels occupy fixed physical auxiliary bands, never a gap
+        # between the row tree and its corresponding matrix cells.
+        ax.yaxis.tick_right();ax.tick_params(axis='y',labelright=True,labelleft=False,pad=4)
+        ax.set_yticklabels([_wrap(name,8) for name in m.index[ri]])
+        top=fig.add_axes([.2,.8,.6,.1]);dendrogram(cl,ax=top,no_labels=True,color_threshold=0,above_threshold_color='#78889c');top.axis('off')
+        left=fig.add_axes([.1,.2,.1,.6]);dendrogram(rl,ax=left,orientation='left',no_labels=True,color_threshold=0,above_threshold_color='#78889c');left.invert_yaxis();left.axis('off')
+        cbax=fig.add_axes([.3,.96,.38,.018]);cb=fig.colorbar(mesh,cax=cbax,orientation='horizontal')
+        cb.ax.xaxis.set_ticks_position('top');cb.ax.tick_params(labelsize=8,length=2,pad=2)
+        cb.outline.set_visible(False);cb.solids.set_rasterized(False)
+        def cluster_layout(frame):
+            x,y,w,h=frame;fw,fh=fig.get_size_inches()*72
+            for target in (ax,top,left,cbax):target.set_axes_locator(None)
+            ax.set_position(frame)
+            left.set_position([x-28/fw,y,24/fw,h])
+            top.set_position([x,y+h+4/fh,w,24/fh])
+            cbax.set_position([x,y+h+36/fh,min(100/fw,w*.60),4/fh])
+            # Choose label wrapping and rotation from physical text extents,
+            # rather than treating every string as the same number of pixels.
+            renderer=fig.canvas.get_renderer()
+            props=ax.get_yticklabels()[0].get_fontproperties()
+            def width_pt(text):
+                return renderer.get_text_width_height_descent(str(text),props,False)[0]*72/fig.dpi
+            def wrap_to_width(text,limit):
+                lines=[];line=''
+                for word in str(text).split():
+                    candidate=(line+' '+word).strip()
+                    if width_pt(candidate)<=limit:line=candidate;continue
+                    if line:lines.append(line);line=''
+                    for char in word:
+                        if line and width_pt(line+char)>limit:lines.append(line);line=''
+                        line+=char
+                if line:lines.append(line)
+                return '\n'.join(lines)
+            row_labels=[str(name) if width_pt(name)<=36 else wrap_to_width(name,36) for name in m.index[ri]]
+            ax.set_yticklabels(row_labels)
+            columns=[str(name) if width_pt(name)<=34 else wrap_to_width(name,34) for name in m.columns[ci]]
+            ax.set_xticklabels(columns)
+            diagonal=max(max(width_pt(line) for line in label.splitlines())*.707+len(label.splitlines())*6.8 for label in columns)
+            rotate=90 if diagonal+3>w*fw/len(m.columns) else 45
+            ax.tick_params(axis='x',rotation=rotate,pad=4)
+            for label in ax.get_xticklabels():label.set_ha('center' if rotate==90 else 'right')
+        fig._studio_main_axes=[ax];fig._studio_compound_layout=cluster_layout
     elif view in {'pca_ellipse','pcoa_spider','embedding_map'}:
         groups=_order(d.group)
         for i,gname in enumerate(groups):
@@ -388,10 +424,9 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
             g=d[d.drug==name];ax.scatter(i+rng.uniform(-.13,.13,len(g)),g.diameter,s=20,c=c[i],alpha=.75,edgecolor='white',lw=.4);ax.hlines(g.breakpoint.iloc[0],i-.32,i+.32,color='#26364b',lw=1.2,ls='--')
         ax.set(xticks=range(len(drugs)),xticklabels=[_wrap(s,10) for s in drugs]);_finish(ax,'','Zone diameter (mm)');_legend(fig,[Line2D([],[],color='#26364b',ls='--')],['Supplied breakpoint'])
     elif view=='antibiogram_matrix':
-        m=d.assign(percent=100*d.susceptible/d.tested).pivot(index='organism',columns='drug',values='percent');n=d.pivot(index='organism',columns='drug',values='tested').loc[m.index,m.columns];mesh=_matrix(ax,m.to_numpy(),m.index,m.columns,seq,0,100);fig.subplots_adjust(left=.29)
-        if max(m.shape)<=8:
-            for i in range(len(m)):
-                for j in range(m.shape[1]):ax.text(j,i,f'{m.iloc[i,j]:.0f}%\n($n$ = {n.iloc[i,j]:g})',fontsize=8,ha='center',va='center',color='white' if m.iloc[i,j]>60 else '#22354d')
+        m=d.assign(percent=100*d.susceptible/d.tested).pivot(index='organism',columns='drug',values='percent');n=d.pivot(index='organism',columns='drug',values='tested').loc[m.index,m.columns];mesh=_matrix(ax,m.to_numpy(),m.index,m.columns,seq,0,100,labels=False);fig.subplots_adjust(left=.29)
+        from gallery_heatmap import cell_values
+        cell_values(ax,m.to_numpy(),mesh,visible=max(m.shape)<=8,decimals=0,suffix='%',extra=n.map(lambda v:f'$n$ = {v:g}').to_numpy())
         _colorbar(fig,ax,mesh,'Susceptible (%)')
     elif view=='rarefaction_result':
         for i,(name,g) in enumerate(d.groupby('sample',sort=False)):
@@ -440,18 +475,45 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
         ymax=max(mut['count'].max() if len(mut) else 1,1);ax.set(xlim=(0,length),ylim=(0,ymax*1.15));_finish(ax,'','Mutation count');ax.tick_params(axis='x',labelbottom=False,length=0);ax.spines['bottom'].set_visible(False)
         domain_ax.set_ylim(-.48,1);domain_ax.spines[['left','right','top']].set_visible(False);domain_ax.set_yticks([]);domain_ax.set_xlabel('Amino-acid position',fontsize=9);domain_ax.tick_params(labelsize=8)
     elif view=='flow_alluvial':
-        sources=_order(d.source);targets=_order(d.target);total=d.value.sum();gap=.025;usable=1-gap*(max(len(sources),len(targets))-1);scale=usable/total
-        def spans(names,col):
-            pos=0.;out={}
-            for name in names:h=d.loc[d[col]==name,'value'].sum()*scale;out[name]=(pos,pos+h);pos+=h+gap
-            return out
-        left=spans(sources,'source');right=spans(targets,'target');lo={k:v[0] for k,v in left.items()};ro={k:v[0] for k,v in right.items()}
-        for r in d.itertuples():
-            h=r.value*scale;y1=lo[r.source];y2=ro[r.target];verts=[(.16,y1),(.43,y1),(.57,y2),(.84,y2),(.84,y2+h),(.57,y2+h),(.43,y1+h),(.16,y1+h),(.16,y1)];codes=[Path.MOVETO,Path.CURVE4,Path.CURVE4,Path.CURVE4,Path.LINETO,Path.CURVE4,Path.CURVE4,Path.CURVE4,Path.CLOSEPOLY];ax.add_patch(PathPatch(Path(verts,codes),fc=c[sources.index(r.source)],alpha=.34,ec='none'));lo[r.source]+=h;ro[r.target]+=h
-        for side,spans_,names in [('left',left,sources),('right',right,targets)]:
-            for i,name in enumerate(names):
-                a,b=spans_[name];x=.13 if side=='left' else .84;ax.add_patch(Rectangle((x,a),.03,b-a,fc=c[i],ec='white',lw=.4));ax.text(.105 if side=='left' else .895,(a+b)/2,_wrap(name,11),ha='right' if side=='left' else 'left',va='center',fontsize=8)
-        ax.set(xlim=(-.18,1.18),ylim=(1.04,-.04));ax.axis('off')
+        sources=_order(d.source);targets=_order(d.target);total=d.value.sum()
+        def alluvial_layout(frame):
+            ax.clear();ax.set_axes_locator(None);ax.set_position(frame)
+            fw,fh=fig.get_size_inches()*72;wp=frame[2]*fw;hp=frame[3]*fh
+            bar=6/wp;inset=4/wp;gap=6/hp
+            usable=1-gap*(max(len(sources),len(targets))-1);scale=usable/total
+            def spans(names,col):
+                spacing=(1-usable)/(len(names)-1) if len(names)>1 else 0
+                pos=0. if len(names)>1 else (1-usable)/2;out={}
+                for name in names:
+                    height=d.loc[d[col]==name,'value'].sum()*scale
+                    out[name]=(pos,pos+height);pos+=height+spacing
+                return out
+            lsp=spans(sources,'source');rsp=spans(targets,'target')
+            lo={k:v[0] for k,v in lsp.items()};ro={k:v[0] for k,v in rsp.items()}
+            for row in d.itertuples():
+                height=row.value*scale;y1=lo[row.source];y2=ro[row.target]
+                vertices=[(bar,y1),(.42,y1),(.58,y2),(1-bar,y2),(1-bar,y2+height),(.58,y2+height),(.42,y1+height),(bar,y1+height),(bar,y1)]
+                codes=[Path.MOVETO,Path.CURVE4,Path.CURVE4,Path.CURVE4,Path.LINETO,Path.CURVE4,Path.CURVE4,Path.CURVE4,Path.CLOSEPOLY]
+                ax.add_patch(PathPatch(Path(vertices,codes),fc=c[sources.index(row.source)],alpha=.34,ec='none'))
+                lo[row.source]+=height;ro[row.target]+=height
+            for side,spans_,names in [('left',lsp,sources),('right',rsp,targets)]:
+                labels=[_wrap(name,max(8,min(18,int(wp*.32/4.5)))) for name in names]
+                half_heights=np.array([len(label.splitlines())*4.8+2 for label in labels])/hp
+                centers=np.array([(spans_[name][0]+spans_[name][1])/2 for name in names])
+                positions=centers.copy()
+                for i in range(len(positions)):
+                    positions[i]=max(positions[i],half_heights[i] if i==0 else positions[i-1]+half_heights[i-1]+half_heights[i])
+                positions[-1]=min(positions[-1],1-half_heights[-1])
+                for i in range(len(positions)-2,-1,-1):positions[i]=min(positions[i],positions[i+1]-half_heights[i+1]-half_heights[i])
+                for i,(name,label,label_y) in enumerate(zip(names,labels,positions)):
+                    a,b=spans_[name];x=0 if side=='left' else 1-bar
+                    ax.add_patch(Rectangle((x,a),bar,b-a,fc=c[i],ec='none'))
+                    anchor=bar+inset if side=='left' else 1-bar-inset
+                    if abs(label_y-centers[i])*hp>1:
+                        ax.plot([bar if side=='left' else 1-bar,anchor],[centers[i],label_y],color='#77879b',lw=.6,zorder=3)
+                    ax.text(anchor,label_y,label,ha='left' if side=='left' else 'right',va='center',fontsize=8,color='#25384f',bbox=dict(boxstyle='square,pad=.18',fc='white',ec='none',alpha=.88),zorder=4)
+            ax.set(xlim=(0,1),ylim=(1,0));ax.axis('off')
+        fig._studio_main_axes=[ax];fig._studio_compound_layout=alluvial_layout
     elif view in {'rose_frequency','radar_profile'}:
         ax.remove();ax=fig.add_subplot(111,projection='polar');fig.subplots_adjust(left=.19,right=.81,bottom=.22,top=.86);ax.spines['polar'].set_color('#c9d2dd');ax.grid(color='#dce2e9',lw=.65);ax.tick_params(labelsize=8,pad=6)
         if view=='rose_frequency':
@@ -478,6 +540,9 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
         for i,r in enumerate(d.itertuples()):
             yy=(.62 if i%2==0 else -.62)*(1+(i//2)%2*.45);ax.plot([r.time,r.time],[0,yy],color=c[phases.index(r.phase)],lw=.8);ax.scatter(r.time,0,s=30,color=c[phases.index(r.phase)],edgecolor='white',lw=.6,zorder=3);ax.text(r.time,yy+(.05 if yy>0 else -.05),_wrap(r.event,12),ha='center',va='bottom' if yy>0 else 'top',fontsize=8)
         ax.set(xlim=(d.time.min()-span*.12,d.time.max()+span*.12),ylim=(-1.45,1.45));ax.spines[['top','left','right']].set_visible(False);ax.set_yticks([]);ax.set_xlabel('Time',fontsize=9);_legend(fig,[Line2D([],[],marker='o',ls='',color=c[i]) for i in range(len(phases))],phases)
+    if view in {'clustered_matrix','flow_alluvial'}:
+        from gallery_layout import apply_layout
+        apply_layout(fig,view)
     fig.canvas.draw()
     return fig
 

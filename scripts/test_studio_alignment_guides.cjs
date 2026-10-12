@@ -1,0 +1,37 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const source=fs.readFileSync(require.resolve('../skills/polish-sci-figures/assets/figure-studio/studio.js'),'utf8'),h=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+const range=(a,b)=>source.slice(source.indexOf(a),source.indexOf(b,source.indexOf(a)));
+const bounds={left:10,right:30,top:20,bottom:40};
+let r=h.alignmentSnap(bounds,[{axis:'x',position:45},{axis:'y',position:65}],13,23,4);
+assert.equal(r.dx,15);assert.equal(r.dy,25);assert.equal(r.guides.length,2);
+r=h.alignmentSnap(bounds,[{axis:'x',position:44.5},{axis:'x',position:47,manual:true}],13,0,5);assert.equal(r.dx,17,'manual guide has priority');
+r=h.alignmentSnap(bounds,[{axis:'x',position:44}],13,0,5,true);assert.equal(r.dx,13);assert.equal(r.guides.length,0,'Alt bypass is exact');
+assert.equal(h.alignmentSnap(bounds,[{axis:'x',position:100}],3,4,5).dx,3);
+const many=Array.from({length:1200},(_,i)=>({id:'guide-'+i,axis:i%2?'x':'y',position:i*2}));assert.equal(h.validateAlignmentGuides(many).length,1200,'no arbitrary guide-count limit');
+for(const bad of [[{id:'guide-1',axis:'z',position:0}],[{id:'guide-1',axis:'x',position:NaN}],[{id:'guide-1',axis:'x',position:-1}],[many[0],many[0]]])assert.throws(()=>h.validateAlignmentGuides(bad));
+const buttons=Object.fromEntries(['addHorizontalGuide','addVerticalGuide','deleteAlignmentGuide','clearAlignmentGuides','alignmentGuideStatus'].map(id=>[id,{}]));let current={alignmentGuides:[]},commits=0,drawn=null;
+const ctx={...h,copy:x=>JSON.parse(JSON.stringify(x)),state:()=>current,layout:()=>({width:400,height:300}),$:id=>buttons[id],T:x=>x,selectedAlignmentGuide:null,commit:next=>{current=next;commits++;return true;}};vm.createContext(ctx);vm.runInContext(range('  function renderAlignmentGuideControls(', '  function namespace(')+range("  if($('addHorizontalGuide'))",'  setupQuickToolbar();'),ctx);
+buttons.addHorizontalGuide.onclick();buttons.addVerticalGuide.onclick();assert.deepEqual(current.alignmentGuides.map(g=>[g.axis,g.position]),[['y',150],['x',200]]);assert.equal(commits,2);ctx.deleteAlignmentGuide();assert.equal(current.alignmentGuides.length,1);buttons.clearAlignmentGuides.onclick();assert.equal(current.alignmentGuides.length,0);
+const history=new h.History({alignmentGuides:many});history.commit({alignmentGuides:[]});assert.equal(history.undo().alignmentGuides.length,1200);assert.equal(history.redo().alignmentGuides.length,0);
+current={alignmentGuides:[{id:'guide-7',axis:'x',position:200}],panels:{},overlays:[]};commits=0;
+const classList={add(){},remove(){},toggle(){}};const svg={classList,getBoundingClientRect:()=>({left:0,top:0,width:800,height:600}),setPointerCapture(){},querySelector:()=>null};
+Object.assign(ctx,{svg,l:{width:400,height:300},original:false,layoutMode:false,boxSelect:false,cancelQueuedZoom(){},beginOverlayPlacement:()=>false,window:{getSelection:()=>({removeAllRanges(){}})},drawAlignmentGuides:snapshot=>{drawn=JSON.parse(JSON.stringify(snapshot||current));},drawSelection(){},renderAlignmentGuideControls(){},selected:[],elementSelections:[],selectedAnnotations:[],selectedPanelLabel:null,labelDrag:null,overlayDrag:null,elementDrag:null,guideDrag:null,marquee:null,resizeDrag:null,panelDrag:null,dragging:null,suppressClick:false,snapLayer:{replaceChildren(){}},cancelSelectionGesture(){return false;},cancelAnimationFrame(){},selectionFrame:0,clearGhost(){},render(){},pending:null});
+vm.runInContext(range('    svg.onpointerdown=', '    svg.ondragstart='),ctx);
+const target={closest:selector=>selector==='[data-alignment-guide]'?{dataset:{alignmentGuide:'guide-7'}}:null};const event=(x,extra={})=>({button:0,buttons:1,target,clientX:x,clientY:20,pointerId:1,preventDefault(){},...extra});
+svg.onpointerdown(event(400));svg.onpointermove(event(430));assert.equal(current.alignmentGuides[0].position,200,'hover drag does not mutate saved state');assert.equal(drawn.alignmentGuides[0].position,215);assert.equal(commits,0);svg.onpointerup(event(430));assert.equal(current.alignmentGuides[0].position,215);assert.equal(commits,1,'pointerup commits once');
+svg.onpointerdown(event(430));svg.onpointermove(event(500));svg.onpointercancel();assert.equal(current.alignmentGuides[0].position,215);assert.equal(commits,1,'cancel does not commit');
+svg.onpointerdown(event(430));svg.onpointermove(event(450));svg.onlostpointercapture();assert.equal(commits,1,'lost capture cancels');
+svg.onpointerdown(event(430));svg.onpointermove(event(460,{buttons:0}));assert.equal(commits,1,'button release outside cancels');
+svg.onpointerdown(event(430));svg.onpointerup(event(430));assert.equal(commits,1,'selecting guide does not create history');
+// Exercise the same native/overlay move functions with a mixed selection.
+class Matrix{constructor(v=[1,0,0,1,0,0]){[this.a,this.b,this.c,this.d,this.e,this.f]=v;}inverse(){return new Matrix([1/this.a,0,0,1/this.d,-this.e/this.a,-this.f/this.d]);}transformPoint(p){return {x:this.a*p.x+this.c*p.y+this.e,y:this.b*p.x+this.d*p.y+this.f};}}
+const native=(id,key)=>({id,vi:0,key,screen:{a:2,b:0,c:0,d:2,e:0,f:0},transform:'',el:{setAttribute(name,value){this[name]=value;}}});
+current={alignmentGuides:[{id:'guide-1',axis:'x',position:45}],panels:{a:{edits:{0:{e900001:{'offset-x':'2'}}}},b:{edits:{}}},overlays:[{id:'annotation-1',x:.2,y:.2,w:.1,h:.1,locked:false}]};commits=0;
+Object.assign(ctx,{DOMMatrix:Matrix,paintSnapGuides:guides=>{ctx.painted=guides;},selectedNodes:()=>[],editsFor:(id,vi)=>current.panels[id].edits[vi]||{},setEdit:(state,id,vi,key,prop,value)=>{state.panels[id].edits[vi]||={};state.panels[id].edits[vi][key]||={};state.panels[id].edits[vi][key][prop]=value;},overlayNode:()=>({})});
+vm.runInContext(range('    const snappedDelta=', '    const drawSelection='),ctx);
+const items=[native('a','e900001'),native('b','e8123456'),native('b','e42')];ctx.elementDrag={screen:{x:0,y:0},moved:false,nodes:items,overlayIds:['annotation-1'],alignment:{bounds:{left:10,right:30,top:20,bottom:40},targets:current.alignmentGuides.map(g=>({...g,manual:true}))},next:ctx.copy(current)};
+svg.onpointermove(event(26,{clientY:16}));assert.equal(commits,0);assert.equal(ctx.elementDrag.next.panels.a.edits[0].e900001['offset-x'],'17');assert.equal(ctx.elementDrag.next.panels.b.edits[0].e42['offset-x'],'15');assert.equal(ctx.elementDrag.next.panels.b.edits[0].e8123456['offset-y'],'8');assert.ok(Math.abs(ctx.elementDrag.next.overlays[0].x-.2375)<1e-10);for(const item of items)assert.equal(item.el.transform,'translate(15 8) ');assert.equal(ctx.painted[0].position,45);
+svg.onpointerup(event(26,{clientY:16}));assert.equal(commits,1);assert.equal(current.panels.b.edits[0].e42['offset-x'],'15','native, generated statistics, matrix and overlay commit together');
+const composite=range('  function composite(', '  let autosaveQueue=');assert.ok(!composite.includes('alignmentGuide')&&!composite.includes('editorSnap'),'reference and dynamic alignment guides never enter export composite');
+assert.ok(source.includes("selectedDragItems=()=>selectionGroups().flatMap"),'cross-panel native groups use all selected groups');assert.ok(source.includes('overlayDrag.nodes=selectedDragItems()'),'mixed native/overlay selections share movement');
+console.log('Alignment guides: validation, unlimited count, add/remove/clear/undo, screen-scaled snapping, Alt bypass, real pointer drag/cancel, and export isolation passed');
