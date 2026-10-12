@@ -144,7 +144,7 @@ assert.ok(Math.abs(titleBaselines[0]-titleBaselines[1])<1e-8,'adjacent letter an
 // User-facing facet titles are presentation, not analysis identifiers. Resolve
 // the edited source with stable axis/tick/key identity after changing its text.
 const hideTitleLine=source.split('\n').find(line=>line.includes('showFacetTitles===false')&&line.includes('title.style.display'));
-assert.ok(hideTitleLine);const editBlock=range('    if (!raw) for (const [key, props]','    if(!raw&&s.panels[id].annotationStyle');
+assert.ok(hideTitleLine);const editBlock=range('    if (!raw) for (const [key, props]','    // Work on complete category groups');
 const keyTree=node=>{let n=0;const visit=el=>{el.setAttribute('data-key','e'+n++);for(const child of el.children)if(child.localName)visit(child);};visit(node);return node;};
 let titleEditCases=0;
 for(const fixture of fixtures.filter(f=>f.name!=='raincloud'))for(const fontSize of [9,24,32])for(const show of [true,false]){

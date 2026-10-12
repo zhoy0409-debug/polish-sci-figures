@@ -98,7 +98,12 @@ def doctor(args) -> int:
         items.append(finding("PASS" if found else "WARN", code, name, found or "not found", blocking=False,
                              manual_review=(code == "PDF_FONTS" and not found)))
     for skill in (MAKE, STANDARDIZE, POLISH):
-        missing = [str(p.relative_to(skill)) for p in (skill / "SKILL.md", skill / "agents" / "openai.yaml") if not p.is_file()]
+        # Upload hosts allow one SKILL.md for the entire archive; nested guides
+        # retain their paths/content under WORKFLOW.md in the portable package.
+        guide = skill / "SKILL.md"
+        if not guide.is_file() and (skill / "WORKFLOW.md").is_file():
+            guide = skill / "WORKFLOW.md"
+        missing = [str(p.relative_to(skill)) for p in (guide, skill / "agents" / "openai.yaml") if not p.is_file()]
         items.append(finding("PASS" if not missing else "FAIL", "SKILL_STRUCTURE", f"skill {skill.name}", "complete" if not missing else str(missing)))
     return emit(items, args.json)
 
@@ -435,10 +440,11 @@ def parser():
     p=sub.add_parser("qa"); p.add_argument("paths",nargs="+"); p.add_argument("--width-mm",type=float); p.add_argument("--font"); p.add_argument("--strict-sources",action="store_true"); p.add_argument("--json",action="store_true"); p.set_defaults(func=qa)
     p=sub.add_parser("studio", help="Build an offline visual editor from existing SVG candidate bundles")
     p.add_argument("panels", nargs="+"); p.add_argument("--out", required=True)
-    p.add_argument("--title", default="Figure Studio"); p.add_argument("--columns", type=int, default=2)
+    p.add_argument("--title", default="Figure Studio"); p.add_argument("--columns", type=int, help="Grid columns: default 1 for one panel, otherwise 2")
+    p.add_argument("--view", help="Initial SVG variant name; must exist in every input panel")
     p.add_argument("--with-layouts", action="store_true", help="Prepare portrait and wide canvas alternatives from source data")
     p.set_defaults(func=lambda args: subprocess.call([sys.executable, str(POLISH/"scripts"/"figure_studio.py"),
-        *args.panels, "--out", args.out, "--title", args.title, "--columns", str(args.columns), *(["--with-layouts"] if args.with_layouts else [])]))
+        *args.panels, "--out", args.out, "--title", args.title, *(["--columns", str(args.columns)] if args.columns is not None else []), *(["--view", args.view] if args.view is not None else []), *(["--with-layouts"] if args.with_layouts else [])]))
     p=sub.add_parser("studio-serve", help="Open a loopback-only data editing engine for an existing Studio HTML")
     p.add_argument("html"); p.add_argument("--port",type=int,default=8767)
     p.set_defaults(func=lambda args: subprocess.call([sys.executable,str(POLISH/"scripts"/"studio_server.py"),args.html,"--port",str(args.port)]))

@@ -186,6 +186,7 @@ function validateState(state, project) {
     if(s?.locked!==undefined&&typeof s.locked!=='boolean')throw Error('锁定状态无效');
     for(const field of ['lockedElements','elementGroups'])if(s?.[field])for(const [vi,items]of Object.entries(s[field])){if(!p.variants[vi]||!Array.isArray(items))throw Error('组合状态无效');const keys=field==='elementGroups'?items.flat():items;if(keys.some(k=>typeof k!=='string'||!/^e\d+$/.test(k)))throw Error('组合状态无效');}
     if(s?.geometry && (!Number.isFinite(s.geometry.barWidth)||s.geometry.barWidth<.5||s.geometry.barWidth>1.5||!Number.isFinite(s.geometry.groupGap)||s.geometry.groupGap<.65||s.geometry.groupGap>1.05))throw Error('柱形布局参数无效');
+    if(s?.groupSpacing && (!Number.isFinite(s.groupSpacing.factor)||s.groupSpacing.factor<.5||s.groupSpacing.factor>1.25))throw Error('组间距参数无效');
     if (!s || !Number.isInteger(s.variant) || !p.variants[s.variant] || !s.edits || typeof s.edits !== 'object') throw Error('候选图状态无效');
     for (const [v, edits] of Object.entries(s.edits)) {
       if (!/^\d+$/.test(v) || !p.variants[+v] || !edits || typeof edits !== 'object') throw Error('样式版本无效');
@@ -446,7 +447,7 @@ function parseDelimited(text,delimiter=','){
 // Append-only assets make replacement and insertion undoable without duplicating image bytes.
 function installPanelState(s,oldId,newId,initialVariant,cell){
   const next=copy(s);next.grid=copy(gridFor(s));
-  if(oldId){if(s.panels[oldId].locked)throw Error('小图已锁定');const old=s.panels[oldId];next.order=next.order.map(id=>id===oldId?newId:id);next.grid.places[newId]=next.grid.places[oldId];delete next.grid.places[oldId];delete next.panels[oldId];next.panels[newId]={variant:initialVariant,edits:{},...(old.label?{label:copy(old.label)}:{}),...(old.geometry?{geometry:copy(old.geometry)}:{}),...(old.heatmapLabels?{heatmapLabels:copy(old.heatmapLabels)}:{}),...(old.heatmapPalette?{heatmapPalette:copy(old.heatmapPalette)}:{})};if(next.panelGroups)next.panelGroups=next.panelGroups.map(g=>g.map(id=>id===oldId?newId:id));}
+  if(oldId){if(s.panels[oldId].locked)throw Error('小图已锁定');const old=s.panels[oldId];next.order=next.order.map(id=>id===oldId?newId:id);next.grid.places[newId]=next.grid.places[oldId];delete next.grid.places[oldId];delete next.panels[oldId];next.panels[newId]={variant:initialVariant,edits:{},...(old.label?{label:copy(old.label)}:{}),...(old.geometry?{geometry:copy(old.geometry)}:{}),...(old.groupSpacing?{groupSpacing:copy(old.groupSpacing)}:{}),...(old.heatmapLabels?{heatmapLabels:copy(old.heatmapLabels)}:{}),...(old.heatmapPalette?{heatmapPalette:copy(old.heatmapPalette)}:{})};if(next.panelGroups)next.panelGroups=next.panelGroups.map(g=>g.map(id=>id===oldId?newId:id));}
   else{if(next.order.length>=24)throw Error('最多同时放置 24 张小图');if(!cell)throw Error('请先选择一个空格');const g=next.grid;if(cell.row<0||cell.col<0||cell.row>=g.rows||cell.col>=next.columns||next.order.some(id=>{const p=g.places[id];return cell.row>=p.row&&cell.row<p.row+p.rs&&cell.col>=p.col&&cell.col<p.col+p.cs;}))throw Error('请选择空格导入图片');next.order.push(newId);next.grid.places[newId]={...cell,rs:1,cs:1};next.panels[newId]={variant:initialVariant,edits:{}};}
   return next;
 }
@@ -464,7 +465,7 @@ function splitPanelState(s,oldId,assets,metrics=null){
   for(const row of rows){const columns=[Math.min(from.col,next.columns-ids.length),...Array.from({length:next.columns-ids.length+1},(_,i)=>i)];for(const col of columns)if(ids.every((_,i)=>!occupied.has(row+':'+(col+i)))){destination={row,col};break;}if(destination)break;}
   if(!destination){if(g.rows>=24)throw Error('母版位置不足，请增加行列或减小跨格范围');destination={row:g.rows,col:0};g.rows++;if(g.heights)g.heights.push(g.heights[from.row]);}
   next.order=next.order.flatMap(id=>id===oldId?ids:[id]);delete next.panels[oldId];delete g.places[oldId];
-  const inherited=['geometry','errorDirection','annotationFont','annotationLine','annotationPFormat','showFacetTitles'];
+  const inherited=['geometry','groupSpacing','errorDirection','annotationFont','annotationLine','annotationPFormat','showFacetTitles'];
   assets.forEach((asset,index)=>{const p={variant:asset.initialVariant||0,edits:{}};for(const key of inherited)if(old[key]!==undefined)p[key]=copy(old[key]);
     if(old.label)p.label={...copy(old.label),manual:index===0&&old.label.manual===true};
     if(asset.statistics){p.statistics=copy(asset.statistics);if(old.annotationStyle)p.annotationStyle=old.annotationStyle;}
@@ -625,7 +626,7 @@ if (typeof document !== 'undefined') (async () => {
   let project, history, checkpoints = [], selectedPanel, selected = [], original = false, templateCache = new Map(), renderSerial = 0;
   let savedCurrent = '', localSavedCurrent = '', knownCache, message = '';
   let desktopSession=false,welcomeDismissed=false,newProjectBusy=false,desktopRestoredPayload=null;
-  let activePane = 'explore',inspectorPanel=null;
+  let activePane = 'explore',inspectorPanel=null,inspectorPreviewCache={};
   let preferenceData;try{preferenceData=JSON.parse(localStorage.getItem('figure-studio:preferences')||'null');}catch{}
   const preferences=new StudioPreferences(preferenceData);
   let confirmPreferenceClear=false,clearedPreferences=null;
@@ -647,6 +648,7 @@ if (typeof document !== 'undefined') (async () => {
     document.querySelectorAll('[data-pane]').forEach(el=>{el.hidden=el.getAttribute('data-pane')!==name&&!(['statisticalAnnotations','conditionMatrixControls'].includes(el.id)&&name==='annotation');});
     document.querySelectorAll('[data-tab]').forEach(el=>{el.setAttribute('aria-pressed',String(el.getAttribute('data-tab')===name));});
     $('textRole').parentElement.hidden=name!=='detail';
+    renderInspectorPreviews();
     if(repaint)renderCanvas();
   }
   const state = () => history.current;
@@ -665,7 +667,10 @@ if (typeof document !== 'undefined') (async () => {
     if (xml.querySelector('parsererror') || xml.documentElement.localName !== 'svg') throw Error(T('无法解析 SVG'));
     const root = xml.documentElement;
     for (const el of [root, ...root.querySelectorAll('*')]) {
-      if (el.localName === 'metadata') { el.remove(); continue; }
+      if (el.localName === 'metadata') {
+        if(el.namespaceURI===NS&&/(?:^|-)studio-category-groups$/.test(el.id)&&!el.children.length&&typeof StudioGroupSpacing!=='undefined'&&StudioGroupSpacing.validateMetadata(el.textContent)){const value=JSON.parse(el.textContent),id=el.id;for(const attr of [...el.attributes])el.removeAttributeNode(attr);el.id=id;el.textContent=JSON.stringify(value);}else el.remove();
+        continue;
+      }
       if (el.localName === 'style') {
         if (!/^\s*\*\s*\{\s*stroke-linejoin:\s*round;\s*stroke-linecap:\s*butt\s*\}\s*$/.test(el.textContent)) throw Error(T('请先把 SVG 样式表转换为行内样式'));
         root.setAttribute('stroke-linejoin', 'round'); root.setAttribute('stroke-linecap', 'butt'); el.remove(); continue;
@@ -681,7 +686,7 @@ if (typeof document !== 'undefined') (async () => {
         } else if (!ATTRS.has(attr.localName) || !safeValue(attr.value)) el.removeAttributeNode(attr);
       }
     }
-    [root, ...root.querySelectorAll('*')].forEach((el, i) => el.setAttribute('data-key', 'e' + i));
+    [root, ...root.querySelectorAll('*')].filter(el=>el.localName!=='metadata').forEach((el, i) => el.setAttribute('data-key', 'e' + i));
     for (const el of root.querySelectorAll('text,tspan')) {
       const ids = []; let p = el;
       while (p && p !== root) { ids.push(p.id || ''); p = p.parentElement; }
@@ -718,7 +723,7 @@ if (typeof document !== 'undefined') (async () => {
   }
   const heatmapUpgradeRequests=new WeakMap(),heatmapUpgradeFailures=new WeakMap();
   async function ensureHeatmapMetadata(){
-    if(!localEngine)return;
+    if(!localEngine||engineConnection!=='connected')return;
     const owner=project;if(heatmapUpgradeRequests.has(owner))return heatmapUpgradeRequests.get(owner);if(Date.now()-(heatmapUpgradeFailures.get(owner)||0)<30000)return;
     const jobs=[];
     for(const id of state().order){const source=panel(id);if(source.recipe?.family!=='gallery'||!source.table)continue;
@@ -726,7 +731,7 @@ if (typeof document !== 'undefined') (async () => {
     if(!jobs.length)return;
     const task=(async()=>{for(const {key,source,v}of jobs){
       const recipe=copy(source.recipe);recipe.parameters={...recipe.parameters,view:v.name};
-      const response=await fetch(localEngine.reflowEndpoint||'/api/reflow',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe,rows:source.table.rows,width:v.width,height:v.height})}),result=await response.json();
+      const response=await engineFetch(localEngine.reflowEndpoint||'/api/reflow',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe,rows:source.table.rows,width:v.width,height:v.height})}),result=await response.json();
       if(!response.ok)throw Error(result.error);const fresh=result.variant,svg=sanitize(fresh.svg),info=heatmapCellInfo(svg.querySelector('[id*="studio-heat-value-"]')?.id||'');
       if(Math.abs(fresh.width-v.width)>.01||Math.abs(fresh.height-v.height)>.01||!Number.isFinite(info?.normalized))throw Error(T('热图配色元数据更新失败'));
       owner.heatmapRenders||={};owner.heatmapRenders[key]=fresh;
@@ -770,7 +775,7 @@ if (typeof document !== 'undefined') (async () => {
     if(!localEngine)return;
     const owner=project,jobs=layout(s).positions.map(pos=>reflowSpec(pos,s)).filter(spec=>spec&&(!owner.layoutRenders?.[spec.key]||!currentHeatmapMetadata(owner.layoutRenders[spec.key])));
     await Promise.all(jobs.map(spec=>{if(reflowRequests.has(spec.key))return reflowRequests.get(spec.key);
-      const task=(async()=>{const {recipe,rows,width,height}=spec;const response=await fetch(localEngine.reflowEndpoint||'/api/reflow',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe,rows,width,height})}),result=await response.json();if(!response.ok)throw Error(result.error);
+      const task=(async()=>{const {recipe,rows,width,height}=spec;const response=await engineFetch(localEngine.reflowEndpoint||'/api/reflow',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe,rows,width,height})}),result=await response.json();if(!response.ok)throw Error(result.error);
         const v=result.variant;if(Math.abs(v.width-spec.width)>.01||Math.abs(v.height-spec.height)>.01||typeof v.svg!=='string')throw Error(T('重排尺寸不匹配'));sanitize(v.svg);
         owner.layoutRenders||={};owner.layoutRenders[spec.key]=v;
         // Bound cached SVGs, retaining the most recent compositions in saved projects.
@@ -816,8 +821,8 @@ if (typeof document !== 'undefined') (async () => {
     const axes=onlyAxis?[onlyAxis]:[...svg.querySelectorAll('[id^="axes_"]')],normal=value=>String(value).replace(/\s+/g,''),matches=[];
     for(const axis of axes){
       const ticks=[...axis.querySelectorAll('[id^="xtick_"]')].map(tick=>tick.querySelector('text')).filter(Boolean);
-      if(ticks.length!==order.length||new Set(order.map(normal)).size!==order.length||ticks.some((tick,i)=>normal(tick.textContent)!==normal(order[i])))continue;
-      const artists=[...axis.children].filter(el=>/^(PathCollection|PolyCollection|FillBetweenPolyCollection|LineCollection|line2d_|patch_)/.test(el.id)&&el.querySelector('[clip-path]'));
+      if(ticks.length!==order.length||new Set(order.map(normal)).size!==order.length||ticks.some((tick,i)=>normal([...(tick.closest?.('[id^="xtick_"]')?.querySelectorAll('text')||[tick])].map(text=>text.textContent).join(' '))!==normal(order[i])))continue;
+      const artists=[...axis.children].filter(el=>/^(?:PathCollection|PolyCollection|FillBetweenPolyCollection|LineCollection|line2d_|patch_|studio-category-a\d+-g\d+-(?:points|mean|cap\d+|ci\d*)$)/.test(el.id)&&el.querySelector('[clip-path]'));
       if(artists.length)matches.push({kind:'categories',nodes:ticks,artists,axis});
     }
     return matches.length===1?matches[0]:null;
@@ -851,16 +856,17 @@ if (typeof document !== 'undefined') (async () => {
     if(!references?.length)return null;
     const resolved=[];for(const ref of references){const axis=ref.axis?.id&&svg.querySelector(`[id="${ref.axis.id}"]`);if(!axis)return null;const ticks=[...axis.querySelectorAll('[id^="xtick_"]')].map(tick=>tick.querySelector('text')).filter(Boolean);if(ticks.length!==ref.order.length)return null;
       const sourceTicks=ref.anchors.nodes.map(node=>node.closest?.('[id^="xtick_"]')?.id);if(sourceTicks.some((key,i)=>!key||ticks[i].closest?.('[id^="xtick_"]')?.id!==key))return null;
-      const artists=[...axis.children].filter(el=>/^(PathCollection|PolyCollection|FillBetweenPolyCollection|LineCollection|line2d_|patch_)/.test(el.id)&&el.querySelector('[clip-path]'));if(!artists.length)return null;const titleKey=ref.title?.getAttribute('data-key'),title=titleKey?svg.querySelector(`[data-key="${titleKey}"]`):null;
+      const artists=[...axis.children].filter(el=>/^(?:PathCollection|PolyCollection|FillBetweenPolyCollection|LineCollection|line2d_|patch_|studio-category-a\d+-g\d+-(?:points|mean|cap\d+|ci\d*)$)/.test(el.id)&&el.querySelector('[clip-path]'));if(!artists.length)return null;const titleKey=ref.title?.getAttribute('data-key'),title=titleKey?svg.querySelector(`[data-key="${titleKey}"]`):null;
       resolved.push({...ref,axis,title,frame:statisticalAxisFrame(svg,axis),anchors:{kind:'categories',nodes:ticks,artists,axis}});
     }return resolved;
   }
   function conditionMatrixAxes(svg,id,s=state()){
     const analysis=statisticalAnalysisFor(id,s)||{},orders=(analysis.facets||[analysis]).map(result=>result.group_order).filter(Array.isArray),sets=[];
     for(const axis of svg.querySelectorAll('[id^="axes_"]')){
-      const frame=statisticalAxisFrame(svg,axis),ticks=[...axis.querySelectorAll('[id^="xtick_"]')].map(tick=>tick.querySelector('text')).filter(Boolean),order=ticks.map(tick=>tick.textContent.trim());
+      const frame=statisticalAxisFrame(svg,axis),ticks=[...axis.querySelectorAll('[id^="xtick_"]')].map(tick=>tick.querySelector('text')).filter(Boolean),order=ticks.map(tick=>[...(tick.closest?.('[id^="xtick_"]')?.querySelectorAll('text')||[tick])].map(text=>text.textContent.trim()).join(' ').replace(/\s+/g,' '));
       if(!frame||!order.length||order.length>32||new Set(order).size!==order.length||order.some(label=>!label))continue;
-      const declared=orders.some(labels=>labels.length===order.length&&labels.every((label,i)=>String(label)===order[i]));
+      const normalize=value=>String(value).trim().replace(/\s+/g,' '),declared=orders.some(labels=>labels.length===order.length&&labels.every((label,i)=>normalize(label)===normalize(order[i])));
+      if(orders.length&&!declared)continue;
       // Numeric coordinates (time, concentration, PCA, ROC) are not group labels.
       if(!declared&&order.some(label=>/^[+−-]?(?:\d*\.)?\d+(?:[eE][+−-]?\d+)?%?$/.test(label)))continue;
       const anchors=statisticalAnchorElements(svg,order,axis);if(!anchors)continue;
@@ -881,7 +887,7 @@ if (typeof document !== 'undefined') (async () => {
   }
   function conditionMatrixLayout(info,config,typography,unit=1){
     const font=config?.font?.font||typography?.font||'Arial',size=config?.font?.size||typography?.size||9,bold=!!config?.font?.bold,italic=!!config?.font?.italic,lineHeight=size*1.3,rows=(config?.rows||[]).slice(0,8),pad=6,gap=5,sets=[];
-    for(const set of info.sets||[]){const peers=info.sets.filter(peer=>peer.row===set.row).sort((a,b)=>a.frame.x-b.frame.x),index=peers.indexOf(set),previous=peers[index-1],next=peers[index+1],centers=set.anchors.nodes.map(tick=>Number(tick.getAttribute('x'))/unit),spacing=centers.length>1?Math.min(...centers.slice(1).map((x,i)=>Math.abs(x-centers[i]))):set.frame.width/unit;
+    for(const set of info.sets||[]){const peers=info.sets.filter(peer=>peer.row===set.row).sort((a,b)=>a.frame.x-b.frame.x),index=peers.indexOf(set),previous=peers[index-1],next=peers[index+1],centers=set.anchors.nodes.map(tick=>Number(tick.getAttribute('data-studio-category-center')??tick.closest?.('[id^="xtick_"]')?.querySelector('use')?.getAttribute('x')??tick.getAttribute('x'))/unit),spacing=centers.length>1?Math.min(...centers.slice(1).map((x,i)=>Math.abs(x-centers[i]))):set.frame.width/unit;
       const left=previous?(previous.frame.x+previous.frame.width+set.frame.x)/unit/2:pad,rightBound=next?(set.frame.x+set.frame.width+next.frame.x)/unit/2:(info.width||set.frame.x+set.frame.width+20)/unit-pad,cellWidths=centers.map(center=>Math.max(1,Math.min(spacing-8,2*(rightBound-center)))),valueRows=rows.map(row=>set.order.map((group,i)=>conditionMatrixTextLines(Object.prototype.hasOwnProperty.call(row.values||{},group)?row.values[group]:'—',cellWidths[i],font,size,bold,italic))),right=centers[0]-Math.max(0,...valueRows.map(values=>values[0]?.width||0))/2-gap,labelWidth=Math.max(1,right-left),plannedRows=rows.map((row,index)=>{const label=conditionMatrixTextLines(row.label,labelWidth,font,size,bold,italic,true),values=valueRows[index];return {label,values,height:Math.max(label.lines.length,...values.map(value=>value.lines.length))*lineHeight+gap};});
       sets.push({...set,centers,left,right,rightBound,labelWidth,cellWidths,rows:plannedRows});
     }
@@ -893,7 +899,7 @@ if (typeof document !== 'undefined') (async () => {
     const host=document.createElement('div');host.style.cssText='position:fixed;left:-10000px;top:0;visibility:hidden;pointer-events:none';host.append(svg);document.body.append(host);
     try{
       const root=svg.getScreenCTM(),matrix=el=>root.inverse().multiply(el.getScreenCTM()),bounds=el=>{const b=el.getBBox(),m=matrix(el),points=[[b.x,b.y],[b.x+b.width,b.y],[b.x,b.y+b.height],[b.x+b.width,b.y+b.height]].map(([x,y])=>new DOMPoint(x,y).matrixTransform(m));return {left:Math.min(...points.map(p=>p.x)),right:Math.max(...points.map(p=>p.x)),top:Math.min(...points.map(p=>p.y)),bottom:Math.max(...points.map(p=>p.y))};};
-      const centers=anchors.nodes.map(node=>anchors.kind==='bars'?(bounds(node).left+bounds(node).right)/2:new DOMPoint(parseFloat(node.getAttribute('x'))||0,parseFloat(node.getAttribute('y'))||0).matrixTransform(matrix(node)).x);
+      const centers=anchors.nodes.map(node=>{if(anchors.kind==='bars')return (bounds(node).left+bounds(node).right)/2;const declared=node.getAttribute('data-studio-category-center');if(declared!==null&&Number.isFinite(Number(declared)))return Number(declared);const point=node.closest?.('[id^="xtick_"]')?.querySelector('use')||node;return new DOMPoint(parseFloat(point.getAttribute('x'))||0,parseFloat(point.getAttribute('y'))||0).matrixTransform(matrix(point)).x;});
       let tops;
       if(anchors.kind==='bars')tops=anchors.nodes.map((bar,i)=>Math.min(...[bar,...svg.querySelectorAll(`[id^="studio-group-${i}-"]`)].map(el=>bounds(el).top)));
       else{const frame=statisticalAxisFrame(svg,anchors.axis),boxes=anchors.artists.map(bounds).map(b=>frame?{left:Math.max(b.left,frame.x),right:Math.min(b.right,frame.x+frame.width),top:Math.max(b.top,frame.y),bottom:Math.min(b.bottom,frame.y+frame.height)}:b).filter(b=>Object.values(b).every(Number.isFinite)&&b.right>=b.left&&b.bottom>=b.top),fallback=boxes.length?Math.min(...boxes.map(b=>b.top)):frame?.y||0,spacing=Math.min(...centers.slice(1).map((x,i)=>Math.abs(x-centers[i])));tops=centers.map(x=>{const near=boxes.filter(b=>b.right>=x-spacing*.45&&b.left<=x+spacing*.45);return near.length?Math.min(...near.map(b=>b.top)):fallback;});}
@@ -1020,11 +1026,22 @@ if (typeof document !== 'undefined') (async () => {
   function measureConditionMatrixAxes(svg,sets){
     const host=document.createElement('div');host.style.cssText='position:fixed;left:-10000px;top:0;visibility:hidden;pointer-events:none';host.append(svg);document.body.append(host);
     try{const root=svg.getScreenCTM(),matrix=node=>root.inverse().multiply(node.getScreenCTM()),point=(node,x,y)=>new DOMPoint(x,y).matrixTransform(matrix(node));return sets.map(set=>{
-      const centers=set.anchors.nodes.map(node=>point(node,Number(node.getAttribute('x'))||0,Number(node.getAttribute('y'))||0).x),xaxis=set.anchors.nodes[0]?.closest('[id^="matplotlib.axis_"]'),texts=[...xaxis?.querySelectorAll('text')||[]].filter(node=>node.style.display!=='none');
+      const centers=set.anchors.nodes.map(node=>{const declared=node.getAttribute('data-studio-category-center');if(declared!==null&&Number.isFinite(Number(declared)))return Number(declared);const tick=node.closest?.('[id^="xtick_"]')?.querySelector('use')||node;return point(tick,Number(tick.getAttribute('x'))||0,Number(tick.getAttribute('y'))||0).x;}),xaxis=set.anchors.nodes[0]?.closest('[id^="matplotlib.axis_"]'),texts=[...xaxis?.querySelectorAll('text')||[]].filter(node=>node.style.display!=='none');
       const bottom=Math.max(point(set.axis,set.frame.x,set.frame.y+set.frame.height).y,...texts.map(node=>{const box=node.getBBox();return Math.max(...[[box.x,box.y],[box.x+box.width,box.y],[box.x,box.y+box.height],[box.x+box.width,box.y+box.height]].map(([x,y])=>point(node,x,y).y));}));return {...set,centers,bottom};
     });}finally{svg.remove();host.remove();}
   }
-  function conditionMatrixHeight(id,s,vi=s.panels[id].variant){const config=s.panels[id].conditionMatrix;if(!config||config.enabled===false||!config.rows?.length)return 0;const info=conditionMatrixInfo(id,s,vi),v=panel(id).variants[vi];return info.available?conditionMatrixLayout(info,config,s.typography,v.viewBox[2]/v.width).totalHeight:0;}
+  const conditionSpacingHeightCache=new WeakMap();
+  function conditionMatrixHeight(id,s,vi=s.panels[id].variant){
+    const config=s.panels[id].conditionMatrix;if(!config||config.enabled===false||!config.rows?.length)return 0;
+    const v=panel(id).variants[vi],info=conditionMatrixInfo(id,s,vi);
+    if(!info.available)return 0;
+    if(s.panels[id].groupSpacing&&typeof StudioGroupSpacing!=='undefined'){
+      let cache=conditionSpacingHeightCache.get(s);if(!cache){cache=new Map();conditionSpacingHeightCache.set(s,cache);}const key=id+'/'+vi,previous=cache.get(key);if(previous?.source===v)return previous.height;
+      const svg=editedSvg(id,vi,s,false,null,true);StudioGroupSpacing.apply(svg,s.panels[id].groupSpacing.factor,{orders:groupSpacingOrders(id,s)});const sets=resolvedStatisticalPlotAnchors(svg,info.sets);if(sets)info.sets=sets;
+      const height=conditionMatrixLayout(info,config,s.typography,v.viewBox[2]/v.width).totalHeight;cache.set(key,{source:v,height});return height;
+    }
+    return conditionMatrixLayout(info,config,s.typography,v.viewBox[2]/v.width).totalHeight;
+  }
   function appendConditionMatrix(svg,id,vi,s,v){
     const p=s.panels[id],config=p.conditionMatrix;if(!config||config.enabled===false||!config.rows?.length)return null;
     const reference=conditionMatrixInfo(id,s,vi,v.svg===panel(id).variants[vi].svg?null:reflowSvg(id,vi,v)),sets=resolvedStatisticalPlotAnchors(svg,reference.sets);if(!sets?.length)return null;
@@ -1045,7 +1062,8 @@ if (typeof document !== 'undefined') (async () => {
   function annotationTopHeight(id,s){return s.panels[id].annotationStyle&&statisticalAnnotationInfo(id,s).placement!=='band'?annotationHeight(id,s):0;}
   function annotationFirstTopHeight(id,s){const total=annotationTopHeight(id,s);return total?total/(statisticalAnnotationInfo(id,s).rowCount||1):0;}
   function drawingHeight(id,s){return panel(id).variants[s.panels[id].variant].height+annotationHeight(id,s)+conditionMatrixHeight(id,s);}
-  function editedSvg(id, vi, s=state(), raw=false, reflow=null) {
+  function groupSpacingOrders(id,s){const analysis=statisticalAnalysisFor(id,s)||{};return [analysis,...(analysis.facets||[])].map(result=>result.group_order).filter(Array.isArray);}
+  function editedSvg(id, vi, s=state(), raw=false, reflow=null, spacingSource=false) {
     const svg = reflow?reflowSvg(id,vi,reflow):baseSvg(id,vi);
     if(!raw&&s.panels[id].showFacetTitles===false)for(const title of statisticalFacetTitleElements(svg))title.style.display='none';
     if(!raw)applyHeatmapPalette(svg,s.panels[id].heatmapPalette);
@@ -1077,6 +1095,10 @@ if (typeof document !== 'undefined') (async () => {
         else if(prop!=='rich-text'&&!prop.startsWith('offset-'))el.style.setProperty(prop, (prop==='font-size'||prop==='stroke-width') ? val+'px' : val);
       }
     }
+    // Work on complete category groups after typography, before dependent
+    // statistics/conditions; never scale glyphs or mutate source assets.
+    if(spacingSource)return svg;
+    if(!raw&&s.panels[id].groupSpacing&&typeof StudioGroupSpacing!=='undefined')StudioGroupSpacing.apply(svg,s.panels[id].groupSpacing.factor,{orders:groupSpacingOrders(id,s)});
     if(!raw&&s.panels[id].annotationStyle&&statisticalAnnotationInfo(id,s,vi).available){
       const info=statisticalAnnotationInfo(id,s,vi),style=s.panels[id].annotationStyle,v=reflow||panel(id).variants[vi];
       if(info.placement==='band'&&(style!=='letters'||info.letters))appendStatisticalBand(svg,id,vi,s,v,info);
@@ -1153,6 +1175,7 @@ if (typeof document !== 'undefined') (async () => {
   function deleteAlignmentGuide(){if(!selectedAlignmentGuide)return false;const next=copy(state());next.alignmentGuides=(next.alignmentGuides||[]).filter(guide=>guide.id!==selectedAlignmentGuide);selectedAlignmentGuide=null;return commit(next,T('已删除对齐参考线'));}
   function namespace(svg) {
     const prefix = 'f' + (++renderSerial) + '-';
+    if(typeof StudioGroupSpacing!=='undefined')StudioGroupSpacing.namespaceMetadata(svg,prefix);
     for (const el of [svg,...svg.querySelectorAll('*')]) {
       if (el.id) el.id=prefix+el.id;
       for (const a of [...el.attributes]) {
@@ -1260,7 +1283,7 @@ if (typeof document !== 'undefined') (async () => {
   }
   function composite(raw=false, exportMode=false, s=state()) {
     const l=layout(s), root=document.createElementNS(NS,'svg');
-    root.setAttribute('xmlns',NS);root.setAttribute('viewBox',`0 0 ${l.width} ${l.height}`); root.setAttribute('width',l.width+'pt');root.setAttribute('height',l.height+'pt');
+    root.setAttribute('xmlns',NS);if(!exportMode)root.setAttribute('overflow','visible');root.setAttribute('viewBox',`0 0 ${l.width} ${l.height}`); root.setAttribute('width',l.width+'pt');root.setAttribute('height',l.height+'pt');
     if(exportMode){const output=exportGeometry(l.width,l.height,s.exportSettings);root.setAttribute('width',output.widthPt+'pt');root.setAttribute('height',output.heightPt+'pt');}
     const description=document.createElementNS(NS,'metadata');description.textContent=JSON.stringify({analysisChoices:s.order.filter(id=>s.panels[id].methodChoice).map(id=>({panel:id,...s.panels[id].methodChoice,result:statisticalAnalysisFor(id,s)?.[s.panels[id].methodChoice.key]})),statistics:statisticalExportRecords(s)});root.append(description);
     const margins={left:60,right:18,top:Math.max(52,...s.order.map(id=>annotationFirstTopHeight(id,s)+44)),bottom:36};
@@ -1285,7 +1308,7 @@ if (typeof document !== 'undefined') (async () => {
       for(const pos of l.positions){if(s.panels[pos.id].locked)continue;
         const grip=document.createElementNS(NS,'g');grip.dataset.panelMove=pos.id;grip.setAttribute('class','panel-move-handle'+(pos.id===selectedPanel?' is-selected':''));grip.setAttribute('aria-label',T('拖动整张小图'));grip.setAttribute('role','button');
         const title=document.createElementNS(NS,'title');title.textContent=T('拖动整张小图');grip.append(title);
-        const x=pos.x+pos.width/2-15,y=pos.y+3,rect=document.createElementNS(NS,'rect');for(const [key,value]of Object.entries({x,y,width:30,height:14,rx:4,fill:'#f4f6fa',stroke:'#aab7cb','stroke-width':.7,'vector-effect':'non-scaling-stroke'}))rect.setAttribute(key,value);grip.append(rect);
+        const x=pos.x+pos.width/2-15,y=pos.y-16,rect=document.createElementNS(NS,'rect');for(const [key,value]of Object.entries({x,y,width:30,height:14,rx:4,fill:'#f4f6fa',stroke:'#aab7cb','stroke-width':.7,'vector-effect':'non-scaling-stroke'}))rect.setAttribute(key,value);grip.append(rect);
         for(const dx of [10,15,20])for(const dy of [5,9]){const dot=document.createElementNS(NS,'circle');dot.setAttribute('cx',x+dx);dot.setAttribute('cy',y+dy);dot.setAttribute('r',1);dot.setAttribute('fill','#63758f');grip.append(dot);}root.append(grip);
       }
     }
@@ -1471,6 +1494,15 @@ if (typeof document !== 'undefined') (async () => {
     else colors.forEach(color=>{const chip=document.createElement('i');chip.style.background=color;sw.append(chip);});
     return sw;
   }
+  function paletteFixedDecoration(el,root) {
+    for(let node=el;node&&node!==root;node=node.parentElement){
+      if(/matplotlib\.axis_\d+$/.test(node.id||'')||/studio-(?:plot-frame|facet-title)/.test(node.id||'')||node.getAttribute('data-stat-result')!==null||node.getAttribute('data-stat-band')!==null||node.getAttribute('data-condition-matrix')!==null)return true;
+      // Matplotlib spines are unclipped, unfilled patch paths. Filled bars and
+      // density contours remain eligible, as do clipped data outlines.
+      if(/(?:^|-)patch_\d+$/.test(node.id||'')&&el.localName==='path'&&paint(el,'fill')==='none'&&!el.getAttribute('clip-path'))return true;
+    }
+    return false;
+  }
   function preparePaletteTargets(){
     const saved=state(),scope=$('scope').value,elementScope=['element','sameColor'].includes(scope),entries=[];
     for(const id of scope==='all'?saved.order:[selectedPanel])for(let vi=0;vi<panel(id).variants.length;vi++){
@@ -1496,9 +1528,10 @@ if (typeof document !== 'undefined') (async () => {
       const targetKeys=new Set(targets.map(el=>el.getAttribute('data-key')));
       const allColors=[];
       for(const el of elementScope?[...base.querySelectorAll('[data-key]')].filter(el=>targetKeys.has(el.getAttribute('data-key'))):keysToObjects(base)){
+        if(!elementScope&&(paletteFixedDecoration(el,base)||['text','tspan','image'].includes(el.localName)))continue;
         for(const prop of ['fill','stroke']){const h=hex(paint(el,prop));if(h&&chromatic(h)&&!allColors.includes(h))allColors.push(h);}
       }
-      const channels=[];for(const el of targets){if(el.localName==='image')continue;const key=el.getAttribute('data-key'),originalEl=base.querySelector(`[data-key="${key}"]`);for(const prop of ['fill','stroke']){const index=allColors.indexOf(hex(paint(originalEl,prop)));if(index>=0)channels.push({key,prop,index});}}
+      const channels=[];for(const el of targets){if(el.localName==='image')continue;const key=el.getAttribute('data-key'),originalEl=base.querySelector(`[data-key="${key}"]`);if(!originalEl||!elementScope&&paletteFixedDecoration(originalEl,base))continue;for(const prop of ['fill','stroke']){const index=allColors.indexOf(hex(paint(originalEl,prop)));if(index>=0)channels.push({key,prop,index});}}
       entries.push({id,vi,allColors,channels});
     }
     return {saved,scope,panelId:selectedPanel,entries};
@@ -1605,7 +1638,7 @@ if (typeof document !== 'undefined') (async () => {
     $('palettes').replaceChildren();
     $('complementPreview').replaceChildren();
     const vi=state().panels[selectedPanel].variant,base=baseSvg(selectedPanel,vi),info=paletteHeatmapInfo(selectedPanel,vi),elementScope=['element','sameColor'].includes($('scope').value);
-    const currentColors=[...new Set(keysToObjects(base).flatMap(el=>['fill','stroke'].map(prop=>hex(paint(el,prop)))).filter(color=>color&&chromatic(color)))];
+    const currentColors=[...new Set(keysToObjects(base).filter(el=>elementScope||!paletteFixedDecoration(el,base)&&!['text','tspan','image'].includes(el.localName)).flatMap(el=>['fill','stroke'].map(prop=>hex(paint(el,prop)))).filter(color=>color&&chromatic(color)))];
     if(!elementScope&&!info&&(base.querySelector('[id*="studio-heat-value-"]')||currentColors.length>Math.max(...SWATCH_SCHEMES.map(scheme=>scheme.colors.length)))){
       const note=document.createElement('p');note.className='muted palette-unavailable';
       note.textContent=T(base.querySelector('[id*="studio-heat-value-"]')?'当前热图缺少数值映射信息，请重新生成图形后更换色阶。':'当前小图的连续色标暂不支持整套配色，可选择单个元素调整颜色。');$('palettes').append(note);return;
@@ -1690,7 +1723,7 @@ if (typeof document !== 'undefined') (async () => {
     if(axisBusy||!axisPending)return;const task=axisPending,id=task.id;
     if(task.projectId!==project.id||selectedPanel!==id||!state().panels[id]||dataDrafts[id]){axisPending=null;return;}
     const source=panel(id),record=state().panels[id].statistics,statistics=record?.binding==='current'&&!record.stale?record.config:undefined,statsSnapshot=JSON.stringify(record),serial=dataSerial,oldName=variant(id).name,oldSize=variant(id).size||'original';axisBusy=true;
-    try{const response=await fetch(localEngine.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe:source.recipe,rows:source.table.rows,axes:task.axes,statistics})}),result=await response.json();if(!response.ok)throw Error(result.error);
+    try{const response=await engineFetch(localEngine.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe:source.recipe,rows:source.table.rows,axes:task.axes,statistics})}),result=await response.json();if(!response.ok)throw Error(result.error);
       if(axisPending!==task||project.id!==task.projectId||selectedPanel!==id||!state().panels[id]||state().panels[id].locked||panel(id)!==source||dataSerial!==serial||JSON.stringify(state().panels[id].statistics)!==statsSnapshot)return;
       axisPending=null;const asset=result.panel;asset.name=source.name;asset.initialVariant=Math.max(0,asset.variants.findIndex(v=>v.name===oldName&&(v.size||'original')===oldSize));installAsset(asset,id,null,T('坐标与参考线已更新'),true,true);
     }catch(error){if(axisPending===task&&project.id===task.projectId&&selectedPanel===id){axisPending=null;$('axisControlStatus').textContent=String(error.message).split(' / ')[StudioI18n.language==='en'?1:0]||error.message;}}
@@ -1709,7 +1742,7 @@ if (typeof document !== 'undefined') (async () => {
       const recipe=copy(source.recipe),oldSize=variant(id).size||'original';if(recipe.family==='gallery')recipe.parameters.view=target.name;else recipe.studio_view=target.name;
       say(T('正在准备所选样式…'));
       const record=state().panels[id].statistics,statistics=record?.binding==='current'&&!record.stale?record.config:undefined;
-      const response=await fetch(localEngine.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe,rows:source.table.rows,statistics})});
+      const response=await engineFetch(localEngine.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe,rows:source.table.rows,statistics})});
       const result=await response.json();if(!response.ok)throw Error(result.error);
       if(request!==variantRequest||project.id!==projectId||selectedPanel!==id||!state().order.includes(id)||state().panels[id].locked||panel(id)!==source)return;
       result.panel.name=source.name;result.panel.initialVariant=Math.max(0,result.panel.variants.findIndex(v=>v.name===target.name&&(v.size||'original')===oldSize));installAsset(result.panel,id,null,T('已切换候选图'),true,true);
@@ -1868,13 +1901,8 @@ if (typeof document !== 'undefined') (async () => {
     if(count>1){const text=selectionGroups().flatMap(g=>{const svg=editableSource(g.id,g.vi);return g.keys.map(k=>svg.querySelector(`[data-key="${k}"]`)).filter(el=>el?.matches('text,tspan'));});const sizes=text.map(el=>textPointSize(el)*currentOutput().scale).filter(Number.isFinite);if(sizes.length){const same=sizes.every(n=>Math.abs(n-sizes[0])<.01);$('fontSize').value=same?sizes[0].toFixed(1):'';$('fontSize').placeholder=same?'':T('混合');}}
     syncColorControls();renderFontTargets();renderHeatmapControls();renderRichTextControls();renderQuickToolbar();
   }
-  function renderInspector() {
-    inspectorPanel=selectedPanel;
-    renderSelectionProperties();renderFacetSplitControls();
+  function renderChartChoices() {
     const pan=panel(selectedPanel),vi=state().panels[selectedPanel].variant;
-    $('errorDirection').value=state().panels[selectedPanel].errorDirection||'both';renderStatisticalAnnotations();renderAxisControls();renderConditionMatrix();
-    $('barGeometry').hidden=pan.variants[vi].name!=='bar_raw_points';const geometry=state().panels[selectedPanel].geometry||{barWidth:1,groupGap:1};$('barWidth').value=geometry.barWidth;$('groupGap').value=geometry.groupGap;
-    const scale=state().panels[selectedPanel].scales?.[vi]?.[selected[0]];if(scale){for(const [id,key]of [['scaleCalibration','calibration'],['scaleLength','length'],['scalePosition','position'],['scaleThickness','thickness'],['scaleFontSize','size'],['scaleAlpha','alpha']])$(id).value=scale[key];$('scaleBold').checked=scale.bold;$('scaleBackground').checked=scale.background;}
     const current=pan.variants[vi];$('sizes').replaceChildren();
     const sizeState=i=>{if(state().panels[selectedPanel].locked)throw Error(T('小图已锁定'));const v=pan.variants[i],span=({wide:[1,2],spanWide:[1,2],spanThree:[1,3],spanTall:[2,1],large:[2,2]})[v.size];const next=span?resizePanel(state(),selectedPanel,...span):copy(state());if(span)next.typography||={font:'Arial',size:9};next.panels[selectedPanel].variant=i;return next;};
     pan.variants.forEach((v,i)=>{if(v.name!==current.name)return;let next,error;try{next=sizeState(i);}catch(e){error=e.message;}const b=button('',()=>{if(error)return say(T(error));selected=[];commit(next,T('已切换画布规格'));});b.className='candidate'+(i===vi?' active':'');const text=document.createElement('span');text.textContent=T(sizeNames[v.size||'original'])+` · ${(v.width*25.4/72).toFixed(0)} × ${(v.height*25.4/72).toFixed(0)} mm`;b.setAttribute('aria-label',T('画布 ')+T(sizeNames[v.size||'original']));b.append(preview(editedSvg(selectedPanel,i)),text);if(error)b.title=T(error);b.onmouseenter=()=>{if(next)renderCanvas(next);};b.onmouseleave=()=>renderCanvas();$('sizes').append(b);});
@@ -1891,7 +1919,93 @@ if (typeof document !== 'undefined') (async () => {
       const text=document.createElement('span');text.textContent=(rank===0?T('推荐 · '):`${rank+1} · `)+chartName(v.name);
       const explanation=document.createElement('small'),hint=chartInsight(v.name);explanation.className='candidate-insight';explanation.textContent=hint?T('适合：')+T(hint[0]).replace(/[。.]$/,'')+(StudioI18n.language==='en'?'. ':'。')+T(hint[1]):T('由上游分析流程提供；请结合下方分析记录判断它适合回答的问题。');
       b.append(preview(editedSvg(selectedPanel,i)),text,explanation);$('candidates').append(b);});
-    drawPalettes();
+  }
+  function renderInspectorPreviews() {
+    if(!['explore','palette'].includes(activePane))return;
+    const signature=JSON.stringify([selectedPanel,StudioI18n.language,$('scope').value,$('chartGoal').value,$('topCount').value,selectionGroups(),selectedAnnotations,selectedPanelLabel,project.heatmapRenders?.[selectedPanel+'/'+state().panels[selectedPanel].variant]?.sha256]),cached=inspectorPreviewCache[activePane];
+    if(cached?.state===state()&&cached.project===project&&cached.signature===signature)return;
+    if(activePane==='explore')renderChartChoices();else drawPalettes();
+    inspectorPreviewCache[activePane]={state:state(),project,signature};
+  }
+  let categorySpacingGesture=null,categorySpacingFrame=0,categorySpacingCache=null;
+  function categorySpacingInspection(id=selectedPanel,s=state()){
+    const p=s.panels[id],vi=p?.variant;if(!p||typeof StudioGroupSpacing==='undefined')return {available:false,reason:'unavailable-category-geometry'};
+    const pos=layout(s).positions.find(value=>value.id===id),flow=pos&&fittedVariant(pos,s),cached=categorySpacingCache;
+    if(cached?.owner===project&&cached.state===s&&cached.id===id&&cached.vi===vi&&cached.flow===flow)return cached.info;
+    const svg=editedSvg(id,vi,s,false,flow,true),info=StudioGroupSpacing.inspect(svg,{orders:groupSpacingOrders(id,s)}),locked=new Set(p.lockedElements?.[vi]||[]);
+    if(info.available){const plan=StudioGroupSpacing.plan(info,p.groupSpacing?.factor??1);if(!plan.available)Object.assign(info,{available:false,reason:plan.reason});}
+    if(info.available&&info.axes.some(axis=>axis.groups.some(group=>group.nodes.some(node=>[node,...node.querySelectorAll('[data-key]')].some(el=>locked.has(el.getAttribute('data-key')))))))Object.assign(info,{available:false,reason:'locked-category-element'});
+    categorySpacingCache={owner:project,state:s,id,vi,flow,info};return info;
+  }
+  function categorySpacingMessage(info,requested,actual){
+    if(!info.available)return T(({'existing-bar-layout':'此柱形图的组间距位于下方“柱形布局”。','locked-category-element':'组内有已锁定元素，请先解锁。','insufficient-group-space':'当前图没有足够空间调整组间距，请加宽小图。'})[info.reason]||'当前图无法可靠识别独立类别组，不能调整组间距。');
+    if(Number.isFinite(actual)&&Math.abs(actual-requested)>.005)return T('实际间距 {0}%（设置 {1}%）；已保留组间安全距离与轴内边界。',Math.round(actual*100),Math.round(requested*100));
+    return T('100% 为原始间距；整组平移，数据与图形大小保持不变。');
+  }
+  function renderGroupSpacingControls(){
+    if(!$('categorySpacing'))return;
+    const p=state().panels[selectedPanel],info=categorySpacingInspection(),requested=p?.groupSpacing?.factor??1,disabled=original||!!p?.locked||!info.available,live=$('artboard').querySelector(`[data-panel="${selectedPanel}"]`),value=live?.getAttribute('data-studio-group-spacing-actual'),actual=value===null||value===undefined?requested:Number(value);
+    $('categorySpacing').value=requested;$('categorySpacingPercent').value=Math.round(requested*100);
+    for(const id of ['categorySpacing','categorySpacingPercent'])$(id).disabled=disabled;
+    $('resetGroupSpacing').disabled=original||!!p?.locked||!p?.groupSpacing;
+    $('categorySpacingStatus').textContent=original?T('返回编辑版后调整组间距。'):p?.locked?T('小图已锁定'):categorySpacingMessage(info,requested,actual);
+  }
+  // Only replace the selected panel during a gesture. The surrounding SVG,
+  // pointer handlers, other panels and property controls retain their identity.
+  function previewCategorySpacing(gesture,next){
+    const live=$('artboard').querySelector(`[data-panel="${gesture.id}"]`);if(!live)return;
+    const nextCondition=conditionMatrixHeight(gesture.id,next,gesture.vi);
+    if(Math.abs(nextCondition-(gesture.pos.conditionHeight||0))>.01){
+      renderCanvas(next);const current=$('artboard').querySelector(`[data-panel="${gesture.id}"]`),actual=Number(current?.getAttribute('data-studio-group-spacing-actual')??next.panels[gesture.id].groupSpacing.factor),info={...gesture.info,available:current?.getAttribute('data-studio-group-spacing-available')!=='false',reason:current?.getAttribute('data-studio-group-spacing-reason')||gesture.info.reason};gesture.lastPreview={factor:next.panels[gesture.id].groupSpacing.factor,actual,info};$('categorySpacingStatus').textContent=categorySpacingMessage(info,next.panels[gesture.id].groupSpacing.factor,actual);return;
+    }
+    const pos=gesture.pos,vi=gesture.vi,v=gesture.flow||panel(gesture.id).variants[vi],svg=editedSvg(gesture.id,vi,next,false,gesture.flow),fitPos={...pos,height:pos.height-(pos.statisticsBand||0)-(pos.conditionHeight||0)},fitted=!next.panels[gesture.id].locked&&fitPlot(svg,v,fitPos,gesture.margins);
+    applyElementOffsets(svg,gesture.id,vi,next,fitted?1:v.viewBox[2]/v.width);
+    const titleShift=(pos.statisticsFirstTop||0)-(Number(svg.getAttribute('data-stat-first-header'))||0);if(!fitted&&titleShift>0)for(const title of svg.querySelectorAll('[data-stat-facet-title]'))translateStatisticalElement(svg,title,-titleShift*v.viewBox[2]/v.width);
+    namespace(svg);for(const name of ['x','y','width','data-panel','overflow']){const value=live.getAttribute(name);if(value!==null)svg.setAttribute(name,value);}
+    svg.setAttribute('height',fitted?fitPos.height:Number(svg.getAttribute('viewBox').split(/\s+/)[3])*v.width/v.viewBox[2]);
+    for(const key of selected)svg.querySelector(`[data-key="${key}"]`)?.classList.add('chosen');
+    for(const el of svg.querySelectorAll('[id*="studio-bar-"] path,circle,ellipse,rect'))if(!el.closest('defs'))el.style.pointerEvents='all';
+    live.replaceWith(svg);zoomView?.refreshSelection?.();
+    const actual=Number(svg.getAttribute('data-studio-group-spacing-actual')??next.panels[gesture.id].groupSpacing.factor),available=svg.getAttribute('data-studio-group-spacing-available')!=='false',info={...gesture.info,available,reason:svg.getAttribute('data-studio-group-spacing-reason')||gesture.info.reason};gesture.lastPreview={factor:next.panels[gesture.id].groupSpacing.factor,actual,info};$('categorySpacingStatus').textContent=categorySpacingMessage(info,next.panels[gesture.id].groupSpacing.factor,actual);
+  }
+  function cancelCategorySpacing(repaint=false){
+    if(categorySpacingFrame)cancelAnimationFrame(categorySpacingFrame);categorySpacingFrame=0;const gesture=categorySpacingGesture;categorySpacingGesture=null;
+    if(repaint&&gesture?.owner===project)renderCanvas();if(repaint)renderGroupSpacingControls();
+  }
+  function categorySpacingCurrent(gesture){return gesture&&gesture.owner===project&&gesture.state===state()&&gesture.id===selectedPanel&&gesture.vi===state().panels[gesture.id]?.variant&&!state().panels[gesture.id]?.locked&&!original;}
+  function prepareCategorySpacing(){
+    if(categorySpacingCurrent(categorySpacingGesture))return categorySpacingGesture;
+    cancelCategorySpacing();const s=state(),p=s.panels[selectedPanel],info=categorySpacingInspection();if(original||p?.locked||!info.available)return null;
+    const pos=layout(s).positions.find(value=>value.id===selectedPanel);if(!pos)return null;
+    return categorySpacingGesture={owner:project,state:s,id:selectedPanel,vi:p.variant,pos,flow:fittedVariant(pos,s),info,margins:{left:60,right:18,top:Math.max(52,...s.order.map(id=>annotationFirstTopHeight(id,s)+44)),bottom:36}};
+  }
+  function queueCategorySpacing(value){
+    const factor=Number(value),gesture=prepareCategorySpacing();if(!gesture||!Number.isFinite(factor)||factor<.5||factor>1.25)return;
+    gesture.factor=factor;$('categorySpacing').value=factor;$('categorySpacingPercent').value=Math.round(factor*100);
+    if(categorySpacingFrame)return;categorySpacingFrame=requestAnimationFrame(()=>{categorySpacingFrame=0;if(!categorySpacingCurrent(gesture)){cancelCategorySpacing(true);return;}const next=copy(gesture.state);next.panels[gesture.id].groupSpacing={factor:gesture.factor};previewCategorySpacing(gesture,next);});
+  }
+  function finishCategorySpacing(value){
+    const factor=Number(value),gesture=categorySpacingGesture||prepareCategorySpacing();if(!gesture)return renderGroupSpacingControls();
+    const valid=categorySpacingCurrent(gesture);cancelCategorySpacing();if(!valid){renderCanvas();renderGroupSpacingControls();return;}
+    if(!Number.isFinite(factor)||factor<.5||factor>1.25){renderCanvas();renderGroupSpacingControls();say(T('组间距应为 50%–125%。'));return;}
+    if(Math.abs((gesture.state.panels[gesture.id].groupSpacing?.factor??1)-factor)<1e-8){renderCanvas();renderGroupSpacingControls();return;}
+    const next=copy(gesture.state);next.panels[gesture.id].groupSpacing={factor};if(gesture.lastPreview?.factor!==factor)previewCategorySpacing(gesture,next);if(gesture.lastPreview?.info.available===false){renderCanvas();renderGroupSpacingControls();say(categorySpacingMessage(gesture.lastPreview.info,factor,1));return;}commit(next,T('已调整组间距；可撤销'));
+  }
+  function bindCategorySpacingControls(){
+    const range=$('categorySpacing'),number=$('categorySpacingPercent');if(!range||!number)return;
+    range.oninput=()=>queueCategorySpacing(range.value);range.onchange=()=>finishCategorySpacing(range.value);range.onpointercancel=()=>cancelCategorySpacing(true);
+    number.oninput=()=>{if(number.validity.valid)queueCategorySpacing(Number(number.value)/100);};number.onchange=()=>finishCategorySpacing(Number(number.value)/100);
+    for(const input of [range,number])input.onkeydown=event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();cancelCategorySpacing(true);}else if(event.key==='Enter'){event.preventDefault();finishCategorySpacing(input===number?Number(number.value)/100:range.value);}};
+    $('resetGroupSpacing').onclick=()=>{cancelCategorySpacing();if(original||state().panels[selectedPanel]?.locked)return;const next=copy(state());delete next.panels[selectedPanel].groupSpacing;commit(next,T('已恢复原始组间距'));};
+  }
+  function renderInspector() {
+    inspectorPanel=selectedPanel;
+    renderSelectionProperties();renderFacetSplitControls();
+    const pan=panel(selectedPanel),vi=state().panels[selectedPanel].variant;
+    $('errorDirection').value=state().panels[selectedPanel].errorDirection||'both';renderStatisticalAnnotations();renderAxisControls();renderConditionMatrix();
+    $('barGeometry').hidden=pan.variants[vi].name!=='bar_raw_points';const geometry=state().panels[selectedPanel].geometry||{barWidth:1,groupGap:1};$('barWidth').value=geometry.barWidth;$('groupGap').value=geometry.groupGap;renderGroupSpacingControls();
+    const scale=state().panels[selectedPanel].scales?.[vi]?.[selected[0]];if(scale){for(const [id,key]of [['scaleCalibration','calibration'],['scaleLength','length'],['scalePosition','position'],['scaleThickness','thickness'],['scaleFontSize','size'],['scaleAlpha','alpha']])$(id).value=scale[key];$('scaleBold').checked=scale.bold;$('scaleBackground').checked=scale.background;}
+    renderInspectorPreviews();
     $('dataInfo').replaceChildren();
     const dataNote=document.createElement('p');dataNote.className='muted';dataNote.textContent=pan.table?T('源数据快照；在“数据表”中编辑。'):T('未嵌入原始表；下方仅显示已有配方与分析。');$('dataInfo').append(dataNote);
     if(pan.table?.rows){const wrap=document.createElement('div');wrap.className='table-scroll';const table=document.createElement('table');for(const [i,row]of pan.table.rows.slice(0,101).entries()){const tr=document.createElement('tr');for(const value of row){const td=document.createElement(i===0?'th':'td');td.textContent=String(value);tr.append(td);}table.append(tr);}wrap.append(table);$('dataInfo').append(wrap);}
@@ -1957,7 +2071,7 @@ if (typeof document !== 'undefined') (async () => {
     if(!previewState?.order)previewState=state();
     cancelQueuedZoom({preserveControl:true});
     clearTimeout(reflowTimer);
-    if(previewState===state()&&localEngine){const owner=project,snapshot=state();if(layout(snapshot).positions.some(pos=>{const spec=reflowSpec(pos,snapshot);return spec&&!fittedVariant(pos,snapshot);}))reflowTimer=setTimeout(async()=>{try{say(T('正在校准绘图区…'));await ensureReflows(snapshot);if(project===owner&&state()===snapshot){renderCanvas();persist();say(T('绘图区已对齐'));}}catch(error){say(T('绘图区重排未完成：')+error.message);}},120);}
+    if(previewState===state()&&localEngine&&engineConnection==='connected'){const owner=project,snapshot=state();if(layout(snapshot).positions.some(pos=>{const spec=reflowSpec(pos,snapshot);return spec&&!fittedVariant(pos,snapshot);}))reflowTimer=setTimeout(async()=>{try{say(T('正在校准绘图区…'));await ensureReflows(snapshot);if(project===owner&&state()===snapshot){renderCanvas();persist();say(T('绘图区已对齐'));}}catch(error){say(T('绘图区重排未完成：')+error.message);}},120);}
     const svg=composite(original,false,previewState),l=layout(previewState);$('artboard').replaceChildren(svg);
     for(const el of svg.querySelectorAll('[id*="studio-bar-"] path,circle,ellipse,rect'))if(!el.closest('defs')&&!el.closest('[data-editor-guides]'))el.style.pointerEvents='all';
     const output=exportGeometry(l.width,l.height,previewState.exportSettings),widthPx=output.widthPt*96/72,heightPx=output.heightPt*96/72,fit=$('zoom').value==='fit',zoom=fit?previewFitZoom(widthPx,heightPx):clampPreviewZoom(+$('zoom').value);
@@ -2147,11 +2261,11 @@ if (typeof document !== 'undefined') (async () => {
     const g=gridFor(state()),p=g.places[selectedPanel];$('rows').value=g.rows;$('targetRow').value=p.row+1;$('targetCol').value=p.col+1;$('rowSpan').value=p.rs;$('colSpan').value=p.cs;
     syncCanvasModes();
     $('undo').disabled=history.index===0;$('redo').disabled=history.index===history.states.length-1;
-    $('compare').textContent=original?T('返回编辑版'):T('原始外观');
+    $('compare').textContent=original?T('返回编辑版'):T('原始外观');renderGroupSpacingControls();
     $('panels').replaceChildren();visualPanelOrder(state()).forEach((id,i)=>{const b=button('',event=>{panelSelection=event?.shiftKey?(panelSelection.includes(id)?panelSelection.filter(x=>x!==id):[...panelSelection,id]):[id];selectedPanel=id;selected=[];selectedPanelLabel=null;$('scope').value='panel';activePane='explore';render();});b.className='panel-button'+(id===selectedPanel||panelSelection.includes(id)?' active':'');b.setAttribute('aria-label',T('选择面板 ')+(i+1));b.draggable=true;b.ondragstart=()=>{dragging=id;layoutMode=true;renderCanvas();};b.ondragend=()=>{if(dragging){dragging=null;renderCanvas();}};b.ondragover=e=>e.preventDefault();b.ondrop=e=>{e.preventDefault();if(dragging){const pos=gridFor(state()).places[id],source=dragging;dragging=null;commit(moveWithSizes(state(),source,pos.row,pos.col),T('已交换小图'));}};const n=document.createElement('b');n.textContent=String(i+1).padStart(2,'0');const name=document.createElement('span');name.textContent=StudioI18n.panelName(panel(id))+(state().panels[id].locked?' 🔒':'')+((state().panelGroups||[]).some(g=>g.includes(id))?' ⛓':'');b.append(n,name);$('panels').append(b);});
     $('versions').replaceChildren();for(const saved of checkpoints)$('versions').append(button(saved.name,()=>{selected=[];commit(saved.state,T('已恢复版本 ')+saved.name);}));
-    renderMasters();renderCanvas();renderInspector();renderRecommendations();showPane(activePane);renderHeatmapControls();
-    ensureHeatmapMetadata().catch(()=>{});
+    renderMasters();renderCanvas();renderInspector();renderRecommendations();showPane(activePane,false);renderHeatmapControls();
+    renderConnectionNotice();ensureHeatmapMetadata().catch(()=>{});
   }
   function download(blob,name) {const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
   function svgText(){return new XMLSerializer().serializeToString(composite(false,true));}
@@ -2207,10 +2321,11 @@ if (typeof document !== 'undefined') (async () => {
   $('textAlign').onchange=()=>updateStyle('text-anchor',$('textAlign').value,'text');
   $('overlayAlign').onchange=()=>{const next=copy(state());for(const a of next.overlays||[])if(selectedAnnotations.includes(a.id)&&!a.locked&&a.type==='text')a.align=$('overlayAlign').value;commit(next,T('已更新标注'));};
   document.querySelectorAll('[data-align-objects]').forEach(button=>button.onclick=()=>alignSelectedObjects(button.dataset.alignObjects));
-  $('scope').onchange=()=>{drawPalettes();renderRecommendations();renderFontTargets();};$('textRole').onchange=()=>{renderFontTargets();say(T('文字类别已选择，下一次文字样式操作将使用此范围。'));};
+  $('scope').onchange=()=>{drawColorSwatches();renderInspectorPreviews();renderRecommendations();renderFontTargets();};$('textRole').onchange=()=>{renderFontTargets();say(T('文字类别已选择，下一次文字样式操作将使用此范围。'));};
   document.querySelectorAll('[data-tab]').forEach(el=>{el.onclick=()=>showPane(el.getAttribute('data-tab'));});
   for(const id of ['barWidth','groupGap']){$(id).oninput=()=>{if(state().panels[selectedPanel].locked)return;const next=copy(state());next.panels[selectedPanel].geometry={barWidth:+$('barWidth').value,groupGap:+$('groupGap').value};renderCanvas(next);};$(id).onchange=()=>{const next=copy(state());next.panels[selectedPanel].geometry={barWidth:+$('barWidth').value,groupGap:+$('groupGap').value};commit(next,T('已调整柱宽和组间距'));};}
   $('resetBars').onclick=()=>{const next=copy(state());delete next.panels[selectedPanel].geometry;commit(next,T('已恢复自动柱形布局'));};
+  bindCategorySpacingControls();
   function syncColorControls(){
     const value=$('color').value.toUpperCase();$('colorHex').value=value;
     for(const b of document.querySelectorAll('.color-swatches button'))b.setAttribute('aria-pressed',String(b.title===value));
@@ -2325,18 +2440,20 @@ if (typeof document !== 'undefined') (async () => {
   for(const id of ['overlayFont','overlaySize','overlayColor','overlayStroke','overlayOpacity','overlayFill','overlayBold'])$(id).onchange=()=>$('applyOverlay').click();
   for(const [id,value]of [['lockOverlay',true],['unlockOverlay',false]])$(id).onclick=()=>{const next=copy(state());for(const a of next.overlays||[])if(selectedAnnotations.includes(a.id))a.locked=value;commit(next,T(value?'已锁定所选内容':'已解锁所选内容'));};
   $('deleteOverlay').onclick=()=>{const next=copy(state());next.overlays=(next.overlays||[]).filter(a=>!selectedAnnotations.includes(a.id)||a.locked);commit(next,T('已删除未锁定标注'));};
-  $('chartGoal').onchange=()=>render();$('topCount').onchange=()=>render();
+  $('chartGoal').onchange=renderInspectorPreviews;$('topCount').onchange=renderInspectorPreviews;
   const templatePreviews=JSON.parse($('templatePreviews').textContent);
   const templateStarters=JSON.parse($('templateStarters').textContent);
-  let catalogueCategory='current',catalogueStartMode=false;
+  let catalogueCategory='current',catalogueStartMode=false,catalogueSearchTimer=null;
+  function chartLibraryNames(available,query){return (!query&&catalogueCategory==='current'?[...available.keys()]:[...new Set([...available.keys(),...Object.keys(StudioDiscovery),...StudioCatalogue.names])].filter(name=>query||StudioCatalogue.category(name)===catalogueCategory)).filter(name=>!catalogueStartMode||templateStarters[name]).filter(name=>name!=='blank_canvas').filter(name=>!query||[name,chartName(name),...Object.values(StudioDiscovery[name]||{}).flat()].join(' ').toLocaleLowerCase().includes(query));}
   function renderChartLibrary(){
+    clearTimeout(catalogueSearchTimer);
     const pan=panel(selectedPanel),ranked=StudioCatalogue.rank(pan,$('chartGoal').value),available=new Map(ranked.map(x=>[x.v.name,x]));$('chartCategories').replaceChildren();
     const categories={...(catalogueStartMode?{}:{current:[T('当前数据可用'),T('当前数据可用')]}),...StudioCatalogue.labels};
-    for(const [key,names]of Object.entries(categories)){const b=button(names[StudioI18n.language==='en'?1:0],()=>{catalogueCategory=key;renderChartLibrary();});b.setAttribute('aria-pressed',String(catalogueCategory===key));$('chartCategories').append(b);}
+    for(const [key,names]of Object.entries(categories)){const b=button(names[StudioI18n.language==='en'?1:0],()=>{catalogueCategory=key;$('chartSearch').value='';renderChartLibrary();});b.setAttribute('aria-pressed',String(!$('chartSearch').value.trim()&&catalogueCategory===key));$('chartCategories').append(b);}
     const query=$('chartSearch').value.trim().toLocaleLowerCase(),language=StudioI18n.language==='en'?'en':'zh';
-    $('allCharts').replaceChildren();const names=(catalogueCategory==='current'?[...available.keys()]:[...new Set([...available.keys(),...Object.keys(StudioDiscovery),...StudioCatalogue.names])].filter(name=>StudioCatalogue.category(name)===catalogueCategory)).filter(name=>!catalogueStartMode||templateStarters[name]).filter(name=>name!=='blank_canvas').filter(name=>!query||[name,chartName(name),...Object.values(StudioDiscovery[name]||{}).flat()].join(' ').toLocaleLowerCase().includes(query));
+    $('allCharts').replaceChildren();const names=chartLibraryNames(available,query);
     for(const name of names){const entry=StudioDiscovery[name]?.[StudioI18n.language],candidate=available.get(name),card=document.createElement('article');card.className='catalogue-card';const heading=document.createElement('h3');heading.textContent=entry?.[0]||chartName(name);card.append(heading);const badge=document.createElement('span');badge.className='preview-badge';badge.textContent=T(candidate?'当前数据':templatePreviews[name]?'示例数据':'样式示意');card.append(badge);
-      if(candidate){const choose=button('',guard(async()=>{$('chartLibrary').close();await activateVariant(candidate.i);}));choose.className='chart-choice';choose.setAttribute('aria-label',T('选择样式：')+chartName(name));choose.append(preview(editedSvg(selectedPanel,candidate.i)));choose.disabled=state().panels[selectedPanel].locked;card.append(choose);}else{const sample=templatePreviews[name]||StudioCatalogue.schematic(name);if(sample){const thumb=preview(sanitize(sample));thumb.classList.add('template-thumbnail');card.append(thumb);}if(templateStarters[name]){const start=button(T('使用示例开始'),guard(async()=>{const destination=selectedPanel,projectId=project.id;start.disabled=true;try{const starter=templateStarters[name];const response=await fetch(localEngine.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify(starter)});const result=await response.json();if(!response.ok)throw Error(result.error);if(project.id!==projectId||!state().order.includes(destination))throw Error(T('目标已变化，请重新选择导入位置'));result.panel.name=name;result.panel.provenance='synthetic-template';installAsset(result.panel,destination,null,T('已载入示例；请替换为自己的数据'));$('chartLibrary').close();showPane('data');}finally{start.disabled=false;}}));start.disabled=!localEngine||state().panels[selectedPanel].locked;card.append(start);}else{const unavailable=button(T('查看所需数据'),()=>{description.scrollIntoView({block:'nearest'});description.classList.add('requirements-active');});card.append(unavailable);}}
+      if(candidate){const choose=button('',guard(async()=>{$('chartLibrary').close();await activateVariant(candidate.i);}));choose.className='chart-choice';choose.setAttribute('aria-label',T('选择样式：')+chartName(name));choose.append(preview(editedSvg(selectedPanel,candidate.i)));choose.disabled=state().panels[selectedPanel].locked;card.append(choose);}else{const sample=templatePreviews[name]||StudioCatalogue.schematic(name);if(sample){const thumb=preview(sanitize(sample));thumb.classList.add('template-thumbnail');card.append(thumb);}if(templateStarters[name]){const start=button(T('使用示例开始'),guard(async()=>{const destination=selectedPanel,projectId=project.id;start.disabled=true;try{const starter=templateStarters[name];const response=await engineFetch(localEngine.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify(starter)});const result=await response.json();if(!response.ok)throw Error(result.error);if(project.id!==projectId||!state().order.includes(destination))throw Error(T('目标已变化，请重新选择导入位置'));result.panel.name=name;result.panel.provenance='synthetic-template';installAsset(result.panel,destination,null,T('已载入示例；请替换为自己的数据'));$('chartLibrary').close();showPane('data');}finally{start.disabled=false;}}));start.disabled=!localEngine||state().panels[selectedPanel].locked;card.append(start);}else{const unavailable=button(T('查看所需数据'),()=>{description.scrollIntoView({block:'nearest'});description.classList.add('requirements-active');});card.append(unavailable);}}
       const description=document.createElement('p');description.textContent=(candidate?T('当前数据可用'):T('需要相应数据或计算结果'))+' · '+(entry?entry.slice(1).join(' — '):T('请查看分析记录'));card.append(description);
       if(card.querySelector('svg')){const enlarge=button(T('放大预览'),()=>{$('chartDetailTitle').textContent=heading.textContent;$('chartDetailBadge').textContent=badge.textContent;$('chartDetailDescription').textContent=description.textContent;$('chartDetailArt').replaceChildren(namespace(card.querySelector('svg').cloneNode(true)));$('chartDetail').showModal();});enlarge.className='preview-enlarge';enlarge.setAttribute('aria-label',T('放大预览')+' · '+heading.textContent);card.append(enlarge);}
       $('allCharts').append(card);
@@ -2345,10 +2462,47 @@ if (typeof document !== 'undefined') (async () => {
     if(!names.length){const empty=document.createElement('p');empty.textContent=T('没有匹配的图表，请调整搜索词或类别。');$('allCharts').append(empty);}
   }
   $('closeChartDetail').onclick=()=>$('chartDetail').close();
-  $('chartSearch').oninput=renderChartLibrary;
-  $('moreCharts').onclick=()=>{catalogueStartMode=false;catalogueCategory=panel(selectedPanel).provenance==='blank-canvas'?'distribution':'current';$('chartSearch').value='';renderChartLibrary();$('chartLibrary').showModal();};$('closeCharts').onclick=()=>$('chartLibrary').close();
+  $('chartSearch').oninput=()=>{clearTimeout(catalogueSearchTimer);catalogueSearchTimer=setTimeout(renderChartLibrary,150);};$('chartSearch').onkeydown=e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();renderChartLibrary();}};
+  $('moreCharts').onclick=()=>{catalogueStartMode=false;catalogueCategory=panel(selectedPanel).provenance==='blank-canvas'?'distribution':'current';$('chartSearch').value='';renderChartLibrary();$('chartLibrary').showModal();};$('closeCharts').onclick=()=>$('chartLibrary').close();$('chartLibrary').addEventListener('close',()=>clearTimeout(catalogueSearchTimer));
   let dataDrafts={},dataPage=0,dataTimer=null,dataBusy=false,dataSerial=0;
   const localEngine=$('local-engine')?JSON.parse($('local-engine').textContent):null;
+  let engineConnection='connected',engineRefreshPromise=null;
+  function engineConnectionText(kind=engineConnection){return T(kind==='authorization'?'本机服务已重新启动。工程与数据草稿已保留；请重新连接后继续。':'本机绘图服务连接中断。工程与数据草稿已保留；请打开编辑器服务后重新连接。');}
+  function renderConnectionNotice(){
+    let notice=$('engineConnectionNotice');if(engineConnection==='connected'){if(notice)notice.hidden=true;return;}
+    if(!notice){notice=document.createElement('div');notice.id='engineConnectionNotice';notice.className='engine-connection-notice';notice.setAttribute('role','status');const text=document.createElement('span'),retry=document.createElement('button');text.id='engineConnectionMessage';retry.id='reconnectEngine';retry.type='button';retry.onclick=async()=>{retry.disabled=true;try{await refreshEngineConnection();setEngineConnection('connected');say(T('已重新连接。工程与草稿保持不变，请继续刚才的操作。'));}catch(error){say(error.message);}finally{retry.disabled=false;}};notice.append(text,retry);$('viewport').before(notice);}
+    notice.hidden=false;$('engineConnectionMessage').textContent=engineConnectionText();$('reconnectEngine').textContent=T('重新连接');
+    if($('dataEngineStatus'))$('dataEngineStatus').textContent=engineConnectionText();
+  }
+  function setEngineConnection(kind){engineConnection=kind;renderConnectionNotice();if(kind==='connected'&&$('dataEngineStatus')&&dataRows())$('dataEngineStatus').textContent=T('本机计算已连接 · 数据不会上传到外部服务');}
+  function engineConnectionError(kind){setEngineConnection(kind);const error=new Error(engineConnectionText(kind));error.connection=true;return error;}
+  async function refreshEngineConnection(){
+    if(engineRefreshPromise)return engineRefreshPromise;
+    engineRefreshPromise=(async()=>{
+      if(!localEngine||location.protocol!=='http:'||!['127.0.0.1','localhost','[::1]'].includes(location.hostname))throw engineConnectionError('authorization');
+      let response;try{response=await fetch(new URL('/',location.href).href,{cache:'no-store',credentials:'same-origin'});}catch{throw engineConnectionError('offline');}
+      if(!response.ok)throw engineConnectionError('authorization');
+      const documentCopy=new DOMParser().parseFromString(await response.text(),'text/html');let fresh;try{fresh=JSON.parse(documentCopy.querySelector('#local-engine')?.textContent||'null');}catch{}
+      if(!fresh||typeof fresh.token!=='string'||fresh.token.length<20||fresh.endpoint!=='/api/render'||Object.entries(fresh).some(([key,value])=>key.endsWith('Endpoint')&&!['/api/reflow','/api/analyze','/api/split-facets'].includes(value)))throw engineConnectionError('authorization');
+      localEngine.token=fresh.token;return fresh;
+    })();try{return await engineRefreshPromise;}finally{engineRefreshPromise=null;}
+  }
+  async function engineFetch(endpoint,options){
+    let response;try{response=await fetch(endpoint,options);}catch{throw engineConnectionError('offline');}
+    if(response.status===403&&['/api/render','/api/reflow','/api/analyze','/api/split-facets'].includes(endpoint)){
+      let rejection;try{rejection=await response.clone().json();}catch{}
+      if(rejection?.error==='Local editor authorization required'){
+        const previous=options.headers?.['X-Studio-Token'];if(localEngine.token===previous)await refreshEngineConnection();
+        // Only a newly issued token may retry a refused request. An unchanged
+        // token does not hide Host/Origin rejection, and there is no retry loop.
+        if(localEngine.token===previous)throw engineConnectionError('authorization');
+        try{response=await fetch(endpoint,{...options,headers:{...options.headers,'X-Studio-Token':localEngine.token}});}catch{throw engineConnectionError('offline');}
+        if(response.status===403)throw engineConnectionError('authorization');
+      }
+    }
+    if(response.ok)setEngineConnection('connected');return response;
+  }
+
   let statisticsSession=null,statisticsRequest=0;
   const statisticFieldIds=['statisticsGroup','statisticsValue','statisticsUnit','statisticsFacet','statisticsFilter','statisticsGroupA','statisticsGroupB','statisticsPValue','statisticsResultFacet'];
   function statisticsRows(){return $('statisticsSource').value==='current'?panel(statisticsSession.id).table?.rows:parseDelimited($('statisticsTable').value.trim(),$('statisticsTable').value.includes('\t')?'\t':',');}
@@ -2406,7 +2560,7 @@ if (typeof document !== 'undefined') (async () => {
     try{
       if(dataDrafts[session.id])throw Error(T('请先完成当前数据的更新，再进行统计分析。'));
       const rows=copy(statisticsRows());if(!rows?.length)throw Error(T('请连接有效数据表。'));
-      const response=await fetch(localEngine.analyzeEndpoint||'/api/analyze',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe:session.source.recipe,rows,config})});const result=await response.json();if(!response.ok)throw Error(result.error);
+      const response=await engineFetch(localEngine.analyzeEndpoint||'/api/analyze',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe:session.source.recipe,rows,config})});const result=await response.json();if(!response.ok)throw Error(result.error);
       if(request!==statisticsRequest||statisticsSession!==session||project.id!==session.projectId||selectedPanel!==session.id||!state().order.includes(session.id)||state().panels[session.id].locked||panel(session.id)!==session.source||dataSerial!==session.serial||JSON.stringify(config)!==JSON.stringify(statisticsConfig()))throw Error(T('数据或分析设置已变化，请重新分析。'));
       const next=copy(state()),p=next.panels[session.id];p.statistics={binding,tableKey:session.source.table?.sha256||'',config:result.config,analysis:result.analysis,data_sha256:result.data_sha256,...(binding!=='current'?{inputRows:rows}:{})};delete p.methodChoice;
       const sets=result.analysis.facets||[result.analysis],letters=sets.every(set=>statisticalComparisons(set).letters);p.annotationStyle=session.style==='letters'&&!letters?'p':session.style;clearStatisticalResultEdits(next,session.id);if(!commit(next,T('统计结果与标注已更新')))throw Error(T('统计设置未保存，请检查输入。'));$('statisticsDialog').close();
@@ -2418,7 +2572,7 @@ if (typeof document !== 'undefined') (async () => {
   function refreshDataExport(){const pending=Object.keys(dataDrafts).some(id=>state().order.includes(id));$('export').disabled=pending;$('png').disabled=pending;}
   function renderDataEditor(){
     const pan=panel(selectedPanel);if(!pan)return;const rows=dataRows(),locked=state().panels[selectedPanel]?.locked;
-    $('dataEngineStatus').textContent=!rows?T('此图片没有原始数据表；不能从像素推断实验数据。'):localEngine?T('本机计算已连接 · 数据不会上传到外部服务'):T('独立 HTML 可查看数据；实时重算请用 studio_server.py 启动本机编辑器。');
+    $('dataEngineStatus').textContent=!rows?T('此图片没有原始数据表；不能从像素推断实验数据。'):localEngine?(engineConnection==='connected'?T('本机计算已连接 · 数据不会上传到外部服务'):engineConnectionText()):T('独立 HTML 可查看数据；请使用 Figure Studio 打开工程以更新图形。');
     for(const id of ['addDataRow','importData','recomputeData','addDataColumn'])$(id).disabled=!rows||!localEngine||locked;
     $('discardData').disabled=!dataDrafts[selectedPanel];$('editableData').replaceChildren();refreshDataExport();if(!rows){$('dataPageInfo').textContent='';return;}
     dataPage=Math.max(0,Math.min(dataPage,Math.ceil((rows.length-1)/20)-1));const start=1+dataPage*20,end=Math.min(rows.length,start+20),table=document.createElement('table'),head=document.createElement('tr');
@@ -2430,14 +2584,14 @@ if (typeof document !== 'undefined') (async () => {
   async function recomputeData(){
     if(dataBusy||!localEngine||!dataDrafts[selectedPanel])return;const id=selectedPanel,serial=dataSerial,projectId=project.id,rows=copy(dataDrafts[id]),source=panel(id),oldName=variant(id).name,oldSize=variant(id).size||'original',record=state().panels[id].statistics,statistics=record?.binding==='current'&&!record.stale?record.config:undefined,statisticsSnapshot=JSON.stringify(record);
     if(state().panels[id].locked)return;dataBusy=true;$('dataEditStatus').textContent=T('正在更新图形…');
-    try{const response=await fetch(localEngine.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe:source.recipe,rows,statistics})});const result=await response.json();if(!response.ok)throw Error(result.error);
+    try{const response=await engineFetch(localEngine.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe:source.recipe,rows,statistics})});const result=await response.json();if(!response.ok)throw Error(result.error);
       if(serial!==dataSerial||project.id!==projectId||!state().order.includes(id)||selectedPanel!==id||state().panels[id].locked||JSON.stringify(state().panels[id].statistics)!==statisticsSnapshot)return;
       const asset=result.panel;asset.name=source.name;asset.initialVariant=Math.max(0,asset.variants.findIndex(v=>v.name===oldName&&(v.size||'original')===oldSize));
       const focused=document.activeElement,focus=focused?.dataset.row?{row:focused.dataset.row,column:focused.dataset.column}:null;
       installAsset(asset,id,null,T('数据与图形已更新；可撤销'),true);delete dataDrafts[id];refreshDataExport();persist();
       $('dataEditStatus').textContent=T('已同步重算 · {0} 秒 · 原始版本仍可撤销',result.seconds);
       if(focus)$('editableData').querySelector(`[data-row="${focus.row}"][data-column="${focus.column}"]`)?.focus();
-    }catch(e){if(serial===dataSerial){$('dataEditStatus').textContent=T('尚未应用：')+e.message;say(T('当前图仍对应上次有效数据；请修正数据表。'));}}
+    }catch(e){if(serial===dataSerial){$('dataEditStatus').textContent=T('尚未应用：')+e.message;say(e.connection?e.message:T('当前图仍对应上次有效数据；请修正数据表。'));}}
     finally{dataBusy=false;if(serial!==dataSerial&&dataDrafts[selectedPanel])dataTimer=setTimeout(recomputeData,100);}
   }
   $('addDataRow').onclick=()=>{const rows=copy(dataRows());rows.push(rows[0].map(()=>''));dataPage=Math.floor((rows.length-2)/20);editData(rows);renderDataEditor();};
@@ -2492,7 +2646,7 @@ if (typeof document !== 'undefined') (async () => {
     const id=selectedPanel,source=panel(id),info=facetSplitInfo(source);if(!info||!localEngine||facetSplitBusy||state().panels[id].locked)return;
     if(dataDrafts[id])throw Error(T('请先完成当前数据更新'));
     const snapshot=state(),projectId=project.id,request=++facetSplitRequest;facetSplitBusy=true;renderFacetSplitControls();
-    try{const response=await fetch(localEngine.splitFacetsEndpoint||'/api/split-facets',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe:source.recipe,rows:source.table.rows,...(snapshot.panels[id].statistics?{statistics:snapshot.panels[id].statistics}:{})})}),result=await response.json();if(!response.ok)throw Error(result.error);
+    try{const response=await engineFetch(localEngine.splitFacetsEndpoint||'/api/split-facets',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe:source.recipe,rows:source.table.rows,...(snapshot.panels[id].statistics?{statistics:snapshot.panels[id].statistics}:{})})}),result=await response.json();if(!response.ok)throw Error(result.error);
       if(request!==facetSplitRequest||project.id!==projectId||source!==panel(id)||state()!==snapshot||selectedPanel!==id||state().panels[id]?.locked)return say(T('目标已变化，请重新选择'));
       installFacetAssets(result,id);
     }finally{facetSplitBusy=false;renderFacetSplitControls();}
@@ -2655,7 +2809,7 @@ if (typeof document !== 'undefined') (async () => {
     return state().order.map(id=>{const p=state().panels[id],vi=p.variant,svg=editedSvg(id,vi),v=panel(id).variants[vi],colors=[],roles={},opacity={};
       for(const el of svg.querySelectorAll('[data-key]'))for(const prop of ['fill','stroke']){const c=hex(paint(el,prop));if(c&&chromatic(c)&&!colors.includes(c)){colors.push(c);opacity[c]=parseFloat(el.style.opacity||el.getAttribute('opacity')||'1');}}
       for(const el of svg.querySelectorAll('text')){const role=el.getAttribute('data-role')||'other';if(!roles[role])roles[role]={font:(el.style.fontFamily||el.getAttribute('font-family')||'').replace(/["']/g,''),size:parseFloat(el.style.fontSize||el.getAttribute('font-size'))*v.width/v.viewBox[2],weight:el.style.fontWeight||el.getAttribute('font-weight')};}
-      const scale=Object.values(p.scales?.[vi]||{})[0];return {colors:colors.length<=8?colors:[],opacity,roles,geometry:p.geometry,label:p.label,annotationStyle:p.annotationStyle,annotationLine:p.annotationLine,annotationPFormat:p.annotationPFormat,annotationFont:p.annotationFont,showFacetTitles:p.showFacetTitles,scale};
+      const scale=Object.values(p.scales?.[vi]||{})[0];return {colors:colors.length<=8?colors:[],opacity,roles,geometry:p.geometry,groupSpacing:p.groupSpacing,label:p.label,annotationStyle:p.annotationStyle,annotationLine:p.annotationLine,annotationPFormat:p.annotationPFormat,annotationFont:p.annotationFont,showFacetTitles:p.showFacetTitles,scale};
     });
   }
   function pastePreset(preset){
@@ -2663,6 +2817,7 @@ if (typeof document !== 'undefined') (async () => {
     let skipped=0;
     next.order.forEach((id,index)=>{const profile=preset.profile[index]||preset.profile[0],target=next.panels[id];if(target.locked){skipped++;return;}if(!profile)return;
       if(profile.geometry)target.geometry=copy(profile.geometry);
+      if(profile.groupSpacing)target.groupSpacing=copy(profile.groupSpacing);
       if(profile.annotationFont)target.annotationFont=copy(profile.annotationFont);
       if(profile.annotationPFormat)target.annotationPFormat=profile.annotationPFormat;
       if(profile.showFacetTitles!==undefined)target.showFacetTitles=profile.showFacetTitles;

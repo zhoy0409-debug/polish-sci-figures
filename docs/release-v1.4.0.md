@@ -1,36 +1,38 @@
 # polish-sci-figures v1.4.0
 
-This release brings the expanded three-skill suite and **Figure Studio 0.1.0**, its first Windows desktop editor, into one official product. The skills keep their AI/CLI workflow; the desktop application packages the same local rendering and comparison engine for users who prefer direct editing.
+[中文](release-v1.4.0.md) | [English](release-v1.4.0.en.md)
 
-## Choose a download
+本版将扩展后的三技能套件与首个 Windows 桌面编辑器 **Figure Studio 0.1.0** 合并为同一官方产品入口。原技能保留 AI/CLI 工作流；桌面应用内置同一套本机绘图与比较分析引擎，供希望直接操作图形的用户使用。
 
-All assets belong to the [official v1.4.0 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.0).
+## 选择下载文件
 
-| Asset | Use |
+所有文件均属于 [官方 v1.4.0 发行版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.0)。
+
+| 文件 | 用途 |
 | --- | --- |
-| `polish-sci-figures-Studio-0.1.0-Setup-x64.exe` | Windows 10/11 x64 installer; no separate Python, Codex or account |
-| `polish-sci-figures-Studio-0.1.0-Portable-x64.zip` | The same editor in an extract-and-run folder |
-| `polish-sci-figures-v1.4.0-skill.zip` | Self-contained skill upload for compatible AI hosts |
-| `sci-figure-suite-v1.4.0.zip` | Complete source CLI and the three focused skill folders |
+| `polish-sci-figures-Studio-0.1.0-Setup-x64.exe` | Windows 10/11 x64 安装包；无需另行安装 Python、Codex 或注册账号 |
+| `polish-sci-figures-Studio-0.1.0-Portable-x64.zip` | 同一编辑器的便携版，完整解压后运行 |
+| `polish-sci-figures-v1.4.0-skill.zip` | 可向兼容 AI 宿主上传的自包含技能包 |
+| `sci-figure-suite-v1.4.0.zip` | 完整源码 CLI 与三个各有分工的技能目录 |
 
-See the [Chinese](../desktop/QUICKSTART.zh-CN.md) or [English](../desktop/QUICKSTART.en.md) desktop guide, or [AI platform installation](platform-installation.md).
+参见桌面版 [中文入门](../desktop/QUICKSTART.zh-CN.md)、[English quick start](../desktop/QUICKSTART.en.md)，或 [AI 平台安装指南](platform-installation.md)。
 
-## Graphical and analytical additions
+## 新增图形与分析能力
 
-- **218 editable starters:** 191 table-driven gallery layouts, 15 empirical ROC/PR views and 12 supplied-result ROC layouts. Bilingual input contracts distinguish observations from fitted, resampled or model-explanation results.
-- **Actual source redraw:** current-data candidates, data replacement and multiple physical canvases use the same renderers. Supported templates expose true axis limits, signed category spacing and data-coordinate reference lines.
-- **Local comparison analysis:** explicit independent/paired design and experimental-unit roles; Welch, Mann–Whitney, paired t or Wilcoxon comparisons; one Holm family across requested pairs and facets. Existing results can be connected with declared correction status.
-- **Editable presentation:** multi-selection, alignment, groups/locks, keyboard positioning, text and shapes, inline character formatting, panel labels and calibrated scale bars. Supported heatmaps offer numeric cell labels and normalized continuous palettes.
-- **Flexible assembly:** spanning slots, added rows/columns, spacing controls, multiple projects and transferable appearance presets. A supported facet comparison can split into consecutive independent panels while retaining the original comparison family.
-- **Reversible updates:** undo/redo, named versions, browser autosaves and portable project JSON. Current-data statistics recompute after valid changes; linked external or split-facet results become stale when their chart data changes.
-- **Local desktop delivery:** bundled runtime, stable loopback origin, single-instance launcher, bilingual guides and a user-clicked official project link. SVG and PNG export remain available, with PNG defaulting to 600 dpi.
+- **218 个可编辑模板起点：** 191 个表格驱动图库模板、15 个基于观察数据的 ROC/PR 展示，以及 12 个已有 ROC 结果展示。中英双语输入合同区分观察数据、拟合结果、重采样结果与模型解释结果。
+- **真实数据重绘：** 当前数据候选、数据替换和不同物理尺寸的画布共用渲染器。支持的模板可调整真实坐标轴范围、允许正负值的首组间距，以及绑定数据坐标的参考线。
+- **本机比较分析：** 明确指定独立或配对设计及实验单位，支持 Welch、Mann–Whitney、配对 *t* 或 Wilcoxon 比较；本次请求的组间与分面内比较统一进行 Holm 校正。已有结果可在声明校正状态后接入。
+- **可编辑的展示：** 多选、对齐、分组与锁定、方向键定位、文字与形状、就地字符格式、面板编号及校准比例尺。支持的热图可显示单元格真实数值，并按原归一化尺度切换连续配色。
+- **灵活组图：** 跨格、增添行列、间距控制、多工程和可复用外观预设。支持的分面比较可拆为连续排列的独立面板，同时保留原比较家族。
+- **可逆更新：** 撤销与重做、命名版本、浏览器自动保存和可移植工程 JSON。当前数据绑定的统计分析随有效数据修改重算；外部结果或拆分分面的关联结果会在对应图表数据改变后失效。
+- **本机桌面交付：** 内置运行环境、稳定本机服务地址、单实例启动器、双语指南，以及仅在用户点击时打开的官方项目链接。支持 SVG 和 PNG 导出，PNG 默认 600 dpi。
 
-The original microscopy standardization, raw-data workbenches, fixed-canvas checks, scientific text checks and source-portability checks remain part of the suite. Result templates do not fit an unspecified upstream model, and the editor does not rewrite returned changes into Python/R source automatically.
+原有显微图像规范化、原始数据分析工作台、固定画布检查、科学文本检查和源码可移植性检查继续保留。结果类模板不会拟合未指定的上游模型，编辑器也不会自动把浏览器修改写回 Python/R 源码。
 
-## Verification and upgrade notes
+## 验证与升级说明
 
-[Validation records](figure-studio-validation.md) distinguish script checks, rendered contact sheets and actual browser cases. The catalogue's contracts and redraw tests are broader than the manual browser review; not every combination of data, label length and output size has been visually approved. The [desktop build guide](../desktop/BUILD.md) describes checks on the actual frozen application, beyond source tests.
+[验证记录](figure-studio-validation.md) 区分脚本检查、渲染总览和实际浏览器场景。图库的输入合同与重绘测试覆盖面大于手工浏览器审查；并非所有数据、标签长度和输出尺寸组合都已视觉验收。[桌面构建说明](../desktop/BUILD.md) 记录了源码测试之外对实际冻结应用的检查。
 
-Back up existing projects as JSON before upgrading. Application settings are under `%LOCALAPPDATA%\Figure Studio`; editable autosaves and the project collection are in browser storage for the saved local origin. Clearing browser site data can remove them. Installation identity and the user-data directory remain stable despite the official shortcut's `polish-sci-figures Studio` branding.
+升级前，请把已有工程下载为 JSON 备份。应用设置位于 `%LOCALAPPDATA%\Figure Studio`；可编辑的自动保存和项目总览位于固定本机地址对应的浏览器存储中，清理网站数据可能删除这些记录。快捷方式更名为 `polish-sci-figures Studio` 后，安装标识和用户数据目录保持不变。
 
-The project remains [MIT-licensed](../LICENSE); packaged dependencies retain their own notices. Official branding is a maintained-source identifier, not DRM. SHA-256 checksums compare file contents and are not a publisher signature. The current Windows packaging process does not code-sign its output.
+项目继续采用 [MIT 许可](../LICENSE)，打包依赖保留各自许可声明。官方品牌用于识别维护来源，不是 DRM。SHA-256 校验值用于核对文件内容，不是发布者签名。当前 Windows 构建流程不对产物进行代码签名。

@@ -12,13 +12,13 @@ def main():
     assert test_tmp.is_relative_to(ROOT.resolve())
     test_tmp.mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(dir=test_tmp) as tmp:
-        base=Path(tmp); archive=build("v1.4.0",base/"dist")
-        assert archive.name=="sci-figure-suite-v1.4.0.zip"
+        base=Path(tmp); archive=build("v1.4.1",base/"dist")
+        assert archive.name=="sci-figure-suite-v1.4.1.zip"
         with zipfile.ZipFile(archive) as handle:
             names=set(handle.namelist())
             for name in (*ROOT_FILES, *SUPPORT_FILES): assert name in names,name
             for skill in SKILL_NAMES: assert f"skills/{skill}/SKILL.md" in names,skill
-            for asset in ("studio.html", "studio.css", "studio.js", "i18n.js", "memory.js", "discovery.js", "library.js", "catalogue.js", "catalogue-previews.json", "gallery-contracts.js", "template-starters.json", "rich-text.js", "rich-text.css", "workspace-layout.js", "workspace-layout.css"):
+            for asset in ("studio.html", "studio.css", "studio.js", "i18n.js", "memory.js", "discovery.js", "library.js", "catalogue.js", "catalogue-previews.json", "gallery-contracts.js", "template-starters.json", "rich-text.js", "rich-text.css", "workspace-layout.js", "workspace-layout.css", "group-spacing.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             for module in ("studio_server.py", "studio_statistics.py", "studio_facets.py"):
                 assert f"skills/polish-sci-figures/scripts/{module}" in names, module
@@ -82,5 +82,5 @@ print(json.dumps({'templates':len(registry.CONTRACTS),'gallery_variants':len(sec
         runtime=subprocess.run([sys.executable,"-c",probe],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         assert runtime.returncode==0,(runtime.stdout,runtime.stderr)
         report=json.loads(runtime.stdout);assert report["templates"]>=190,report
-    print("complete v1.4.0 source release, extracted CLI and bytecode runtime tests passed:",report)
+    print("complete v1.4.1 source release, extracted CLI and bytecode runtime tests passed:",report)
 if __name__=="__main__": main()

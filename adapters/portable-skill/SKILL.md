@@ -33,9 +33,9 @@ Install optional dependencies only for a workflow that requires them, from `suit
 
 | Input or task | Local instructions |
 | --- | --- |
-| Raw CSV/TSV/XLSX, chart choice or statistical analysis | [Data figure workbench](suite/skills/make-sci-data-figures/SKILL.md) |
-| Calibrated microscopy or pathology images | [Scientific image preparation](suite/skills/standardize-sci-images/SKILL.md) |
-| Existing SVG, visual refinement, composition or Studio editing | [Figure polishing and editing](suite/skills/polish-sci-figures/SKILL.md) |
+| Raw CSV/TSV/XLSX, chart choice or statistical analysis | [Data figure workbench](suite/skills/make-sci-data-figures/WORKFLOW.md) |
+| Calibrated microscopy or pathology images | [Scientific image preparation](suite/skills/standardize-sci-images/WORKFLOW.md) |
+| Existing SVG, visual refinement, composition or Studio editing | [Figure polishing and editing](suite/skills/polish-sci-figures/WORKFLOW.md) |
 
 These are local instructions, not separately installed skills. A companion-skill reference in a nested document means reading the corresponding bundled document above. Resolve its `scripts/`, `references/` and `assets/` paths relative to that document. Run commands beginning with `skills/` from `suite/`; resolve user input and output paths before changing working directory. Save task outputs in the user's workspace, not in the installed skill directory.
 
@@ -48,11 +48,13 @@ Confirm experimental design and units before inference. Choose methods for the r
 
 ## Deliver editable outputs
 
-Generate an optional self-contained editing page:
+Generate an optional self-contained editing page from the final reviewed SVG:
 
 ```bash
 python suite/sci_figures.py studio FIGURE_OR_BUNDLE --out figure-studio.html
 ```
+
+When retaining a candidate bundle, pass `--view SELECTED_VARIANT` using the exact filename stem of the approved SVG (for example, `--view estimation_graphic`). Never assume the bundle's default is the final choice. A single panel defaults to one column; use `--columns` only for an intentional layout. Open the delivered HTML and verify that its initial chart, labels, units and styling match the final SVG/PNG, and that there are no unintended empty grid cells. If the final SVG was edited after generating the bundle, regenerate the matching candidate or package that reviewed SVG directly; do not hand off an older version.
 
 The HTML supports offline appearance and layout editing. Data recomputation needs the local service, with the browser and service on the same accessible host:
 

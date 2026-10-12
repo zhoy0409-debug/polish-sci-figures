@@ -1,6 +1,9 @@
 """Regression coverage for portable packaging and scientific provenance boundaries."""
 import hashlib
 import json
+import re
+import subprocess
+import sys
 from pathlib import Path
 import tempfile
 import unittest
@@ -41,6 +44,71 @@ class StudioTests(unittest.TestCase):
         self.assertEqual(p['panels'][0]['table']['rows'][1],['Control','1'])
         (self.root/'data.csv').write_text('group,value\nControl,100\n')
         with self.assertRaisesRegex(ValueError,'hash changed'):build_project([self.root],'Test')
+
+    def test_default_columns_follow_panel_count_and_explicit_override(self):
+        self.assertEqual(build_project([self.svg], 'Single')['initialState']['columns'], 1)
+        self.assertEqual(build_project([self.svg, self.svg], 'Pair')['initialState']['columns'], 2)
+        self.assertEqual(build_project([self.svg] * 3, 'Three')['initialState']['columns'], 2)
+        self.assertEqual(build_project([self.svg], 'Single', columns=2)['initialState']['columns'], 2)
+        self.assertEqual(build_project([self.svg] * 3, 'Three', columns=1)['initialState']['columns'], 1)
+        for columns in (0, 7):
+            with self.assertRaisesRegex(ValueError, 'Columns'):
+                build_project([self.svg], 'Invalid', columns=columns)
+
+    def test_explicit_initial_view_keeps_candidates_data_and_provenance(self):
+        self.bundle()
+        for name in ('estimation_graphic', 'raw_points_estimate_ci'):
+            (self.root / (name + '.svg')).write_text(SIMPLE, encoding='utf-8')
+        before = {p.name: p.read_bytes() for p in self.root.iterdir()}
+        default = build_project([self.root], 'Default')['panels'][0]
+        self.assertEqual(default['variants'][default['initialVariant']]['name'], 'raw_points_estimate_ci')
+        project = build_project([self.root], 'Chosen', view='estimation_graphic')
+        chosen = project['panels'][0]
+        self.assertEqual(chosen['variants'][chosen['initialVariant']]['name'], 'estimation_graphic')
+        self.assertEqual(project['initialState']['panels']['panel-0']['variant'], chosen['initialVariant'])
+        self.assertEqual(chosen['recipe']['studio_view'], 'estimation_graphic')
+        for key in ('variants', 'analysis', 'table'):
+            self.assertEqual(chosen[key], default[key])
+        self.assertEqual(before, {p.name: p.read_bytes() for p in self.root.iterdir()})
+        self.assertEqual(build_project([self.svg], 'SVG', view='panel')['panels'][0]['initialVariant'], 0)
+        with self.assertRaisesRegex(ValueError, 'unknown initial view.*Available views:'):
+            build_project([self.root], 'Invalid', view='unknown_view')
+        with self.assertRaisesRegex(ValueError, 'unknown initial view'):
+            build_project([self.svg], 'Invalid SVG', view='estimation_graphic')
+        # Gallery data changes and exact-size redraws must keep the chosen view.
+        recipe = json.loads((self.root / 'figure_recipe.json').read_text())
+        recipe.update(family='gallery', parameters={'view': 'raw_points_estimate_ci'})
+        (self.root / 'figure_recipe.json').write_text(json.dumps(recipe))
+        selected = build_project([self.root], 'Gallery', view='estimation_graphic')['panels'][0]
+        self.assertEqual(selected['recipe']['parameters']['view'], 'estimation_graphic')
+
+    def test_cli_initial_view_and_column_forwarding(self):
+        self.bundle()
+        for name in ('estimation_graphic', 'raw_points_estimate_ci'):
+            (self.root / (name + '.svg')).write_text(SIMPLE, encoding='utf-8')
+        root = Path(__file__).resolve().parents[3]
+        unified = [sys.executable, str(root / 'sci_figures.py'), 'studio']
+        direct = [sys.executable, str(Path(__file__).with_name('figure_studio.py'))]
+        for index, (command, count, extra, columns) in enumerate((
+                (unified, 1, [], 1), (unified, 1, ['--columns', '2'], 2),
+                (unified, 2, [], 2), (unified, 2, ['--columns', '1'], 1),
+                (direct, 1, [], 1))):
+            output = self.root / f'cli-{index}.html'
+            result = subprocess.run([*command, *([str(self.root)] * count), '--view', 'estimation_graphic',
+                                     '--out', str(output), *extra], capture_output=True, text=True, encoding='utf-8')
+            self.assertEqual(result.returncode, 0, result.stderr)
+            payload = re.search(r'<script type="application/json" id="project">(.*?)</script>',
+                                output.read_text(encoding='utf-8'), re.S)
+            project = json.loads(payload.group(1))
+            self.assertEqual(project['initialState']['columns'], columns)
+            for panel in project['panels']:
+                self.assertEqual(panel['variants'][panel['initialVariant']]['name'], 'estimation_graphic')
+        output = self.root / 'unknown.html'
+        result = subprocess.run([*unified, str(self.root), '--view', 'missing', '--out', str(output)],
+                                capture_output=True, text=True, encoding='utf-8')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Available views:', result.stderr)
+        self.assertFalse(output.exists())
 
     def test_candidate_canvas_mismatch_rejected(self):
         self.bundle();(self.root/'wide.svg').write_text(SIMPLE.replace('100','120'))

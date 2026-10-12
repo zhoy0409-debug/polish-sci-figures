@@ -86,7 +86,10 @@ def regenerate(recipe,rows,statistics=None,axes=None):
     import advanced_template_workbench as aw
     import matplotlib.pyplot as plt
     def svg_only(fig,stem):
-        fig.savefig(stem.with_suffix('.svg'),format='svg',metadata={'Date':None});plt.close(fig)
+        output=stem.with_suffix('.svg')
+        fig.savefig(output,format='svg',metadata={'Date':None})
+        output.write_text(wb.embed_category_metadata(output.read_text(encoding='utf-8'),fig),encoding='utf-8')
+        plt.close(fig)
     # This service serializes Matplotlib jobs; the standard command-line exporter is unchanged.
     wb.save_figure=dfw.save_figure=svg_only
     wb.make_gallery=dfw.make_gallery=lambda *args:None

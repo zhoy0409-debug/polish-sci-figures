@@ -31,6 +31,8 @@ WINDOW_ICON = Path('desktop/resources/figure-studio.ico')
 OFFICIAL_PROJECT_URL = 'https://github.com/zhoy0409-debug/polish-sci-figures'
 WINDOW_TITLE = 'Figure Studio · polish-sci-figures'
 LOG = logging.getLogger('figure-studio')
+NUMERIC_THREAD_ENV = ('OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS',
+                      'OMP_NUM_THREADS', 'NUMEXPR_NUM_THREADS')
 
 
 class LaunchError(RuntimeError):
@@ -68,7 +70,17 @@ def write_json(path: Path, value: dict) -> None:
         temporary.unlink(missing_ok=True)
 
 
+def configure_numeric_threads() -> None:
+    # Small interactive figures do not benefit from one BLAS worker per CPU.
+    # Configure before NumPy/SciPy import: their per-worker buffers can otherwise
+    # consume over a gigabyte of committed memory on many-core Windows hosts.
+    # This changes this application's environment only; explicit tuning wins.
+    for name in NUMERIC_THREAD_ENV:
+        os.environ.setdefault(name, '1')
+
+
 def prepare_runtime(data_dir: Path) -> None:
+    configure_numeric_threads()
     data_dir.mkdir(parents=True, exist_ok=True)
     (data_dir / 'logs').mkdir(exist_ok=True)
     cache = data_dir / 'cache' / 'matplotlib'

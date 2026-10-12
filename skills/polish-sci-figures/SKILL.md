@@ -9,11 +9,13 @@ Deliver the near-final figure in one internal pass: establish the claim and fina
 
 Accept everyday requests such as “帮我把这张表画成适合论文的图”. Inspect the input first, present a few suitable candidates with plain-language explanations, and ask only for consequential facts the data cannot establish. Let users make routine appearance changes directly in Studio without another model call; do not require specialist vocabulary or a structured prompt.
 
-## Product entry points (suite v1.4.0)
+## Product entry points (suite v1.4.1)
 
-This skill and Figure Studio are two entry points to the same product. The original AI/CLI workflow remains available; manual editing is optional. Figure Studio 0.1.0 is the official Windows companion editor, not a fourth independently installed skill. Direct users who want an installed editor to the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases): its Windows x64 installer bundles the renderer and local analysis engine, needs no separate Python/Codex installation, account or activation, and works offline. Do not ask those users to set up an agent runtime.
+This skill and Figure Studio are two entry points to the same product. The original AI/CLI workflow remains available; manual editing is optional. Figure Studio 0.1.1 is the official Windows companion editor, not a fourth independently installed skill. Direct users who want an installed editor to the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases): its Windows x64 installer bundles the renderer and local analysis engine, needs no separate Python/Codex installation, account or activation, and works offline. Do not ask those users to set up an agent runtime.
 
 For an AI handoff, generate a self-contained page from reviewed candidate bundles or SVGs using this skill's builder. Offline HTML supports direct layout and appearance editing; current-data regeneration and analysis require the local service. The installed desktop application starts this service automatically. Read [Figure Studio](references/figure_studio.md) for the actual contracts and [human/AI handoff principles](references/human_ai_figure_workflow.md) before returning to a saved project.
+
+The editor must open on the final approved chart. For a candidate directory, pass `--view` with the chosen SVG filename stem, preserve its data and analysis records, and inspect the initial HTML alongside the final image. For an individually edited final SVG, package that exact SVG or update its bundle candidate first. One panel defaults to one column; extra blank cells require an intentional layout. Never substitute the default candidate for the user's final choice.
 
 The suite retains MIT licensing and third-party notices. Official branding identifies the maintained distribution; it is not copy protection. Never add account gates, activation or an online authenticity check as part of ordinary figure delivery.
 

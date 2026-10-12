@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import json
 import logging
 import math
@@ -458,6 +459,49 @@ def finish_axes(fig, ax, ylabel: str) -> None:
     fig.subplots_adjust(left=0.20, right=0.96, bottom=0.20, top=0.82)
 
 
+def tag_category_groups(fig, ax, order, artists) -> None:
+    """Identify complete categorical groups without changing their geometry.
+
+    The editor moves these members horizontally as one group. The numeric axis
+    and any separate effect-estimate axis deliberately remain outside this map.
+    """
+    axis_index = fig.axes.index(ax)
+    groups = []
+    ticks = ax.xaxis.get_major_ticks()
+    for i, (label, (points, errorbar)) in enumerate(zip(order, artists)):
+        prefix = f"studio-category-a{axis_index}-g{i}"
+        members = []
+
+        def tag(artist, suffix):
+            if artist is not None:
+                identifier = f"{prefix}-{suffix}"
+                artist.set_gid(identifier)
+                members.append(identifier)
+
+        tag(points, "points")
+        marker, caps, intervals = errorbar.lines
+        tag(marker, "mean")
+        for j, cap in enumerate(caps):
+            tag(cap, f"cap{j}")
+        for j, interval in enumerate(intervals):
+            tag(interval, "ci" if j == 0 else f"ci{j}")
+        tag(ticks[i].label1, "label")
+        tag(ticks[i].tick1line, "tick")
+        groups.append({"label": str(label), "tick": f"{prefix}-tick", "members": members})
+    metadata = getattr(fig, "_studio_category_groups", {"version": 1, "axes": []})
+    metadata["axes"].append({"axis": f"axes_{axis_index + 1}", "groups": groups})
+    fig._studio_category_groups = metadata
+
+
+def embed_category_metadata(svg: str, fig) -> str:
+    """Append the editor-only membership map to an already-rendered SVG."""
+    metadata = getattr(fig, "_studio_category_groups", None)
+    if metadata is None:
+        return svg
+    payload = html.escape(json.dumps(metadata, ensure_ascii=False, allow_nan=False), quote=False)
+    return svg.replace("</svg>", f'<metadata id="studio-category-groups">{payload}</metadata>\n</svg>')
+
+
 def plot_estimation_graphic(work: pd.DataFrame, group: str, value: str, order: list[str],
                             colors: list[str], ylabel: str, analysis: dict):
     arrays = [work.loc[work[group].astype(str) == g, value].to_numpy(float) for g in order]
@@ -468,17 +512,20 @@ def plot_estimation_graphic(work: pd.DataFrame, group: str, value: str, order: l
     raw_ax = fig.add_subplot(grid[0, 0])
     effect_ax = fig.add_subplot(grid[0, 1])
     rng = np.random.default_rng(RNG_SEED)
+    group_artists = []
     for i, (values, color) in enumerate(zip(arrays, colors)):
-        raw_ax.scatter(i + rng.uniform(-0.13, 0.13, len(values)), values, s=27,
+        points = raw_ax.scatter(i + rng.uniform(-0.13, 0.13, len(values)), values, s=27,
                        color=color, alpha=0.76, edgecolor="white", linewidth=0.35, zorder=3)
         mean = float(np.mean(values))
         low, high = mean_ci(values)
-        raw_ax.errorbar(i, mean, yerr=[[mean - low], [high - mean]], fmt="o",
+        errorbar = raw_ax.errorbar(i, mean, yerr=[[mean - low], [high - mean]], fmt="o",
                         color="#20242A", markerfacecolor="white", markeredgewidth=1.2,
                         markersize=5.8, capsize=4, linewidth=1.3, zorder=5)
+        group_artists.append((points, errorbar))
     raw_ax.set_xticks(range(2), order)
     raw_ax.set_ylabel(ylabel)
     clean_axis(raw_ax)
+    tag_category_groups(fig, raw_ax, order, group_artists)
 
     violin = effect_ax.violinplot([boot], positions=[0], widths=0.72,
                                   showmeans=False, showmedians=False, showextrema=False)
@@ -574,18 +621,21 @@ def plot_points_ci(work: pd.DataFrame, group: str, value: str, order: list[str],
                    ylabel: str, analysis: dict):
     fig, ax = plt.subplots(figsize=FIGSIZE)
     rng = np.random.default_rng(RNG_SEED)
+    group_artists = []
     for i, (g, color) in enumerate(zip(order, colors)):
         vals = work.loc[work[group].astype(str) == g, value].to_numpy(float)
         jitter = rng.uniform(-0.16, 0.16, size=len(vals))
-        ax.scatter(np.full(len(vals), i) + jitter, vals, s=24, alpha=0.72, color=color,
+        points = ax.scatter(np.full(len(vals), i) + jitter, vals, s=24, alpha=0.72, color=color,
                    edgecolor="white", linewidth=0.35, zorder=3)
         mean = np.mean(vals)
         lo, hi = mean_ci(vals)
-        ax.errorbar(i, mean, yerr=[[mean - lo], [hi - mean]], fmt="o", color="#20242A",
+        errorbar = ax.errorbar(i, mean, yerr=[[mean - lo], [hi - mean]], fmt="o", color="#20242A",
                     markerfacecolor="white", markeredgewidth=1.2, markersize=5.5,
                     capsize=4, linewidth=1.25, zorder=5)
+        group_artists.append((points, errorbar))
     ax.set_xticks(range(len(order)), order)
     finish_axes(fig, ax, ylabel)
+    tag_category_groups(fig, ax, order, group_artists)
     add_stat_line(fig, analysis)
     return fig
 
@@ -716,7 +766,7 @@ def save_figure(fig, stem: Path) -> None:
             # Matplotlib leaves spaces at the ends of multi-line path data.
             # Removing them is semantics-preserving and keeps the public
             # artifact friendly to source-control whitespace checks.
-            svg = output.read_text(encoding="utf-8")
+            svg = embed_category_metadata(output.read_text(encoding="utf-8"), fig)
             output.write_text("\n".join(line.rstrip() for line in svg.splitlines()) + "\n", encoding="utf-8")
     plt.close(fig)
 
