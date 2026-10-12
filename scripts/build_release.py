@@ -17,6 +17,7 @@ EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
     "README.en.md",
+    "README.zh-CN.md",
     "docs/figure-studio-validation.md",
     "docs/figure-studio-deletion-and-contour-qa.md",
     "docs/platform-installation.md",

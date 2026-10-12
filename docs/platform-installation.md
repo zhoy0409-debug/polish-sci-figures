@@ -19,7 +19,7 @@ v1.4.0 上传包内含四个 `SKILL.md`，已在真实 Claude 上传中确认被
 | Claude | Customize → Skills → Yours → Add skill → Upload skill，上传上述 ZIP | 开启代码执行；以账户实际可用功能为准 |
 | Claude Code | 解压单入口包，使 `~/.claude/skills/polish-sci-figures/SKILL.md` 存在；也可放在项目 `.claude/skills/` 下 | 本机允许执行 Python，并安装套件所需依赖 |
 | WorkBuddy | 技能 → 添加技能 → 上传技能，上传上述 ZIP | 本机执行权限和 Python 依赖可用；项目技能路径为 `.codebuddy/skills/<name>/SKILL.md` |
-| Codex 等文件夹技能环境 | 将完整源码套件的三个 `skills/` 子目录放入工具配置的技能目录 | 保留三个配套技能并安装 Python 依赖；参见 [首页](../README.md#ai-与命令行工作流) |
+| Codex 等文件夹技能环境 | 将完整源码套件的三个 `skills/` 子目录放入工具配置的技能目录 | 保留三个配套技能并安装 Python 依赖；参见 [产品指南](../README.zh-CN.md#ai-与命令行工作流) |
 
 Claude 上传入口按本次实际界面记录，其他入口依据官方文档核对。首次运行时，技能要求代理先检查现有 Python 和依赖：优先项目虚拟环境，再检查工具提供的运行时，实际导入科学计算包后复用同一个解释器。不能假定系统的 `python` 就是合适版本，也不能假定工具自带 Python 已安装 SciPy。随后检查字体并处理数据，无需用户猜路径或另写检查提示词；不会自动修改系统 PATH 或全局安装包。
 
