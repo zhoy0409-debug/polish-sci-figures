@@ -74,6 +74,20 @@ for(const match of js.matchAll(/'([^'\r\n]*[\u4e00-\u9fff][^'\r\n]*)'/g))assert.
 const html=fs.readFileSync('skills/polish-sci-figures/assets/figure-studio/studio.html','utf8');
 const htmlText=value=>value.replace(/&(#x[0-9a-f]+|#\d+|lt|gt|amp|quot|apos|nbsp);/gi,(_,code)=>code[0]==='#'?String.fromCodePoint(code[1].toLowerCase()==='x'?parseInt(code.slice(2),16):Number(code.slice(1))):({lt:'<',gt:'>',amp:'&',quot:'"',apos:"'",nbsp:' '})[code.toLowerCase()]);
 for(const match of html.matchAll(/>([^<>]*[\u4e00-\u9fff][^<>]*)</g)){const key=htmlText(match[1]).trim();if(key!=='中文')assert.ok(Object.hasOwn(i18n.en,key),'Missing static English text: '+key);}
+// Static attribute registration must precede the one-time toolbar setup. Test
+// the production language-switch function, not only dictionary membership.
+const toolbarAttributes=[],toolbarButtons={};
+for(const [id,zh,en]of [['addOverlay','插入标注','Insert annotation'],['quickItalic','斜体','Italic']]){
+  const tag=html.match(new RegExp('<button\\b[^>]*\\bid="'+id+'"[^>]*>'))?.[0];assert.ok(tag,id);
+  const attrs=Object.fromEntries([...tag.matchAll(/([\w-]+)="([^"]*)"/g)].map(m=>[m[1],htmlText(m[2])]));
+  const button={attrs,isConnected:true,setAttribute(key,value){this.attrs[key]=value;}};toolbarButtons[id]={button,zh,en};
+  for(const key of ['title','aria-label']){assert.equal(attrs[key],zh,`${id} ${key} must exist before static capture`);toolbarAttributes.push([button,key,attrs[key]]);}
+}
+const localeContext={StudioI18n:i18n,T:i18n.t,staticText:[],staticAttributes:toolbarAttributes,document:{documentElement:{},title:''},$:()=>({})};
+const localeStart=js.indexOf('  function localizeStatic(){'),localeEnd=js.indexOf('\n  localizeStatic();',localeStart);assert.ok(localeStart>=0&&localeEnd>localeStart);
+const localeVm=require('node:vm');localeVm.createContext(localeContext);localeVm.runInContext(js.slice(localeStart,localeEnd),localeContext);
+for(const language of ['zh-CN','en','zh-CN','en']){i18n.setLanguage(language);localeContext.localizeStatic();for(const {button,zh,en}of Object.values(toolbarButtons))for(const key of ['title','aria-label'])assert.equal(button.attrs[key],language==='en'?en:zh);}
+i18n.setLanguage('zh-CN');
 console.log('Bilingual catalog coverage, locale selection and user-text preservation passed');
 const restored=History.restore(JSON.parse(JSON.stringify(timeline)),multi,timeline.current);
 restored.undo();assert.deepEqual(restored.current,five);restored.redo();assert.deepEqual(restored.current,large);

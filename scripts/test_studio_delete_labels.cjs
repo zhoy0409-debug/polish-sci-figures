@@ -44,7 +44,12 @@ assert.deepEqual(removeSelectedItems(s).next.order,s.order,'no selected object n
 
 // Execute the actual edit-application block; hidden state reaches both canvas and export.
 const editsStart=source.indexOf('    if (!raw) for (const [key, props] of Object.entries(editsFor(id,vi,s))) {');
-const editsEnd=source.indexOf('    if(!raw&&s.panels[id].annotationStyle',editsStart);
+assert.ok(editsStart>=0,'the production source-edit loop must exist');
+// Stop at this loop's own closing brace, not at a later rendering feature.
+// Spacing/statistics may add early returns between those unrelated blocks.
+const editsClose=source.slice(editsStart).match(/^ {4}\}/m);
+assert.ok(editsClose,'the source-edit loop must have its own closing brace');
+const editsEnd=editsStart+editsClose.index+editsClose[0].length;
 const node={style:{setProperty(key,val){this[key]=val;}},matches:()=>true,children:[],textContent:'Source text'};
 const ctx={raw:false,id:ids[0],vi:0,s:deleted.next,editsFor:()=>deleted.next.panels[ids[0]].edits[0],svg:{querySelector:selector=>selector.includes('e3')?node:null}};
 vm.runInNewContext(source.slice(editsStart,editsEnd),ctx);assert.equal(node.style.display,'none');assert.equal(node.textContent,'Source text');

@@ -286,6 +286,7 @@ const StudioI18n = (() => {
   // Character-level scientific text formatting.
   Object.assign(en,{
     '字符格式无效':'Invalid character formatting',
+    '斜体':'Italic',
     '字符格式':'Character formatting',
     '文字与字符格式':'Text and character formatting',
     '请先选中需要设置的字符':'Select the characters to format first',
