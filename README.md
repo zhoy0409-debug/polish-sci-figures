@@ -120,16 +120,16 @@ Official downloads and updates come from [this repository's Releases](https://gi
 
 选一个合适的模板，换成自己的数据，再直接在画布上调整细节。
 
-https://github.com/user-attachments/assets/c073bae3-fce8-41c7-84aa-a569a07a5872
+https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 
-<p align="center"><sub>实际编辑器录制 · 中英文步骤字幕 · 已缩短等待停顿 · 合成数据演示</sub></p>
+<p align="center"><sub>中文界面实际操作录制 · 中文步骤说明 · 已缩短文件选择等待 · 合成数据演示</sub></p>
 
-可以播放、暂停或拖动进度，按自己的节奏查看每一步。也可以[下载 MP4](docs/media/figure-studio-walkthrough.mp4) 离线观看。
+可以播放、暂停或拖动进度，按自己的节奏查看每一步。也可以[下载中文版 MP4](docs/media/figure-studio-walkthrough.zh-CN.mp4) 离线观看。
 
 <details>
 <summary>快速预览：拖动调整组间距</summary>
 
-![Figure Studio 中的实际鼠标拖动：两组图形连续靠近、分开。](docs/media/figure-studio-walkthrough.gif)
+![中文版 Figure Studio 中的实际鼠标拖动：两组图形连续靠近、分开。](docs/media/figure-studio-walkthrough.zh-CN.gif)
 
 </details>
 
