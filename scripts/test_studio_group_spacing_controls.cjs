@@ -61,4 +61,16 @@ for(const kind of ['connections','annotations']){
   const ss=copy(initial);ss.panels.p.lockedElements={0:[lockedNode.getAttribute('data-key')]};history.commit(ss);vm.runInContext('categorySpacingCache=null',ctx);ctx.renderGroupSpacingControls();
   assert.equal(fields.categorySpacing.disabled,true,kind+' lock disables the slider');assert.match(fields.categorySpacingStatus.textContent,/锁定/);const before=commits;fields.categorySpacing.value=.8;fields.categorySpacing.oninput();fields.categorySpacing.onchange();fields.resetGroupSpacing.onclick();assert.equal(callbacks.size,0);assert.equal(commits,before,kind+' cannot be partially moved');assert.deepEqual(history.current,ss);history.undo();
 }
-console.log('PASS category spacing controls: RAF local redraw, one undo per gesture, Enter/blur, stale guards, point/connection/P-label locks, reset, data replacement; unified bar spacing 65–105%, retained bar width, no second transform, and unchanged scientific data.');
+// Some input paths emit input and blur without change. The preview must become
+// the saved state before focus reaches Save, with exactly one undo entry.
+ctx.StudioGroupSpacing.inspect=()=>({available:true,axes:[]});ctx.StudioGroupSpacing.plan=info=>info;history.commit(copy(initial));vm.runInContext('categorySpacingCache=null',ctx);ctx.renderGroupSpacingControls();
+ctx.commit=next=>{commits++;history.commit(next);ctx.renderGroupSpacingControls();};
+const beforeBlur={commits,states:history.states.length},number=fields.categorySpacingPercent;let typed='75',previewWrites=0;
+Object.defineProperty(number,'value',{configurable:true,get:()=>typed,set:value=>{previewWrites++;typed=value;}});
+number.oninput();flush();assert.equal(previewWrites,0,'Preview synchronization never rewrites the field being typed');assert.equal(history.current.panels.p.groupSpacing,undefined);
+number.onblur();assert.equal(commits,beforeBlur.commits+1);assert.equal(history.states.length,beforeBlur.states+1);assert.equal(history.current.panels.p.groupSpacing.factor,.75);assert.equal(fields.resetGroupSpacing.disabled,false,'Committed spacing enables Reset');
+const saved=JSON.parse(JSON.stringify(history.current));assert.equal(saved.panels.p.groupSpacing.factor,.75,'Save immediately after blur serializes the displayed factor');
+number.onchange();number.onblur();assert.equal(commits,beforeBlur.commits+1,'Native change after blur does not commit twice');assert.deepEqual(history.undo(),initial);history.redo();assert.equal(history.current.panels.p.groupSpacing.factor,.75);
+fields.categorySpacing.value=.8;fields.categorySpacing.oninput();fields.categorySpacing.onblur();assert.equal(history.current.panels.p.groupSpacing.factor,.8,'Range blur also finishes a pending gesture');
+const beforeEscape=commits;number.value=85;number.oninput();number.onkeydown({key:'Escape',preventDefault(){},stopPropagation(){}});number.onblur();assert.equal(commits,beforeEscape,'Escape cancellation is not accidentally committed on blur');
+console.log('PASS category spacing controls: RAF local redraw, one undo per gesture, Enter/explicit blur, saved-preview consistency, reset enabled, stale guards, point/connection/P-label locks, reset, data replacement; unified bar spacing 65–105%, retained bar width, no second transform, and unchanged scientific data.');
