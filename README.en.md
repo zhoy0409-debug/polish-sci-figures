@@ -1,6 +1,6 @@
-# polish-sci-figures
+# polish-sci-figures · Product guide
 
-[中文](README.md) | [English](README.en.md)
+[Home](README.md) · [English](README.en.md) · [中文](README.zh-CN.md)
 
 **From data to assembled figures: editable templates, explicit statistical analysis, and reversible, precise layout.**
 
