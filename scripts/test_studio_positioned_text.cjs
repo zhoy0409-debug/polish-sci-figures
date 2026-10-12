@@ -1,0 +1,12 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {preparePositionedTextEdit:prepare}=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+const text=(attrs,content='ABC')=>({localName:'text',textContent:content,parentElement:null,style:{getPropertyValue:()=>''},attrs:{...attrs},querySelectorAll:()=>[],getAttribute(k){return this.attrs[k]??null;},setAttribute(k,v){this.attrs[k]=v;},removeAttribute(k){delete this.attrs[k];}});
+const size=text({x:'10 16 22',y:'20 20 20','font-size':'10'});prepare(size,{'font-size':'20'});
+assert.equal(size.attrs.x,'10 22 34');assert.equal(size.attrs.y,'20 20 20');
+const replace=text({x:'10 16 22',y:'20 20 20',textLength:'18',lengthAdjust:'spacingAndGlyphs','font-size':'10'});prepare(replace,{text:'A longer label','font-size':'20'});
+assert.equal(replace.attrs.x,'10');assert.equal(replace.attrs.y,'20');assert.equal(replace.attrs.textLength,undefined);
+const same=text({x:'10 16 22',y:'20 20 20','font-size':'10'});prepare(same,{text:'ABC'});assert.equal(same.attrs.x,'10 16 22','unchanged text keeps original kerning');
+const baseline=text({x:'10 16 22',y:'20 18 20',dx:'0 1 2','font-size':'10'});prepare(baseline,{'font-size':'15'});assert.equal(baseline.attrs.y,'20 17 20');assert.equal(baseline.attrs.dx,'0 1.5 3');
+const ordinary=text({x:'10',y:'20','font-size':'10'});prepare(ordinary,{'font-size':'20'});assert.equal(ordinary.attrs.x,'10');assert.equal(ordinary.attrs.y,'20');
+console.log('Positioned PDF/SVG text resize and content-edit regression passed');

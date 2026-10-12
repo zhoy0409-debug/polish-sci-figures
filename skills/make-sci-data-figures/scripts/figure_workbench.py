@@ -49,6 +49,7 @@ matplotlib.use("Agg")
 import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
 import numpy as np
+from gallery_marks import prepare_marks, embed_marks
 import pandas as pd
 from PIL import Image
 from scipy import stats
@@ -495,6 +496,7 @@ def tag_category_groups(fig, ax, order, artists) -> None:
 
 def embed_category_metadata(svg: str, fig) -> str:
     """Append the editor-only membership map to an already-rendered SVG."""
+    svg = embed_marks(svg, fig)
     metadata = getattr(fig, "_studio_category_groups", None)
     if metadata is None:
         return svg
@@ -759,6 +761,7 @@ def plot_paired_difference(complete: pd.DataFrame, order: list[str], color: str,
 
 
 def save_figure(fig, stem: Path) -> None:
+    prepare_marks(fig)
     for ext in ("png", "svg", "pdf"):
         output = stem.with_suffix(f".{ext}")
         fig.savefig(output, dpi=DPI, facecolor="white")

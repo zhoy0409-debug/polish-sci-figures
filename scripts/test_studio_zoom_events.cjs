@@ -32,6 +32,7 @@ const sandbox={...helpers,console,
   markRedraw:()=>redraws++
 };
 vm.createContext(sandbox);
+vm.runInContext(source.slice(source.indexOf('  function canvasObjectTarget('),source.indexOf('  function addStatisticalHitAreas(')),sandbox);
 // The resize mock runs the current source's zoom subsection; plot generation is stubbed.
 const zoomStart=source.indexOf('    const output=exportGeometry(l.width,l.height,previewState.exportSettings),widthPx=');
 const zoomEnd=source.indexOf("    $('dimensions').textContent=",zoomStart);

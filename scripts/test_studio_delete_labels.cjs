@@ -51,7 +51,7 @@ const editsClose=source.slice(editsStart).match(/^ {4}\}/m);
 assert.ok(editsClose,'the source-edit loop must have its own closing brace');
 const editsEnd=editsStart+editsClose.index+editsClose[0].length;
 const node={style:{setProperty(key,val){this[key]=val;}},matches:()=>true,children:[],textContent:'Source text'};
-const ctx={raw:false,id:ids[0],vi:0,s:deleted.next,editsFor:()=>deleted.next.panels[ids[0]].edits[0],svg:{querySelector:selector=>selector.includes('e3')?node:null}};
+const ctx={preparePositionedTextEdit:require(file).preparePositionedTextEdit,raw:false,id:ids[0],vi:0,s:deleted.next,editsFor:()=>deleted.next.panels[ids[0]].edits[0],svg:{querySelector:selector=>selector.includes('e3')?node:null}};
 vm.runInNewContext(source.slice(editsStart,editsEnd),ctx);assert.equal(node.style.display,'none');assert.equal(node.textContent,'Source text');
 assert.match(source,/const STYLES = new Set\(\['display'/,'hidden appearance survives sanitized SVG reimport');
 

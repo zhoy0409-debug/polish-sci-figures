@@ -40,6 +40,29 @@ def comparisons(result):
 
 
 class StatisticalMethods(unittest.TestCase):
+    def test_confirmed_row_units_without_ids_preserve_rows(self):
+        rows = [['group', 'value'], ['A', '1'], ['A', '2'], ['A', '4'],
+                ['B', '2'], ['B', '5'], ['B', '7']]
+        original = copy.deepcopy(rows)
+        config = {**BASE, 'unit': '', 'unit_mode': 'row', 'outcome_type': 'continuous'}
+        result = analyze({}, rows, config)
+        self.assertAlmostEqual(comparisons(result)[0]['p'], stats.ttest_ind([1, 2, 4], [2, 5, 7], equal_var=False).pvalue)
+        self.assertEqual(result['analysis']['experimental_unit_mode'], 'row')
+        self.assertIsNone(result['analysis']['experimental_unit_column'])
+        self.assertEqual(rows, original)
+        self.assertEqual(result['data_sha256'], table_hash(rows))
+        for changes in ({'design_confirmed': False}, {'design': 'paired', 'method': 'paired_t'}):
+            with self.assertRaises(ValueError):
+                analyze({}, rows, {**config, **changes})
+
+    def test_outcome_type_is_not_silently_forced_into_mean_tests(self):
+        rows = rows_for({'A': [1, 2, 3], 'B': [2, 4, 5]})
+        for kind in ('binary', 'count', 'survival', 'categorical', 'ordinal'):
+            with self.assertRaises(ValueError):
+                analyze({}, rows, {**BASE, 'outcome_type': kind})
+        result = analyze({}, rows, {**BASE, 'outcome_type': 'ordinal', 'method': 'mannwhitney', 'goal': 'distribution'})
+        self.assertEqual(result['analysis']['outcome_type'], 'ordinal')
+
     def test_welch_mean_ci_and_source_integrity(self):
         x, y = [1, 2, 4, 5, 8], [2, 4, 6, 9, 11, 14]
         rows = rows_for({'A': x, 'B': y}); original = copy.deepcopy(rows)

@@ -5,7 +5,7 @@ from pathlib import Path
 root = Path(SPECPATH).parent
 stage = root / '.cache' / 'desktop-build' / 'suite'
 hidden = [
-    'numpy', 'pandas', 'openpyxl', 'PIL.Image', 'PIL.ImageTk',
+    'numpy', 'pandas', 'openpyxl', 'PIL.Image', 'PIL.ImageTk', 'pypdfium2', 'pypdf',
     'matplotlib.pyplot', 'matplotlib.backends.backend_agg',
     'matplotlib.backends.backend_svg', 'matplotlib.backends.backend_pdf',
     'mpl_toolkits.axes_grid1', 'mpl_toolkits.mplot3d',

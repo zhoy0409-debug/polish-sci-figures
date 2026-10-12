@@ -123,7 +123,7 @@ const StudioGroupSpacing = (() => {
     const groups=ticks.map((tick,i)=>({label:labels[i],sourceIndex:i,center:tickCenter(svg,tick,options.measure,direction),nodes:[tick],texts:[...tick.querySelectorAll('text')]})).sort((a,b)=>a.center-b.center);
     if(groups.some((g,i)=>!Number.isFinite(g.center)||i&&g.center<=groups[i-1].center))return null;
     const limits=extent(frame,direction),spans=groups.map((g,i)=>[i?(groups[i-1].center+g.center)/2:limits.start,i<groups.length-1?(g.center+groups[i+1].center)/2:limits.end]);
-    const artists=[...axis.children].filter(el=>/^(PathCollection|PolyCollection|FillBetweenPolyCollection|LineCollection|line2d_|patch_|studio-spacing-group-\d+-(?:density|outline|median))/.test(el.id||'')&&el.querySelector('[clip-path]'));
+    const artists=[...axis.children].filter(el=>/^(PathCollection|PolyCollection|FillBetweenPolyCollection|LineCollection|line2d_|patch_|studio-mark-|studio-spacing-group-\d+-(?:density|outline|median))/.test(el.id||'')&&el.querySelector('[clip-path]'));
     if(!artists.length)return null;
     const counts=groups.map(()=>0),connections=[],annotations=[];
     for(const artist of artists){

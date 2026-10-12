@@ -5,6 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from gallery_registry import SIZES
 from figure_workbench import style,resolve_palette
+from gallery_marks import prepare_marks, embed_marks
 
 def render_reflow(data,recipe,dimensions):
     """Render one raw-data ROC view, without generating other views or sizes."""
@@ -118,6 +119,7 @@ def render_sizes(source,recipe,analysis):
             if not result:raise ValueError('Unsupported ROC size view: '+selected)
             fig=result[0][1]
         try:
+            prepare_marks(fig)
             output=io.StringIO();fig.savefig(output,format='svg',metadata={'Date':None})
-            yield selected,size,output.getvalue().encode('utf-8')
+            yield selected,size,embed_marks(output.getvalue(),fig).encode('utf-8')
         finally:plt.close(fig)

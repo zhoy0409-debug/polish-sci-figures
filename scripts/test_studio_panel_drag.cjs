@@ -21,7 +21,7 @@ function harness(start=initial){
   const ctx={copy,svg,viewport:element(),workspaceLayer:element(),selectedNodes:()=>[],l,project,NS:'svg',T,Math,gridFor,movePanel,resizePanel,visualPanelOrder,displayedPanelLabel,
     state:()=>history.current,validateState(s,p){validationCalls++;return validateState(s,p);},
     $:id=>fields[id],document:{createElementNS:(_,kind)=>element(kind),querySelectorAll:()=>[],addEventListener:(type,fn)=>documentEvents[type]=fn},
-    window:{getSelection:()=>({removeAllRanges(){}}),addEventListener:(type,fn)=>windowEvents[type]=fn},cancelQueuedZoom(){},cancelAnimationFrame(){},
+    window:{getSelection:()=>({removeAllRanges(){}}),addEventListener:(type,fn)=>windowEvents[type]=fn},cancelQueuedZoom(){},cancelAnimationFrame(){},cancelOverlayPlacement(){ctx.placementCancels=(ctx.placementCancels||0)+1;},
     commit(next){validateState(next,project);const changed=history.commit(next);if(changed){commits++;renders++;}return true;},
     render(){renders++;},renderCanvas(){renders++;},say:message=>messages.push(message),
     screenRect:()=>({left:0,top:0,right:0,bottom:0}),canvasPoint:e=>({x:(e.clientX-20)/648,y:(e.clientY-30)/528}),
@@ -31,6 +31,7 @@ function harness(start=initial){
     drawAlignmentGuides(){},renderAlignmentGuideControls(){},snapLayer:element(),
   };
   vm.createContext(ctx);
+  vm.runInContext(source.slice(source.indexOf('  function canvasObjectTarget('),source.indexOf('  function addStatisticalHitAreas(')),ctx);
   const moveStart=source.indexOf('  function matchSizes('),moveEnd=source.indexOf('  function renderMasters(',moveStart);
   const destination=source.split('\n').find(line=>line.includes('    const destination=e=>'));
   const at=source.split('\n').find(line=>line.includes('    const at=cell=>'));
@@ -114,6 +115,6 @@ const native=harness();native.ctx.nativeDrag('p0');native.svg.ondragover(native.
 const dragEnd=source.match(/b\.ondragend=\(\)=>\{if\(dragging\)\{dragging=null;renderCanvas\(\);\}\};/)[0];
 for(const dropFirst of [false,true]){const h=harness();h.ctx.b={};vm.runInContext(dragEnd,h.ctx);h.ctx.nativeDrag('p0');h.svg.ondragover(h.point(2,1));if(dropFirst)h.svg.ondrop(h.point(2,1));const before=h.stats().renders;h.ctx.b.ondragend();assert.equal(h.ctx.details().dragging,null);assert.equal(h.stats().renders-before,dropFirst?0:1);}
 // The visible tools are mutually exclusive and expose their state accurately.
-const tools=harness();tools.ctx.mode(false,true);tools.fields.arrangePanels.onclick();assert.equal(tools.ctx.details().layoutMode,true);assert.equal(tools.ctx.details().boxSelect,false);assert.equal(tools.fields.scope.value,'panel');tools.ctx.sync();assert.equal(tools.fields.arrangePanels.attrs['aria-pressed'],'true');assert.equal(tools.fields.layoutMode.textContent,'完成排列');tools.fields.boxSelect.onclick();assert.equal(tools.ctx.details().layoutMode,false);assert.equal(tools.ctx.details().boxSelect,true);
+const tools=harness();tools.ctx.mode(false,true);tools.fields.arrangePanels.onclick();assert.equal(tools.ctx.details().layoutMode,true);assert.equal(tools.ctx.details().boxSelect,false);assert.equal(tools.fields.scope.value,'panel');tools.ctx.sync();assert.equal(tools.fields.arrangePanels.attrs['aria-pressed'],'true');assert.equal(tools.fields.layoutMode.textContent,'完成排列');tools.fields.boxSelect.onclick();assert.equal(tools.ctx.details().layoutMode,false);assert.equal(tools.ctx.details().boxSelect,true);assert.equal(tools.ctx.placementCancels,2,'changing canvas modes leaves insertion mode');
 
 console.log('Canvas panel drag handlers passed: arrange/direct grip, labels/annotations routing, cell-cached preview, swap/empty/span/locks, no-op threshold, outside/cancel, preservation, visual numbering, undo/redo and mode controls. Scope: production handlers in Node DOM mock.');

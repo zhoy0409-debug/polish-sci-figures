@@ -1,12 +1,30 @@
 """Loopback-only Figure Studio data engine. Reuses validated workbenches; never executes submitted code."""
 from __future__ import annotations
-import argparse,csv,io,json,math,secrets,sys,tempfile,threading,time
+import argparse,base64,binascii,csv,io,json,math,secrets,sys,tempfile,threading,time
 from pathlib import Path
 from http.server import ThreadingHTTPServer,BaseHTTPRequestHandler
 from urllib.parse import urlsplit
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'make-sci-data-figures/scripts'))
 from figure_studio import panel_from_path, inspect_svg_bytes
 LOCK=threading.Lock()
+
+
+def import_pdf(payload):
+    """Read a bounded local PDF; no paths, remote URLs or submitted code."""
+    if not isinstance(payload,dict) or set(payload)-{'data','action','page'} or not {'data','action'}<=set(payload):
+        raise ValueError('PDF import requires data and action, with an optional page')
+    action=payload['action']
+    if action not in ('inspect','page'):raise ValueError('Unknown PDF import action')
+    encoded=payload['data']
+    if not isinstance(encoded,str) or not 0<len(encoded)<=26666668:raise ValueError('PDF file limit: 20 MB')
+    try:raw=base64.b64decode(encoded,validate=True)
+    except (ValueError,binascii.Error):raise ValueError('Invalid PDF data') from None
+    if len(raw)>20000000:raise ValueError('PDF file limit: 20 MB')
+    if not raw.lstrip().startswith(b'%PDF-'):raise ValueError('The file does not contain a PDF document')
+    page=payload.get('page',0)
+    if isinstance(page,bool) or not isinstance(page,int) or page<0:raise ValueError('Invalid PDF page number')
+    from studio_pdf import inspect_pdf,import_pdf_page
+    return inspect_pdf(raw) if action=='inspect' else import_pdf_page(raw,page)
 
 def validate_table(recipe,rows):
     """Validate the bounded, rectangular table shared by both local endpoints."""
@@ -86,6 +104,7 @@ def regenerate(recipe,rows,statistics=None,axes=None):
     import advanced_template_workbench as aw
     import matplotlib.pyplot as plt
     def svg_only(fig,stem):
+        wb.prepare_marks(fig)
         output=stem.with_suffix('.svg')
         fig.savefig(output,format='svg',metadata={'Date':None})
         output.write_text(wb.embed_category_metadata(output.read_text(encoding='utf-8'),fig),encoding='utf-8')
@@ -171,18 +190,21 @@ class Handler(BaseHTTPRequestHandler):
         if self.headers.get('Host')!=self.server.address:return self.send_json(403,{'error':'Invalid host'})
         if urlsplit(self.path).path!='/':return self.send_json(404,{'error':'Not found'})
         text=self.server.page.read_text(encoding='utf-8').replace("connect-src 'none'","connect-src 'self'")
-        config=json.dumps({'token':self.server.token,'endpoint':'/api/render','reflowEndpoint':'/api/reflow','analyzeEndpoint':'/api/analyze','splitFacetsEndpoint':'/api/split-facets'})
+        config=json.dumps({'token':self.server.token,'endpoint':'/api/render','reflowEndpoint':'/api/reflow','analyzeEndpoint':'/api/analyze','splitFacetsEndpoint':'/api/split-facets','pdfEndpoint':'/api/import-pdf'})
         text=text.replace('</head>',f'<script id="local-engine" type="application/json">{config}</script></head>')
         raw=text.encode();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(raw)
     def do_POST(self):
-        if self.path not in ('/api/render','/api/reflow','/api/analyze','/api/split-facets') or self.headers.get('Host')!=self.server.address or self.headers.get('Origin')!='http://'+self.server.address or self.headers.get('X-Studio-Token')!=self.server.token:return self.send_json(403,{'error':'Local editor authorization required'})
+        if self.path not in ('/api/render','/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf') or self.headers.get('Host')!=self.server.address or self.headers.get('Origin')!='http://'+self.server.address or self.headers.get('X-Studio-Token')!=self.server.token:return self.send_json(403,{'error':'Local editor authorization required'})
         try:
             size=int(self.headers.get('Content-Length','0'))
-            if not 0<size<=3000000:raise ValueError('Request limit: 3 MB')
+            limit=27000000 if self.path=='/api/import-pdf' else 3000000
+            if not 0<size<=limit:raise ValueError('Request limit: 27 MB' if self.path=='/api/import-pdf' else 'Request limit: 3 MB')
             payload=json.loads(self.rfile.read(size));started=time.monotonic()
             if not isinstance(payload,dict):raise ValueError('Request body must be an object')
             with LOCK:
-                if self.path=='/api/reflow':
+                if self.path=='/api/import-pdf':
+                    response={'pdf':import_pdf(payload)}
+                elif self.path=='/api/reflow':
                     if not {'recipe','rows','width','height'}<=set(payload) or set(payload)-{'recipe','rows','width','height','axes'}:raise ValueError('Reflow requires recipe, rows, width and height, with optional axes')
                     response={'variant':reflow(payload['recipe'],payload['rows'],payload['width'],payload['height'],payload.get('axes'))}
                 elif self.path=='/api/split-facets':

@@ -9,17 +9,17 @@ polish-sci-figures brings scientific plotting, image standardization, and figure
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Suite v1.4.2 · Figure Studio 0.1.2 (Windows desktop edition)**
+**Suite v1.4.3 · Figure Studio 0.1.3 (Windows desktop edition)**
 
-[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-v1.4.2.en.md)
+[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-v1.4.3.en.md)
 
 ## Choose your workflow
 
 | How you want to work | Start here | Requirements |
 | --- | --- | --- |
 | Preview, replace data, edit, and assemble figures directly | Figure Studio Windows installer | Windows 10/11 x64; no Codex, separate Python installation, account, or API key |
-| Upload a skill to Claude or WorkBuddy | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.2/polish-sci-figures-v1.4.2-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
-| Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.2.zip` | A compatible AI environment and the suite's Python dependencies |
+| Upload a skill to Claude or WorkBuddy | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
+| Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.3.zip` | A compatible AI environment and the suite's Python dependencies |
 | Refine an existing SVG manually | Generate a self-contained Studio page with AI or the CLI | Layout and appearance editing work offline; data recomputation requires the local engine |
 
 Figure Studio is the official visual editor for polish-sci-figures. The original AI/CLI workflow remains available through the three-skill suite. Model-result templates display supplied analysis outputs; they do not fit unspecified models.
@@ -34,12 +34,12 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 
 ## Install and start
 
-1. Download `polish-sci-figures-Studio-0.1.2-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
+1. Download `polish-sci-figures-Studio-0.1.3-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
 2. Install it and open the **polish-sci-figures Studio** shortcut. The launcher opens the editor in your default browser.
-3. Choose **Start from a template**, inspect the preview, and replace the example data with your own. You can also import an existing image or SVG.
+3. Choose **Start from a template**, inspect the preview, and replace the example data with your own. You can also import an existing image, SVG, or selected PDF page. Supported native text and vector paths remain editable; PDF effects may require a local image layer or a whole-page appearance image. See the [conversion limits](docs/release-v1.4.3.en.md#what-changed), and review substituted fonts before export.
 4. Export SVG / PNG / TIFF and use **Save** to download an editable JSON backup.
 
-The portable edition is `polish-sci-figures-Studio-0.1.2-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The browser data editor supports individual cells and CSV/TSV replacement; export Excel files as CSV/TSV first.
+The portable edition is `polish-sci-figures-Studio-0.1.3-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. To import an Excel workbook as a file, export it as CSV/TSV first.
 
 Closing the browser does not stop the local service; close the launcher when you finish. Autosaves live in the browser's local storage. Clearing site data, switching browsers, or using a private window can lose those records. **Download JSON backups of important projects.** See the [English quick start](desktop/QUICKSTART.en.md).
 
@@ -75,9 +75,11 @@ The following composites use synthetic data to demonstrate assembly capabilities
 
 ## From data updates to final layout
 
-- **Data stay connected to the chart.** Edit cells, add or remove rows, or replace CSV/TSV data; the local engine validates and redraws the chart. Invalid changes preserve the last valid chart. Comparisons bound to the current data are recomputed. If the local service disconnects, the project and data drafts are retained so you can reconnect and continue.
+- **Data stay connected to the chart.** Paste a table or import CSV/TSV, check highlighted cells, and choose **Update chart**. Automatic updates are optional. Invalid changes preserve the draft and last valid chart; extreme but valid values are retained. Comparisons bound to the current data are recomputed. If the local service disconnects, the project and data drafts are retained so you can reconnect and continue.
 - **Layouts remain adjustable.** Drag panels, span rows or columns, insert rows and columns, and change spacing. Supported templates redraw at the actual physical size; other assets retain their proportions. A supported faceted comparison can split into separate panels in one row while retaining its original comparison-family record.
 - **Edit objects directly.** Marquee-select, multi-select, align, group, and lock objects. Move existing objects, add text, lines, and shapes, and nudge with arrow keys. Double-click text to edit in place; character-level bold, italic, superscript, and subscript preserve local scientific formatting.
+- **Place annotations with less effort.** Dedicated horizontal and vertical lines keep their direction as you drag either endpoint; free lines snap near the axes, with Shift constraining the angle. A comparison-bracket tool supports manual annotation. Text opens for editing at the insertion point.
+- **Tune marks and color.** Preview distinct hue families on the current chart. Supported sample points resize with a live slider; error bars offer upper, lower, or both directions, cap length, and line width. Their true estimates and intervals remain connected to the data.
 - **Control the details.** Supported axes expose true limits, first-group spacing, and reference lines in data coordinates. Heatmaps offer continuous palettes, real cell values, and numeric formatting. Scale bars require user-supplied calibration; panel labels support automatic numbering and manual edits.
 - **Bring groups closer together.** The shared Group spacing control in Properties moves supported horizontal or vertical category groups in real time, including existing bar charts. Points and intervals retain their sizes; comparison labels and connecting lines follow the groups. One undo restores the previous spacing. Numeric axes, matrices, and plots with insufficient space are not forced to move.
 - **Keep changes reversible.** Undo, redo, named versions, a project overview, and appearance presets support continued editing. Pasting appearance across figures retains the destination's data, statistics, and calibration.
@@ -88,7 +90,9 @@ Switch between Chinese and English interfaces. Your data, project names, and fig
 
 ## Statistical analysis and interpretation
 
-Analysis of observations requires a confirmed independent or paired design and explicit group, value, and experimental-unit columns. The software does not infer independence from row numbers or treat technical replicates as independent samples. Interactive analysis currently supports:
+The guided analysis panel detects likely data columns and ranks applicable methods with a short explanation of what each compares. Confirm whether observations are independent or paired, and identify the experimental unit; then choose a method to calculate results and preview the statistical annotations. Advanced column mapping remains available when the proposed mapping needs adjustment.
+
+Analysis of observations requires a confirmed independent or paired design, group and value columns, and an explicit definition of the experimental unit. Paired data require matching unit IDs; without an ID column, independent data require confirmation that each row is a separate experimental unit. The software does not infer independence from row numbers or treat technical replicates as independent samples. Interactive analysis currently supports:
 
 | Design | Method | Main comparison target |
 | --- | --- | --- |
@@ -107,7 +111,7 @@ The original skill workflows for independent, paired, multigroup, relationship, 
 
 The three skills retain their existing roles. Figure Studio is the visual entry point to the same product, not a mandatory fourth skill.
 
-**Claude / WorkBuddy users:** download [polish-sci-figures-v1.4.2-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.2/polish-sci-figures-v1.4.2-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status. WorkBuddy is not installed on the current test machine and has not been tested within the host.
+**Claude / WorkBuddy users:** download [polish-sci-figures-v1.4.3-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status. WorkBuddy is not installed on the current test machine and has not been tested within the host.
 
 | Skill | Role |
 | --- | --- |
@@ -115,7 +119,7 @@ The three skills retain their existing roles. Figure Studio is the visual entry 
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | Microscopy / pathology image standardization, consistent display settings, authoritatively calibrated scale bars, and processing audits |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | Refinement and assembly, Figure Studio, text and geometry checks, and quality checks at final dimensions |
 
-Download `sci-figure-suite-v1.4.2.zip` from the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) and extract the whole suite. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
+Download `sci-figure-suite-v1.4.3.zip` from the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) and extract the whole suite. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
 
 ```powershell
 python -m pip install -r requirements.txt
