@@ -56,11 +56,18 @@ assert.equal(JSON.stringify(project),original,'presentation helpers preserve ori
 const start=source.indexOf('  function statisticalAnchorElements('),end=source.indexOf('  function measureStatisticalAnchors(',start);
 const context={};vm.runInNewContext(source.slice(start,end),context);
 const tick=text=>({textContent:text}),artist={id:'PathCollection_1',querySelector:()=>({})};
-const categorySvg=(labels,axesCount=1)=>({querySelector:()=>null,querySelectorAll:()=>Array.from({length:axesCount},()=>({children:[artist],querySelectorAll:()=>labels.map(label=>({querySelector:()=>tick(label)}))}))});
+const categorySvg=(labels,axesCount=1,artists=[artist])=>({querySelector:()=>null,querySelectorAll:()=>Array.from({length:axesCount},()=>({children:artists,querySelectorAll:()=>labels.map(label=>({querySelector:()=>tick(label)}))}))});
 assert.equal(context.statisticalAnchorElements(categorySvg(['Control','Treatment']),['Control','Treatment']).kind,'categories');
 assert.equal(context.statisticalAnchorElements(categorySvg(['Control','Treatment'],2),['Control','Treatment']),null,'facets need explicit per-axis comparisons');
 assert.equal(context.statisticalAnchorElements(categorySvg(['Control','Other']),['Control','Treatment']),null,'category order is never guessed');
 assert.equal(context.statisticalAnchorElements(categorySvg(['0','1']),['Control','Treatment']),null,'numeric positions do not imply group identity');
+for(const id of ['studio-mark-0-points-1','studio-mark-0-marker-1','studio-mark-0-0-cap-0','studio-mark-0-0-stem-0']){
+  const marked={id,querySelector:selector=>selector==='[clip-path]'?{}:null};
+  assert.equal(context.statisticalAnchorElements(categorySvg(['Control','Treatment'],1,[marked]),['Control','Treatment']).artists[0],marked,'editable mark metadata preserves category anchor detection');
+  assert.equal(context.statisticalAnchorElements(categorySvg(['Control','Other'],1,[marked]),['Control','Treatment']),null,'new artist ids do not bypass exact group identity');
+  assert.equal(context.statisticalAnchorElements(categorySvg(['Control','Treatment'],2,[marked]),['Control','Treatment']),null,'new artist ids do not bypass unique axis validation');
+}
+assert.equal(context.statisticalAnchorElements(categorySvg(['Control','Treatment'],1,[{id:'studio-mark-styles',querySelector:()=>null}]),['Control','Treatment']),null,'mark metadata and unclipped decoration cannot count as plotted observations');
 const bars={querySelector:()=>({querySelector:()=>({})})};assert.equal(context.statisticalAnchorElements(bars,['Control','Treatment']).kind,'bars');
 
 // Run the actual information gate and change handler against a real analysis fixture.
@@ -72,6 +79,7 @@ const metricStart=source.indexOf('  function anchoredStatisticalLayout('),metric
 assert.ok(metricStart>0&&metricEnd>metricStart);vm.runInNewContext(source.slice(metricStart,metricEnd),ctx);
 const infoStart=source.indexOf('  function statisticalAnnotationSets('),infoEnd=source.indexOf('  function renderStatisticalAnnotations(',infoStart);
 vm.runInNewContext(source.slice(infoStart,infoEnd),ctx);
+Object.assign(ctx,{selected:[],elementSelections:[],selectionAnchor:null,transferStatisticalStyleEdits:()=>{}});
 const handler=source.split('\n').find(line=>line.includes("$('annotationStyle').onchange=()=>"));vm.runInNewContext(handler,ctx);
 for(const style of ['letters','stars','hash','p','']){nodes.annotationStyle.value=style;nodes.annotationStyle.onchange();assert.equal(history.current.panels[panelId].annotationStyle,style||undefined);}
 history.undo();assert.equal(history.current.panels[panelId].annotationStyle,'p');history.redo();assert.equal(history.current.panels[panelId].annotationStyle,undefined);

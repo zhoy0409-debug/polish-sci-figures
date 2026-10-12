@@ -7,13 +7,13 @@ const copy=x=>JSON.parse(JSON.stringify(x));
 function el(tag='g',data={},box={left:0,top:0,right:0,bottom:0}){
   const classes=new Set(),attrs={},n={localName:tag,dataset:data,style:{},children:[],parentElement:null,
     classList:{add(...v){v.forEach(x=>classes.add(x));},remove(...v){v.forEach(x=>classes.delete(x));},toggle(x,on){if(on??!classes.has(x))classes.add(x);else classes.delete(x);},contains:x=>classes.has(x)},
-    setAttribute(k,v){attrs[k]=String(v);if(k==='class'){classes.clear();String(v).split(' ').forEach(x=>classes.add(x));}},getAttribute(k){if(k.startsWith('data-'))return data[k.slice(5).replace(/-([a-z])/g,(_,x)=>x.toUpperCase())];return attrs[k]??null;},
+    setAttribute(k,v){attrs[k]=String(v);if(k==='class'){classes.clear();String(v).split(' ').forEach(x=>classes.add(x));}},hasAttribute(k){return this.getAttribute(k)!=null;},getAttribute(k){if(k.startsWith('data-'))return data[k.slice(5).replace(/-([a-z])/g,(_,x)=>x.toUpperCase())];return attrs[k]??null;},
     getBoundingClientRect:()=>({...box,width:box.right-box.left,height:box.bottom-box.top}),
     append(child){child.parentElement=this;this.children.push(child);},replaceChildren(...children){this.children=[];children.forEach(c=>this.append(c));},
     remove(){if(this.parentElement)this.parentElement.children=this.parentElement.children.filter(x=>x!==this);},
     replaceWith(other){const p=this.parentElement;if(p){other.parentElement=p;p.children[p.children.indexOf(this)]=other;}},
     contains(node){return node===this||this.children.some(c=>c.contains(node));},
-    matches(s){if(s===tag)return true;if(s==='.chosen')return classes.has('chosen');if(s==='[data-panel]')return !!data.panel;if(s==='[data-key]'||s==='text[data-key]')return !!data.key&&(s[0]!=='t'||tag==='text');if(s==='[data-annotation]')return !!data.annotation;const m=s.match(/^\[data-(panel|key|annotation)="([^"]+)"\]$/);return m?data[m[1]]===m[2]:false;},
+    matches(s){if(s==='[data-studio-hit-key]')return !!data.studioHitKey;if(s===tag)return true;if(s==='.chosen')return classes.has('chosen');if(s==='[data-panel]')return !!data.panel;if(s==='[data-key]'||s==='text[data-key]')return !!data.key&&(s[0]!=='t'||tag==='text');if(s==='[data-annotation]')return !!data.annotation;const m=s.match(/^\[data-(panel|key|annotation)="([^"]+)"\]$/);return m?data[m[1]]===m[2]:false;},
     closest(s){return this.matches(s)?this:this.parentElement?.closest(s)||null;},
     querySelectorAll(s){const all=this.children.flatMap(c=>[c,...c.querySelectorAll('*')]);return s==='*'?all:all.filter(c=>c.matches(s));},
     querySelector(s){const parts=s.split(' ');if(parts.length===2)return this.querySelector(parts[0])?.querySelector(parts[1])||null;return this.querySelectorAll(s)[0]||null;},
@@ -41,6 +41,7 @@ function harness(){
     editsFor:()=>({}),setEdit(next,id,vi,key,prop,value){((next.panels[id].edits[vi]??={})[key]??={})[prop]=value;},
     selectPanelLabel(){},at:()=>null,destination:()=>null,zoomView:{},
   };ctx.overlayEditingSpace=require(path).overlayEditingSpace;vm.createContext(ctx);
+  vm.runInContext(source.slice(source.indexOf('  function canvasObjectTarget('),source.indexOf('  function addStatisticalHitAreas(')),ctx);
   const groups=source.slice(source.indexOf('  function selectionGroups('),source.indexOf('  const sizeNames='))+source.slice(source.indexOf('  function refreshOverlaySelection('),source.indexOf('  function renderOverlayProperties('));
   const local=source.slice(source.indexOf('    const screenRect=el=>'),source.indexOf('    let resizeDrag=null,panelDrag='));
   const handlers=source.slice(source.indexOf('    svg.onpointerdown=e=>'),source.indexOf('  function renderMethods(){'));
@@ -116,3 +117,22 @@ assert.ok(Math.abs(multiMove.s.overlays[0].x-(.6+10/600))<1e-12);assert.ok(Math.
 assert.ok(source.includes("$('viewport').classList.toggle('is-marquee-selecting',boxSelect)"));
 assert.ok(source.includes('viewport.append(workspaceLayer)'),'feedback lives outside exported artboard SVG');
 console.log('PASS workspace selection: gray origin, live/final outlines, clear click, Shift/mixed selection, cancellation, clipping and unchanged history.');
+
+// A thin automatic bracket supports first-click selection and first-drag move.
+for(const useProxy of [false,true]){
+  const k=harness(),path=el('path',{key:'e900010',statBracket:'{}'},{left:160,top:100,right:240,bottom:110}),proxy=el('path',{studioHitKey:'e900010'});
+  k.t1.parentElement.append(proxy);k.t1.parentElement.append(path);const target=useProxy?proxy:path;
+  k.tap(target,180,105);assert.equal(k.ctx.details().groups[0].keys[0],'e900010');assert.equal(k.stats().commits,0);
+  k.tap(k.viewport,50,50);
+  k.svg.onpointerdown(k.event(180,105,target));k.svg.onpointermove(k.event(190,109,target));k.svg.onpointerup(k.event(190,109,target));
+  assert.equal(k.stats().commits,1);assert.equal(+k.s.panels.p0.edits[0].e900010['offset-x'],10);assert.equal(+k.s.panels.p0.edits[0].e900010['offset-y'],4);assert.deepEqual(Object.keys(k.s.panels.p0.edits[0]),['e900010']);
+}
+console.log('PASS automatic bracket hit routing: pointer gestures update only the original stable key.');
+
+for(const tag of ['path','rect','circle','ellipse','use','image']){
+  const k=harness(),shape=el(tag,{key:'e30'},{left:170,top:110,right:210,bottom:140});k.t1.parentElement.append(shape);
+  k.svg.onpointerdown(k.event(180,120,shape));k.svg.onpointermove(k.event(188,129,shape));k.svg.onpointerup(k.event(188,129,shape));
+  assert.equal(k.stats().commits,1,tag+' supports first-drag movement');assert.equal(+k.s.panels.p0.edits[0].e30['offset-x'],8);assert.equal(+k.s.panels.p0.edits[0].e30['offset-y'],9);
+}
+const grouped=harness();grouped.s.panels.p0.elementGroups={0:[['tick1','tick2']]};grouped.svg.onpointerdown(grouped.event(140,148,grouped.t1));grouped.svg.onpointermove(grouped.event(150,152,grouped.t1));grouped.svg.onpointerup(grouped.event(150,152,grouped.t1));for(const key of ['tick1','tick2'])assert.equal(+grouped.s.panels.p0.edits[0][key]['offset-x'],10,'first drag respects user grouping');
+console.log('PASS direct editable SVG movement: paths, rectangles, circles, ellipses, uses, images and user groups.');

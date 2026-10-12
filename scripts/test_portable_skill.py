@@ -75,7 +75,7 @@ def main():
                             and relative not in SUPPORT_FILES), name
                 assert not path.name.startswith(".env")
             for name, path in originals.items():
-                assert handle.read(f"{SKILL_NAME}/suite/{portable_name(name)}") == portable_bytes(path, set(originals), VERSION)
+                assert handle.read(f"{SKILL_NAME}/suite/{portable_name(name)}") == portable_bytes(path, set(originals), VERSION), f"Bundled content differs from source: {name}"
                 if path.suffix != '.md':
                     assert handle.read(f"{SKILL_NAME}/suite/{portable_name(name)}") == path.read_bytes()
             assert handle.read(f"{SKILL_NAME}/SKILL.md") == ENTRYPOINT.read_bytes()

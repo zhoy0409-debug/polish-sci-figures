@@ -1,0 +1,13 @@
+'use strict';
+const assert=require('node:assert/strict');
+const marks=require('../skills/polish-sci-figures/assets/figure-studio/mark-style.js');
+const asymmetric={axis:'y',ends:[[50,20],[50,90]],center:[50,72]};
+assert.deepEqual(marks.interval(asymmetric,'positive'),[[50,72],[50,20]]);
+assert.deepEqual(marks.interval(asymmetric,'negative'),[[50,90],[50,72]]);
+assert.deepEqual(marks.interval({...asymmetric,center:null},'positive'),asymmetric.ends);
+assert.deepEqual(marks.interval({...asymmetric,axis:'x'},'positive'),asymmetric.ends);
+assert.deepEqual(asymmetric.ends,[[50,20],[50,90]],'direction changes must preserve source geometry');
+assert.ok(marks.validateMetadata(JSON.stringify({version:1,points:['points-1'],errors:[{id:'error-1',caps:[],segments:[asymmetric]}]})));
+assert.equal(marks.validateMetadata(JSON.stringify({version:1,points:['<script>'],errors:[]})),false);
+assert.equal(marks.validateMetadata(JSON.stringify({version:1,points:[],errors:[{id:'a',caps:[],segments:[{...asymmetric,center:[0,Infinity]}]}]})),false);
+console.log('Asymmetric intervals, horizontal interval preservation, immutable geometry and metadata validation passed');

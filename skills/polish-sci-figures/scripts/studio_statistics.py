@@ -35,7 +35,7 @@ METHOD_DESIGNS = {'welch': 'independent', 'mannwhitney': 'independent',
                   'paired_t': 'paired', 'wilcoxon': 'paired'}
 RAW_KEYS = {'mode', 'group', 'value', 'unit', 'design', 'method', 'family',
             'control', 'facet', 'order', 'design_confirmed', 'unit_role', 'goal',
-            'filter_column', 'filter_value'}
+            'filter_column', 'filter_value', 'unit_mode', 'outcome_type'}
 RESULT_KEYS = {'mode', 'group_a', 'group_b', 'p_value', 'method_label',
                'adjustment', 'correction_method', 'family', 'control', 'facet',
                'order', 'results_confirmed'}
@@ -255,6 +255,14 @@ def _raw(recipe, rows, config):
         fail('所选方法与研究设计不匹配', 'The selected method does not match the declared design')
     if config.get('goal', 'mean') not in ('mean', 'distribution'):
         fail('请选择均值或分布的分析目标', 'Choose a mean or distribution estimand')
+    outcome_type = config.get('outcome_type', 'continuous')
+    if outcome_type not in ('continuous', 'ordinal'):
+        fail('此数据类型需要专门分析；请连接已完成的比较结果', 'This outcome type requires a dedicated analysis; import completed comparison results')
+    if outcome_type == 'ordinal' and (method != 'mannwhitney' or design != 'independent'):
+        fail('等级数据不能自动采用均值或配对差值检验', 'Ordinal outcomes cannot automatically use mean or paired-difference tests')
+    unit_mode = config.get('unit_mode', 'column')
+    if unit_mode not in ('column', 'row') or unit_mode == 'row' and design != 'independent':
+        fail('配对分析必须提供真实样本编号，不能按行号配对', 'Paired analysis requires genuine sample IDs; rows cannot establish pairing')
     header = rows[0]
     view = recipe.get('parameters', {}).get('view') if isinstance(recipe.get('parameters'), dict) else None
     filter_index = _column(config, 'filter_column', header, optional=True)
@@ -265,9 +273,10 @@ def _raw(recipe, rows, config):
         fail('筛选值需要对应筛选列', 'A filter value requires its filter column')
     if view == 'pca_loadings' and 'role' in header and (config.get('filter_column') != 'role' or filter_value != 'score'):
         fail('PCA 混合表须明确筛选 role = score，载荷不是研究单位', 'Filter the mixed PCA table explicitly to role = score; loadings are not experimental units')
-    gi, vi, ui = [_column(config, key, header) for key in ('group', 'value', 'unit')]
+    gi, vi = [_column(config, key, header) for key in ('group', 'value')]
+    ui = _column(config, 'unit', header) if unit_mode == 'column' else None
     fi = _column(config, 'facet', header, optional=True)
-    if len({gi, vi, ui}) != 3 or fi in (gi, vi, ui):
+    if gi == vi or ui is not None and ui in (gi, vi) or fi is not None and fi in (gi, vi, ui):
         fail('分组、结局、单位和分面须映射到不同列', 'Group, outcome, unit and facet must use distinct columns')
     facets = {}
     rows_used = 0
@@ -276,7 +285,8 @@ def _raw(recipe, rows, config):
             continue
         rows_used += 1
         label = _text(row[fi], 'facet', line) if fi is not None else ''
-        group, unit = _text(row[gi], 'group', line), _text(row[ui], 'unit', line)
+        group = _text(row[gi], 'group', line)
+        unit = _text(row[ui], 'unit', line) if ui is not None else f'row-{line}'
         value = _number(row[vi], 'value', line)
         groups = facets.setdefault(label, {})
         observations = groups.setdefault(group, {})
@@ -317,8 +327,10 @@ def _raw(recipe, rows, config):
                 'correction': 'Holm', 'correction_scope': 'all_facets', 'comparison_count': len(flat),
                 'alternative': 'two-sided', 'alpha': .05, 'rows_used': rows_used,
                 'rows_supplied': len(rows) - 1, 'rows_filtered_out': len(rows) - 1 - rows_used,
-                'experimental_unit_column': config['unit'], 'diagnostics': notes,
-                'recommendations': recommendations(design, config.get('goal', 'mean')),
+                'experimental_unit_column': config.get('unit') if ui is not None else None,
+                'experimental_unit_mode': unit_mode, 'outcome_type': outcome_type, 'diagnostics': notes,
+                'recommendations': [item for item in recommendations(design, config.get('goal', 'mean'))
+                                    if outcome_type != 'ordinal' or item['method'] == 'mannwhitney'],
                 'engine': {'library': 'SciPy', 'version': scipy.__version__}}
     if filter_index is not None:
         analysis['row_filter'] = {'column': config['filter_column'], 'value': filter_value.strip()}

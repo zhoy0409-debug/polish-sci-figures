@@ -96,6 +96,7 @@ def render_sizes(path, recipe, analysis, variants, allowed_sizes=None):
                     label.set_text(textwrap.fill(label.get_text(), width=int(dimensions[0]*10)))
                     label.set_position((.06, .98)); label.set_verticalalignment('top')
                 output = io.StringIO()
+                wb.prepare_marks(fig)
                 fig.savefig(output, format='svg', metadata={'Date':None})
                 outputs.append((name, 'original' if size=='originalBars' else size,
                                 wb.embed_category_metadata(output.getvalue(),fig).encode('utf-8')))

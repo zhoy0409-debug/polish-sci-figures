@@ -416,11 +416,32 @@ def self_test(service: RunningService, output_dir: Path) -> dict:
     assert variant['axis_controls']['settings'] == axes
     (output_dir / 'reflow.svg').write_text(variant['svg'], encoding='utf-8')
     (output_dir / 'analysis.json').write_text(json.dumps(analysis, ensure_ascii=False, indent=2), encoding='utf-8')
+    # Exercise the bundled PDFium DLL through the same authorized import route
+    # as the editor, including real native text and vector geometry.
+    import base64
+    import io
+    from matplotlib.figure import Figure
+    pdf_figure = Figure(figsize=(3, 2))
+    pdf_axes = pdf_figure.subplots()
+    pdf_axes.plot([0, 1, 2], [1, 3, 2], color='#487aad')
+    pdf_axes.set_xlabel('Editable PDF')
+    pdf_buffer = io.BytesIO()
+    pdf_figure.savefig(pdf_buffer, format='pdf')
+    pdf_figure.clear()
+    pdf_bytes = pdf_buffer.getvalue()
+    pdf_data = base64.b64encode(pdf_bytes).decode('ascii')
+    pdf_info = request('/api/import-pdf', {'data': pdf_data, 'action': 'inspect'})['pdf']
+    assert pdf_info['pageCount'] == 1
+    pdf_result = request('/api/import-pdf', {'data': pdf_data, 'action': 'page', 'page': 0})['pdf']
+    assert pdf_result['editable']['texts'] > 0 and pdf_result['editable']['paths'] > 0
+    assert not pdf_result['rasterOnly'] and '<text' in pdf_result['svg']
+    (output_dir / 'import-source.pdf').write_bytes(pdf_bytes)
+    (output_dir / 'import-pdf.svg').write_text(pdf_result['svg'], encoding='utf-8')
     report = {'passed': True, 'checks': checks, 'data_sha256': analysis['data_sha256'],
               'variants': len(panel['variants']), 'url': service.url,
               'frozen': bool(getattr(sys, 'frozen', False)), 'python': sys.version,
               'tk': tk_version, 'tcl': tcl_version,
-              'resources': str(resource_root())}
+              'resources': str(resource_root()), 'pdfObjects': pdf_result['editable']}
     write_json(output_dir / 'self-test.json', report)
     return report
 

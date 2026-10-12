@@ -71,7 +71,7 @@ def main():
         fig=render(data,key);fig.canvas.draw();s=io.StringIO();fig.savefig(s,format='svg',metadata={'Date':None});fig.savefig(proof/(key+'.png'),dpi=130);plt.close(fig);previews[key]=s.getvalue()
         starters[key]={'recipe':{'family':'gallery','font':'Arial','parameters':{'view':key}},'rows':[list(data.columns)]+data.astype(str).values.tolist()}
         title,en,category,fields,_=CONTRACTS[key]
-        meta[key]={'category':category,'columns':getattr(next(m for m in MODULES if key in m.CONTRACTS),'COLUMN_LABELS',{}),'zh-CN':[title,NOTES[key][0],'数据列：'+fields.replace(' ', '、')],'en':[en,NOTES[key][1],'Columns: '+fields.replace(' ', ', ')]}
+        meta[key]={'category':category,'required':fields.split(),'numeric':CONTRACTS[key][4].split(),'columns':getattr(next(m for m in MODULES if key in m.CONTRACTS),'COLUMN_LABELS',{}),'zh-CN':[title,NOTES[key][0],'数据列：'+fields.replace(' ', '、')],'en':[en,NOTES[key][1],'Columns: '+fields.replace(' ', ', ')]}
     # ROC result templates use exactly the same import/recompute path.
     from build_original_roc_styles import fixtures as roc_fixtures
     from roc_contract_workbench import render as render_roc

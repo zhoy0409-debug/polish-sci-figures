@@ -19,6 +19,7 @@ function matrix(){
 let state={panels:{'panel-0':{variant:0,edits:{},heatmapLabels:{visible:true,decimals:2,fontSize:8,color:'auto'}}}};
 const start=source.indexOf('  function editedSvg('),end=source.indexOf('  function namespace(',start);assert.ok(start>=0&&end>start);
 const render=vm.runInNewContext(source.slice(start,end)+'\neditedSvg;',{
+  preparePositionedTextEdit:api.preparePositionedTextEdit,
   state:()=>state,baseSvg:matrix,reflowSvg:matrix,panel:()=>({recipe:{family:'gallery'},variants:[{name:'clustered_matrix',viewBox:[0,0,345.6,259.2],width:345.6}]}),
   editsFor:(id,vi,s)=>s.panels[id].edits[vi]||{},
   appendConditionMatrix:()=>{}, // This fixture has no group-condition overlay.

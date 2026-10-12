@@ -2,7 +2,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const file='skills/polish-sci-figures/assets/figure-studio/studio.js',source=fs.readFileSync(file,'utf8');
-const {SWATCH_SCHEMES,swatchSchemeFor,heatmapCellInfo,heatmapPaletteColor,History}=require('../'+file);
+const {SWATCH_SCHEMES,swatchSchemeFor,paletteSchemes,paletteSchemeName,paletteDeclaredColors,heatmapCellInfo,heatmapPaletteColor,History}=require('../'+file);
 const clone=value=>JSON.parse(JSON.stringify(value));
 const scalar=value=>{const b=Buffer.alloc(8);b.writeDoubleBE(value);return b.toString('hex');};
 class Node {
@@ -33,7 +33,7 @@ chart.panels.H.edits={0:{cell:{fill:'#00ff00',opacity:'.65','offset-x':'4'},lege
 let history=new History(chart),renders=0,svgRenders=0;
 const timers=new Map();let timerId=0;const flushTimers=()=>{for(const [id,run]of [...timers]){timers.delete(id);run();}};
 const elements=Object.fromEntries(['scope','palettes','complementPreview'].map(id=>[id,new Node()]));elements.scope.value='panel';
-const context={SWATCH_SCHEMES,swatchSchemeFor,heatmapCellInfo,copy:clone,$:id=>elements[id],selectedPanel:'H',state:()=>history.current,panel:()=>({variants:[{}]}),baseSvg:id=>assets[id],
+const context={SWATCH_SCHEMES,swatchSchemeFor,paletteSchemes,paletteSchemeName,paletteDeclaredColors,heatmapCellInfo,copy:clone,$:id=>elements[id],selectedPanel:'H',state:()=>history.current,panel:()=>({variants:[{}]}),baseSvg:id=>assets[id],
   editedSvg:(id,vi,s=history.current)=>{svgRenders++;return {objects:assets[id].objects,querySelector:assets[id].querySelector,renderedColor:s.panels[id].heatmapPalette?heatmapPaletteColor(.2,s.panels[id].heatmapPalette,.4):'#3f6da3'};},
   targetObjects:(id,vi,svg)=>elements.scope.value==='element'?[assets[id].objects[0]]:svg.objects,keysToObjects:svg=>svg.objects.filter(node=>node.style.opacity!=='0'),
   hex:value=>/^#[\da-f]{6}$/.test(value)?value:null,paint:(el,prop)=>el?.[prop],chromatic:value=>{const c=value.slice(1).match(/../g).map(v=>parseInt(v,16));return Math.max(...c)-Math.min(...c)>18;},
@@ -48,7 +48,7 @@ context.selectedPanel=undefined;
 assert.equal(context.paletteHeatmapInfo(),null,'The initial swatches must render before project/history initialization');
 context.selectedPanel='H';
 const original=JSON.stringify(history.current);
-for(const scheme of SWATCH_SCHEMES){
+for(const scheme of paletteSchemes({kind:'diverging'})){
   const next=context.paletteState(scheme.colors,scheme);
   assert.deepEqual(clone(next.panels.H.heatmapPalette.stops),scheme.continuousStops);
   assert.deepEqual(clone(next.panels.H.edits[0].cell),{opacity:'.65','offset-x':'4'});
@@ -56,6 +56,7 @@ for(const scheme of SWATCH_SCHEMES){
   assert.equal(next.panels.H.edits[0].label['font-size'],'12');
 }
 assert.equal(JSON.stringify(history.current),original,'Hover-preview state must not mutate saved colors or styles');
+for(const scheme of SWATCH_SCHEMES.filter(item=>item.kind==='sequential'))assert.equal(JSON.stringify(context.paletteState(scheme.colors,scheme)),original,'A one-direction scale must not erase the neutral center of diverging data');
 elements.scope.value='all';const all=context.paletteState(SWATCH_SCHEMES[1].colors,SWATCH_SCHEMES[1]);
 assert.deepEqual(clone(all.panels.S.heatmapPalette.stops),SWATCH_SCHEMES[1].sequentialStops);
 assert.equal(all.panels.C.edits[0].cat1.fill,SWATCH_SCHEMES[1].colors[0]);
@@ -73,11 +74,11 @@ elements.scope.value='element';const cell=context.paletteState(SWATCH_SCHEMES[1]
 assert.equal(cell.panels.H.heatmapPalette,undefined,'A selected cell must not recolor the entire matrix');
 assert.equal(cell.panels.H.edits[0].cell.fill,SWATCH_SCHEMES[1].colors[0]);
 elements.scope.value='panel';context.drawPalettes();
-assert.equal(elements.palettes.children.length,8);
+assert.equal(elements.palettes.children.length,5);
 const cards=elements.palettes.children;
 assert.ok(cards.every(card=>card.children[0].style.background.startsWith('linear-gradient(')));
 assert.ok(cards.every(card=>card.children[0].children.length===0),'Heatmaps must use a continuous strip, not category chips');
-assert.equal(new Set(cards.map(card=>card.children[1].renderedColor)).size,8,'Every scheme must alter the actual plotted color');
+assert.equal(new Set(cards.map(card=>card.children[1].renderedColor)).size,5,'Every scheme must alter the actual plotted color');
 cards[1].onmouseenter();assert.equal(renders,0,'Pointer entry must not synchronously block a following click');flushTimers();assert.equal(renders,1);assert.equal(JSON.stringify(history.current),original);
 cards[1].onclick();assert.deepEqual(clone(history.current.panels.H.heatmapPalette.stops),SWATCH_SCHEMES[1].continuousStops);
 const afterClickRenders=renders;cards[1].onmouseleave();assert.equal(renders,afterClickRenders,'Leaving a committed card must not restore a previous hover frame');
@@ -85,13 +86,13 @@ history.undo();assert.equal(JSON.stringify(history.current),original);history.re
 for(const id of ['R','L']){context.selectedPanel=id;context.drawPalettes();assert.equal(elements.palettes.children.length,1);assert.equal(elements.palettes.children[0].className,'muted palette-unavailable');assert.equal(elements.palettes.children[0].onclick,undefined);}
 context.selectedPanel='H';chart=clone(history.current);chart.panels.H.locked=true;history=new History(chart);
 assert.equal(JSON.stringify(context.paletteState(SWATCH_SCHEMES[2].colors,SWATCH_SCHEMES[2])),JSON.stringify(chart));
-// Seven size variants still need only the eight displayed SVG thumbnail renders.
+// Seven size variants still need only the five appropriate displayed SVG thumbnail renders.
 chart=clone(chart);chart.panels.H.locked=false;chart.panels.H.edits={};history=new History(chart);context.panel=()=>({variants:Array.from({length:7},()=>({}))});
-svgRenders=0;context.drawPalettes();assert.equal(svgRenders,8,'Preparing eight palettes must not perform 56 hidden heatmap SVG renders');
+svgRenders=0;context.drawPalettes();assert.equal(svgRenders,5,'Only the five displayed diverging palettes need SVG thumbnail renders');
 const quickCard=elements.palettes.children[2],beforeQuick=renders;
 quickCard.onmouseenter();assert.equal(timers.size,1);quickCard.onpointerdown({button:0});assert.equal(timers.size,0);quickCard.onclick();flushTimers();assert.equal(renders,beforeQuick,'An immediate click cancels the unneeded hover draw');
 // A card made before another edit must commit from the latest state.
 context.drawPalettes();const staleCard=elements.palettes.children[3],fresh=clone(history.current);fresh.panels.H.edits={0:{label:{'font-size':'19'}}};history.commit(fresh);
 staleCard.onclick();assert.equal(history.current.panels.H.edits[0].label['font-size'],'19');
 assert.deepEqual(clone(history.current.panels.H.heatmapPalette.stops),SWATCH_SCHEMES[3].continuousStops);
-console.log('8 real-color preview cards, scalar/sequential scopes, old metadata/ROC guards, style preservation, single-cell edits, locks and undo/redo; seven-size render budget, cancellable hover, committed leave and latest-state clicks passed.');
+console.log('5 diverging / 8 sequential real-color preview cards, scalar/sequential scopes, old metadata/ROC guards, style preservation, single-cell edits, locks and undo/redo; seven-size render budget, cancellable hover, committed leave and latest-state clicks passed.');

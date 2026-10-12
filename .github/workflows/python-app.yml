@@ -87,9 +87,9 @@ jobs:
           git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
       - name: Build and test complete release bundle
         run: |
-          python scripts/build_release.py --version v1.4.2
+          python scripts/build_release.py --version v1.4.3
           python scripts/test_release_bundle.py
-          python scripts/build_portable_skill.py --version v1.4.2
+          python scripts/build_portable_skill.py --version v1.4.3
           python scripts/test_portable_skill.py
       - name: Compute synthetic results for composite statistics layout
         # The Node layout test consumes these freshly analyzed observations.
@@ -103,12 +103,21 @@ jobs:
           node scripts/test_studio_keyboard_nudge.cjs
           node scripts/test_studio_new_project.cjs
           node scripts/test_studio_beginner_flow.cjs
+          node scripts/test_studio_easy_statistics.cjs
+          node scripts/test_studio_statistical_line_editing.cjs
           node scripts/test_studio_stat_layout.cjs
           node scripts/test_studio_composite_stat_layout.cjs
           node scripts/test_studio_workspace_selection.cjs
           node scripts/test_studio_heatmap_palettes.cjs
+          node scripts/test_studio_swatch_schemes.cjs
+          node scripts/test_studio_insert_inline.cjs
+          node scripts/test_studio_line_controls.cjs
+          node scripts/test_studio_svg_content.cjs
+          node scripts/test_studio_positioned_text.cjs
+          node scripts/test_studio_mark_styles.cjs
           node scripts/test_studio_rich_text_regression.cjs
           node scripts/test_studio_data_text_preservation.cjs
+          node scripts/test_studio_data_validation.cjs
           node scripts/test_studio_tiff_export.cjs
           node scripts/test_studio_panel_export.cjs
           node scripts/test_studio_panel_gaps.cjs
@@ -125,6 +134,9 @@ jobs:
       - name: Figure Studio analysis and data reflow
         run: |
           python scripts/test_studio_statistics.py
+          python scripts/test_studio_mark_styles.py
+          python scripts/test_studio_pdf.py
+          python scripts/test_studio_pdf_endpoint.py
           python scripts/test_studio_reflow.py
           python scripts/test_studio_axes_regression.py
       - name: Whitespace check

@@ -3,7 +3,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const file='skills/polish-sci-figures/assets/figure-studio/studio.js';
 const source=fs.readFileSync(file,'utf8');
-const {SWATCH_SCHEMES,swatchSchemeFor,History}=require('../'+file);
+const {SWATCH_SCHEMES,swatchSchemeFor,paletteSchemes,paletteSchemeName,paletteDeclaredColors,History}=require('../'+file);
 const i18n=require('../skills/polish-sci-figures/assets/figure-studio/i18n.js');
 assert.equal(SWATCH_SCHEMES.length,8);assert.equal(new Set(SWATCH_SCHEMES.map(s=>s.id)).size,8);
 for(const scheme of SWATCH_SCHEMES){assert.equal(scheme.colors.length,6);assert.equal(new Set(scheme.colors).size,6);assert.ok(scheme.colors.every(c=>/^#[\da-f]{6}$/.test(c)));assert.equal(scheme.continuousStops.length,3);assert.equal(scheme.sequentialStops.length,2);assert.ok([...scheme.continuousStops,...scheme.sequentialStops].every(c=>/^#[\da-f]{6}$/.test(c)));assert.ok(i18n.en[scheme.name]);}
@@ -22,7 +22,7 @@ class Element {
 const elements=Object.fromEntries(['swatchScheme','quickSwatches','recentSwatches','color','applySwatchScheme','applyColor','scope'].map(id=>[id,new Element()]));
 elements.scope.value='panel';
 const storage=new Map(),history=new History({colors:['#3f6da3','#c95770']});let selected=[],message='',applies=0,singleColors=0;
-const context={SWATCH_SCHEMES,swatchSchemeFor,swatchScheme:SWATCH_SCHEMES[0].id,$:id=>elements[id],original:false,
+const context={SWATCH_SCHEMES,swatchSchemeFor,paletteSchemes,paletteSchemeName,paletteDeclaredColors,swatchScheme:SWATCH_SCHEMES[0].id,$:id=>elements[id],original:false,
   StudioI18n:i18n,T:i18n.t,document:{createElement:()=>new Element(),createElementNS:()=>new Element()},
   localStorage:{getItem:key=>storage.get(key)||null,setItem:(key,value)=>storage.set(key,value)},
   button:(text,onclick)=>Object.assign(new Element(),{textContent:text,onclick}),syncColorControls(){},
@@ -52,9 +52,9 @@ const categorical=[{key:'e1',fill:'#3f6da3',stroke:'none'},{key:'e2',fill:'#c957
 const continuous=Array.from({length:8},(_,i)=>({key:'e'+(i+10),fill:'#'+(0x254f90+i*0x070501).toString(16),stroke:'none'}));
 const assets={A:categorical,B:continuous};
 const chart={order:['A','B'],panels:{A:{variant:0,edits:{}},B:{variant:0,edits:{}}}};
-const svg=id=>({objects:assets[id],querySelector:selector=>selector.includes('studio-heat-value-')?null:assets[id].find(el=>el.key===selector.match(/"([^"]+)"/)[1])});
+const svg=id=>({objects:assets[id],querySelector:selector=>selector.includes('studio-heat-value-')?null:selector.includes('studio-series-colors')?(assets[id].seriesColors?{textContent:JSON.stringify(assets[id].seriesColors)}:null):assets[id].find(el=>el.key===selector.match(/"([^"]+)"/)[1])});
 for(const item of [...categorical,...continuous])item.getAttribute=key=>key==='data-key'?item.key:null;
-const reducer={$:()=>({value:'all'}),copy:x=>JSON.parse(JSON.stringify(x)),state:()=>chart,selectedPanel:'A',panel:()=>({variants:[{}]}),
+const reducer={paletteDeclaredColors,$:()=>({value:'all'}),copy:x=>JSON.parse(JSON.stringify(x)),state:()=>chart,selectedPanel:'A',panel:()=>({variants:[{}]}),
   editedSvg:id=>svg(id),baseSvg:id=>svg(id),targetObjects:(id,vi,root)=>root.objects,keysToObjects:root=>root.objects,
   hex:value=>/^#[\da-f]{6}$/.test(value)?value:null,paint:(el,prop)=>el[prop],
   chromatic:value=>{const rgb=value.slice(1).match(/../g).map(n=>parseInt(n,16));return Math.max(...rgb)-Math.min(...rgb)>18;},
@@ -67,3 +67,23 @@ assert.equal(changed.panels.A.edits[0].e3,undefined,'Black axis text must remain
 assert.deepEqual(changed.panels.B.edits,{},'A categorical scheme may not cycle across a continuous scale');
 assert.deepEqual(chart.panels.A.edits,{},'Palette previews must preserve the original chart state');
 console.log('8 scheme data, gallery-exact default, swatch-only switching, local preference, single color, explicit apply/undo, empty selection, translation and continuous-scale protection passed.');
+
+// Declared series order wins over SVG paint order and excludes statistical ink.
+const neutral={key:'e4',fill:'#777777',stroke:'none'},median={key:'e5',fill:'none',stroke:'#23344c'};
+for(const item of [neutral,median])item.getAttribute=key=>key==='data-key'?item.key:null;
+assets.A.push(neutral,median);assets.A.seriesColors=['#c95770','#3f6da3','#777777'];
+chart.panels.A.edits={0:{e1:{opacity:'.25'}}};
+const semantic=reducer.paletteState(SWATCH_SCHEMES[2].colors);
+assert.equal(semantic.panels.A.edits[0].e1.fill,SWATCH_SCHEMES[2].colors[1]);
+assert.equal(semantic.panels.A.edits[0].e2.fill,SWATCH_SCHEMES[2].colors[0]);
+assert.equal(semantic.panels.A.edits[0].e4.fill,SWATCH_SCHEMES[2].colors[2],'A neutral-colored series is still a series');
+assert.equal(semantic.panels.A.edits[0].e5,undefined,'Median/reference ink is not another category');
+assert.equal(semantic.panels.A.edits[0].e1.opacity,'.25','Keep density/interval transparency and user opacity');
+assert.equal(paletteSchemes({kind:'diverging'}).length,5);
+assert.ok(paletteSchemes({kind:'diverging'}).every(s=>s.kind!=='sequential'));
+assert.equal(paletteSchemes({kind:'sequential'}).length,8);
+for(const scheme of SWATCH_SCHEMES)for(const kind of [null,'diverging','sequential'])assert.ok(i18n.en[paletteSchemeName(scheme,kind?{kind}:null)]);
+console.log('Semantic palette order, neutral series, statistical ink/opacity preservation and scalar suitability passed.');
+
+assert.deepEqual(paletteDeclaredColors('["#AABBCC","#aabbcc","#333333"]'),['#aabbcc','#333333']);
+for(const invalid of ['[]','{}','["url(https://example.test)"]','["#123"]','null','<script/>',JSON.stringify(Array(65).fill('#123456'))])assert.equal(paletteDeclaredColors(invalid),null);

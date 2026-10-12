@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
-ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "LICENSE", "CITATION.cff")
+ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
     "README.en.md",
     "README.zh-CN.md",
@@ -28,6 +28,8 @@ SUPPORT_FILES = (
     "docs/release-v1.4.1.en.md",
     "docs/release-v1.4.2.md",
     "docs/release-v1.4.2.en.md",
+    "docs/release-v1.4.3.md",
+    "docs/release-v1.4.3.en.md",
     "docs/editor-tour.en.md",
     "docs/editor-tour.zh-CN.md",
     "docs/media/figure-studio-overview.png",
@@ -109,7 +111,7 @@ def build(version: str, outdir: Path) -> Path:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", default="v1.4.2")
+    parser.add_argument("--version", default="v1.4.3")
     parser.add_argument("--outdir", default="dist")
     args = parser.parse_args()
     archive = build(args.version, Path(args.outdir))

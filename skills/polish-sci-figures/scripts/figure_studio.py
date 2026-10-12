@@ -160,7 +160,7 @@ def write_html(project: dict, output: Path) -> None:
     payload = json.dumps(project, ensure_ascii=False, allow_nan=False).replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
     html = (ASSETS / "studio.html").read_text(encoding="utf-8")
     html = html.replace("/*__STUDIO_CSS__*/", '\n'.join((ASSETS / name).read_text(encoding="utf-8") for name in ['studio.css', 'rich-text.css', 'workspace-layout.css']))
-    html = html.replace("/*__STUDIO_JS__*/", '\n'.join((ASSETS / name).read_text(encoding="utf-8") for name in ['rich-text.js', 'workspace-layout.js', 'group-spacing.js', 'tiff-export.js', 'compact-whitespace.js', 'studio.js']))
+    html = html.replace("/*__STUDIO_JS__*/", '\n'.join((ASSETS / name).read_text(encoding="utf-8") for name in ['rich-text.js', 'workspace-layout.js', 'group-spacing.js', 'mark-style.js', 'tiff-export.js', 'compact-whitespace.js', 'studio.js']))
     html = html.replace("/*__STUDIO_I18N__*/", (ASSETS / "i18n.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_MEMORY__*/", (ASSETS / "memory.js").read_text(encoding="utf-8"))
     html = html.replace("/*__STUDIO_DISCOVERY__*/", (ASSETS / "discovery.js").read_text(encoding="utf-8"))

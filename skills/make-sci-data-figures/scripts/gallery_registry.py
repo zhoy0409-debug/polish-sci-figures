@@ -13,6 +13,7 @@ from data_family_workbench import _save_bundle, _relative_input
 from gallery_fonts import apply_font_fallback
 from gallery_layout import apply_layout
 from gallery_heatmap import tag_heatmap_colorbars
+from gallery_marks import prepare_marks, embed_marks
 from gallery_axes import apply_axes, validate_settings, compatible_settings, controls_from_svg
 
 MODULES = [importlib.import_module(name) for name in (
@@ -76,11 +77,13 @@ def svg_at_size(data,view,colors,font,dimensions,axes=None):
         fig=render(data,view,colors,dimensions,axes=axes)
     try:
         output=io.StringIO()
+        prepare_marks(fig)
         with plt.rc_context({'svg.fonttype':'none'}):
             fig.savefig(output,format='svg',metadata={'Date':None})
         metadata=escape(json.dumps(fig._studio_axis_controls,ensure_ascii=False,allow_nan=False))
-        text=output.getvalue().replace('</svg>',f'<metadata id="studio-axis-controls">{metadata}</metadata>\n</svg>')
-        raw=text.encode('utf-8')
+        series_colors=escape(json.dumps(list(COLORS if colors is None else colors),ensure_ascii=False,allow_nan=False))
+        text=output.getvalue().replace('</svg>',f'<metadata id="studio-axis-controls">{metadata}</metadata>\n<metadata id="studio-series-colors">{series_colors}</metadata>\n</svg>')
+        raw=embed_marks(text,fig).encode('utf-8')
     finally:plt.close(fig)
     _SVG_CACHE[signature]=raw
     while sum(map(len,_SVG_CACHE.values()))>_CACHE_LIMIT:_SVG_CACHE.popitem(last=False)
