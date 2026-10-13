@@ -34,6 +34,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     private var smokeStarted = false
     private var smokeReported = false
     private var smokeStage = "Native app startup"
+    private var smokeHistory: [[String: String]] = []
     private var smokeWatchdog: Timer?
     private var startingServer = false
 
@@ -85,7 +86,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         view.addSubview(retry)
         NSLayoutConstraint.activate([retry.topAnchor.constraint(equalTo: status.bottomAnchor, constant: 16), retry.centerXAnchor.constraint(equalTo: view.centerXAnchor), retry.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)])
         do { exports = try ExportStore() } catch { showError(error.localizedDescription); return }
-        do { try FileManager.default.createDirectory(at: localExportDirectory, withIntermediateDirectories: true) } catch { showError(error.localizedDescription, canRetry: false); return }
+        do { try FileManager.default.createDirectory(at: localDocumentsDirectory, withIntermediateDirectories: true) } catch { showError(error.localizedDescription, canRetry: false); return }
         // Imported data and editor storage remain app-local rather than entering iCloud backup.
         excludeEditorStorageFromBackup()
         startServer()
@@ -101,8 +102,8 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         }
     }
 
-    private var localExportDirectory: URL {
-        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Exports", isDirectory: true)
+    private var localDocumentsDirectory: URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
 
     private func startServer() {
@@ -197,13 +198,20 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     }
 
     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
-        guard frame.isMainFrame, isTrusted(frame.request.url), isTrusted(webView.url), exportReply == nil, dismissJavaScriptDialog == nil else { completionHandler(false); return }
+        if smoke {
+            recordSmokeProgress("Native confirmation requested; mainFrame=\(frame.isMainFrame); trustedFrame=\(isTrusted(frame.request.url)); trustedPage=\(isTrusted(webView.url)); exportActive=\(exportReply != nil); dialogActive=\(dismissJavaScriptDialog != nil); presenter=" + (presentedViewController.map { String(describing: type(of: $0)) } ?? "none") + "; dismissing=" + String(presentedViewController?.isBeingDismissed ?? false))
+        }
+        guard frame.isMainFrame, isTrusted(frame.request.url), isTrusted(webView.url), exportReply == nil, dismissJavaScriptDialog == nil else {
+            if smoke { recordSmokeProgress("Native confirmation rejected by origin or active-dialog guard") }
+            completionHandler(false); return
+        }
         let chinese = message.range(of: "\\p{Han}", options: .regularExpression) != nil
         let dialog = UIAlertController(title: "Figure Studio", message: message, preferredStyle: .alert)
         var resolved = false
         let finish: (Bool) -> Void = { [weak self, weak dialog] accepted in
             guard !resolved else { return }
             resolved = true; self?.dismissJavaScriptDialog = nil
+            if self?.smoke == true { self?.recordSmokeProgress(accepted ? "Native confirmation accepted" : "Native confirmation declined") }
             dialog?.dismiss(animated: false)
             completionHandler(accepted)
         }
@@ -213,20 +221,35 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         presentConfirmationWhenReady(dialog, attemptsRemaining: 20, isActive: { !resolved }, finish: finish)
     }
 
-    private func presentConfirmationWhenReady(_ dialog: UIAlertController, attemptsRemaining: Int, isActive: @escaping () -> Bool, finish: @escaping (Bool) -> Void) {
+    private func presentConfirmationWhenReady(_ dialog: UIAlertController, attemptsRemaining: Int, mayDismissCompletedPicker: Bool = true, isActive: @escaping () -> Bool, finish: @escaping (Bool) -> Void) {
         guard isActive() else { return }
         guard isTrusted(webView.url) else { finish(false); return }
         if presentedViewController == nil {
-            present(dialog, animated: !UIAccessibility.isReduceMotionEnabled)
+            present(dialog, animated: !UIAccessibility.isReduceMotionEnabled) { [weak self] in
+                if self?.smoke == true { self?.recordSmokeProgress("Native confirmation shown") }
+            }
         } else if attemptsRemaining > 0 {
             // File input onchange can run while the system picker is finishing
             // dismissal. Wait briefly for that transition, rather than declining
             // a valid project import or presenting over another controller.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
                 guard let self else { finish(false); return }
-                self.presentConfirmationWhenReady(dialog, attemptsRemaining: attemptsRemaining - 1, isActive: isActive, finish: finish)
+                self.presentConfirmationWhenReady(dialog, attemptsRemaining: attemptsRemaining - 1, mayDismissCompletedPicker: mayDismissCompletedPicker, isActive: isActive, finish: finish)
             }
-        } else { finish(false) }
+        } else if mayDismissCompletedPicker, exportReply == nil, activeExportPicker == nil,
+                  let picker = presentedViewController as? UIDocumentPickerViewController, !picker.isBeingDismissed {
+            // A trusted project confirmation means the editor already received
+            // and validated the file. Recover only a leftover import picker;
+            // never close an export dialog or an unrelated presented controller.
+            if smoke { recordSmokeProgress("Closing completed import picker before native confirmation") }
+            picker.dismiss(animated: false) { [weak self] in
+                guard let self else { finish(false); return }
+                self.presentConfirmationWhenReady(dialog, attemptsRemaining: 0, mayDismissCompletedPicker: false, isActive: isActive, finish: finish)
+            }
+        } else {
+            if smoke { recordSmokeProgress("Native confirmation could not show while prior controller remained presented") }
+            finish(false)
+        }
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         status.isHidden = true; retry.isHidden = true
@@ -285,7 +308,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
                 picker.modalPresentationStyle = .formSheet
                 // A first-time user gets a visible on-device destination. The
                 // native picker still requires Save and can choose another folder.
-                if !UserDefaults.standard.bool(forKey: "studio.hasExported.v1") { picker.directoryURL = localExportDirectory }
+                if !UserDefaults.standard.bool(forKey: "studio.hasExported.v1") { picker.directoryURL = localDocumentsDirectory }
                 presentExportWhenReady(picker, id: id, attemptsRemaining: 20)
             case "smokeLastExport" where smoke:
                 replyHandler(lastSmokeExport ?? ["saved": false], nil)
@@ -352,7 +375,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
                 NSFileCoordinator().coordinate(readingItemAt: url, options: [], error: &coordinationError) { actual in
                     do {
                         let bytes = try Data(contentsOf: actual)
-                        lastSmokeExport = ["saved": true, "name": actual.lastPathComponent, "bytes": bytes.count, "sha256": SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined(), "insideLocalDocuments": actual.standardizedFileURL.resolvingSymlinksInPath().path.hasPrefix(localExportDirectory.deletingLastPathComponent().standardizedFileURL.resolvingSymlinksInPath().path + "/")]
+                        lastSmokeExport = ["saved": true, "name": actual.lastPathComponent, "bytes": bytes.count, "sha256": SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined(), "insideLocalDocuments": actual.standardizedFileURL.resolvingSymlinksInPath().path.hasPrefix(localDocumentsDirectory.standardizedFileURL.resolvingSymlinksInPath().path + "/")]
                     } catch { lastSmokeExport = ["saved": false, "error": error.localizedDescription] }
                 }
                 if let coordinationError { lastSmokeExport = ["saved": false, "error": coordinationError.localizedDescription] }
@@ -371,9 +394,11 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     private func recordSmokeProgress(_ stage: String) {
         guard smoke else { return }
         smokeStage = stage
+        smokeHistory.append(["stage": stage, "at": ISO8601DateFormatter().string(from: Date())])
+        if smokeHistory.count > 64 { smokeHistory.removeFirst(smokeHistory.count - 64) }
         let target = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("simulator-progress.json")
         try? FileManager.default.createDirectory(at: target.deletingLastPathComponent(), withIntermediateDirectories: true)
-        let value: [String: Any] = ["stage": stage, "at": ISO8601DateFormatter().string(from: Date()), "origin": server?.origin ?? "not-ready"]
+        let value: [String: Any] = ["stage": stage, "at": ISO8601DateFormatter().string(from: Date()), "origin": server?.origin ?? "not-ready", "history": smokeHistory]
         if let data = try? JSONSerialization.data(withJSONObject: value, options: [.prettyPrinted, .sortedKeys]) { try? data.write(to: target, options: .atomic) }
     }
 
@@ -383,6 +408,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         var result = report
         result["platform"] = "iOS simulator (development build)"
         result["origin"] = server?.origin
+        result["nativeStageHistory"] = smokeHistory
         result["nativeSecurityChecks"] = nativeSecurityChecks()
         if let checks = result["nativeSecurityChecks"] as? [String: Bool], checks.values.contains(false) { result["passed"] = false }
         let name = ProcessInfo.processInfo.arguments.contains("--restore") ? "simulator-restore.json" : "simulator-smoke.json"

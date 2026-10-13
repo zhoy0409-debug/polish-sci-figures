@@ -55,8 +55,6 @@ final class SimulatorTests: XCTestCase {
             let folder = app.cells.containing(.staticText, identifier: "Figure Studio Preview").firstMatch
             XCTAssertTrue(folder.waitForExistence(timeout: 5), "The app's local Documents folder is unavailable")
             folder.tap()
-            let exports = app.cells.containing(.staticText, identifier: "Exports").firstMatch
-            if exports.waitForExistence(timeout: 5) { exports.tap() }
         }
         let destination = XCTAttachment(screenshot: app.screenshot()); destination.name = "iOS local Files save destination"; destination.lifetime = .keepAlways; add(destination)
         let writable = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND enabled == true"), object: save)
@@ -74,15 +72,16 @@ final class SimulatorTests: XCTestCase {
             if local.waitForExistence(timeout: 5) { local.tap() }
             let folder = app.cells.containing(.staticText, identifier: "Figure Studio Preview").firstMatch
             if folder.waitForExistence(timeout: 5) { folder.tap() }
-            let exports = app.cells.containing(.staticText, identifier: "Exports").firstMatch
-            if exports.waitForExistence(timeout: 5) { exports.tap() }
             document = app.cells.matching(filename).firstMatch
         }
         XCTAssertTrue(document.waitForExistence(timeout: 15), "Saved local project is not visible in the actual Files picker")
         let imported = XCTAttachment(screenshot: app.screenshot()); imported.name = "iOS Files reimport selection"; imported.lifetime = .keepAlways; add(imported)
         document.tap()
         let confirm = app.alerts.buttons["Confirm"].firstMatch
-        XCTAssertTrue(confirm.waitForExistence(timeout: 15), "Project replacement confirmation did not appear")
+        let confirmationShown = confirm.waitForExistence(timeout: 15)
+        let selected = XCTAttachment(screenshot: app.screenshot()); selected.name = "iOS after choosing saved project"; selected.lifetime = .keepAlways; add(selected)
+        if !confirmationShown { print("FILES SELECTION HIERARCHY\n" + app.debugDescription) }
+        XCTAssertTrue(confirmationShown, "Project replacement confirmation did not appear")
         // A synchronous window.confirm suspends the WK JavaScript context.
         // XCTest's global interruption rescan can wait on that suspended page;
         // tap the observed native alert button's actual on-screen centre.
