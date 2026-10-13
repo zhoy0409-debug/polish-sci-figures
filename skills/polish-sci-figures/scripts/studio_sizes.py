@@ -46,6 +46,7 @@ def render_sizes(path, recipe, analysis, variants, allowed_sizes=None):
             dots=ax.scatter(i+rng.uniform(-width*.35,width*.35,len(vals)),vals,s=12,color=color,zorder=3);dots.set_gid(f'studio-group-{i}-points')
             err=ax.errorbar(i,mean,yerr=[[mean-lo],[hi-mean]],fmt='none',color='#20242A',capsize=3,lw=1)
             for j,line in enumerate([*err.lines[1],*err.lines[2]]):line.set_gid(f'studio-group-{i}-error-{j}')
+            wb.tag_color_source(dots,patch);wb.tag_color_source(err,patch)
         ax.set_xticks(range(len(order)),order);ax.set_xlim(-.6,len(order)-.4)
         wb.finish_axes(fig,ax,ylabel);wb.add_stat_line(fig,analysis)
         for i,tick in enumerate(ax.xaxis.get_major_ticks()):

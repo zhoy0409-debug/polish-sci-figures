@@ -42,12 +42,13 @@ for(const size of [24,32])for(const [width,height]of [[345.6,259.2],[703.2,259.2
 // Execute the production generated-element edit block, including the hidden mapping.
 function node(tag,key){const attrs=new Map(key?[['data-key',key]]:[]);return {localName:tag,style:{setProperty(k,v){this[k]=v;}},textContent:'Original',closest:()=>null,hasAttribute:k=>attrs.has(k),getAttribute:k=>attrs.get(k),setAttribute:(k,v)=>attrs.set(k,v)};}
 const path=node('path'),text=node('text'),existing=node('text','e5'),nodes=[path,text,existing];
+function generatedSvg(items){const svg=node('svg');svg.querySelectorAll=selector=>selector==='[data-key]'?items.filter(el=>el.hasAttribute('data-key')):items;return svg;}
 const start=source.indexOf('    let generated=900000;'),end=source.indexOf('    return svg;',start);
 assert.ok(start>=0&&end>start);
-const ctx={raw:false,id:'panel-0',vi:0,s:{},svg:{querySelectorAll:()=>nodes},editsFor:()=>({e900000:{hidden:'true'},e900001:{hidden:'true','font-size':'32',fill:'#526e9e'}})};
+const ctx={raw:false,id:'panel-0',vi:0,s:{panels:{'panel-0':{}}},marks:null,svg:generatedSvg(nodes),editsFor:()=>({e900000:{hidden:'true'},e900001:{hidden:'true','font-size':'32',fill:'#526e9e'}})};
 vm.runInNewContext(source.slice(start,end),ctx);
 assert.equal(path.style.display,'none','generated comparison line deletion reaches output');assert.equal(text.style.display,'none','generated statistical text deletion reaches output');assert.equal(text.style.fontSize||text.style['font-size'],'32px');assert.equal(existing.style.display,undefined,'unselected source content remains visible');
-const raw=node('text');vm.runInNewContext(source.slice(start,end),{...ctx,raw:true,svg:{querySelectorAll:()=>[raw]}});assert.equal(raw.style.display,undefined,'original comparison remains unedited');
+const raw=node('text');vm.runInNewContext(source.slice(start,end),{...ctx,raw:true,svg:generatedSvg([raw])});assert.equal(raw.style.display,undefined,'original comparison remains unedited');
 
 // Summary anchoring must use its independent band instead of the statistical ladder.
 const titleLine=source.split('\n').find(line=>line.includes('if(titles.has(el))'));

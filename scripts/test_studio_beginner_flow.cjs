@@ -19,7 +19,7 @@ assert.match(source,/candidate\?'当前数据':templatePreviews\[name\]\?'示例
 let current={panels:{p:{variant:0,fontSize:9}}},chartBuilds=0,paletteBuilds=0,latest;
 const fields={scope:{value:'panel'},chartGoal:{value:'overview'},topCount:{value:'5'}};
 const previews={activePane:'detail',selectedPanel:'p',project:{},inspectorPreviewCache:{},StudioI18n:{language:'zh'},state:()=>current,$:id=>fields[id],selectionGroups:()=>[],selectedAnnotations:[],selectedPanelLabel:null,renderChartChoices(){chartBuilds++;latest=current;},drawPalettes(){paletteBuilds++;latest=current;}};
-vm.createContext(previews);vm.runInContext(range('  function renderInspectorPreviews(','  function renderInspector()'),previews);
+vm.createContext(previews);vm.runInContext(range('  function renderInspectorPreviews(','  let categorySpacingGesture='),previews);
 previews.renderInspectorPreviews();assert.equal(chartBuilds+paletteBuilds,0,'font editing does not build hidden SVG galleries');
 previews.activePane='explore';previews.renderInspectorPreviews();previews.renderInspectorPreviews();assert.equal(chartBuilds,1,'same visible state is not rebuilt twice');
 previews.activePane='data';current={panels:{p:{variant:0,fontSize:14}}};previews.renderInspectorPreviews();assert.equal(chartBuilds,1);previews.activePane='explore';previews.renderInspectorPreviews();assert.equal(chartBuilds,2);assert.equal(latest,current,'returning to previews uses the latest edited state');

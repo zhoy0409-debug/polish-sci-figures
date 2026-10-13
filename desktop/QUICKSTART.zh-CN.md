@@ -6,7 +6,7 @@ Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库
 
 ## 安装与打开
 
-1. 运行 `polish-sci-figures-Studio-版本号-Setup-x64.exe`，按提示安装到当前 Windows 用户。
+1. 下载 [Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-Studio-0.1.6-Setup-x64.exe)，运行后按提示安装到当前 Windows 用户。
 2. 双击桌面或开始菜单中的 **polish-sci-figures Studio**。启动小窗口显示“编辑器已就绪”后，默认浏览器会打开编辑器；也可点击小窗口里的 **打开编辑器**。
 3. 页面右上角可切换中文和 English。再次点击快捷方式会打开已运行的编辑器。
 
@@ -21,6 +21,8 @@ Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库
 5. 点击 **保存** 下载工程 JSON，之后用 **项目 → 打开工程** 继续编辑。SVG/PNG/TIFF 是成图，工程 JSON 才是包含编辑状态、数据和版本记录的备份。
 
 当前数据建立的统计分析会随有效数据更新重新计算；外部比较结果或拆分分面保留的结果，在对应数据改变后需按页面提示重新连接或更新。未完成或无效的数据修改不会覆盖上一版有效图形。
+
+统计样式和条件表统一在**标注**页。如需参考已发表图形，展开**图表类型 → 文献作图实例**，点击**查找文献实例**；只有主动检索时才连接 Europe PMC，发送图型词和手动填写的可选主题，研究数据留在本机。[图注核对与数据预览说明](../README.zh-CN.md#文献作图实例)。
 
 ## 保存、退出与升级
 

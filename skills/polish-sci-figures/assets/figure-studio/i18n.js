@@ -2,6 +2,14 @@
 'use strict';
 const StudioI18n = (() => {
   const en = {
+"返回":"Back",
+"当前旧图无法自动匹配统计位置，请在数据表中点击“更新图形”。":"This older figure could not be matched automatically. Choose Update figure in the Data table tab.",
+"预览使用当前数据；应用后可撤销。":"Preview uses your current data. Applying it can be undone.",
+"应用此图型":"Apply this chart",
+"保存已取消":"Save cancelled",
+"本地文件保存不可用，请重试或重新打开应用。":"Local file saving is unavailable. Retry or reopen the app.",
+"文件尚未保存，请重试。":"The file has not been saved. Please retry.",
+"设备内计算暂不可用。工程与数据草稿已保留，请重试初始化。":"On-device calculation is unavailable. Your project and data drafts are kept; try initializing again.",
 "图形已导入":"Artwork imported",
 "导入结果已保留，可用撤销恢复。":"The imported artwork is already in your figure. You can undo to restore the previous version.",
 "拉伸的图片已按适合编辑的分辨率重新采样，以保持操作流畅。":"A stretched image was resampled at a bounded resolution to keep editing responsive.",
@@ -83,6 +91,34 @@ const StudioI18n = (() => {
 
 "点与误差棒样式无效":"Invalid point or error bar styling",
 "样本点与误差棒":"Points & error bars",
+"当前旧图无法自动匹配可编辑标记，请在数据表中点击“更新图形”。":"This older chart could not be matched automatically. Click Update chart in Data to refresh its editable marks.",
+"此旧图的组色来源尚未识别；更新图形后可跟随组色。":"Group colors are not identified in this older chart. Update the chart to enable Group color.",
+"点填充":"Point fill",
+"点描边":"Point outline",
+"应用于当前小图；不改变数据、柱形或连接线。":"Applies to this panel. Data, bars and connecting lines stay unchanged.",
+"样本点":"Sample points",
+"样本点样式":"Point style",
+"显示样本点":"Show points",
+"显示误差棒":"Show error bars",
+"原样":"Original",
+"空心":"Hollow",
+"自定义":"Custom",
+"跟随组色":"Group color",
+"无填充":"No fill",
+"自定颜色":"Custom color",
+"无描边":"No outline",
+"描边":"Outline",
+"样本点填充颜色":"Point fill color",
+"样本点描边颜色":"Point outline color",
+"点描边宽度（pt）":"Outline width (pt)",
+"样本点描边宽度":"Point outline width",
+"误差棒颜色":"Error bar color",
+"黑色":"Black",
+"灰色":"Gray",
+"无":"None",
+"已隐藏；颜色与大小已保留":"Hidden; colors and sizes are kept",
+"保留图中原始样式":"Keeps the original appearance",
+"填充 {0} · 描边 {1}":"Fill {0} · Outline {1}",
 "样本点大小":"Point size",
 "按比例调整点的直径，保留数据位置和点之间的大小比例。":"Scale point diameters while keeping their positions and relative sizes.",
 "上下两侧":"Both sides",
@@ -173,6 +209,7 @@ const StudioI18n = (() => {
     '恢复首版':'Reset to first draft','保存工程':'Save project','打开工程':'Open project','导出 SVG':'Export SVG',
     'FIGURE / 面板':'FIGURE / PANELS','选中小图，再点选图内元素。':'Select a panel, then click an object inside it.',
     'Shift + 点击可多选。':'Shift-click to select multiple objects.',
+    '在画布中切换到“编辑”，再点选或框选元素。':'On the canvas, choose Edit, then tap or drag to select objects.',
     '母版与叙事顺序':'Layouts & reading order',
     '悬停母版看整图，点击应用。空位保留；数字表示阅读顺序，不进入导出。':'Hover to preview the composition; click to apply. Empty slots are retained. Reading-order guides are not exported.',
     '跨格时匹配已有横 / 竖版':'Match available canvas variants to spanning slots',
@@ -250,7 +287,7 @@ const StudioI18n = (() => {
     '配色、字号修改后需重新核对碰撞与可读性。':'Recheck collisions and readability after colour or font-size edits.',
     '工程只保存外观差异；新数据请从分析流程重新生成。':'The project records appearance edits. For new data, regenerate from the analysis workflow.',
     '本图没有可编辑文字，路径化或栅格文字不能直接改字体。':'No editable text is present. Outlined or raster text cannot have its font changed directly.',
-    '{0} 行 × {1} 列 · {2} × {3} mm':'{0} rows × {1} columns · {2} × {3} mm',
+    '{0} 行 × {1} 列 · {2} × {3} mm':'{0} × {1} grid · {2} × {3} mm',
     '已移动 / 交换小图':'Panel moved / swapped','选择面板 ':'Select panel ','已交换小图':'Panels swapped','已恢复版本 ':'Restored version: ','未完成：':'Not completed: ','已撤销':'Undone','已重做':'Redone',
     '原版对照：当前布局与候选，未应用外观修改。':'Original comparison: current layout and candidates without appearance edits.',
     '已返回编辑版':'Returned to edits','已恢复 AI 首版；仍可撤销此次恢复':'First AI draft restored; this reset can be undone',
@@ -401,7 +438,7 @@ const StudioI18n = (() => {
     '按最终尺寸检查文字、标注位置、颜色语义、科学符号与图像分辨率。':'At the final figure size, check text, annotation placement, color meaning, scientific notation and image resolution.'
   });
   Object.assign(en,{'分组条件表':'Group conditions','在横轴下方显示处理条件、+/− 或剂量；各列跟随对应组别。':'Show conditions, +/− or doses below the horizontal axis, aligned with each group.','显示分组条件表':'Show group conditions','添加条件行':'Add condition row','条件表字号（pt）':'Condition font size (pt)','分组条件表参数无效':'Invalid group condition settings','当前图没有可匹配的分类横轴。':'This chart has no matching categorical horizontal axis.','分组条件表已更新':'Group conditions updated','每列与组别对应；空白项显示为 —。':'Columns follow their groups; blank entries are shown as —.','条件':'Condition','条件行 {0}':'Condition row {0}','条件 {0} · {1}':'Condition {0} · {1}','删除条件行 {0}':'Delete condition row {0}','条件 {0}':'Condition {0}','当前列宽不足，请加宽小图或缩短条件文字。':'Columns are too narrow. Widen the panel or shorten the condition text.','实际字号 {0} pt；加宽小图可使用设置字号。':'Displayed at {0} pt. Widen the panel to use the requested font size.'});
-  Object.assign(en,{'对齐参考线参数无效':'Invalid alignment guides','对齐参考线':'Alignment guides','添加水平参考线':'Add horizontal guide','添加垂直参考线':'Add vertical guide','删除所选参考线':'Delete selected guide','清除所有参考线':'Clear all guides','参考线仅用于编辑对齐，不随图片导出。':'Guides are for editing only and are not exported.','拖动元素时自动吸附；按住 Alt 可临时关闭吸附。':'Objects snap while dragging; hold Alt to bypass snapping.','共 {0} 条参考线；拖动调整，按 Delete 删除所选线。':'{0} guides. Drag to move; press Delete to remove the selected guide.','已添加对齐参考线':'Alignment guide added','已删除对齐参考线':'Alignment guide deleted','已清除对齐参考线':'Alignment guides cleared','已移动对齐参考线':'Alignment guide moved'});
+  Object.assign(en,{'辅助线':'Guides','对齐参考线参数无效':'Invalid alignment guides','对齐参考线':'Alignment guides','添加水平参考线':'Add horizontal guide','添加垂直参考线':'Add vertical guide','删除所选参考线':'Delete selected guide','清除所有参考线':'Clear all guides','参考线仅用于编辑对齐，不随图片导出。':'Guides are for editing only and are not exported.','拖动元素时自动吸附；按住 Alt 可临时关闭吸附。':'Objects snap while dragging; hold Alt to bypass snapping.','共 {0} 条参考线；拖动调整，按 Delete 删除所选线。':'{0} guides. Drag to move; press Delete to remove the selected guide.','已添加对齐参考线':'Alignment guide added','已删除对齐参考线':'Alignment guide deleted','已清除对齐参考线':'Alignment guides cleared','已移动对齐参考线':'Alignment guide moved'});
   Object.assign(en,{'显示名称翻译无效':'Invalid translated display name','重点大图':'Focal panel'});
   // Character-level scientific text formatting.
   Object.assign(en,{

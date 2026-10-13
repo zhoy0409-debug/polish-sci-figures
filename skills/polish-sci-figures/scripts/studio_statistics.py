@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import inspect
 import io
 import itertools
 import math
@@ -152,6 +153,16 @@ def _base_config(config, allowed):
         fail('请明确比较族：全部两两比较或对照组比较', 'Declare all-pairs or control comparisons')
 
 
+def _permutation_method():
+    """Keep the same seeded Generator across SciPy's random_state/rng APIs."""
+    parameters = inspect.signature(stats.PermutationMethod).parameters
+    keyword = 'rng' if 'rng' in parameters else 'random_state'
+    # Passing an integer to the legacy API would select RandomState instead of
+    # Generator and change the seeded Monte Carlo assignments.
+    return stats.PermutationMethod(n_resamples=9999, batch=128,
+                                   **{keyword: np.random.default_rng(SEED)})
+
+
 def _pair_test(a, b, method, permutation_budget):
     """Effect direction is group b minus group a throughout."""
     x = np.asarray([v[0] for v in a.values()], dtype=float)
@@ -187,7 +198,7 @@ def _pair_test(a, b, method, permutation_budget):
                     permutation_budget[0] += 9999 * (len(x) + len(y))
                     if permutation_budget[0] > MAX_PERMUTATION_WORK:
                         fail('本次小样本置换计算超出本地计算上限；请缩小预先指定的比较族', 'Small-sample permutations exceed this local computation limit; reduce the prespecified comparison family')
-                    pm = stats.PermutationMethod(n_resamples=9999, batch=128, rng=np.random.default_rng(SEED))
+                    pm = _permutation_method()
                     label = 'permutation, up to 9999 resamples, seed 18731'
                 else:
                     pm = 'exact' if min(len(x), len(y)) <= 8 and not ties else 'asymptotic'
@@ -225,11 +236,13 @@ def _pair_test(a, b, method, permutation_budget):
                         permutation_budget[0] += 9999 * len(difference)
                         if permutation_budget[0] > MAX_PERMUTATION_WORK:
                             fail('本次小样本置换计算超出本地计算上限；请缩小预先指定的比较族', 'Small-sample permutations exceed this local computation limit; reduce the prespecified comparison family')
-                        pm = stats.PermutationMethod(n_resamples=9999, batch=128, rng=np.random.default_rng(SEED))
+                        pm = _permutation_method()
                         label = 'permutation, up to 9999 sign flips, seed 18731'
                     else:
-                        pm = 'exact' if not tied and len(difference) <= 50 else 'asymptotic'
-                        label = pm
+                        # SciPy <1.15 calls the normal approximation 'approx';
+                        # newer releases retain that alias for 'asymptotic'.
+                        pm = 'exact' if not tied and len(difference) <= 50 else 'approx'
+                        label = 'exact' if pm == 'exact' else 'asymptotic'
                     test = stats.wilcoxon(difference, alternative='two-sided', zero_method='wilcox',
                                           method=pm, nan_policy='raise')
                     extra = {'descriptive_median_difference': float(np.median(difference)),

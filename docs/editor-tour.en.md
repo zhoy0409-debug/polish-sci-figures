@@ -38,6 +38,8 @@ Double-click the axis title **Value**, type **Response**, and press **Enter**. S
 
 Use **Undo** if you want to compare with the previous arrangement. Text and spacing can be refined again at any time.
 
+**New in Figure Studio 0.1.6:** the **Annotations** tab holds statistical styles and condition tables. Complete the analysis if results are missing; generated comparisons remain editable and movable. Grouped bars and supported faceted comparisons now anchor above their matching groups, with staggered rows for large labels. You can also open **Chart types → Examples in papers** for an optional Europe PMC search and, where a figure caption is matched and a compatible candidate exists, preview with your own data. See [search behavior and privacy](../README.en.md#examples-in-papers). The screenshots above show the earlier workflow; the linked guide describes these additions.
+
 ## 5. Export and keep an editable copy
 
 Open **Export** in the top toolbar and choose **TIF**. Set **600 dpi**, review the output dimensions, and click **Download file**. The exported TIFF contains the figure, without the editing controls.

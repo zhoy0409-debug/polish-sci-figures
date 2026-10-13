@@ -2,15 +2,15 @@
 
 [English](platform-installation.en.md) | [中文](platform-installation.md)
 
-套件 v1.4.3 提供一个自包含上传包，内含入口技能和完整本机绘图资源。Claude 用户可直接上传，不必手工重打 ZIP 或让宿主分别寻找三个技能。想直接操作图形的 Windows 用户请使用 [Figure Studio 安装包](../desktop/QUICKSTART.zh-CN.md)，无需安装 AI 技能。
+套件 v1.4.6 提供一个自包含上传包，内含入口技能和完整本机绘图资源。Claude 用户可直接上传，不必手工重打 ZIP 或让宿主分别寻找三个技能。想直接操作图形的 Windows 用户请使用 [Figure Studio 安装包](../desktop/QUICKSTART.zh-CN.md)，无需安装 AI 技能。
 
 ## 下载哪个包
 
-下载 [polish-sci-figures-v1.4.3-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.3/polish-sci-figures-v1.4.3-skill.zip)。它只有一个根目录 `polish-sci-figures/`，整个 ZIP 中仅有一个入口 `SKILL.md`。完整三项工作流以 `WORKFLOW.md` 存放在内部 `suite/`，CLI 与运行资源一起保留。保持这个结构，直接上传原 ZIP。
+下载 [polish-sci-figures-v1.4.6-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-v1.4.6-skill.zip)。它只有一个根目录 `polish-sci-figures/`，整个 ZIP 中仅有一个入口 `SKILL.md`。完整三项工作流以 `WORKFLOW.md` 存放在内部 `suite/`，CLI 与运行资源一起保留。保持这个结构，直接上传原 ZIP。
 
-v1.4.0 上传包内含四个 `SKILL.md`，已在真实 Claude 上传中确认被拒绝。v1.4.1 已通过 Claude 实际上传验证，v1.4.3 延续其单入口结构。请下载当前版本，不要继续上传旧文件。
+v1.4.0 上传包内含四个 `SKILL.md`，已在真实 Claude 上传中确认被拒绝。v1.4.1 已通过 Claude 实际上传验证，v1.4.6 延续其单入口结构。请下载当前版本，不要继续上传旧文件。
 
-需要自行运行源码、分别管理三个技能时，选择同一发行页的 `sci-figure-suite-v1.4.3.zip`。这两个包用途不同，不要将整个三技能源码包作为单个技能上传。
+需要自行运行源码、分别管理三个技能时，选择同一发行页的 `sci-figure-suite-v1.4.6.zip`。这两个包用途不同，不要将整个三技能源码包作为单个技能上传。
 
 ## 平台入口
 

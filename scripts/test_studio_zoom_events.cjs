@@ -9,6 +9,7 @@ const css = fs.readFileSync(path.join(__dirname,'../skills/polish-sci-figures/as
 const controller = source.slice(source.indexOf('  // Reuse the current SVG on zoom;'),source.indexOf('  function renderCanvas('));
 const near = (a,b) => assert.ok(Math.abs(a-b)<1e-8, `${a} != ${b}`);
 let frames = new Map(),frameId=0,styleWrites=0,redraws=0,scrollX=0,scrollY=0;
+const resizeObservers=[];
 const listeners = new Map(),windowListeners = new Map();
 const makeOption = value => ({value:String(value),dataset:{},hidden:false,textContent:'',hasAttribute(name){return name==='data-custom-zoom'&&Object.hasOwn(this.dataset,'customZoom');}});
 const control={value:'1',title:'',options:['fit',.1,.25,.5,.75,1,1.5,2,3,4].map(makeOption),querySelector(){return this.options.find(o=>o.hasAttribute('data-custom-zoom'))||null;},append(o){this.options.push(o);}};
@@ -27,9 +28,10 @@ const sandbox={...helpers,console,
   T:(s,...values)=>s.replace(/\{(\d+)\}/g,(_,n)=>values[+n]),
   getComputedStyle:()=>({paddingLeft:'32px',paddingRight:'32px',paddingTop:'32px',paddingBottom:'32px'}),
   document:{createElement:()=>makeOption('')},
+  ResizeObserver:class {constructor(callback){this.callback=callback;resizeObservers.push(this);}observe(node){this.node=node;}},
   requestAnimationFrame:fn=>{const id=++frameId;frames.set(id,fn);return id;},cancelAnimationFrame:id=>frames.delete(id),
   window:{addEventListener:(name,fn)=>windowListeners.set(name,fn),getSelection:()=>({removeAllRanges(){}})},project:{},svg,
-  markRedraw:()=>redraws++
+  markRedraw:()=>redraws++,commit:()=>{throw Error('Preview fit must not add edit history');}
 };
 vm.createContext(sandbox);
 vm.runInContext(source.slice(source.indexOf('  function canvasObjectTarget('),source.indexOf('  function addStatisticalHitAreas(')),sandbox);
@@ -50,6 +52,7 @@ vm.runInContext(controller+`
   globalThis.bindSelectionRefresh=callback=>{zoomView.refreshSelection=callback;};
   globalThis.setZoom=applyPreviewZoom;
   globalThis.flushQueued=cancelQueuedZoom;
+  globalThis.observeFit=observePreviewFit;
 `,sandbox);
 const flush=()=>{const work=[...frames.values()];frames.clear();for(const fn of work)fn();};
 const wheel=(options={})=>{const e={altKey:false,ctrlKey:false,buttons:0,deltaY:-100,deltaMode:0,clientX:430,clientY:280,prevented:0,preventDefault(){this.prevented++;},...options};listeners.get('wheel').fn(e);return e;};
@@ -79,10 +82,44 @@ control.value='2';control.onchange();assert.equal(sandbox.inspectZoom().zoom,2);
 control.value='fit';control.onchange();near(sandbox.inspectZoom().zoom,Math.min(1,836/1000,556/700));
 assert.equal(control.value,'fit');assert.equal(viewport.scrollLeft,0);assert.equal(viewport.scrollTop,0);
 viewport.clientWidth=560;viewport.clientHeight=400;windowListeners.get('resize')();
-assert.equal(redraws,1);near(sandbox.inspectZoom().zoom,Math.min(1,496/1000,336/700));assert.equal(control.value,'fit');
+assert.equal(frames.size,1);flush();
+assert.equal(redraws,0);near(sandbox.inspectZoom().zoom,Math.min(1,496/1000,336/700));assert.equal(control.value,'fit');
 control.value='2';control.onchange();viewport.clientWidth=700;windowListeners.get('resize')();
 assert.equal(sandbox.inspectZoom().zoom,2,'window resize preserves fixed zoom');assert.equal(control.value,'2');
 const oldCount=control.options.length;wheel({altKey:true,deltaY:12});flush();wheel({altKey:true,deltaY:8});flush();assert.equal(control.options.length,oldCount,'dynamic option reused');
+
+// First render can occur before the mobile shell frees the viewport. The
+// post-initialization frame must fit the final layout, without another render.
+viewport.clientWidth=390;viewport.clientHeight=64;control.value='fit';control.onchange();
+assert.equal(sandbox.inspectZoom().zoom,.1);
+const observer=sandbox.observeFit();assert.equal(observer.node,viewport);assert.equal(frames.size,1);
+viewport.clientHeight=430;observer.callback();observer.callback();
+assert.equal(frames.size,1,'startup and observer changes coalesce');flush();
+near(sandbox.inspectZoom().zoom,Math.min(1,326/1000,366/700));
+assert.equal(sandbox.inspectZoom().svg,originalNode);assert.equal(redraws,0);
+const fitWrites=styleWrites,settled=sandbox.inspectZoom().zoom;
+for(let i=0;i<3;i++){observer.callback();flush();near(sandbox.inspectZoom().zoom,settled);}
+assert.equal(styleWrites,fitWrites,'identical size notifications do not resize or compound the scale');
+// Hiding a welcome card changes the viewport without a window resize.
+viewport.clientHeight=600;viewport.clientWidth=800;observer.callback();flush();
+near(sandbox.inspectZoom().zoom,Math.min(1,736/1000,536/700));assert.equal(redraws,0);
+// Hidden/transient zero layout must not shrink a previously usable canvas.
+const visibleZoom=sandbox.inspectZoom().zoom;viewport.clientHeight=0;observer.callback();flush();
+near(sandbox.inspectZoom().zoom,visibleZoom);viewport.clientHeight=600;
+// Fixed zoom, a manual choice after queueing, and a pending modified wheel
+// all take precedence over automatic layout fitting.
+control.value='2';control.onchange();viewport.clientHeight=500;observer.callback();
+assert.equal(frames.size,0);assert.equal(sandbox.inspectZoom().zoom,2);
+control.value='fit';control.onchange();observer.callback();
+control.value='1.5';control.onchange();flush();assert.equal(sandbox.inspectZoom().zoom,1.5);
+control.value='fit';control.onchange();const pendingBase=sandbox.inspectZoom().zoom;
+observer.callback();wheel({altKey:true,deltaY:-20});viewport.clientWidth=700;
+flush();near(sandbox.inspectZoom().zoom,helpers.wheelPreviewZoom(pendingBase,-20));
+assert.equal(sandbox.inspectZoom().fit,false);assert.equal(redraws,0);
+control.value='fit';control.onchange();const wheelBase=sandbox.inspectZoom().zoom;
+wheel({ctrlKey:true,deltaY:-10});observer.callback();assert.equal(frames.size,1);
+flush();near(sandbox.inspectZoom().zoom,helpers.wheelPreviewZoom(wheelBase,-10));
+assert.equal(sandbox.inspectZoom().svg,originalNode);assert.equal(redraws,0);
 
 // Run the real pointerdown handler in box-select mode. A pending wheel frame
 // must be discarded before capturing selection geometry.
@@ -107,7 +144,7 @@ assert.equal(svg.style.width,fitWidth);assert.equal(control.value,'fit');assert.
 // Canceling a pending wheel must not override the user's newer dropdown choice.
 wheel({altKey:true,deltaY:-120});control.value='1.5';control.onchange();flush();
 assert.equal(sandbox.inspectZoom().zoom,1.5);assert.equal(control.value,'1.5');assert.equal(sandbox.inspectZoom().fit,false);
-wheel({altKey:true,deltaY:-120});control.value='fit';windowListeners.get('resize')();flush();
+wheel({altKey:true,deltaY:-120});control.value='fit';control.onchange();windowListeners.get('resize')();flush();
 assert.equal(control.value,'fit');assert.equal(sandbox.inspectZoom().fit,true);
 
 // Existing selections use fresh screen geometry when a selection is drawn at any zoom.
@@ -144,5 +181,5 @@ assert.equal(outlineRefreshes,4);assert.equal(redraws,redrawsBefore,'selection r
 assert.ok(source.includes('zoomView.refreshSelection=()=>drawSelection(selectedNodes());'));
 assert.match(css,/#artboard \.selection-outline\s*\{[^}]*vector-effect:\s*non-scaling-stroke/s);
 assert.match(css,/#artboard \.selection-marquee\s*\{[^}]*vector-effect:\s*non-scaling-stroke/s);
-console.log('Actual zoom event controller (Node DOM mock): ordinary/modifier wheels, RAF coalescing, drag guard, no plot redraw, dynamic option, clamps, dropdown, resize-fit, pointerdown cancellation, unchanged 2 px selection padding, and post-zoom selection coordinates passed.');
+console.log('Actual zoom event controller (Node DOM mock): startup/layout observer fit, coalescing, no repeated scaling or redraw/history, manual/pending zoom preservation, wheels, clamps, dropdown, pointerdown cancellation and selection coordinates passed.');
 console.log('Scope: source event handlers in a DOM mock, not native browser wheel/pinch execution.');

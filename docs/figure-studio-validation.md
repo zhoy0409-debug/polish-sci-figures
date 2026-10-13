@@ -1,6 +1,22 @@
 # Figure Studio validation record
 
-Updated: 2026-10-12. This is a chronological record of source, browser and template checks for suite v1.4.0 / Figure Studio 0.1.0. Early sections describe the initial preview and retain their original scope; later sections record subsequent implementation and checks. They are not an all-template, all-browser visual certification. Release packaging and distribution details are separate in [the v1.4.0 release notes](release-v1.4.0.md) and [desktop build guide](../desktop/BUILD.md).
+Updated: 2026-10-14. This record distinguishes current source checks from historical browser, template and package checks. The v1.4.6 section below records the latest source verification; the chronological sections that follow begin with suite v1.4.0 / Figure Studio 0.1.0 and retain their original scope. They are not an all-template, all-browser visual certification. Release packaging and distribution details are separate in [the v1.4.0 release notes](release-v1.4.0.md) and [desktop build guide](../desktop/BUILD.md).
+
+## v1.4.6 source and editor checks — 2026-10-14
+
+[Skill checks run 38459727434](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38459727434), for source commit `4c63d4b`, passed all eight jobs: Windows, macOS and Ubuntu with Python 3.10/3.12, the full integration suite, and the bundled browser/WASM preview.
+
+- Grouped statistical annotation tests passed 216 real-render layouts across data/order/size fixtures; 24 legacy band-to-plot cases retained manual edits, comparison keys, locks, groups and undo history. Seventeen metadata cases checked real geometry and safe refusal.
+- Annotation controls passed single-location/tab/context-menu tests. Literature checks covered explicit opt-in, allowed requests, caption verification, cancellation, stale results and deduplicated chart previews. Delayed chart responses preserved drafts, newer size choices and statistical settings.
+- The full suite also passed spacing geometry, editable text, data validation, image review and SVG/TIFF export checks. The WASM dispatcher ran with calculation-network access forbidden; this does not mean the separate, user-started literature client is disabled.
+- Actual desktop-browser review checked the annotation tab and a live literature search with three caption-matched papers, retaining one preview action per paper and chart type. This is a targeted workflow check, not visual certification of every template.
+- Point/error controls were added after that CI run. Targeted Python and real-DOM checks cover explicit group-colour ownership, independent fill/outline colours, hidden/restored marks, palette changes while hidden, save/history/resize retention, safe legacy metadata upgrades, and single-point/direct-path scaling without moving the centre. Browser review checks the actual visibility switches and hollow/custom points. These added checks do not change or recompute statistical results.
+
+These results identify the checked source. Version 0.1.6 installer and platform-package checks must be recorded separately against the finished assets; prior-version hashes and timings below are not measurements of the new packages. [Release notes](release-v1.4.6.md) · [Mac record](macos-preview-validation.md) · [Mobile record](mobile-preview-validation.md).
+
+**中文：** 本次源码 CI 的 8 个任务全部通过，包括三个桌面系统的 Python 3.10/3.12、完整集成与本地 WASM 检查；分组标注覆盖 216 种实际布局、24 种旧工程迁移和 17 项元数据案例。另验证了标注入口唯一、文献检索按需启动和图注核对、预览去重、异步切换保护，以及数据、编辑与导出回归。实际桌面浏览器已核对标注页及返回三篇图注匹配论文的检索流程。这里只记录对应源码与操作范围，0.1.6 成品安装包须另行记录验证，不能把旧版哈希和性能数字当成本版结果。
+
+其后增加的样本点与误差棒快捷设置已开展独立 Python、真实 DOM 和浏览器验证，包括组色准确关联、填充与描边分离、隐藏后换色再恢复、保存与撤销、旧工程安全升级，以及单点缩放时中心保持不变。这些外观操作不修改数据或重新计算统计结果；最终发布资产的校验值与成品验证另附于对应 Release。
 
 ## Initial preview checks — 2026-10-11
 

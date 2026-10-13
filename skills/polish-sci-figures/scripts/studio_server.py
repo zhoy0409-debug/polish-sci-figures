@@ -64,7 +64,11 @@ def reflow(recipe,rows,width,height,axes=None):
             import gallery_registry as registry
             if set(params)!={'view'} or not isinstance(params['view'],str):raise ValueError('Gallery reflow requires one declared view')
             view=params['view']
-            if view not in registry.CONTRACTS or (view not in REVIEWED and not capabilities(view)['supported']):raise ValueError('This gallery view has no reviewed reflow layout')
+            # Legacy copies of these two renderers need their exact cell
+            # identities regenerated. This endpoint allowance does not add them
+            # to REVIEWED or enable any new automatic layout/axis controls.
+            metadata_view=view in {'grouped_observations','compare_facet_boxes'}
+            if view not in registry.CONTRACTS or (view not in REVIEWED and not capabilities(view)['supported'] and not metadata_view):raise ValueError('This gallery view has no reviewed reflow layout')
             registry.validate(data,view)
             from figure_workbench import style
             style(recipe.get('font','Arial'))
@@ -189,7 +193,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.headers.get('Host')!=self.server.address:return self.send_json(403,{'error':'Invalid host'})
         if urlsplit(self.path).path!='/':return self.send_json(404,{'error':'Not found'})
-        text=self.server.page.read_text(encoding='utf-8').replace("connect-src 'none'","connect-src 'self'")
+        text=self.server.page.read_text(encoding='utf-8').replace("connect-src 'none'","connect-src 'self'").replace("connect-src https://www.ebi.ac.uk", "connect-src 'self' https://www.ebi.ac.uk")
         config=json.dumps({'token':self.server.token,'endpoint':'/api/render','reflowEndpoint':'/api/reflow','analyzeEndpoint':'/api/analyze','splitFacetsEndpoint':'/api/split-facets','pdfEndpoint':'/api/import-pdf','duplicateEndpoint':'/api/image-duplicates'})
         text=text.replace('</head>',f'<script id="local-engine" type="application/json">{config}</script></head>',1)
         raw=text.encode();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(raw)

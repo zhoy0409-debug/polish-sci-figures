@@ -9,17 +9,17 @@ polish-sci-figures brings scientific plotting, image standardization, and figure
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Suite v1.4.5 · Figure Studio 0.1.5 (Windows desktop edition)**
+**Suite v1.4.6 · Figure Studio 0.1.6 (Windows desktop edition)**
 
-[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-v1.4.5.md)
+[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-v1.4.6.md)
 
 ## Choose your workflow
 
 | How you want to work | Start here | Requirements |
 | --- | --- | --- |
 | Preview, replace data, edit, and assemble figures directly | Figure Studio Windows installer | Windows 10/11 x64; no Codex, separate Python installation, account, or API key |
-| Upload a skill to Claude | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-v1.4.5-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
-| Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.5.zip` | A compatible AI environment and the suite's Python dependencies |
+| Upload a skill to Claude | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-v1.4.6-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
+| Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.6.zip` | A compatible AI environment and the suite's Python dependencies |
 | Refine an existing SVG manually | Generate a self-contained Studio page with AI or the CLI | Layout and appearance editing work offline; data recomputation requires the local engine |
 
 Figure Studio is the official visual editor for polish-sci-figures. The original AI/CLI workflow remains available through the three-skill suite. Model-result templates display supplied analysis outputs; they do not fit unspecified models.
@@ -28,6 +28,7 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 - [Editable chart library](#editable-chart-library)
 - [From data updates to final layout](#from-data-updates-to-final-layout)
 - [Statistical analysis and interpretation](#statistical-analysis-and-interpretation)
+- [Examples in papers](#examples-in-papers)
 - [Image duplicate check](#image-duplicate-check)
 - [AI and command-line workflows](#ai-and-command-line-workflows)
 - [Verification scope and current limits](#verification-scope-and-current-limits)
@@ -35,12 +36,12 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 
 ## Install and start
 
-1. Download `polish-sci-figures-Studio-0.1.5-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
+1. Download `polish-sci-figures-Studio-0.1.6-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
 2. Install it and open the **polish-sci-figures Studio** shortcut. The launcher opens the editor in your default browser.
 3. Choose **Start from a template**, inspect the preview, and replace the example data with your own. You can also import an existing image, SVG, or selected PDF page. Supported native text and vector paths remain editable; PDF effects may require a local image layer or a whole-page appearance image. See the [conversion limits](docs/release-v1.4.3.en.md#what-changed), and review substituted fonts before export.
 4. Export SVG / PNG / TIFF and use **Save** to download an editable JSON backup.
 
-The portable edition is `polish-sci-figures-Studio-0.1.5-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. To import an Excel workbook as a file, export it as CSV/TSV first.
+The portable edition is `polish-sci-figures-Studio-0.1.6-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. To import an Excel workbook as a file, export it as CSV/TSV first.
 
 Closing the browser does not stop the local service; close the launcher when you finish. Autosaves live in the browser's local storage. Clearing site data, switching browsers, or using a private window can lose those records. **Download JSON backups of important projects.** See the [English quick start](desktop/QUICKSTART.en.md).
 
@@ -80,7 +81,7 @@ The following composites use synthetic data to demonstrate assembly capabilities
 - **Layouts remain adjustable.** Drag panels, span rows or columns, insert rows and columns, and change spacing. Supported templates redraw at the actual physical size; other assets retain their proportions. A supported faceted comparison can split into separate panels in one row while retaining its original comparison-family record.
 - **Edit objects directly.** Marquee-select, multi-select, align, group, and lock objects. Move existing objects, add text, lines, and shapes, and nudge with arrow keys. Double-click text to edit in place; character-level bold, italic, superscript, and subscript preserve local scientific formatting.
 - **Place annotations with less effort.** Dedicated horizontal and vertical lines keep their direction as you drag either endpoint; free lines snap near the axes, with Shift constraining the angle. A comparison-bracket tool supports manual annotation. Text opens for editing at the insertion point.
-- **Tune marks and color.** Preview distinct hue families on the current chart. Supported sample points resize with a live slider; error bars offer upper, lower, or both directions, cap length, and line width. Their true estimates and intervals remain connected to the data.
+- **Tune marks and color.** Choose solid or hollow points, or set fill and outline colours separately. Error bars can follow group colours or stay black, grey or custom-coloured. Independent switches hide and restore either element without deleting data or settings. Live sliders control point size and outline width; error bars retain upper, lower or both directions, cap length and line width, anchored to the actual estimates and intervals.
 - **Control the details.** Supported axes expose true limits, first-group spacing, and reference lines in data coordinates. Heatmaps offer continuous palettes, real cell values, and numeric formatting. Scale bars require user-supplied calibration; panel labels support automatic numbering and manual edits.
 - **Bring groups closer together.** The shared Group spacing control in Properties moves supported horizontal or vertical category groups in real time, including existing bar charts. Points and intervals retain their sizes; comparison labels and connecting lines follow the groups. One undo restores the previous spacing. Numeric axes, matrices, and plots with insufficient space are not forced to move.
 - **Keep changes reversible.** Undo, redo, named versions, a project overview, and appearance presets support continued editing. Pasting appearance across figures retains the destination's data, statistics, and calibration.
@@ -92,6 +93,10 @@ Switch between Chinese and English interfaces. Your data, project names, and fig
 ## Statistical analysis and interpretation
 
 The guided analysis panel detects likely data columns and ranks applicable methods with a short explanation of what each compares. Confirm whether observations are independent or paired, and identify the experimental unit; then choose a method to calculate results and preview the statistical annotations. Advanced column mapping remains available when the proposed mapping needs adjustment.
+
+**In Figure Studio 0.1.6:** choose statistical styles in **Annotations**; the panel context menu opens this same section. If comparisons are missing, complete the analysis first. Valid results can switch between supported styles without repeating the analysis. Statistical styles and condition-table controls are no longer repeated across inspector tabs.
+
+Grouped bar plots (`grouped_observations`) and faceted box plots (`compare_facet_boxes`) place each comparison above its matching group or facet. The anchors follow group spacing, data redraws, font size, and panel dimensions; large labels use staggered rows when needed. Generated lines and text remain separately editable and movable. This placement requires identified groups and valid comparisons; continuous axes and unsupported imported artwork do not automatically receive the same brackets.
 
 Analysis of observations requires a confirmed independent or paired design, group and value columns, and an explicit definition of the experimental unit. Paired data require matching unit IDs; without an ID column, independent data require confirmation that each row is a separate experimental unit. The software does not infer independence from row numbers or treat technical replicates as independent samples. Interactive analysis currently supports:
 
@@ -107,6 +112,14 @@ For all-pairs or specified-control comparisons, **one Holm correction covers eve
 Existing comparisons can be connected through column mapping, with the method and correction status declared. Linked external results and retained split-facet results become stale when the corresponding chart data change; old significance is not carried forward. Result templates for SHAP, GSEA, model intervals, diagnostic synthesis, and similar analyses present supplied outputs rather than replacing the upstream model. See the [local analysis protocol and method scope](skills/polish-sci-figures/references/figure_studio.md#analyze-observations-or-connect-comparison-results).
 
 The original skill workflows for independent, paired, multigroup, relationship, survival, and dose data keep their own analysis contracts. Standardize microscopy images using real calibration before assembly; do not infer a scale bar from an image's appearance.
+
+## Examples in papers
+
+In Figure Studio 0.1.6, expand **Chart types → Examples in papers** and choose **Find examples**. The section stays collapsed until needed; opening it does not start a search. You may enter a short research topic or leave it blank. The optional search connects to Europe PMC only on request, sending predefined chart search terms and the topic you typed. It does not send your table, measurements, images, or project contents. A disconnected literature service leaves local plotting, analysis, and editing available.
+
+Results show paper details and source links. A **Chart type found in caption** badge means a matching chart term was found in an accessible full-text figure caption; the result can then show the figure label and link. **Preview with my data** is offered when that figure type also has a compatible local candidate for your current data. Review the preview before applying it; applying is undoable. Unverified results show paper information only, without an inferred figure number or data-preview action.
+
+A caption match identifies how a paper presents a result; it does not establish that its study design or analysis fits your data.
 
 ## Image duplicate check
 
@@ -126,7 +139,7 @@ python sci_figures.py duplicates image-a.png image-b.tif figure.svg --out image-
 
 The three skills retain their existing roles. Figure Studio is the visual entry point to the same product, not a mandatory fourth skill.
 
-**Claude users:** download [polish-sci-figures-v1.4.5-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-v1.4.5-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status.
+**Claude users:** download [polish-sci-figures-v1.4.6-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-v1.4.6-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status.
 
 | Skill | Role |
 | --- | --- |
@@ -134,7 +147,7 @@ The three skills retain their existing roles. Figure Studio is the visual entry 
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | Microscopy / pathology image standardization, consistent display settings, authoritatively calibrated scale bars, and processing audits |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | Refinement and assembly, Figure Studio, text and geometry checks, and quality checks at final dimensions |
 
-Download `sci-figure-suite-v1.4.5.zip` from the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) and extract the whole suite. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
+Download `sci-figure-suite-v1.4.6.zip` from the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) and extract the whole suite. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -152,7 +165,7 @@ Successful installation does not guarantee that an ordinary request invokes the 
 
 The skill automatically checks fonts and dependencies, then reads the table, selects a small set of suitable candidates, and explains what each shows. When the design is unclear, it asks only about facts that affect the analysis—for example, “Are these measurements from the same subjects before and after treatment, or from two different groups?” Subsequent color, font-size, and position changes can be made directly in the editor without repeated AI calls.
 
-Keep the suite together so its skills can call one another. On macOS / Linux, copy the same three directories into `~/.agents/skills/`; use the skill location configured by your AI tool. The desktop installer is currently available only for Windows x64.
+Keep the suite together so its skills can call one another. On macOS / Linux, copy the same three directories into `~/.agents/skills/`; use the skill location configured by your AI tool. The formal desktop installer is available for Windows x64; [Mac and Android development previews](docs/local-device-trial.md) have separate requirements.
 
 ### Inspect data and generate a template
 
@@ -188,7 +201,7 @@ These records do not mean every template, dataset, label length, imported SVG, o
 - **Image input:** Text inside a regular PNG/JPEG does not automatically become an editable object. SVG import accepts a restricted static subset and does not execute scripts or external resources.
 - **Analysis:** Repeated measures, hierarchical data, covariate adjustment, and complex prediction models need an explicit specialist workflow. The interface does not invent statistical results from a chart's appearance.
 
-Autosaving and local computation are not cloud backups. Desktop editing and analysis run locally; the official-project link opens only when clicked. Codex, other AI environments, and external services used in an AI workflow have their own data-handling policies.
+Autosaving and local computation are not cloud backups. Desktop editing and analysis run locally; the official-project link opens only when clicked. The source version's [optional literature search](#examples-in-papers) also connects only on request and does not send research data. Codex, other AI environments, and external services used in an AI workflow have their own data-handling policies.
 
 ## Official distribution and licensing
 

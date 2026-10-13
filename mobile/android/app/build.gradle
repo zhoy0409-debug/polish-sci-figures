@@ -1,0 +1,78 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'org.polishscifigures.studio.preview'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'org.polishscifigures.studio.preview'
+        minSdk 26
+        targetSdk 35
+        versionCode 2
+        versionName '0.1.6-local-preview'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+    buildTypes {
+        debug { applicationIdSuffix '.debug'; debuggable true }
+        release { minifyEnabled false }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    buildFeatures { buildConfig true }
+    androidResources {
+        noCompress += ['wasm', 'whl', 'zip']
+        // AAPT's default <dir>_* rule silently drops NumPy/SciPy dependency
+        // notices under _core, _uarray, _pocketfft and _eigen. Preserve them.
+        ignoreAssetsPattern = '!.svn:!.git:!CVS:!*.scc:.*:!thumbs.db:!picasa.ini:!*~'
+    }
+    testOptions { animationsDisabled true; unitTests.returnDefaultValues = true }
+    packaging { resources.merges += ['META-INF/LICENSE*', 'META-INF/NOTICE*'] }
+}
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.12.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'androidx.test:rules:1.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.6.1'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.3.0'
+}
+
+tasks.register('verifyBundledWebAssets') {
+    doLast {
+        def root = file('src/main/assets/www')
+        if (!new File(root, 'native-bundle-manifest.json').isFile()) throw new GradleException('Run python mobile/android/prepare_assets.py before building')
+        def manifest = new groovy.json.JsonSlurper().parse(new File(root, 'native-bundle-manifest.json'))
+        manifest.files.each { entry ->
+            def asset = new File(root, entry.path)
+            if (!asset.canonicalPath.startsWith(root.canonicalPath + File.separator) || !asset.isFile()) throw new GradleException('Missing or invalid local asset: ' + entry.path)
+            def digest = java.security.MessageDigest.getInstance('SHA-256').digest(asset.bytes).encodeHex().toString()
+            if (digest != entry.sha256) throw new GradleException('Asset hash mismatch: ' + entry.path)
+        }
+    }
+}
+tasks.named('preBuild').configure { dependsOn 'verifyBundledWebAssets' }
+tasks.register('verifyDebugApkAssets') {
+    dependsOn 'assembleDebug'
+    doLast {
+        def apk = file('build/outputs/apk/debug/app-debug.apk')
+        def archive = new java.util.zip.ZipFile(apk)
+        try {
+            def manifestName = 'assets/www/native-bundle-manifest.json'
+            def manifestEntry = archive.getEntry(manifestName)
+            if (manifestEntry == null) throw new GradleException('APK is missing its public asset manifest')
+            def manifest = new groovy.json.JsonSlurper().parse(archive.getInputStream(manifestEntry), 'UTF-8')
+            def expected = manifest.files.collect { 'assets/www/' + it.path }.toSet()
+            if (expected.size() != manifest.files.size()) throw new GradleException('Duplicate public asset manifest entry')
+            expected.add(manifestName)
+            def packaged = java.util.Collections.list(archive.entries()).findAll { !it.directory && it.name.startsWith('assets/www/') }.collect { it.name }.toSet()
+            if (packaged != expected) throw new GradleException('APK public assets differ from manifest; missing=' + (expected - packaged) + ', extra=' + (packaged - expected))
+            manifest.files.each { entry ->
+                byte[] bytes = archive.getInputStream(archive.getEntry('assets/www/' + entry.path)).bytes
+                def hash = java.security.MessageDigest.getInstance('SHA-256').digest(bytes).encodeHex().toString()
+                if (hash != entry.sha256 || bytes.length != entry.bytes) throw new GradleException('APK asset hash/length mismatch: ' + entry.path)
+            }
+            logger.lifecycle('Verified all ' + manifest.files.size() + ' packaged public assets and license notices against the APK manifest')
+        } finally { archive.close() }
+    }
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }

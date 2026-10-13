@@ -1,0 +1,13 @@
+Figure Studio Android local development preview
+
+AndroidX WebKit 1.12.1 and its AndroidX runtime dependencies
+Copyright The Android Open Source Project
+Licensed under the Apache License, Version 2.0.
+https://developer.android.com/jetpack/androidx/releases/webkit
+https://android.googlesource.com/platform/frameworks/support/
+
+The complete Apache License is included as Apache-2.0.txt. Runtime JAR license
+and notice resources are merged, not excluded. Python, Pyodide and scientific
+package notices are retained under the adjacent licenses directory and in the
+original bundled wheels. Test-only AndroidX Test and JUnit dependencies are
+not part of the distributed application APK.

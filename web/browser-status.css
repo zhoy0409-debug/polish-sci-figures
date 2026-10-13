@@ -1,0 +1,9 @@
+.browser-engine-status{display:flex;align-items:center;justify-content:space-between;gap:10px;flex:none;padding:8px 12px;background:#edf3f8;border-block:1px solid #d9e3ee;color:#49627d;font:12px/1.4 system-ui,sans-serif}
+.browser-engine-status span{min-width:0}
+.browser-engine-status small:not([hidden]){display:block;max-width:65em;margin-top:5px;font-size:10px;line-height:1.4;color:#70592d}
+.browser-engine-status details{margin:3px 0 0;padding:0;border:0}
+.browser-engine-status summary{padding:0;font-size:10px;min-height:0;cursor:pointer;color:#70592d}
+.browser-engine-status button{flex:none;font-size:12px;background:white;color:#345a87;border:1px solid #c5d4e5;border-radius:7px;padding:8px 12px}
+.browser-engine-status[data-busy=true]{background:#f1f5f9}
+body.studio-mobile .browser-engine-status{font-size:10px;padding:6px 10px;gap:8px}
+body.studio-mobile .browser-engine-status button{font-size:11px;padding:6px 8px}

@@ -16,6 +16,7 @@ from matplotlib.ticker import MaxNLocator
 from scipy import stats
 from figure_workbench import style, resolve_palette
 from data_family_workbench import _save_bundle, _relative_input
+from gallery_marks import tag_stat_group
 
 # key: Chinese title, English title, category, required columns, numeric columns.
 CONTRACTS = {
@@ -266,8 +267,9 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
                 for i,f in enumerate(factors):
                     v=d.loc[(d.factor==f)&(d.group==g),'value'].to_numpy()
                     if len(v)<2:raise ValueError('Each factor-group cell requires at least two independent observations')
-                    pos=i+(j-(len(groups)-1)/2)*width;c=colors[j%len(colors)];ax.bar(pos,v.mean(),width*.8,color=c,alpha=.65,label=g if i==0 else None)
-                    ax.errorbar(pos,v.mean(),yerr=v.std(ddof=1),fmt='none',color='#344054',lw=.8,capsize=2);ax.scatter(pos+rng.uniform(-width*.22,width*.22,len(v)),v,s=15,facecolor='white',edgecolor=c,lw=.7,zorder=3)
+                    pos=i+(j-(len(groups)-1)/2)*width;c=colors[j%len(colors)];bars=ax.bar(pos,v.mean(),width*.8,color=c,alpha=.65,label=g if i==0 else None)
+                    error=ax.errorbar(pos,v.mean(),yerr=v.std(ddof=1),fmt='none',color='#344054',lw=.8,capsize=2);points=ax.scatter(pos+rng.uniform(-width*.22,width*.22,len(v)),v,s=15,facecolor='white',edgecolor=c,lw=.7,zorder=3)
+                    tag_stat_group(ax,g,f,(pos,v.mean()),[*bars,points,error.lines[0],*error.lines[1],*error.lines[2]])
             ax.set_xticks(range(len(factors)),factors);ax.set_ylim(min(0,d.value.min()*1.1),max(0,d.value.max()*1.2));_top_legend(ax,ncol=len(groups));finish(ax,y='Value')
     elif view=='gsea_tracks':
         q=d.sort_values('rank');fig.delaxes(ax);grid=fig.add_gridspec(3,1,left=.18,right=.94,bottom=.19,top=.93,height_ratios=[3,.5,1],hspace=.08)

@@ -1,0 +1,101 @@
+name: iOS local simulator preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/macos-local-preview]
+    paths:
+      - 'mobile/ios/**'
+      - 'web/**'
+      - 'skills/**'
+      - 'scripts/build_local_web_preview.py'
+      - '.github/workflows/ios-simulator-preview.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  simulator:
+    name: ${{ matrix.device }} local simulator
+    runs-on: macos-15
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        device: [iPhone, iPad]
+    env:
+      STUDIO_DEVICE_FAMILY: ${{ matrix.device }}
+      MPLBACKEND: Agg
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.18.0'
+      - name: Prepare pinned public app assets
+        run: |
+          python -m pip install -r requirements.txt
+          npm install --prefix .cache/mobile-local-spike --ignore-scripts --no-audit --no-fund --save-exact pyodide@0.29.3
+          node web/prepare-runtime.mjs
+          node web/prepare-runtime.mjs --offline
+          python scripts/build_local_web_preview.py
+          node mobile/ios/Tests/native-adapter.cjs
+          python mobile/ios/prepare.py
+      - name: Select installed simulator (no account or signing)
+        timeout-minutes: 8
+        run: |
+          xcodebuild -version
+          xcrun simctl list devices available -j > mobile/ios/.generated/devices.json
+          python mobile/ios/simulator.py create
+      - name: Compile unsigned simulator app and tests
+        timeout-minutes: 12
+        run: |
+          set -o pipefail
+          xcodebuild build-for-testing -project mobile/ios/.generated/FigureStudio.xcodeproj -scheme FigureStudio -configuration Debug -destination "id=$STUDIO_SIMULATOR_ID" -derivedDataPath mobile/ios/.generated/DerivedData CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO | tee mobile/ios/.generated/xcodebuild.log
+      - name: Run actual WKWebView worker, native picker and restart smoke
+        timeout-minutes: 15
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building -project mobile/ios/.generated/FigureStudio.xcodeproj -scheme FigureStudio -configuration Debug -destination "id=$STUDIO_SIMULATOR_ID" -derivedDataPath mobile/ios/.generated/DerivedData -resultBundlePath mobile/ios/.generated/SimulatorTests.xcresult -parallel-testing-enabled NO -test-timeouts-enabled YES -default-test-execution-time-allowance 420 -maximum-test-execution-time-allowance 420 CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO | tee mobile/ios/.generated/simulator-tests.log
+      - name: Collect native reports and app screenshot
+        if: always()
+        run: python mobile/ios/simulator.py collect
+      - name: Package simulator app (not an iPhone installer)
+        if: success()
+        run: |
+          cd mobile/ios/.generated/DerivedData/Build/Products/Debug-iphonesimulator
+          ditto -c -k --keepParent FigureStudio.app ../../../../FigureStudio-unsigned-simulator.app.zip
+      - name: Upload build and simulator evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: figure-studio-ios-${{ matrix.device }}-simulator-development
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            mobile/ios/.generated/*.json
+            mobile/ios/.generated/*.png
+            mobile/ios/.generated/*.log
+            mobile/ios/.generated/*.zip
+            mobile/ios/.generated/SimulatorTests.xcresult
+            mobile/ios/.generated/screenshots
+      - name: Upload compact native reports and actual app screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: figure-studio-ios-${{ matrix.device }}-evidence
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            mobile/ios/.generated/simulator*.json
+            mobile/ios/.generated/screenshots
+      - name: Remove only the temporary CI simulator
+        if: always()
+        run: python mobile/ios/simulator.py cleanup
