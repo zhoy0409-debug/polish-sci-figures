@@ -385,7 +385,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
                 NSFileCoordinator().coordinate(readingItemAt: url, options: [], error: &coordinationError) { actual in
                     do {
                         let bytes = try Data(contentsOf: actual)
-                        lastSmokeExport = ["saved": true, "name": actual.lastPathComponent, "bytes": bytes.count, "sha256": SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined(), "insideLocalDocuments": actual.standardizedFileURL.resolvingSymlinksInPath().path.hasPrefix(localDocumentsDirectory.standardizedFileURL.resolvingSymlinksInPath().path + "/")]
+                        lastSmokeExport = ["saved": true, "name": actual.lastPathComponent, "bytes": bytes.count, "sha256": SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined(), "coordinatedReadback": true, "destinationURL": actual.absoluteString, "insideLocalDocuments": actual.standardizedFileURL.resolvingSymlinksInPath().path.hasPrefix(localDocumentsDirectory.standardizedFileURL.resolvingSymlinksInPath().path + "/")]
                     } catch { lastSmokeExport = ["saved": false, "error": error.localizedDescription] }
                 }
                 if let coordinationError { lastSmokeExport = ["saved": false, "error": coordinationError.localizedDescription] }

@@ -2475,7 +2475,7 @@ if (typeof document !== 'undefined') (async () => {
     for(const text of items){const li=document.createElement('li');li.textContent=text;$('qa').append(li);}
   }
   // Reuse the current SVG on zoom; do not regenerate panels or reset selection.
-  let zoomView=null,zoomFrame=0,queuedZoom=null;
+  let zoomView=null,zoomFrame=0,queuedZoom=null,fitZoomFrame=0;
   function previewFitZoom(width,height){
     const viewport=$('viewport'),css=getComputedStyle(viewport);
     const x=(parseFloat(css.paddingLeft)||0)+(parseFloat(css.paddingRight)||0);
@@ -2511,6 +2511,27 @@ if (typeof document !== 'undefined') (async () => {
     }
     view.refreshSelection?.();
     syncZoomControl(next,fit);
+  }
+  function schedulePreviewFit(){
+    if(fitZoomFrame||!zoomView?.fit||queuedZoom)return;
+    fitZoomFrame=requestAnimationFrame(()=>{
+      fitZoomFrame=0;
+      const view=zoomView,viewport=$('viewport');
+      // A manual zoom may have arrived since this layout notification.
+      if(!view?.fit||queuedZoom||!view.svg.isConnected)return;
+      const css=getComputedStyle(viewport),x=(parseFloat(css.paddingLeft)||0)+(parseFloat(css.paddingRight)||0),y=(parseFloat(css.paddingTop)||0)+(parseFloat(css.paddingBottom)||0);
+      if(viewport.clientWidth<=x||viewport.clientHeight<=y)return;
+      // Read final layout and size the existing SVG absolutely, never by its
+      // previous displayed size. Equal results do not feed resize loops.
+      if(Math.abs(previewFitZoom(view.width,view.height)-view.zoom)>1e-7)applyPreviewZoom(null,null,true);
+    });
+  }
+  function observePreviewFit(){
+    const observer=typeof ResizeObserver==='function'?new ResizeObserver(schedulePreviewFit):null;
+    observer?.observe($('viewport'));
+    // Mobile controls and their CSS are installed after the first render.
+    schedulePreviewFit();
+    return observer;
   }
   $('viewport').addEventListener('wheel',event=>{
     if(!event.altKey&&!event.ctrlKey)return;
@@ -3392,7 +3413,7 @@ if (typeof document !== 'undefined') (async () => {
   function libraryWrite(record){libraryIds.add(record.id);const task=libraryQueue.catch(()=>{}).then(()=>StudioLibrary.put('figures',record));libraryQueue=task;task.catch(()=>{$('libraryStatus').textContent=T('总览保存失败，请下载工程备份。');});return task;}
   function renderProjectStart(){
     const start=$('projectStart');if(!start)return;
-    start.hidden=welcomeDismissed||!!state().overlays?.length||!state().order.every(id=>panel(id).provenance==='blank-canvas');
+    start.hidden=welcomeDismissed||!!state().overlays?.length||!!state().alignmentGuides?.length||!state().order.every(id=>panel(id).provenance==='blank-canvas');
     $('startTemplates').disabled=!localEngine;
     $('startEngineNote').hidden=!!localEngine;
   }
@@ -3609,14 +3630,14 @@ if (typeof document !== 'undefined') (async () => {
   document.addEventListener('keydown',e=>{if(e.isComposing||editingTextTarget(e.target))return;if(['Delete','Backspace'].includes(e.key)&&selectedAlignmentGuide&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();deleteAlignmentGuide();return;}if(['Delete','Backspace'].includes(e.key)&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&(selectionGroups().length||selectedAnnotations.length||selectedPanelLabel)){e.preventDefault();deleteSelectedObjects();return;}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();$(e.shiftKey?'redo':'undo').click();}});
   window.addEventListener('blur',()=>{if(cancelPanelGesture?.()||cancelSelectionGesture?.()||cancelObjectGesture?.())render();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(cancelPanelGesture?.()||cancelSelectionGesture?.()||cancelObjectGesture?.())){e.preventDefault();render();}});
-  window.addEventListener('resize',()=>{if(project)renderCanvas();});
+  window.addEventListener('resize',schedulePreviewFit);
   window.addEventListener('beforeunload',e=>{if(history&&saveSignature()!==savedCurrent&&saveSignature()!==localSavedCurrent){e.preventDefault();e.returnValue='';}});
   if($('addHorizontalGuide'))$('addHorizontalGuide').onclick=()=>addAlignmentGuide('y');
   if($('addVerticalGuide'))$('addVerticalGuide').onclick=()=>addAlignmentGuide('x');
   if($('deleteAlignmentGuide'))$('deleteAlignmentGuide').onclick=deleteAlignmentGuide;
   if($('clearAlignmentGuides'))$('clearAlignmentGuides').onclick=()=>{const next=copy(state());next.alignmentGuides=[];selectedAlignmentGuide=null;commit(next,T('已清除对齐参考线'));};
   setupQuickToolbar();
-  const workspaceSizing=typeof StudioWorkspace!=='undefined'?StudioWorkspace.init({t:T,resize:()=>{if(zoomView?.fit)applyPreviewZoom(null,null,true);}}):null;
+  const workspaceSizing=typeof StudioWorkspace!=='undefined'?StudioWorkspace.init({t:T,resize:schedulePreviewFit}):null;
   try {
     project=JSON.parse($('project').textContent);validateProject(project);desktopSession=project.desktopStarter===true;
     if(desktopSession){try{const last=localStorage.getItem('figure-studio:desktop-last-project');if(last&&/^[a-f0-9]{20}$/.test(last)&&last!==project.id){const recent=await StudioLibrary.get('autosaves',last);if(recent?.payload){validatePayload(recent.payload);project=recent.payload.project;desktopRestoredPayload=recent.payload;}}}catch{}}
@@ -3635,8 +3656,9 @@ if (typeof document !== 'undefined') (async () => {
         if(cancelled.some(Boolean))renderCanvas();
       },
       onPanelMore:({anchor})=>{const cell=gridFor(state()).places[selectedPanel],r=anchor.getBoundingClientRect();openInsertMenu(cell,r.left,r.bottom+6,true,true,selectedPanel);},
-      onTabChange:name=>{if(name==='canvas'&&zoomView?.fit)applyPreviewZoom(null,null,true);}
+      onTabChange:name=>{if(name==='canvas')schedulePreviewFit();}
     });
+    const previewFitObserver=observePreviewFit();
     if(typeof StudioDuplicateCheck!=='undefined')duplicateCheck=StudioDuplicateCheck.init({
       engine:localEngine,fetch:engineFetch,download:(blob,name)=>download(blob,name).catch(error=>say(T('未完成：')+T(error.message))),say,
       projectId:()=>project.id,

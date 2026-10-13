@@ -23,9 +23,44 @@ void (async function () {
     // render() creates SVG before asynchronous startup has finished installing
     // mobile controls. A DOM guide alone is not proof of a usable painted UI.
     await wait(() => !document.body.inert && document.body.classList.contains('studio-mobile') && document.body.dataset.mobileTab === 'canvas' && visible(document.getElementById('mobileTab-canvas')) && visible(document.getElementById('mobilePan')) && visible(document.querySelector('#artboard svg')) && document.fonts.status === 'loaded');
-    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-    const canvas = document.querySelector('#artboard svg').getBoundingClientRect();
-    return {mobileControlsVisible: true, canvasWidth: Math.round(canvas.width), canvasHeight: Math.round(canvas.height), canvasTab: document.getElementById('mobileTab-canvas').textContent, language: document.documentElement.lang, fontsReady: true};
+    // Observe the final mobile layout without clicking Fit, changing zoom, or
+    // rendering on the application's behalf. A visible 10%-sized SVG can still
+    // be stale from the pre-mobile layout, especially after process restart.
+    const measure = () => {
+      const viewport = document.getElementById('viewport'), css = getComputedStyle(viewport);
+      const canvas = document.querySelector('#artboard svg').getBoundingClientRect();
+      const contentWidth = viewport.clientWidth - (parseFloat(css.paddingLeft) || 0) - (parseFloat(css.paddingRight) || 0);
+      const contentHeight = viewport.clientHeight - (parseFloat(css.paddingTop) || 0) - (parseFloat(css.paddingBottom) || 0);
+      // Publication dimensions are shown in mm; CSS's physical inch is 96 px.
+      // Their 0.01-mm display rounding is well below the 1.5-px tolerance.
+      const width = Number(document.getElementById('exportWidth').value) * 96 / 25.4;
+      const height = Number(document.getElementById('exportHeight').value) * 96 / 25.4;
+      const expectedFit = Math.max(.1, Math.min(1, contentWidth / width, contentHeight / height));
+      return {viewportWidth: viewport.clientWidth, viewportHeight: viewport.clientHeight,
+        viewportContentWidth: contentWidth, viewportContentHeight: contentHeight,
+        canvasWidth: canvas.width, canvasHeight: canvas.height, publicationWidthPx: width,
+        publicationHeightPx: height, zoomMode: document.getElementById('zoom').value,
+        actualFitX: canvas.width / width, actualFitY: canvas.height / height, expectedFit};
+    };
+    let latest, previous, stable = 0, ready = false;
+    const deadline = performance.now() + 15000;
+    while (performance.now() < deadline) {
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      latest = measure();
+      const finite = Object.values(latest).every(value => typeof value !== 'number' || Number.isFinite(value));
+      const dimensions = ['viewportContentWidth', 'viewportContentHeight', 'canvasWidth', 'canvasHeight'];
+      const unchanged = previous && dimensions.every(key => Math.abs(latest[key] - previous[key]) < .5);
+      stable = unchanged ? stable + 1 : 0;
+      const fitted = latest.zoomMode === 'fit' && latest.viewportContentWidth > 0 && latest.viewportContentHeight > 0 &&
+        Math.abs(latest.canvasWidth - latest.publicationWidthPx * latest.expectedFit) <= 1.5 &&
+        Math.abs(latest.canvasHeight - latest.publicationHeightPx * latest.expectedFit) <= 1.5;
+      if (finite && fitted && stable >= 3) { ready = true; break; }
+      previous = latest;
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    assert(ready, 'Canvas did not fit the stable mobile viewport: ' + JSON.stringify(latest));
+    return {mobileControlsVisible: true, ...latest, layoutStableSamples: stable + 1,
+      canvasTab: document.getElementById('mobileTab-canvas').textContent, language: document.documentElement.lang, fontsReady: true};
   }
   try {
     await wait(() => document.querySelector('#artboard svg [data-panel]') && typeof StudioLibrary !== 'undefined');
@@ -129,7 +164,10 @@ void (async function () {
           if (saved.error) throw new Error(saved.error);
           return saved.saved === true;
         }, 60000);
-        assert(saved.insideLocalDocuments === true && saved.name === 'figure-studio-project.json', 'A local Files destination was not selected');
+        // XCTest explicitly selects and asserts the native On My iPhone/iPad
+        // location. A valid on-device root need not be inside this app's own
+        // Documents folder; a file URL alone cannot identify a cloud provider.
+        assert(saved.coordinatedReadback === true && saved.name === 'figure-studio-project.json', 'The native provider did not return the saved project');
         document.getElementById('addHorizontalGuide').click();
         let extraGuide;
         await wait(async () => {
@@ -165,7 +203,7 @@ void (async function () {
             const guides = current?.payload.state.alignmentGuides;
             return guides?.length === 1 && guides[0].id === prior.guideId && !document.querySelector('[data-alignment-guide="' + extraGuide.id + '"]');
           }, 30000);
-          return {fileSaveSuccessTested: true, fileInputReimportTested: true, nativeConfirmationAccepted: true, localDestination: true, bytes: saved.bytes, sha256: saved.sha256, originalGuideRestored: true, laterEditRemoved: true};
+          return {fileSaveSuccessTested: true, fileInputReimportTested: true, nativeConfirmationAccepted: true, localDestination: true, localDestinationEvidence: 'Native XCTest selects and asserts On My iPhone/iPad, with screenshot', destinationURL: saved.destinationURL, coordinatedReadback: saved.coordinatedReadback, bytes: saved.bytes, sha256: saved.sha256, originalGuideRestored: true, laterEditRemoved: true};
         } finally { input.removeEventListener('change', capture, true); open.remove(); }
       });
     }

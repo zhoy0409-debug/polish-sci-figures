@@ -2,6 +2,27 @@ import XCTest
 
 final class SimulatorTests: XCTestCase {
     @MainActor
+    private func selectOnDeviceRoot(_ app: XCUIApplication) {
+        let local = app.cells.containing(NSPredicate(format: "label CONTAINS 'On My iPhone' OR label CONTAINS 'On My iPad'")).firstMatch
+        var selected = false
+        for _ in 0..<6 {
+            if local.waitForExistence(timeout: 2) { local.tap(); selected = true; break }
+            // On iPhone, return from a folder through its real parent buttons
+            // to Browse. On iPad, the location cell is normally in the sidebar.
+            let back = app.navigationBars.buttons.matching(NSPredicate(format: "label == 'On My iPhone' OR label == 'On My iPad' OR label == 'Browse'")).firstMatch
+            if back.waitForExistence(timeout: 3) { back.tap() }
+            else {
+                let browse = app.buttons["Browse"].firstMatch
+                XCTAssertTrue(browse.waitForExistence(timeout: 3), "No native Browse button or on-device Files location is available")
+                browse.tap()
+            }
+        }
+        XCTAssertTrue(selected, "The test did not explicitly select an on-device Files location")
+        let title = app.navigationBars.descendants(matching: .any).matching(NSPredicate(format: "label == 'On My iPhone' OR label == 'On My iPad' OR label BEGINSWITH 'On My iPhone,' OR label BEGINSWITH 'On My iPad,'")).firstMatch
+        XCTAssertTrue(title.waitForExistence(timeout: 5), "Files did not display the selected on-device root")
+    }
+
+    @MainActor
     private func waitForPaintedMobileControls(_ app: XCUIApplication) {
         // WebKit exposes the canvas control as an ARIA tab. Do not assume it
         // has XCTest's Button element type across iOS accessibility versions.
@@ -45,22 +66,9 @@ final class SimulatorTests: XCTestCase {
         XCTAssertTrue(projectName.waitForExistence(timeout: 30), "The new project export picker did not finish opening")
         let save = app.navigationBars.buttons["Save"].firstMatch
         XCTAssertTrue(save.waitForExistence(timeout: 5), "Local Files save destination is unavailable")
-        if !save.isEnabled {
-            // Files can reopen inside a folder, where On My iPhone is a Back
-            // button, or at Browse, where it is a location cell. Follow the
-            // actual visible hierarchy, with a finite number of parent steps.
-            let local = app.cells.containing(NSPredicate(format: "label CONTAINS 'On My iPhone' OR label CONTAINS 'On My iPad'")).firstMatch
-            let folder = app.cells.containing(.staticText, identifier: "Figure Studio Preview").firstMatch
-            for _ in 0..<6 {
-                if local.exists { local.tap(); break }
-                if folder.exists { break }
-                let back = app.navigationBars.buttons.matching(NSPredicate(format: "label == 'On My iPhone' OR label == 'On My iPad' OR label == 'Browse'")).firstMatch
-                XCTAssertTrue(back.waitForExistence(timeout: 3), "No native parent button or on-device Files location is available")
-                back.tap()
-            }
-            XCTAssertTrue(folder.waitForExistence(timeout: 5), "The app's local Documents folder is unavailable")
-            folder.tap()
-        }
+        // An enabled Save button alone says nothing about whether the selected
+        // provider is on-device. Explicitly select the local root every time.
+        selectOnDeviceRoot(app)
         let destination = XCTAttachment(screenshot: app.screenshot()); destination.name = "iOS local Files save destination"; destination.lifetime = .keepAlways; add(destination)
         let writable = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND enabled == true"), object: save)
         XCTAssertEqual(XCTWaiter.wait(for: [writable], timeout: 10), .completed, "The Files provider did not offer a writable local folder")
@@ -68,17 +76,9 @@ final class SimulatorTests: XCTestCase {
         let openProject = app.buttons["Open saved project"].firstMatch
         XCTAssertTrue(openProject.waitForExistence(timeout: 30), "Actual Files save did not complete")
         openProject.tap()
+        selectOnDeviceRoot(app)
         let filename = NSPredicate(format: "label CONTAINS %@", "figure-studio-project")
-        var document = app.cells.matching(filename).firstMatch
-        if !document.waitForExistence(timeout: 8) {
-            let browse = app.buttons["Browse"].firstMatch
-            if browse.exists { browse.tap() }
-            let local = app.cells.containing(NSPredicate(format: "label CONTAINS 'On My iPhone' OR label CONTAINS 'On My iPad'")).firstMatch
-            if local.waitForExistence(timeout: 5) { local.tap() }
-            let folder = app.cells.containing(.staticText, identifier: "Figure Studio Preview").firstMatch
-            if folder.waitForExistence(timeout: 5) { folder.tap() }
-            document = app.cells.matching(filename).firstMatch
-        }
+        let document = app.cells.matching(filename).firstMatch
         XCTAssertTrue(document.waitForExistence(timeout: 15), "Saved local project is not visible in the actual Files picker")
         let imported = XCTAttachment(screenshot: app.screenshot()); imported.name = "iOS Files reimport selection"; imported.lifetime = .keepAlways; add(imported)
         document.tap()
