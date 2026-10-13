@@ -12,6 +12,8 @@ This is a development preview, not an iOS, iPadOS or Android release. It has no 
 - The editor transport test executes the actual browser/desktop routing function. A missing or failed browser worker never falls back to submitting research data over HTTP; the desktop token refresh path remains intact.
 - Gesture and DOM tests cover pointer ownership, a second finger cancelling an unfinished edit, stale capture-loss events, cancellation without commits, mouse/pen behavior, accessible drawers, language switching and desktop restoration. The DOM harness is a simulation, not Safari or Android hardware.
 
+The [clean Ubuntu preview job at `fcfe198`](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38369473983/job/115202577493) also passed: it installed the pinned public runtime, verified the official wheel cache, built the browser package from source, and ran the build, actual WASM dispatcher and DOM checks. The downloaded report records eight passing checks and zero network requests during calculation. This independently verifies the build and engine on Linux; it is still not a phone or browser-engine test.
+
 ## Desktop browser observations
 
 On 13 October 2026, the preview was opened in the Codex in-app browser on Windows at 390 × 844 CSS pixels. English and Chinese labels, Canvas / Panels / Adjustments views, the panel action menu and the export dialog were inspected visually.
@@ -38,6 +40,8 @@ The generated ZIP contains only the blank starter and public program resources. 
 - 统计兼容修复通过 20 项桌面测试及 WASM SciPy 1.14.1 的 16 项计算与结果导入回归，覆盖并列秩、确定性置换、配对身份、大样本 Wilcoxon 和 Holm 校正。
 - 计算线程、离线缓存、构建边界分别通过 7、7、4 项检查。编辑器真实传输函数验证了：计算线程缺失或失败时，不会退回 HTTP 上传科研数据。
 - 手势与 DOM 模拟检查覆盖双指接管、取消不提交、鼠标及触控笔行为、抽屉与语言切换。模拟测试不能代替真机交互测试。
+
+[`fcfe198` 的干净 Ubuntu 预览检查](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38369473983/job/115202577493) 也已通过：重新安装固定版本公共运行库、校验官方依赖缓存、从源代码构建，并执行构建、真实 WASM 计算与 DOM 检查。下载的报告记录 8 项通过、计算期间网络请求为 0。这独立验证了 Linux 上的构建和计算引擎，仍不等同于手机或浏览器内核测试。
 
 ### 浏览器中实际完成的流程
 

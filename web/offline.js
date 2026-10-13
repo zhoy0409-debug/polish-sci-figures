@@ -1,6 +1,13 @@
 /* Optional installation of public application assets only; no project data cache. */
 (function () {
   'use strict';
+  // Native previews ship the verified public assets inside the application.
+  // They must not attempt to register a web cache or download a second runtime.
+  if(window.StudioNativeBridge?.bundledAssets===true){
+    const state=Object.freeze({supported:true,phase:'ready',ready:true,bundled:true,completed:0,total:0});
+    window.StudioBrowserOffline=Object.freeze({install:async()=>({...state}),refresh:async()=>({...state}),status:()=>({...state}),subscribe(listener){listener({...state});return()=>{};}});
+    return;
+  }
   const base = new URL('./', document.currentScript.src);
   const listeners = new Set();
   let state = {supported: !!navigator.serviceWorker && !!globalThis.isSecureContext, phase: 'not-installed', completed: 0, total: 0};

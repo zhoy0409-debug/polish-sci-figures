@@ -2726,7 +2726,17 @@ if (typeof document !== 'undefined') (async () => {
     renderMasters();renderCanvas();renderInspector();renderRecommendations();showPane(activePane,false);renderHeatmapControls();renderCompactWhitespaceControls();
     renderConnectionNotice();ensureHeatmapMetadata().catch(()=>{});duplicateCheck?.refresh();
   }
-  function download(blob,name) {const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
+  async function download(blob,name) {
+    const native=globalThis.StudioNativeBridge;
+    if(native?.bundledAssets===true){
+      if(typeof native.saveBlob!=='function')throw Error(T('本地文件保存不可用，请重试或重新打开应用。'));
+      const result=await native.saveBlob(blob,name);
+      if(result?.cancelled){say(T('保存已取消'));return false;}
+      if(result?.saved!==true)throw Error(T('文件尚未保存，请重试。'));
+      return true;
+    }
+    const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);return true;
+  }
   function svgText(){return new XMLSerializer().serializeToString(composite(false,true));}
   function guard(fn) {return async(...args)=>{try{await fn(...args);}catch(e){say(T('未完成：')+T(e.message));}};}
   $('language').onchange=()=>{
@@ -3476,7 +3486,7 @@ if (typeof document !== 'undefined') (async () => {
   $('showArchived').onchange=guard(renderLibrary);
   $('restorePreset').onclick=()=>{const preset=presetRecords.find(p=>p.id===$('presetChoice').value);if(!preset)return;if(preset.sourceId!==project.id){$('libraryStatus').textContent=T('完整恢复仅适用于该预设的原工程；其他工程请粘贴可迁移样式。');return;}commit(copy(preset.sourceState),T('已恢复成稿全部参数'));};
   $('pasteCurrent').onclick=guard(async()=>{const preset=presetRecords.find(p=>p.id===$('presetChoice').value);if(preset)pastePreset(preset);});
-  $('exportLibrary').onclick=guard(async()=>{await collectFigure();await renderLibrary();download(projectFileBlob({format:'figure-studio-library-v1',figures:libraryRecords,presets:presetRecords}),'figure-studio-library.json');});
+  $('exportLibrary').onclick=guard(async()=>{await collectFigure();await renderLibrary();await download(projectFileBlob({format:'figure-studio-library-v1',figures:libraryRecords,presets:presetRecords}),'figure-studio-library.json');});
   $('importLibrary').onclick=()=>$('libraryFiles').click();
   $('libraryFiles').onchange=guard(async()=>{
     const records=[],presets=[];for(const file of $('libraryFiles').files){if(file.size>PROJECT_FILE_LIMIT)throw Error(T('工程超过 200 MB，请拆分工程后保存。'));const input=JSON.parse(await file.text());if(input.format==='figure-studio-library-v1'){if(!Array.isArray(input.figures)||!Array.isArray(input.presets))throw Error(T('该工程需要重新导入'));records.push(...input.figures);presets.push(...input.presets);}else{validatePayload(input);records.push({id:input.project.id,name:input.project.title||input.project.id,updatedAt:new Date().toISOString(),payload:input});}}
@@ -3489,7 +3499,7 @@ if (typeof document !== 'undefined') (async () => {
   });
   StudioLibrary.list('figures').then(records=>records.forEach(r=>libraryIds.add(r.id))).catch(()=>{});
 
-  $('save').onclick=guard(()=>{download(projectFileBlob(currentPayload()),'figure-studio-project.json');savedCurrent=saveSignature();learnPreferences();say(T('已下载工程；包含原图、当前修改和版本。'));});
+  $('save').onclick=guard(async()=>{const signature=saveSignature();if(await download(projectFileBlob(currentPayload()),'figure-studio-project.json')===false)return;savedCurrent=signature;learnPreferences();say(T('已下载工程；包含原图、当前修改和版本。'));});
   $('load').onclick=()=>$('projectFile').click();
   $('projectFile').onchange=guard(async()=>{
     const file=$('projectFile').files[0];if(!file)return;if(file.size>PROJECT_FILE_LIMIT)throw Error(T('工程超过 200 MB，请拆分工程后保存。'));
@@ -3579,7 +3589,8 @@ if (typeof document !== 'undefined') (async () => {
         filename=name+'-'+dpi+'dpi.'+format;
       }
       assertExportReady(panelId);if(project.id!==projectId||state()!==snapshot)throw Error(T('导出期间图形已更新，请重新导出'));
-      download(blob,filename);const status=(format==='svg'?T('已导出可编辑 SVG。'):T('已导出 {0} × {1} px，{2} dpi；物理尺寸 {3} × {4} mm。',w,h,dpi,output.widthMm.toFixed(2),output.heightMm.toFixed(2)))+(notice?' '+notice:'');say(status);if($('imageExportDialog').open)$('imageExportStatus').textContent=status;
+      if(await download(blob,filename)===false){if($('imageExportDialog').open)$('imageExportStatus').textContent=T('保存已取消');return;}
+      const status=(format==='svg'?T('已导出可编辑 SVG。'):T('已导出 {0} × {1} px，{2} dpi；物理尺寸 {3} × {4} mm。',w,h,dpi,output.widthMm.toFixed(2),output.heightMm.toFixed(2)))+(notice?' '+notice:'');say(status);if($('imageExportDialog').open)$('imageExportStatus').textContent=status;
     }finally{if(url)URL.revokeObjectURL(url);if(canvas){canvas.width=0;canvas.height=0;}exportBusy=false;refreshDataExport();updateImageExport(true);}
   }
   $('closeImageExport').onclick=()=>{if(!exportBusy)$('imageExportDialog').close();};
@@ -3626,7 +3637,7 @@ if (typeof document !== 'undefined') (async () => {
       onTabChange:name=>{if(name==='canvas'&&zoomView?.fit)applyPreviewZoom(null,null,true);}
     });
     if(typeof StudioDuplicateCheck!=='undefined')duplicateCheck=StudioDuplicateCheck.init({
-      engine:localEngine,fetch:engineFetch,download,say,
+      engine:localEngine,fetch:engineFetch,download:(blob,name)=>download(blob,name).catch(error=>say(T('未完成：')+T(error.message))),say,
       projectId:()=>project.id,
       getReviewRecord:()=>project.imageDuplicateReview||null,
       saveReviewRecord:record=>{

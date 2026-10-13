@@ -2,6 +2,9 @@
 'use strict';
 const StudioI18n = (() => {
   const en = {
+"保存已取消":"Save cancelled",
+"本地文件保存不可用，请重试或重新打开应用。":"Local file saving is unavailable. Retry or reopen the app.",
+"文件尚未保存，请重试。":"The file has not been saved. Please retry.",
 "设备内计算暂不可用。工程与数据草稿已保留，请重试初始化。":"On-device calculation is unavailable. Your project and data drafts are kept; try initializing again.",
 "图形已导入":"Artwork imported",
 "导入结果已保留，可用撤销恢复。":"The imported artwork is already in your figure. You can undo to restore the previous version.",

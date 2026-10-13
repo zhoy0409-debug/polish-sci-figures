@@ -31,6 +31,7 @@
       region.dataset.busy = String(loading || installing);
       region.setAttribute('aria-live', loading || installing || engineState.busy ? 'off' : 'polite');
       prepare.disabled = installing || !offlineState.supported;
+      prepare.hidden = offlineState.bundled === true;
       prepare.textContent = T(installing ? 'Preparing…' : offlineState.phase === 'ready' ? 'Check offline files' : 'Make available offline', installing ? '正在准备…' : offlineState.phase === 'ready' ? '检查离线文件' : '准备离线使用');
       const seconds = Math.floor((engineState.elapsedMs || 0) / 1000);
       const elapsed = seconds > 1 ? ` · ${seconds} s` : '';
@@ -44,7 +45,9 @@
       else if (engineState.phase === 'error') message.textContent = T('Local calculation stopped. Your data is kept; retry the operation to restart.', '设备内计算已停止，数据已保留；请重新执行刚才的操作以重试。');
       else if (loading) message.textContent = T('Starting on-device calculation… The first use loads program files only.', '正在启动设备内计算…首次使用仅加载程序文件。') + elapsed;
       else if (engineState.busy) message.textContent = T('Calculating on this device… You can continue editing.', '正在设备内计算…可以继续编辑。') + elapsed;
-      else message.textContent = offlineState.phase === 'ready'
+      else message.textContent = offlineState.bundled === true
+        ? T('Local app preview · Data stays on this device', '本地应用预览版 · 数据保留在当前设备')
+        : offlineState.phase === 'ready'
         ? T('Offline files ready · Browser preview · Data stays on this device', '离线文件已就绪 · 浏览器预览版 · 数据保留在当前设备')
         : T('Browser preview · On-device calculation · Offline setup needs about 80 MB', '浏览器预览版 · 设备内计算 · 离线准备约需 80 MB');
     }

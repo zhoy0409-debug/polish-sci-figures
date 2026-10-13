@@ -104,6 +104,7 @@ jobs:
       - name: Figure Studio history and state validation
         run: |
           node scripts/test_studio_browser_transport.cjs
+          node scripts/test_studio_native_download.cjs
           node scripts/test_studio_mobile_ui.cjs
           node scripts/test_local_web_engine.cjs
           node scripts/test_local_web_offline.cjs
