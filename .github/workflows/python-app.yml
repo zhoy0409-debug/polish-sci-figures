@@ -38,7 +38,9 @@ jobs:
       - name: Figure Studio packaging and provenance
         run: python skills/polish-sci-figures/scripts/test_figure_studio.py
       - name: Desktop launcher lifecycle and local authorization
-        run: python desktop/test_figure_studio_app.py
+        run: |
+          python desktop/test_figure_studio_app.py
+          python desktop/test_macos_build.py
       - name: Local image duplicate screening and evidence
         run: |
           python scripts/test_image_duplicates.py
@@ -152,3 +154,56 @@ jobs:
           python scripts/test_studio_axes_regression.py
       - name: Whitespace check
         run: git diff --check
+
+  browser-preview:
+    name: local browser preview (ubuntu, py3.12, Node24)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MPLBACKEND: Agg
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Set up tested Node runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.18.0"
+      - name: Install Python build dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Install pinned public runtime and DOM test dependencies
+        run: npm install --prefix .cache/mobile-local-spike --cache .cache/mobile-local-spike/npm-cache --ignore-scripts --no-audit --no-fund --save-exact pyodide@0.29.3 jsdom@26.1.0
+      - name: Cache official scientific wheels
+        uses: actions/cache@v4
+        with:
+          path: .cache/mobile-local-spike/node_modules/pyodide/*.whl
+          key: ${{ runner.os }}-pyodide-0.29.3-wheels-${{ hashFiles('web/prepare-runtime.mjs') }}
+      - name: Prepare and verify pinned public assets
+        run: |
+          node web/prepare-runtime.mjs
+          node web/prepare-runtime.mjs --offline
+      - name: Build browser preview from this checkout
+        run: |
+          python scripts/build_local_web_preview.py
+          python scripts/test_local_web_build.py
+      - name: Execute actual WASM dispatcher with network forbidden
+        run: node scripts/test_local_web_wasm.mjs
+      - name: Mobile DOM integration (simulation, not device validation)
+        env:
+          NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
+        run: node scripts/test_mobile_dom_preview.cjs
+      - name: Retain synthetic calculation evidence and public-file checksums
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: local-browser-preview-checks
+          retention-days: 14
+          if-no-files-found: ignore
+          path: |
+            .cache/local-web-qa/wasm-dispatcher.json
+            .cache/local-web-preview/SHA256SUMS.txt
