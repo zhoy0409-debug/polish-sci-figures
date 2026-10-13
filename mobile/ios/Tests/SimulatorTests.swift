@@ -12,7 +12,7 @@ final class SimulatorTests: XCTestCase {
         let ready = NSPredicate { _, _ in local.exists || back.exists || browse.exists }
         let readiness = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: ready, object: nil)], timeout: 45)
         if readiness != .completed {
-            let frame = XCTAttachment(screenshot: app.screenshot()); frame.name = "iOS Files navigation readiness failure"; frame.lifetime = .keepAlways; add(frame)
+            let frame = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); frame.name = "iOS Files navigation readiness failure"; frame.lifetime = .keepAlways; add(frame)
             print("FILES NAVIGATION READINESS HIERARCHY\n" + app.debugDescription)
         }
         XCTAssertEqual(readiness, .completed, "Native Files navigation did not become available within 45 seconds")
@@ -41,7 +41,7 @@ final class SimulatorTests: XCTestCase {
         // The labelled tab panel and the tab itself can both be named Canvas.
         let ready = NSPredicate { _, _ in canvas.allElementsBoundByIndex.contains { $0.isHittable } && pan.allElementsBoundByIndex.contains { $0.isHittable } }
         let result = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: ready, object: nil)], timeout: 15)
-        let frame = XCTAttachment(screenshot: app.screenshot()); frame.name = "iOS mobile frame readiness"; frame.lifetime = .keepAlways; add(frame)
+        let frame = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); frame.name = "iOS mobile frame readiness"; frame.lifetime = .keepAlways; add(frame)
         if result != .completed { print("MOBILE ACCESSIBILITY HIERARCHY\n" + app.debugDescription) }
         XCTAssertEqual(result, .completed, "The mobile canvas controls have not become visible and usable")
     }
@@ -57,7 +57,7 @@ final class SimulatorTests: XCTestCase {
         let failure = app.staticTexts["SIMULATOR SMOKE FAILED"]
         let ready = NSPredicate { _, _ in cancel.exists || pickerSave.exists || failure.exists }
         let readyResult = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: ready, object: nil)], timeout: 300)
-        let first = XCTAttachment(screenshot: app.screenshot()); first.name = "iOS native export picker"; first.lifetime = .keepAlways; add(first)
+        let first = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); first.name = "iOS native export picker"; first.lifetime = .keepAlways; add(first)
         XCTAssertEqual(readyResult, .completed, "No export picker or smoke report within 300 seconds")
         XCTAssertFalse(failure.exists, "Engine smoke failed; inspect simulator-smoke.json")
         // Inside a folder, Files uses the left button for Back. The root
@@ -79,7 +79,7 @@ final class SimulatorTests: XCTestCase {
         // An enabled Save button alone says nothing about whether the selected
         // provider is on-device. Explicitly select the local root every time.
         selectOnDeviceRoot(app)
-        let destination = XCTAttachment(screenshot: app.screenshot()); destination.name = "iOS local Files save destination"; destination.lifetime = .keepAlways; add(destination)
+        let destination = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); destination.name = "iOS local Files save destination"; destination.lifetime = .keepAlways; add(destination)
         let writable = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND enabled == true"), object: save)
         XCTAssertEqual(XCTWaiter.wait(for: [writable], timeout: 10), .completed, "The Files provider did not offer a writable local folder")
         save.tap()
@@ -90,11 +90,13 @@ final class SimulatorTests: XCTestCase {
         let filename = NSPredicate(format: "label CONTAINS %@", "figure-studio-project")
         let document = app.cells.matching(filename).firstMatch
         XCTAssertTrue(document.waitForExistence(timeout: 15), "Saved local project is not visible in the actual Files picker")
-        let imported = XCTAttachment(screenshot: app.screenshot()); imported.name = "iOS Files reimport selection"; imported.lifetime = .keepAlways; add(imported)
+        let imported = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); imported.name = "iOS Files reimport selection"; imported.lifetime = .keepAlways; add(imported)
         document.tap()
         let confirm = app.alerts.buttons["Confirm"].firstMatch
         let confirmationShown = confirm.waitForExistence(timeout: 15)
-        let selected = XCTAttachment(screenshot: app.screenshot()); selected.name = "iOS after choosing saved project"; selected.lifetime = .keepAlways; add(selected)
+        // Capture pixels directly: resolving the app for a screenshot can wait
+        // on WebKit while synchronous window.confirm suspends its context.
+        let selected = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); selected.name = "iOS after choosing saved project"; selected.lifetime = .keepAlways; add(selected)
         if !confirmationShown { print("FILES SELECTION HIERARCHY\n" + app.debugDescription) }
         XCTAssertTrue(confirmationShown, "Project replacement confirmation did not appear")
         // A synchronous window.confirm suspends the WK JavaScript context.
@@ -105,12 +107,12 @@ final class SimulatorTests: XCTestCase {
         app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: confirmFrame.midX, dy: confirmFrame.midY)).tap()
         XCTAssertTrue(app.staticTexts["SIMULATOR SMOKE PASSED"].waitForExistence(timeout: 30), "Native save, reimport or editor restoration did not complete")
         waitForPaintedMobileControls(app)
-        let final = XCTAttachment(screenshot: app.screenshot()); final.name = "iOS local engine complete"; final.lifetime = .keepAlways; add(final)
+        let final = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); final.name = "iOS local engine complete"; final.lifetime = .keepAlways; add(final)
         app.terminate()
         app.launchArguments = ["--smoke", "--restore"]
         app.launch()
         XCTAssertTrue(app.staticTexts["SIMULATOR SMOKE PASSED"].waitForExistence(timeout: 45), "Editor autosave not restored after process restart")
         waitForPaintedMobileControls(app)
-        let restored = XCTAttachment(screenshot: app.screenshot()); restored.name = "iOS restored local project"; restored.lifetime = .keepAlways; add(restored)
+        let restored = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); restored.name = "iOS restored local project"; restored.lifetime = .keepAlways; add(restored)
     }
 }
