@@ -29,6 +29,7 @@ Platform adapters stream bounded chunks to temporary/local destinations and vali
 
 ## Build and validation
 
+- [Native mobile validation record](../docs/mobile-preview-validation.md): Android project Save/Open, phone/tablet screenshots, and iPhone/iPad runtime/restart evidence; expanded iOS visual/file and physical-device checks remain separate.
 - [Android sources](android/): development APK and emulator checks; production signing and store distribution are separate steps.
 - [iPhone/iPad sources](ios/): Xcode build and simulator checks; a simulator application cannot be installed on a physical iPhone or distributed through TestFlight.
 - [Existing browser validation](../docs/local-browser-preview-validation.md): calculation, offline and desktop-browser evidence, with explicit limits.
@@ -45,3 +46,5 @@ A paid Apple Developer account is not required to compile and test in the simula
 导入使用系统文件选择器。图片、查重证据和工程通过原生接口保存，写入成功才提示完成；用户取消不能误报已保存，保存失败也不能退回无法交付文件的浏览器下载。普通桌面与浏览器的下载方式保留。
 
 Android 开发 APK、iPhone/iPad 模拟器应用和真正的应用商店发行是不同的交付物。模拟器编译测试不需要付费 Apple 开发者账号；模拟器应用不能直接安装到真实 iPhone，设备签名分发和 TestFlight 是后续步骤。当前移动计算引擎尚未实现可编辑 PDF 导入，会明确提示原因，不用栅格化页面冒充可编辑图形。
+
+[原生移动端验证记录](../docs/mobile-preview-validation.md#中文)列出了 Android 工程保存／打开、手机和平板截图，以及 iPhone／iPad 模拟器运行和重启恢复的证据；新增 iOS 视觉、文件流程与真机检查分别记录。

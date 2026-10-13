@@ -26,7 +26,7 @@ Restarting the static server and reloading installed the newer application cache
 
 The isolated Node/WASM run used a 255 MB WASM heap and approximately 763 MB process RSS after the tests. These are snapshots, not peak memory or phone measurements. The first browser render was noticeably slower than subsequent analysis; concurrent development activity and browser automation delays prevent treating that observation as a clean benchmark. In a later run of the updated browser build, locally recorded worker initialization took 11,705 ms, the first analysis operation took 4,926 ms, and repeating it took 74 ms. This is a single Windows desktop observation, not a mobile performance guarantee. Calculation timing is exposed locally to support controlled measurements.
 
-No iPhone, iPad, Android device or Safari session was available for this validation. Touch tests do not establish physical gesture quality, keyboard behavior, download/share behavior, installation or performance on low-memory devices. This preview does not provide an APK, IPA, TestFlight build or App Store listing. Editable PDF import deliberately reports that it is unavailable in this browser build. The desktop editor retains its PDF functionality.
+No iPhone, iPad, Android device or Safari session was available for this browser validation. Touch tests do not establish physical gesture quality, keyboard behavior, download/share behavior, installation or performance on low-memory devices. This browser ZIP does not contain an APK or IPA; subsequent native development builds and emulator results are recorded in [mobile validation](mobile-preview-validation.md). Editable PDF import deliberately reports that it is unavailable in this browser build. The desktop editor retains its PDF functionality.
 
 The generated ZIP contains only the blank starter and public program resources. It excludes user projects and test evidence. Public hosting and application-store distribution have not been performed.
 
@@ -55,6 +55,6 @@ The generated ZIP contains only the blank starter and public program resources. 
 
 独立 Node/WASM 检查结束时，WASM 堆约 255 MB，进程内存约 763 MB；这不是峰值，也不是手机性能测量。首次浏览器绘图等待明显长于后续分析。更新后的浏览器实测记录中，计算线程初始化为 11,705 ms，首次分析为 4,926 ms，重复分析为 74 ms。这只是一次 Windows 桌面观察，不能据此宣称低配置设备或手机已经流畅；耗时记录保留在本地，供后续受控测试使用。
 
-尚未进行 iPhone、iPad、Android 或 Safari 真机检查，也没有生成 APK、IPA、TestFlight 或应用商店版本。触摸、软键盘、下载分享、安装及低内存性能均需继续实测。浏览器预览明确提示暂不支持可编辑 PDF 导入；桌面版的 PDF 功能保留。
+这次浏览器验证未进行 iPhone、iPad、Android 或 Safari 真机检查。该浏览器预览 ZIP 不包含 APK 或 IPA；后续原生开发包和模拟器结果另见[移动端验证记录](mobile-preview-validation.md#中文)。触摸、软键盘、下载分享、安装及低内存性能均需继续实测。浏览器预览明确提示暂不支持可编辑 PDF 导入；桌面版的 PDF 功能保留。
 
 生成的预览 ZIP 仅包含空白启动页和公共程序资源，不含用户工程或测试证据。尚未公开托管或上架应用商店。
