@@ -19,9 +19,14 @@ def run(*args, **kwargs):
 def create():
     devices = json.loads(run('xcrun', 'simctl', 'list', 'devicetypes', '-j'))['devicetypes']
     runtimes = json.loads(run('xcrun', 'simctl', 'list', 'runtimes', '-j'))['runtimes']
-    runtime = sorted((item for item in runtimes if item.get('isAvailable') and 'iOS' in item['name']), key=lambda item: tuple(int(part) for part in item['version'].split('.')))[-1]
-    candidates = [item for item in devices if 'iPhone' in item['name'] and item.get('minRuntimeVersion', 0) <= int(runtime['version'].split('.')[0]) * 65536]
-    device = candidates[-1]
+    def version(text):
+        return tuple((list(map(int, text.split('.'))) + [0, 0])[:3])
+    sdk = version(run('xcrun', '--sdk', 'iphonesimulator', '--show-sdk-version'))
+    runtime = sorted((item for item in runtimes if item.get('isAvailable') and 'iOS' in item['name'] and version(item['version']) <= sdk), key=lambda item: version(item['version']))[-1]
+    major, minor, patch = version(runtime['version'])
+    encoded = major * 65536 + minor * 256 + patch
+    candidates = [item for item in devices if 'iPhone' in item['name'] and item.get('minRuntimeVersion', 0) <= encoded <= item.get('maxRuntimeVersion', 0xffffffff)]
+    device = sorted(candidates, key=lambda item: (item.get('minRuntimeVersion', 0), item['name']))[-1]
     identifier = run('xcrun', 'simctl', 'create', 'Figure Studio isolated CI', device['identifier'], runtime['identifier'])
     (OUT / 'simulator.json').write_text(json.dumps({'id': identifier, 'device': device, 'runtime': runtime}, indent=2))
     with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as handle:

@@ -1,0 +1,110 @@
+name: Android local development preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/macos-local-preview, codex/android-local-preview]
+    paths:
+      - 'mobile/android/**'
+      - 'web/**'
+      - 'skills/**'
+      - 'desktop/build_starter.py'
+      - 'scripts/build_local_web_preview.py'
+      - '.github/workflows/android-local-preview.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-local-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      ANDROID_SERIAL: emulator-5554
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - name: Prepare pinned public offline runtime
+        run: |
+          npm install --prefix .cache/mobile-local-spike --cache .cache/mobile-local-spike/npm-cache --ignore-scripts --no-audit --no-fund pyodide@0.29.3
+          node web/prepare-runtime.mjs
+          node web/prepare-runtime.mjs --offline
+          python mobile/android/prepare_assets.py
+      - name: Bridge and public asset regressions
+        run: |
+          node --test mobile/android/test_bridge.cjs
+          python mobile/android/test_assets.py
+      - name: Build development APK and instrumentation APK
+        run: |
+          mkdir -p .cache/android-qa
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+          gradle -p mobile/android --no-daemon testDebugUnitTest assembleDebug assembleDebugAndroidTest --stacktrace 2>&1 | tee .cache/android-qa/build.log
+      - name: Prepare Android 35 emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'system-images;android-35;google_apis;x86_64'
+          echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --name studio-ci --package 'system-images;android-35;google_apis;x86_64' --device pixel_6 --force
+      - name: Actual WebView worker, analysis, rendering, local files and persistence
+        run: |
+          "$ANDROID_HOME/emulator/emulator" -avd studio-ci -port 5554 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -memory 3072 >.cache/android-qa/emulator.log 2>&1 &
+          emulator_pid=$!
+          trap 'kill "$emulator_pid" 2>/dev/null || true' EXIT
+          timeout 180 bash -c 'until adb -s emulator-5554 shell getprop sys.boot_completed 2>/dev/null | tr -d "\r" | grep -q "^1$"; do sleep 2; done'
+          adb shell input keyevent 82
+          adb shell settings put global window_animation_scale 0
+          adb shell settings put global transition_animation_scale 0
+          adb shell settings put global animator_duration_scale 0
+          adb logcat -c
+          set +e
+          gradle -p mobile/android --no-daemon connectedDebugAndroidTest --stacktrace 2>&1 | tee .cache/android-qa/instrumentation.log
+          test_status=${PIPESTATUS[0]}
+          adb logcat -d >.cache/android-qa/logcat.txt
+          adb pull /sdcard/Android/data/org.polishscifigures.studio.preview.debug/files/qa .cache/android-qa/runtime || true
+          exit "$test_status"
+      - name: Package development APK and checksums
+        run: |
+          mkdir -p .cache/android-qa/delivery
+          cp mobile/android/app/build/outputs/apk/debug/app-debug.apk .cache/android-qa/delivery/Figure-Studio-Android-Local-Preview.apk
+          cp mobile/android/README.md .cache/android-qa/delivery/README.md
+          cp .cache/android-qa/runtime/android-runtime-proof.json .cache/android-qa/delivery/
+          cd .cache/android-qa/delivery
+          sha256sum Figure-Studio-Android-Local-Preview.apk >SHA256SUMS.txt
+      - name: Collect tested development APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: figure-studio-android-local-development-preview
+          path: .cache/android-qa/delivery/
+          retention-days: 14
+          if-no-files-found: error
+      - name: Collect synthetic test diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: figure-studio-android-diagnostics
+          retention-days: 14
+          if-no-files-found: ignore
+          path: |
+            .cache/android-qa/*.log
+            .cache/android-qa/*.txt
+            .cache/android-qa/runtime/
+            mobile/android/app/build/reports/
+            mobile/android/app/build/outputs/androidTest-results/

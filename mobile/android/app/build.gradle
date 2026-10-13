@@ -1,0 +1,49 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'org.polishscifigures.studio.preview'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'org.polishscifigures.studio.preview'
+        minSdk 26
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0-local-preview'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+    buildTypes {
+        debug { applicationIdSuffix '.debug'; debuggable true }
+        release { minifyEnabled false }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    buildFeatures { buildConfig true }
+    androidResources { noCompress += ['wasm', 'whl', 'zip'] }
+    testOptions { animationsDisabled true; unitTests.returnDefaultValues = true }
+    packaging { resources.merges += ['META-INF/LICENSE*', 'META-INF/NOTICE*'] }
+}
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.12.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'androidx.test:rules:1.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.6.1'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.3.0'
+}
+
+tasks.register('verifyBundledWebAssets') {
+    doLast {
+        def root = file('src/main/assets/www')
+        if (!new File(root, 'native-bundle-manifest.json').isFile()) throw new GradleException('Run python mobile/android/prepare_assets.py before building')
+        def manifest = new groovy.json.JsonSlurper().parse(new File(root, 'native-bundle-manifest.json'))
+        manifest.files.each { entry ->
+            def asset = new File(root, entry.path)
+            if (!asset.canonicalPath.startsWith(root.canonicalPath + File.separator) || !asset.isFile()) throw new GradleException('Missing or invalid local asset: ' + entry.path)
+            def digest = java.security.MessageDigest.getInstance('SHA-256').digest(asset.bytes).encodeHex().toString()
+            if (digest != entry.sha256) throw new GradleException('Asset hash mismatch: ' + entry.path)
+        }
+    }
+}
+tasks.named('preBuild').configure { dependsOn 'verifyBundledWebAssets' }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }

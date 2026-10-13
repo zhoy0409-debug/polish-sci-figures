@@ -2,6 +2,16 @@ import UIKit
 import WebKit
 import CoreFoundation
 
+@MainActor
+private final class NativeMessageProxy: NSObject, WKScriptMessageHandlerWithReply {
+    weak var owner: StudioViewController?
+    init(owner: StudioViewController) { self.owner = owner }
+    func userContentController(_ controller: WKUserContentController, didReceive message: WKScriptMessage, replyHandler: @escaping (Any?, String?) -> Void) {
+        guard let owner else { replyHandler(nil, "Editor closed"); return }
+        owner.userContentController(controller, didReceive: message, replyHandler: replyHandler)
+    }
+}
+
 final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandlerWithReply, UIDocumentPickerDelegate {
     private var webView: WKWebView!
     private var server: AssetServer?
@@ -22,7 +32,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         let controller = WKUserContentController()
-        controller.addScriptMessageHandler(self, contentWorld: .page, name: "figureStudioNative")
+        controller.addScriptMessageHandler(NativeMessageProxy(owner: self), contentWorld: .page, name: "figureStudioNative")
         guard let scriptURL = Bundle.main.url(forResource: "native-adapter", withExtension: "js"),
               let script = try? String(contentsOf: scriptURL, encoding: .utf8) else { showError("Missing native adapter"); return }
         controller.addUserScript(WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: true))

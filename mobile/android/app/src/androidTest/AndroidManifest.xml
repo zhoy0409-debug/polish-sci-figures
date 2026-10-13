@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <!-- Synthetic fixtures only; this provider is never packaged in the application APK. -->
+        <provider android:name="org.polishscifigures.studio.preview.FixtureProvider"
+            android:authorities="org.polishscifigures.studio.preview.test.fixtures" android:exported="true" />
+    </application>
+</manifest>

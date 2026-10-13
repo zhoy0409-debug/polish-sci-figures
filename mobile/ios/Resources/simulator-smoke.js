@@ -33,7 +33,9 @@ void (async function () {
       });
       await check('Fresh simulator test profile saves a real editor change', async () => {
         const records = await StudioLibrary.list('autosaves');
-        assert(records.length === 0, 'Use a fresh simulator test profile; existing records are never cleared');
+        // Startup itself autosaves the empty starter. Permit only that untouched
+        // blank project; never replace an existing edited project in this profile.
+        assert(!localStorage.getItem('ios-simulator-smoke') && records.length <= 1 && records.every(item => item.payload?.project.desktopStarter === true && !item.payload?.state.alignmentGuides?.length && item.payload?.project.panels.every(panel => panel.provenance === 'blank-canvas')), 'Use a fresh simulator test profile; existing edited records are never cleared');
         document.getElementById('addHorizontalGuide').click();
         let saved;
         await wait(async () => { const all = await StudioLibrary.list('autosaves'); saved = all.find(item => item.payload?.state.alignmentGuides?.length); return !!saved; });

@@ -45,8 +45,7 @@ final class AssetServer {
     }
 
     func stop() {
-        queue.async { [weak self] in
-            guard let self else { return }
+        queue.async {
             self.listener?.cancel()
             for connection in self.connections.values { connection.cancel() }
             self.connections.removeAll()
