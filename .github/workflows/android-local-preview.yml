@@ -25,8 +25,8 @@ jobs:
     timeout-minutes: 45
     env:
       ANDROID_SERIAL: emulator-5554
-      ANDROID_AVD_HOME: ${{ runner.temp }}/figure-studio-avd
-      ANDROID_USER_HOME: ${{ runner.temp }}/figure-studio-android
+      ANDROID_AVD_HOME: ${{ github.workspace }}/.cache/android-avd
+      ANDROID_USER_HOME: ${{ github.workspace }}/.cache/android-user
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-java@v4
