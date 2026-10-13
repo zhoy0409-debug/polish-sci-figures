@@ -46,13 +46,18 @@ final class SimulatorTests: XCTestCase {
         let save = app.navigationBars.buttons["Save"].firstMatch
         XCTAssertTrue(save.waitForExistence(timeout: 5), "Local Files save destination is unavailable")
         if !save.isEnabled {
-            // directoryURL only suggests an initial view. A fresh simulator's
-            // local provider may require selecting the visible location once.
-            // Exercise that real UI path instead of writing to the spool.
+            // Files can reopen inside a folder, where On My iPhone is a Back
+            // button, or at Browse, where it is a location cell. Follow the
+            // actual visible hierarchy, with a finite number of parent steps.
             let local = app.cells.containing(NSPredicate(format: "label CONTAINS 'On My iPhone' OR label CONTAINS 'On My iPad'")).firstMatch
-            XCTAssertTrue(local.waitForExistence(timeout: 5), "The on-device Files location is unavailable")
-            local.tap()
             let folder = app.cells.containing(.staticText, identifier: "Figure Studio Preview").firstMatch
+            for _ in 0..<6 {
+                if local.exists { local.tap(); break }
+                if folder.exists { break }
+                let back = app.navigationBars.buttons.matching(NSPredicate(format: "label == 'On My iPhone' OR label == 'On My iPad' OR label == 'Browse'")).firstMatch
+                XCTAssertTrue(back.waitForExistence(timeout: 3), "No native parent button or on-device Files location is available")
+                back.tap()
+            }
             XCTAssertTrue(folder.waitForExistence(timeout: 5), "The app's local Documents folder is unavailable")
             folder.tap()
         }

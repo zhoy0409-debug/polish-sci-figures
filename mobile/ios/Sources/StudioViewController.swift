@@ -306,9 +306,8 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
                 activeExportPicker = picker
                 picker.delegate = self
                 picker.modalPresentationStyle = .formSheet
-                // A first-time user gets a visible on-device destination. The
-                // native picker still requires Save and can choose another folder.
-                if !UserDefaults.standard.bool(forKey: "studio.hasExported.v1") { picker.directoryURL = localDocumentsDirectory }
+                // Keep Files' registered destination rather than force a raw
+                // sandbox URL. The user still explicitly chooses where to save.
                 presentExportWhenReady(picker, id: id, attemptsRemaining: 20)
             case "smokeLastExport" where smoke:
                 replyHandler(lastSmokeExport ?? ["saved": false], nil)
@@ -352,6 +351,18 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     private func presentExportWhenReady(_ picker: UIDocumentPickerViewController, id: String, attemptsRemaining: Int) {
         guard exportReply != nil, exports?.id == id else { return }
         if presentedViewController == nil {
+            let file = exports?.file
+            let values = try? file?.resourceValues(forKeys: [.fileSizeKey, .isRegularFileKey])
+            let readable = file.map { FileManager.default.isReadableFile(atPath: $0.path) } ?? false
+            if smoke {
+                recordSmokeProgress("Presenting native export; source=" + (file?.path ?? "missing") + "; readable=\(readable); regular=\(values?.isRegularFile == true); bytes=\(values?.fileSize ?? -1); expected=\(exports?.written ?? -1); destination=Files registered location")
+            }
+            guard readable, values?.isRegularFile == true, values?.fileSize == exports?.written else {
+                let callback = exportReply; exportReply = nil; activeExportPicker = nil
+                exports?.abort(); exportTimeout?.invalidate()
+                callback?(nil, "The prepared export file is no longer complete; retry saving / 导出临时文件不完整，请重试保存")
+                return
+            }
             present(picker, animated: !UIAccessibility.isReduceMotionEnabled)
             picker.presentationController?.delegate = self
         } else if attemptsRemaining > 0 {
@@ -367,7 +378,6 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard controller === activeExportPicker else { return }
         if let url = urls.first {
-            UserDefaults.standard.set(true, forKey: "studio.hasExported.v1")
             if smoke {
                 let scoped = url.startAccessingSecurityScopedResource()
                 defer { if scoped { url.stopAccessingSecurityScopedResource() } }
