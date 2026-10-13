@@ -43,6 +43,32 @@ public class LocalEngineInstrumentedTest {
         Object value = new JSONTokener(eval("JSON.stringify("+variable+")")).nextValue();
         return new JSONObject((String)value);
     }
+    private void restoredEditorFrame() throws Exception {
+        // Density changes may recreate the Activity. A correct innerWidth alone
+        // does not prove that autosave restoration or the compositor has finished.
+        until("document.readyState==='complete' && !!window.StudioLibrary && !!document.querySelector('[data-alignment-guide=\"'+JSON.parse(localStorage.getItem('android-instrumentation-workspace')||'{}').guideId+'\"]') && !document.getElementById('undo').disabled",60);
+        CountDownLatch drawn = new CountDownLatch(1);
+        scenario.onActivity(activity -> {
+            android.webkit.WebView view = activity.webViewForTests();
+            view.postVisualStateCallback(System.nanoTime(),new android.webkit.WebView.VisualStateCallback() {
+                @Override public void onComplete(long id) {
+                    view.postOnAnimation(() -> view.postOnAnimation(drawn::countDown));
+                }
+            });
+        });
+        assertTrue("Restored editor frame did not draw",drawn.await(15,TimeUnit.SECONDS));
+    }
+    private void recordFrame(String key) throws Exception {
+        JSONObject frame=result("({width:innerWidth,height:innerHeight,scale:devicePixelRatio,documentWidth:document.documentElement.scrollWidth,restoredGuide:!!document.querySelector('[data-alignment-guide=\"'+JSON.parse(localStorage.getItem('android-instrumentation-workspace')).guideId+'\"]')})");
+        scenario.onActivity(activity -> {
+            android.webkit.WebView view=activity.webViewForTests();int[] position=new int[2];view.getLocationOnScreen(position);
+            try {frame.put("nativeLeft",position[0]);frame.put("nativeTop",position[1]);frame.put("nativeWidth",view.getWidth());frame.put("nativeHeight",view.getHeight());}
+            catch(JSONException error){throw new RuntimeException(error);}
+        });
+        assertTrue("WebView must be below the status bar",frame.getInt("nativeTop")>0);
+        assertEquals(frame.getInt("nativeWidth"),frame.getDouble("width")*frame.getDouble("scale"),2.0);
+        assertTrue(frame.getBoolean("restoredGuide"));proof.put(key,frame);
+    }
     private byte[] read(Uri uri) throws Exception {
         try(InputStream in=InstrumentationRegistry.getInstrumentation().getContext().getContentResolver().openInputStream(uri); ByteArrayOutputStream out=new ByteArrayOutputStream()) {
             byte[] buffer=new byte[8192]; int count; while((count=in.read(buffer))>=0) out.write(buffer,0,count); return out.toByteArray();
@@ -102,12 +128,12 @@ public class LocalEngineInstrumentedTest {
             try {
                 Uri input=Uri.parse("content://"+FixtureProvider.AUTHORITY+"/input.csv");
                 intending(hasAction(Intent.ACTION_OPEN_DOCUMENT)).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK,new Intent().setData(input).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)));
-                eval("window.__androidImported=null;(()=>{let i=document.createElement('input');i.type='file';i.accept='.csv';i.onchange=async()=>{try{window.__androidImported=await i.files[0].text()}catch(e){window.__androidImported='ERROR:'+e}};let b=document.createElement('button');b.textContent='Choose QA CSV';b.id='android-qa-picker';b.style='position:fixed;left:16px;top:60px;z-index:2147483647;background:white;color:black;padding:20px';b.onclick=()=>i.click();document.body.append(b,i)})()");
+                eval("window.__androidImported=null;(()=>{let i=document.createElement('input');i.id='android-qa-input';i.type='file';i.accept='.csv';i.onchange=async()=>{try{window.__androidImported=await i.files[0].text()}catch(e){window.__androidImported='ERROR:'+e}};let b=document.createElement('button');b.textContent='Choose QA CSV';b.id='android-qa-picker';b.style='position:fixed;left:16px;top:60px;z-index:2147483647;background:white;color:black;padding:20px';b.onclick=()=>i.click();document.body.append(b,i)})()");
                 UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
                 UiObject button=device.findObject(new UiSelector().text("Choose QA CSV")); assertTrue(button.waitForExists(10000));button.click();
                 until("window.__androidImported !== null",30);
                 assertEquals(FixtureProvider.CSV,new JSONTokener(eval("window.__androidImported")).nextValue());
-                eval("document.querySelector('#android-qa-picker').remove()");
+                eval("document.querySelector('#android-qa-picker').remove();document.querySelector('#android-qa-input').remove()");
                 proof.put("fileChooserContentUriRead",true);
             } finally { Intents.release(); }
             // Native provider writes are byte-for-byte checked, including multiple bridge chunks.
@@ -138,15 +164,16 @@ public class LocalEngineInstrumentedTest {
             // Actual emulator display/density overrides exercise tablet WebView layouts.
             File screenshots=new File(target.getExternalFilesDir(null),"qa");screenshots.mkdirs();
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            restoredEditorFrame();recordFrame("phoneEditorFrame");
             device.takeScreenshot(new File(screenshots,"android-phone.png"));
             device.executeShellCommand("wm density 240");device.executeShellCommand("wm size 1600x2560");
             until("innerWidth >= 1000 && innerHeight > innerWidth",15);
-            proof.put("tabletPortraitViewport",result("({width:innerWidth,height:innerHeight,scale:devicePixelRatio,documentWidth:document.documentElement.scrollWidth})"));
+            restoredEditorFrame();recordFrame("tabletPortraitViewport");
             assertEquals("true",eval("document.documentElement.scrollWidth <= innerWidth+2"));
             device.takeScreenshot(new File(screenshots,"android-tablet-portrait.png"));
             device.executeShellCommand("wm size 2560x1600");
             until("innerWidth >= 1600 && innerWidth > innerHeight",15);
-            proof.put("tabletLandscapeViewport",result("({width:innerWidth,height:innerHeight,scale:devicePixelRatio,documentWidth:document.documentElement.scrollWidth})"));
+            restoredEditorFrame();recordFrame("tabletLandscapeViewport");
             assertEquals("true",eval("document.documentElement.scrollWidth <= innerWidth+2"));
             device.takeScreenshot(new File(screenshots,"android-tablet-landscape.png"));
             proof.put("passed",true);

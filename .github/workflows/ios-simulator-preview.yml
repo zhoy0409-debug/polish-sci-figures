@@ -16,9 +16,15 @@ permissions:
 
 jobs:
   simulator:
+    name: ${{ matrix.device }} local simulator
     runs-on: macos-15
     timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        device: [iPhone, iPad]
     env:
+      STUDIO_DEVICE_FAMILY: ${{ matrix.device }}
       MPLBACKEND: Agg
       OPENBLAS_NUM_THREADS: '1'
       OMP_NUM_THREADS: '1'
@@ -41,6 +47,7 @@ jobs:
           node mobile/ios/Tests/native-adapter.cjs
           python mobile/ios/prepare.py
       - name: Select installed simulator (no account or signing)
+        timeout-minutes: 8
         run: |
           xcodebuild -version
           xcrun simctl list devices available -j > mobile/ios/.generated/devices.json
@@ -67,7 +74,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: figure-studio-ios-simulator-development
+          name: figure-studio-ios-${{ matrix.device }}-simulator-development
           include-hidden-files: true
           retention-days: 14
           if-no-files-found: warn
@@ -77,6 +84,18 @@ jobs:
             mobile/ios/.generated/*.log
             mobile/ios/.generated/*.zip
             mobile/ios/.generated/SimulatorTests.xcresult
+            mobile/ios/.generated/screenshots
+      - name: Upload compact native reports and actual app screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: figure-studio-ios-${{ matrix.device }}-evidence
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            mobile/ios/.generated/simulator*.json
+            mobile/ios/.generated/screenshots
       - name: Remove only the temporary CI simulator
         if: always()
         run: python mobile/ios/simulator.py cleanup
