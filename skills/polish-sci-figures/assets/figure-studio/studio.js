@@ -780,7 +780,8 @@ if (typeof document !== 'undefined') (async () => {
   const T=StudioI18n.t;
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')&&!editingTextTarget(e.target)&&(['Delete','Backspace','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)||(e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z')){e.preventDefault();e.stopImmediatePropagation();}},true);
   let savedLanguage;try{savedLanguage=localStorage.getItem('figure-studio:language');}catch{}
-  StudioI18n.setLanguage(StudioI18n.choose(savedLanguage,document.body.dataset.desktopStarter==='true'?'zh-CN':navigator.languages?.[0]||navigator.language));
+  const systemLanguage=navigator.languages?.[0]||navigator.language;
+  StudioI18n.setLanguage(StudioI18n.choose(savedLanguage,document.body.dataset.desktopStarter==='true'&&globalThis.StudioNativeBridge?.bundledAssets!==true?'zh-CN':systemLanguage));
   // Capture the static interface before any scientific or user-authored content is rendered.
   const staticText=[],staticAttributes=[];
   const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
