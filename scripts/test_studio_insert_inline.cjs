@@ -23,7 +23,7 @@ function harness(){
   labelNode.closest=s=>s==='[data-panel-label]'?labelNode:null;
   function overlayText(id){const n=node('text');n.closest=s=>s==='[data-annotation]'?{dataset:{annotation:id}}:null;return n;}
   artboard.querySelector=selector=>selector==='svg'?svg:overlayText(selector.match(/data-annotation="([^"]+)"/)?.[1]);
-  const ctx={Math,Date:{now:()=>++clock},StudioRichText:rich,project,copy,$:id=>fields[id],state:()=>history.current,panel:id=>project.panels.find(p=>p.id===id),
+  const ctx={Math,Date:{now:()=>++clock},StudioRichText:rich,mobileWorkspace:null,project,copy,$:id=>fields[id],state:()=>history.current,panel:id=>project.panels.find(p=>p.id===id),
     layout:()=>({width:300,height:200,cells:[],positions:[{id:'p0',x:0,y:0,width:300,height:200}]}),currentOutput:()=>({scale:1}),
     T:s=>s,say:m=>messages.push(m),syncCanvasModes(){},renderSelectionProperties(){refreshes++;},renderRichTextControls(){},
     commit(next){validateState(next,project);if(history.commit(next))commits++;return true;},

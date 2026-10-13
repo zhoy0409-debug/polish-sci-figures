@@ -23,7 +23,7 @@ function harness(start=initial){
     $:id=>fields[id],document:{createElementNS:(_,kind)=>element(kind),querySelectorAll:()=>[],addEventListener:(type,fn)=>documentEvents[type]=fn},
     window:{getSelection:()=>({removeAllRanges(){}}),addEventListener:(type,fn)=>windowEvents[type]=fn},cancelQueuedZoom(){},cancelAnimationFrame(){},cancelOverlayPlacement(){ctx.placementCancels=(ctx.placementCancels||0)+1;},
     commit(next){validateState(next,project);const changed=history.commit(next);if(changed){commits++;renders++;}return true;},
-    render(){renders++;},renderCanvas(){renders++;},say:message=>messages.push(message),
+    render(){renders++;},renderCanvas(){renders++;},say:message=>messages.push(message),mobileWorkspace:null,
     screenRect:()=>({left:0,top:0,right:0,bottom:0}),canvasPoint:e=>({x:(e.clientX-20)/648,y:(e.clientY-30)/528}),
     renderOverlayProperties(){throw Error('arrange mode must not move an annotation separately');},
     selectPanelLabel(){throw Error('arrange mode must not drag a label separately');},
@@ -31,6 +31,7 @@ function harness(start=initial){
     drawAlignmentGuides(){},renderAlignmentGuideControls(){},snapLayer:element(),
   };
   vm.createContext(ctx);
+  vm.runInContext(source.split('\n').find(line=>line.includes('  function prepareTouchEditing(')),ctx);
   vm.runInContext(source.slice(source.indexOf('  function canvasObjectTarget('),source.indexOf('  function addStatisticalHitAreas(')),ctx);
   const moveStart=source.indexOf('  function matchSizes('),moveEnd=source.indexOf('  function renderMasters(',moveStart);
   const destination=source.split('\n').find(line=>line.includes('    const destination=e=>'));

@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import csv
 import http.client
+import inspect
 import io
 import json
 import math
@@ -101,8 +102,8 @@ class StatisticalMethods(unittest.TestCase):
         tied = rows_for({'A': [1, 1, 2], 'B': [2, 3, 3]})
         first = analyze({}, tied, {**BASE, 'method': 'mannwhitney'})
         second = analyze({}, tied, {**BASE, 'method': 'mannwhitney'})
-        expected = stats.mannwhitneyu([2, 3, 3], [1, 1, 2], method=stats.PermutationMethod(n_resamples=9999, rng=np.random.default_rng(18731)))
-        self.assertAlmostEqual(comparisons(first)[0]['p'], expected.pvalue)
+        # All 20 label assignments are enumerated for this tied six-unit sample.
+        self.assertAlmostEqual(comparisons(first)[0]['p'], .2)
         self.assertEqual(first, second)
         self.assertIn('permutation', comparisons(first)[0]['p_method'])
 
@@ -116,9 +117,81 @@ class StatisticalMethods(unittest.TestCase):
         self.assertEqual(pair['p_method'], 'exact')
         tied = rows_for({'A': [.5, .825, .375, .5], 'B': [.525, .775, .325, .55]}, paired=True)
         result = comparisons(analyze({}, tied, config))[0]
-        reference = stats.wilcoxon([.025, -.05, -.05, .05], method=stats.PermutationMethod(n_resamples=9999, rng=np.random.default_rng(18731)))
-        self.assertAlmostEqual(result['p'], reference.pvalue)
+        # All 16 sign assignments are enumerated; the observed rank sum is central.
+        self.assertAlmostEqual(result['p'], 1.)
         self.assertIn('permutation', result['p_method'])
+
+    def test_permutation_rng_api_compatibility_preserves_seeded_inference(self):
+        # These samples exceed 9999 possible assignments, exercising the seeded
+        # Monte Carlo path rather than an exact enumeration that ignores the RNG.
+        cases = [
+            (rows_for({'A': [1, 1, 2, 2, 3, 3, 4, 4],
+                       'B': [2, 2, 3, 3, 4, 4, 5, 5, 6, 6]}),
+             {**BASE, 'method': 'mannwhitney', 'order': ['A', 'B']}),
+            (rows_for({'A': list(range(18)),
+                       'B': [i + (i % 3 - .5) for i in range(18)]}, paired=True),
+             {**BASE, 'design': 'paired', 'method': 'wilcoxon', 'order': ['A', 'B']}),
+        ]
+        expected = [comparisons(analyze({}, rows, config))[0] for rows, config in cases]
+        factory = stats.PermutationMethod
+        native_keyword = 'rng' if 'rng' in inspect.signature(factory).parameters else 'random_state'
+        calls = []
+
+        def construct(instance, n_resamples, batch, generator):
+            self.assertIsInstance(generator, np.random.Generator)
+            self.assertEqual(generator.bit_generator.state,
+                             np.random.default_rng(18731).bit_generator.state)
+            self.assertEqual((n_resamples, batch), (9999, 128))
+            calls.append(generator)
+            factory.__init__(instance, n_resamples=n_resamples, batch=batch,
+                             **{native_keyword: generator})
+
+        class Legacy(factory):
+            def __init__(self, n_resamples=9999, batch=None, random_state=None):
+                construct(self, n_resamples, batch, random_state)
+
+        class Modern(factory):
+            def __init__(self, n_resamples=9999, batch=None, *, rng=None):
+                construct(self, n_resamples, batch, rng)
+
+        for constructor in (Legacy, Modern):
+            with self.subTest(api=constructor.__name__), patch('studio_statistics.stats.PermutationMethod', constructor):
+                for (rows, config), reference in zip(cases, expected):
+                    original = copy.deepcopy(rows)
+                    first = comparisons(analyze({}, rows, config))[0]
+                    reordered = [rows[0]] + rows[:0:-1]
+                    second = comparisons(analyze({}, reordered, config))[0]
+                    self.assertEqual(first, reference)
+                    self.assertEqual(second, reference)
+                    self.assertEqual(rows, original)
+        self.assertEqual(len(calls), 8)
+
+    def test_large_wilcoxon_normal_approximation_with_ties_and_zeros(self):
+        cases = [[(-1 if i % 3 == 0 else 1) * i for i in range(1, 61)],
+                 [0, 1, 1, -2, 3, -3] * 8]
+        config = {**BASE, 'design': 'paired', 'method': 'wilcoxon', 'order': ['A', 'B']}
+        for differences in cases:
+            with self.subTest(tied=len(set(abs(x) for x in differences)) < len(differences)):
+                x = np.arange(len(differences))
+                rows = rows_for({'A': x, 'B': x + differences}, paired=True)
+                original = copy.deepcopy(rows)
+                pair = comparisons(analyze({}, rows, config))[0]
+                # Independent normal-reference calculation: discard zero ranks
+                # (wilcox), use midranks and the tie-adjusted variance, with no
+                # continuity correction, as specified by the production method.
+                nonzero = np.asarray([d for d in differences if d != 0])
+                n = len(nonzero)
+                ranks = stats.rankdata(abs(nonzero))
+                positive = float(ranks[nonzero > 0].sum())
+                negative = float(ranks[nonzero < 0].sum())
+                counts = np.unique(abs(nonzero), return_counts=True)[1]
+                variance = n * (n + 1) * (2 * n + 1) / 24 - sum(counts ** 3 - counts) / 48
+                z = (positive - n * (n + 1) / 4) / math.sqrt(variance)
+                self.assertAlmostEqual(pair['p_raw'], 2 * stats.norm.sf(abs(z)), places=12)
+                self.assertEqual(pair['statistic'], min(positive, negative))
+                self.assertEqual(pair['p_method'], 'asymptotic')
+                self.assertEqual(pair['zero_differences'], len(differences) - n)
+                self.assertEqual(rows, original)
 
     def test_seeded_rank_inference_is_invariant_to_table_order(self):
         rows = rows_for({'A': [1, 1, 2, 2, 3, 3, 4, 4], 'B': [2, 2, 3, 3, 4, 4, 5, 5, 6, 6]})

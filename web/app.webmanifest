@@ -1,0 +1,12 @@
+{
+  "name": "Figure Studio — local browser prototype",
+  "short_name": "Figure Studio",
+  "description": "Local scientific figure editing prototype. Data stays on this device. / 本地科研组图浏览器原型，数据保留在当前设备。",
+  "id": "./starter.html",
+  "start_url": "./starter.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f9fc",
+  "theme_color": "#345a87",
+  "icons": [{"src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}]
+}

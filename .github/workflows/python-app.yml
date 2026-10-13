@@ -101,6 +101,10 @@ jobs:
         run: python scripts/test_composite_statistics.py
       - name: Figure Studio history and state validation
         run: |
+          node scripts/test_studio_browser_transport.cjs
+          node scripts/test_studio_mobile_ui.cjs
+          node scripts/test_local_web_engine.cjs
+          node scripts/test_local_web_offline.cjs
           node scripts/test_studio_state.cjs
           node scripts/test_studio_duplicate_check.cjs
           node scripts/test_studio_duplicate_review.cjs

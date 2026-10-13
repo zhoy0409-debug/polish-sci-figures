@@ -6,6 +6,8 @@ on:
     branches: [codex/macos-local-preview]
     paths:
       - 'desktop/**'
+      - 'skills/**'
+      - 'requirements.txt'
       - '.github/workflows/macos-preview.yml'
 
 permissions:

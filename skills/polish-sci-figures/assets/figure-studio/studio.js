@@ -824,7 +824,7 @@ if (typeof document !== 'undefined') (async () => {
   let preferenceData;try{preferenceData=JSON.parse(localStorage.getItem('figure-studio:preferences')||'null');}catch{}
   const preferences=new StudioPreferences(preferenceData);
   let confirmPreferenceClear=false,clearedPreferences=null;
-  let layoutMode=false, dragging=null,panelSelection=[],showGuides=true,cancelPanelGesture=null,cancelSelectionGesture=null,cancelObjectGesture=null,selectedAlignmentGuide=null;
+  let layoutMode=false, dragging=null,panelSelection=[],showGuides=true,cancelPanelGesture=null,cancelSelectionGesture=null,cancelObjectGesture=null,selectedAlignmentGuide=null,mobileWorkspace=null;
   let elementSelections=[],selectionAnchor=null,boxSelect=false,selectedPanelLabel=null,selectionAfterMarquee=false;
   function selectionGroups(){
     if(selectionAnchor===selected&&elementSelections.length)return elementSelections.filter(g=>state().panels[g.id]?.variant===g.vi);
@@ -843,7 +843,7 @@ if (typeof document !== 'undefined') (async () => {
     document.querySelectorAll('[data-tab]').forEach(el=>{el.setAttribute('aria-pressed',String(el.getAttribute('data-tab')===name));});
     $('textRole').parentElement.hidden=name!=='detail';
     renderInspectorPreviews();
-    if(repaint)renderCanvas();
+    if(repaint){renderCanvas();if(mobileWorkspace?.enabled)mobileWorkspace.showTab('adjustments');}
   }
   const state = () => history.current;
   const saveSignature = () => JSON.stringify({state:state(),checkpoints,dataDrafts,imageReview:project?.imageDuplicateReview?{createdAt:project.imageDuplicateReview.createdAt,updatedAt:project.imageDuplicateReview.updatedAt,reviews:project.imageDuplicateReview.reviews}:null});
@@ -2873,8 +2873,9 @@ if (typeof document !== 'undefined') (async () => {
     const b=button('',()=>commit(next,T('已应用互补配色')));b.className='palette';const label=document.createElement('span');label.textContent=base+' + '+other+T(' · 点击应用（不代表色觉无障碍已验证）');b.append(preview(editedSvg(selectedPanel,state().panels[selectedPanel].variant,next)),label);$('complementPreview').replaceChildren(b);
   };
   let overlayPlacement=null,placementDrag=null,inlineEditor=null,placementFrame=0,placementClickPending=false;
+  function prepareTouchEditing(){if(mobileWorkspace?.enabled){mobileWorkspace.setMode('edit');mobileWorkspace.showTab('canvas');}}
   function cancelOverlayPlacement(){cancelAnimationFrame(placementFrame);placementFrame=0;overlayPlacement=null;placementDrag=null;$('viewport').classList.remove('is-inserting-overlay');$('addOverlay').setAttribute('aria-pressed','false');$('addOverlay').title=T('插入标注');$('quickInsertText')?.setAttribute('aria-pressed','false');document.querySelector('[data-placement-preview]')?.remove();}
-  function armOverlayPlacement(type){if(original)return;inlineEditor?.finish(true);cancelOverlayPlacement();overlayPlacement=type;$('overlayType').value=type;layoutMode=false;boxSelect=false;syncCanvasModes();$('viewport').classList.add('is-inserting-overlay');$('addOverlay').setAttribute('aria-pressed','true');$('addOverlay').title=T('点击画布放置；Esc 取消');$('quickInsertText')?.setAttribute('aria-pressed',String(type==='text'));say(T(type==='text'?'点击画布任意位置输入文字；Esc 取消。':type==='line'?'点击或拖动画水平线；拖动两端调整长度。Esc 取消。':type==='lineVertical'?'点击或拖动画垂直线；拖动两端调整长度。Esc 取消。':type==='lineFree'?'拖动画线；靠近水平或垂直自动吸附，Shift 固定方向。Esc 取消。':type==='bracket'?'拖动设置比较括号的宽度；文字可单独插入。Esc 取消。':'在画布中拖动绘制形状；Esc 取消。'));}
+  function armOverlayPlacement(type){if(original)return;prepareTouchEditing();inlineEditor?.finish(true);cancelOverlayPlacement();overlayPlacement=type;$('overlayType').value=type;layoutMode=false;boxSelect=false;syncCanvasModes();$('viewport').classList.add('is-inserting-overlay');$('addOverlay').setAttribute('aria-pressed','true');$('addOverlay').title=T('点击画布放置；Esc 取消');$('quickInsertText')?.setAttribute('aria-pressed',String(type==='text'));say(T(type==='text'?'点击画布任意位置输入文字；Esc 取消。':type==='line'?'点击或拖动画水平线；拖动两端调整长度。Esc 取消。':type==='lineVertical'?'点击或拖动画垂直线；拖动两端调整长度。Esc 取消。':type==='lineFree'?'拖动画线；靠近水平或垂直自动吸附，Shift 固定方向。Esc 取消。':type==='bracket'?'拖动设置比较括号的宽度；文字可单独插入。Esc 取消。':'在画布中拖动绘制形状；Esc 取消。'));}
   function insertOverlay(tool,cell=null,geometry=null){const type=tool.startsWith('line')?'line':tool,direction=tool==='lineVertical'?'vertical':tool==='lineFree'?'free':'horizontal',next=copy(state()),l=layout(),box=cell?l.cells.find(c=>c.row===cell.row&&c.col===cell.col):l.positions.find(p=>p.id===selectedPanel),point=geometry||{x:(box?box.x+box.width*.15:l.width*.3)/l.width,y:(box?box.y+box.height*.2:l.height*.3)/l.height},mapped=overlayInsertionGeometry(l,{...point,w:geometry?.w??(direction==='vertical'?0:.15),h:geometry?.h??(type==='bracket'?5/currentOutput().scale/l.height:type==='line'?(direction==='vertical'?.15:0):.08)},box?.id||selectedPanel);const x=Math.max(0,Math.min(.999,mapped.x)),y=Math.max(0,Math.min(.999,mapped.y));const a={id:'annotation-'+Date.now(),type,x,y,w:Math.min(mapped.w,1-x),h:Math.min(mapped.h,1-y),text:type==='text'?T('文本'):'',font:'Arial',size:10/currentOutput().scale,stroke:1/currentOutput().scale,color:'#253247',opacity:1,fill:false,bold:false,locked:false};if(type==='line'){a.direction=direction;if(geometry?.reverseY)a.reverseY=true;}next.overlays=[...(next.overlays||[]),a];selectedAnnotations=[a.id];selected=[];elementSelections=[];selectedPanelLabel=null;activePane='annotation';commit(next,T('已插入标注'));if(type==='text')requestAnimationFrame(()=>startInlineTextEdit($('artboard').querySelector(`[data-annotation="${a.id}"] text`),true));return a.id;}
   function placementGeometry(drag,event){
     const {type,point,rect}=drag,anchor={x:point.x*rect.width,y:point.y*rect.height},end={x:Math.max(0,Math.min(rect.width,event.clientX-rect.left)),y:Math.max(0,Math.min(rect.height,event.clientY-rect.top))};
@@ -2945,7 +2946,7 @@ if (typeof document !== 'undefined') (async () => {
   let dataDrafts={},dataPage=0,dataTimer=null,dataBusy=false,dataSerial=0;
   const localEngine=$('local-engine')?JSON.parse($('local-engine').textContent):null;
   let engineConnection='connected',engineRefreshPromise=null;
-  function engineConnectionText(kind=engineConnection){return T(kind==='authorization'?'本机服务已重新启动。工程与数据草稿已保留；请重新连接后继续。':'本机绘图服务连接中断。工程与数据草稿已保留；请打开编辑器服务后重新连接。');}
+  function engineConnectionText(kind=engineConnection){if(localEngine?.mode==='browser')return T('设备内计算暂不可用。工程与数据草稿已保留，请重试初始化。');return T(kind==='authorization'?'本机服务已重新启动。工程与数据草稿已保留；请重新连接后继续。':'本机绘图服务连接中断。工程与数据草稿已保留；请打开编辑器服务后重新连接。');}
   function renderConnectionNotice(){
     let notice=$('engineConnectionNotice');if(engineConnection==='connected'){if(notice)notice.hidden=true;return;}
     if(!notice){notice=document.createElement('div');notice.id='engineConnectionNotice';notice.className='engine-connection-notice';notice.setAttribute('role','status');const text=document.createElement('span'),retry=document.createElement('button');text.id='engineConnectionMessage';retry.id='reconnectEngine';retry.type='button';retry.onclick=async()=>{retry.disabled=true;try{await refreshEngineConnection();setEngineConnection('connected');say(T('已重新连接。工程与草稿保持不变，请继续刚才的操作。'));}catch(error){say(error.message);}finally{retry.disabled=false;}};notice.append(text,retry);$('viewport').before(notice);}
@@ -2957,6 +2958,10 @@ if (typeof document !== 'undefined') (async () => {
   async function refreshEngineConnection(){
     if(engineRefreshPromise)return engineRefreshPromise;
     engineRefreshPromise=(async()=>{
+      if(localEngine?.mode==='browser'){
+        if(!globalThis.StudioBrowserEngine)throw engineConnectionError('offline');
+        try{await globalThis.StudioBrowserEngine.ready();return localEngine;}catch{throw engineConnectionError('offline');}
+      }
       if(!localEngine||location.protocol!=='http:'||!['127.0.0.1','localhost','[::1]'].includes(location.hostname))throw engineConnectionError('authorization');
       let response;try{response=await fetch(new URL('/',location.href).href,{cache:'no-store',credentials:'same-origin'});}catch{throw engineConnectionError('offline');}
       if(!response.ok)throw engineConnectionError('authorization');
@@ -2966,6 +2971,15 @@ if (typeof document !== 'undefined') (async () => {
     })();try{return await engineRefreshPromise;}finally{engineRefreshPromise=null;}
   }
   async function engineFetch(endpoint,options){
+    // Browser previews calculate in their local worker. A missing or failed worker
+    // must never fall back to posting scientific data to the hosting server.
+    if(localEngine?.mode==='browser'){
+      if(!globalThis.StudioBrowserEngine)throw engineConnectionError('offline');
+      let response;try{response=await globalThis.StudioBrowserEngine.fetch(endpoint,options);}catch{throw engineConnectionError('offline');}
+      if(globalThis.StudioBrowserEngine.status().phase==='error')setEngineConnection('offline');
+      else if(response.ok)setEngineConnection('connected');
+      return response;
+    }
     let response;try{response=await fetch(endpoint,options);}catch{throw engineConnectionError('offline');}
     if(response.status===403&&['/api/render','/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf'].includes(endpoint)){
       let rejection;try{rejection=await response.clone().json();}catch{}
@@ -3320,8 +3334,8 @@ if (typeof document !== 'undefined') (async () => {
   document.addEventListener('keydown',e=>{if(e.key==='Escape')$('insertMenu').hidden=true;});
   $('applyGrid').onclick=()=>{try{commit(matchSizes(arrange(state(),+$('rows').value,+$('columns').value)),T('已更新行列母版'));}catch(e){say(e.message);}};
   $('adaptSizes').onchange=renderMasters;
-  $('boxSelect').onclick=()=>{cancelOverlayPlacement();boxSelect=!boxSelect;layoutMode=false;dragging=null;renderCanvas();};
-  const togglePanelArrange=()=>{cancelOverlayPlacement();layoutMode=!layoutMode;boxSelect=false;dragging=null;selected=[];elementSelections=[];selectedAnnotations=[];selectedPanelLabel=null;selectionAfterMarquee=false;$('scope').value='panel';original=false;render();if(layoutMode)say(T('拖动整张小图至目标格：有图则交换，空位则移入。'));};
+  $('boxSelect').onclick=()=>{prepareTouchEditing();cancelOverlayPlacement();boxSelect=!boxSelect;layoutMode=false;dragging=null;renderCanvas();};
+  const togglePanelArrange=()=>{prepareTouchEditing();cancelOverlayPlacement();layoutMode=!layoutMode;boxSelect=false;dragging=null;selected=[];elementSelections=[];selectedAnnotations=[];selectedPanelLabel=null;selectionAfterMarquee=false;$('scope').value='panel';original=false;render();if(layoutMode)say(T('拖动整张小图至目标格：有图则交换，空位则移入。'));};
   $('layoutMode').onclick=togglePanelArrange;$('arrangePanels').onclick=togglePanelArrange;
   $('toggleGuides').onclick=()=>{showGuides=!showGuides;$('toggleGuides').setAttribute('aria-pressed',String(showGuides));renderCanvas();};
   $('moveTo').onclick=()=>commit(moveWithSizes(state(),selectedPanel,+$('targetRow').value-1,+$('targetCol').value-1),T('已移动 / 交换小图'));
@@ -3597,6 +3611,20 @@ if (typeof document !== 'undefined') (async () => {
     history=new History(project.initialState);selectedPanel=state().order[0];savedCurrent=saveSignature();
     try {knownCache=localStorage.getItem('figure-studio:'+project.id);let saved=desktopRestoredPayload||JSON.parse(knownCache||'null');if(saved?.idb){const record=await StudioLibrary.get('autosaves',project.id);if(!record)throw Error('Missing autosave');saved=record.payload;StudioI18n.restoreDisplayNames(saved.project,project);validateProject(saved.project);project=saved.project;}if(saved){validateState(saved.state,project);if(!Array.isArray(saved.checkpoints)||saved.checkpoints.length>20)throw Error(T('缓存版本无效'));for(const c of saved.checkpoints)validateState(c.state,project);try{history=History.restore(saved.history,project,saved.state);message=T('已恢复本浏览器的自动保存。');}catch{history=new History(saved.state);message=T('当前编辑已恢复，但旧撤销记录不可用。');}checkpoints=saved.checkpoints;dataDrafts=saved.dataDrafts||{};}}catch{message=T('未恢复本地缓存；可用「打开工程」导入已保存项目。');}
     migrateLabelHistory();$('scope').value='panel';render();if(message)say(message);
+    if(typeof StudioMobileUI!=='undefined')mobileWorkspace=StudioMobileUI.init({
+      viewport:$('viewport'),workspace:document.querySelector('.workspace'),t:T,
+      getZoom:()=>zoomView?.zoom??1,zoomAt:(zoom,point)=>applyPreviewZoom(zoom,point),
+      fit:()=>{cancelQueuedZoom();applyPreviewZoom(null,null,true);},
+      cancelInteraction:()=>{
+        cancelQueuedZoom();cancelOverlayPlacement();
+        // Run every cancellation hook: a short-circuit would leave a second
+        // gesture alive when a two-finger pan takes over an object drag.
+        const cancelled=[cancelPanelGesture?.(),cancelSelectionGesture?.(),cancelObjectGesture?.()];
+        if(cancelled.some(Boolean))renderCanvas();
+      },
+      onPanelMore:({anchor})=>{const cell=gridFor(state()).places[selectedPanel],r=anchor.getBoundingClientRect();openInsertMenu(cell,r.left,r.bottom+6,true,true,selectedPanel);},
+      onTabChange:name=>{if(name==='canvas'&&zoomView?.fit)applyPreviewZoom(null,null,true);}
+    });
     if(typeof StudioDuplicateCheck!=='undefined')duplicateCheck=StudioDuplicateCheck.init({
       engine:localEngine,fetch:engineFetch,download,say,
       projectId:()=>project.id,
