@@ -71,7 +71,7 @@ Play, pause, or scrub through the video to follow each step. [Download the MP4](
 - **Find a form that fits your data.** Explore distributions, paired observations, effects and intervals, time courses, heatmaps, survival curves, and more. Compare suitable alternatives before choosing a figure.
 - **Get guidance on analysis.** Let the editor identify the table structure, confirm a few study-design details, and compare applicable methods in recommendation order. Choose a method to calculate results and preview its annotations.
 - **Continue with an existing figure.** Import SVG or a PDF page and edit supported native text and vector elements. PDF effects may require a local image layer or a whole-page appearance image; see the [conversion limits](docs/release-v1.4.3.en.md#what-changed).
-- **Make the details yours.** Draw straight lines and comparison brackets, edit individual characters, choose distinct palettes, and tune point sizes and error bars. Adjust group spacing and arrange panels with alignment guides; undo and redo keep refinements reversible.
+- **Make the details yours.** Draw straight lines and comparison brackets, edit individual characters, and choose distinct palettes. Switch point fills, outlines and error-bar colours, or hide either element with one click. Adjust group spacing and arrange panels with alignment guides; undo and redo keep refinements reversible.
 - **Take the result into your paper.** Export individual panels or the complete layout as editable SVG or high-resolution PNG / TIFF. Save the project to continue editing later.
 
 **New in Figure Studio 0.1.6:** optional [examples in papers](README.en.md#examples-in-papers) connect to Europe PMC only when you search, using chart terms and an optional topic you enter; research data stay local. Statistical styles now have one home in **Annotations**, with editable comparisons above the matching groups in grouped bar and supported faceted plots. [See what changed](docs/release-v1.4.6.md).
@@ -186,7 +186,7 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 - **找到适合数据的表达方式。** 从分布、配对观察、效应量与区间，到时间趋势、热图和生存曲线，先比较合适的候选，再决定用哪一种。
 - **跟着引导完成统计。** 编辑器识别表格结构，确认少量研究设计信息后，按推荐顺序展示适用方法；选定方法即可计算结果并预览统计标注。
 - **接着修改已有图形。** 导入 SVG 或 PDF 页面，继续修改受支持的原生文字和矢量元素。PDF 特效可能需要局部图片图层或整页外观图像；详见[转换边界](docs/release-v1.4.3.md#本版更新)。
-- **把细节调整到位。** 插入水平线和比较括号、修改单个字符、选择差异鲜明的配色，并调整样本点大小和误差棒。调整组间距，借助对齐辅助线编排小图；撤销与重做让精修可以随时回退。
+- **把细节调整到位。** 插入水平线和比较括号、修改单个字符，选择差异鲜明的配色。快捷切换样本点填充、描边和误差棒颜色，也可一键隐藏或恢复。调整组间距，借助对齐辅助线编排小图；撤销与重做让精修可以随时回退。
 - **把结果带进论文。** 单个小图和整幅组图均可导出可编辑 SVG 或高清 PNG / TIFF，保存工程后还能继续编辑。
 
 **Figure Studio 0.1.6 新增：** 可选的[文献作图实例](README.zh-CN.md#文献作图实例)仅在主动查找时连接 Europe PMC，发送图型检索词和手动填写的可选主题，研究数据留在本机。统计样式统一放在**标注**页；分组柱图和受支持的分面图直接在对应组上方显示可编辑的比较标注。[查看本版更新](docs/release-v1.4.6.md#中文)。

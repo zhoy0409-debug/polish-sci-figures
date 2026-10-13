@@ -7,6 +7,7 @@
 This release makes statistical annotations easier to find and places grouped comparisons where they belong. It also adds an optional way to find published examples of a chart and try a compatible style with your own data.
 
 - **One place for annotations.** Statistical display styles and condition tables live in **Annotations**. The panel context menu opens that same section, without duplicate controls across tabs.
+- **Point and error-bar styles in one click.** In **Properties**, choose solid or hollow points, or separate fill and outline colours. Keep error bars black, grey, matched to their group, or a custom colour. Independent visibility switches hide and restore points or error bars while retaining their settings and data; saved projects and exports follow the same appearance.
 - **Comparisons above the right groups.** Grouped bars and supported faceted box plots place editable comparison lines and text above the corresponding groups. Positions follow group spacing, data updates, font size and panel dimensions; large labels use staggered rows. Unidentified groups or continuous axes do not receive guessed brackets.
 - **Keep earlier edits.** Existing grouped-plot projects can acquire the new anchors while retaining supported manual text, line offsets, locks, groups and undo history. Resizing or changing data refreshes the geometry without substituting another comparison's label.
 - **Explore examples when you need them.** Expand **Chart types → Examples in papers** and choose **Find examples**. Europe PMC results show paper details and source links. Figure labels appear only after a chart term is found in an accessible figure caption. A compatible current-data candidate adds **Preview with my data**; repeated figures of the same chart type do not add duplicate preview buttons.
@@ -34,6 +35,7 @@ See the [validation record](figure-studio-validation.md#v146-source-and-editor-c
 本版让统计标注更容易找到，并将分组比较放在对应数据上方；同时新增可选的文献实例入口，方便参考已发表图形，并用自己的数据预览兼容样式。
 
 - **标注统一在一处调整。** 统计显示样式和条件表集中在**标注**页，右键菜单也进入同一个位置，不再跨页签重复放置控件。
+- **样本点与误差棒一键调整。** 在**属性**中直接选择实心、空心，或分别设置填充色与描边色；误差棒可选黑色、灰色、跟随组色或自定义颜色。两个独立显示开关可一键隐藏和恢复，保留之前的样式与数据，工程保存和导出保持同样的显示效果。
 - **比较标注放在对应组上方。** 分组柱图和受支持的分面箱线图，直接在相应组别上方显示可编辑的比较线和文字。位置随组间距、数据、字号和小图尺寸更新；大字号按需错层排布。不能识别组别的图形或连续坐标轴不会被猜测性地套上括号。
 - **保留已有修改。** 旧分组图工程可补充新的语义锚点，同时保留受支持的手动文字、线条偏移、锁定、编组和撤销记录。改变尺寸或数据时重新定位，不把另一组比较的文字串到当前结果上。
 - **需要时再找文献实例。** 展开**图表类型 → 文献作图实例**，点击**查找文献实例**。Europe PMC 结果提供论文信息与原文链接；只有在可访问的图注中找到对应图型词，才显示图号。当前数据还存在兼容图型时，才提供**用我的数据预览**；同一论文的同种图型不会重复堆出预览按钮。

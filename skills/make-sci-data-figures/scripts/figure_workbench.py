@@ -49,7 +49,7 @@ matplotlib.use("Agg")
 import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
 import numpy as np
-from gallery_marks import prepare_marks, embed_marks
+from gallery_marks import prepare_marks, embed_marks, tag_color_source
 import pandas as pd
 from PIL import Image
 from scipy import stats
@@ -481,6 +481,9 @@ def tag_category_groups(fig, ax, order, artists) -> None:
 
         tag(points, "points")
         marker, caps, intervals = errorbar.lines
+        tag_color_source(errorbar, points)
+        if marker is not None:
+            tag_color_source(marker, points)
         tag(marker, "mean")
         for j, cap in enumerate(caps):
             tag(cap, f"cap{j}")

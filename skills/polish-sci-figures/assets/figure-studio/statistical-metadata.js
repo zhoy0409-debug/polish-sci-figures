@@ -81,6 +81,71 @@ const StudioStatisticalMetadata = (() => {
     const physical=name=>{const match=String(svg.getAttribute(name)||'').match(/^\s*([\d.]+)\s*(pt|px|in|cm|mm)?\s*$/);if(!match)throw Error('Missing physical size');const v=Number(match[1])*({pt:1,px:.75,in:72,cm:72/2.54,mm:72/25.4}[match[2]]||.75);if(!Number.isFinite(v)||v<=0)throw Error('Invalid size');return v;};
     return [...box,physical('width'),physical('height')];
   }
+  const MARK_META='studio-mark-styles';
+  function parseMarks(node){
+    if(!node||node.children.length||node.textContent.length>2000000)throw Error('Invalid mark metadata');
+    const value=JSON.parse(node.textContent),keys=(v,allowed)=>v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).every(k=>allowed.includes(k));
+    const finite=n=>typeof n==='number'&&Number.isFinite(n)&&Math.abs(n)<1e8,coordinate=p=>Array.isArray(p)&&p.length===2&&p.every(finite);
+    const ref=v=>v===undefined||keys(v,['id','paint'])&&typeof v.id==='string'&&ID.test(v.id)&&['fill','stroke'].includes(v.paint);
+    const ids=values=>Array.isArray(values)&&values.length<=10000&&values.every(v=>typeof v==='string'&&ID.test(v))&&new Set(values).size===values.length;
+    if(!keys(value,['version','points','pointColors','errors'])||value.version!==1||!ids(value.points)||!Array.isArray(value.pointColors)||value.pointColors.length!==value.points.length||!Array.isArray(value.errors)||value.errors.length>10000)throw Error('Invalid marks');
+    const points=new Set(value.points),seen=new Set(),errors=new Set();let segments=0;
+    for(const point of value.pointColors){
+      if(!keys(point,['id','kind','colorSource','centers'])||!points.has(point.id)||seen.has(point.id)||!['collection','line'].includes(point.kind)||!ref(point.colorSource)||point.centers!==undefined&&(point.kind!=='collection'||!Array.isArray(point.centers)||point.centers.length>100000||!point.centers.every(coordinate)))throw Error('Invalid point colour');seen.add(point.id);
+    }
+    for(const error of value.errors){
+      if(!keys(error,['id','caps','segments','capWidth','lineWidth','colorSource'])||typeof error.id!=='string'||!ID.test(error.id)||errors.has(error.id)||!ids(error.caps)||!Array.isArray(error.segments)||!ref(error.colorSource))throw Error('Invalid interval');errors.add(error.id);
+      for(const key of ['capWidth','lineWidth'])if(error[key]!==undefined&&(!finite(error[key])||error[key]<0||error[key]>100))throw Error('Invalid width');
+      segments+=error.segments.length;if(segments>100000)throw Error('Too many intervals');
+      for(const s of error.segments)if(!keys(s,['axis','ends','center','colorSource'])||!['x','y'].includes(s.axis)||!Array.isArray(s.ends)||s.ends.length!==2||!s.ends.every(coordinate)||(s.center!==null&&!coordinate(s.center))||!ref(s.colorSource))throw Error('Invalid segment');
+    }
+    return value;
+  }
+  function markReferences(value){
+    const ids=[...value.points];
+    for(const p of value.pointColors){ids.push(p.id);if(p.colorSource)ids.push(p.colorSource.id);}
+    for(const e of value.errors){ids.push(e.id,...e.caps);if(e.colorSource)ids.push(e.colorSource.id);for(const s of e.segments)if(s.colorSource)ids.push(s.colorSource.id);}
+    return [...new Set(ids)];
+  }
+  function isCurrentMarks(svg){
+    try{const tree=index(svg),marks=parseMarks(tree.ids.get(MARK_META));return markReferences(marks).every(id=>tree.ids.has(id));}catch{return false;}
+  }
+  function attachMarks(sourceSvg,freshSvg){
+    try{
+      const source=index(sourceSvg),fresh=index(freshSvg),existing=source.ids.get(MARK_META);
+      if(isCurrentMarks(sourceSvg)||existing?.children.length)return false;
+      const a=dimensions(sourceSvg),b=dimensions(freshSvg);if(a.some((n,i)=>Math.abs(n-b[i])>1e-6))return false;
+      const next=parseMarks(fresh.ids.get(MARK_META)),mapped=new Map(),used=new Map(),axes=new Map();
+      const oldAxes=source.all.filter(n=>n.localName==='g'&&/^axes_\d+$/.test(n.id)),newAxes=fresh.all.filter(n=>n.localName==='g'&&/^axes_\d+$/.test(n.id));
+      if(oldAxes.length!==newAxes.length)return false;
+      for(const key of markReferences(next)){
+        const node=fresh.ids.get(key),newAxis=node?.parentElement;
+        if(!node||!newAxis||newAxis.localName!=='g'||!/^axes_\d+$/.test(newAxis.id))return false;
+        if(!axes.has(newAxis.id)){
+          const oldAxis=source.ids.get(newAxis.id);if(!oldAxis||oldAxis.localName!=='g'||axisContext(oldAxis,source)!==axisContext(newAxis,fresh))return false;
+          const candidates=new Map();
+          for(const child of oldAxis.children){
+            if(child.localName!=='g'||!ID.test(child.id))continue;
+            let fingerprintKey;try{fingerprintKey=JSON.stringify(fingerprint(child,source));}catch{continue;}
+            if(candidates.has(fingerprintKey))candidates.set(fingerprintKey,null);else candidates.set(fingerprintKey,child);
+          }
+          axes.set(newAxis.id,candidates);
+        }
+        const match=axes.get(newAxis.id).get(JSON.stringify(fingerprint(node,fresh)));
+        if(!match||used.has(match)&&used.get(match)!==key)return false;
+        mapped.set(key,match.id);used.set(match,key);
+      }
+      const mapSource=record=>{if(record.colorSource)record.colorSource.id=mapped.get(record.colorSource.id);};
+      next.points=next.points.map(id=>mapped.get(id));
+      for(const p of next.pointColors){p.id=mapped.get(p.id);mapSource(p);}
+      for(const e of next.errors){e.id=mapped.get(e.id);e.caps=e.caps.map(id=>mapped.get(id));mapSource(e);e.segments.forEach(mapSource);}
+      // Only the metadata payload changes. Artwork, saved keys, and manually
+      // edited paint are not regenerated, even when fresh IDs differ.
+      const content=JSON.stringify(next);if(existing)existing.textContent=content;
+      else{const node=sourceSvg.ownerDocument.createElementNS(NS,'metadata');node.id=MARK_META;node.textContent=content;sourceSvg.appendChild(node);}
+      return true;
+    }catch{return false;}
+  }
   function attach(sourceSvg,freshSvg){
     try{
       const source=index(sourceSvg),fresh=index(freshSvg);
@@ -112,10 +177,11 @@ const StudioStatisticalMetadata = (() => {
       }
       // Nothing above mutates either tree. Commit the single metadata node only
       // after every cell has an unambiguous, exact artwork match.
+      attachMarks(sourceSvg,freshSvg);
       const node=sourceSvg.ownerDocument.createElementNS(NS,'metadata');node.id=META;node.textContent=JSON.stringify(next);sourceSvg.appendChild(node);return true;
     }catch{return false;}
   }
-  return {attach};
+  return {attach,attachMarks,isCurrentMarks};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=StudioStatisticalMetadata;
 if(typeof window!=='undefined')window.StudioStatisticalMetadata=StudioStatisticalMetadata;

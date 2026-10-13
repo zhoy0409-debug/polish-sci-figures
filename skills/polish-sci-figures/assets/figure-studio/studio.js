@@ -182,7 +182,8 @@ function validateState(state, project) {
     if(s?.heatmapPalette!==undefined)validateHeatmapPalette(s.heatmapPalette);
     if(s?.methodChoice&&(!['primary_test','sensitivity_test'].includes(s.methodChoice.key)||!Number.isFinite(p.analysis?.[s.methodChoice.key]?.p_value)||typeof s.methodChoice.reason!=='string'||s.methodChoice.reason.length>500))throw Error('分析选择无效');
     if(s?.errorDirection&&!['both','positive','negative'].includes(s.errorDirection))throw Error('误差棒方向无效');
-    if(s?.markStyle&&(typeof s.markStyle!=='object'||Array.isArray(s.markStyle)||Object.entries(s.markStyle).some(([k,v])=>!({pointScale:[.25,3],capWidth:[0,16],errorWidth:[.25,4]})[k]||!Number.isFinite(v)||v<({pointScale:.25,capWidth:0,errorWidth:.25})[k]||v>({pointScale:3,capWidth:16,errorWidth:4})[k])))throw Error('点与误差棒样式无效');
+    if(s?.markPalette!==undefined&&(!s.markPalette||typeof s.markPalette!=='object'||Array.isArray(s.markPalette)||Object.keys(s.markPalette).length>256||Object.entries(s.markPalette).some(([key,value])=>!/^#[0-9a-f]{6}$/i.test(key)||typeof value!=='string'||!/^#[0-9a-f]{6}$/i.test(value))))throw Error('点与误差棒样式无效');
+    if(s?.markStyle!==undefined){const style=s.markStyle,ranges={pointScale:[.25,3],capWidth:[0,16],errorWidth:[.25,4],pointStrokeWidth:[0,4]},color=v=>typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v);if(!style||typeof style!=='object'||Array.isArray(style)||Object.entries(style).some(([key,value])=>{if(ranges[key])return !Number.isFinite(value)||value<ranges[key][0]||value>ranges[key][1];if(key==='pointsVisible'||key==='errorsVisible')return typeof value!=='boolean';if(key==='pointMode')return !['original','solid','hollow','custom'].includes(value);if(key==='pointFill'||key==='pointStroke')return !['group','none'].includes(value)&&!color(value);if(key==='errorColor')return !['original','group'].includes(value)&&!color(value);return true;}))throw Error('点与误差棒样式无效');}
     if(s?.annotationFont&&(!validValue('font-family',s.annotationFont.font)||!Number.isFinite(s.annotationFont.size)||s.annotationFont.size<.1||s.annotationFont.size>1000))throw Error('组图字体参数无效');
     if(s?.annotationStyle&&!['stars','hash','p','letters'].includes(s.annotationStyle))throw Error('标注样式无效');
     if(s?.annotationLine&&!['bracket','line','rounded'].includes(s.annotationLine))throw Error('统计连接线样式无效');
@@ -554,7 +555,7 @@ function splitPanelState(s,oldId,assets,metrics=null){
   for(const row of rows){const columns=[Math.min(from.col,next.columns-ids.length),...Array.from({length:next.columns-ids.length+1},(_,i)=>i)];for(const col of columns)if(ids.every((_,i)=>!occupied.has(row+':'+(col+i)))){destination={row,col};break;}if(destination)break;}
   if(!destination){if(g.rows>=24)throw Error('母版位置不足，请增加行列或减小跨格范围');destination={row:g.rows,col:0};g.rows++;if(g.heights)g.heights.push(g.heights[from.row]);}
   next.order=next.order.flatMap(id=>id===oldId?ids:[id]);delete next.panels[oldId];delete g.places[oldId];
-  const inherited=['geometry','groupSpacing','errorDirection','markStyle','annotationFont','annotationLine','annotationPFormat','showFacetTitles'];
+  const inherited=['geometry','groupSpacing','errorDirection','markStyle','markPalette','annotationFont','annotationLine','annotationPFormat','showFacetTitles'];
   assets.forEach((asset,index)=>{const p={variant:asset.initialVariant||0,edits:{}};for(const key of inherited)if(old[key]!==undefined)p[key]=copy(old[key]);
     if(old.label)p.label={...copy(old.label),manual:index===0&&old.label.manual===true};
     if(asset.statistics){p.statistics=copy(asset.statistics);if(old.annotationStyle)p.annotationStyle=old.annotationStyle;}
@@ -844,7 +845,7 @@ if (typeof document !== 'undefined') (async () => {
     document.querySelectorAll('[data-tab]').forEach(el=>{el.setAttribute('aria-pressed',String(el.getAttribute('data-tab')===name));});
     $('textRole').parentElement.hidden=name!=='detail';
     renderInspectorPreviews();
-    if(repaint){renderCanvas();if(mobileWorkspace?.enabled)mobileWorkspace.showTab('adjustments');}
+    if(repaint){renderCanvas();if(mobileWorkspace?.enabled)mobileWorkspace.showTab('adjustments');if(name==='detail'&&typeof ensureStatisticalMetadata==='function')ensureStatisticalMetadata().catch(()=>{});}
   }
   const state = () => history.current;
   const saveSignature = () => JSON.stringify({state:state(),checkpoints,dataDrafts,imageReview:project?.imageDuplicateReview?{createdAt:project.imageDuplicateReview.createdAt,updatedAt:project.imageDuplicateReview.updatedAt,reviews:project.imageDuplicateReview.reviews}:null});
@@ -1009,8 +1010,10 @@ if (typeof document !== 'undefined') (async () => {
   async function ensureStatisticalMetadata(){
     if(!localEngine||engineConnection!=='connected'||typeof StudioStatisticalMetadata==='undefined')return;
     const owner=project,id=selectedPanel,p=state().panels[id],source=panel(id),vi=p?.variant,v=source?.variants[vi],key=id+'/'+vi;
-    if(!p?.annotationStyle||source?.recipe?.family!=='gallery'||!source.table||!['grouped_observations','compare_facet_boxes'].includes(v?.name)||v.svg.includes('studio-stat-anchors'))return;
-    const binding=statisticalSourceBinding(source,v),requestKey=key+'/'+binding;if(owner.statisticalRenders?.[key]?.binding===binding)return;
+    if(!p||source?.recipe?.family!=='gallery'||!source.table||!v)return;
+    const binding=statisticalSourceBinding(source,v),cached=owner.statisticalRenders?.[key],currentSvg=sanitize(cached?.binding===binding?cached.svg:v.svg),marks=typeof StudioMarkStyle!=='undefined'?StudioMarkStyle.inspect(currentSvg):{points:[],errors:[]};
+    const needsStatistics=!!p.annotationStyle&&['grouped_observations','compare_facet_boxes'].includes(v.name)&&!currentSvg.querySelector('[id$="studio-stat-anchors"]'),needsMarks=activePane==='detail'&&(marks.points.length||marks.errors.length||v.name==='bar_raw_points')&&typeof StudioStatisticalMetadata.isCurrentMarks==='function'&&!StudioStatisticalMetadata.isCurrentMarks(currentSvg);
+    if(!needsStatistics&&!needsMarks)return;const requestKey=key+'/'+binding+'/'+Number(needsStatistics)+Number(!!needsMarks);
     let running=statisticalUpgradeRequests.get(owner);if(!running){running=new Set();statisticalUpgradeRequests.set(owner,running);}if(running.has(requestKey))return;
     let failed=statisticalUpgradeFailures.get(owner);if(!failed){failed=new Map();statisticalUpgradeFailures.set(owner,failed);}if(Date.now()-(failed.get(requestKey)||0)<30000)return;
     running.add(requestKey);const serial=dataSerial;
@@ -1019,7 +1022,7 @@ if (typeof document !== 'undefined') (async () => {
       const response=await engineFetch(localEngine.reflowEndpoint||'/api/reflow',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe,rows:source.table.rows,width:v.width,height:v.height})}),result=await response.json();
       if(!response.ok)throw Error(result.error);
       if(project!==owner||dataSerial!==serial||panel(id)!==source||statisticalSourceBinding(source,v)!==binding)return;
-      const originalSvg=sanitize(v.svg),fresh=sanitize(result.variant.svg);if(!StudioStatisticalMetadata.attach(originalSvg,fresh))throw Error(T('当前旧图无法自动匹配统计位置，请在数据表中点击“更新图形”。'));
+      const originalSvg=currentSvg,fresh=sanitize(result.variant.svg),attachedStatistics=needsStatistics&&StudioStatisticalMetadata.attach(originalSvg,fresh),attachedMarks=needsMarks&&StudioStatisticalMetadata.attachMarks(originalSvg,fresh);if(!attachedStatistics&&!attachedMarks)throw Error(T('当前旧图无法自动匹配可编辑标记，请在数据表中点击“更新图形”。'));
       owner.statisticalRenders||={};owner.statisticalRenders[key]={binding,svg:new XMLSerializer().serializeToString(originalSvg)};
       templateCache.delete(key);inspectorPreviewCache={};render();persist();
     }catch(error){failed.set(requestKey,Date.now());if(project===owner&&selectedPanel===id)say(error.message);}
@@ -1474,7 +1477,7 @@ if (typeof document !== 'undefined') (async () => {
       }
     }
     const marks=typeof StudioMarkStyle!=='undefined'?StudioMarkStyle.inspect(svg):null;
-    if(!raw&&marks)StudioMarkStyle.apply(svg,s.panels[id].markStyle,s.panels[id].errorDirection||'both');
+    if(!raw&&marks)StudioMarkStyle.apply(svg,{...s.panels[id].markStyle,pointsVisible:true,errorsVisible:true},s.panels[id].errorDirection||'both',{edits:editsFor(id,vi,s),palette:s.panels[id].markPalette});
     if(!raw&&!marks?.errors.length&&s.panels[id].errorDirection&&s.panels[id].errorDirection!=='both'){
       const direction=s.panels[id].errorDirection;
       for(const bar of svg.querySelectorAll('[id^="studio-bar-"]')){
@@ -1542,6 +1545,10 @@ if (typeof document !== 'undefined') (async () => {
     if(!raw)refreshHeatmapLabelContrast(svg,s.panels[id].heatmapLabels,s.panels[id].heatmapPalette,editsFor(id,vi,s));
     let generated=900000;generated=Math.max(generated,Number(svg.getAttribute('data-stat-legacy-key-end'))||0);const generatedUsed=new Set([...svg.querySelectorAll('[data-key]')].map(el=>el.getAttribute('data-key')));for(const el of svg.querySelectorAll('text,path,line,rect'))if(!el.closest('defs')&&(!el.hasAttribute('data-key')||el.hasAttribute('data-stat-legacy-key'))){if(!el.hasAttribute('data-key')){while(generatedUsed.has('e'+generated))generated++;el.setAttribute('data-key','e'+generated++);}const props=editsFor(id,vi,s)[el.getAttribute('data-key')]||{};if(!raw)for(const [prop,value]of Object.entries(props))if(prop!=='rich-text'&&!prop.startsWith('offset-')&&!prop.startsWith('stat-')){if(prop==='hidden')el.style.display='none';else if(prop==='text'){if(el.hasAttribute('data-stat-result')||el.hasAttribute('data-stat-top')){el.setAttribute('data-stat-manual','true');el.setAttribute('data-stat-original',el.textContent);}if(typeof StudioRichText!=='undefined')StudioRichText.replaceText(el,value);else el.textContent=value;}else el.style.setProperty(prop,(prop==='font-size'||prop==='stroke-width')?value+'px':value);}}
     if(!raw&&typeof StudioRichText!=='undefined')for(const [key,props]of Object.entries(editsFor(id,vi,s)))if(props['rich-text']){const el=svg.querySelector(`[data-key="${key}"]`);if(el?.matches('text,tspan'))StudioRichText.apply(el,props['rich-text']);}
+    // Hidden marks still belong to their data groups. Measure/place complete
+    // geometry first: display:none has an empty browser bbox and would make
+    // categorical spacing and statistical anchors appear ambiguous.
+    const markStyle=s.panels[id].markStyle;if(!raw&&marks&&(markStyle?.pointsVisible===false||markStyle?.errorsVisible===false))StudioMarkStyle.apply(svg,{pointsVisible:markStyle.pointsVisible,errorsVisible:markStyle.errorsVisible});
     return svg;
   }
   function clearStatisticalResultEdits(next,id,previous=state()){
@@ -2071,6 +2078,7 @@ if (typeof document !== 'undefined') (async () => {
         // No cycling a categorical palette across a continuous scale.
         if(entry.allColors.length>colors.length)continue;
         for(const {key,prop,index}of entry.channels)setEdit(next,id,vi,key,prop,colors[index]);
+        if(!['element','sameColor'].includes(prepared.scope)){next.panels[id].markPalette={...next.panels[id].markPalette,...Object.fromEntries(entry.allColors.map((color,index)=>[color,colors[index]]))};if(next.panels[id].markStyle)syncMarkPaint(next,id,null,null,vi);}
       }
     }
     return next;
@@ -2546,34 +2554,99 @@ if (typeof document !== 'undefined') (async () => {
     for(const input of [range,number])input.onkeydown=event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();cancelCategorySpacing(true);}else if(event.key==='Enter'){event.preventDefault();finishCategorySpacing(input===number?Number(number.value)/100:range.value);}};
     $('resetGroupSpacing').onclick=()=>{cancelCategorySpacing();if(original||state().panels[selectedPanel]?.locked)return;const info=categorySpacingInspection();if(!info.available)return;const next=copy(state());if(info.barGeometry)setCategorySpacing(next.panels[selectedPanel],1,info);else delete next.panels[selectedPanel].groupSpacing;commit(next,T('已恢复原始组间距'));};
   }
-  let markGesture=null,markFrame=0;
+  let markGesture=null,markFrame=0,errorColorEditor=null;
   function markInspection(){const p=state().panels[selectedPanel];return typeof StudioMarkStyle!=='undefined'?StudioMarkStyle.inspect(baseSvg(selectedPanel,p.variant)):{points:[],errors:[]};}
+  function markControlsLocked(){const p=state().panels[selectedPanel];return original||p.locked||!!p.lockedElements?.[p.variant]?.length;}
+  // Keep the chosen group palette apart from independent point colors. In a
+  // scatter-only chart the same marker is otherwise its own color source.
+  function rememberMarkPalette(next,id){
+    const p=next.panels[id];if(p.markPalette)return;p.markPalette={};
+    for(let vi=0;vi<panel(id).variants.length;vi++){
+      const base=baseSvg(id,vi),objects=keysToObjects(base),colors=paletteSourceColors(base,objects),edits=editsFor(id,vi,next);
+      for(const color of colors){if(Object.keys(p.markPalette).length>=256)break;if(p.markPalette[color])continue;
+        let chosen=color;for(const el of objects){const key=el.getAttribute('data-key');for(const property of ['fill','stroke'])if(hex(paint(el,property))===color&&edits[key]?.[property]&&hex(edits[key][property])){chosen=hex(edits[key][property]);break;}if(chosen!==color)break;}
+        p.markPalette[color]=chosen;
+      }
+    }
+  }
+  function markPaintResult(next,id,vi){const p=next.panels[id];return typeof StudioMarkStyle==='undefined'?null:StudioMarkStyle.apply(baseSvg(id,vi),p.markStyle,p.errorDirection||'both',{edits:editsFor(id,vi,next),palette:p.markPalette});}
+  function syncMarkPaint(next,id,kind=null,properties=null,variant=null){
+    if(typeof StudioMarkStyle==='undefined')return;
+    const indices=variant===null?panel(id).variants.map((_,vi)=>vi):[variant];
+    for(const vi of indices){const result=markPaintResult(next,id,vi),locked=new Set(next.panels[id].lockedElements?.[vi]||[]);
+      for(const change of result?.paintChanges||[]){if(kind&&change.kind!==kind||properties&&!properties.includes(change.property)||locked.has(change.key))continue;setEdit(next,id,vi,change.key,change.property,change.value);}
+    }
+  }
+  function clearMarkPaint(next,id,kinds=['point','error'],properties=['fill','stroke','stroke-width']){
+    for(let vi=0;vi<panel(id).variants.length;vi++){
+      const result=markPaintResult(next,id,vi),base=baseSvg(id,vi),p=next.panels[id],locked=new Set(p.lockedElements?.[vi]||[]);
+      for(const key of kinds.flatMap(kind=>result?.paintTargets?.[kind]||[])){
+        if(locked.has(key))continue;const edit=p.edits[vi]?.[key];if(edit){for(const property of properties)delete edit[property];if(!Object.keys(edit).length)delete p.edits[vi][key];}
+        const source=base.querySelector(`[data-key="${key}"]`);if(source)for(const property of ['fill','stroke'].filter(property=>properties.includes(property))){const color=hex(paint(source,property)),mapped=p.markPalette?.[color];if(mapped&&mapped!==color)setEdit(next,id,vi,key,property,mapped);}
+      }
+    }
+  }
+  function markColorLabel(value){return value==='group'?T('跟随组色'):value==='none'?T('无'):value||T('原样');}
   function renderMarkControls(){
     if(!$('markControls'))return;
-    const p=state().panels[selectedPanel],style=p.markStyle||{},info=markInspection(),legacy=panel(selectedPanel).variants[p.variant].name==='bar_raw_points',errors=info.errors.length>0,hasCenter=info.errors.some(e=>e.segments.some(s=>s.axis==='y'&&s.center));
+    const p=state().panels[selectedPanel],style=p.markStyle||{},info=markInspection(),legacy=panel(selectedPanel).variants[p.variant].name==='bar_raw_points',errors=info.errors.length>0,hasCenter=info.errors.some(e=>e.segments.some(s=>s.axis==='y'&&s.center)),locked=markControlsLocked(),pointsVisible=style.pointsVisible!==false,errorsVisible=style.errorsVisible!==false,mode=style.pointMode||'original';
     $('markControls').hidden=!info.points.length&&!errors&&!legacy;$('pointControls').hidden=!info.points.length;$('errorControls').hidden=!errors&&!legacy;
+    $('pointsVisible').checked=pointsVisible;$('errorsVisible').checked=errorsVisible;
+    for(const node of $('pointControls').querySelectorAll('input,select,button'))node.disabled=locked||!info.points.length||node.id!=='pointsVisible'&&!pointsVisible;
+    for(const node of $('errorControls').querySelectorAll('input,select,button'))node.disabled=locked||!errors||node.id!=='errorsVisible'&&!errorsVisible;
+    for(const button of $('pointControls').querySelectorAll('[data-point-mode]'))button.setAttribute('aria-pressed',String(button.dataset.pointMode===mode));
+    $('pointCustomControls').hidden=mode!=='custom';
+    const pointColors={pointFill:style.pointFill??(mode==='hollow'?'none':'group'),pointStroke:style.pointStroke??'group'};
+    for(const [key,value]of Object.entries(pointColors)){$(key+'Mode').value=['group','none'].includes(value)?value:'custom';$(key+'Color').hidden=['group','none'].includes(value);if(/^#[0-9a-f]{6}$/i.test(value))$(key+'Color').value=value;}
+    $('pointStyleStatus').textContent=!pointsVisible?T('已隐藏；颜色与大小已保留'):mode==='original'?T('保留图中原始样式'):T('填充 {0} · 描边 {1}',markColorLabel(pointColors.pointFill),markColorLabel(pointColors.pointStroke));
+    $('pointStrokeWidth').value=style.pointStrokeWidth??.8;$('pointStrokeValue').value=style.pointStrokeWidth??.8;
     $('pointScale').value=style.pointScale??1;$('pointScaleValue').value=Math.round((style.pointScale??1)*100)+'%';
+    const errorColor=style.errorColor||'original',editorKey=project.id+'/'+selectedPanel;
+    if(errorColorEditor!==editorKey)errorColorEditor=null;
+    const errorMode=errorColorEditor===editorKey?'custom':['original','group','#20242a','#7a7f87'].includes(errorColor)?errorColor:'custom';
+    const groupReady=errors&&info.errors.every(error=>error.segments.every(segment=>!!(segment.colorSource||error.colorSource)));const groupOption=[...$('errorColorMode').options].find(option=>option.value==='group');if(groupOption)groupOption.disabled=!groupReady;
+    $('errorColorMode').value=errorMode;$('errorColor').hidden=errorMode!=='custom';if(/^#[0-9a-f]{6}$/i.test(errorColor))$('errorColor').value=errorColor;
+    $('errorColorStatus').textContent=!errorsVisible?T('已隐藏；颜色与大小已保留'):errorColor==='original'?T('保留图中原始样式'):markColorLabel(errorColor);
     const cap=style.capWidth??info.errors[0]?.capWidth??6,line=style.errorWidth??info.errors[0]?.lineWidth??1;$('errorCapWidth').value=cap;$('errorCapValue').value=cap;$('errorLineWidth').value=line;$('errorLineValue').value=line;
-    const locked=original||p.locked||!!p.lockedElements?.[p.variant]?.length;
-    $('pointScale').disabled=locked||!info.points.length;$('errorDirection').disabled=locked||(!hasCenter&&!legacy);$('errorCapWidth').disabled=locked||!errors;$('errorLineWidth').disabled=locked||!errors;
+    $('errorDirection').value=p.errorDirection||'both';$('errorDirection').disabled=locked||(!hasCenter&&!legacy)||!errorsVisible;
     $('resetMarkStyle').disabled=locked||(!p.markStyle&&!p.errorDirection);
-    $('errorStyleHint').textContent=T(errors?'拖动即时预览；端帽长度设为 0 可隐藏端帽。':'此旧图可调整方向；更新数据后可调整端帽与线宽。');
+    $('errorStyleHint').textContent=T(errors?(groupReady?'拖动即时预览；端帽长度设为 0 可隐藏端帽。':'此旧图的组色来源尚未识别；更新图形后可跟随组色。'):'此旧图可调整方向；更新数据后可调整端帽与线宽。');
   }
   function cancelMarkGesture(repaint=false){if(markFrame)cancelAnimationFrame(markFrame);markFrame=0;markGesture=null;if(repaint){renderCanvas();renderMarkControls();}}
   function prepareMarkGesture(){
-    const s=state(),p=s.panels[selectedPanel];if(original||p.locked||p.lockedElements?.[p.variant]?.length)return null;
-    if(markGesture?.owner===project&&markGesture.state===s&&markGesture.id===selectedPanel)return markGesture;
+    const s=state(),p=s.panels[selectedPanel];if(markControlsLocked())return null;
+    if(markGesture?.owner===project&&markGesture.state===s&&markGesture.id===selectedPanel&&markGesture.vi===p.variant)return markGesture;
     cancelMarkGesture();const position=layout(s).positions.find(x=>x.id===selectedPanel),pos=position?.renderBox||position;if(!pos)return null;
     return markGesture={owner:project,state:s,id:selectedPanel,vi:p.variant,pos,flow:fittedVariant(pos,s),markStyle:true,info:{},margins:{left:60,right:18,top:Math.max(52,...s.order.map(id=>annotationFirstTopHeight(id,s)+44)),bottom:36}};
   }
+  function markUsePreviewNodes(live){
+    if(!live)return null;const info=StudioMarkStyle.inspect(live);
+    for(const group of info.points){const meta=info.pointColors?.find(item=>group.id===item.id||group.id.endsWith('-'+item.id));if(meta?.kind!=='line'&&[...group.querySelectorAll('path')].some(node=>!node.closest('defs')))return null;}
+    return info.points.flatMap(group=>[...group.querySelectorAll('use')].filter(node=>!node.closest('defs')).map(node=>({node,transform:node.getAttribute('transform')||'',x:Number(node.getAttribute('x')||0),y:Number(node.getAttribute('y')||0)})));
+  }
+  function finishMarkGesture(){const gesture=markGesture;if(!gesture?.next)return;cancelMarkGesture();if(gesture.state===state()&&gesture.id===selectedPanel&&gesture.owner===project&&gesture.vi===state().panels[selectedPanel].variant&&!markControlsLocked()){if(gesture.paintKind)syncMarkPaint(gesture.next,gesture.id,gesture.paintKind,gesture.paintProperties);commit(gesture.next,T('已调整样本点与误差棒；可撤销'));}else{renderCanvas();renderMarkControls();}}
+  function changeMarkStyle(update,kind=null,properties=null,clear=false){
+    if(markControlsLocked())return;cancelMarkGesture();const next=copy(state());rememberMarkPalette(next,selectedPanel);if(clear)clearMarkPaint(next,selectedPanel,[kind],properties||undefined);
+    update(next.panels[selectedPanel]);if(kind)syncMarkPaint(next,selectedPanel,kind,properties);commit(next,T('已调整样本点与误差棒；可撤销'));
+  }
   function bindMarkControls(){
-    for(const [name,key,output] of [['pointScale','pointScale','pointScaleValue'],['errorCapWidth','capWidth','errorCapValue'],['errorLineWidth','errorWidth','errorLineValue']]){
+    for(const [name,key,output,kind]of [['pointScale','pointScale','pointScaleValue',null],['pointStrokeWidth','pointStrokeWidth','pointStrokeValue','point'],['errorCapWidth','capWidth','errorCapValue',null],['errorLineWidth','errorWidth','errorLineValue','error'],['pointFillColor','pointFill',null,'point'],['pointStrokeColor','pointStroke',null,'point'],['errorColor','errorColor',null,'error']]){
       const input=$(name);if(!input)continue;
-      input.oninput=()=>{const gesture=prepareMarkGesture();if(!gesture)return;const value=Number(input.value);$(output).value=key==='pointScale'?Math.round(value*100)+'%':value;gesture.key=key;gesture.value=value;if(key==='pointScale'&&!gesture.pointNodes){const live=$('artboard').querySelector(`[data-panel="${gesture.id}"]`);gesture.pointNodes=live&&StudioMarkStyle.inspect(live).points.flatMap(group=>[...group.querySelectorAll('use')].map(node=>({node,transform:node.getAttribute('transform')||'',x:Number(node.getAttribute('x')||0),y:Number(node.getAttribute('y')||0)})));}gesture.next=copy(gesture.state);gesture.next.panels[gesture.id].markStyle={...gesture.next.panels[gesture.id].markStyle,[key]:value};if(markFrame)return;markFrame=requestAnimationFrame(()=>{markFrame=0;if(gesture.state!==state()||gesture.id!==selectedPanel||gesture.owner!==project){cancelMarkGesture();return;}if(gesture.key==='pointScale'&&gesture.pointNodes?.length&&gesture.pointNodes.every(item=>item.node.isConnected)){const factor=gesture.value/(gesture.state.panels[gesture.id].markStyle?.pointScale??1);for(const {node,transform,x,y}of gesture.pointNodes)node.setAttribute('transform',`${transform} translate(${x} ${y}) scale(${factor}) translate(${-x} ${-y})`);zoomView?.refreshSelection?.();}else previewCategorySpacing(gesture,gesture.next);});};
-      input.onchange=()=>{const gesture=markGesture;if(!gesture?.next)return;cancelMarkGesture();if(gesture.state===state()&&gesture.id===selectedPanel&&gesture.owner===project)commit(gesture.next,T('已调整样本点与误差棒；可撤销'));};
-      input.onpointercancel=()=>cancelMarkGesture(true);input.onkeydown=event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();cancelMarkGesture(true);}};
+      input.oninput=()=>{
+        if(input.disabled)return;const gesture=prepareMarkGesture();if(!gesture)return;const color=input.type==='color',value=color?input.value:Number(input.value);if(output)$(output).value=key==='pointScale'?Math.round(value*100)+'%':value;
+        gesture.key=key;gesture.value=value;if(key==='pointScale'&&gesture.pointNodes===undefined)gesture.pointNodes=markUsePreviewNodes($('artboard').querySelector(`[data-panel="${gesture.id}"]`));
+        gesture.next=copy(gesture.state);if(gesture.palette)gesture.next.panels[gesture.id].markPalette=copy(gesture.palette);else{rememberMarkPalette(gesture.next,gesture.id);gesture.palette=copy(gesture.next.panels[gesture.id].markPalette);}gesture.next.panels[gesture.id].markStyle={...gesture.next.panels[gesture.id].markStyle,[key]:value};
+        gesture.paintKind=kind;gesture.paintProperties=color?[key==='pointFill'?'fill':key==='pointStroke'?'stroke':'stroke']:['stroke-width'];
+        if(markFrame)return;markFrame=requestAnimationFrame(()=>{markFrame=0;if(gesture.state!==state()||gesture.id!==selectedPanel||gesture.owner!==project){cancelMarkGesture();return;}if(gesture.paintKind)syncMarkPaint(gesture.next,gesture.id,gesture.paintKind,gesture.paintProperties,gesture.vi);if(gesture.key==='pointScale'&&gesture.pointNodes?.length&&gesture.pointNodes.every(item=>item.node.isConnected)){const factor=gesture.value/(gesture.state.panels[gesture.id].markStyle?.pointScale??1);for(const {node,transform,x,y}of gesture.pointNodes)node.setAttribute('transform',`${transform} translate(${x} ${y}) scale(${factor}) translate(${-x} ${-y})`);zoomView?.refreshSelection?.();}else previewCategorySpacing(gesture,gesture.next);});
+      };
+      input.onchange=finishMarkGesture;input.onblur=finishMarkGesture;input.onpointercancel=()=>cancelMarkGesture(true);input.onkeydown=event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();cancelMarkGesture(true);}else if(event.key==='Enter'){event.preventDefault();finishMarkGesture();}};
     }
-    if($('resetMarkStyle'))$('resetMarkStyle').onclick=()=>{cancelMarkGesture();const next=copy(state());delete next.panels[selectedPanel].markStyle;delete next.panels[selectedPanel].errorDirection;commit(next,T('已恢复原始点与误差棒'));};
+    for(const button of $('pointControls').querySelectorAll('[data-point-mode]'))button.onclick=()=>{if(button.disabled)return;const mode=button.dataset.pointMode;changeMarkStyle(p=>{const style={...p.markStyle};if(mode==='original'){for(const key of ['pointMode','pointFill','pointStroke','pointStrokeWidth'])delete style[key];}else{style.pointMode=mode;if(mode!=='custom'){style.pointFill=mode==='hollow'?'none':'group';style.pointStroke='group';if(mode==='hollow'&&style.pointStrokeWidth===0)style.pointStrokeWidth=.8;}else{style.pointFill??='group';style.pointStroke??='group';}}p.markStyle=style;},'point',null,mode==='original');};
+    for(const key of ['pointFill','pointStroke'])$(key+'Mode').onchange=()=>{if($(key+'Mode').disabled)return;const mode=$(key+'Mode').value,value=mode==='custom'?$(key+'Color').value:mode;changeMarkStyle(p=>{p.markStyle={...p.markStyle,pointMode:'custom',[key]:value};},'point',[key==='pointFill'?'fill':'stroke']);};
+    $('errorColorMode').onchange=()=>{if($('errorColorMode').disabled)return;const value=$('errorColorMode').value;if([...$('errorColorMode').options].find(option=>option.value===value)?.disabled)return;errorColorEditor=value==='custom'?project.id+'/'+selectedPanel:null;if(value==='custom'){renderMarkControls();$('errorColor').focus();return;}changeMarkStyle(p=>{p.markStyle={...p.markStyle,errorColor:value};},'error',['stroke'],value==='original');};
+    for(const key of ['pointsVisible','errorsVisible'])$(key).onchange=()=>{if($(key).disabled)return;const visible=$(key).checked;changeMarkStyle(p=>{p.markStyle={...p.markStyle,[key]:visible};});};
+    $('errorDirection').onchange=()=>{if($('errorDirection').disabled)return;const direction=$('errorDirection').value;changeMarkStyle(p=>{p.errorDirection=direction;});};
+    if($('resetMarkStyle'))$('resetMarkStyle').onclick=()=>{if(markControlsLocked())return;cancelMarkGesture();const next=copy(state());clearMarkPaint(next,selectedPanel);delete next.panels[selectedPanel].markStyle;delete next.panels[selectedPanel].errorDirection;errorColorEditor=null;commit(next,T('已恢复原始点与误差棒'));};
   }
   bindMarkControls();
   function renderInspector() {
@@ -2925,7 +2998,6 @@ if (typeof document !== 'undefined') (async () => {
   $('redo').onclick=()=>{history.redo();selected=[];original=false;render();persist();say(T('已重做'));};
   $('compare').onclick=()=>{cancelOverlayPlacement();original=!original;renderCanvas();$('compare').textContent=original?T('返回编辑'):T('对照原图');$('compare').setAttribute('aria-pressed',String(original));say(original?T('原版对照：当前布局与候选，未应用外观修改。'):T('已返回编辑版'));};
   $('reset').onclick=()=>{selected=[];commit(project.initialState,T('已恢复 AI 首版；仍可撤销此次恢复'));};
-  $('errorDirection').onchange=()=>{const next=copy(state());next.panels[selectedPanel].errorDirection=$('errorDirection').value;commit(next,T('已更新误差棒方向'));};
   $('applyStroke').onclick=()=>updateStyle('stroke-width',$('elementStroke').value,'shape');
   $('elementStroke').onchange=()=>updateStyle('stroke-width',$('elementStroke').value,'shape');
   $('fillMode').onchange=()=>{if($('fillMode').value==='')return;updateStyle('fill',$('fillMode').value==='none'?'none':$('color').value,'shape',$('fillMode').value==='none'?{stroke:$('color').value}:{});};
@@ -3385,6 +3457,10 @@ if (typeof document !== 'undefined') (async () => {
         if(matches.length===1){const {old,index}=matches[0],explicit=state().panels[oldId].edits[index];if(explicit&&Object.keys(explicit).length){const retained=migrateStableTextEdits(baseSvg(oldId,index),svg,explicit,old,v);for(const [key,props]of Object.entries(retained))for(const [prop,value]of Object.entries(props))setEdit(next,id,vi,key,prop,value);}}
       });
       const old=state().panels[oldId],record=old.statistics;
+      if(old.markStyle)next.panels[id].markStyle=copy(old.markStyle);
+      if(old.markPalette)next.panels[id].markPalette=copy(old.markPalette);
+      if(old.errorDirection)next.panels[id].errorDirection=old.errorDirection;
+      if(old.markStyle)syncMarkPaint(next,id);
       if(old.annotationPFormat)next.panels[id].annotationPFormat=old.annotationPFormat;
       if(old.showFacetTitles!==undefined)next.panels[id].showFacetTitles=old.showFacetTitles;
       if(old.conditionMatrix)next.panels[id].conditionMatrix=copy(old.conditionMatrix);

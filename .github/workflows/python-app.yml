@@ -139,6 +139,7 @@ jobs:
           node scripts/test_studio_svg_content.cjs
           node scripts/test_studio_positioned_text.cjs
           node scripts/test_studio_mark_styles.cjs
+          node scripts/test_studio_mark_controls.cjs
           node scripts/test_studio_rich_text_regression.cjs
           node scripts/test_studio_data_text_preservation.cjs
           node scripts/test_studio_data_validation.cjs
@@ -208,7 +209,10 @@ jobs:
       - name: Mobile DOM integration (simulation, not device validation)
         env:
           NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
-        run: node scripts/test_mobile_dom_preview.cjs
+        run: |
+          node scripts/test_mobile_dom_preview.cjs
+          node scripts/test_studio_mark_styles.cjs --dom
+          node scripts/test_studio_mark_controls.cjs --dom
       - name: Retain synthetic calculation evidence and public-file checksums
         if: always()
         uses: actions/upload-artifact@v4

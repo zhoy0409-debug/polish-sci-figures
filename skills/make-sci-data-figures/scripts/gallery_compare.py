@@ -12,7 +12,7 @@ from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.lines import Line2D
 from matplotlib.ticker import MaxNLocator, FuncFormatter
 from scipy import stats
-from gallery_marks import tag_stat_group
+from gallery_marks import tag_color_source, tag_stat_group
 
 PALETTE = ['#426B9D', '#C35E70', '#93A8C4', '#947DAB', '#A8864F', '#5F728A']
 CONTRACTS = {}
@@ -239,9 +239,11 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
         violin_width=min(.34,.36*len(names)/(figsize[0]*.8))
         for i,v in enumerate(grouped):
             mean,sd,ci=_summary(v);color=c[i]
+            color_bar=None
             if view in {'compare_bar_sd','compare_bar_points'}:
-                ax.bar(i,mean,width=bar_width,color=color,alpha=.75,zorder=2)
-                ax.errorbar(i,mean,yerr=sd,fmt='none',ecolor='#33445A',capsize=3,lw=1)
+                color_bar=ax.bar(i,mean,width=bar_width,color=color,alpha=.75,zorder=2)[0]
+                error=ax.errorbar(i,mean,yerr=sd,fmt='none',ecolor='#33445A',capsize=3,lw=1)
+                tag_color_source(error,color_bar)
             if view in {'compare_mean_sd','compare_mean_ci','compare_swarm'}:
                 ax.errorbar(i,mean,yerr=ci if view=='compare_mean_ci' else sd,fmt='o',mfc='white' if view=='compare_swarm' else color,mec=color,color=color,capsize=4,ms=5,lw=1.3,zorder=5)
             if view in {'compare_box','compare_box_points','compare_notched_box','compare_violin_box','compare_raincloud'}:
@@ -252,7 +254,8 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
                 if view=='compare_raincloud':ax.fill_betweenx(gy,i-.12-width,i-.12,color=color,alpha=.25,lw=.8,edgecolor=color)
                 else: ax.fill_betweenx(gy,i-width,i+width,color=color,alpha=.25,lw=.8,edgecolor=color)
             if view in {'compare_bar_points','compare_box_points','compare_strip_median','compare_raincloud','compare_log_points','compare_bracket_stars','compare_bracket_p','compare_control_symbols'}:
-                _points(ax,v,i+(.18 if view=='compare_raincloud' else 0),color,spread=.07 if view=='compare_raincloud' else min(.13,.4*bar_width) if view=='compare_bar_points' else .13)
+                points=_points(ax,v,i+(.18 if view=='compare_raincloud' else 0),color,spread=.07 if view=='compare_raincloud' else min(.13,.4*bar_width) if view=='compare_bar_points' else .13)
+                if color_bar is not None:tag_color_source(points,color_bar)
             if view=='compare_swarm':ax.scatter(i+_swarm(v),v,s=14,color=color,alpha=.7,edgecolors='white',linewidth=.4)
             if view in {'compare_strip_median','compare_log_points','compare_bracket_stars','compare_bracket_p','compare_control_symbols'}:ax.plot([i-.19,i+.19],[np.median(v)]*2,color='#23344C',lw=1.4,zorder=4)
         _style(ax,y='Value');_categorical(ax,names);ax.set_xlim(-.62,len(names)-.38);ax.margins(y=.12)

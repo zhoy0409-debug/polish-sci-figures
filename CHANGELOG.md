@@ -2,6 +2,7 @@
 
 ## v1.4.6 · Figure Studio 0.1.6
 
+- Add quick solid/hollow/custom point styles, independent fill/outline colours, group/black/grey/custom error-bar colours, and separate hide/restore switches that preserve data and appearance settings.
 - Place editable grouped and supported faceted comparisons above their matching data, retaining earlier edits and adapting to spacing, fonts and panel sizes.
 - Keep statistical styles and condition tables together in Annotations, with one context-menu entry point.
 - Add optional Europe PMC examples with caption verification and compatible previews using the current data; research data remain local.
@@ -44,6 +45,7 @@
 
 ### v1.4.6 · Figure Studio 0.1.6
 
+- 样本点支持快捷切换实心、空心及独立填充/描边色；误差棒支持跟随组色、黑色、灰色及自定义。两个显示开关独立隐藏与恢复，不删除数据或原有样式设置。
 - 分组图及受支持的分面比较在对应数据上方显示可编辑标注，保留旧工程修改，并随间距、字号和尺寸更新。
 - 统计样式与条件表统一在标注页，右键菜单进入同一位置。
 - 新增可选 Europe PMC 文献实例，核对图注后提供兼容图型的当前数据预览，研究数据留在本机。
