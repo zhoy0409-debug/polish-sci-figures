@@ -127,14 +127,15 @@ class MacPreviewTests(unittest.TestCase):
             build.find_runtime_licenses(self.root / 'absent', self.root / 'absent', [library])
 
     def test_homebrew_dependencies_keep_their_native_notices(self):
-        formulas = ('python@3.12', 'python-tk@3.12', 'openssl@3')
+        formulas = ('python@3.12', 'python-tk@3.12', 'openssl@3', 'sqlite')
         for name in formulas:
             folder = self.root / name
             folder.mkdir()
-            (folder / 'LICENSE.txt').write_text(name)
+            if name != 'sqlite':
+                (folder / 'LICENSE.txt').write_text(name)
             (folder / 'INSTALL_RECEIPT.json').write_text('{}')
         def brew(args):
-            return 'openssl@3\nca-certificates' if 'deps' in args else str(self.root / args[-1])
+            return 'openssl@3\nca-certificates\nsqlite' if 'deps' in args else str(self.root / args[-1])
         target = self.root / 'notices'
         with mock.patch.object(build.shutil, 'which', return_value='/brew'), mock.patch.object(build, 'run', side_effect=brew):
             result = build.homebrew_notices(target)
@@ -142,7 +143,9 @@ class MacPreviewTests(unittest.TestCase):
             self.assertIn('not included', result['excluded']['ca-certificates'])
             self.assertFalse((target / 'Homebrew/ca-certificates').exists())
             for name in formulas:
-                self.assertTrue((target / 'Homebrew' / name / 'LICENSE.txt').is_file())
+                notice = 'PUBLIC-DOMAIN.txt' if name == 'sqlite' else 'LICENSE.txt'
+                self.assertTrue((target / 'Homebrew' / name / notice).is_file())
+            self.assertIn('https://sqlite.org/copyright.html', (target / 'Homebrew/sqlite/PUBLIC-DOMAIN.txt').read_text())
             (self.root / 'openssl@3/LICENSE.txt').unlink()
             with self.assertRaisesRegex(RuntimeError, 'openssl@3'):
                 build.homebrew_notices(target)

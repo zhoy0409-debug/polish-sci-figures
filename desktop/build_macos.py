@@ -176,9 +176,17 @@ def homebrew_notices(target):
                 candidates.extend(folder.rglob('*'))
         notices = [path for path in candidates if path.is_file() and
                    any(word in path.name.lower() for word in ('license', 'licence', 'copying', 'notice', 'copyright'))]
-        if not notices:
-            raise RuntimeError(f'Native Homebrew license notices were not found for {formula}.')
         dest = target / 'Homebrew' / formula.replace('/', '_')
+        if not notices and formula == 'sqlite':
+            # SQLite's public-domain dedication is not shipped as a LICENSE file
+            # by this formula. Preserve its provenance rather than skip its notice.
+            dest.mkdir(parents=True, exist_ok=True)
+            (dest / 'PUBLIC-DOMAIN.txt').write_text(
+                'SQLite is dedicated to the public domain by its authors.\n'
+                'Upstream copyright statement: https://sqlite.org/copyright.html\n'
+                'This notice records the bundled Homebrew SQLite runtime.\n', encoding='utf-8')
+        elif not notices:
+            raise RuntimeError(f'Native Homebrew license notices were not found for {formula}.')
         for path in notices:
             out = dest / path.relative_to(prefix)
             out.parent.mkdir(parents=True, exist_ok=True)

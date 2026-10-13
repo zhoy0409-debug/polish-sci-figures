@@ -35,7 +35,9 @@ jobs:
       - name: Install native Python and matching Tk
         shell: bash
         run: |
-          brew install python@3.12 python-tk@3.12
+          # This ephemeral runner also has python.org symlinks in /usr/local/bin.
+          # Let Homebrew link its matched runtime without deleting files by hand.
+          brew install --overwrite python@3.12 python-tk@3.12
           "$(brew --prefix python@3.12)/bin/python3.12" -m venv .venv-macos
           .venv-macos/bin/python -m pip install --upgrade pip
           .venv-macos/bin/python -m pip install --only-binary=:all: -r desktop/requirements-build.txt
