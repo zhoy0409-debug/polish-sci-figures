@@ -6,7 +6,7 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 ## Install and open
 
-1. Run `polish-sci-figures-Studio-VERSION-Setup-x64.exe` and follow the installer for your Windows user account.
+1. Download the [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-Studio-0.1.6-Setup-x64.exe), then run it and follow the installer for your Windows user account.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
 3. Choose **English** or **中文** at the top right. Opening the shortcut again opens the editor already running.
 
@@ -21,6 +21,8 @@ For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-
 5. Choose **Save** to download a project JSON file. Use **Project → Open project** to continue later. SVG/PNG/TIFF files are figure exports; the project JSON is the backup containing editable state, data and version history.
 
 Analyses linked to the current data are recomputed after valid data changes. Linked external results and retained results from split facets need reconnection or updating when their chart data changes; follow the message in the editor. Invalid or unfinished data edits preserve the last valid chart.
+
+Statistical styles and condition tables are in **Annotations**. For optional published examples, expand **Chart types → Examples in papers** and choose **Find examples**. Only this explicit search connects to Europe PMC, sending chart terms and an optional topic you type; research data stay local. [How caption checks and data previews work](../README.en.md#examples-in-papers).
 
 ## Save, quit and upgrade
 

@@ -2,7 +2,7 @@
 
 English · [中文](#中文)
 
-Status recorded on 13 October 2026. Figure Studio 0.1.5 has been built as a local macOS development preview, not a supported production Mac release. This page records the checks actually completed.
+Historical baseline recorded on 13 October 2026. For current 0.1.6 downloads, see the [device guide](local-device-trial.md); its finished-package checks accompany the new preview release. Figure Studio 0.1.5 has been built as a local macOS development preview, not a supported production Mac release. This page records the checks actually completed.
 
 ## Observed checks
 
@@ -33,7 +33,7 @@ No Developer ID signing or Apple notarization has been performed. Ad-hoc signing
 
 ## 中文
 
-记录日期：2026 年 10 月 13 日。Figure Studio 0.1.5 已完成本地 Mac 开发预览版构建，尚不是提供生产环境支持的正式 Mac 版本。本页只记录实际完成的检查。
+历史基线记录：2026 年 10 月 13 日。当前 0.1.6 下载见[设备指南](local-device-trial.md#中文)，新成品包的检查随预览发行版记录。Figure Studio 0.1.5 已完成本地 Mac 开发预览版构建，尚不是提供生产环境支持的正式 Mac 版本。本页只记录实际完成的检查。
 
 ### 已观察到的结果
 

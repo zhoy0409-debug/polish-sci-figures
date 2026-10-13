@@ -52,6 +52,7 @@ jobs:
         run: |
           node --test mobile/android/test_bridge.cjs
           python mobile/android/test_assets.py
+          python mobile/android/test_release_manifest.py
       - name: Build development APK and instrumentation APK
         run: |
           mkdir -p .cache/android-qa
@@ -115,6 +116,11 @@ jobs:
           cp mobile/android/README.md .cache/android-qa/delivery/README.md
           cp .cache/android-qa/runtime/android-runtime-proof.json .cache/android-qa/delivery/
           cp .cache/android-qa/runtime/android-process-restart-proof.json .cache/android-qa/delivery/
+          # Public certificate and installed-package metadata only. This does
+          # not export, generate, restore or upload a private signing key.
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs .cache/android-qa/delivery/Figure-Studio-Android-Local-Preview.apk >.cache/android-qa/delivery/APK-SIGNATURE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging .cache/android-qa/delivery/Figure-Studio-Android-Local-Preview.apk >.cache/android-qa/delivery/APK-METADATA.txt
+          python mobile/android/release_manifest.py --apk .cache/android-qa/delivery/Figure-Studio-Android-Local-Preview.apk --signature-report .cache/android-qa/delivery/APK-SIGNATURE.txt --badging-report .cache/android-qa/delivery/APK-METADATA.txt --output .cache/android-qa/delivery/NATIVE-MANIFEST.json
           cd .cache/android-qa/delivery
           sha256sum Figure-Studio-Android-Local-Preview.apk >SHA256SUMS.txt
       - name: Collect tested development APK

@@ -74,7 +74,7 @@ Play, pause, or scrub through the video to follow each step. [Download the MP4](
 - **Make the details yours.** Draw straight lines and comparison brackets, edit individual characters, choose distinct palettes, and tune point sizes and error bars. Adjust group spacing and arrange panels with alignment guides; undo and redo keep refinements reversible.
 - **Take the result into your paper.** Export individual panels or the complete layout as editable SVG or high-resolution PNG / TIFF. Save the project to continue editing later.
 
-**In the current source (14 October 2026):** optional [examples in papers](README.en.md#examples-in-papers) connect to Europe PMC only when you search, using chart terms and an optional topic you enter; research data stay local. Statistical styles now have one home in **Annotations**, with editable comparisons above the matching groups in grouped bar and supported faceted plots. These source updates do not indicate a new installer release.
+**New in Figure Studio 0.1.6:** optional [examples in papers](README.en.md#examples-in-papers) connect to Europe PMC only when you search, using chart terms and an optional topic you enter; research data stay local. Statistical styles now have one home in **Annotations**, with editable comparisons above the matching groups in grouped bar and supported faceted plots. [See what changed](docs/release-v1.4.6.md).
 
 The [current library](README.en.md#editable-chart-library) offers **218 editable starting templates**. Statistical methods follow the declared study design; result-based templates use the corresponding supplied analyses. Scientific images retain their calibration and processing records.
 
@@ -99,9 +99,11 @@ Choose the way you prefer to work. Both paths belong to the same polish-sci-figu
 
 ### Open Figure Studio
 
-[Download the Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-Studio-0.1.5-Setup-x64.exe), install it, and open the shortcut. Choose a template, replace its example data, then edit and export in your browser. Windows 10/11 x64; the runtime is included, with no separate Python setup, Codex, account, or API key required.
+[Download the Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-Studio-0.1.6-Setup-x64.exe), install it, and open the shortcut. Choose a template, replace its example data, then edit and export in your browser. Windows 10/11 x64; the runtime is included, with no separate Python setup, Codex, account, or API key required.
 
-[Quick start](desktop/QUICKSTART.en.md) · [Portable edition](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-Studio-0.1.5-Portable-x64.zip)
+[Quick start](desktop/QUICKSTART.en.md) · [Portable edition](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-Studio-0.1.6-Portable-x64.zip)
+
+[Mac / Android development previews and iPhone/iPad status](docs/local-device-trial.md). Windows is the formal desktop release; the other device builds retain their stated preview scope.
 
 ### Work with AI
 
@@ -117,11 +119,11 @@ For scientific images or existing figures, everyday requests work too:
 
 The suite covers plotting and analysis, calibrated image preparation, and final figure refinement through three cooperating skills. You can continue adjusting the result in Figure Studio without another AI call. Host requirements, installation steps, and actual testing coverage are listed in the platform guide.
 
-[Codex / CLI setup](README.en.md#ai-and-command-line-workflows) · [Claude upload package](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-v1.4.5-skill.zip)
+[Codex / CLI setup](README.en.md#ai-and-command-line-workflows) · [Claude upload package](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-v1.4.6-skill.zip)
 
 ## Guides and project
 
-[Product guide](README.en.md) · [Latest improvements](docs/release-v1.4.5.md) · [Validation record](docs/figure-studio-validation.md) · [Contributing](CONTRIBUTING.md)
+[Product guide](README.en.md) · [Latest improvements](docs/release-v1.4.6.md) · [Validation record](docs/figure-studio-validation.md) · [Contributing](CONTRIBUTING.md)
 
 Official downloads and updates come from [this repository's Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases). The project is available under the [MIT License](LICENSE); citation details are in [CITATION.cff](CITATION.cff).
 
@@ -187,7 +189,7 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 - **把细节调整到位。** 插入水平线和比较括号、修改单个字符、选择差异鲜明的配色，并调整样本点大小和误差棒。调整组间距，借助对齐辅助线编排小图；撤销与重做让精修可以随时回退。
 - **把结果带进论文。** 单个小图和整幅组图均可导出可编辑 SVG 或高清 PNG / TIFF，保存工程后还能继续编辑。
 
-**当前源码更新（2026 年 10 月 14 日）：** 可选的[文献作图实例](README.zh-CN.md#文献作图实例)仅在主动查找时连接 Europe PMC，发送图型检索词和手动填写的可选主题，研究数据留在本机。统计样式统一放在**标注**页；分组柱图和受支持的分面图直接在对应组上方显示可编辑的比较标注。这些源码更新不代表已发布新的安装包。
+**Figure Studio 0.1.6 新增：** 可选的[文献作图实例](README.zh-CN.md#文献作图实例)仅在主动查找时连接 Europe PMC，发送图型检索词和手动填写的可选主题，研究数据留在本机。统计样式统一放在**标注**页；分组柱图和受支持的分面图直接在对应组上方显示可编辑的比较标注。[查看本版更新](docs/release-v1.4.6.md#中文)。
 
 [当前图形仓库](README.zh-CN.md#可编辑的图形仓库)提供 **218 个可编辑模板起点**。统计方法匹配明确的研究设计，结果类模板使用对应的已有分析；科学图像保留校准信息和处理记录。页面中的演示均使用合成数据，红蓝配色贯穿不同类型的图形。
 
@@ -195,9 +197,11 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 
 按自己的习惯选择入口，两种方式都属于同一套 polish-sci-figures 产品。
 
-**直接打开 Figure Studio。** [下载 Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-Studio-0.1.5-Setup-x64.exe)，安装后打开快捷方式。选模板、换数据，在浏览器中完成编辑和导出。支持 Windows 10/11 x64，运行环境已包含，无需单独配置 Python、打开 Codex、注册账号或填写 API 密钥。
+**直接打开 Figure Studio。** [下载 Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-Studio-0.1.6-Setup-x64.exe)，安装后打开快捷方式。选模板、换数据，在浏览器中完成编辑和导出。支持 Windows 10/11 x64，运行环境已包含，无需单独配置 Python、打开 Codex、注册账号或填写 API 密钥。
 
-[快速入门](desktop/QUICKSTART.zh-CN.md) · [便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-Studio-0.1.5-Portable-x64.zip)
+[快速入门](desktop/QUICKSTART.zh-CN.md) · [便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-Studio-0.1.6-Portable-x64.zip)
+
+[Mac / Android 开发预览与 iPhone/iPad 状态](docs/local-device-trial.md#中文)。Windows 为正式桌面发行版，其他设备按页面说明提供开发预览或模拟器验证。
 
 **让 AI 协助作图。** 在 **Codex**、**Claude** 或其他兼容环境中，按[平台指南](docs/platform-installation.md)安装并选用技能，附上数据，用日常语言描述需求即可：
 
@@ -211,11 +215,11 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 
 三个配套技能分别负责数据作图与分析、带校准的图像处理，以及最终精修和组图。生成后可以直接在 Figure Studio 中继续调整，无需每次修改都重新请求 AI。宿主要求、安装步骤及实际测试范围见平台指南。
 
-[Codex / 命令行安装](README.zh-CN.md#ai-与命令行工作流) · [Claude 上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-v1.4.5-skill.zip)
+[Codex / 命令行安装](README.zh-CN.md#ai-与命令行工作流) · [Claude 上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-v1.4.6-skill.zip)
 
 ### 指南与项目
 
-[完整功能指南](README.zh-CN.md) · [本版更新](docs/release-v1.4.5.md#图片查重交互复核) · [验证记录](docs/figure-studio-validation.md) · [参与贡献](CONTRIBUTING.md)
+[完整功能指南](README.zh-CN.md) · [本版更新](docs/release-v1.4.6.md#中文) · [验证记录](docs/figure-studio-validation.md) · [参与贡献](CONTRIBUTING.md)
 
 官方下载与更新统一通过[本仓库的 Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases)提供。项目采用 [MIT 许可](LICENSE)，引用信息见 [CITATION.cff](CITATION.cff)。
 

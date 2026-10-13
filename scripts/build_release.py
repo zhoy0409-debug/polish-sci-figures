@@ -11,11 +11,14 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
+VERSION = "v1.4.6"
 SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    "docs/release-v1.4.6.md",
+    "docs/local-device-trial.md",
     "docs/image-duplicate-check.md",
     "docs/image-duplicate-validation.md",
     "docs/release-v1.4.5.md",
@@ -123,7 +126,7 @@ def build(version: str, outdir: Path) -> Path:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", default="v1.4.5")
+    parser.add_argument("--version", default=VERSION)
     parser.add_argument("--outdir", default="dist")
     args = parser.parse_args()
     archive = build(args.version, Path(args.outdir))

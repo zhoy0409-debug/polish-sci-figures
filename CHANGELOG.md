@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.4.6 · Figure Studio 0.1.6
+
+- Place editable grouped and supported faceted comparisons above their matching data, retaining earlier edits and adapting to spacing, fonts and panel sizes.
+- Keep statistical styles and condition tables together in Annotations, with one context-menu entry point.
+- Add optional Europe PMC examples with caption verification and compatible previews using the current data; research data remain local.
+- Preserve newer data, size and analysis choices during asynchronous chart switches.
+- Refresh Windows packages and provide separate Mac/Android development previews; iOS remains simulator-only.
+
+[Release details](docs/release-v1.4.6.md) · [Device downloads](docs/local-device-trial.md)
+
 ## v1.4.5 · Figure Studio 0.1.5
 
 - Review an active image pair with wheel zoom, drag-to-pan, synchronized views, matching lines and an overlay using the recorded alignment.
@@ -31,6 +41,16 @@
 [Release details](docs/release-v1.4.3.en.md) · [Previous release](docs/release-v1.4.2.en.md)
 
 ## 中文
+
+### v1.4.6 · Figure Studio 0.1.6
+
+- 分组图及受支持的分面比较在对应数据上方显示可编辑标注，保留旧工程修改，并随间距、字号和尺寸更新。
+- 统计样式与条件表统一在标注页，右键菜单进入同一位置。
+- 新增可选 Europe PMC 文献实例，核对图注后提供兼容图型的当前数据预览，研究数据留在本机。
+- 异步切换图型时保留后来更改的数据、尺寸和分析设置。
+- 更新 Windows 安装包，Mac/Android 独立提供开发预览；iOS 仍限模拟器。
+
+[本版详情](docs/release-v1.4.6.md#中文) · [各设备下载](docs/local-device-trial.md#中文)
 
 ### v1.4.5 · Figure Studio 0.1.5
 
