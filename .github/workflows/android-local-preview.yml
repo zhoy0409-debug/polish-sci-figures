@@ -56,7 +56,7 @@ jobs:
         run: |
           mkdir -p .cache/android-qa
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
-          gradle -p mobile/android --no-daemon testDebugUnitTest assembleDebug assembleDebugAndroidTest --stacktrace 2>&1 | tee .cache/android-qa/build.log
+          gradle -p mobile/android --no-daemon testDebugUnitTest verifyDebugApkAssets assembleDebugAndroidTest --stacktrace 2>&1 | tee .cache/android-qa/build.log
       - name: Prepare Android 35 emulator
         run: |
           mkdir -p "$ANDROID_AVD_HOME" "$ANDROID_USER_HOME"
