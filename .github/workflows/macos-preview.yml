@@ -1,0 +1,73 @@
+name: macOS local preview (manual)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/macos-local-preview]
+    paths:
+      - 'desktop/**'
+      - '.github/workflows/macos-preview.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    name: Local macOS preview (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Official runner labels: https://docs.github.com/actions/reference/runners/github-hosted-runners
+          - runner: macos-15
+            arch: arm64
+          - runner: macos-15-intel
+            arch: x86_64
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      MPLBACKEND: Agg
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install native Python and matching Tk
+        shell: bash
+        run: |
+          brew install python@3.12 python-tk@3.12
+          "$(brew --prefix python@3.12)/bin/python3.12" -m venv .venv-macos
+          .venv-macos/bin/python -m pip install --upgrade pip
+          .venv-macos/bin/python -m pip install --only-binary=:all: -r desktop/requirements-build.txt
+      - name: Verify native architecture and Tk shell
+        env:
+          EXPECTED_ARCH: ${{ matrix.arch }}
+        run: |
+          .venv-macos/bin/python -c 'import os,sys; sys.path.insert(0,"desktop"); import build_macos; print(build_macos.native_arch(os.environ["EXPECTED_ARCH"])); print(build_macos.preflight()[0])'
+      - name: Launcher and packaging regressions
+        run: |
+          .venv-macos/bin/python desktop/test_macos_build.py
+          .venv-macos/bin/python desktop/test_figure_studio_app.py
+      - name: Build bundle, audit native libraries, run frozen local self-test, and zip
+        run: .venv-macos/bin/python desktop/build_macos.py --arch ${{ matrix.arch }}
+      - name: Collect preview only after successful checks
+        uses: actions/upload-artifact@v4
+        with:
+          name: figure-studio-macos-${{ matrix.arch }}-unsigned-preview
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            dist/macos/${{ matrix.arch }}/*-Preview.zip
+            dist/macos/${{ matrix.arch }}/SHA256SUMS.txt
+            dist/macos/${{ matrix.arch }}/MACOS-PREVIEW.txt
+      - name: Collect build diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: figure-studio-macos-${{ matrix.arch }}-diagnostics
+          retention-days: 14
+          if-no-files-found: ignore
+          path: |
+            .cache/desktop-macos-${{ matrix.arch }}/*.log
+            .cache/desktop-macos-${{ matrix.arch }}/native-audit.json
+            .cache/desktop-macos-${{ matrix.arch }}/self-test-output/

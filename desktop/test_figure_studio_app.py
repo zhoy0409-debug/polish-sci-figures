@@ -40,7 +40,7 @@ class LauncherTests(unittest.TestCase):
         self.assertEqual(app.resource_root(), ROOT)
         with mock.patch.object(sys, 'frozen', True, create=True), mock.patch.object(sys, '_MEIPASS', str(self.root), create=True):
             self.assertEqual(app.resource_root(), self.root / 'suite')
-        with mock.patch.dict(app.os.environ, {'LOCALAPPDATA': str(self.root)}):
+        with mock.patch.dict(app.os.environ, {'LOCALAPPDATA': str(self.root)}), mock.patch.object(app.sys, 'platform', 'win32'):
             self.assertEqual(app.default_data_dir(), self.root / 'Figure Studio')
 
     def test_numeric_threads_default_and_explicit_configuration(self):
@@ -61,9 +61,12 @@ class LauncherTests(unittest.TestCase):
 
     def test_official_brand_resources_and_explicit_project_action(self):
         window = mock.Mock()
-        with mock.patch.object(app.webbrowser, 'open', return_value=True) as browser:
-            self.assertTrue(app.apply_window_icon(window, ROOT))
-            window.iconbitmap.assert_called_once_with(default=str(ROOT / app.WINDOW_ICON))
+        icon = self.root / app.WINDOW_ICON
+        icon.parent.mkdir(parents=True)
+        icon.write_bytes(b'icon passed to mocked window')
+        with mock.patch.object(app.webbrowser, 'open', return_value=True) as browser, mock.patch.object(app.sys, 'platform', 'win32'):
+            self.assertTrue(app.apply_window_icon(window, self.root))
+            window.iconbitmap.assert_called_once_with(default=str(icon))
             browser.assert_not_called()
             app.open_official_project()
             browser.assert_called_once_with(

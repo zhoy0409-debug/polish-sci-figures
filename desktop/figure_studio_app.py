@@ -46,6 +46,8 @@ def resource_root() -> Path:
 
 
 def default_data_dir() -> Path:
+    if sys.platform == 'darwin':
+        return Path.home() / 'Library' / 'Application Support' / 'Figure Studio'
     base = os.environ.get('LOCALAPPDATA')
     if base:
         return Path(base) / 'Figure Studio'
@@ -477,12 +479,18 @@ def open_editor(url: str):
 def apply_window_icon(window, suite_root=None) -> bool:
     """Use the bundled brand icon without making startup depend on shell icons."""
     from tkinter import TclError
-    icon = (suite_root or resource_root()) / WINDOW_ICON
+    icon = (suite_root or resource_root()) / (WINDOW_ICON.with_suffix('.png') if sys.platform == 'darwin' else WINDOW_ICON)
     if not icon.is_file():
         LOG.warning('Window icon is missing: %s', icon)
         return False
     try:
-        window.iconbitmap(default=str(icon))
+        if sys.platform == 'darwin':
+            from tkinter import PhotoImage
+            image = PhotoImage(master=window, file=str(icon))
+            window.iconphoto(True, image)
+            window._studio_icon = image  # Tk does not retain the Python image wrapper.
+        else:
+            window.iconbitmap(default=str(icon))
         return True
     except (TclError, OSError):
         LOG.warning('Could not load the window icon', exc_info=True)
@@ -504,13 +512,18 @@ def run_window(data_dir: Path, no_open=False) -> int:
     apply_window_icon(window)
     window.configure(background='#f5f6f8')
     style = ttk.Style(window)
+    if sys.platform == 'darwin':
+        from tkinter import font
+        font_family = font.nametofont('TkDefaultFont', root=window).actual('family')
+    else:
+        font_family = 'Segoe UI'
     if 'vista' in style.theme_names():
         style.theme_use('vista')
     style.configure('Studio.TFrame', background='#f5f6f8')
-    style.configure('Studio.TLabel', background='#f5f6f8', foreground='#303944', font=('Segoe UI', 10))
+    style.configure('Studio.TLabel', background='#f5f6f8', foreground='#303944', font=(font_family, 10))
     frame = ttk.Frame(window, padding=28, style='Studio.TFrame')
     frame.pack(fill='both', expand=True)
-    ttk.Label(frame, text='Figure Studio', font=('Segoe UI', 21, 'bold'),
+    ttk.Label(frame, text='Figure Studio', font=(font_family, 21, 'bold'),
               background='#f5f6f8', foreground='#243247').pack(anchor='w')
     ttk.Label(frame, text='polish-sci-figures 官方配套编辑器\n'
               'Official companion editor for polish-sci-figures',
