@@ -503,6 +503,8 @@ const StudioI18n = (() => {
   });
   let language='zh-CN';
   Object.assign(en,{
+    '图片查重':'Check images',
+    '检查图中是否重复使用了图片':'Check for repeated images in your figure',
     '这一页使用了目前无法分别保真转换的颜色混合或透明效果，已保留为整页图片，内部细节暂不能单独编辑。这是转换能力的限制，不代表原 PDF 本身只有图片。':'This page uses blending or transparency effects that cannot yet be preserved as separate editable objects. It is kept as one image to retain its appearance. This is a conversion limit; the original PDF may contain editable artwork.',
     '可整体移动、缩放或删除这个图层。':'You can move, resize or delete this layer as a whole.',
     '这一页转换后的图片数据过大，请导入较小范围，或降低内嵌图片的分辨率后重试。':'This page produces too much image data. Import a smaller section or reduce embedded image resolution.',
