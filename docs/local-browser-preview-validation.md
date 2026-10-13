@@ -22,6 +22,8 @@ The complete public application cache was installed. The local static server was
 
 Restarting the static server and reloading installed the newer application cache while retaining the synthetic project. The updated source includes explicit local calculation failure messages, offline-cache repair, font fallback information and bounded calculation timeouts.
 
+The mobile-layout fix in `d9a34ea` was also checked in the actual Windows browser at 390 × 763 CSS pixels. Before the fix, restarting left the canvas at 46 × 35 px. After adding a guide and reloading, it fitted the available workspace at 342 × 256.5 px, with the welcome card hidden. Selecting 50% zoom and widening the viewport to 430 px retained 50% and a 230.4-px canvas width. These checks used the visible controls, without injecting a replacement layout.
+
 ## Limits of this evidence
 
 The isolated Node/WASM run used a 255 MB WASM heap and approximately 763 MB process RSS after the tests. These are snapshots, not peak memory or phone measurements. The first browser render was noticeably slower than subsequent analysis; concurrent development activity and browser automation delays prevent treating that observation as a clean benchmark. In a later run of the updated browser build, locally recorded worker initialization took 11,705 ms, the first analysis operation took 4,926 ms, and repeating it took 74 ms. This is a single Windows desktop observation, not a mobile performance guarantee. Calculation timing is exposed locally to support controlled measurements.
@@ -50,6 +52,8 @@ The generated ZIP contains only the blank starter and public program resources. 
 缓存全部公共程序文件后，关闭本地静态服务器，仍能重新打开编辑器，使用 72 条合成观测生成图形、查看数据表、完成 Welch 两两比较及 Holm 校正，并把统计标注应用到图中。已下载单图 SVG。缓存升级后，也实际下载并用 Pillow 解码了单图 TIF：2880 × 2413 px、RGB、两个方向均为 600 dpi，像素内容非空。这验证了桌面浏览器的文件交付；手机的下载和分享仍未验证。
 
 重新启动静态服务后，缓存升级成功，合成工程保留。最新版增加了计算失败提示、缓存缺失修复、字体替代说明及计算超时处理。
+
+`d9a34ea` 的移动布局修复另在真实 Windows 浏览器中以 390 × 763 CSS 像素检查。修复前重启后画布只有 46 × 35 像素；修复后添加参考线并刷新，迎新卡自动收起，画布按可用区域显示为 342 × 256.5 像素。手动选择 50% 缩放，再将视口加宽到 430 像素后，仍保留 50% 和约 230.4 像素的画布宽度。检查使用界面实际控件，没有注入替代布局。
 
 ### 尚未验证
 

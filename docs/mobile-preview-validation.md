@@ -2,7 +2,7 @@
 
 English first · [中文](#中文)
 
-**Last checked: 13 October 2026.** This record distinguishes native emulator results from browser simulations and physical-device testing. Android, iPhone and iPad simulators have passed local calculations and project restoration in the runs identified below. Android also passed actual project Save/Open and phone/tablet visual restoration; the expanded iOS file and visual checks remain under verification. These are development previews, not store releases.
+**Last checked: 13 October 2026.** This record distinguishes native emulator results from browser simulations and physical-device testing. Android, iPhone and iPad passed local calculations, actual project Save/Open and visual restoration in the native simulator runs identified below. These are development previews, not store releases.
 
 - [Android runtime](#android-verified-native-runtime)
 - [Timing and visual checks](#timing-and-visual-checks)
@@ -12,11 +12,11 @@ English first · [中文](#中文)
 
 ## Android: verified native runtime
 
-[Run 38380725918](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38380725918), built from [`63712ca`](https://github.com/zhoy0409-debug/polish-sci-figures/commit/63712ca01b82bf5af9a122db34fcf9b011623211), passed both the main instrumentation test and a separate test after force-stopping the application. The environment was Android 15 / API 35, an x86_64 Google emulator, Android WebView 124, and a 412 × 866 CSS-pixel phone viewport. Tests used synthetic data in a fresh profile.
+[Run 38389019259](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38389019259), built from [`d9a34ea`](https://github.com/zhoy0409-debug/polish-sci-figures/commit/d9a34ea8606eb5feb12400c8a87501ea9730d064), passed both the main instrumentation test and a separate test after force-stopping the application. The environment was Android 15 / API 35, an x86_64 Google emulator, Android WebView 124, and a 412 × 866 CSS-pixel phone viewport. Tests used synthetic data in a fresh profile.
 
 The downloaded `android-runtime-proof.json` and `android-process-restart-proof.json` both record `passed: true`. The CI artifacts retain these reports, instrumentation logs, screenshots, a development APK and its SHA-256 checksum. Build instructions and test code are in the [Android preview](../mobile/android/).
 
-The preceding `037b425` APK omitted four nested NumPy/SciPy license files because Android's packager excluded underscore-prefixed directories. The corrected run above retained them. Its downloaded APK independently matched all **137** manifest assets by hash and length, with no extra assets. The verified development APK is **61,403,238 bytes**, SHA-256 `d66b89efbe031739500a4a618c8096acfbe7727729d2023da34e9d2a522e2d1f`.
+The downloaded APK independently matched all **137** manifest assets by hash and length, with no extra assets, including the nested NumPy/SciPy license files and the startup canvas-fit fix. The verified development APK is **61,404,126 bytes**, SHA-256 `69926aeb90c3f43be02e79752a35ae20a3383bb09bce297daa3fdf6a588eec82`.
 
 | Area | What this run verified |
 |:---|:---|
@@ -33,52 +33,52 @@ Espresso supplied the system document picker's selected URI; the file read, prov
 
 ## Timing and visual checks
 
-The latest cold analysis-plus-render sequence took **16.93 seconds**, including **7.30 seconds** of worker initialization; the render operation took **6.48 seconds**. The two-image exact-copy check took 0.52 seconds. These are one CI emulator observation, not a phone benchmark or a claim of smooth performance on low-memory devices.
+The latest cold analysis-plus-render sequence took **23.24 seconds**, including **9.98 seconds** of worker initialization; the render operation took **9.29 seconds**. The two-image exact-copy check took 0.97 seconds. These are one CI emulator observation, not a phone benchmark or a claim of smooth performance on low-memory devices.
 
-Display overrides produced **1067 × 1616** and **1707 × 1010** CSS-pixel tablet viewports. The restored guide and undo readiness were checked after reconfiguration, CSS dimensions matched native WebView bounds, and document width did not overflow. Independent review of all three screenshots confirmed the restored guide, correct system insets and no initial-shell/black-region capture. These are emulator display checks, not physical tablet gesture or performance tests.
+Display overrides produced **1067 × 1616** and **1707 × 1010** CSS-pixel tablet viewports. The restored guide and undo readiness were checked after reconfiguration, CSS dimensions matched native WebView bounds, and document width did not overflow. Independent review of all three screenshots confirmed the restored guide, correct system insets and no initial-shell/black-region capture. The phone canvas occupies the available width after restoration; the welcome card is hidden once a guide has been added. The separate force-stop test verifies restoration and undo readiness, but does not capture a new screenshot. These are emulator display checks, not physical tablet gesture or performance tests.
 
-Earlier [run 38375997392](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38375997392) passed runtime checks but captured tablet frames too early and revealed system-bar overlap. [Run 38377285404](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38377285404) at `d52bddc` showed corrected phone insets, then failed because a test read `window.StudioLibrary` instead of its lexical binding. Both capture readiness and that assertion were corrected; the latest complete run above supersedes these visual gaps. Earlier cold sequences took 59.49, 31.05 and 22.30 seconds; these separate CI observations do not establish a controlled speedup benchmark.
+Earlier runs exposed premature screenshots, system-bar overlap and an incorrect test binding; the passing current run supersedes those gaps, and timings across different CI runs are not a controlled speedup benchmark.
 
 The dedicated CI image disabled only its unresponsive Pixel Launcher package and used ADB/instrumentation to launch the editor. Application ANR dialogs were not suppressed. System animations were disabled for automation. This run therefore does not verify launcher-icon interaction or animation quality.
 
 ## iPhone and iPad: verified native runtime
 
-[Run 38375997379](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38375997379) at source commit `38587f9` passed XCTest and both native JSON reports on an **iPhone 16e simulator running iOS 18.5**, with a 390 × 763 CSS-pixel WKWebView. The downloaded `simulator-smoke.json`, `simulator-restore.json`, simulator metadata and test log confirm the following synthetic checks.
+[Run 38409552603](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38409552603), built from [`23035c3`](https://github.com/zhoy0409-debug/polish-sci-figures/commit/23035c38f83239de9588415e9551ce227152f029), passed the complete XCTest matrix and both first-launch/restart JSON reports on each device below. Tests used synthetic data and fresh simulator storage.
+
+| Simulator | Runtime | Viewport (CSS px) | Canvas after restart (CSS px) |
+|:---|:---|:---|:---|
+| iPhone 16e | iOS 18.5 | 390 × 763 | 342.0 × 256.5 |
+| iPad Air 13-inch (M3) | iOS 18.5 | 1024 × 1317 | 460.8 × 345.6 |
 
 | Area | What this run verified |
 |:---|:---|
-| Local execution | WKWebView initialized the bundled Python/WASM worker. A reachable listener on another origin received zero requests; the bundled-asset server rejected HTTP POST with status 405. |
-| Statistics and drawing | Welch and tied Mann–Whitney calculations matched their reference results; Matplotlib generated a 400 × 300 SVG containing editable text. |
-| Image screening | One synthetic exact-copy pair produced one match and PNG evidence. This test does not assess transformed/cropped-match sensitivity. |
-| Native export cancellation | The bridge streamed 600,001 bytes and opened the real iOS Files export dialog. XCTest tapped Cancel; JavaScript received cancellation. The report explicitly records `fileSaveSuccessTested: false`. |
-| Editor persistence | An actual alignment-guide edit was autosaved. After terminating and relaunching the app, the same loopback origin, project, guide and undo history were restored. |
-| Native safeguards | All ten checks passed, covering path/filename confinement, remote navigation rejection, stable port, ordered/complete export chunks, byte integrity and temporary-file cleanup. |
+| Local execution | WKWebView ran the bundled Python/WASM worker. A reachable listener on another origin received zero requests; the bundled-asset server rejected HTTP POST. |
+| Statistics and drawing | Welch and tied Mann–Whitney calculations matched reference results; Matplotlib generated an editable 400 × 300 SVG. |
+| Real Files Save/Open | XCTest explicitly selected On My iPhone/iPad. The editor saved its 1,520-byte synthetic project through Files, read the destination back with native file coordination, then reopened it through the real browser file input. Filename, byte count and SHA-256 matched. |
+| Cancellation and confirmation | A 600,001-byte streamed export was cancelled. Both cancellation and successful export replied only after the native picker closed. Actual native Confirm restored the saved guide and removed the later edit. |
+| Image screening | One synthetic exact-copy pair produced one match and PNG evidence; this checks the mobile execution path, not transformed/cropped-match sensitivity. |
+| Process restart and layout | Relaunch restored the same storage origin, guide and undo history. Four stable layout samples verified the canvas Fit size; the final and restarted screenshots show the guide and mobile controls with the welcome card hidden. |
+| Native safeguards | All ten checks passed, including path/filename confinement, remote navigation rejection, stable port, complete ordered chunks, byte integrity and temporary-file cleanup. |
 
-The first smoke script took 31.62 seconds including the Files dialog; worker initialization was approximately 12.99 seconds. These are simulator observations. They are not comparable to Android's analysis-plus-render timing above, which measures a different sequence.
+Files navigation is checked for actual readiness, with a 45-second maximum rather than a fixed delay. An earlier iPhone run showed that the provider could finish loading after the earlier 10-second test window. This readiness correction does not establish fast file-picker performance on physical devices. The product also fixes premature export completion and recalculates Fit after mobile layout initialization, while preserving manual zoom.
 
-The iPad job in [run 38377285440](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38377285440), at [`d52bddc`](https://github.com/zhoy0409-debug/polish-sci-figures/commit/d52bddc2be4bace670fc1fdf0a06ad250fbce244), also passed both native reports on an **iPad Air 13-inch (M3), iOS 18.5 simulator**, with a 1024 × 1317 CSS-pixel viewport. It covered the same nine first-run checks and ten native safeguards, plus process-restart restoration. Initialization took 11.85 seconds and the first smoke script took 38.73 seconds. The restored-project screenshot nevertheless showed an initial empty shell rather than the guide verified in the DOM. **iPad visual restoration is not yet verified**; the passing calculation and persistence reports do not replace this visual check.
-
-The iPhone job in that same matrix did not pass: it reached the real Files picker, but the selected nested folder exposed Browse/Save rather than the Cancel button expected by the test. The watchdog report records this export-cancellation stage. This result does not invalidate the earlier iPhone pass, nor does it establish a passing newer run.
-
-The iPhone smoke report in [run 38379434925](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38379434925), at `037b425`, subsequently passed a real local Files save and file-input reimport. The 1,520-byte project matched its saved SHA-256; accepting the native confirmation restored the original guide and removed the later edit. All twelve smoke checks passed. XCTest then failed its Canvas/Pan accessibility lookup, so that run did not reach the restart test and is not a complete visual-validation pass. The iPad file round-trip and the complete new matrix still await a passing rerun.
-
-The earlier [run 38374616690](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38374616690) failed with `WKErrorDomain` error 6 while compiling local-only content rules; the corrected expression passed in the later runs above. See [iOS sources and reproduction steps](../mobile/ios/). A simulator `.app` archive is not an installable iPhone/iPad IPA or a TestFlight build.
+Confirmation-dialog evidence uses the public screen screenshot API so capturing evidence does not wait on the JavaScript context paused by the dialog. The reports, native screenshots and test logs are retained with the run. See [iOS sources and reproduction steps](../mobile/ios/). A simulator app archive is not an installable iPhone/iPad IPA or a TestFlight build.
 
 ## Remaining device validation
 
-Physical Android phones/tablets and iPhones/iPads still require checks for touch editing, soft keyboards, real file providers, background/resume, memory pressure, warm and cold performance, and installation/update behavior. iOS expanded file and visual checks remain pending. Mobile editable-PDF import remains unavailable in the shared browser engine. [Desktop-browser/WASM validation](local-browser-preview-validation.md) and [Mac validation](macos-preview-validation.md) are separate evidence records.
+Physical Android phones/tablets and iPhones/iPads still require checks for touch editing, soft keyboards, real file providers, background/resume, memory pressure, warm and cold performance, and installation/update behavior. Mobile editable-PDF import remains unavailable in the shared browser engine. [Desktop-browser/WASM validation](local-browser-preview-validation.md) and [Mac validation](macos-preview-validation.md) are separate evidence records.
 
 ## 中文
 
-**最后核查：2026 年 10 月 13 日。** 本记录区分原生模拟器结果、浏览器模拟和真机测试。Android、iPhone 和 iPad 模拟器均已在下述指定运行中通过本地计算和工程恢复。Android 还通过真实工程保存／打开及手机、平板画面恢复；iOS 新增文件和视觉检查仍在验证。这里是开发预览，不是应用商店正式发行。
+**最后核查：2026 年 10 月 13 日。** 本记录区分原生模拟器结果、浏览器模拟和真机测试。Android、iPhone 和 iPad 均在下述原生模拟器运行中通过本地计算、真实工程保存／打开与画面恢复。这里是开发预览，不是应用商店正式发行。
 
 ### Android 已验证的原生流程
 
-[`63712ca` 对应的运行 38380725918](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38380725918) 通过了主运行测试，以及强制停止应用后的独立重启测试。环境为 Android 15／API 35、x86_64 Google 模拟器、WebView 124，手机视口为 412 × 866 CSS 像素；使用全新测试存储和合成数据。
+[`d9a34ea` 对应的运行 38389019259](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38389019259) 通过了主运行测试，以及强制停止应用后的独立重启测试。环境为 Android 15／API 35、x86_64 Google 模拟器、WebView 124，手机视口为 412 × 866 CSS 像素；使用全新测试存储和合成数据。
 
 下载的两份报告 `android-runtime-proof.json` 和 `android-process-restart-proof.json` 均记录通过。CI 保留报告、日志、截图、开发 APK 及 SHA-256 校验文件。[Android 目录](../mobile/android/) 提供构建说明和测试代码。
 
-此前 `037b425` 的 APK 因 Android 打包器排除以下划线开头的目录而遗漏四份 NumPy／SciPy 嵌套许可证。上述修正版已补齐；下载后的 APK 独立核对了全部 **137** 个清单资源，哈希和长度一致，没有额外资源。已验证开发 APK 为 **61,403,238 字节**，SHA-256 为 `d66b89efbe031739500a4a618c8096acfbe7727729d2023da34e9d2a522e2d1f`。
+下载后的 APK 独立核对了全部 **137** 个清单资源，哈希和长度一致，没有额外资源，包含嵌套的 NumPy／SciPy 许可证和启动画布适配修复。已验证开发 APK 为 **61,404,126 字节**，SHA-256 为 `69926aeb90c3f43be02e79752a35ae20a3383bb09bce297daa3fdf6a588eec82`。
 
 | 范围 | 本次实际验证内容 |
 |:---|:---|
@@ -95,37 +95,32 @@ Physical Android phones/tablets and iPhones/iPads still require checks for touch
 
 ### 耗时与界面检查
 
-最新一次首次分析及出图合计 **16.93 秒**，其中计算线程初始化 **7.30 秒**，出图操作 **6.48 秒**；两张相同图片的查重为 0.52 秒。这是一次 CI 模拟器观察，不能作为真机性能基准，也不能据此宣称低配置设备已经流畅。
+最新一次首次分析及出图合计 **23.24 秒**，其中计算线程初始化 **9.98 秒**，出图操作 **9.29 秒**；两张相同图片的查重为 0.97 秒。这是一次 CI 模拟器观察，不能作为真机性能基准，也不能据此宣称低配置设备已经流畅。
 
-模拟器显示设置产生了 **1067 × 1616** 和 **1707 × 1010** CSS 像素的平板视口。显示调整后检查了参考线恢复和可撤销状态，CSS 尺寸与原生 WebView 边界匹配，文档没有横向溢出。独立检查三张截图均能看到已恢复的参考线，系统边距正确，没有先前初始界面或黑色区域的抓拍问题。这属于模拟器显示检查，不代表真实平板触控和性能已经验证。
+模拟器显示设置产生了 **1067 × 1616** 和 **1707 × 1010** CSS 像素的平板视口。显示调整后检查了参考线恢复和可撤销状态，CSS 尺寸与原生 WebView 边界匹配，文档没有横向溢出。独立检查三张截图均能看到已恢复的参考线，系统边距正确，没有先前初始界面或黑色区域的抓拍问题。恢复后的手机画布正常占用可用宽度，添加参考线后不再显示迎新卡。另一次强制停止进程后的测试核对恢复及可撤销状态，但没有另行截图。这属于模拟器显示检查，不代表真实平板触控和性能已经验证。
 
-此前[运行 38375997392](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38375997392) 通过运行检查，但平板截图过早并暴露系统图标遮挡；`d52bddc` 的[运行 38377285404](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38377285404) 已修正手机边距，却因测试误读 `window.StudioLibrary` 而失败。抓拍等待及变量判断修正后，最新完整运行已补齐这些视觉缺口。此前冷计算分别为 59.49、31.05 和 22.30 秒；不同 CI 运行的观察不能当作受控提速基准。
+此前运行暴露的截图过早、系统图标遮挡和测试变量误读问题，已由本轮完整通过记录覆盖；不同 CI 运行的耗时不能当作受控提速基准。
 
 专用 CI 镜像只停用了无响应的 Pixel Launcher 系统桌面包，通过 ADB 和测试框架启动编辑器，没有屏蔽应用自身的无响应提示。为便于自动化，系统动画已关闭；本次不验证桌面图标启动或动画流畅度。
 
 ### iPhone 与 iPad 已验证的原生流程
 
-源码提交 `38587f9` 的[运行 38375997379](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38375997379) 在 **iOS 18.5 的 iPhone 16e 模拟器**中通过 XCTest 和两份原生报告，WKWebView 视口为 390 × 763 CSS 像素。已下载并核对首次运行、进程重启报告、模拟器信息及测试日志。
+源码 [`23035c3`](https://github.com/zhoy0409-debug/polish-sci-figures/commit/23035c38f83239de9588415e9551ce227152f029) 对应的[运行 38409552603](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38409552603) 通过完整 XCTest 双设备检查，两个设备首次运行与进程重启报告均通过。使用合成数据和全新模拟器存储；具体型号、系统、视口及重启后画布尺寸见上方表格。
 
 | 范围 | 本次实际验证内容 |
 |:---|:---|
-| 本地执行 | WKWebView 成功启动内置 Python/WASM 线程；另一个真实可访问来源的监听器收到请求数为零，本机资源服务拒绝 HTTP POST 并返回 405。 |
-| 统计与出图 | Welch 和存在并列值的 Mann–Whitney 结果匹配参考值；生成 400 × 300、包含可编辑文本的 SVG。 |
-| 图片查重 | 一组合成的完全相同图片产生一个匹配及 PNG 证据；本次不评估变换或局部裁剪匹配的检出能力。 |
-| 原生导出取消 | 传输 600,001 字节后打开真实 iOS“文件”导出窗口，XCTest 点击取消，JavaScript 正确收到取消结果。报告明确记录尚未验证成功保存文件。 |
-| 工程恢复 | 真实参考线编辑自动保存，终止应用进程后重新启动，同一本地来源、工程、参考线与撤销记录均恢复。 |
-| 原生边界 | 十项自检通过，覆盖路径和文件名约束、外部跳转拒绝、固定端口、导出块顺序及完整性、字节一致和临时文件清理。 |
+| 本地执行 | WKWebView 运行内置 Python/WASM；另一个可访问来源的监听器收到零请求，内置资源服务拒绝 HTTP POST。 |
+| 统计与出图 | Welch 与含并列秩的 Mann–Whitney 结果匹配参考值，Matplotlib 生成含可编辑文字的 400 × 300 SVG。 |
+| 真实文件保存／打开 | 测试明确选择“On My iPhone／iPad”本机位置，通过系统 Files 保存 1,520 字节合成工程并协调读回，再经真实网页文件输入重新打开；文件名、字节数与 SHA-256 一致。 |
+| 取消与确认 | 600,001 字节分块导出真实取消；取消和保存均等原生文件窗口完全关闭后才回复。点击原生确认按钮后恢复保存的参考线，并移除后续修改。 |
+| 图片查重 | 两张完全相同的合成图片得到一个匹配及 PNG 证据，验证移动执行路径，不代表变换或局部裁剪检出能力。 |
+| 重启与布局 | 结束进程再启动后保留同一存储来源、参考线与撤销记录；连续四次稳定测量验证适合窗口的尺寸，完成及重启截图均显示参考线与移动控件，迎新卡已经收起。 |
+| 原生边界 | 10 项检查均通过，覆盖路径与文件名限制、外部导航拒绝、稳定端口、完整有序分块、字节一致及临时文件清理。 |
 
-首次检查脚本合计 31.62 秒，包含系统文件窗口操作；计算线程初始化约 12.99 秒。这是模拟器观察，与上方 Android 分析及出图的计时范围不同，不能直接比较性能。
+文件导航按实际控件就绪继续，最多等待 45 秒，没有固定停顿。此前 iPhone 录像显示文件窗口会在旧测试的 10 秒窗口之后才加载完成；修正就绪检查不等于已经验证真机文件选择速度。程序同时修复了过早报告导出完成的问题，并在移动布局初始化后重新计算适合窗口的比例，保留用户手动缩放。
 
-源码 `d52bddc` 的[运行 38377285440](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38377285440) 中，**iPad Air 13 英寸（M3）／iOS 18.5 模拟器**也通过两份原生报告，视口为 1024 × 1317 CSS 像素，覆盖相同的九项首次运行检查、十项原生自检及进程重启恢复。初始化 11.85 秒，首次脚本合计 38.73 秒。但恢复后的截图仍显示初始空白界面，没有显示已由 DOM 检查确认的参考线。因此，**iPad 画面恢复尚未验证通过**，计算和存储报告不能代替视觉检查。
-
-同一矩阵的 iPhone 任务未通过：应用已到达真实“文件”窗口，但所处下级目录显示“浏览／保存”，没有测试预期的“取消”按钮；看门狗记录停留在导出取消阶段。这不推翻此前的 iPhone 通过记录，也不能作为较新版本已经通过的证据。
-
-随后 `037b425` 的[运行 38379434925](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38379434925) 中，iPhone 报告通过真实本地“文件”保存和文件输入重新导入。1,520 字节工程的 SHA-256 与保存文件一致，接受原生确认后恢复原参考线并移除后续编辑，十二项首次运行检查全部通过。但之后 XCTest 查找 Canvas／Pan 无障碍控件失败，未进入重启测试，不能算作完整视觉验证通过。iPad 文件往返及整套新矩阵仍待重跑通过。
-
-此前[运行 38374616690](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38374616690) 曾因本地访问规则编译出现 `WKErrorDomain` 错误 6；修正后的规则已在上述后续运行通过。[iOS 目录](../mobile/ios/) 提供源码和复现步骤；模拟器 `.app` 压缩包不是可安装到真实 iPhone／iPad 的 IPA，也不是 TestFlight 版本。
+确认窗口的证据通过系统屏幕截图接口获取，避免抓图等待已被确认窗口暂停的 JavaScript 上下文。该运行保留报告、原生截图和日志；[iOS 目录](../mobile/ios/)提供源码及复现方法。模拟器应用不能作为手机可安装的 IPA 或 TestFlight 包。
 
 ### 接下来需要的验证
 
-仍需在 Android 手机／平板及 iPhone／iPad 真机上检查触控编辑、软键盘、实际文件提供商、后台恢复、内存压力、冷暖启动耗时及安装升级。iOS 新增文件及视觉检查仍待完成。移动计算引擎暂不支持可编辑 PDF 导入；[桌面浏览器／WASM](local-browser-preview-validation.md) 与 [Mac](macos-preview-validation.md) 的验证记录另行保存。
+仍需在 Android 手机／平板及 iPhone／iPad 真机上检查触控编辑、软键盘、实际文件提供商、后台恢复、内存压力、冷暖启动耗时及安装升级。移动计算引擎暂不支持可编辑 PDF 导入；[桌面浏览器／WASM](local-browser-preview-validation.md) 与 [Mac](macos-preview-validation.md) 的验证记录另行保存。
