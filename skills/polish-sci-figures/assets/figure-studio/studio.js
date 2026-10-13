@@ -1,6 +1,8 @@
 /* Figure Studio: original assets + reversible style differences. No network or libraries. */
 'use strict';
 const copy = x => JSON.parse(JSON.stringify(x));
+const PROJECT_FILE_LIMIT = 200000000;
+function projectFileBlob(payload){const blob=new Blob([JSON.stringify(payload)],{type:'application/json'});if(blob.size>PROJECT_FILE_LIMIT)throw Error('工程超过 200 MB，请拆分工程后保存。');return blob;}
 class History {
   constructor(state) { this.states = [copy(state)]; this.index = 0; }
   get current() { return this.states[this.index]; }
@@ -844,7 +846,7 @@ if (typeof document !== 'undefined') (async () => {
     if(repaint)renderCanvas();
   }
   const state = () => history.current;
-  const saveSignature = () => JSON.stringify({state:state(),checkpoints,dataDrafts});
+  const saveSignature = () => JSON.stringify({state:state(),checkpoints,dataDrafts,imageReview:project?.imageDuplicateReview?{createdAt:project.imageDuplicateReview.createdAt,updatedAt:project.imageDuplicateReview.updatedAt,reviews:project.imageDuplicateReview.reviews}:null});
   const panel = id => project.panels.find(p => p.id === id);
   const variant = id => panel(id).variants[state().panels[id].variant];
   const say = text => { message = text; $('status').textContent = T(text); };
@@ -988,6 +990,7 @@ if (typeof document !== 'undefined') (async () => {
       }
     }
     validateState(p.initialState, p);
+    if(p.imageDuplicateReview!=null){try{StudioDuplicateReview.validate(p.imageDuplicateReview,p.id);}catch{throw Error(T('查重复核记录无效'));}}
   }
   function baseSvg(id, vi) {
     const key = id + '/' + vi;
@@ -1691,7 +1694,7 @@ if (typeof document !== 'undefined') (async () => {
     if (exportMode) for (const el of [root,...root.querySelectorAll('*')]) for (const a of [...el.attributes]) if (a.name.startsWith('data-') || a.name==='class') el.removeAttributeNode(a);
     return root;
   }
-  let autosaveQueue=Promise.resolve(),autosaveTicket=0;
+  let autosaveQueue=Promise.resolve(),autosaveTicket=0,duplicateReviewSaveTimer=null;
   function persist() {
     const key='figure-studio:'+project.id;
     try{const previous=localStorage.getItem(key);if(knownCache!==undefined&&previous!==knownCache){$('autosaveStatus').textContent=T('其他窗口已更新 · 请先下载当前工程');localSavedCurrent='';return false;}}catch{}
@@ -3459,10 +3462,10 @@ if (typeof document !== 'undefined') (async () => {
   $('showArchived').onchange=guard(renderLibrary);
   $('restorePreset').onclick=()=>{const preset=presetRecords.find(p=>p.id===$('presetChoice').value);if(!preset)return;if(preset.sourceId!==project.id){$('libraryStatus').textContent=T('完整恢复仅适用于该预设的原工程；其他工程请粘贴可迁移样式。');return;}commit(copy(preset.sourceState),T('已恢复成稿全部参数'));};
   $('pasteCurrent').onclick=guard(async()=>{const preset=presetRecords.find(p=>p.id===$('presetChoice').value);if(preset)pastePreset(preset);});
-  $('exportLibrary').onclick=guard(async()=>{await collectFigure();await renderLibrary();download(new Blob([JSON.stringify({format:'figure-studio-library-v1',figures:libraryRecords,presets:presetRecords})],{type:'application/json'}),'figure-studio-library.json');});
+  $('exportLibrary').onclick=guard(async()=>{await collectFigure();await renderLibrary();download(projectFileBlob({format:'figure-studio-library-v1',figures:libraryRecords,presets:presetRecords}),'figure-studio-library.json');});
   $('importLibrary').onclick=()=>$('libraryFiles').click();
   $('libraryFiles').onchange=guard(async()=>{
-    const records=[],presets=[];for(const file of $('libraryFiles').files){if(file.size>100000000)throw Error(T('工程超过 100 MB'));const input=JSON.parse(await file.text());if(input.format==='figure-studio-library-v1'){if(!Array.isArray(input.figures)||!Array.isArray(input.presets))throw Error(T('该工程需要重新导入'));records.push(...input.figures);presets.push(...input.presets);}else{validatePayload(input);records.push({id:input.project.id,name:input.project.title||input.project.id,updatedAt:new Date().toISOString(),payload:input});}}
+    const records=[],presets=[];for(const file of $('libraryFiles').files){if(file.size>PROJECT_FILE_LIMIT)throw Error(T('工程超过 200 MB，请拆分工程后保存。'));const input=JSON.parse(await file.text());if(input.format==='figure-studio-library-v1'){if(!Array.isArray(input.figures)||!Array.isArray(input.presets))throw Error(T('该工程需要重新导入'));records.push(...input.figures);presets.push(...input.presets);}else{validatePayload(input);records.push({id:input.project.id,name:input.project.title||input.project.id,updatedAt:new Date().toISOString(),payload:input});}}
     for(const r of records){validatePayload(r.payload);if(r.id!==r.payload.project.id||typeof r.name!=='string'||typeof r.updatedAt!=='string')throw Error(T('该工程需要重新导入'));}
     for(const p of presets){const source=records.find(r=>r.id===p.sourceId)||libraryRecords.find(r=>r.id===p.sourceId);if(!source||typeof p.id!=='string'||typeof p.name!=='string'||!Array.isArray(p.profile))throw Error(T('该工程需要重新导入'));validateState(p.sourceState,source.payload.project);}
     // Imports with existing IDs retain existing local edits; new figures are added.
@@ -3472,10 +3475,10 @@ if (typeof document !== 'undefined') (async () => {
   });
   StudioLibrary.list('figures').then(records=>records.forEach(r=>libraryIds.add(r.id))).catch(()=>{});
 
-  $('save').onclick=()=>{download(new Blob([JSON.stringify(currentPayload(),null,2)],{type:'application/json'}),'figure-studio-project.json');savedCurrent=saveSignature();learnPreferences();say(T('已下载工程；包含原图、当前修改和版本。'));};
+  $('save').onclick=guard(()=>{download(projectFileBlob(currentPayload()),'figure-studio-project.json');savedCurrent=saveSignature();learnPreferences();say(T('已下载工程；包含原图、当前修改和版本。'));});
   $('load').onclick=()=>$('projectFile').click();
   $('projectFile').onchange=guard(async()=>{
-    const file=$('projectFile').files[0];if(!file)return;if(file.size>100000000)throw Error(T('工程超过 100 MB'));
+    const file=$('projectFile').files[0];if(!file)return;if(file.size>PROJECT_FILE_LIMIT)throw Error(T('工程超过 200 MB，请拆分工程后保存。'));
     const payload=JSON.parse(await file.text());validateProject(payload.project);validateState(payload.state,payload.project);
     const restoredHistory=History.restore(payload.history,payload.project,payload.state);
     if(!Array.isArray(payload.checkpoints)||payload.checkpoints.length>20)throw Error(T('版本无效'));
@@ -3596,17 +3599,36 @@ if (typeof document !== 'undefined') (async () => {
     migrateLabelHistory();$('scope').value='panel';render();if(message)say(message);
     if(typeof StudioDuplicateCheck!=='undefined')duplicateCheck=StudioDuplicateCheck.init({
       engine:localEngine,fetch:engineFetch,download,say,
+      projectId:()=>project.id,
+      getReviewRecord:()=>project.imageDuplicateReview||null,
+      saveReviewRecord:record=>{
+        if(record?.projectId!==project.id)return false;
+        StudioDuplicateReview.validate(record,project.id);
+        // Review records are immutable and stored once, outside plot undo states.
+        const owner=project,previous=project.imageDuplicateReview;project.imageDuplicateReview=record;clearTimeout(duplicateReviewSaveTimer);
+        if(previous?.result!==record.result)return persist();
+        // Notes update the downloadable project immediately; coalesce disk writes
+        // while typing so a large image report cannot stall every keystroke.
+        $('autosaveStatus').textContent=T('正在保存…');
+        duplicateReviewSaveTimer=setTimeout(()=>{if(project===owner)persist();},300);return true;
+      },
+      resolveRefs:refs=>StudioDuplicateReview.resolve(refs,StudioDuplicateCheck.collect(original?composite(false):$('artboard'),{variant:id=>state().panels[id].variant})),
       snapshot:()=>({projectId:project.id,state:state()}),isSnapshot:value=>!!value&&value.projectId===project.id&&value.state===state(),
       collect:scope=>StudioDuplicateCheck.collect($('artboard'),{scope,groups:selectionGroups(),panels:panelSelection,label:id=>StudioI18n.panelName(panel(id)),variant:id=>state().panels[id].variant}),
       locate:refs=>{
+        refs=StudioDuplicateReview.resolve(refs,StudioDuplicateCheck.collect(original?composite(false):$('artboard'),{variant:id=>state().panels[id].variant}));if(!refs)return false;
         const groups=[];
         for(const ref of refs){if(!state().panels[ref.panelId]||state().panels[ref.panelId].variant!==ref.vi||!ref.key)return false;
           const host=[...$('artboard').querySelectorAll('svg[data-panel]')].find(el=>el.dataset.panel===ref.panelId),target=host&&[...host.querySelectorAll('[data-key]')].find(el=>el.dataset.key===ref.key);if(!target)return false;
           let group=groups.find(item=>item.id===ref.panelId);if(!group){group={id:ref.panelId,vi:ref.vi,keys:[]};groups.push(group);}if(!group.keys.includes(ref.key))group.keys.push(ref.key);
         }
         if(!groups.length)return false;original=false;layoutMode=false;setElementSelection(groups);activePane='detail';$('scope').value='element';render();
-        let first=null;for(const ref of refs){const host=[...$('artboard').querySelectorAll('svg[data-panel]')].find(el=>el.dataset.panel===ref.panelId),target=host&&[...host.querySelectorAll('[data-key]')].find(el=>el.dataset.key===ref.key);if(target){target.classList.add('duplicate-located');first||=target;}}
-        first?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'});return true;
+        const targets=[];for(const ref of refs){const host=[...$('artboard').querySelectorAll('svg[data-panel]')].find(el=>el.dataset.panel===ref.panelId),target=host&&[...host.querySelectorAll('[data-key]')].find(el=>el.dataset.key===ref.key);if(target){target.classList.add('duplicate-located');targets.push(target);}}
+        // Fit the union, so both matched sources remain visible even in distant cells.
+        const viewport=$('viewport'),area=StudioDuplicateReview.bounds(targets.map(el=>el.getBoundingClientRect()));
+        if(area&&zoomView){cancelQueuedZoom();const factor=Math.min(Math.max(1,viewport.clientWidth-72)/area.width,Math.max(1,viewport.clientHeight-72)/area.height);applyPreviewZoom(Math.min(4,zoomView.zoom*factor),{x:area.left+area.width/2,y:area.top+area.height/2});
+          const after=StudioDuplicateReview.bounds(targets.map(el=>el.getBoundingClientRect())),box=viewport.getBoundingClientRect();if(after){viewport.scrollLeft+=after.left+after.width/2-box.left-viewport.clientLeft-viewport.clientWidth/2;viewport.scrollTop+=after.top+after.height/2-box.top-viewport.clientTop-viewport.clientHeight/2;}
+        }return true;
       }
     });
     persist();

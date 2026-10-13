@@ -32,7 +32,7 @@ The original scientific figure skills remain at the heart of **polish-sci-figure
 - **Prepare scientific images.** Process microscopy, fluorescence, histology, pathology, and electron-microscopy images in batches. Apply a consistent crop and display policy, match panel dimensions, and add scale bars from supplied calibration. Preserve the originals and record the processing steps.
 - **Refine existing figures and assemble panels.** Work from plotting source or editable artwork to unify fonts, colors, scientific notation, and physical canvas sizes. Align axes and panel boundaries, balance whitespace, and adapt the composition to a manuscript, poster, or presentation while preserving the reported results.
 - **Check the final figure and keep its source.** Combine font, SVG editability, and canvas checks with visual review at the intended publication size for clipping, overlap, and readability. Source workflows deliver SVG/PDF/PNG, with plotting code, source data, and relevant analysis or image-processing records.
-- **Catch accidentally reused images.** Screen images in a figure or a local batch for duplicates and suspected overlap after rotation, flipping, resizing, or cropping. Review matching evidence side by side, locate the images, and save a report. [Image duplicate check](docs/image-duplicate-check.md).
+- **Catch accidentally reused images.** Screen a figure or local batch for duplicates and suspected overlap. Zoom into matching details, compare an aligned overlay, locate the images and save review decisions with your project or report. [Image duplicate check](docs/image-duplicate-check.md).
 
 The three skills cover [data plotting](skills/make-sci-data-figures/SKILL.md), [scientific image preparation](skills/standardize-sci-images/SKILL.md), and [figure refinement and quality checks](skills/polish-sci-figures/SKILL.md). [Use them with AI](#work-with-ai) or follow the [command-line guide](README.en.md#ai-and-command-line-workflows).
 
@@ -97,9 +97,9 @@ Choose the way you prefer to work. Both paths belong to the same polish-sci-figu
 
 ### Open Figure Studio
 
-[Download the Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.4/polish-sci-figures-Studio-0.1.4-Setup-x64.exe), install it, and open the shortcut. Choose a template, replace its example data, then edit and export in your browser. Windows 10/11 x64; the runtime is included, with no separate Python setup, Codex, account, or API key required.
+[Download the Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-Studio-0.1.5-Setup-x64.exe), install it, and open the shortcut. Choose a template, replace its example data, then edit and export in your browser. Windows 10/11 x64; the runtime is included, with no separate Python setup, Codex, account, or API key required.
 
-[Quick start](desktop/QUICKSTART.en.md) · [Portable edition](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.4/polish-sci-figures-Studio-0.1.4-Portable-x64.zip)
+[Quick start](desktop/QUICKSTART.en.md) · [Portable edition](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-Studio-0.1.5-Portable-x64.zip)
 
 ### Work with AI
 
@@ -115,11 +115,11 @@ For scientific images or existing figures, everyday requests work too:
 
 The suite covers plotting and analysis, calibrated image preparation, and final figure refinement through three cooperating skills. You can continue adjusting the result in Figure Studio without another AI call. Host requirements, installation steps, and actual testing coverage are listed in the platform guide.
 
-[Codex / CLI setup](README.en.md#ai-and-command-line-workflows) · [Claude upload package](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.4/polish-sci-figures-v1.4.4-skill.zip)
+[Codex / CLI setup](README.en.md#ai-and-command-line-workflows) · [Claude upload package](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-v1.4.5-skill.zip)
 
 ## Guides and project
 
-[Product guide](README.en.md) · [Latest improvements](docs/release-v1.4.4.md) · [Validation record](docs/figure-studio-validation.md) · [Contributing](CONTRIBUTING.md)
+[Product guide](README.en.md) · [Latest improvements](docs/release-v1.4.5.md) · [Validation record](docs/figure-studio-validation.md) · [Contributing](CONTRIBUTING.md)
 
 Official downloads and updates come from [this repository's Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases). The project is available under the [MIT License](LICENSE); citation details are in [CITATION.cff](CITATION.cff).
 
@@ -147,7 +147,7 @@ Official downloads and updates come from [this repository's Releases](https://gi
 - **批量规范科研图像。** 处理显微、荧光、组织学、病理和电镜图像，统一裁剪与显示设置、匹配小图尺寸，并根据提供的校准信息添加比例尺。原始文件保留，处理过程有记录可查。
 - **精修已有图形并完成组图。** 从绘图源码或可编辑图形出发，统一字体、配色、科学符号和实际画布尺寸；对齐坐标轴与小图边界、调整留白，适配论文、海报或汇报版面，同时保留已有结果。
 - **检查终稿并保留可复现材料。** 结合字体、SVG 可编辑性和画布检查，在实际发表尺寸下查看裁切、重叠及可读性。源码工作流交付 SVG/PDF/PNG，并保留绘图代码、源数据及相应的分析或图像处理记录。
-- **找出可能放重的图片。** 检查组图或本地图片批次中的重复图像，以及旋转、翻转、缩放或裁剪后的疑似重叠；并排查看匹配证据、定位图片，并保存检查报告。查看[图片查重指南](docs/image-duplicate-check.md#中文)。
+- **找出可能放重的图片。** 检查组图或本地批次中的重复图像和疑似重叠，放大匹配细节、对齐叠加比较、定位原图，并将复核判断随工程或报告保存。查看[图片查重指南](docs/image-duplicate-check.md#中文)。
 
 三个技能分别负责[数据作图](skills/make-sci-data-figures/SKILL.md)、[科学图像处理](skills/standardize-sci-images/SKILL.md)和[图形精修与质检](skills/polish-sci-figures/SKILL.md)。可以[用日常语言交给 AI](#开始使用)，也可以查看[命令行指南](README.zh-CN.md#ai-与命令行工作流)。
 
@@ -191,9 +191,9 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 
 按自己的习惯选择入口，两种方式都属于同一套 polish-sci-figures 产品。
 
-**直接打开 Figure Studio。** [下载 Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.4/polish-sci-figures-Studio-0.1.4-Setup-x64.exe)，安装后打开快捷方式。选模板、换数据，在浏览器中完成编辑和导出。支持 Windows 10/11 x64，运行环境已包含，无需单独配置 Python、打开 Codex、注册账号或填写 API 密钥。
+**直接打开 Figure Studio。** [下载 Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-Studio-0.1.5-Setup-x64.exe)，安装后打开快捷方式。选模板、换数据，在浏览器中完成编辑和导出。支持 Windows 10/11 x64，运行环境已包含，无需单独配置 Python、打开 Codex、注册账号或填写 API 密钥。
 
-[快速入门](desktop/QUICKSTART.zh-CN.md) · [便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.4/polish-sci-figures-Studio-0.1.4-Portable-x64.zip)
+[快速入门](desktop/QUICKSTART.zh-CN.md) · [便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-Studio-0.1.5-Portable-x64.zip)
 
 **让 AI 协助作图。** 在 **Codex**、**Claude** 或其他兼容环境中，按[平台指南](docs/platform-installation.md)安装并选用技能，附上数据，用日常语言描述需求即可：
 
@@ -207,11 +207,11 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 
 三个配套技能分别负责数据作图与分析、带校准的图像处理，以及最终精修和组图。生成后可以直接在 Figure Studio 中继续调整，无需每次修改都重新请求 AI。宿主要求、安装步骤及实际测试范围见平台指南。
 
-[Codex / 命令行安装](README.zh-CN.md#ai-与命令行工作流) · [Claude 上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.4/polish-sci-figures-v1.4.4-skill.zip)
+[Codex / 命令行安装](README.zh-CN.md#ai-与命令行工作流) · [Claude 上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-v1.4.5-skill.zip)
 
 ### 指南与项目
 
-[完整功能指南](README.zh-CN.md) · [本版更新](docs/release-v1.4.4.md#图片查重) · [验证记录](docs/figure-studio-validation.md) · [参与贡献](CONTRIBUTING.md)
+[完整功能指南](README.zh-CN.md) · [本版更新](docs/release-v1.4.5.md#图片查重交互复核) · [验证记录](docs/figure-studio-validation.md) · [参与贡献](CONTRIBUTING.md)
 
 官方下载与更新统一通过[本仓库的 Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases)提供。项目采用 [MIT 许可](LICENSE)，引用信息见 [CITATION.cff](CITATION.cff)。
 

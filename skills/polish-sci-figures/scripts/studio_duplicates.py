@@ -27,6 +27,7 @@ MAX_SIDE = 900
 MAX_FEATURES = 1400
 MAX_EVIDENCE = 120
 MAX_EVIDENCE_BYTES = 15_000_000
+MAX_REVIEW_PREVIEW_BYTES = 12_000_000
 MAX_OPENCV_THREADS = 2
 _DATA_URL = re.compile(r'^data:(image/(?:png|jpeg|jpg|webp|gif|tiff|bmp|x-ms-bmp));base64,', re.I)
 _FORMATS = {'PNG', 'JPEG', 'WEBP', 'GIF', 'TIFF', 'BMP'}
@@ -390,6 +391,10 @@ def scan_images(images, progress=None, cancelled=None):
     ``coverageA/B`` are convex-hull coverage of supporting features, not a
     probability. ``contentAgreement`` is normalized correlation in that hull.
     Transform coordinates refer to each image's ``analysisWidth/Height``.
+    ``reviewPreview`` is an RGB PNG in those same analysis coordinates, not the
+    native-resolution scientific image. High-depth display mappings remain in
+    ``intensityMapping``. Its 12 MB total budget counts every serialized image
+    entry, including duplicates; omitted previews retain the thumbnail fallback.
     Limits bound a local worker's memory; the caller should run it off the UI
     thread. No files are written and no network operations are performed.
     """
@@ -399,6 +404,7 @@ def scan_images(images, progress=None, cancelled=None):
     sift = cv.SIFT_create(nfeatures=MAX_FEATURES, contrastThreshold=.025, edgeThreshold=12)
     prepared = []
     by_digest = {}
+    review_preview_bytes = review_preview_omitted = 0
     _emit(progress, 'images', 0, len(images))
     for index, record in enumerate(images):
         _check_cancel(cancelled)
@@ -412,6 +418,25 @@ def scan_images(images, progress=None, cancelled=None):
             item.info['warnings'] = list(same_pixels.info['warnings'])
         item.info['analysisWidth'] = int(item.gray.shape[1])
         item.info['analysisHeight'] = int(item.gray.shape[0])
+        _check_cancel(cancelled)
+        # Reuse the accepted PNG object for equal pixels. Count its size again
+        # for each image entry because JSON serializes shared strings repeatedly.
+        if same_pixels is not None:
+            preview = same_pixels.info['reviewPreview']
+        elif review_preview_bytes < MAX_REVIEW_PREVIEW_BYTES:
+            preview = _png_url(Image.fromarray(item.rgb))
+        else:
+            preview = None
+        if preview and review_preview_bytes + len(preview) > MAX_REVIEW_PREVIEW_BYTES:
+            preview = None
+        item.info['reviewPreview'] = preview
+        item.info['reviewPreviewAvailable'] = preview is not None
+        if preview:
+            review_preview_bytes += len(preview)
+        else:
+            review_preview_omitted += 1
+            if 'review_preview_limit' not in item.info['warnings']:
+                item.info['warnings'].append('review_preview_limit')
         prepared.append(item)
         _emit(progress, 'images', index + 1, len(images))
     matches = []
@@ -452,11 +477,13 @@ def scan_images(images, progress=None, cancelled=None):
     return {'schema': 'image-duplicate-check/1', 'status': 'complete',
             'images': [item.info for item in prepared], 'matches': matches,
             'pairCount': total, 'evidenceOmitted': omitted, 'evidenceBytes': evidence_bytes,
-            'warnings': (['evidence_limit'] if omitted else []),
+            'reviewPreviewBytes': review_preview_bytes, 'reviewPreviewOmitted': review_preview_omitted,
+            'warnings': (['evidence_limit'] if omitted else []) + (['review_preview_limit'] if review_preview_omitted else []),
             'limits': {'maxImages': MAX_IMAGES, 'maxImageBytes': MAX_IMAGE_BYTES,
                        'maxEncodedBytes': MAX_ENCODED_BYTES, 'maxPixels': MAX_PIXELS,
                        'analysisMaxSide': MAX_SIDE, 'maxFeatures': MAX_FEATURES,
                        'maxEvidence': MAX_EVIDENCE, 'maxEvidenceBytes': MAX_EVIDENCE_BYTES,
+                       'maxReviewPreviewBytes': MAX_REVIEW_PREVIEW_BYTES,
                        'maxOpenCvThreads': MAX_OPENCV_THREADS},
             'scope': 'between_images',
             'interpretation': 'Suspected image reuse for human review. No matches does not prove absence of reuse. '

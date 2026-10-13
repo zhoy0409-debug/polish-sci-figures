@@ -12,8 +12,8 @@ def main():
     assert test_tmp.is_relative_to(ROOT.resolve())
     test_tmp.mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(dir=test_tmp) as tmp:
-        base=Path(tmp); archive=build("v1.4.4",base/"dist")
-        assert archive.name=="sci-figure-suite-v1.4.4.zip"
+        base=Path(tmp); archive=build("v1.4.5",base/"dist")
+        assert archive.name=="sci-figure-suite-v1.4.5.zip"
         with zipfile.ZipFile(archive) as handle:
             names=set(handle.namelist())
             for name in (*ROOT_FILES, *SUPPORT_FILES): assert name in names,name
@@ -91,5 +91,5 @@ print(json.dumps({'templates':len(registry.CONTRACTS),'gallery_variants':len(sec
         runtime=subprocess.run([sys.executable,"-c",probe],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         assert runtime.returncode==0,(runtime.stdout,runtime.stderr)
         report=json.loads(runtime.stdout);assert report["templates"]>=190,report
-    print("complete v1.4.4 source release, extracted CLI and bytecode runtime tests passed:",report)
+    print("complete v1.4.5 source release, extracted CLI and bytecode runtime tests passed:",report)
 if __name__=="__main__": main()

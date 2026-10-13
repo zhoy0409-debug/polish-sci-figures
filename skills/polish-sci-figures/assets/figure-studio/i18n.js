@@ -261,7 +261,7 @@ const StudioI18n = (() => {
     '请输入版本名称。':'Enter a version name.','已保存 20 个命名版本，请另存工程后继续整理。':'20 named versions are already saved. Download the project before continuing.',
     '已保存命名版本「{0}」':'Saved version “{0}”',
     '已下载工程；包含原图、当前修改和命名版本。':'Project downloaded with source artwork, current edits and named versions.',
-    '工程超过 100 MB':'Project exceeds 100 MB','命名版本无效':'Invalid named versions','版本名称无效':'Invalid version name',
+    '工程超过 100 MB':'Project exceeds 100 MB','工程超过 200 MB，请拆分工程后保存。':'Project exceeds 200 MB. Split it into smaller projects before saving.','查重复核记录无效':'Invalid image review record','命名版本无效':'Invalid named versions','版本名称无效':'Invalid version name',
     '打开工程将替换当前工作区。若当前修改尚未下载，请先取消并保存工程。':'Opening a project replaces the current workspace. If your edits have not been downloaded, cancel and save the project first.',
     '工程已恢复':'Project restored','已导出可编辑 SVG。请继续运行原 skill 的最终尺寸与排版 QA。':'Editable SVG exported. Run the skill’s final-size and layout QA before delivery.',
     '300 dpi 输出超过 4000 万像素，请导出 SVG 后用专业工具转换':'300 dpi output exceeds 40 million pixels. Export SVG and convert with a suitable tool.',

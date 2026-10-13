@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.4.5 · Figure Studio 0.1.5
+
+- Review an active image pair with wheel zoom, drag-to-pan, synchronized views, matching lines and an overlay using the recorded alignment.
+- Choose source images before scanning; locate canvas pairs after layout changes and flag replaced or removed sources.
+- Save per-pair decisions and notes with the project and include them in reports; cancelled or failed checks preserve the last completed record.
+- Retain source images once for later review, omit originals from exported reports, and allow project import/export up to 200 MB per file.
+
+[Release details](docs/release-v1.4.5.md) · [Image review guide](docs/image-duplicate-check.md)
+
 ## v1.4.4 · Figure Studio 0.1.4
 
 - Local image duplicate screening checks the current figure, selected images or panels, and local files without dismantling groups.
@@ -22,6 +31,15 @@
 [Release details](docs/release-v1.4.3.en.md) · [Previous release](docs/release-v1.4.2.en.md)
 
 ## 中文
+
+### v1.4.5 · Figure Studio 0.1.5
+
+- 当前图片对支持滚轮缩放、拖动平移、同步视野、匹配连线，以及按已记录坐标对齐的叠加查看。
+- 检查前可逐张选择图片；布局改变后仍可定位画布图片对，原图更换或移除时提示重新检查。
+- 复核判断和备注随工程保存并写入报告；取消或失败的检查不会覆盖上次完成记录。
+- 工程保留一份供后续复核的源图片，导出报告不嵌入原图；单个工程文件导入和导出上限调整为 200 MB。
+
+[本版详情](docs/release-v1.4.5.md#图片查重交互复核) · [复核操作指南](docs/image-duplicate-check.md#中文)
 
 ### v1.4.4 · Figure Studio 0.1.4
 
