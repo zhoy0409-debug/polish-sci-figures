@@ -5,7 +5,7 @@ from pathlib import Path
 root = Path(SPECPATH).parent
 stage = root / '.cache' / 'desktop-build' / 'suite'
 hidden = [
-    'numpy', 'pandas', 'openpyxl', 'PIL.Image', 'PIL.ImageTk', 'pypdfium2', 'pypdf',
+    'numpy', 'pandas', 'openpyxl', 'PIL.Image', 'PIL.ImageTk', 'pypdfium2', 'pypdf', 'cv2',
     'matplotlib.pyplot', 'matplotlib.backends.backend_agg',
     'matplotlib.backends.backend_svg', 'matplotlib.backends.backend_pdf',
     'mpl_toolkits.axes_grid1', 'mpl_toolkits.mplot3d',
@@ -20,7 +20,7 @@ a = Analysis(
     hookspath=[], hooksconfig={'matplotlib': {'backends': ['Agg']}},
     runtime_hooks=[], excludes=[
         'IPython', 'notebook', 'jupyter', 'pytest', 'sympy', 'torch',
-        'tensorflow', 'PyQt5', 'PyQt6', 'PySide2', 'PySide6', 'cv2',
+        'tensorflow', 'PyQt5', 'PyQt6', 'PySide2', 'PySide6',
         'pandas.tests', 'matplotlib.tests', 'numpy.tests', 'scipy.tests',
         'studio_server', 'figure_studio',
     ], noarchive=False,

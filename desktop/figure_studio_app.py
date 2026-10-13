@@ -437,6 +437,28 @@ def self_test(service: RunningService, output_dir: Path) -> dict:
     assert not pdf_result['rasterOnly'] and '<text' in pdf_result['svg']
     (output_dir / 'import-source.pdf').write_bytes(pdf_bytes)
     (output_dir / 'import-pdf.svg').write_text(pdf_result['svg'], encoding='utf-8')
+    # Verify OpenCV's native runtime is present in the packaged offline app.
+    from PIL import Image, ImageDraw
+    probe_image = Image.new('RGB', (160, 120), '#23384f')
+    pen = ImageDraw.Draw(probe_image)
+    for i in range(12):
+        pen.ellipse((i*12, i*7, i*12+19, i*7+13), fill=(20*i, 210, 160-i*5))
+    buffer = io.BytesIO(); probe_image.save(buffer, format='PNG')
+    image_data = 'data:image/png;base64,' + base64.b64encode(buffer.getvalue()).decode('ascii')
+    scan = request('/api/image-duplicates', {'action':'start', 'images':[
+        {'id':str(i), 'label':f'Packaged test {i}', 'data':image_data} for i in range(2)]})
+    deadline = time.monotonic() + 30
+    while True:
+        status, raw = http_request(port, '/api/image-duplicates', {'action':'status', 'jobId':scan['jobId']}, token)
+        scan_result = json.loads(raw)
+        assert status == 200, scan_result
+        if scan_result['status'] != 'running': break
+        if time.monotonic() > deadline: raise LaunchError('Packaged image check timed out')
+        time.sleep(.05)
+    assert scan_result['status'] == 'complete', scan_result
+    assert scan_result['result']['matches'][0]['kind'] == 'exact'
+    assert scan_result['result']['matches'][0]['evidence'].startswith('data:image/png;base64,')
+    checks.append('Bundled OpenCV image check and evidence via local HTTP')
     report = {'passed': True, 'checks': checks, 'data_sha256': analysis['data_sha256'],
               'variants': len(panel['variants']), 'url': service.url,
               'frozen': bool(getattr(sys, 'frozen', False)), 'python': sys.version,

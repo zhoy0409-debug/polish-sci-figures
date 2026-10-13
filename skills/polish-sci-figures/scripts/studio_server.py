@@ -190,17 +190,20 @@ class Handler(BaseHTTPRequestHandler):
         if self.headers.get('Host')!=self.server.address:return self.send_json(403,{'error':'Invalid host'})
         if urlsplit(self.path).path!='/':return self.send_json(404,{'error':'Not found'})
         text=self.server.page.read_text(encoding='utf-8').replace("connect-src 'none'","connect-src 'self'")
-        config=json.dumps({'token':self.server.token,'endpoint':'/api/render','reflowEndpoint':'/api/reflow','analyzeEndpoint':'/api/analyze','splitFacetsEndpoint':'/api/split-facets','pdfEndpoint':'/api/import-pdf'})
-        text=text.replace('</head>',f'<script id="local-engine" type="application/json">{config}</script></head>')
+        config=json.dumps({'token':self.server.token,'endpoint':'/api/render','reflowEndpoint':'/api/reflow','analyzeEndpoint':'/api/analyze','splitFacetsEndpoint':'/api/split-facets','pdfEndpoint':'/api/import-pdf','duplicateEndpoint':'/api/image-duplicates'})
+        text=text.replace('</head>',f'<script id="local-engine" type="application/json">{config}</script></head>',1)
         raw=text.encode();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(raw)
     def do_POST(self):
-        if self.path not in ('/api/render','/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf') or self.headers.get('Host')!=self.server.address or self.headers.get('Origin')!='http://'+self.server.address or self.headers.get('X-Studio-Token')!=self.server.token:return self.send_json(403,{'error':'Local editor authorization required'})
+        if self.path not in ('/api/render','/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf','/api/image-duplicates') or self.headers.get('Host')!=self.server.address or self.headers.get('Origin')!='http://'+self.server.address or self.headers.get('X-Studio-Token')!=self.server.token:return self.send_json(403,{'error':'Local editor authorization required'})
         try:
             size=int(self.headers.get('Content-Length','0'))
-            limit=27000000 if self.path=='/api/import-pdf' else 3000000
-            if not 0<size<=limit:raise ValueError('Request limit: 27 MB' if self.path=='/api/import-pdf' else 'Request limit: 3 MB')
+            limit=44000000 if self.path=='/api/image-duplicates' else 27000000 if self.path=='/api/import-pdf' else 3000000
+            if not 0<size<=limit:raise ValueError(f'Request limit: {limit//1000000} MB')
             payload=json.loads(self.rfile.read(size));started=time.monotonic()
             if not isinstance(payload,dict):raise ValueError('Request body must be an object')
+            if self.path=='/api/image-duplicates':
+                from studio_duplicate_jobs import JOBS
+                return self.send_json(200,JOBS.request(payload))
             with LOCK:
                 if self.path=='/api/import-pdf':
                     response={'pdf':import_pdf(payload)}

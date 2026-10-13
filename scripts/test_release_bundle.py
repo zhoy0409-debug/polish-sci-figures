@@ -12,15 +12,17 @@ def main():
     assert test_tmp.is_relative_to(ROOT.resolve())
     test_tmp.mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(dir=test_tmp) as tmp:
-        base=Path(tmp); archive=build("v1.4.3",base/"dist")
-        assert archive.name=="sci-figure-suite-v1.4.3.zip"
+        base=Path(tmp); archive=build("v1.4.4",base/"dist")
+        assert archive.name=="sci-figure-suite-v1.4.4.zip"
         with zipfile.ZipFile(archive) as handle:
             names=set(handle.namelist())
             for name in (*ROOT_FILES, *SUPPORT_FILES): assert name in names,name
             for skill in SKILL_NAMES: assert f"skills/{skill}/SKILL.md" in names,skill
             for asset in ("studio.html", "studio.css", "studio.js", "i18n.js", "memory.js", "discovery.js", "library.js", "catalogue.js", "catalogue-previews.json", "gallery-contracts.js", "template-starters.json", "rich-text.js", "rich-text.css", "workspace-layout.js", "workspace-layout.css", "group-spacing.js", "tiff-export.js", "compact-whitespace.js", "mark-style.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
-            for module in ("studio_server.py", "studio_statistics.py", "studio_facets.py"):
+            for asset in ("duplicate-check.js", "duplicate-check.css"):
+                assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
+            for module in ("studio_server.py", "studio_statistics.py", "studio_facets.py", "studio_duplicates.py", "studio_duplicate_jobs.py", "duplicate_files.py"):
                 assert f"skills/polish-sci-figures/scripts/{module}" in names, module
             for module in ("gallery_registry", "gallery_workbench", "gallery_compare", "gallery_time_composition",
                            "gallery_clinical", "gallery_omics_special", "gallery_misc", "gallery_model_extras",
@@ -57,6 +59,13 @@ sys.path[:0]=[str(root/'skills/polish-sci-figures/scripts'),str(root/'skills/mak
 import gallery_registry as registry
 from studio_server import regenerate,reflow
 from studio_sizes import render_sizes
+from studio_duplicates import scan_images
+import base64,io
+from PIL import Image
+stream=io.BytesIO();Image.new('RGB',(40,40),'#406a80').save(stream,format='PNG')
+uri='data:image/png;base64,'+base64.b64encode(stream.getvalue()).decode('ascii')
+duplicates=scan_images([{'id':'a','label':'a','data':uri},{'id':'b','label':'b','data':uri}])
+assert len(duplicates['matches'])==1 and duplicates['matches'][0]['kind']=='exact'
 assert render_sizes.__code__.co_filename.startswith('suite/'), 'Must load bytecode from packaged suite'
 rows=[['group','value','unit']]+[[g,str(v),g+str(i)] for g,values in [('A',[1,2,3,4,5,2.5,3.5,4.5]),('B',[2,3,5,6,7,4.5,5.5,6.5])] for i,v in enumerate(values)]
 config={'mode':'raw','group':'group','value':'value','unit':'unit','design':'independent','method':'welch','family':'all_pairs','design_confirmed':True,'unit_role':'independent_experimental_unit'}
@@ -82,5 +91,5 @@ print(json.dumps({'templates':len(registry.CONTRACTS),'gallery_variants':len(sec
         runtime=subprocess.run([sys.executable,"-c",probe],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         assert runtime.returncode==0,(runtime.stdout,runtime.stderr)
         report=json.loads(runtime.stdout);assert report["templates"]>=190,report
-    print("complete v1.4.3 source release, extracted CLI and bytecode runtime tests passed:",report)
+    print("complete v1.4.4 source release, extracted CLI and bytecode runtime tests passed:",report)
 if __name__=="__main__": main()

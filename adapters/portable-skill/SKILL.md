@@ -1,6 +1,6 @@
 ---
 name: polish-sci-figures
-description: Create, refine and assemble scientific figures from data, calibrated images or editable artwork; deliver publication-ready outputs and an optional Figure Studio editing page.
+description: Create, refine and assemble scientific figures from data, images or editable artwork; check image reuse, deliver publication-ready outputs and an optional Figure Studio editing page.
 ---
 
 # polish-sci-figures
@@ -36,6 +36,7 @@ Install optional dependencies only for a workflow that requires them, from `suit
 | Raw CSV/TSV/XLSX, chart choice or statistical analysis | [Data figure workbench](suite/skills/make-sci-data-figures/WORKFLOW.md) |
 | Calibrated microscopy or pathology images | [Scientific image preparation](suite/skills/standardize-sci-images/WORKFLOW.md) |
 | Existing SVG, visual refinement, composition or Studio editing | [Figure polishing and editing](suite/skills/polish-sci-figures/WORKFLOW.md) |
+| Duplicate images or suspected image reuse | [Local image duplicate check](suite/docs/image-duplicate-check.md) |
 
 These are local instructions, not separately installed skills. A companion-skill reference in a nested document means reading the corresponding bundled document above. Resolve its `scripts/`, `references/` and `assets/` paths relative to that document. Run commands beginning with `skills/` from `suite/`; resolve user input and output paths before changing working directory. Save task outputs in the user's workspace, not in the installed skill directory.
 
@@ -45,6 +46,16 @@ python suite/skills/make-sci-data-figures/scripts/gallery_cli.py --list
 ```
 
 Confirm experimental design and units before inference. Choose methods for the research question, not the smallest P value. Preserve source data and calibration. Read each template's input contract, distinguish raw observations from supplied model results, and check actual rendered output for overlap, clipping and readable physical sizes before delivery.
+
+## Check images for accidental reuse
+
+Accept “Check whether I used any image twice” or “帮我检查图片有没有放重” without requiring a technical prompt. Compare 2–60 available source raster images or the rasters embedded in supplied SVGs:
+
+```bash
+python suite/sci_figures.py duplicates image-a.png image-b.tif figure.svg --out image-check
+```
+
+The check runs in the host's Python environment and does not upload images to a separate screening service. In a cloud AI host, this is the host's file environment, not the user's computer. Return the report and matching evidence through the host's normal download mechanism. Review suspected transformed/cropped overlap against original files and acquisition records; preserve the images and never treat a match as a misconduct verdict or no findings as proof of uniqueness. A flattened montage is not automatically split into panels. For the editor's current-figure and selection workflows, follow the [guide](suite/docs/image-duplicate-check.md); screening from a standalone HTML requires the local service.
 
 ## Deliver editable outputs
 

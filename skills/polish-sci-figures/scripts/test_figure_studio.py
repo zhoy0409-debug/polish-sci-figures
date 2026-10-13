@@ -1,5 +1,6 @@
 """Regression coverage for portable packaging and scientific provenance boundaries."""
 import hashlib
+from html.parser import HTMLParser
 import json
 import re
 import subprocess
@@ -41,6 +42,22 @@ class StudioTests(unittest.TestCase):
         self.assertIn('root.StudioCompactWhitespace=api',html)
         self.assertIn('id="compactWhitespace"',html)
         self.assertIn('function overlayInsertionGeometry(',html)
+        self.assertIn('const StudioDuplicateCheck =',html)
+        self.assertIn('.duplicate-dialog{',html)
+        self.assertIn('id="checkImageDuplicates"',html)
+        class Scripts(HTMLParser):
+            def __init__(self):
+                super().__init__(); self.scripts=[]; self.active=False
+            def handle_starttag(self,tag,attrs):
+                if tag=='script':self.active=True; self.scripts.append('')
+            def handle_endtag(self,tag):
+                if tag=='script':self.active=False
+            def handle_data(self,data):
+                if self.active:self.scripts[-1]+=data
+        parsed=Scripts();parsed.feed(html)
+        self.assertEqual(len(parsed.scripts),4)
+        self.assertIn('function reportHTML(',parsed.scripts[-1])
+        self.assertIn('finally{document.body.inert=false;}',parsed.scripts[-1])
         with self.assertRaises(ValueError):write_html(project,out)
         self.assertEqual(self.svg.read_text(encoding='utf-8'),SIMPLE)
 
