@@ -88,7 +88,7 @@ public class LocalEngineInstrumentedTest {
             Intents.intended(hasAction(Intent.ACTION_VIEW));
             Intent handoff = Intents.getIntents().stream().filter(intent -> Intent.ACTION_VIEW.equals(intent.getAction())).findFirst().orElseThrow(() -> new AssertionError("No browser handoff"));
             assertEquals("https://europepmc.org/articles/PMC12345#Fig-2", handoff.getDataString());
-            assertEquals(JSONObject.quote(MainActivity.START), eval("location.href"));
+            assertEquals(MainActivity.START, new JSONTokener(eval("location.href")).nextValue());
             proof.put("literaturePaperHandoff", "User gesture opens validated target=_blank paper link through ACTION_VIEW; captured by Espresso");
         } finally {
             eval("document.getElementById('android-literature-link')?.remove()"); Intents.release();
