@@ -171,6 +171,6 @@ void (async function () {
     await check('Final canvas and mobile controls are ready for screenshot', editorPaintReady);
     await native({action: 'smokeComplete', report: {passed: true, userAgent: navigator.userAgent, width: innerWidth, height: innerHeight, totalMs: Math.round(performance.now() - started), checks}});
   } catch (error) {
-    await native({action: 'smokeComplete', report: {passed: false, activeStage, error: String(error.stack || error), checks}});
+    await native({action: 'smokeComplete', report: {passed: false, activeStage, error: String(error), stack: String(error.stack || ''), checks}});
   }
 })();

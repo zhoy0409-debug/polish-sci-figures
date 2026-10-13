@@ -5,9 +5,10 @@ final class SimulatorTests: XCTestCase {
     private func waitForPaintedMobileControls(_ app: XCUIApplication) {
         // WebKit exposes the canvas control as an ARIA tab. Do not assume it
         // has XCTest's Button element type across iOS accessibility versions.
-        let canvas = app.descendants(matching: .any).matching(NSPredicate(format: "label == 'Canvas' OR label == '画布'")).firstMatch
-        let pan = app.descendants(matching: .any).matching(NSPredicate(format: "label == 'Pan' OR label == '移动画布'")).firstMatch
-        let ready = NSPredicate { _, _ in canvas.isHittable && pan.isHittable }
+        let canvas = app.descendants(matching: .any).matching(NSPredicate(format: "label == 'Canvas' OR label == '画布'"))
+        let pan = app.descendants(matching: .any).matching(NSPredicate(format: "label == 'Pan' OR label == '移动画布'"))
+        // The labelled tab panel and the tab itself can both be named Canvas.
+        let ready = NSPredicate { _, _ in canvas.allElementsBoundByIndex.contains { $0.isHittable } && pan.allElementsBoundByIndex.contains { $0.isHittable } }
         let result = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: ready, object: nil)], timeout: 15)
         let frame = XCTAttachment(screenshot: app.screenshot()); frame.name = "iOS mobile frame readiness"; frame.lifetime = .keepAlways; add(frame)
         if result != .completed { print("MOBILE ACCESSIBILITY HIERARCHY\n" + app.debugDescription) }
@@ -40,11 +41,11 @@ final class SimulatorTests: XCTestCase {
         cancel.tap()
         // The next operation uses the real project Save handler. Do not bypass
         // the Files provider or substitute a private spool write for saving.
+        let projectName = app.textFields.matching(NSPredicate(format: "value CONTAINS %@", "figure-studio-project")).firstMatch
+        XCTAssertTrue(projectName.waitForExistence(timeout: 30), "The new project export picker did not finish opening")
         let save = app.navigationBars.buttons["Save"].firstMatch
-        XCTAssertTrue(save.waitForExistence(timeout: 30), "Local Files save destination is unavailable")
-        let writable = NSPredicate { _, _ in save.exists && save.isEnabled && save.isHittable }
-        let available = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: writable, object: nil)], timeout: 8)
-        if available != .completed {
+        XCTAssertTrue(save.waitForExistence(timeout: 5), "Local Files save destination is unavailable")
+        if !save.isEnabled {
             // directoryURL only suggests an initial view. A fresh simulator's
             // local provider may require selecting the visible location once.
             // Exercise that real UI path instead of writing to the spool.
@@ -58,7 +59,8 @@ final class SimulatorTests: XCTestCase {
             if exports.waitForExistence(timeout: 5) { exports.tap() }
         }
         let destination = XCTAttachment(screenshot: app.screenshot()); destination.name = "iOS local Files save destination"; destination.lifetime = .keepAlways; add(destination)
-        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: writable, object: nil)], timeout: 10), .completed, "The Files provider did not offer a writable local folder")
+        let writable = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND enabled == true"), object: save)
+        XCTAssertEqual(XCTWaiter.wait(for: [writable], timeout: 10), .completed, "The Files provider did not offer a writable local folder")
         save.tap()
         let openProject = app.buttons["Open saved project"].firstMatch
         XCTAssertTrue(openProject.waitForExistence(timeout: 30), "Actual Files save did not complete")
@@ -81,7 +83,12 @@ final class SimulatorTests: XCTestCase {
         document.tap()
         let confirm = app.alerts.buttons["Confirm"].firstMatch
         XCTAssertTrue(confirm.waitForExistence(timeout: 15), "Project replacement confirmation did not appear")
-        confirm.tap()
+        // A synchronous window.confirm suspends the WK JavaScript context.
+        // XCTest's global interruption rescan can wait on that suspended page;
+        // tap the observed native alert button's actual on-screen centre.
+        let confirmFrame = confirm.frame
+        XCTAssertGreaterThan(confirmFrame.width, 0); XCTAssertGreaterThan(confirmFrame.height, 0)
+        app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: confirmFrame.midX, dy: confirmFrame.midY)).tap()
         XCTAssertTrue(app.staticTexts["SIMULATOR SMOKE PASSED"].waitForExistence(timeout: 30), "Native save, reimport or editor restoration did not complete")
         waitForPaintedMobileControls(app)
         let final = XCTAttachment(screenshot: app.screenshot()); final.name = "iOS local engine complete"; final.lifetime = .keepAlways; add(final)
