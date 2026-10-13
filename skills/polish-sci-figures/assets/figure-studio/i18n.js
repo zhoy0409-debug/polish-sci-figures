@@ -255,7 +255,7 @@ const StudioI18n = (() => {
     '配色、字号修改后需重新核对碰撞与可读性。':'Recheck collisions and readability after colour or font-size edits.',
     '工程只保存外观差异；新数据请从分析流程重新生成。':'The project records appearance edits. For new data, regenerate from the analysis workflow.',
     '本图没有可编辑文字，路径化或栅格文字不能直接改字体。':'No editable text is present. Outlined or raster text cannot have its font changed directly.',
-    '{0} 行 × {1} 列 · {2} × {3} mm':'{0} rows × {1} columns · {2} × {3} mm',
+    '{0} 行 × {1} 列 · {2} × {3} mm':'{0} × {1} grid · {2} × {3} mm',
     '已移动 / 交换小图':'Panel moved / swapped','选择面板 ':'Select panel ','已交换小图':'Panels swapped','已恢复版本 ':'Restored version: ','未完成：':'Not completed: ','已撤销':'Undone','已重做':'Redone',
     '原版对照：当前布局与候选，未应用外观修改。':'Original comparison: current layout and candidates without appearance edits.',
     '已返回编辑版':'Returned to edits','已恢复 AI 首版；仍可撤销此次恢复':'First AI draft restored; this reset can be undone',
@@ -406,7 +406,7 @@ const StudioI18n = (() => {
     '按最终尺寸检查文字、标注位置、颜色语义、科学符号与图像分辨率。':'At the final figure size, check text, annotation placement, color meaning, scientific notation and image resolution.'
   });
   Object.assign(en,{'分组条件表':'Group conditions','在横轴下方显示处理条件、+/− 或剂量；各列跟随对应组别。':'Show conditions, +/− or doses below the horizontal axis, aligned with each group.','显示分组条件表':'Show group conditions','添加条件行':'Add condition row','条件表字号（pt）':'Condition font size (pt)','分组条件表参数无效':'Invalid group condition settings','当前图没有可匹配的分类横轴。':'This chart has no matching categorical horizontal axis.','分组条件表已更新':'Group conditions updated','每列与组别对应；空白项显示为 —。':'Columns follow their groups; blank entries are shown as —.','条件':'Condition','条件行 {0}':'Condition row {0}','条件 {0} · {1}':'Condition {0} · {1}','删除条件行 {0}':'Delete condition row {0}','条件 {0}':'Condition {0}','当前列宽不足，请加宽小图或缩短条件文字。':'Columns are too narrow. Widen the panel or shorten the condition text.','实际字号 {0} pt；加宽小图可使用设置字号。':'Displayed at {0} pt. Widen the panel to use the requested font size.'});
-  Object.assign(en,{'对齐参考线参数无效':'Invalid alignment guides','对齐参考线':'Alignment guides','添加水平参考线':'Add horizontal guide','添加垂直参考线':'Add vertical guide','删除所选参考线':'Delete selected guide','清除所有参考线':'Clear all guides','参考线仅用于编辑对齐，不随图片导出。':'Guides are for editing only and are not exported.','拖动元素时自动吸附；按住 Alt 可临时关闭吸附。':'Objects snap while dragging; hold Alt to bypass snapping.','共 {0} 条参考线；拖动调整，按 Delete 删除所选线。':'{0} guides. Drag to move; press Delete to remove the selected guide.','已添加对齐参考线':'Alignment guide added','已删除对齐参考线':'Alignment guide deleted','已清除对齐参考线':'Alignment guides cleared','已移动对齐参考线':'Alignment guide moved'});
+  Object.assign(en,{'辅助线':'Guides','对齐参考线参数无效':'Invalid alignment guides','对齐参考线':'Alignment guides','添加水平参考线':'Add horizontal guide','添加垂直参考线':'Add vertical guide','删除所选参考线':'Delete selected guide','清除所有参考线':'Clear all guides','参考线仅用于编辑对齐，不随图片导出。':'Guides are for editing only and are not exported.','拖动元素时自动吸附；按住 Alt 可临时关闭吸附。':'Objects snap while dragging; hold Alt to bypass snapping.','共 {0} 条参考线；拖动调整，按 Delete 删除所选线。':'{0} guides. Drag to move; press Delete to remove the selected guide.','已添加对齐参考线':'Alignment guide added','已删除对齐参考线':'Alignment guide deleted','已清除对齐参考线':'Alignment guides cleared','已移动对齐参考线':'Alignment guide moved'});
   Object.assign(en,{'显示名称翻译无效':'Invalid translated display name','重点大图':'Focal panel'});
   // Character-level scientific text formatting.
   Object.assign(en,{

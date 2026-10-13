@@ -14,8 +14,22 @@ void (async function () {
     const before = performance.now(); const details = await fn();
     checks.push({name, passed: true, ms: Math.round(performance.now() - before), ...(details || {})});
   }
+  async function editorPaintReady() {
+    const visible = node => {
+      if (!node) return false;
+      const box = node.getBoundingClientRect(), style = getComputedStyle(node);
+      return box.width > 1 && box.height > 1 && box.right > 0 && box.bottom > 0 && box.left < innerWidth && box.top < innerHeight && style.visibility !== 'hidden' && style.display !== 'none';
+    };
+    // render() creates SVG before asynchronous startup has finished installing
+    // mobile controls. A DOM guide alone is not proof of a usable painted UI.
+    await wait(() => !document.body.inert && document.body.classList.contains('studio-mobile') && document.body.dataset.mobileTab === 'canvas' && visible(document.getElementById('mobileTab-canvas')) && visible(document.getElementById('mobilePan')) && visible(document.querySelector('#artboard svg')) && document.fonts.status === 'loaded');
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    const canvas = document.querySelector('#artboard svg').getBoundingClientRect();
+    return {mobileControlsVisible: true, canvasWidth: Math.round(canvas.width), canvasHeight: Math.round(canvas.height), canvasTab: document.getElementById('mobileTab-canvas').textContent, language: document.documentElement.lang, fontsReady: true};
+  }
   try {
     await wait(() => document.querySelector('#artboard svg [data-panel]') && typeof StudioLibrary !== 'undefined');
+    await check('Mobile editor initialization and visual frame are ready', editorPaintReady);
     assert(window.StudioNativeBridge?.bundledAssets && StudioNativeBridge.platform === 'ios', 'Early native adapter absent');
     if (window.__studioSimulatorRestore) {
       await check('Editor autosave restored after app process restart', async () => {
@@ -106,7 +120,55 @@ void (async function () {
         assert(result.cancelled === true && !result.saved, 'Cancel was incorrectly reported as saved');
         return {cancelled: true, bytesStreamed: bytes.length, nativePicker: true, fileSaveSuccessTested: false};
       });
+      await check('Actual project Save and Files reimport preserve the edited project', async () => {
+        const prior = JSON.parse(localStorage.getItem('ios-simulator-smoke'));
+        document.getElementById('save').click(); // Real application save handler and native picker.
+        let saved;
+        await wait(async () => {
+          saved = await native({action: 'smokeLastExport'});
+          if (saved.error) throw new Error(saved.error);
+          return saved.saved === true;
+        }, 60000);
+        assert(saved.insideLocalDocuments === true && saved.name === 'figure-studio-project.json', 'A local Files destination was not selected');
+        document.getElementById('addHorizontalGuide').click();
+        let extraGuide;
+        await wait(async () => {
+          const current = await StudioLibrary.get('autosaves', prior.projectId);
+          extraGuide = current?.payload.state.alignmentGuides.find(guide => guide.id !== prior.guideId);
+          return !!extraGuide;
+        });
+        const input = document.getElementById('projectFile');
+        let imported, importError;
+        const capture = async () => {
+          try {
+            const file = input.files[0]; if (!file) return;
+            const bytes = await file.arrayBuffer();
+            const sha256 = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), value => value.toString(16).padStart(2, '0')).join('');
+            imported = {name: file.name, bytes: bytes.byteLength, sha256};
+          } catch (error) { importError = error; }
+        };
+        input.addEventListener('change', capture, true);
+        // A real user gesture is needed for WKWebView's standard file input.
+        // XCTest taps this fixed test affordance, which invokes the existing
+        // Open handler; no File object or application payload is injected.
+        const open = document.createElement('button');
+        open.textContent = 'Open saved project'; open.id = 'ios-smoke-open-project';
+        open.style.cssText = 'position:fixed;bottom:80px;left:20px;z-index:999999;padding:16px;background:white;color:black;border:2px solid black';
+        open.onclick = () => document.getElementById('load').click();
+        document.body.append(open);
+        try {
+          await wait(() => { if (importError) throw importError; return imported; }, 90000);
+          assert(imported.name === saved.name && imported.bytes === saved.bytes && imported.sha256 === saved.sha256, 'Files reimport bytes differ from the actual saved file');
+          await wait(async () => {
+            const current = await StudioLibrary.get('autosaves', prior.projectId);
+            const guides = current?.payload.state.alignmentGuides;
+            return guides?.length === 1 && guides[0].id === prior.guideId && !document.querySelector('[data-alignment-guide="' + extraGuide.id + '"]');
+          }, 30000);
+          return {fileSaveSuccessTested: true, fileInputReimportTested: true, nativeConfirmationAccepted: true, localDestination: true, bytes: saved.bytes, sha256: saved.sha256, originalGuideRestored: true, laterEditRemoved: true};
+        } finally { input.removeEventListener('change', capture, true); open.remove(); }
+      });
     }
+    await check('Final canvas and mobile controls are ready for screenshot', editorPaintReady);
     await native({action: 'smokeComplete', report: {passed: true, userAgent: navigator.userAgent, width: innerWidth, height: innerHeight, totalMs: Math.round(performance.now() - started), checks}});
   } catch (error) {
     await native({action: 'smokeComplete', report: {passed: false, activeStage, error: String(error.stack || error), checks}});

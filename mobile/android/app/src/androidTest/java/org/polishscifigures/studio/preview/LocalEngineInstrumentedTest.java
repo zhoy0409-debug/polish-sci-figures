@@ -46,7 +46,7 @@ public class LocalEngineInstrumentedTest {
     private void restoredEditorFrame() throws Exception {
         // Density changes may recreate the Activity. A correct innerWidth alone
         // does not prove that autosave restoration or the compositor has finished.
-        until("document.readyState==='complete' && !!window.StudioLibrary && !!document.querySelector('[data-alignment-guide=\"'+JSON.parse(localStorage.getItem('android-instrumentation-workspace')||'{}').guideId+'\"]') && !document.getElementById('undo').disabled",60);
+        until("document.readyState==='complete' && typeof StudioLibrary!=='undefined' && !!document.querySelector('[data-alignment-guide=\"'+JSON.parse(localStorage.getItem('android-instrumentation-workspace')||'{}').guideId+'\"]') && !document.getElementById('undo').disabled",60);
         CountDownLatch drawn = new CountDownLatch(1);
         scenario.onActivity(activity -> {
             android.webkit.WebView view = activity.webViewForTests();
@@ -84,6 +84,46 @@ public class LocalEngineInstrumentedTest {
             JSONObject saved=result("window.__androidSave"); assertTrue(saved.toString(),saved.optBoolean("saved"));
             assertEquals(expected.length,saved.getLong("bytes")); assertArrayEquals(expected,read(destination));
         } finally { Intents.release(); }
+    }
+    private void openSavedProject(Uri source, boolean confirm) throws Exception {
+        Intents.init();
+        try {
+            intending(hasAction(Intent.ACTION_OPEN_DOCUMENT)).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK,new Intent().setData(source).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)));
+            eval("document.getElementById('projectMenu').open=true");
+            UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            UiObject open=device.findObject(new UiSelector().text("Open project"));
+            assertTrue("Actual Open project command is visible",open.waitForExists(10000));open.click();
+            UiObject message=device.findObject(new UiSelector().resourceId("android:id/message"));
+            assertTrue("Native JavaScript confirmation must be shown",message.waitForExists(10000));
+            assertTrue(message.getText(),message.getText().contains("Opening a project replaces the current workspace"));
+            device.findObject(new UiSelector().resourceId(confirm?"android:id/button1":"android:id/button2")).click();
+        } finally { Intents.release(); }
+    }
+    private void actualProjectRoundTrip() throws Exception {
+        Uri saved=Uri.parse("content://"+FixtureProvider.AUTHORITY+"/project.json");
+        Intents.init();
+        try {
+            intending(hasAction(Intent.ACTION_CREATE_DOCUMENT)).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK,new Intent().setData(saved).addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)));
+            UiObject save=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).findObject(new UiSelector().text("Save"));
+            assertTrue(save.waitForExists(10000));save.click();
+            until("document.getElementById('status').textContent==='Project downloaded with source assets, current edits and versions.'",30);
+        } finally { Intents.release(); }
+        JSONObject payload=new JSONObject(new String(read(saved),StandardCharsets.UTF_8));
+        assertTrue(payload.has("project"));assertTrue(payload.has("history"));
+        assertEquals(1,payload.getJSONObject("state").getJSONArray("alignmentGuides").length());
+        eval("document.getElementById('addVerticalGuide').click()");
+        until("document.querySelectorAll('[data-alignment-guide]').length===2",10);
+        openSavedProject(saved,true);
+        until("document.getElementById('status').textContent==='Project restored' && document.querySelectorAll('[data-alignment-guide]').length===1",15);
+        eval("document.getElementById('addVerticalGuide').click()");
+        until("document.querySelectorAll('[data-alignment-guide]').length===2",10);
+        openSavedProject(saved,false);
+        assertEquals("2",eval("document.querySelectorAll('[data-alignment-guide]').length"));
+        openSavedProject(saved,true);
+        until("document.getElementById('status').textContent==='Project restored' && document.querySelectorAll('[data-alignment-guide]').length===1",15);
+        proof.put("actualProjectSaveOpenConfirmAndCancel",true);
+        proof.put("sameProjectReopenedAfterCancel",true);
+        proof.put("actualProjectFileBytes",read(saved).length);
     }
     @Test public void actualOfflineWebViewAnalysisFilesAndPersistence() throws Exception {
         Context target=InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -148,6 +188,7 @@ public class LocalEngineInstrumentedTest {
                 until("!!window.__androidSave",15);JSONObject cancelled=result("window.__androidSave");assertTrue(cancelled.optBoolean("cancelled"));assertFalse(cancelled.optBoolean("saved"));
             } finally { Intents.release(); }
             proof.put("nativeSaveBytes",600001);proof.put("saveCancellation",true);proof.put("savePickerMode","ACTION_CREATE_DOCUMENT result supplied by Espresso; real ContentResolver output write");
+            actualProjectRoundTrip();
             // Fresh worker loads only APK assets, then runs the real SciPy/Matplotlib dispatcher.
             eval("window.__androidQa={state:'running'};(async()=>{try{const started=performance.now();const rows=[['group','unit','value'],...[1,2,4,5,8].map((v,i)=>['A','A'+i,String(v)]),...[2,4,6,9,11,14].map((v,i)=>['B','B'+i,String(v)])];const config={mode:'raw',group:'group',value:'value',unit:'unit',design:'independent',method:'welch',family:'all_pairs',design_confirmed:true,unit_role:'independent_experimental_unit'};const a=await StudioBrowserEngine.fetch('/api/analyze',{method:'POST',body:JSON.stringify({recipe:{},rows,config})});const analysis=await a.json();if(!a.ok)throw Error(JSON.stringify(analysis));const r=await StudioBrowserEngine.fetch('/api/render',{method:'POST',body:JSON.stringify({recipe:{family:'gallery',parameters:{view:'compare_bar_points'},font:'Arial'},rows,statistics:config})});const rendered=await r.json();if(!r.ok)throw Error(JSON.stringify(rendered));window.__androidGeneratedSvg=rendered.panel.variants[0].svg;window.__androidQa={state:'done',p:analysis.analysis.primary_test.pairwise[0].p,variants:rendered.panel.variants.length,svg:window.__androidGeneratedSvg.includes('<svg'),durationMs:performance.now()-started,engine:StudioBrowserEngine.status()}}catch(e){window.__androidQa={state:'error',error:String(e),engine:StudioBrowserEngine.status()}}})()");
             until("window.__androidQa.state !== 'running'",420);
@@ -156,6 +197,13 @@ public class LocalEngineInstrumentedTest {
             String generated=(String)new JSONTokener(eval("window.__androidGeneratedSvg")).nextValue();
             saveToFixture("export.svg","new Blob([window.__androidGeneratedSvg],{type:'image/svg+xml'})",generated.getBytes(StandardCharsets.UTF_8));
             proof.put("generatedSvgSavedExactly",true);
+            // Exercise the real packaged OpenCV image-check path using only a
+            // generated synthetic fixture and its exact copy, not research images.
+            eval("window.__androidDuplicate={state:'running'};(async()=>{try{const started=performance.now(),canvas=document.createElement('canvas');canvas.width=256;canvas.height=192;const ctx=canvas.getContext('2d');ctx.fillStyle='#172338';ctx.fillRect(0,0,256,192);for(let i=0;i<70;i++){ctx.fillStyle='rgb('+((i*31)%255)+','+((i*67)%255)+','+((i*97)%255)+')';ctx.beginPath();ctx.arc((i*73)%256,(i*47)%192,2+i%8,0,Math.PI*2);ctx.fill()}const data=canvas.toDataURL('image/png'),send=async body=>{const response=await StudioBrowserEngine.fetch('/api/image-duplicates',{method:'POST',body:JSON.stringify(body)}),value=await response.json();if(!response.ok)throw Error(JSON.stringify(value));return value};const job=await send({action:'start',images:[{id:'android-qa-a',label:'Synthetic QA original',data},{id:'android-qa-b',label:'Synthetic QA exact copy',data}]});for(let i=0;i<600;i++){const status=await send({action:'result',jobId:job.jobId});if(status.status==='complete'){const result=status.result,match=result.matches[0];window.__androidDuplicate={state:'done',schema:result.schema,images:result.images.length,matches:result.matches.length,kind:match?.kind,evidence:!!match?.evidence?.startsWith('data:image/png;base64,'),reviewPreviews:result.images.every(image=>image.reviewPreview?.startsWith('data:image/png;base64,')),durationMs:performance.now()-started};return}if(status.status==='error'||status.status==='cancelled')throw Error(JSON.stringify(status));await new Promise(resolve=>setTimeout(resolve,400))}throw Error('Image check timed out')}catch(error){window.__androidDuplicate={state:'error',error:String(error)}}})()");
+            until("window.__androidDuplicate.state!=='running'",250);
+            JSONObject duplicate=result("window.__androidDuplicate");assertEquals(duplicate.toString(),"done",duplicate.getString("state"));
+            assertEquals("image-duplicate-check/1",duplicate.getString("schema"));assertEquals(2,duplicate.getInt("images"));assertEquals(1,duplicate.getInt("matches"));
+            assertEquals("exact",duplicate.getString("kind"));assertTrue(duplicate.getBoolean("evidence"));assertTrue(duplicate.getBoolean("reviewPreviews"));proof.put("imageDuplicateCheck",duplicate);
             // Same-origin POST and external navigation/fetch cannot reach a remote service.
             eval("window.__androidDenied=null;Promise.all([fetch('./forbidden-qa',{method:'POST',body:'synthetic'}).then(r=>r.status).catch(()=>-1),fetch('https://example.invalid/qa').then(r=>r.status).catch(()=>-1)]).then(x=>window.__androidDenied=x)");
             until("!!window.__androidDenied",15);assertEquals("403",eval("window.__androidDenied[0]"));

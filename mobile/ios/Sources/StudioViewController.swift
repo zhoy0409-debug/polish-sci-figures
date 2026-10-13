@@ -1,6 +1,7 @@
 import UIKit
 import WebKit
 import CoreFoundation
+import CryptoKit
 
 @MainActor
 private final class NativeMessageProxy: NSObject, WKScriptMessageHandlerWithReply {
@@ -12,13 +13,16 @@ private final class NativeMessageProxy: NSObject, WKScriptMessageHandlerWithRepl
     }
 }
 
-final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandlerWithReply, UIDocumentPickerDelegate {
+final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandlerWithReply, UIDocumentPickerDelegate, UIAdaptivePresentationControllerDelegate {
     private var webView: WKWebView!
     private var server: AssetServer?
     private var networkProbe: AssetServer?
     private var exports: ExportStore?
     private var exportReply: ((Any?, String?) -> Void)?
+    private var activeExportPicker: UIDocumentPickerViewController?
     private var exportTimeout: Timer?
+    private var dismissJavaScriptDialog: (() -> Void)?
+    private var lastSmokeExport: [String: Any]?
     private var trustedOrigin: URL?
     private let status = UILabel()
     private let retry = UIButton(type: .system)
@@ -81,6 +85,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         view.addSubview(retry)
         NSLayoutConstraint.activate([retry.topAnchor.constraint(equalTo: status.bottomAnchor, constant: 16), retry.centerXAnchor.constraint(equalTo: view.centerXAnchor), retry.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)])
         do { exports = try ExportStore() } catch { showError(error.localizedDescription); return }
+        do { try FileManager.default.createDirectory(at: localExportDirectory, withIntermediateDirectories: true) } catch { showError(error.localizedDescription, canRetry: false); return }
         // Imported data and editor storage remain app-local rather than entering iCloud backup.
         excludeEditorStorageFromBackup()
         startServer()
@@ -94,6 +99,10 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
             var values = URLResourceValues(); values.isExcludedFromBackup = true
             try? url.setResourceValues(values)
         }
+    }
+
+    private var localExportDirectory: URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Exports", isDirectory: true)
     }
 
     private func startServer() {
@@ -163,6 +172,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
 
     @objc private func reloadEditor() {
         guard !startingServer, webView != nil, exports != nil else { return }
+        dismissJavaScriptDialog?()
         if exportReply != nil { dismiss(animated: false); completeExport(cancelled: true) }
         exports?.abort()
         webView.stopLoading()
@@ -180,8 +190,43 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { if (error as NSError).code != NSURLErrorCancelled { showError(error.localizedDescription) } }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { if (error as NSError).code != NSURLErrorCancelled { showError(error.localizedDescription) } }
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        dismissJavaScriptDialog?()
         exports?.abort(); exportReply?(nil, "The editor process restarted; retry the export / 编辑器进程已重启，请重试导出"); exportReply = nil
+        activeExportPicker = nil
         showError("The system stopped the editor to recover memory. Reopen the saved local project or retry. / 系统为释放内存暂停了编辑器，请重试或重新打开已保存项目。")
+    }
+
+    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+        guard frame.isMainFrame, isTrusted(frame.request.url), isTrusted(webView.url), exportReply == nil, dismissJavaScriptDialog == nil else { completionHandler(false); return }
+        let chinese = message.range(of: "\\p{Han}", options: .regularExpression) != nil
+        let dialog = UIAlertController(title: "Figure Studio", message: message, preferredStyle: .alert)
+        var resolved = false
+        let finish: (Bool) -> Void = { [weak self, weak dialog] accepted in
+            guard !resolved else { return }
+            resolved = true; self?.dismissJavaScriptDialog = nil
+            dialog?.dismiss(animated: false)
+            completionHandler(accepted)
+        }
+        dismissJavaScriptDialog = { finish(false) }
+        dialog.addAction(UIAlertAction(title: chinese ? "取消" : "Cancel", style: .cancel) { _ in finish(false) })
+        dialog.addAction(UIAlertAction(title: chinese ? "确认" : "Confirm", style: .default) { _ in finish(true) })
+        presentConfirmationWhenReady(dialog, attemptsRemaining: 20, isActive: { !resolved }, finish: finish)
+    }
+
+    private func presentConfirmationWhenReady(_ dialog: UIAlertController, attemptsRemaining: Int, isActive: @escaping () -> Bool, finish: @escaping (Bool) -> Void) {
+        guard isActive() else { return }
+        guard isTrusted(webView.url) else { finish(false); return }
+        if presentedViewController == nil {
+            present(dialog, animated: !UIAccessibility.isReduceMotionEnabled)
+        } else if attemptsRemaining > 0 {
+            // File input onchange can run while the system picker is finishing
+            // dismissal. Wait briefly for that transition, rather than declining
+            // a valid project import or presenting over another controller.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
+                guard let self else { finish(false); return }
+                self.presentConfirmationWhenReady(dialog, attemptsRemaining: attemptsRemaining - 1, isActive: isActive, finish: finish)
+            }
+        } else { finish(false) }
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         status.isHidden = true; retry.isHidden = true
@@ -220,6 +265,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
                       number.doubleValue.isFinite, number.doubleValue.rounded() == number.doubleValue,
                       number.doubleValue >= 0, number.doubleValue <= Double(ExportStore.maximumBytes) else { throw ExportFailure.invalid("Invalid export size") }
                 let id = try exports.begin(name: name, bytes: number.intValue)
+                if smoke { lastSmokeExport = nil }
                 resetExportTimeout(); replyHandler(["id": id], nil)
             case "chunk":
                 guard let id = body["id"] as? String, let index = body["index"] as? Int, let base64 = body["base64"] as? String else { throw ExportFailure.invalid("Invalid export chunk") }
@@ -230,14 +276,19 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
                 guard exportReply == nil else { throw ExportFailure.invalid("Close the save dialog to cancel") }
                 exports.abort(id: id); exportTimeout?.invalidate(); replyHandler(["cancelled": true], nil)
             case "finish":
-                guard exportReply == nil, presentedViewController == nil, let id = body["id"] as? String else { throw ExportFailure.invalid("An export dialog is already open") }
+                guard exportReply == nil, dismissJavaScriptDialog == nil, let id = body["id"] as? String else { throw ExportFailure.invalid("An export dialog is already open") }
                 let file = try exports.finish(id: id)
                 exportTimeout?.invalidate(); exportReply = replyHandler
                 let picker = UIDocumentPickerViewController(forExporting: [file], asCopy: true)
+                activeExportPicker = picker
                 picker.delegate = self
                 picker.modalPresentationStyle = .formSheet
-                picker.isModalInPresentation = true // Explicit Cancel always resolves the pending Promise.
-                present(picker, animated: !UIAccessibility.isReduceMotionEnabled)
+                // A first-time user gets a visible on-device destination. The
+                // native picker still requires Save and can choose another folder.
+                if !UserDefaults.standard.bool(forKey: "studio.hasExported.v1") { picker.directoryURL = localExportDirectory }
+                presentExportWhenReady(picker, id: id, attemptsRemaining: 20)
+            case "smokeLastExport" where smoke:
+                replyHandler(lastSmokeExport ?? ["saved": false], nil)
             case "smokeStage" where smoke:
                 guard let stage = body["stage"] as? String, stage.utf8.count <= 500 else { throw ExportFailure.invalid("Invalid smoke stage") }
                 recordSmokeProgress(stage); replyHandler(["recorded": true], nil)
@@ -267,13 +318,54 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         }
     }
 
-    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) { completeExport(cancelled: true) }
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) { completeExport(cancelled: urls.isEmpty) }
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        guard controller === activeExportPicker else { return }
+        completeExport(cancelled: true)
+    }
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        guard presentationController.presentedViewController === activeExportPicker else { return }
+        completeExport(cancelled: true)
+    }
+    private func presentExportWhenReady(_ picker: UIDocumentPickerViewController, id: String, attemptsRemaining: Int) {
+        guard exportReply != nil, exports?.id == id else { return }
+        if presentedViewController == nil {
+            present(picker, animated: !UIAccessibility.isReduceMotionEnabled)
+            picker.presentationController?.delegate = self
+        } else if attemptsRemaining > 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
+                self?.presentExportWhenReady(picker, id: id, attemptsRemaining: attemptsRemaining - 1)
+            }
+        } else {
+            let callback = exportReply; exportReply = nil; activeExportPicker = nil
+            exports?.abort(); exportTimeout?.invalidate()
+            callback?(nil, "The previous dialog is still closing; retry saving / 上一个窗口尚未关闭，请重试保存")
+        }
+    }
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard controller === activeExportPicker else { return }
+        if let url = urls.first {
+            UserDefaults.standard.set(true, forKey: "studio.hasExported.v1")
+            if smoke {
+                let scoped = url.startAccessingSecurityScopedResource()
+                defer { if scoped { url.stopAccessingSecurityScopedResource() } }
+                var coordinationError: NSError?
+                NSFileCoordinator().coordinate(readingItemAt: url, options: [], error: &coordinationError) { actual in
+                    do {
+                        let bytes = try Data(contentsOf: actual)
+                        lastSmokeExport = ["saved": true, "name": actual.lastPathComponent, "bytes": bytes.count, "sha256": SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined(), "insideLocalDocuments": actual.standardizedFileURL.resolvingSymlinksInPath().path.hasPrefix(localExportDirectory.deletingLastPathComponent().standardizedFileURL.resolvingSymlinksInPath().path + "/")]
+                    } catch { lastSmokeExport = ["saved": false, "error": error.localizedDescription] }
+                }
+                if let coordinationError { lastSmokeExport = ["saved": false, "error": coordinationError.localizedDescription] }
+            }
+        }
+        completeExport(cancelled: urls.isEmpty)
+    }
     private func completeExport(cancelled: Bool) {
-        let callback = exportReply; exportReply = nil
+        guard let callback = exportReply else { return }
+        exportReply = nil; activeExportPicker = nil
         let result: [String: Any] = cancelled ? ["cancelled": true] : ["saved": true, "name": exports?.file?.lastPathComponent ?? "", "bytes": exports?.written ?? 0]
         exports?.abort(); exportTimeout?.invalidate()
-        callback?(result, nil)
+        callback(result, nil)
     }
 
     private func recordSmokeProgress(_ stage: String) {
@@ -327,6 +419,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     }
 
     deinit {
+        dismissJavaScriptDialog?(); dismissJavaScriptDialog = nil
         exportReply?(nil, "Editor closed / 编辑器已关闭"); exportReply = nil
         smokeWatchdog?.invalidate(); exportTimeout?.invalidate(); exports?.abort(); server?.stop(); networkProbe?.stop()
         webView?.configuration.userContentController.removeScriptMessageHandler(forName: "figureStudioNative", contentWorld: .page)

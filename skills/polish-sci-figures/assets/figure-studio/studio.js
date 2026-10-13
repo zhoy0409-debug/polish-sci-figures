@@ -3501,7 +3501,7 @@ if (typeof document !== 'undefined') (async () => {
   StudioLibrary.list('figures').then(records=>records.forEach(r=>libraryIds.add(r.id))).catch(()=>{});
 
   $('save').onclick=guard(async()=>{const signature=saveSignature();if(await download(projectFileBlob(currentPayload()),'figure-studio-project.json')===false)return;savedCurrent=signature;learnPreferences();say(T('已下载工程；包含原图、当前修改和版本。'));});
-  $('load').onclick=()=>$('projectFile').click();
+  $('load').onclick=()=>{const input=$('projectFile');input.value='';input.click();};
   $('projectFile').onchange=guard(async()=>{
     const file=$('projectFile').files[0];if(!file)return;if(file.size>PROJECT_FILE_LIMIT)throw Error(T('工程超过 200 MB，请拆分工程后保存。'));
     const payload=JSON.parse(await file.text());validateProject(payload.project);validateState(payload.state,payload.project);
