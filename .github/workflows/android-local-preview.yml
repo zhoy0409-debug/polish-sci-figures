@@ -71,6 +71,9 @@ jobs:
           "$ANDROID_HOME/emulator/emulator" -list-avds | grep -Fx studio-ci
       - name: Actual WebView worker, analysis, rendering, local files and persistence
         run: |
+          export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+          adb version
+          adb start-server
           "$ANDROID_HOME/emulator/emulator" -avd studio-ci -port 5554 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -memory 3072 >.cache/android-qa/emulator.log 2>&1 &
           emulator_pid=$!
           trap 'kill "$emulator_pid" 2>/dev/null || true' EXIT
@@ -80,7 +83,7 @@ jobs:
             if adb -s emulator-5554 shell getprop sys.boot_completed 2>/dev/null | tr -d '\r' | grep -q '^1$'; then booted=1; break; fi
             sleep 2
           done
-          if [ "$booted" -ne 1 ]; then cat .cache/android-qa/emulator.log; exit 1; fi
+          if [ "$booted" -ne 1 ]; then adb devices -l; cat .cache/android-qa/emulator.log; exit 1; fi
           adb shell input keyevent 82
           adb shell settings put global window_animation_scale 0
           adb shell settings put global transition_animation_scale 0
@@ -114,6 +117,7 @@ jobs:
         with:
           name: figure-studio-android-local-development-preview
           path: .cache/android-qa/delivery/
+          include-hidden-files: true
           retention-days: 14
           if-no-files-found: error
       - name: Collect synthetic test diagnostics
@@ -121,6 +125,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: figure-studio-android-diagnostics
+          include-hidden-files: true
           retention-days: 14
           if-no-files-found: ignore
           path: |

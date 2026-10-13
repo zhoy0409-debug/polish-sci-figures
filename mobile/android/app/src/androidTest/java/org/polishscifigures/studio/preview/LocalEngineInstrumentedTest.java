@@ -87,6 +87,15 @@ public class LocalEngineInstrumentedTest {
             proof.put("indexedDbProjectAfterActivityRestart",true);
             until("!!document.querySelector('[data-alignment-guide=\"'+JSON.parse(localStorage.getItem('android-instrumentation-workspace')).guideId+'\"]')",20);
             proof.put("actualEditorAutosaveAfterActivityRestart",workspace);
+            eval("document.getElementById('mobileTab-panels').click()");
+            until("document.body.dataset.mobileTab==='panels'",10);
+            UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack();
+            until("document.body.dataset.mobileTab==='canvas'",10);
+            eval("(()=>{const d=document.createElement('dialog');d.id='android-qa-dialog';d.textContent='Synthetic Back test';document.body.append(d);d.showModal()})()");
+            UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack();
+            until("!document.getElementById('android-qa-dialog').open",10);
+            eval("document.getElementById('android-qa-dialog').remove()");
+            proof.put("nativeBackClosesDrawerAndDialog",true);
             // Real WebView user gesture -> onShowFileChooser -> content URI -> FileReader.
             Intents.init();
             try {

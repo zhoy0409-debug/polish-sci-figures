@@ -3,7 +3,7 @@
     <!-- Intentionally no INTERNET, broad storage, camera, microphone or account permissions. -->
     <application android:label="Figure Studio Preview" android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:allowBackup="false" android:usesCleartextTraffic="false" android:supportsRtl="true"
-        android:hardwareAccelerated="true">
+        android:hardwareAccelerated="true" android:enableOnBackInvokedCallback="false">
         <activity android:name=".MainActivity" android:exported="true"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode"
             android:windowSoftInputMode="adjustResize">

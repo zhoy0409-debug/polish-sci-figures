@@ -197,6 +197,11 @@ public final class MainActivity extends Activity {
         }
     }
     @Override public void onBackPressed() {
+        if (web == null || destroyed) { confirmClose(); return; }
+        // Fixed app-owned code only: Back dismisses an HTML dialog/drawer before exit.
+        web.evaluateJavascript("(()=>{const d=[...document.querySelectorAll('dialog[open]')].pop();if(d){if(d.dispatchEvent(new Event('cancel',{cancelable:true}))&&d.open)d.close();return true;}if(document.body.classList.contains('studio-mobile')&&document.body.dataset.mobileTab!=='canvas'){document.getElementById('mobileTab-canvas')?.click();return true;}return false;})()", consumed -> { if (!destroyed && !"true".equals(consumed)) confirmClose(); });
+    }
+    private void confirmClose() {
         new AlertDialog.Builder(this).setMessage("Close the local editor? Save a project file to keep a separate backup. / 关闭本地编辑器？建议保存工程文件作为独立备份。")
             .setPositiveButton("Close / 关闭", (dialog, which) -> finish()).setNegativeButton("Stay / 留在编辑器", null).show();
     }
