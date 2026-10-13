@@ -23,6 +23,8 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     private var exportCompleting = false
     private var exportTimeout: Timer?
     private var dismissJavaScriptDialog: (() -> Void)?
+    private var modalAccessibilityStates: [ObjectIdentifier: Bool] = [:]
+    private var previousWebAccessibilityHidden: Bool?
     private var lastSmokeExport: [String: Any]?
     private var trustedOrigin: URL?
     private let status = UILabel()
@@ -161,6 +163,61 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         return url.scheme == "http" && url.host == "127.0.0.1" && url.port == origin.port && url.user == nil && url.password == nil
     }
 
+    private func isolateModalAccessibility(_ controller: UIViewController) {
+        let key = ObjectIdentifier(controller)
+        guard modalAccessibilityStates[key] == nil else { return }
+        if modalAccessibilityStates.isEmpty { previousWebAccessibilityHidden = webView.accessibilityElementsHidden }
+        modalAccessibilityStates[key] = controller.view.accessibilityViewIsModal
+        // A synchronous JavaScript confirm suspends WebKit. Keep assistive
+        // technology on the native modal instead of querying that background.
+        // Only the web content is hidden; the native modal stays accessible.
+        webView.accessibilityElementsHidden = true
+        controller.view.accessibilityViewIsModal = true
+    }
+
+    private func restoreModalAccessibility(_ controller: UIViewController) {
+        guard let previous = modalAccessibilityStates.removeValue(forKey: ObjectIdentifier(controller)) else { return }
+        controller.view.accessibilityViewIsModal = previous
+        guard modalAccessibilityStates.isEmpty else { return }
+        webView.accessibilityElementsHidden = previousWebAccessibilityHidden ?? false
+        previousWebAccessibilityHidden = nil
+        DispatchQueue.main.async { [weak self] in
+            guard let self, self.modalAccessibilityStates.isEmpty else { return }
+            UIAccessibility.post(notification: .screenChanged, argument: nil)
+        }
+    }
+
+    private func dismissAccessibleModal(_ controller: UIViewController, completion: @escaping () -> Void = {}) {
+        var completed = false
+        let finish: () -> Void = { [weak self] in
+            guard !completed else { return }
+            completed = true
+            // Resolve a synchronous confirm before WebKit re-enters the AX tree.
+            completion()
+            self?.restoreModalAccessibility(controller)
+        }
+        // UIKit may already be presenting/dismissing after an action or swipe.
+        // Wait for the real transition before exposing the background again.
+        if (controller.isBeingPresented || controller.isBeingDismissed), let transition = controller.transitionCoordinator {
+            // animate can return false and still call its completion later.
+            // Only one continuation may own dismissal and the eventual reply.
+            var continuationClaimed = false
+            if transition.animate(alongsideTransition: nil, completion: { [weak self] _ in
+                guard !continuationClaimed else { return }
+                continuationClaimed = true
+                guard let self else { finish(); return }
+                self.dismissAccessibleModal(controller, completion: finish)
+            }) { return }
+            guard !continuationClaimed else { return }
+            continuationClaimed = true
+        }
+        if controller.presentingViewController != nil {
+            controller.dismiss(animated: false, completion: finish)
+        } else {
+            finish()
+        }
+    }
+
     private func showError(_ text: String, canRetry: Bool = true) {
         // A missing adapter is detected before the regular view setup. Still
         // show that fatal setup error, without an ineffective Retry action.
@@ -221,6 +278,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { if (error as NSError).code != NSURLErrorCancelled { showError(error.localizedDescription) } }
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         dismissJavaScriptDialog?()
+        if let picker = activeExportPicker { dismissAccessibleModal(picker) }
         exports?.abort(); exportReply?(nil, "The editor process restarted; retry the export / 编辑器进程已重启，请重试导出"); exportReply = nil
         activeExportPicker = nil; exportCompleting = false
         showError("The system stopped the editor to recover memory. Reopen the saved local project or retry. / 系统为释放内存暂停了编辑器，请重试或重新打开已保存项目。")
@@ -239,23 +297,29 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         var resolved = false
         let finish: (Bool) -> Void = { [weak self, weak dialog] accepted in
             guard !resolved else { return }
-            resolved = true; self?.dismissJavaScriptDialog = nil
-            if self?.smoke == true { self?.recordSmokeProgress(accepted ? "Native confirmation accepted" : "Native confirmation declined") }
-            dialog?.dismiss(animated: false)
-            completionHandler(accepted)
+            resolved = true
+            let complete: () -> Void = { [weak self] in
+                self?.dismissJavaScriptDialog = nil
+                if self?.smoke == true { self?.recordSmokeProgress(accepted ? "Native confirmation accepted" : "Native confirmation declined") }
+                completionHandler(accepted)
+            }
+            if let self, let dialog { self.dismissAccessibleModal(dialog, completion: complete) }
+            else { complete() }
         }
         dismissJavaScriptDialog = { finish(false) }
         dialog.addAction(UIAlertAction(title: chinese ? "取消" : "Cancel", style: .cancel) { _ in finish(false) })
         dialog.addAction(UIAlertAction(title: chinese ? "确认" : "Confirm", style: .default) { _ in finish(true) })
+        isolateModalAccessibility(dialog)
         presentConfirmationWhenReady(dialog, attemptsRemaining: 20, isActive: { !resolved }, finish: finish)
     }
 
     private func presentConfirmationWhenReady(_ dialog: UIAlertController, attemptsRemaining: Int, mayDismissCompletedPicker: Bool = true, isActive: @escaping () -> Bool, finish: @escaping (Bool) -> Void) {
         guard isActive() else { return }
-        guard isTrusted(webView.url) else { finish(false); return }
+        guard isTrusted(webView.url), viewIfLoaded?.window != nil else { finish(false); return }
         if presentedViewController == nil {
             present(dialog, animated: !UIAccessibility.isReduceMotionEnabled) { [weak self] in
                 if self?.smoke == true { self?.recordSmokeProgress("Native confirmation shown") }
+                UIAccessibility.post(notification: .screenChanged, argument: dialog.view)
             }
         } else if attemptsRemaining > 0 {
             // File input onchange can run while the system picker is finishing
@@ -379,6 +443,14 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     }
     private func presentExportWhenReady(_ picker: UIDocumentPickerViewController, id: String, attemptsRemaining: Int) {
         guard exportReply != nil, exports?.id == id else { return }
+        guard viewIfLoaded?.window != nil else {
+            let callback = exportReply; exportReply = nil; activeExportPicker = nil
+            exports?.abort(); exportTimeout?.invalidate()
+            dismissAccessibleModal(picker) {
+                callback?(nil, "The editor is not visible; reopen it and retry saving / 编辑器未显示，请重新打开后保存")
+            }
+            return
+        }
         if presentedViewController == nil {
             let file = exports?.file
             let values = try? file?.resourceValues(forKeys: [.fileSizeKey, .isRegularFileKey])
@@ -392,7 +464,10 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
                 callback?(nil, "The prepared export file is no longer complete; retry saving / 导出临时文件不完整，请重试保存")
                 return
             }
-            present(picker, animated: !UIAccessibility.isReduceMotionEnabled)
+            isolateModalAccessibility(picker)
+            present(picker, animated: !UIAccessibility.isReduceMotionEnabled) {
+                UIAccessibility.post(notification: .screenChanged, argument: picker.view)
+            }
             picker.presentationController?.delegate = self
         } else if attemptsRemaining > 0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
@@ -446,9 +521,12 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
                 if closed, result["saved"] as? Bool == true { lastSmokeExport?["pickerClosedBeforeReply"] = true }
             }
             guard closed else {
-                callback?(nil, "The file dialog did not finish closing; close it before continuing / 文件窗口尚未完成关闭，请关闭后继续")
+                dismissAccessibleModal(picker) {
+                    callback?(nil, "The file dialog did not finish closing; close it before continuing / 文件窗口尚未完成关闭，请关闭后继续")
+                }
                 return
             }
+            restoreModalAccessibility(picker)
             var response = result
             if smoke { response["pickerClosedBeforeReply"] = true }
             callback?(response, nil)
@@ -504,7 +582,8 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
             "rejectAbsoluteURL": AssetServer.assetURL(target: "https://example.invalid/", root: root) == nil,
             "rejectFilenameTraversal": (try? ExportStore.safeName("../private.txt")) == nil,
             "rejectRemoteNavigation": !isTrusted(URL(string: "https://example.invalid/")),
-            "stableOriginPort": UserDefaults.standard.integer(forKey: "studio.local.port.v1") == Int(server?.port ?? 0)
+            "stableOriginPort": UserDefaults.standard.integer(forKey: "studio.local.port.v1") == Int(server?.port ?? 0),
+            "backgroundAccessibilityRestored": modalAccessibilityStates.isEmpty && previousWebAccessibilityHidden == nil && !webView.accessibilityElementsHidden
         ]
         result.merge(LiteraturePolicy.selfChecks()) { _, current in current }
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent("FigureStudioNativeSelfTest")

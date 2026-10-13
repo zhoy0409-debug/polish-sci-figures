@@ -4,6 +4,50 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const source = fs.readFileSync(path.join(__dirname, '../Resources/native-adapter.js'), 'utf8');
+const controllerSource = fs.readFileSync(path.join(__dirname, '../Sources/StudioViewController.swift'), 'utf8').replace(/\r\n/g, '\n');
+
+function nativeSection(start, end) {
+  const from = controllerSource.indexOf(start), to = controllerSource.indexOf(end, from + start.length);
+  assert.ok(from >= 0 && to > from, `Missing native source boundary: ${start}`);
+  return controllerSource.slice(from, to);
+}
+
+function checkModalAccessibilityBoundaries() {
+  const isolate = nativeSection('private func isolateModalAccessibility', 'private func restoreModalAccessibility');
+  assert.match(isolate, /ObjectIdentifier\(controller\)/, 'One modal must not release another modal isolation');
+  assert.match(isolate, /previousWebAccessibilityHidden = webView\.accessibilityElementsHidden/);
+  assert.match(isolate, /webView\.accessibilityElementsHidden = true/);
+  assert.match(isolate, /controller\.view\.accessibilityViewIsModal = true/);
+  assert.doesNotMatch(controllerSource, /\bview\.accessibilityElementsHidden\s*=/, 'Never hide the root that also contains the native dialog');
+  assert.doesNotMatch(isolate, /isUserInteractionEnabled|\.isHidden\s*=|\.alpha\s*=/, 'Accessibility isolation must not change visual/touch interaction');
+  const restore = nativeSection('private func restoreModalAccessibility', 'private func dismissAccessibleModal');
+  assert.match(restore, /removeValue\(forKey: ObjectIdentifier\(controller\)\)/);
+  assert.match(restore, /guard modalAccessibilityStates\.isEmpty else \{ return \}/);
+  assert.match(restore, /webView\.accessibilityElementsHidden = previousWebAccessibilityHidden \?\? false/);
+  assert.match(restore, /UIAccessibility\.post\(notification: \.screenChanged, argument: nil\)/);
+  const dismiss = nativeSection('private func dismissAccessibleModal', 'private func showError');
+  assert.match(dismiss, /guard !completed else \{ return \}\s*completed = true/, 'UIKit transition and dismiss callbacks cannot reply twice');
+  assert.equal((dismiss.match(/guard !continuationClaimed else \{ return \}/g) || []).length, 2, 'An animate(false) fallback and its later callback must share ownership');
+  assert.match(dismiss, /dismissAccessibleModal\(controller, completion: finish\)/, 'Recursive dismissal shares the once-only completion');
+  assert.match(dismiss, /controller\.transitionCoordinator/);
+  assert.match(dismiss, /controller\.dismiss\(animated: false, completion: finish\)/);
+  assert.ok(dismiss.indexOf('completion()\n            self?.restoreModalAccessibility') >= 0, 'Resume synchronous JavaScript before exposing its accessibility tree');
+  const confirm = nativeSection('runJavaScriptConfirmPanelWithMessage', 'func webView(_ webView: WKWebView, didFinish');
+  assert.match(confirm, /isolateModalAccessibility\(dialog\)/);
+  assert.match(confirm, /dismissAccessibleModal\(dialog, completion: complete\)/);
+  assert.match(confirm, /dismissJavaScriptDialog = \{ finish\(false\) \}/);
+  assert.match(confirm, /else \{ finish\(false\); return \}/, 'Presentation/origin failure resolves through the same restoring path');
+  const processExit = nativeSection('func webViewWebContentProcessDidTerminate', 'runJavaScriptConfirmPanelWithMessage');
+  assert.match(processExit, /dismissJavaScriptDialog\?\(\)/);
+  assert.match(processExit, /if let picker = activeExportPicker \{ dismissAccessibleModal\(picker\) \}/);
+  const reload = nativeSection('@objc private func reloadEditor', 'func webView(_ webView: WKWebView, decidePolicyFor');
+  assert.match(reload, /dismissJavaScriptDialog\?\(\)/);
+  assert.match(reload, /completeExport\(cancelled: true\)/);
+  const exportEnd = nativeSection('private func finishExportAfterDismissal', 'private func recordSmokeProgress');
+  assert.match(exportEnd, /guard closed else \{\s*dismissAccessibleModal\(picker\)/, 'A dismissal failure must finish closing before restoring');
+  assert.match(exportEnd, /restoreModalAccessibility\(picker\)[\s\S]*callback\?\(response, nil\)/);
+  assert.match(controllerSource, /"backgroundAccessibilityRestored": modalAccessibilityStates\.isEmpty && previousWebAccessibilityHidden == nil && !webView\.accessibilityElementsHidden/, 'Both actual simulator flows verify the final accessibility state');
+}
 
 function adapter(options = {}) {
   const calls = [], received = [];
@@ -30,6 +74,7 @@ function adapter(options = {}) {
 }
 
 (async () => {
+  checkModalAccessibilityBoundaries();
   const bytes = Buffer.alloc(600001); for (let i = 0; i < bytes.length; i++) bytes[i] = i % 251;
   const saved = adapter();
   assert.equal(saved.bridge.platform, 'ios'); assert.equal(saved.bridge.bundledAssets, true);
@@ -53,5 +98,5 @@ function adapter(options = {}) {
   const noNative = {top: null}; noNative.top = noNative;
   vm.runInNewContext(source, {window: noNative}); assert.equal(noNative.StudioNativeBridge, undefined);
   new vm.Script(fs.readFileSync(path.join(__dirname, '../Resources/simulator-smoke.js'), 'utf8'));
-  console.log('iOS adapter: sequential bounded chunks, exact bytes, cancellation, abort, empty files, busy state, base64 and syntax passed');
+  console.log('iOS adapter: modal accessibility ownership/restore boundaries, sequential bounded chunks, exact bytes, cancellation, abort, empty files, busy state, base64 and syntax passed');
 })().catch(error => { console.error(error); process.exitCode = 1; });
