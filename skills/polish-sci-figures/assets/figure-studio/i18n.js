@@ -177,6 +177,7 @@ const StudioI18n = (() => {
     '恢复首版':'Reset to first draft','保存工程':'Save project','打开工程':'Open project','导出 SVG':'Export SVG',
     'FIGURE / 面板':'FIGURE / PANELS','选中小图，再点选图内元素。':'Select a panel, then click an object inside it.',
     'Shift + 点击可多选。':'Shift-click to select multiple objects.',
+    '在画布中切换到“编辑”，再点选或框选元素。':'On the canvas, choose Edit, then tap or drag to select objects.',
     '母版与叙事顺序':'Layouts & reading order',
     '悬停母版看整图，点击应用。空位保留；数字表示阅读顺序，不进入导出。':'Hover to preview the composition; click to apply. Empty slots are retained. Reading-order guides are not exported.',
     '跨格时匹配已有横 / 竖版':'Match available canvas variants to spanning slots',

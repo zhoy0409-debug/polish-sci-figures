@@ -61,7 +61,18 @@ final class AssetServer {
                 DispatchQueue.main.async { callbacks.forEach { $0() } }
                 return
             }
-            self.listener?.cancel()
+            // Keep this server alive until cancellation is acknowledged. The
+            // controller drops its old server before Retry, and the ordinary
+            // listener handler intentionally holds only a weak reference.
+            let stopping = self.listener!
+            stopping.stateUpdateHandler = { [self, weak stopping] state in
+                guard case .cancelled = state else { return }
+                stopping?.stateUpdateHandler = nil
+                self.listener = nil
+                let callbacks = self.stopCallbacks; self.stopCallbacks.removeAll()
+                DispatchQueue.main.async { callbacks.forEach { $0() } }
+            }
+            stopping.cancel()
             for connection in self.connections.values { connection.cancel() }
             self.connections.removeAll()
         }

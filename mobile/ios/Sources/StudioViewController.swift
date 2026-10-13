@@ -121,13 +121,20 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         // Even a malicious imported SVG cannot make requests to a remote origin.
         let localPattern = "^" + NSRegularExpression.escapedPattern(for: origin + "/")
         let rules: [[String: Any]] = [
-            ["trigger": ["url-filter": "^(https?|wss?)://"], "action": ["type": "block"]],
+            // WebKit content-blocker patterns are a restricted regex subset:
+            // alternation is unsupported, so use independent scheme rules.
+            ["trigger": ["url-filter": "^https?://"], "action": ["type": "block"]],
+            ["trigger": ["url-filter": "^wss?://"], "action": ["type": "block"]],
             ["trigger": ["url-filter": localPattern], "action": ["type": "ignore-previous-rules"]]
         ]
         guard let data = try? JSONSerialization.data(withJSONObject: rules), let text = String(data: data, encoding: .utf8) else { showError("Could not create local resource policy"); return }
         WKContentRuleListStore.default().compileContentRuleList(forIdentifier: "figure-studio-local-only", encodedContentRuleList: text) { [weak self] list, error in
             guard let self else { return }
-            guard let list else { self.showError(error?.localizedDescription ?? "Local resource policy unavailable"); return }
+            guard let list else {
+                let detail = (error as NSError?)?.userInfo[NSLocalizedFailureReasonErrorKey] as? String
+                self.showError((error?.localizedDescription ?? "Local resource policy unavailable") + (detail.map { "\n" + $0 } ?? ""))
+                return
+            }
             self.webView.configuration.userContentController.add(list)
             self.recordSmokeProgress("Loading bundled editor")
             ready()
@@ -140,6 +147,16 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     }
 
     private func showError(_ text: String, canRetry: Bool = true) {
+        // A missing adapter is detected before the regular view setup. Still
+        // show that fatal setup error, without an ineffective Retry action.
+        if status.superview == nil {
+            status.numberOfLines = 0; status.textAlignment = .center
+            status.font = .preferredFont(forTextStyle: .body)
+            status.accessibilityIdentifier = "native-status"
+            status.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(status)
+            NSLayoutConstraint.activate([status.centerYAnchor.constraint(equalTo: view.centerYAnchor), status.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20), status.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)])
+        }
         status.isHidden = false; status.text = text; retry.isHidden = !canRetry || webView == nil || exports == nil; retry.isEnabled = true
         if smoke { writeSmoke(["passed": false, "error": text, "activeStage": smokeStage]) }
     }

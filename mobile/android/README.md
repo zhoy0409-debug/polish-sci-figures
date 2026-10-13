@@ -36,6 +36,8 @@ The runtime test uses a fresh emulator profile, synthetic data and a test-only d
 
 Implementation references: [Android local WebView content](https://developer.android.com/develop/ui/views/layout/webapps/load-local-content), [WebViewAssetLoader](https://developer.android.com/reference/androidx/webkit/WebViewAssetLoader), [WebViewCompat messaging](https://developer.android.com/reference/androidx/webkit/WebViewCompat), [Storage Access Framework](https://developer.android.com/training/data-storage/shared/documents-files).
 
+CI environment note: the first Android 35 Google image showed a “Pixel Launcher isn't responding” system dialog over a responsive editor after successful editor autosave restoration. The dedicated emulator now disables only that Google Home launcher package before explicitly launching instrumentation. Application ANR dialogs are not suppressed. This setup does not verify launcher-home-screen interaction; installation and app launch are performed through ADB/instrumentation.
+
 ## Android 本地开发预览版
 
 这是用于实际验证的开发 APK，内置完整界面与固定版本的科学计算运行库，不申请联网权限。统计、作图、图片查重均在设备本地执行；安装后不需要 Python、Codex、账号或远程服务器。要求 Android 8 及以上，并使用支持所需功能的较新 Android System WebView。系统版本不能代替 WebView 能力或真实设备性能验证。
@@ -47,3 +49,5 @@ Implementation references: [Android local WebView content](https://developer.and
 本地浏览器原型的能力边界仍适用，包括暂不支持可编辑 PDF 导入。构建步骤见上方；`prepare_assets.py` 从当前源码重新构建公共资源并校验，只打包清单中的程序文件，不包含研究工程或测试证据。
 
 自动化测试在全新的 Android 35 模拟器环境中使用合成数据，覆盖真实 WebView 文件选择回调与读取、系统文档接口写入和取消、页面重建后的 IndexedDB 工程 JSON、编辑器实际参考线操作在进程重启后的自动保存及撤销记录、实际统计与 SVG 出图、资源访问限制，并通过模拟器显示尺寸和密度设置检查平板横竖屏及截图。系统选择器的选择结果由测试框架提供，文件实际写入；这不等于已经人工验证所有厂商的文件管理器，也不代表低配置真机或真实平板的流畅度。二进制 TIF 传输用例验证字节不变，不冒充实际生成的科研 TIF。测试遇到已有编辑工程会停止，不清理用户工程库。开发预览完成测试后，仍需继续实测手机和平板。
+
+CI 环境记录：首轮实际界面已成功恢复编辑器自动保存，但 Google 系统镜像的 Pixel Launcher 出现无响应弹窗并遮挡编辑器。专用模拟器现仅停用该系统桌面包，再由测试程序明确启动应用；没有屏蔽本应用的无响应提示。这一环境通过 ADB 安装和启动，不作为已经验证桌面图标交互的证据。

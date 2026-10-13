@@ -63,6 +63,7 @@ public class LocalEngineInstrumentedTest {
         Context target=InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals(PackageManager.PERMISSION_DENIED,target.checkCallingOrSelfPermission("android.permission.INTERNET"));
         proof.put("internetPermission",false); proof.put("device",android.os.Build.MODEL); proof.put("api",android.os.Build.VERSION.SDK_INT);
+        proof.put("ciLauncherDisabled",Boolean.parseBoolean(InstrumentationRegistry.getArguments().getString("ciLauncherDisabled","false")));
         scenario=ActivityScenario.launch(MainActivity.class);
         try {
             until("!!(window.StudioNativeBridge && window.StudioBrowserEngine && document.querySelector('#artboard'))",60);
