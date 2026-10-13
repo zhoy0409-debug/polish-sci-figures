@@ -2,7 +2,10 @@
 from __future__ import annotations
 
 from pathlib import Path
+from contextlib import redirect_stdout
+import io
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -32,6 +35,26 @@ class MacPreviewTests(unittest.TestCase):
             self.assertEqual(build.native_arch('arm64'), 'arm64')
             with self.assertRaisesRegex(RuntimeError, 'running as arm64'):
                 build.native_arch('x86_64')
+
+    def test_timed_out_command_keeps_live_stdout_and_stderr_log(self):
+        log = self.root / 'nested' / 'timeout.log'
+        output = io.StringIO()
+        child = (
+            "import sys,time; from pathlib import Path; "
+            "print('before-timeout', flush=True); "
+            "print('stderr-before-timeout', file=sys.stderr, flush=True); "
+            "print('visible-while-running=' + str('before-timeout' in Path(sys.argv[1]).read_text()), flush=True); "
+            "time.sleep(30); print('must-not-complete', flush=True)"
+        )
+        with redirect_stdout(output), self.assertRaises(subprocess.TimeoutExpired):
+            build.run([sys.executable, '-c', child, str(log)], log=log, timeout=2)
+        saved = log.read_text(encoding='utf-8')
+        self.assertIn('before-timeout', saved)
+        self.assertIn('stderr-before-timeout', saved)
+        self.assertIn('visible-while-running=True', saved)
+        self.assertNotIn('must-not-complete', saved)
+        self.assertIn('partial log retained', output.getvalue())
+        self.assertIn('stderr-before-timeout', output.getvalue())
 
     def test_reset_is_confined_to_generated_child(self):
         stage = self.root / 'stage'

@@ -7,6 +7,8 @@ on its native runner. Frozen HTTP/Tk tests must pass before a ZIP is produced.
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
+from datetime import datetime, timezone
 import hashlib
 import importlib.metadata as metadata
 import json
@@ -18,6 +20,7 @@ import shutil
 import subprocess
 import sys
 import sysconfig
+import time
 
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = '0.1.5'
@@ -39,13 +42,54 @@ def native_arch(requested=None):
     return actual
 
 
+def progress(message):
+    stamp = datetime.now(timezone.utc).strftime('%H:%M:%SZ')
+    print(f'[macOS build {stamp}] {message}', flush=True)
+
+
+@contextmanager
+def phase(name):
+    started = time.monotonic()
+    progress(f'START {name}')
+    try:
+        yield
+    except BaseException:
+        progress(f'FAILED {name} after {time.monotonic() - started:.1f}s')
+        raise
+    else:
+        progress(f'END {name} after {time.monotonic() - started:.1f}s')
+
+
+def log_tail(path):
+    # Read only the end when a command fails; a long build log remains on disk.
+    with Path(path).open('rb') as handle:
+        handle.seek(0, os.SEEK_END)
+        handle.seek(max(0, handle.tell() - 48000))
+        return handle.read().decode('utf-8', errors='replace')[-12000:]
+
+
 def run(args, *, log=None, env=None, timeout=900):
-    result = subprocess.run(list(map(str, args)), cwd=ROOT, env=env,
-                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                            text=True, errors='replace', timeout=timeout)
+    command = list(map(str, args))
+    options = dict(cwd=ROOT, env=env, stderr=subprocess.STDOUT,
+                   text=True, errors='replace', timeout=timeout)
     if log:
-        Path(log).parent.mkdir(parents=True, exist_ok=True)
-        Path(log).write_text(result.stdout, encoding='utf-8')
+        log = Path(log)
+        log.parent.mkdir(parents=True, exist_ok=True)
+        progress(f'Command log: {log}')
+        try:
+            # Redirect the child directly to its file, so output survives even
+            # if it times out before subprocess.run returns.
+            with log.open('wb') as handle:
+                result = subprocess.run(command, stdout=handle, **options)
+        except subprocess.TimeoutExpired:
+            progress(f'Command timed out after {timeout}s; partial log retained: {log}')
+            print(log_tail(log), flush=True)
+            raise
+        if result.returncode:
+            print(log_tail(log), flush=True)
+            result.check_returncode()
+        return log.read_text(encoding='utf-8', errors='replace').strip()
+    result = subprocess.run(command, stdout=subprocess.PIPE, **options)
     if result.returncode:
         print(result.stdout[-12000:], flush=True)
         result.check_returncode()
@@ -334,8 +378,11 @@ def audit_bundle(app, architecture):
             if not dependency_is_bundled(location, path, app, executable, rpaths):
                 raise RuntimeError(f'Unbundled native dependency in {path}: {location}')
         checked.append(str(path.relative_to(app)))
+        if len(checked) % 25 == 0:
+            progress(f'Native audit: {len(checked)} binaries checked; latest {checked[-1]}')
     if not checked:
         raise RuntimeError('No Mach-O binaries found in the app bundle.')
+    progress(f'Native audit: {len(checked)} binaries checked; verifying bundle signature')
     run(['/usr/bin/codesign', '--verify', '--deep', '--strict', app])
     return checked
 
@@ -357,17 +404,22 @@ def build(architecture):
     work.mkdir(parents=True, exist_ok=True)
     reset_generated(stage, work)
     reset_generated(dist, ROOT / 'dist' / 'macos')
-    versions, libraries = preflight()
-    copy_suite(stage)
-    notices(stage, versions, libraries, architecture)
+    with phase('Native runtime preflight'):
+        versions, libraries = preflight()
+    with phase('Stage suite and starter'):
+        copy_suite(stage)
+    with phase('Collect runtime licenses'):
+        notices(stage, versions, libraries, architecture)
     (stage / 'MACOS-PREVIEW.txt').write_text(preview_readme(architecture), encoding='utf-8')
     env = dict(os.environ, FIGURE_STUDIO_MAC_ARCH=architecture,
                FIGURE_STUDIO_MAC_STAGE=str(stage), FIGURE_STUDIO_MAC_VERSION=VERSION)
-    run([sys.executable, '-m', 'PyInstaller', '--noconfirm', '--clean',
-         '--distpath', dist, '--workpath', work / 'pyinstaller',
-         ROOT / 'desktop/FigureStudio-macos.spec'], log=work / 'freeze.log', env=env, timeout=1800)
+    with phase('Freeze application with PyInstaller'):
+        run([sys.executable, '-m', 'PyInstaller', '--noconfirm', '--clean',
+             '--distpath', dist, '--workpath', work / 'pyinstaller',
+             ROOT / 'desktop/FigureStudio-macos.spec'], log=work / 'freeze.log', env=env, timeout=1800)
     app = dist / 'Figure Studio.app'
-    checked = audit_bundle(app, architecture)
+    with phase('Audit native libraries and signature'):
+        checked = audit_bundle(app, architecture)
     report = {'architecture': architecture, 'binariesChecked': checked, 'runtime': versions,
               'signing': 'ad-hoc only', 'notarized': False}
     (work / 'native-audit.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
@@ -376,13 +428,15 @@ def build(architecture):
     clean_env['PATH'] = '/usr/bin:/bin:/usr/sbin:/sbin'
     reset_generated(work / 'self-test-data', work)
     reset_generated(work / 'self-test-output', work)
-    run([app / 'Contents/MacOS/Figure Studio', '--self-test', '--data-dir', work / 'self-test-data',
-         '--output-dir', work / 'self-test-output'], log=work / 'frozen-self-test.log', env=clean_env)
-    frozen_proof(work / 'self-test-output')
+    with phase('Frozen local self-test'):
+        run([app / 'Contents/MacOS/Figure Studio', '--self-test', '--data-dir', work / 'self-test-data',
+             '--output-dir', work / 'self-test-output'], log=work / 'frozen-self-test.log', env=clean_env)
+        frozen_proof(work / 'self-test-output')
     archive = dist / f'polish-sci-figures-Studio-{VERSION}-macOS-{architecture}-Preview.zip'
-    run(['/usr/bin/ditto', '-c', '-k', '--sequesterRsrc', '--keepParent', app, archive])
-    with archive.open('rb') as handle:
-        digest = hashlib.file_digest(handle, 'sha256').hexdigest()
+    with phase('Archive application and calculate checksum'):
+        run(['/usr/bin/ditto', '-c', '-k', '--sequesterRsrc', '--keepParent', app, archive])
+        with archive.open('rb') as handle:
+            digest = hashlib.file_digest(handle, 'sha256').hexdigest()
     (dist / 'SHA256SUMS.txt').write_text(f'{digest}  {archive.name}\n', encoding='ascii')
     (dist / 'MACOS-PREVIEW.txt').write_text(preview_readme(architecture), encoding='utf-8')
     print(archive, flush=True)
