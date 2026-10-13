@@ -15,6 +15,7 @@ private final class NativeMessageProxy: NSObject, WKScriptMessageHandlerWithRepl
 final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandlerWithReply, UIDocumentPickerDelegate {
     private var webView: WKWebView!
     private var server: AssetServer?
+    private var networkProbe: AssetServer?
     private var exports: ExportStore?
     private var exportReply: ((Any?, String?) -> Void)?
     private var exportTimeout: Timer?
@@ -27,10 +28,21 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     private let smoke = false
     #endif
     private var smokeStarted = false
+    private var smokeReported = false
+    private var smokeStage = "Native app startup"
+    private var smokeWatchdog: Timer?
+    private var startingServer = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        if smoke {
+            recordSmokeProgress("Native app startup")
+            smokeWatchdog = Timer.scheduledTimer(withTimeInterval: 240, repeats: false) { [weak self] _ in
+                guard let self else { return }
+                self.writeSmoke(["passed": false, "error": "Native smoke watchdog reached 240 seconds", "activeStage": self.smokeStage])
+            }
+        }
         let controller = WKUserContentController()
         controller.addScriptMessageHandler(NativeMessageProxy(owner: self), contentWorld: .page, name: "figureStudioNative")
         guard let scriptURL = Bundle.main.url(forResource: "native-adapter", withExtension: "js"),
@@ -85,15 +97,20 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     }
 
     private func startServer() {
-        guard let assets = Bundle.main.url(forResource: "WebAssets", withExtension: nil) else { showError("Missing bundled assets / 缺少本地资源"); return }
+        guard !startingServer else { return }
+        guard let assets = Bundle.main.url(forResource: "WebAssets", withExtension: nil) else { showError("Missing bundled assets / 缺少本地资源", canRetry: false); return }
+        startingServer = true; retry.isEnabled = false
+        recordSmokeProgress("Starting loopback asset server")
         let local = AssetServer(root: assets)
         server = local
         local.start { [weak self] result in
             guard let self else { return }
+            self.startingServer = false
             switch result {
             case .failure(let error):
                 self.showError("Could not open the saved local port. Close and reopen the app to retry; your project storage has not been reset. / 无法打开原本地端口，请关闭应用后重试，项目存储未被重置。\n" + error.localizedDescription)
             case .success(let url):
+                self.recordSmokeProgress("Installing local-only WebKit policy")
                 self.trustedOrigin = url
                 self.installNetworkRules(origin: local.origin) { self.webView.load(URLRequest(url: url)) }
             }
@@ -112,6 +129,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
             guard let self else { return }
             guard let list else { self.showError(error?.localizedDescription ?? "Local resource policy unavailable"); return }
             self.webView.configuration.userContentController.add(list)
+            self.recordSmokeProgress("Loading bundled editor")
             ready()
         }
     }
@@ -121,16 +139,20 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         return url.scheme == "http" && url.host == "127.0.0.1" && url.port == origin.port && url.user == nil && url.password == nil
     }
 
-    private func showError(_ text: String) {
-        status.isHidden = false; status.text = text; retry.isHidden = false
+    private func showError(_ text: String, canRetry: Bool = true) {
+        status.isHidden = false; status.text = text; retry.isHidden = !canRetry || webView == nil || exports == nil; retry.isEnabled = true
+        if smoke { writeSmoke(["passed": false, "error": text, "activeStage": smokeStage]) }
     }
 
     @objc private func reloadEditor() {
-        guard let url = trustedOrigin else { return }
+        guard !startingServer, webView != nil, exports != nil else { return }
         if exportReply != nil { dismiss(animated: false); completeExport(cancelled: true) }
         exports?.abort()
+        webView.stopLoading()
         retry.isHidden = true; status.text = "Opening local editor… / 正在打开本地编辑器…"
-        webView.load(URLRequest(url: url))
+        let previous = server; server = nil; trustedOrigin = nil
+        let restart: () -> Void = { [weak self] in self?.startServer() }
+        if let previous { previous.stop(completion: restart) } else { restart() }
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -138,14 +160,15 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         decisionHandler(allowed ? .allow : .cancel)
     }
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for action: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? { nil }
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { showError(error.localizedDescription) }
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { showError(error.localizedDescription) }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { if (error as NSError).code != NSURLErrorCancelled { showError(error.localizedDescription) } }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { if (error as NSError).code != NSURLErrorCancelled { showError(error.localizedDescription) } }
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         exports?.abort(); exportReply?(nil, "The editor process restarted; retry the export / 编辑器进程已重启，请重试导出"); exportReply = nil
         showError("The system stopped the editor to recover memory. Reopen the saved local project or retry. / 系统为释放内存暂停了编辑器，请重试或重新打开已保存项目。")
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         status.isHidden = true; retry.isHidden = true
+        recordSmokeProgress("Editor page loaded; starting JavaScript checks")
         excludeEditorStorageFromBackup()
         guard smoke, !smokeStarted,
               let url = Bundle.main.url(forResource: "simulator-smoke", withExtension: "js"),
@@ -167,7 +190,10 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         guard message.frameInfo.isMainFrame, isTrusted(message.frameInfo.request.url), isTrusted(webView.url),
               let origin = trustedOrigin, message.frameInfo.securityOrigin.protocol == "http",
               message.frameInfo.securityOrigin.host == "127.0.0.1", message.frameInfo.securityOrigin.port == origin.port,
-              let body = message.body as? [String: Any], let action = body["action"] as? String else { replyHandler(nil, "Untrusted native request"); return }
+              let body = message.body as? [String: Any], let action = body["action"] as? String else {
+            if smoke { writeSmoke(["passed": false, "error": "Untrusted native request", "frameURL": message.frameInfo.request.url?.absoluteString ?? "nil", "webURL": webView.url?.absoluteString ?? "nil", "securityOrigin": "\(message.frameInfo.securityOrigin.protocol)://\(message.frameInfo.securityOrigin.host):\(message.frameInfo.securityOrigin.port)"] ) }
+            replyHandler(nil, "Untrusted native request"); return
+        }
         do {
             guard let exports else { throw ExportFailure.invalid("Native export is unavailable") }
             switch action {
@@ -195,6 +221,24 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
                 picker.modalPresentationStyle = .formSheet
                 picker.isModalInPresentation = true // Explicit Cancel always resolves the pending Promise.
                 present(picker, animated: !UIAccessibility.isReduceMotionEnabled)
+            case "smokeStage" where smoke:
+                guard let stage = body["stage"] as? String, stage.utf8.count <= 500 else { throw ExportFailure.invalid("Invalid smoke stage") }
+                recordSmokeProgress(stage); replyHandler(["recorded": true], nil)
+            case "smokeStartNetworkProbe" where smoke:
+                guard networkProbe == nil, let root = Bundle.main.url(forResource: "WebAssets", withExtension: nil) else { throw ExportFailure.invalid("Probe already active") }
+                let probe = AssetServer(root: root, persistPort: false); networkProbe = probe
+                probe.start { result in
+                    switch result {
+                    case .success(let url): replyHandler(["url": url.absoluteString], nil)
+                    case .failure(let error): replyHandler(nil, error.localizedDescription)
+                    }
+                }
+            case "smokeFinishNetworkProbe" where smoke:
+                guard let probe = networkProbe else { throw ExportFailure.invalid("No active probe") }
+                probe.snapshot { [weak self] requests, rejected in
+                    probe.stop(); self?.networkProbe = nil
+                    replyHandler(["requests": requests, "rejected": rejected], nil)
+                }
             case "smokeComplete" where smoke:
                 guard let report = body["report"] as? [String: Any] else { throw ExportFailure.invalid("Invalid test report") }
                 writeSmoke(report); replyHandler(["written": true], nil)
@@ -215,7 +259,18 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         callback?(result, nil)
     }
 
+    private func recordSmokeProgress(_ stage: String) {
+        guard smoke else { return }
+        smokeStage = stage
+        let target = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("simulator-progress.json")
+        try? FileManager.default.createDirectory(at: target.deletingLastPathComponent(), withIntermediateDirectories: true)
+        let value: [String: Any] = ["stage": stage, "at": ISO8601DateFormatter().string(from: Date()), "origin": server?.origin ?? "not-ready"]
+        if let data = try? JSONSerialization.data(withJSONObject: value, options: [.prettyPrinted, .sortedKeys]) { try? data.write(to: target, options: .atomic) }
+    }
+
     private func writeSmoke(_ report: [String: Any]) {
+        guard smoke, !smokeReported else { return }
+        smokeReported = true; smokeWatchdog?.invalidate()
         var result = report
         result["platform"] = "iOS simulator (development build)"
         result["origin"] = server?.origin
@@ -223,6 +278,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         if let checks = result["nativeSecurityChecks"] as? [String: Bool], checks.values.contains(false) { result["passed"] = false }
         let name = ProcessInfo.processInfo.arguments.contains("--restore") ? "simulator-restore.json" : "simulator-smoke.json"
         let target = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(name)
+        try? FileManager.default.createDirectory(at: target.deletingLastPathComponent(), withIntermediateDirectories: true)
         if let data = try? JSONSerialization.data(withJSONObject: result, options: [.prettyPrinted, .sortedKeys]) { try? data.write(to: target, options: .atomic) }
         status.isHidden = false; status.text = result["passed"] as? Bool == true ? "SIMULATOR SMOKE PASSED" : "SIMULATOR SMOKE FAILED"
     }
@@ -255,7 +311,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
 
     deinit {
         exportReply?(nil, "Editor closed / 编辑器已关闭"); exportReply = nil
-        exportTimeout?.invalidate(); exports?.abort(); server?.stop()
+        smokeWatchdog?.invalidate(); exportTimeout?.invalidate(); exports?.abort(); server?.stop(); networkProbe?.stop()
         webView?.configuration.userContentController.removeScriptMessageHandler(forName: "figureStudioNative", contentWorld: .page)
     }
 }

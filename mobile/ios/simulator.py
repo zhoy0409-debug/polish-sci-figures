@@ -47,6 +47,9 @@ def collect():
         print('Application not installed; retain compiler diagnostics')
         return
     reports = []
+    progress = container / 'Documents' / 'simulator-progress.json'
+    if progress.is_file():
+        shutil.copyfile(progress, OUT / progress.name)
     for name in ['simulator-smoke.json', 'simulator-restore.json']:
         source = container / 'Documents' / name
         if source.is_file():

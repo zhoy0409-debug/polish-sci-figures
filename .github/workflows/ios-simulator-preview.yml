@@ -45,10 +45,16 @@ jobs:
           xcodebuild -version
           xcrun simctl list devices available -j > mobile/ios/.generated/devices.json
           python mobile/ios/simulator.py create
-      - name: Build and run actual WKWebView worker and native picker smoke
+      - name: Compile unsigned simulator app and tests
+        timeout-minutes: 12
         run: |
           set -o pipefail
-          xcodebuild test -project mobile/ios/.generated/FigureStudio.xcodeproj -scheme FigureStudio -configuration Debug -destination "id=$STUDIO_SIMULATOR_ID" -derivedDataPath mobile/ios/.generated/DerivedData -resultBundlePath mobile/ios/.generated/SimulatorTests.xcresult CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO | tee mobile/ios/.generated/xcodebuild.log
+          xcodebuild build-for-testing -project mobile/ios/.generated/FigureStudio.xcodeproj -scheme FigureStudio -configuration Debug -destination "id=$STUDIO_SIMULATOR_ID" -derivedDataPath mobile/ios/.generated/DerivedData CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO | tee mobile/ios/.generated/xcodebuild.log
+      - name: Run actual WKWebView worker, native picker and restart smoke
+        timeout-minutes: 15
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building -project mobile/ios/.generated/FigureStudio.xcodeproj -scheme FigureStudio -configuration Debug -destination "id=$STUDIO_SIMULATOR_ID" -derivedDataPath mobile/ios/.generated/DerivedData -resultBundlePath mobile/ios/.generated/SimulatorTests.xcresult -parallel-testing-enabled NO -test-timeouts-enabled YES -default-test-execution-time-allowance 420 -maximum-test-execution-time-allowance 420 CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO | tee mobile/ios/.generated/simulator-tests.log
       - name: Collect native reports and app screenshot
         if: always()
         run: python mobile/ios/simulator.py collect
@@ -62,6 +68,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: figure-studio-ios-simulator-development
+          include-hidden-files: true
           retention-days: 14
           if-no-files-found: warn
           path: |

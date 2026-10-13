@@ -1,6 +1,7 @@
 /* Fixed synthetic tests. Invoked only by a DEBUG build on an iOS simulator. */
 void (async function () {
   const checks = [], started = performance.now();
+  let activeStage = 'Editor startup';
   const native = body => window.webkit.messageHandlers.figureStudioNative.postMessage(body);
   const assert = (value, message) => { if (!value) throw new Error(message); };
   const wait = async (test, timeout = 15000) => {
@@ -9,6 +10,7 @@ void (async function () {
     throw new Error('Timed out: ' + test.toString().slice(0, 100));
   };
   async function check(name, fn) {
+    activeStage = name; await native({action: 'smokeStage', stage: name});
     const before = performance.now(); const details = await fn();
     checks.push({name, passed: true, ms: Math.round(performance.now() - before), ...(details || {})});
   }
@@ -43,13 +45,19 @@ void (async function () {
         localStorage.setItem('ios-simulator-smoke', JSON.stringify({origin: location.origin, projectId: saved.id, guideId}));
         return {projectId: saved.id, guideId, actualEditorAutosave: true};
       });
-      await check('Remote fetch rejected; loopback POST rejected', async () => {
+      await check('Forbidden-origin listener receives zero requests; loopback POST rejected', async () => {
+        // A real, reachable second loopback listener avoids a false pass from
+        // an unresolvable public hostname. No research data is used or sent.
+        const probe = await native({action: 'smokeStartNetworkProbe'});
         let remoteRejected = false;
-        try { await fetch('https://example.invalid/figure-studio-network-test', {signal: AbortSignal.timeout(5000)}); } catch (_) { remoteRejected = true; }
+        try { await fetch(probe.url, {signal: AbortSignal.timeout(5000)}); } catch (_) { remoteRejected = true; }
         assert(remoteRejected, 'Remote access was not blocked');
+        await new Promise(resolve => setTimeout(resolve, 300));
+        const counters = await native({action: 'smokeFinishNetworkProbe'});
+        assert(counters.requests === 0, 'Forbidden-origin request reached another listener');
         const response = await fetch('/api/analyze', {method: 'POST', body: '{}'});
         assert(response.status === 405, 'Loopback server accepts POST');
-        return {remoteRejected, loopbackPostStatus: response.status};
+        return {remoteRejected, forbiddenOriginRequests: counters.requests, loopbackPostStatus: response.status};
       });
       const engine = StudioBrowserEngine;
       await check('Bundled Python/WASM worker initializes in WKWebView', async () => { await engine.ready(); return {status: engine.status()}; });
@@ -101,6 +109,6 @@ void (async function () {
     }
     await native({action: 'smokeComplete', report: {passed: true, userAgent: navigator.userAgent, width: innerWidth, height: innerHeight, totalMs: Math.round(performance.now() - started), checks}});
   } catch (error) {
-    await native({action: 'smokeComplete', report: {passed: false, error: String(error.stack || error), checks}});
+    await native({action: 'smokeComplete', report: {passed: false, activeStage, error: String(error.stack || error), checks}});
   }
 })();

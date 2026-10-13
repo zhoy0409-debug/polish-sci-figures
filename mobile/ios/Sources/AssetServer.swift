@@ -4,18 +4,23 @@ import Network
 /// Serves immutable bundled public assets only. It has no research-data endpoint.
 final class AssetServer {
     private let root: URL
+    private let persistPort: Bool
     private let queue = DispatchQueue(label: "studio.local.assets", qos: .userInitiated)
     private var listener: NWListener?
     private var connections: [ObjectIdentifier: NWConnection] = [:]
+    private var stopCallbacks: [() -> Void] = []
     private(set) var port: UInt16 = 0
     private(set) var requests = 0
     private(set) var rejectedRequests = 0
     var origin: String { "http://127.0.0.1:\(port)" }
 
-    init(root: URL) { self.root = root.standardizedFileURL.resolvingSymlinksInPath() }
+    init(root: URL, persistPort: Bool = true) {
+        self.root = root.standardizedFileURL.resolvingSymlinksInPath()
+        self.persistPort = persistPort
+    }
 
     func start(completion: @escaping (Result<URL, Error>) -> Void) {
-        let remembered = UserDefaults.standard.integer(forKey: "studio.local.port.v1")
+        let remembered = persistPort ? UserDefaults.standard.integer(forKey: "studio.local.port.v1") : 0
         let parameters = NWParameters.tcp
         parameters.requiredLocalEndpoint = .hostPort(host: "127.0.0.1", port: NWEndpoint.Port(rawValue: UInt16(clamping: remembered))!)
         parameters.allowLocalEndpointReuse = true
@@ -23,19 +28,23 @@ final class AssetServer {
             let current = try NWListener(using: parameters)
             listener = current
             var delivered = false
-            current.stateUpdateHandler = { [weak self] state in
-                guard let self else { return }
+            current.stateUpdateHandler = { [weak self, weak current] state in
+                guard let self, let current else { return }
                 switch state {
                 case .ready:
                     guard !delivered, let bound = current.port else { return }
                     delivered = true
                     self.port = bound.rawValue
-                    UserDefaults.standard.set(Int(self.port), forKey: "studio.local.port.v1")
+                    if self.persistPort { UserDefaults.standard.set(Int(self.port), forKey: "studio.local.port.v1") }
                     DispatchQueue.main.async { completion(.success(URL(string: self.origin + "/index.html")!)) }
                 case .failed(let error):
                     guard !delivered else { return }
                     delivered = true
                     DispatchQueue.main.async { completion(.failure(error)) }
+                case .cancelled:
+                    self.listener = nil
+                    let callbacks = self.stopCallbacks; self.stopCallbacks.removeAll()
+                    DispatchQueue.main.async { callbacks.forEach { $0() } }
                 default: break
                 }
             }
@@ -44,11 +53,24 @@ final class AssetServer {
         } catch { completion(.failure(error)) }
     }
 
-    func stop() {
+    func stop(completion: (() -> Void)? = nil) {
         queue.async {
+            if let completion { self.stopCallbacks.append(completion) }
+            guard self.listener != nil else {
+                let callbacks = self.stopCallbacks; self.stopCallbacks.removeAll()
+                DispatchQueue.main.async { callbacks.forEach { $0() } }
+                return
+            }
             self.listener?.cancel()
             for connection in self.connections.values { connection.cancel() }
             self.connections.removeAll()
+        }
+    }
+
+    func snapshot(_ completion: @escaping (Int, Int) -> Void) {
+        queue.async {
+            let values = (self.requests, self.rejectedRequests)
+            DispatchQueue.main.async { completion(values.0, values.1) }
         }
     }
 
@@ -58,7 +80,8 @@ final class AssetServer {
               host.debugDescription == "127.0.0.1", connections.count < 32 else { connection.cancel(); return }
         let key = ObjectIdentifier(connection)
         connections[key] = connection
-        connection.stateUpdateHandler = { [weak self] state in
+        connection.stateUpdateHandler = { [weak self, weak connection] state in
+            guard let connection else { return }
             if case .cancelled = state { self?.connections.removeValue(forKey: key) }
             if case .failed = state { connection.cancel() }
         }
