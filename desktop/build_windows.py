@@ -22,7 +22,7 @@ WORK = ROOT / '.cache' / 'desktop-build'
 STAGE = WORK / 'suite'
 DIST = ROOT / 'dist' / 'desktop'
 APP = DIST / 'Figure Studio'
-VERSION = '0.1.4'
+VERSION = '0.1.5'
 PACKAGES = ('numpy', 'scipy', 'pandas', 'matplotlib', 'openpyxl', 'Pillow', 'pypdfium2', 'pypdf', 'opencv-python-headless',
             'contourpy', 'cycler', 'fonttools', 'kiwisolver', 'packaging',
             'python-dateutil', 'pytz', 'tzdata', 'six', 'et_xmlfile', 'pyparsing', 'PyYAML',
@@ -65,7 +65,7 @@ def copy_suite():
     for name in (*ROOT_FILES, *SUPPORT_FILES):
         target = STAGE / name
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(archive_bytes(ROOT / name, included, 'v1.4.4'))
+        target.write_bytes(archive_bytes(ROOT / name, included, 'v1.4.5'))
     for name in SKILL_NAMES:
         for source in (ROOT / 'skills' / name).rglob('*'):
             if source.is_file() and include_file(source):

@@ -18,6 +18,7 @@ ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt",
 SUPPORT_FILES = (
     "docs/image-duplicate-check.md",
     "docs/image-duplicate-validation.md",
+    "docs/release-v1.4.5.md",
     "docs/release-v1.4.4.md",
     "README.en.md",
     "README.zh-CN.md",
@@ -122,7 +123,7 @@ def build(version: str, outdir: Path) -> Path:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", default="v1.4.4")
+    parser.add_argument("--version", default="v1.4.5")
     parser.add_argument("--outdir", default="dist")
     args = parser.parse_args()
     archive = build(args.version, Path(args.outdir))

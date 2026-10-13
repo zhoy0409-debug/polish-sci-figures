@@ -9,17 +9,17 @@ polish-sci-figures brings scientific plotting, image standardization, and figure
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Suite v1.4.4 · Figure Studio 0.1.4 (Windows desktop edition)**
+**Suite v1.4.5 · Figure Studio 0.1.5 (Windows desktop edition)**
 
-[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-v1.4.4.md)
+[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-v1.4.5.md)
 
 ## Choose your workflow
 
 | How you want to work | Start here | Requirements |
 | --- | --- | --- |
 | Preview, replace data, edit, and assemble figures directly | Figure Studio Windows installer | Windows 10/11 x64; no Codex, separate Python installation, account, or API key |
-| Upload a skill to Claude | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.4/polish-sci-figures-v1.4.4-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
-| Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.4.zip` | A compatible AI environment and the suite's Python dependencies |
+| Upload a skill to Claude | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-v1.4.5-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
+| Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.5.zip` | A compatible AI environment and the suite's Python dependencies |
 | Refine an existing SVG manually | Generate a self-contained Studio page with AI or the CLI | Layout and appearance editing work offline; data recomputation requires the local engine |
 
 Figure Studio is the official visual editor for polish-sci-figures. The original AI/CLI workflow remains available through the three-skill suite. Model-result templates display supplied analysis outputs; they do not fit unspecified models.
@@ -35,12 +35,12 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 
 ## Install and start
 
-1. Download `polish-sci-figures-Studio-0.1.4-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
+1. Download `polish-sci-figures-Studio-0.1.5-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
 2. Install it and open the **polish-sci-figures Studio** shortcut. The launcher opens the editor in your default browser.
 3. Choose **Start from a template**, inspect the preview, and replace the example data with your own. You can also import an existing image, SVG, or selected PDF page. Supported native text and vector paths remain editable; PDF effects may require a local image layer or a whole-page appearance image. See the [conversion limits](docs/release-v1.4.3.en.md#what-changed), and review substituted fonts before export.
 4. Export SVG / PNG / TIFF and use **Save** to download an editable JSON backup.
 
-The portable edition is `polish-sci-figures-Studio-0.1.4-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. To import an Excel workbook as a file, export it as CSV/TSV first.
+The portable edition is `polish-sci-figures-Studio-0.1.5-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. To import an Excel workbook as a file, export it as CSV/TSV first.
 
 Closing the browser does not stop the local service; close the launcher when you finish. Autosaves live in the browser's local storage. Clearing site data, switching browsers, or using a private window can lose those records. **Download JSON backups of important projects.** See the [English quick start](desktop/QUICKSTART.en.md).
 
@@ -112,7 +112,9 @@ The original skill workflows for independent, paired, multigroup, relationship, 
 
 Check whether an image was accidentally used twice before delivering a figure. Figure Studio can screen the current figure, selected images, or a local image batch without dismantling panel groups. It compares 2–60 raster images locally, including embedded raster images in SVGs, and presents exact duplicates and suspected overlap after rotation, flipping, resizing, or cropping.
 
-Review the image pair and its matching evidence, locate the corresponding images in the canvas, and export the report for later review. Screening does not alter or remove images. A flagged pair needs review against the source and acquisition record; an empty result is not a guarantee that every possible duplication was excluded. See the [step-by-step guide and supported scope](docs/image-duplicate-check.md).
+Choose images from the source checklist, then open **View details** to zoom, pan, toggle matching lines or compare an aligned overlay. Locate both canvas images after layout changes, and record a review decision and note for each pair. Decisions stay with the saved project and appear in exported reports; original source images are retained in the project, not embedded in review reports. Project import/export accepts up to 200 MB per file.
+
+Screening does not alter or remove images. A flagged pair needs review against the source and acquisition record; an empty result is not a guarantee that every possible duplication was excluded. The [step-by-step guide](docs/image-duplicate-check.md) explains supported original-image viewing, TIFF/high-depth previews and source-change messages.
 
 For the AI/CLI workflow:
 
@@ -124,7 +126,7 @@ python sci_figures.py duplicates image-a.png image-b.tif figure.svg --out image-
 
 The three skills retain their existing roles. Figure Studio is the visual entry point to the same product, not a mandatory fourth skill.
 
-**Claude users:** download [polish-sci-figures-v1.4.4-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.4/polish-sci-figures-v1.4.4-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status.
+**Claude users:** download [polish-sci-figures-v1.4.5-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.5/polish-sci-figures-v1.4.5-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status.
 
 | Skill | Role |
 | --- | --- |
@@ -132,7 +134,7 @@ The three skills retain their existing roles. Figure Studio is the visual entry 
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | Microscopy / pathology image standardization, consistent display settings, authoritatively calibrated scale bars, and processing audits |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | Refinement and assembly, Figure Studio, text and geometry checks, and quality checks at final dimensions |
 
-Download `sci-figure-suite-v1.4.4.zip` from the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) and extract the whole suite. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
+Download `sci-figure-suite-v1.4.5.zip` from the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) and extract the whole suite. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
 
 ```powershell
 python -m pip install -r requirements.txt

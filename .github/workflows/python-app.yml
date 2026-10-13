@@ -91,9 +91,9 @@ jobs:
           git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
       - name: Build and test complete release bundle
         run: |
-          python scripts/build_release.py --version v1.4.4
+          python scripts/build_release.py --version v1.4.5
           python scripts/test_release_bundle.py
-          python scripts/build_portable_skill.py --version v1.4.4
+          python scripts/build_portable_skill.py --version v1.4.5
           python scripts/test_portable_skill.py
       - name: Compute synthetic results for composite statistics layout
         # The Node layout test consumes these freshly analyzed observations.
@@ -103,6 +103,8 @@ jobs:
         run: |
           node scripts/test_studio_state.cjs
           node scripts/test_studio_duplicate_check.cjs
+          node scripts/test_studio_duplicate_review.cjs
+          node scripts/test_studio_duplicate_viewer.cjs
           node scripts/test_studio_header_menu.cjs
           node scripts/test_studio_delete_labels.cjs
           node scripts/test_studio_keyboard_nudge.cjs

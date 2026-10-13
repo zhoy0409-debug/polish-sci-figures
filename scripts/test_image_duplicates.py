@@ -184,6 +184,64 @@ class DuplicateTests(unittest.TestCase):
         self.assertEqual(report['images'][0]['height'], 1000)
         self.assertEqual(report['images'][0]['analysisWidth'], 900)
 
+    def test_review_preview_uses_analysis_coordinates_and_deduplicates_encoding(self):
+        large = self.original.resize((1440, 1080), Image.Resampling.BICUBIC)
+        records = [item('a', large), item('same', large)]
+        sizes = []
+        encode = duplicate._png_url
+
+        def record_encoding(image):
+            sizes.append(image.size)
+            return encode(image)
+
+        with patch.object(duplicate, '_png_url', side_effect=record_encoding):
+            report = duplicate.scan_images(records)
+        first, second = report['images']
+        preview = Image.open(io.BytesIO(base64.b64decode(first['reviewPreview'].split(',')[1])))
+        self.assertEqual(preview.size, (first['analysisWidth'], first['analysisHeight']))
+        self.assertEqual(preview.size, (900, 675))
+        self.assertEqual((first['width'], first['height']), large.size)
+        expected = large.copy()
+        expected.thumbnail((900, 900), Image.Resampling.LANCZOS)
+        np.testing.assert_array_equal(np.asarray(preview), np.asarray(expected))
+        self.assertEqual(sizes.count((900, 675)), 1)
+        self.assertIs(first['reviewPreview'], second['reviewPreview'])
+        self.assertTrue(first['reviewPreviewAvailable'])
+        self.assertEqual(report['reviewPreviewBytes'], sum(len(i['reviewPreview']) for i in report['images']))
+        self.assertEqual(report['reviewPreviewOmitted'], 0)
+        self.assertEqual(report['matches'][0]['kind'], 'exact')
+        self.assertEqual(report['limits']['maxReviewPreviewBytes'], 12_000_000)
+
+    def test_review_preview_budget_keeps_native_identity_and_all_pair_results(self):
+        native = np.asarray(self.original.convert('L')).astype(np.uint16) * 180 + 1200
+        records = [item('a', Image.fromarray(native), fmt='TIFF'),
+                   item('same', Image.fromarray(native), fmt='PNG')]
+        complete = duplicate.scan_images(records)
+        one_preview_bytes = len(complete['images'][0]['reviewPreview'])
+        with patch.object(duplicate, 'MAX_REVIEW_PREVIEW_BYTES', one_preview_bytes):
+            partial = duplicate.scan_images(records)
+        self.assertTrue(partial['images'][0]['reviewPreviewAvailable'])
+        self.assertIsNone(partial['images'][1]['reviewPreview'])
+        self.assertFalse(partial['images'][1]['reviewPreviewAvailable'])
+        self.assertEqual(partial['reviewPreviewBytes'], one_preview_bytes)
+        self.assertEqual(partial['reviewPreviewOmitted'], 1)
+        self.assertIn('review_preview_limit', partial['warnings'])
+        self.assertIn('review_preview_limit', partial['images'][1]['warnings'])
+        with patch.object(duplicate, 'MAX_REVIEW_PREVIEW_BYTES', 0):
+            limited = duplicate.scan_images(records)
+        self.assertEqual(limited['reviewPreviewBytes'], 0)
+        self.assertEqual(limited['reviewPreviewOmitted'], 2)
+        self.assertEqual(limited['pairCount'], complete['pairCount'])
+        self.assertEqual(limited['matches'], complete['matches'])
+        for original, without_preview in zip(complete['images'], limited['images']):
+            self.assertEqual(original['sha256'], without_preview['sha256'])
+            self.assertEqual(original['intensityMapping'], without_preview['intensityMapping'])
+            self.assertEqual(original['thumbnail'], without_preview['thumbnail'])
+            fallback = Image.open(io.BytesIO(base64.b64decode(without_preview['thumbnail'].split(',')[1])))
+            self.assertLessEqual(fallback.width, 240)
+            self.assertLessEqual(fallback.height, 180)
+            self.assertIsNone(without_preview['reviewPreview'])
+
     def test_evidence_limits_keep_pair_records(self):
         image = Image.new('RGB', (25, 25), '#555555')
         records = [item(str(i), image) for i in range(6)]

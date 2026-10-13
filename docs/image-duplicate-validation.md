@@ -4,7 +4,25 @@ Updated 2026-10-13. This record covers the local image-comparison engine, browse
 
 ## English
 
-### Functional checks
+### v1.4.5 / Studio 0.1.5 review workflow
+
+The following automated JavaScript checks passed on the local Windows development computer:
+
+| Check | Verified scope |
+| --- | --- |
+| `node scripts/test_studio_duplicate_check.cjs` | A DOM adapter exercises source exclusions, detail-viewer handoff/closure, immutable per-keystroke reviews without replacing the textarea, project restoration, escaped reports without original payloads, layout-aware location, and cancellation/failure/project-switch handling. It passes completed records through the actual validator and verifies that 1,770 report pairs embed each of the 60 inventory thumbnails only once |
+| `node scripts/test_studio_duplicate_review.cjs` | Saved-record round trip and validation, source identity after layout changes, replacement/deletion detection, mixed local/canvas pairs and bounds spanning both located images |
+| `node scripts/test_studio_duplicate_viewer.cjs` | Affine inversion and crop/mirror alignment, pointer-anchored zoom, pan and relative-view synchronization, invalid-coordinate rejection, and original/mapped/thumbnail source selection |
+
+All 48 Studio JavaScript test scripts passed. The image engine passed 11 Python test methods, HTTP/CLI integration passed 4, and project-generation checks passed 10. These cover bounded review previews in addition to the earlier detector checks.
+
+**Studio 0.1.5 was also exercised in the actual desktop browser:** four synthetic images produced three candidate pairs; a rotated crop aligned in the overlay; wheel zoom, dragging, opacity and line toggles worked; Chinese and English controls were checked. A review decision and note survived page reload and export/reimport of the project. Changing the layout from a 2 × 2 grid to a vertical stack still located and selected both images together. Deleting the sources showed a recheck message instead of selecting other images. HTML and JSON reports were downloaded through the interface. No browser console errors were observed during these checks.
+
+The 0.1.5 installer and the extracted portable ZIP passed isolated tests with a system-only `PATH` and invalid `PYTHONHOME`: the bundled engine performed statistics, rendering, reflow, editable PDF import and image matching. Installed-file hashes matched the package; reinstall preserved data/settings, and uninstall preserved external project data. The portable skill archive contains exactly one `SKILL.md`. These are local Windows development-machine checks, not clean-VM, Mac or mobile device validation.
+
+The sections below retain the measured **v1.4.4 / Studio 0.1.4 baseline**. Its performance figures were not remeasured for 0.1.5.
+
+### Functional checks (v1.4.4 baseline)
 
 `python scripts/test_image_duplicates.py` passed all **9 test methods**, including these generated-image cases:
 
@@ -29,7 +47,7 @@ The exact-match digest uses decoded pixels, not the compressed file bytes. High-
 
 The **4 integration test methods** in `scripts/test_duplicate_integration.py` also passed. They cover local HTTP authorization, cancellation, file and SVG-layer intake, source preservation, report escaping and evidence-limit explanations. Native 16-bit CMYK frames differing only in low bits are explicitly rejected before a lossy frame extraction could produce false exact matches. Individual high-depth CMYK and unsupported Lab inputs are also rejected without returning a completed match report.
 
-### Browser workflow
+### Browser workflow (Studio 0.1.4)
 
 The following actions were exercised in the actual browser on the current Windows development computer:
 
@@ -41,13 +59,13 @@ The following actions were exercised in the actual browser on the current Window
 | Switch to English | The check button and results were translated; the HTML report was downloaded through the interface |
 | Add two local images through the file chooser | One comparison produced one overlap finding with 188 matching points |
 
-### Windows package and installation
+### Windows package and installation (Studio 0.1.4)
 
 The frozen executable passed its local HTTP self-test with bundled OpenCV and evidence generation. `desktop/verify_windows.ps1 -Version 0.1.4` also passed: installation completed, every installed file hash matched the package, and the self-test succeeded with an isolated `PATH` and an invalid `PYTHONHOME`. The upgrade check preserved the external project and settings; uninstalling preserved the external project.
 
 These checks ran on the local Windows development computer, not a clean virtual machine. This feature was not tested inside the actual Claude client; the browser and packaged-runtime results do not establish host-client compatibility.
 
-### Maximum-batch measurement
+### Maximum-batch measurement (v1.4.4 baseline)
 
 The benchmark compared **60 distinct 480 × 360 synthetic microscopy-like images**, generated with deterministic seeds 700–759. Their encoded input total was 24,768,300 bytes. This was a real local run on the current Windows development computer, with Python 3.12.14 and OpenCV 4.11.0. OpenCV native parallelism was capped at two threads; the host exposes 22 logical processors.
 
@@ -72,6 +90,7 @@ The development run's machine-readable record is `.cache/image-duplicate-demo/be
 - At most 60 images, 40,000,000 encoded bytes per batch, 12,000,000 source-file bytes per embedded image and 20 megapixels per image.
 - Feature analysis downsamples to a maximum side of 900 pixels and caps SIFT at 1,400 features. OpenCV uses at most two native threads.
 - Evidence images are capped at 120 and 15,000,000 encoded bytes combined. Pair records remain available beyond these limits; rerun a smaller batch to obtain omitted evidence.
+- Studio 0.1.5 adds a separate 12,000,000-byte encoded review-preview budget, with a maximum side of 900 pixels and a labeled thumbnail fallback. Project import/export has a 200,000,000-byte limit per file; this does not raise the screening batch limits.
 - These checks use synthetic examples. They are not a measured sensitivity/specificity study on a representative scientific-image corpus.
 - This was not a clean virtual machine, a CPU-throttled benchmark or a test on separate low-end hardware. It does not establish minimum system requirements or cross-platform performance.
 - Very small crops, severely altered images, feature-poor or repetitive structures and copying inside a single image can be missed. Matching structures can also occur in legitimate related channels or shared controls. Results require source-image review.
@@ -80,7 +99,25 @@ The development run's machine-readable record is `.cache/image-duplicate-demo/be
 
 ## 中文
 
-### 功能验证
+### v1.4.5 / Studio 0.1.5 复核流程
+
+以下 JavaScript 自动化检查已在本机 Windows 开发电脑通过：
+
+| 检查 | 已验证范围 |
+| --- | --- |
+| `node scripts/test_studio_duplicate_check.cjs` | 使用 DOM 适配器验证图片勾选排除、详情查看器参数传递与关闭、逐次输入产生独立复核记录且不替换文本框、工程恢复、报告转义且不包含原始图片载荷、布局改变后的定位，以及取消／失败／切换工程处理；完成记录经过实际验证器，并验证含 1,770 对结果的报告仅为 60 张图片各嵌入一次清单缩略图 |
+| `node scripts/test_studio_duplicate_review.cjs` | 保存记录的序列化与校验、布局改变后的原图身份匹配、更换／删除检测、本地文件与画布图片混合配对，以及同时涵盖两张定位图片的边界计算 |
+| `node scripts/test_studio_duplicate_viewer.cjs` | 仿射逆变换、裁剪／翻转对齐、以指针为中心的缩放、平移与相对视野同步、无效坐标拒绝，以及原图／映射预览／缩略图选择 |
+
+全部 48 个 Studio JavaScript 测试脚本通过；图片引擎 11 项 Python 测试、HTTP/CLI 集成 4 项、工程生成 10 项测试通过。除既有检测用例外，也覆盖有容量上限的详情预览。
+
+**Studio 0.1.5 已在实际桌面浏览器中操作验证：**4 张合成图片检出 3 对候选；旋转裁剪图在叠加视图中正确对齐；滚轮缩放、拖动平移、透明度和连线开关可用，并核对了中英文界面。复核结论与备注在刷新页面、导出并重新导入工程后保留。由 2 × 2 改为纵向布局后，仍能同时定位并选中两张图片；删除原图后提示重新检查，不误选其他图片。通过界面下载了 HTML 和 JSON 报告。上述检查中未观察到浏览器控制台错误。
+
+0.1.5 安装版及实际解压的便携 ZIP 均在仅有系统路径的 `PATH`、无效 `PYTHONHOME` 下通过隔离自检，随包引擎完成统计、绘图、尺寸重排、可编辑 PDF 导入和图片匹配。安装文件哈希与包内一致；重装保留数据和设置，卸载保留外部工程。自包含技能 ZIP 只有一个 `SKILL.md`。这些是本机 Windows 开发电脑检查，不是干净虚拟机、Mac 或移动设备验证。
+
+下文保留 **v1.4.4 / Studio 0.1.4 的既有基线实测**；其中的性能数字未在 0.1.5 中重新测量。
+
+### 功能验证（v1.4.4 基线）
 
 `python scripts/test_image_duplicates.py` 的 **9 项测试全部通过**，覆盖以下合成图片情形：
 
@@ -105,7 +142,7 @@ The development run's machine-readable record is `.cache/image-duplicate-demo/be
 
 `scripts/test_duplicate_integration.py` 的 **4 项集成测试也已通过**，覆盖本机 HTTP 授权、取消、文件及 SVG 图层提取、原图保留、报告字符转义和证据上限说明。对仅低位强度不同的原生 16 位 CMYK 多帧图片，在可能丢失位深的帧提取之前明确拒绝，避免误判为完全重复。单张高位深 CMYK 及不支持的 Lab 输入也会拒绝检查，不返回完成的匹配报告。
 
-### 浏览器实际操作
+### 浏览器实际操作（Studio 0.1.4）
 
 以下操作在当前 Windows 开发电脑的真实浏览器中完成：
 
@@ -117,13 +154,13 @@ The development run's machine-readable record is `.cache/image-duplicate-demo/be
 | 切换英文界面 | 查重按钮和结果随语言切换，并通过界面实际下载 HTML 报告 |
 | 通过文件选择器添加 2 张本地图片 | 1 对比较检出 1 组重叠，显示 188 个匹配点 |
 
-### Windows 安装包验证
+### Windows 安装包验证（Studio 0.1.4）
 
 冻结后的可执行程序使用随包提供的 OpenCV，通过本机 HTTP 自检并生成匹配证据。`desktop/verify_windows.ps1 -Version 0.1.4` 验证通过：安装完成，全部已安装文件的哈希与安装包一致；在隔离 `PATH`、设置无效 `PYTHONHOME` 后仍通过自检。升级保留外部工程和设置，卸载保留外部工程。
 
 这些检查在本机 Windows 开发电脑完成，未使用干净虚拟机。本功能尚未在真实 Claude 客户端内测试；浏览器和打包运行环境的验证不等同于完成宿主客户端适配测试。
 
-### 最大批次实测
+### 最大批次实测（v1.4.4 基线）
 
 本次实际比较了 **60 张不同的 480 × 360 合成显微图片**，固定生成种子为 700–759，编码后输入共 24,768,300 字节。在当前 Windows 开发电脑运行，Python 3.12.14、OpenCV 4.11.0；OpenCV 内部最多使用两个线程，电脑可见 22 个逻辑处理器。
 
@@ -148,6 +185,7 @@ The development run's machine-readable record is `.cache/image-duplicate-demo/be
 - 每批最多 60 张图片、编码后最多 40,000,000 字节；每张图片解码前的文件数据最多 12,000,000 字节、最多 2000 万像素。
 - 特征分析最长边缩至 900 像素，SIFT 最多 1,400 个特征，OpenCV 内部最多两个线程。
 - 证据图最多 120 张，编码后总体积最多 15,000,000 字节；超出部分仍保留匹配记录，可缩小批次重新生成证据。
+- Studio 0.1.5 新增独立的详情预览容量：编码后最多 12,000,000 字节，最长边不超过 900 像素，缺少较大预览时使用有标识的缩略图。单个工程文件导入／导出上限为 200,000,000 字节，不改变查重批次本身的容量上限。
 - 用例为合成图片，不能据此宣称在代表性科研图片集上已测得灵敏度或特异度。
 - 本次不是干净虚拟机、限速 CPU 或另一台低配置电脑的测试，因此不据此宣称最低硬件要求或跨平台性能已完成验证。
 - 很小的裁剪、严重修改、特征不足或高度重复的结构，以及单张图片内部的复制，可能漏检。合法的关联通道或共享对照也可能具有匹配结构，结果需要结合原图复核。
