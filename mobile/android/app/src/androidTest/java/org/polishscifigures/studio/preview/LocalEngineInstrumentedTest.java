@@ -68,18 +68,25 @@ public class LocalEngineInstrumentedTest {
             until("!!(window.StudioNativeBridge && window.StudioBrowserEngine && document.querySelector('#artboard'))",60);
             assertEquals("\"android\"",eval("StudioNativeBridge.platform"));
             assertEquals("true",eval("StudioNativeBridge.bundledAssets"));
+            proof.put("phoneViewport",result("({width:innerWidth,height:innerHeight,scale:devicePixelRatio,userAgent:navigator.userAgent})"));
             // No service worker is needed for packaged resources.
             eval("window.__androidSw=null; navigator.serviceWorker.getRegistrations().then(x=>window.__androidSw=x.length)");
             until("window.__androidSw !== null",10); assertEquals("0",eval("window.__androidSw"));
             // Only our dedicated synthetic QA database is touched. User autosave keys are untouched.
             eval("window.__androidStored=null; (()=>{const r=indexedDB.open('studio-android-instrumentation-only',1);r.onupgradeneeded=()=>r.result.createObjectStore('projects');r.onsuccess=()=>{const d=r.result,t=d.transaction('projects','readwrite');t.objectStore('projects').put({title:'Synthetic QA project',panels:[{id:'qa-panel',svg:'<svg xmlns=\"http://www.w3.org/2000/svg\"><text>QA only</text></svg>'}]},'qa-project');t.oncomplete=()=>{d.close();window.__androidStored=true}}})()");
             until("window.__androidStored===true",15);
+            // Exercise the editor's real mutation/autosave/history, only in a fresh test profile.
+            eval("window.__androidWorkspace=null;(async()=>{try{const records=await StudioLibrary.list('autosaves');if(localStorage.getItem('android-instrumentation-workspace')||records.length>1||records.some(r=>r.payload?.project.desktopStarter!==true||r.payload?.state.alignmentGuides?.length||r.payload?.project.panels.some(p=>p.provenance!=='blank-canvas')))throw Error('Use a fresh test profile; existing projects are never cleared');document.getElementById('addHorizontalGuide').click();for(let i=0;i<100;i++){const saved=(await StudioLibrary.list('autosaves')).find(r=>r.payload?.state.alignmentGuides?.length);if(saved){const value={projectId:saved.id,guideId:saved.payload.state.alignmentGuides[0].id,origin:location.origin,undoHistory:!!saved.payload.history};localStorage.setItem('android-instrumentation-workspace',JSON.stringify(value));window.__androidWorkspace=value;return;}await new Promise(r=>setTimeout(r,100));}throw Error('Autosave not completed')}catch(e){window.__androidWorkspace={error:String(e)}}})()");
+            until("!!window.__androidWorkspace",20);
+            JSONObject workspace=result("window.__androidWorkspace");assertFalse(workspace.toString(),workspace.has("error"));assertTrue(workspace.getBoolean("undoHistory"));
             scenario.recreate();
             until("!!window.StudioNativeBridge",60);
             eval("window.__androidRestored=null;(()=>{const r=indexedDB.open('studio-android-instrumentation-only',1);r.onsuccess=()=>{const d=r.result,q=d.transaction('projects').objectStore('projects').get('qa-project');q.onsuccess=()=>{window.__androidRestored=q.result;d.close()}}})()");
             until("!!window.__androidRestored",15);
             assertEquals("Synthetic QA project",result("window.__androidRestored").getString("title"));
             proof.put("indexedDbProjectAfterActivityRestart",true);
+            until("!!document.querySelector('[data-alignment-guide=\"'+JSON.parse(localStorage.getItem('android-instrumentation-workspace')).guideId+'\"]')",20);
+            proof.put("actualEditorAutosaveAfterActivityRestart",workspace);
             // Real WebView user gesture -> onShowFileChooser -> content URI -> FileReader.
             Intents.init();
             try {
@@ -118,11 +125,27 @@ public class LocalEngineInstrumentedTest {
             until("!!window.__androidDenied",15);assertEquals("403",eval("window.__androidDenied[0]"));
             scenario.onActivity(activity->{try{proof.put("localAssetRequests",activity.localAssetRequests.get());proof.put("deniedRequests",activity.deniedRequests.get());}catch(JSONException error){throw new RuntimeException(error);}});
             assertTrue(proof.getInt("localAssetRequests")>20);assertTrue(proof.getInt("deniedRequests")>=1);
+            // Actual emulator display/density overrides exercise tablet WebView layouts.
+            File screenshots=new File(target.getExternalFilesDir(null),"qa");screenshots.mkdirs();
+            UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            device.takeScreenshot(new File(screenshots,"android-phone.png"));
+            device.executeShellCommand("wm density 240");device.executeShellCommand("wm size 1600x2560");
+            until("innerWidth >= 1000 && innerHeight > innerWidth",15);
+            proof.put("tabletPortraitViewport",result("({width:innerWidth,height:innerHeight,scale:devicePixelRatio,documentWidth:document.documentElement.scrollWidth})"));
+            assertEquals("true",eval("document.documentElement.scrollWidth <= innerWidth+2"));
+            device.takeScreenshot(new File(screenshots,"android-tablet-portrait.png"));
+            device.executeShellCommand("wm size 2560x1600");
+            until("innerWidth >= 1600 && innerWidth > innerHeight",15);
+            proof.put("tabletLandscapeViewport",result("({width:innerWidth,height:innerHeight,scale:devicePixelRatio,documentWidth:document.documentElement.scrollWidth})"));
+            assertEquals("true",eval("document.documentElement.scrollWidth <= innerWidth+2"));
+            device.takeScreenshot(new File(screenshots,"android-tablet-landscape.png"));
             proof.put("passed",true);
         } finally {
             File dir=new File(target.getExternalFilesDir(null),"qa");dir.mkdirs();
             try(FileOutputStream out=new FileOutputStream(new File(dir,"android-runtime-proof.json"))){out.write(proof.toString(2).getBytes(StandardCharsets.UTF_8));}
             UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).takeScreenshot(new File(dir,"android-editor.png"));
+            UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).executeShellCommand("wm size reset");
+            UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).executeShellCommand("wm density reset");
             Log.i("STUDIO_ANDROID_QA",proof.toString());
             if(scenario!=null)scenario.close();
         }

@@ -23,12 +23,16 @@ python mobile/android/prepare_assets.py
 node --test mobile/android/test_bridge.cjs
 python mobile/android/test_assets.py
 gradle -p mobile/android --no-daemon testDebugUnitTest assembleDebug assembleDebugAndroidTest
-gradle -p mobile/android --no-daemon connectedDebugAndroidTest
+adb install mobile/android/app/build/outputs/apk/debug/app-debug.apk
+adb install mobile/android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+adb shell am instrument -w -e class org.polishscifigures.studio.preview.LocalEngineInstrumentedTest org.polishscifigures.studio.preview.debug.test/androidx.test.runner.AndroidJUnitRunner
+adb shell am force-stop org.polishscifigures.studio.preview.debug
+adb shell am instrument -w -e class org.polishscifigures.studio.preview.WorkspaceRestartInstrumentedTest org.polishscifigures.studio.preview.debug.test/androidx.test.runner.AndroidJUnitRunner
 ```
 
 `prepare_assets.py` rebuilds the current public browser bundle, verifies its file checksums and copies only named public assets into the generated APK asset folder. It refuses to replace an unmarked folder. Gradle rechecks the native bundle manifest before packaging. Scientific and AndroidX licenses remain in the APK. `.github/workflows/android-local-preview.yml` builds and runs an Android 35 emulator, retaining the debug APK only after successful instrumentation.
 
-The runtime test uses synthetic data and a test-only document provider. It checks an actual WebView file chooser and file read, actual provider output bytes and cancellation, IndexedDB project JSON after Activity recreation, real SciPy Welch calculation, Matplotlib SVG generation and native export, no Internet permission, and blocked non-asset requests. Espresso supplies the system picker's selected URI; the provider write is real. It does not claim to have manually navigated every vendor's Files app or tested real low-end devices. The binary TIFF transport fixture verifies byte preservation and is not itself a generated scientific TIFF. A small synthetic database is used; tests do not clear real user project/autosave databases.
+The runtime test uses a fresh emulator profile, synthetic data and a test-only document provider. It checks an actual WebView file chooser and file read, actual provider output bytes and cancellation, IndexedDB project JSON after Activity recreation, a real editor alignment-guide change restored from autosave with undo history after a separate process restart, real SciPy Welch calculation, Matplotlib SVG generation and native export, no Internet permission, and blocked non-asset requests. Display/density overrides exercise tablet-sized portrait and landscape viewports and retain screenshots. These are emulator display tests, not physical-tablet performance measurements. Espresso supplies the system picker's selected URI; the provider write is real. It does not claim to have manually navigated every vendor's Files app or tested real low-end devices. The binary TIFF transport fixture verifies byte preservation and is not itself a generated scientific TIFF. Tests refuse an already edited workspace and never clear existing project/autosave databases.
 
 Implementation references: [Android local WebView content](https://developer.android.com/develop/ui/views/layout/webapps/load-local-content), [WebViewAssetLoader](https://developer.android.com/reference/androidx/webkit/WebViewAssetLoader), [WebViewCompat messaging](https://developer.android.com/reference/androidx/webkit/WebViewCompat), [Storage Access Framework](https://developer.android.com/training/data-storage/shared/documents-files).
 
@@ -42,4 +46,4 @@ Implementation references: [Android local WebView content](https://developer.and
 
 本地浏览器原型的能力边界仍适用，包括暂不支持可编辑 PDF 导入。构建步骤见上方；`prepare_assets.py` 从当前源码重新构建公共资源并校验，只打包清单中的程序文件，不包含研究工程或测试证据。
 
-自动化测试在 Android 35 模拟器中使用合成数据，覆盖真实 WebView 文件选择回调与读取、系统文档接口写入和取消、页面重建后的 IndexedDB 工程 JSON、实际统计与 SVG 出图、资源访问限制。系统选择器的选择结果由测试框架提供，文件实际写入；这不等于已经人工验证所有厂商的文件管理器，也不代表低配置真机的流畅度。二进制 TIF 传输用例验证字节不变，不冒充实际生成的科研 TIF。开发预览完成测试后，仍需继续实测手机和平板。
+自动化测试在全新的 Android 35 模拟器环境中使用合成数据，覆盖真实 WebView 文件选择回调与读取、系统文档接口写入和取消、页面重建后的 IndexedDB 工程 JSON、编辑器实际参考线操作在进程重启后的自动保存及撤销记录、实际统计与 SVG 出图、资源访问限制，并通过模拟器显示尺寸和密度设置检查平板横竖屏及截图。系统选择器的选择结果由测试框架提供，文件实际写入；这不等于已经人工验证所有厂商的文件管理器，也不代表低配置真机或真实平板的流畅度。二进制 TIF 传输用例验证字节不变，不冒充实际生成的科研 TIF。测试遇到已有编辑工程会停止，不清理用户工程库。开发预览完成测试后，仍需继续实测手机和平板。

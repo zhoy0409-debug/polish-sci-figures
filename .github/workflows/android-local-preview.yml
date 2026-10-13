@@ -25,6 +25,8 @@ jobs:
     timeout-minutes: 45
     env:
       ANDROID_SERIAL: emulator-5554
+      ANDROID_AVD_HOME: ${{ runner.temp }}/figure-studio-avd
+      ANDROID_USER_HOME: ${{ runner.temp }}/figure-studio-android
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-java@v4
@@ -57,26 +59,44 @@ jobs:
           gradle -p mobile/android --no-daemon testDebugUnitTest assembleDebug assembleDebugAndroidTest --stacktrace 2>&1 | tee .cache/android-qa/build.log
       - name: Prepare Android 35 emulator
         run: |
+          mkdir -p "$ANDROID_AVD_HOME" "$ANDROID_USER_HOME"
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'system-images;android-35;google_apis;x86_64'
-          echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --name studio-ci --package 'system-images;android-35;google_apis;x86_64' --device pixel_6 --force
+          echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --name studio-ci --path "$ANDROID_AVD_HOME/studio-ci.avd" --package 'system-images;android-35;google_apis;x86_64' --device pixel_6 --force
+          # Keep command-line tools and the emulator on the same explicit AVD root.
+          printf 'avd.ini.encoding=UTF-8\npath=%s/studio-ci.avd\ntarget=android-35\n' "$ANDROID_AVD_HOME" >"$ANDROID_AVD_HOME/studio-ci.ini"
+          "$ANDROID_HOME/emulator/emulator" -list-avds | grep -Fx studio-ci
       - name: Actual WebView worker, analysis, rendering, local files and persistence
         run: |
           "$ANDROID_HOME/emulator/emulator" -avd studio-ci -port 5554 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -memory 3072 >.cache/android-qa/emulator.log 2>&1 &
           emulator_pid=$!
           trap 'kill "$emulator_pid" 2>/dev/null || true' EXIT
-          timeout 180 bash -c 'until adb -s emulator-5554 shell getprop sys.boot_completed 2>/dev/null | tr -d "\r" | grep -q "^1$"; do sleep 2; done'
+          booted=0
+          for attempt in $(seq 1 90); do
+            if ! kill -0 "$emulator_pid" 2>/dev/null; then cat .cache/android-qa/emulator.log; exit 1; fi
+            if adb -s emulator-5554 shell getprop sys.boot_completed 2>/dev/null | tr -d '\r' | grep -q '^1$'; then booted=1; break; fi
+            sleep 2
+          done
+          if [ "$booted" -ne 1 ]; then cat .cache/android-qa/emulator.log; exit 1; fi
           adb shell input keyevent 82
           adb shell settings put global window_animation_scale 0
           adb shell settings put global transition_animation_scale 0
           adb shell settings put global animator_duration_scale 0
           adb logcat -c
+          adb install mobile/android/app/build/outputs/apk/debug/app-debug.apk
+          adb install mobile/android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
           set +e
-          gradle -p mobile/android --no-daemon connectedDebugAndroidTest --stacktrace 2>&1 | tee .cache/android-qa/instrumentation.log
-          test_status=${PIPESTATUS[0]}
+          adb shell am instrument -w -e class org.polishscifigures.studio.preview.LocalEngineInstrumentedTest org.polishscifigures.studio.preview.debug.test/androidx.test.runner.AndroidJUnitRunner | tee .cache/android-qa/instrumentation.log
+          test_status=0
+          grep -q 'OK (1 test)' .cache/android-qa/instrumentation.log || test_status=1
+          if [ "$test_status" -eq 0 ]; then
+            adb shell am force-stop org.polishscifigures.studio.preview.debug
+            adb shell am instrument -w -e class org.polishscifigures.studio.preview.WorkspaceRestartInstrumentedTest org.polishscifigures.studio.preview.debug.test/androidx.test.runner.AndroidJUnitRunner | tee .cache/android-qa/process-restart.log
+            grep -q 'OK (1 test)' .cache/android-qa/process-restart.log || test_status=1
+          fi
           adb logcat -d >.cache/android-qa/logcat.txt
           adb pull /sdcard/Android/data/org.polishscifigures.studio.preview.debug/files/qa .cache/android-qa/runtime || true
           exit "$test_status"
@@ -86,6 +106,7 @@ jobs:
           cp mobile/android/app/build/outputs/apk/debug/app-debug.apk .cache/android-qa/delivery/Figure-Studio-Android-Local-Preview.apk
           cp mobile/android/README.md .cache/android-qa/delivery/README.md
           cp .cache/android-qa/runtime/android-runtime-proof.json .cache/android-qa/delivery/
+          cp .cache/android-qa/runtime/android-process-restart-proof.json .cache/android-qa/delivery/
           cd .cache/android-qa/delivery
           sha256sum Figure-Studio-Android-Local-Preview.apk >SHA256SUMS.txt
       - name: Collect tested development APK
