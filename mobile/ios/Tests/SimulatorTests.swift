@@ -3,10 +3,15 @@ import XCTest
 final class SimulatorTests: XCTestCase {
     @MainActor
     private func waitForPaintedMobileControls(_ app: XCUIApplication) {
-        let canvas = app.buttons.matching(NSPredicate(format: "label == 'Canvas' OR label == '画布'")).firstMatch
-        let pan = app.buttons.matching(NSPredicate(format: "label == 'Pan' OR label == '移动画布'")).firstMatch
+        // WebKit exposes the canvas control as an ARIA tab. Do not assume it
+        // has XCTest's Button element type across iOS accessibility versions.
+        let canvas = app.descendants(matching: .any).matching(NSPredicate(format: "label == 'Canvas' OR label == '画布'")).firstMatch
+        let pan = app.descendants(matching: .any).matching(NSPredicate(format: "label == 'Pan' OR label == '移动画布'")).firstMatch
         let ready = NSPredicate { _, _ in canvas.isHittable && pan.isHittable }
-        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: ready, object: nil)], timeout: 15), .completed, "The mobile canvas controls have not become visible and usable")
+        let result = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: ready, object: nil)], timeout: 15)
+        let frame = XCTAttachment(screenshot: app.screenshot()); frame.name = "iOS mobile frame readiness"; frame.lifetime = .keepAlways; add(frame)
+        if result != .completed { print("MOBILE ACCESSIBILITY HIERARCHY\n" + app.debugDescription) }
+        XCTAssertEqual(result, .completed, "The mobile canvas controls have not become visible and usable")
     }
 
     @MainActor
@@ -37,8 +42,23 @@ final class SimulatorTests: XCTestCase {
         // the Files provider or substitute a private spool write for saving.
         let save = app.navigationBars.buttons["Save"].firstMatch
         XCTAssertTrue(save.waitForExistence(timeout: 30), "Local Files save destination is unavailable")
-        XCTAssertTrue(save.isEnabled, "The Files provider did not offer a writable local folder")
+        let writable = NSPredicate { _, _ in save.exists && save.isEnabled && save.isHittable }
+        let available = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: writable, object: nil)], timeout: 8)
+        if available != .completed {
+            // directoryURL only suggests an initial view. A fresh simulator's
+            // local provider may require selecting the visible location once.
+            // Exercise that real UI path instead of writing to the spool.
+            let local = app.cells.containing(NSPredicate(format: "label CONTAINS 'On My iPhone' OR label CONTAINS 'On My iPad'")).firstMatch
+            XCTAssertTrue(local.waitForExistence(timeout: 5), "The on-device Files location is unavailable")
+            local.tap()
+            let folder = app.cells.containing(.staticText, identifier: "Figure Studio Preview").firstMatch
+            XCTAssertTrue(folder.waitForExistence(timeout: 5), "The app's local Documents folder is unavailable")
+            folder.tap()
+            let exports = app.cells.containing(.staticText, identifier: "Exports").firstMatch
+            if exports.waitForExistence(timeout: 5) { exports.tap() }
+        }
         let destination = XCTAttachment(screenshot: app.screenshot()); destination.name = "iOS local Files save destination"; destination.lifetime = .keepAlways; add(destination)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: writable, object: nil)], timeout: 10), .completed, "The Files provider did not offer a writable local folder")
         save.tap()
         let openProject = app.buttons["Open saved project"].firstMatch
         XCTAssertTrue(openProject.waitForExistence(timeout: 30), "Actual Files save did not complete")
