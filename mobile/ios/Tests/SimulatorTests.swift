@@ -4,15 +4,25 @@ final class SimulatorTests: XCTestCase {
     @MainActor
     private func selectOnDeviceRoot(_ app: XCUIApplication) {
         let local = app.cells.containing(NSPredicate(format: "label CONTAINS 'On My iPhone' OR label CONTAINS 'On My iPad'")).firstMatch
+        let back = app.navigationBars.buttons.matching(NSPredicate(format: "label == 'On My iPhone' OR label == 'On My iPad' OR label == 'Browse'")).firstMatch
+        let browse = app.buttons["Browse"].firstMatch
+        // The native provider can paint its sheet before attaching navigation
+        // controls to accessibility. Observe readiness rather than interpreting
+        // that initial transition as a missing Browse button, or sleeping.
+        let ready = NSPredicate { _, _ in local.exists || back.exists || browse.exists }
+        let readiness = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: ready, object: nil)], timeout: 45)
+        if readiness != .completed {
+            let frame = XCTAttachment(screenshot: app.screenshot()); frame.name = "iOS Files navigation readiness failure"; frame.lifetime = .keepAlways; add(frame)
+            print("FILES NAVIGATION READINESS HIERARCHY\n" + app.debugDescription)
+        }
+        XCTAssertEqual(readiness, .completed, "Native Files navigation did not become available within 45 seconds")
         var selected = false
         for _ in 0..<6 {
             if local.waitForExistence(timeout: 2) { local.tap(); selected = true; break }
             // On iPhone, return from a folder through its real parent buttons
             // to Browse. On iPad, the location cell is normally in the sidebar.
-            let back = app.navigationBars.buttons.matching(NSPredicate(format: "label == 'On My iPhone' OR label == 'On My iPad' OR label == 'Browse'")).firstMatch
             if back.waitForExistence(timeout: 3) { back.tap() }
             else {
-                let browse = app.buttons["Browse"].firstMatch
                 XCTAssertTrue(browse.waitForExistence(timeout: 3), "No native Browse button or on-device Files location is available")
                 browse.tap()
             }
