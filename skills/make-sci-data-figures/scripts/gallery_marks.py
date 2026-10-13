@@ -51,6 +51,62 @@ def prepare_marks(fig):
                 artist.set_gid(f'studio-mark-{ai}-marker-{n}')
 
 
+def tag_stat_group(ax, group, facet, center, artists):
+    """Record a rendered factor/group cell without inferring labels from colour.
+
+    Coordinates stay in data units until export, after the final axes layout.
+    Members are the cell's own data artists, never its legend or neighbouring
+    groups. Existing IDs and every artist's geometry/style remain unchanged.
+    """
+    fig = ax.figure
+    records = getattr(fig, '_studio_stat_groups', [])
+    members = []
+    for artist in artists:
+        if artist is None or artist in members:
+            continue
+        if artist.axes is not ax:
+            raise ValueError('Statistical anchor members must belong to their data axis')
+        if not artist.get_gid():
+            # Preserve the editor's existing studio-mark-* geometry detection.
+            artist.set_gid(f'studio-mark-stat-c{len(records)}-m{len(members)}')
+        members.append(artist)
+    records.append({'axis': ax, 'group': str(group),
+                    'facet': {'column': 'factor', 'value': str(facet)},
+                    'center': tuple(center), 'members': members})
+    fig._studio_stat_groups = records
+
+
+def _embed_stat_groups(svg, fig):
+    """Serialize exact cell membership and centres in final SVG point units."""
+    records = getattr(fig, '_studio_stat_groups', [])
+    if not records:
+        return svg
+    axes = {}
+    scale, height = 72 / fig.dpi, fig.get_figheight() * 72
+    for record in records:
+        ax = record['axis']
+        if not ax.get_visible() or ax not in fig.axes:
+            continue
+        center = ax.transData.transform(record['center']) * scale
+        center[1] = height - center[1]
+        if not np.isfinite(center).all():
+            continue
+        axis_id = ax.get_gid() or f'axes_{fig.axes.index(ax) + 1}'
+        axis = axes.setdefault(axis_id, {'axis': axis_id, 'groups': []})
+        members = [a.get_gid() for a in record['members']
+                   if a.get_visible() and a.get_gid() and a.axes is ax]
+        if not members:
+            continue
+        axis['groups'].append({'group': record['group'], 'facet': record['facet'],
+                               'center': center.round(6).tolist(), 'members': members})
+    if not axes:
+        return svg
+    payload = html.escape(json.dumps({'version': 1, 'group_column': 'group',
+                                    'facet_column': 'factor', 'axes': list(axes.values())},
+                                    ensure_ascii=False, allow_nan=False), quote=False)
+    return svg.replace('</svg>', f'<metadata id="studio-stat-anchors">{payload}</metadata>\n</svg>')
+
+
 def embed_marks(svg, fig):
     points, errors = [], []
     scale = 72 / fig.dpi
@@ -101,7 +157,8 @@ def embed_marks(svg, fig):
             if id(artist) not in cap_ids and artist.get_gid() and artist.get_marker() not in (None, '', 'None', ' ', '_', '|'):
                 points.append(artist.get_gid())
     payload = html.escape(json.dumps({'version': 1, 'points': points, 'errors': errors}, allow_nan=False), quote=False)
-    return svg.replace('</svg>', f'<metadata id="studio-mark-styles">{payload}</metadata>\n</svg>')
+    svg = svg.replace('</svg>', f'<metadata id="studio-mark-styles">{payload}</metadata>\n</svg>')
+    return _embed_stat_groups(svg, fig)
 
 
 install_capture()

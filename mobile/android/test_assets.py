@@ -32,6 +32,10 @@ class AssetsTest(unittest.TestCase):
         html = (self.allowed / 'www/starter.html').read_text()
         self.assertLess(html.index('native-bridge.js'), html.index('local-engine'))
         manifest = json.loads((self.allowed / 'www/native-bundle-manifest.json').read_text())
+        self.assertTrue(manifest['internetPermission'])
+        self.assertEqual(manifest['researchDataTransport'], 'on-device-worker-only')
+        self.assertEqual(manifest['optionalLiteratureLookup']['trigger'], 'explicit-user-search')
+        self.assertEqual(manifest['optionalLiteratureLookup']['host'], 'www.ebi.ac.uk')
         for item in manifest['files']:
             self.assertEqual(assets.digest(self.allowed / 'www' / item['path']), item['sha256'])
     def test_checksum_tampering_rejected(self):

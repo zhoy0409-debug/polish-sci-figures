@@ -28,6 +28,7 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 - [Editable chart library](#editable-chart-library)
 - [From data updates to final layout](#from-data-updates-to-final-layout)
 - [Statistical analysis and interpretation](#statistical-analysis-and-interpretation)
+- [Examples in papers](#examples-in-papers)
 - [Image duplicate check](#image-duplicate-check)
 - [AI and command-line workflows](#ai-and-command-line-workflows)
 - [Verification scope and current limits](#verification-scope-and-current-limits)
@@ -93,6 +94,10 @@ Switch between Chinese and English interfaces. Your data, project names, and fig
 
 The guided analysis panel detects likely data columns and ranks applicable methods with a short explanation of what each compares. Confirm whether observations are independent or paired, and identify the experimental unit; then choose a method to calculate results and preview the statistical annotations. Advanced column mapping remains available when the proposed mapping needs adjustment.
 
+**Current source update (14 October 2026):** choose statistical styles in **Annotations**; the panel context menu opens this same section. If comparisons are missing, complete the analysis first. Valid results can switch between supported styles without repeating the analysis. Statistical styles and condition-table controls are no longer repeated across inspector tabs.
+
+Grouped bar plots (`grouped_observations`) and faceted box plots (`compare_facet_boxes`) place each comparison above its matching group or facet. The anchors follow group spacing, data redraws, font size, and panel dimensions; large labels use staggered rows when needed. Generated lines and text remain separately editable and movable. This placement requires identified groups and valid comparisons; continuous axes and unsupported imported artwork do not automatically receive the same brackets. These changes describe the source version, not a newly published installer.
+
 Analysis of observations requires a confirmed independent or paired design, group and value columns, and an explicit definition of the experimental unit. Paired data require matching unit IDs; without an ID column, independent data require confirmation that each row is a separate experimental unit. The software does not infer independence from row numbers or treat technical replicates as independent samples. Interactive analysis currently supports:
 
 | Design | Method | Main comparison target |
@@ -107,6 +112,14 @@ For all-pairs or specified-control comparisons, **one Holm correction covers eve
 Existing comparisons can be connected through column mapping, with the method and correction status declared. Linked external results and retained split-facet results become stale when the corresponding chart data change; old significance is not carried forward. Result templates for SHAP, GSEA, model intervals, diagnostic synthesis, and similar analyses present supplied outputs rather than replacing the upstream model. See the [local analysis protocol and method scope](skills/polish-sci-figures/references/figure_studio.md#analyze-observations-or-connect-comparison-results).
 
 The original skill workflows for independent, paired, multigroup, relationship, survival, and dose data keep their own analysis contracts. Standardize microscopy images using real calibration before assembly; do not infer a scale bar from an image's appearance.
+
+## Examples in papers
+
+In the current source editor (14 October 2026), expand **Chart types → Examples in papers** and choose **Find examples**. The section stays collapsed until needed; opening it does not start a search. You may enter a short research topic or leave it blank. The optional search connects to Europe PMC only on request, sending predefined chart search terms and the topic you typed. It does not send your table, measurements, images, or project contents. A disconnected literature service leaves local plotting, analysis, and editing available.
+
+Results show paper details and source links. A **Chart type found in caption** badge means a matching chart term was found in an accessible full-text figure caption; the result can then show the figure label and link. **Preview with my data** is offered when that figure type also has a compatible local candidate for your current data. Review the preview before applying it; applying is undoable. Unverified results show paper information only, without an inferred figure number or data-preview action.
+
+A caption match identifies how a paper presents a result; it does not establish that its study design or analysis fits your data. These source features are not yet a claim about the contents of existing release installers.
 
 ## Image duplicate check
 
@@ -188,7 +201,7 @@ These records do not mean every template, dataset, label length, imported SVG, o
 - **Image input:** Text inside a regular PNG/JPEG does not automatically become an editable object. SVG import accepts a restricted static subset and does not execute scripts or external resources.
 - **Analysis:** Repeated measures, hierarchical data, covariate adjustment, and complex prediction models need an explicit specialist workflow. The interface does not invent statistical results from a chart's appearance.
 
-Autosaving and local computation are not cloud backups. Desktop editing and analysis run locally; the official-project link opens only when clicked. Codex, other AI environments, and external services used in an AI workflow have their own data-handling policies.
+Autosaving and local computation are not cloud backups. Desktop editing and analysis run locally; the official-project link opens only when clicked. The source version's [optional literature search](#examples-in-papers) also connects only on request and does not send research data. Codex, other AI environments, and external services used in an AI workflow have their own data-handling policies.
 
 ## Official distribution and licensing
 

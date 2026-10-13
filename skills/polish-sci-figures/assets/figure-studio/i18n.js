@@ -2,6 +2,10 @@
 'use strict';
 const StudioI18n = (() => {
   const en = {
+"返回":"Back",
+"当前旧图无法自动匹配统计位置，请在数据表中点击“更新图形”。":"This older figure could not be matched automatically. Choose Update figure in the Data table tab.",
+"预览使用当前数据；应用后可撤销。":"Preview uses your current data. Applying it can be undone.",
+"应用此图型":"Apply this chart",
 "保存已取消":"Save cancelled",
 "本地文件保存不可用，请重试或重新打开应用。":"Local file saving is unavailable. Retry or reopen the app.",
 "文件尚未保存，请重试。":"The file has not been saved. Please retry.",

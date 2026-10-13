@@ -32,6 +32,7 @@ public final class MainActivity extends Activity {
     private final AtomicBoolean processing = new AtomicBoolean();
     final java.util.concurrent.atomic.AtomicInteger localAssetRequests = new java.util.concurrent.atomic.AtomicInteger();
     final java.util.concurrent.atomic.AtomicInteger deniedRequests = new java.util.concurrent.atomic.AtomicInteger();
+    final java.util.concurrent.atomic.AtomicInteger literatureRequests = new java.util.concurrent.atomic.AtomicInteger();
     private WebView web;
     private WebViewAssetLoader assets;
     private ValueCallback<Uri[]> fileChoice;
@@ -85,6 +86,12 @@ public final class MainActivity extends Activity {
             @Override public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) { return localResponse(request); }
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 if (request.isForMainFrame() && request.getUrl().toString().equals(START)) return false;
+                if (request.isForMainFrame() && request.hasGesture() && START.equals(view.getUrl())
+                    && LiteraturePolicy.isPaperLink(request.getUrl().toString())) {
+                    try { startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()).addCategory(Intent.CATEGORY_BROWSABLE)); }
+                    catch (Exception error) { Toast.makeText(MainActivity.this, "No browser available / 没有可用的浏览器", Toast.LENGTH_LONG).show(); }
+                    return true;
+                }
                 Toast.makeText(MainActivity.this, "External navigation is disabled in the local preview / 本地预览版不打开外部页面", Toast.LENGTH_SHORT).show(); return true;
             }
             @Override public void onReceivedSslError(WebView view, android.webkit.SslErrorHandler handler, android.net.http.SslError error) { handler.cancel(); }
@@ -94,7 +101,7 @@ public final class MainActivity extends Activity {
                     .setPositiveButton("Reopen / 重新打开", (dialog, which) -> recreate()).setNegativeButton("Close / 关闭", (dialog, which) -> finish()).show(); return true;
             }
         });
-        // Asset loads from Web Workers and Service Workers must be local as well.
+        // Bundled workers stay local; only the two public-literature API routes may connect.
         ServiceWorkerController.getInstance().setServiceWorkerClient(new ServiceWorkerClient() {
             @Override public WebResourceResponse shouldInterceptRequest(WebResourceRequest request) { return localResponse(request); }
         });
@@ -134,6 +141,10 @@ public final class MainActivity extends Activity {
     }
     private WebResourceResponse localResponse(WebResourceRequest request) {
         Uri uri = request.getUrl();
+        if (LiteraturePolicy.allowsLookup(uri.toString(), request.getMethod(), request.isForMainFrame())) {
+            literatureRequests.incrementAndGet();
+            return null; // Explicit lookup uses credential-free fetch; no general remote asset access.
+        }
         if (!"GET".equals(request.getMethod()) || !"https".equals(uri.getScheme()) || !"appassets.androidplatform.net".equals(uri.getHost()) || (uri.getPort() != -1 && uri.getPort() != 443) || uri.getQuery() != null || uri.getPath() == null || !uri.getPath().startsWith("/assets/www/") || uri.getPath().contains("/../") || uri.getPath().contains("/./")) { deniedRequests.incrementAndGet(); return denied(); }
         WebResourceResponse response = assets.shouldInterceptRequest(uri);
         if (response != null) localAssetRequests.incrementAndGet(); else deniedRequests.incrementAndGet();

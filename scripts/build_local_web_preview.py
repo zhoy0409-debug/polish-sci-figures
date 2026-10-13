@@ -123,7 +123,7 @@ def build(output=DEFAULT_OUTPUT, runtime_cache=RUNTIME_CACHE):
     page = build_starter(output / 'starter.html')
     html = page.read_text(encoding='utf-8')
     html = html.replace("script-src 'unsafe-inline'", "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; worker-src 'self'; manifest-src 'self'")
-    html = html.replace("connect-src 'none'", "connect-src 'self'")
+    html = html.replace("connect-src 'none'", "connect-src 'self'").replace("connect-src https://www.ebi.ac.uk", "connect-src 'self' https://www.ebi.ac.uk")
     html = html.replace("img-src data: blob:", "img-src 'self' data: blob:")
     config = {'mode': 'browser', 'prototype': True, 'endpoint': '/api/render', 'reflowEndpoint': '/api/reflow', 'analyzeEndpoint': '/api/analyze', 'splitFacetsEndpoint': '/api/split-facets', 'pdfEndpoint': '/api/import-pdf', 'duplicateEndpoint': '/api/image-duplicates'}
     html = html.replace("style-src 'unsafe-inline'", "style-src 'self' 'unsafe-inline'")

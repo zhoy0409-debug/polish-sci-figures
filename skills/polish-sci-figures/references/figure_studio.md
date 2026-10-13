@@ -8,6 +8,7 @@ This reference documents implemented behavior. Test and visual-review scope is r
 - [Interaction and local engine](#interaction-contract)
 - [Exports and QA](#exports-and-qa)
 - [Statistics](#statistical-method-comparison)
+- [Optional examples in papers](#optional-examples-in-papers)
 - [Original editable gallery](#original-editable-gallery-2026-10-12)
 - [Direct editing, axes and facets](#direct-editing-axes-and-independent-facets-2026-10-12)
 
@@ -153,7 +154,9 @@ The existing primary/sensitivity explorer remains distinct from the local-analys
 
 ### Analyze observations or connect comparison results
 
-Open Statistics from Properties or the panel context menu. When comparison results are missing, the analysis dialog accepts the current table, an external raw CSV/TSV, or an existing comparison-result table. Selecting a presentation style after a valid analysis changes its display without rerunning the test. Compound diagrams can use automatic named result areas; they do not require handwritten statistics simply because their artwork has multiple axes or a fixed aspect ratio.
+In the current source (14 October 2026), statistical presentation styles and condition-table controls have a single home in **Annotations**; the panel context-menu shortcut opens that section. The analysis dialog accepts the current table, an external raw CSV/TSV, or an existing comparison-result table when results are missing. Selecting a presentation style after a valid analysis changes its display without rerunning the test.
+
+Grouped observations (`grouped_observations`) and faceted boxes (`compare_facet_boxes`) carry explicit group/facet identities so each comparison is drawn above its corresponding source artists. Anchors follow spacing, data redraws, font size and panel dimensions; large labels can use staggered rows with additional headroom. Generated lines and text remain individually editable and movable. Unsupported or ambiguous group geometry retains the named-result-area fallback; continuous axes do not acquire categorical brackets merely because comparison results exist. These are source-version changes, not a new installer-release statement.
 
 For raw observations, the user must confirm independent or paired design, identify the genuine independent experimental unit, and map group and numeric outcome columns. The design is not selected automatically. A facet and an explicit column/value row filter are optional. Technical repeats must first be handled at the real experimental-unit level or by an appropriate upstream hierarchical analysis; unique row numbers alone do not establish independence. The local engine rejects duplicate unit/group/facet records, independent units reused across groups, incomplete pairs and missing/nonfinite values rather than silently deleting observations. Paired records are joined by unit ID. Constant data that make a test undefined produce a specific explanation.
 
@@ -180,6 +183,9 @@ For layouts without reliable category anchors, named result areas preserve the o
 
 Method references: [Welch t-test](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html), [Mann–Whitney U](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html), [paired t-test](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_rel.html), [Wilcoxon signed-rank](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html), [Holm multiple-comparison adjustment](https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html).
 
+## Optional examples in papers
+
+The current source adds **Chart types → Examples in papers**. Search is opt-in: only **Find examples** (or submitting that search field) starts a Europe PMC request. The query contains controlled chart-type terms and an optional manually entered topic, never table values, images, project text or source files. The editor checks available full-text figure captions for those chart terms. Only a matched caption produces a figure label/link; a current compatible local candidate is additionally required for **Preview with my data**. Unverified hits remain paper-level information. Preview uses the current data, and applying a candidate is undoable. A caption match does not validate the paper's design or statistical method for the user's data. A failed or offline search leaves local editing and analysis available. See the [English](../../../README.en.md#examples-in-papers) and [Chinese](../../../README.zh-CN.md#文献作图实例) user guides.
 
 ## Local collection and reusable edit presets
 

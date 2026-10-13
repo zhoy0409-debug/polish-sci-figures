@@ -74,6 +74,26 @@ public class LocalEngineInstrumentedTest {
             byte[] buffer=new byte[8192]; int count; while((count=in.read(buffer))>=0) out.write(buffer,0,count); return out.toByteArray();
         }
     }
+    private void verifyLiteratureLinkHandoff() throws Exception {
+        // Click the real target=_blank anchor. Espresso captures ACTION_VIEW,
+        // so CI verifies native handoff without opening a browser or networking.
+        Intents.init();
+        try {
+            intending(hasAction(Intent.ACTION_VIEW)).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_CANCELED, null));
+            eval("(()=>{const a=document.createElement('a');a.id='android-literature-link';a.textContent='Open paper QA';a.href='https://europepmc.org/articles/PMC12345#Fig-2';a.target='_blank';a.rel='noopener noreferrer';a.style.cssText='position:fixed;top:16px;left:16px;z-index:2147483647;background:white;color:black;padding:24px';document.body.append(a)})()");
+            UiObject2 link = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).wait(Until.findObject(By.text("Open paper QA")), 10000);
+            assertNotNull("A public-paper link must be accessible", link); link.click();
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            for (int attempt=0; attempt<50 && Intents.getIntents().stream().noneMatch(intent -> Intent.ACTION_VIEW.equals(intent.getAction())); attempt++) Thread.sleep(100);
+            Intents.intended(hasAction(Intent.ACTION_VIEW));
+            Intent handoff = Intents.getIntents().stream().filter(intent -> Intent.ACTION_VIEW.equals(intent.getAction())).findFirst().orElseThrow(() -> new AssertionError("No browser handoff"));
+            assertEquals("https://europepmc.org/articles/PMC12345#Fig-2", handoff.getDataString());
+            assertEquals(JSONObject.quote(MainActivity.START), eval("location.href"));
+            proof.put("literaturePaperHandoff", "User gesture opens validated target=_blank paper link through ACTION_VIEW; captured by Espresso");
+        } finally {
+            eval("document.getElementById('android-literature-link')?.remove()"); Intents.release();
+        }
+    }
     private void saveToFixture(String name, String expression, byte[] expected) throws Exception {
         Uri destination=Uri.parse("content://"+FixtureProvider.AUTHORITY+"/"+name);
         Intents.init();
@@ -127,8 +147,8 @@ public class LocalEngineInstrumentedTest {
     }
     @Test public void actualOfflineWebViewAnalysisFilesAndPersistence() throws Exception {
         Context target=InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals(PackageManager.PERMISSION_DENIED,target.checkCallingOrSelfPermission("android.permission.INTERNET"));
-        proof.put("internetPermission",false); proof.put("device",android.os.Build.MODEL); proof.put("api",android.os.Build.VERSION.SDK_INT);
+        assertEquals(PackageManager.PERMISSION_GRANTED,target.checkCallingOrSelfPermission("android.permission.INTERNET"));
+        proof.put("internetPermission",true); proof.put("device",android.os.Build.MODEL); proof.put("api",android.os.Build.VERSION.SDK_INT);
         proof.put("ciLauncherDisabled",Boolean.parseBoolean(InstrumentationRegistry.getArguments().getString("ciLauncherDisabled","false")));
         scenario=ActivityScenario.launch(MainActivity.class);
         try {
@@ -207,8 +227,10 @@ public class LocalEngineInstrumentedTest {
             // Same-origin POST and external navigation/fetch cannot reach a remote service.
             eval("window.__androidDenied=null;Promise.all([fetch('./forbidden-qa',{method:'POST',body:'synthetic'}).then(r=>r.status).catch(()=>-1),fetch('https://example.invalid/qa').then(r=>r.status).catch(()=>-1)]).then(x=>window.__androidDenied=x)");
             until("!!window.__androidDenied",15);assertEquals("403",eval("window.__androidDenied[0]"));
-            scenario.onActivity(activity->{try{proof.put("localAssetRequests",activity.localAssetRequests.get());proof.put("deniedRequests",activity.deniedRequests.get());}catch(JSONException error){throw new RuntimeException(error);}});
+            scenario.onActivity(activity->{try{proof.put("localAssetRequests",activity.localAssetRequests.get());proof.put("deniedRequests",activity.deniedRequests.get());proof.put("literatureRequests",activity.literatureRequests.get());}catch(JSONException error){throw new RuntimeException(error);}});
             assertTrue(proof.getInt("localAssetRequests")>20);assertTrue(proof.getInt("deniedRequests")>=1);
+            assertEquals("Startup, analysis and export must not query literature automatically",0,proof.getInt("literatureRequests"));
+            verifyLiteratureLinkHandoff();
             // Actual emulator display/density overrides exercise tablet WebView layouts.
             File screenshots=new File(target.getExternalFilesDir(null),"qa");screenshots.mkdirs();
             UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());

@@ -121,7 +121,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
             case .failure(let error):
                 self.showError("Could not open the saved local port. Close and reopen the app to retry; your project storage has not been reset. / 无法打开原本地端口，请关闭应用后重试，项目存储未被重置。\n" + error.localizedDescription)
             case .success(let url):
-                self.recordSmokeProgress("Installing local-only WebKit policy")
+                self.recordSmokeProgress("Installing local-first WebKit policy")
                 self.trustedOrigin = url
                 self.installNetworkRules(origin: local.origin) { self.webView.load(URLRequest(url: url)) }
             }
@@ -129,17 +129,21 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     }
 
     private func installNetworkRules(origin: String, ready: @escaping () -> Void) {
-        // Even a malicious imported SVG cannot make requests to a remote origin.
+        // Imported artwork cannot load remote assets. Only credential-free
+        // literature fetches are exempted; data and computation remain local.
         let localPattern = "^" + NSRegularExpression.escapedPattern(for: origin + "/")
-        let rules: [[String: Any]] = [
+        var rules: [[String: Any]] = [
             // WebKit content-blocker patterns are a restricted regex subset:
             // alternation is unsupported, so use independent scheme rules.
             ["trigger": ["url-filter": "^https?://"], "action": ["type": "block"]],
             ["trigger": ["url-filter": "^wss?://"], "action": ["type": "block"]],
             ["trigger": ["url-filter": localPattern], "action": ["type": "ignore-previous-rules"]]
         ]
+        rules += LiteraturePolicy.lookupPatterns.map { pattern in
+            ["trigger": ["url-filter": pattern, "resource-type": ["raw"]], "action": ["type": "ignore-previous-rules"]]
+        }
         guard let data = try? JSONSerialization.data(withJSONObject: rules), let text = String(data: data, encoding: .utf8) else { showError("Could not create local resource policy"); return }
-        WKContentRuleListStore.default().compileContentRuleList(forIdentifier: "figure-studio-local-only", encodedContentRuleList: text) { [weak self] list, error in
+        WKContentRuleListStore.default().compileContentRuleList(forIdentifier: "figure-studio-local-with-literature-v1", encodedContentRuleList: text) { [weak self] list, error in
             guard let self else { return }
             guard let list else {
                 let detail = (error as NSError?)?.userInfo[NSLocalizedFailureReasonErrorKey] as? String
@@ -185,10 +189,34 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if let paper = externalPaperLink(action) {
+            // A target=_blank link is handled by createWebViewWith below. No
+            // remote page is ever loaded into the editor's trusted WebView.
+            if action.targetFrame == nil { decisionHandler(.allow); return }
+            if action.targetFrame?.isMainFrame == true { openPaper(paper) }
+            decisionHandler(.cancel); return
+        }
         let allowed = isTrusted(action.request.url) && (action.targetFrame?.isMainFrame == true) && ["/", "/index.html", "/starter.html"].contains(action.request.url?.path ?? "")
         decisionHandler(allowed ? .allow : .cancel)
     }
-    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for action: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? { nil }
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for action: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if action.targetFrame == nil, let paper = externalPaperLink(action) { openPaper(paper) }
+        return nil
+    }
+    private func externalPaperLink(_ action: WKNavigationAction) -> URL? {
+        guard action.navigationType == .linkActivated, action.sourceFrame.isMainFrame,
+              isTrusted(action.sourceFrame.request.url), isTrusted(webView.url),
+              LiteraturePolicy.isPaperLink(action.request.url) else { return nil }
+        return action.request.url
+    }
+    private func openPaper(_ url: URL) {
+        UIApplication.shared.open(url, options: [:]) { [weak self] opened in
+            guard !opened, let self else { return }
+            let notice = UIAlertController(title: "Figure Studio", message: "Could not open the paper. Please try again. / 无法打开论文，请重试。", preferredStyle: .alert)
+            notice.addAction(UIAlertAction(title: "OK / 好", style: .default))
+            if self.presentedViewController == nil { self.present(notice, animated: true) }
+        }
+    }
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { if (error as NSError).code != NSURLErrorCancelled { showError(error.localizedDescription) } }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { if (error as NSError).code != NSURLErrorCancelled { showError(error.localizedDescription) } }
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
@@ -478,6 +506,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
             "rejectRemoteNavigation": !isTrusted(URL(string: "https://example.invalid/")),
             "stableOriginPort": UserDefaults.standard.integer(forKey: "studio.local.port.v1") == Int(server?.port ?? 0)
         ]
+        result.merge(LiteraturePolicy.selfChecks()) { _, current in current }
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent("FigureStudioNativeSelfTest")
         do {
             let store = try ExportStore(directory: folder)

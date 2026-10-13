@@ -27,7 +27,7 @@ The first calculation loads the bundled scientific engine and takes longer than 
 
 **Mac:** check your chip in Apple menu → About This Mac. Unzip the matching archive with Finder and keep `Figure Studio.app` intact. Open the app to start the editor in your default browser. These packages have ad-hoc signing only; they are not notarized by Apple. If macOS blocks startup, retain the exact message. Apple's [opening-apps guide](https://support.apple.com/en-hk/102445) explains its per-app approval flow. This preview does not require you to disable Gatekeeper globally.
 
-**Android:** open the APK on the target device and follow the system installation prompt. Android may require permission for the specific browser or Files app that opens it; see [Google's installation guide](https://support.google.com/pixelphone/answer/7391672). Some devices or distribution routes also apply [developer-verification requirements](https://developer.android.com/developer-verification); installation is not guaranteed on every device. The preview uses a development key, so a later build may require removing the old preview first. Uninstalling erases in-app projects; export backups first. The app itself has no Internet permission.
+**Android:** open the APK on the target device and follow the system installation prompt. Android may require permission for the specific browser or Files app that opens it; see [Google's installation guide](https://support.google.com/pixelphone/answer/7391672). Some devices or distribution routes also apply [developer-verification requirements](https://developer.android.com/developer-verification); installation is not guaranteed on every device. The preview uses a development key, so a later build may require removing the old preview first. Uninstalling erases in-app projects; export backups first. The linked 13 October preview has no Internet permission. The [current source's optional literature search](../README.en.md#examples-in-papers) requires a rebuilt package; it does not change this existing download.
 
 ## Help improve the preview
 
@@ -62,7 +62,7 @@ Mac 和 Android 目前属于开发预览，安装步骤比 Windows 正式版多�
 
 **Mac：** 在苹果菜单 → 关于本机确认芯片，使用 Finder 解压对应 ZIP，保留完整的 `Figure Studio.app`。打开应用后，编辑器在默认浏览器中启动。当前仅有临时签名，没有 Apple 公证；若系统阻止打开，请保留完整提示。[Apple 的说明](https://support.apple.com/en-hk/102445)介绍了单个应用的批准方式，预览版不要求全局关闭 Gatekeeper。
 
-**Android：** 在目标设备打开 APK，按系统提示安装。系统可能要求为打开 APK 的浏览器或文件应用单独授予安装权限，参见 [Google 的说明](https://support.google.com/pixelphone/answer/7391672)。部分设备或分发渠道还适用[开发者验证要求](https://developer.android.com/developer-verification)，目前不能保证所有设备都能直接安装。当前使用开发密钥，后续测试包可能需要先卸载旧版；卸载会清除应用内工程，请先备份。程序本身不申请联网权限。
+**Android：** 在目标设备打开 APK，按系统提示安装。系统可能要求为打开 APK 的浏览器或文件应用单独授予安装权限，参见 [Google 的说明](https://support.google.com/pixelphone/answer/7391672)。部分设备或分发渠道还适用[开发者验证要求](https://developer.android.com/developer-verification)，目前不能保证所有设备都能直接安装。当前使用开发密钥，后续测试包可能需要先卸载旧版；卸载会清除应用内工程，请先备份。上述 10 月 13 日预览包没有互联网权限；[当前源码的可选文献检索](../README.zh-CN.md#文献作图实例)需要重新构建，并不会改变这里已有的下载包。
 
 ### 帮我们找到真正难用的地方
 

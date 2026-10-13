@@ -4,6 +4,8 @@ English first · [中文](#中文)
 
 **Last checked: 13 October 2026.** This record distinguishes native emulator results from browser simulations and physical-device testing. Android, iPhone and iPad passed local calculations, actual project Save/Open and visual restoration in the native simulator runs identified below. These are development previews, not store releases.
 
+The network checks below describe those exact builds, before the optional Europe PMC feature. The current source permits an explicitly started literature lookup while keeping research calculations local; its new network policy needs separate native validation and is not covered by the earlier “no Internet permission” result.
+
 - [Android runtime](#android-verified-native-runtime)
 - [Timing and visual checks](#timing-and-visual-checks)
 - [iPhone and iPad runtime](#iphone-and-ipad-verified-native-runtime)
@@ -71,6 +73,8 @@ Physical Android phones/tablets and iPhones/iPads still require checks for touch
 ## 中文
 
 **最后核查：2026 年 10 月 13 日。** 本记录区分原生模拟器结果、浏览器模拟和真机测试。Android、iPhone 和 iPad 均在下述原生模拟器运行中通过本地计算、真实工程保存／打开与画面恢复。这里是开发预览，不是应用商店正式发行。
+
+以下网络检查对应增加可选 Europe PMC 功能之前的具体构建。当前源码允许用户主动启动文献检索，研究计算仍留在本机；新网络策略需要单独的原生验证，不能沿用此前“没有互联网权限”的测试结论。
 
 ### Android 已验证的原生流程
 

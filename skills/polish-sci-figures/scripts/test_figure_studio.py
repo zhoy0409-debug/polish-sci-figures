@@ -36,7 +36,7 @@ class StudioTests(unittest.TestCase):
         self.assertIn('\\u003c/script>',html)
         self.assertNotIn('/*__STUDIO_',html)
         self.assertNotIn('__STUDIO_PROJECT__',html)
-        self.assertIn("connect-src 'none'",html)
+        self.assertIn("connect-src https://www.ebi.ac.uk;",html)
         self.assertIn('root.StudioTiff = api',html)
         self.assertIn('async function encodeAsync(options)',html)
         self.assertIn('root.StudioCompactWhitespace=api',html)

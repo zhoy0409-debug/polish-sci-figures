@@ -64,6 +64,12 @@ console.log('PASS compact whitespace: conservative per-track trim, four gutter c
   const changed=structuredClone(state);changed.panels['panel-0'].edits={0:{e1:{'font-size':'18'}}};context.compactLayout(data.layout,changed);assert.equal(calls,2,'Typography edits invalidate bounds');
   context.project.layoutRenders={fresh:{sha256:'changed'}};context.compactLayout(data.layout,changed);assert.equal(calls,3,'Reflow invalidates bounds');
   vm.runInContext('compactFontEpoch++;',context);context.compactLayout(data.layout,changed);assert.equal(calls,4,'Loaded fonts invalidate bounds');
+  const beforeUpgrade=context.compactLayout(data.layout,changed);
+  context.StudioCompactWhitespace.measure=svg=>{calls++;const d=fixture(svg.state.gapX??svg.state.gap,svg.state.gapY??svg.state.gap);for(const box of Object.values(d.ink))box.height-=30;return {ink:d.ink,overlays:[]};};
+  context.project.statisticalRenders={'panel-0/0':{binding:'same-source-with-anchors'}};
+  const upgraded=context.compactLayout(data.layout,changed);assert.equal(calls,5,'Statistical metadata upgrades invalidate both layout and ink caches without editing state');assert.ok(upgraded.height<beforeUpgrade.height,'New on-plot content bounds replace former result-band bounds');
+  assert.equal(context.compactLayout(data.layout,changed),upgraded);assert.equal(calls,5,'Unchanged statistical cache still reuses its bounds');
+  context.project.statisticalRenders['panel-0/0'].binding='different-source-with-anchors';context.compactLayout(data.layout,changed);assert.equal(calls,6,'A changed statistical source binding invalidates measured bounds');
   console.log('PASS production compact cache: five live gutter frames without DOM remeasurement; text, reflow and font invalidation');
 }
 {

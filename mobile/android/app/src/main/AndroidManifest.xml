@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Intentionally no INTERNET, broad storage, camera, microphone or account permissions. -->
+    <!-- Optional public-literature lookup only; analysis and research data stay on-device. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- No broad storage, camera, microphone or account permissions. -->
     <application android:label="Figure Studio Preview" android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:allowBackup="false" android:usesCleartextTraffic="false" android:supportsRtl="true"
         android:hardwareAccelerated="true" android:enableOnBackInvokedCallback="false">

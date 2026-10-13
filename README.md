@@ -74,6 +74,8 @@ Play, pause, or scrub through the video to follow each step. [Download the MP4](
 - **Make the details yours.** Draw straight lines and comparison brackets, edit individual characters, choose distinct palettes, and tune point sizes and error bars. Adjust group spacing and arrange panels with alignment guides; undo and redo keep refinements reversible.
 - **Take the result into your paper.** Export individual panels or the complete layout as editable SVG or high-resolution PNG / TIFF. Save the project to continue editing later.
 
+**In the current source (14 October 2026):** optional [examples in papers](README.en.md#examples-in-papers) connect to Europe PMC only when you search, using chart terms and an optional topic you enter; research data stay local. Statistical styles now have one home in **Annotations**, with editable comparisons above the matching groups in grouped bar and supported faceted plots. These source updates do not indicate a new installer release.
+
 The [current library](README.en.md#editable-chart-library) offers **218 editable starting templates**. Statistical methods follow the declared study design; result-based templates use the corresponding supplied analyses. Scientific images retain their calibration and processing records.
 
 <details>
@@ -184,6 +186,8 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 - **接着修改已有图形。** 导入 SVG 或 PDF 页面，继续修改受支持的原生文字和矢量元素。PDF 特效可能需要局部图片图层或整页外观图像；详见[转换边界](docs/release-v1.4.3.md#本版更新)。
 - **把细节调整到位。** 插入水平线和比较括号、修改单个字符、选择差异鲜明的配色，并调整样本点大小和误差棒。调整组间距，借助对齐辅助线编排小图；撤销与重做让精修可以随时回退。
 - **把结果带进论文。** 单个小图和整幅组图均可导出可编辑 SVG 或高清 PNG / TIFF，保存工程后还能继续编辑。
+
+**当前源码更新（2026 年 10 月 14 日）：** 可选的[文献作图实例](README.zh-CN.md#文献作图实例)仅在主动查找时连接 Europe PMC，发送图型检索词和手动填写的可选主题，研究数据留在本机。统计样式统一放在**标注**页；分组柱图和受支持的分面图直接在对应组上方显示可编辑的比较标注。这些源码更新不代表已发布新的安装包。
 
 [当前图形仓库](README.zh-CN.md#可编辑的图形仓库)提供 **218 个可编辑模板起点**。统计方法匹配明确的研究设计，结果类模板使用对应的已有分析；科学图像保留校准信息和处理记录。页面中的演示均使用合成数据，红蓝配色贯穿不同类型的图形。
 

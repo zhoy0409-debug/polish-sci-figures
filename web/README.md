@@ -22,9 +22,13 @@ The Python engine receives JSON through worker messages, never through an HTTP r
 
 Tests: `node scripts/test_local_web_engine.cjs` checks scheduling and cancellation, `node scripts/test_local_web_offline.cjs` checks service-worker cache behavior, and `node scripts/test_local_web_wasm.mjs` runs the actual dispatcher offline with network calls forbidden. The last is a Node/WASM check, not a real-device browser claim. The existing runtime spike measured several hundred megabytes of process memory; low-memory and mobile-device behavior still require actual tests.
 
+The optional [literature lookup](../README.en.md#examples-in-papers) runs separately from this calculation worker. It connects to Europe PMC only when the user starts a search, sending chart terms and an optional typed topic. It does not upload research data or make local calculation depend on Internet access.
+
 ## 本地浏览器引擎原型
 
 本目录是开发原型，通过一个按需启动的 Pyodide 后台线程运行现有统计分析、出图、尺寸重排、分面拆分和图片查重。研究数据通过浏览器内部消息传递，不上传后台。该原型尚不代表已经验证所有手机、平板或浏览器。
+
+可选的[文献检索](../README.zh-CN.md#文献作图实例)与计算线程分开，只在用户主动查找时连接 Europe PMC，发送图型词和手动填写的可选主题，不上传研究数据，也不让本地计算依赖联网。
 
 首次从源代码构建时，开发者先按上方命令安装精确版本 `pyodide@0.29.3`，再运行 `node web/prepare-runtime.mjs` 下载官方科学计算依赖并校验 SHA-256；加上 `--offline` 可在禁止下载的模式下检查完整缓存。随后运行 `python scripts/build_local_web_preview.py`，构建过程本身不联网。生成目录为 `.cache/local-web-preview`；启动上方本地静态服务器后打开 `http://127.0.0.1:8790/starter.html`，不能直接双击 `file://` 文件。这些是开发者的构建步骤，不会读取或上传研究数据。运行库、科学计算依赖、许可证和文件校验清单均随原型保存。
 

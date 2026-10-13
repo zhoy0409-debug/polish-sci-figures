@@ -73,7 +73,9 @@ def stage(source=SOURCE, output=OUTPUT, allowed_root=ASSETS):
             entries.append({'path':item.relative_to(output).as_posix(), 'bytes':item.stat().st_size, 'sha256':digest(item)})
     manifest = {'schema':'figure-studio-android-bundle/1', 'developmentPreview':True,
                 'origin':'https://appassets.androidplatform.net/assets/www/',
-                'files':entries, 'researchDataTransport':'on-device-worker-only', 'internetPermission':False}
+                'files':entries, 'researchDataTransport':'on-device-worker-only', 'internetPermission':True,
+                'optionalLiteratureLookup': {'trigger':'explicit-user-search', 'host':'www.ebi.ac.uk',
+                                            'paths':['/europepmc/webservices/rest/search', '/europepmc/webservices/rest/PMC{id}/fullTextXML']}}
     (output / 'native-bundle-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     return {'output':str(output), 'files':len(entries), 'bytes':sum(item['bytes'] for item in entries)}
 

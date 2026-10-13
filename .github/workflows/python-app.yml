@@ -123,6 +123,11 @@ jobs:
           node scripts/test_studio_beginner_flow.cjs
           node scripts/test_studio_easy_statistics.cjs
           node scripts/test_studio_statistical_line_editing.cjs
+          node scripts/test_studio_grouped_stat_layout.cjs
+          node scripts/test_studio_annotation_pane.cjs
+          node scripts/test_studio_statistical_metadata.cjs
+          node scripts/test_studio_literature.cjs
+          node scripts/test_studio_variant_switch.cjs
           node scripts/test_studio_stat_layout.cjs
           node scripts/test_studio_composite_stat_layout.cjs
           node scripts/test_studio_workspace_selection.cjs
@@ -153,6 +158,7 @@ jobs:
         run: |
           python scripts/test_studio_statistics.py
           python scripts/test_studio_mark_styles.py
+          python scripts/test_grouped_stat_metadata.py
           python scripts/test_studio_pdf.py
           python scripts/test_studio_pdf_endpoint.py
           python scripts/test_studio_reflow.py

@@ -12,6 +12,7 @@ from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.lines import Line2D
 from matplotlib.ticker import MaxNLocator, FuncFormatter
 from scipy import stats
+from gallery_marks import tag_stat_group
 
 PALETTE = ['#426B9D', '#C35E70', '#93A8C4', '#947DAB', '#A8864F', '#5F728A']
 CONTRACTS = {}
@@ -135,7 +136,10 @@ def validate(data, view):
             if len(g)<3: raise ValueError('At least three independent observations per group')
         if view in {'compare_violin','compare_violin_box','compare_raincloud','compare_ridgeline','compare_density'}:
             if any(len(g)<8 or g.value.nunique()<3 for _,g in d.groupby('group')): raise ValueError('Density needs eight nonconstant observations per group')
-    if 'factor' in fields and (d.factor.nunique()>4 or d.groupby(['factor','group']).size().min()<3): raise ValueError('Use up to four factors, with three or more observations per cell')
+    if 'factor' in fields:
+        cells=d.groupby(['factor','group']).size()
+        if d.factor.nunique()>4 or len(cells)!=d.factor.nunique()*d.group.nunique() or cells.min()<3:
+            raise ValueError('Use up to four factors, with three or more observations in every factor-group cell')
     if view=='compare_notched_box' and d.groupby('group').size().min()<10:raise ValueError('Notched boxes require at least ten observations per group; use a plain box with raw points for smaller groups')
     if view=='compare_log_points' and (d.value<=0).any(): raise ValueError('Log scales require positive values')
     if 'reference' in fields:
@@ -193,7 +197,7 @@ def _categorical(ax,names,axis='x'):
 def _points(ax,values,x,color,spread=.13,marker='o'):
     # Deterministic jitter never changes the data coordinate.
     offsets=np.sin(np.arange(len(values))*2.399963)*spread
-    ax.scatter(x+offsets,values,s=15,color=color,alpha=.78,edgecolors='white',linewidths=.4,marker=marker,zorder=3)
+    return ax.scatter(x+offsets,values,s=15,color=color,alpha=.78,edgecolors='white',linewidths=.4,marker=marker,zorder=3)
 
 def _summary(values):
     a=np.asarray(values); mean=a.mean();sd=a.std(ddof=1)
@@ -297,7 +301,8 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
             for i,f in enumerate(factors):
                 v=d.loc[(d.group==g)&(d.factor==f),'value'].to_numpy();means.append(v.mean());sds.append(v.std(ddof=1))
                 if view=='compare_facet_boxes':
-                    a=axes[i];a.boxplot([v],positions=[j],widths=.45,patch_artist=True,showfliers=False,manage_ticks=False,boxprops=dict(facecolor=c[j],alpha=.23,edgecolor=c[j]),medianprops=dict(color=c[j]));_points(a,v,j,c[j],.11)
+                    a=axes[i];boxes=a.boxplot([v],positions=[j],widths=.45,patch_artist=True,showfliers=False,manage_ticks=False,boxprops=dict(facecolor=c[j],alpha=.23,edgecolor=c[j]),medianprops=dict(color=c[j]));points=_points(a,v,j,c[j],.11)
+                    tag_stat_group(a,g,f,(j,np.median(v)),[points,*[artist for artists in boxes.values() for artist in artists]])
             if view=='compare_interaction':ax.errorbar(range(len(factors)),means,yerr=sds,color=c[j],marker=['o','s','^','D','v','P'][j],ls=['-','--',':','-.','-','--'][j],ms=4,lw=1.2,capsize=3,label=g)
         if view=='compare_interaction':_style(ax,y='Mean ± SD');_categorical(ax,factors);_legend(ax,columns=min(3,len(names)));ax.margins(x=.1,y=.14)
         else:
