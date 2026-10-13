@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.4.4 · Figure Studio 0.1.4
+
+- Local image duplicate screening checks the current figure, selected images or panels, and local files without dismantling groups.
+- Identical pixels and suspected rotated, flipped, resized or cropped overlaps are presented with pair evidence and canvas location actions.
+- Download HTML/JSON reports and individual evidence images; the `duplicates` CLI also writes CSV records to a new report folder.
+- The scientific-image and figure-polishing skills include source-based image reuse checks alongside their existing preparation and QA workflows.
+
+[Release details](docs/release-v1.4.4.md) · [Image duplicate guide](docs/image-duplicate-check.md)
+
 ## v1.4.3 · Figure Studio 0.1.3
 
 - Guided statistics recognize common columns, rank methods by data type and confirmed design, and preview results before application.
@@ -13,6 +22,15 @@
 [Release details](docs/release-v1.4.3.en.md) · [Previous release](docs/release-v1.4.2.en.md)
 
 ## 中文
+
+### v1.4.4 · Figure Studio 0.1.4
+
+- 本机图片查重支持当前组图、已选图片或小图以及本地文件，无需拆散编组。
+- 展示像素一致及旋转、翻转、缩放或裁剪后的疑似重叠，提供图片对证据和画布定位。
+- 下载 HTML / JSON 报告和单张证据图；`duplicates` 命令行还可在新报告目录中生成 CSV 记录。
+- 科学图像处理与组图精修技能在原有素材准备和质检流程中加入基于原图的复用检查。
+
+[本版详情](docs/release-v1.4.4.md#图片查重) · [图片查重指南](docs/image-duplicate-check.md#中文)
 
 ### v1.4.3 · Figure Studio 0.1.3
 

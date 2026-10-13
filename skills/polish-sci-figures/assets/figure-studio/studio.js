@@ -816,6 +816,7 @@ if (typeof document !== 'undefined') (async () => {
   let project, history, checkpoints = [], selectedPanel, selected = [], original = false, templateCache = new Map(), renderSerial = 0;
   let savedCurrent = '', localSavedCurrent = '', knownCache, message = '';
   let exportBusy=false,exportRequest=null;
+  let duplicateCheck=null;
   let desktopSession=false,welcomeDismissed=false,newProjectBusy=false,desktopRestoredPayload=null;
   let activePane = 'explore',inspectorPanel=null,inspectorPreviewCache={};
   let preferenceData;try{preferenceData=JSON.parse(localStorage.getItem('figure-studio:preferences')||'null');}catch{}
@@ -2720,7 +2721,7 @@ if (typeof document !== 'undefined') (async () => {
     $('panels').replaceChildren();visualPanelOrder(state()).forEach((id,i)=>{const b=button('',event=>{panelSelection=event?.shiftKey?(panelSelection.includes(id)?panelSelection.filter(x=>x!==id):[...panelSelection,id]):[id];selectedPanel=id;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];selectedPanelLabel=null;selectedAlignmentGuide=null;$('scope').value='panel';render();});b.className='panel-button'+(id===selectedPanel||panelSelection.includes(id)?' active':'');b.setAttribute('aria-label',T('选择面板 ')+(i+1));b.draggable=true;b.ondragstart=()=>{dragging=id;layoutMode=true;renderCanvas();};b.ondragend=()=>{if(dragging){dragging=null;renderCanvas();}};b.ondragover=e=>e.preventDefault();b.ondrop=e=>{e.preventDefault();if(dragging){const pos=gridFor(state()).places[id],source=dragging;dragging=null;commit(moveWithSizes(state(),source,pos.row,pos.col),T('已交换小图'));}};const n=document.createElement('b');n.textContent=String(i+1).padStart(2,'0');const name=document.createElement('span');name.textContent=StudioI18n.panelName(panel(id))+(state().panels[id].locked?' 🔒':'')+((state().panelGroups||[]).some(g=>g.includes(id))?' ⛓':'');b.append(n,name);$('panels').append(b);});
     $('versions').replaceChildren();for(const saved of checkpoints)$('versions').append(button(saved.name,()=>{selected=[];commit(saved.state,T('已恢复版本 ')+saved.name);}));
     renderMasters();renderCanvas();renderInspector();renderRecommendations();showPane(activePane,false);renderHeatmapControls();renderCompactWhitespaceControls();
-    renderConnectionNotice();ensureHeatmapMetadata().catch(()=>{});
+    renderConnectionNotice();ensureHeatmapMetadata().catch(()=>{});duplicateCheck?.refresh();
   }
   function download(blob,name) {const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
   function svgText(){return new XMLSerializer().serializeToString(composite(false,true));}
@@ -2957,7 +2958,7 @@ if (typeof document !== 'undefined') (async () => {
       let response;try{response=await fetch(new URL('/',location.href).href,{cache:'no-store',credentials:'same-origin'});}catch{throw engineConnectionError('offline');}
       if(!response.ok)throw engineConnectionError('authorization');
       const documentCopy=new DOMParser().parseFromString(await response.text(),'text/html');let fresh;try{fresh=JSON.parse(documentCopy.querySelector('#local-engine')?.textContent||'null');}catch{}
-      if(!fresh||typeof fresh.token!=='string'||fresh.token.length<20||fresh.endpoint!=='/api/render'||Object.entries(fresh).some(([key,value])=>key.endsWith('Endpoint')&&!['/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf'].includes(value)))throw engineConnectionError('authorization');
+      if(!fresh||typeof fresh.token!=='string'||fresh.token.length<20||fresh.endpoint!=='/api/render'||Object.entries(fresh).some(([key,value])=>key.endsWith('Endpoint')&&!['/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf','/api/image-duplicates'].includes(value)))throw engineConnectionError('authorization');
       localEngine.token=fresh.token;return fresh;
     })();try{return await engineRefreshPromise;}finally{engineRefreshPromise=null;}
   }
@@ -3593,6 +3594,21 @@ if (typeof document !== 'undefined') (async () => {
     history=new History(project.initialState);selectedPanel=state().order[0];savedCurrent=saveSignature();
     try {knownCache=localStorage.getItem('figure-studio:'+project.id);let saved=desktopRestoredPayload||JSON.parse(knownCache||'null');if(saved?.idb){const record=await StudioLibrary.get('autosaves',project.id);if(!record)throw Error('Missing autosave');saved=record.payload;StudioI18n.restoreDisplayNames(saved.project,project);validateProject(saved.project);project=saved.project;}if(saved){validateState(saved.state,project);if(!Array.isArray(saved.checkpoints)||saved.checkpoints.length>20)throw Error(T('缓存版本无效'));for(const c of saved.checkpoints)validateState(c.state,project);try{history=History.restore(saved.history,project,saved.state);message=T('已恢复本浏览器的自动保存。');}catch{history=new History(saved.state);message=T('当前编辑已恢复，但旧撤销记录不可用。');}checkpoints=saved.checkpoints;dataDrafts=saved.dataDrafts||{};}}catch{message=T('未恢复本地缓存；可用「打开工程」导入已保存项目。');}
     migrateLabelHistory();$('scope').value='panel';render();if(message)say(message);
+    if(typeof StudioDuplicateCheck!=='undefined')duplicateCheck=StudioDuplicateCheck.init({
+      engine:localEngine,fetch:engineFetch,download,say,
+      snapshot:()=>({projectId:project.id,state:state()}),isSnapshot:value=>!!value&&value.projectId===project.id&&value.state===state(),
+      collect:scope=>StudioDuplicateCheck.collect($('artboard'),{scope,groups:selectionGroups(),panels:panelSelection,label:id=>StudioI18n.panelName(panel(id)),variant:id=>state().panels[id].variant}),
+      locate:refs=>{
+        const groups=[];
+        for(const ref of refs){if(!state().panels[ref.panelId]||state().panels[ref.panelId].variant!==ref.vi||!ref.key)return false;
+          const host=[...$('artboard').querySelectorAll('svg[data-panel]')].find(el=>el.dataset.panel===ref.panelId),target=host&&[...host.querySelectorAll('[data-key]')].find(el=>el.dataset.key===ref.key);if(!target)return false;
+          let group=groups.find(item=>item.id===ref.panelId);if(!group){group={id:ref.panelId,vi:ref.vi,keys:[]};groups.push(group);}if(!group.keys.includes(ref.key))group.keys.push(ref.key);
+        }
+        if(!groups.length)return false;original=false;layoutMode=false;setElementSelection(groups);activePane='detail';$('scope').value='element';render();
+        let first=null;for(const ref of refs){const host=[...$('artboard').querySelectorAll('svg[data-panel]')].find(el=>el.dataset.panel===ref.panelId),target=host&&[...host.querySelectorAll('[data-key]')].find(el=>el.dataset.key===ref.key);if(target){target.classList.add('duplicate-located');first||=target;}}
+        first?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'});return true;
+      }
+    });
     persist();
   } catch(e){const div=document.createElement('div');div.className='fatal';div.textContent=T('无法打开工程：')+T(e.message);document.body.replaceChildren(div);}finally{document.body.inert=false;}
 })();

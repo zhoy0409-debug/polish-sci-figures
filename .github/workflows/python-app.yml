@@ -39,6 +39,10 @@ jobs:
         run: python skills/polish-sci-figures/scripts/test_figure_studio.py
       - name: Desktop launcher lifecycle and local authorization
         run: python desktop/test_figure_studio_app.py
+      - name: Local image duplicate screening and evidence
+        run: |
+          python scripts/test_image_duplicates.py
+          python scripts/test_duplicate_integration.py
       - name: Release QA gates
         run: |
           python skills/polish-sci-figures/scripts/test_figure_text_qa.py
@@ -87,9 +91,9 @@ jobs:
           git diff --exit-code -- skills/make-sci-data-figures/examples/synthetic_*.csv
       - name: Build and test complete release bundle
         run: |
-          python scripts/build_release.py --version v1.4.3
+          python scripts/build_release.py --version v1.4.4
           python scripts/test_release_bundle.py
-          python scripts/build_portable_skill.py --version v1.4.3
+          python scripts/build_portable_skill.py --version v1.4.4
           python scripts/test_portable_skill.py
       - name: Compute synthetic results for composite statistics layout
         # The Node layout test consumes these freshly analyzed observations.
@@ -98,6 +102,7 @@ jobs:
       - name: Figure Studio history and state validation
         run: |
           node scripts/test_studio_state.cjs
+          node scripts/test_studio_duplicate_check.cjs
           node scripts/test_studio_header_menu.cjs
           node scripts/test_studio_delete_labels.cjs
           node scripts/test_studio_keyboard_nudge.cjs

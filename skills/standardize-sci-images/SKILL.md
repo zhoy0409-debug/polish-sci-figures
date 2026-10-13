@@ -1,6 +1,6 @@
 ---
 name: standardize-sci-images
-description: Scientific image standardization for microscopy, fluorescence, histology, pathology, and electron-microscopy image batches. Use when the user has raw or derived scientific raster images needing non-destructive processing, locked tone settings, equal dimensions, calibrated scale bars, manifests, montages, or image audit trails. Do not use for raw CSV/Excel charting or final-only SVG layout polishing.
+description: Scientific image standardization for microscopy, fluorescence, histology, pathology, and electron-microscopy image batches. Use when the user has raw or derived scientific raster images needing non-destructive processing, locked tone settings, equal dimensions, calibrated scale bars, manifests, montages, duplicate-image screening, 图片查重, or image audit trails. Do not use for raw CSV/Excel charting or final-only SVG layout polishing.
 ---
 
 # Standardize Scientific Images
@@ -48,6 +48,18 @@ Read `references/integrity_and_layout.md` before processing fluorescence composi
 - Do not stretch images to make them fit. Crop consistently and record the crop box.
 - Keep scale bars and their labels editable in the SVG delivery layer. Treat the underlying scientific image as faithful raster content, not as a fully vector-editable object.
 - Judge scale-bar and sample-label size in the final panel or montage, not while zoomed into the source. Use one readable label hierarchy and baseline within each slot class.
+
+## Check the batch for reused images
+
+When the user asks for image QA or before assembling a batch of scientific images, screen the available source images for accidental reuse using the complete suite from its root:
+
+```bash
+python sci_figures.py duplicates image-a.png image-b.tif image-c.png --out image-check
+```
+
+Compare 2–60 raster images per batch. For a source-batch check, choose one source per acquired image instead of mixing its raw file with known display derivatives. Supply source images or individual image panels; a flattened montage remains one image and is not automatically divided into panels. SVG-embedded raster images can also be screened. Preserve raw files, calibration and processing records throughout. For larger sets, document which batches were compared; independent batches do not check pairs spanning different batches.
+
+Review exact duplicates and suspected rotated, flipped, resized or cropped overlaps against original files and acquisition records. Related channels and deliberately reused controls can match legitimately. Retain matching evidence and the report; do not automatically delete, alter or relabel images. Report findings as candidates for review, not misconduct determinations, and do not treat no detected matches as a guarantee of uniqueness. See [the image duplicate guide](../../docs/image-duplicate-check.md).
 
 ## Finish with the polish skill
 
