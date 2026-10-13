@@ -46,10 +46,20 @@ const StudioMarkStyle=(()=>{
     };
     function ownGroupColor(node){
       const fill=hex(rawPaint(node,'fill')),stroke=hex(rawPaint(node,'stroke')),prop=fill&&fill!=='#ffffff'?'fill':stroke?'stroke':'fill',original=hex(rawPaint(node,prop));
-      return original&&(palette[original]||palette[original.toUpperCase()])||hex(currentPaint(node,prop))||original||'#20242a';
+      return original&&(palette[original]||palette[original.toUpperCase()])||original||'#20242a';
     }
-    function sourceColor(ref,fallback){
-      if(!ref)return fallback;const group=find(svg,ref.id);if(!group)return fallback;
+    function sourceColor(ref,fallback,visited=new Set()){
+      if(!ref)return fallback;const group=find(svg,ref.id);if(!group||visited.has(group))return fallback;visited.add(group);
+      if(info.points.includes(group)){
+        const meta=info.pointColors.find(p=>find(svg,p.id)===group);
+        if(meta?.colorSource&&find(svg,meta.colorSource.id)!==group)return sourceColor(meta.colorSource,fallback,visited);
+        const hasDataLine=meta?.kind==='line'&&[...group.querySelectorAll('path')].some(n=>!n.closest('defs'));
+        if(!hasDataLine){
+          // These markers are also an interval's semantic series source. Their
+          // saved per-point overrides are independent of the group palette.
+          const node=glyphs(group)[0];return node?ownGroupColor(node):fallback;
+        }
+      }
       const candidates=[group,...group.querySelectorAll('path,use,rect,circle,ellipse,polygon,line')].filter(n=>!n.closest('defs'));
       const node=candidates.find(n=>n.style?.getPropertyValue(ref.paint)||n.hasAttribute(ref.paint)||edits[key(n)]?.[ref.paint]);
       return node?hex(currentPaint(node,ref.paint))||fallback:fallback;

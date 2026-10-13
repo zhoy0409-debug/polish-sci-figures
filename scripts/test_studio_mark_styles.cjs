@@ -98,6 +98,39 @@ function domChecks(){
     assert.ok(info.paintChanges.some(change=>change.key==='e2'&&change.property==='fill'&&change.value===custom.pointFill),'quick style reports concrete point override for palette/element-edit reconciliation');
     fixed.dom.window.close();
   }
+  // Some estimates use their actual sampling points, or a marker-only line,
+  // as the semantic group source. Re-render with the quick controls' saved
+  // edits to catch colour leaking between independently styled marks.
+  for(const kind of ['collection','marker-only']){
+    function sourced(){
+      const f=fixture(),node=f.by('studio-mark-styles'),m=JSON.parse(node.textContent);
+      if(kind==='collection'){
+        delete m.pointColors[0].colorSource;
+        f.by('sample-a').style.fill='#4477aa';
+        m.pointColors[1].colorSource={id:'points-a',paint:'fill'};
+        m.errors[0].colorSource={id:'points-a',paint:'fill'};
+      }else{
+        f.by('data-line').remove();
+        m.pointColors[1].colorSource={id:'line-a',paint:'stroke'};
+        m.errors[0].colorSource={id:'line-a',paint:'stroke'};
+      }
+      node.textContent=JSON.stringify(m);return f;
+    }
+    const original=kind==='collection'?'#4477aa':'#aa3377',initial=sourced(),style={pointMode:'custom',pointFill:'#ffff00',pointStroke:'#ff00ff',errorColor:'group'},savedEdits={};
+    const first=marks.apply(initial.svg,style,'both',{palette:{[original]:'#008877'},edits:{[kind==='collection'?'e2':'e4']:{fill:'#008877',stroke:'#008877'}}});
+    for(const change of first.paintChanges)(savedEdits[change.key]??={})[change.property]=change.value;
+    assert.equal(paint(initial.by('stem'),'stroke'),'#008877');initial.dom.window.close();
+    for(const color of ['#008877','#ddaa33']){
+      const f=sourced();marks.apply(f.svg,style,'both',{edits:savedEdits,palette:{[original]:color}});
+      assert.equal(paint(f.by('stem'),'stroke'),color,kind+' saved custom point color must not contaminate group-colored intervals');
+      for(const id of ['cap-upper','cap-lower'])assert.equal(paint(f.by(id),'stroke'),color);
+      assert.equal(paint(f.by('sample-b'),'fill'),'#ffff00','palette changes retain independent custom point colors');f.dom.window.close();
+      const restored=sourced();marks.apply(restored.svg,{pointMode:'hollow',errorColor:'group'},'both',{edits:savedEdits,palette:{[original]:color}});
+      assert.equal(paint(restored.by('sample-b'),'stroke'),color,'returning to group color restores the saved palette');
+      assert.equal(paint(restored.by('sample-b'),'fill'),'none');
+      assert.equal(paint(restored.by('stem'),'stroke'),color);restored.dom.window.close();
+    }
+  }
   const scatter=fixture(),scatterMeta=scatter.by('studio-mark-styles'),scatterData=JSON.parse(scatterMeta.textContent);
   scatterData.points=['points-a'];scatterData.pointColors=[{id:'points-a',kind:'collection'}];scatterData.errors=[];scatterMeta.textContent=JSON.stringify(scatterData);
   const other=scatter.by('sample-a').cloneNode(true);other.id='sample-c';other.setAttribute('data-key','e8');other.setAttribute('x','46');other.style.fill='#cc6677';other.style.stroke='#cc6677';scatter.by('points-a').append(other);
@@ -106,6 +139,12 @@ function domChecks(){
   assert.equal(paint(scatter.by('sample-a'),'stroke'),'#008877','restoring group color uses the original scatter series and saved palette, not its prior custom override');
   assert.equal(paint(scatter.by('sample-c'),'stroke'),'#ddaa33','a multicolor collection retains separate point colors');
   assert.equal(paint(scatter.by('sample-a'),'fill'),'none');assert.equal(paint(scatter.by('sample-c'),'fill'),'none');scatter.dom.window.close();
+  for(const mode of ['solid','hollow','custom']){
+    const f=fixture(),node=f.by('studio-mark-styles'),m=JSON.parse(node.textContent);m.pointColors=[{id:'points-a',kind:'collection'}];m.points=['points-a'];m.errors=[];node.textContent=JSON.stringify(m);
+    marks.apply(f.svg,{pointMode:mode,pointFill:'group',pointStroke:'group'},'both',{edits:fixedEdits,palette:{}});
+    assert.equal(paint(f.by('sample-a'),'fill'),mode==='hollow'?'none':'#4477aa','group restoration with no palette entry must use the source colour, not a shortcut custom edit');
+    assert.equal(paint(f.by('sample-a'),'stroke'),'#4477aa');f.dom.window.close();
+  }
   for(const capWidth of [undefined,10]){
     const multi=fixture(),meta=multi.by('studio-mark-styles'),data=JSON.parse(meta.textContent),record=data.errors[0];delete record.colorSource;
     record.segments[0].colorSource={id:'bar',paint:'fill'};record.segments.push({axis:'y',ends:[[95,35],[95,85]],center:[95,55],colorSource:{id:'data-line',paint:'stroke'}});meta.textContent=JSON.stringify(data);

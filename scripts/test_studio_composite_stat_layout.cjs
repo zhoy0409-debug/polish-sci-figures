@@ -76,7 +76,7 @@ for(const [width,height]of [[259.2,388.8],[345.6,259.2],[703.2,259.2]])for(const
   const drawable=group.children.filter(n=>['text','path','line','rect'].includes(n.localName)),selected=pTexts[0],key='e'+(900000+drawable.indexOf(selected));
   const generatedStart=source.indexOf('    let generated=900000;'),generatedEnd=source.indexOf('    return svg;',generatedStart);
   svg.querySelectorAll=()=>drawable;
-  vm.runInNewContext(source.slice(generatedStart,generatedEnd),{svg,raw:false,id:'p',vi:0,s:{},editsFor:()=>({[key]:{'font-size':'64'}})});
+  vm.runInNewContext(source.slice(generatedStart,generatedEnd),{svg,raw:false,id:'p',vi:0,s:{panels:{p:{}}},marks:null,editsFor:()=>({[key]:{'font-size':'64'}})});
   assert.equal(selected.style['font-size'],'64px');assert.equal(parseFloat(selected.style['font-size'])/2,32,'a 32 pt override remains 32 pt for source unit 2');
 }
 
