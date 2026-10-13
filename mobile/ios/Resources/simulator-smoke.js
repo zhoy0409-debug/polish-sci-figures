@@ -153,7 +153,8 @@ void (async function () {
         const bytes = new Uint8Array(600001); for (let i = 0; i < bytes.length; i++) bytes[i] = i % 251;
         const result = await StudioNativeBridge.saveBlob(new Blob([bytes], {type: 'application/octet-stream'}), 'synthetic-ios-export.bin');
         assert(result.cancelled === true && !result.saved, 'Cancel was incorrectly reported as saved');
-        return {cancelled: true, bytesStreamed: bytes.length, nativePicker: true, fileSaveSuccessTested: false};
+        assert(result.pickerClosedBeforeReply === true, 'Cancel resolved before the native picker closed');
+        return {cancelled: true, bytesStreamed: bytes.length, nativePicker: true, pickerClosedBeforeReply: true, fileSaveSuccessTested: false};
       });
       await check('Actual project Save and Files reimport preserve the edited project', async () => {
         const prior = JSON.parse(localStorage.getItem('ios-simulator-smoke'));
@@ -162,7 +163,7 @@ void (async function () {
         await wait(async () => {
           saved = await native({action: 'smokeLastExport'});
           if (saved.error) throw new Error(saved.error);
-          return saved.saved === true;
+          return saved.saved === true && saved.pickerClosedBeforeReply === true;
         }, 60000);
         // XCTest explicitly selects and asserts the native On My iPhone/iPad
         // location. A valid on-device root need not be inside this app's own
@@ -203,7 +204,7 @@ void (async function () {
             const guides = current?.payload.state.alignmentGuides;
             return guides?.length === 1 && guides[0].id === prior.guideId && !document.querySelector('[data-alignment-guide="' + extraGuide.id + '"]');
           }, 30000);
-          return {fileSaveSuccessTested: true, fileInputReimportTested: true, nativeConfirmationAccepted: true, localDestination: true, localDestinationEvidence: 'Native XCTest selects and asserts On My iPhone/iPad, with screenshot', destinationURL: saved.destinationURL, coordinatedReadback: saved.coordinatedReadback, bytes: saved.bytes, sha256: saved.sha256, originalGuideRestored: true, laterEditRemoved: true};
+          return {fileSaveSuccessTested: true, fileInputReimportTested: true, nativeConfirmationAccepted: true, pickerClosedBeforeReply: true, localDestination: true, localDestinationEvidence: 'Native XCTest selects and asserts On My iPhone/iPad, with screenshot', destinationURL: saved.destinationURL, coordinatedReadback: saved.coordinatedReadback, bytes: saved.bytes, sha256: saved.sha256, originalGuideRestored: true, laterEditRemoved: true};
         } finally { input.removeEventListener('change', capture, true); open.remove(); }
       });
     }

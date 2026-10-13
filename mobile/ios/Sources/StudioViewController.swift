@@ -20,6 +20,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     private var exports: ExportStore?
     private var exportReply: ((Any?, String?) -> Void)?
     private var activeExportPicker: UIDocumentPickerViewController?
+    private var exportCompleting = false
     private var exportTimeout: Timer?
     private var dismissJavaScriptDialog: (() -> Void)?
     private var lastSmokeExport: [String: Any]?
@@ -193,7 +194,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         dismissJavaScriptDialog?()
         exports?.abort(); exportReply?(nil, "The editor process restarted; retry the export / 编辑器进程已重启，请重试导出"); exportReply = nil
-        activeExportPicker = nil
+        activeExportPicker = nil; exportCompleting = false
         showError("The system stopped the editor to recover memory. Reopen the saved local project or retry. / 系统为释放内存暂停了编辑器，请重试或重新打开已保存项目。")
     }
 
@@ -301,7 +302,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
             case "finish":
                 guard exportReply == nil, dismissJavaScriptDialog == nil, let id = body["id"] as? String else { throw ExportFailure.invalid("An export dialog is already open") }
                 let file = try exports.finish(id: id)
-                exportTimeout?.invalidate(); exportReply = replyHandler
+                exportTimeout?.invalidate(); exportReply = replyHandler; exportCompleting = false
                 let picker = UIDocumentPickerViewController(forExporting: [file], asCopy: true)
                 activeExportPicker = picker
                 picker.delegate = self
@@ -394,11 +395,50 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         completeExport(cancelled: urls.isEmpty)
     }
     private func completeExport(cancelled: Bool) {
-        guard let callback = exportReply else { return }
-        exportReply = nil; activeExportPicker = nil
+        guard exportReply != nil, !exportCompleting, let picker = activeExportPicker else { return }
+        exportCompleting = true
         let result: [String: Any] = cancelled ? ["cancelled": true] : ["saved": true, "name": exports?.file?.lastPathComponent ?? "", "bytes": exports?.written ?? 0]
-        exports?.abort(); exportTimeout?.invalidate()
-        callback(result, nil)
+        if smoke { recordSmokeProgress("Native export result received; waiting for picker dismissal; cancelled=\(cancelled)") }
+        // The delegate may run before UIKit dismisses its file provider. Keep
+        // the native Promise and busy state pending so the next file input or
+        // export cannot begin underneath that transition.
+        DispatchQueue.main.async { [weak self] in
+            self?.finishExportAfterDismissal(picker, result: result, attemptsRemaining: 40, mayDismiss: true)
+        }
+    }
+
+    private func finishExportAfterDismissal(_ picker: UIDocumentPickerViewController, result: [String: Any], attemptsRemaining: Int, mayDismiss: Bool) {
+        guard exportCompleting, exportReply != nil, activeExportPicker === picker else { return }
+        let closed = picker.presentingViewController == nil && !picker.isBeingDismissed && presentedViewController !== picker
+        if closed || attemptsRemaining == 0 {
+            let callback = exportReply; exportReply = nil; activeExportPicker = nil; exportCompleting = false
+            exports?.abort(); exportTimeout?.invalidate()
+            if smoke {
+                recordSmokeProgress(closed ? "Native export picker closed before replying to JavaScript" : "Native export picker dismissal timed out")
+                if closed, result["saved"] as? Bool == true { lastSmokeExport?["pickerClosedBeforeReply"] = true }
+            }
+            guard closed else {
+                callback?(nil, "The file dialog did not finish closing; close it before continuing / 文件窗口尚未完成关闭，请关闭后继续")
+                return
+            }
+            var response = result
+            if smoke { response["pickerClosedBeforeReply"] = true }
+            callback?(response, nil)
+        } else if mayDismiss && !picker.isBeingDismissed && presentedViewController === picker {
+            // Only our completed export picker is dismissed. The completion
+            // callback, or the bounded fallback below, checks actual detachment.
+            picker.dismiss(animated: !UIAccessibility.isReduceMotionEnabled) { [weak self] in
+                self?.finishExportAfterDismissal(picker, result: result, attemptsRemaining: 40, mayDismiss: false)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) { [weak self] in
+                self?.finishExportAfterDismissal(picker, result: result, attemptsRemaining: 0, mayDismiss: false)
+            }
+        } else {
+            // UIKit may already own dismissal when didPick/cancel is called.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
+                self?.finishExportAfterDismissal(picker, result: result, attemptsRemaining: attemptsRemaining - 1, mayDismiss: false)
+            }
+        }
     }
 
     private func recordSmokeProgress(_ stage: String) {
