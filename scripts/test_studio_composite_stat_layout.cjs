@@ -103,7 +103,7 @@ assert.equal(JSON.stringify(assets),unchangedSource,'layout does not mutate char
 // Run the real data-update handler and its real statistics-install block with
 // controlled async responses. No browser or network is replaced with claims.
 const recomputeStart=source.indexOf('  async function recomputeData('),recomputeEnd=source.indexOf("  $('addDataRow').onclick",recomputeStart);
-const installStart=source.indexOf('      const old=state().panels[oldId],record=old.statistics;'),installEnd=installStart+source.slice(installStart).search(/\r?\n    }\r?\n    selectedPanel=id;/);
+const installStart=source.indexOf('      const old=state().panels[oldId],record=old.statistics;'),installEnd=installStart+source.slice(installStart).search(/\r?\n    }\r?\n    if\(keepSelection/);
 assert.ok(recomputeStart>0&&installStart>0&&installEnd>installStart);
 function installStatistics(record,asset,preserveStatistics=false){
   const old={statistics:copy(record),annotationStyle:'p',annotationPFormat:'precise',showFacetTitles:false,annotationFont:{size:24,font:'Arial'},annotationLine:'rounded'},next={panels:{next:{}}};
@@ -123,7 +123,7 @@ for(const binding of ['external','results']){
 async function updateCase(binding,mutate=null,ok=true){
   const ui=new Map(),calls=[],sourcePanel={name:'Fixture',recipe:input.recipe,table:{sha256:input.original.data_sha256}},current={order:['p'],panels:{p:{statistics:{...copy(record),binding}}}};
   const c={...helpers,dataBusy:false,localEngine:{endpoint:'/api/render',token:'local-token'},dataDrafts:{p:copy(input.rows)},selectedPanel:'p',dataSerial:1,project:{id:'project'},copy,state:()=>current,panel:()=>sourcePanel,variant:()=>({name:'raincloud',size:'original'}),T:x=>x,document:{activeElement:null},persist:()=>{},refreshDataExport:()=>{},say:()=>{},setTimeout:()=>0,$:id=>{if(!ui.has(id))ui.set(id,{});return ui.get(id);},engineFetch:async(endpoint,options)=>{calls.push(JSON.parse(options.body));if(mutate)mutate(c,current);return {ok,json:async()=>ok?{panel:{table:{sha256:input.updated.data_sha256},variants:[{name:'raincloud',size:'original'}],statistics:input.updated},seconds:.1}:{error:'Invalid data'}};},installAsset:(...args)=>calls.push({installed:args})};
-  c.paintDataValidation=()=>({valid:true});
+  c.history={};c.paintDataValidation=()=>({valid:true});
   vm.createContext(c);vm.runInContext(source.slice(recomputeStart,recomputeEnd),c);await c.recomputeData();return {calls,c,current};
 }
 async function verifyUpdates(){

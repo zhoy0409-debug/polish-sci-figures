@@ -23,9 +23,9 @@ function harness(){
   labelNode.closest=s=>s==='[data-panel-label]'?labelNode:null;
   function overlayText(id){const n=node('text');n.closest=s=>s==='[data-annotation]'?{dataset:{annotation:id}}:null;return n;}
   artboard.querySelector=selector=>selector==='svg'?svg:overlayText(selector.match(/data-annotation="([^"]+)"/)?.[1]);
-  const ctx={Math,Date:{now:()=>++clock},StudioRichText:rich,mobileWorkspace:null,project,copy,$:id=>fields[id],state:()=>history.current,panel:id=>project.panels.find(p=>p.id===id),
+  const ctx={pointerEditCommit:false,Math,Date:{now:()=>++clock},StudioRichText:rich,mobileWorkspace:null,project,copy,$:id=>fields[id],state:()=>history.current,panel:id=>project.panels.find(p=>p.id===id),
     layout:()=>({width:300,height:200,cells:[],positions:[{id:'p0',x:0,y:0,width:300,height:200}]}),currentOutput:()=>({scale:1}),
-    T:s=>s,say:m=>messages.push(m),syncCanvasModes(){},renderSelectionProperties(){refreshes++;},renderRichTextControls(){},
+    T:s=>s,say:m=>messages.push(m),syncCanvasModes(){},renderSelectionProperties(){refreshes++;},renderRichTextControls(){},renderQuickToolbar(){},
     commit(next){validateState(next,project);if(history.commit(next))commits++;return true;},
     setEdit(s,id,vi,key,prop,val){((s.panels[id].edits[vi]??={})[key]??={})[prop]=val;},
     NS:"http://www.w3.org/2000/svg",cancelAnimationFrame(){},requestAnimationFrame:fn=>frames.push(fn),getComputedStyle:()=>({fontFamily:'Arial',fontSize:'10px'}),

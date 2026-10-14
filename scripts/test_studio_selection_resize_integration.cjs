@@ -117,6 +117,52 @@ test('PDF text keeps its 50x local matrix, character arrays and inherited clippi
   const f=fixture({body});try{f.select([f.item()]);const el=f.find('p1'),parent=el.parentElement;drag(f,'se',{x:194,y:123});assert.equal(el.parentElement,parent);assert.equal(parent.getAttribute('clip-path'),'url(#crop)');assert.equal(el.getAttribute('font-size'),'.24');assert.equal(el.getAttribute('x'),'0 .1 .2');assert.equal(el.getAttribute('y'),'0 0 0');near(rich.pointSize(el)*rich.localFontScale(el,f.svg),24);matrixNear(JSON.parse(f.state.panels.p1.edits[0].e1['object-transform']),[2,0,0,2,-24,-23]);assert.equal(f.errors.length,0);}finally{f.close();}
 });
 
+test('small text keeps all eight resize hit areas outside its visible glyph box',()=>{
+  for(const transform of ['', ' transform="rotate(90)"']){
+    const f=fixture({body:`<text data-key="e1" data-test-box="20,20,64,7" font-size="7"${transform}>Small PDF text</text>`,screen:[1,0,0,1,100,50]});try{
+      f.select([f.item()]);const text=f.find('p1'),box=text.getBoundingClientRect(),hits=[...f.svg.querySelectorAll('.selection-resize-hit')];assert.equal(hits.length,8);
+      for(const hit of hits){const b=hit.getBoundingClientRect();assert.ok(b.right<=box.left||b.left>=box.right||b.bottom<=box.top||b.top>=box.bottom,`${hit.parentElement.dataset.selectionResize} covers the small text`);near(b.width,18);near(b.height,18);}
+      const outline=f.svg.querySelector('.selection-transform-outline').getBoundingClientRect();for(const key of ['left','right','top','bottom'])near(outline[key],box[key]);
+      let downs=0,doubleClicks=0;f.svg.addEventListener('pointerdown',()=>downs++);f.svg.addEventListener('dblclick',e=>{assert.equal(e.target,text);doubleClicks++;});
+      f.fire(text,'pointerdown',{x:62,y:43.5});f.fire(text,'pointerup',{x:62,y:43.5});f.fire(text,'pointerdown',{x:62,y:43.5});f.fire(text,'pointerup',{x:62,y:43.5});f.fire(text,'dblclick',{x:62,y:43.5});
+      assert.equal(downs,2);assert.equal(doubleClicks,1);assert.equal(f.api.isActive(),false);assert.equal(f.commits.length,0);
+    }finally{f.close();}
+  }
+});
+
+test('outside small-text handles resize from exact pointer displacement without a start jump',()=>{
+  for(const [handle,delta,modifiers,expected]of [
+    ['se',{x:64,y:7},{},[2,0,0,2,-20,-20]],
+    ['e',{x:16,y:0},{},[1.25,0,0,1,-5,0]],
+    ['e',{x:16,y:0},{altKey:true},[1.5,0,0,1,-26,0]],
+    ['se',{x:64,y:14},{shiftKey:true},[2,0,0,3,-20,-40]]
+  ]){
+    const f=fixture({body:'<text data-key="e1" data-test-box="20,20,64,7" font-size="7">Small</text>',screen:[1,0,0,1,100,50]});try{
+      f.select([f.item()]);const before=f.find('p1').outerHTML,start=f.down(handle,modifiers);assert.equal(f.find('p1').outerHTML,before);assert.equal(f.commits.length,0);
+      const end={x:start.x+delta.x,y:start.y+delta.y};f.move(end,modifiers);f.frame();assert.equal(f.commits.length,0);f.up(end,modifiers);
+      matrixNear(JSON.parse(f.state.panels.p1.edits[0].e1['object-transform']),expected);assert.equal(f.commits.length,1);assert.equal(f.find('p1').getAttribute('font-size'),'7');assert.equal(f.errors.length,0);
+    }finally{f.close();}
+  }
+});
+
+test('outside handles cancel cleanly and grabbing the edge of a hit target causes no size jump',()=>{
+  const f=fixture({body:'<text data-key="e1" data-test-box="20,20,64,7" font-size="7">Small</text>',screen:[1,0,0,1,100,50]});try{
+    f.select([f.item()]);const before=f.find('p1').outerHTML,handle=f.svg.querySelector('[data-selection-resize="e"]'),hit=handle.querySelector('.selection-resize-hit'),start={x:+hit.getAttribute('x')+1,y:+hit.getAttribute('y')+1};
+    f.fire(handle,'pointerdown',start);const end={x:start.x+16,y:start.y};f.move(end);f.frame();matrixNear(values(svgGeometry.relativeMatrix(f.find('p1'),f.find('p1').parentElement)),[1.25,0,0,1,-5,0]);
+    assert.equal(f.api.cancel(),true);assert.equal(f.find('p1').outerHTML,before);assert.equal(f.commits.length,0);assert.equal(f.frames.size,0);assert.equal(f.captured.size,0);assert.equal(f.errors.length,0);
+  }finally{f.close();}
+});
+
+test('a small editable overlay or panel label receives the same unobstructed hit layout',()=>{
+  for(const kind of ['label','overlay']){
+    const f=fixture({screen:[1,0,0,1,100,50]});try{
+      const el=f.doc.createElementNS(NS,kind==='label'?'text':'g');if(kind==='label'){el.setAttribute('data-test-box','20,30,64,7');el.textContent='Label';}else{el.innerHTML='<text data-test-box="20,30,64,7">Overlay</text>';f.state.overlays.push({id:'small',type:'text',locked:false});}f.svg.append(el);f.select([{kind,id:kind==='label'?'p1':'small',el}]);
+      const box=el.getBoundingClientRect();for(const hit of f.svg.querySelectorAll('.selection-resize-hit')){const b=hit.getBoundingClientRect();assert.ok(b.right<=box.left||b.left>=box.right||b.bottom<=box.top||b.top>=box.bottom);}
+      assert.equal(f.svg.querySelectorAll('[data-selection-resize]').length,8);assert.equal(f.commits.length,0);
+    }finally{f.close();}
+  }
+});
+
 test('ancestor and descendant selection transforms only the top-level selected group',()=>{
   const f=fixture({body:'<g data-key="e1" transform="translate(20 20)"><rect data-key="e2" width="80" height="40"/></g>'});try{f.select([f.item(),f.item('p1','e2')]);drag(f,'se',{x:190,y:120});assert.ok(f.state.panels.p1.edits[0].e1['object-transform']);assert.equal(f.state.panels.p1.edits[0].e2,undefined);assert.equal(f.find('p1','e2').getAttribute('transform'),null);assert.equal(f.errors.length,0);}finally{f.close();}
 });

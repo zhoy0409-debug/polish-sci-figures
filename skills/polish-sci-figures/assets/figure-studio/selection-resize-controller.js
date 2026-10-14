@@ -47,15 +47,24 @@ const StudioSelectionResize=(()=>{
       });
     }
     const bounds=items=>union(items.map(item=>item.kind==='content'?contentBox(item):screenBox(item.kind==='overlay'?(item.el.firstElementChild||item.el):item.el)));
+    const handlePoint=(b,handle)=>({x:handle.includes('w')?b.x:handle.includes('e')?b.x+b.width:b.x+b.width/2,y:handle.includes('n')?b.y:handle.includes('s')?b.y+b.height:b.y+b.height/2});
+    function handlePadding(items,b,ux,uy){
+      if(gesture)return gesture.handlePadding;
+      const item=items.length===1&&items[0],text=item&&(item.el.localName==='text'||item.kind==='label'||item.kind==='overlay'&&config.state().overlays?.find(a=>a.id===item.id)?.type==='text');
+      // The 18px hit areas otherwise cover a small text line completely. Keep
+      // its actual glyph box available for selection, dragging and double-click
+      // editing; handles stay easy to acquire immediately outside that box.
+      return text&&(b.width/ux<24||b.height/uy<24)?{x:10*ux,y:10*uy}:{x:0,y:0};
+    }
     function refresh(){
       layer.replaceChildren();if(disposed||config.enabled?.()===false)return;
       const items=selected(),b=bounds(items);if(!b||!Object.values(b).every(Number.isFinite)||!b.width&&!b.height)return;
-      const screen=svg.getBoundingClientRect(),ux=l.width/screen.width,uy=l.height/screen.height;
+      const screen=svg.getBoundingClientRect(),ux=l.width/screen.width,uy=l.height/screen.height,padding=handlePadding(items,b,ux,uy);
       const rect=doc.createElementNS(NS,'rect');rect.setAttribute('class','selection-transform-outline');
       for(const [k,v]of Object.entries(b))rect.setAttribute(k,v);rect.setAttribute('vector-effect','non-scaling-stroke');layer.append(rect);
       for(const handle of handles){
         if(!b.width&&/[ew]/.test(handle)||!b.height&&/[ns]/.test(handle))continue;
-        const x=handle.includes('w')?b.x:handle.includes('e')?b.x+b.width:b.x+b.width/2,y=handle.includes('n')?b.y:handle.includes('s')?b.y+b.height:b.y+b.height/2;
+        const anchor=handlePoint(b,handle),x=anchor.x+(handle.includes('w')?-padding.x:handle.includes('e')?padding.x:0),y=anchor.y+(handle.includes('n')?-padding.y:handle.includes('s')?padding.y:0);
         const group=doc.createElementNS(NS,'g');group.dataset.selectionResize=handle;group.style.pointerEvents='all';group.style.cursor=({n:'ns',s:'ns',e:'ew',w:'ew',nw:'nwse',se:'nwse',ne:'nesw',sw:'nesw'})[handle]+'-resize';
         const title=doc.createElementNS(NS,'title');title.textContent=t('拖动角点等比缩放；边点调整宽高；Shift 切换比例；Alt 围绕中心');group.append(title);
         for(const hit of [true,false]){const node=doc.createElementNS(NS,'rect'),size=hit?18:8;node.setAttribute('class',hit?'selection-resize-hit':'selection-resize-handle');for(const [k,v]of Object.entries({x:x-size*ux/2,y:y-size*uy/2,width:size*ux,height:size*uy,rx:2*ux}))node.setAttribute(k,v);node.setAttribute('vector-effect','non-scaling-stroke');group.append(node);}layer.append(group);
@@ -98,7 +107,7 @@ const StudioSelectionResize=(()=>{
       frame=0;const g=gesture;if(!g||!g.last||config.state()!==g.base)return;
       const e=g.last;let action;
       if(g.move){const p=point(e),delta=config.snapMove?.(g.moveContext,p.x-g.origin.x,p.y-g.origin.y,e.altKey)||{dx:p.x-g.origin.x,dy:p.y-g.origin.y};action=[1,0,0,1,delta.dx,delta.dy];}
-      else{const mode=config.aspect?.()||'auto',options={shiftKey:e.shiftKey,altKey:e.altKey,minSize:1,maxScale:100,guides:config.snapGuides?.()||{},snapThreshold:5*l.width/svg.getBoundingClientRect().width};if(mode!=='auto')options.lockAspect=mode==='locked';const resize=G.resizeBox(g.bounds,g.handle,point(e),options);action=resize.matrix;config.onSnap?.(resize.snapped);}
+      else{const mode=config.aspect?.()||'auto',options={shiftKey:e.shiftKey,altKey:e.altKey,minSize:1,maxScale:100,guides:config.snapGuides?.()||{},snapThreshold:5*l.width/svg.getBoundingClientRect().width};if(mode!=='auto')options.lockAspect=mode==='locked';const p=point(e),resizePoint={x:p.x-g.resizeOffset.x,y:p.y-g.resizeOffset.y},resize=G.resizeBox(g.bounds,g.handle,resizePoint,options);action=resize.matrix;config.onSnap?.(resize.snapped);}
       try{const next=persistAction(g,action);config.validate?.(next);g.next=next;g.action=action;
         for(const item of g.items.flatMap(item=>[item,...item.attached])){const local=G.multiply(G.multiply(G.multiply(G.inverse(item.parent),action),item.parent),item.own);item.el.setAttribute('transform',attr(local));}
         config.onPreview?.(next);refresh();
@@ -108,8 +117,10 @@ const StudioSelectionResize=(()=>{
       if(e.button!==0||disposed||gesture||config.enabled?.()===false)return;
       const handle=e.target.closest?.('[data-selection-resize]')?.dataset.selectionResize,items=selected(),move=!handle&&items.length===1&&items[0].kind==='content'&&items[0].el.contains(e.target);
       if(!handle&&!move)return;const b=bounds(items);if(!b)return;
-      e.preventDefault();e.stopImmediatePropagation();const origin=point(e);
-      try{gesture={items:capture(items),bounds:b,base:config.state(),origin,screen:{x:e.clientX,y:e.clientY},pointerId:e.pointerId,handle,move,moveContext:move?config.captureMove?.(items):null,moved:false,next:null};svg.setPointerCapture(e.pointerId);svg.classList.add('is-resizing-selection');}catch(error){gesture=null;config.onError?.(error);}
+      e.preventDefault();e.stopImmediatePropagation();const origin=point(e),anchor=handle?handlePoint(b,handle):origin,screen=svg.getBoundingClientRect(),padding=handlePadding(items,b,l.width/screen.width,l.height/screen.height);
+      // Resize from pointer displacement, not the outside hit target's absolute
+      // coordinates. This also prevents a jump when its edge is grabbed.
+      try{gesture={items:capture(items),bounds:b,base:config.state(),origin,resizeOffset:{x:origin.x-anchor.x,y:origin.y-anchor.y},handlePadding:padding,screen:{x:e.clientX,y:e.clientY},pointerId:e.pointerId,handle,move,moveContext:move?config.captureMove?.(items):null,moved:false,next:null};svg.setPointerCapture(e.pointerId);svg.classList.add('is-resizing-selection');}catch(error){gesture=null;config.onError?.(error);}
     }
     function move(e){if(!gesture||e.pointerId!==gesture.pointerId)return;e.preventDefault();e.stopImmediatePropagation();if(e.buttons===0){cancel();return;}gesture.moved ||= Math.hypot(e.clientX-gesture.screen.x,e.clientY-gesture.screen.y)>2;if(!gesture.moved)return;gesture.last={clientX:e.clientX,clientY:e.clientY,shiftKey:e.shiftKey,altKey:e.altKey};if(!frame)frame=raf(paint);}
     function finish(e){

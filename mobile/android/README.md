@@ -1,6 +1,6 @@
 # Figure Studio — Android local development preview
 
-This is a development APK for testing the existing local editor on Android. It bundles the complete browser UI and pinned scientific WebAssembly runtime. Analysis, chart generation and image screening run inside an on-device Web Worker. The 0.1.9 development preview permits the optional Europe PMC search only when explicitly started, sending chart terms and an optional typed topic, not research data. The APK requests Internet permission for this lookup; update checks fetch only official GitHub version metadata without research data, and local calculation remains available offline. It uses one stable private origin (`https://appassets.androidplatform.net/assets/www/`), so app updates using the same application ID and signing key preserve WebView storage. Uninstalling the app clears that storage; save project files as separate backups.
+This is a development APK for testing the existing local editor on Android. It bundles the complete browser UI and pinned scientific WebAssembly runtime. Analysis, chart generation and image screening run inside an on-device Web Worker. The 0.1.11 development preview permits the optional Europe PMC search only when explicitly started, sending chart terms and an optional typed topic, not research data. The APK requests Internet permission for this lookup; update checks fetch only official GitHub version metadata without research data, and local calculation remains available offline. It uses one stable private origin (`https://appassets.androidplatform.net/assets/www/`), so app updates using the same application ID and signing key preserve WebView storage. Uninstalling the app clears that storage; save project files as separate backups.
 
 The development build requires Android 8 or later and a current Android System WebView with Web Message Listener, WebAssembly, Workers, IndexedDB and modern JavaScript support. Android version alone does not guarantee these browser capabilities. The shell shows an explicit update notice when the required native messaging feature is unavailable. Device performance and low-memory behavior must be measured on each target class; an emulator pass is not a phone/tablet performance claim.
 
@@ -40,7 +40,7 @@ CI environment note: the first Android 35 Google image showed a “Pixel Launche
 
 ## Android 本地开发预览版
 
-这是用于实际验证的开发 APK，内置完整界面与固定版本的科学计算运行库。统计、作图、图片查重均在设备本地执行；安装后不需要 Python、Codex、账号或远程计算服务器。0.1.9 开发预览版允许用户主动启动可选的 Europe PMC 检索，只发送图型词和手动填写的主题，不发送研究数据；APK 因此需要互联网权限，更新检查只读取 GitHub 官方版本信息，不发送研究数据；本地计算仍可离线使用。要求 Android 8 及以上，并使用支持所需功能的较新 Android System WebView。系统版本不能代替 WebView 能力或真实设备性能验证。
+这是用于实际验证的开发 APK，内置完整界面与固定版本的科学计算运行库。统计、作图、图片查重均在设备本地执行；安装后不需要 Python、Codex、账号或远程计算服务器。0.1.11 开发预览版允许用户主动启动可选的 Europe PMC 检索，只发送图型词和手动填写的主题，不发送研究数据；APK 因此需要互联网权限，更新检查只读取 GitHub 官方版本信息，不发送研究数据；本地计算仍可离线使用。要求 Android 8 及以上，并使用支持所需功能的较新 Android System WebView。系统版本不能代替 WebView 能力或真实设备性能验证。
 
 从成功通过测试的 CI 附件中下载 APK，按 Android 的提示允许当前下载/文件应用安装，然后打开 Figure Studio Preview。这是使用开发密钥签名的测试版，并非应用商店正式版；不同 CI 构建的开发密钥可能不同，替换旧测试版前先导出工程备份。卸载会清除应用内存储，同一应用 ID 与签名的正常更新则保留本地存储。
 

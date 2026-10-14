@@ -1,0 +1,34 @@
+'use strict';
+// Exercise the real selection command handlers and History; no duplicate model.
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const source=fs.readFileSync(require.resolve('../skills/polish-sci-figures/assets/figure-studio/studio.js'),'utf8');
+const {History}=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+const copy=value=>JSON.parse(JSON.stringify(value));
+const history=new History({panels:{a:{variant:0,edits:{}},b:{variant:0,edits:{}}},overlays:[{id:'note',locked:false}]});
+const nodes={},$=id=>nodes[id]||=( {disabled:false,click(){if(!this.disabled)this.onclick?.();}} );
+let groups=[];
+const ctx={copy,$,state:()=>history.current,selectionGroups:()=>groups,selectedAnnotations:[],selectedPanelLabel:null,panelSelection:[],contentSelection:null,original:false,T:x=>x,commit:n=>history.commit(n)};
+vm.createContext(ctx);
+vm.runInContext(source.slice(source.indexOf('  function selectionCommandInfo(){'),source.indexOf('  function renderQuickToolbar(){')),ctx);
+vm.runInContext(source.slice(source.indexOf("  $('groupSelection').onclick="),source.indexOf("  $('undo').onclick=")),ctx);
+function select(g=[],panels=[]){groups=g;ctx.panelSelection=panels;ctx.selectedAnnotations=[];ctx.selectedPanelLabel=null;ctx.renderSelectionCommands();}
+select([{id:'a',vi:0,keys:['e1']},{id:'b',vi:0,keys:['e1']}],['a','b']);
+assert.equal($('groupSelection').disabled,true,'cross-panel object selection must not group whole panels');
+$('groupSelection').onclick();assert.equal(history.current.panelGroups,undefined);
+select([{id:'a',vi:0,keys:['e1','e2']}],['a']);$('groupSelection').click();ctx.renderSelectionCommands();
+assert.deepEqual(copy(history.current.panels.a.elementGroups[0]),[['e1','e2']]);
+assert.equal($('quickGroup').textContent,'取消组合');assert.equal($('ungroupSelection').disabled,false);
+const grouped=copy(history.current);$('ungroupSelection').click();ctx.renderSelectionCommands();
+assert.deepEqual(copy(history.current.panels.a.elementGroups[0]),[]);assert.equal($('quickGroup').textContent,'组合');
+history.undo();assert.deepEqual(copy(history.current),grouped,'ungroup is a single reversible operation');
+select([{id:'a',vi:0,keys:['e1','e2']}],['a']);$('lockSelection').click();ctx.renderSelectionCommands();
+assert.equal($('ungroupSelection').disabled,true);const locked=copy(history.current);$('ungroupSelection').onclick();assert.deepEqual(copy(history.current),locked);
+$('unlockSelection').click();ctx.renderSelectionCommands();assert.equal($('ungroupSelection').disabled,false);
+select([],['a','b']);$('groupSelection').click();select([],['b']);assert.equal($('quickGroup').textContent,'取消组合');$('ungroupSelection').click();assert.deepEqual(copy(history.current.panelGroups),[]);
+select([{id:'a',vi:0,keys:['e1']},{id:'b',vi:0,keys:['e2']}],['a','b']);$('lockSelection').click();
+assert.ok(history.current.panels.a.lockedElements[0].includes('e1'));assert.ok(history.current.panels.b.lockedElements[0].includes('e2'));
+select();ctx.selectedAnnotations=['note'];ctx.renderSelectionCommands();$('lockSelection').click();assert.equal(history.current.overlays[0].locked,true);assert.equal(history.current.panels.a.locked,undefined);
+ctx.renderSelectionCommands();$('unlockSelection').click();assert.equal(history.current.overlays[0].locked,false);
+select([],['a']);$('lockSelection').click();select([{id:'a',vi:0,keys:['e1']}],['a']);assert.equal($('unlockSelection').disabled,false);$('unlockSelection').click();assert.equal(history.current.panels.a.locked,false,'unlocking an object in a locked panel must unlock that panel');
+ctx.original=true;select([],['a','b']);const original=copy(history.current);$('groupSelection').onclick();$('lockSelection').onclick();assert.deepEqual(copy(history.current),original);
+console.log('Selection commands passed: context ungroup, undo, lock protection, cross-panel selection, panel groups and overlay locks.');

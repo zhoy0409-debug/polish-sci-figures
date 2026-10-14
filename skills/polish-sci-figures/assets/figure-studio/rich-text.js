@@ -143,7 +143,7 @@ const StudioRichText = (() => {
     const buttons=[];for(const [action,label,glyph]of [['bold','加粗所选字符','B'],['italic','斜体所选字符','I'],['super','上标','x²'],['sub','下标','x₂'],['normal','正常基线','x'],['clear','清除所选格式','Tx']]){
       const button=document.createElement('button');button.type='button';button.textContent=glyph;button.className='rich-text-action rich-text-'+action;button.dataset.action=action;toolbar.append(button);buttons.push({button,label});
       button.onpointerdown=e=>{e.preventDefault();selection=[field.selectionStart,field.selectionEnd];};
-      button.onclick=()=>{if(!current)return;const [start,end]=selection;if(start===end){status.textContent=adapter.t('请先选中需要设置的字符');field.focus();return;}adapter.format(action,start,end);field.focus();field.setSelectionRange(start,end);selection=[start,end];};
+      button.onclick=()=>{if(adapter.inlineFormat?.(action))return;if(!current)return;const [start,end]=selection;if(start===end){status.textContent=adapter.t('请先选中需要设置的字符');field.focus();return;}adapter.format(action,start,end);field.focus();field.setSelectionRange(start,end);selection=[start,end];};
     }
     const capture=()=>{selection=[field.selectionStart,field.selectionEnd];};field.addEventListener('select',capture);field.addEventListener('keyup',capture);field.addEventListener('pointerup',capture);
     field.oncompositionstart=()=>{composing=true;};field.oncompositionend=()=>{composing=false;adapter.text(field.value);};field.oninput=()=>{capture();if(!composing)adapter.text(field.value);};
@@ -152,7 +152,7 @@ const StudioRichText = (() => {
       sync(target){
         const t=adapter.t;same: {const same=current?.identity===target?.identity;current=target||null;host.hidden=!target;if(!target)break same;const active=document.activeElement===field,start=field.selectionStart,end=field.selectionEnd;
           if(field.value!==target.text)field.value=target.text;if(same&&active)field.setSelectionRange(Math.min(start,field.value.length),Math.min(end,field.value.length));else if(!same)selection=[0,0];field.disabled=!!target.locked;
-          title.textContent=t('字符格式');hint.textContent=t('选中文字中的任意字符，再设置格式。Enter 确认文字，Shift + Enter 换行。');field.setAttribute('aria-label',t('文字与字符格式'));
+          title.textContent=t('字符格式');hint.textContent=t('文字输入自动应用；选中字符设置格式。也可双击画布文字或按 F2 直接编辑。');field.setAttribute('aria-label',t('文字与字符格式'));
           status.textContent=target.manual?t('此处为手动显示文字；分析记录中的数值未更改。'):target.statistical?t('统计数值随数据更新。字符格式保留在未变化的文字上。'):'';
           for(const {button,label}of buttons){button.disabled=!!target.locked;button.title=t(label);button.setAttribute('aria-label',t(label));}
         }

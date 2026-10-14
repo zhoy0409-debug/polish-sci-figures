@@ -45,6 +45,7 @@ jobs:
           node web/prepare-runtime.mjs --offline
           python scripts/build_local_web_preview.py
           node mobile/ios/Tests/native-adapter.cjs
+          node mobile/ios/Tests/smoke-timing.cjs
           python mobile/ios/prepare.py
       - name: Select installed simulator (no account or signing)
         timeout-minutes: 8
