@@ -41,6 +41,7 @@ function harness(){
     editsFor:()=>({}),setEdit(next,id,vi,key,prop,value){((next.panels[id].edits[vi]??={})[key]??={})[prop]=value;},
     selectPanelLabel(){},at:()=>null,destination:()=>null,zoomView:{},
   };ctx.overlayEditingSpace=require(path).overlayEditingSpace;vm.createContext(ctx);
+  vm.runInContext(source.slice(source.indexOf('function panelContentDelta('),source.indexOf('function nudgeSelectionState(')),ctx);
   vm.runInContext(source.slice(source.indexOf('  function canvasObjectTarget('),source.indexOf('  function addStatisticalHitAreas(')),ctx);
   const groups=source.slice(source.indexOf('  function selectionGroups('),source.indexOf('  const sizeNames='))+source.slice(source.indexOf('  function refreshOverlaySelection('),source.indexOf('  function renderOverlayProperties('));
   const local=source.slice(source.indexOf('    const screenRect=el=>'),source.indexOf('    let resizeDrag=null,panelDrag='));

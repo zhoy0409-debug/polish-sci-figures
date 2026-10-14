@@ -17,9 +17,9 @@ First run the candidate with `-c "import sys; print(sys.executable); print(sys.v
 
 If no candidate passes, identify the specific missing runtime/package and propose a task-local environment or the installed Figure Studio option. Do not modify PATH, install into the global interpreter, or ask a novice to guess executable paths. Runtime checks are the agent's work; the user's ordinary-language request is sufficient.
 
-## Product entry points (suite v1.4.8)
+## Product entry points (suite v1.4.9)
 
-This skill and Figure Studio are two entry points to the same product. The original AI/CLI workflow remains available; manual editing is optional. Figure Studio 0.1.8 is the official Windows companion editor, not a fourth independently installed skill. Direct users who want an installed editor to the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases): its Windows x64 installer bundles the renderer and local analysis engine, needs no separate Python/Codex installation, account or activation, and works offline. Do not ask those users to set up an agent runtime.
+This skill and Figure Studio are two entry points to the same product. The original AI/CLI workflow remains available; manual editing is optional. Figure Studio 0.1.9 is the official Windows companion editor, not a fourth independently installed skill. Direct users who want an installed editor to the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases): its Windows x64 installer bundles the renderer and local analysis engine, needs no separate Python/Codex installation, account or activation, and works offline. Do not ask those users to set up an agent runtime.
 
 For an AI handoff, generate a self-contained page from reviewed candidate bundles or SVGs using this skill's builder. Offline HTML supports direct layout and appearance editing; current-data regeneration and analysis require the local service. The installed desktop application starts this service automatically. Read [Figure Studio](references/figure_studio.md) for the actual contracts and [human/AI handoff principles](references/human_ai_figure_workflow.md) before returning to a saved project.
 

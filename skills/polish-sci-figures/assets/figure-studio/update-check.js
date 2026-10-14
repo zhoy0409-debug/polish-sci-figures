@@ -14,6 +14,14 @@ const StudioUpdateCheck = (() => {
     stale:['当前无法联网；以下为上次成功检查的信息，可能已有变化。','Currently offline. These are the last successfully checked release details and may have changed.'],
     download:['下载更新','Download update'],releases:['官方发布页','Official releases'],later:['稍后','Later'],close:['关闭','Close'],retry:['重新检查','Check again'],
     save:['安装更新前，请先保存工程。','Save your project before installing the update.'],
+    downloadHere:['下载并准备更新','Download and prepare update'],downloadProgress:['正在下载并校验：{0} / {1} MB','Downloading and verifying: {0} / {1} MB'],
+    downloaded:['更新包校验完成，可以安装。','Update verified. Ready to install.'],cancelDownload:['取消下载','Cancel download'],
+    savedConfirm:['我已保存工程，可以关闭编辑器并安装。','I have saved my project and am ready to close the editor and install.'],install:['安装并重新打开','Install and reopen'],
+    installHint:['安装前将保留旧程序副本。工程和设置保留在原位置；请正常处理 Windows 显示的安全或权限提示。','A rollback copy of the program is kept first. Projects and settings stay in place. Respond to any Windows security or permission prompts normally.'],
+    preparing:['正在保留旧版本，请稍候…','Preserving the previous version…'],installing:['正在关闭旧版本并安装；完成后会重新打开。','Closing the previous version and installing. The editor will reopen afterwards.'],
+    cancelled:['下载已取消，可继续编辑。','Download cancelled. You can keep editing.'],installFailed:['更新未启动或未通过校验，当前版本仍可继续使用。请重试或从官方页下载。','The update could not start or pass verification. The current version remains available. Retry or download from the official release page.'],
+    portable:['此程序是便携版或未识别为注册安装版。请下载新版本；不会自动覆盖此目录。','This is a portable or unregistered copy. Download the new version; this directory will not be replaced automatically.'],
+    mac:['Mac 开发预览需手动替换应用，并按系统提示允许打开未公证的应用。','The Mac development preview requires manual app replacement and the system approval for an unnotarized app.'],
     android:['开发预览可能无法覆盖旧安装。请先保存并确认工程文件，再更换安装包。','A development preview may not replace an older installation. Save and verify your project files before switching packages.'],
     newLabel:['发现 Figure Studio {0}，点击查看','Figure Studio {0} is available; open update details'],
     openFailed:['无法打开下载链接，请重试或打开官方发布页。','The download link could not be opened. Retry or open the official release page.']
@@ -38,7 +46,7 @@ const StudioUpdateCheck = (() => {
   function normalize(value,info={}){
     if(!value||typeof value!=='object'||!['update-available','up-to-date','unavailable','offline'].includes(value.status))throw Error('Invalid update response');
     const platforms=['windows','macos','android','ios','browser'],platform=platforms.includes(info.platform)?info.platform:platforms.includes(value.platform)?value.platform:'browser';
-    const result={status:value.status,platform,currentVersion:version(info.currentVersion)||version(value.currentVersion),latestVersion:version(value.latestVersion),channel:(info.channel||value.channel)==='preview'?'preview':'stable',releaseUrl:officialURL(value.releaseUrl)||official,downloadUrl:null,cached:value.cached===true,stale:value.stale===true};
+    const result={status:value.status,platform,currentVersion:version(info.currentVersion)||version(value.currentVersion),latestVersion:version(value.latestVersion),channel:(info.channel||value.channel)==='preview'?'preview':'stable',releaseUrl:officialURL(value.releaseUrl)||official,downloadUrl:null,cached:value.cached===true,stale:value.stale===true,inAppInstall:platform==='windows'&&info.inAppInstall===true};
     if(value.downloadUrl){result.downloadUrl=officialURL(value.downloadUrl,{download:true});if(!result.downloadUrl)throw Error('Unofficial update download');if(!matchingAsset(result.downloadUrl,platform,info.architecture||value.architecture))result.downloadUrl=null;}
     // iOS has no downloadable public installer. An invalid server/native
     // response cannot turn a simulator build into an installation offer.
@@ -62,7 +70,11 @@ const StudioUpdateCheck = (() => {
     const actions=el('div','update-actions'),later=el('button'),checkButton=el('button'),download=el('a','update-download');later.type=checkButton.type='button';
     for(const a of [release,download]){a.target='_blank';a.rel='noopener noreferrer';a.referrerPolicy='no-referrer';}
     actions.append(later,checkButton,download);dialog.append(title,summary,versions,channel,hint,stale,privacy,release,error,actions);doc.body.append(dialog);
+    const installArea=el('div','update-install-area'),progress=el('progress'),progressLabel=el('p'),confirmation=el('label'),savedBox=el('input'),savedText=el('span'),installButton=el('button'),cancelButton=el('button');
+    progress.style.width='100%';progress.setAttribute('aria-label',t('downloadHere'));savedBox.type='checkbox';savedBox.id='studioUpdateSaved';confirmation.append(savedBox,savedText);confirmation.style.cssText='display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5';savedBox.style.cssText='width:18px;min-width:18px;margin:2px 0';installButton.type=cancelButton.type='button';installButton.id='studioInstallUpdate';cancelButton.id='studioCancelUpdateDownload';installArea.append(progress,progressLabel,confirmation);dialog.insertBefore(installArea,actions);actions.append(cancelButton,installButton);
     let result=null,busy=false,destroyed=false,serial=0,inflight=null,controller=null,lastFocus=null,autoTimer=null,repeatTimer=null,temporaryError=false;
+    let installation=null,installBusy=false,installTimer=null,installError=false;
+    const canInstall=()=>info().platform==='windows'&&info().inAppInstall===true&&typeof host.installUpdate==='function';
     let storage=host.storage;try{if(storage===undefined)storage=doc.defaultView?.localStorage;}catch{}
     const now=()=>typeof host.now==='function'?host.now():Date.now(),key=()=>{const i=info();return 'figure-studio:update-check:'+JSON.stringify([i.platform||'browser',i.architecture||'',i.channel||'stable',i.currentVersion||'unknown']);};
     const saved=()=>{try{const v=JSON.parse(storage?.getItem(key())||'null');return v&&typeof v==='object'?v:{};}catch{return{};}},save=patch=>{try{storage?.setItem(key(),JSON.stringify({...saved(),...patch}));}catch{}};
@@ -79,13 +91,35 @@ const StudioUpdateCheck = (() => {
       checkButton.textContent=result?t('retry'):t('check');checkButton.disabled=busy;download.textContent=t('download');download.hidden=busy||result?.status!=='update-available'||!current.downloadUrl;
       if(!download.hidden)download.href=current.downloadUrl;else download.removeAttribute('href');later.textContent=result?.status==='update-available'?t('later'):t('close');
       error.textContent=temporaryError?t('openFailed'):'';error.hidden=!temporaryError;
+      const stage=installation?.status,working=['checking','downloading','preparing','installing'].includes(stage),ready=stage==='ready';
+      installArea.hidden=!canInstall()||!installation;progress.hidden=!['checking','downloading','preparing'].includes(stage);progressLabel.textContent=stage==='downloading'?t('downloadProgress',((installation.received||0)/1e6).toFixed(1),((installation.total||0)/1e6).toFixed(1)):stage==='ready'?t('downloaded'):stage==='preparing'?t('preparing'):stage==='installing'?t('installing'):stage==='cancelled'?t('cancelled'):stage==='checking'?t('checking'):'';
+      if(stage==='downloading'){progress.max=installation.total||1;progress.value=installation.received||0;}else progress.removeAttribute('value');
+      confirmation.hidden=!ready;progress.setAttribute('aria-label',t('downloadHere'));savedText.textContent=t('savedConfirm');installButton.textContent=t('install');installButton.hidden=!canInstall()||!ready;installButton.disabled=installBusy||!savedBox.checked;
+      cancelButton.textContent=t('cancelDownload');cancelButton.hidden=!canInstall()||!['checking','downloading'].includes(stage);cancelButton.disabled=installBusy;
+      if(canInstall()){download.textContent=t('downloadHere');if(working||ready)download.hidden=true;checkButton.disabled=busy||working||installBusy;if(ready||stage==='preparing'||stage==='installing'){hint.textContent=t('installHint');hint.hidden=false;}}
+      else if(result?.status==='update-available'&&current.platform==='windows'&&info().inAppInstall===false){hint.textContent=t('portable');hint.hidden=false;}
+      else if(result?.status==='update-available'&&current.platform==='macos'){hint.textContent=t('mac');hint.hidden=false;}
+      if(installError||stage==='error'){error.textContent=t('installFailed');error.hidden=false;}
     }
     function close(snooze=false){
       if(destroyed)return;if(snooze&&result?.status==='update-available')save({version:result.latestVersion,until:now()+86400000});
       if(dialog.open){if(typeof dialog.close==='function')dialog.close();else dialog.removeAttribute('open');}refresh();lastFocus?.isConnected&&lastFocus.focus?.();lastFocus=null;
     }
     function open(){
-      if(destroyed)return;if(!dialog.open){lastFocus=doc.activeElement;if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','');}refresh();check({manual:true});
+      if(destroyed)return;if(!dialog.open){lastFocus=doc.activeElement;if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','');}refresh();check({manual:true});if(canInstall())installRequest('status');
+    }
+    function pollInstallation(){clearTimeout(installTimer);if(!destroyed&&['checking','downloading','preparing','installing'].includes(installation?.status))installTimer=setTimeout(()=>installRequest('status'),Math.max(100,host.installPollMs||1000));}
+    async function installRequest(action){
+      if(destroyed||!canInstall()||installBusy)return null;if(action==='install'&&!savedBox.checked)return null;
+      installBusy=true;installError=false;refresh();
+      let deadline;
+      try{
+        const value=await Promise.race([Promise.resolve().then(()=>host.installUpdate(action)),new Promise((_,reject)=>{deadline=setTimeout(()=>reject(Error('Installation status timed out')),Math.max(100,Math.min(30000,host.installTimeoutMs||10000)));})]);
+        if(destroyed)return null;
+        if(!value||!['idle','checking','downloading','ready','preparing','installing','cancelled','error','unsupported'].includes(value.status)||value.supported!==true||!['received','total'].every(key=>value[key]===undefined||Number.isFinite(value[key])&&value[key]>=0&&value[key]<=2e9))throw Error('Invalid installation response');
+        installation=value;if(action==='download')savedBox.checked=false;return value;
+      }catch{if(!destroyed&&installation?.status!=='installing')installError=true;return null;}
+      finally{clearTimeout(deadline);installBusy=false;if(!destroyed){refresh();if(!installError)pollInstallation();}}
     }
     function check({manual=true}={}){
       if(destroyed)return Promise.resolve(null);if(inflight)return inflight;
@@ -100,12 +134,13 @@ const StudioUpdateCheck = (() => {
       return inflight;
     }
     const external=event=>{if(!host.openExternal)return;event.preventDefault();const href=event.currentTarget.href;if(!officialURL(href,{download:event.currentTarget===download}))return;temporaryError=false;Promise.resolve().then(()=>host.openExternal(href)).then(value=>{if(value===false)throw Error('Open failed');}).catch(()=>{if(!destroyed){temporaryError=true;refresh();}});};
-    button.onclick=open;checkButton.onclick=()=>check({manual:true});later.onclick=()=>close(true);release.onclick=download.onclick=external;
+    button.onclick=open;checkButton.onclick=()=>check({manual:true});later.onclick=()=>close(true);release.onclick=external;download.onclick=event=>{if(canInstall()){event.preventDefault();installRequest('download');}else external(event);};
+    savedBox.onchange=refresh;installButton.onclick=()=>installRequest('install');cancelButton.onclick=()=>installRequest('cancel');
     dialog.addEventListener('cancel',event=>{event.preventDefault();event.stopPropagation();close(true);});dialog.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();close(true);}});
     dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)close(true);}});
     const checkWhenVisible=()=>{if(doc.visibilityState!=='hidden')check({manual:false});};
     refresh();if(host.autoCheck===true){autoTimer=setTimeout(()=>{autoTimer=null;checkWhenVisible();},Math.max(0,host.autoDelayMs??1200));repeatTimer=setInterval(checkWhenVisible,3600000);doc.addEventListener('visibilitychange',checkWhenVisible);doc.defaultView?.addEventListener('focus',checkWhenVisible);}
-    return {refresh,check,open,close,element:button,dialog,destroy(){if(destroyed)return;close();destroyed=true;serial++;clearTimeout(autoTimer);clearInterval(repeatTimer);doc.removeEventListener('visibilitychange',checkWhenVisible);doc.defaultView?.removeEventListener('focus',checkWhenVisible);controller?.abort();button.remove();dialog.remove();}};
+    return {refresh,check,open,close,element:button,dialog,destroy(){if(destroyed)return;close();destroyed=true;serial++;clearTimeout(autoTimer);clearTimeout(installTimer);clearInterval(repeatTimer);doc.removeEventListener('visibilitychange',checkWhenVisible);doc.defaultView?.removeEventListener('focus',checkWhenVisible);controller?.abort();button.remove();dialog.remove();}};
   }
   return {create,normalize,officialURL};
 })();

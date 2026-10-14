@@ -473,6 +473,32 @@ const StudioI18n = (() => {
   Object.assign(en,{'正在准备所选样式…':'Preparing selected style…','正在更新图形…':'Updating figure…','数据与图形已更新；可撤销':'Data and figure updated; undo available'});
   Object.assign(en,{'预览使用当前数据；排序依据数据结构与表达目的。':'Previews use the current data; ordering follows data structure and communication purpose.','可编辑科研图形 · 示例数据':'Editable scientific figures · Synthetic data'});
   Object.assign(en,{'框选元素':'Select elements','拖动框选图内元素；Shift 可追加选择':'Drag to select elements; Shift adds to the selection','混合':'Mixed'});
+  Object.assign(en,{
+    '缩放整图':'Resize panel content',
+    '图形缩放参数无效':'Invalid artwork resize parameters',
+    '对象已到达画布边缘':'The object has reached the canvas edge',
+    '适合格子':'Fit to cell',
+    '缩放比例':'Resize aspect ratio',
+    '自动比例':'Auto aspect',
+    '锁定比例':'Lock aspect',
+    '自由缩放':'Free scaling',
+    '选中整张小图内容，拖动控制点调整大小':'Select all panel content, then drag a handle to resize',
+    '将当前小图内容等比缩放并居中于格子':'Fit the panel content to its cell, preserving aspect ratio and centering it',
+    '已选中整张小图，拖动角点缩放；边点调整宽高':'Panel content selected. Drag a corner to resize; drag an edge to change width or height',
+    '已缩放所选对象':'Selected objects resized',
+    '已缩放整张小图':'Panel content resized',
+    '已缩放整张小图，原始数据保持不变':'Panel content resized; source data unchanged',
+    '无法缩放锁定的对象':'Locked objects cannot be resized',
+    '拖动角点等比缩放；边点调整宽高；Shift 切换比例；Alt 围绕中心':'Corners preserve aspect ratio; edges change width or height. Shift toggles aspect lock; Alt resizes from the center',
+    '已移动图内内容':'Panel content moved'
+  });
+  Object.assign(en,{
+    '删除小图「{0}」':'Delete panel “{0}”',
+    ' · 可撤销':' · Undo available',
+    '已删除小图':'Panel deleted',
+    '已删除小图，留下空白画布':'Panel deleted; a blank canvas is ready',
+    '删除最后一张小图需要空白画布':'A blank canvas is required when removing the last panel'
+  });
   Object.assign(en,{'暂无最近颜色':'No recent colors'});
   Object.assign(en,{'科研红蓝':'Research red–blue','蓝橙':'Blue–orange','柔和多组':'Soft categories','雾蓝紫':'Slate–plum','冷色阶':'Cool tones','暖色阶':'Warm tones','中性灰':'Neutral gray','高对比':'High contrast','配色方案':'Color scheme','应用整套配色':'Apply color scheme','请先选择要配色的元素。':'Select the elements to recolor first.','当前范围没有可应用的分类颜色。':'No applicable categorical colors in the selected scope.','已应用配色方案：{0}':'Color scheme applied: {0}'});
   Object.assign(en,{'低值 → 高值':'Low → High','连续色阶：{0}':'Continuous scale: {0}','当前范围没有可应用的配色对象。':'No applicable color objects in the selected scope.','当前热图缺少数值映射信息，请重新生成图形后更换色阶。':'Regenerate this heatmap to enable value-based color scales.','当前小图的连续色标暂不支持整套配色，可选择单个元素调整颜色。':'Color schemes are not yet supported for this continuous scale. Select an individual element to adjust its color.'});

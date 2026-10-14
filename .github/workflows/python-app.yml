@@ -44,6 +44,7 @@ jobs:
       - name: Desktop launcher lifecycle and local authorization
         run: |
           python desktop/test_figure_studio_app.py
+          python desktop/test_windows_updater.py
           python desktop/test_macos_build.py
       - name: Local image duplicate screening and evidence
         run: |
@@ -132,6 +133,8 @@ jobs:
           node scripts/test_studio_stat_layout.cjs
           node scripts/test_studio_composite_stat_layout.cjs
           node scripts/test_studio_workspace_selection.cjs
+          node scripts/test_studio_selection_transform.cjs
+          node scripts/test_studio_panel_delete.cjs
           node scripts/test_studio_heatmap_palettes.cjs
           node scripts/test_studio_swatch_schemes.cjs
           node scripts/test_studio_insert_inline.cjs
@@ -217,6 +220,10 @@ jobs:
         run: |
           node scripts/test_studio_text_geometry.cjs
           node scripts/test_studio_pdf_text_editing.cjs
+          node scripts/test_studio_selection_transform_dom.cjs
+          node scripts/test_studio_selection_resize_integration.cjs
+          node scripts/test_studio_resize_text.cjs
+          node scripts/test_studio_panel_delete.cjs --dom
           node scripts/test_mobile_dom_preview.cjs
           node scripts/test_studio_mark_styles.cjs --dom
           node scripts/test_studio_mark_controls.cjs --dom
@@ -231,6 +238,7 @@ jobs:
           node scripts/test_studio_image_insets_controller.cjs
           node scripts/test_studio_image_insets_integration.cjs
           node scripts/test_studio_update_check.cjs --dom
+          node scripts/test_studio_update_install.cjs --dom
           node scripts/test_studio_update_transport.cjs
           node scripts/test_studio_compact_whitespace.cjs --dom
       - name: Retain synthetic calculation evidence and public-file checksums
