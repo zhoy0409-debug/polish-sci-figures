@@ -301,5 +301,74 @@ test('semantic resize hooks receive panel-point action, preserve transforms and 
     f.down('s');f.move({x:30,y:120});f.up({x:30,y:120});assert.equal(f.commits.length,1);assert.equal(f.state.panels.p1.edits[0].e1['object-transform'],undefined);assert.equal(JSON.parse(f.state.panels.p1.edits[0].e1['axis-extension']).max,200);assert.equal(f.errors.length,0);
   }finally{f.close();}
 });
+
+const ownerInterval='<g transform="translate(20 10) scale(2 3)"><path data-key="e1" data-test-box="10,5,0,20" d="M10 5 L10 25" stroke="#20242a"/></g><g transform="translate(-8 7) scale(.5 2)"><path data-key="e2" data-studio-error-owner="e1" data-test-box="90,9,12,0" d="M90 9 L102 9" stroke="#20242a"/></g><g transform="translate(4 -5) scale(3 .5)"><path data-key="e3" data-studio-error-owner="e1" data-test-box="10,180,4,0" d="M10 180 L14 180" stroke="#20242a"/></g>';
+function renderedEnds(f,key,panel='p1'){
+  const node=f.find(panel,key),raw=node.getAttribute('d').match(/[-+]?(?:\d*\.)?\d+(?:[eE][-+]?\d+)?/g).map(Number),m=svgGeometry.relativeMatrix(node,f.svg);assert.equal(raw.length,4);
+  return [svgGeometry.point(m,{x:raw[0],y:raw[1]}),svgGeometry.point(m,{x:raw[2],y:raw[3]})];
+}
+function renderedCenter(f,key){const [a,b]=renderedEnds(f,key);return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+function assertEndpointCaps(f){const stem=renderedEnds(f,'e1');for(const [index,key]of ['e2','e3'].entries()){const cap=renderedCenter(f,key);near(cap.x,stem[index].x);near(cap.y,stem[index].y);}}
+
+test('live stem-only resize captures caps across different parents and restores all attached geometry on cancel',()=>{
+  const f=fixture({body:ownerInterval});try{
+    const other=f.doc.createElementNS(NS,'path');other.setAttribute('data-key','e9');other.setAttribute('data-studio-error-owner','e1');other.setAttribute('d','M45 50 L55 50');other.setAttribute('data-test-box','45,50,10,0');f.svg.querySelector('#content2').append(other);const unrelated=other.outerHTML;
+    f.select([f.item()]);assertEndpointCaps(f);const before=f.svg.querySelector('#content1').outerHTML,start=f.down('s'),target={x:start.x,y:start.y+60};
+    f.move({x:target.x,y:target.y-30});f.frame();assertEndpointCaps(f);f.move(target);f.frame();assertEndpointCaps(f);near(renderedEnds(f,'e1')[0].y,45);near(renderedEnds(f,'e1')[1].y,165);assert.equal(other.outerHTML,unrelated,'an identically keyed owner in another panel cannot follow this stem');
+    assert.equal(f.commits.length,0);assert.equal(f.api.cancel(),true);assert.equal(f.svg.querySelector('#content1').outerHTML,before);assertEndpointCaps(f);assert.equal(f.state.panels.p1.edits[0].e1,undefined);assert.equal(f.errors.length,0);
+  }finally{f.close();}
+});
+
+test('live and saved resize agree for stem-only and stem-plus-caps selection without double application',()=>{
+  for(const keys of [['e1'],['e1','e2','e3'],['e3','e2','e1']]){
+    const f=fixture({body:ownerInterval});try{
+      f.select(keys.map(key=>f.item('p1',key)));const start=f.down('s'),target={x:start.x,y:start.y+60};f.move(target);f.frame();assertEndpointCaps(f);near(renderedEnds(f,'e1')[1].y,165);f.up(target);assertEndpointCaps(f);assert.equal(f.commits.length,1);assert.equal(f.errors.length,0);
+      assert.deepEqual(Object.keys(f.state.panels.p1.edits[0]).sort(),[...keys].sort(),'only explicitly selected objects need saved records');
+      const saved=clone(f.state),reopened=fixture({body:ownerInterval,initial:saved});try{presentation.applyObjectTransforms(reopened.svg.querySelector('[data-panel="p1"]'),saved.panels.p1.edits[0]);assertEndpointCaps(reopened);for(const key of ['e1','e2','e3']){const live=renderedEnds(f,key),restored=renderedEnds(reopened,key);live.forEach((p,i)=>{near(p.x,restored[i].x);near(p.y,restored[i].y);});}}finally{reopened.close();}
+    }finally{f.close();}
+  }
+});
+
+test('an explicitly selected cap resizes independently and never moves its owning stem',()=>{
+  const f=fixture({body:ownerInterval});try{
+    f.select([f.item('p1','e2')]);const beforeStem=f.find('p1','e1').outerHTML,beforeOther=f.find('p1','e3').outerHTML,center=renderedCenter(f,'e2'),start=f.down('e');const target={x:start.x+6,y:start.y};f.move(target);f.frame();const resized=renderedEnds(f,'e2');near(Math.hypot(resized[1].x-resized[0].x,resized[1].y-resized[0].y),12);assert.equal(f.find('p1','e1').outerHTML,beforeStem);assert.equal(f.find('p1','e3').outerHTML,beforeOther);
+    // Ordinary edge resize leaves its opposite edge anchored; the owner must
+    // not force the user-controlled cap back to the automatic center.
+    near(renderedCenter(f,'e2').x,center.x+3);f.up(target);assert.equal(f.commits.length,1);assert.deepEqual(Object.keys(f.state.panels.p1.edits[0]),['e2']);assert.equal(f.errors.length,0);
+  }finally{f.close();}
+});
+
+test('a 142-object release reuses the exact last validated preview without repeated writes or bbox measurements',()=>{
+  const count=142,body=Array.from({length:count},(_,i)=>`<rect data-key="e${i+1}" x="${20+i/10}" y="20" width="10" height="40"/>`).join(''),work={persist:0,validate:0,preview:0,writes:0,reads:0},finished=[];
+  const f=fixture({body,options:{persistResize(){work.persist++;return false;},validate(){work.validate++;},onFinish:info=>finished.push(info)}});try{
+    const items=Array.from({length:count},(_,i)=>f.item('p1','e'+(i+1)));for(const item of items){const get=item.el.getBoundingClientRect.bind(item.el),set=item.el.setAttribute.bind(item.el);item.el.getBoundingClientRect=()=>{work.reads++;return get();};item.el.setAttribute=(key,value)=>{if(key==='transform')work.writes++;return set(key,value);};}
+    f.select(items);const start=f.down('se'),target={x:start.x+80,y:start.y+50};f.move(target,{shiftKey:true});f.frame();assert.equal(work.persist,count);assert.equal(work.validate,1);assert.equal(work.writes,count);assert.equal(f.previews.length,1);const exactPreview=f.previews[0],before={...work};
+    f.up(target,{shiftKey:true});assert.deepEqual(work,before,'pointerup at already-painted coordinates must not repeat persist, validation, DOM transforms or 142-object layout reads');assert.equal(f.commits.length,1);assert.equal(f.commits[0].next,exactPreview,'commit retains the exact validated preview object');assert.equal(finished.length,1);assert.equal(finished[0].committed,true);assert.equal(finished[0].items.length,count);assert.ok(finished[0].action);assert.equal(f.errors.length,0);
+    const saved=clone(f.state),reopened=fixture({body,initial:saved});try{presentation.applyObjectTransforms(reopened.svg.querySelector('[data-panel="p1"]'),saved.panels.p1.edits[0]);for(const key of ['e1','e71','e142']){const a=f.find('p1',key).getBoundingClientRect(),b=reopened.find('p1',key).getBoundingClientRect();for(const field of ['left','right','top','bottom'])near(a[field],b[field]);}}finally{reopened.close();}
+  }finally{f.close();}
+});
+
+test('release flushes a genuinely new pointer/modifier exactly once instead of committing an earlier frame',()=>{
+  const work={persist:0,validate:0};const f=fixture({options:{persistResize(){work.persist++;return false;},validate(){work.validate++;}}});try{
+    f.select([f.item()]);const start=f.down('se'),first={x:start.x+80,y:start.y+40},last={x:start.x+80,y:start.y+80};f.move(first);f.frame();assert.equal(f.previews.length,1);
+    f.up(last,{shiftKey:true});assert.equal(work.persist,2);assert.equal(work.validate,2);assert.equal(f.previews.length,2);assert.equal(f.commits[0].next,f.previews[1]);matrixNear(JSON.parse(f.state.panels.p1.edits[0].e1['object-transform']),[2,0,0,3,-20,-40]);assert.equal(f.errors.length,0);
+  }finally{f.close();}
+});
+
+test('a final invalid resize restores the source and cannot commit an earlier successful preview',()=>{
+  const finished=[];const f=fixture({options:{validate(next){const value=JSON.parse(next.panels.p1.edits[0].e1['object-transform']);if(value[0]>2.1)throw Error('Synthetic final input rejection');},onFinish:info=>finished.push(info)}});try{
+    f.select([f.item()]);const source=f.find('p1').outerHTML,base=f.state;f.down('se');f.move({x:190,y:120});f.frame();assert.notEqual(f.find('p1').outerHTML,source);assert.equal(f.previews.length,1);
+    f.up({x:270,y:160});assert.equal(f.commits.length,0);assert.equal(f.state,base);assert.equal(f.find('p1').outerHTML,source);assert.equal(finished[0].committed,false);assert.ok(f.errors.length);assert.equal(f.captured.size,0);
+  }finally{f.close();}
+});
+
+test('semantic axis hooks are not repeated on identical release and keep their saved geometry without a full render',()=>{
+  const work={persist:0,paint:0,restore:0},finished=[];
+  const f=fixture({body:'<line data-key="e1" x1="20" x2="20" y1="20" y2="60"/>',options:{
+    resizeHandles:()=>['n','s'],captureResize:item=>({axis:'y',end:item.el.getAttribute('y2')}),persistResize(item,delta,next){work.persist++;next.panels[item.id].edits[item.vi][item.key]['axis-extension']=JSON.stringify({axis:'y',end:Number(item.semantic.end)*delta[3]+delta[5]});return true;},previewResize(item,delta){work.paint++;item.el.setAttribute('y2',Number(item.semantic.end)*delta[3]+delta[5]);return true;},restoreResize(item){work.restore++;item.el.setAttribute('y2',item.semantic.end);},onFinish:info=>finished.push(info)
+  }});try{
+    f.select([f.item()]);f.down('s');f.move({x:30,y:120});f.frame();assert.equal(f.find('p1').getAttribute('y2'),'100');const before={...work};f.up({x:30,y:120});assert.deepEqual(work,before);assert.equal(f.commits.length,1);assert.equal(f.find('p1').getAttribute('transform'),null);assert.equal(f.find('p1').getAttribute('y2'),'100');assert.equal(JSON.parse(f.state.panels.p1.edits[0].e1['axis-extension']).end,100);assert.ok(finished[0].items[0].semantic);assert.equal(finished[0].committed,true);assert.equal(f.errors.length,0);
+  }finally{f.close();}
+});
 console.log(`${passed} selection resize controller integration tests passed`);
 if(failures.length){console.error(`${failures.length} controller integration test(s) failed`);process.exitCode=1;}

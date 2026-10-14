@@ -14,6 +14,10 @@ const fixture=(body,attrs='')=>new JSDOM(`<svg xmlns="http://www.w3.org/2000/svg
 const node=(root,key)=>root.querySelector(`[data-key="${key}"]`);
 const map=(root,el,p={x:7,y:11})=>geometry.point(geometry.relativeMatrix(el,root),p);
 const affine=(values,p)=>({x:values[0]*p.x+values[2]*p.y+values[4],y:values[1]*p.x+values[3]*p.y+values[5]});
+const intervalBody='<g transform="translate(20 10) scale(2 3)"><path data-key="e1" d="M10 5 L10 25" stroke="#20242a"/></g><g transform="translate(-8 7) scale(.5 2)"><path data-key="e2" data-studio-error-owner="e1" d="M90 9 L102 9" stroke="#20242a"/></g><g transform="translate(4 -5) scale(3 .5)"><path data-key="e3" data-studio-error-owner="e1" d="M10 180 L14 180" stroke="#20242a"/></g>';
+const ends=(root,key)=>{const el=node(root,key),v=el.getAttribute('d').match(/[-+]?(?:\d*\.)?\d+(?:[eE][-+]?\d+)?/g).map(Number);assert.equal(v.length,4);return [map(root,el,{x:v[0],y:v[1]}),map(root,el,{x:v[2],y:v[3]})];};
+const midpoint=(root,key)=>{const [a,b]=ends(root,key);return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};};
+const attached=root=>{const [upper,lower]=ends(root,'e1');pointNear(midpoint(root,'e2'),upper);pointNear(midpoint(root,'e3'),lower);};
 
 test('offsets remain panel physical pt despite rotated/scaled ancestors',()=>{
   const root=fixture('<g transform="translate(30 40) rotate(90) scale(3 2)"><path data-key="e1" transform="translate(2 4)" d="M0 0L20 30"/></g>'),el=node(root,'e1'),parent=el.parentElement,before=map(root,el);
@@ -64,6 +68,39 @@ test('legacy offsets apply after scaling and are not scaled themselves',()=>{
 test('owned scale bars follow their image with independent original transforms',()=>{
   const href='data:image/png;base64,AA==',root=fixture(`<g transform="translate(30 10) rotate(90)"><image data-key="e1" href="${href}" transform="scale(2 3)" width="100" height="50"/><g data-scale-owner="e1" transform="translate(7 3)"><rect width="10" height="1"/><text font-size="6">20 μm</text></g></g>`),image=node(root,'e1'),bar=root.querySelector('[data-scale-owner]'),beforeImage=map(root,image),beforeBar=map(root,bar),parents=[image.parentElement,bar.parentElement],delta=[.5,0,0,1.5,4,8];
   const result=api.applyObjectTransforms(root,{e1:record(delta)});pointNear(map(root,image),affine(delta,beforeImage));pointNear(map(root,bar),affine(delta,beforeBar));assert.equal(result.changed,2);assert.equal(image.getAttribute('href'),href);assert.deepEqual([image.parentElement,bar.parentElement],parents);assert.equal(bar.querySelector('text').textContent,'20 μm');
+});
+
+test('stem-only movement and affine resize keep owned caps on both endpoints across different SVG parents',()=>{
+  for(const [props,unit,delta]of [
+    [{'offset-x':'5','offset-y':'-3'},2,[1,0,0,1,10,-6]],
+    [record([.8,.2,-.15,1.7,6,-4]),1,[.8,.2,-.15,1.7,6,-4]],
+    [{...record([1.3,0,0,.7,4,5]),'offset-x':'2','offset-y':'-1'},2,[1.3,0,0,.7,12,8]]
+  ]){
+    const root=fixture(intervalBody),before=ends(root,'e1'),parents=['e1','e2','e3'].map(key=>node(root,key).parentElement),paths=['e1','e2','e3'].map(key=>node(root,key).getAttribute('d'));attached(root);
+    const result=api.applyObjectTransforms(root,{e1:props},unit);assert.equal(result.changed,3);attached(root);ends(root,'e1').forEach((point,i)=>pointNear(point,affine(delta,before[i])));
+    assert.deepEqual(['e1','e2','e3'].map(key=>node(root,key).parentElement),parents,'attachment must preserve independent clipping/inheritance parents');assert.deepEqual(['e1','e2','e3'].map(key=>node(root,key).getAttribute('d')),paths,'moving an interval cannot rewrite measurement coordinates');
+  }
+});
+
+test('selecting stem and both caps applies their shared action once regardless of saved-key order',()=>{
+  const delta=[1.8,0,0,.6,7,-3],one=fixture(intervalBody),two=fixture(intervalBody),before=ends(one,'e1');
+  const edits={e1:record(delta),e2:record(delta),e3:record(delta)},reversed={e3:record(delta),e2:record(delta),e1:record(delta)};
+  assert.equal(api.applyObjectTransforms(one,edits).changed,3);assert.equal(api.applyObjectTransforms(two,reversed).changed,3);attached(one);attached(two);
+  ends(one,'e1').forEach((point,i)=>pointNear(point,affine(delta,before[i])));for(const key of ['e1','e2','e3'])assert.equal(node(one,key).outerHTML,node(two,key).outerHTML,'key order cannot double-transform an attached cap');
+});
+
+test('a cap remains independently editable while only the unselected cap follows its stem',()=>{
+  const root=fixture(intervalBody),stemDelta=[1.2,0,0,1.5,5,7],capDelta=[1,0,0,1,-12,4],beforeUpper=midpoint(root,'e2'),beforeLower=midpoint(root,'e3');
+  assert.equal(api.applyObjectTransforms(root,{e1:record(stemDelta),e2:record(capDelta)}).changed,3);
+  pointNear(midpoint(root,'e2'),affine(capDelta,beforeUpper));pointNear(midpoint(root,'e3'),affine(stemDelta,beforeLower));pointNear(midpoint(root,'e3'),ends(root,'e1')[1]);
+  assert.ok(Math.abs(midpoint(root,'e2').x-ends(root,'e1')[0].x)>1,'an explicit cap edit must not be overwritten by its owner');
+});
+
+test('horizontal, downward and reversed interval paths preserve declared cap endpoint ownership',()=>{
+  const delta=[.7,.1,.2,1.4,-6,9];
+  for(const [stem,upper,lower]of [['M20 50 L80 50','M20 44 L20 56','M80 44 L80 56'],['M30 80 L30 20','M24 80 L36 80','M24 20 L36 20']]){
+    const root=fixture(`<g transform="translate(3 7) rotate(15) scale(1.2 .8)"><path data-key="e1" d="${stem}"/><path data-key="e2" data-studio-error-owner="e1" d="${upper}"/><path data-key="e3" data-studio-error-owner="e1" d="${lower}"/></g>`);attached(root);api.applyObjectTransforms(root,{e1:record(delta)});attached(root);
+  }
 });
 
 test('clip paths, group opacity, filters, inherited fonts and paint order survive',()=>{

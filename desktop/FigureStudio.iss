@@ -1,5 +1,5 @@
 #ifndef AppVersion
-  #define AppVersion "0.1.12"
+  #define AppVersion "0.1.13"
 #endif
 #ifndef BuildRoot
   #error BuildRoot must point to the PyInstaller output directory

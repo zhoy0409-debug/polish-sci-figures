@@ -52,9 +52,10 @@ ctx.overlayDrag={id:'note',resize:true,moved:false,screen:{x:0,y:0},point:{x:0,y
 const labelNode=element('text');ctx.svg.querySelector=()=>labelNode;ctx.labelDrag={id:'b',point:{x:0,y:0},start:{...state.panels.b.label},alignment:{},moved:false};ctx.svg.onpointermove({buttons:1,clientX:30,clientY:12});flushFrame();const labelBefore=labelPhysical(state,'b'),labelAfter=labelPhysical(ctx.pending,'b');near(labelAfter.x-labelBefore.x,15);near(labelAfter.y-labelBefore.y,6);near(+labelNode.attrs.x,labelAfter.x);near(+labelNode.attrs.y,labelAfter.y);
 // The production nudge painter also uses the same uncropped label percentage,
 // so there is no preview-to-commit coordinate jump within a fixed layout.
-Object.assign(ctx,{zoomView:{},previewState:current,labelDrag:null,alignmentContext:()=>({bounds:null,targets:[]}),alignmentSnap:()=>({guides:[]}),selectedNodes:()=>[],paintSnapGuides(){},drawAlignmentGuides(){}});
+Object.assign(ctx,{zoomView:{},selectionLayer:element('g'),previewState:current,labelDrag:null,alignmentContext:()=>({bounds:null,targets:[]}),alignmentSnap:()=>({guides:[]}),selectedNodes:()=>[],paintSnapGuides(){},drawAlignmentGuides(){}});
 vm.runInContext(extract('    zoomView.nudgeCanvas=','    svg.classList.toggle'),ctx);
 const preview=ctx.zoomView.nudgeCanvas.capture([{kind:'label',id:'b',el:labelNode}]),nudged=nudgeSelectionState(state,[{kind:'label',id:'b'}],1,2,l).next;preview.draw(nudged,{dx:1,dy:2});const painted=labelPhysical(nudged,'b');near(+labelNode.attrs.x,painted.x);near(+labelNode.attrs.y,painted.y);
+eq(ctx.selectionLayer.attrs.transform,'translate(1 2)','nudge outlines track the same physical canvas delta as the compact label');
 // Toolbar alignment converts a CSS-pixel distance into physical source-space
 // deltas for mixed overlays and panel labels, without scaling either object.
 current=copy(state);const labelItem={kind:'label',id:'b',el:{getBoundingClientRect:()=>({left:600,right:620,top:0,bottom:20})}},overlayItem={kind:'overlay',id:'note',el:{getBoundingClientRect:()=>({left:700,right:730,top:0,bottom:20})}};

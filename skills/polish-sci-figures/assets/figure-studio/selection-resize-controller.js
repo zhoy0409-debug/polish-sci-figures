@@ -59,13 +59,13 @@ const StudioSelectionResize=(()=>{
       // editing; handles stay easy to acquire immediately outside that box.
       return text&&(b.width/ux<24||b.height/uy<24)?{x:10*ux,y:10*uy}:{x:0,y:0};
     }
-    function refresh(){
+    function refresh(known=null){
       if(disposed||config.enabled?.()===false){layer.replaceChildren();displayedSelection=[];return;}
       // During a gesture the captured box and affine action are authoritative.
       // Remeasuring every selected SVG object here causes synchronous layout and
       // repeats parent/child filtering on every pointer frame.
-      const items=gesture?gesture.items:selected();displayedSelection=items;
-      const action=gesture?.action,b=action?{x:gesture.bounds.x*action[0]+action[4],y:gesture.bounds.y*action[3]+action[5],width:gesture.bounds.width*action[0],height:gesture.bounds.height*action[3]}:gesture?gesture.bounds:bounds(items);
+      const captured=known?.state===config.state()?known:null,items=gesture?gesture.items:captured?.items||selected();displayedSelection=items;
+      const action=gesture?.action,b=action?{x:gesture.bounds.x*action[0]+action[4],y:gesture.bounds.y*action[3]+action[5],width:gesture.bounds.width*action[0],height:gesture.bounds.height*action[3]}:gesture?gesture.bounds:captured?.bounds||bounds(items);
       if(!b||!Object.values(b).every(Number.isFinite)||!b.width&&!b.height){layer.replaceChildren();return;}
       const screen=svg.getBoundingClientRect(),ux=l.width/screen.width,uy=l.height/screen.height,padding=handlePadding(items,b,ux,uy);
       let rect=layer.firstElementChild;if(!rect){rect=doc.createElementNS(NS,'rect');rect.setAttribute('class','selection-transform-outline');layer.append(rect);}
@@ -82,21 +82,25 @@ const StudioSelectionResize=(()=>{
     }
     function capture(items){
       const inverse=G.inverse(rootMatrix()),s=config.state();
-      const snapshot=el=>({el,transform:el.getAttribute('transform'),own:own(el),parent:G.multiply(inverse,matrix(el.parentElement))});
+      const picked=new Set(items.map(item=>item.el)),caps=new Map();
+      for(const node of svg.querySelectorAll('[data-studio-error-owner]')){const owner=node.getAttribute('data-studio-error-owner');if(!caps.has(owner))caps.set(owner,[]);caps.get(owner).push(node);}
+      const snapshot=el=>{const parent=G.multiply(inverse,matrix(el.parentElement));return {el,transform:el.getAttribute('transform'),own:own(el),parent,parentInverse:G.inverse(parent)};};
       return items.map(item=>{
         const result={...item,...snapshot(item.el),attached:[]};
         if(item.kind==='element'||item.kind==='content'){
           const panel=item.el.closest('[data-panel]'),vb=panel.getAttribute('viewBox').trim().split(/[\s,]+/).map(Number),unit=vb[2]/parseFloat(panel.getAttribute('width'));
           const space=item.kind==='content'?panel:(panel.querySelector('[data-panel-content]')||panel);
           result.space=G.multiply(G.multiply(inverse,matrix(space)),[unit,0,0,unit,0,0]);
+          result.spaceInverse=G.inverse(result.space);
           const props=s.panels[item.id].edits?.[item.vi]?.[item.key]||{};
           result.saved=item.kind==='content'?s.panels[item.id].contentTransforms?.[item.vi]||I:G.multiply([1,0,0,1,+(props['offset-x']||0),+(props['offset-y']||0)],props['object-transform']?JSON.parse(props['object-transform']):I);
           if(item.kind==='element'&&item.el.localName==='image')result.attached=[...panel.querySelectorAll('[data-scale-owner]')].filter(node=>node.dataset.scaleOwner===item.key&&node.closest('[data-panel]')===panel&&!node.closest('defs,clipPath,mask,pattern,symbol')&&!items.some(other=>other.el===node||other.el.contains(node))).map(snapshot);
+          if(item.kind==='element')for(const node of caps.get(item.key)||[])if(node.closest('[data-panel]')===panel&&!picked.has(node)&&!items.some(other=>other.el.contains(node)))result.attached.push(snapshot(node));
         }
         result.semantic=config.captureResize?.(result);return result;
       });
     }
-    const itemDelta=(item,action)=>core().multiply(core().multiply(core().inverse(item.space),action),item.space);
+    const itemDelta=(item,action)=>core().multiply(core().multiply(item.spaceInverse||core().inverse(item.space),action),item.space);
     function persistAction(g,action){
       // Copy only the records changed by this gesture. Unrelated panels can
       // contain thousands of edits; they remain immutable and shared here.
@@ -120,17 +124,23 @@ const StudioSelectionResize=(()=>{
     }
     function paint(){
       frame=0;const g=gesture;if(!g||!g.last||config.state()!==g.base)return;
-      const e=g.last;let action;
-      if(g.move){const p=point(e),delta=config.snapMove?.(g.moveContext,p.x-g.origin.x,p.y-g.origin.y,e.altKey)||{dx:p.x-g.origin.x,dy:p.y-g.origin.y};action=[1,0,0,1,delta.dx,delta.dy];}
-      else{const mode=config.aspect?.()||'auto',options={shiftKey:e.shiftKey,altKey:e.altKey,minSize:1,maxScale:100,guides:config.snapGuides?.()||{},snapThreshold:5*l.width/svg.getBoundingClientRect().width};if(mode!=='auto')options.lockAspect=mode==='locked';const p=point(e),resizePoint={x:p.x-g.resizeOffset.x,y:p.y-g.resizeOffset.y},resize=G.resizeBox(g.bounds,g.handle,resizePoint,options);action=resize.matrix;config.onSnap?.(resize.snapped);}
-      try{const next=persistAction(g,action);config.validate?.(next);g.next=next;g.action=action;
-        for(const item of g.items){if(item.kind==='element'&&config.previewResize?.(item,itemDelta(item,action),next)===true)continue;for(const node of [item,...item.attached]){const local=G.multiply(G.multiply(G.multiply(G.inverse(node.parent),action),node.parent),node.own);node.el.setAttribute('transform',attr(local));}}
-        config.onPreview?.(next);refresh();
-      }catch(error){config.onError?.(error);}
+      const e=g.last,mode=g.move?'move':config.aspect?.()||'auto',input=[e.clientX,e.clientY,!!e.shiftKey,!!e.altKey,mode];let action;
+      // A release normally repeats the coordinates already painted by rAF.
+      // Keep that exact validated snapshot instead of rebuilding every record,
+      // touching every DOM node and running the preview hooks a second time.
+      if(g.next&&g.paintedInput?.every((value,index)=>value===input[index]))return;
+      if(g.move){const p=point(e),delta=config.snapMove?.(g.moveContext,p.x-g.origin.x,p.y-g.origin.y,e.altKey,e.shiftKey)||{dx:p.x-g.origin.x,dy:p.y-g.origin.y};action=[1,0,0,1,delta.dx,delta.dy];}
+      else{const options={shiftKey:e.shiftKey,altKey:e.altKey,minSize:1,maxScale:100,guides:config.snapGuides?.()||{},snapThreshold:5*l.width/svg.getBoundingClientRect().width};if(mode!=='auto')options.lockAspect=mode==='locked';const p=point(e),resizePoint={x:p.x-g.resizeOffset.x,y:p.y-g.resizeOffset.y},resize=G.resizeBox(g.bounds,g.handle,resizePoint,options);action=resize.matrix;config.onSnap?.(resize.snapped);}
+      if(g.next&&g.action?.every((value,index)=>value===action[index])){g.paintedInput=input;return;}
+      try{const next=persistAction(g,action);config.validate?.(next);
+        for(const item of g.items){if(item.kind==='element'&&config.previewResize?.(item,itemDelta(item,action),next)===true)continue;for(const node of [item,...item.attached]){const local=G.multiply(G.multiply(G.multiply(node.parentInverse,action),node.parent),node.own);node.el.setAttribute('transform',attr(local));}}
+        g.next=next;g.action=action;config.onPreview?.(next,{action,items:g.items,bounds:g.bounds});refresh();g.paintedInput=input;
+      }catch(error){g.next=null;g.action=null;g.paintedInput=null;config.onError?.(error);}
     }
     function start(e){
       if(e.button!==0||disposed||gesture||config.enabled?.()===false)return;
       const handle=e.target.closest?.('[data-selection-resize]')?.dataset.selectionResize;
+      if(!handle&&(e.ctrlKey||e.metaKey))return;
       // Ordinary canvas clicks must not scan a large selection. Only a real
       // resize handle or the already-displayed whole-content target can start.
       if(!handle&&!(displayedSelection.length===1&&displayedSelection[0].kind==='content'&&displayedSelection[0].el.contains(e.target)))return;
@@ -145,9 +155,11 @@ const StudioSelectionResize=(()=>{
     function finish(e){
       if(!gesture||e.pointerId!==gesture.pointerId)return;e.preventDefault();e.stopImmediatePropagation();if(frame)caf(frame);frame=0;
       if(gesture.moved){gesture.last={clientX:e.clientX,clientY:e.clientY,shiftKey:e.shiftKey,altKey:e.altKey};paint();}
-      const g=gesture;gesture=null;svg.classList.remove('is-resizing-selection');if(svg.hasPointerCapture?.(e.pointerId))svg.releasePointerCapture(e.pointerId);
-      if(g.moved&&g.next&&config.state()===g.base){const label=g.move?'已移动图内内容':g.items[0].kind==='content'?'已缩放整张小图':'已缩放所选对象';try{if(config.commit(g.next,t(label))!==true)restore(g);}catch(error){restore(g);config.onError?.(error);}}else restore(g);
-      config.onSnap?.({});config.onFinish?.();
+      const g=gesture;gesture=null;svg.classList.remove('is-resizing-selection');if(svg.hasPointerCapture?.(e.pointerId))svg.releasePointerCapture(e.pointerId);let committed=false;
+      if(g.moved&&g.next&&config.state()===g.base){const label=g.move?'已移动图内内容':g.items[0].kind==='content'?'已缩放整张小图':'已缩放所选对象';try{committed=config.commit(g.next,t(label))===true;if(!committed)restore(g);}catch(error){restore(g);config.onError?.(error);}}else restore(g);
+      const finalBounds=committed&&g.action?{x:g.bounds.x*g.action[0]+g.action[4],y:g.bounds.y*g.action[3]+g.action[5],width:g.bounds.width*g.action[0],height:g.bounds.height*g.action[3]}:g.bounds;
+      if(committed)refresh({state:config.state(),items:g.items,bounds:finalBounds});
+      config.onSnap?.({});config.onFinish?.({committed,items:g.items,action:g.action,bounds:finalBounds});
     }
     function restore(g){for(const item of g?.items||[]){config.restoreResize?.(item,g.base);for(const node of [item,...item.attached])if(node.transform===null)node.el.removeAttribute('transform');else node.el.setAttribute('transform',node.transform);}if(g)config.onPreview?.(g.base);refresh();}
     function cancel(){if(!gesture)return false;if(frame)caf(frame);frame=0;const g=gesture;gesture=null;svg.classList.remove('is-resizing-selection');restore(g);if(svg.hasPointerCapture?.(g.pointerId))svg.releasePointerCapture(g.pointerId);config.onSnap?.({});return true;}

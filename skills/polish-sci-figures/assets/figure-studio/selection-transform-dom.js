@@ -31,12 +31,15 @@ const StudioSelectionTransformDOM=(()=>{
     const api=geometry();
     if(!svg||svg.namespaceURI!==NS||svg.localName!=='svg'||!api?.relativeMatrix)fail('Object transform geometry is unavailable.');
     if(!Number.isFinite(unit)||unit<=0||unit>1e12||!edits||typeof edits!=='object'||Array.isArray(edits))fail('Object transform parameters are invalid.');
-    const indexed=new Map(),owners=new Map(),plans=[],skipped=[];
+    const indexed=new Map(),owners=new Map(),errorOwners=new Map(),plans=[],skipped=[];
     for(const node of svg.querySelectorAll('[data-key]')){
       const key=node.getAttribute('data-key');if(!indexed.has(key))indexed.set(key,[]);indexed.get(key).push(node);
     }
     for(const node of svg.querySelectorAll('[data-scale-owner]')){
       const key=node.getAttribute('data-scale-owner');if(!owners.has(key))owners.set(key,[]);owners.get(key).push(node);
+    }
+    for(const node of svg.querySelectorAll('[data-studio-error-owner]')){
+      const key=node.getAttribute('data-studio-error-owner');if(!errorOwners.has(key))errorOwners.set(key,[]);errorOwners.get(key).push(node);
     }
     // Parse only an element's own transform on an unattached g. Using
     // relativeMatrix(element,parent) here would also include x/y/viewBox when
@@ -63,7 +66,11 @@ const StudioSelectionTransformDOM=(()=>{
       if(!target){skipped.push({key,reason:'missing'});continue;}
       if(target.localName==='tspan'){skipped.push({key,reason:'text-run'});continue;}
       if(target.closest('defs,clipPath,mask,pattern,symbol')){skipped.push({key,reason:'definition'});continue;}
-      for(const node of [target,...(target.localName==='image'?owners.get(key)||[]:[])]){
+      const hasOwnAction=node=>['object-transform','offset-x','offset-y'].some(name=>has(edits[node.getAttribute('data-key')]||{},name));
+      // An interval's caps follow its stem when only the stem is edited. When
+      // both are selected, their own saved action is applied exactly once.
+      const linkedCaps=(errorOwners.get(key)||[]).filter(node=>!hasOwnAction(node));
+      for(const node of [target,...(target.localName==='image'?owners.get(key)||[]:[]),...linkedCaps]){
         if(planned.has(node))fail('Object transform target has conflicting owners.');
         if(node.closest('defs,clipPath,mask,pattern,symbol'))continue;
         const parent=node.parentElement,{matrix:parentMatrix,inverse:parentInverse}=parentGeometry(parent),own=ownMatrix(node);

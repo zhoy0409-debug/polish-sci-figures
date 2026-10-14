@@ -1,0 +1,21 @@
+  function appendStatisticalBand(svg,id,vi,s,v,info){
+    const p=s.panels[id],unit=v.viewBox[2]/v.width,plan=statisticalBandLayout(info,p.annotationStyle,v.width,p,s.typography,unit,vi),start=v.viewBox[1]+v.viewBox[3],group=document.createElementNS(NS,'g'),font=p.annotationFont?.font||s.typography?.font||'Arial',size=p.annotationFont?.size||s.typography?.size||9;
+    group.setAttribute('data-stat-band','whole-panel');group.setAttribute('transform',`translate(${v.viewBox[0]} ${start})`);
+    const add=(tag,attrs)=>{const el=document.createElementNS(NS,tag);for(const [k,value]of Object.entries(attrs))el.setAttribute(k,value);group.append(el);return el;};
+    const text=(lines,x,y,fontSize=size,isP=false,bold=false)=>{const el=add('text',{x:x*unit,y:y*unit,'font-family':font,'font-size':fontSize*unit,fill:'#26364b','font-weight':bold||p.annotationFont?.bold?'700':'400','font-style':p.annotationFont?.italic?'italic':'normal','data-stat-result':'true'});lines.forEach((line,i)=>{const run=document.createElementNS(NS,'tspan');run.setAttribute('x',x*unit);run.setAttribute('dy',i?plan.lineHeight*unit:0);if(isP&&i===0&&line.startsWith('P')){const symbol=document.createElementNS(NS,'tspan');symbol.setAttribute('font-style','italic');symbol.textContent='P';run.append(symbol,document.createTextNode(line.slice(1)));}else run.textContent=line;el.append(run);});return el;};
+    add('path',{d:`M ${plan.pad*unit} ${4*unit} H ${(v.width-plan.pad)*unit}`,fill:'none',stroke:'#d7dfe9','stroke-width':.6*unit,'data-stat-decoration':'true'});
+    text(plan.titleLines,plan.pad,12+plan.titleSize,size,false,true);
+    for(const row of plan.rows){
+      if(row.kind==='facet'){text(row.labelLines,plan.pad,row.y+plan.fontSize,size,false,true);continue;}
+      if(row.kind==='notice'){text(row.labelLines,plan.pad,row.y+plan.fontSize);continue;}
+      text(row.labelLines,plan.pad,row.y+plan.fontSize);
+      const valueY=row.y+plan.fontSize+(row.sideBySide?0:row.labelLines.length*plan.lineHeight);
+      text(row.resultLines,row.resultX,valueY,size,row.isP);
+      if(row.kind==='comparison'){
+        const lineY=valueY+(row.resultLines.length-1)*plan.lineHeight+Math.max(5,plan.fontSize*.3),lineRight=v.width-plan.pad;
+        add('path',{d:statisticalBracketPath(row.resultX*unit,lineRight*unit,lineY*unit,unit,p.annotationLine||'bracket'),fill:'none',stroke:'#8290a3','stroke-width':.65*unit,'data-stat-result':'true','data-stat-bracket':JSON.stringify({x1:row.resultX*unit,x2:lineRight*unit,top:lineY*unit,gap:0,unit,shape:p.annotationLine||'bracket'})});
+      }
+    }
+    svg.append(group);svg.setAttribute('data-stat-band-height',plan.height);svg.setAttribute('data-stat-source-height',v.height);svg.setAttribute('viewBox',`${v.viewBox[0]} ${v.viewBox[1]} ${v.viewBox[2]} ${v.viewBox[3]+plan.height*unit}`);
+    return plan;
+  }
