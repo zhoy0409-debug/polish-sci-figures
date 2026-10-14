@@ -65,7 +65,7 @@ const clone=value=>JSON.parse(JSON.stringify(value)),near=(actual,expected,messa
 const slice=(start,end)=>{const a=source.indexOf(start),b=source.indexOf(end,a);assert.ok(a>0&&b>a,start);return source.slice(a,b);};
 let fixture,svg,state,variant;
 const drawingNode=tag=>{const node=new Node({tag,attrs:{}});node.style.setProperty=function(k,v){this[k]=String(v);};return node;};
-const ctx={...helpers,NS:'http://www.w3.org/2000/svg',StudioGroupSpacing:spacing,DOMMatrix:Matrix,DOMPoint:class{constructor(x,y){this.x=x;this.y=y;}matrixTransform(m){return {x:m.a*this.x+m.c*this.y+m.e,y:m.b*this.x+m.d*this.y+m.f};}},T:x=>x,state:()=>state,panel:()=>({variants:[variant],table:{sha256:fixture.sha256}}),baseSvg:()=>svg,statisticalAnalysisFor:()=>fixture.analysis,editsFor:()=>state.panels.p.edits[0]||{},document:{createElement:()=>({style:{},append(){},remove(){}}),body:{append(){}},createElementNS:(_,tag)=>drawingNode(tag),createTextNode:text=>({textContent:text})}};
+const ctx={...helpers,project:{},NS:'http://www.w3.org/2000/svg',StudioGroupSpacing:spacing,DOMMatrix:Matrix,DOMPoint:class{constructor(x,y){this.x=x;this.y=y;}matrixTransform(m){return {x:m.a*this.x+m.c*this.y+m.e,y:m.b*this.x+m.d*this.y+m.f};}},T:x=>x,state:()=>state,panel:()=>({variants:[variant],table:{sha256:fixture.sha256}}),baseSvg:()=>svg,statisticalAnalysisFor:()=>fixture.analysis,editsFor:()=>state.panels.p.edits[0]||{},document:{createElement:()=>({style:{},append(){},remove(){}}),body:{append(){}},createElementNS:(_,tag)=>drawingNode(tag),createTextNode:text=>({textContent:text})}};
 const nodeTree=node=>({tag:node.localName,attrs:{...node.attrs},text:node.own||'',children:node.children.map(nodeTree)});
 ctx.baseSvg=()=>new Node(nodeTree(svg));ctx.groupSpacingOrders=()=>fixture.analysis.facets.map(set=>set.group_order);
 vm.createContext(ctx);vm.runInContext(slice('  function statisticalAnchorElements(','  function renderStatisticalAnnotations(')+'\n'+slice('  function anchoredStatisticalLayout(','  function measureConditionMatrixAxes('),ctx);
@@ -120,7 +120,7 @@ for(const corrupt of [
  record=>{record.axes[0].groups[0].facet.value='Unmeasured factor';}
 ]){
  reset(fixtures[0]);const meta=svg.querySelector('[id="studio-stat-anchors"]');assert.ok(meta,'real renderer supplies statistical identity metadata');const record=JSON.parse(meta.textContent);corrupt(record);meta.textContent=JSON.stringify(record);
- assert.equal(ctx.statisticalAnnotationInfo('p').placement,'band','invalid semantic identity does not draw a plausible but wrong bracket');
+ assert.equal(ctx.statisticalAnnotationInfo('p').placement,'analysis','invalid semantic identity does not draw a plausible but wrong bracket');
 }
 
 // Export namespaces must update the semantic references as well as visible

@@ -106,7 +106,9 @@ jobs:
       - name: Compute synthetic results for composite statistics layout
         # The Node layout test consumes these freshly analyzed observations.
         # A clean checkout must never depend on a developer's .cache contents.
-        run: python scripts/test_composite_statistics.py
+        run: |
+          python scripts/test_composite_statistics.py
+          python scripts/test_interaction_stat_metadata.py
       - name: Figure Studio history and state validation
         run: |
           node scripts/test_studio_browser_transport.cjs
@@ -126,6 +128,7 @@ jobs:
           node scripts/test_studio_easy_statistics.cjs
           node scripts/test_studio_statistical_line_editing.cjs
           node scripts/test_studio_grouped_stat_layout.cjs
+          node scripts/test_studio_interaction_statistics.cjs
           node scripts/test_studio_annotation_pane.cjs
           node scripts/test_studio_statistical_metadata.cjs
           node scripts/test_studio_literature.cjs
@@ -223,6 +226,13 @@ jobs:
           node scripts/test_studio_pdf_text_editing.cjs
           node scripts/test_studio_selection_transform_dom.cjs
           node scripts/test_studio_selection_resize_integration.cjs
+          node scripts/test_studio_selection_performance.cjs
+          node scripts/test_studio_axis_editing.cjs --dom --real
+          node scripts/test_studio_component_style.cjs --dom --real
+          node scripts/test_studio_component_controls.cjs --dom
+          node scripts/test_studio_grid_resize.cjs --dom
+          node scripts/test_studio_statistical_line_geometry.cjs
+          node scripts/test_studio_grid_resize.cjs --dom
           node scripts/test_studio_direct_text_editing.cjs
           node scripts/test_studio_canvas_clipboard.cjs
           node scripts/test_studio_canvas_clipboard_integration.cjs

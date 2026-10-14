@@ -27,15 +27,41 @@ for(const [unit,fit,band]of [[1,false,false],[2,false,false],[1,true,false],[2,f
 }
 assert.equal(helpers.adjustedStatisticalBracket(10,20,30,1,{'stat-left':'-100','stat-right':'-100','stat-shape':'line'}),'M 14 30 H 16','inward endpoints do not invert the comparison line');
 
-// Execute the actual sidebar preview/finish handlers: many preview updates form
-// one reversible operation, and a project/selection change cannot commit it.
-const base={order:['p'],panels:{p:{variant:0,edits:{0:{}},statistics:{analysis:{primary_test:{p_value:.032}}}}}},history=new helpers.History(base),nodes={},callbacks=[];
-const ctx={...helpers,copy,project:{id:'project'},selectedPanel:'p',state:()=>history.current,currentOutput:()=>({scale:2}),selectedStatisticalLine:()=>({id:'p',vi:0,key:'e900003',unit:2,locked:ctx.locked}),layout:()=>({positions:[{id:'p',height:200,width:300}]}),fittedVariant:()=>null,annotationFirstTopHeight:()=>0,requestAnimationFrame:cb=>{callbacks.push(cb);return callbacks.length;},cancelAnimationFrame:()=>{},renderCanvas:()=>{},renderStatisticalLineControls:()=>{},previewCategorySpacing:(_,s)=>{ctx.preview=s;},commit:s=>history.commit(s),T:x=>x,$:id=>nodes[id]??={}};
-vm.createContext(ctx);vm.runInContext(range('function validValue(','function heatmapCellInfo(')+'\n'+range('  function setEdit(','  function selectedStatisticalLine(')+'\n'+range('  function cancelStatisticalLinePreview(','  function bindStatisticalLineControls('),ctx);
-ctx.previewStatisticalLine('stat-left','12');ctx.previewStatisticalLine('stat-left','18');callbacks.pop()();assert.equal(ctx.preview.panels.p.edits[0].e900003['stat-left'],'9');assert.deepEqual(history.current,base,'slider movement previews without committing');
-ctx.finishStatisticalLine();assert.equal(history.states.length,2);assert.equal(history.current.panels.p.edits[0].e900003['stat-left'],'9');assert.equal(history.current.panels.p.statistics.analysis.primary_test.p_value,.032);history.undo();assert.deepEqual(history.current,base);
-ctx.previewStatisticalLine('stat-right','8');ctx.project={id:'different'};ctx.finishStatisticalLine();assert.deepEqual(history.current,base,'changing projects discards the pending geometry edit');
+// Run production sidebar handlers over multiple live paths. A slider event
+// patches only those paths; analysis/history remain untouched until release.
+const G=require('../skills/polish-sci-figures/assets/figure-studio/statistical-line-geometry.js');
+const base={order:['p'],panels:{p:{variant:0,edits:{0:{}},statistics:{analysis:{primary_test:{p_value:.032}}}}}},history=new helpers.History(base),callbacks=new Map();let frameId=0,refreshes=0;
+function lineTarget(key,left,right){const f=fixture(2);f.attrs.d=`M ${left} 93 V 90 H ${right} V 93`;f.attrs['data-key']=key;f.node.isConnected=true;return {id:'p',vi:0,key,unit:2,props:{},geometry:G.fromPath(f.attrs.d,{}, {unit:2}),el:f.node,hit:{setAttribute(k,v){this[k]=v;}},locked:false};}
+const targets=[lineTarget('e900003',40,120),lineTarget('e900005',160,280)],nodes={};
+const ctx={...helpers,StudioStatisticalLineGeometry:G,copy,project:{id:'project'},state:()=>history.current,currentOutput:()=>({scale:2}),selectedStatisticalLines:()=>targets.map(t=>({...t,locked:ctx.locked})),requestAnimationFrame:cb=>{callbacks.set(++frameId,cb);return frameId;},cancelAnimationFrame:id=>callbacks.delete(id),zoomView:{refreshSelection:()=>refreshes++},renderStatisticalLineControls:()=>{},commit:s=>history.commit(s),T:x=>x,$:id=>nodes[id]??={}};
+vm.createContext(ctx);vm.runInContext(range('function validValue(','function heatmapCellInfo(')+'\n'+range('  function setEdit(','  function selectedStatisticalLines(')+'\n'+range('  function cancelStatisticalLinePreview(','  function bindStatisticalLineControls('),ctx);
+const flush=()=>{const pending=[...callbacks.values()];callbacks.clear();pending.forEach(cb=>cb());};
+ctx.previewStatisticalLine('stat-span','90');ctx.previewStatisticalLine('stat-span','70');assert.equal(callbacks.size,1,'many inputs share one animation frame');flush();
+for(const t of targets){const box=G.fromPath(t.el.getAttribute('d'),{}, {unit:2});assert.equal(box.width,t.geometry.width*.7);assert.equal(box.center,t.geometry.center);assert.equal(t.hit.d,t.el.getAttribute('d'),'wide hit area follows the visible connector');}
+assert.equal(refreshes,1);assert.deepEqual(history.current,base,'previews never change history');ctx.finishStatisticalLine();assert.equal(history.states.length,2);assert.equal(history.current.panels.p.edits[0].e900003['stat-left'],'-6');assert.equal(history.current.panels.p.edits[0].e900005['stat-left'],'-9');assert.equal(history.current.panels.p.statistics.analysis.primary_test.p_value,.032);history.undo();assert.deepEqual(history.current,base);
+ctx.previewStatisticalLine('stat-left','12');ctx.previewStatisticalLine('stat-left','18');flush();ctx.finishStatisticalLine();assert.equal(history.current.panels.p.edits[0].e900003['stat-left'],'9');history.undo();
+const beforeCancel=targets.map(t=>t.el.getAttribute('d'));ctx.previewStatisticalLine('stat-right','8');flush();ctx.cancelStatisticalLinePreview(true);assert.deepEqual(targets.map(t=>t.el.getAttribute('d')),beforeCancel,'Escape restores live geometry');assert.deepEqual(history.current,base);
+ctx.previewStatisticalLine('stat-right','8');ctx.project={id:'different'};ctx.finishStatisticalLine();assert.deepEqual(history.current,base,'a project change discards pending geometry edits');
 ctx.locked=true;ctx.previewStatisticalLine('stat-right','8');ctx.finishStatisticalLine();assert.deepEqual(history.current,base,'locked lines cannot be adjusted');
+
+// Stored endpoints remain in source-panel pt: contain resizing only changes
+// their final displayed pt. Exercise the real target lookup and controls too.
+for(const contain of [.5,2]){
+  const unit=2,output=1.5,key='e900003',f=fixture(unit),initial={order:['p'],columns:1,gap:0,panels:{p:{variant:0,edits:{0:{[key]:{'stat-left':'4'}}}}},grid:{rows:1,widths:[200*contain],heights:[150*contain],places:{p:{row:0,col:0,rs:1,cs:1}},manualTracks:true}},h=new helpers.History(initial),pending=[];
+  const live={hasAttribute:()=>false,getAttribute:k=>k==='viewBox'?'0 0 400 300':k==='width'?String(200*contain):null,querySelectorAll:()=>[f.node],querySelector:()=>null};f.node.dataset={key};f.node.isConnected=true;
+  const fields={artboard:{querySelector:()=>live},selectedStatisticalLine:{querySelectorAll:()=>[]}};
+  const c={...helpers,StudioStatisticalLineGeometry:G,copy,project:{id:'manual'},original:false,selectionGroups:()=>[{id:'p',vi:0,keys:[key]}],isVisibleObject:()=>true,state:()=>h.current,panel:()=>({variants:[{width:200,viewBox:[0,0,400,300]}]}),editsFor:()=>h.current.panels.p.edits[0],currentOutput:()=>({scale:output}),$:id=>fields[id]??={},T:x=>x,requestAnimationFrame:fn=>(pending.push(fn),pending.length),cancelAnimationFrame:()=>pending.splice(0),zoomView:{refreshSelection(){}},commit:next=>{h.commit(next);render();return true;}};
+  function render(){const props=h.current.panels.p.edits[0][key]||{};f.attrs.d=helpers.adjustedStatisticalBracket(40,120,90,unit,props);f.attrs['stroke-width']=props['stroke-width']||'1';delete f.node.style['stroke-width'];}
+  vm.createContext(c);vm.runInContext(range('function validValue(','function heatmapCellInfo(')+'\n'+range('  function setEdit(','  let componentGesture='),c);render();c.renderStatisticalLineControls();
+  assert.equal(Number(fields.statLineLeft.value),4*contain*output,'existing source-pt extension is displayed in final pt');
+  const target=c.selectedStatisticalLines()[0];assert.equal(target.presentationScale,contain);assert.equal(target.unit,unit,'rendering/storage retain their original unit');
+  c.previewStatisticalLine('stat-left','6');pending.splice(0).forEach(fn=>fn());c.finishStatisticalLine();c.renderStatisticalLineControls();
+  const saved=h.current.panels.p.edits[0][key];assert.ok(Math.abs(Number(saved['stat-left'])-6/(contain*output))<1e-9);assert.equal(Number(fields.statLineLeft.value),6);
+  const actualLeft=G.fromPath(f.attrs.d,saved,{unit}).left;assert.ok(Math.abs((40-actualLeft)/unit*contain*output-6)<1e-9,'committed endpoint moves by exactly the requested final pt');
+  c.previewStatisticalLine('stroke-width','2');pending.splice(0).forEach(fn=>fn());assert.ok(Math.abs(parseFloat(f.node.style['stroke-width'])/unit*contain*output-2)<1e-9);c.finishStatisticalLine();c.renderStatisticalLineControls();assert.equal(Number(fields.statLineWidth.value),2);assert.ok(Math.abs(Number(f.attrs['stroke-width'])/unit*contain*output-2)<1e-9);
+  const restored=helpers.History.restore(JSON.parse(JSON.stringify(h.toJSON())),{panels:[{id:'p',variants:[{}]}]},h.current);assert.deepEqual(restored.current,h.current);h.undo();render();h.redo();render();c.renderStatisticalLineControls();assert.equal(Number(fields.statLineWidth.value),2);
+  const before=f.attrs.d;c.previewStatisticalLine('stat-right','8');pending.splice(0).forEach(fn=>fn());c.cancelStatisticalLinePreview(true);assert.equal(f.attrs.d,before,'Escape retains the saved contained line');
+}
 
 // Generated keys vary between comparison lines and letters. The real style
 // transfer keeps later scale-bar edits attached to the same non-statistic node.

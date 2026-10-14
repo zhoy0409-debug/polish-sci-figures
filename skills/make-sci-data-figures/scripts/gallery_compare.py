@@ -306,7 +306,10 @@ def render(data,view,colors=None,figsize=(4.8,3.6)):
                 if view=='compare_facet_boxes':
                     a=axes[i];boxes=a.boxplot([v],positions=[j],widths=.45,patch_artist=True,showfliers=False,manage_ticks=False,boxprops=dict(facecolor=c[j],alpha=.23,edgecolor=c[j]),medianprops=dict(color=c[j]));points=_points(a,v,j,c[j],.11)
                     tag_stat_group(a,g,f,(j,np.median(v)),[points,*[artist for artists in boxes.values() for artist in artists]])
-            if view=='compare_interaction':ax.errorbar(range(len(factors)),means,yerr=sds,color=c[j],marker=['o','s','^','D','v','P'][j],ls=['-','--',':','-.','-','--'][j],ms=4,lw=1.2,capsize=3,label=g)
+            if view=='compare_interaction':
+                series=ax.errorbar(range(len(factors)),means,yerr=sds,color=c[j],marker=['o','s','^','D','v','P'][j],ls=['-','--',':','-.','-','--'][j],ms=4,lw=1.2,capsize=3,label=g)
+                for i,f in enumerate(factors):
+                    tag_stat_group(ax,g,f,(i,means[i]),[series.lines[0]],point_index=i,comparison_axis='y')
         if view=='compare_interaction':_style(ax,y='Mean ± SD');_categorical(ax,factors);_legend(ax,columns=min(3,len(names)));ax.margins(x=.1,y=.14)
         else:
             for i,a in enumerate(axes):

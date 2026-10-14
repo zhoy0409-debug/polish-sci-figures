@@ -260,5 +260,46 @@ test('a second pointer cannot replace or cancel the active pointer gesture',()=>
 test('dispose cancels pending work and removes both handles and gesture listeners',()=>{
   const f=fixture();try{f.select([f.item()]);const before=f.find('p1').outerHTML;f.down();f.move({x:190,y:120});assert.equal(f.frames.size,1);f.api.dispose();f.frame();assert.equal(f.find('p1').outerHTML,before);assert.equal(f.frames.size,0);assert.equal(f.svg.querySelector('[data-editor-selection-resize]'),null);assert.equal(f.captured.size,0);f.fire(f.find('p1'),'pointerdown',{x:50,y:50});assert.equal(f.api.isActive(),false);assert.equal(f.commits.length,0);}finally{f.close();}
 });
+test('large selection uses linear membership checks and ordinary clicks skip all selection geometry',()=>{
+  const count=400,f=fixture({body:Array.from({length:count},(_,i)=>`<rect data-key="e${i}" x="${i%40*4}" y="${Math.floor(i/40)*4}" width="3" height="3"/>`).join('')});
+  try{
+    const items=Array.from({length:count},(_,i)=>f.item('p1','e'+i));let contains=0,reads=0;
+    for(const {el}of items){const oldContains=el.contains.bind(el),oldBox=el.getBoundingClientRect.bind(el);el.contains=node=>{contains++;return oldContains(node);};el.getBoundingClientRect=()=>{reads++;return oldBox();};}
+    f.select(items);assert.equal(reads,count);assert.equal(contains,0,'sibling membership must not perform quadratic contains checks');
+    reads=0;f.fire(items[0].el,'pointerdown',{x:11,y:21});assert.equal(reads,0);assert.equal(contains,0);assert.equal(f.api.isActive(),false);
+    const handle=f.svg.querySelector('[data-selection-resize="se"]');f.down();reads=0;
+    for(let i=0;i<100;i++)f.move({x:190+i/10,y:100});assert.equal(f.frames.size,1);f.frame();
+    assert.equal(reads,0,'preview bounds use captured union instead of rereading every object');assert.equal(f.svg.querySelector('[data-selection-resize="se"]'),handle,'handles stay stable throughout preview');
+    f.up({x:200,y:100});assert.equal(f.commits.length,1);assert.equal(Object.keys(f.state.panels.p1.edits[0]).length,count);assert.equal(f.errors.length,0);
+  }finally{f.close();}
+});
+
+test('gesture snapshots do not traverse unrelated edits or mutate an earlier preview',()=>{
+  const f=fixture();try{
+    const untouched={toJSON(){throw Error('Unrelated panel was serialized during a pointer frame');}},unchangedEdit={fill:'#c0ffee'};
+    f.state.panels.p2.edits[0].unrelated=untouched;f.state.panels.p1.edits[0].untouched=unchangedEdit;
+    const base=f.state;f.select([f.item()]);f.down();f.move({x:190,y:120});f.frame();
+    const first=f.previews.at(-1),firstValue=first.panels.p1.edits[0].e1['object-transform'];
+    assert.equal(first.panels.p2,base.panels.p2);assert.equal(first.panels.p1.edits[0].untouched,unchangedEdit);
+    f.move({x:230,y:140});f.frame();const second=f.previews.at(-1);
+    assert.notEqual(second.panels.p1.edits[0].e1['object-transform'],firstValue);assert.equal(first.panels.p1.edits[0].e1['object-transform'],firstValue);assert.equal(base.panels.p1.edits[0].e1,undefined);
+    f.api.cancel();assert.equal(f.state,base);assert.equal(f.errors.length,0);
+  }finally{f.close();}
+});
+test('semantic resize hooks receive panel-point action, preserve transforms and restore on cancel',()=>{
+  const captures=[],plans=[],paints=[],restores=[];
+  const f=fixture({body:'<line data-key="e1" x1="20" x2="20" y1="20" y2="60"/>',options:{
+    resizeHandles:()=>['n','s'],captureResize(item){captures.push(item);return {axis:'y',end:item.el.getAttribute('y2')};},
+    persistResize(item,delta,next){assert.equal(item.semantic.axis,'y');plans.push(delta);next.panels[item.id].edits[item.vi][item.key]['axis-extension']=JSON.stringify({version:1,axis:'y',min:0,max:100*delta[3]});return true;},
+    previewResize(item,delta){paints.push(delta);item.el.setAttribute('y2',Number(item.semantic.end)*delta[3]+delta[5]);return true;},
+    restoreResize(item){restores.push(item);item.el.setAttribute('y2',item.semantic.end);}
+  }});
+  try{
+    f.select([f.item()]);assert.deepEqual([...f.svg.querySelectorAll('[data-selection-resize]')].map(el=>el.dataset.selectionResize),['n','s']);
+    const before=f.find('p1').outerHTML;f.down('s');f.move({x:30,y:120});f.frame();assert.equal(captures.length,1);assert.equal(paints.length,1);matrixNear(plans[0],[1,0,0,2,0,-20]);assert.equal(f.find('p1').getAttribute('transform'),null);assert.equal(f.find('p1').getAttribute('y2'),'100');
+    f.api.cancel();assert.equal(restores.length,1);assert.equal(f.find('p1').outerHTML,before);assert.equal(f.commits.length,0);
+    f.down('s');f.move({x:30,y:120});f.up({x:30,y:120});assert.equal(f.commits.length,1);assert.equal(f.state.panels.p1.edits[0].e1['object-transform'],undefined);assert.equal(JSON.parse(f.state.panels.p1.edits[0].e1['axis-extension']).max,200);assert.equal(f.errors.length,0);
+  }finally{f.close();}
+});
 console.log(`${passed} selection resize controller integration tests passed`);
 if(failures.length){console.error(`${failures.length} controller integration test(s) failed`);process.exitCode=1;}

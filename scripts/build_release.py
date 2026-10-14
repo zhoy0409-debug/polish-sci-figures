@@ -11,12 +11,13 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "v1.4.11"
+VERSION = "v1.4.12"
 SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    "docs/release-notes-v1.4.12.md",
     "docs/release-notes-v1.4.11.md",
     "docs/release-notes-v1.4.10.md",
     "docs/release-notes-v1.4.9.md",

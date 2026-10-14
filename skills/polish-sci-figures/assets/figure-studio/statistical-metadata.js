@@ -33,13 +33,15 @@ const StudioStatisticalMetadata = (() => {
     if(!node||node.children.length||node.textContent.length>200000)throw Error('Invalid anchors');
     const value=JSON.parse(node.textContent);
     if(value?.version!==1||value.group_column!=='group'||value.facet_column!=='factor'||!Array.isArray(value.axes)||!value.axes.length||value.axes.length>24)throw Error('Invalid anchors');
-    const axes=new Set(),cells=new Set(),members=new Set();
+    const axes=new Set(),cells=new Set(),members=new Map();
     for(const axis of value.axes){
       if(!ID.test(axis?.axis)||axes.has(axis.axis)||!Array.isArray(axis.groups)||!axis.groups.length||axis.groups.length>144)throw Error('Invalid axis');axes.add(axis.axis);
+      if(axis.comparison_axis!==undefined&&!['x','y'].includes(axis.comparison_axis))throw Error('Invalid comparison axis');
       for(const cell of axis.groups){
         if(typeof cell?.group!=='string'||!cell.group||cell.group.length>1000||cell.facet?.column!=='factor'||typeof cell.facet.value!=='string'||!cell.facet.value||cell.facet.value.length>1000||!Array.isArray(cell.center)||cell.center.length!==2||!cell.center.every(n=>Number.isFinite(n)&&Math.abs(n)<=1e6)||!Array.isArray(cell.members)||!cell.members.length||cell.members.length>64)throw Error('Invalid cell');
         const key=JSON.stringify([cell.facet.value,cell.group]);if(cells.has(key))throw Error('Repeated cell');cells.add(key);
-        for(const member of cell.members){if(typeof member!=='string'||!ID.test(member)||members.has(member))throw Error('Invalid member');members.add(member);}
+        const indexed=axis.comparison_axis==='y';if(indexed?(!Number.isInteger(cell.point_index)||cell.point_index<0||cell.point_index>100000||cell.members.length!==1):cell.point_index!==undefined)throw Error('Invalid indexed point');
+        for(const member of cell.members){if(typeof member!=='string'||!ID.test(member))throw Error('Invalid member');const old=members.get(member),index=indexed?cell.point_index:null;if(old&&(index===null||old.has(null)||old.has(index)))throw Error('Repeated member');if(!old)members.set(member,new Set([index]));else old.add(index);}
       }
     }
     return value;
@@ -151,7 +153,7 @@ const StudioStatisticalMetadata = (() => {
       const source=index(sourceSvg),fresh=index(freshSvg);
       if(source.ids.has(META))return false;
       const a=dimensions(sourceSvg),b=dimensions(freshSvg);if(a.some((n,i)=>Math.abs(n-b[i])>1e-6))return false;
-      const meta=parseMetadata(fresh.ids.get(META)),next={version:1,group_column:'group',facet_column:'factor',axes:[]},used=new Set();
+      const meta=parseMetadata(fresh.ids.get(META)),next={version:1,group_column:'group',facet_column:'factor',axes:[]},used=new Map();
       const sourceAxes=source.all.filter(n=>n.localName==='g'&&/^axes_\d+$/.test(n.id)),freshAxes=fresh.all.filter(n=>n.localName==='g'&&/^axes_\d+$/.test(n.id));
       if(sourceAxes.length!==freshAxes.length)return false;
       for(const entry of meta.axes){
@@ -164,14 +166,15 @@ const StudioStatisticalMetadata = (() => {
           if(candidates.has(key))candidates.set(key,null);else candidates.set(key,node);
         }
         const output={axis:entry.axis,groups:[]};
+        if(entry.comparison_axis)output.comparison_axis=entry.comparison_axis;
         for(const cell of entry.groups){
           const members=[];
           for(const id of cell.members){
             const node=fresh.ids.get(id);if(!node||node.parentElement!==newAxis)return false;
             const match=candidates.get(JSON.stringify(fingerprint(node,fresh)));
-            if(!match||used.has(match))return false;used.add(match);members.push(match.id);
+            if(!match||used.has(match)&&(used.get(match)!==id||cell.point_index===undefined))return false;used.set(match,id);members.push(match.id);
           }
-          output.groups.push({group:cell.group,facet:{column:'factor',value:cell.facet.value},center:[...cell.center],members});
+          output.groups.push({group:cell.group,facet:{column:'factor',value:cell.facet.value},center:[...cell.center],members,...(cell.point_index===undefined?{}:{point_index:cell.point_index})});
         }
         next.axes.push(output);
       }

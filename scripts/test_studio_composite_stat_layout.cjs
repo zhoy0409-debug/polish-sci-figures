@@ -7,7 +7,7 @@ assert.ok(fs.existsSync(proof),'Run test_composite_statistics.py first to comput
 const input=JSON.parse(fs.readFileSync(proof,'utf8')),copy=x=>JSON.parse(JSON.stringify(x));
 let panelState={variant:0,statistics:{tableKey:input.original.data_sha256,analysis:input.original.analysis,config:input.original.config}},tableKey=input.original.data_sha256;
 const panel={table:{sha256:tableKey},analysis:{sourceMarker:'original-bundle'},variants:[{preserveAspect:true}]},s={panels:{p:panelState}};
-const ctx={...helpers,T:x=>x,state:()=>s,panel:()=>panel,baseSvg:()=>({querySelectorAll:()=>[{}, {}, {}]}),statisticalAnchorElements:()=>null,statisticalPlotAnchors:()=>null,statisticalFacetTitleElements:()=>[]};vm.createContext(ctx);
+const ctx={...helpers,project:{},T:x=>x,state:()=>s,panel:()=>panel,baseSvg:()=>({querySelectorAll:()=>[{}, {}, {}]}),statisticalAnchorElements:()=>null,statisticalPlotAnchors:()=>null,statisticalFacetTitleElements:()=>[]};vm.createContext(ctx);
 const analysisStart=source.indexOf('  function statisticalAnalysisFor('),analysisEnd=source.indexOf('  function comparisonsFor(',analysisStart);
 const setsStart=source.indexOf('  function statisticalAnnotationSets('),setsEnd=source.indexOf('  function renderStatisticalAnnotations(',setsStart);
 assert.ok(analysisStart>0&&setsStart>0);vm.runInContext(source.slice(analysisStart,analysisEnd)+'\n'+source.slice(setsStart,setsEnd),ctx);
@@ -16,7 +16,7 @@ panelState.statistics.stale=true;assert.deepEqual(JSON.stringify(ctx.statistical
 panel.table.sha256='changed-data';assert.equal(JSON.stringify(ctx.statisticalAnalysisFor('p')),'{}','data identity mismatch hides old statistics');panel.table.sha256=tableKey;
 const saved=panelState.statistics;delete panelState.statistics;assert.equal(ctx.statisticalAnalysisFor('p').sourceMarker,'original-bundle');panelState.statistics=saved;
 
-const info=ctx.statisticalAnnotationInfo('p');assert.equal(info.available,true);assert.equal(info.placement,'band');assert.equal(info.sets.length,2);
+const info=ctx.statisticalAnnotationInfo('p');assert.equal(info.available,false);assert.equal(info.placement,'analysis');assert.equal(info.sets.length,2);
 assert.deepEqual(info.sets.map(x=>x.label),['Assay A','Assay B']);assert.equal(info.comparisons.length,6);assert.equal(info.letters,true);
 for(const set of info.sets){assert.equal(set.comparisons.length,3);assert.deepEqual(set.order,['Control','Treatment','Rescue']);}
 const analysisSnapshot=JSON.stringify(saved.analysis),layouts=[];
@@ -47,58 +47,21 @@ const large=layouts.find(x=>x.width===345.6&&x.fontSize===32&&x.style==='p'),sma
 
 // Incomplete pairwise families cannot acquire compact-letter groups, nor borrow another facet.
 const incomplete=copy(input.original.analysis);incomplete.facets[1].primary_test.pairwise.pop();panelState.statistics.analysis=incomplete;
-const partial=ctx.statisticalAnnotationInfo('p');assert.equal(partial.available,true);assert.equal(partial.letters,false);assert.equal(partial.sets[0].comparisons.length,3);assert.equal(partial.sets[1].comparisons.length,2);
+const partial=ctx.statisticalAnnotationInfo('p');assert.equal(partial.available,false);assert.equal(partial.letters,false);assert.equal(partial.sets[0].comparisons.length,3);assert.equal(partial.sets[1].comparisons.length,2);
 panelState.statistics.analysis=input.updated.analysis;panelState.statistics.tableKey=input.updated.data_sha256;panel.table.sha256=input.updated.data_sha256;
 const updated=ctx.statisticalAnnotationInfo('p');assert.notEqual(updated.sets[0].comparisons[0].p,info.sets[0].comparisons[0].p);
 
-// Execute the production SVG result-band builder. Existing chart geometry must
-// remain exactly untouched; only its bottom viewBox extent may grow.
-function node(tag){const attrs=new Map();return {localName:tag,children:[],ownText:'',style:{setProperty(k,v){this[k]=v;}},closest:()=>null,hasAttribute:k=>attrs.has(k),setAttribute:(k,v)=>attrs.set(k,String(v)),getAttribute:k=>attrs.get(k),append(...items){this.children.push(...items);},set textContent(value){this.ownText=String(value);},get textContent(){return this.ownText+this.children.map(c=>c.textContent||'').join('');}};}
-const bandStart=source.indexOf('  function appendStatisticalBand('),bandEnd=source.indexOf('  function annotationHeight(',bandStart);
-assert.ok(bandStart>0&&bandEnd>bandStart);
-const dom={...helpers,NS:'svg',document:{createElementNS:(_,tag)=>node(tag),createTextNode:text=>({textContent:text})}};vm.createContext(dom);vm.runInContext(source.slice(bandStart,bandEnd),dom);
-let svgBuilds=0;
-for(const [width,height]of [[259.2,388.8],[345.6,259.2],[703.2,259.2]])for(const fontSize of [9,24,32])for(const format of ['standard','precise']){
-  svgBuilds++;
-  const svg=node('svg'),original=node('g');original.setAttribute('transform','translate(17 24) scale(1.03)');original.textContent='Existing chart content';svg.append(original);
-  const before=JSON.stringify(original),p={variant:0,annotationStyle:'p',annotationPFormat:format,annotationFont:{font:'Arial',size:fontSize}},v={width,height,viewBox:[10,20,width*2,height*2]};
-  const plan=dom.appendStatisticalBand(svg,'p',0,{panels:{p}},v,info),group=svg.children[1];
-  assert.equal(svg.children[0],original);assert.equal(JSON.stringify(original),before,'source chart remains unscaled and unmoved');
-  assert.equal(group.getAttribute('transform'),`translate(10 ${20+height*2})`,'band uses native SVG units, preventing font edits from being scaled twice');
-  assert.deepEqual(svg.getAttribute('viewBox').split(' ').map(Number),[10,20,width*2,(height+plan.height)*2]);
-  assert.equal(+svg.getAttribute('data-stat-source-height'),height);assert.equal(+svg.getAttribute('data-stat-band-height'),plan.height);
-  const texts=group.children.filter(n=>n.localName==='text'),pTexts=texts.filter(n=>n.textContent.startsWith('P'));
-  assert.equal(pTexts.length,6);assert.ok(texts.every(n=>+n.getAttribute('font-size')/2===fontSize));
-  assert.ok(texts.every(n=>+n.getAttribute('x')>=plan.pad*2));
-  for(const text of texts)for(let i=1;i<text.children.length;i++)assert.equal(+text.children[i].getAttribute('dy'),plan.lineHeight*2,'wrapped text spacing uses source SVG units');
-  for(const text of pTexts){const symbol=text.children[0].children[0];assert.equal(symbol.textContent,'P');assert.equal(symbol.getAttribute('font-style'),'italic');assert.equal(text.getAttribute('font-style'),'normal','ordinary values do not inherit statistical-symbol italics');}
-  assert.equal(group.children.filter(n=>n.localName==='path'&&n.getAttribute('data-stat-result')==='true').length,6);
-  const drawable=group.children.filter(n=>['text','path','line','rect'].includes(n.localName)),selected=pTexts[0],key='e'+(900000+drawable.indexOf(selected));
-  const generatedStart=source.indexOf('    let generated=900000;'),generatedEnd=source.indexOf('    return svg;',generatedStart);
-  svg.querySelectorAll=()=>drawable;
-  vm.runInNewContext(source.slice(generatedStart,generatedEnd),{svg,raw:false,id:'p',vi:0,s:{panels:{p:{}}},marks:null,editsFor:()=>({[key]:{'font-size':'64'}})});
-  assert.equal(selected.style['font-size'],'64px');assert.equal(parseFloat(selected.style['font-size'])/2,32,'a 32 pt override remains 32 pt for source unit 2');
-}
-
-// The whole ending row receives the same physical footer reservation. Reflow
-// requests only the unchanged chart body, never compresses it to include text.
-const layoutStart=source.indexOf('  function layout(s=state(),'),layoutEnd=source.indexOf('  function plotFrame(',layoutStart);
-const reflowStart=source.indexOf('  function reflowSpec('),reflowEnd=source.indexOf('  function currentHeatmapMetadata(',reflowStart);
-assert.ok(layoutStart>0&&layoutEnd>layoutStart&&reflowStart>0);
-const assets={a:{table:{rows:input.rows},recipe:input.recipe,variants:[{name:'compare_facet_boxes',width:345.6,height:259.2,viewBox:[0,0,345.6,259.2],preserveAspect:true,svg:'studio-plot-frame',sha256:'a'}]},b:{table:{rows:input.rows},recipe:input.recipe,variants:[{name:'compare_facet_boxes',width:345.6,height:259.2,viewBox:[0,0,345.6,259.2],preserveAspect:true,svg:'studio-plot-frame',sha256:'b'}]}};
-const layoutContext={copy,panel:id=>assets[id],gridFor:s=>s.grid,conditionMatrixHeight:()=>0,annotationTopHeight:()=>0,annotationFirstTopHeight:()=>0,statisticalAnnotationInfo:()=>({placement:'band'}),annotationHeight:(id,s,vi,width=345.6)=>s.panels[id].annotationStyle?helpers.statisticalBandLayout(info,'p',width,s.panels[id]).height:0};
-vm.createContext(layoutContext);vm.runInContext(source.slice(layoutStart,layoutEnd)+'\n'+source.slice(reflowStart,reflowEnd),layoutContext);
-const gridState={order:['a','b'],columns:2,gap:12,grid:{rows:1,widths:[400,400],places:{a:{row:0,col:0,rs:1,cs:1},b:{row:0,col:1,rs:1,cs:1}}},panels:{a:{variant:0},b:{variant:0}}};
-const unchangedSource=JSON.stringify(assets),plain=layoutContext.layout(gridState);assert.equal(plain.positions[0].statisticsBand,0);assert.equal(plain.height,259.2);
-let previousBand=0;
-for(const size of [9,24,32]){
-  const ss=copy(gridState);ss.panels.a.annotationStyle='p';ss.panels.a.annotationFont={font:'Arial',size};
-  const l=layoutContext.layout(ss),[a,b]=l.positions;assert.equal(a.statisticsBand,b.statisticsBand);assert.ok(a.statisticsBand>previousBand);previousBand=a.statisticsBand;
-  for(const pos of l.positions){assert.ok(pos.height-pos.statisticsBand>=259.2-1e-8);const request=layoutContext.reflowSpec(pos,ss);assert.equal(request.width,400);assert.equal(request.height,+((pos.height-pos.statisticsBand).toFixed(3)));}
-  const span=copy(ss);span.grid.rows=2;span.grid.places.a.rs=2;span.grid.places.b.row=1;
-  const spanLayout=layoutContext.layout(span);assert.equal(spanLayout.positions[0].statisticsBand,spanLayout.positions[1].statisticsBand,'row-spanning panel reserves its footer in its ending row');
-}
-assert.equal(JSON.stringify(assets),unchangedSource,'layout does not mutate chart dimensions or data');
+// Unplaceable comparisons stay available in the analysis record, with no
+// invented chart anchors or canvas-height growth. The retired band geometry
+// helper above is retained only to map saved legacy element IDs.
+const heightStart=source.indexOf('  function annotationHeight('),heightEnd=source.indexOf('  function editedSvg(',heightStart);
+const measured={panels:{p:{variant:0,annotationStyle:'p'}}},originalVariant={width:345.6,height:259.2,viewBox:[0,0,345.6,259.2]};
+const heightContext={state:()=>measured,panel:()=>({variants:[originalVariant]}),statisticalAnnotationInfo:()=>info,conditionMatrixHeight:()=>0};vm.createContext(heightContext);vm.runInContext(source.slice(heightStart,heightEnd),heightContext);
+assert.equal(heightContext.annotationHeight('p',measured),0);
+assert.equal(heightContext.drawingHeight('p',measured),259.2);
+assert.equal(info.comparisons.length,6,'all calculated results remain in analysis');
+assert.match(info.reason,/分析面板/);
+const svgBuilds=0;
 
 // Run the real data-update handler and its real statistics-install block with
 // controlled async responses. No browser or network is replaced with claims.

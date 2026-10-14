@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.4.12 · Figure Studio 0.1.12
+
+- Reduce repeated geometry and sidebar work during multi-selection and dragging.
+- Extend recognized numeric axes with matching ticks and labels while retaining the original data positions; add component-level style controls for the current panel or whole figure.
+- Place supported statistical comparisons beside the data without a long results appendix, and adjust grid row heights and column widths by dragging their boundaries.
+- Preserve the template, local analysis, image, import, editable export and companion AI-skill workflows. New package validation is recorded separately at release.
+- 减少多选和拖动中的重复计算；数值轴延伸时联动补刻度，侧栏集中调整组件样式；支持的统计标注留在数据旁，行高列宽可直接拖动。保留原有模板、本地分析、图像、导入导出及配套技能能力，新版成品验收在发布时单独记录。
+
+[Release notes / 本版更新](docs/release-notes-v1.4.12.md)
+
 ## v1.4.11 · Figure Studio 0.1.11
 
 - Keep figure import available throughout editing; process multiple figure files in sequence, prompt for each PDF page, and route CSV/TSV drops to the data workflow while preserving the existing project.

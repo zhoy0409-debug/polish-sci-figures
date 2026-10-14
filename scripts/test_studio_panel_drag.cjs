@@ -18,7 +18,7 @@ function harness(start=initial){
   const svg=element('svg'),messages=[],windowEvents={},documentEvents={},fields={scope:{value:'element'},adaptSizes:{checked:false},layoutMode:element(),arrangePanels:element(),boxSelect:element(),viewport:element()};
   const l={width:324,height:264,cells:Array.from({length:9},(_,i)=>({row:Math.floor(i/3),col:i%3,x:i%3*112,y:Math.floor(i/3)*92,width:100,height:80}))};
   svg.getBoundingClientRect=()=>({left:20,top:30,width:648,height:528});
-  const ctx={copy,svg,viewport:element(),workspaceLayer:element(),selectedNodes:()=>[],l,project,NS:'svg',T,Math,gridFor,movePanel,resizePanel,visualPanelOrder,displayedPanelLabel,
+  const ctx={importHasFiles:()=>false,droppedFiles:()=>false,copy,svg,viewport:element(),workspaceLayer:element(),selectedNodes:()=>[],l,project,NS:'svg',T,Math,gridFor,movePanel,resizePanel,visualPanelOrder,displayedPanelLabel,
     state:()=>history.current,validateState(s,p){validationCalls++;return validateState(s,p);},
     $:id=>fields[id],document:{createElementNS:(_,kind)=>element(kind),querySelectorAll:()=>[],addEventListener:(type,fn)=>documentEvents[type]=fn},
     window:{getSelection:()=>({removeAllRanges(){}}),addEventListener:(type,fn)=>windowEvents[type]=fn},cancelQueuedZoom(){},cancelAnimationFrame(){},cancelOverlayPlacement(){ctx.placementCancels=(ctx.placementCancels||0)+1;},

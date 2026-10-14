@@ -5,12 +5,11 @@ const StudioSelectionResize=(()=>{
   const core=()=>typeof StudioSelectionTransform!=='undefined'?StudioSelectionTransform:require('./selection-transform.js');
   const array=m=>m?Array.isArray(m)?[...m]:[m.a,m.b,m.c,m.d,m.e,m.f]:[...I];
   const attr=m=>'matrix('+m.join(' ')+')';
-  const clone=v=>JSON.parse(JSON.stringify(v));
   const handles=['nw','n','ne','e','se','s','sw','w'];
   function create(config){
     const {svg,geometry:l}=config,G=core(),doc=svg.ownerDocument,t=config.t||((s)=>s);
     const layer=doc.createElementNS(NS,'g');layer.dataset.editorSelectionResize='true';layer.style.pointerEvents='none';svg.append(layer);
-    let gesture=null,frame=0,disposed=false;
+    let gesture=null,frame=0,disposed=false,displayedSelection=[];
     const raf=fn=>(config.requestAnimationFrame||requestAnimationFrame)(fn),caf=id=>(config.cancelAnimationFrame||cancelAnimationFrame)(id);
     const matrix=node=>array(node?.getScreenCTM?.());
     const own=node=>array(node.transform?.baseVal?.consolidate()?.matrix);
@@ -38,12 +37,16 @@ const StudioSelectionResize=(()=>{
     }
     function selected(){
       const s=config.state(),items=(config.selection()||[]).filter(item=>item.el?.isConnected!==false&&!item.locked&&!(item.kind==='overlay'?s.overlays?.find(a=>a.id===item.id)?.locked:s.panels[item.id]?.locked));
-      const movable=items.filter(item=>item.el.localName!=='tspan'&&!items.some(other=>other!==item&&other.el.contains(item.el))&&!(item.kind==='element'&&s.panels[item.id]?.lockedElements?.[item.vi]?.includes(item.key)));
+      const elements=new Set(items.map(item=>item.el)),seen=new Set(),movable=items.filter(item=>{
+        if(item.el.localName==='tspan'||seen.has(item.el)||item.kind==='element'&&s.panels[item.id]?.lockedElements?.[item.vi]?.includes(item.key))return false;
+        seen.add(item.el);for(let parent=item.el.parentElement;parent&&parent!==svg;parent=parent.parentElement)if(elements.has(parent))return false;return true;
+      }),imageOwners=new Map();
+      for(const item of movable)if(item.kind==='element'&&item.el.localName==='image'){const panel=item.el.closest('[data-panel]');if(!imageOwners.has(panel))imageOwners.set(panel,new Set());imageOwners.get(panel).add(item.key);}
       return movable.filter(item=>{
         const owner=item.el.closest('[data-scale-owner]');
         // The owned scale bar already follows its image. Selecting both the
         // image and a bar label must not apply the same gesture twice.
-        return !owner||!movable.some(other=>other.kind==='element'&&other.el.localName==='image'&&other.key===owner.dataset.scaleOwner&&other.el.closest('[data-panel]')===owner.closest('[data-panel]'));
+        return !owner||!imageOwners.get(owner.closest('[data-panel]'))?.has(owner.dataset.scaleOwner);
       });
     }
     const bounds=items=>union(items.map(item=>item.kind==='content'?contentBox(item):screenBox(item.kind==='overlay'?(item.el.firstElementChild||item.el):item.el)));
@@ -57,17 +60,24 @@ const StudioSelectionResize=(()=>{
       return text&&(b.width/ux<24||b.height/uy<24)?{x:10*ux,y:10*uy}:{x:0,y:0};
     }
     function refresh(){
-      layer.replaceChildren();if(disposed||config.enabled?.()===false)return;
-      const items=selected(),b=bounds(items);if(!b||!Object.values(b).every(Number.isFinite)||!b.width&&!b.height)return;
+      if(disposed||config.enabled?.()===false){layer.replaceChildren();displayedSelection=[];return;}
+      // During a gesture the captured box and affine action are authoritative.
+      // Remeasuring every selected SVG object here causes synchronous layout and
+      // repeats parent/child filtering on every pointer frame.
+      const items=gesture?gesture.items:selected();displayedSelection=items;
+      const action=gesture?.action,b=action?{x:gesture.bounds.x*action[0]+action[4],y:gesture.bounds.y*action[3]+action[5],width:gesture.bounds.width*action[0],height:gesture.bounds.height*action[3]}:gesture?gesture.bounds:bounds(items);
+      if(!b||!Object.values(b).every(Number.isFinite)||!b.width&&!b.height){layer.replaceChildren();return;}
       const screen=svg.getBoundingClientRect(),ux=l.width/screen.width,uy=l.height/screen.height,padding=handlePadding(items,b,ux,uy);
-      const rect=doc.createElementNS(NS,'rect');rect.setAttribute('class','selection-transform-outline');
+      let rect=layer.firstElementChild;if(!rect){rect=doc.createElementNS(NS,'rect');rect.setAttribute('class','selection-transform-outline');layer.append(rect);}
       for(const [k,v]of Object.entries(b))rect.setAttribute(k,v);rect.setAttribute('vector-effect','non-scaling-stroke');layer.append(rect);
+      const allowed=config.resizeHandles?.(items)||handles;
       for(const handle of handles){
-        if(!b.width&&/[ew]/.test(handle)||!b.height&&/[ns]/.test(handle))continue;
+        if(!allowed.includes(handle)||!b.width&&/[ew]/.test(handle)||!b.height&&/[ns]/.test(handle)){layer.querySelector(`[data-selection-resize="${handle}"]`)?.remove();continue;}
         const anchor=handlePoint(b,handle),x=anchor.x+(handle.includes('w')?-padding.x:handle.includes('e')?padding.x:0),y=anchor.y+(handle.includes('n')?-padding.y:handle.includes('s')?padding.y:0);
-        const group=doc.createElementNS(NS,'g');group.dataset.selectionResize=handle;group.style.pointerEvents='all';group.style.cursor=({n:'ns',s:'ns',e:'ew',w:'ew',nw:'nwse',se:'nwse',ne:'nesw',sw:'nesw'})[handle]+'-resize';
-        const title=doc.createElementNS(NS,'title');title.textContent=t('拖动角点等比缩放；边点调整宽高；Shift 切换比例；Alt 围绕中心');group.append(title);
-        for(const hit of [true,false]){const node=doc.createElementNS(NS,'rect'),size=hit?18:8;node.setAttribute('class',hit?'selection-resize-hit':'selection-resize-handle');for(const [k,v]of Object.entries({x:x-size*ux/2,y:y-size*uy/2,width:size*ux,height:size*uy,rx:2*ux}))node.setAttribute(k,v);node.setAttribute('vector-effect','non-scaling-stroke');group.append(node);}layer.append(group);
+        let group=layer.querySelector(`[data-selection-resize="${handle}"]`);
+        if(!group){group=doc.createElementNS(NS,'g');group.dataset.selectionResize=handle;group.style.pointerEvents='all';group.style.cursor=({n:'ns',s:'ns',e:'ew',w:'ew',nw:'nwse',se:'nwse',ne:'nesw',sw:'nesw'})[handle]+'-resize';group.append(doc.createElementNS(NS,'title'));for(const hit of [true,false]){const node=doc.createElementNS(NS,'rect');node.setAttribute('class',hit?'selection-resize-hit':'selection-resize-handle');node.setAttribute('vector-effect','non-scaling-stroke');group.append(node);}layer.append(group);}
+        group.firstElementChild.textContent=t('拖动角点等比缩放；边点调整宽高；Shift 切换比例；Alt 围绕中心');
+        [...group.querySelectorAll('rect')].forEach((node,index)=>{const size=index===0?18:8;for(const [k,v]of Object.entries({x:x-size*ux/2,y:y-size*uy/2,width:size*ux,height:size*uy,rx:2*ux}))node.setAttribute(k,v);});
       }
     }
     function capture(items){
@@ -83,25 +93,30 @@ const StudioSelectionResize=(()=>{
           result.saved=item.kind==='content'?s.panels[item.id].contentTransforms?.[item.vi]||I:G.multiply([1,0,0,1,+(props['offset-x']||0),+(props['offset-y']||0)],props['object-transform']?JSON.parse(props['object-transform']):I);
           if(item.kind==='element'&&item.el.localName==='image')result.attached=[...panel.querySelectorAll('[data-scale-owner]')].filter(node=>node.dataset.scaleOwner===item.key&&node.closest('[data-panel]')===panel&&!node.closest('defs,clipPath,mask,pattern,symbol')&&!items.some(other=>other.el===node||other.el.contains(node))).map(snapshot);
         }
-        return result;
+        result.semantic=config.captureResize?.(result);return result;
       });
     }
+    const itemDelta=(item,action)=>core().multiply(core().multiply(core().inverse(item.space),action),item.space);
     function persistAction(g,action){
-      const next=clone(g.base),sx=action[0],sy=action[3];
+      // Copy only the records changed by this gesture. Unrelated panels can
+      // contain thousands of edits; they remain immutable and shared here.
+      const next={...g.base,panels:{...g.base.panels}},sx=action[0],sy=action[3],panels=new Map(),overlays=new Map();
+      const panelCopy=id=>{if(!panels.has(id)){const old=g.base.panels[id],p={...old,edits:{...old.edits},label:old.label?{...old.label}:old.label,contentTransforms:{...old.contentTransforms},contentBackgrounds:{...old.contentBackgrounds}};next.panels[id]=p;panels.set(id,p);}return panels.get(id);};
+      const copiedVariants=new Map();
       for(const item of g.items){
         if(item.kind==='element'||item.kind==='content'){
-          const delta=G.multiply(G.multiply(G.inverse(item.space),action),item.space),value=G.multiply(delta,item.saved),p=next.panels[item.id];
+          const delta=itemDelta(item,action),value=G.multiply(delta,item.saved),p=panelCopy(item.id);
           if(item.kind==='content'){p.contentTransforms||={};p.contentTransforms[item.vi]=value;p.contentBackgrounds||={};p.contentBackgrounds[item.vi]=[...new Set([...(p.contentBackgrounds[item.vi]||[]),...(item.backgroundKeys||[])])];}
-          else{p.edits[item.vi]||={};const props=p.edits[item.vi][item.key]||={};props['object-transform']=JSON.stringify(value);delete props['offset-x'];delete props['offset-y'];}
+          else{if(!copiedVariants.has(p))copiedVariants.set(p,new Set());if(!copiedVariants.get(p).has(item.vi)){p.edits[item.vi]={...p.edits[item.vi]};copiedVariants.get(p).add(item.vi);}const props=p.edits[item.vi][item.key]={...p.edits[item.vi][item.key]};if(config.persistResize?.(item,delta,next)!==true){props['object-transform']=JSON.stringify(value);delete props['offset-x'];delete props['offset-y'];}}
         }else if(item.kind==='overlay'){
-          const a=next.overlays.find(a=>a.id===item.id),space=config.overlayGeometry?.(a)||{width:l.width,height:l.height,dx:0,dy:0},start={x:a.x*space.width+(space.dx||0),y:a.y*space.height+(space.dy||0)},p=G.applyPoint(action,start);
+          const a={...g.base.overlays.find(a=>a.id===item.id)};overlays.set(item.id,a);const space=config.overlayGeometry?.(a)||{width:l.width,height:l.height,dx:0,dy:0},start={x:a.x*space.width+(space.dx||0),y:a.y*space.height+(space.dy||0)},p=G.applyPoint(action,start);
           a.x=(p.x-(space.dx||0))/space.width;a.y=(p.y-(space.dy||0))/space.height;a.w*=sx;a.h*=sy;a.size*=sy;a.stroke*=Math.sqrt(sx*sy);if(a.type==='text')a.stretch=(a.stretch||1)*sx/sy;
         }else if(item.kind==='label'){
-          const pos=l.positions.find(p=>p.id===item.id),box=pos.renderBox||pos,a=next.panels[item.id].label,p=G.applyPoint(action,{x:box.x+box.width*a.x/100,y:box.y+box.height*a.y/100});
+          const pos=l.positions.find(p=>p.id===item.id),box=pos.renderBox||pos,a=panelCopy(item.id).label,p=G.applyPoint(action,{x:box.x+box.width*a.x/100,y:box.y+box.height*a.y/100});
           a.x=(p.x-box.x)/box.width*100;a.y=(p.y-box.y)/box.height*100;a.size*=sy;a.stretch=(a.stretch||1)*sx/sy;
         }
       }
-      return next;
+      if(overlays.size)next.overlays=g.base.overlays.map(a=>overlays.get(a.id)||a);return next;
     }
     function paint(){
       frame=0;const g=gesture;if(!g||!g.last||config.state()!==g.base)return;
@@ -109,13 +124,17 @@ const StudioSelectionResize=(()=>{
       if(g.move){const p=point(e),delta=config.snapMove?.(g.moveContext,p.x-g.origin.x,p.y-g.origin.y,e.altKey)||{dx:p.x-g.origin.x,dy:p.y-g.origin.y};action=[1,0,0,1,delta.dx,delta.dy];}
       else{const mode=config.aspect?.()||'auto',options={shiftKey:e.shiftKey,altKey:e.altKey,minSize:1,maxScale:100,guides:config.snapGuides?.()||{},snapThreshold:5*l.width/svg.getBoundingClientRect().width};if(mode!=='auto')options.lockAspect=mode==='locked';const p=point(e),resizePoint={x:p.x-g.resizeOffset.x,y:p.y-g.resizeOffset.y},resize=G.resizeBox(g.bounds,g.handle,resizePoint,options);action=resize.matrix;config.onSnap?.(resize.snapped);}
       try{const next=persistAction(g,action);config.validate?.(next);g.next=next;g.action=action;
-        for(const item of g.items.flatMap(item=>[item,...item.attached])){const local=G.multiply(G.multiply(G.multiply(G.inverse(item.parent),action),item.parent),item.own);item.el.setAttribute('transform',attr(local));}
+        for(const item of g.items){if(item.kind==='element'&&config.previewResize?.(item,itemDelta(item,action),next)===true)continue;for(const node of [item,...item.attached]){const local=G.multiply(G.multiply(G.multiply(G.inverse(node.parent),action),node.parent),node.own);node.el.setAttribute('transform',attr(local));}}
         config.onPreview?.(next);refresh();
       }catch(error){config.onError?.(error);}
     }
     function start(e){
       if(e.button!==0||disposed||gesture||config.enabled?.()===false)return;
-      const handle=e.target.closest?.('[data-selection-resize]')?.dataset.selectionResize,items=selected(),move=!handle&&items.length===1&&items[0].kind==='content'&&items[0].el.contains(e.target);
+      const handle=e.target.closest?.('[data-selection-resize]')?.dataset.selectionResize;
+      // Ordinary canvas clicks must not scan a large selection. Only a real
+      // resize handle or the already-displayed whole-content target can start.
+      if(!handle&&!(displayedSelection.length===1&&displayedSelection[0].kind==='content'&&displayedSelection[0].el.contains(e.target)))return;
+      const items=selected(),move=!handle&&items.length===1&&items[0].kind==='content'&&items[0].el.contains(e.target);
       if(!handle&&!move)return;const b=bounds(items);if(!b)return;
       e.preventDefault();e.stopImmediatePropagation();const origin=point(e),anchor=handle?handlePoint(b,handle):origin,screen=svg.getBoundingClientRect(),padding=handlePadding(items,b,l.width/screen.width,l.height/screen.height);
       // Resize from pointer displacement, not the outside hit target's absolute
@@ -130,7 +149,7 @@ const StudioSelectionResize=(()=>{
       if(g.moved&&g.next&&config.state()===g.base){const label=g.move?'已移动图内内容':g.items[0].kind==='content'?'已缩放整张小图':'已缩放所选对象';try{if(config.commit(g.next,t(label))!==true)restore(g);}catch(error){restore(g);config.onError?.(error);}}else restore(g);
       config.onSnap?.({});config.onFinish?.();
     }
-    function restore(g){for(const item of (g?.items||[]).flatMap(item=>[item,...item.attached]))if(item.transform===null)item.el.removeAttribute('transform');else item.el.setAttribute('transform',item.transform);if(g)config.onPreview?.(g.base);refresh();}
+    function restore(g){for(const item of g?.items||[]){config.restoreResize?.(item,g.base);for(const node of [item,...item.attached])if(node.transform===null)node.el.removeAttribute('transform');else node.el.setAttribute('transform',node.transform);}if(g)config.onPreview?.(g.base);refresh();}
     function cancel(){if(!gesture)return false;if(frame)caf(frame);frame=0;const g=gesture;gesture=null;svg.classList.remove('is-resizing-selection');restore(g);if(svg.hasPointerCapture?.(g.pointerId))svg.releasePointerCapture(g.pointerId);config.onSnap?.({});return true;}
     const cancelEvent=e=>{if(gesture&&e.pointerId===gesture.pointerId){e.stopImmediatePropagation();cancel();}};
     for(const [event,handler]of [['pointerdown',start],['pointermove',move],['pointerup',finish],['pointercancel',cancelEvent],['lostpointercapture',cancelEvent]])svg.addEventListener(event,handler,true);

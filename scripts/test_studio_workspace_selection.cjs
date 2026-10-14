@@ -198,3 +198,14 @@ assert.equal(restored.current.panels.p0.edits[0].e2['offset-y'],'4');
 assert.deepEqual(restored.undo(),originalState,'one undo restores both selected texts');
 assert.deepEqual(restored.redo(),saved.current,'redo restores the persisted movement');
 console.log('PASS marquee-to-drag: selected text/annotation/label, mixed selection, blank/Shift selection, single undo and project persistence.');
+
+// A burst of native-object pointer events paints once; release flushes its own
+// final coordinates before a single history commit, and cancel leaves no RAF.
+const burst=harness();burst.tap(burst.t1,140,148);burst.svg.onpointerdown(burst.event(140,148,burst.t1));
+for(let i=1;i<=80;i++)burst.svg.onpointermove(burst.event(140+i,148+i/2,burst.t1,{altKey:true}));
+assert.equal(burst.raf.size,1);assert.equal(burst.stats().commits,0);assert.deepEqual(burst.s,burst.initial);
+burst.flush();assert.equal(burst.raf.size,0);assert.equal(burst.stats().commits,0);
+burst.svg.onpointermove(burst.event(230,193,burst.t1,{altKey:true}));burst.svg.onpointerup(burst.event(240,198,burst.t1,{altKey:true}));
+assert.equal(burst.stats().commits,1);assert.equal(burst.raf.size,0);assert.equal(+burst.s.panels.p0.edits[0].tick1['offset-x'],100);assert.equal(+burst.s.panels.p0.edits[0].tick1['offset-y'],50);
+const cancelled=harness();cancelled.tap(cancelled.t1,140,148);cancelled.svg.onpointerdown(cancelled.event(140,148,cancelled.t1));cancelled.svg.onpointermove(cancelled.event(160,170,cancelled.t1));assert.equal(cancelled.raf.size,1);cancelled.svg.onpointercancel();cancelled.flush();assert.equal(cancelled.raf.size,0);assert.equal(cancelled.stats().commits,0);assert.deepEqual(cancelled.s,cancelled.initial);
+console.log('PASS object drag rAF burst: one pending frame, final release coordinates, one commit and no delayed repaint after cancel.');

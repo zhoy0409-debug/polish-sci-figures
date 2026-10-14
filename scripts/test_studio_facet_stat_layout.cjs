@@ -60,7 +60,7 @@ class Matrix{
 const range=(a,b)=>{const start=source.indexOf(a),end=source.indexOf(b,start);assert.ok(start>0&&end>start,a);return source.slice(start,end);};
 const anchorCode=range('  function statisticalAnchorElements(','  function measureStatisticalAnchors('),infoCode=range('  function statisticalAnnotationSets(','  function statisticalExportRecords('),drawCode=range('  function appendStatisticalBand(','  function annotationHeight(');
 let currentSvg,currentFixture,currentState;
-const ctx={...helpers,T:x=>x,NS:'svg',DOMMatrix:Matrix,document:{createElementNS:(_,tag)=>new Node({tag,attrs:{}}),createTextNode:text=>({textContent:text})},state:()=>currentState,panel:()=>{const viewBox=currentSvg.getAttribute('viewBox').split(/\s+/).map(Number);return {variants:[{preserveAspect:true,viewBox,width:viewBox[2],height:viewBox[3]}]};},baseSvg:()=>currentSvg,statisticalAnalysisFor:()=>currentFixture.analysis};
+const ctx={...helpers,project:{},T:x=>x,NS:'svg',DOMMatrix:Matrix,document:{createElementNS:(_,tag)=>new Node({tag,attrs:{}}),createTextNode:text=>({textContent:text})},state:()=>currentState,panel:()=>{const viewBox=currentSvg.getAttribute('viewBox').split(/\s+/).map(Number);return {variants:[{preserveAspect:true,viewBox,width:viewBox[2],height:viewBox[3]}]};},baseSvg:()=>currentSvg,statisticalAnalysisFor:()=>currentFixture.analysis};
 vm.createContext(ctx);vm.runInContext(anchorCode+'\n'+infoCode+'\n'+drawCode,ctx);
 ctx.measureStatisticalAnchors=(svg,anchors)=>{const frame=ctx.statisticalAxisFrame(svg,anchors.axis);return {centers:anchors.nodes.map(n=>+n.getAttribute('x')),tops:anchors.nodes.map(()=>frame.y+5)};};
 const snapshots=[];
@@ -79,7 +79,7 @@ for(const fixture of fixtures){
     const savedAxes=before.plotSets.map(set=>({axis:set.axis,title:set.title,titleY:set.title?+set.title.getAttribute('y'):null,row:set.row,frame:set.frame,label:set.label}));
     const build=range('    if(!raw&&s.panels[id].annotationStyle&&statisticalAnnotationInfo','    if(!raw)for(const [key,cfg]');
     Object.assign(ctx,{raw:false,id:'p',vi:0,s:currentState,svg:currentSvg,reflow:v});vm.runInContext(build,ctx);
-    if(before.placement==='band'){assert.ok(currentSvg.hasAttribute('data-stat-band-height'),'unfittable text falls back to a readable named result band');for(const [p,d]of originalPaths)assert.equal(p.getAttribute('d'),d);snapshots.push({name:fixture.name,size:fixture.size,fontSize,style,format,placement:'band'});continue;}
+    if(before.placement==='analysis'){assert.equal(currentSvg.hasAttribute('data-stat-band-height'),false,'unfittable text remains in the analysis panel without a footer');assert.equal(currentSvg.getAttribute('viewBox'),box.join(' '));for(const [p,d]of originalPaths)assert.equal(p.getAttribute('d'),d);snapshots.push({name:fixture.name,size:fixture.size,fontSize,style,format,placement:'analysis'});continue;}
     assert.equal(currentSvg.getAttribute('data-stat-preserve'),'true','actual editedSvg path invokes anchored rendering');
     const afterBox=currentSvg.getAttribute('viewBox').split(/\s+/).map(Number);assert.deepEqual(afterBox,[...box.slice(0,3),box[3]+metrics.totalHeader]);
     for(const [p,d]of originalPaths)assert.equal(p.getAttribute('d'),d,'original data path is not deformed');
@@ -92,9 +92,9 @@ for(const fixture of fixtures){
   }
   assert.equal(JSON.stringify(fixture.analysis),originalAnalysis,'standard and precise presentation never modify computed analysis values');
   if(fixture.name!=='raincloud'){
-    const original=fixture.analysis;currentSvg=new Node(fixture.svg);currentFixture={...fixture,analysis:JSON.parse(JSON.stringify(original))};currentFixture.analysis.facets[0].label='Unknown facet';assert.equal(ctx.statisticalAnnotationInfo('p').placement,'band');
-    currentFixture=fixture;currentSvg=new Node(fixture.svg);let sets=ctx.statisticalAnnotationInfo('p').plotSets;sets[0].title.textContent=sets[1].title.textContent;assert.equal(ctx.statisticalAnnotationInfo('p').placement,'band','duplicate/absent facet titles never guess a match');
-    currentSvg=new Node(fixture.svg);sets=ctx.statisticalAnnotationInfo('p').plotSets;sets[0].title.textContent='';assert.equal(ctx.statisticalAnnotationInfo('p').placement,'band','missing titles use named results instead of guessed axis position');
+    const original=fixture.analysis;currentSvg=new Node(fixture.svg);currentFixture={...fixture,analysis:JSON.parse(JSON.stringify(original))};currentFixture.analysis.facets[0].label='Unknown facet';assert.equal(ctx.statisticalAnnotationInfo('p').placement,'analysis');
+    currentFixture=fixture;currentSvg=new Node(fixture.svg);let sets=ctx.statisticalAnnotationInfo('p').plotSets;sets[0].title.textContent=sets[1].title.textContent;assert.equal(ctx.statisticalAnnotationInfo('p').placement,'analysis','duplicate/absent facet titles never guess a match');
+    currentSvg=new Node(fixture.svg);sets=ctx.statisticalAnnotationInfo('p').plotSets;sets[0].title.textContent='';assert.equal(ctx.statisticalAnnotationInfo('p').placement,'analysis','missing titles retain results in analysis instead of guessing axis position');
   }
 }
 
@@ -134,7 +134,7 @@ const titleLine=source.split('\n').find(line=>line.includes('const titleShift=')
 const titleBaselines=[];
 for(const pos of layoutContext.layout(mixed).positions){
   const svg=drawings[pos.id],v=assets[pos.id].variants[0],bodyPos={...pos,height:pos.height-pos.statisticsTop-pos.statisticsBand};
-  vm.runInNewContext(titleLine.trim(),{svg,v,pos,raw:false,fitted:false,translateStatisticalElement:ctx.translateStatisticalElement,namespace:()=>{}});
+  vm.runInNewContext(titleLine.trim(),{svg,v,pos,vi:0,s:{},raw:false,fitted:false,wrapPanelContent:()=>{},translateStatisticalElement:ctx.translateStatisticalElement,namespace:()=>{}});
   vm.runInNewContext(positionLine.trim(),{svg,v,pos,bodyPos,fitPos:pos,fitted:false,vi:0});
   const title=svg.querySelector('[data-stat-facet-title="0"]'),axis=title.closest('[id^="axes_"]');
   titleBaselines.push(+svg.getAttribute('y')+ +title.getAttribute('y')+title.transform.baseVal.consolidate().matrix.f+axis.transform.baseVal.consolidate().matrix.f);
@@ -231,7 +231,7 @@ const densitySnapshots=[];
 for(const fixture of fixtures.filter(f=>f.name==='raincloud'))for(const fontSize of [9,24,32]){
   currentFixture=fixture;currentSvg=new Node(fixture.svg);const box=currentSvg.getAttribute('viewBox').split(/\s+/).map(Number),v={width:box[2],height:box[3],viewBox:box,preserveAspect:true};
   ctx.baseSvg=()=>currentSvg;ctx.panel=()=>({variants:[v]});currentState={panels:{p:{variant:0,annotationStyle:'p',annotationFont:{font:'Arial',size:fontSize}}}};
-  const info=ctx.statisticalAnnotationInfo('p');if(info.placement==='band')continue;
+  const info=ctx.statisticalAnnotationInfo('p');if(info.placement==='analysis')continue;
   const set=info.plotSets[0],density=set.anchors.artists.filter(n=>/^FillBetweenPolyCollection/.test(n.id));assert.equal(density.length,3,'every real KDE polygon is a measured statistical obstacle');
   const measured=ctx.measureStatisticalAnchors(currentSvg,set.anchors),withoutDensity=ctx.measureStatisticalAnchors(currentSvg,{...set.anchors,artists:set.anchors.artists.filter(n=>!density.includes(n))}),densityTop=Math.max(set.frame.y,Math.min(...density.map(n=>n.getBBox().y)));
   assert.ok(Math.min(...measured.tops)<=densityTop+1e-6,'annotation base includes the visible KDE tail');assert.ok(Math.min(...measured.tops)<Math.min(...withoutDensity.tops)-1,'this fixture reproduces the former sample-only height error');
@@ -249,4 +249,4 @@ const proof=path.join(root,'.cache/facet-statistics-qa');fs.mkdirSync(proof,{rec
 fs.writeFileSync(path.join(proof,'raincloud-contours.json'),JSON.stringify(densitySnapshots,null,2));
 fs.writeFileSync(path.join(proof,'fixture-structure.json'),JSON.stringify(fixtures.map(f=>({name:f.name,size:f.size,axes:new Node(f.svg).querySelectorAll('[id^="axes_"]').map(a=>({id:a.id,text:a.querySelectorAll('text').map(t=>t.textContent)}))})),null,2));
 fs.writeFileSync(path.join(proof,'layouts.json'),JSON.stringify({scope:'Production matching/drawing logic with real SVG structures; artist bounds and font metrics require browser QA',snapshots,titleEditCases,conditionCases,conditionSnapshots},null,2));
-console.log(`PASS ${fixtures.length} real SVG fixtures / ${snapshots.length} layout cases (${snapshots.filter(s=>s.placement==='band').length} safe width fallbacks), ${titleEditCases} title editing/hiding, ${conditionCases} condition row cases: facet identities, per-row headroom, source paths, bounds, title/body alignment and 9/24/32 pt.`);
+console.log(`PASS ${fixtures.length} real SVG fixtures / ${snapshots.length} layout cases (${snapshots.filter(s=>s.placement==='analysis').length} non-expanding analysis fallbacks), ${titleEditCases} title editing/hiding, ${conditionCases} condition row cases: facet identities, per-row headroom, source paths, bounds, title/body alignment and 9/24/32 pt.`);
