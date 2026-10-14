@@ -12,6 +12,7 @@ import base64
 import binascii
 import hashlib
 import io
+import math
 import re
 import warnings
 from dataclasses import dataclass
@@ -104,7 +105,20 @@ def _validate(images):
         seen.add(identity)
 
 
-def _high_depth_preview(payload, original, cv):
+def _roi_box(roi, width, height):
+    if (not isinstance(roi, dict) or set(roi) != {'x', 'y', 'w', 'h'} or
+            any(type(v) not in (int, float) or not math.isfinite(v) for v in roi.values()) or
+            roi['x'] < 0 or roi['y'] < 0 or min(roi['w'], roi['h']) <= 0 or
+            roi['x']+roi['w'] > 1+1e-12 or roi['y']+roi['h'] > 1+1e-12):
+        raise ValueError('Invalid normalized image ROI')
+    box = (math.floor(roi['x']*width), math.floor(roi['y']*height),
+           min(width, math.ceil((roi['x']+roi['w'])*width)),
+           min(height, math.ceil((roi['y']+roi['h'])*height)))
+    return box, {'x': box[0]/width, 'y': box[1]/height,
+                 'w': (box[2]-box[0])/width, 'h': (box[3]-box[1])/height}
+
+
+def _high_depth_preview(payload, original, cv, roi=None):
     """Keep native scientific intensities distinct from an 8-bit preview.
 
     Pillow exposes 16-bit grayscale, but may expose multichannel 16-bit TIFF/PNG
@@ -148,9 +162,16 @@ def _high_depth_preview(payload, original, cv):
     digest.update(raw.tobytes())
     native_intensity = raw[:, :, :3] if raw.ndim == 3 and raw.shape[2] == 4 else raw
     low, high = float(native_intensity.min()), float(native_intensity.max())
-    if max(width, height) > MAX_SIDE:
-        factor = MAX_SIDE / max(width, height)
-        raw = cv.resize(raw, (max(1, round(width * factor)), max(1, round(height * factor))), interpolation=cv.INTER_AREA)
+    analysis_roi = None
+    if roi is not None:
+        box, analysis_roi = _roi_box(roi, width, height)
+        raw = raw[box[1]:box[3], box[0]:box[2]]
+    # Crop native pixels before reducing them. Width/height and the digest
+    # continue to describe the full, oriented source, not this analysis view.
+    shown_height, shown_width = raw.shape[:2]
+    if max(shown_width, shown_height) > MAX_SIDE:
+        factor = MAX_SIDE / max(shown_width, shown_height)
+        raw = cv.resize(raw, (max(1, round(shown_width * factor)), max(1, round(shown_height * factor))), interpolation=cv.INTER_AREA)
     intensity = raw[:, :, :3] if raw.ndim == 3 and raw.shape[2] == 4 else raw
     shown = np.zeros(intensity.shape, np.uint8)
     if high > low:
@@ -163,10 +184,10 @@ def _high_depth_preview(payload, original, cv):
         background.paste(image, mask=Image.fromarray(alpha))
         image = background
     return image, digest, {'sourceDtype': str(raw.dtype), 'minimum': low, 'maximum': high,
-                           'previewMapping': 'linear min–max to 8-bit; native pixels used for exact identity'}, (width, height)
+                           'previewMapping': 'linear min–max to 8-bit; native pixels used for exact identity'}, (width, height), analysis_roi
 
 
-def _read(record, cv):
+def _read(record, cv, roi=None):
     prefix = _DATA_URL.match(record['data'])
     try:
         payload = base64.b64decode(record['data'][prefix.end():], validate=True)
@@ -191,8 +212,9 @@ def _read(record, cv):
                 high_depth = (original.mode.startswith('I') or original.mode == 'F' or max(bits) > 8 or
                               (original.format == 'PNG' and len(payload) > 24 and payload[24] > 8))
                 intensity_mapping = None
+                analysis_roi = None
                 if high_depth:
-                    rgb, digest, intensity_mapping, (width, height) = _high_depth_preview(payload, original, cv)
+                    rgb, digest, intensity_mapping, (width, height), analysis_roi = _high_depth_preview(payload, original, cv, roi=roi)
                 else:
                     rgba = ImageOps.exif_transpose(original).convert('RGBA')
                     width, height = rgba.size
@@ -203,6 +225,9 @@ def _read(record, cv):
                     del rgba
                     rgb = background.convert('RGB')
                     del background
+                if roi is not None and not high_depth:
+                    box, analysis_roi = _roi_box(roi, width, height)
+                    rgb = rgb.crop(box)
                 rgb.thumbnail((MAX_SIDE, MAX_SIDE), Image.Resampling.LANCZOS)
     except (UnidentifiedImageError, OSError, Image.DecompressionBombError, Image.DecompressionBombWarning, cv.error) as exc:
         raise ValueError('图片损坏、尺寸过大或格式无法读取。 / The image is damaged, too large or unreadable.') from exc
@@ -210,6 +235,8 @@ def _read(record, cv):
     gray = cv.cvtColor(array, cv.COLOR_RGB2GRAY)
     info = {'id': record['id'], 'label': record['label'], 'width': width, 'height': height,
             'sha256': digest.hexdigest(), 'thumbnail': _thumbnail(rgb), 'warnings': []}
+    if analysis_roi is not None:
+        info['analysisRoi'] = analysis_roi
     if intensity_mapping:
         info['intensityMapping'] = intensity_mapping
         info['warnings'].append('high_bit_depth_preview')

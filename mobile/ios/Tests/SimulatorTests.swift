@@ -115,7 +115,10 @@ final class SimulatorTests: XCTestCase {
         let document = app.cells.matching(filename).firstMatch
         XCTAssertTrue(document.waitForExistence(timeout: 15), "Saved local project is not visible in the actual Files picker")
         let imported = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); imported.name = "iOS Files reimport selection"; imported.lifetime = .keepAlways; add(imported)
-        guard tapReadyControl(document, in: app, message: "Saved local project is not actionable in the actual Files picker") else { return }
+        // A Files grid cell includes whitespace between its thumbnail and
+        // wrapped filename. Its geometric centre is not always actionable;
+        // let XCTest choose the actual hittable point of this observed file.
+        document.tap()
         let confirm = app.alerts.buttons["Confirm"].firstMatch
         // Handle the actual confirmation before diagnostic capture. WebKit's
         // synchronous window.confirm can suspend screenshots and AX rescans.

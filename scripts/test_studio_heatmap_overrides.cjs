@@ -13,7 +13,7 @@ function matrix(){
   const texts=Array.from({length:56},(_,i)=>node({'data-key':'e'+i},'0.50'));
   const groups=texts.map((text,i)=>({id:`studio-heat-value-${i}-3fe0000000000000-eeeeee-1-2`,style:{},querySelectorAll:query=>query==='text'?[text]:[]}));
   const boxes=texts.map(()=>{const p=node({d:'M 0 0 L 40 0 L 40 32 L 0 32 z'});p.localName='path';return p;});
-  return {texts,groups,boxes,querySelectorAll(query){if(query.includes('studio-heat-value-'))return groups;if(query==='text,path,line,rect')return texts;return[];},
+  return {texts,groups,boxes,getAttribute(){return null;},querySelectorAll(query){if(query.includes('studio-heat-value-'))return groups;if(query==='text,path,line,rect'||query==='[data-key]')return texts;return[];},
     querySelector(query){if(query.includes('studio-heat-box-'))return boxes[+query.match(/box-(\d+)/)[1]];if(query.includes('data-key'))return texts[+query.match(/e(\d+)/)[1]];return null;}};
 }
 let state={panels:{'panel-0':{variant:0,edits:{},heatmapLabels:{visible:true,decimals:2,fontSize:8,color:'auto'}}}};

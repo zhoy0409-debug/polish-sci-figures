@@ -13,6 +13,7 @@ class Element{
   get textContent(){return this.ownText+this.children.map(n=>n.textContent).join('');}set textContent(v){this.ownText=String(v);this.children=[];}
   get attributes(){return Object.entries(this.attrs).map(([name,value])=>({name,localName:name,value}));}
   getAttribute(k){return this.attrs[k]??null;}setAttribute(k,v){this.attrs[k]=String(v);}hasAttribute(k){return k in this.attrs;}removeAttribute(k){delete this.attrs[k];}removeAttributeNode(a){delete this.attrs[a.name];}
+  setAttributeNS(namespace,k,v){assert.equal(namespace,'http://www.w3.org/2000/xmlns/');this.setAttribute(k,v);}
   append(...nodes){for(const n of nodes){n.parentNode=n.parentElement=this;this.children.push(n);}}
   remove(){if(this.parentElement)this.parentElement.children=this.parentElement.children.filter(n=>n!==this);this.parentElement=this.parentNode=null;}
   matches(s){return s.split(',').some(part=>{const m=part.trim().match(/^(\*|[\w-]+)?(?:\[([\w-]+)([\^*$]?=)?["']?([^"'\]]*)["']?\])?$/);return !!m&&(!m[1]||m[1]==='*'||m[1]===this.localName)&&(!m[2]||(m[3]==='='?this.getAttribute(m[2])===m[4]:m[3]==='^='?(this.getAttribute(m[2])||'').startsWith(m[4]):m[3]==='$='?(this.getAttribute(m[2])||'').endsWith(m[4]):this.hasAttribute(m[2])));});}
@@ -34,7 +35,7 @@ const overlay=(id,type,x,y,w,h,text)=>({id,type,x:x/page.width,y:y/page.height,w
 const state={order:['a','b'],columns:2,gap:12,panels:{a:{variant:0,methodChoice:{key:'primary_test'},statistics:{analysis:{p:.03}}},b:{variant:0,methodChoice:{key:'primary_test'},statistics:{analysis:{p:.07}}}},exportSettings:{widthMm:800*25.4/72*2,dpi:600},overlays:[overlay('inside','text',490,400,80,20,'Inside B'),overlay('cross','line',405,500,65,0),overlay('outside','text',30,100,80,20,'Outside A')],alignmentGuides:[{id:'guide-1',axis:'x',position:520}]};
 const assets={a:{variants:[{width:330,height:300,viewBox:[0,0,330,300]}]},b:{variants:[{width:350,height:240,viewBox:[0,0,350,240]}]}};
 const calls={layouts:[],fit:[],edited:[],labels:[],offsets:[]};
-const ctx={...helpers,NS:'http://www.w3.org/2000/svg',state:()=>state,copy,T:x=>x,selectedPanel:'b',selected:['e1'],selectedAnnotations:['inside'],showGuides:true,layoutMode:true,panelSelection:['b'],
+const ctx={imageInsets:null,...helpers,NS:'http://www.w3.org/2000/svg',state:()=>state,copy,T:x=>x,selectedPanel:'b',selected:['e1'],selectedAnnotations:['inside'],showGuides:true,layoutMode:true,panelSelection:['b'],
   document:{createElementNS:(_,tag)=>new Element(tag),createTextNode:text=>({textContent:text}),createElement:tag=>new Element(tag),body:new Element('body')},
   layout:s=>{calls.layouts.push(s.order.slice());return page;},panel:id=>assets[id],fittedVariant:()=>null,
   editedSvg:(id,vi,s,raw)=>{calls.edited.push({id,vi,order:s.order.slice(),raw});const p=positions.find(p=>p.id===id),svg=element('svg',{viewBox:`0 0 ${p.width} ${p.height}`,'data-stat-first-header':p.statisticsFirstTop});svg.append(element('path',{id:'art-'+id,d:'M 40 100 L 60 80',stroke:'#334b70','data-key':'e0'}),element('text',{'font-size':12,x:50,y:125,'data-key':'e1'},'Plot '+id));return svg;},
@@ -44,7 +45,7 @@ const ctx={...helpers,NS:'http://www.w3.org/2000/svg',state:()=>state,copy,T:x=>
   gridFor:()=>({rows:2,places:{a:{row:0,col:0,rs:1,cs:1},b:{row:1,col:1,rs:1,cs:1}}})};
 vm.createContext(ctx);
 const extract=(begin,end)=>{const a=source.indexOf(begin),b=source.indexOf(end,a);assert.ok(a>0&&b>a,begin);return source.slice(a,b);};
-vm.runInContext(extract('  function overlayNode(','  function refreshOverlaySelection(')+'\n'+extract('  function composite(','  let autosaveQueue='),ctx);
+vm.runInContext(extract('  function insetGeometry(','  function insetSelection(')+'\n'+extract('  function panelExportRegion(','  function refreshInsetGraphics(')+'\n'+extract('  function overlayNode(','  function refreshOverlaySelection(')+'\n'+extract('  function composite(','  let autosaveQueue='),ctx);
 let checks=0;const eq=(a,b,label)=>{assert.deepEqual(a,b,label);checks++;},near=(a,b)=>{assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);checks++;};
 const snapshot=JSON.stringify(state),full=ctx.composite(false,true,state);
 eq(full.getAttribute('viewBox'),'0 0 800 620');near(parseFloat(full.getAttribute('width')),1600);near(parseFloat(full.getAttribute('height')),1240);

@@ -106,6 +106,12 @@ jobs:
             adb shell am instrument -w -e class org.polishscifigures.studio.preview.WorkspaceRestartInstrumentedTest org.polishscifigures.studio.preview.debug.test/androidx.test.runner.AndroidJUnitRunner | tee .cache/android-qa/process-restart.log
             grep -q 'OK (1 test)' .cache/android-qa/process-restart.log || test_status=1
           fi
+          if [ "$test_status" -eq 0 ]; then
+            # Run the native org.json update-metadata checks on Android itself.
+            # These use synthetic release records and never contact GitHub.
+            adb shell am instrument -w -e class org.polishscifigures.studio.preview.UpdateCheckerTest org.polishscifigures.studio.preview.debug.test/androidx.test.runner.AndroidJUnitRunner | tee .cache/android-qa/update-checker.log
+            grep -q 'OK (3 tests)' .cache/android-qa/update-checker.log || test_status=1
+          fi
           adb logcat -d >.cache/android-qa/logcat.txt
           adb pull /sdcard/Android/data/org.polishscifigures.studio.preview.debug/files/qa .cache/android-qa/runtime || true
           exit "$test_status"

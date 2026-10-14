@@ -172,13 +172,13 @@ for(const zoom of [.25,1,3.5]){
  let guides=[],outlines=0,manual=null;
  const l=geometry,svg={getBoundingClientRect:()=>({width:l.width*liveZoom,height:l.height*liveZoom}),querySelector:s=>s.includes('annotation')?overlay:null};
  const adapterItems=[native('p','e1',{el:text}),native('p','e900000',{el:stat}),{kind:'overlay',id:'note'},{kind:'label',id:'q',el:label},{kind:'guide',id:'guide-1'}];
- const ctx={zoomView:{},l,svg,state:()=>initial,previewState:initial,elementDrag:null,overlayDrag:null,labelDrag:null,guideDrag:null,marquee:null,resizeDrag:null,panelDrag:null,DOMMatrix:Matrix,alignmentSnap,alignmentContext:()=>({bounds:{left:10,right:20,top:10,bottom:20},targets:[{axis:'x',position:11.1,manual:true}]}),overlayNode:a=>copy(a),drawAlignmentGuides:s=>manual=s.alignmentGuides[0].position,paintSnapGuides:g=>guides=g,drawSelection:()=>outlines++,selectedNodes:()=>[]};
- vm.createContext(ctx);const at=source.indexOf('    zoomView.nudgeCanvas='),end=source.indexOf('    svg.classList.toggle',at);assert.ok(at>0&&end>at);vm.runInContext(source.slice(at,end),ctx);
+ const ctx={imageLinks:null,zoomView:{},l,svg,state:()=>initial,previewState:initial,elementDrag:null,overlayDrag:null,labelDrag:null,guideDrag:null,marquee:null,resizeDrag:null,panelDrag:null,DOMMatrix:Matrix,alignmentSnap,alignmentContext:()=>({bounds:{left:10,right:20,top:10,bottom:20},targets:[{axis:'x',position:11.1,manual:true}]}),overlayNode:a=>copy(a),drawAlignmentGuides:s=>manual=s.alignmentGuides[0].position,paintSnapGuides:g=>guides=g,drawSelection:()=>outlines++,selectedNodes:()=>[]};
+ vm.createContext(ctx);const at=source.indexOf('    zoomView.nudgeCanvas='),end=source.indexOf('    svg.classList.toggle',at);assert.ok(at>0&&end>at);vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);
  assert.equal(ctx.zoomView.nudgeCanvas.isPreview,false);assert.equal(ctx.zoomView.nudgeCanvas.isGestureActive(),false);
  for(const key of ['elementDrag','overlayDrag','labelDrag','guideDrag','marquee','resizeDrag','panelDrag']){ctx[key]={};assert.equal(ctx.zoomView.nudgeCanvas.isGestureActive(),true,key);ctx[key]=null;}
- ctx.previewState=copy(initial);ctx.previewState.panels.p.variant=1;vm.runInContext(source.slice(at,end),ctx);assert.equal(ctx.zoomView.nudgeCanvas.isPreview,true);
- ctx.previewState={...initial,columns:3};vm.runInContext(source.slice(at,end),ctx);assert.equal(ctx.zoomView.nudgeCanvas.isPreview,true);
- ctx.previewState=initial;vm.runInContext(source.slice(at,end),ctx);
+ ctx.previewState=copy(initial);ctx.previewState.panels.p.variant=1;vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);assert.equal(ctx.zoomView.nudgeCanvas.isPreview,true);
+ ctx.previewState={...initial,columns:3};vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);assert.equal(ctx.zoomView.nudgeCanvas.isPreview,true);
+ ctx.previewState=initial;vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);
  const preview=ctx.zoomView.nudgeCanvas.capture(adapterItems),next=nudgeSelectionState(initial,adapterItems,1,.1,l).next;
  preview.draw(next,{dx:1,dy:.1});
  const translated=text.attrs.transform.match(/^translate\(([^ ]+) ([^)]+)\)/);near(+translated[1],.05);near(+translated[2],-.5);assert.ok(text.attrs.transform.endsWith('rotate(-90)'));

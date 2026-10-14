@@ -86,3 +86,49 @@ console.log('PASS compact whitespace: conservative per-track trim, four gutter c
     console.log('PASS compact SVG clipping: original page backgrounds cannot paint neighbouring cells; source geometry unchanged');
   }finally{global.document=oldDocument;}
 }
+if(process.argv.includes('--dom')){
+  const {JSDOM}=require('jsdom'),Insets=require('../skills/polish-sci-figures/assets/figure-studio/image-insets.js'),zlib=require('node:zlib');
+  const dom=new JSDOM('<!doctype html><body></body>'),doc=dom.window.document,ns='http://www.w3.org/2000/svg';
+  const prior={document:global.document,getComputedStyle:global.getComputedStyle};
+  const create=(tag,attrs={})=>{const n=doc.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);return n;};
+  const crc=bytes=>{let c=0xffffffff;for(const byte of bytes){c^=byte;for(let i=0;i<8;i++)c=(c>>>1)^((c&1)?0xedb88320:0);}return(c^0xffffffff)>>>0;};
+  const chunk=(name,body)=>{const type=Buffer.from(name),size=Buffer.alloc(4),sum=Buffer.alloc(4);size.writeUInt32BE(body.length);sum.writeUInt32BE(crc(Buffer.concat([type,body])));return Buffer.concat([size,type,body,sum]);};
+  const ihdr=Buffer.alloc(13);ihdr.writeUInt32BE(100);ihdr.writeUInt32BE(50,4);ihdr[8]=8;ihdr[9]=2;
+  const href='data:image/png;base64,'+Buffer.concat([Buffer.from([137,80,78,71,13,10,26,10]),chunk('IHDR',ihdr),chunk('IDAT',zlib.deflateSync(Buffer.alloc(301*50))),chunk('IEND',Buffer.alloc(0))]).toString('base64');
+  const matrix=m=>({...m,inverse(){return matrix(Insets.inverse(this));},multiply(b){return matrix(Insets.multiply(this,b));}}),identity=matrix({a:1,b:0,c:0,d:1,e:0,f:0});
+  const inherited=(n,key,fallback)=>{for(let at=n;at;at=at.parentElement){const value=at.style?.getPropertyValue(key)||at.getAttribute?.(key);if(value)return value;}return fallback;};
+  global.document=doc;global.getComputedStyle=n=>({display:inherited(n,'display','inline'),visibility:inherited(n,'visibility','visible'),opacity:inherited(n,'opacity','1'),fill:inherited(n,'fill','#000000'),stroke:inherited(n,'stroke','none'),fillOpacity:inherited(n,'fill-opacity','1'),strokeOpacity:inherited(n,'stroke-opacity','1'),strokeWidth:inherited(n,'stroke-width','1')});
+  let root;
+  dom.window.SVGElement.prototype.getScreenCTM=function(){return this===root?identity:matrix(Insets.relativeMatrix(this,root));};
+  dom.window.SVGElement.prototype.getBBox=function(){
+    if(this.hasAttribute('data-studio-inset-source'))throw Error('Uncropped source pixels must not be measured as inset ink');
+    const num=k=>Number(this.getAttribute(k)||0);
+    if(this.localName==='rect'||this.localName==='image')return{x:num('x'),y:num('y'),width:num('width'),height:num('height')};
+    const points=this.localName==='line'?[[num('x1'),num('y1')],[num('x2'),num('y2')]]:this.localName==='polygon'?this.getAttribute('points').trim().split(/\s+/).map(p=>p.split(',').map(Number)):null;
+    if(!points)throw Error('Unexpected visible element in measurement: '+this.localName);
+    const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);return{x:Math.min(...xs),y:Math.min(...ys),width:Math.max(...xs)-Math.min(...xs),height:Math.max(...ys)-Math.min(...ys)};
+  };
+  const record={id:'annotation-1',type:'inset',source:{panelId:'panel-1',variant:0,key:'e1',widthPx:100,heightPx:50},roi:{x:.2,y:.2,w:.2,h:.2},x:.6,y:.35,w:.25,h:.25,connector:true,showScale:true,color:'#ffffff',stroke:2,size:9};
+  const geometry={width:400,height:240,dx:0,dy:0},layout={width:400,height:240,cells:[{row:0,col:0,x:0,y:0,width:400,height:240}],positions:[{id:'panel-1',x:0,y:0,width:400,height:240}]},places={'panel-1':{row:0,col:0,rs:1,cs:1}};
+  function render(change={},translation=''){
+    root=create('svg',{width:400,height:240,viewBox:'0 0 400 240'});
+    const panel=create('svg',{'data-panel':'panel-1','data-variant':0,width:400,height:240,viewBox:'0 0 400 240',overflow:'visible'});
+    panel.append(create('image',{'data-key':'e1',x:40,y:30,width:160,height:80,href}));root.append(panel);
+    const content=Insets.renderContent({...record,...change},{root,geometry,calibration:100});assert.equal(content.hasAttribute('data-inset-unavailable'),false);
+    const group=create('g',{'data-annotation':'annotation-1',...(translation?{transform:translation}:{})});group.append(content);
+    // Editor handles are decorations, not ink, and must not enlarge the trim.
+    group.append(create('rect',{x:-900,y:-900,width:2000,height:2000,fill:'none',stroke:'#123456'}));root.append(group);return{content,group};
+  }
+  try{
+    const {content}=render();assert.ok(content.querySelector('[data-inset-scale-label]'),'Real core renders the calibrated scale inside its frame');
+    const before=root.outerHTML,measured=Compact.measure(root);assert.equal(root.outerHTML,before,'Measurement preserves encoded pixels, geometry and inset metadata');
+    assert.deepEqual(measured.ink['panel-1'],{x:40,y:30,width:160,height:80});
+    assert.deepEqual(measured.overlays,[{id:'annotation-1',box:{x:71,y:45,width:270,height:95}}],'Inset bounds include visible ROI/connector/frame and their strokes, not the magnified full source');
+    const result=Compact.plan({layout,places,...measured});assert.equal(result.available,true);assert.equal(result.layout.compact.overlayOwners['annotation-1'],'panel-1');assert.equal(result.layout.width,309);assert.equal(result.layout.height,118);
+    render({},'translate(8 -5)');assert.deepEqual(Compact.measure(root).overlays[0].box,{x:79,y:40,width:270,height:95},'Overlay translation moves measured visible bounds once');
+    const hidden=render();hidden.content.querySelector('[data-inset-roi]').setAttribute('display','none');hidden.content.querySelector('[data-inset-connector]').setAttribute('display','none');assert.deepEqual(Compact.measure(root).overlays[0].box,{x:239,y:88,width:102,height:52},'Hidden marks do not contribute to visible ink');
+    render({},'translate(100 0)');assert.equal(Compact.plan({layout,places,...Compact.measure(root)}).reason,'cross-panel-overlay','A genuinely outside inset remains protected from cropping');
+    render({connector:false,showScale:false});assert.deepEqual(Compact.measure(root).overlays[0].box,{x:71,y:45,width:270,height:95},'Removing the scale does not change the crop frame or source ROI protection');
+    console.log('PASS compact inset DOM: real crop renderer, clipped pixels excluded, ROI/connector/stroke union, translations, hidden marks, scale and actual overflow protection');
+  }finally{global.document=prior.document;global.getComputedStyle=prior.getComputedStyle;dom.window.close();}
+}

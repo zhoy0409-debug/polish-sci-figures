@@ -194,22 +194,33 @@ class Handler(BaseHTTPRequestHandler):
         if self.headers.get('Host')!=self.server.address:return self.send_json(403,{'error':'Invalid host'})
         if urlsplit(self.path).path!='/':return self.send_json(404,{'error':'Not found'})
         text=self.server.page.read_text(encoding='utf-8').replace("connect-src 'none'","connect-src 'self'").replace("connect-src https://www.ebi.ac.uk", "connect-src 'self' https://www.ebi.ac.uk")
-        config=json.dumps({'token':self.server.token,'endpoint':'/api/render','reflowEndpoint':'/api/reflow','analyzeEndpoint':'/api/analyze','splitFacetsEndpoint':'/api/split-facets','pdfEndpoint':'/api/import-pdf','duplicateEndpoint':'/api/image-duplicates'})
+        config=json.dumps({'token':self.server.token,'endpoint':'/api/render','reflowEndpoint':'/api/reflow','analyzeEndpoint':'/api/analyze','splitFacetsEndpoint':'/api/split-facets','pdfEndpoint':'/api/import-pdf','duplicateEndpoint':'/api/image-duplicates','imageLinksEndpoint':'/api/image-links'})
+        if getattr(self.server,'update_checker',None):
+            settings=json.loads(config);settings['updatesEndpoint']='/api/updates';settings['updateInfo']=self.server.update_checker.current;config=json.dumps(settings)
         text=text.replace('</head>',f'<script id="local-engine" type="application/json">{config}</script></head>',1)
         raw=text.encode();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(raw)
     def do_POST(self):
-        if self.path not in ('/api/render','/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf','/api/image-duplicates') or self.headers.get('Host')!=self.server.address or self.headers.get('Origin')!='http://'+self.server.address or self.headers.get('X-Studio-Token')!=self.server.token:return self.send_json(403,{'error':'Local editor authorization required'})
+        if self.path not in ('/api/render','/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf','/api/image-duplicates','/api/image-links','/api/updates') or self.headers.get('Host')!=self.server.address or self.headers.get('Origin')!='http://'+self.server.address or self.headers.get('X-Studio-Token')!=self.server.token:return self.send_json(403,{'error':'Local editor authorization required'})
         try:
             size=int(self.headers.get('Content-Length','0'))
-            limit=44000000 if self.path=='/api/image-duplicates' else 27000000 if self.path=='/api/import-pdf' else 3000000
+            limit=256 if self.path=='/api/updates' else 44000000 if self.path in ('/api/image-duplicates','/api/image-links') else 27000000 if self.path=='/api/import-pdf' else 3000000
             if not 0<size<=limit:raise ValueError(f'Request limit: {limit//1000000} MB')
             payload=json.loads(self.rfile.read(size));started=time.monotonic()
             if not isinstance(payload,dict):raise ValueError('Request body must be an object')
+            if self.path=='/api/updates':
+                if set(payload)-{'refresh'} or type(payload.get('refresh',False)) is not bool:raise ValueError('Update checks accept only a refresh boolean')
+                checker=getattr(self.server,'update_checker',None)
+                if checker is None:return self.send_json(200,{'status':'unavailable','reason':'unsupported-host'})
+                return self.send_json(200,checker.check(refresh=payload.get('refresh',False)))
             if self.path=='/api/image-duplicates':
                 from studio_duplicate_jobs import JOBS
                 return self.send_json(200,JOBS.request(payload))
             with LOCK:
-                if self.path=='/api/import-pdf':
+                if self.path=='/api/image-links':
+                    if set(payload)!={'images'}:raise ValueError('Image localization requires images')
+                    from studio_image_links import locate_image_links
+                    response=locate_image_links(payload['images'])
+                elif self.path=='/api/import-pdf':
                     response={'pdf':import_pdf(payload)}
                 elif self.path=='/api/reflow':
                     if not {'recipe','rows','width','height'}<=set(payload) or set(payload)-{'recipe','rows','width','height','axes'}:raise ValueError('Reflow requires recipe, rows, width and height, with optional axes')
@@ -233,5 +244,7 @@ class Handler(BaseHTTPRequestHandler):
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('html',type=Path);p.add_argument('--port',type=int,default=8767);a=p.parse_args()
     server=ThreadingHTTPServer(('127.0.0.1',a.port),Handler);server.page=a.html.resolve();server.token=secrets.token_urlsafe(32);server.address=f'127.0.0.1:{a.port}'
+    from studio_updates import UpdateChecker,installation_info
+    server.update_checker=UpdateChecker(installation_info(),Path.home()/'.cache'/'figure-studio'/'update-check.json')
     print(f'Figure Studio local data engine: http://{server.address}/',flush=True);server.serve_forever()
 if __name__=='__main__':main()

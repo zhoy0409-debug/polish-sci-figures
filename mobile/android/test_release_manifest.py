@@ -12,8 +12,8 @@ class ManifestTest(unittest.TestCase):
         self.apk = Path(self.temp.name) / 'test.apk'
         self.apk.write_bytes(b'Synthetic metadata test fixture; not a real APK')
         self.signature = 'Verifies\nVerified using v2 scheme (APK Signature Scheme v2): true\nSigner #1 certificate SHA-256 digest: ' + 'a' * 64 + '\n'
-        self.badging = "package: name='org.polishscifigures.studio.preview.debug' versionCode='2' versionName='0.1.6-local-preview' platformBuildVersionName='15'\n"
-        self.gradle = "versionCode 2\nversionName '0.1.6-local-preview'"
+        self.badging = "package: name='org.polishscifigures.studio.preview.debug' versionCode='3' versionName='0.1.7-local-preview' platformBuildVersionName='15'\n"
+        self.gradle = "versionCode 3\nversionName '0.1.7-local-preview'"
 
     def tearDown(self):
         self.temp.cleanup()
@@ -27,14 +27,14 @@ class ManifestTest(unittest.TestCase):
     def test_versions_public_certificate_and_digest(self):
         result = self.build()
         self.assertEqual(result['sha256'], hashlib.sha256(self.apk.read_bytes()).hexdigest())
-        self.assertEqual(result['versionName'], '0.1.6-local-preview')
-        self.assertEqual(result['versionCode'], 2)
+        self.assertEqual(result['versionName'], '0.1.7-local-preview')
+        self.assertEqual(result['versionCode'], 3)
         self.assertEqual(result['signature']['certificateSha256'], 'a' * 64)
         self.assertFalse(result['upgrade']['inPlaceUpgradeGuaranteed'])
 
     def test_wrong_version_or_package_is_rejected(self):
-        for badging in [self.badging.replace("versionCode='2'", "versionCode='1'"),
-                        self.badging.replace('0.1.6', '0.1.5'), self.badging.replace('.preview.debug', '.other')]:
+        for badging in [self.badging.replace("versionCode='3'", "versionCode='1'"),
+                        self.badging.replace('0.1.7', '0.1.6'), self.badging.replace('.preview.debug', '.other')]:
             with self.assertRaises(ValueError): self.build(badging=badging)
 
     def test_missing_failed_or_ambiguous_signature_is_rejected(self):

@@ -54,6 +54,8 @@ function adapter(options = {}) {
   let expected = 0, index = 0;
   const native = {async postMessage(message) {
     calls.push(message);
+    if (message.action === 'checkUpdates') return {status:'unavailable',platform:'ios',currentVersion:'0.1.6',reason:'no-installer'};
+    if (message.action === 'openUpdateLink') return {opened: !options.openError};
     if (message.action === 'begin') { expected = message.bytes; return {id: 'export-1'}; }
     if (message.action === 'chunk') {
       assert.equal(message.index, index++); assert.equal(message.id, 'export-1');
@@ -68,7 +70,7 @@ function adapter(options = {}) {
     if (message.action === 'abort') return {cancelled: true};
     throw Error('Unexpected request');
   }};
-  const window = {webkit: {messageHandlers: {figureStudioNative: native}}}; window.top = window;
+  const window = {webkit: {messageHandlers: {figureStudioNative: native}},__studioNativeUpdateInfo:{currentVersion:'0.1.6',suiteVersion:'1.4.6',platform:'ios',channel:'preview'}}; window.top = window;
   vm.runInNewContext(source, {window, Blob, Uint8Array, btoa: value => Buffer.from(value, 'binary').toString('base64'), atob: value => Buffer.from(value, 'base64').toString('binary')});
   return {bridge: window.StudioNativeBridge, calls, received};
 }
@@ -78,6 +80,21 @@ function adapter(options = {}) {
   const bytes = Buffer.alloc(600001); for (let i = 0; i < bytes.length; i++) bytes[i] = i % 251;
   const saved = adapter();
   assert.equal(saved.bridge.platform, 'ios'); assert.equal(saved.bridge.bundledAssets, true);
+  const updates=adapter(),official='https://github.com/zhoy0409-debug/polish-sci-figures/releases';
+  assert.equal(updates.bridge.updateInfo.currentVersion,'0.1.6');assert.equal(Object.isFrozen(updates.bridge.updateInfo),true);
+  assert.equal((await updates.bridge.checkUpdates()).status,'unavailable');assert.equal(updates.calls[0].refresh,false);
+  await updates.bridge.checkUpdates({refresh:true});assert.equal(updates.calls[1].refresh,true);
+  assert.deepEqual(Object.keys(updates.calls[1]),['action','refresh'],'Only the refresh flag crosses the update bridge');
+  for(const options of [{refresh:1},{url:'https://example.com'},{refresh:true,rows:[['private']]}])await assert.rejects(updates.bridge.checkUpdates(options),/Invalid update/);
+  assert.equal(await updates.bridge.openExternal(official+'/tag/v1.4.6'),true);
+  for(const url of ['https://github.com.evil.invalid/zhoy0409-debug/polish-sci-figures/releases',official+'?data=private',official+'/tag/%76',official+'/tag/../escape','javascript:alert(1)'])await assert.rejects(updates.bridge.openExternal(url),/official release/);
+  assert.equal(await adapter({openError:true}).bridge.openExternal(official),false,'Failed browser handoff is not reported as success');
+  const updateSource=fs.readFileSync(path.join(__dirname,'../Sources/UpdateService.swift'),'utf8');
+  assert.match(updateSource,/config\.httpCookieStorage = nil/);assert.match(updateSource,/config\.urlCredentialStorage = nil/);
+  assert.match(updateSource,/completionHandler\(nil\)/,'Native metadata never follows a remote redirect');
+  assert.match(updateSource,/data\.count <= StudioUpdatePolicy\.maximumBytes - bytes\.count/,'Remote metadata buffer is bounded');
+  assert.match(updateSource,/result\["status"\] = "unavailable"; result\["reason"\] = "no-installer"/,'Other platforms never become an iOS installer');
+  assert.match(controllerSource,/result\.merge\(StudioUpdatePolicy\.selfChecks\(\)\)/,'Actual simulator smoke executes native policy assertions');
   const result = await saved.bridge.saveBlob(new Blob([bytes]), 'real-data.tif');
   assert.equal(result.saved, true); assert.equal(result.bytes, bytes.length);
   assert.equal(saved.calls.filter(call => call.action === 'chunk').length, 3);

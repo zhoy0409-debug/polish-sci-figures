@@ -101,6 +101,16 @@ function harness(options = {}) {
     engine.dispose(); tests++;
   }
   {
+    const {engine, workers} = harness(), controller=new AbortController();
+    const payload={images:[{id:'parent',label:'parent',data:'local raster',roi:{x:.1,y:.1,w:.8,h:.8}},{id:'child',label:'child',data:'local raster'}]};
+    assert.equal((await engine.fetch('https://untrusted.invalid/api/image-links',request(payload))).status,404);
+    const pending=engine.fetch('/api/image-links',{...request(payload),signal:controller.signal});workers[0].ready();await tick();
+    const call=workers[0].messages.findLast(x=>x.type==='call');assert.equal(call.endpoint,'/api/image-links');assert.deepEqual(JSON.parse(call.payload),payload);
+    workers[0].result({status:'unresolved',pairs:[]});assert.equal((await (await pending).json()).status,'unresolved');
+    const cancelled=engine.fetch('/api/image-links',{...request(payload),signal:controller.signal});await tick();controller.abort();assert.equal((await cancelled).status,499);assert.equal(workers[0].terminated,true);
+    engine.dispose();tests++;
+  }
+  {
     const {engine, workers} = harness();
     const first = engine.fetch('/api/render', request({})); const second = engine.fetch('/api/render', request({}));
     workers[0].emit({type: 'fatal', error: 'missing offline wheel'});

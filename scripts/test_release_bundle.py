@@ -20,9 +20,9 @@ def main():
             for skill in SKILL_NAMES: assert f"skills/{skill}/SKILL.md" in names,skill
             for asset in ("studio.html", "studio.css", "studio.js", "i18n.js", "memory.js", "discovery.js", "library.js", "catalogue.js", "catalogue-previews.json", "gallery-contracts.js", "template-starters.json", "rich-text.js", "rich-text.css", "workspace-layout.js", "workspace-layout.css", "group-spacing.js", "tiff-export.js", "compact-whitespace.js", "mark-style.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
-            for asset in ("duplicate-check.js", "duplicate-check.css", "duplicate-review.js", "duplicate-viewer.js", "duplicate-viewer.css", "statistical-metadata.js", "literature.js", "literature.css", "mobile-ui.js", "mobile-ui.css"):
+            for asset in ("duplicate-check.js", "duplicate-check.css", "duplicate-review.js", "duplicate-viewer.js", "duplicate-viewer.css", "statistical-metadata.js", "literature.js", "literature.css", "mobile-ui.js", "mobile-ui.css", "image-insets.js", "image-insets-ui.js", "image-insets-controller.js", "update-check.js", "image-color.js", "image-color-ui.js", "image-links.js", "image-links-ui.js", "image-links-controller.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
-            for module in ("studio_server.py", "studio_statistics.py", "studio_facets.py", "studio_duplicates.py", "studio_duplicate_jobs.py", "duplicate_files.py"):
+            for module in ("studio_server.py", "studio_statistics.py", "studio_facets.py", "studio_duplicates.py", "studio_duplicate_jobs.py", "duplicate_files.py", "studio_image_links.py"):
                 assert f"skills/polish-sci-figures/scripts/{module}" in names, module
             for module in ("gallery_registry", "gallery_workbench", "gallery_compare", "gallery_time_composition",
                            "gallery_clinical", "gallery_omics_special", "gallery_misc", "gallery_model_extras",
@@ -40,7 +40,7 @@ def main():
         studio=subprocess.run([sys.executable,"sci_figures.py","studio",str(sample.resolve()),"--out",str((base/"studio.html").resolve())],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         assert studio.returncode==0,studio.stderr
         html = (base/"studio.html").read_text(encoding="utf-8")
-        for token in ("figure-studio/1", "StudioStatisticalMetadata", "StudioLiterature", "StudioDuplicateViewer"):
+        for token in ("figure-studio/1", "StudioStatisticalMetadata", "StudioLiterature", "StudioDuplicateViewer", "const StudioImageInsets =", "const StudioImageInsetsUI =", "const StudioImageInsetsController =", "const StudioUpdateCheck =", "const StudioImageColor=", "const StudioImageColorUI", "const StudioImageLinks", "const StudioImageLinksUI"):
             assert token in html, f"Missing embedded runtime resource: {token}"
         doctor=subprocess.run([sys.executable,"sci_figures.py","doctor","--font","DejaVu Sans","--json"],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         payload=json.loads(doctor.stdout); assert doctor.returncode==0 and payload["summary"]["blocking"]==0,(payload,doctor.stderr)
@@ -62,12 +62,16 @@ import gallery_registry as registry
 from studio_server import regenerate,reflow
 from studio_sizes import render_sizes
 from studio_duplicates import scan_images
+from studio_image_links import locate_image_links
 import base64,io
 from PIL import Image
 stream=io.BytesIO();Image.new('RGB',(40,40),'#406a80').save(stream,format='PNG')
 uri='data:image/png;base64,'+base64.b64encode(stream.getvalue()).decode('ascii')
 duplicates=scan_images([{'id':'a','label':'a','data':uri},{'id':'b','label':'b','data':uri}])
 assert len(duplicates['matches'])==1 and duplicates['matches'][0]['kind']=='exact'
+linked=locate_image_links([{'id':'a','label':'a','data':uri},{'id':'b','label':'b','data':uri}])
+assert linked['status']=='unresolved' and 'parentCorners' not in linked['pairs'][0]
+assert locate_image_links.__code__.co_filename.startswith('suite/')
 assert render_sizes.__code__.co_filename.startswith('suite/'), 'Must load bytecode from packaged suite'
 rows=[['group','value','unit']]+[[g,str(v),g+str(i)] for g,values in [('A',[1,2,3,4,5,2.5,3.5,4.5]),('B',[2,3,5,6,7,4.5,5.5,6.5])] for i,v in enumerate(values)]
 config={'mode':'raw','group':'group','value':'value','unit':'unit','design':'independent','method':'welch','family':'all_pairs','design_confirmed':True,'unit_role':'independent_experimental_unit'}
@@ -96,7 +100,7 @@ for view in ('grouped_observations','compare_facet_boxes'):
 legacy={'group':'group','value':'value','design':'independent','subject':'unit','order':['A','B'],'font':'DejaVu Sans'}
 old=regenerate(legacy,rows)
 assert any(v['name']=='bar_raw_points' for v in old['variants']), 'Legacy dynamic loader must accept .pyc'
-print(json.dumps({'templates':len(registry.CONTRACTS),'gallery_variants':len(second['variants']),'legacy_variants':len(old['variants']),'replacement_and_reflow':True,'grouped_semantic_views':2,'local_duplicates':True}))
+print(json.dumps({'templates':len(registry.CONTRACTS),'gallery_variants':len(second['variants']),'legacy_variants':len(old['variants']),'replacement_and_reflow':True,'grouped_semantic_views':2,'local_duplicates':True,'local_image_links':True}))
 """
         runtime=subprocess.run([sys.executable,"-c",probe],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         assert runtime.returncode==0,(runtime.stdout,runtime.stderr)

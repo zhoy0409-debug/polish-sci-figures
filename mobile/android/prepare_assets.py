@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path, PurePosixPath
 import runpy
+import re
 import shutil
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -55,7 +56,11 @@ def stage(source=SOURCE, output=OUTPUT, allowed_root=ASSETS):
         target = output / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source_file, target)
-    shutil.copyfile(ANDROID / 'bridge/native-bridge.js', output / 'native-bridge.js')
+    bridge = (ANDROID / 'bridge/native-bridge.js').read_text(encoding='utf-8')
+    version = re.search(r"versionName '([0-9]+\.[0-9]+\.[0-9]+)-local-preview'", (ANDROID / 'app/build.gradle').read_text(encoding='utf-8'))
+    if not version or bridge.count('__STUDIO_ANDROID_VERSION__') != 1:
+        raise ValueError('Android bridge requires the declared application version')
+    (output / 'native-bridge.js').write_text(bridge.replace('__STUDIO_ANDROID_VERSION__', version.group(1)), encoding='utf-8', newline='\n')
     license_dir = output / 'native-licenses'
     shutil.copytree(ANDROID / 'licenses', license_dir)
     for name in ('starter.html', 'index.html'):
@@ -75,7 +80,9 @@ def stage(source=SOURCE, output=OUTPUT, allowed_root=ASSETS):
                 'origin':'https://appassets.androidplatform.net/assets/www/',
                 'files':entries, 'researchDataTransport':'on-device-worker-only', 'internetPermission':True,
                 'optionalLiteratureLookup': {'trigger':'explicit-user-search', 'host':'www.ebi.ac.uk',
-                                            'paths':['/europepmc/webservices/rest/search', '/europepmc/webservices/rest/PMC{id}/fullTextXML']}}
+                                            'paths':['/europepmc/webservices/rest/search', '/europepmc/webservices/rest/PMC{id}/fullTextXML']},
+                'updateMetadata': {'method':'GET', 'endpoint':'https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/releases?per_page=30',
+                                   'credentials':False, 'researchData':False, 'cacheHours':24}}
     (output / 'native-bundle-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     return {'output':str(output), 'files':len(entries), 'bytes':sum(item['bytes'] for item in entries)}
 

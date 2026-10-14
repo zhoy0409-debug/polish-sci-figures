@@ -125,7 +125,7 @@ def build(output=DEFAULT_OUTPUT, runtime_cache=RUNTIME_CACHE):
     html = html.replace("script-src 'unsafe-inline'", "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; worker-src 'self'; manifest-src 'self'")
     html = html.replace("connect-src 'none'", "connect-src 'self'").replace("connect-src https://www.ebi.ac.uk", "connect-src 'self' https://www.ebi.ac.uk")
     html = html.replace("img-src data: blob:", "img-src 'self' data: blob:")
-    config = {'mode': 'browser', 'prototype': True, 'endpoint': '/api/render', 'reflowEndpoint': '/api/reflow', 'analyzeEndpoint': '/api/analyze', 'splitFacetsEndpoint': '/api/split-facets', 'pdfEndpoint': '/api/import-pdf', 'duplicateEndpoint': '/api/image-duplicates'}
+    config = {'mode': 'browser', 'prototype': True, 'endpoint': '/api/render', 'reflowEndpoint': '/api/reflow', 'analyzeEndpoint': '/api/analyze', 'splitFacetsEndpoint': '/api/split-facets', 'pdfEndpoint': '/api/import-pdf', 'duplicateEndpoint': '/api/image-duplicates', 'imageLinksEndpoint': '/api/image-links'}
     html = html.replace("style-src 'unsafe-inline'", "style-src 'self' 'unsafe-inline'")
     injected = '<meta name="theme-color" content="#345a87"><link rel="manifest" href="./app.webmanifest"><link rel="stylesheet" href="./browser-status.css">' + '<script id="local-engine" type="application/json">' + json.dumps(config) + '</script><script src="./local-engine.js"></script><script src="./offline.js"></script><script src="./browser-status.js"></script>'
     html = html.replace('</head>', injected + '</head>', 1)

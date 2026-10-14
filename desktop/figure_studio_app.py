@@ -14,6 +14,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 import os
 from pathlib import Path
+import re
 import secrets
 import sys
 import threading
@@ -344,6 +345,8 @@ def start_service(data_dir: Path, suite_root: Path | None = None, preferred_port
         server.token = secrets.token_urlsafe(32)
         server.instance_id = secrets.token_urlsafe(32)
         server.address = f'127.0.0.1:{server.server_address[1]}'
+        from studio_updates import UpdateChecker, installation_info
+        server.update_checker = UpdateChecker(installation_info(suite_root), data_dir / 'cache' / 'update-check.json')
         write_json(config_path, {'app': APP_ID, 'port': server.server_address[1]})
         service = RunningService(server, lock, data_dir)
         try:
@@ -356,6 +359,70 @@ def start_service(data_dir: Path, suite_root: Path | None = None, preferred_port
             server.server_close()
         lock.release()
         raise
+
+
+def _self_test_local_configuration(page: bytes, expected: dict) -> dict:
+    """Inspect injected installation identity without requesting a release feed."""
+    match = re.search(r'<script id="local-engine" type="application/json">(.*?)</script>',
+                      page.decode('utf-8'), re.S)
+    assert match, 'Packaged local engine configuration is missing'
+    config = json.loads(match.group(1))
+    assert config.get('imageLinksEndpoint') == '/api/image-links'
+    assert config.get('updatesEndpoint') == '/api/updates'
+    assert config.get('updateInfo') == expected
+    assert expected.get('currentVersion') and expected.get('suiteVersion')
+    return dict(config['updateInfo'])
+
+
+def _self_test_image_links(service: RunningService, output_dir: Path) -> dict:
+    """Exercise real SIFT localization, not the exact-image shortcut, over HTTP."""
+    import base64
+    import io
+    import numpy as np
+    from PIL import Image, ImageDraw, ImageFilter, PngImagePlugin
+
+    # Fixed synthetic fixture; no imported user images or external test modules.
+    rng = np.random.default_rng(13)
+    background = np.clip(rng.normal(27, 7, (600, 800, 3)), 0, 255).astype('uint8')
+    parent = Image.fromarray(background).filter(ImageFilter.GaussianBlur(.6))
+    pen = ImageDraw.Draw(parent)
+    for _ in range(155):
+        x, y = rng.integers(8, 792), rng.integers(8, 592)
+        r, q = rng.integers(3, 12, 2)
+        color = tuple(int(v) for v in rng.integers(45, 230, 3))
+        pen.ellipse((x-r, y-q, x+r, y+q), fill=color, outline=(220, 165, 230))
+        pen.line((x-r//2, y, x+r//2, y+q//2), fill=(24, 31, 40), width=2)
+    parent = parent.filter(ImageFilter.GaussianBlur(.45))
+    child = parent.crop((160, 120, 640, 480))
+    output_dir.mkdir(parents=True, exist_ok=True)
+    records = []
+    for name, image in [('parent', parent), ('child', child)]:
+        metadata = PngImagePlugin.PngInfo()
+        metadata.add_text('Description', 'SYNTHETIC PACKAGING TEST ONLY. Not experimental data. Seed 13; true crop.')
+        buffer = io.BytesIO(); image.save(buffer, format='PNG', pnginfo=metadata)
+        raw = buffer.getvalue()
+        (output_dir / ('image-links-synthetic-'+name+'.png')).write_bytes(raw)
+        records.append({'id': name, 'label': 'Synthetic packaged '+name,
+                        'data': 'data:image/png;base64,'+base64.b64encode(raw).decode('ascii')})
+    status, raw = http_request(service.port, '/api/image-links', {'images': records}, service.server.token)
+    result = json.loads(raw)
+    assert status == 200, result
+    assert result.get('status') == 'matched' and result.get('coordinateSpace') == 'decoded-image-normalized', result
+    assert len(result['pairs']) == 1
+    pair = result['pairs'][0]
+    assert pair['parentId'] == 'parent' and pair['childId'] == 'child' and pair['reviewRequired'] is True
+    np.testing.assert_allclose(pair['parentCorners'], [[.2, .2], [.8, .2], [.8, .8], [.2, .8]], atol=.006, rtol=0)
+    quality = pair['quality']
+    assert quality['forwardInliers'] >= 20 and quality['reverseInliers'] >= 20
+    assert quality['wholeChildAgreement'] >= .90 and quality['orientation'] == 'normal'
+    module = sys.modules['studio_image_links']
+    compiled = Path(module.__file__).suffix == '.pyc'
+    if getattr(sys, 'frozen', False):
+        assert compiled and module.locate_image_links.__code__.co_filename.startswith('suite/'), 'Frozen app must run its packaged bytecode image-link module'
+    write_json(output_dir / 'image-links.json', result)
+    return {'passed': True, 'synthetic': True, 'method': pair['evidence']['method'],
+            'parentCorners': pair['parentCorners'], 'quality': quality,
+            'compiledModule': compiled, 'module': str(module.__file__)}
 
 
 def self_test(service: RunningService, output_dir: Path) -> dict:
@@ -385,6 +452,8 @@ def self_test(service: RunningService, output_dir: Path) -> dict:
     status, raw = http_request(port)
     assert status == 200 and b'id="local-engine"' in raw and b'id="project"' in raw
     checks.append('GET editor')
+    update_info = _self_test_local_configuration(raw, service.server.update_checker.current)
+    checks.append('Local update endpoint and installation version (no release request)')
     assert http_request(port, '/api/analyze', {})[0] == 403
     assert http_request(port, '/api/analyze', {}, token,
                         headers={'Origin': 'https://example.invalid'})[0] == 403
@@ -461,11 +530,14 @@ def self_test(service: RunningService, output_dir: Path) -> dict:
     assert scan_result['result']['matches'][0]['kind'] == 'exact'
     assert scan_result['result']['matches'][0]['evidence'].startswith('data:image/png;base64,')
     checks.append('Bundled OpenCV image check and evidence via local HTTP')
+    image_links = _self_test_image_links(service, output_dir)
+    checks.extend(['/api/image-links', 'Bundled SIFT crop localization and original-pixel coordinates via local HTTP'])
     report = {'passed': True, 'checks': checks, 'data_sha256': analysis['data_sha256'],
               'variants': len(panel['variants']), 'url': service.url,
               'frozen': bool(getattr(sys, 'frozen', False)), 'python': sys.version,
               'tk': tk_version, 'tcl': tcl_version,
-              'resources': str(resource_root()), 'pdfObjects': pdf_result['editable']}
+              'resources': str(resource_root()), 'pdfObjects': pdf_result['editable'],
+              'imageLinks': image_links, 'localUpdateInfo': update_info}
     write_json(output_dir / 'self-test.json', report)
     return report
 

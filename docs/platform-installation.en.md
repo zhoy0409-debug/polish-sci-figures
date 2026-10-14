@@ -2,15 +2,15 @@
 
 [English](platform-installation.en.md) | [中文](platform-installation.md)
 
-Suite v1.4.6 provides a self-contained upload package with an entry skill and the complete local plotting resources. Claude users can upload this package without rebuilding the ZIP or asking the host to locate three separate skills. Windows users who prefer direct graphical editing can use the [Figure Studio installer](../desktop/QUICKSTART.en.md), which does not require AI skills.
+Suite v1.4.7 provides a self-contained upload package with an entry skill and the complete local plotting resources. Claude users can upload this package without rebuilding the ZIP or asking the host to locate three separate skills. Windows users who prefer direct graphical editing can use the [Figure Studio installer](../desktop/QUICKSTART.en.md), which does not require AI skills.
 
 ## Which package to download
 
-Download [polish-sci-figures-v1.4.6-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.6/polish-sci-figures-v1.4.6-skill.zip). It has one root folder, `polish-sci-figures/`, and exactly one entry `SKILL.md` across the entire ZIP. The three complete workflows are included as `WORKFLOW.md` files inside `suite/`, alongside the CLI and runtime resources. Keep this structure and upload the original ZIP.
+Download [polish-sci-figures-v1.4.7-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.7/polish-sci-figures-v1.4.7-skill.zip). It has one root folder, `polish-sci-figures/`, and exactly one entry `SKILL.md` across the entire ZIP. The three complete workflows are included as `WORKFLOW.md` files inside `suite/`, alongside the CLI and runtime resources. Keep this structure and upload the original ZIP.
 
-The v1.4.0 upload package contained four `SKILL.md` files and was rejected in an actual Claude upload. The corrected single-entry structure was successfully uploaded to Claude in v1.4.1 and is retained in v1.4.6. Use the current package instead of the old file.
+The v1.4.0 upload package contained four `SKILL.md` files and was rejected in an actual Claude upload. The corrected single-entry structure was successfully uploaded to Claude in v1.4.1 and is retained in v1.4.7. Use the current package instead of the old file.
 
-To run the source yourself or manage the three skills separately, choose `sci-figure-suite-v1.4.6.zip` from the same release. These packages serve different purposes: do not upload the entire three-skill source archive as one skill.
+To run the source yourself or manage the three skills separately, choose `sci-figure-suite-v1.4.7.zip` from the same release. These packages serve different purposes: do not upload the entire three-skill source archive as one skill.
 
 ## Platform entry points
 

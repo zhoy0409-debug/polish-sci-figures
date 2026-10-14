@@ -71,6 +71,12 @@ assert.equal(i18n.t('unknown-family'),'unknown-family');
 i18n.setLanguage('zh-CN');assert.equal(i18n.t('已选 {0} 个元素',3),'已选 3 个元素');
 const js=fs.readFileSync('skills/polish-sci-figures/assets/figure-studio/studio.js','utf8');
 for(const match of js.matchAll(/'([^'\r\n]*[\u4e00-\u9fff][^'\r\n]*)'/g))assert.ok(Object.hasOwn(i18n.en,match[1]),'Missing English message: '+match[1]);
+// Project validation can surface these core errors outside their own dialogs.
+for(const name of ['image-color.js','image-links.js']){
+  const source=fs.readFileSync('skills/polish-sci-figures/assets/figure-studio/'+name,'utf8');
+  for(const match of source.matchAll(/(?:fail\((?:'[^']*',)?|new Error\()'([^'\r\n]*[\u4e00-\u9fff][^'\r\n]*)'/g))
+    assert.ok(Object.hasOwn(i18n.en,match[1]),'Missing English core error in '+name+': '+match[1]);
+}
 const html=fs.readFileSync('skills/polish-sci-figures/assets/figure-studio/studio.html','utf8');
 const htmlText=value=>value.replace(/&(#x[0-9a-f]+|#\d+|lt|gt|amp|quot|apos|nbsp);/gi,(_,code)=>code[0]==='#'?String.fromCodePoint(code[1].toLowerCase()==='x'?parseInt(code.slice(2),16):Number(code.slice(1))):({lt:'<',gt:'>',amp:'&',quot:'"',apos:"'",nbsp:' '})[code.toLowerCase()]);
 for(const match of html.matchAll(/>([^<>]*[\u4e00-\u9fff][^<>]*)</g)){const key=htmlText(match[1]).trim();if(key!=='中文')assert.ok(Object.hasOwn(i18n.en,key),'Missing static English text: '+key);}

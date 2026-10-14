@@ -18,6 +18,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     private var server: AssetServer?
     private var networkProbe: AssetServer?
     private var exports: ExportStore?
+    private let updates = StudioUpdateService()
     private var exportReply: ((Any?, String?) -> Void)?
     private var activeExportPicker: UIDocumentPickerViewController?
     private var exportCompleting = false
@@ -55,7 +56,9 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         controller.addScriptMessageHandler(NativeMessageProxy(owner: self), contentWorld: .page, name: "figureStudioNative")
         guard let scriptURL = Bundle.main.url(forResource: "native-adapter", withExtension: "js"),
               let script = try? String(contentsOf: scriptURL, encoding: .utf8) else { showError("Missing native adapter"); return }
-        controller.addUserScript(WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: true))
+        let updateData = (try? JSONSerialization.data(withJSONObject: updates.info)) ?? Data("{}".utf8)
+        let updateInfo = String(data: updateData, encoding: .utf8) ?? "{}"
+        controller.addUserScript(WKUserScript(source: "window.__studioNativeUpdateInfo = " + updateInfo + ";\n" + script, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         let config = WKWebViewConfiguration()
         config.userContentController = controller
         // Test projects never share the user's normal storage, including on relaunch.
@@ -263,13 +266,13 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
     private func externalPaperLink(_ action: WKNavigationAction) -> URL? {
         guard action.navigationType == .linkActivated, action.sourceFrame.isMainFrame,
               isTrusted(action.sourceFrame.request.url), isTrusted(webView.url),
-              LiteraturePolicy.isPaperLink(action.request.url) else { return nil }
+              LiteraturePolicy.isPaperLink(action.request.url) || StudioUpdatePolicy.isReleaseLink(action.request.url) else { return nil }
         return action.request.url
     }
     private func openPaper(_ url: URL) {
         UIApplication.shared.open(url, options: [:]) { [weak self] opened in
             guard !opened, let self else { return }
-            let notice = UIAlertController(title: "Figure Studio", message: "Could not open the paper. Please try again. / 无法打开论文，请重试。", preferredStyle: .alert)
+            let notice = UIAlertController(title: "Figure Studio", message: "Could not open the link. Please try again. / 无法打开链接，请重试。", preferredStyle: .alert)
             notice.addAction(UIAlertAction(title: "OK / 好", style: .default))
             if self.presentedViewController == nil { self.present(notice, animated: true) }
         }
@@ -375,6 +378,14 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
         do {
             guard let exports else { throw ExportFailure.invalid("Native export is unavailable") }
             switch action {
+            case "checkUpdates":
+                guard Set(body.keys).isSubset(of: ["action", "refresh"]),
+                      let refresh = body["refresh"] as? NSNumber, CFGetTypeID(refresh) == CFBooleanGetTypeID() else { throw ExportFailure.invalid("Invalid update request") }
+                updates.check(refresh: refresh.boolValue) { result in replyHandler(result, nil) }
+            case "openUpdateLink":
+                guard Set(body.keys) == Set(["action", "url"]), let text = body["url"] as? String,
+                      let url = URL(string: text), StudioUpdatePolicy.isReleaseLink(url) else { throw ExportFailure.invalid("Only official release links are allowed") }
+                UIApplication.shared.open(url, options: [:]) { opened in replyHandler(["opened": opened], nil) }
             case "begin":
                 guard exportReply == nil, let name = body["name"] as? String,
                       let number = body["bytes"] as? NSNumber, CFGetTypeID(number) != CFBooleanGetTypeID(),
@@ -586,6 +597,7 @@ final class StudioViewController: UIViewController, WKNavigationDelegate, WKUIDe
             "backgroundAccessibilityRestored": modalAccessibilityStates.isEmpty && previousWebAccessibilityHidden == nil && !webView.accessibilityElementsHidden
         ]
         result.merge(LiteraturePolicy.selfChecks()) { _, current in current }
+        result.merge(StudioUpdatePolicy.selfChecks()) { _, current in current }
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent("FigureStudioNativeSelfTest")
         do {
             let store = try ExportStore(directory: folder)

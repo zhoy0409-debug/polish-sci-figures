@@ -14,7 +14,7 @@
   const makeWorker = options.workerFactory || (url => new Worker(url));
   const listeners = new Set(), jobs = new Map(), queue = [];
   const MAX_WAITING = 2, JOB_TTL = 900000;
-  const endpoints = new Set(['/api/analyze', '/api/render', '/api/reflow', '/api/split-facets', '/api/image-duplicates', '/api/import-pdf']);
+  const endpoints = new Set(['/api/analyze', '/api/render', '/api/reflow', '/api/split-facets', '/api/image-duplicates', '/api/image-links', '/api/import-pdf']);
   let worker = null, active = null, initialization = null, resolveInit = null, rejectInit = null;
   let phase = 'idle', detail = '', sequence = 0, readyTimer = null, errorDetail = '', lastWarnings = [];
   let operationTimer = null, elapsedTimer = null, initializationStarted = null;
@@ -204,7 +204,7 @@
     if ((request.method || 'GET').toUpperCase() !== 'POST') return failure('POST required', 405);
     if (url.pathname === '/api/import-pdf') return failure('Editable PDF import is unavailable in this browser prototype. Use the desktop editor for editable PDF text, paths and images. / 此浏览器原型暂不支持可编辑 PDF 导入，请使用桌面编辑器提取 PDF 文字、路径和图片。', 501, 'editable_pdf_unavailable');
     if (typeof request.body !== 'string') return failure('A JSON object is required');
-    const limit = url.pathname === '/api/image-duplicates' ? 44000000 : 3000000;
+    const limit = ['/api/image-duplicates','/api/image-links'].includes(url.pathname) ? 44000000 : 3000000;
     if (request.body.length > limit || new TextEncoder().encode(request.body).length > limit) return failure('Request exceeds the local operation size limit', 413);
     try { payload = JSON.parse(request.body); } catch (_) { return failure('Malformed JSON'); }
     if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return failure('Request body must be an object');

@@ -4,6 +4,7 @@ from __future__ import annotations
 import ast
 from pathlib import Path
 import re
+import plistlib
 import sys
 import tempfile
 from unittest.mock import patch
@@ -41,6 +42,14 @@ def main():
     assert re.search(r'#define AppVersion "([^"]+)"', installer).group(1) == app_version
     verifier = (ROOT / "desktop/verify_windows.ps1").read_text(encoding="utf-8")
     assert re.search(r"\$Version = '([^']+)'", verifier).group(1) == app_version
+
+    ios = plistlib.loads((ROOT / "mobile/ios/Info.plist").read_bytes())
+    assert ios["CFBundleShortVersionString"] == app_version
+    assert ios["StudioSuiteVersion"] == VERSION.removeprefix("v")
+    assert int(ios["CFBundleVersion"]) > 0
+    android = (ROOT / "mobile/android/app/build.gradle").read_text(encoding="utf-8")
+    assert re.search(r"versionName '([^']+)'", android).group(1) == app_version + "-local-preview"
+    assert int(re.search(r"versionCode (\d+)", android).group(1)) > 0
 
     # The PE resource is generated, not checked in. Exercise its real generator
     # in a private temporary directory so this check works on a clean checkout.
