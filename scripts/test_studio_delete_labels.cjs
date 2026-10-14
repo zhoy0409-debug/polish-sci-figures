@@ -102,11 +102,14 @@ const dragContext={requestAnimationFrame(fn){const id=++dragFrameId;dragFrames.s
 };
 const selectStart=source.indexOf('  function selectPanelLabel('),selectEnd=source.indexOf('  function setEdit(',selectStart);
 const pointerStart=source.indexOf('    svg.onpointerdown=e=>{'),pointerEnd=source.indexOf('    svg.onpointercancel=',pointerStart);
+const behindStart=source.indexOf('    const behindTarget=target=>'),behindEnd=pointerStart;
+assert.ok(behindStart>=0&&behindEnd>behindStart,'the real overlap-selection helpers precede pointer routing');
 const doubleClick=source.split('\n').find(line=>line.includes('svg.ondblclick=event=>'));
 const clickStart=source.indexOf('    svg.onclick=event=>{',pointerStart),clickEnd=source.indexOf('    viewport.onpointerdown=',clickStart);
 vm.createContext(dragContext);
 vm.runInContext(`let labelDrag=null,overlayDrag=null,elementDrag=null,guideDrag=null,marquee=null,suppressClick=false,pending=null,layoutMode=false,boxSelect=false,resizeDrag=null,panelDrag=null,ghost=null,dragging=null,original=false,selectedPanel='${ids[0]}',selected=[],elementSelections=[],selectionAnchor=null,selectedAnnotations=[],panelSelection=[],selectedPanelLabel=null,selectionAfterMarquee=false,activePane='explore',selectedAlignmentGuide=null;
 ${source.slice(selectStart,selectEnd)}
+${source.slice(behindStart,behindEnd)}
 ${source.slice(pointerStart,pointerEnd)}
 ${doubleClick}
 ${source.slice(clickStart,clickEnd)}
