@@ -26,8 +26,32 @@ MAX_BYTES = 2_000_000_000
 CHUNK = 262_144
 
 
+def logical_path(path):
+    """Keep identities/manifests as ordinary paths, never device-path aliases."""
+    value = os.fspath(path)
+    if os.name == 'nt':
+        if value.startswith('\\\\?\\UNC\\'):
+            value = '\\\\' + value[8:]
+        elif value.startswith('\\\\?\\'):
+            value = value[4:]
+    return Path(value)
+
+
+def filesystem_path(path):
+    """Use long-path Win32 I/O without changing the machine's registry policy."""
+    path = logical_path(path)
+    if os.name != 'nt':
+        return path
+    value = os.path.abspath(path)
+    return Path('\\\\?\\UNC\\' + value[2:] if value.startswith('\\\\') else '\\\\?\\' + value)
+
+
+def canonical_path(path):
+    return logical_path(filesystem_path(path).resolve())
+
+
 def linked_path(path):
-    path = Path(path)
+    path = filesystem_path(path)
     try:
         # st_file_attributes covers junctions on Python 3.10 as well as the
         # newer Path.is_junction API. Never traverse Windows reparse points.
@@ -39,7 +63,7 @@ def linked_path(path):
 def registered_install(executable=None, *, frozen=None, registry_reader=None):
     if os.name != 'nt' or not (getattr(sys, 'frozen', False) if frozen is None else frozen):
         return None
-    executable = Path(executable or sys.executable).resolve()
+    executable = canonical_path(executable or sys.executable)
     if executable.name.lower() != 'figure studio.exe':
         return None
     def read():
@@ -50,8 +74,8 @@ def registered_install(executable=None, *, frozen=None, registry_reader=None):
         registered = Path((registry_reader or read)())
         if linked_path(registered):
             return None
-        directory = registered.resolve()
-        if directory != executable.parent or not (directory / 'unins000.exe').is_file():
+        directory = canonical_path(registered)
+        if directory != executable.parent or not filesystem_path(directory / 'unins000.exe').is_file():
             return None
         return directory
     except (OSError, TypeError, ValueError):
@@ -92,7 +116,7 @@ def open_asset(url):
 
 
 def verify_file(path, offer):
-    path = Path(path)
+    path = filesystem_path(path)
     if linked_path(path) or not path.is_file() or path.stat().st_size != offer['assetBytes']:
         raise ValueError('Installer size verification failed')
     digest = hashlib.sha256()
@@ -105,14 +129,14 @@ def verify_file(path, offer):
 
 def file_hash(path):
     digest = hashlib.sha256()
-    with Path(path).open('rb') as stream:
+    with filesystem_path(path).open('rb') as stream:
         for block in iter(lambda: stream.read(CHUNK), b''):
             digest.update(block)
     return digest.hexdigest()
 
 
 def download_asset(offer, destination, *, opener=open_asset, cancelled=None, progress=lambda n: None, clock=time.monotonic):
-    target = Path(destination)
+    target = filesystem_path(destination)
     part = target.with_suffix('.partial')
     started, digest, received = clock(), hashlib.sha256(), 0
     try:
@@ -147,35 +171,37 @@ def download_asset(offer, destination, *, opener=open_asset, cancelled=None, pro
 def program_files(directory):
     if linked_path(directory):
         raise ValueError('Program directory is a linked path')
-    directory = Path(directory).resolve()
+    directory = canonical_path(directory)
     files = []
-    for base, folders, names in os.walk(directory, followlinks=False):
+    def fail(error):
+        raise error
+    for base, folders, names in os.walk(filesystem_path(directory), followlinks=False, onerror=fail):
         for name in folders + names:
-            path = Path(base) / name
-            if linked_path(path) or not path.resolve().is_relative_to(directory):
+            path = logical_path(Path(base) / name)
+            if linked_path(path) or not canonical_path(path).is_relative_to(directory):
                 raise ValueError('Program directory contains a linked path')
-        files.extend(Path(base) / name for name in names)
+        files.extend(logical_path(Path(base) / name) for name in names)
     return files
 
 
 def backup_program(directory, backup):
     if linked_path(directory) or linked_path(backup):
         raise ValueError('Rollback paths contain a link')
-    directory, backup = Path(directory).resolve(), Path(backup).resolve()
+    directory, backup = canonical_path(directory), canonical_path(backup)
     if backup.is_relative_to(directory) or directory.is_relative_to(backup):
         raise ValueError('Rollback location overlaps the program')
     files = program_files(directory)
-    required = sum(path.stat().st_size for path in files)
-    backup.parent.mkdir(parents=True, exist_ok=True)
-    if shutil.disk_usage(backup.parent).free < required + 256_000_000:
+    required = sum(filesystem_path(path).stat().st_size for path in files)
+    filesystem_path(backup.parent).mkdir(parents=True, exist_ok=True)
+    if shutil.disk_usage(filesystem_path(backup.parent)).free < required + 256_000_000:
         raise OSError('Not enough disk space to preserve the current version')
-    backup.mkdir()
+    filesystem_path(backup).mkdir()
     manifest = []
     for path in files:
         relative = path.relative_to(directory)
         destination = backup / relative
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(path, destination)
+        filesystem_path(destination.parent).mkdir(parents=True, exist_ok=True)
+        shutil.copy2(filesystem_path(path), filesystem_path(destination))
         manifest.append(str(relative))
     return manifest
 
@@ -190,8 +216,8 @@ def installer_command(installer, directory):
 
 class WindowsUpdater:
     def __init__(self, checker, cache, install_dir, *, on_install, opener=open_asset, launch=subprocess.Popen):
-        self.checker, self.cache = checker, Path(cache).resolve()
-        self.install_dir = Path(install_dir).resolve() if install_dir else None
+        self.checker, self.cache = checker, canonical_path(cache)
+        self.install_dir = canonical_path(install_dir) if install_dir else None
         self.on_install, self.opener, self.launch = on_install, opener, launch
         self.lock = threading.Lock(); self.cancelled = threading.Event()
         self.worker = None; self.offer = None; self.job = None
@@ -219,10 +245,10 @@ class WindowsUpdater:
                 raise ValueError('An update operation is already running')
             if action == 'download':
                 self.cancelled.clear()
-                self.state.update(status='checking', received=0, total=0, error=None)
+                self.state.update(status='checking', received=0, total=0, error=None, errorStage=None)
                 task = self._download
             elif action == 'install' and self.state['status'] == 'ready':
-                self.state.update(status='preparing', error=None)
+                self.state.update(status='preparing', error=None, errorStage=None)
                 task = self._prepare
             else:
                 raise ValueError('The requested update action is unavailable')
@@ -235,8 +261,8 @@ class WindowsUpdater:
             offer = checked_offer(self.checker.check(refresh=True))
             if self.cancelled.is_set():
                 raise InterruptedError()
-            self.cache.mkdir(parents=True, exist_ok=True)
-            self.job = self.cache / ('update-' + secrets.token_hex(12)); self.job.mkdir()
+            filesystem_path(self.cache).mkdir(parents=True, exist_ok=True)
+            self.job = self.cache / ('update-' + secrets.token_hex(12)); filesystem_path(self.job).mkdir()
             self.offer = offer
             self._set(status='downloading', total=offer['assetBytes'], latestVersion=offer['latestVersion'])
             download_asset(offer, self.job / offer['assetName'], opener=self.opener, cancelled=self.cancelled,
@@ -248,33 +274,48 @@ class WindowsUpdater:
             self._set(status='error', error='download-verification-failed')
 
     def _prepare(self):
+        stage = 'verify-installer'
         try:
             installer = self.job / self.offer['assetName']
             verify_file(installer, self.offer)
             if self.cache.is_relative_to(self.install_dir) or self.install_dir.is_relative_to(self.cache):
                 raise ValueError('Update cache overlaps program data')
             backup = self.job / 'rollback'
+            stage = 'backup-program'
             files = backup_program(self.install_dir, backup)
+            stage = 'verify-backup'
             manifest = {'version': 1, 'installDir': str(self.install_dir), 'parentPid': os.getpid(),
                         'offer': self.offer, 'files': files,
                         'fileHashes': {name: file_hash(backup / name) for name in files}}
             path = self.job / 'handoff.json'
-            path.write_text(json.dumps(manifest), encoding='utf-8')
+            filesystem_path(path).write_text(json.dumps(manifest), encoding='utf-8')
             helper = backup / 'Figure Studio.exe'
-            if not helper.is_file():
+            if not filesystem_path(helper).is_file():
                 raise ValueError('Rollback launcher is missing')
+            stage = 'start-helper'
             process = self.launch([str(helper), '--apply-update', str(path)], cwd=str(backup), close_fds=True)
             # The helper validates the preserved program before allowing the
             # editor to close. Slow disks still have a finite preparation wait.
             deadline = time.monotonic() + 120
-            while not (self.job / 'helper-ready.json').is_file():
+            stage = 'wait-helper'
+            while not filesystem_path(self.job / 'helper-ready.json').is_file():
                 if process.poll() is not None or time.monotonic() > deadline:
                     raise RuntimeError('The update helper could not start')
                 time.sleep(.1)
             self._set(status='installing')
             self.on_install()
-        except Exception:
-            self._set(status='error', error='prepare-failed')
+        except Exception as error:
+            # This bounded local diagnostic contains no token, environment or
+            # research-file content. Keep API/UI errors concise and stable.
+            diagnostic = {'stage': stage, 'type': type(error).__name__,
+                          'message': str(error)[:1200], 'errno': getattr(error, 'errno', None),
+                          'winerror': getattr(error, 'winerror', None)}
+            try:
+                if self.job:
+                    filesystem_path(self.job / 'prepare-error.json').write_text(json.dumps(diagnostic), encoding='utf-8')
+            except OSError:
+                pass
+            self._set(status='error', error='prepare-failed', errorStage=stage)
 
 
 def wait_for_process(pid, executable, timeout=90):
@@ -291,7 +332,7 @@ def wait_for_process(pid, executable, timeout=90):
     try:
         buffer = ctypes.create_unicode_buffer(32768); length = wintypes.DWORD(len(buffer))
         kernel.QueryFullProcessImageNameW.argtypes = [wintypes.HANDLE, wintypes.DWORD, wintypes.LPWSTR, ctypes.POINTER(wintypes.DWORD)]
-        if not kernel.QueryFullProcessImageNameW(handle, 0, buffer, ctypes.byref(length)) or Path(buffer.value).resolve() != Path(executable).resolve():
+        if not kernel.QueryFullProcessImageNameW(handle, 0, buffer, ctypes.byref(length)) or canonical_path(buffer.value) != canonical_path(executable):
             raise ValueError('The previous process identity changed')
         kernel.WaitForSingleObject.argtypes = [wintypes.HANDLE, wintypes.DWORD]
         if kernel.WaitForSingleObject(handle, int(timeout * 1000)) != 0:
@@ -309,7 +350,7 @@ def restore_program(directory, backup, files, hashes):
     """
     if linked_path(directory) or linked_path(backup):
         raise ValueError('Rollback paths contain a link')
-    directory, backup = Path(directory).resolve(), Path(backup).resolve()
+    directory, backup = canonical_path(directory), canonical_path(backup)
     if directory == backup or directory.is_relative_to(backup) or backup.is_relative_to(directory):
         raise ValueError('Rollback paths overlap')
     program_files(backup)
@@ -320,15 +361,15 @@ def restore_program(directory, backup, files, hashes):
     old = set(files)
     for path in current:
         if str(path.relative_to(directory)) not in old:
-            if not path.resolve().is_relative_to(directory):
+            if not canonical_path(path).is_relative_to(directory):
                 raise ValueError('Rollback target escaped the program directory')
-            path.unlink()
+            filesystem_path(path).unlink()
     for name in files:
         source, target = backup / name, directory / name
-        if not target.resolve().is_relative_to(directory):
+        if not canonical_path(target).is_relative_to(directory):
             raise ValueError('Rollback target escaped the program directory')
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, target)
+        filesystem_path(target.parent).mkdir(parents=True, exist_ok=True)
+        shutil.copy2(filesystem_path(source), filesystem_path(target))
     # Verify bytes and the complete file inventory before claiming success.
     restored = program_files(directory)
     if {str(path.relative_to(directory)) for path in restored} != old or any(file_hash(directory / name) != hashes[name] for name in files):
@@ -337,12 +378,12 @@ def restore_program(directory, backup, files, hashes):
 
 def apply_handoff(path, *, executable=None, registration=registered_install, wait=wait_for_process, run=subprocess.run, launch=subprocess.Popen):
     """Invoked only from a preserved program copy after explicit confirmation."""
-    path = Path(path).resolve(); backup = path.parent / 'rollback'
-    own = Path(executable or sys.executable).resolve()
-    if path.name != 'handoff.json' or not re.fullmatch(r'update-[0-9a-f]{24}', path.parent.name) or own != backup / 'Figure Studio.exe' or path.stat().st_size > 4_000_000:
+    path = canonical_path(path); backup = path.parent / 'rollback'
+    own = canonical_path(executable or sys.executable)
+    if path.name != 'handoff.json' or not re.fullmatch(r'update-[0-9a-f]{24}', path.parent.name) or own != backup / 'Figure Studio.exe' or filesystem_path(path).stat().st_size > 4_000_000:
         raise ValueError('Invalid update handoff')
-    value = json.loads(path.read_text(encoding='utf-8'))
-    directory = Path(value['installDir']).resolve(); original = directory / 'Figure Studio.exe'
+    value = json.loads(filesystem_path(path).read_text(encoding='utf-8'))
+    directory = canonical_path(value['installDir']); original = directory / 'Figure Studio.exe'
     if registration(original, frozen=True) != directory or path.parent.is_relative_to(directory) or directory.is_relative_to(path.parent):
         raise ValueError('The registered installation changed')
     offer = value['offer']; installer = path.parent / offer['assetName']
@@ -358,11 +399,11 @@ def apply_handoff(path, *, executable=None, registration=registered_install, wai
     if {str(item.relative_to(backup)) for item in program_files(backup)} != set(files):
         raise ValueError('Rollback inventory changed')
     program_files(directory)
-    if any(not (backup / name).is_file() or not (backup / name).resolve().is_relative_to(backup) or file_hash(backup / name) != hashes[name] for name in files):
+    if any(not filesystem_path(backup / name).is_file() or not canonical_path(backup / name).is_relative_to(backup) or file_hash(backup / name) != hashes[name] for name in files):
         raise ValueError('Rollback files are incomplete')
     if type(value.get('parentPid')) is not int or value['parentPid'] <= 0:
         raise ValueError('Invalid previous process identity')
-    (path.parent / 'helper-ready.json').write_text('{"ready":true}', encoding='utf-8')
+    filesystem_path(path.parent / 'helper-ready.json').write_text('{"ready":true}', encoding='utf-8')
     wait(value['parentPid'], original)
     outcome = 'failed'
     try:
@@ -384,7 +425,7 @@ def apply_handoff(path, *, executable=None, registration=registered_install, wai
     # program launch leaves an actionable record beside the preserved files.
     report_error = None
     try:
-        (path.parent / 'result.json').write_text(json.dumps(report), encoding='utf-8')
+        filesystem_path(path.parent / 'result.json').write_text(json.dumps(report), encoding='utf-8')
     except OSError as error:
         report_error = error
     restart = backup / 'Figure Studio.exe' if outcome == 'rollback-failed' else original

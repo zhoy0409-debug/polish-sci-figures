@@ -5,6 +5,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import io
 import json
 from pathlib import Path
+import shutil
 import sys
 import tempfile
 import threading
@@ -127,6 +128,80 @@ class WindowsUpdateTests(unittest.TestCase):
             outcome=update.apply_handoff(path,executable=backup/'Figure Studio.exe',registration=lambda *args,**kwargs:program,wait=lambda *args:None,run=lambda *args,**kwargs:types.SimpleNamespace(returncode=2),launch=lambda command,**kwargs:restarted.append(command))
         self.assertEqual(outcome,'rollback-failed');self.assertEqual(restarted,[[str(backup/'Figure Studio.exe')]])
         report=json.loads((path.parent/'result.json').read_text());self.assertEqual(report['status'],'rollback-failed');self.assertEqual(report['backupPath'],str(backup));self.assertIn('could not be fully restored',report['error']);self.assertEqual((research/'private.json').read_bytes(),b'unchanged research')
+
+    @unittest.skipUnless(sys.platform == 'win32', 'Uses real Windows extended-path filesystem operations')
+    def test_actual_long_paths_download_prepare_verify_and_exact_rollback(self):
+        # Build fixtures with native extended paths independently of the helper
+        # under test. This works even with LongPathsEnabled=0 (the reported bug).
+        def native(path):
+            return Path('\\\\?\\' + str(path))
+        top = self.root / 'long-root'
+        self.addCleanup(lambda: shutil.rmtree(native(top), ignore_errors=False) if native(top).exists() else None)
+        deep = top
+        for index in range(4):
+            deep /= str(index) + '-' + 'nested-directory-' * 4
+        program, cache = deep / 'program', deep / 'data' / 'cache'
+        native(program / '_internal').mkdir(parents=True)
+        for relative, content in [('Figure Studio.exe', b'old launcher'), ('unins000.exe', b'uninstaller'), ('_internal/library.dat', b'original library')]:
+            native(program / relative).write_bytes(content)
+        sentinel = deep / 'data' / 'project.json'
+        native(sentinel.parent).mkdir(parents=True)
+        native(sentinel).write_bytes(b'private research sentinel')
+        self.assertGreater(len(str(program / '_internal/library.dat')), 320)
+        self.assertEqual(update.canonical_path(native(program)), program)
+        files = update.program_files(program)
+        self.assertEqual({p.relative_to(program).as_posix() for p in files}, {'Figure Studio.exe', 'unins000.exe', '_internal/library.dat'})
+        self.assertTrue(all(not str(p).startswith('\\\\?\\') for p in files))
+        data = b'synthetic installer, never execute'
+        value, closed, started = offer(data), [], []
+        def launch_helper(command, **kwargs):
+            started.append(command)
+            native(Path(command[-1]).parent / 'helper-ready.json').write_text('{"ready":true}')
+            return types.SimpleNamespace(poll=lambda: None)
+        controller = update.WindowsUpdater(types.SimpleNamespace(check=lambda **kwargs: value), cache, program,
+            on_install=lambda: closed.append(True), opener=lambda url: Response(data), launch=launch_helper)
+        controller.request('download'); controller.worker.join(10)
+        self.assertEqual(controller.snapshot()['status'], 'ready')
+        controller.request('install'); controller.worker.join(10)
+        self.assertEqual(controller.snapshot()['status'], 'installing')
+        self.assertEqual(closed, [True]); self.assertEqual(len(started), 1)
+        path, backup = controller.job / 'handoff.json', controller.job / 'rollback'
+        manifest = json.loads(native(path).read_text())
+        self.assertEqual(manifest['installDir'], str(program))
+        self.assertTrue(all(not Path(name).is_absolute() for name in manifest['files']))
+        for name, digest in manifest['fileHashes'].items():
+            self.assertEqual(update.file_hash(backup / name), digest)
+        def failed_install(command, **kwargs):
+            native(program / '_internal/library.dat').write_bytes(b'partial new version')
+            native(program / '_internal/new-dependency.pyc').write_bytes(b'new dependency')
+            return types.SimpleNamespace(returncode=2)
+        restarted = []
+        outcome = update.apply_handoff(path, executable=backup / 'Figure Studio.exe',
+            registration=lambda *args, **kwargs: program, wait=lambda *args: None,
+            run=failed_install, launch=lambda command, **kwargs: restarted.append(command))
+        self.assertEqual(outcome, 'restored')
+        self.assertEqual(native(program / '_internal/library.dat').read_bytes(), b'original library')
+        self.assertFalse(native(program / '_internal/new-dependency.pyc').exists())
+        self.assertEqual(json.loads(native(controller.job / 'result.json').read_text()), {'status': 'restored'})
+        self.assertEqual(restarted, [[str(program / 'Figure Studio.exe')]])
+        self.assertEqual(native(sentinel).read_bytes(), b'private research sentinel')
+
+    def test_prepare_failure_records_local_stage_without_closing_editor(self):
+        program, _ = self.installation(); data = b'synthetic installer'; closed, launched = [], []
+        controller = update.WindowsUpdater(types.SimpleNamespace(check=lambda **kwargs: offer(data)), self.root / 'cache', program,
+            on_install=lambda: closed.append(True), opener=lambda url: Response(data), launch=lambda *a, **k: launched.append(a))
+        controller.request('download'); controller.worker.join(5)
+        failure = PermissionError(13, 'Synthetic backup access failure')
+        failure.winerror = 5
+        with mock.patch.object(update.shutil, 'copy2', side_effect=failure):
+            controller.request('install'); controller.worker.join(5)
+        self.assertEqual(controller.snapshot()['error'], 'prepare-failed')
+        self.assertEqual(controller.snapshot()['errorStage'], 'backup-program')
+        diagnostic = json.loads((controller.job / 'prepare-error.json').read_text())
+        self.assertEqual(diagnostic['stage'], 'backup-program'); self.assertEqual(diagnostic['type'], 'PermissionError')
+        self.assertEqual(diagnostic['winerror'], 5); self.assertIn('Synthetic backup access failure', diagnostic['message'])
+        self.assertEqual(set(diagnostic), {'stage', 'type', 'message', 'errno', 'winerror'})
+        self.assertFalse((controller.job / 'handoff.json').exists()); self.assertEqual(closed, []); self.assertEqual(launched, [])
 
     def test_backup_byte_corruption_blocks_installation_before_old_editor_closes(self):
         program,_=self.installation();path,backup=self.handoff(program);(backup/'_internal'/'library.dat').write_bytes(b'corrupted backup');calls=[]
