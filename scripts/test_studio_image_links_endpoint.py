@@ -35,13 +35,23 @@ class ImageLinksHTTP(unittest.TestCase):
     def tearDownClass(cls):
         cls.server.shutdown(); cls.server.server_close(); cls.thread.join(timeout=5)
 
-    def request(self, payload, override=None):
+    def request(self, payload, override=None, *, headers_only=False):
         headers = {'Content-Type': 'application/json', 'Origin': 'http://'+self.server.address,
                    'X-Studio-Token': self.server.token}
         headers.update(override or {})
         conn = http.client.HTTPConnection('127.0.0.1', self.server.server_port, timeout=20)
         try:
-            conn.request('POST', '/api/image-links', json.dumps(payload), headers)
+            body = json.dumps(payload).encode('utf-8')
+            if headers_only:
+                # Rejection must not wait for image bytes. Sending the large
+                # body after an early 403 races the server's close on Linux.
+                conn.putrequest('POST', '/api/image-links', skip_host='Host' in headers)
+                headers.setdefault('Content-Length', str(len(body)))
+                for name, value in headers.items():
+                    conn.putheader(name, value)
+                conn.endheaders()
+            else:
+                conn.request('POST', '/api/image-links', body, headers)
             response = conn.getresponse()
             return response.status, json.loads(response.read())
         finally:
@@ -65,7 +75,8 @@ class ImageLinksHTTP(unittest.TestCase):
     def test_authentication_guards_precede_image_decoding(self):
         with patch('studio_image_links.locate_image_links') as locate:
             for header in [{'Origin': 'https://untrusted.invalid'}, {'Host': 'untrusted.invalid'}, {'X-Studio-Token': ''}]:
-                self.assertEqual(self.request(self.payload, header)[0], 403)
+                with self.subTest(header=next(iter(header))):
+                    self.assertEqual(self.request(self.payload, header, headers_only=True)[0], 403)
             locate.assert_not_called()
 
     def test_size_schema_roi_and_remote_path_are_rejected(self):
