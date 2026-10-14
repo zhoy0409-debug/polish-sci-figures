@@ -215,6 +215,8 @@ jobs:
         env:
           NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
         run: |
+          node scripts/test_studio_text_geometry.cjs
+          node scripts/test_studio_pdf_text_editing.cjs
           node scripts/test_mobile_dom_preview.cjs
           node scripts/test_studio_mark_styles.cjs --dom
           node scripts/test_studio_mark_controls.cjs --dom

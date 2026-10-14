@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.4.8 · Figure Studio 0.1.8
+
+- Read and edit imported PDF/SVG text in physical points, including its own and ancestor transformations and output scaling.
+- Keep positioned character spacing and nested text-run sizes consistent across repeated edits, undo and project restoration.
+- Drag selected objects directly after marquee selection; blank-space and Shift selection remain available.
+- Validate the fixes with synthetic PDF/SVG fixtures and production editor handlers; the user's original PDF has not been provided.
+
+[Hotfix notes](docs/release-notes-v1.4.8.md)
+
 ## v1.4.7 · Figure Studio 0.1.7
 
 - Add editable image insets from the original raster image, with ROI selection, magnification, borders, connectors and calibrated scale bars using common 1 / 2 / 5 values.
@@ -52,6 +61,15 @@
 [Release details](docs/release-v1.4.3.en.md) · [Previous release](docs/release-v1.4.2.en.md)
 
 ## 中文
+
+### v1.4.8 · Figure Studio 0.1.8
+
+- PDF/SVG 导入文字按实际 pt 读写字号，计入文字及祖先变换和输出缩放。
+- 反复编辑时保持逐字符间距和嵌套文字的相对大小，支持撤销与工程恢复。
+- 框选后可直接拖动已选对象，保留空白处框选及 Shift 选择操作。
+- 使用合成 PDF/SVG 与实际编辑处理代码验证修复；用户原始 PDF 尚未提供。
+
+[热修复说明](docs/release-notes-v1.4.8.md#中文)
 
 ### v1.4.7 · Figure Studio 0.1.7
 

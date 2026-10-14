@@ -75,7 +75,7 @@
       }
     });
   }
-  const updateInfo=Object.freeze({currentVersion:'__STUDIO_ANDROID_VERSION__',suiteVersion:'1.4.7',platform:'android',architecture:'universal',channel:'preview'});
+  const updateInfo=Object.freeze({currentVersion:'__STUDIO_ANDROID_VERSION__',suiteVersion:'1.4.8',platform:'android',architecture:'universal',channel:'preview'});
   async function checkUpdates({refresh=false}={}){
     if(typeof refresh!=='boolean')throw new TypeError('Refresh must be a boolean');
     const reply=await command('update_'+Date.now().toString(36)+'_'+(++serial),{action:'check-updates',refresh},18000);return reply.result;
