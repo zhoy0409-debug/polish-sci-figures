@@ -284,6 +284,7 @@ class RunningService:
                                        name='Figure Studio service', daemon=True)
         self.closed = False
         self.close_lock = threading.Lock()
+        self.install_requested = threading.Event()
 
     def start(self):
         self.thread.start()
@@ -349,6 +350,10 @@ def start_service(data_dir: Path, suite_root: Path | None = None, preferred_port
         server.update_checker = UpdateChecker(installation_info(suite_root), data_dir / 'cache' / 'update-check.json')
         write_json(config_path, {'app': APP_ID, 'port': server.server_address[1]})
         service = RunningService(server, lock, data_dir)
+        from windows_updater import WindowsUpdater, registered_install
+        installed = registered_install() if data_dir == default_data_dir().resolve() else None
+        server.windows_updater = WindowsUpdater(server.update_checker, data_dir / 'cache' / 'updates', installed,
+                                               on_install=service.install_requested.set)
         try:
             return service.start()
         except Exception:
@@ -369,7 +374,11 @@ def _self_test_local_configuration(page: bytes, expected: dict) -> dict:
     config = json.loads(match.group(1))
     assert config.get('imageLinksEndpoint') == '/api/image-links'
     assert config.get('updatesEndpoint') == '/api/updates'
-    assert config.get('updateInfo') == expected
+    update_info = dict(config.get('updateInfo') or {})
+    if config.get('updateInstallEndpoint') is not None:
+        assert config['updateInstallEndpoint'] == '/api/update-install'
+        assert type(update_info.pop('inAppInstall', None)) is bool
+    assert update_info == expected
     assert expected.get('currentVersion') and expected.get('suiteVersion')
     return dict(config['updateInfo'])
 
@@ -679,6 +688,9 @@ def run_window(data_dir: Path, no_open=False) -> int:
 
     def poll():
         nonlocal ready
+        service = result['service']
+        if isinstance(service, RunningService) and service.install_requested.is_set() and not result['closing']:
+            quit_app()
         if result['done']:
             window.destroy()
             return
@@ -714,11 +726,23 @@ def main(argv=None):
     parser.add_argument('--self-test', action='store_true', help='Run real HTTP checks without opening any UI')
     parser.add_argument('--output-dir', type=Path, help='Self-test report and SVG output directory')
     parser.add_argument('--no-open', action='store_true', help='Do not automatically open the default browser')
+    parser.add_argument('--apply-update', type=Path, help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     data_dir = (args.data_dir or (default_data_dir() / 'self-test' if args.self_test else default_data_dir())).resolve()
     output_dir = (args.output_dir or data_dir / 'self-test-output').resolve()
     service = None
     try:
+        if args.apply_update:
+            if os.name != 'nt' or not getattr(sys, 'frozen', False):
+                raise LaunchError('Updates require the installed Windows application.')
+            from windows_updater import apply_handoff
+            outcome = apply_handoff(args.apply_update)
+            if outcome in ('restored', 'rollback-failed'):
+                import tkinter.messagebox
+                message = ('安装未完成，已恢复并重新打开旧版本。工程和设置保留。\n\nInstallation did not complete. The previous version was restored and reopened; projects and settings are retained.' if outcome == 'restored' else
+                           '安装未完成，原安装目录未能完全恢复。已从备份打开旧版本，工程和设置仍在原位置。请保留以下备份并重新安装官方版本：\n\nInstallation did not complete and the installation folder could not be fully restored. The preserved old program was opened. Keep this backup and reinstall the official version:\n' + str(args.apply_update.parent / 'rollback'))
+                tkinter.messagebox.showerror('Figure Studio update', message)
+            return 0
         prepare_runtime(data_dir)
         if args.self_test:
             service = start_service(data_dir)

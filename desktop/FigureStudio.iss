@@ -1,5 +1,5 @@
 #ifndef AppVersion
-  #define AppVersion "0.1.8"
+  #define AppVersion "0.1.9"
 #endif
 #ifndef BuildRoot
   #error BuildRoot must point to the PyInstaller output directory
@@ -56,7 +56,14 @@ Name: "{autoprograms}\polish-sci-figures Studio"; Filename: "{app}\Figure Studio
 Name: "{autodesktop}\polish-sci-figures Studio"; Filename: "{app}\Figure Studio.exe"; WorkingDir: "{app}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\Figure Studio.exe"; Description: "{cm:LaunchProgram,Figure Studio}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\Figure Studio.exe"; Description: "{cm:LaunchProgram,Figure Studio}"; Flags: nowait postinstall skipifsilent; Check: NotStudioUpdate
 
-; User projects, local history and settings live outside {app}.  Deliberately
-; no [UninstallDelete] entry for the user's Figure Studio data directory.
+[Code]
+function NotStudioUpdate: Boolean;
+begin
+  { The verified update helper restarts the application after Setup exits. }
+  Result := ExpandConstant('{param:STUDIOUPDATE|0}') <> '1';
+end;
+
+// User projects, local history and settings live outside the program folder.
+// Deliberately no UninstallDelete entry for the user's Figure Studio data.

@@ -1,6 +1,6 @@
 # Editable gallery and Figure Studio contracts
 
-Suite v1.4.8 uses the same renderers for the AI/CLI route and Figure Studio's local engine. This reference distinguishes source observations, supplied results and display edits so that a template choice cannot silently change the scientific question. Figure Studio 0.1.8 packages this engine in the official Windows application; source users install the normal Python requirements.
+Suite v1.4.9 uses the same renderers for the AI/CLI route and Figure Studio's local engine. This reference distinguishes source observations, supplied results and display edits so that a template choice cannot silently change the scientific question. Figure Studio 0.1.9 packages this engine in the official Windows application; source users install the normal Python requirements.
 
 ## Template selection and generation
 

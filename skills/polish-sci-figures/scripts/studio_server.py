@@ -197,16 +197,23 @@ class Handler(BaseHTTPRequestHandler):
         config=json.dumps({'token':self.server.token,'endpoint':'/api/render','reflowEndpoint':'/api/reflow','analyzeEndpoint':'/api/analyze','splitFacetsEndpoint':'/api/split-facets','pdfEndpoint':'/api/import-pdf','duplicateEndpoint':'/api/image-duplicates','imageLinksEndpoint':'/api/image-links'})
         if getattr(self.server,'update_checker',None):
             settings=json.loads(config);settings['updatesEndpoint']='/api/updates';settings['updateInfo']=self.server.update_checker.current;config=json.dumps(settings)
+        if getattr(self.server,'windows_updater',None):
+            settings=json.loads(config);settings['updateInstallEndpoint']='/api/update-install';settings['updateInfo']={**settings.get('updateInfo',{}),'inAppInstall':self.server.windows_updater.snapshot()['supported']};config=json.dumps(settings)
         text=text.replace('</head>',f'<script id="local-engine" type="application/json">{config}</script></head>',1)
         raw=text.encode();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(raw)
     def do_POST(self):
-        if self.path not in ('/api/render','/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf','/api/image-duplicates','/api/image-links','/api/updates') or self.headers.get('Host')!=self.server.address or self.headers.get('Origin')!='http://'+self.server.address or self.headers.get('X-Studio-Token')!=self.server.token:return self.send_json(403,{'error':'Local editor authorization required'})
+        if self.path not in ('/api/render','/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf','/api/image-duplicates','/api/image-links','/api/updates','/api/update-install') or self.headers.get('Host')!=self.server.address or self.headers.get('Origin')!='http://'+self.server.address or self.headers.get('X-Studio-Token')!=self.server.token:return self.send_json(403,{'error':'Local editor authorization required'})
         try:
             size=int(self.headers.get('Content-Length','0'))
-            limit=256 if self.path=='/api/updates' else 44000000 if self.path in ('/api/image-duplicates','/api/image-links') else 27000000 if self.path=='/api/import-pdf' else 3000000
+            limit=256 if self.path in ('/api/updates','/api/update-install') else 44000000 if self.path in ('/api/image-duplicates','/api/image-links') else 27000000 if self.path=='/api/import-pdf' else 3000000
             if not 0<size<=limit:raise ValueError(f'Request limit: {limit//1000000} MB')
             payload=json.loads(self.rfile.read(size));started=time.monotonic()
             if not isinstance(payload,dict):raise ValueError('Request body must be an object')
+            if self.path=='/api/update-install':
+                if set(payload)!={'action'} or payload['action'] not in ('status','download','cancel','install'):raise ValueError('Invalid update installation action')
+                updater=getattr(self.server,'windows_updater',None)
+                if updater is None:return self.send_json(200,{'status':'unsupported','supported':False})
+                return self.send_json(200,updater.request(payload['action']))
             if self.path=='/api/updates':
                 if set(payload)-{'refresh'} or type(payload.get('refresh',False)) is not bool:raise ValueError('Update checks accept only a refresh boolean')
                 checker=getattr(self.server,'update_checker',None)

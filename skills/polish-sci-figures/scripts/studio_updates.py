@@ -12,8 +12,8 @@ import time
 from datetime import datetime, timezone
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 
-STUDIO_VERSION = '0.1.8'
-SUITE_VERSION = '1.4.8'
+STUDIO_VERSION = '0.1.9'
+SUITE_VERSION = '1.4.9'
 REPOSITORY = 'https://github.com/zhoy0409-debug/polish-sci-figures'
 RELEASES_URL = REPOSITORY + '/releases'
 API_URL = 'https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/releases?per_page=30'
@@ -120,6 +120,9 @@ def choose_release(releases, current):
             candidate = {'latestVersion': match.group(1), 'releaseUrl': release['html_url'],
                          'downloadUrl': url, 'assetName': name, 'assetBytes': asset['size'],
                          'releaseTag': tag, 'prerelease': release['prerelease']}
+            digest = asset.get('digest')
+            if isinstance(digest, str) and re.fullmatch(r'sha256:[0-9a-fA-F]{64}', digest):
+                candidate['assetSha256'] = digest[7:].lower()
             candidates.append((version_tuple(match.group(1)), stamp, candidate))
     if not candidates:
         return {'status': 'unavailable', 'reason': 'no-installer', 'releaseUrl': RELEASES_URL}
@@ -193,7 +196,8 @@ class UpdateChecker:
         release = {'draft': False, 'prerelease': offer.get('prerelease'), 'tag_name': offer.get('releaseTag'),
                    'published_at': '2026-01-01T00:00:00Z', 'html_url': offer.get('releaseUrl'),
                    'assets': [{'state': 'uploaded', 'name': offer.get('assetName'), 'size': offer.get('assetBytes'),
-                               'browser_download_url': offer.get('downloadUrl')}]}
+                               'browser_download_url': offer.get('downloadUrl'),
+                               'digest': 'sha256:' + offer['assetSha256'] if isinstance(offer.get('assetSha256'), str) else None}]}
         return choose_release([release], self.current) == offer
 
     def _response(self, offer, *, cached=False, stale=False, checked_at=None, reason=None):

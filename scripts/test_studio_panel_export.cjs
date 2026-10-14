@@ -14,7 +14,7 @@ class Element{
   get attributes(){return Object.entries(this.attrs).map(([name,value])=>({name,localName:name,value}));}
   getAttribute(k){return this.attrs[k]??null;}setAttribute(k,v){this.attrs[k]=String(v);}hasAttribute(k){return k in this.attrs;}removeAttribute(k){delete this.attrs[k];}removeAttributeNode(a){delete this.attrs[a.name];}
   setAttributeNS(namespace,k,v){assert.equal(namespace,'http://www.w3.org/2000/xmlns/');this.setAttribute(k,v);}
-  append(...nodes){for(const n of nodes){n.parentNode=n.parentElement=this;this.children.push(n);}}
+  append(...nodes){for(const n of nodes){n.remove?.();n.parentNode=n.parentElement=this;this.children.push(n);}}
   remove(){if(this.parentElement)this.parentElement.children=this.parentElement.children.filter(n=>n!==this);this.parentElement=this.parentNode=null;}
   matches(s){return s.split(',').some(part=>{const m=part.trim().match(/^(\*|[\w-]+)?(?:\[([\w-]+)([\^*$]?=)?["']?([^"'\]]*)["']?\])?$/);return !!m&&(!m[1]||m[1]==='*'||m[1]===this.localName)&&(!m[2]||(m[3]==='='?this.getAttribute(m[2])===m[4]:m[3]==='^='?(this.getAttribute(m[2])||'').startsWith(m[4]):m[3]==='$='?(this.getAttribute(m[2])||'').endsWith(m[4]):this.hasAttribute(m[2])));});}
   querySelectorAll(s){return this.children.filter(n=>n.matches).flatMap(n=>[...(n.matches(s)?[n]:[]),...n.querySelectorAll(s)]);}
@@ -45,7 +45,7 @@ const ctx={imageInsets:null,...helpers,NS:'http://www.w3.org/2000/svg',state:()=
   gridFor:()=>({rows:2,places:{a:{row:0,col:0,rs:1,cs:1},b:{row:1,col:1,rs:1,cs:1}}})};
 vm.createContext(ctx);
 const extract=(begin,end)=>{const a=source.indexOf(begin),b=source.indexOf(end,a);assert.ok(a>0&&b>a,begin);return source.slice(a,b);};
-vm.runInContext(extract('  function insetGeometry(','  function insetSelection(')+'\n'+extract('  function panelExportRegion(','  function refreshInsetGraphics(')+'\n'+extract('  function overlayNode(','  function refreshOverlaySelection(')+'\n'+extract('  function composite(','  let autosaveQueue='),ctx);
+vm.runInContext(extract('  function insetGeometry(','  function insetSelection(')+'\n'+extract('  function panelExportRegion(','  function refreshInsetGraphics(')+'\n'+extract('  function overlayNode(','  function refreshOverlaySelection(')+'\n'+extract('  function wrapPanelContent(','  function composite(')+'\n'+extract('  function composite(','  let autosaveQueue='),ctx);
 let checks=0;const eq=(a,b,label)=>{assert.deepEqual(a,b,label);checks++;},near=(a,b)=>{assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);checks++;};
 const snapshot=JSON.stringify(state),full=ctx.composite(false,true,state);
 eq(full.getAttribute('viewBox'),'0 0 800 620');near(parseFloat(full.getAttribute('width')),1600);near(parseFloat(full.getAttribute('height')),1240);

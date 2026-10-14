@@ -24,6 +24,8 @@ def main():
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             for module in ("studio_server.py", "studio_statistics.py", "studio_facets.py", "studio_duplicates.py", "studio_duplicate_jobs.py", "duplicate_files.py", "studio_image_links.py"):
                 assert f"skills/polish-sci-figures/scripts/{module}" in names, module
+            for asset in ("selection-transform.js", "selection-transform-dom.js", "selection-resize-controller.js"):
+                assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             for module in ("gallery_registry", "gallery_workbench", "gallery_compare", "gallery_time_composition",
                            "gallery_clinical", "gallery_omics_special", "gallery_misc", "gallery_model_extras",
                            "gallery_temporal_extras", "gallery_structure_extras", "gallery_axes", "gallery_heatmap",
@@ -42,6 +44,9 @@ def main():
         html = (base/"studio.html").read_text(encoding="utf-8")
         for token in ("figure-studio/1", "StudioStatisticalMetadata", "StudioLiterature", "StudioDuplicateViewer", "const StudioImageInsets =", "const StudioImageInsetsUI =", "const StudioImageInsetsController =", "const StudioUpdateCheck =", "const StudioImageColor=", "const StudioImageColorUI", "const StudioImageLinks", "const StudioImageLinksUI"):
             assert token in html, f"Missing embedded runtime resource: {token}"
+        for token in ("root.StudioSelectionTransform=api", "const StudioSelectionTransformDOM=", "const StudioSelectionResize=", 'id="selectPanelContent"', 'id="fitPanelContent"', 'id="selectionAspect"'):
+            assert token in html, f"Missing embedded resize resource/control: {token}"
+        assert html.index("const StudioSelectionResize=") < html.index("function createBlankProject("), "Resize controller must precede the main studio runtime"
         doctor=subprocess.run([sys.executable,"sci_figures.py","doctor","--font","DejaVu Sans","--json"],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         payload=json.loads(doctor.stdout); assert doctor.returncode==0 and payload["summary"]["blocking"]==0,(payload,doctor.stderr)
         # Exercise the same no-source layout as the desktop resource package.

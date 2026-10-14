@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.4.9 · Figure Studio 0.1.9
+
+- Resize individual or mixed selections with edge and corner handles, preserving PDF transforms and editable source assets; one gesture produces one undo step.
+- Add direct **Resize panel content** and **Fit to cell** actions, with aspect-ratio choices in the canvas toolbar.
+- Delete a panel from its left-hand trash button, retaining recoverable data and source assets; deleting the last panel leaves an editable blank canvas.
+- Add guided download, integrity checking and confirmed installation of future updates in the installed Windows edition. Versions 0.1.8 and earlier require a first manual upgrade to 0.1.9; portable Windows and native previews retain their separate installation steps.
+
+[Release notes / 本版更新](docs/release-notes-v1.4.9.md)
+
 ## v1.4.8 · Figure Studio 0.1.8
 
 - Read and edit imported PDF/SVG text in physical points, including its own and ancestor transformations and output scaling.

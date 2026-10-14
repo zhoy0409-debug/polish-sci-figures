@@ -1,6 +1,6 @@
 # Figure Studio — official visual editor for polish-sci-figures
 
-Suite v1.4.8 includes the original three skills and the Figure Studio integration. Figure Studio 0.1.8 is the official Windows desktop distribution: it bundles the same local renderers and analysis engine, opens the editor in the default browser, and needs no separately installed Python, Codex, account or activation. Download the installer or complete portable ZIP from the [official project releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases). The project remains MIT-licensed; official branding is not copy protection.
+Suite v1.4.9 includes the original three skills and the Figure Studio integration. Figure Studio 0.1.9 is the official Windows desktop distribution: it bundles the same local renderers and analysis engine, opens the editor in the default browser, and needs no separately installed Python, Codex, account or activation. Download the installer or complete portable ZIP from the [official project releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases). The project remains MIT-licensed; official branding is not copy protection.
 
 This reference documents implemented behavior. Test and visual-review scope is recorded separately; a listed template is not a guarantee that arbitrary data or labels will fit every output size.
 
@@ -273,6 +273,12 @@ The two workspace separators resize the left navigator, canvas region and right 
 
 For a `compare_facet_boxes` panel with 2–6 factor levels, Chart types → Split facets into panels creates independent panels across consecutive horizontal grid cells. Existing panels and physical tracks are preserved. The operation, including inserted resource revisions, is undoable as one action. Child panels share the original y-axis range and retain their facet identity. Existing statistics preserve the complete original comparison family and its adjusted P values. Editing a child table makes the connected result snapshot stale until the original-family results are reconnected; splitting does not silently redefine the tests.
 
+
+### Resizing selections and removing panels
+
+Select one object or several objects across panels and inserted annotations, then drag the eight selection handles. Corners keep proportions by default and edge handles change one dimension; the toolbar's Auto aspect, Lock aspect and Free scaling modes control this behavior. Shift reverses the aspect behavior for the current gesture, and Alt resizes around the center. One completed gesture makes one undo step; Escape cancels it. Locked objects cannot be resized.
+
+Choose **Resize panel content** to select the artwork inside the current grid cell, or **Fit to cell** to fit it proportionally. These controls change the displayed artwork, not its source data or the grid's row and column dimensions. The trash button beside each panel in the left list removes that panel and its owned insets; unrelated annotations stay in place. Undo restores the panel and its linked relationships. Removing the final panel leaves a usable blank canvas.
 
 ### Keyboard fine positioning
 

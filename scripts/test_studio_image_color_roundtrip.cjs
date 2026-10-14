@@ -30,7 +30,7 @@ for(const [a,b]of [
   ['  function editedSvg(','  function clearStatisticalResultEdits('],
   ['  function namespace(','  let compactLayoutCache='],
   ['  function imageColorResolve(','  function refreshInsetGraphics('],
-  ['  function composite(','  let autosaveQueue=']
+  ['  function wrapPanelContent(','  let autosaveQueue=']
 ])vm.runInContext(extract(a,b),ctx);
 const imageOf=root=>root.querySelector('image'),record=root=>color.inspect(imageOf(root),root),serialize=root=>new dom.window.XMLSerializer().serializeToString(root);
 function ref(){return {panelId:'panel-1',variant:0,key:imageOf(ctx.baseSvg('panel-1',0)).dataset.key};}
