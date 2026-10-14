@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.4.7 · Figure Studio 0.1.7
+
+- Add editable image insets from the original raster image, with ROI selection, magnification, borders, connectors and calibrated scale bars using common 1 / 2 / 5 values.
+- Keep inset edits in undo, projects and SVG / TIFF exports.
+- Add reversible brightfield reference matching and visible manual brightness, contrast, temperature and tint controls; fluorescence uses shared linear display adjustments, retaining source pixels.
+- Link two or three overview/detail images with reviewed matching regions, editable frames and connectors, movement tracking, hide/undo, project persistence and SVG / TIFF export.
+- Add unobtrusive update reminders, manual checks, offline status and official platform downloads; users of 0.1.6 need a first manual upgrade.
+
+[Prepared release notes](docs/release-notes-v1.4.7.md)
+
 ## v1.4.6 · Figure Studio 0.1.6
 
 - Add quick solid/hollow/custom point styles, independent fill/outline colours, group/black/grey/custom error-bar colours, and separate hide/restore switches that preserve data and appearance settings.
@@ -42,6 +52,16 @@
 [Release details](docs/release-v1.4.3.en.md) · [Previous release](docs/release-v1.4.2.en.md)
 
 ## 中文
+
+### v1.4.7 · Figure Studio 0.1.7
+
+- 新增基于原始位图的可编辑局部放大：框选区域、调整倍率、边框和连接线，并根据真实标定生成 1 / 2 / 5 常用数值比例尺。
+- 放大窗编辑纳入撤销、工程保存和 SVG / TIFF 导出。
+- 新增可逆的明场参考图颜色匹配，亮度、对比度、色温和色调可直接手调；荧光采用共同的线性显示调整，保留原始像素。
+- 两张或三张概览图/细节图可核对匹配区域后建立关联，支持可编辑框线、移动联动、隐藏与撤销、工程保存及 SVG / TIFF 导出。
+- 新增轻量更新提醒、手动检查、离线状态和官方对应平台下载；0.1.6 用户需先手动升级一次。
+
+[待发行版本说明](docs/release-notes-v1.4.7.md#中文)
 
 ### v1.4.6 · Figure Studio 0.1.6
 

@@ -30,7 +30,7 @@ function harness(){
   const selectionLayer=el(),workspaceLayer=el('svg');svg.append(selectionLayer);viewport.append(workspaceLayer);
   const s={order:['p0','p1'],panels:{p0:{variant:0,edits:{},label:{}},p1:{variant:0,edits:{},label:{}}},overlays:[{id:'note',x:.6,y:.5,w:.1,h:.1}]};
   const initial=copy(s),fields={scope:{value:'panel'},deleteElements:{disabled:true},viewport};let commits=0,renders=0,nativeClears=0,rafId=0;const raf=new Map(),messages=[];
-  const ctx={svg,viewport,selectionLayer,workspaceLayer,NS:'svg',l:{width:600,height:420,positions:[]},marqueeHit,alignmentSnap,Math,copy,previewState:s,renderAlignmentGuideControls(){},
+  const ctx={svg,viewport,selectionLayer,workspaceLayer,NS:'svg',l:{width:600,height:420,positions:[]},marqueeHit,alignmentSnap,Math,copy,previewState:s,imageLinks:null,imageInsets:null,imageColorUI:null,refreshInsetGraphics(){assert.ok(s.overlays.every(a=>a.type!=='inset'),'This fixture contains ordinary annotations only');},renderAlignmentGuideControls(){},
     state:()=>s,$:id=>fields[id],T:(s,...args)=>s.replace(/\{(\d+)\}/g,(_,i)=>args[i]),isVisibleObject:()=>true,
     getComputedStyle:()=>({display:'block',visibility:'visible',opacity:'1',fill:'#222',stroke:'none'}),
     document:{createElementNS:(_,tag)=>el(tag),querySelectorAll:()=>[]},window:{getSelection:()=>({removeAllRanges(){nativeClears++;}})},

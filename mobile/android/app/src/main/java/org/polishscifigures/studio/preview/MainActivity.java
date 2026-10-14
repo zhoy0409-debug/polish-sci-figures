@@ -29,6 +29,9 @@ public final class MainActivity extends Activity {
     private static final int OPEN_FILE = 201, SAVE_FILE = 202;
     private final Handler main = new Handler(Looper.getMainLooper());
     private final ExecutorService io = Executors.newSingleThreadExecutor();
+    private final ExecutorService updateIo = Executors.newSingleThreadExecutor();
+    private final AtomicBoolean updateChecking = new AtomicBoolean();
+    private UpdateChecker updateChecker;
     private final AtomicBoolean processing = new AtomicBoolean();
     final java.util.concurrent.atomic.AtomicInteger localAssetRequests = new java.util.concurrent.atomic.AtomicInteger();
     final java.util.concurrent.atomic.AtomicInteger deniedRequests = new java.util.concurrent.atomic.AtomicInteger();
@@ -81,13 +84,14 @@ public final class MainActivity extends Activity {
         settings.setJavaScriptCanOpenWindowsAutomatically(false); settings.setSupportMultipleWindows(false);
         settings.setMediaPlaybackRequiresUserGesture(true); settings.setGeolocationEnabled(false);
         CookieManager.getInstance().setAcceptCookie(false);
+        updateChecker = new UpdateChecker(this);
         WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG);
         web.setWebViewClient(new WebViewClient() {
             @Override public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) { return localResponse(request); }
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 if (request.isForMainFrame() && request.getUrl().toString().equals(START)) return false;
                 if (request.isForMainFrame() && request.hasGesture() && START.equals(view.getUrl())
-                    && LiteraturePolicy.isPaperLink(request.getUrl().toString())) {
+                    && (LiteraturePolicy.isPaperLink(request.getUrl().toString()) || UpdatePolicy.isOfficialLink(request.getUrl().toString()))) {
                     try { startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()).addCategory(Intent.CATEGORY_BROWSABLE)); }
                     catch (Exception error) { Toast.makeText(MainActivity.this, "No browser available / 没有可用的浏览器", Toast.LENGTH_LONG).show(); }
                     return true;
@@ -111,6 +115,22 @@ public final class MainActivity extends Activity {
             if (!isMainFrame || !ORIGIN.equals(sourceOrigin.toString()) || message.getType() != WebMessageCompat.TYPE_STRING) return;
             String raw = message.getData();
             if (raw == null || raw.length() > 265000) { replyError(reply, "", "Export message is too large"); return; }
+            try {
+                JSONObject request = new JSONObject(raw);
+                if ("check-updates".equals(request.optString("action"))) {
+                    String id=request.optString("id");
+                    if(raw.length()>512||request.length()!=3||!request.has("refresh")||!(request.opt("refresh") instanceof Boolean)||!id.matches("update_[A-Za-z0-9_]{1,80}")||!START.equals(view.getUrl()))return;
+                    if(!updateChecking.compareAndSet(false,true)){replyUpdate(reply,id,null,"An update check is already running");return;}
+                    updateIo.execute(()->{try{replyUpdate(reply,id,updateChecker.check(request.getBoolean("refresh")),null);}catch(Exception error){replyUpdate(reply,id,null,"Update check unavailable");}finally{updateChecking.set(false);}});
+                    return;
+                }
+                if ("open-release".equals(request.optString("action"))) {
+                    String id=request.optString("id"),url=request.optString("url");
+                    if(raw.length()>3000||request.length()!=3||!id.matches("external_[A-Za-z0-9_]{1,80}")||!START.equals(view.getUrl())||!UpdatePolicy.isOfficialLink(url)){replyUpdate(reply,id,null,"Only official downloads are allowed");return;}
+                    main.post(()->{try{if(destroyed)return;startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url)).addCategory(Intent.CATEGORY_BROWSABLE));replyUpdate(reply,id,new JSONObject().put("opened",true),null);}catch(Exception error){replyUpdate(reply,id,null,"No browser available / 没有可用的浏览器");}});
+                    return;
+                }
+            } catch (Exception invalid) { replyError(reply,"","Invalid native request");return; }
             if (!processing.compareAndSet(false, true)) { String rejectedId = ""; try { rejectedId = new JSONObject(raw).optString("id"); } catch (Exception ignored) {} replyError(reply, rejectedId, "An export operation is already being processed"); return; }
             io.execute(() -> {
                 try { handleExport(new JSONObject(raw), reply); }
@@ -184,6 +204,14 @@ public final class MainActivity extends Activity {
     private void send(JavaScriptReplyProxy reply, JSONObject message) {
         main.post(() -> { processing.set(false); if (!destroyed) reply.postMessage(message.toString()); });
     }
+    private void replyUpdate(JavaScriptReplyProxy reply,String id,JSONObject result,String error) {
+        try {
+            JSONObject value=new JSONObject().put("id",id);
+            if(error!=null)value.put("error",error);else value.put("result",result);
+            // Metadata requests must never reset the separate export busy flag.
+            main.post(()->{if(!destroyed)reply.postMessage(value.toString());});
+        }catch(Exception ignored){}
+    }
     private static long integer(JSONObject value, String key) throws Exception {
         Object item = value.get(key);
         if (!(item instanceof Integer || item instanceof Long)) throw new IllegalArgumentException("Invalid integer: " + key);
@@ -244,6 +272,7 @@ public final class MainActivity extends Activity {
         destroyed = true; main.removeCallbacks(abandon);
         if (fileChoice != null) { fileChoice.onReceiveValue(null); fileChoice = null; }
         io.execute(() -> endTransfer(null, false)); io.shutdown();
+        updateIo.shutdownNow();
         if (web != null) { web.stopLoading(); web.destroy(); }
         super.onDestroy();
     }

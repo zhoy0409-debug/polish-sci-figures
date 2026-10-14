@@ -151,6 +151,25 @@ class LauncherTests(unittest.TestCase):
         third = self.start(data)
         self.assertEqual(third.port, port)
 
+    def test_packaged_crop_probe_uses_real_http_and_update_metadata_stays_local(self):
+        service = self.start()
+        with mock.patch.object(service.server.update_checker, 'check', side_effect=AssertionError('No release request in packaging self-test')) as updates:
+            status, page = app.http_request(service.port)
+            self.assertEqual(status, 200)
+            metadata = app._self_test_local_configuration(page, service.server.update_checker.current)
+            self.assertEqual(metadata['currentVersion'], service.server.update_checker.current['currentVersion'])
+            proof = app._self_test_image_links(service, self.root/'crop-proof')
+            self.assertTrue(proof['passed'])
+            self.assertEqual(proof['method'], 'sift_similarity_bidirectional')
+            self.assertGreaterEqual(proof['quality']['forwardInliers'], 20)
+            self.assertTrue((self.root/'crop-proof/image-links.json').is_file())
+            self.assertTrue((self.root/'crop-proof/image-links-synthetic-parent.png').is_file())
+            updates.assert_not_called()
+        with self.assertRaises(AssertionError):
+            app._self_test_local_configuration(page.replace(b'"/api/image-links"', b'"/api/wrong"'), service.server.update_checker.current)
+        with self.assertRaises(AssertionError):
+            app._self_test_local_configuration(page, {**service.server.update_checker.current, 'currentVersion': '0.0.0'})
+
     def test_corrupt_saved_origin_is_not_silently_replaced(self):
         data = self.root / 'data'
         data.mkdir()

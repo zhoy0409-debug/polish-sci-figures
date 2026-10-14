@@ -159,6 +159,9 @@ jobs:
       - name: Figure Studio analysis and data reflow
         run: |
           python scripts/test_studio_statistics.py
+          python scripts/test_studio_updates.py
+          python scripts/test_studio_image_links.py
+          python scripts/test_studio_image_links_endpoint.py
           python scripts/test_studio_mark_styles.py
           python scripts/test_grouped_stat_metadata.py
           python scripts/test_studio_pdf.py
@@ -205,7 +208,9 @@ jobs:
           python scripts/build_local_web_preview.py
           python scripts/test_local_web_build.py
       - name: Execute actual WASM dispatcher with network forbidden
-        run: node scripts/test_local_web_wasm.mjs
+        run: |
+          node scripts/test_local_web_wasm.mjs
+          node scripts/test_studio_image_links_wasm.mjs
       - name: Mobile DOM integration (simulation, not device validation)
         env:
           NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
@@ -213,6 +218,19 @@ jobs:
           node scripts/test_mobile_dom_preview.cjs
           node scripts/test_studio_mark_styles.cjs --dom
           node scripts/test_studio_mark_controls.cjs --dom
+          node scripts/test_studio_image_insets.cjs --dom
+          node scripts/test_studio_image_color.cjs --dom
+          node scripts/test_studio_image_color_ui.cjs
+          node scripts/test_studio_image_color_roundtrip.cjs
+          node scripts/test_studio_image_links.cjs --dom
+          node scripts/test_studio_image_links_ui.cjs
+          node scripts/test_studio_image_links_controller.cjs
+          node scripts/test_studio_image_insets_ui.cjs
+          node scripts/test_studio_image_insets_controller.cjs
+          node scripts/test_studio_image_insets_integration.cjs
+          node scripts/test_studio_update_check.cjs --dom
+          node scripts/test_studio_update_transport.cjs
+          node scripts/test_studio_compact_whitespace.cjs --dom
       - name: Retain synthetic calculation evidence and public-file checksums
         if: always()
         uses: actions/upload-artifact@v4

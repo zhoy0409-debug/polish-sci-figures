@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Optional public-literature lookup only; analysis and research data stay on-device. -->
+    <!-- Public literature and official version metadata only; research data stay on-device. -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- No broad storage, camera, microphone or account permissions. -->
     <application android:label="Figure Studio Preview" android:theme="@android:style/Theme.Material.Light.NoActionBar"

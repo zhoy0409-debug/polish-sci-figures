@@ -1,0 +1,39 @@
+'use strict';
+const assert=require('node:assert/strict'),zlib=require('node:zlib'),{JSDOM}=require('jsdom');
+const base='../skills/polish-sci-figures/assets/figure-studio/';
+const geometry=require(base+'image-insets.js'),core=require(base+'image-links.js'),Controller=require(base+'image-links-controller.js');
+global.StudioImageInsets=geometry;global.StudioImageLinks=core;
+const copy=x=>JSON.parse(JSON.stringify(x)),near=(a,b)=>assert.ok(Math.abs(a-b)<1e-7,`${a} != ${b}`);
+function png(value){
+ function crc(buffer){let c=0xffffffff;for(const v of buffer){c^=v;for(let i=0;i<8;i++)c=(c>>>1)^((c&1)?0xedb88320:0);}return(c^0xffffffff)>>>0;}
+ function chunk(kind,body){const k=Buffer.from(kind),len=Buffer.alloc(4),sum=Buffer.alloc(4);len.writeUInt32BE(body.length);sum.writeUInt32BE(crc(Buffer.concat([k,body])));return Buffer.concat([len,k,body,sum]);}
+ const head=Buffer.alloc(13);head.writeUInt32BE(800);head.writeUInt32BE(600,4);head[8]=8;head[9]=2;
+ return 'data:image/png;base64,'+Buffer.concat([Buffer.from([137,80,78,71,13,10,26,10]),chunk('IHDR',head),chunk('IDAT',zlib.deflateSync(Buffer.alloc(2401*600,value))),chunk('IEND',Buffer.alloc(0))]).toString('base64');
+}
+const href=png(0),other=png(1),ref=id=>({panelId:id,variant:0,key:'e1'});
+function fixture(){
+ const dom=new JSDOM(`<html><head></head><body><aside></aside><svg id="root" viewBox="0 0 900 600"><svg data-panel="panel-1" data-variant="0" width="400" height="300" viewBox="0 0 800 600" overflow="visible"><image data-key="e1" width="800" height="600" href="${href}"/></svg><svg data-panel="panel-2" data-variant="0" x="440" width="400" height="300" viewBox="0 0 800 600" overflow="visible"><image data-key="e1" width="800" height="600" href="${other}"/></svg></svg></body></html>`,{pretendToBeVisual:true});
+ const doc=dom.window.document,root=doc.querySelector('#root');let state={order:['panel-1','panel-2'],panels:{'panel-1':{variant:0},'panel-2':{variant:0}},overlays:[],imageLinks:[]},ui,network=0,request,engine={token:'local'};
+ const controller=Controller.create({core,geometry,ui:{create:h=>(ui=h,{refresh(){},open(){},cancel(){},destroy(){}})},container:doc.querySelector('aside'),root:()=>root,state:()=>state,sources:()=>state.order.map(id=>({...ref(id),label:id})),selectedInsets:()=>[],language:()=> 'en',say(){},engine:()=>engine,fetch:async(endpoint,options)=>{network++;request={endpoint,options};return {ok:true,json:async()=>({coordinateSpace:'decoded-image-normalized',pairs:[{parentId:'image-0',childId:'image-1',status:'matched',parentCorners:[[.2,.1],[.7,.1],[.7,.7],[.2,.7]]}]})};},commit:next=>{state=next;controller.draw();return true;}});
+ return {dom,doc,root,controller,get state(){return state;},set state(v){state=v;},get ui(){return ui;},get network(){return network;},get request(){return request;},set engine(v){engine=v;},close(){controller.destroy();dom.window.close();}};
+}
+const tests=[],test=(name,fn)=>tests.push([name,fn]);
+test('external location uses raw original pixels, local endpoint, explicit ROI and exact normalized coordinates',async()=>{
+ const f=fixture(),signal=new AbortController().signal,pairs=await f.controller.match([ref('panel-1'),ref('panel-2')],{signal});assert.equal(f.network,1);assert.equal(f.request.endpoint,'/api/image-links');assert.equal(f.request.options.signal,signal);assert.equal(f.request.options.headers['X-Studio-Token'],'local');const payload=JSON.parse(f.request.options.body);assert.equal(payload.images[0].data,href);assert.deepEqual(payload.images[0].roi,{x:0,y:0,w:1,h:1});assert.deepEqual(pairs[0].polygon,[{x:.2,y:.1},{x:.7,y:.1},{x:.7,y:.7},{x:.2,y:.7}]);assert.equal(pairs[0].anchors.parent.signature,Controller.signature(href));assert.equal(pairs[0].evidence.verified,true);f.close();
+});
+test('known three-level crops link without an engine and source bytes never enter history',async()=>{
+ const f=fixture();f.engine=null;for(const [id,r]of [['annotation-1',{x:.1,y:.1,w:.6,h:.6}],['annotation-2',{x:.2,y:.2,w:.2,h:.2}]]){const a={id,type:'inset',x:.1,y:.6,w:.2,h:.2,source:{...ref('panel-1'),widthPx:800,heightPx:600},roi:r,showScale:false,connector:false};f.state.overlays.push(a);const g=f.doc.createElementNS('http://www.w3.org/2000/svg','g');g.dataset.annotation=id;g.append(geometry.renderContent(a,{root:f.root,geometry:{width:900,height:600}}));f.root.append(g);}
+ const pairs=await f.controller.match([ref('panel-1'),{insetId:'annotation-1'},{insetId:'annotation-2'}]);assert.equal(f.network,0);assert.equal(pairs.length,2);near(pairs[1].polygon[0].x,1/6);near(pairs[1].polygon[2].x,.5);assert.ok(pairs.every(p=>p.evidence.source==='known-crop'));
+ f.ui.commit(pairs.map((p,i)=>core.validate({...p,id:'link-'+i,evidence:{source:p.evidence.source}})),'Apply');assert.equal(f.root.querySelectorAll('[data-image-link-roi]').length,2);assert.equal(JSON.stringify(f.state).includes('data:image'),false);assert.equal(f.controller.exportReady(),true);f.close();
+});
+test('preview/cancel, committed frames, movement and source-change invalidation use actual SVG geometry',async()=>{
+ const f=fixture(),pair=(await f.controller.match([ref('panel-1'),ref('panel-2')]))[0],link=core.validate({...pair,id:'link-1',evidence:{source:'feature-match'}});f.ui.preview([link]);assert.equal(f.state.imageLinks.length,0);assert.equal(f.root.querySelectorAll('[data-image-link-roi]').length,1);f.ui.clearPreview();assert.equal(f.root.querySelectorAll('[data-image-link-roi]').length,0);f.ui.commit([link]);const before=f.root.querySelector('[data-image-link-roi]').getAttribute('points');f.root.querySelector('[data-panel="panel-1"]').setAttribute('x','20');f.controller.draw();assert.notEqual(f.root.querySelector('[data-image-link-roi]').getAttribute('points'),before);assert.equal(f.controller.exportReady(),true);
+ f.root.querySelector('[data-panel="panel-2"] image').setAttribute('href',href);f.controller.draw();assert.equal(f.root.querySelectorAll('[data-image-link-roi]').length,0);assert.equal(f.controller.exportReady(),false);f.state.imageLinks[0].visible=false;f.controller.draw();assert.equal(f.controller.exportReady(),true);f.close();
+});
+test('single-panel export retains parent frame without requiring the external child',async()=>{
+ const f=fixture(),pair=(await f.controller.match([ref('panel-1'),ref('panel-2')]))[0];f.ui.commit([core.validate({...pair,id:'link-1',evidence:{source:'feature-match'}})]);const root=f.root.cloneNode(true);root.querySelector('[data-panel="panel-2"]').remove();root.querySelector('[data-image-links]').remove();root.append(Controller.render(root,f.state,{core,geometry,onlyPanel:'panel-1'}));assert.equal(root.querySelectorAll('[data-image-link-roi]').length,1);assert.equal(root.querySelectorAll('[data-image-link-connector]').length,0);f.close();
+});
+test('rectangular cropped sources map to original ROI and reject complex/hidden geometry',async()=>{
+ const f=fixture(),panel=f.root.querySelector('[data-panel="panel-1"]'),image=panel.querySelector('image');panel.insertAdjacentHTML('afterbegin','<defs><clipPath id="cut"><rect x="80" y="60" width="400" height="300"/></clipPath></defs>');image.setAttribute('clip-path','url(#cut)');const d=f.controller.resolve(ref('panel-1'));assert.ok(d);near(d.roi.x,.1);near(d.roi.w,.5);const pairs=await f.controller.match([ref('panel-1'),ref('panel-2')]);assert.equal(pairs[0].polygon,null,'returned crop outside the visible area must not be clamped into a false box');image.setAttribute('display','none');assert.equal(f.controller.resolve(ref('panel-1')),null);image.removeAttribute('display');panel.querySelector('rect').setAttribute('rx','4');assert.equal(f.controller.resolve(ref('panel-1')),null);f.close();
+});
+(async()=>{for(const [name,fn]of tests){await fn();console.log('PASS '+name);}console.log(tests.length+' image link controller checks passed');})().catch(error=>{console.error(error);process.exitCode=1;});

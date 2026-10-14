@@ -75,7 +75,12 @@
       const visible=node=>{for(let at=node;at&&at!==svg;at=at.parentElement){const style=getComputedStyle(at);if(style.display==='none'||style.visibility==='hidden'||Number(style.opacity)===0)return false;}return true;};
       const background=node=>{for(let at=node;at&&at!==svg;at=at.parentElement)if(/(?:^|-)patch_1$/.test(at.id||'')&&/(?:^|-)figure_1$/.test(at.parentElement?.id||''))return true;return false;};
       const inkBox=parent=>{
-        let result=null;const nodes=parent.matches?.('text,use,path,line,polyline,polygon,rect,circle,ellipse,image')?[parent]:[...parent.querySelectorAll('text,use,path,line,polyline,polygon,rect,circle,ellipse,image')];
+        // Inset crops retain the entire encoded image inside a clipped SVG
+        // viewport. getBBox() on that image ignores viewport clipping, so it
+        // would count off-window pixels as visible ink. The frame encloses
+        // the cropped image and scale; the ROI and connector remain separate
+        // visible marks that must also be protected from trimming.
+        let result=null;const nodes=parent.matches?.('[data-inset-content]')?[...parent.querySelectorAll('[data-inset-frame],[data-inset-roi],[data-inset-connector]')]:parent.matches?.('text,use,path,line,polyline,polygon,rect,circle,ellipse,image')?[parent]:[...parent.querySelectorAll('text,use,path,line,polyline,polygon,rect,circle,ellipse,image')];
         for(const node of nodes){
           if(node.closest('defs,clipPath,mask,pattern')||!visible(node)||background(node))continue;
           const style=getComputedStyle(node),fill=style.fill,stroke=style.stroke,hasStroke=stroke!=='none'&&Number(style.strokeOpacity)!==0;

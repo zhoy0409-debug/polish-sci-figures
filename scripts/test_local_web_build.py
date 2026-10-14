@@ -28,6 +28,8 @@ class LocalWebBuild(unittest.TestCase):
             self.assertIn(source['path'], files)
             self.assertTrue(source['destination'].startswith('/suite/skills/'))
             self.assertNotIn('..', source['destination'])
+        self.assertTrue(any(s['destination'].endswith('/studio_image_links.py') for s in manifest['pythonSources']))
+        self.assertIn('"imageLinksEndpoint": "/api/image-links"', (output/'index.html').read_text(encoding='utf-8'))
         self.assertIn('licenses/Pyodide-0.29.3-LICENSE', files)
         self.assertIn('licenses/Python-3.13.2-LICENSE', files)
         self.assertIn('licenses/OpenBLAS-0.3.26-LICENSE', files)

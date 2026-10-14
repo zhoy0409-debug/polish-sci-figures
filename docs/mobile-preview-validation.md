@@ -4,7 +4,7 @@ English first · [中文](#中文)
 
 **Last checked: 13 October 2026.** This record distinguishes native emulator results from browser simulations and physical-device testing. Android, iPhone and iPad passed local calculations, actual project Save/Open and visual restoration in the native simulator runs identified below. These are development previews, not store releases.
 
-The dated checks below describe the earlier builds, before the optional Europe PMC feature. The [0.1.6 previews](local-device-trial.md) permit an explicitly started literature lookup while keeping research calculations local. Their finished-package evidence is recorded separately with the preview release; the earlier “no Internet permission” result does not describe the new Android package.
+The dated checks below describe the earlier builds, before the optional Europe PMC feature. The [0.1.7 previews](local-device-trial.md) permit an explicitly started literature lookup and official GitHub version checks while keeping research calculations local. Their finished-package evidence is recorded separately with the preview release; the earlier “no Internet permission” result does not describe the new Android package.
 
 - [Android runtime](#android-verified-native-runtime)
 - [Timing and visual checks](#timing-and-visual-checks)
@@ -74,7 +74,7 @@ Physical Android phones/tablets and iPhones/iPads still require checks for touch
 
 **最后核查：2026 年 10 月 13 日。** 本记录区分原生模拟器结果、浏览器模拟和真机测试。Android、iPhone 和 iPad 均在下述原生模拟器运行中通过本地计算、真实工程保存／打开与画面恢复。这里是开发预览，不是应用商店正式发行。
 
-以下带日期的网络检查对应增加可选 Europe PMC 功能之前的具体构建。[0.1.6 预览版](local-device-trial.md#中文)允许用户主动启动文献检索，研究计算仍留在本机；成品包的对应证据随预览发行版单独记录，此前“没有互联网权限”的结论不描述新版 Android 包。
+以下带日期的网络检查对应增加可选 Europe PMC 功能之前的具体构建。[0.1.7 预览版](local-device-trial.md#中文)允许用户主动启动文献检索及检查 GitHub 官方版本信息，研究计算仍留在本机；成品包的对应证据随预览发行版单独记录，此前“没有互联网权限”的结论不描述新版 Android 包。
 
 ### Android 已验证的原生流程
 

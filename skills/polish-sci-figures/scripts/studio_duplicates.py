@@ -12,6 +12,7 @@ import base64
 import binascii
 import hashlib
 import io
+import math
 import re
 import warnings
 from dataclasses import dataclass
@@ -166,7 +167,7 @@ def _high_depth_preview(payload, original, cv):
                            'previewMapping': 'linear min–max to 8-bit; native pixels used for exact identity'}, (width, height)
 
 
-def _read(record, cv):
+def _read(record, cv, roi=None):
     prefix = _DATA_URL.match(record['data'])
     try:
         payload = base64.b64decode(record['data'][prefix.end():], validate=True)
@@ -203,6 +204,19 @@ def _read(record, cv):
                     del rgba
                     rgb = background.convert('RGB')
                     del background
+                analysis_roi = None
+                if roi is not None:
+                    if (not isinstance(roi, dict) or set(roi) != {'x', 'y', 'w', 'h'} or
+                            any(type(v) not in (int, float) or not math.isfinite(v) for v in roi.values()) or
+                            roi['x'] < 0 or roi['y'] < 0 or min(roi['w'], roi['h']) <= 0 or
+                            roi['x']+roi['w'] > 1+1e-12 or roi['y']+roi['h'] > 1+1e-12):
+                        raise ValueError('Invalid normalized image ROI')
+                    box = (math.floor(roi['x']*width), math.floor(roi['y']*height),
+                           min(width, math.ceil((roi['x']+roi['w'])*width)),
+                           min(height, math.ceil((roi['y']+roi['h'])*height)))
+                    rgb = rgb.crop(box)
+                    analysis_roi = {'x': box[0]/width, 'y': box[1]/height,
+                                    'w': (box[2]-box[0])/width, 'h': (box[3]-box[1])/height}
                 rgb.thumbnail((MAX_SIDE, MAX_SIDE), Image.Resampling.LANCZOS)
     except (UnidentifiedImageError, OSError, Image.DecompressionBombError, Image.DecompressionBombWarning, cv.error) as exc:
         raise ValueError('图片损坏、尺寸过大或格式无法读取。 / The image is damaged, too large or unreadable.') from exc
@@ -210,6 +224,8 @@ def _read(record, cv):
     gray = cv.cvtColor(array, cv.COLOR_RGB2GRAY)
     info = {'id': record['id'], 'label': record['label'], 'width': width, 'height': height,
             'sha256': digest.hexdigest(), 'thumbnail': _thumbnail(rgb), 'warnings': []}
+    if analysis_roi is not None:
+        info['analysisRoi'] = analysis_roi
     if intensity_mapping:
         info['intensityMapping'] = intensity_mapping
         info['warnings'].append('high_bit_depth_preview')

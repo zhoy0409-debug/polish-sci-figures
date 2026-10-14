@@ -117,7 +117,7 @@ for(const pos of mixedLayout.positions){
   assert.equal(pos.statisticsFirstTop,firstMax);assert.equal(pos.statisticsTop,firstMax+innerMax);
   const request=layoutContext.reflowSpec(pos,mixed);assert.equal(request.height,259.2,'backend receives only source body size, not statistical headroom');
   const svg=drawings[pos.id],v=assets[pos.id].variants[0],bodyPos={...pos,height:pos.height-pos.statisticsTop-pos.statisticsBand};
-  vm.runInNewContext(positionLine.trim(),{svg,v,pos,bodyPos,fitPos:pos,fitted:false});
+  vm.runInNewContext(positionLine.trim(),{svg,v,pos,bodyPos,fitPos:pos,fitted:false,vi:0});
   bodyTops.push(+svg.getAttribute('y')+metricsById[pos.id].header);
   assert.ok(+svg.getAttribute('y')>=pos.y-1e-8);assert.ok(+svg.getAttribute('y')+ +svg.getAttribute('height')<=pos.y+pos.height+1e-8,'translated figure including all facet headers stays inside its slot');
 }
@@ -135,7 +135,7 @@ const titleBaselines=[];
 for(const pos of layoutContext.layout(mixed).positions){
   const svg=drawings[pos.id],v=assets[pos.id].variants[0],bodyPos={...pos,height:pos.height-pos.statisticsTop-pos.statisticsBand};
   vm.runInNewContext(titleLine.trim(),{svg,v,pos,raw:false,fitted:false,translateStatisticalElement:ctx.translateStatisticalElement,namespace:()=>{}});
-  vm.runInNewContext(positionLine.trim(),{svg,v,pos,bodyPos,fitPos:pos,fitted:false});
+  vm.runInNewContext(positionLine.trim(),{svg,v,pos,bodyPos,fitPos:pos,fitted:false,vi:0});
   const title=svg.querySelector('[data-stat-facet-title="0"]'),axis=title.closest('[id^="axes_"]');
   titleBaselines.push(+svg.getAttribute('y')+ +title.getAttribute('y')+title.transform.baseVal.consolidate().matrix.f+axis.transform.baseVal.consolidate().matrix.f);
 }

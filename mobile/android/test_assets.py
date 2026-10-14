@@ -36,6 +36,15 @@ class AssetsTest(unittest.TestCase):
         self.assertEqual(manifest['researchDataTransport'], 'on-device-worker-only')
         self.assertEqual(manifest['optionalLiteratureLookup']['trigger'], 'explicit-user-search')
         self.assertEqual(manifest['optionalLiteratureLookup']['host'], 'www.ebi.ac.uk')
+        self.assertEqual(manifest['updateMetadata']['method'], 'GET')
+        self.assertFalse(manifest['updateMetadata']['researchData'])
+        self.assertFalse(manifest['updateMetadata']['credentials'])
+        self.assertEqual(manifest['updateMetadata']['cacheHours'], 24)
+        self.assertEqual(manifest['updateMetadata']['endpoint'], 'https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/releases?per_page=30')
+        bridge = (self.allowed / 'www/native-bridge.js').read_text(encoding='utf-8')
+        self.assertNotIn('__STUDIO_ANDROID_VERSION__', bridge)
+        version = assets.re.search(r"versionName\s+'(\d+\.\d+\.\d+)-local-preview'", (BASE / 'app/build.gradle').read_text()).group(1)
+        self.assertIn("currentVersion:'" + version + "'", bridge)
         for item in manifest['files']:
             self.assertEqual(assets.digest(self.allowed / 'www' / item['path']), item['sha256'])
     def test_checksum_tampering_rejected(self):

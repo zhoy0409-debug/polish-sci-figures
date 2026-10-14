@@ -1,4 +1,4 @@
-/* Local Android export adapter. No network access or research-data logging. */
+/* Local exports and a separate official public-update metadata bridge. */
 (() => {
   'use strict';
   const host = window.StudioAndroidHost;
@@ -17,7 +17,7 @@
   };
   function command(id, data, timeout = WAIT) {
     return new Promise((resolve, reject) => {
-      const timer = setTimeout(() => { pending.delete(id); reject(new Error('Save timed out / 保存已超时')); }, timeout);
+      const timer = setTimeout(() => { pending.delete(id); reject(new Error(data.action==='check-updates'?'Update check timed out / 更新检查超时':data.action==='open-release'?'Opening the link timed out / 打开链接超时':'Save timed out / 保存已超时')); }, timeout);
       pending.set(id, {resolve, reject, timer});
       try { host.postMessage(JSON.stringify({id, ...data})); }
       catch (error) { clearTimeout(timer); pending.delete(id); reject(error); }
@@ -75,5 +75,14 @@
       }
     });
   }
-  Object.defineProperty(window, 'StudioNativeBridge', {value:Object.freeze({platform:'android', bundledAssets:true, saveBlob, saveFile}), configurable:false, writable:false});
+  const updateInfo=Object.freeze({currentVersion:'__STUDIO_ANDROID_VERSION__',suiteVersion:'1.4.7',platform:'android',architecture:'universal',channel:'preview'});
+  async function checkUpdates({refresh=false}={}){
+    if(typeof refresh!=='boolean')throw new TypeError('Refresh must be a boolean');
+    const reply=await command('update_'+Date.now().toString(36)+'_'+(++serial),{action:'check-updates',refresh},18000);return reply.result;
+  }
+  async function openExternal(url){
+    if(typeof url!=='string'||url.length>2048)throw new TypeError('Invalid release URL');
+    const reply=await command('external_'+Date.now().toString(36)+'_'+(++serial),{action:'open-release',url},5000);return reply.result;
+  }
+  Object.defineProperty(window, 'StudioNativeBridge', {value:Object.freeze({platform:'android', bundledAssets:true, updateInfo, checkUpdates, openExternal, saveBlob, saveFile}), configurable:false, writable:false});
 })();

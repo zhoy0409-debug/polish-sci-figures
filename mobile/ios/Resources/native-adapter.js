@@ -1,4 +1,4 @@
-/* Injected by WKWebView before application scripts. Only bounded native file writes. */
+/* Injected before application scripts: local files and fixed official release checks. */
 (function () {
   'use strict';
   const native = window.webkit?.messageHandlers?.figureStudioNative;
@@ -39,5 +39,15 @@
     }
     return saveBlob(new Blob(parts, {type: mime}), name);
   }
-  Object.defineProperty(window, 'StudioNativeBridge', {value: Object.freeze({platform: 'ios', bundledAssets: true, saveBlob, saveFile}), configurable: false, writable: false});
+  const updateInfo=Object.freeze({...window.__studioNativeUpdateInfo,platform:'ios',channel:'preview'});
+  delete window.__studioNativeUpdateInfo;
+  function checkUpdates(options={}) {
+    if(!options||typeof options!=='object'||Object.keys(options).some(key=>key!=='refresh')||options.refresh!==undefined&&typeof options.refresh!=='boolean')return Promise.reject(new TypeError('Invalid update request'));
+    return send({action:'checkUpdates',refresh:options.refresh===true});
+  }
+  function openExternal(url) {
+    if(typeof url!=='string'||url.length>700||!/^(?:https:\/\/github\.com\/zhoy0409-debug\/polish-sci-figures\/releases)(?:\/latest|\/tag\/[A-Za-z0-9][A-Za-z0-9._-]{0,99}|\/download\/[A-Za-z0-9][A-Za-z0-9._-]{0,99}\/[A-Za-z0-9][A-Za-z0-9._-]*)?$/.test(url)||url.includes('..'))return Promise.reject(new TypeError('Only official release links are allowed'));
+    return send({action:'openUpdateLink',url}).then(result=>result?.opened===true);
+  }
+  Object.defineProperty(window, 'StudioNativeBridge', {value: Object.freeze({platform: 'ios', bundledAssets: true, updateInfo, checkUpdates, openExternal, saveBlob, saveFile}), configurable: false, writable: false});
 })();
