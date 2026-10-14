@@ -287,4 +287,6 @@ In the interaction plot, all nine comparisons remained beside their correspondin
 
 On this same Windows machine and synthetic SVG, 136-object selection completion measured 478.6 ms in the previous code and 38.1 ms in the revised code; drag-start processing measured 269.9/13.7 ms and pointer-release commit processing 1600.3/161.9 ms. These measurements use real browser input and event-to-next-animation-frame instrumentation. They are operation-delay observations, not rendered FPS, guaranteed latency, or a physical low-end-device benchmark. Raw records: `.cache/smooth-editing-qa/baseline-timing.json` and `optimized-timing.json`. Automated regression coverage additionally checks proportional preview/export geometry, font-size conversion, semantic axis limits, locks, cancellation and single-step history.
 
-中文：实际浏览器已验证拖列宽、输入行高后点击空白应用、图表与导入图同比缩放、撤销、保存重开及 SVG 导出。九组统计比较留在对应数据旁，支持统一调整连接线跨度；可靠识别的数值轴延伸时补齐刻度。性能数字来自同机实际操作对照，不代表帧率或低配置真机验证。
+The same proportionally resized composition was also downloaded as TIFF and decoded independently with Pillow: RGB, 5880 × 3333 pixels, 600 × 600 dpi, 58,794,748 bytes. This verifies an actual exported file, in addition to the SVG geometry check.
+
+中文：实际浏览器已验证拖列宽、输入行高后点击空白应用、图表与导入图同比缩放、撤销、保存重开及 SVG、600 dpi TIF 导出。九组统计比较留在对应数据旁，支持统一调整连接线跨度；可靠识别的数值轴延伸时补齐刻度。性能数字来自同机实际操作对照，不代表帧率或低配置真机验证。

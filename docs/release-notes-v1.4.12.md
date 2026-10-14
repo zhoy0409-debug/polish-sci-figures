@@ -25,7 +25,7 @@ Save a project JSON before upgrading. Installed Windows 0.1.9 and later support 
 
 Source-level regressions and browser checks cover axis/tick mapping, editable annotations, component controls, selection and grid resizing. In a same-machine browser comparison with 136 selected objects, measured selection response fell from **479 to 38 ms**, and drag-completion work from **1,600 to 162 ms**. These are operation timings, not frames per second or a physical low-end-device benchmark.
 
-The packages still require this release's build and platform checks. Final results and file hashes will be recorded on the [official release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.12) and [native preview release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/figure-studio-local-preview-0.1.12).
+Build and platform evidence, together with file hashes, accompany the published packages on the [official release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.12) and [native preview release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/figure-studio-local-preview-0.1.12). The [validation record](figure-studio-validation.md#proportional-grid-sizing-and-responsive-editing--2026-10-15) describes the actual browser and export checks.
 
 ## 中文
 
@@ -52,4 +52,4 @@ The packages still require this release's build and platform checks. Final resul
 
 源码回归和浏览器检查覆盖轴与刻度映射、可编辑统计标注、组件控件、多选及网格缩放。同一台机器、136 个选中对象的浏览器对比中，选中响应耗时由 **479 降至 38 ms**，拖动完成阶段由 **1,600 降至 162 ms**。这些是操作耗时，不是帧率，也不代表低配置真机性能验证。
 
-安装包仍需完成本版构建及平台验收；最终结果与文件校验值将记录在[正式发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.12)和[原生预览发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/figure-studio-local-preview-0.1.12)。
+发布包随附构建、平台验证结果及文件校验值，见[正式发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.12)和[原生预览发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/figure-studio-local-preview-0.1.12)。实际浏览器与导出检查详见[验证记录](figure-studio-validation.md#proportional-grid-sizing-and-responsive-editing--2026-10-15)。
