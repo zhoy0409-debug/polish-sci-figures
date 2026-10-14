@@ -120,7 +120,7 @@ assert.deepEqual(Object.keys(fontContext.saved.panels.p0.edits[0]).sort(),['e1',
 // Actual generated-element edit hook marks manual display, then applies character styles.
 const generatedSvg=elem('svg'),generated=elem('text',p,{'data-stat-result':'true'});generatedSvg.append(generated);
 const generatedProps={text:'P = 0.040','rich-text':encoded(rich.format(null,'P = 0.040',0,1,'italic',true))};
-const generatedBlock=source.split('\n').filter(line=>line.includes('let generated=900000')||line.includes("typeof StudioRichText!=='undefined'")&&line.includes("props['rich-text']")).join('\n');
+const generatedBlock=source.slice(source.indexOf('  function editedSvg('),source.indexOf('  function clearStatisticalResultEdits(')).split('\n').filter(line=>line.includes('let generated=900000')||line.includes("typeof StudioRichText!=='undefined'")&&line.includes("props['rich-text']")).join('\n');
 assert.ok(generatedBlock.length>0&&generatedBlock.length<5000);
 const generatedContext={svg:generatedSvg,id:'p0',vi:0,s:history.current,raw:false,StudioRichText:rich,editsFor:()=>({e900000:generatedProps})};
 // Only complete generation/application lines; subsequent translation has separate tests.

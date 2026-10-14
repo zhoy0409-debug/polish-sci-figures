@@ -89,7 +89,8 @@ labelNode.setPointerCapture=()=>{captureTarget=labelNode;};
 const pointTarget=labelNode;
 const svg={classList:{add(){},remove(){}},closest:()=>null,getBoundingClientRect:()=>({left:100,top:50,width:1440,height:1008}),setPointerCapture(){captureTarget=svg;},querySelector:()=>labelNode};
 fields.panelLabelControls={open:false,scrollIntoView(){}};fields.panelLabel.focus=()=>focused++;fields.panelLabel.select=()=>focused++;
-const dragContext={copy,svg,NS:'svg',T:s=>s,visualPanelOrder,displayedPanelLabel,panelNumberStyle,state:()=>dragState,$:id=>fields[id],inspectorPanel:null,
+const dragFrames=new Map();let dragFrameId=0;
+const dragContext={requestAnimationFrame(fn){const id=++dragFrameId;dragFrames.set(id,fn);return id;},cancelAnimationFrame(id){dragFrames.delete(id);},copy,svg,NS:'svg',T:s=>s,visualPanelOrder,displayedPanelLabel,panelNumberStyle,state:()=>dragState,$:id=>fields[id],inspectorPanel:null,
   document:{querySelectorAll:()=>[]},window:{getSelection:()=>({removeAllRanges(){}})},cancelQueuedZoom(){},
   renderDataEditor(){},renderMethods(){},renderInspector(){inspectorBuilds++;dragContext.inspectorPanel=ids[0];},renderSelectionProperties(){},renderLabelControls(){fields.panelLabel.value=displayedPanelLabel(dragState,ids[0]).text;},
   zoomView:{refreshSelection(){selectionRefreshes++;}},drawSelection(){selectionRefreshes++;},say(){},

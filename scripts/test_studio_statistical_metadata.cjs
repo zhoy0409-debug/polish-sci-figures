@@ -20,8 +20,8 @@ def export(data,view,size,legacy):
   result=reflow({'family':'gallery','parameters':{'view':view},'font':'DejaVu Sans'},rows,size[0]*72,size[1]*72)
   assert abs(result['width']-size[0]*72)<1e-6 and abs(result['height']-size[1]*72)<1e-6
   return tree(E.fromstring(result['svg']))
- owner={'grouped_observations':gallery_workbench,'compare_facet_boxes':gallery_compare}[view]
- with patch.object(owner,'tag_stat_group',(lambda *args:None) if legacy else owner.tag_stat_group):
+ owner={'grouped_observations':gallery_workbench,'compare_facet_boxes':gallery_compare,'compare_interaction':gallery_compare}[view]
+ with patch.object(owner,'tag_stat_group',(lambda *args,**kwargs:None) if legacy else owner.tag_stat_group):
   fig=gallery_registry.render(data,view,figsize=size);prepare_marks(fig);stream=io.StringIO();fig.savefig(stream,format='svg',metadata={'Date':None});raw=embed_marks(stream.getvalue(),fig);plt.close(fig)
  node=E.fromstring(raw)
  if legacy:
@@ -32,7 +32,7 @@ def export(data,view,size,legacy):
   mark.text=json.dumps(m)
  return tree(node)
 style('DejaVu Sans');output=[]
-for view in ['grouped_observations','compare_facet_boxes']:
+for view in ['grouped_observations','compare_facet_boxes','compare_interaction']:
  for size in [(4.8,3.6),(7.2,3.6)]:
   data=pd.DataFrame([{'factor':f,'group':g,'unit':str(n),'value':12+fi*4+gi*2.5+r}
     for fi,f in enumerate(['Line 1','Line &2','Line <3>']) for gi,g in enumerate(['Control','Stress','Rescue'])
@@ -86,7 +86,7 @@ for(const fixture of fixtures){
   assert.equal(JSON.stringify(state),stateBefore);for(const key of keys)assert.ok(source.querySelectorAll('*').find(n=>n.getAttribute('data-key')===key));
   const upgraded=meta(source),expected=meta(fixture.fresh);assert.equal(upgraded.axes.length,expected.axes.length);
   for(const [ai,axis]of upgraded.axes.entries())for(const [ci,cell]of axis.groups.entries()){
-    const fresh=expected.axes[ai].groups[ci];assert.equal(cell.group,fresh.group);assert.deepEqual(cell.facet,fresh.facet);assert.deepEqual(cell.center,fresh.center);assert.equal(cell.members.length,fresh.members.length);
+    const fresh=expected.axes[ai].groups[ci];assert.equal(cell.group,fresh.group);assert.deepEqual(cell.facet,fresh.facet);assert.deepEqual(cell.center,fresh.center);assert.equal(cell.members.length,fresh.members.length);assert.equal(cell.point_index,fresh.point_index);assert.equal(axis.comparison_axis,expected.axes[ai].comparison_axis);
     for(const id of cell.members)assert.equal(byId(source,id).parentElement.id,axis.axis);
   }
   assert.equal(metadata.attach(source,fixture.fresh),false,'Existing metadata is not overwritten');

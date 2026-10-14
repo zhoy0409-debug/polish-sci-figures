@@ -150,7 +150,7 @@ def _point_centers(artist, ax, scale, height):
         return None
 
 
-def tag_stat_group(ax, group, facet, center, artists):
+def tag_stat_group(ax, group, facet, center, artists, *, point_index=None, comparison_axis='x'):
     """Record a rendered factor/group cell without inferring labels from colour.
 
     Coordinates stay in data units until export, after the final axes layout.
@@ -169,9 +169,21 @@ def tag_stat_group(ax, group, facet, center, artists):
             # Preserve the editor's existing studio-mark-* geometry detection.
             artist.set_gid(f'studio-mark-stat-c{len(records)}-m{len(members)}')
         members.append(artist)
+    if comparison_axis not in ('x', 'y'):
+        raise ValueError('Unsupported statistical comparison axis')
+    if point_index is not None:
+        if (comparison_axis != 'y' or not isinstance(point_index, int) or point_index < 0
+                or len(members) != 1 or not hasattr(members[0], 'get_xydata')):
+            raise ValueError('Indexed statistical anchors require one data line')
+        points = members[0].get_xydata()
+        if point_index >= len(points) or not np.allclose(points[point_index], center, rtol=0, atol=1e-10):
+            raise ValueError('Statistical anchor must match the indexed data point')
+    elif comparison_axis == 'y':
+        raise ValueError('Vertical statistical anchors require an explicit point index')
     records.append({'axis': ax, 'group': str(group),
                     'facet': {'column': 'factor', 'value': str(facet)},
-                    'center': tuple(center), 'members': members})
+                    'center': tuple(center), 'members': members,
+                    'point_index': point_index, 'comparison_axis': comparison_axis})
     fig._studio_stat_groups = records
 
 
@@ -192,12 +204,17 @@ def _embed_stat_groups(svg, fig):
             continue
         axis_id = ax.get_gid() or f'axes_{fig.axes.index(ax) + 1}'
         axis = axes.setdefault(axis_id, {'axis': axis_id, 'groups': []})
+        if record.get('comparison_axis') == 'y':
+            axis['comparison_axis'] = 'y'
         members = [a.get_gid() for a in record['members']
                    if a.get_visible() and a.get_gid() and a.axes is ax]
         if not members:
             continue
-        axis['groups'].append({'group': record['group'], 'facet': record['facet'],
-                               'center': center.round(6).tolist(), 'members': members})
+        cell = {'group': record['group'], 'facet': record['facet'],
+                'center': center.round(6).tolist(), 'members': members}
+        if record.get('point_index') is not None:
+            cell['point_index'] = record['point_index']
+        axis['groups'].append(cell)
     if not axes:
         return svg
     payload = html.escape(json.dumps({'version': 1, 'group_column': 'group',

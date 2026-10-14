@@ -74,7 +74,7 @@ const bars={querySelector:()=>({querySelector:()=>({})})};assert.equal(context.s
 const panelId=independent.id,initial={order:[panelId],columns:1,gap:12,panels:{[panelId]:{variant:0,edits:{}}}};
 const history=new History(initial),nodes={annotationStyle:{value:''},annotationLine:{value:'bracket'}};
 let currentPanel={...independent,variants:[{...independent.variants[0],preserveAspect:false}]},lastMessage='',refreshes=0,pendingStyle='';
-const ctx={...productionHelpers,...context,statisticalComparisons,comparisonLetters,copy,state:()=>history.current,panel:()=>currentPanel,statisticalAnalysisFor:()=>currentPanel.analysis,baseSvg:()=>categorySvg(independent.analysis.group_order),selectedPanel:panelId,$:id=>nodes[id],T:x=>x,commit:(next)=>{validateState(next,{panels:[currentPanel]});history.commit(next);},say:text=>{lastMessage=text;},renderStatisticalAnnotations:()=>refreshes++,openStatistics:style=>{pendingStyle=style;}};
+const ctx={...productionHelpers,...context,project,statisticalComparisons,comparisonLetters,copy,state:()=>history.current,panel:()=>currentPanel,statisticalAnalysisFor:()=>currentPanel.analysis,baseSvg:()=>categorySvg(independent.analysis.group_order),selectedPanel:panelId,$:id=>nodes[id],T:x=>x,commit:(next)=>{validateState(next,{panels:[currentPanel]});history.commit(next);},say:text=>{lastMessage=text;},renderStatisticalAnnotations:()=>refreshes++,openStatistics:style=>{pendingStyle=style;}};
 const metricStart=source.indexOf('  function anchoredStatisticalLayout('),metricEnd=source.indexOf('  function translateStatisticalElement(',metricStart);
 assert.ok(metricStart>0&&metricEnd>metricStart);vm.runInNewContext(source.slice(metricStart,metricEnd),ctx);
 const infoStart=source.indexOf('  function statisticalAnnotationSets('),infoEnd=source.indexOf('  function renderStatisticalAnnotations(',infoStart);
@@ -145,7 +145,7 @@ for(const id of Object.keys(entryNodes)){
 // panel has no legacy analyses. Stale results are never presented as current.
 const methodNode=()=>({children:[],textContent:'',append(...items){this.children.push(...items);},replaceChildren(){this.children=[];}});
 const methodNodes={analysisGoal:{value:'mean'},methodReason:{},methodCards:methodNode(),methodRequirements:methodNode()},methodPanel={analysis:{},table:{sha256:'active-table'}},methodState={panels:{active:{statistics:{tableKey:'active-table',analysis:copy(supplied)}}}};
-const methodsContext={document:{createElement:methodNode},$:id=>methodNodes[id],selectedPanel:'active',state:()=>methodState,panel:()=>methodPanel,T:(key,...args)=>i18n.t(key,...args),statisticalComparisons,statisticalMethodName,methodOrder:productionHelpers.methodOrder};
+const methodsContext={inspectorDisclosureReady:()=>true,document:{createElement:methodNode},$:id=>methodNodes[id],selectedPanel:'active',state:()=>methodState,panel:()=>methodPanel,T:(key,...args)=>i18n.t(key,...args),statisticalComparisons,statisticalMethodName,methodOrder:productionHelpers.methodOrder};
 const analysisStart=source.indexOf('  function statisticalAnalysisFor('),analysisEnd=source.indexOf('  function comparisonsFor(',analysisStart),methodsStart=source.indexOf('  function renderMethods('),methodsEnd=source.indexOf('  function render() {',methodsStart);
 vm.runInNewContext(source.slice(analysisStart,analysisEnd)+source.slice(methodsStart,methodsEnd),methodsContext);
 const beforeMethods=JSON.stringify(methodState);methodsContext.renderMethods();

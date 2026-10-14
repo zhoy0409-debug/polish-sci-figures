@@ -50,7 +50,8 @@ const StudioSelectionTransformDOM=(()=>{
       return ownCache.get(value);
     };
     const identity=m=>m.a===1&&m.b===0&&m.c===0&&m.d===1&&m.e===0&&m.f===0;
-    const planned=new Set();
+    const planned=new Set(),parentMatrices=new Map();
+    const parentGeometry=parent=>{if(!parentMatrices.has(parent)){const matrix=parent===svg?{...I}:api.relativeMatrix(parent,svg);parentMatrices.set(parent,{matrix,inverse:api.inverse(matrix)});}return parentMatrices.get(parent);};
     for(const [key,props]of Object.entries(edits)){
       if(!props||typeof props!=='object'||Array.isArray(props))fail('Object edit properties are invalid.');
       if(!['object-transform','offset-x','offset-y'].some(name=>has(props,name)))continue;
@@ -65,10 +66,10 @@ const StudioSelectionTransformDOM=(()=>{
       for(const node of [target,...(target.localName==='image'?owners.get(key)||[]:[])]){
         if(planned.has(node))fail('Object transform target has conflicting owners.');
         if(node.closest('defs,clipPath,mask,pattern,symbol'))continue;
-        const parent=node.parentElement,parentMatrix=parent===svg?{...I}:api.relativeMatrix(parent,svg),own=ownMatrix(node);
+        const parent=node.parentElement,{matrix:parentMatrix,inverse:parentInverse}=parentGeometry(parent),own=ownMatrix(node);
         // Every plan uses the ORIGINAL parent matrix, before any writes. Thus
         // parent/child edits do not depend on object-key enumeration order.
-        const result=finiteMatrix(api.multiply(api.multiply(api.multiply(api.inverse(parentMatrix),delta),parentMatrix),own));
+        const result=finiteMatrix(api.multiply(api.multiply(api.multiply(parentInverse,delta),parentMatrix),own));
         api.inverse(result);plans.push({node,result});planned.add(node);
       }
     }

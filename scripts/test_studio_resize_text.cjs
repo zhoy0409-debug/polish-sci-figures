@@ -5,7 +5,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('nod
 const {JSDOM}=require('jsdom');
 const base='../skills/polish-sci-figures/assets/figure-studio/';
 const source=fs.readFileSync(require.resolve(base+'studio.js'),'utf8'),html=fs.readFileSync(require.resolve(base+'studio.html'),'utf8');
-const main=require(base+'studio.js'),rich=require(base+'rich-text.js'),geometry=require(base+'image-insets.js'),affine=require(base+'selection-transform.js'),presentation=require(base+'selection-transform-dom.js');
+const main=require(base+'studio.js'),rich=require(base+'rich-text.js'),geometry=require(base+'image-insets.js'),affine=require(base+'selection-transform.js'),presentation=require(base+'selection-transform-dom.js'),gridResize=require(base+'grid-resize-ui.js');
 const copy=value=>JSON.parse(JSON.stringify(value)),NS='http://www.w3.org/2000/svg';
 const close=(actual,expected,label='')=>assert.ok(Math.abs(actual-expected)<=1e-8*Math.max(1,Math.abs(expected)),`${label}: ${actual} != ${expected}`);
 let passed=0;const failures=[];
@@ -24,23 +24,26 @@ const helpers=[
   chunk('  function renderSelectionProperties(','  let literatureBrowser='),
   chunk('  function namespace(svg)','  let compactLayoutCache='),
   chunk('  function applyElementOffsets(','  let autosaveQueue='),
+  chunk('  function previewCategorySpacing(','  function cancelCategorySpacing('),
   `function editedSvg(id,vi,s=state(),raw=false){const svg=parse();${typographyBlock}${editBlock}return svg;}`
 ].join('\n');
-function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1'],edits={},content=[1,0,0,1,0,0],backgrounds=[],typography=null}={}){
+function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1'],edits={},content=[1,0,0,1,0,0],backgrounds=[],typography=null,manual=null}={}){
   const dom=new JSDOM(html),document=dom.window.document,$=id=>document.getElementById(id);
   const raw=`<svg xmlns="${NS}" width="${width}pt" height="200pt" viewBox="0 0 ${viewWidth} ${200*viewWidth/width}">${body}</svg>`;
   const asset={id:'p0',name:'Synthetic imported PDF',provenance:'user-import',variants:[{width,height:200,viewBox:[0,0,viewWidth,200*viewWidth/width],svg:raw}]};
   const project={id:'resize-text-regression',panels:[asset]},initial={order:['p0'],columns:1,gap:0,panels:{p0:{variant:0,edits:{0:copy(edits)},contentTransforms:{0:[...content]},contentBackgrounds:{0:[...backgrounds]},useUnifiedTypography:!!typography}},...(typography?{typography}:{}),overlays:[]};
+  if(manual)initial.grid={rows:1,widths:[manual.width],heights:[manual.height],manualTracks:true,places:{p0:{row:0,col:0,rs:1,cs:1}}};
   let current=copy(initial);const history=new main.History(current),messages=[];
   const parse=()=>new dom.window.DOMParser().parseFromString(raw,'image/svg+xml').documentElement;
-  const layout=()=>({width,height:200,positions:[{id:'p0',x:0,y:0,width,height:200}],cells:[]});
-  const ctx={copy,NS,document,$,parse,StudioRichText:rich,StudioImageInsets:geometry,StudioSelectionTransform:affine,StudioSelectionTransformDOM:presentation,StudioI18n:{panelName:p=>p.name},project,preparePositionedTextEdit:main.preparePositionedTextEdit,
+  const layout=()=>{const w=current.grid?.widths?.[0]||width,h=current.grid?.heights?.[0]||200;return {width:w,height:h,positions:[{id:'p0',x:0,y:0,width:w,height:h}],cells:[]};};
+  const ctx={copy,NS,document,$,parse,StudioGridResize:gridResize,StudioRichText:rich,StudioImageInsets:geometry,StudioSelectionTransform:affine,StudioSelectionTransformDOM:presentation,StudioI18n:{panelName:p=>p.name},project,preparePositionedTextEdit:main.preparePositionedTextEdit,
     original:false,selectedPanel:'p0',selected:[...keys],selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,layoutMode:false,showGuides:false,renderSerial:0,
     state:()=>current,panel:()=>asset,currentOutput:()=>({scale}),layout,
     selectionGroups:()=>[{id:'p0',vi:0,keys:[...ctx.selected]}],keysToObjects:svg=>[...svg.querySelectorAll('[data-key]')],
     T:(text,...args)=>text.replace(/\{(\d+)\}/g,(_,i)=>args[i]),say:text=>messages.push(text),
-    renderSelectionCommands(){},syncColorControls(){},renderFontTargets(){},renderHeatmapControls(){},renderRichTextControls(){},renderStatisticalLineControls(){},
+    renderSelectionCommands(){},syncColorControls(){},renderFontTargets(){},renderComponentStyle(){},renderHeatmapControls(){},renderRichTextControls(){},renderStatisticalLineControls(){},
     fittedVariant:()=>null,fitPlot:()=>false,statisticalExportRecords:()=>[],statisticalAnalysisFor:()=>null,annotationFirstTopHeight:()=>0,gridFor:main.gridFor,displayedPanelLabel:()=>null,exportGeometry:main.exportGeometry,
+    conditionMatrixHeight:()=>0,addStatisticalHitAreas:()=>{},zoomView:null,categorySpacingFactor:()=>1,categorySpacingMessage:()=>'',
     commit(next){main.validateState(next,project);history.commit(next);current=copy(next);render();return true;},renderCanvas:next=>render(next||current)
   };
   vm.createContext(ctx);vm.runInContext(helpers,ctx);
@@ -65,6 +68,25 @@ test('individual scaling, rotation, content scaling, viewport and export pt agre
   const h=harness('<text data-key="e1" font-size=".24" transform="matrix(0 50 -50 0 30 40)">ABC</text>',{width:200,viewWidth:400,scale:2,content:[2,0,0,3,0,0],edits:{e1:{'object-transform':'[1.5,0,0,2,4,8]'}}});try{
     close(h.effective(),36);assert.deepEqual(h.readings(),{sidebar:'36',quick:'36'});h.ctx.updateStyle('font-size','24','text');close(h.effective(),24);h.quick(12);close(h.effective(),12);assert.deepEqual(h.readings(),{sidebar:'12',quick:'12'});
   }finally{h.close();}
+});
+
+test('manual cells scale figures in both directions but sidebar/quick 12 pt stays physical 12 pt',()=>{
+ for(const manual of [{width:200,height:120},{width:800,height:400}]){
+  const h=harness('<text data-key="e1" font-family="Arial" font-size=".24" transform="matrix(50 0 0 50 30 40)">PDF label</text>',{manual});try{
+   const factor=Math.min(manual.width/400,manual.height/200);close(h.effective(),12*factor);assert.deepEqual(h.readings(),{sidebar:String(12*factor),quick:String(12*factor)});
+   h.ctx.updateStyle('font-size','12','text');close(h.effective(),12);assert.deepEqual(h.readings(),{sidebar:'12',quick:'12'});close(+h.current().panels.p0.edits[0].e1['font-size'],12/(50*factor));
+   h.quick(9);close(h.effective(),9);assert.deepEqual(h.readings(),{sidebar:'9',quick:'9'});h.quick(12);close(h.effective(),12);const exported=h.ctx.composite(false,true,h.current()),text=exported.querySelector('text');close(rich.pointSize(text)*rich.localFontScale(text,exported),12);assert.equal(h.asset.variants[0].svg,h.raw);
+  }finally{h.close();}
+ }
+});
+
+test('mark/group-spacing live previews retain contain viewport and prior content editing',()=>{
+ for(const manual of [{width:200,height:120},{width:800,height:400}]){
+  const h=harness('<text data-key="e1" font-size="12" x="40" y="40">Value</text><path data-key="e2" d="M 20 100 L 180 60"/>',{manual,content:[1.2,0,0,1.2,8,12]});try{
+   const panel=()=>h.$('artboard').querySelector('svg[data-panel]'),read=()=>Object.fromEntries(['x','y','width','height','viewBox'].map(key=>[key,panel().getAttribute(key)])),before=read(),font=h.effective();h.ctx.fitPlot=()=>{throw Error('Manual preview must not stretch a chart');};
+   for(const markStyle of [true,false]){const next=copy(h.current());next.panels.p0.markStyle={pointScale:1.5,errorWidth:2};h.ctx.previewCategorySpacing({id:'p0',vi:0,pos:h.ctx.layout().positions[0],flow:{width:900,height:100,viewBox:[0,0,900,100]},margins:{},info:{},markStyle},next);assert.deepEqual(read(),before);close(h.effective(),font);assert.equal(panel().querySelector('[data-panel-content]').getAttribute('transform'),'matrix(1.2 0 0 1.2 8 12)');h.render(next);assert.deepEqual(read(),before);close(h.effective(),font);}
+  }finally{h.close();}
+ }
 });
 
 test('resized ancestor group is included in detached read/write as well as live quick toolbar',()=>{

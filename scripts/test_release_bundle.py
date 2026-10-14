@@ -24,7 +24,7 @@ def main():
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             for module in ("studio_server.py", "studio_statistics.py", "studio_facets.py", "studio_duplicates.py", "studio_duplicate_jobs.py", "duplicate_files.py", "studio_image_links.py"):
                 assert f"skills/polish-sci-figures/scripts/{module}" in names, module
-            for asset in ("selection-transform.js", "selection-transform-dom.js", "selection-resize-controller.js", "canvas-clipboard.js"):
+            for asset in ("selection-transform.js", "selection-transform-dom.js", "selection-resize-controller.js", "canvas-clipboard.js", "grid-resize-ui.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             for module in ("gallery_registry", "gallery_workbench", "gallery_compare", "gallery_time_composition",
                            "gallery_clinical", "gallery_omics_special", "gallery_misc", "gallery_model_extras",
@@ -50,6 +50,9 @@ def main():
         for token in ("const StudioCanvasClipboard=", 'id="quickCopy"', 'id="quickCut"', 'id="quickPaste"'):
             assert token in html, f"Missing embedded clipboard resource/control: {token}"
         assert html.index("const StudioCanvasClipboard=") < html.index("function createBlankProject("), "Clipboard module must precede the main studio runtime"
+        for token in ("root.StudioGridResize=api", 'id="gridResizeControls"'):
+            assert token in html, f"Missing embedded grid sizing resource/control: {token}"
+        assert html.index("root.StudioGridResize=api") < html.index("function createBlankProject("), "Grid sizing module must precede the main studio runtime"
         doctor=subprocess.run([sys.executable,"sci_figures.py","doctor","--font","DejaVu Sans","--json"],cwd=extracted,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         payload=json.loads(doctor.stdout); assert doctor.returncode==0 and payload["summary"]["blocking"]==0,(payload,doctor.stderr)
         # Exercise the same no-source layout as the desktop resource package.
