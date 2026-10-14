@@ -183,9 +183,9 @@ for(const zoom of [.25,1,3.5]){
  const text=svgNode({transform:'rotate(-90)'},new Matrix([0,2*zoom,-2*zoom,0,70,30])),stat=svgNode({},new Matrix([zoom,0,0,zoom,50,60])),label=svgNode(),overlay={replaceWith(node){this.last=node;}};
  text.parentElement.getScreenCTM=()=>new Matrix([0,2*liveZoom,-2*liveZoom,0,70,30]);stat.parentElement.getScreenCTM=()=>new Matrix([liveZoom,0,0,liveZoom,50,60]);
  let guides=[],outlines=0,manual=null;
- const l=geometry,svg={getBoundingClientRect:()=>({width:l.width*liveZoom,height:l.height*liveZoom}),querySelector:s=>s.includes('annotation')?overlay:null};
+ const l=geometry,svg={getBoundingClientRect:()=>({width:l.width*liveZoom,height:l.height*liveZoom}),querySelector:s=>s.includes('annotation')?overlay:null},selectionLayer=svgNode();
  const adapterItems=[native('p','e1',{el:text}),native('p','e900000',{el:stat}),{kind:'overlay',id:'note'},{kind:'label',id:'q',el:label},{kind:'guide',id:'guide-1'}];
- const ctx={imageLinks:null,zoomView:{},l,svg,state:()=>initial,previewState:initial,selectionResize:null,elementDrag:null,overlayDrag:null,labelDrag:null,guideDrag:null,marquee:null,resizeDrag:null,panelDrag:null,DOMMatrix:Matrix,alignmentSnap,alignmentContext:()=>({bounds:{left:10,right:20,top:10,bottom:20},targets:[{axis:'x',position:11.1,manual:true}]}),overlayNode:a=>copy(a),drawAlignmentGuides:s=>manual=s.alignmentGuides[0].position,paintSnapGuides:g=>guides=g,drawSelection:()=>outlines++,selectedNodes:()=>[]};
+ const ctx={imageLinks:null,zoomView:{},l,svg,selectionLayer,state:()=>initial,previewState:initial,selectionResize:null,elementDrag:null,overlayDrag:null,labelDrag:null,guideDrag:null,marquee:null,resizeDrag:null,panelDrag:null,DOMMatrix:Matrix,alignmentSnap,alignmentContext:()=>({bounds:{left:10,right:20,top:10,bottom:20},targets:[{axis:'x',position:11.1,manual:true}]}),overlayNode:a=>copy(a),drawAlignmentGuides:s=>manual=s.alignmentGuides[0].position,paintSnapGuides:g=>guides=g,drawSelection:()=>outlines++,selectedNodes:()=>[]};
  vm.createContext(ctx);const at=source.indexOf('    zoomView.nudgeCanvas='),end=source.indexOf('    svg.classList.toggle',at);assert.ok(at>0&&end>at);vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);
  assert.equal(ctx.zoomView.nudgeCanvas.isPreview,false);assert.equal(ctx.zoomView.nudgeCanvas.isGestureActive(),false);
  for(const key of ['elementDrag','overlayDrag','labelDrag','guideDrag','marquee','resizeDrag','panelDrag']){ctx[key]={};assert.equal(ctx.zoomView.nudgeCanvas.isGestureActive(),true,key);ctx[key]=null;}
@@ -196,8 +196,8 @@ for(const zoom of [.25,1,3.5]){
  preview.draw(next,{dx:1,dy:.1});
  const translated=text.attrs.transform.match(/^translate\(([^ ]+) ([^)]+)\)/);near(+translated[1],.05);near(+translated[2],-.5);assert.ok(text.attrs.transform.endsWith('rotate(-90)'));
  const statTranslated=stat.attrs.transform.match(/^translate\(([^ ]+) ([^)]+)\)/);near(+statTranslated[1],1);near(+statTranslated[2],.1);
- near(+label.attrs.x,210+180*.02+1);near(overlay.last.x,.25+1/400);near(manual,101);assert.ok(guides.length);assert.ok(outlines);
+ near(+label.attrs.x,210+180*.02+1);near(overlay.last.x,.25+1/400);near(manual,101);assert.ok(guides.length);assert.equal(selectionLayer.attrs.transform,'translate(1 0.1)','the captured selection outline follows the exact fine adjustment');assert.equal(outlines,0,'keyboard preview must not reread all selected boxes');
  liveZoom*=1.5;preview.draw(nudgeSelectionState(initial,adapterItems,2,.2,l).next,{dx:2,dy:.2});const afterZoom=stat.attrs.transform.match(/^translate\(([^ ]+) ([^)]+)\)/);near(+afterZoom[1],2);near(+afterZoom[2],.2);
- preview.draw(initial,{dx:0,dy:0});preview.clear();assert.equal(text.attrs.transform,'rotate(-90)');assert.equal(stat.attrs.transform,undefined);assert.equal(guides.length,0);
+ preview.draw(initial,{dx:0,dy:0});preview.clear();assert.equal(text.attrs.transform,'rotate(-90)');assert.equal(stat.attrs.transform,undefined);assert.equal(selectionLayer.attrs.transform,'translate(0 0)');assert.equal(guides.length,0);
 }
 console.log('PASS keyboard nudge: mixed targets, final-pt steps, one-gesture undo, native disabled-button Ctrl+Z, pointer/hover preview exclusions, locks/input/IME, stale guards, focus and SVG matrix preview at 3 zooms.');

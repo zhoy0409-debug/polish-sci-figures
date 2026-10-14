@@ -58,7 +58,8 @@ function domChecks(){
     return f;
   }
   const original=fixture(),unchanged=original.svg.outerHTML;marks.apply(original.svg,{},'both');
-  assert.equal(original.svg.outerHTML,unchanged,'opening an old/default project must preserve its original artwork');original.dom.window.close();
+  for(const cap of original.svg.querySelectorAll('[data-studio-error-owner]'))cap.removeAttribute('data-studio-error-owner');
+  assert.equal(original.svg.outerHTML,unchanged,'opening an old/default project preserves artwork; only nonvisual cap ownership is added');original.dom.window.close();
   for(const mode of ['solid','hollow']){
     const f=render({pointMode:mode});
     for(const [id,color]of [['sample-a','#4477aa'],['sample-b','#aa3377']]){
@@ -187,6 +188,69 @@ function domChecks(){
     return [x,y];
   }
   const near=(actual,expected,message)=>assert.ok(Math.abs(actual-expected)<1e-8,message+': '+actual+' vs '+expected);
+  // The real Matplotlib cap is a <use x/y> whose symbol is shared. The stem
+  // and use need not have the same SVG parent after category-spacing edits.
+  // Check displayed geometry through a separate affine evaluator, including
+  // repeated previews, a local stem transform and subsequent group movement.
+  function screenPoint(node,point){
+    for(let own=node;own&&own.localName!=='svg';own=own.parentElement)point=transformedPoint(own.getAttribute('transform'),point);
+    return point;
+  }
+  function pathEnds(node){const values=node.getAttribute('d').match(/[-+]?(?:\d*\.)?\d+(?:e[-+]?\d+)?/ig).map(Number);assert.equal(values.length,4);return [[values[0],values[1]],[values[2],values[3]]];}
+  const anchored=fixture(),stem=anchored.by('stem'),nested=anchored.svg.ownerDocument.createElementNS(anchored.svg.namespaceURI,'g');
+  nested.setAttribute('transform','translate(13 -8) scale(1.3 .85)');stem.parentNode.append(nested);nested.append(stem);
+  stem.setAttribute('transform','matrix(1.2 .15 -.08 .9 7 -3)');
+  anchored.by('axes_1').setAttribute('transform','translate(-18 12)');
+  const beforeStem=stem.getAttribute('d'),beforeMetadata=anchored.by('studio-mark-styles').textContent;
+  const stableKeys=[];
+  for(const [style,direction]of [[{capWidth:8.5,errorWidth:1.5},'both'],[{capWidth:3,errorWidth:.5,errorColor:'#882288'},'positive'],[{capWidth:14,errorWidth:3,errorColor:'#008877'},'negative'],[{capWidth:8.5,errorWidth:1.5},'both']]){
+    marks.apply(anchored.svg,style,direction);
+    const caps=[...anchored.svg.querySelectorAll('[data-studio-cap]')],ends=pathEnds(stem).map(point=>screenPoint(stem,point));
+    assert.equal(caps.length,direction==='both'?2:1,'repeated styling replaces previous caps without duplicating intervals');
+    for(const cap of caps){
+      assert.equal(cap.parentElement,stem.parentElement,'each cap shares the stem coordinate basis');
+      const capEnds=pathEnds(cap),midpoint=capEnds[0].map((value,i)=>(value+capEnds[1][i])/2),shown=screenPoint(cap,midpoint);
+      assert.ok(ends.some(end=>end.every((value,i)=>Math.abs(value-shown[i])<1e-8)),'a cap remains exactly on a visible stem endpoint after direction/width/color edits');
+      assert.equal(Number(cap.getAttribute('stroke-width')),style.errorWidth);assert.equal(cap.getAttribute('data-studio-error-owner'),'e5');
+    }
+    if(direction==='both')stableKeys.push(caps.map(cap=>cap.getAttribute('data-key')));
+    anchored.by('axes_1').setAttribute('transform','translate(45 -6) scale(.85 1.1)');
+    nested.setAttribute('transform','translate(-11 9) scale(.7 1.8)');
+    for(const cap of caps){const capEnds=pathEnds(cap),shown=screenPoint(cap,capEnds[0].map((v,i)=>(v+capEnds[1][i])/2));assert.ok(pathEnds(stem).map(p=>screenPoint(stem,p)).some(end=>end.every((v,i)=>Math.abs(v-shown[i])<1e-8)),'moving/scaling a whole data group preserves cap-to-stem attachment');}
+  }
+  assert.deepEqual(stableKeys[0],stableKeys[1],'both ends retain stable edit keys through direction changes');
+  assert.equal(stem.getAttribute('d'),beforeStem,'returning to both restores the original asymmetric interval');
+  marks.apply(anchored.svg,{capWidth:0},'both');assert.equal(anchored.svg.querySelectorAll('[data-studio-cap]').length,0,'zero cap width removes both generated ends');
+  marks.apply(anchored.svg,{errorsVisible:false,capWidth:6},'both');assert.equal(hidden(stem),true);
+  marks.apply(anchored.svg,{errorsVisible:true},'both');assert.equal(hidden(stem),false);assert.equal(anchored.svg.querySelectorAll('[data-studio-cap]').length,0);
+  for(const id of ['caps-a','cap-upper','cap-lower'])assert.equal(hidden(anchored.by(id)),false,'reset restores original Matplotlib cap instances');
+  assert.equal(stem.getAttribute('d'),beforeStem);assert.equal(anchored.by('studio-mark-styles').textContent,beforeMetadata,'appearance edits never overwrite measurement metadata');anchored.dom.window.close();
+  // In an imported SVG local Y can increase upward; positive/negative still
+  // follows the declared measurement direction rather than local Y sorting.
+  const inverted=fixture(),inverseStem=inverted.by('stem');inverseStem.setAttribute('d','M 32 -50 L 32 -100');inverseStem.setAttribute('transform','scale(1 -1)');
+  marks.apply(inverted.svg,{capWidth:8},'positive');assert.deepEqual(pathEnds(inverseStem),[[32,-70],[32,-50]]);marks.apply(inverted.svg,{capWidth:8},'negative');assert.deepEqual(pathEnds(inverseStem),[[32,-100],[32,-70]]);marks.apply(inverted.svg,{},'both');assert.deepEqual(pathEnds(inverseStem),[[32,-50],[32,-100]]);inverted.dom.window.close();
+  const live=fixture();marks.apply(live.svg,{capWidth:8.5,errorWidth:.8},'both');
+  live.by('axes_1').setAttribute('transform','translate(30 -12) scale(.85 1.4)');
+  for(const cap of live.svg.querySelectorAll('[data-studio-cap]'))cap.setAttribute('transform','matrix(1.2 .1 -.05 .8 4 -2)');
+  const liveBefore=live.svg.outerHTML,protectedBefore=protectedNodes(live),metadataBefore=live.by('studio-mark-styles').textContent;let matrixReads=0;
+  const matrix=node=>{matrixReads++;const o=screenPoint(node,[0,0]),x=screenPoint(node,[1,0]),y=screenPoint(node,[0,1]);return {a:x[0]-o[0],b:x[1]-o[1],c:y[0]-o[0],d:y[1]-o[1],e:o[0],f:o[1]};};
+  const preview=marks.createPreview(live.svg,{unit:.75,style:{capWidth:8.5,errorWidth:.8,pointScale:1},matrix}),capturedReads=matrixReads;
+  assert.equal(preview.supported.capWidth,true);assert.equal(preview.supported.pointScale,true);assert.deepEqual(preview.counts,{points:2,errors:1,caps:2});
+  const originalCenters=['sample-a','sample-b'].map(id=>({id,point:screenPoint(live.by(id),[Number(live.by(id).getAttribute('x')),Number(live.by(id).getAttribute('y'))])}));
+  // After the one-time capture, a slider frame must never measure or inspect.
+  const originalSelector=live.svg.querySelectorAll.bind(live.svg);live.svg.querySelectorAll=()=>{throw Error('Live slider queried the SVG again');};
+  for(const width of [3,12,0,8.5]){
+    const result=preview.apply({capWidth:width,errorWidth:1.6,errorColor:'#008877',pointScale:1.8,pointMode:'custom',pointFill:'#ffcc00',pointStroke:'#123456',pointStrokeWidth:1.2});assert.equal(result.applied,true);assert.equal(matrixReads,capturedReads,'no CTM or layout measurements occur on repeated slider frames');
+    for(const cap of originalSelector('[data-studio-cap]')){const [a,b]=pathEnds(cap).map(p=>screenPoint(cap,p));near(Math.hypot(b[0]-a[0],b[1]-a[1]),width*.75,'preview length is the requested final pt under nonuniform transforms');assert.equal(paint(cap,'stroke'),'#008877');near(parseFloat(paint(cap,'stroke-width')),1.2,'preview line width uses the output unit');}
+    for(const {id,point}of originalCenters){const node=live.by(id),shown=screenPoint(node,[Number(node.getAttribute('x')),Number(node.getAttribute('y'))]);shown.forEach((value,i)=>near(value,point[i],'sample resize does not move its measurement position'));assert.equal(paint(node,'fill'),'#ffcc00');assert.equal(paint(node,'stroke'),'#123456');}
+  }
+  live.svg.querySelectorAll=originalSelector;assert.ok(live.svg.querySelectorAll('[id^="studio-mark-preview-"]').length<=5,'repeated frames reuse bounded symbol copies rather than growing the SVG');
+  assert.deepEqual(protectedNodes(live),protectedBefore);assert.equal(live.by('studio-mark-styles').textContent,metadataBefore);preview.cancel();assert.equal(live.svg.outerHTML,liveBefore,'cancel restores exact geometry, colors, references and definitions');
+  // Native caps also preview without replacing Matplotlib's shared marker.
+  const native=fixture();native.by('axes_1').setAttribute('transform','scale(2 1)');const nativeBefore=native.svg.outerHTML,nativePreview=marks.createPreview(native.svg,{unit:1,matrix:()=>({a:2,b:0,c:0,d:1,e:0,f:0})});
+  assert.equal(nativePreview.supported.capWidth,true);nativePreview.apply({capWidth:8,errorColor:'#cc6677'});for(const id of ['cap-upper','cap-lower']){const node=native.by(id),shown=transformedPoint(node.getAttribute('transform'),[Number(node.getAttribute('x')),Number(node.getAttribute('y'))]);assert.deepEqual(shown,[32,Number(node.getAttribute('y'))],'native use cap center does not move');const symbol=native.by((node.getAttribute('href')||node.getAttribute('xlink:href')).slice(1)),[a,b]=pathEnds(symbol).map(p=>screenPoint(node,[p[0]+Number(node.getAttribute('x')),p[1]+Number(node.getAttribute('y'))]));near(Math.hypot(b[0]-a[0],b[1]-a[1]),8,'native shared use cap also previews exact final pt');assert.equal(paint(node,'stroke'),'#cc6677');}nativePreview.restore();assert.equal(native.svg.outerHTML,nativeBefore);native.dom.window.close();live.dom.window.close();
+  const independent=fixture(),independentMeta=independent.by('studio-mark-styles'),independentData=JSON.parse(independentMeta.textContent);delete independentData.pointColors[0].colorSource;independentData.errors[0].colorSource={id:'points-a',paint:'fill'};independent.by('sample-a').style.fill='#4477aa';independentMeta.textContent=JSON.stringify(independentData);
+  const independentStyle={pointMode:'custom',pointFill:'#ffff00',pointStroke:'#ff00ff',errorColor:'group',capWidth:8};marks.apply(independent.svg,independentStyle);const independentPreview=marks.createPreview(independent.svg,{style:independentStyle,matrix:()=>({a:1,b:0,c:0,d:1,e:0,f:0})});independentPreview.apply({...independentStyle,capWidth:12});assert.equal(paint(independent.by('stem'),'stroke'),'#4477aa','a width preview cannot let custom point colors contaminate existing group-colored intervals');for(const cap of independent.svg.querySelectorAll('[data-studio-cap]'))assert.equal(paint(cap,'stroke'),'#4477aa');independentPreview.restore();independent.dom.window.close();
   function directFixture(centers){
     const f=fixture(),group=f.by('points-a');group.replaceChildren();
     const defs=f.svg.ownerDocument.createElementNS(f.svg.namespaceURI,'defs');defs.innerHTML='<path id="local-unused-symbol" d="M -2 0 L 2 0"/>';group.append(defs);
@@ -214,7 +278,8 @@ function domChecks(){
   }
   const ambiguous=directFixture([[32,70],[65,41]]),ambiguousMeta=ambiguous.by('studio-mark-styles'),ambiguousData=JSON.parse(ambiguousMeta.textContent);ambiguousData.pointColors[0].centers=[[32,70]];ambiguousMeta.textContent=JSON.stringify(ambiguousData);
   const directBefore=[0,1].map(i=>ambiguous.by('direct-point-'+i).getAttribute('transform'));marks.apply(ambiguous.svg,{pointScale:2},'both');
-  assert.deepEqual([0,1].map(i=>ambiguous.by('direct-point-'+i).getAttribute('transform')),directBefore,'a mismatched center count must never scale a direct path around a guessed origin');ambiguous.dom.window.close();
+  assert.deepEqual([0,1].map(i=>ambiguous.by('direct-point-'+i).getAttribute('transform')),directBefore,'a mismatched center count must never scale a direct path around a guessed origin');
+  const fallbackBefore=ambiguous.svg.outerHTML,fallback=marks.createPreview(ambiguous.svg,{matrix:()=>({a:1,b:0,c:0,d:1,e:0,f:0})}),captured=ambiguous.svg.outerHTML;assert.equal(fallback.supported.pointScale,false);assert.equal(fallback.apply({pointScale:2}).fallback,true);assert.equal(ambiguous.svg.outerHTML,captured,'unsupported direct-path scaling refuses before partial DOM changes');fallback.restore();assert.equal(ambiguous.svg.outerHTML,fallbackBefore);ambiguous.dom.window.close();
   // These values belong to panel appearance and must survive both a new SVG
   // size and saved undo history; they are never sent as measurement data.
   const initial={order:['panel-0'],columns:1,gap:12,panels:{'panel-0':{variant:0,edits:{}}}},project={panels:[{id:'panel-0',variants:[{},{}]}]},history=new History(initial);
@@ -228,6 +293,6 @@ function domChecks(){
   for(const bad of [{pointsVisible:1},{errorsVisible:'false'},{pointMode:'gradient'},{pointFill:'url(https://bad.invalid)'},{pointStroke:'red'},{pointStrokeWidth:-1},{pointStrokeWidth:5},{errorColor:'none'},{errorColor:'url(#foreign)'},{unknown:true}]){
     const invalid=clone(initial);invalid.panels['panel-0'].markStyle=bad;assert.throws(()=>validateState(invalid,project),'unsafe or malformed appearance must be rejected: '+JSON.stringify(bad));
   }
-  console.log('PASS SVG DOM mark appearance: independent fill/stroke, shared defs and connecting lines preserved, original/new error caps, hidden/restored sections, direct-path centers fixed across 6 scaling cases, immutable geometry, resize/facet/history persistence and validation.');
+  console.log('PASS SVG DOM mark appearance: independent fill/stroke, shared defs and connecting lines preserved, anchored caps across nested/group transforms and repeated width/direction/color edits; direct preview has exact pt, zero frame measurements, bounded defs, cancel restore and direct-path fallback; original/new error caps, hidden/restored sections, direct-path centers fixed across 6 scaling cases, immutable geometry, resize/facet/history persistence and validation.');
 }
 if(process.argv.includes('--dom'))domChecks();

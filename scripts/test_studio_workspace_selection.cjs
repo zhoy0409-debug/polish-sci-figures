@@ -8,6 +8,7 @@ function el(tag='g',data={},box={left:0,top:0,right:0,bottom:0}){
   const classes=new Set(),attrs={},n={localName:tag,dataset:data,style:{},children:[],parentElement:null,
     classList:{add(...v){v.forEach(x=>classes.add(x));},remove(...v){v.forEach(x=>classes.delete(x));},toggle(x,on){if(on??!classes.has(x))classes.add(x);else classes.delete(x);},contains:x=>classes.has(x)},
     setAttribute(k,v){attrs[k]=String(v);if(k==='class'){classes.clear();String(v).split(' ').forEach(x=>classes.add(x));}},hasAttribute(k){return this.getAttribute(k)!=null;},getAttribute(k){if(k.startsWith('data-'))return data[k.slice(5).replace(/-([a-z])/g,(_,x)=>x.toUpperCase())];return attrs[k]??null;},
+    removeAttribute(k){delete attrs[k];if(k==='class')classes.clear();if(k.startsWith('data-'))delete data[k.slice(5).replace(/-([a-z])/g,(_,x)=>x.toUpperCase())];},
     getBoundingClientRect:()=>({...box,width:box.right-box.left,height:box.bottom-box.top}),
     append(child){child.parentElement=this;this.children.push(child);},replaceChildren(...children){this.children=[];children.forEach(c=>this.append(c));},
     remove(){if(this.parentElement)this.parentElement.children=this.parentElement.children.filter(x=>x!==this);},
@@ -21,7 +22,7 @@ function el(tag='g',data={},box={left:0,top:0,right:0,bottom:0}){
     transform:{baseVal:{consolidate:()=>null}},getScreenCTM:()=>null,
   };return n;
 }
-function harness(){
+function harness({vector=false}={}){
   const svg=el('svg',{}, {left:100,top:80,right:700,bottom:500}),viewport=el('div',{}, {left:20,top:20,right:820,bottom:620});
   Object.assign(viewport,{clientLeft:2,clientTop:2,clientWidth:780,clientHeight:580,scrollLeft:0,scrollTop:0});viewport.append(svg);
   const a=el('g',{panel:'p0'},{left:110,top:90,right:360,bottom:480}),b=el('g',{panel:'p1'},{left:390,top:90,right:680,bottom:480});svg.append(a);svg.append(b);
@@ -40,16 +41,17 @@ function harness(){
     overlayNode:()=>el('g',{annotation:'note'},noteBox),commit(next){commits++;Object.assign(s,copy(next));},
     editsFor:()=>({}),setEdit(next,id,vi,key,prop,value){((next.panels[id].edits[vi]??={})[key]??={})[prop]=value;},
     selectPanelLabel(){},at:()=>null,destination:()=>null,zoomView:{},
-  };ctx.overlayEditingSpace=require(path).overlayEditingSpace;vm.createContext(ctx);
+  };ctx.overlayEditingSpace=require(path).overlayEditingSpace;if(vector)ctx.StudioVectorInteraction=require('../skills/polish-sci-figures/assets/figure-studio/vector-interaction.js');vm.createContext(ctx);
   vm.runInContext(source.slice(source.indexOf('function panelContentDelta('),source.indexOf('function nudgeSelectionState(')),ctx);
   vm.runInContext(source.slice(source.indexOf('  function canvasObjectTarget('),source.indexOf('  function addStatisticalHitAreas(')),ctx);
   const groups=source.slice(source.indexOf('  function selectionGroups('),source.indexOf('  const sizeNames='))+source.slice(source.indexOf('  function refreshOverlaySelection('),source.indexOf('  function renderOverlayProperties('));
   const local=source.slice(source.indexOf('    const screenRect=el=>'),source.indexOf('    let resizeDrag=null,panelDrag='));
+  const behind=source.slice(source.indexOf('    const behindTarget=target=>'),source.indexOf('    svg.onpointerdown=e=>'));
   const handlers=source.slice(source.indexOf('    svg.onpointerdown=e=>'),source.indexOf('  function renderMethods(){'));
   vm.runInContext(`let selectedPanel='p0',inspectorPanel='p0',selected=[],elementSelections=[],selectionAnchor=null,selectedAnnotations=[],selectedPanelLabel=null,panelSelection=[],selectionAfterMarquee=false,layoutMode=false,original=false,boxSelect=false,activePane='detail',cancelSelectionGesture=null,cancelPanelGesture=null,cancelObjectGesture=null,selectedAlignmentGuide=null;
     let labelDrag=null,overlayDrag=null,elementDrag=null,guideDrag=null,marquee=null,suppressClick=false,resizeDrag=null,panelDrag=null,dragging=null,pending=null;
     const canvasPoint=e=>({x:(e.clientX-100)/600,y:(e.clientY-80)/420});const clearGhost=()=>{};
-    ${groups}\n${local}\n${handlers.replace(/\n  }\s*$/,'')}
+    ${groups}\n${local}\n${behind}\n${handlers.replace(/\n  }\s*$/,'')}
     globalThis.count=()=>selectionGroups().reduce((n,g)=>n+g.keys.length,0)+selectedAnnotations.length;
     globalThis.details=()=>({groups:selectionGroups(),annotations:selectedAnnotations,post:selectionAfterMarquee,active:!!marquee,suppress:suppressClick});
     globalThis.boxMode=value=>{boxSelect=value;};
@@ -198,6 +200,18 @@ assert.equal(restored.current.panels.p0.edits[0].e2['offset-y'],'4');
 assert.deepEqual(restored.undo(),originalState,'one undo restores both selected texts');
 assert.deepEqual(restored.redo(),saved.current,'redo restores the persisted movement');
 console.log('PASS marquee-to-drag: selected text/annotation/label, mixed selection, blank/Shift selection, single undo and project persistence.');
+
+// Shift in ordinary object mode constrains the entire existing selection.
+// The explicit marquee tool above retains its append-selection contract.
+for(const [dx,dy,wantX,wantY]of [[10,4,10,0],[4,10,0,10],[10,9,9.5,9.5]]){
+  const k=harness({vector:true});k.tap(k.t1,140,148);k.tap(k.t2,140,198,{shiftKey:true});assert.equal(k.ctx.count(),2);
+  k.svg.onpointerdown(k.event(140,148,k.t1,{shiftKey:true,altKey:true}));assert.equal(k.ctx.details().active,false,'ordinary Shift on a selected object starts a constrained move');
+  k.svg.onpointermove(k.event(140+dx,148+dy,k.t1,{shiftKey:true,altKey:true}));k.svg.onpointerup(k.event(140+dx,148+dy,k.t1,{shiftKey:true,altKey:true}));
+  assert.equal(k.stats().commits,1,'one constrained movement makes one history step');assert.equal(k.ctx.count(),2,'constrained movement keeps the selection');
+  for(const key of ['tick1','tick2']){assert.equal(+k.s.panels.p0.edits[0][key]['offset-x']||0,wantX);assert.equal(+k.s.panels.p0.edits[0][key]['offset-y']||0,wantY);}
+}
+const shiftTap=harness({vector:true});shiftTap.tap(shiftTap.t1,140,148);shiftTap.tap(shiftTap.t2,140,198,{shiftKey:true});shiftTap.tap(shiftTap.t1,140,148,{shiftKey:true});assert.equal(shiftTap.ctx.count(),2,'a Shift click on an already-selected object retains the existing selection');assert.equal(shiftTap.stats().commits,0,'a zero-motion Shift click is not an edit');assert.deepEqual(shiftTap.s,shiftTap.initial);
+console.log('PASS ordinary-mode Shift gesture: horizontal/vertical/diagonal whole-selection constraints and zero-motion click without history.');
 
 // A burst of native-object pointer events paints once; release flushes its own
 // final coordinates before a single history commit, and cancel leaves no RAF.

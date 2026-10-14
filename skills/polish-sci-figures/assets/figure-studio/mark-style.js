@@ -2,6 +2,35 @@
 'use strict';
 const StudioMarkStyle=(()=>{
   const NS='http://www.w3.org/2000/svg',number=x=>typeof x==='number'&&Number.isFinite(x)&&Math.abs(x)<1e8;
+  // Keep source geometry separate from the appearance preview. A second
+  // slider event must not treat the caps it created as new interval stems.
+  const sourceGeometry=new WeakMap(),sourceDisplay=new WeakMap();
+  function originalGeometry(node){
+    if(!sourceGeometry.has(node))sourceGeometry.set(node,{d:node.getAttribute('d'),transform:node.getAttribute('transform')});
+    return sourceGeometry.get(node);
+  }
+  function display(node,hidden){
+    if(!sourceDisplay.has(node))sourceDisplay.set(node,node.style.display);
+    const value=hidden?'none':sourceDisplay.get(node);if(value)node.style.display=value;else node.style.removeProperty('display');
+  }
+  function lineEnds(path){
+    const d=originalGeometry(path).d||'',values=d.match(/[-+]?(?:\d*\.)?\d+(?:e[-+]?\d+)?/ig)?.map(Number);
+    return /^\s*M\s*[-+\d.]/.test(d)&&!d.replace(/[ML]|[-+]?(?:\d*\.)?\d+(?:[eE][-+]?\d+)?|[\s,]/g,'')&&values?.length===4&&values.every(number)?[[values[0],values[1]],[values[2],values[3]]]:null;
+  }
+  function localSegment(path,segment){
+    const ends=lineEnds(path);if(!ends)return {...segment,ends:segment.ends.map(p=>[...p]),center:segment.center&&[...segment.center]};
+    // Matplotlib's metadata uses figure coordinates; the actual SVG stem may
+    // have its own local coordinates and transform after importing/editing.
+    // Interpolate the real estimate along the immutable stem, including
+    // asymmetric and logarithmic intervals, rather than guessing a midpoint.
+    const dimension=segment.axis==='y'?1:0,span=segment.ends[1][dimension]-segment.ends[0][dimension],t=segment.center&&Math.abs(span)>1e-12?(segment.center[dimension]-segment.ends[0][dimension])/span:null;
+    return {...segment,ends,center:t===null?null:ends[0].map((v,i)=>v+t*(ends[1][i]-v))};
+  }
+  function localInterval(local,segment,direction){
+    if(direction==='both'||!local.center||segment.axis!=='y')return local.ends;
+    const upper=segment.ends[0][1]<segment.ends[1][1]?0:1,lower=1-upper;
+    return direction==='positive'?[local.center,local.ends[upper]]:[local.ends[lower],local.center];
+  }
   const coordinate=p=>Array.isArray(p)&&p.length===2&&p.every(number),id=s=>typeof s==='string'&&/^[\w.:-]{1,160}$/.test(s);
   const source=s=>s===undefined||s&&id(s.id)&&['fill','stroke'].includes(s.paint);
   function validateMetadata(text){try{const m=JSON.parse(text);return m.version===1&&Array.isArray(m.points)&&m.points.length<=10000&&m.points.every(id)
@@ -66,7 +95,7 @@ const StudioMarkStyle=(()=>{
     }
     // Resolve all sources before painting, so custom point colours cannot change error-bar group colours.
     const pointPlans=info.points.map(group=>{const meta=info.pointColors.find(p=>find(svg,p.id)===group),nodes=glyphs(group);return {group,collection:meta?.kind==='collection'||/(?:PathCollection_\d+|points(?:-\d+)?)$/.test(group.id),nodes:nodes.map((node,i)=>({node,center:meta?.centers?.length===nodes.length?meta.centers[i]:null,color:sourceColor(meta?.colorSource,ownGroupColor(node))}))};});
-    const errorPlans=info.errors.map(error=>{const paths=[...error.node.querySelectorAll('path')].filter(p=>!p.closest('defs'));return {error,paths,colors:error.segments.map((s,i)=>sourceColor(s.colorSource||error.colorSource,paths[i]?hex(currentPaint(paths[i],'stroke')):null))};});
+    const errorPlans=info.errors.map(error=>{const paths=[...error.node.querySelectorAll('path')].filter(p=>!p.closest('defs')&&!p.hasAttribute('data-studio-cap'));return {error,paths,colors:error.segments.map((s,i)=>sourceColor(s.colorSource||error.colorSource,paths[i]?hex(currentPaint(paths[i],'stroke')):null))};});
     let cloneIndex=0;const symbolCopies=new Map();
     function symbolPaint(node,properties){
       if(node.localName!=='use'||!properties.length)return;
@@ -100,23 +129,27 @@ const StudioMarkStyle=(()=>{
       const startIndex=segmentIndex;segmentIndex+=error.segments.length;
       const caps=error.caps.map(k=>find(svg,k)).filter(Boolean),capNodes=caps.flatMap(g=>[...g.querySelectorAll('use,path')].filter(n=>!n.closest('defs')));
       for(const node of [...paths,...capNodes]){const nodeKey=key(node);if(nodeKey)info.paintTargets.error.push(nodeKey);}
-      if(style.errorsVisible===false){error.node.style.display='none';for(const cap of caps)cap.style.display='none';}
+      display(error.node,style.errorsVisible===false);
+      const regenerate=paths.length===error.segments.length&&(style.capWidth!==undefined||direction!=='both'&&error.segments.some(s=>s.center&&s.axis==='y'));
+      for(const cap of caps)display(cap,style.errorsVisible===false||regenerate);
       if(paths.length!==error.segments.length)continue;
+      for(const cap of error.node.querySelectorAll('[data-studio-cap]'))cap.remove();
       const chosenColor=i=>style.errorColor==='group'?colors[i]:hex(style.errorColor);
       for(const node of capNodes){
         const values={},x=Number(node.getAttribute('x')),y=Number(node.getAttribute('y'));
         const matches=error.segments.map((s,i)=>s.ends.some(p=>Math.abs(p[0]-x)<.001&&Math.abs(p[1]-y)<.001)?i:-1).filter(i=>i>=0);
+        if(matches.length===1&&key(paths[matches[0]]))node.setAttribute('data-studio-error-owner',key(paths[matches[0]]));
         const candidate=matches.length===1?chosenColor(matches[0]):new Set(error.segments.map((_,i)=>chosenColor(i))).size===1?chosenColor(0):null;
         if(candidate)values.stroke=candidate;if(style.errorWidth!==undefined)values['stroke-width']=style.errorWidth;
         if(Object.keys(values).length)paint(node,values,'error');
       }
       error.segments.forEach((segment,i)=>{
-        const path=paths[i],ends=interval(segment,direction),[[x1,y1],[x2,y2]]=ends,values={},color=chosenColor(i);
+        const path=paths[i],local=localSegment(path,segment),source=originalGeometry(path),ends=localInterval(local,segment,direction),[[x1,y1],[x2,y2]]=ends,values={},color=chosenColor(i);
         if(direction!=='both'&&segment.center&&segment.axis==='y')path.setAttribute('d','M '+x1+' '+y1+' L '+x2+' '+y2);
+        else if(source.d!==null&&path.getAttribute('d')!==source.d)path.setAttribute('d',source.d);
         if(color)values.stroke=color;if(style.errorWidth!==undefined)values['stroke-width']=style.errorWidth;
         if(Object.keys(values).length)paint(path,values,'error');
-        if(style.capWidth===undefined&&!(direction!=='both'&&segment.center&&segment.axis==='y'))return;
-        for(const cap of caps)cap.style.display='none';
+        if(!regenerate)return;
         const width=style.capWidth??error.capWidth??6;if(!width)return;
         const endsToDraw=direction!=='both'&&segment.center&&segment.axis==='y'?[direction==='positive'?ends[1]:ends[0]]:ends;
         for(const [x,y]of endsToDraw){
@@ -124,15 +157,92 @@ const StudioMarkStyle=(()=>{
           cap.setAttribute('d',segment.axis==='y'?'M '+(x-half)+' '+y+' L '+(x+half)+' '+y:'M '+x+' '+(y-half)+' L '+x+' '+(y+half));
           cap.setAttribute('fill','none');cap.setAttribute('stroke',color||currentPaint(path,'stroke')||'#20242a');
           cap.setAttribute('stroke-width',style.errorWidth??(parseFloat(currentPaint(path,'stroke-width'))||1));
+          const transform=path.getAttribute('transform');if(transform)cap.setAttribute('transform',transform);
           for(const name of ['clip-path','opacity','stroke-opacity']){const value=path.getAttribute(name)||path.style.getPropertyValue(name);if(value)cap.setAttribute(name,value);}
-          const side=segment.ends.findIndex(p=>p[0]===x&&p[1]===y);
-          cap.setAttribute('data-key','e'+(7000000+(startIndex+i)*2+Math.max(0,side)));cap.setAttribute('x',x);cap.setAttribute('y',y);cap.setAttribute('data-studio-cap','true');error.node.append(cap);
+          const side=local.ends.findIndex(p=>p[0]===x&&p[1]===y);
+          cap.setAttribute('data-key','e'+(7000000+(startIndex+i)*2+Math.max(0,side)));cap.setAttribute('x',x);cap.setAttribute('y',y);cap.setAttribute('data-studio-cap','true');cap.setAttribute('data-studio-error-owner',key(path)||error.id);path.parentNode.append(cap);
           if(color||style.errorWidth!==undefined)paint(cap,{...(color?{stroke:color}:{}),...(style.errorWidth!==undefined?{'stroke-width':style.errorWidth}:{})},'error');
         }
       });
     }
     info.paintTargets.point=[...new Set(info.paintTargets.point)];info.paintTargets.error=[...new Set(info.paintTargets.error)];return info;
   }
-  return {validateMetadata,inspect,apply,interval};
+  // Capture a rendered panel once at gesture start. Subsequent slider frames
+  // only change cached DOM nodes: no SVG rebuild, metadata parsing or bbox read.
+  function createPreview(svg,options={}){
+    const info=inspect(svg),initial={pointScale:1,...options.style},unit=number(options.unit)&&options.unit>0?options.unit:1,snapshots=new Map(),copies=new Map(),overrides=new Map(),references=new Map(),created=[],points=[],errors=[],caps=[];
+    const visible=node=>{for(let p=node;p&&p!==svg;p=p.parentElement)if(p.style?.display==='none'||p.style?.visibility==='hidden')return false;return true;};
+    const remember=node=>{if(!snapshots.has(node))snapshots.set(node,[...node.attributes].map(a=>({name:a.name,namespace:a.namespaceURI,value:a.value})));return node;};
+    const paint=(node,property)=>{for(let p=node;p&&p!==svg;p=p.parentElement){const value=p.style?.getPropertyValue(property)||p.getAttribute(property);if(value)return value;}if(node.localName==='use'){const href=node.getAttribute('href')||node.getAttribute('xlink:href'),ref=href?.startsWith('#')&&find(svg,href.slice(1));if(ref)return ref.style?.getPropertyValue(property)||ref.getAttribute(property)||'';}return '';};
+    const groupColor=(ref,fallback)=>{const group=ref&&find(svg,ref.id),nodes=group?[group,...group.querySelectorAll('path,use,rect,circle,ellipse')].filter(n=>!n.closest('defs')):[];return hex(nodes.map(n=>paint(n,ref.paint)).find(v=>hex(v)))||fallback;};
+    const shape=d=>{const values=String(d||'').match(/[-+]?(?:\d*\.)?\d+(?:e[-+]?\d+)?/ig)?.map(Number);return /^\s*M\s*[-+\d.]/.test(d||'')&&!String(d).replace(/[ML]|[-+]?(?:\d*\.)?\d+(?:[eE][-+]?\d+)?|[\s,]/g,'')&&values?.length===4&&values.every(number)?[[values[0],values[1]],[values[2],values[3]]]:null;};
+    const matrix=node=>{
+      if(options.matrix)return options.matrix(node,svg);
+      try{const root=svg.getScreenCTM(),own=node.getScreenCTM();if(root&&own)return root.inverse().multiply(own);}catch{}
+      return null;
+    };
+    function captureCap(node,error,segmentIndex){
+      let ends=shape(node.getAttribute('d')),offset=[0,0];
+      if(node.localName==='use'){const href=node.getAttribute('href')||node.getAttribute('xlink:href'),ref=href?.startsWith('#')&&find(svg,href.slice(1));ends=ref?.localName==='path'?shape(ref.getAttribute('d')):null;offset=[Number(node.getAttribute('x')||0),Number(node.getAttribute('y')||0)];}
+      const m=matrix(node);if(!ends||!m)return false;
+      const dx=ends[1][0]-ends[0][0],dy=ends[1][1]-ends[0][1],length=Math.hypot(dx,dy);if(length<1e-12)return false;
+      const axis=[dx/length,dy/length],physical=Math.hypot(m.a*axis[0]+m.c*axis[1],m.b*axis[0]+m.d*axis[1]);if(!number(physical)||physical<1e-12)return false;
+      const center=ends[0].map((v,i)=>(v+ends[1][i])/2+offset[i]),base=hex(paint(node,'stroke'))||'#20242a',color=initial.errorColor==='group'?base:groupColor(error.segments[segmentIndex]?.colorSource||error.colorSource,base);
+      caps.push({node:remember(node),center,axis,length,physical,color,transform:node.getAttribute('transform')||'',stroke:paint(node,'stroke'),width:paint(node,'stroke-width')});return true;
+    }
+    let unsupportedPoints=false,unsupportedCaps=false;
+    for(const group of info.points){
+      const meta=info.pointColors.find(p=>find(svg,p.id)===group),uses=[...group.querySelectorAll('use')].filter(n=>!n.closest('defs'));
+      if(!uses.length&&[...group.querySelectorAll('path')].some(n=>!n.closest('defs')))unsupportedPoints=true;
+      for(const node of uses)if(visible(node)){
+        const original=hex(paint(node,'fill')),stroke=hex(paint(node,'stroke')),color=groupColor(meta?.colorSource,original&&original!=='#ffffff'?original:stroke||'#20242a');
+        points.push({node:remember(node),x:Number(node.getAttribute('x')||0),y:Number(node.getAttribute('y')||0),transform:node.getAttribute('transform')||'',color,fill:paint(node,'fill'),stroke:paint(node,'stroke'),width:paint(node,'stroke-width')});
+      }
+    }
+    for(const error of info.errors){
+      const stems=[...error.node.querySelectorAll('path')].filter(n=>!n.closest('defs')&&!n.hasAttribute('data-studio-cap'));
+      stems.forEach((node,i)=>{if(visible(node)){const base=hex(paint(node,'stroke'))||'#20242a';errors.push({node:remember(node),color:initial.errorColor==='group'?base:groupColor(error.segments[i]?.colorSource||error.colorSource,base),stroke:paint(node,'stroke'),width:paint(node,'stroke-width')});}});
+      const candidates=[...error.node.querySelectorAll('[data-studio-cap]'),...error.caps.flatMap(k=>{const group=find(svg,k);return group?[...group.querySelectorAll('use,path')].filter(n=>!n.closest('defs')):[];})].filter(visible);
+      for(const node of candidates){const owner=node.getAttribute('data-studio-error-owner'),byOwner=owner?stems.findIndex(stem=>stem.getAttribute('data-key')===owner):-1,x=Number(node.getAttribute('x')),y=Number(node.getAttribute('y')),matches=error.segments.map((s,i)=>s.ends.some(p=>Math.abs(p[0]-x)<.001&&Math.abs(p[1]-y)<.001)?i:-1).filter(i=>i>=0),index=byOwner>=0?byOwner:matches.length===1?matches[0]:0;if(!captureCap(node,error,index))unsupportedCaps=true;}
+    }
+    const supported={pointScale:points.length>0&&!unsupportedPoints,pointFill:points.length>0,pointStroke:points.length>0,pointStrokeWidth:points.length>0,pointMode:points.length>0,errorColor:errors.length>0,errorWidth:errors.length>0,capWidth:caps.length>0&&!unsupportedCaps};
+    function override(node,properties){
+      if(node.localName!=='use')return;
+      if(!references.has(node)){const original=snapshots.get(node),href=original?.find(a=>a.name==='href')?.value||original?.find(a=>a.name==='xlink:href')?.value;references.set(node,{href,ref:href?.startsWith('#')&&find(svg,href.slice(1))});}
+      const {href,ref}=references.get(node);if(!ref)return;
+      const own=overrides.get(node)||new Set();properties.forEach(p=>own.add(p));overrides.set(node,own);properties=[...own];
+      const signature=href+'|'+properties.sort().join(',');let cloneId=copies.get(signature);
+      if(!cloneId){const clone=ref.cloneNode(true);let serial=1;while(find(svg,'studio-mark-preview-'+serial))serial++;cloneId='studio-mark-preview-'+serial;clone.id=cloneId;for(const item of [clone,...clone.querySelectorAll('*')]){item.removeAttribute('data-key');if(item!==clone)item.removeAttribute('id');for(const prop of properties){item.removeAttribute(prop);item.style?.removeProperty(prop);}}let defs=svg.querySelector('defs');if(!defs){defs=svg.ownerDocument.createElementNS(NS,'defs');svg.prepend(defs);created.push(defs);}defs.append(clone);created.push(clone);copies.set(signature,cloneId);}
+      node.setAttribute('href','#'+cloneId);node.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href','#'+cloneId);
+    }
+    const setPaint=(item,property,value)=>{override(item.node,[property]);item.node.style.setProperty(property,value);};
+    // Resolve shared-symbol presentation once, before animation starts. Every
+    // frame can then write only the cached use node without searching defs.
+    for(const item of points){override(item.node,['fill','stroke','stroke-width']);for(const [property,value]of [['fill',item.fill],['stroke',item.stroke],['stroke-width',item.width]])if(value)item.node.style.setProperty(property,value);}
+    for(const item of caps){override(item.node,['stroke','stroke-width']);for(const [property,value]of [['stroke',item.stroke],['stroke-width',item.width]])if(value)item.node.style.setProperty(property,value);}
+    function preview(next={}){
+      const changes=Object.keys(next).filter(key=>next[key]!==initial[key]);if(changes.some(key=>key in supported&&!supported[key]))return {applied:false,fallback:true,supported};
+      if(changes.some(key=>['errorDirection','pointsVisible','errorsVisible'].includes(key)))return {applied:false,fallback:true,supported};
+      for(const item of points){
+        if(number(next.pointScale)&&next.pointScale>0){const factor=next.pointScale/(initial.pointScale||1);item.node.setAttribute('transform',item.transform+' translate('+item.x+' '+item.y+') scale('+factor+') translate('+(-item.x)+' '+(-item.y)+')');}
+        const mode=next.pointMode||initial.pointMode||'original',resolve=value=>value==='none'?'none':hex(value)||item.color;
+        if(mode!=='original'){setPaint(item,'fill',mode==='hollow'?'none':mode==='custom'?resolve(next.pointFill??initial.pointFill):item.color);setPaint(item,'stroke',mode==='custom'?resolve(next.pointStroke??initial.pointStroke):item.color);}
+        if(number(next.pointStrokeWidth))setPaint(item,'stroke-width',String(next.pointStrokeWidth*unit)+'px');
+      }
+      for(const item of [...errors,...caps]){
+        const color=next.errorColor==='group'?item.color:hex(next.errorColor);if(color)setPaint(item,'stroke',color);
+        if(number(next.errorWidth))setPaint(item,'stroke-width',String(next.errorWidth*unit)+'px');
+      }
+      if(number(next.capWidth)&&next.capWidth>=0)for(const item of caps){
+        const length=next.capWidth*unit/item.physical;
+        if(item.node.localName==='path'){const half=length/2,[x,y]=item.center,[dx,dy]=item.axis;item.node.setAttribute('d','M '+(x-dx*half)+' '+(y-dy*half)+' L '+(x+dx*half)+' '+(y+dy*half));}
+        else {const factor=length/item.length,[x,y]=item.center,[dx,dy]=item.axis,a=1+(factor-1)*dx*dx,b=(factor-1)*dx*dy,d=1+(factor-1)*dy*dy;item.node.setAttribute('transform',item.transform+' translate('+x+' '+y+') matrix('+a+' '+b+' '+b+' '+d+' 0 0) translate('+(-x)+' '+(-y)+')');}
+      }
+      return {applied:true,fallback:false,supported,count:points.length+errors.length+caps.length};
+    }
+    function restore(){for(const [node,attributes]of snapshots){for(const attr of [...node.attributes])node.removeAttributeNode(attr);for(const attr of attributes)if(attr.namespace)node.setAttributeNS(attr.namespace,attr.name,attr.value);else node.setAttribute(attr.name,attr.value);}for(const node of created.reverse())node.remove();created.length=0;copies.clear();overrides.clear();}
+    return {supported,apply:preview,restore,cancel:restore,counts:{points:points.length,errors:errors.length,caps:caps.length}};
+  }
+  return {validateMetadata,inspect,apply,interval,createPreview};
 })();
 if(typeof module!=='undefined')module.exports=StudioMarkStyle;

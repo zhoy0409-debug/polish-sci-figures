@@ -158,7 +158,7 @@ for(const size of [9,24]){
 // Old grouped projects drew a result band. Its generated IDs include titles and
 // row labels, so sequentially renumbering plot marks would redirect saved edits.
 // Discover old keys from the actual band DOM, not from the new migration helper.
-vm.runInContext(slice('  function appendStatisticalBand(','  function anchoredStatisticalLayout('),ctx);
+vm.runInContext(fs.readFileSync('scripts/fixtures/legacy-statistical-band-builder.txt','utf8'),ctx);
 let restoredLegacyCases=0;
 for(const item of [fixtures[0],fixtures[4]])for(const style of ['p','stars','letters']){
  reset(item,style);variant.svg='<svg><!-- legacy grouped source without statistical anchors --></svg>';
