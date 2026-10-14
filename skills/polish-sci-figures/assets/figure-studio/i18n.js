@@ -353,7 +353,7 @@ const StudioI18n = (() => {
     '原版对照：当前布局与候选，未应用外观修改。':'Original comparison: current layout and candidates without appearance edits.',
     '已返回编辑版':'Returned to edits','已恢复 AI 首版；仍可撤销此次恢复':'First AI draft restored; this reset can be undone',
     '文字类别已选择，下一次文字样式操作将使用此范围。':'Text category selected. The next text-style edit will use this scope.',
-    '字号应为 4–72 pt。':'Font size must be 4–72 pt.','已修改文字；请核对标签与数据含义':'Text updated; check its meaning against the data',
+    '字号应为 0.1–1000 pt。':'Font size must be 0.1–1000 pt.','已修改文字；请核对标签与数据含义':'Text updated; check its meaning against the data',
     '已应用互补配色':'Complementary colours applied',' · 点击应用（不代表色觉无障碍已验证）':' · Click to apply (colour-vision accessibility not verified)',
     '已更新行列母版':'Grid updated','已应用跨格':'Span applied','间距应为 0–100 pt。':'Gutter must be 0–100 pt.','已修改间距':'Gutter changed','已调整面板顺序':'Panel order changed',
     '请输入版本名称。':'Enter a version name.','已保存 20 个命名版本，请另存工程后继续整理。':'20 named versions are already saved. Download the project before continuing.',

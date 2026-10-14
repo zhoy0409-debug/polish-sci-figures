@@ -22,8 +22,8 @@ WORK = ROOT / '.cache' / 'desktop-build'
 STAGE = WORK / 'suite'
 DIST = ROOT / 'dist' / 'desktop'
 APP = DIST / 'Figure Studio'
-VERSION = '0.1.7'
-SUITE_VERSION = 'v1.4.7'
+VERSION = '0.1.8'
+SUITE_VERSION = 'v1.4.8'
 PACKAGES = ('numpy', 'scipy', 'pandas', 'matplotlib', 'openpyxl', 'Pillow', 'pypdfium2', 'pypdf', 'opencv-python-headless',
             'contourpy', 'cycler', 'fonttools', 'kiwisolver', 'packaging',
             'python-dateutil', 'pytz', 'tzdata', 'six', 'et_xmlfile', 'pyparsing', 'PyYAML',

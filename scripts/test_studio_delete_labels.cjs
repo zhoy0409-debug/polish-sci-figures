@@ -71,7 +71,7 @@ assert.equal(press('z',undefined,{ctrlKey:true}),true);assert.equal(undoCalls,1)
 let labelState=copy(initial);const fields={};for(const id of ['labelX','labelY','labelSize','font','labelBold','labelStyle','numberPanels','autoNumberLabels','applyPanelLabel','removePanelLabel','deleteElements','panelLabel'])fields[id]={value:'',checked:false,click(){this.onclick?.();}};
 Object.assign(fields.labelX,{value:'8'});Object.assign(fields.labelY,{value:'6'});Object.assign(fields.labelSize,{value:'13'});fields.font.value='Arial';fields.labelBold.checked=true;fields.labelStyle.value='upper';
 const labelsStart=source.indexOf('  const labelValues=text=>'),labelsEnd=source.indexOf("  $('groupSelection').onclick=",labelsStart);
-const labelsContext={copy,state:()=>labelState,$:id=>fields[id],selectedPanel:ids[0],displayedPanelLabel,numberPanelLabels,deleteSelectedObjects(){},T:s=>s,commit(next){validateState(next,project);labelState=next;}};
+const labelsContext={copy,state:()=>labelState,$:id=>fields[id],selectedPanel:ids[0],displayedPanelLabel,numberPanelLabels,currentOutput:()=>({scale:1}),say(){},deleteSelectedObjects(){},T:s=>s,commit(next){validateState(next,project);labelState=next;}};
 vm.runInNewContext(source.slice(labelsStart,labelsEnd),labelsContext);
 fields.panelLabel.value='Overview';fields.applyPanelLabel.click();assert.equal(labelState.panels[ids[0]].label.manual,true);assert.equal(displayedPanelLabel(labelState,ids[0]).text,'Overview');
 fields.autoNumberLabels.checked=false;fields.autoNumberLabels.onchange();assert.equal(labelState.labelNumbering,false);const frozen=copy(labelState);labelState=movePanel(labelState,ids[3],2,2);assert.equal(displayedPanelLabel(labelState,ids[3]).text,frozen.panels[ids[3]].label.text);

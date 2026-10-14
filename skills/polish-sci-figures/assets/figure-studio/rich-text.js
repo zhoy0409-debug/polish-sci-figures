@@ -86,8 +86,32 @@ const StudioRichText = (() => {
     return el;
   }
   function inherited(node,property,attribute,root){for(let p=node.parentElement;p;p=p.parentElement){const value=p.style?.[property]||p.getAttribute?.(attribute);if(value)return value;if(p===root)break;}return '';}
-  function absoluteSize(value){const raw=String(value||'').trim();return /^\d*\.?\d+(?:px|pt)?$/.test(raw)?parseFloat(raw):NaN;}
-  function pointSize(el){const own=absoluteSize(el.style.fontSize||el.getAttribute('font-size'));if(Number.isFinite(own))return own;const sizes=[...el.querySelectorAll('tspan')].map(n=>absoluteSize(n.style.fontSize||n.getAttribute('font-size'))).filter(Number.isFinite);return sizes.length?Math.max(...sizes):12;}
+  function absoluteSize(value){
+    const match=String(value??'').trim().match(/^([+]?(?:\d*\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?)(px|pt|pc|in|cm|mm|q)?$/i);
+    if(!match)return NaN;const size=Number(match[1])*({'':1,px:1,pt:96/72,pc:16,in:96,cm:96/2.54,mm:96/25.4,q:96/101.6}[(match[2]||'').toLowerCase()]);return Number.isFinite(size)&&size>0?size:NaN;
+  }
+  function fontSizeValue(el){return el?.style?.fontSize||el?.getAttribute?.('font-size')||'';}
+  function inheritedSize(el){
+    if(!el)return NaN;const raw=fontSizeValue(el).trim(),size=absoluteSize(raw);if(Number.isFinite(size))return size;
+    const parent=inheritedSize(el.parentElement),relative=raw.match(/^([+]?(?:\d*\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?)(%|em)$/i);
+    if(relative){const value=(Number.isFinite(parent)?parent:12)*Number(relative[1])/(relative[2]==='%'?100:1);return Number.isFinite(value)&&value>0?value:NaN;}
+    return parent;
+  }
+  // This remains a LOCAL font size in SVG user units, not a transformed size.
+  // Matplotlib math text may place all explicit sizes on its child tspans.
+  function pointSize(el){const raw=fontSizeValue(el),own=absoluteSize(raw);if(Number.isFinite(own))return own;if(/(?:%|em)$/i.test(raw.trim())){const relative=inheritedSize(el);if(Number.isFinite(relative))return relative;}const parent=inheritedSize(el.parentElement);if(Number.isFinite(parent)&&[...(el.childNodes||[])].some(node=>node.nodeType===3&&node.nodeValue?.trim()))return parent;const sizes=[...el.querySelectorAll('tspan')].map(n=>absoluteSize(fontSizeValue(n))).filter(Number.isFinite);if(sizes.length)return Math.max(...sizes);return Number.isFinite(parent)?parent:12;}
+  function localFontScale(el,root){
+    if(!el)throw Error('Text geometry is unavailable');
+    if(el===root)return 1;
+    // Unattached, untransformed lightweight text objects used by integrations
+    // have no coordinate conversion. A real transformed/disconnected SVG does.
+    if(!el.parentElement&&!el.getAttribute?.('transform')&&!el.style?.getPropertyValue?.('transform')&&!el.style?.getPropertyValue?.('transform-origin'))return 1;
+    const geometry=typeof StudioImageInsets!=='undefined'?StudioImageInsets:typeof module!=='undefined'&&module.exports?require('./image-insets.js'):null;
+    if(!geometry?.relativeMatrix)throw Error('Text geometry is unavailable');
+    const m=geometry.relativeMatrix(el,root),scale=Math.hypot(m.c,m.d);
+    if(!Number.isFinite(scale)||scale<=0)throw Error('Text geometry is invalid');
+    return scale;
+  }
   function nativeStyles(el){
     const nodes=textNodes(el),max=pointSize(el),base=nodes.find(n=>absoluteSize(inherited(n,'fontSize','font-size',el))>=max*.85),baseY=parseFloat(base?.parentElement?.getAttribute('y'))||0;let at=0;const styles=[];
     for(const n of nodes){const style={},weight=inherited(n,'fontWeight','font-weight',el),italic=inherited(n,'fontStyle','font-style',el),shift=inherited(n,'baselineShift','baseline-shift',el),size=absoluteSize(inherited(n,'fontSize','font-size',el));
@@ -137,6 +161,6 @@ const StudioRichText = (() => {
       selection(){return [...selection];}
     };
   }
-  return {parse,valid,remap,format,apply,replaceText,nativeStyles,pointSize,mount};
+  return {parse,valid,remap,format,apply,replaceText,nativeStyles,pointSize,localFontScale,mount};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=StudioRichText;

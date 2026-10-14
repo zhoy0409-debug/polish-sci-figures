@@ -13,7 +13,7 @@ function el(tag='g',data={},box={left:0,top:0,right:0,bottom:0}){
     remove(){if(this.parentElement)this.parentElement.children=this.parentElement.children.filter(x=>x!==this);},
     replaceWith(other){const p=this.parentElement;if(p){other.parentElement=p;p.children[p.children.indexOf(this)]=other;}},
     contains(node){return node===this||this.children.some(c=>c.contains(node));},
-    matches(s){if(s==='[data-studio-hit-key]')return !!data.studioHitKey;if(s===tag)return true;if(s==='.chosen')return classes.has('chosen');if(s==='[data-panel]')return !!data.panel;if(s==='[data-key]'||s==='text[data-key]')return !!data.key&&(s[0]!=='t'||tag==='text');if(s==='[data-annotation]')return !!data.annotation;const m=s.match(/^\[data-(panel|key|annotation)="([^"]+)"\]$/);return m?data[m[1]]===m[2]:false;},
+    matches(s){if(s==='[data-studio-hit-key]')return !!data.studioHitKey;if(s===tag)return true;if(s==='.chosen')return classes.has('chosen');if(s==='[data-panel]')return !!data.panel;if(s==='[data-key]'||s==='text[data-key]')return !!data.key&&(s[0]!=='t'||tag==='text');if(s==='[data-annotation]')return !!data.annotation;if(s==='[data-panel-label]')return !!data.panelLabel;const m=s.match(/^\[data-(panel|key|annotation|panel-label)="([^"]+)"\]$/);return m?data[m[1].replace(/-([a-z])/g,(_,x)=>x.toUpperCase())]===m[2]:false;},
     closest(s){return this.matches(s)?this:this.parentElement?.closest(s)||null;},
     querySelectorAll(s){const all=this.children.flatMap(c=>[c,...c.querySelectorAll('*')]);return s==='*'?all:all.filter(c=>c.matches(s));},
     querySelector(s){const parts=s.split(' ');if(parts.length===2)return this.querySelector(parts[0])?.querySelector(parts[1])||null;return this.querySelectorAll(s)[0]||null;},
@@ -136,3 +136,64 @@ for(const tag of ['path','rect','circle','ellipse','use','image']){
 }
 const grouped=harness();grouped.s.panels.p0.elementGroups={0:[['tick1','tick2']]};grouped.svg.onpointerdown(grouped.event(140,148,grouped.t1));grouped.svg.onpointermove(grouped.event(150,152,grouped.t1));grouped.svg.onpointerup(grouped.event(150,152,grouped.t1));for(const key of ['tick1','tick2'])assert.equal(+grouped.s.panels.p0.edits[0][key]['offset-x'],10,'first drag respects user grouping');
 console.log('PASS direct editable SVG movement: paths, rectangles, circles, ellipses, uses, images and user groups.');
+
+// A persistent marquee tool still lets an existing selection be moved directly.
+// Blank/unselected targets and Shift continue to start selection, not movement.
+for(const start of ['selected','unselected','blank','shift']){
+  const k=harness();k.ctx.boxMode(true);k.drag(60,110,160,215);k.finish(160,215);
+  assert.equal(k.ctx.count(),2);
+  const target=start==='blank'?k.svg:start==='unselected'?k.t3:k.t1;
+  const x=start==='unselected'?430:start==='blank'?600:140,y=start==='blank'?450:148;
+  k.svg.onpointerdown(k.event(x,y,target,{shiftKey:start==='shift'}));
+  assert.equal(k.ctx.details().active,start!=='selected',start+' has the intended gesture');
+  k.svg.onpointermove(k.event(x+10,y+4,target,{shiftKey:start==='shift'}));
+  k.svg.onpointerup(k.event(x+10,y+4,target,{shiftKey:start==='shift'}));
+  assert.equal(k.stats().commits,start==='selected'?1:0);
+  if(start==='selected')for(const key of ['tick1','tick2']){
+    assert.equal(+k.s.panels.p0.edits[0][key]['offset-x'],10);
+    assert.equal(+k.s.panels.p0.edits[0][key]['offset-y'],4);
+  }
+}
+const overlayBox=harness();overlayBox.ctx.boxMode(true);overlayBox.drag(60,110,550,320);overlayBox.finish(550,320);
+const overlayStart=copy(overlayBox.s.overlays[0]);
+overlayBox.svg.onpointerdown(overlayBox.event(500,290,overlayBox.note));
+assert.equal(overlayBox.ctx.details().active,false,'selected annotation starts movement in marquee mode');
+overlayBox.svg.onpointermove(overlayBox.event(510,294,overlayBox.note));overlayBox.svg.onpointerup(overlayBox.event(510,294,overlayBox.note));
+assert.equal(overlayBox.stats().commits,1);
+assert.ok(Math.abs(overlayBox.s.overlays[0].x-overlayStart.x-10/600)<1e-12);
+for(const [id,key]of [['p0','tick1'],['p0','tick2'],['p1','tick3']])assert.equal(+overlayBox.s.panels[id].edits[0][key]['offset-x'],10,'annotation drag preserves mixed selection');
+
+for(const cancel of ['onpointercancel','onlostpointercapture']){
+  const k=harness();k.ctx.boxMode(true);k.drag(60,110,160,215);k.finish(160,215);
+  k.svg.onpointerdown(k.event(140,148,k.t1));k.svg.onpointermove(k.event(150,152,k.t1));k.svg[cancel]();
+  assert.equal(k.stats().commits,0,cancel+' aborts movement without recording preview state');assert.deepEqual(k.s,k.initial);
+}
+
+for(const selectedLabel of [true,false]){
+  const k=harness(),label=el('text',{panelLabel:'p0'},{left:115,top:95,right:130,bottom:111});k.svg.append(label);
+  k.ctx.l.positions.push({id:'p0',x:0,y:0,width:250,height:390});k.s.panels.p0.label={x:2,y:4};k.ctx.boxMode(true);
+  if(selectedLabel)vm.runInContext("selectedPanelLabel='p0'",k.ctx);
+  k.svg.onpointerdown(k.event(120,100,label));assert.equal(k.ctx.details().active,!selectedLabel);
+  k.svg.onpointermove(k.event(130,104,label));k.svg.onpointerup(k.event(130,104,label));
+  assert.equal(k.stats().commits,selectedLabel?1:0);
+  if(selectedLabel){assert.equal(k.s.panels.p0.label.x,6);assert.ok(Math.abs(k.s.panels.p0.label.y-(4+4/390*100))<1e-12);}
+}
+
+// Persist the real gesture result through the production history validator.
+const persisted=harness(),{History}=require(path);persisted.s.columns=2;persisted.s.gap=12;persisted.s.overlays=[];
+delete persisted.s.panels.p0.label;delete persisted.s.panels.p1.label;
+persisted.t1.dataset.key='e1';persisted.t2.dataset.key='e2';persisted.t3.dataset.key='e3';
+const originalState=copy(persisted.s),timeline=new History(originalState);
+persisted.ctx.commit=next=>{timeline.commit(next);Object.assign(persisted.s,copy(next));};
+persisted.ctx.boxMode(true);persisted.drag(60,110,160,215);persisted.finish(160,215);
+persisted.svg.onpointerdown(persisted.event(140,148,persisted.t1));
+for(let step=1;step<=10;step++)persisted.svg.onpointermove(persisted.event(140+step,148+step*.4,persisted.t1));
+persisted.svg.onpointerup(persisted.event(150,152,persisted.t1));
+assert.equal(timeline.states.length,2,'one drag records one undo step, not every move event');
+const saved=JSON.parse(JSON.stringify({current:timeline.current,history:timeline})),project={panels:[{id:'p0',variants:[{}]},{id:'p1',variants:[{}]}]};
+const restored=History.restore(saved.history,project,saved.current);
+assert.equal(restored.current.panels.p0.edits[0].e1['offset-x'],'10');
+assert.equal(restored.current.panels.p0.edits[0].e2['offset-y'],'4');
+assert.deepEqual(restored.undo(),originalState,'one undo restores both selected texts');
+assert.deepEqual(restored.redo(),saved.current,'redo restores the persisted movement');
+console.log('PASS marquee-to-drag: selected text/annotation/label, mixed selection, blank/Shift selection, single undo and project persistence.');

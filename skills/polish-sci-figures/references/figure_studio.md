@@ -1,6 +1,6 @@
 # Figure Studio — official visual editor for polish-sci-figures
 
-Suite v1.4.7 includes the original three skills and the Figure Studio integration. Figure Studio 0.1.7 is the official Windows desktop distribution: it bundles the same local renderers and analysis engine, opens the editor in the default browser, and needs no separately installed Python, Codex, account or activation. Download the installer or complete portable ZIP from the [official project releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases). The project remains MIT-licensed; official branding is not copy protection.
+Suite v1.4.8 includes the original three skills and the Figure Studio integration. Figure Studio 0.1.8 is the official Windows desktop distribution: it bundles the same local renderers and analysis engine, opens the editor in the default browser, and needs no separately installed Python, Codex, account or activation. Download the installer or complete portable ZIP from the [official project releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases). The project remains MIT-licensed; official branding is not copy protection.
 
 This reference documents implemented behavior. Test and visual-review scope is recorded separately; a listed template is not a guarantee that arbitrary data or labels will fit every output size.
 
