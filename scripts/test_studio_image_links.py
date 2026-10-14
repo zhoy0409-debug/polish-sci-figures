@@ -71,6 +71,41 @@ class ImageLinkTests(unittest.TestCase):
         expected = np.array([[220, 160], [1040, 160], [1040, 780], [220, 780]]) / [1280, 960]
         self.assert_region(self.locate(child, parent), expected)
 
+    def test_large_native_depth_full_roi_preserves_analysis_pixels_and_source_identity(self):
+        parent = self.parent.resize((1280, 960), Image.Resampling.LANCZOS).convert('L')
+        native = Image.fromarray(np.asarray(parent, dtype=np.uint16)*200+5000)
+        cv = links.duplicate._engine()
+        for fmt in ['PNG', 'TIFF']:
+            with self.subTest(fmt=fmt):
+                record = item('parent', native, fmt=fmt)
+                plain = links.duplicate._read(record, cv)
+                full = links.duplicate._read(record, cv, roi={'x': 0, 'y': 0, 'w': 1, 'h': 1})
+                np.testing.assert_array_equal(full.gray, plain.gray)
+                self.assertEqual(full.info['sha256'], plain.info['sha256'])
+                self.assertEqual((full.info['width'], full.info['height']), (1280, 960))
+                self.assertEqual(full.info['intensityMapping']['sourceDtype'], 'uint16')
+
+    def test_large_native_depth_visible_crop_localizes_in_original_pixel_coordinates(self):
+        parent = self.parent.resize((1280, 960), Image.Resampling.LANCZOS).convert('L')
+        native = Image.fromarray(np.asarray(parent, dtype=np.uint16)*200+5000)
+        child_canvas = Image.fromarray(np.full((1200, 1600), 5000, np.uint16))
+        child_canvas.paste(native.crop((220, 160, 1040, 780)), (400, 300))
+        expected = np.array([[220, 160], [1040, 160], [1040, 780], [220, 780]])/[1280, 960]
+        # Fractional pixel edges must retain their precise visible ROI while
+        # the native analysis crop rounds outwards to complete source pixels.
+        parent_roi = {'x': 120.25/1280, 'y': 80.25/960, 'w': 1039.5/1280, 'h': 799.5/960}
+        for fmt in ['PNG', 'TIFF']:
+            with self.subTest(fmt=fmt):
+                report = links.locate_image_links([
+                    {**item('parent', native, fmt=fmt), 'roi': parent_roi},
+                    {**item('child', child_canvas, fmt=fmt), 'roi': {'x': .25, 'y': .25, 'w': 820/1600, 'h': 620/1200}},
+                ])
+                self.assert_region(report['pairs'][0], expected)
+                self.assertEqual(report['images'][0]['visibleRoi'], parent_roi)
+                self.assertEqual(report['images'][0]['analysisRoi'], {'x': 120/1280, 'y': 80/960, 'w': 1040/1280, 'h': 800/960})
+                self.assertEqual(report['images'][1]['analysisWidth'], 820, 'native crop precedes preview downsampling')
+                self.assertEqual((report['images'][1]['width'], report['images'][1]['height']), (1600, 1200))
+
     def test_optional_parent_and_child_roi_match_only_visible_pixels_and_return_full_parent_coordinates(self):
         expected = np.array([[110, 80], [520, 80], [520, 390], [110, 390]]) / [640, 480]
         child_canvas = Image.new('RGB', (1600, 1200), 'white')
