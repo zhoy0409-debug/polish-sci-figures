@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.4.10 · Figure Studio 0.1.10 for Windows
+
+- Fix Windows update preparation failing while backing up installed files with long paths. Users affected in 0.1.9 should install 0.1.10 manually once; users on 0.1.8 or earlier also need a manual first upgrade.
+- Retain object and panel-content resizing, undoable panel deletion, editable PDF text, and the existing local figure workflows. Mac/Android development previews remain at 0.1.9.
+- 修复 Windows 长路径导致更新准备阶段备份失败的问题；受影响的 0.1.9 和 0.1.8 及更早版本用户需手动安装一次 0.1.10。保留缩放、可撤销删除和现有作图功能，Mac/Android 预览保持 0.1.9。
+
+[Release notes / 本版更新](docs/release-notes-v1.4.10.md)
+
 ## v1.4.9 · Figure Studio 0.1.9
 
 - Resize individual or mixed selections with edge and corner handles, preserving PDF transforms and editable source assets; one gesture produces one undo step.

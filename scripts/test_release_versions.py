@@ -33,9 +33,16 @@ def constants(path: Path) -> dict:
 def main():
     windows = constants(ROOT / "desktop/build_windows.py")
     macos = constants(ROOT / "desktop/build_macos.py")
-    assert PORTABLE_VERSION == VERSION == windows["SUITE_VERSION"] == macos["SUITE_VERSION"]
+    assert PORTABLE_VERSION == VERSION == windows["SUITE_VERSION"]
     app_version = windows["VERSION"]
-    assert app_version == macos["VERSION"]
+    # This Windows-only hotfix does not rebuild the validated native previews.
+    # Keep their identities explicit, instead of silently relabeling old assets.
+    preview_version, preview_suite = "0.1.9", "v1.4.9"
+    assert macos["VERSION"] == preview_version
+    assert macos["SUITE_VERSION"] == preview_suite
+    updates = constants(ROOT / "skills/polish-sci-figures/scripts/studio_updates.py")
+    assert updates["STUDIO_VERSION"] == app_version
+    assert updates["SUITE_VERSION"] == VERSION.removeprefix("v")
     citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
     assert re.search(r'^version: "([^"]+)"$', citation, re.M).group(1) == VERSION.removeprefix("v")
     installer = (ROOT / "desktop/FigureStudio.iss").read_text(encoding="utf-8")
@@ -44,12 +51,26 @@ def main():
     assert re.search(r"\$Version = '([^']+)'", verifier).group(1) == app_version
 
     ios = plistlib.loads((ROOT / "mobile/ios/Info.plist").read_bytes())
-    assert ios["CFBundleShortVersionString"] == app_version
-    assert ios["StudioSuiteVersion"] == VERSION.removeprefix("v")
+    assert ios["CFBundleShortVersionString"] == preview_version
+    assert ios["StudioSuiteVersion"] == preview_suite.removeprefix("v")
     assert int(ios["CFBundleVersion"]) > 0
     android = (ROOT / "mobile/android/app/build.gradle").read_text(encoding="utf-8")
-    assert re.search(r"versionName '([^']+)'", android).group(1) == app_version + "-local-preview"
+    assert re.search(r"versionName '([^']+)'", android).group(1) == preview_version + "-local-preview"
     assert int(re.search(r"versionCode (\d+)", android).group(1)) > 0
+
+    # Current Windows links must identify the hotfix; native preview downloads
+    # keep the independently validated build rather than borrowing its version.
+    notes = f"docs/release-notes-{VERSION}.md"
+    documents = ["README.md", "README.en.md", "README.zh-CN.md",
+                 "desktop/QUICKSTART.en.md", "desktop/QUICKSTART.zh-CN.md",
+                 "docs/local-device-trial.md", notes]
+    for name in documents:
+        text = (ROOT / name).read_text(encoding="utf-8")
+        for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-(?:Setup-x64\.exe|Portable-x64\.zip)", text):
+            assert (tag, version) == (VERSION, app_version), (name, tag, version)
+        for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-(?:macOS-[^/)]+|Android-preview\.apk)", text):
+            assert (tag, version) == ("figure-studio-local-preview-" + preview_version, preview_version), (name, tag, version)
+    assert "## 中文" in (ROOT / notes).read_text(encoding="utf-8")
 
     # The PE resource is generated, not checked in. Exercise its real generator
     # in a private temporary directory so this check works on a clean checkout.

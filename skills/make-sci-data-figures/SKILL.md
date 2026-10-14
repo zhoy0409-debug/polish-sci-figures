@@ -21,7 +21,7 @@ For the original editable gallery, run `scripts/gallery_cli.py --list` to inspec
 
 The gallery CLI accepts `--palette NAME`, using the registry's existing palette validation. Its default `zhoy_muted` keeps the gallery's blue/red display colors (`#3f6da3`, `#c95770`); the legacy workbench's palette of the same name has its own established colors. Do not silently recolor existing figures to make these entry points identical.
 
-This skill remains the AI/CLI data entry point in suite v1.4.9. Figure Studio 0.1.9 is the official Windows companion in the [same repository's releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases); it bundles this engine for users who want an installed visual editor without Python or an AI environment. It does not replace this skill or require a fourth skill. Keep all three suite folders together for the original source workflow.
+This skill remains the AI/CLI data entry point in suite v1.4.10. Figure Studio 0.1.10 is the official Windows companion in the [same repository's releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases); it bundles this engine for users who want an installed visual editor without Python or an AI environment. It does not replace this skill or require a fourth skill. Keep all three suite folders together for the original source workflow.
 
 ## Minimum intake
 
