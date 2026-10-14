@@ -35,7 +35,7 @@ const field=input('gap','number','12');let gapCalls=0;field.onchange=()=>gapCall
 const start=source.indexOf('  const directProperties=');
 const end=source.indexOf("  $('resetOutputSize').onclick",start);
 assert.ok(start>=0&&end>start,'Could not find production property bindings');
-vm.runInNewContext(source.slice(start,end),{$,document:{querySelectorAll:()=>Object.values(elements).filter(el=>el.type)}});
+vm.runInNewContext(source.slice(start,end),{$,setupDirectTextEditing(){},document:{querySelectorAll:()=>Object.values(elements).filter(el=>el.type)}});
 refresh();
 
 // Exact reported sequence: add a row, then span the first panel across two columns.

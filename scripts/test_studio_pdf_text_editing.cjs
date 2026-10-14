@@ -37,7 +37,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1']}={}){
     paint:(el,prop)=>el.style.getPropertyValue(prop)||el.getAttribute(prop)|| (prop==='fill'?'#000000':'none'),
     hex:value=>/^#[a-f0-9]{6}$/i.test(value||'')?value:null,chromatic:()=>false,
     T:(text,...args)=>text.replace(/\{(\d+)\}/g,(_,i)=>args[i]),say:text=>messages.push(text),
-    syncColorControls(){},renderFontTargets(){},renderHeatmapControls(){},renderRichTextControls(){},renderStatisticalLineControls(){},
+    renderSelectionCommands(){},syncColorControls(){},renderFontTargets(){},renderHeatmapControls(){},renderRichTextControls(){},renderStatisticalLineControls(){},
     commit(next){validateState(next,project);history.commit(next);current=copy(next);render();return true;},
     renderCanvas:next=>render(next||current)
   };

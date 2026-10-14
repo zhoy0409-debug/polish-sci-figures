@@ -674,9 +674,9 @@ input:disabled, select:disabled, textarea:disabled { cursor: not-allowed; }
 #artboard .selection-resize-handle:hover,#artboard .selection-resize-hit:hover+.selection-resize-handle{fill:#e7f0ff;stroke:#315e9e}
 #artboard .selection-resize-handle:focus-visible,#artboard .selection-resize-hit:focus-visible{outline:none;stroke:#234e88;stroke-width:2}
 
-.canvas-tools .quick-icon-button{min-width:27px;padding:4px 5px;border-color:transparent;background:transparent;font-size:13px}
+.canvas-tools .quick-icon-button{min-width:29px;padding:4px 6px;border-color:#c9d4e3;background:#fff;color:#253e62;font-size:13px;opacity:1}
 .canvas-tools .quick-icon-button:hover,.canvas-tools button[aria-pressed=true]{background:#e9eef9;border-color:#b8c6e0;color:#334f83}
-.canvas-tools .quick-icon-button:disabled{background:transparent;border-color:transparent;opacity:.35}
+.canvas-tools .quick-icon-button:disabled{background:#f3f5f8;border-color:#e4e8ef;color:#8b96a6;opacity:1;cursor:not-allowed}
 .canvas-tools .quick-font-size{display:flex;align-items:center;gap:2px;margin:0;border:1px solid #d9e0e9;border-radius:5px;background:white;padding-right:5px;color:#7b8698;font-size:10px}
 .canvas-tools .quick-font-size input{width:48px;height:27px;min-width:0;border:0;margin:0;padding:3px 2px 3px 7px;border-radius:5px;font-size:11px;color:#26364b}
 .canvas-tools .quick-color{position:relative;display:flex;align-items:center;justify-content:center;width:29px;height:29px;overflow:hidden;border:1px solid transparent;border-radius:5px;margin:0;font:600 14px Georgia,serif;color:#29384e;cursor:pointer}
@@ -793,3 +793,28 @@ body>header .autosave.unsaved{color:#a64f55}
 #markControls label>output{float:right;font-variant-numeric:tabular-nums;margin-left:8px}
 #markControls [hidden]{display:none!important}
 @media(pointer:coarse){#markControls .mark-group-heading label{min-height:44px}#markControls .mark-preset-choices button,#markControls .mark-color-row>select,#markControls .mark-color-row>input[type=color]{min-height:44px}#markControls .mark-color-row>input[type=color]{flex-basis:44px;width:44px}}
+
+/* Persistent import and direct canvas actions remain visible after onboarding. */
+.import-entry{margin:12px 0;padding:10px;border:1px solid #d8e2ef;border-radius:9px;background:#f5f8fd}
+.import-entry>button{width:100%;font-weight:600}
+.import-entry>p{font-size:11px;line-height:1.5;margin:7px 0 0;color:#53677e}
+.import-queue{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.import-queue:has(#importQueueStatus:empty){display:none}
+#importQueueStatus{font-size:11px;line-height:1.5;flex:1;min-width:100px;overflow-wrap:anywhere}
+#cancelFileImport{font-size:11px;padding:4px 6px}
+.canvas-tools #quickImportFiles{color:#294f81;border-color:#b4c8e3;background:#fff;font-weight:600}
+.canvas-tools #quickEditText:not(:disabled){color:#294f81;border-color:#b4c8e3;background:#fff}
+.canvas-tools .quick-object-group button:not(:disabled){color:#294f81;border-color:#bdcde1;background:#fff}
+#viewport.is-file-drop{outline:2px solid #4c77b1;outline-offset:-3px;background:#e9f1fb}
+#viewport.is-file-drop::after{content:attr(data-file-drop-label);position:sticky;display:block;bottom:14px;left:20px;width:max-content;max-width:calc(100% - 40px);margin:0 auto 10px;padding:10px 16px;border-radius:8px;background:#294f81;color:white;font-size:13px;box-shadow:0 3px 15px #263f6726;pointer-events:none;white-space:normal}
+
+#fileDataImportDialog{width:min(820px,calc(100vw - 32px))}
+#fileDataImportDialog label{display:grid;gap:6px}
+#fileDataImportDialog textarea{width:100%;min-height:180px;max-height:40vh;resize:vertical}
+
+/* Wrap frequent actions instead of hiding text formatting off screen. */
+.canvas-tools .canvas-quickbar{height:auto;min-height:42px;flex-wrap:wrap;overflow:visible;gap:6px;padding-block:6px;align-content:flex-start}
+.canvas-tools .quick-format-group{padding-right:6px}
+.canvas-tools .quick-selection-status{flex-basis:160px;min-width:120px}
+
+.quick-clipboard-group svg{width:16px;height:16px;display:block;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}

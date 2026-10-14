@@ -9,6 +9,66 @@ void (async function () {
     while (performance.now() < end) { if (await test()) return; await new Promise(resolve => setTimeout(resolve, 100)); }
     throw new Error('Timed out: ' + test.toString().slice(0, 100));
   };
+  // Test-only deadlines are per operation. A synchronous native confirmation
+  // can suspend WK JavaScript; its UI time must not consume the file-read budget.
+  async function smokeDeadline(task, timeout, label, timing = {}) {
+    const start = timing.start ?? performance.now(); let timer;
+    try {
+      const value = await Promise.race([task, new Promise((_, reject) => {
+        timer = setTimeout(() => reject(new Error('Timed out: ' + label)), Math.max(0, start + timeout - performance.now()));
+      })]);
+      // Also enforce the bound when native UI suspension delays timer delivery.
+      const completed = timing.completedAt ? timing.completedAt(value) : performance.now();
+      if (completed - start > timeout) throw new Error('Timed out: ' + label);
+      return value;
+    } finally { clearTimeout(timer); }
+  }
+  function observeSmokeProjectImport(input, notifySelected) {
+    const timings = {};
+    let file = null, select, rejectSelection, confirm, rejectConfirmation;
+    const selection = new Promise((resolve, reject) => { select = resolve; rejectSelection = reject; });
+    const confirmation = new Promise((resolve, reject) => { confirm = resolve; rejectConfirmation = reject; });
+    // A diagnostic failure may arrive before ready() advances to this phase.
+    confirmation.catch(() => {});
+    const originalConfirm = window.confirm;
+    const observedConfirm = function (...args) {
+      try {
+        // Preserve the real modal, return value and user click. Never auto-answer.
+        const accepted = Reflect.apply(originalConfirm, this, args);
+        if (file) confirm({accepted, at: performance.now()});
+        return accepted;
+      } catch (error) { if (file) rejectConfirmation(error); throw error; }
+    };
+    const capture = () => {
+      try {
+        file = input.files[0];
+        if (!file) throw new Error('Native Files selection was cancelled or empty');
+        Promise.resolve(notifySelected()).catch(rejectConfirmation);
+        select({file, at: performance.now()});
+      } catch (error) { rejectSelection(error); }
+    };
+    const cancel = () => rejectSelection(new Error('Native Files selection was cancelled'));
+    input.addEventListener('change', capture, true);
+    input.addEventListener('cancel', cancel, true);
+    window.confirm = observedConfirm;
+    return {
+      timings,
+      async ready() {
+        const started = performance.now();
+        const selected = await smokeDeadline(selection, 90000, 'native Files input selection', {completedAt: value => value.at});
+        const confirmed = await smokeDeadline(confirmation, 90000, 'native project replacement confirmation', {start: selected.at, completedAt: value => value.at});
+        assert(confirmed.accepted === true, 'Native project replacement was not confirmed');
+        timings.fileSelectionMs = Math.round(selected.at - started);
+        timings.confirmationMs = Math.round(confirmed.at - selected.at);
+        return selected.file;
+      },
+      dispose() {
+        input.removeEventListener('change', capture, true);
+        input.removeEventListener('cancel', cancel, true);
+        if (window.confirm === observedConfirm) window.confirm = originalConfirm;
+      }
+    };
+  }
   async function check(name, fn) {
     activeStage = name; await native({action: 'smokeStage', stage: name});
     const before = performance.now(); const details = await fn();
@@ -177,17 +237,7 @@ void (async function () {
           return !!extraGuide;
         });
         const input = document.getElementById('projectFile');
-        let imported, importError;
-        const capture = async () => {
-          try {
-            const file = input.files[0]; if (!file) return;
-            await native({action: 'smokeStage', stage: 'Actual Files input change delivered the selected project'});
-            const bytes = await file.arrayBuffer();
-            const sha256 = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), value => value.toString(16).padStart(2, '0')).join('');
-            imported = {name: file.name, bytes: bytes.byteLength, sha256};
-          } catch (error) { importError = error; }
-        };
-        input.addEventListener('change', capture, true);
+        const observer = observeSmokeProjectImport(input, () => native({action: 'smokeStage', stage: 'Actual Files input change delivered the selected project'}));
         // A real user gesture is needed for WKWebView's standard file input.
         // XCTest taps this fixed test affordance, which invokes the existing
         // Open handler; no File object or application payload is injected.
@@ -197,15 +247,24 @@ void (async function () {
         open.onclick = () => document.getElementById('load').click();
         document.body.append(open);
         try {
-          await wait(() => { if (importError) throw importError; return imported; }, 90000);
+          // XCTest still selects the actual saved file and taps the native OK.
+          // Each UI phase is bounded separately, within XCTest's 420-second cap.
+          const file = await observer.ready();
+          const readStarted = performance.now();
+          const imported = await smokeDeadline((async () => {
+            const bytes = await file.arrayBuffer();
+            const sha256 = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), value => value.toString(16).padStart(2, '0')).join('');
+            return {name: file.name, bytes: bytes.byteLength, sha256};
+          })(), 15000, 'selected project byte read and SHA-256');
+          observer.timings.readAndDigestMs = Math.round(performance.now() - readStarted);
           assert(imported.name === saved.name && imported.bytes === saved.bytes && imported.sha256 === saved.sha256, 'Files reimport bytes differ from the actual saved file');
           await wait(async () => {
             const current = await StudioLibrary.get('autosaves', prior.projectId);
             const guides = current?.payload.state.alignmentGuides;
             return guides?.length === 1 && guides[0].id === prior.guideId && !document.querySelector('[data-alignment-guide="' + extraGuide.id + '"]');
           }, 30000);
-          return {fileSaveSuccessTested: true, fileInputReimportTested: true, nativeConfirmationAccepted: true, pickerClosedBeforeReply: true, localDestination: true, localDestinationEvidence: 'Native XCTest selects and asserts On My iPhone/iPad, with screenshot', destinationURL: saved.destinationURL, coordinatedReadback: saved.coordinatedReadback, bytes: saved.bytes, sha256: saved.sha256, originalGuideRestored: true, laterEditRemoved: true};
-        } finally { input.removeEventListener('change', capture, true); open.remove(); }
+          return {fileSaveSuccessTested: true, fileInputReimportTested: true, nativeConfirmationAccepted: true, pickerClosedBeforeReply: true, localDestination: true, localDestinationEvidence: 'Native XCTest selects and asserts On My iPhone/iPad, with screenshot', destinationURL: saved.destinationURL, coordinatedReadback: saved.coordinatedReadback, bytes: saved.bytes, sha256: saved.sha256, originalGuideRestored: true, laterEditRemoved: true, importTimings: observer.timings};
+        } finally { observer.dispose(); open.remove(); }
       });
     }
     await check('Final canvas and mobile controls are ready for screenshot', editorPaintReady);

@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.4.11 · Figure Studio 0.1.11
+
+- Keep figure import available throughout editing; process multiple figure files in sequence, prompt for each PDF page, and route CSV/TSV drops to the data workflow while preserving the existing project.
+- Enter direct editing after import, finish inline text edits by clicking outside, and explain unavailable text-format controls.
+- Show Group/Ungroup and Lock/Unlock from the actual selection, preserving imported SVG transforms and clipping.
+- Copy or cut selected elements within an imported editable figure and paste them into an empty cell as an independent editable panel, with Undo. This internal clipboard transfers artwork, not source data tables or a newly calculated statistical result; it does not automatically split figures.
+- Prepare new Windows, Mac and Android packages from the shared editor source; iOS remains simulator-only. Package and platform validation are pending, with actual results to be recorded at release.
+- 常驻导入入口，按队列处理多份图形和 PDF 选页；CSV/TSV 进入数据流程。导入后可直接编辑，点击外部完成改字，组合与锁定控件随选择更新；各平台新版成品仍待本轮验收。
+- 可复制或剪切同一份可编辑图内的选中元素，粘贴到空格成为独立小图，支持撤销。内部剪贴板转移画面，不自动拆图，也不把源数据表或统计结果复制为新分析。
+
+[Release notes / 本版更新](docs/release-notes-v1.4.11.md)
+
 ## v1.4.10 · Figure Studio 0.1.10 for Windows
 
 - Fix Windows update preparation failing while backing up installed files with long paths. Users affected in 0.1.9 should install 0.1.10 manually once; users on 0.1.8 or earlier also need a manual first upgrade.

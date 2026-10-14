@@ -134,6 +134,7 @@ jobs:
           node scripts/test_studio_composite_stat_layout.cjs
           node scripts/test_studio_workspace_selection.cjs
           node scripts/test_studio_selection_transform.cjs
+          node scripts/test_studio_selection_commands.cjs
           node scripts/test_studio_panel_delete.cjs
           node scripts/test_studio_heatmap_palettes.cjs
           node scripts/test_studio_swatch_schemes.cjs
@@ -222,6 +223,10 @@ jobs:
           node scripts/test_studio_pdf_text_editing.cjs
           node scripts/test_studio_selection_transform_dom.cjs
           node scripts/test_studio_selection_resize_integration.cjs
+          node scripts/test_studio_direct_text_editing.cjs
+          node scripts/test_studio_canvas_clipboard.cjs
+          node scripts/test_studio_canvas_clipboard_integration.cjs
+          node scripts/test_studio_file_import.cjs
           node scripts/test_studio_resize_text.cjs
           node scripts/test_studio_panel_delete.cjs --dom
           node scripts/test_mobile_dom_preview.cjs

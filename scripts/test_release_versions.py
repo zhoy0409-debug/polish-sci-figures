@@ -35,9 +35,9 @@ def main():
     macos = constants(ROOT / "desktop/build_macos.py")
     assert PORTABLE_VERSION == VERSION == windows["SUITE_VERSION"]
     app_version = windows["VERSION"]
-    # This Windows-only hotfix does not rebuild the validated native previews.
-    # Keep their identities explicit, instead of silently relabeling old assets.
-    preview_version, preview_suite = "0.1.9", "v1.4.9"
+    # Shared editor changes require new native builds, with the same source
+    # version as the Windows release; old previews must not be relabeled.
+    preview_version, preview_suite = app_version, VERSION
     assert macos["VERSION"] == preview_version
     assert macos["SUITE_VERSION"] == preview_suite
     updates = constants(ROOT / "skills/polish-sci-figures/scripts/studio_updates.py")
@@ -53,13 +53,15 @@ def main():
     ios = plistlib.loads((ROOT / "mobile/ios/Info.plist").read_bytes())
     assert ios["CFBundleShortVersionString"] == preview_version
     assert ios["StudioSuiteVersion"] == preview_suite.removeprefix("v")
-    assert int(ios["CFBundleVersion"]) > 0
+    assert int(ios["CFBundleVersion"]) == 6
     android = (ROOT / "mobile/android/app/build.gradle").read_text(encoding="utf-8")
     assert re.search(r"versionName '([^']+)'", android).group(1) == preview_version + "-local-preview"
-    assert int(re.search(r"versionCode (\d+)", android).group(1)) > 0
+    assert int(re.search(r"versionCode (\d+)", android).group(1)) == 6
+    native_updates = (ROOT / "mobile/android/app/src/main/java/org/polishscifigures/studio/preview/UpdateChecker.java").read_text(encoding="utf-8")
+    assert re.search(r'put\("suiteVersion", "([^"]+)"\)', native_updates).group(1) == VERSION.removeprefix("v")
 
-    # Current Windows links must identify the hotfix; native preview downloads
-    # keep the independently validated build rather than borrowing its version.
+    # Current links identify each newly built package. Historical release notes
+    # deliberately retain their original version and verification scope.
     notes = f"docs/release-notes-{VERSION}.md"
     documents = ["README.md", "README.en.md", "README.zh-CN.md",
                  "desktop/QUICKSTART.en.md", "desktop/QUICKSTART.zh-CN.md",
