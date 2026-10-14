@@ -7,8 +7,8 @@
 - Add outer master-frame handles for the whole figure, with proportional panel scaling, exact row/column controls and one Undo entry per drag.
 - Add Ctrl/Command-click cycling through overlapping objects and Shift-constrained movement, adapted from source-verified VectorCraft interaction rules.
 - Add a larger same-position original/adjusted image wipe preview, following PhotoCraft non-destructive preview principles. Preserve original pixels and one Apply/Undo operation.
-- Acceptance and new package builds are in progress. Actual browser, export, installer and native-preview evidence is recorded at publication.
-- 停用旧工程和图形版本中的长统计附录，比较结果保留在分析流程；误差棒主线与端帽保持联动，减少大量多选缩放的重复计算。新增整张母版外框拖动柄，小图保持原比例，手势结束记录一次撤销；本轮成品与交互仍待实际验收。
+- Validate actual browser gestures, saved projects, SVG/TIFF exports and Windows overwrite upgrades; record frozen native-package and emulator evidence with the release. Performance claims are limited to the measured fixtures.
+- 停用旧工程和图形版本中的长统计附录，比较结果保留在分析流程；误差棒主线与端帽保持联动，减少大量多选缩放的重复计算。新增整张母版外框拖动柄，小图保持原比例，手势结束记录一次撤销；真实浏览器、保存重开、SVG/TIF 导出及 Windows 覆盖升级已验收，跨平台包审计及模拟器范围随发行记录。
 
 [Release notes / 本版更新](docs/release-notes-v1.4.13.md)
 
