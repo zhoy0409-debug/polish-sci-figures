@@ -35,7 +35,7 @@ Mac and Android are development previews with manual installation. Mac packages 
 
 ## Verification status
 
-Release preparation is in progress. Windows package validation, both Mac architectures, Android and iOS simulator results for this source are pending. The corresponding release will record the actual checks and artifact hashes; earlier 0.1.9/0.1.10 results do not verify these new packages. No physical iPhone/iPad installation is claimed.
+Validated paths include editable PDF/SVG import, direct text editing, selected-cell copy/cut/paste, undo, project save/reopen and editable SVG export. Automated checks cover data queues, text geometry, clipping, stale responses and archive extraction. The [official release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.11) and [native preview release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/figure-studio-local-preview-0.1.11) record the completed platform checks and artifact hashes for these packages. Simulator checks do not establish physical iPhone/iPad installation or performance.
 
 ## 中文
 
@@ -72,4 +72,4 @@ Mac、Android 继续作为开发预览，需手动安装；Mac 尚未完成 Appl
 
 ### 验证状态
 
-本版仍在发行准备中。对应源码的 Windows 成品包、Mac 双架构、Android 和 iOS 模拟器验收尚待完成；发行页将记录实际检查结果和文件校验值，旧版 0.1.9/0.1.10 的结果不能代替新版验证。当前不宣称已完成 iPhone/iPad 真机安装。
+已实际验证可编辑 PDF/SVG 导入、图上文字直改、指定空格复制／剪切／粘贴、撤销、工程保存与重开、可编辑 SVG 导出；自动化检查覆盖数据队列、文字几何、裁剪、旧响应保护和压缩包解压运行。[正式发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.11)与[原生预览发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/figure-studio-local-preview-0.1.11)记录各平台成品实际完成的验收和文件校验值。模拟器检查不等于 iPhone/iPad 真机安装和性能验证。
