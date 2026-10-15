@@ -71,6 +71,7 @@ function harness(){
   window:{addEventListener:(type,fn)=>{(windowEvents[type]||=[]).push(fn);}}
  };
  vm.createContext(ctx);
+ vm.runInContext(source.slice(source.indexOf('function panelContentDelta('),source.indexOf('function nudgeSelectionState(')),ctx);
  vm.runInContext(source.slice(source.indexOf('  let labelSelections=[];'),source.indexOf('  const sizeNames=')),ctx);
  const start=source.indexOf('  // Arrow-key repeats'),end=source.indexOf('  // Frequent actions',start);
  assert.ok(start>0&&end>start);vm.runInContext(source.slice(start,end),ctx);
@@ -187,7 +188,7 @@ for(const zoom of [.25,1,3.5]){
  const l=geometry,svg={getBoundingClientRect:()=>({width:l.width*liveZoom,height:l.height*liveZoom}),querySelector:s=>s.includes('annotation')?overlay:null},selectionLayer=svgNode();
  const adapterItems=[native('p','e1',{el:text}),native('p','e900000',{el:stat}),{kind:'overlay',id:'note'},{kind:'label',id:'q',el:label},{kind:'guide',id:'guide-1'}];
  const ctx={imageLinks:null,zoomView:{},l,svg,selectionLayer,state:()=>initial,previewState:initial,selectionResize:null,elementDrag:null,overlayDrag:null,labelDrag:null,guideDrag:null,marquee:null,resizeDrag:null,panelDrag:null,DOMMatrix:Matrix,alignmentSnap,alignmentContext:()=>({bounds:{left:10,right:20,top:10,bottom:20},targets:[{axis:'x',position:11.1,manual:true}]}),overlayNode:a=>copy(a),drawAlignmentGuides:s=>manual=s.alignmentGuides[0].position,paintSnapGuides:g=>guides=g,drawSelection:()=>outlines++,selectedNodes:()=>[]};
- vm.createContext(ctx);const at=source.indexOf('    zoomView.nudgeCanvas='),end=source.indexOf('    svg.classList.toggle',at);assert.ok(at>0&&end>at);vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);
+ vm.createContext(ctx);vm.runInContext(source.slice(source.indexOf('    const captureLabelMotion='),source.indexOf('    const selectedDragItems=')),ctx);const at=source.indexOf('    zoomView.nudgeCanvas='),end=source.indexOf('    svg.classList.toggle',at);assert.ok(at>0&&end>at);vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);
  assert.equal(ctx.zoomView.nudgeCanvas.isPreview,false);assert.equal(ctx.zoomView.nudgeCanvas.isGestureActive(),false);
  for(const key of ['elementDrag','overlayDrag','labelDrag','guideDrag','marquee','resizeDrag','panelDrag']){ctx[key]={};assert.equal(ctx.zoomView.nudgeCanvas.isGestureActive(),true,key);ctx[key]=null;}
  ctx.previewState=copy(initial);ctx.previewState.panels.p.variant=1;vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);assert.equal(ctx.zoomView.nudgeCanvas.isPreview,true);

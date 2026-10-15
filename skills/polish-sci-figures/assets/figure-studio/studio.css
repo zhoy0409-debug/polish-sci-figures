@@ -818,7 +818,10 @@ body>header .autosave.unsaved{color:#a64f55}
 .canvas-tools .quick-selection-status{flex-basis:160px;min-width:120px}
 .text-tools{position:relative;display:flex;gap:4px;align-items:center;border-left:1px solid #dfe4ec;padding-left:6px}
 .text-tools>button{white-space:nowrap;min-height:32px}
-.text-tools>button[aria-pressed=true],.text-tools>button[aria-expanded=true]{background:#e7f0fc;border-color:#7398c6;color:#244f82}
+.canvas-tools .text-tools>button:not(:disabled){background:#fff;border-color:#b4c8e3;color:#294f81;opacity:1}
+.canvas-tools .text-tools>button:not(:disabled):hover{background:#edf3fc;border-color:#8faacb}
+.canvas-tools .text-tools>button:disabled{background:#f3f5f8;border-color:#e4e8ef;color:#8b96a6;opacity:1;cursor:not-allowed}
+.canvas-tools .text-tools>button:not(:disabled)[aria-pressed=true],.canvas-tools .text-tools>button:not(:disabled)[aria-expanded=true]{background:#e7f0fc;border-color:#7398c6;color:#244f82}
 .text-spacing-popover{position:absolute;z-index:90;top:calc(100% + 8px);right:0;width:260px;padding:14px;margin:0;border:1px solid #d5deeb;border-radius:10px;background:#fff;box-shadow:0 10px 30px #25324726}
 .text-spacing-popover[hidden]{display:none}
 .canvasbar .text-spacing-popover label{display:grid;grid-template-columns:1fr 96px;gap:10px;margin:0 0 10px;align-items:center}

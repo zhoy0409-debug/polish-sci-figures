@@ -109,6 +109,8 @@ const clickStart=source.indexOf('    svg.onclick=event=>{',pointerStart),clickEn
 vm.createContext(dragContext);
 vm.runInContext(`let labelDrag=null,overlayDrag=null,elementDrag=null,guideDrag=null,marquee=null,suppressClick=false,pending=null,layoutMode=false,boxSelect=false,resizeDrag=null,panelDrag=null,ghost=null,dragging=null,original=false,selectedPanel='${ids[0]}',selected=[],elementSelections=[],selectionAnchor=null,selectedAnnotations=[],panelSelection=[],selectedPanelLabel=null,selectionAfterMarquee=false,activePane='explore',selectedAlignmentGuide=null;
 let contentSelection=null;
+${source.slice(source.indexOf('function panelContentDelta('),source.indexOf('function nudgeSelectionState('))}
+${source.slice(source.indexOf('    const captureLabelMotion='),source.indexOf('    const selectedDragItems='))}
 ${source.slice(source.indexOf('  function selectionGroups(){'),source.indexOf('  const sizeNames='))}
 ${source.slice(selectStart,selectEnd)}
 ${source.slice(behindStart,behindEnd)}
