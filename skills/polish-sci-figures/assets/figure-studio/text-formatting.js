@@ -11,6 +11,30 @@ const StudioTextFormatting = (() => {
     return key==='letter-spacing'?Math.abs(+value)<=MAX:key==='line-height'?+value>=.5&&+value<=5:false;
   }
   function fontFamily(value){return typeof value==='string'&&value.trim().length>0&&value.length<=200&&!/[;{}<>\\]|url\s*\(|@/i.test(value)&&!/[\x00-\x1f]/.test(value);}
+  function firstFamily(value){return String(value||'').trim().match(/^(?:"([^"]+)"|'([^']+)'|([^,]+))/)?.slice(1).find(Boolean)?.trim()||'';}
+  function syncFontChoice(select,families,t=x=>x){
+    const values=[...new Set(families.filter(Boolean))],firsts=[...new Map(values.map(firstFamily).map(value=>[value.toLowerCase(),value])).values()];
+    for(const item of [...select.options])if(item.hasAttribute('data-source-font'))item.remove();
+    const known=firsts.length===1&&[...select.options].find(item=>item.value.toLowerCase()===firsts[0].toLowerCase());
+    if(known){select.value=known.value;return;}
+    const item=select.ownerDocument.createElement('option');item.setAttribute('data-source-font','true');
+    item.value=values.length===1?values[0]:'';item.textContent=firsts.length===1?t('原字体：{0}',firsts[0]):t('混合字体');item.disabled=!item.value;select.prepend(item);item.selected=true;
+  }
+  function reflowFontPositions(el){
+    // PDF x lists encode the old font's glyph advances. A chosen replacement
+    // font must use its own kerning, not stretch glyphs into those old slots.
+    // Keep explicitly different baselines (math/scripts) and line origins.
+    for(const node of nodesOf(el)){
+      const read=key=>list(node.getAttribute(key),rich()?.pointSize(node)||12),x=read('x'),y=read('y'),dy=read('dy');
+      if(y?.some(n=>Math.abs(n-y[0])>1e-8)||dy?.length>1&&dy.some(n=>Math.abs(n)>1e-8))continue;
+      if(x?.length>1)node.setAttribute('x',rounded(x[0]));
+      if(y?.length>1)node.setAttribute('y',rounded(y[0]));
+      const dx=read('dx');if(dx?.length>1)node.setAttribute('dx',rounded(dx[0]));
+      if(dy?.length>1)node.setAttribute('dy',rounded(dy[0]));
+      node.removeAttribute('textLength');node.removeAttribute('lengthAdjust');
+    }
+    return el;
+  }
   function inherited(el,property,fallback=''){
     for(let node=el;node?.nodeType===1;node=node.parentElement){const value=node.style?.getPropertyValue?.(property)||node.getAttribute?.(property);if(value&&value!=='inherit')return value;}
     return fallback;
@@ -168,6 +192,6 @@ const StudioTextFormatting = (() => {
     if(!m.records.some(r=>r.x))el.setAttribute('dx',rounded((m.records[0].dx?.[0]||0)+base+(p.first||0)));
     return el;
   }
-  return {validParagraph,applyParagraph,validateSpacing,fontFamily,validTypography,readSpacing,applySpacing,capture,plan,createPainter,createPreview,hex};
+  return {validParagraph,applyParagraph,validateSpacing,fontFamily,firstFamily,syncFontChoice,reflowFontPositions,validTypography,readSpacing,applySpacing,capture,plan,createPainter,createPreview,hex};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=StudioTextFormatting;

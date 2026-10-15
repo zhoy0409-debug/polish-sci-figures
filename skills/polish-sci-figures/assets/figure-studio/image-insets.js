@@ -120,7 +120,7 @@ const StudioImageInsets = (() => {
     const s=a?.source,r=a?.roi;
     if(s?.orientation!==undefined&&!Object.hasOwn(ORIENTATIONS,s.orientation))return false;
     if(a?.type!=='inset'||!/^annotation-\d+$/.test(a.id||'')||!s||!/^panel-\d+$/.test(s.panelId||'')||!Number.isInteger(s.variant)||s.variant<0||!/^e\d+$/.test(s.key||'')||!pixels(s.widthPx,s.heightPx)||!r||!['x','y','w','h'].every(k=>finite(r[k]))||r.x<0||r.y<0||r.w<=0||r.h<=0||r.x+r.w>1+EPS||r.y+r.h>1+EPS||r.w*s.widthPx<1-EPS||r.h*s.heightPx<1-EPS||typeof a.connector!=='boolean'||typeof a.showScale!=='boolean'||(a.scaleLengthUm!==undefined&&(!finite(a.scaleLengthUm)||a.scaleLengthUm<=0)))return false;
-    return ['x','y','w','h'].every(k=>finite(a[k]))&&a.x>=0&&a.y>=0&&a.w>0&&a.h>0&&a.x+a.w<=1+EPS&&a.y+a.h<=1+EPS;
+    return (a.documentCoordinates===undefined||typeof a.documentCoordinates==='boolean')&&['x','y','w','h'].every(k=>finite(a[k])&&Math.abs(a[k])<=1e7)&&a.w>0&&a.h>0&&(a.documentCoordinates||a.x>=0&&a.y>=0&&a.x+a.w<=1+EPS&&a.y+a.h<=1+EPS);
   }
   function validate(a,project,state){
     if(!validRecord(a))fail('record','局部放大参数无效。');
@@ -158,7 +158,11 @@ const StudioImageInsets = (() => {
         const api=imageColorAPI();if(n!==image||!api?.inspect||!api?.apply)fail('clip','该图片包含复杂裁剪或效果，暂不能准确定位局部放大区域。');
         try{colorAdjustment=api.inspect(image,root);}catch{fail('clip','该图片包含无法核实的颜色滤镜，请先还原该效果。');}if(!colorAdjustment)fail('clip','该图片包含无法核实的颜色滤镜，请先还原该效果。');
       }
-      if(prop('clip-path')&&prop('clip-path')!=='none')clips.push({node:n,reference:prop('clip-path')});
+      // A paper viewport does not crop the stored source pixels. Insets may
+      // deliberately show a region whose source is outside the paper edge.
+      // Only our direct canvas carrier gets this exemption; imported image
+      // clipping and nested user groups still undergo the full ROI check.
+      if(prop('clip-path')&&prop('clip-path')!=='none'&&!(n.parentElement===root&&n.hasAttribute('data-master-frame-content')))clips.push({node:n,reference:prop('clip-path')});
     }
     const href=hrefFor(image),intrinsic=dimensionsFromHref(href);
     if(intrinsic.widthPx!==a.source.widthPx||intrinsic.heightPx!==a.source.heightPx)fail('pixels','原图像素尺寸已变化，请重新选择局部放大区域。');

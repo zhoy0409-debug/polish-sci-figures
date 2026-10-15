@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.4.17 · Figure Studio 0.1.17
+
+- Reduce repeated SVG scans and layer-list rebuilds during large-file editing; coalesce autosaves while preserving undo history and project ownership.
+- Apply font replacement to positioned PDF text and use portable fallbacks for unavailable imported font names, preserving scientific character formatting.
+- Trim master-paper edges independently, fit the frame to artwork and restore the full paper while preserving content geometry and locked bounds.
+- Keep update stages responsive and retain the complete 0.1.16 editing workflow.
+- 减少大文件编辑时的重复扫描和图层刷新，合并快速操作的自动保存；修复导入 PDF 文字的字体替换与回退，母版四边可独立收紧、贴合内容或恢复完整纸张，保留科学字符格式、锁定边界和原有功能，更新进度持续响应。
+
+[Release notes / 本版更新](docs/release-notes-v1.4.17.md)
+
 ## v1.4.16 · Figure Studio 0.1.16
 
 - Add marquee batch unlock, unlock-all, top/left resize handles and font-preserving aspect restoration.

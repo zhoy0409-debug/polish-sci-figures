@@ -40,7 +40,9 @@ jobs:
       - name: Gallery CLI UTF-8 and palette regression
         run: python scripts/test_gallery_cli_encoding.py
       - name: Figure Studio packaging and provenance
-        run: python skills/polish-sci-figures/scripts/test_figure_studio.py
+        run: |
+          python skills/polish-sci-figures/scripts/test_figure_studio.py
+          python scripts/test_studio_pdf_font_fallback.py
       - name: Desktop launcher lifecycle and local authorization
         run: |
           python desktop/test_figure_studio_app.py
@@ -241,7 +243,12 @@ jobs:
           node scripts/test_studio_selection_resize_integration.cjs
           node scripts/test_studio_continuous_commands.cjs
           node scripts/test_studio_alignment_icons.cjs
+          node scripts/test_studio_layers_panel.cjs
           node scripts/test_studio_selection_performance.cjs
+          node scripts/test_studio_edited_svg_performance.cjs
+          node scripts/test_studio_autosave_coalescing.cjs
+          node scripts/test_studio_template_cache.cjs
+          node scripts/test_studio_font_replacement.cjs
           node scripts/test_studio_vector_interaction.cjs --dom
           node scripts/test_studio_axis_editing.cjs --dom --real
           node scripts/test_studio_component_style.cjs --dom --real
@@ -249,6 +256,8 @@ jobs:
           node scripts/test_studio_grid_resize.cjs --dom
           node scripts/test_studio_statistical_line_geometry.cjs
           node scripts/test_studio_grid_outer_resize.cjs --dom
+          node scripts/test_studio_master_frame.cjs
+          node scripts/test_studio_master_frame_integration.cjs
           node scripts/test_studio_legacy_stat_cleanup.cjs
           node scripts/test_studio_legacy_stat_integration.cjs
           node scripts/test_studio_direct_text_editing.cjs

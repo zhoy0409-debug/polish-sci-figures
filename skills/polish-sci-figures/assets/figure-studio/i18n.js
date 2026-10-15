@@ -1,6 +1,7 @@
 /* UI-only localization. Scientific artwork, records and user-authored names are never translated. */
 'use strict';
 const StudioI18n = (() => {
+  const fontReplacementEnglish={"原字体：{0}":"Source font: {0}","混合字体":"Mixed fonts","快速替换字体":"Quick font replacement","以 Arial 替换当前范围字体":"Replace fonts in the current scope with Arial","以 Times New Roman 替换当前范围字体":"Replace fonts in the current scope with Times New Roman","原字体缺失或字距异常时，可一键替换；保留字号、位置及上下标。":"Replace missing fonts or unusual spacing in one click; retain size, position and superscripts/subscripts."};
   const en = {"顶对齐":"Align top","底对齐":"Align bottom","水平分布":"Distribute horizontally","垂直分布":"Distribute vertically",
 "文字 ":"Text ",
 "图片":"Image",
@@ -14,6 +15,20 @@ const StudioI18n = (() => {
 "已更新文字对齐":"Text alignment updated",
 "已更新段落格式":"Paragraph formatting updated",
 "图层显示栏":"Layers",
+"拖动母版四边裁去白边，内容保持原位与原大小；分隔柄仅调整行列。":"Drag the paper edges to trim whitespace without moving or scaling artwork; inner grips resize grid tracks.",
+"贴合内容":"Fit paper to content",
+"恢复完整母版":"Restore full paper",
+"调整母版边界；内容不缩放":"Resize paper only; artwork stays the same size",
+"裁切母版上边缘":"Crop paper top edge",
+"裁切母版左边缘":"Crop paper left edge",
+"裁切母版右边缘":"Crop paper right edge",
+"裁切母版下边缘":"Crop paper bottom edge",
+"母版已到达锁定内容或最小边界":"The paper reached locked content or its minimum boundary",
+"已调整母版边界；图形大小不变":"Paper boundary adjusted; artwork size unchanged",
+"母版已贴合内容；图形大小不变":"Paper fitted to content; artwork size unchanged",
+"已恢复完整母版":"Full paper restored",
+"没有可贴合的可见内容":"There is no visible content to fit",
+"母版边界无效":"Invalid paper boundaries",
 "查找文字、图片或元素编号":"Find text, images or object IDs",
 "当前小图内的元素；Shift 点击可追加选择。锁定元素也可选中。":"Objects in the current panel; Shift-click to add to selection. Locked objects remain selectable.",
 "显示更多":"Show more",
@@ -849,6 +864,7 @@ const StudioI18n = (() => {
   });
   function choose(saved,preferred='en'){return ['zh-CN','en'].includes(saved)?saved:/^zh\b/i.test(preferred)?'zh-CN':'en';}
   function setLanguage(value){language=value==='en'?'en':'zh-CN';return language;}
+  Object.assign(en,fontReplacementEnglish);
   function t(text,...values){let result=language==='en'?(en[text]??text):text;return result.replace(/\{(\d+)\}/g,(_,n)=>String(values[+n]??''));}
   return {t,choose,setLanguage,panelName,projectTitle,validateDisplayNames,preserveDisplayNames,restoreDisplayNames,get language(){return language;},en};
 })();

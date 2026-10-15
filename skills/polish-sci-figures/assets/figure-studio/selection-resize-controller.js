@@ -122,7 +122,7 @@ const StudioSelectionResize=(()=>{
           else{if(!copiedVariants.has(p))copiedVariants.set(p,new Set());if(!copiedVariants.get(p).has(item.vi)){p.edits[item.vi]={...p.edits[item.vi]};copiedVariants.get(p).add(item.vi);}const props=p.edits[item.vi][item.key]={...p.edits[item.vi][item.key]};if(config.persistResize?.(item,delta,next)!==true){props['object-transform']=JSON.stringify(value);delete props['offset-x'];delete props['offset-y'];}}
         }else if(item.kind==='overlay'){
           const a={...g.base.overlays.find(a=>a.id===item.id)};overlays.set(item.id,a);const space=config.overlayGeometry?.(a)||{width:l.width,height:l.height,dx:0,dy:0},start={x:a.x*space.width+(space.dx||0),y:a.y*space.height+(space.dy||0)},p=G.applyPoint(action,start);
-          a.x=(p.x-(space.dx||0))/space.width;a.y=(p.y-(space.dy||0))/space.height;a.w*=sx;a.h*=sy;a.size*=sy;a.stroke*=Math.sqrt(sx*sy);if(a.type==='text')a.stretch=(a.stretch||1)*sx/sy;
+          if(l.masterFrame)a.documentCoordinates=true;a.x=(p.x-(space.dx||0))/space.width;a.y=(p.y-(space.dy||0))/space.height;a.w*=sx;a.h*=sy;a.size*=sy;a.stroke*=Math.sqrt(sx*sy);if(a.type==='text')a.stretch=(a.stretch||1)*sx/sy;
         }else if(item.kind==='label'){
           const pos=l.positions.find(p=>p.id===item.id),box=pos.renderBox||pos,a=panelCopy(item.id).label,p=G.applyPoint(action,{x:box.x+box.width*a.x/100,y:box.y+box.height*a.y/100});
           a.x=(p.x-box.x)/box.width*100;a.y=(p.y-box.y)/box.height*100;a.size*=sy;a.stretch=(a.stretch||1)*sx/sy;

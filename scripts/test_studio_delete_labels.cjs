@@ -50,9 +50,10 @@ assert.ok(editsStart>=0,'the production source-edit loop must exist');
 const editsClose=source.slice(editsStart).match(/^ {4}\}/m);
 assert.ok(editsClose,'the source-edit loop must have its own closing brace');
 const editsEnd=editsStart+editsClose.index+editsClose[0].length;
-const node={style:{setProperty(key,val){this[key]=val;}},matches:()=>true,children:[],textContent:'Source text'};
-const ctx={preparePositionedTextEdit:require(file).preparePositionedTextEdit,raw:false,id:ids[0],vi:0,s:deleted.next,editsFor:()=>deleted.next.panels[ids[0]].edits[0],svg:{querySelector:selector=>selector.includes('e3')?node:null}};
-vm.runInNewContext(source.slice(editsStart,editsEnd),ctx);assert.equal(node.style.display,'none');assert.equal(node.textContent,'Source text');
+const editDOM=new (require('jsdom').JSDOM)('<!doctype html>'),editSVG=editDOM.window.document.createElementNS('http://www.w3.org/2000/svg','svg'),node=editDOM.window.document.createElementNS('http://www.w3.org/2000/svg','text');node.setAttribute('data-key','e3');node.textContent='Source text';editSVG.append(node);
+const ctx={preparePositionedTextEdit:require(file).preparePositionedTextEdit,raw:false,id:ids[0],vi:0,s:deleted.next,editsFor:()=>deleted.next.panels[ids[0]].edits[0],svg:editSVG};
+const editIndexer=source.split('\n').find(line=>line.trimStart().startsWith('let editNodeIndex='));assert.ok(editIndexer,'extract the production shared key index with its consuming edit loop');
+vm.runInNewContext(editIndexer+'\n'+source.slice(editsStart,editsEnd),ctx);assert.equal(node.style.display,'none');assert.equal(node.textContent,'Source text');editDOM.window.close();
 assert.match(source,/const STYLES = new Set\(\['display'/,'hidden appearance survives sanitized SVG reimport');
 
 // Actual keyboard listener: normal inputs, contenteditable and IME own their keys.

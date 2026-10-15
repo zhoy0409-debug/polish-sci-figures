@@ -1,0 +1,29 @@
+/* Source-aware cache invalidation: ordinary editing must not reparse large SVGs. */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),{JSDOM}=require('jsdom');
+const source=fs.readFileSync(require.resolve('../skills/polish-sci-figures/assets/figure-studio/studio.js'),'utf8');
+const a=source.indexOf('  function baseSvg(id, vi) {'),b=source.indexOf('  const heatmapUpgradeRequests=',a);
+assert.ok(a>=0&&b>a);const dom=new JSDOM(),document=dom.window.document;
+let parses=0;
+const asset={id:'p',variants:[{svg:'<svg xmlns="http://www.w3.org/2000/svg"><text data-key="e1">Original</text></svg>'}]};
+const ctx={project:{panels:[asset]},templateCache:new Map(),panel:id=>ctx.project.panels.find(p=>p.id===id),sanitize(text){parses++;return new dom.window.DOMParser().parseFromString(text,'image/svg+xml').documentElement;},statisticalSourceBinding:()=> 'bound',svgElementMap:()=>new Map([['e1','e1']])};
+vm.createContext(ctx);vm.runInContext(source.slice(a,b),ctx);
+for(let i=0;i<100;i++){const svg=ctx.baseSvg('p',0);assert.equal(svg.textContent,'Original');svg.firstChild.textContent='Consumer mutation';}
+assert.equal(parses,1,'100 selection/style renders reuse one sanitized source and get independent clones');
+asset.variants[0].svg=asset.variants[0].svg.replace('Original','Replaced');assert.equal(ctx.baseSvg('p',0).textContent,'Replaced');assert.equal(parses,2);
+ctx.project.statisticalRenders={'p/0':{binding:'stale',svg:asset.variants[0].svg.replace('Replaced','Wrong')}};
+assert.equal(ctx.baseSvg('p',0).textContent,'Replaced');assert.equal(parses,2,'stale derived bindings never replace source');
+ctx.project.statisticalRenders['p/0'].binding='bound';assert.equal(ctx.baseSvg('p',0).textContent,'Wrong');assert.equal(parses,3);
+ctx.project.heatmapRenders={'p/0':{svg:asset.variants[0].svg.replace('Replaced','Enriched')}};
+assert.equal(ctx.baseSvg('p',0).textContent,'Enriched');assert.equal(parses,5);
+ctx.project.heatmapRenders['p/0'].svg=ctx.project.heatmapRenders['p/0'].svg.replace('Enriched','New enriched');
+assert.equal(ctx.baseSvg('p',0).textContent,'New enriched');assert.equal(parses,7,'in-place derived source changes invalidate');
+ctx.templateCache.clear();ctx.baseSvg('p',0);assert.equal(parses,9,'explicit invalidation remains supported');
+ctx.project={panels:[{...asset,variants:[{svg:asset.variants[0].svg.replace('Replaced','Other project')}]}]};
+assert.equal(ctx.baseSvg('p',0).textContent,'Other project');assert.equal(parses,10,'reopening the same IDs cannot inherit old templates');
+for(let i=0;i<24;i++)ctx.project.panels[0].variants.push({svg:asset.variants[0].svg.replace('Replaced','Variant '+i)});
+for(let i=0;i<25;i++)ctx.baseSvg('p',i);
+assert.ok(ctx.templateCache.size<=12,'large projects keep a bounded number of DOM templates');
+const render=source.slice(source.indexOf('  function render() {'),source.indexOf('  async function download('));
+assert.doesNotMatch(render,/templateCache\.clear\(/,'normal render must not throw away the source cache');
+dom.window.close();console.log('PASS source templates: 100 reads / 1 parse; replacement, derived inputs, project ownership, clone isolation and 12-template bound');

@@ -9,7 +9,7 @@ class Matrix{
   transformPoint(p){return {x:this.a*p.x+this.c*p.y+this.e,y:this.b*p.x+this.d*p.y+this.f};}
 }
 function fixture(unit,fit=false,band=false){
-  const attrs={'data-key':'e900003','data-stat-bracket':JSON.stringify({x1:20*unit,x2:60*unit,top:100*unit,gap:10,unit,shape:'bracket'})},style={setProperty(k,v){this[k]=v;}},svg={append(el){el.parentElement=this;},querySelector:()=>node};
+  const attrs={'data-key':'e900003','data-stat-bracket':JSON.stringify({x1:20*unit,x2:60*unit,top:100*unit,gap:10,unit,shape:'bracket'})},style={setProperty(k,v){this[k]=v;}},svg={append(el){el.parentElement=this;},querySelector(selector){return selector===`[data-key="${attrs['data-key']}"]`?node:null;},querySelectorAll(selector){assert.equal(selector,'[data-key]','the SVG adapter enumerates the complete keyed descendant set');return [node];}};
   const parent=fit?{parentElement:svg,transform:{baseVal:{consolidate:()=>({matrix:new Matrix([2,0,0,3,10,15])})}}}:band?{parentElement:svg,transform:{baseVal:{consolidate:()=>({matrix:new Matrix([1,0,0,1,0,200*unit])})}}}:svg;
   const node={localName:'path',style,parentElement:parent,hasAttribute:k=>k in attrs,getAttribute:k=>attrs[k]??null,setAttribute:(k,v)=>{attrs[k]=String(v);},removeAttribute:k=>{delete attrs[k];}};
   Object.defineProperty(node,'transform',{get:()=>({baseVal:{consolidate:()=>{const values=attrs.transform?.match(/matrix\(([^)]+)\)/)?.[1].split(/[, ]+/).map(Number);return values?{matrix:new Matrix(values)}:null;}}})});

@@ -29,7 +29,7 @@ near(moved.overlays[0].x-state.overlays[0].x,1/space.width);near(moved.overlays[
 assert.equal(removeSelectedItems(state,{annotations:[bracket.id]}).next.overlays.length,0);
 // Export contains the actual vector bracket, without hit targets or handles.
 function node(name){return {localName:name,attrs:{},dataset:{},children:[],style:{},setAttribute(k,v){this.attrs[k]=String(v);},append(n){this.children.push(n);}};}
-const context={NS:'http://www.w3.org/2000/svg',document:{createElementNS:(_,name)=>node(name)},selectedAnnotations:[bracket.id]};vm.createContext(context);
+const context={NS:'http://www.w3.org/2000/svg',document:{createElementNS:(_,name)=>node(name)},selectedAnnotations:[bracket.id],overlayEditingSpace:require(root).overlayEditingSpace};vm.createContext(context);
 vm.runInContext(source.slice(source.indexOf('  function overlayNode('),source.indexOf('  function refreshOverlaySelection(')),context);
 const exported=context.overlayNode(bracket,space,false);assert.equal(exported.children.length,1);assert.equal(exported.children[0].localName,'path');assert.equal(exported.children[0].attrs.d,'M 120 95 V 90 H 360 V 95');
 console.log('PASS line controls: anchored endpoints, crossing, straight tools, physical-angle snaps, page boundaries, one-click orientation, bracket vector export, save validation, keyboard nudge and deletion.');
