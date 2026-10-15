@@ -46,7 +46,7 @@ await test('drop on an occupied cell adds a new panel while an explicit replace 
 });
 await test('protected OS transfer detection does not inspect inaccessible file contents during dragover',async()=>{
  const f=fixture(),c=f.ctx;let reads=0;const transfer={types:[],files:[],items:[{kind:'file',type:'application/pdf',getAsFile(){reads++;return file('study.pdf');}}]};
- assert.equal(c.importHasFiles({dataTransfer:transfer}),true);assert.equal(c.fileDropKind(transfer),'figure');assert.equal(reads,0);assert.equal(c.importHasFiles({dataTransfer:{types:[],files:[file('image.svg')]}}),true);assert.equal(c.importHasFiles({dataTransfer:{types:['text/plain'],items:[{kind:'string'}]}}),false);assert.equal(c.importHasFiles({}),false);f.close();
+ assert.equal(c.importHasFiles({dataTransfer:transfer}),true);assert.equal(c.fileDropKind(transfer),'figure');assert.equal(reads,0);for(const type of ['application/octet-stream','text/plain',''])assert.equal(c.fileDropKind({items:[{kind:'file',type}]}),'unknown','generic protected MIME must remain droppable');assert.equal(c.importHasFiles({dataTransfer:{types:[],files:[file('image.svg')]}}),true);assert.equal(c.importHasFiles({dataTransfer:{types:['text/plain'],items:[{kind:'string'}]}}),false);assert.equal(c.importHasFiles({}),false);f.close();
 });
 await test('OS items fallback is snapshotted synchronously before the browser clears its protected transfer',async()=>{
  const f=fixture(),c=f.ctx,event=new f.w.Event('drop',{bubbles:true,cancelable:true}),transfer={types:[],files:[],items:[{kind:'file',type:'image/svg+xml',getAsFile:()=>file('from-folder.svg')}]};Object.defineProperty(event,'dataTransfer',{value:transfer});
