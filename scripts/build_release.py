@@ -18,6 +18,7 @@ EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
     "docs/release-notes-v1.4.18.md",
+    "docs/release-notes-v1.4.17.md",
     "docs/release-notes-v1.4.16.md",
     "docs/release-notes-v1.4.15.md",
     "docs/release-notes-v1.4.14.md",
