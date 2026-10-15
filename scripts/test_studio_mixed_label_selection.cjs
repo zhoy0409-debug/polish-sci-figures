@@ -37,8 +37,8 @@ for(const start of ['label','native'])test('drag from selected '+start+' moves n
 test('persistent box-select mode lets any selected label start moving the complete mixed selection',()=>{
   const h=harness();h.ctx.boxMode(true);h.marquee();const old=clone(h.s),event=(x,y)=>h.event(x,y,h.labels[1],{altKey:true});h.svg.onpointerdown(event(402,108));h.svg.onpointermove(event(412,112));h.flush();h.svg.onpointerup(event(412,112));assert.equal(h.stats().commits,1);assert.equal(+h.s.panels.p0.edits[0].e1['offset-x'],10);assert.ok(Math.abs(h.s.panels.p1.label.x-old.panels.p1.label.x-10/320*100)<1e-10);assert.deepEqual(h.details().labels,['p0','p1']);
 });
-test('a locked label is excluded from marquee while editable native objects in the same panel remain selectable',()=>{
-  const h=harness();h.s.panels.p0.label.locked=true;h.marquee();assert.deepEqual(h.details().labels,['p1']);assert.ok(h.details().groups.some(group=>group.id==='p0'));
+test('marquee includes locked labels for batch unlock while their edit protection remains active',()=>{
+  const h=harness();h.s.panels.p0.label.locked=true;h.marquee();assert.deepEqual(h.details().labels,['p0','p1']);assert.ok(h.details().groups.some(group=>group.id==='p0'));
   h.select([{id:'p0',vi:0,keys:['e1']}],['p0','p1']);const all=h.ctx.quickSelectedObjects();assert.equal(all.find(item=>item.kind==='label'&&item.id==='p0').locked,true);assert.equal(all.find(item=>item.kind==='element'&&item.id==='p0').locked,false);assert.equal(h.ctx.selectionCommandInfo().canLock,true);assert.equal(h.ctx.selectionCommandInfo().canUnlock,true);
 });
 test('actual Delete command removes selected native objects, both labels and annotation in one recoverable state',()=>{
@@ -72,3 +72,4 @@ test('actual mixed lock command locks each selected label and selected native ke
   const h=require('./helpers/studio-command-fixture.cjs').create({ids:['p0','p1']});try{h.selectObjects([{id:'p0',vi:0,keys:['e1']}],['p0','p1']);h.$('lockSelection').onclick();const locked=h.history.current;assert.equal(locked.panels.p0.label.locked,true);assert.equal(locked.panels.p1.label.locked,true);assert.ok(locked.panels.p0.lockedElements[0].includes('e1'));assert.notEqual(locked.panels.p0.locked,true);assert.notEqual(locked.panels.p1.locked,true);assert.ok(locked.panels.p0.layoutLock.elements[0][0].svg.includes('data-key="e1"'));assert.ok(locked.panels.p0.layoutLock.label.svg.includes('data-panel-label="p0"'));assert.ok(locked.panels.p1.layoutLock.label.svg.includes('data-panel-label="p1"'));h.$('unlockSelection').onclick();const released=h.history.current;assert.equal(released.panels.p0.label.locked,false);assert.equal(released.panels.p1.label.locked,false);assert.ok(!released.panels.p0.lockedElements[0].includes('e1'));assert.equal(released.panels.p0.layoutLock.label.locked,false);assert.equal(released.panels.p1.layoutLock.label.locked,false);assert.equal(h.stats().commits,2);h.history.undo();assert.deepEqual(h.history.current,locked);}finally{h.close();}
 });
 console.log(checks+' mixed-label production integration checks passed');
+

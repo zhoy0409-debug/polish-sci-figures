@@ -43,7 +43,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1'],edits={},cont
     state:()=>current,panel:()=>asset,currentOutput:()=>({scale}),layout,
     selectionGroups:()=>[{id:'p0',vi:0,keys:[...ctx.selected]}],keysToObjects:svg=>[...svg.querySelectorAll('[data-key]')],
     T:(text,...args)=>text.replace(/\{(\d+)\}/g,(_,i)=>args[i]),say:text=>messages.push(text),
-    renderSelectionCommands(){},syncColorControls(){},renderFontTargets(){},renderComponentStyle(){},renderHeatmapControls(){},renderRichTextControls(){},renderStatisticalLineControls(){},
+    renderSelectionCommands(){},renderEditingPanels(){},syncColorControls(){},renderFontTargets(){},renderComponentStyle(){},renderHeatmapControls(){},renderRichTextControls(){},renderStatisticalLineControls(){},
     fittedVariant:()=>null,fitPlot:()=>false,statisticalExportRecords:()=>[],statisticalAnalysisFor:()=>null,annotationFirstTopHeight:()=>0,gridFor:main.gridFor,displayedPanelLabel:()=>null,exportGeometry:main.exportGeometry,
     conditionMatrixHeight:()=>0,addStatisticalHitAreas:()=>{},zoomView:null,categorySpacingFactor:()=>1,categorySpacingMessage:()=>'',
     commit(next){main.validateState(next,project);history.commit(next);current=copy(next);render();return true;},renderCanvas:next=>render(next||current)
@@ -134,3 +134,4 @@ test('keyboard nudges retain canvas distance after scale, rotation and saved reo
 });
 console.log(`${passed} resize/text/render integrations passed`);
 if(failures.length){console.error(`${failures.length} integration(s) failed`);process.exitCode=1;}
+

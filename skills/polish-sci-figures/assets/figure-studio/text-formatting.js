@@ -158,6 +158,16 @@ const StudioTextFormatting = (() => {
       get count(){return frames.length;}
     };
   }
-  return {validateSpacing,fontFamily,validTypography,readSpacing,applySpacing,capture,plan,createPainter,createPreview,hex};
+
+  function validParagraph(value){try{const p=typeof value==='string'?JSON.parse(value):value;return !!p&&typeof p==='object'&&!Array.isArray(p)&&Object.keys(p).every(k=>['left','right','first'].includes(k))&&Object.values(p).every(v=>Number.isFinite(v)&&Math.abs(v)<=1e8);}catch{return false;}}
+  function applyParagraph(el,value){
+    if(!validParagraph(value))return el;const p=typeof value==='string'?JSON.parse(value):value,m=measure(el),anchor=inherited(el,'text-anchor','start'),base=anchor==='end'?-(p.right||0):anchor==='middle'?((p.left||0)-(p.right||0))/2:(p.left||0);
+    const shift=line=>base+(Math.abs(line-m.anchor)<m.size*.55?(p.first||0):0);
+    // Explicit x lists and native math spans retain all relative glyph offsets.
+    for(const r of m.records)if(r.x)r.node.setAttribute('x',r.x.map((x,i)=>rounded(x+shift(r.y?.length>1?r.y[Math.min(i,r.y.length-1)]:r.line))).join(' '));
+    if(!m.records.some(r=>r.x))el.setAttribute('dx',rounded((m.records[0].dx?.[0]||0)+base+(p.first||0)));
+    return el;
+  }
+  return {validParagraph,applyParagraph,validateSpacing,fontFamily,validTypography,readSpacing,applySpacing,capture,plan,createPainter,createPreview,hex};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=StudioTextFormatting;
