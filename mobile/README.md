@@ -6,7 +6,7 @@ These are development wrappers for the local Figure Studio browser engine. They 
 
 ## Architecture
 
-Both wrappers bundle the blank editor, scientific Python/WASM runtime, libraries and public-file checksums. Analysis and rendering run inside a local Web Worker. Research data is passed through worker messages, never to a remote analysis endpoint. Android serves bundled assets through its local WebView asset handler; iOS serves bundled public files over a loopback-only asset server. The 0.1.14 development preview allows the optional Europe PMC lookup only when the user starts a search, sending predefined chart terms and an optional typed topic. Update checks fetch only public version metadata from the official GitHub repository; they send no research data. Local calculation remains available offline. See [literature search scope](../README.en.md#examples-in-papers).
+Both wrappers bundle the blank editor, scientific Python/WASM runtime, libraries and public-file checksums. Analysis and rendering run inside a local Web Worker. Research data is passed through worker messages, never to a remote analysis endpoint. Android serves bundled assets through its local WebView asset handler; iOS serves bundled public files over a loopback-only asset server. The 0.1.15 development preview allows the optional Europe PMC lookup only when the user starts a search, sending predefined chart terms and an optional typed topic. Update checks fetch only public version metadata from the official GitHub repository; they send no research data. Local calculation remains available offline. See [literature search scope](../README.en.md#examples-in-papers).
 
 The editor uses the system's local file chooser. Exported figures, image-check evidence and saved projects use a native file-saving adapter. A cancelled picker must not be reported as a saved file. A failed native save must not fall back to a browser download that the application cannot deliver. Browser and desktop downloads retain their existing behavior.
 
@@ -41,7 +41,7 @@ A paid Apple Developer account is not required to compile and test in the simula
 
 这里是 Figure Studio 本地计算引擎的移动端开发封装，不是已经上架的正式手机产品，也不代表所有手机和平板均已验证。原生构建、模拟器和真机的证据必须分开记录，不能用桌面浏览器或 DOM 模拟代替真机测试。
 
-程序随包提供空白编辑器、Python/WASM 科研运行库和文件校验信息。分析与绘图在设备内的计算线程完成，研究数据通过内部消息传递，不交给远程分析接口。Android 使用本地资源处理器；iOS 的资源服务只监听本机回环地址，只读取包内公共程序文件。0.1.14 开发预览版仅在用户主动查找时允许可选的 Europe PMC 检索，发送预设图型词和手动填写的可选主题，更新检查只读取 GitHub 官方版本信息，不发送研究数据；本地计算仍可离线使用。详见[文献检索范围](../README.zh-CN.md#文献作图实例)。
+程序随包提供空白编辑器、Python/WASM 科研运行库和文件校验信息。分析与绘图在设备内的计算线程完成，研究数据通过内部消息传递，不交给远程分析接口。Android 使用本地资源处理器；iOS 的资源服务只监听本机回环地址，只读取包内公共程序文件。0.1.15 开发预览版仅在用户主动查找时允许可选的 Europe PMC 检索，发送预设图型词和手动填写的可选主题，更新检查只读取 GitHub 官方版本信息，不发送研究数据；本地计算仍可离线使用。详见[文献检索范围](../README.zh-CN.md#文献作图实例)。
 
 导入使用系统文件选择器。图片、查重证据和工程通过原生接口保存，写入成功才提示完成；用户取消不能误报已保存，保存失败也不能退回无法交付文件的浏览器下载。普通桌面与浏览器的下载方式保留。
 

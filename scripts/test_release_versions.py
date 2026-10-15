@@ -53,10 +53,10 @@ def main():
     ios = plistlib.loads((ROOT / "mobile/ios/Info.plist").read_bytes())
     assert ios["CFBundleShortVersionString"] == preview_version
     assert ios["StudioSuiteVersion"] == preview_suite.removeprefix("v")
-    assert int(ios["CFBundleVersion"]) == 9
+    assert int(ios["CFBundleVersion"]) == 10
     android = (ROOT / "mobile/android/app/build.gradle").read_text(encoding="utf-8")
     assert re.search(r"versionName '([^']+)'", android).group(1) == preview_version + "-local-preview"
-    assert int(re.search(r"versionCode (\d+)", android).group(1)) == 9
+    assert int(re.search(r"versionCode (\d+)", android).group(1)) == 10
     native_updates = (ROOT / "mobile/android/app/src/main/java/org/polishscifigures/studio/preview/UpdateChecker.java").read_text(encoding="utf-8")
     assert re.search(r'put\("suiteVersion", "([^"]+)"\)', native_updates).group(1) == VERSION.removeprefix("v")
 

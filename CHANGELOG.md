@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.4.15 · Figure Studio 0.1.15
+
+- Preserve selections and current geometry between alignment, keyboard nudging and later move/resize commands, including manual grid transforms, saved projects and Undo/Redo.
+- Add compact alignment/text-alignment icons and equal horizontal/vertical spacing for at least three editable items, with localized tooltips and accessible labels.
+- Accept direct project JSON, PDF, SVG and image drops throughout the editor; highlight destination cells, preserve occupied panels, confirm whole-workspace project replacement and protect active imports from stale reads.
+- Show update stages with an animated companion and reduced-motion support; retain neutral installation status after confirmed installer handoff, with separate handling for earlier connection problems.
+- Retain the existing local plotting, statistics, image, text, lock, export and companion-skill workflows. Package and native-platform evidence remains specific to each release; current iPad and portrait-tablet limitations are not marked resolved by source tests.
+- 衔接对齐、方向键微调及后续移动／缩放，保留选择和调整后的位置；新增对齐图标与至少三个对象的等距分布。文件可直接拖入并高亮目标格，已有小图保留，工程经确认后整体打开；更新进度更清楚，安装接手后的正常服务关闭不再误报失败。保留原有本机工作流，各平台成品与未解决限制按发行记录验收。
+
+[Release notes / 本版更新](docs/release-notes-v1.4.15.md)
+
 ## v1.4.14 · Figure Studio 0.1.14
 
 - Add line spacing and final-output letter spacing, including transformed PDF text; preview selected text on animation frames and apply once on blur or confirmation.

@@ -6,7 +6,7 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 ## Install and open
 
-1. Download the [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.14/polish-sci-figures-Studio-0.1.14-Setup-x64.exe), then run it and follow the installer for your Windows user account.
+1. Download the [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.15/polish-sci-figures-Studio-0.1.15-Setup-x64.exe), then run it and follow the installer for your Windows user account.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
 3. Choose **English** or **中文** at the top right. Opening the shortcut again opens the editor already running.
 
@@ -22,13 +22,15 @@ For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-
 
 Analyses linked to the current data are recomputed after valid data changes. Linked external results and retained results from split facets need reconnection or updating when their chart data changes; follow the message in the editor. Invalid or unfinished data edits preserve the last valid chart.
 
-To add more figures, use the workspace's import entry or drop PNG, JPEG, WebP or SVG files onto it. Multiple files are handled in sequence; each PDF asks you to select a page. Dropping CSV/TSV opens the data workflow. Double-click editable text and click outside when finished. Grouped elements created in the editor can be separated with **Ungroup**; imported SVG text and shapes can be selected directly while their original transforms and clipping are retained.
+To add more figures, drag PDF, SVG, PNG, JPEG or WebP files from a folder into the canvas, header or sidebar. The green cell shows the import destination; an occupied cell is marked separately and its existing figure is kept. Multiple files are handled in sequence, and each PDF asks you to select a page. Drag one saved project JSON to open the whole workspace after confirmation. Dropping CSV/TSV opens the data workflow. Double-click editable text and click outside when finished. Grouped elements created in the editor can be separated with **Ungroup**; imported SVG text and shapes can be selected directly while their original transforms and clipping are retained.
 
 Statistical styles and condition tables are in **Annotations**. For optional published examples, expand **Chart types → Examples in papers** and choose **Find examples**. Only this explicit search connects to Europe PMC, sending chart terms and an optional topic you type; research data stay local. [How caption checks and data previews work](../README.en.md#examples-in-papers).
 
 **Adjust layout and chart components:** drag grid boundaries to set row heights or column widths. In **Properties → Style by component**, choose the part to change and whether it applies to this panel or the whole figure. To extend a recognized numeric axis, select the axis and drag its endpoint; ticks and numbers follow the existing mapping while data positions stay fixed. Use **Undo** to restore the previous state.
 
 Select text to use **Text spacing** or copy its style with **Format painter**; use **Eyedropper** separately for shape colours. Shift-click panels to select several, then use the alignment control or **Delete**. Panel labels can be selected together with artwork. Lock finished content before further grid adjustments; unlock it to edit again. Deleting an empty cell removes only a wholly empty row or column.
+
+Open the alignment icon to see left, centre, right, top, middle and bottom actions. Equal horizontal or vertical spacing requires three or more editable items. The selection stays active after alignment, so direction keys can fine-tune its position before the next edit; hold Shift for a larger step.
 
 ## Save, quit and upgrade
 
@@ -38,11 +40,13 @@ Application settings, the workspace page and logs are under `%LOCALAPPDATA%\Figu
 
 Closing a browser tab leaves the local service running. To stop it, choose **Quit** in the small Figure Studio launcher window, or close that window. Accepted calculations finish before the service exits.
 
-**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.14 installer. The older update entry only opens a download; it cannot install this upgrade for you.
+**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.15 installer. The older update entry only opens a download; it cannot install this upgrade for you.
 
-**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.14 installer manually. Version 0.1.14 includes the long-path fix introduced in 0.1.10.
+**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.15 installer manually. Version 0.1.15 includes the long-path fix introduced in 0.1.10.
 
-**Future updates from the 0.1.14 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
+**Future updates from the 0.1.15 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
+
+The update progress shows download, preparation and installation stages with a small moving companion. Once the installer has taken over, an expected service shutdown retains the neutral installation message rather than appearing as a failed update. A connection problem before that handoff has its own retry action.
 
 Normal upgrades and uninstallation do not deliberately delete the user data directory. Browser records remain subject to browser storage behavior and are not guaranteed to persist indefinitely. Unsigned releases may show an unknown-publisher or Windows security message; check the download source and the publisher's supplied checksum.
 

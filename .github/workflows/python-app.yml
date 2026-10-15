@@ -239,6 +239,8 @@ jobs:
           node scripts/test_studio_mixed_label_selection.cjs
           node scripts/test_studio_selection_transform_dom.cjs
           node scripts/test_studio_selection_resize_integration.cjs
+          node scripts/test_studio_continuous_commands.cjs
+          node scripts/test_studio_alignment_icons.cjs
           node scripts/test_studio_selection_performance.cjs
           node scripts/test_studio_vector_interaction.cjs --dom
           node scripts/test_studio_axis_editing.cjs --dom --real

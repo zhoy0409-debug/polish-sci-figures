@@ -2,10 +2,17 @@
 
 English first · [中文](#中文)
 
-**Last checked: 13 October 2026.** This record distinguishes native emulator results from browser simulations and physical-device testing. Android, iPhone and iPad passed local calculations, actual project Save/Open and visual restoration in the native simulator runs identified below. These are development previews, not store releases.
+**Last checked: 15 October 2026.** This record distinguishes native emulator results from browser simulations and physical-device testing. The dated sections retain their original builds and outcomes; they do not certify a newer package. These are development previews, not store releases.
+
+## Current status — 15 October 2026
+
+The completed 0.1.14 package audit passed Android's native runtime and restart workflow and the complete iPhone simulator workflow. The iPad job in [run 38714455702](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38714455702) failed on both attempts: the first stalled during project-replacement confirmation, and the retry did not complete the actual Files Save/Open sequence. iPad remains unqualified, even though the earlier build recorded below passed. No installable iPhone/iPad IPA or TestFlight build is provided.
+
+Android's phone and landscape-tablet screenshots were reviewed. The portrait-tablet capture was visually inconclusive, so a complete portrait visual pass is not claimed. The [0.1.14 preview release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/figure-studio-local-preview-0.1.14) retains its package-specific reports. New 0.1.15 packages require fresh acceptance; source or DOM checks cannot replace it.
 
 The dated checks below describe the earlier builds, before the optional Europe PMC feature. The [current previews](local-device-trial.md) permit an explicitly started literature lookup and official GitHub version checks while keeping research calculations local. Their finished-package evidence is recorded separately with each preview release; the earlier “no Internet permission” result does not describe the new Android package.
 
+- [Current status](#current-status--15-october-2026)
 - [Android runtime](#android-verified-native-runtime)
 - [Timing and visual checks](#timing-and-visual-checks)
 - [iPhone and iPad runtime](#iphone-and-ipad-verified-native-runtime)
@@ -72,7 +79,13 @@ Physical Android phones/tablets and iPhones/iPads still require checks for touch
 
 ## 中文
 
-**最后核查：2026 年 10 月 13 日。** 本记录区分原生模拟器结果、浏览器模拟和真机测试。Android、iPhone 和 iPad 均在下述原生模拟器运行中通过本地计算、真实工程保存／打开与画面恢复。这里是开发预览，不是应用商店正式发行。
+**最后核查：2026 年 10 月 15 日。** 本记录区分原生模拟器结果、浏览器模拟和真机测试。带日期的章节保留各自版本及结果，不代表新成品包已通过验收。这里是开发预览，不是应用商店正式发行。
+
+### 当前状态：2026 年 10 月 15 日
+
+已完成的 0.1.14 成品包验收中，Android 原生计算、重启流程及完整 iPhone 模拟器流程通过。[运行 38714455702](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/38714455702) 的 iPad 两次尝试均失败：第一次停在工程替换确认环节，重试未完成真实 Files 保存／打开流程。即使下文较早版本曾通过，也不能将当前 iPad 列为已验收；目前没有可安装的 iPhone/iPad IPA 或 TestFlight 版本。
+
+Android 手机及平板横屏截图已核对，平板竖屏截图不足以确认完整视觉通过。[0.1.14 预览发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/figure-studio-local-preview-0.1.14)保留对应成品报告。0.1.15 新包须另行验收，源码与 DOM 检查不能代替。
 
 以下带日期的网络检查对应增加可选 Europe PMC 功能之前的具体构建。[当前预览版](local-device-trial.md#中文)允许用户主动启动文献检索及检查 GitHub 官方版本信息，研究计算仍留在本机；各预览发行页单独记录相应成品包的验收结果，此前“没有互联网权限”的结论不描述新版 Android 包。
 

@@ -1,6 +1,6 @@
 # Figure Studio validation record
 
-Updated: 2026-10-14. This record distinguishes current source checks from historical browser, template and package checks. The v1.4.6 section below records the latest source verification; the chronological sections that follow begin with suite v1.4.0 / Figure Studio 0.1.0 and retain their original scope. They are not an all-template, all-browser visual certification. Release packaging and distribution details are separate in [the v1.4.0 release notes](release-v1.4.0.md) and [desktop build guide](../desktop/BUILD.md).
+Updated: 2026-10-15. This record retains dated source, browser, template and package checks, beginning with suite v1.4.0 / Figure Studio 0.1.0. Each section describes its own source and scope; it is not an all-template, all-browser visual certification. Current changes and package evidence are linked from [the v1.4.15 release notes](release-notes-v1.4.15.md); packaging procedures remain in the [desktop build guide](../desktop/BUILD.md).
 
 ## v1.4.6 source and editor checks — 2026-10-14
 
