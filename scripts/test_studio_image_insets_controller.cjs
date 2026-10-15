@@ -85,4 +85,11 @@ test('quarter-turn ROI preserves display direction, aspect, DPI and original-axi
  await f.controller.startCalibration(f.source);f.pointer('pointerdown',64,950);f.pointer('pointerup',64,1150);const dialog=f.doc.querySelector('dialog');assert.equal(dialog.open,true);assert.ok(dialog.textContent.includes('200.0 pixels'));dialog.querySelector('input').value='20';dialog.querySelector('.primary').click();await Promise.resolve();await Promise.resolve();near(f.state.panels['panel-1'].imageCalibrations[0].e1,120);
  assert.equal(await f.controller.startROI(f.source,undefined,2),true);f.pointer('pointerdown',704,96);f.pointer('pointerup',544,336);const a=f.state.overlays[0];assert.equal(a.source.orientation,'rotate90');assert.deepEqual(a.roi,{x:.08,y:.12,w:.2,h:.2});near(a.w*600,80);near(a.h*400,120);near(core.quality(a,{geometry:f.host.geometry()}).effectiveDpi,144);near(core.scaleInfo(a,{geometry:f.host.geometry(),calibration:120}).physicalWidth,16);assert.equal(f.controller.exportReady(),true);f.doc.querySelector('[data-factor="3"]').click();near(f.state.overlays[0].w*600,120);near(f.state.overlays[0].h*400,180);f.close();
 });
+test('paper frame placement uses expanded/compacted display bounds while retaining source-space pixels',async()=>{
+ for(const [frame,dx,dy]of [[{x:-160,y:-100,width:200,height:160},0,0],[{x:0,y:0,width:200,height:160},-100,-30],[{x:650,y:450,width:200,height:160},0,0]]){
+  const f=fixture();try{
+   f.host.geometry=()=>({width:600,height:400,dx,dy,frame});const before=f.image.outerHTML,a=await roi(f,2);assert.ok(a);assert.equal(a.documentCoordinates,true);const x=a.x*600+dx,y=a.y*400+dy;assert.ok(x>=frame.x-1e-7&&y>=frame.y-1e-7);assert.ok(x+a.w*600<=frame.x+frame.width+1e-7&&y+a.h*400<=frame.y+frame.height+1e-7);assert.equal(a.source.widthPx,1200);assert.deepEqual(a.roi,{x:.08,y:.12,w:.2,h:.2});assert.equal(f.image.outerHTML,before);assert.equal(f.controller.exportReady(),true);
+  }finally{f.close();}
+ }
+});
 (async()=>{for(const [name,run]of tests){await run();console.log('PASS '+name);}console.log(`${tests.length} image inset controller integration tests passed`);})().catch(error=>{console.error(error);process.exitCode=1;});

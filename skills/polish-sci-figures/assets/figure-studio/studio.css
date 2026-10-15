@@ -859,5 +859,42 @@ body>header .autosave.unsaved{color:#a64f55}
 .component-style-section{border-bottom:1px solid #dfe5ee;padding-bottom:12px;margin-bottom:12px}.component-style-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:10px}.component-style-row label{min-width:0}.component-style-row input,.component-style-row select{min-width:0;width:100%}.component-color-row{display:flex;align-items:center;gap:10px;margin:10px 0}.component-color-row label{margin:0}.component-color-row input[type=color]{width:42px;height:30px;margin:0;padding:2px}.component-shortcuts{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.component-shortcuts button{font-size:11px;padding:7px 9px;flex:1 1 130px}.component-style-section p{line-height:1.5}#componentStyleStatus{min-height:2em}#statLineSelectionCount{line-height:1.5}
 
 /* Persistent editing panels; compact rows remain usable for large imported SVGs. */
-.layer-objects{max-height:340px;min-height:110px;overflow:auto;resize:vertical;border:1px solid #dbe1eb;border-radius:6px}.studio-layer-row{display:grid;grid-template-columns:28px 28px minmax(0,1fr);gap:2px;border-bottom:1px solid #edf0f5}.studio-layer-row button{padding:4px;min-width:0;border:0;border-radius:2px;font-size:12px}.studio-layer-row .layer-name{text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.studio-layer-row[aria-selected=true]{background:#dceaff}.studio-layer-row[aria-selected=true] button{background:transparent}.studio-layer-row.is-hidden .layer-name{opacity:.5}.studio-align-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.studio-align-grid button{padding:6px 2px;font-size:12px}.paragraph-fields{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px}.paragraph-fields label{font-size:12px}.paragraph-fields input{width:100%;min-width:0}#layerPanel,#paragraphPanel,#objectAlignmentPanel{margin:12px 0;padding:8px;border:1px solid #dbe1eb;border-radius:8px}#layerSearch{width:100%;margin:8px 0}
+.studio-align-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.studio-align-grid button{padding:6px 2px;font-size:12px}.paragraph-fields{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px}.paragraph-fields label{font-size:12px}.paragraph-fields input{width:100%;min-width:0}#paragraphPanel,#objectAlignmentPanel{margin:12px 0;padding:8px;border:1px solid #dbe1eb;border-radius:8px}
+
+/* Layers: neutral surfaces establish hierarchy; a blue accent identifies the
+   selection. Fixed-height virtual rows keep large PDF imports bounded. */
+#layerPanel{margin:14px 0;padding:12px 10px 10px;border:1px solid #dce2eb;border-radius:12px;background:#f1f4f8;color:#2b3748}
+#layerPanel>summary{font-size:13px;font-weight:650;letter-spacing:.02em;color:#344459;cursor:pointer}
+#layerPanel #layerSearch{width:100%;margin:12px 0 8px;padding:8px 10px;background:#fff;border:1px solid #d9e0e9;border-radius:8px;font-size:12px}
+#layerPanel>.row{gap:6px;margin:0 0 8px}
+#layerPanel>.row button,#layerPanel>#layerMore{padding:6px 9px;border:1px solid #d4dce7;border-radius:7px;background:#f9fafc;color:#45566d;font-size:11px}
+#layerPanel>.muted{margin:8px 1px;color:#788597;font-size:11px;line-height:1.55}
+.studio-layer-status{padding:2px 3px 7px;color:#79869a;font-size:10px;font-variant-numeric:tabular-nums;letter-spacing:.015em}
+#layerPanel .layer-objects{position:relative;height:290px;max-height:480px;min-height:110px;overflow:auto;resize:vertical;border:1px solid #dce3ec;border-radius:8px;background:#f9fafc;overscroll-behavior:contain;contain:layout paint style;scrollbar-gutter:stable}
+.studio-layer-spacer{width:1px;pointer-events:none}
+.studio-layer-window{position:absolute;left:0;right:0;top:0}
+.studio-layer-row{box-sizing:border-box;height:36px;display:grid;grid-template-columns:27px 27px minmax(0,1fr);align-items:center;gap:1px;padding:0 5px;border-bottom:1px solid #eaf0f5;background:#fff;color:#455368;box-shadow:inset 2px 0 transparent}
+.studio-layer-row>div{min-width:0}
+.studio-layer-row:hover{background:#edf2f8}
+.studio-layer-row.is-locked{background:#edf0f4;color:#657184}
+.studio-layer-row.is-hidden{background:#f5f6f8;color:#8b95a3}
+.studio-layer-row[aria-selected=true]{background:#dfebfa;color:#284f7e;box-shadow:inset 3px 0 #5d85b6}
+.studio-layer-row button{box-sizing:border-box;min-width:0;height:28px;margin:0;padding:4px;border:0;border-radius:5px;background:transparent;color:inherit;font-size:11px;box-shadow:none;white-space:nowrap}
+.studio-layer-row button:hover:not(:disabled){background:#dce5ef}
+.studio-layer-row[aria-selected=true] button:hover:not(:disabled){background:#cbdff4}
+.studio-layer-row button:focus-visible,#layerPanel .layer-objects:focus-visible{outline:2px solid #507db0;outline-offset:-2px}
+.studio-layer-row .layer-action{display:flex;width:26px;align-items:center;justify-content:center;color:#6b7a8e}
+.studio-layer-row .layer-action:disabled{opacity:.35}
+.studio-layer-row.is-locked .layer-action[data-layer-action=lock]{color:#485c75}
+.studio-layer-row .layer-name{display:flex;width:100%;align-items:center;gap:6px;padding-left:4px;text-align:left}
+.studio-layer-row .studio-layer-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.studio-layer-type{display:flex;flex:0 0 15px;color:#8090a5}
+.studio-layer-row svg{display:block;width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.studio-layer-key{flex:0 0 auto;max-width:62px;overflow:hidden;text-overflow:ellipsis;font-size:9px;font-variant-numeric:tabular-nums;color:#96a1b1}
+.studio-layer-row[aria-selected=true] .studio-layer-type,.studio-layer-row[aria-selected=true] .studio-layer-key{color:#6584a9}
+.studio-layer-empty{margin:0;padding:26px 12px;text-align:center;font-size:12px;color:#8b95a3}
+#layerPanel>#layerMore{width:100%;margin-top:8px;background:#e8edf4;color:#526985}
 .paragraph-fields label{margin:2px 0!important;gap:3px}.paragraph-fields input{height:29px;padding:4px 7px}#paragraphPanel .muted,#objectAlignmentPanel .muted{margin:7px 0 0;font-size:11px;line-height:1.5}#paragraphPanel .row{margin:6px 0}#paragraphPanel summary,#objectAlignmentPanel summary{margin-bottom:6px}
+
+/* Explicit font replacement does not depend on the source font being installed. */
+.font-replacements{display:flex;gap:6px;margin:7px 0}.font-replacements button{flex:1;min-width:0;padding:8px 6px;font-size:12px;background:#f2f4f7;border-color:#d6dce5;color:#344054}.font-replacements button:first-child{font-family:Arial,Helvetica,sans-serif}.font-replacements button:last-child{font-family:"Times New Roman",Times,serif}.font-replacements button:hover{background:#e6eaf1;border-color:#9caabd}.font-replacement-note{font-size:11px;line-height:1.6}

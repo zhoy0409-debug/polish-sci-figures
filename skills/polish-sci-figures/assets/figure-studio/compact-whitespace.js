@@ -56,7 +56,7 @@
     for(const key of ['x','y','width','height'])rect.setAttribute(key,position[key]);
     clip.append(rect);defs.append(clip);group.setAttribute('clip-path',`url(#${id})`);group.append(svg);rootSvg.append(defs,group);return group;
   }
-  function measure(svg){
+  function measure(svg,{ignorePageBackgrounds=false}={}){
     for(const node of svg.querySelectorAll('.chosen'))node.classList.remove('chosen');
     const host=document.createElement('div');host.style.cssText='position:fixed;left:-50000px;top:0;pointer-events:none';host.append(svg);document.body.append(host);
     try{
@@ -73,7 +73,16 @@
         }clipCache.set(node,rects);return rects;
       };
       const visible=node=>{for(let at=node;at&&at!==svg;at=at.parentElement){const style=getComputedStyle(at);if(style.display==='none'||style.visibility==='hidden'||Number(style.opacity)===0)return false;}return true;};
-      const background=node=>{for(let at=node;at&&at!==svg;at=at.parentElement)if(/(?:^|-)patch_1$/.test(at.id||'')&&/(?:^|-)figure_1$/.test(at.parentElement?.id||''))return true;return false;};
+      const background=node=>{
+        for(let at=node;at&&at!==svg;at=at.parentElement)if(/(?:^|-)patch_1$/.test(at.id||'')&&/(?:^|-)figure_1$/.test(at.parentElement?.id||''))return true;
+        // Imported vector pages often contain an opaque white page rectangle.
+        // Only a verified full-viewport rectangle is omitted for paper fitting;
+        // arbitrary paths, raster pixels and ordinary white shapes remain ink.
+        if(ignorePageBackgrounds&&node.localName==='rect'){
+          const style=getComputedStyle(node),panel=node.closest('svg[data-panel]'),box=panel?.getAttribute('viewBox')?.trim().split(/[\s,]+/).map(Number);
+          if(box?.length===4&&/^(?:white|#fff(?:fff)?|rgb\(\s*255[, ]+255[, ]+255\s*\))$/i.test(style.fill)&&(!style.stroke||style.stroke==='none'||Number(style.strokeOpacity)===0))try{const mapped=transformed(node.getBBox(),panel.getScreenCTM().inverse().multiply(node.getScreenCTM()));if(Math.abs(mapped.x-box[0])<.1&&Math.abs(mapped.y-box[1])<.1&&Math.abs(mapped.width-box[2])<.1&&Math.abs(mapped.height-box[3])<.1)return true;}catch{}
+        }return false;
+      };
       const inkBox=parent=>{
         // Inset crops retain the entire encoded image inside a clipped SVG
         // viewport. getBBox() on that image ignores viewport clipping, so it

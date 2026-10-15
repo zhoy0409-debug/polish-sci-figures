@@ -86,10 +86,10 @@ const StudioImageInsetsController = (() => {
       const info=core.sourceInfo(a,host.root()),g=host.geometry(a),p=info.polygon,size=core.displayPixels(a),edge=p[size.swapped?3:1],sourceWidth=Math.hypot(edge.x-p[0].x,edge.y-p[0].y);
       let width=sourceWidth*factor,height=width*size.height/size.width;
       if(!(width>0&&height>0&&g.width>0&&g.height>0))throw Object.assign(Error('Invalid inset size'),{code:'geometry'});
-      const fit=Math.min(1,g.width/width,g.height/height);width*=fit;height*=fit;
+      const frame=g.frame||{x:0,y:0,width:g.width,height:g.height},minX=frame.x-(g.dx||0),minY=frame.y-(g.dy||0),fit=Math.min(1,frame.width/width,frame.height/height);width*=fit;height*=fit;
       let x=keepPosition?a.x*g.width:Math.max(...p.map(v=>v.x))-(g.dx||0)+10,y=keepPosition?a.y*g.height:Math.min(...p.map(v=>v.y))-(g.dy||0);
-      if(!keepPosition&&x+width>g.width)x=Math.min(...p.map(v=>v.x))-(g.dx||0)-width-10;
-      Object.assign(a,{x:clamp(x,0,g.width-width)/g.width,y:clamp(y,0,g.height-height)/g.height,w:width/g.width,h:height/g.height});
+      if(!keepPosition&&x+width>minX+frame.width)x=Math.min(...p.map(v=>v.x))-(g.dx||0)-width-10;
+      Object.assign(a,{x:clamp(x,minX,minX+frame.width-width)/g.width,y:clamp(y,minY,minY+frame.height-height)/g.height,w:width/g.width,h:height/g.height,...(g.frame?{documentCoordinates:true}:{})});
       if(fit<1-1e-8)fitNotice=t('放大图已适配画布，实际显示倍率为 ','Inset fitted to the canvas; actual magnification is ')+Number((factor*fit).toFixed(2))+'×';return a;
     }
     function makeInset(value){

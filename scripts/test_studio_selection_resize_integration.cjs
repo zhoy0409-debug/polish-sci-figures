@@ -191,7 +191,7 @@ test('actual inset refresh applies live resize once and leaves the source ROI in
   try{
     const source=fs.readFileSync(require.resolve(directory+'studio.js'),'utf8'),start=source.indexOf('  function refreshInsetGraphics('),end=source.indexOf('  function refreshOverlaySelection(',start);
     assert.ok(start>0&&end>start);
-    ctx={document:f.doc,NS,StudioImageInsets:svgGeometry,selectedAnnotations:[],imageLinks:null,state:()=>f.state};vm.createContext(ctx);
+    ctx={document:f.doc,NS,StudioImageInsets:svgGeometry,selectedAnnotations:[],imageLinks:null,state:()=>f.state,overlayEditingSpace:require(directory+'studio.js').overlayEditingSpace};vm.createContext(ctx);
     vm.runInContext(source.split('\n').find(line=>line.startsWith('function insetCalibrationWidth('))+'\n'+source.slice(start,end),ctx);
     const image=f.find('p1');image.closest('[data-panel]').dataset.panel='panel-1';
     const a={id:'annotation-7',type:'inset',x:300/600,y:100/240,w:60/600,h:60/240,text:'',font:'Arial',size:9,stroke:1,color:'#ffffff',opacity:1,fill:false,bold:false,locked:false,source:{panelId:'panel-1',variant:0,key:'e1',widthPx:1,heightPx:1},roi:{x:0,y:0,w:1,h:1},connector:true,showScale:false};

@@ -6,9 +6,9 @@
   <key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
   <key>CFBundleName</key><string>$(PRODUCT_NAME)</string>
   <key>CFBundlePackageType</key><string>APPL</string>
-  <key>CFBundleShortVersionString</key><string>0.1.16</string>
-  <key>StudioSuiteVersion</key><string>1.4.16</string>
-  <key>CFBundleVersion</key><string>11</string>
+  <key>CFBundleShortVersionString</key><string>0.1.17</string>
+  <key>StudioSuiteVersion</key><string>1.4.17</string>
+  <key>CFBundleVersion</key><string>12</string>
   <key>LSRequiresIPhoneOS</key><true/>
   <key>UILaunchScreen</key><dict/>
   <key>UIRequiresFullScreen</key><false/>

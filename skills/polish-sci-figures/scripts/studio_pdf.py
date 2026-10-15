@@ -405,10 +405,11 @@ class _Converter:
         if '\ufffd' in text:
             raise _AppearanceFallback('unmapped_text')
         font = obj.get_font()
+        flags = max(0, r.FPDFFont_GetFlags(font))
         family = re.sub(r'^[A-Z]{6}\+', '', font.get_base_name())
         low = family.lower()
         if 'dejavu' in low:
-            family = 'DejaVu Sans' if 'sans' in low else 'DejaVu Serif'
+            family = 'DejaVu Sans Mono' if 'mono' in low else 'DejaVu Sans' if 'sans' in low else 'DejaVu Serif'
         elif 'helvetica' in low or 'arial' in low:
             family = 'Arial'
         elif 'times' in low:
@@ -419,13 +420,18 @@ class _Converter:
             family = re.sub(r'[-,](Bold|Italic|Oblique|Regular).*$', '', family, flags=re.I)
         # No remote fonts or hidden outline overlay: the visible text stays editable.
         self.warn('font_substitution', 'PDF text remains editable. A locally available font is used; review lettering before export.')
-        node = _node('text', font_family=family+', Arial, sans-serif', font_size=_num(obj.get_font_size()),
+        # Match the font's class when the original family is unavailable.
+        # Falling back from a serif PDF to Arial changes the lettering entirely.
+        serif = bool(flags & 2) or ('serif' in low and 'sans' not in low) or any(name in low for name in ('times', 'palatino', 'garamond', 'baskerville', 'bookantiqua'))
+        fixed = bool(flags & 1) or 'courier' in low or 'mono' in low
+        fallback = ', "Courier New", monospace' if fixed else ', "Times New Roman", Times, serif' if serif else ', Arial, Helvetica, sans-serif'
+        node = _node('text', font_family='"'+family.replace('"', '')+'"'+fallback, font_size=_num(obj.get_font_size()),
                      transform=_matrix(_mul(_mul(self.page_matrix, matrix), (1, 0, 0, -1, 0, 0))))
         node.text = text
         node.set('{http://www.w3.org/XML/1998/namespace}space', 'preserve')
         if 'bold' in low or font.get_weight() >= 600:
             node.set('font-weight', '700')
-        if 'italic' in low or 'oblique' in low or max(0, r.FPDFFont_GetFlags(font)) & 64:
+        if 'italic' in low or 'oblique' in low or flags & 64:
             node.set('font-style', 'italic')
         if chars:
             inverse = _inverse(matrix)

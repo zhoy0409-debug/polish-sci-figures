@@ -9,17 +9,17 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**套件 v1.4.16 · Figure Studio 0.1.16（Windows 桌面版）**
+**套件 v1.4.17 · Figure Studio 0.1.17（Windows 桌面版）**
 
-[官方下载 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版更新](docs/release-notes-v1.4.16.md#中文)
+[官方下载 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版更新](docs/release-notes-v1.4.17.md#中文)
 
 ## 选择入口 / Choose your workflow
 
 | 你的工作方式 | 从这里开始 | 本机要求 |
 | --- | --- | --- |
 | 直接预览、换数据、编辑和排版 | Figure Studio Windows 安装包 | Windows 10/11 x64；无需 Codex、Python、账号或 API 密钥 |
-| Claude 中直接上传技能 | [自包含技能上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.16/polish-sci-figures-v1.4.16-skill.zip) | 宿主支持技能与代码执行；参见 [平台安装](docs/platform-installation.md) |
-| 让 AI 分析数据、生成候选图、完成质控 | 三技能套件 `sci-figure-suite-v1.4.16.zip` | 支持技能的 AI 环境，以及套件 Python 依赖 |
+| Claude 中直接上传技能 | [自包含技能上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.17/polish-sci-figures-v1.4.17-skill.zip) | 宿主支持技能与代码执行；参见 [平台安装](docs/platform-installation.md) |
+| 让 AI 分析数据、生成候选图、完成质控 | 三技能套件 `sci-figure-suite-v1.4.17.zip` | 支持技能的 AI 环境，以及套件 Python 依赖 |
 | 已有 SVG，希望手动精修 | AI/CLI 生成自包含 Studio 页面 | 页面可离线编辑；重新计算数据需本机引擎 |
 
 - [安装即用](#安装即用)
@@ -34,12 +34,12 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 ## 安装即用
 
-1. 从 [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) 下载 `polish-sci-figures-Studio-0.1.16-Setup-x64.exe`。
+1. 从 [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) 下载 `polish-sci-figures-Studio-0.1.17-Setup-x64.exe`。
 2. 安装后打开 **polish-sci-figures Studio** 快捷方式。启动窗口会打开默认浏览器中的编辑器。
 3. 选择 **从模板开始**，浏览真实预览，再将示例数据替换为自己的数据；也可导入现有图片、SVG 或选定的 PDF 页面。受支持的原生文字与矢量路径保留编辑能力；PDF 特效可能需要局部图片图层或整页外观图像。详见[转换边界](docs/release-v1.4.3.md#本版更新)，导出前请检查字体替代效果。
 4. 编辑完成后导出 SVG / PNG / TIFF，并用 **保存** 下载可继续编辑的 JSON 备份。
 
-便携版为 `polish-sci-figures-Studio-0.1.16-Portable-x64.zip`。完整解压后运行 `Figure Studio.exe`，保留旁边的 `_internal` 文件夹。桌面包自带绘图与统计运行环境，可离线使用。数据表支持单元格编辑、直接粘贴 Excel 区域及导入 CSV/TSV；若要以文件方式导入 Excel 工作簿，请先导出为 CSV/TSV。
+便携版为 `polish-sci-figures-Studio-0.1.17-Portable-x64.zip`。完整解压后运行 `Figure Studio.exe`，保留旁边的 `_internal` 文件夹。桌面包自带绘图与统计运行环境，可离线使用。数据表支持单元格编辑、直接粘贴 Excel 区域及导入 CSV/TSV；若要以文件方式导入 Excel 工作簿，请先导出为 CSV/TSV。
 
 关闭浏览器不会关闭本机服务；使用结束时关闭启动小窗口。自动保存位于所用浏览器的本地存储中，清理网站数据、切换浏览器或使用隐私窗口可能丢失记录。**重要工程请下载 JSON 备份。** 详见 [中文入门](desktop/QUICKSTART.zh-CN.md)。
 
@@ -47,7 +47,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 选中位图，点击**局部放大**并框选需要展示的细节。生成的放大窗可以移动、缩放，切换 2× / 3× / 4×，并调整边框和连接线。需要准确比例尺时，沿原图已知标尺划线，输入其实际长度（µm）；自动标尺采用常见的 1 / 2 / 5 数值，并根据真实标定计算线长。SVG 保留嵌入的原始像素与可编辑放大窗元素；TIFF 按所选输出分辨率导出。
 
-顶部**更新**入口查询 GitHub 官方版本，不发送图片、表格或工程。Windows 安装版可选择**下载并准备更新**，保存工程备份后，确认**安装并重新打开**；安装程序沿用当前位置，成功后重新打开应用。安装需要用户确认，断网不影响本地工作。**0.1.8 或更早版本需先手动安装一次 0.1.16。** 安装版 0.1.9 已支持应用内更新；若因长文件路径在准备阶段失败，请关闭应用后手动运行当前安装程序。0.1.16 保留了 0.1.10 加入的长路径修复。Windows 便携版及 Mac/Android 开发预览版仍按手动步骤安装。[版本说明与平台范围](docs/release-notes-v1.4.16.md#中文)。
+顶部**更新**入口查询 GitHub 官方版本，不发送图片、表格或工程。Windows 安装版可选择**下载并准备更新**，保存工程备份后，确认**安装并重新打开**；安装程序沿用当前位置，成功后重新打开应用。安装需要用户确认，断网不影响本地工作。**0.1.8 或更早版本需先手动安装一次 0.1.17。** 安装版 0.1.9 已支持应用内更新；若因长文件路径在准备阶段失败，请关闭应用后手动运行当前安装程序。0.1.17 保留了 0.1.10 加入的长路径修复。Windows 便携版及 Mac/Android 开发预览版仍按手动步骤安装。[版本说明与平台范围](docs/release-notes-v1.4.17.md#中文)。
 
 **导入后，直接编辑。** 将文件夹中的工程 JSON、PDF、SVG 或图片直接拖入画布、顶部或侧栏。高亮格子显示图片的实际导入位置，已有小图会保留；一份工程文件经确认后打开整个工作区，同时拖入的其他图形再依次加入。多份图片按队列导入，PDF 逐份预览并选页。拖入 CSV/TSV 会进入数据处理流程，Excel 工作簿需先导出为 CSV/TSV。双击原生文字修改，点击外部完成；选中文字后即可使用文字格式控件。编辑器内建立的组合可用**取消组合**拆开；导入 SVG 保留原有变换与裁剪，其中支持的文字、图形可直接点选。图片内文字和已转为轮廓的字形不能作为原生文字修改。
 
@@ -59,7 +59,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 对齐图标展开六种对齐方式；选择至少三个可编辑对象后，还可使用水平或垂直等距分布。对齐后的选择保持激活，可以接着用方向键微调，并从调整后的当前位置继续缩放。
 
-**集中调整相关部分。** 在**属性 → 按组成部分统一调整**中选择坐标轴与刻度线、刻度数字、坐标轴标题或图例文字，修改当前小图或整张组图。拖动可识别数值轴的端点，可按原映射补充刻度，数据位置不变；拖动网格边界即可调整行高列宽。支持的统计比较以可编辑标注留在数据旁，不再生成很长的结果附录。[本版适用范围](docs/release-notes-v1.4.16.md#中文)。
+**集中调整相关部分。** 在**属性 → 按组成部分统一调整**中选择坐标轴与刻度线、刻度数字、坐标轴标题或图例文字，修改当前小图或整张组图。拖动可识别数值轴的端点，可按原映射补充刻度，数据位置不变；拖动网格边界即可调整行高列宽。支持的统计比较以可编辑标注留在数据旁，不再生成很长的结果附录。[本版适用范围](docs/release-notes-v1.4.17.md#中文)。
 
 ## 可编辑的图形仓库
 
@@ -155,7 +155,7 @@ python sci_figures.py duplicates image-a.png image-b.tif figure.svg --out image-
 
 三个技能保留原来的分工，Figure Studio 是同一产品的可视化入口，不是必须安装的第四个技能。
 
-**Claude 用户：** 下载 [polish-sci-figures-v1.4.16-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.16/polish-sci-figures-v1.4.16-skill.zip)，直接按平台的技能上传入口导入。单入口包内置完整三技能工作流与 CLI，无需重新打包。此前 v1.4.1 已修复旧上传包内含多个 `SKILL.md` 导致 Claude 拒绝的问题，已在 Claude 实际调用技能绘图，PNG 视觉检查通过；HTML 交付与下载链路的具体验证范围见平台指南。Claude Code 也可使用个人或项目技能目录。具体步骤、官方依据与宿主验证状态见 [平台安装指南](docs/platform-installation.md)。
+**Claude 用户：** 下载 [polish-sci-figures-v1.4.17-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.17/polish-sci-figures-v1.4.17-skill.zip)，直接按平台的技能上传入口导入。单入口包内置完整三技能工作流与 CLI，无需重新打包。此前 v1.4.1 已修复旧上传包内含多个 `SKILL.md` 导致 Claude 拒绝的问题，已在 Claude 实际调用技能绘图，PNG 视觉检查通过；HTML 交付与下载链路的具体验证范围见平台指南。Claude Code 也可使用个人或项目技能目录。具体步骤、官方依据与宿主验证状态见 [平台安装指南](docs/platform-installation.md)。
 
 | 技能 | 负责内容 |
 | --- | --- |
@@ -163,7 +163,7 @@ python sci_figures.py duplicates image-a.png image-b.tif figure.svg --out image-
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | 显微 / 病理图像规范化、统一显示设置、权威校准比例尺与处理审计 |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | 精修与组图、Figure Studio、文字与几何检查、最终尺寸质控 |
 
-从 [官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases) 下载 `sci-figure-suite-v1.4.16.zip`，解压完整套件。AI/CLI 路径需要自行安装依赖；Windows 桌面包已包含运行环境。
+从 [官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases) 下载 `sci-figure-suite-v1.4.17.zip`，解压完整套件。AI/CLI 路径需要自行安装依赖；Windows 桌面包已包含运行环境。
 
 ```powershell
 python -m pip install -r requirements.txt
