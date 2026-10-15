@@ -116,15 +116,18 @@
     const api=geometry(),canvas=group(carrier.ownerDocument);canvas.append(carrier);const locked=new Set(lockedKeys),nodes=new Map([...carrier.querySelectorAll('[data-key]')].map(node=>[node.getAttribute('data-key'),node]));
     const axisChanges={};for(const key of record.keys)if(!locked.has(key)&&current[key]?.['axis-extension']&&!same(record.baseline[key]?.['axis-extension'],current[key]['axis-extension']))axisChanges[key]={'axis-extension':current[key]['axis-extension']};if(Object.keys(axisChanges).length){const api=typeof StudioAxisEditing!=='undefined'?StudioAxisEditing:typeof module!=='undefined'&&module.exports?require('./axis-editing.js'):null;const svg=carrier.querySelector('svg');if(api&&svg)api.apply(svg,axisChanges,record.unit);}
     for(const key of record.keys){if(locked.has(key))continue;const node=nodes.get(key);if(!node)continue;const before=record.baseline[key]||{},after=current[key]||{};
+      const paragraphChanged=node.matches('text,tspan')&&(!same(before.paragraph,after.paragraph)||!same(before['text-anchor'],after['text-anchor']));
+      if(paragraphChanged&&before.paragraph){const old=JSON.parse(before.paragraph);formatting()?.applyParagraph(node,Object.fromEntries(Object.entries(old).map(([k,v])=>[k,-v])));}
       for(const prop of new Set([...Object.keys(before),...Object.keys(after)])){
         if(same(before[prop],after[prop])||['object-transform','offset-x','offset-y'].includes(prop)||prop.startsWith('stat-')||prop==='axis-extension')continue;
         if(prop==='hidden'){node.style.display=after[prop]?'none':'';continue;}
         if(prop==='text'){if(after[prop]!==undefined&&node.matches('text,tspan'))node.textContent=String(after[prop]);continue;}
         if(prop==='rich-text'){if(after[prop]&&rich())rich().apply(node,after[prop]);continue;}
-        if(['letter-spacing','line-height'].includes(prop))continue;
+        if(['paragraph','letter-spacing','line-height'].includes(prop))continue;
         if(after[prop]!==undefined)node.style.setProperty(prop,['font-size','stroke-width'].includes(prop)?after[prop]+'px':after[prop]);
       }
       if(node.matches('text,tspan')){const spacing={};if(!same(before['letter-spacing'],after['letter-spacing']))spacing.letterSpacing=Number(after['letter-spacing']??0);if(!same(before['line-height'],after['line-height']))spacing.lineHeight=Number(after['line-height']??1.25);if(Object.keys(spacing).length)formatting()?.applySpacing(node,spacing);}
+      if(paragraphChanged&&after.paragraph)formatting()?.applyParagraph(node,after.paragraph);
       const oldAction=editingAction(before,record.unit),newAction=editingAction(after,record.unit);if(same(oldAction,newAction))continue;
       const local=api.multiply(newAction,api.inverse(oldAction)),world=api.multiply(api.multiply(record.actionMatrix,local),api.inverse(record.actionMatrix)),linked=[...carrier.querySelectorAll('[data-studio-error-owner],[data-scale-owner]')].filter(el=>el.getAttribute('data-studio-error-owner')===key||el.getAttribute('data-scale-owner')===key);for(const target of [node,...linked]){if(target!==node){const linkedKey=target.getAttribute('data-key');if(locked.has(linkedKey)||linkedKey&&!same(editingAction(current[linkedKey]||{},record.unit),editingAction(record.baseline[linkedKey]||{},record.unit)))continue;}const parent=relative(target.parentElement,canvas),scratch=group(carrier.ownerDocument),holder=group(carrier.ownerDocument);scratch.append(holder);holder.setAttribute('transform',target.getAttribute('transform')||'');const ownMatrix=relative(holder,scratch),result=api.multiply(api.multiply(api.multiply(api.inverse(parent),world),parent),ownMatrix);target.setAttribute('transform',matrixText(finiteMatrix(result)));}
     }

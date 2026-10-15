@@ -265,3 +265,7 @@ qa/              original_vs_new.png  final_montage.png  rendered_pages/
 ```
 
 For a slide series, name editable files in reading order, for example `01_S12_A_marker_distribution.svg`; keep that identifier out of the artwork. Keep failed variants and debug renders outside the delivery folder. Return final files first and state only material scientific, source, or editability limitations.
+
+## Local Figure Studio interaction update (2026-10-15)
+
+For new editable handoffs, use this installed skill's `scripts/figure_studio.py` and bundled `assets/figure-studio`; do not copy an old generated HTML as the editor template. The template includes marquee selection of locked objects, unlock selected/all, top/left and divider-end resize handles, aspect restoration that preserves chosen font and effective size, a searchable current-panel layer list, object alignment/distribution and paragraph alignment/spacing/indent controls. Keep user-saved project state when updating existing handoffs. These local changes do not imply that previously released desktop installers have been rebuilt.

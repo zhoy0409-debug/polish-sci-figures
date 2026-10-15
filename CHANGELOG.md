@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.4.16 · Figure Studio 0.1.16
+
+- Add marquee batch unlock, unlock-all, top/left resize handles and font-preserving aspect restoration.
+- Add searchable layer controls and dedicated object-alignment and paragraph panels.
+- 新增框选批量解锁、全部解锁、顶部拖动、保留字体字号的比例还原，以及图层、对齐和段落面板。
+
+[Release notes / 本版更新](docs/release-notes-v1.4.16.md)
+
 ## v1.4.15 · Figure Studio 0.1.15
 
 - Preserve selections and current geometry between alignment, keyboard nudging and later move/resize commands, including manual grid transforms, saved projects and Undo/Redo.

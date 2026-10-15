@@ -101,10 +101,18 @@
         const cx=horizontal?l.width/2:boundary,cy=horizontal?boundary:l.height/2;
         for(const [key,value]of Object.entries({x:cx-7*ux,y:cy-7*uy,width:14*ux,height:14*uy,fill:'transparent'}))hit.setAttribute(key,value);
         for(const [key,value]of Object.entries({x:cx-(horizontal?14:2)*ux,y:cy-(horizontal?2:14)*uy,width:(horizontal?28:4)*ux,height:(horizontal?4:28)*uy,rx:2*Math.min(ux,uy),fill:'#7f99bf',stroke:'white','stroke-width':.6,'vector-effect':'non-scaling-stroke'}))grip.setAttribute(key,value);
-        g.append(line,hit,grip);layer.append(g);
+        g.append(line,hit,grip);
+        // Repeat track grips near both ends, so tall figures can be resized
+        // from the top without scrolling to their middle or bottom.
+        for(const [end,along]of [['start',8*(horizontal?ux:uy)],['end',length-8*(horizontal?ux:uy)]]){
+          const ex=horizontal?along:boundary,ey=horizontal?boundary:along,h=hit.cloneNode(),v=grip.cloneNode();
+          h.setAttribute('x',ex-7*ux);h.setAttribute('y',ey-7*uy);
+          v.setAttribute('x',ex-(horizontal?14:2)*ux);v.setAttribute('y',ey-(horizontal?2:14)*uy);v.dataset.trackGrip=end;g.append(h,v);
+        }
+        layer.append(g);
       }
-      for(const edge of ['right','bottom','corner']){
-        const corner=edge==='corner',vertical=edge==='right',cx=vertical||corner?l.width:l.width/2,cy=vertical?l.height/2:l.height,label=t(corner?'调整整张母版大小；Shift 可自由调整比例':vertical?'调整整张母版宽度':'调整整张母版高度'),g=addSvg('g',{'data-grid-resize':'outer','data-grid-edge':edge,role:corner?'button':'separator',tabindex:'0','aria-label':label,'aria-keyshortcuts':corner?'ArrowLeft ArrowRight ArrowUp ArrowDown':'','aria-valuenow':(vertical?l.width:l.height).toFixed(1)},layer);
+      for(const edge of ['top','left','right','bottom','corner']){
+        const corner=edge==='corner',vertical=edge==='right'||edge==='left',cx=edge==='left'?0:vertical||corner?l.width:edge==='top'?l.width*.25:l.width/2,cy=edge==='top'?0:vertical?l.height/2:l.height,label=t(corner?'调整整张母版大小；Shift 可自由调整比例':vertical?'调整整张母版宽度':'调整整张母版高度'),g=addSvg('g',{'data-grid-resize':'outer','data-grid-edge':edge,role:corner?'button':'separator',tabindex:'0','aria-label':label,'aria-keyshortcuts':corner?'ArrowLeft ArrowRight ArrowUp ArrowDown':'','aria-valuenow':(vertical?l.width:l.height).toFixed(1)},layer);
         if(!corner)g.setAttribute('aria-orientation',vertical?'vertical':'horizontal');g.style.cursor=corner?'nwse-resize':vertical?'ew-resize':'ns-resize';g.style.touchAction='none';
         addSvg('title',{},g).textContent=label;
         addSvg('rect',{x:cx-14*ux,y:cy-14*uy,width:28*ux,height:28*uy,fill:'transparent'},g);
@@ -132,16 +140,16 @@
         svg.setPointerCapture?.(event.pointerId);say(prepared.clamped?'格子已达到最小可读尺寸':whole?'拖动调整母版大小；松开应用':'拖动调整列宽或行高；松开应用');
       }catch(error){say(error.message);}
     }
-    function updateValue(event){const g=gesture,p=point(event,g.svg,g.mapping),dx=p.x-g.start.x,dy=p.y-g.start.y;g.freeAspect=!!event.shiftKey;if(!g.whole){g.value=g.startValue+(g.axis==='widths'?dx:dy);return;}g.value={width:g.startValue.width+(g.edge==='bottom'?0:dx),height:g.startValue.height+(g.edge==='right'?0:dy)};}
+    function updateValue(event){const g=gesture,p=point(event,g.svg,g.mapping),dx=p.x-g.start.x,dy=p.y-g.start.y;g.freeAspect=!!event.shiftKey;if(!g.whole){g.value=g.startValue+(g.axis==='widths'?dx:dy);return;}g.value={width:g.startValue.width+(['bottom','top'].includes(g.edge)?0:g.edge==='left'?-dx:dx),height:g.startValue.height+(['right','left'].includes(g.edge)?0:g.edge==='top'?-dy:dy)};}
     function move(event){if(!gesture||event.pointerId!==gesture.pointer)return;event.preventDefault();event.stopImmediatePropagation();if(!valid())return cancel();updateValue(event);if(!frame)frame=raf(preview);}
     function up(event){if(!gesture||event.pointerId!==gesture.pointer)return;event.preventDefault();event.stopImmediatePropagation();if(!valid())return cancel();updateValue(event);if(frame)caf(frame);frame=0;preview();const g=gesture;if(!g)return;gesture=null;try{g.svg.releasePointerCapture?.(g.pointer);}catch{}const changed=g.whole?Math.abs(g.next.actual.width-g.startValue.width)>.001||Math.abs(g.next.actual.height-g.startValue.height)>.001:Math.abs(g.next.actual-g.startValue)>.001;if(!g.next||!changed){host.repaint();return;}if(!host.commit(g.next.state,t(g.whole?'已调整母版大小':'已调整格子尺寸')))host.repaint();}
     function keyboard(event){
       const handle=event.target.closest?.('[data-grid-resize]');if(event.key==='Escape'&&gesture){event.preventDefault();event.stopImmediatePropagation();cancel();return;}
       if(!handle||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)||host.enabled?.()===false)return;
       const axis=handle.dataset.gridResize,whole=axis==='outer',edge=handle.dataset.gridEdge,horizontal=['ArrowLeft','ArrowRight'].includes(event.key);
-      if((axis==='widths'||whole&&edge==='right')&&!horizontal||(axis==='heights'||whole&&edge==='bottom')&&horizontal)return;
+      if((axis==='widths'||whole&&['right','left'].includes(edge))&&!horizontal||(axis==='heights'||whole&&['bottom','top'].includes(edge))&&horizontal)return;
       event.preventDefault();event.stopImmediatePropagation();const index=Number(handle.dataset.gridIndex),s=host.state(),l=host.layout(),delta=(event.key==='ArrowLeft'||event.key==='ArrowUp'?-1:1)*(event.shiftKey?10:1);
-      try{let w=l.width+(horizontal?delta:0),h=l.height+(horizontal?0:delta);if(whole&&edge==='corner'&&!event.altKey){if(horizontal)h=w*l.height/l.width;else w=h*l.width/l.height;}const result=whole?planWhole(s,l,w,h,{proportional:edge==='corner'&&!event.altKey}):plan(s,l,axis,index,tracks(s,l)[axis][index]+delta,{adjacent:true});host.commit(result.state,t(whole?'已调整母版大小':'已调整格子尺寸'));host.root()?.querySelector(whole?`[data-grid-resize="outer"][data-grid-edge="${edge}"]`:`[data-grid-resize="${axis}"][data-grid-index="${index}"]`)?.focus();if(result.clamped)say('格子已达到最小可读尺寸');}catch(error){say(error.message);}
+      try{let w=l.width+(horizontal?(edge==='left'?-delta:delta):0),h=l.height+(horizontal?0:edge==='top'?-delta:delta);if(whole&&edge==='corner'&&!event.altKey){if(horizontal)h=w*l.height/l.width;else w=h*l.width/l.height;}const result=whole?planWhole(s,l,w,h,{proportional:edge==='corner'&&!event.altKey}):plan(s,l,axis,index,tracks(s,l)[axis][index]+delta,{adjacent:true});host.commit(result.state,t(whole?'已调整母版大小':'已调整格子尺寸'));host.root()?.querySelector(whole?`[data-grid-resize="outer"][data-grid-edge="${edge}"]`:`[data-grid-resize="${axis}"][data-grid-index="${index}"]`)?.focus();if(result.clamped)say('格子已达到最小可读尺寸');}catch(error){say(error.message);}
     }
     function change(axis,control,index){if(host.enabled?.()===false)return;try{const result=plan(host.state(),host.layout(),axis,Number(index.value),Number(control.value));host.commit(result.state,t('已调整格子尺寸'));if(result.clamped)say('格子已达到最小可读尺寸');}catch(error){say(error.message);fields();}}
     check.onchange=()=>{shown=check.checked;refresh();};column.onchange=row.onchange=fields;width.onchange=()=>change('widths',width,column);height.onchange=()=>change('heights',height,row);

@@ -9,17 +9,17 @@ polish-sci-figures brings scientific plotting, image standardization, and figure
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Suite v1.4.15 · Figure Studio 0.1.15 (Windows desktop edition)**
+**Suite v1.4.16 · Figure Studio 0.1.16 (Windows desktop edition)**
 
-[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-notes-v1.4.15.md)
+[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-notes-v1.4.16.md)
 
 ## Choose your workflow
 
 | How you want to work | Start here | Requirements |
 | --- | --- | --- |
 | Preview, replace data, edit, and assemble figures directly | Figure Studio Windows installer | Windows 10/11 x64; no Codex, separate Python installation, account, or API key |
-| Upload a skill to Claude | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.15/polish-sci-figures-v1.4.15-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
-| Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.15.zip` | A compatible AI environment and the suite's Python dependencies |
+| Upload a skill to Claude | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.16/polish-sci-figures-v1.4.16-skill.zip) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
+| Ask AI to analyze data, suggest plots, and check the output | Three-skill suite: `sci-figure-suite-v1.4.16.zip` | A compatible AI environment and the suite's Python dependencies |
 | Refine an existing SVG manually | Generate a self-contained Studio page with AI or the CLI | Layout and appearance editing work offline; data recomputation requires the local engine |
 
 Figure Studio is the official visual editor for polish-sci-figures. The original AI/CLI workflow remains available through the three-skill suite. Model-result templates display supplied analysis outputs; they do not fit unspecified models.
@@ -36,12 +36,12 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 
 ## Install and start
 
-1. Download `polish-sci-figures-Studio-0.1.15-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
+1. Download `polish-sci-figures-Studio-0.1.16-Setup-x64.exe` from [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases).
 2. Install it and open the **polish-sci-figures Studio** shortcut. The launcher opens the editor in your default browser.
 3. Choose **Start from a template**, inspect the preview, and replace the example data with your own. You can also import an existing image, SVG, or selected PDF page. Supported native text and vector paths remain editable; PDF effects may require a local image layer or a whole-page appearance image. See the [conversion limits](docs/release-v1.4.3.en.md#what-changed), and review substituted fonts before export.
 4. Export SVG / PNG / TIFF and use **Save** to download an editable JSON backup.
 
-The portable edition is `polish-sci-figures-Studio-0.1.15-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. To import an Excel workbook as a file, export it as CSV/TSV first.
+The portable edition is `polish-sci-figures-Studio-0.1.16-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. To import an Excel workbook as a file, export it as CSV/TSV first.
 
 Closing the browser does not stop the local service; close the launcher when you finish. Autosaves live in the browser's local storage. Clearing site data, switching browsers, or using a private window can lose those records. **Download JSON backups of important projects.** See the [English quick start](desktop/QUICKSTART.en.md).
 
@@ -49,7 +49,7 @@ Closing the browser does not stop the local service; close the launcher when you
 
 Select a raster image, choose **Magnify region**, and draw a box over the detail you want to show. Move or resize the resulting inset, choose 2× / 3× / 4×, and adjust its border and connecting lines. To add an accurate scale bar, trace a known scale on the original image and enter its real length in µm. Automatic scale bars use familiar 1 / 2 / 5 values with a line length calculated from that calibration. SVG keeps the embedded original pixels and editable inset elements; TIFF export uses the chosen output resolution.
 
-The header **Updates** entry checks official GitHub versions without sending images, tables or projects. In the Windows installer edition, choose **Download and prepare update**, save a project backup, then confirm **Install and reopen**. The installer uses the current location and reopens the application after a successful update. Installation needs your confirmation; offline work remains available. **Users on 0.1.8 or earlier must install 0.1.15 manually once.** Installed 0.1.9 supports in-app updates; if preparation fails on a long file path, close the app and run the current installer manually. Version 0.1.15 retains the long-path fix introduced in 0.1.10. Portable Windows and Mac/Android development previews retain manual installation. [Release notes and platform scope](docs/release-notes-v1.4.15.md).
+The header **Updates** entry checks official GitHub versions without sending images, tables or projects. In the Windows installer edition, choose **Download and prepare update**, save a project backup, then confirm **Install and reopen**. The installer uses the current location and reopens the application after a successful update. Installation needs your confirmation; offline work remains available. **Users on 0.1.8 or earlier must install 0.1.16 manually once.** Installed 0.1.9 supports in-app updates; if preparation fails on a long file path, close the app and run the current installer manually. Version 0.1.16 retains the long-path fix introduced in 0.1.10. Portable Windows and Mac/Android development previews retain manual installation. [Release notes and platform scope](docs/release-notes-v1.4.16.md).
 
 **Import, then edit directly.** Drag saved project JSON, PDF, SVG or image files from a folder into the editor, including the canvas, header or sidebar. A highlighted cell shows the next image destination; occupied cells retain their current image. One project file opens the whole workspace after confirmation, and accompanying figures are then added to it. Multiple figures run through a queue with a page preview for each PDF. CSV/TSV drops enter the data workflow; Excel workbooks must first be exported as CSV/TSV. Double-click native text to edit it and click outside to finish; select text to enable its formatting controls. Use **Ungroup** for groups created in the editor. Imported SVG groups retain their transforms and clipping while their supported text and shapes remain directly selectable. Bitmap content and outlined letters cannot be edited as native text.
 
@@ -61,7 +61,7 @@ For layout adjustments, select an object or several objects and drag the surroun
 
 The alignment icon opens six alignment actions and horizontal/vertical equal spacing for three or more editable items. Selections remain active after an alignment command, so arrow-key adjustments and subsequent resizing continue from the new placement.
 
-**Adjust related parts together.** In **Properties → Style by component**, choose axis lines and ticks, tick labels, axis titles or legend text, then edit the current panel or the whole figure. Extend a recognized numeric axis by dragging its endpoint to add ticks with the original mapping; data positions stay fixed. Drag grid boundaries to adjust row heights and column widths. Supported statistical comparisons remain editable beside their data, rather than generating a long results appendix. See [this release’s scope](docs/release-notes-v1.4.15.md).
+**Adjust related parts together.** In **Properties → Style by component**, choose axis lines and ticks, tick labels, axis titles or legend text, then edit the current panel or the whole figure. Extend a recognized numeric axis by dragging its endpoint to add ticks with the original mapping; data positions stay fixed. Drag grid boundaries to adjust row heights and column widths. Supported statistical comparisons remain editable beside their data, rather than generating a long results appendix. See [this release’s scope](docs/release-notes-v1.4.16.md).
 
 ## Editable chart library
 
@@ -157,7 +157,7 @@ python sci_figures.py duplicates image-a.png image-b.tif figure.svg --out image-
 
 The three skills retain their existing roles. Figure Studio is the visual entry point to the same product, not a mandatory fourth skill.
 
-**Claude users:** download [polish-sci-figures-v1.4.15-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.15/polish-sci-figures-v1.4.15-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status.
+**Claude users:** download [polish-sci-figures-v1.4.16-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.16/polish-sci-figures-v1.4.16-skill.zip) and import it using the host's skill-upload interface. The single-entry package contains all three workflows and the CLI; no repackaging is needed. The earlier v1.4.1 release fixed Claude rejecting the previous upload package for containing multiple `SKILL.md` files. The skill has run in Claude and its PNG passed visual review; the platform guide records the specific scope of HTML delivery and download checks. Claude Code can also use a personal or project skill directory. The [platform installation guide](docs/platform-installation.en.md) gives steps, official sources, and host-verification status.
 
 | Skill | Role |
 | --- | --- |
@@ -165,7 +165,7 @@ The three skills retain their existing roles. Figure Studio is the visual entry 
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | Microscopy / pathology image standardization, consistent display settings, authoritatively calibrated scale bars, and processing audits |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | Refinement and assembly, Figure Studio, text and geometry checks, and quality checks at final dimensions |
 
-Download `sci-figure-suite-v1.4.15.zip` from the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) and extract the whole suite. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
+Download `sci-figure-suite-v1.4.16.zip` from the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) and extract the whole suite. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
 
 ```powershell
 python -m pip install -r requirements.txt

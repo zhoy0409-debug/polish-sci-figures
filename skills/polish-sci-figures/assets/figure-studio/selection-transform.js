@@ -95,5 +95,16 @@
     }
     return {bounds:next,scaleX:sx,scaleY:sy,matrix,anchor,point:finalPoint,handle,lockAspect:cfg.lockAspect,centered:cfg.centered,snapped,clamped,minimumUnreachable,degenerate:{x:original.width===0,y:original.height===0}};
   }
-  return Object.freeze({resizeBox,multiply,inverse,applyPoint,handles:Object.freeze(Object.keys(HANDLES)),limits:LIMITS});
+  // Restore aspect, not the user's chosen size. Keep the vertical scale and
+  // anchor position, remove anisotropic stretch/shear, and retain rotation.
+  function restoreAspect(value,anchor={x:0,y:0}){
+    const [a,b,c,d,e,f]=affine(value),det=a*d-b*c;
+    if(!finite(det)||Math.abs(det)<1e-12)fail('Affine matrix is not invertible');
+    const scale=Math.hypot(c,d),flip=det<0?-1:1;
+    const angle=Math.atan2(b-flip*c,a+flip*d),cos=Math.cos(angle),sin=Math.sin(angle);
+    const result=[scale*cos,scale*sin,-flip*scale*sin,flip*scale*cos,0,0];
+    const at=applyPoint(value,anchor);result[4]=at.x-result[0]*anchor.x-result[2]*anchor.y;result[5]=at.y-result[1]*anchor.x-result[3]*anchor.y;
+    return result.map(n=>Math.abs(n)<1e-12?0:n);
+  }
+  return Object.freeze({restoreAspect,resizeBox,multiply,inverse,applyPoint,handles:Object.freeze(Object.keys(HANDLES)),limits:LIMITS});
 });

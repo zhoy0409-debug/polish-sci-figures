@@ -2,6 +2,19 @@
 'use strict';
 const StudioI18n = (() => {
   const en = {
+"框选锁定元素后，一次解锁所选内容":"Unlock all selected locked objects after marquee selection",
+"解锁所有小图、元素、图号和标注；可撤销":"Unlock all panels, elements, labels and annotations; undoable",
+"恢复所选内容的正常宽高比例，保留字体、字号和位置":"Restore selected aspect ratios; retain font, size and position",
+"恢复整张组图的正常宽高比例；跳过锁定内容":"Restore all aspect ratios; skip locked content",
+"解锁选中":"Unlock selected",
+"全部解锁":"Unlock all",
+"还原比例 100%":"Restore aspect 100%",
+"整图还原比例":"Restore all aspects",
+"已全部解锁":"Unlocked all content",
+"已恢复正常比例；字体、字号与位置保留":"Restored aspect ratios; font, size and position retained",
+"锁定内容未调整，请先解锁":"Locked content was unchanged; unlock it first",
+"所选内容已经是正常比例":"Selected content already has its normal aspect ratio",
+
 "文字间距":"Text spacing",
 "文字样式参数无效":"Invalid text style parameters",
 "小图位置参数无效":"Invalid panel position",
