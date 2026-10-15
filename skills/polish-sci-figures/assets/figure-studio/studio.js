@@ -331,14 +331,20 @@ function panelContentDelta(panel,vi,dx,dy,basis=null){
   const determinant=m[0]*m[3]-m[1]*m[2];
   return {dx:(m[3]*dx-m[2]*dy)/determinant,dy:(m[0]*dy-m[1]*dx)/determinant};
 }
-function panelMotionBasis(p,vi,el,variant,canvas,contentOnly=false){
-  if(!el||!variant||!canvas||typeof StudioImageInsets==='undefined')return null;
-  const svg=el.closest?.('svg[data-panel]');if(!svg)return null;
-  const content=[...svg.children].find(node=>node.hasAttribute('data-panel-content'))||svg,record=p.layoutLock?.panel?.variant===vi?p.layoutLock.panel:null,freeElement=el.closest?.('[data-layout-lock-released]');
+function panelPresentationUnit(p,vi,svg,variant,el=null){
+  if(!svg||!variant)return null;
+  const record=p.layoutLock?.panel?.variant===vi?p.layoutLock.panel:null,freeElement=el?.closest?.('[data-layout-lock-released]');
   let unit=variant.viewBox[2]/variant.width;
   const metrics=svg.getAttribute('data-grid-panel');if(metrics){const fit=JSON.parse(metrics),box=(svg.getAttribute('viewBox')||'').trim().split(/[\s,]+/).map(Number);if(fit.fitted)unit=1;else if(box[2]>0&&fit.width>0)unit=box[2]/fit.width;}
   if(record)unit=record.unit;
   else if(freeElement){const box=(svg.getAttribute('viewBox')||'').trim().split(/[\s,]+/).map(Number),width=parseFloat(svg.getAttribute('width'));if(box[2]>0&&width>0)unit=box[2]/width;}
+  return Number.isFinite(unit)&&unit>0?unit:null;
+}
+function panelMotionBasis(p,vi,el,variant,canvas,contentOnly=false){
+  if(!el||!variant||!canvas||typeof StudioImageInsets==='undefined')return null;
+  const svg=el.closest?.('svg[data-panel]');if(!svg)return null;
+  const content=[...svg.children].find(node=>node.hasAttribute('data-panel-content'))||svg,unit=panelPresentationUnit(p,vi,svg,variant,el);
+  if(!unit)return null;
   const matrix=StudioImageInsets.relativeMatrix(contentOnly?content.parentElement:content,canvas),basis=[matrix.a*unit,matrix.b*unit,matrix.c*unit,matrix.d*unit];
   return basis.every(Number.isFinite)&&Math.abs(basis[0]*basis[3]-basis[1]*basis[2])>1e-15?basis:null;
 }
@@ -3435,10 +3441,11 @@ if (typeof document !== 'undefined') (async () => {
       return axisResizeCache.get(item.el);
     };
     if(typeof StudioSelectionResize!=='undefined')selectionResize=StudioSelectionResize.create({svg,geometry:l,state,commit:(next,label)=>commit(next,label,false),t:T,enabled:()=>!original&&!layoutMode,aspect:()=>$('selectionAspect')?.value||'auto',
+      presentationUnit:(item,root)=>panelPresentationUnit(state().panels[item.id],item.vi,root,panel(item.id).variants[item.vi],item.el),
       resizeHandles:items=>{if(items.length!==1)return null;const info=axisResizeInfo(items[0]);return info?.supported?info.axis==='y'?['n','s']:['e','w']:info?.candidate?[]:null;},
       captureResize:item=>{
         if(contentSelection||selectedPanelLabel||selectedAnnotations.length||selectionGroups().reduce((n,g)=>n+g.keys.length,0)!==1||!axisResizeInfo(item)?.supported)return null;
-        const root=item.el.closest('[data-panel]'),vb=root.getAttribute('viewBox').trim().split(/[\s,]+/).map(Number),unit=vb[2]/parseFloat(root.getAttribute('width'));
+        const root=item.el.closest('[data-panel]'),unit=panelPresentationUnit(state().panels[item.id],item.vi,root,panel(item.id).variants[item.vi],item.el);
         return {axisPreview:StudioAxisEditing.capture(root,item.key,{controls:panel(item.id).variants[item.vi].axis_controls||panel(item.id).axis_controls,ignoreContentTransform:true}),root,unit};
       },
       persistResize:(item,delta,next)=>{if(!item.semantic?.axisPreview)return false;const value=item.semantic.axisPreview.planResize(delta,item.semantic.unit),props=next.panels[item.id].edits[item.vi][item.key];props['axis-extension']=JSON.stringify(value);delete props['object-transform'];delete props['offset-x'];delete props['offset-y'];return true;},

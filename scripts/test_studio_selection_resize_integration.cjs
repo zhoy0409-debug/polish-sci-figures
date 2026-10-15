@@ -11,6 +11,8 @@ const math=require(directory+'selection-transform.js');
 const svgGeometry=require(directory+'image-insets.js');
 const presentation=require(directory+'selection-transform-dom.js');
 const rich=require(directory+'rich-text.js');
+const hostSource=fs.readFileSync('skills/polish-sci-figures/assets/figure-studio/studio.js','utf8'),hostGeometry={StudioImageInsets:svgGeometry,overlayEditingSpace:require(directory+'studio.js').overlayEditingSpace,copy:value=>JSON.parse(JSON.stringify(value))};
+vm.createContext(hostGeometry);vm.runInContext(hostSource.slice(hostSource.indexOf('function panelContentDelta('),hostSource.indexOf('function gridFor(')),hostGeometry);
 const NS='http://www.w3.org/2000/svg';
 const I=[1,0,0,1,0,0];
 const raster='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aOqkAAAAASUVORK5CYII=';
@@ -369,6 +371,78 @@ test('semantic axis hooks are not repeated on identical release and keep their s
   }});try{
     f.select([f.item()]);f.down('s');f.move({x:30,y:120});f.frame();assert.equal(f.find('p1').getAttribute('y2'),'100');const before={...work};f.up({x:30,y:120});assert.deepEqual(work,before);assert.equal(f.commits.length,1);assert.equal(f.find('p1').getAttribute('transform'),null);assert.equal(f.find('p1').getAttribute('y2'),'100');assert.equal(JSON.parse(f.state.panels.p1.edits[0].e1['axis-extension']).end,100);assert.ok(finished[0].items[0].semantic);assert.equal(finished[0].committed,true);assert.equal(f.errors.length,0);
   }finally{f.close();}
+});
+
+function canonicalFixture({width=200,body,contentTransform=null,fitted=false,variant={width:200,viewBox:[0,0,200,100]},panelLock=null}={}){
+  let f;const reads={units:0};f=fixture({body,screen:[1,0,0,1,0,0],options:{presentationUnit(item,root){reads.units++;return hostGeometry.panelPresentationUnit(f.state.panels[item.id],item.vi,root,variant,item.el);}}});
+  f.state.panels.p1.variant=0;
+  const root=f.svg.querySelector('[data-panel="p1"]');root.setAttribute('width',width);root.setAttribute('height',width/2);root.setAttribute('data-grid-panel',JSON.stringify({width:200,height:100,sourceHeight:100,fitted}));
+  if(panelLock)f.state.panels.p1.layoutLock={panel:{variant:0,unit:panelLock}};
+  if(contentTransform)f.state.panels.p1.contentTransforms={0:[...contentTransform]};
+  const markup=root.innerHTML,applyContent=()=>{const value=f.state.panels.p1.contentTransforms?.[0];if(value){const unit=hostGeometry.panelPresentationUnit(f.state.panels.p1,0,root,variant),m=[...value];m[4]*=unit;m[5]*=unit;root.querySelector('[data-panel-content]').setAttribute('transform','matrix('+m.join(' ')+')');}};
+  applyContent();
+  const compose=()=>{root.innerHTML=markup;presentation.applyObjectTransforms(root,f.state.panels.p1.edits[0],hostGeometry.panelPresentationUnit(f.state.panels.p1,0,root,variant));applyContent();};
+  return Object.assign(f,{reads,variant,panelRoot:root,compose});
+}
+function checkedResize(f,scale=1.5){
+  f.select([f.item()]);const start=f.down('e'),box=f.find('p1').getBoundingClientRect(),target={x:start.x+box.width*(scale-1),y:start.y};f.move(target);f.frame();f.up(target);
+  const preview=f.find('p1').getBoundingClientRect();f.compose();const restored=f.find('p1').getBoundingClientRect();for(const key of ['left','right','top','bottom'])near(restored[key],preview[key]);assert.equal(f.errors.length,0);return restored;
+}
+test('manual viewport sizes .5x and 2x preserve resize previews through the next command and repeated resizing',()=>{
+  for(const width of [100,400]){const f=canonicalFixture({width});try{
+    checkedResize(f);const before=f.find('p1').getBoundingClientRect(),node=f.find('p1'),p=f.state.panels.p1,motionBasis=hostGeometry.panelMotionBasis(p,0,node,f.variant,f.svg),result=hostGeometry.nudgeSelectionState(f.state,[{kind:'element',id:'p1',vi:0,key:'e1',motionBasis}],7,-3,f.geometry);f.state=result.next;f.compose();const moved=f.find('p1').getBoundingClientRect();near(moved.left,before.left+7);near(moved.top,before.top-3);checkedResize(f,1.2);
+    const prior=f.find('p1').getBoundingClientRect();f.state=clone(f.state);f.state.panels.p1.edits[0].e1.fill='#ab2468';f.compose();const styled=f.find('p1').getBoundingClientRect();for(const key of ['left','right','top','bottom'])near(styled[key],prior[key]);
+  }finally{f.close();}}
+});
+test('PDF local matrices and rotated/stretched content preserve physical resize and nudge across manual fitting',()=>{
+  const body='<g transform="translate(4 3)"><text data-key="e1" data-test-box="0,0,1.6,.8" font-size=".24" x="0 .1 .2" y="0 0 0" transform="matrix(50 0 0 50 20 20)">ABC</text></g>';
+  for(const width of [100,400]){const f=canonicalFixture({width,body,contentTransform:[1.2,.15,-.2,.9,4,6]});try{
+    checkedResize(f);const node=f.find('p1'),before=node.getBoundingClientRect(),p=f.state.panels.p1,motionBasis=hostGeometry.panelMotionBasis(p,0,node,f.variant,f.svg),result=hostGeometry.nudgeSelectionState(f.state,[{kind:'element',id:'p1',vi:0,key:'e1',motionBasis}],-4,6,f.geometry);f.state=result.next;f.compose();const moved=f.find('p1').getBoundingClientRect();near(moved.left,before.left-4);near(moved.top,before.top+6);checkedResize(f,1.15);assert.equal(f.find('p1').getAttribute('font-size'),'.24');assert.equal(f.find('p1').getAttribute('x'),'0 .1 .2');
+  }finally{f.close();}}
+});
+test('fitted and snapshot presentation units override the source variant without changing the next-render geometry',()=>{
+  for(const options of [{fitted:true,variant:{width:100,viewBox:[0,0,200,100]}},{width:400,panelLock:1.5}]){const f=canonicalFixture(options);try{checkedResize(f);checkedResize(f,1.1);}finally{f.close();}}
+});
+test('whole-content resize uses the same canonical units in smaller and larger cells, including an existing content transform',()=>{
+  for(const width of [100,400])for(const contentTransform of [null,[1.2,.15,-.2,.9,4,6]]){const f=canonicalFixture({width,contentTransform});try{
+    const el=f.panelRoot.querySelector('[data-panel-content]');f.select([{kind:'content',id:'p1',vi:0,el}]);const start=f.down('e'),target={x:start.x+25,y:start.y};f.move(target);f.frame();f.up(target);const preview=f.find('p1').getBoundingClientRect();f.compose();const reopened=f.find('p1').getBoundingClientRect();for(const key of ['left','right','top','bottom'])near(reopened[key],preview[key]);assert.equal(f.errors.length,0);
+  }finally{f.close();}}
+});
+test('large selections resolve one canonical panel space per capture instead of rereading units for every object',()=>{
+  const body=Array.from({length:142},(_,i)=>`<rect data-key="e${i+1}" x="${20+i/10}" y="20" width="10" height="40"/>`).join(''),f=canonicalFixture({width:400,body});try{
+    f.select(Array.from({length:142},(_,i)=>f.item('p1','e'+(i+1))));const before=f.reads.units,start=f.down('se');assert.equal(f.reads.units-before,1);f.move({x:start.x+80,y:start.y+40});f.frame();f.up({x:start.x+80,y:start.y+40});assert.equal(f.reads.units-before,1);assert.equal(f.errors.length,0);
+  }finally{f.close();}
+});
+test('actual released panel and element snapshots retain resize previews after style, nudge and saved-state recomposition',()=>{
+  const path=require('node:path'),{createRequire}=require('node:module'),file=path.resolve('scripts/test_studio_layout_lock_integration.cjs'),fixtureSource=fs.readFileSync(file,'utf8'),factory={require:createRequire(file),console};vm.createContext(factory);vm.runInContext(fixtureSource.slice(0,fixtureSource.indexOf('const test=(name,fn)=>'))+'\nglobalThis.make=harness;',factory);
+  for(const mode of ['panel','element']){
+    const h=factory.make(),{ctx,doc,dom}=h,priorStyle=global.getComputedStyle,grid=require(directory+'grid-resize-ui.js'),main=require(directory+'studio.js'),proto=dom.window.SVGElement.prototype;
+    vm.runInContext(hostSource.slice(hostSource.indexOf('function panelContentDelta('),hostSource.indexOf('function gridFor(')),ctx);
+    const activeRoot=node=>{let root=node;while(root.parentElement?.namespaceURI===NS)root=root.parentElement;return root;},root=()=>doc.querySelector('#artboard > svg'),at=()=>{const svg=root();return svgGeometry.point(svgGeometry.relativeMatrix(svg.querySelector('[data-key="e1"]'),svg),{x:7,y:9});};
+    proto.getScreenCTM=function(){const svg=activeRoot(this);return svg===this?object(I):svgGeometry.relativeMatrix(this,svg);};
+    Object.defineProperty(proto,'transform',{configurable:true,get(){return {baseVal:{consolidate:()=>{const scratch=doc.createElementNS(NS,'g'),probe=doc.createElementNS(NS,'g');scratch.append(probe);probe.setAttribute('transform',this.getAttribute('transform')||'');return {matrix:svgGeometry.relativeMatrix(probe,scratch)};}}};}});
+    proto.getBoundingClientRect=function(){
+      let b;if(this.localName==='svg'){const v=this.getAttribute('viewBox').split(/[\s,]+/).map(Number);b={x:v[0],y:v[1],width:v[2],height:v[3]};}
+      else if(this.localName==='path'){const n=(this.getAttribute('d').match(/[+-]?(?:\d*\.)?\d+/g)||[]).map(Number),x=n.filter((_,i)=>i%2===0),y=n.filter((_,i)=>i%2);b={x:Math.min(...x),y:Math.min(...y),width:Math.max(...x)-Math.min(...x),height:Math.max(...y)-Math.min(...y)};}
+      else if(this.localName==='text'){const x=(this.getAttribute('x')||'0').split(/[\s,]+/).map(Number),y=(this.getAttribute('y')||'0').split(/[\s,]+/).map(Number),size=parseFloat(this.style.fontSize||this.getAttribute('font-size'))||10;b={x:Math.min(...x),y:Math.min(...y)-size,width:Math.max(...x)-Math.min(...x)+size*.6,height:Math.max(...y)-Math.min(...y)+size*1.2};}
+      else if(this.localName==='rect')b={x:+this.getAttribute('x'),y:+this.getAttribute('y'),width:+this.getAttribute('width'),height:+this.getAttribute('height')};
+      if(b){const m=this.getScreenCTM(),points=[[b.x,b.y],[b.x+b.width,b.y],[b.x,b.y+b.height],[b.x+b.width,b.y+b.height]].map(([x,y])=>svgGeometry.point(m,{x,y})),left=Math.min(...points.map(p=>p.x)),right=Math.max(...points.map(p=>p.x)),top=Math.min(...points.map(p=>p.y)),bottom=Math.max(...points.map(p=>p.y));return {left,right,top,bottom,width:right-left,height:bottom-top};}
+      const children=[...this.children].filter(n=>!['defs','metadata','title','desc'].includes(n.localName)).map(n=>n.getBoundingClientRect());if(!children.length)return {left:0,right:0,top:0,bottom:0,width:0,height:0};const left=Math.min(...children.map(b=>b.left)),right=Math.max(...children.map(b=>b.right)),top=Math.min(...children.map(b=>b.top)),bottom=Math.max(...children.map(b=>b.bottom));return {left,right,top,bottom,width:right-left,height:bottom-top};
+    };
+    global.getComputedStyle=node=>new Proxy(dom.window.getComputedStyle(node),{get:(style,key)=>key==='opacity'&&!style.opacity?'1':style[key]});
+    try{
+      if(mode==='element')ctx.info={canLock:true,canUnlock:true,groups:[{id:'a',vi:0,keys:['e1']}],panels:[],overlays:[]};ctx.setLock(true);ctx.commit(grid.planWhole(ctx.state(),ctx.layout(),650,420).state,'grow locked');ctx.setLock(false);ctx.commit(grid.planWhole(ctx.state(),ctx.layout(),800,500).state,'grow released');
+      const content=clone(ctx.state());content.panels.a.contentTransforms={0:[1.2,.15,-.2,.9,4,6]};ctx.commit(content,'content stretch');
+      const resize=()=>{
+        const svg=root(),el=svg.querySelector('[data-key="e1"]'),captured=new Set(),jobs=new Map();let serial=0;svg.setPointerCapture=id=>captured.add(id);svg.hasPointerCapture=id=>captured.has(id);svg.releasePointerCapture=id=>captured.delete(id);
+        const api=controller.create({svg,geometry:ctx.layout(),state:ctx.state,selection:()=>[{kind:'element',id:'a',vi:0,key:'e1',el}],presentationUnit:(item,panel)=>ctx.panelPresentationUnit(ctx.state().panels.a,0,panel,h.asset.variants[0],item.el),commit:ctx.commit,requestAnimationFrame:fn=>{jobs.set(++serial,fn);return serial;},cancelAnimationFrame:id=>jobs.delete(id),onError:error=>{throw error;}});
+        const fire=(target,type,p)=>{const e=new dom.window.MouseEvent(type,{bubbles:true,cancelable:true,button:0,buttons:type==='pointerup'?0:1,clientX:p.x,clientY:p.y});Object.defineProperty(e,'pointerId',{value:7});target.dispatchEvent(e);};
+        try{api.refresh();const handle=svg.querySelector('[data-selection-resize="e"]'),hit=handle.querySelector('rect'),start={x:+hit.getAttribute('x')+ +hit.getAttribute('width')/2,y:+hit.getAttribute('y')+ +hit.getAttribute('height')/2},target={x:start.x+20,y:start.y};fire(handle,'pointerdown',start);fire(svg,'pointermove',target);for(const fn of jobs.values())fn();jobs.clear();const preview=svgGeometry.point(svgGeometry.relativeMatrix(el,svg),{x:7,y:9});fire(svg,'pointerup',target);const after=at();near(after.x,preview.x);near(after.y,preview.y);return after;}finally{api.dispose();}
+      };
+      resize();const node=root().querySelector('[data-key="e1"]'),before=at(),motionBasis=ctx.panelMotionBasis(ctx.state().panels.a,0,node,h.asset.variants[0],root()),moved=ctx.nudgeSelectionState(ctx.state(),[{kind:'element',id:'a',vi:0,key:'e1',motionBasis}],3,2,ctx.layout());ctx.commit(moved.next,'nudge after resize');near(at().x,before.x+3);near(at().y,before.y+2);resize();
+      const final=at(),styled=clone(ctx.state());styled.panels.a.edits[0].e1.stroke='#124578';ctx.commit(styled,'style after resize');near(at().x,final.x);near(at().y,final.y);ctx.history=new main.History(clone(ctx.state()));ctx.render();near(at().x,final.x);near(at().y,final.y);
+    }finally{global.getComputedStyle=priorStyle;dom.window.close();}
+  }
 });
 console.log(`${passed} selection resize controller integration tests passed`);
 if(failures.length){console.error(`${failures.length} controller integration test(s) failed`);process.exitCode=1;}
