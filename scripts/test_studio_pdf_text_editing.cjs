@@ -40,7 +40,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1']}={}){
     paint:(el,prop)=>el.style.getPropertyValue(prop)||el.getAttribute(prop)|| (prop==='fill'?'#000000':'none'),
     hex:value=>/^#[a-f0-9]{6}$/i.test(value||'')?value:null,chromatic:()=>false,
     T:(text,...args)=>text.replace(/\{(\d+)\}/g,(_,i)=>args[i]),say:text=>messages.push(text),
-    renderSelectionCommands(){},syncColorControls(){},renderFontTargets(){},renderHeatmapControls(){},renderRichTextControls(){},renderStatisticalLineControls(){},renderComponentStyle(){},
+    renderSelectionCommands(){},renderEditingPanels(){},syncColorControls(){},renderFontTargets(){},renderHeatmapControls(){},renderRichTextControls(){},renderStatisticalLineControls(){},renderComponentStyle(){},
     commit(next){validateState(next,project);history.commit(next);current=copy(next);render();return true;},
     renderCanvas:next=>render(next||current)
   };
@@ -145,3 +145,4 @@ test('annotation and label fields enforce physical limits before preview or hist
   assert.equal(commits,4);const restored=History.restore(JSON.parse(JSON.stringify(history)),project,current);close(restored.undo().panels.p0.label.size,.006);close(restored.redo().panels.p0.label.size,.036);dom.window.close();
 });
 console.log(`PASS ${passed} PDF text editing integrations: production size/read/write/apply, real SVG DOM, history and physical output units.`);
+
