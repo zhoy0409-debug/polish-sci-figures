@@ -2,7 +2,7 @@
 
 This is an iPhone/iPad **development wrapper**, not an App Store release or a device-installable IPA. It bundles the existing offline scientific engine and editor. It needs no server, API key, or peer computer at runtime. No Apple account is needed to compile and test the unsigned **simulator** app on macOS with Xcode.
 
-The Python/WASM runtime, NumPy, SciPy, pandas, Matplotlib, Pillow and OpenCV are packaged inside the app. WKWebView loads these public assets from an in-process HTTP listener bound only to `127.0.0.1`. The listener accepts GET/HEAD for immutable bundled files and has no data-upload endpoint. Research calculations use local Web Worker messages. The 0.1.12 simulator build includes a narrow exception for an explicitly started Europe PMC literature search, sending chart terms and an optional typed topic, not research data. Other remote resources remain blocked; no external browser is opened automatically. Update checks fetch only public version metadata from the official GitHub repository; they send no research data. Local calculation remains available offline. The validation record identifies which simulator builds were checked.
+The Python/WASM runtime, NumPy, SciPy, pandas, Matplotlib, Pillow and OpenCV are packaged inside the app. WKWebView loads these public assets from an in-process HTTP listener bound only to `127.0.0.1`. The listener accepts GET/HEAD for immutable bundled files and has no data-upload endpoint. Research calculations use local Web Worker messages. The current simulator build includes a narrow exception for an explicitly started Europe PMC literature search, sending chart terms and an optional typed topic, not research data. Other remote resources remain blocked; no external browser is opened automatically. Update checks fetch only public version metadata from the official GitHub repository; they send no research data. Local calculation remains available offline. The validation record identifies which simulator builds were checked.
 
 The first OS-assigned loopback port is remembered. Subsequent launches require that same port so the IndexedDB origin, autosaves and undo history remain stable. An occupied port produces a retry message instead of silently starting with different project storage. WebKit and document storage are excluded from iCloud backup. Exporting a file to a cloud provider is still possible **only when the user selects that destination in the system Files dialog**.
 
@@ -41,7 +41,7 @@ Implementation references: [Apple persistent WebKit profiles](https://webkit.org
 
 这是 iPhone／iPad 的开发版本，还不是 App Store 版本或可直接安装到真机的 IPA。编辑器及 Python/WASM 计算依赖随应用一起打包，运行时不需要远程服务器、API 密钥或另一台电脑。没有 Apple 账号也可以在带 Xcode 的 Mac 上编译、运行未签名的模拟器应用。
 
-应用在设备自身的 `127.0.0.1` 上读取打包资源，统计分析、作图和查重通过本地后台线程完成，研究数据不通过 HTTP 提交。0.1.12 模拟器构建仅为主动启动的 Europe PMC 文献检索开放有限例外，发送图型词和手动填写的可选主题，不发送研究数据；其他远程资源仍被阻止，不会自动打开外部浏览器。更新检查只读取 GitHub 官方版本信息，不发送研究数据；本地计算仍可离线使用，具体验证对应的模拟器构建见测试记录。首次本地端口会被记住，确保再次打开仍能找到同一份自动保存和撤销记录；端口冲突时提示重试，不会悄悄切换存储位置。编辑器存储不参与 iCloud 备份；只有用户在系统“文件”界面主动选择云端位置导出，文件才会交给该提供商。
+应用在设备自身的 `127.0.0.1` 上读取打包资源，统计分析、作图和查重通过本地后台线程完成，研究数据不通过 HTTP 提交。当前模拟器构建仅为主动启动的 Europe PMC 文献检索开放有限例外，发送图型词和手动填写的可选主题，不发送研究数据；其他远程资源仍被阻止，不会自动打开外部浏览器。更新检查只读取 GitHub 官方版本信息，不发送研究数据；本地计算仍可离线使用，具体验证对应的模拟器构建见测试记录。首次本地端口会被记住，确保再次打开仍能找到同一份自动保存和撤销记录；端口冲突时提示重试，不会悄悄切换存储位置。编辑器存储不参与 iCloud 备份；只有用户在系统“文件”界面主动选择云端位置导出，文件才会交给该提供商。
 
 导入使用系统文件选择器；导出按 256 KiB 分块写入临时文件，再打开系统保存界面。只有用户完成保存才返回保存成功，取消会准确返回取消并清理临时文件。开发版本单次导出上限为 256 MiB。
 

@@ -82,16 +82,24 @@ const StudioSelectionResize=(()=>{
     }
     function capture(items){
       const inverse=G.inverse(rootMatrix()),s=config.state();
-      const picked=new Set(items.map(item=>item.el)),caps=new Map();
+      const picked=new Set(items.map(item=>item.el)),caps=new Map(),parents=new Map(),spaces=new Map();
       for(const node of svg.querySelectorAll('[data-studio-error-owner]')){const owner=node.getAttribute('data-studio-error-owner');if(!caps.has(owner))caps.set(owner,[]);caps.get(owner).push(node);}
-      const snapshot=el=>{const parent=G.multiply(inverse,matrix(el.parentElement));return {el,transform:el.getAttribute('transform'),own:own(el),parent,parentInverse:G.inverse(parent)};};
+      const snapshot=el=>{const owner=el.parentElement;if(!parents.has(owner)){const parent=G.multiply(inverse,matrix(owner));parents.set(owner,{parent,parentInverse:G.inverse(parent)});}return {el,transform:el.getAttribute('transform'),own:own(el),...parents.get(owner)};};
       return items.map(item=>{
         const result={...item,...snapshot(item.el),attached:[]};
         if(item.kind==='element'||item.kind==='content'){
-          const panel=item.el.closest('[data-panel]'),vb=panel.getAttribute('viewBox').trim().split(/[\s,]+/).map(Number),unit=vb[2]/parseFloat(panel.getAttribute('width'));
-          const space=item.kind==='content'?panel:(panel.querySelector('[data-panel-content]')||panel);
-          result.space=G.multiply(G.multiply(inverse,matrix(space)),[unit,0,0,unit,0,0]);
-          result.spaceInverse=G.inverse(result.space);
+          const panel=item.el.closest('[data-panel]'),family=(item.kind==='content'?'content':'element')+(item.el.closest('[data-layout-lock-released]')?'-released':'');
+          if(!spaces.has(panel))spaces.set(panel,new Map());const panelSpaces=spaces.get(panel);
+          if(!panelSpaces.has(family)){
+            const vb=panel.getAttribute('viewBox').trim().split(/[\s,]+/).map(Number),unit=config.presentationUnit?.(item,panel)??vb[2]/parseFloat(panel.getAttribute('width'));
+            if(!Number.isFinite(unit)||unit<=0)throw Error('Object presentation units are invalid.');
+            const space=item.kind==='content'?panel:(panel.querySelector('[data-panel-content]')||panel);
+            // Saved actions use the source renderer's pt basis. A manually
+            // fitted viewport can be larger/smaller than that source; deriving
+            // units from its displayed width would make the next render jump.
+            const value=G.multiply(G.multiply(inverse,matrix(space)),[unit,0,0,unit,0,0]);panelSpaces.set(family,{space:value,spaceInverse:G.inverse(value)});
+          }
+          Object.assign(result,panelSpaces.get(family));
           const props=s.panels[item.id].edits?.[item.vi]?.[item.key]||{};
           result.saved=item.kind==='content'?s.panels[item.id].contentTransforms?.[item.vi]||I:G.multiply([1,0,0,1,+(props['offset-x']||0),+(props['offset-y']||0)],props['object-transform']?JSON.parse(props['object-transform']):I);
           if(item.kind==='element'&&item.el.localName==='image')result.attached=[...panel.querySelectorAll('[data-scale-owner]')].filter(node=>node.dataset.scaleOwner===item.key&&node.closest('[data-panel]')===panel&&!node.closest('defs,clipPath,mask,pattern,symbol')&&!items.some(other=>other.el===node||other.el.contains(node))).map(snapshot);

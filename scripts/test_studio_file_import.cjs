@@ -11,7 +11,8 @@ function fixture(){
   w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};
   w.HTMLDialogElement.prototype.close=function(){if(!this.open)return;this.open=false;queueMicrotask(()=>this.dispatchEvent(new w.Event('close')));};
   const project=helpers.createBlankProject('1'.repeat(20),'Import test'),history=new helpers.History(project.initialState),messages=[],panes=[],staged=[],requests=[],timers=new Map();let timerSerial=0;
-  const ctx={...helpers,copy,project,history,selectedPanel:'panel-0',selected:[],elementSelections:[],selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],layoutMode:true,boxSelect:true,contentSelection:'panel-0',original:true,dragging:null,
+  const ctx={...helpers,copy,project,history,checkpoints:[],selectedPanel:'panel-0',selected:[],elementSelections:[],selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],layoutMode:true,boxSelect:true,contentSelection:'panel-0',original:true,dragging:null,
+    PROJECT_FILE_LIMIT:200000000,confirm:()=>true,cancelPanelGesture:null,cancelSelectionGesture:null,cancelObjectGesture:null,setLabelSelection(ids){ctx.selectedPanelLabel=ids[0]||null;},migrateLabelHistory(){},saveSignature:()=>JSON.stringify(ctx.state()),render(){},
     document:d,window:w,FileReader:w.FileReader,Image:w.Image,XMLSerializer:w.XMLSerializer,NS:'http://www.w3.org/2000/svg',dataSerial:0,dataBusy:false,dataTimer:null,setTimeout:fn=>{timers.set(++timerSerial,fn);return timerSerial;},clearTimeout:id=>timers.delete(id),refreshDataExport(){},persist(){},paintDataValidation:()=>({valid:true}),
     $:id=>d.getElementById(id),T:(text,...args)=>text.replace(/\{(\d+)\}/g,(_,i)=>args[+i]),say:text=>messages.push(text),guard:fn=>(...args)=>Promise.resolve().then(()=>fn(...args)).catch(error=>messages.push(error.message)),
     localEngine:{endpoint:'/api/reflow',pdfEndpoint:'/api/import-pdf',token:'synthetic'},dataDrafts:{},StudioI18n:{language:'zh-CN',preserveDisplayNames(){}},captureProfile:()=>ctx.state().order.map(()=>null),StudioGalleryContracts:{compare:{required:['group','value'],'zh-CN':['Compare','Independent groups']}},templateCache:new Map(),templateStarters:{compare:{recipe:{family:'gallery',parameters:{view:'compare'}},rows:[['group','value'],['A','1']]}},chartName:name=>name,
@@ -24,6 +25,7 @@ function fixture(){
   vm.createContext(ctx);
   vm.runInContext(source.slice(source.indexOf('  let imageDestination=null;'),source.indexOf('  let facetSplitRequest=')),ctx);
   vm.runInContext(source.slice(source.indexOf('  function installAsset('),source.indexOf('  let insertionCell=')),ctx);
+  vm.runInContext(source.slice(source.indexOf('  async function openProjectFile('),source.indexOf("  $('dimensions').onclick=")),ctx);
   vm.runInContext(source.slice(source.indexOf('  async function recomputeData('),source.indexOf("  $('addDataRow').onclick=")),ctx);
   return {ctx,w,d,messages,panes,staged,requests,timers,close:()=>w.close()};
 }
@@ -41,6 +43,57 @@ await test('drop on an occupied cell adds a new panel while an explicit replace 
  const event=new f.w.Event('drop',{bubbles:true,cancelable:true});Object.defineProperty(event,'dataTransfer',{value:{types:['Files'],files:[file('dropped.svg')]}});
  c.droppedFiles(event,{row:0,col:0},original);event.dataTransfer.files=[];await until(()=>c.state().order.length===2);await tick();assert.equal(c.panel(original).name,'original.svg');assert.ok(c.state().order.includes(original));
  await c.importFiles([file('replace.svg'),file('append.svg')],{oldId:original,projectId:c.project.id,history:c.history});assert.equal(c.state().order.length,3);assert.ok(!c.state().order.includes(original));assert.ok(event.defaultPrevented);f.close();
+});
+await test('protected OS transfer detection does not inspect inaccessible file contents during dragover',async()=>{
+ const f=fixture(),c=f.ctx;let reads=0;const transfer={types:[],files:[],items:[{kind:'file',type:'application/pdf',getAsFile(){reads++;return file('study.pdf');}}]};
+ assert.equal(c.importHasFiles({dataTransfer:transfer}),true);assert.equal(c.fileDropKind(transfer),'figure');assert.equal(reads,0);for(const type of ['application/octet-stream','text/plain',''])assert.equal(c.fileDropKind({items:[{kind:'file',type}]}),'unknown','generic protected MIME must remain droppable');assert.equal(c.importHasFiles({dataTransfer:{types:[],files:[file('image.svg')]}}),true);assert.equal(c.importHasFiles({dataTransfer:{types:['text/plain'],items:[{kind:'string'}]}}),false);assert.equal(c.importHasFiles({}),false);f.close();
+});
+await test('OS items fallback is snapshotted synchronously before the browser clears its protected transfer',async()=>{
+ const f=fixture(),c=f.ctx,event=new f.w.Event('drop',{bubbles:true,cancelable:true}),transfer={types:[],files:[],items:[{kind:'file',type:'image/svg+xml',getAsFile:()=>file('from-folder.svg')}]};Object.defineProperty(event,'dataTransfer',{value:transfer});
+ f.d.querySelector('header').dispatchEvent(event);transfer.items=[];await until(()=>c.panel(c.selectedPanel)?.name==='from-folder.svg');assert.equal(event.defaultPrevented,true);assert.equal(c.state().order.length,1);f.close();
+});
+await test('files dropped onto header or sidebar import instead of being silently swallowed',async()=>{
+ const f=fixture(),c=f.ctx;await c.importFiles([file('kept.svg')]);const old=c.selectedPanel;const event=new f.w.Event('drop',{bubbles:true,cancelable:true});Object.defineProperty(event,'dataTransfer',{value:{types:['Files'],files:[file('sidebar.svg')]}});
+ f.d.querySelector('aside').dispatchEvent(event);await until(()=>c.state().order.length===2);assert.equal(c.panel(old).name,'kept.svg');assert.equal(c.panel(c.selectedPanel).name,'sidebar.svg');assert.equal(event.defaultPrevented,true);f.close();
+});
+await test('a dropped editable PDF uses the existing local page preview and applies without a native picker',async()=>{
+ const f=fixture(),c=f.ctx,pdf=new f.w.File(['%PDF-synthetic'],'dragged.pdf',{type:'application/pdf'}),event=new f.w.Event('drop',{bubbles:true,cancelable:true});Object.defineProperty(event,'dataTransfer',{value:{types:[],items:[{kind:'file',type:'application/pdf',getAsFile:()=>pdf}],files:[]}});
+ f.d.getElementById('viewport').dispatchEvent(event);await until(()=>!f.d.getElementById('applyPdfImport').disabled);assert.equal(f.requests[0].action,'inspect');assert.equal(f.d.getElementById('pdfImportDialog').open,true);await f.d.getElementById('applyPdfImport').onclick();await until(()=>c.panel(c.selectedPanel).name==='dragged.pdf');assert.equal(event.defaultPrevented,true);f.close();
+});
+await test('project JSON drag restores the entire saved workspace after confirmation and clears old selection targets',async()=>{
+ const f=fixture(),c=f.ctx,restored=helpers.createBlankProject('2'.repeat(20),'Folder project'),payload={project:restored,state:restored.initialState,history:new helpers.History(restored.initialState).toJSON(),checkpoints:[],dataDrafts:{}};let confirmed=0;c.confirm=()=>{confirmed++;return true;};c.selected=['e1'];c.elementSelections=[{id:'panel-0',vi:0,keys:['e1']}];c.selectedAnnotations=['old-overlay'];c.selectedPanelLabel='panel-0';
+ const event=new f.w.Event('drop',{bubbles:true,cancelable:true});Object.defineProperty(event,'dataTransfer',{value:{types:['Files'],files:[file('saved-project.json',JSON.stringify(payload))]}});f.d.querySelector('header').dispatchEvent(event);await until(()=>c.project.id===restored.id);assert.equal(confirmed,1);assert.equal(c.project.title,'Folder project');assert.equal(c.history.states.length,1);assert.equal(c.elementSelections.length,0);assert.equal(c.selectedAnnotations.length,0);assert.equal(c.selectedPanelLabel,null);assert.equal(c.layoutMode,false);assert.equal(c.boxSelect,false);assert.match(f.messages.at(-1),/工程已恢复/);f.close();
+});
+await test('project replacement cancellation preserves workspace and does not append accompanying images',async()=>{
+ const f=fixture(),c=f.ctx,original=c.project,history=c.history,restored=helpers.createBlankProject('2'.repeat(20),'Cancelled'),payload={project:restored,state:restored.initialState,checkpoints:[]};c.confirm=()=>false;await c.importFiles([file('cancel.json',JSON.stringify(payload)),file('not-imported.svg')]);assert.equal(c.project,original);assert.equal(c.history,history);assert.equal(c.state().order.length,1);assert.equal(c.project.panels.length,1);f.close();
+});
+await test('one project plus figures opens the project once and appends figures to its new history',async()=>{
+ const f=fixture(),c=f.ctx,restored=helpers.createBlankProject('2'.repeat(20),'Mixed import'),payload={project:restored,state:restored.initialState,checkpoints:[]};let confirmed=0;c.confirm=()=>{confirmed++;return true;};await c.importFiles([file('figure.svg'),file('one.json',JSON.stringify(payload)),file('other.svg')]);assert.equal(confirmed,1);assert.equal(c.project.id,restored.id);assert.deepEqual(c.state().order.map(id=>c.panel(id).name),['figure.svg','other.svg']);assert.equal(c.history.states.length,3);f.close();
+});
+await test('multiple projects, malformed history and oversize JSON never partially replace an existing project',async()=>{
+ const f=fixture(),c=f.ctx,original=c.project,restored=helpers.createBlankProject('2'.repeat(20),'Bad import'),payload={project:restored,state:restored.initialState,checkpoints:[]};let confirmed=0;c.confirm=()=>{confirmed++;return true;};
+ await assert.rejects(c.importFiles([file('one.json','{}'),file('two.json','{}')]),/每次只能打开一个工程/);await assert.rejects(c.importFiles([{...file('large.json','{}'),size:200000001}]),/200 MB/);await assert.rejects(c.importFiles([file('broken.json','{')]),/JSON/);await assert.rejects(c.importFiles([file('history.json',JSON.stringify({...payload,history:{states:[],index:0}}))]),/撤销记录无效/);assert.equal(c.project,original);assert.equal(confirmed,0);f.close();
+});
+await test('an asynchronously read project cannot replace a workspace opened in the meantime',async()=>{
+ const f=fixture(),c=f.ctx,restored=helpers.createBlankProject('2'.repeat(20),'Old destination'),payload={project:restored,state:restored.initialState,checkpoints:[]};let release;const pending=c.importFiles([{...file('late.json'),text:()=>new Promise(resolve=>release=resolve)}]);await until(()=>release);c.history=new helpers.History(c.state());release(JSON.stringify(payload));await assert.rejects(pending,/目标已变化/);assert.notEqual(c.project.id,restored.id);f.close();
+});
+await test('a slow project read cannot replace an active PDF chooser started after the read began',async()=>{
+ const f=fixture(),c=f.ctx,restored=helpers.createBlankProject('2'.repeat(20),'Late project'),payload={project:restored,state:restored.initialState,checkpoints:[]};let release;const opening=c.importFiles([{...file('late.json'),text:()=>new Promise(resolve=>release=resolve)}]);await until(()=>release);
+ const importing=c.importFiles([new f.w.File(['%PDF-synthetic'],'current.pdf',{type:'application/pdf'})]);await until(()=>f.d.getElementById('pdfImportDialog').open);release(JSON.stringify(payload));await assert.rejects(opening,/请先完成或取消当前导入/);assert.equal(f.d.getElementById('pdfImportDialog').open,true);assert.notEqual(c.project.id,restored.id);c.cancelFileImport();await importing;f.close();
+});
+await test('dropping onto a locked panel appends a figure and preserves its original content and lock',async()=>{
+ const f=fixture(),c=f.ctx;await c.importFiles([file('locked.svg')]);const id=c.selectedPanel,next=copy(c.state());next.panels[id].locked=true;c.history.commit(next);const old=JSON.stringify(c.panel(id));const event=new f.w.Event('drop',{bubbles:true,cancelable:true});Object.defineProperty(event,'dataTransfer',{value:{types:['Files'],files:[file('added.svg')]}});c.droppedFiles(event,{row:0,col:0},id);await until(()=>c.state().order.length===2);assert.equal(c.state().panels[id].locked,true);assert.equal(JSON.stringify(c.panel(id)),old);f.close();
+});
+await test('file hover highlights the actual vacant cell, preserves occupied cells and distinguishes project/capacity errors',async()=>{
+ const f=fixture(),c=f.ctx;await c.importFiles([file('kept.svg')]);const first=c.selectedPanel,next=copy(c.state());next.columns=2;next.grid.rows=1;c.history.commit(next);let layouts=0;
+ c.layout=()=>{layouts++;return {width:200,height:80,cells:[{row:0,col:0,x:0,y:0,width:100,height:80},{row:0,col:1,x:100,y:0,width:100,height:80}],positions:[{id:first,x:0,y:0,width:100,height:80}]};};
+ const svg=f.d.createElementNS(c.NS,'svg');svg.getBoundingClientRect=()=>({left:0,top:0,width:200,height:80});f.d.getElementById('artboard').append(svg);
+ const hover=(x,transfer)=>{const event=new f.w.Event('dragover',{bubbles:true,cancelable:true});Object.assign(event,{clientX:x,clientY:40});Object.defineProperty(event,'dataTransfer',{value:transfer});f.d.getElementById('viewport').dispatchEvent(event);return event;};
+ const transfer={types:['Files'],files:[],items:[{kind:'file',type:'application/pdf'}]};hover(30,transfer);let marks=svg.querySelectorAll('[data-file-drop-target] rect');assert.equal(marks.length,2);assert.equal(marks[0].getAttribute('stroke'),'#b7862d');assert.equal(marks[1].getAttribute('x'),'100');assert.match(f.d.getElementById('viewport').dataset.fileDropLabel,/保留现有小图.*第 2 列/);const layer=marks[0].parentElement;hover(35,transfer);assert.equal(svg.querySelector('[data-file-drop-target]'),layer);assert.equal(layouts,1,'hover reuses current layout rather than rebuilding the scene');
+ hover(150,transfer);marks=svg.querySelectorAll('[data-file-drop-target] rect');assert.equal(marks.length,1);assert.equal(marks[0].getAttribute('x'),'100');assert.equal(transfer.dropEffect,'copy');
+ hover(30,{types:['Files'],files:[],items:[{kind:'file',type:'application/json'}]});marks=svg.querySelectorAll('[data-file-drop-target] rect');assert.equal(marks.length,1);assert.equal(marks[0].getAttribute('width'),'200');assert.match(f.d.getElementById('viewport').dataset.fileDropLabel,/整个工作区/);
+ const unsupported={types:['Files'],files:[file('unsafe.exe')]};hover(30,unsupported);assert.equal(unsupported.dropEffect,'none');assert.equal(f.d.getElementById('viewport').classList.contains('is-file-drop-invalid'),true);assert.equal(svg.querySelector('[data-file-drop-target] rect').getAttribute('stroke'),'#c84e5e');
+ c.availableFigureImportTarget=()=>{throw Error('最多同时放置 24 张小图');};hover(150,transfer);assert.equal(transfer.dropEffect,'none');assert.match(f.d.getElementById('viewport').dataset.fileDropLabel,/24 张小图/);c.clearFileDrop();assert.equal(svg.querySelector('[data-file-drop-target]'),null);assert.equal(f.d.getElementById('viewport').classList.contains('is-file-drop'),false);f.close();
 });
 await test('an empty-cell drop fills forward and preserves existing panel positions',async()=>{
  const f=fixture(),c=f.ctx;await c.importFiles([file('existing.svg')]);const first=c.selectedPanel,next=copy(c.state());next.columns=3;next.grid.rows=2;c.history.commit(next);
