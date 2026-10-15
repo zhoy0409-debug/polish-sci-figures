@@ -2,7 +2,7 @@
 'use strict';
 const StudioI18n = (() => {
   const fontReplacementEnglish={"原字体：{0}":"Source font: {0}","混合字体":"Mixed fonts","快速替换字体":"Quick font replacement","以 Arial 替换当前范围字体":"Replace fonts in the current scope with Arial","以 Times New Roman 替换当前范围字体":"Replace fonts in the current scope with Times New Roman","原字体缺失或字距异常时，可一键替换；保留字号、位置及上下标。":"Replace missing fonts or unusual spacing in one click; retain size, position and superscripts/subscripts."};
-  const en = {"顶对齐":"Align top","底对齐":"Align bottom","水平分布":"Distribute horizontally","垂直分布":"Distribute vertically",
+  const en = {"格式刷设置":"Format painter settings","加粗与斜体":"Bold and italic","字体来源":"Font source","保留原字体":"Keep source font","可复制导入文件的原字体；本机缺少该字体时，可选择 Arial 或 Times New Roman。":"Copy the imported font family. If it is missing on this device, choose Arial or Times New Roman.","已复制可用的文字格式；不支持的样式将保留目标原样。":"Available text styles copied; unsupported styles keep the target unchanged.","请至少选择一种文字格式":"Select at least one text style.","粘贴元素":"Paste elements","粘贴文字":"Pasted text","已粘贴可编辑元素；原图与母版尺寸保持不变":"Editable elements pasted; original artwork and paper size preserved","已剪切 {0} 个元素；可直接粘贴，撤销可恢复。":"Cut {0} objects; paste directly or undo to restore.","已复制 {0} 个元素；可在当前小图或其他格子粘贴。":"Copied {0} objects; paste in this panel or another cell.","顶对齐":"Align top","底对齐":"Align bottom","水平分布":"Distribute horizontally","垂直分布":"Distribute vertically",
 "文字 ":"Text ",
 "图片":"Image",
 "路径":"Path",
@@ -864,7 +864,8 @@ const StudioI18n = (() => {
   });
   function choose(saved,preferred='en'){return ['zh-CN','en'].includes(saved)?saved:/^zh\b/i.test(preferred)?'zh-CN':'en';}
   function setLanguage(value){language=value==='en'?'en':'zh-CN';return language;}
-  Object.assign(en,fontReplacementEnglish);
+  Object.assign(en,fontReplacementEnglish,{'请至少选择三个独立对象或组合。':'Select at least three separate objects or groups.'});
+  Object.assign(en,{'当前小图在母版边界之外；请选择可见格子或先扩大母版。':'This panel is outside the paper. Select a visible cell or expand the paper first.','文字过长，请分段粘贴。':'This text is too long. Paste it in smaller sections.','请选中完整组合后对齐，或先取消组合。':'Select the complete group to align, or ungroup it first.','请至少选择两个独立对象或组合。':'Select at least two separate objects or groups.'});
   function t(text,...values){let result=language==='en'?(en[text]??text):text;return result.replace(/\{(\d+)\}/g,(_,n)=>String(values[+n]??''));}
   return {t,choose,setLanguage,panelName,projectTitle,validateDisplayNames,preserveDisplayNames,restoreDisplayNames,get language(){return language;},en};
 })();

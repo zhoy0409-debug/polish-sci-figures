@@ -14,15 +14,29 @@ const StudioTextToolsUI = (() => {
     const button=(label,cls)=>{const b=doc.createElement('button');b.type='button';b.className=cls;b.textContent=t(label);b.setAttribute('aria-label',t(label));b.title=t(label);buttonLabels.push({button:b,label});container.append(b);return b;};
     const spacingButton=button('文字间距','text-spacing-toggle'),painterButton=button('格式刷','text-format-painter'),eyeButton=button('吸色笔','shape-eyedropper');
     spacingButton.setAttribute('aria-expanded','false');painterButton.setAttribute('aria-pressed','false');eyeButton.setAttribute('aria-pressed','false');
+    const painterOptions=doc.createElement('span'),painterOptionsButton=doc.createElement('button'),painterPopover=doc.createElement('section'),brushLabels=[];
+    painterOptions.className='text-painter-options';painterOptionsButton.type='button';painterOptionsButton.className='text-painter-settings-toggle';painterOptionsButton.textContent='▾';painterOptionsButton.setAttribute('aria-label',t('格式刷设置'));painterOptionsButton.title=t('格式刷设置');painterOptionsButton.setAttribute('aria-expanded','false');painterOptions.append(painterOptionsButton);painterButton.after(painterOptions);
+    painterPopover.className='text-spacing-popover text-painter-popover';painterPopover.hidden=true;painterPopover.setAttribute('aria-label',t('格式刷设置'));
+    const brushChecks=[];
+    for(const [label,fields]of [['字体',['fontFamily']],['字号',['fontSize']],['加粗与斜体',['fontWeight','fontStyle']],['文字颜色',['fill']],['文字间距',['letterSpacing','lineHeight']]]){
+      const wrapper=doc.createElement('label'),caption=doc.createElement('span'),input=doc.createElement('input');wrapper.className='text-painter-choice';input.type='checkbox';input.checked=true;input.name='brush-'+fields[0];caption.textContent=t(label);input.setAttribute('aria-label',t(label));wrapper.append(caption,input);painterPopover.append(wrapper);brushLabels.push({caption,input,label});brushChecks.push({input,fields});
+    }
+    const fontLabel=doc.createElement('label'),fontCaption=doc.createElement('span'),brushFont=doc.createElement('select');fontLabel.className='text-painter-font';brushFont.name='brushFont';fontCaption.textContent=t('字体来源');brushFont.setAttribute('aria-label',t('字体来源'));fontLabel.append(fontCaption,brushFont);painterPopover.append(fontLabel);brushLabels.push({caption:fontCaption,input:brushFont,label:'字体来源'});
+    const brushFontLabels=[];for(const [value,label]of [['source','保留原字体'],['Arial','Arial'],['Times New Roman','Times New Roman']]){const option=doc.createElement('option');option.value=value;option.textContent=t(label);brushFont.append(option);brushFontLabels.push({option,label});}
+    const brushHint=doc.createElement('p');brushHint.className='muted';brushHint.textContent=t('可复制导入文件的原字体；本机缺少该字体时，可选择 Arial 或 Times New Roman。');painterPopover.append(brushHint);
     const popover=doc.createElement('section');popover.className='text-spacing-popover';popover.hidden=true;popover.setAttribute('aria-label',t('文字间距'));container.append(popover);
     const field=(label,name,min,max,step)=>{const wrapper=doc.createElement('label'),caption=doc.createElement('span'),input=doc.createElement('input');caption.textContent=t(label);input.type='number';input.name=name;input.min=String(min);input.max=String(max);input.step=String(step);input.setAttribute('aria-label',t(label));fieldLabels.push({caption,input,label});wrapper.append(caption,input);popover.append(wrapper);return input;};
-    const letter=field('字间距（pt）','letterSpacing',-1000,1000,.1),line=field('行距（倍）','lineHeight',.5,5,.05),hint=doc.createElement('p');hint.className='muted';hint.textContent=t('输入即预览，移开焦点即应用；格式刷只复制文字样式，吸色笔只修改图形颜色。');popover.append(hint);
+    const letter=field('字间距（pt）','letterSpacing',-1000,1000,.1),line=field('行距（倍）','lineHeight',.5,5,.05),hint=doc.createElement('p');hint.className='muted';hint.textContent=t('输入即预览，移开焦点即应用；格式刷只复制文字样式，吸色笔只修改图形颜色。');popover.append(hint);container.append(painterPopover);
     function localize(){
       // Keep the existing controls and focus when the host changes language.
       // Only changed strings touch the DOM; ordinary preview frames stay cheap.
       for(const {button,label}of buttonLabels){const value=t(label);if(button.textContent!==value)button.textContent=value;if(button.getAttribute('aria-label')!==value)button.setAttribute('aria-label',value);if(button.title!==value)button.title=value;}
       for(const {caption,input,label}of fieldLabels){const value=t(label);if(caption.textContent!==value)caption.textContent=value;if(input.getAttribute('aria-label')!==value)input.setAttribute('aria-label',value);}
       const title=t('文字间距'),help=t('输入即预览，移开焦点即应用；格式刷只复制文字样式，吸色笔只修改图形颜色。');if(popover.getAttribute('aria-label')!==title)popover.setAttribute('aria-label',title);if(hint.textContent!==help)hint.textContent=help;
+      const settings=t('格式刷设置');painterOptionsButton.setAttribute('aria-label',settings);painterOptionsButton.title=settings;painterPopover.setAttribute('aria-label',settings);
+      for(const {caption,input,label}of brushLabels){const value=t(label);if(caption.textContent!==value)caption.textContent=value;if(input.getAttribute('aria-label')!==value)input.setAttribute('aria-label',value);}
+      for(const {option,label}of brushFontLabels){const value=t(label);if(option.textContent!==value)option.textContent=value;}
+      const brushHelp=t('可复制导入文件的原字体；本机缺少该字体时，可选择 Arial 或 Times New Roman。');if(brushHint.textContent!==brushHelp)brushHint.textContent=brushHelp;
     }
     let preview=null,spacingSession=null,eyeTargets=null,destroyed=false;
     const options=item=>adapter.captureOptions?.(item)||{pointFactor:item.pointFactor||1};
@@ -32,7 +46,8 @@ const StudioTextToolsUI = (() => {
     const writableShapes=()=>selected().filter(item=>isShape(item)&&valid(item));
     const announce=message=>adapter.say?.(t(message));
     const notify=()=>{localize();const active=painter.status().active;painterButton.setAttribute('aria-pressed',String(active));eyeButton.setAttribute('aria-pressed',String(!!eyeTargets));container.classList.toggle('text-tool-active',active||!!eyeTargets);adapter.changed?.({painter:active,eyedropper:!!eyeTargets});};
-    const painter=formatting.createPainter({valid,read:item=>formatting.capture(item.el,options(item)),write:(items,record)=>adapter.apply(items,items.map(item=>formatting.plan(item.el,record,options(item))),t('已应用文字格式')),changed:notify,error:error=>announce(error.message)});
+    const brushFields=()=>brushChecks.filter(choice=>choice.input.checked).flatMap(choice=>choice.fields);
+    const painter=formatting.createPainter({valid,read:item=>formatting.capture(item.el,{...options(item),fields:brushFields(),skipUnsupported:true,...(brushFont.value==='source'?{}:{fontFamily:brushFont.value})}),write:(items,record)=>adapter.apply(items,items.map(item=>formatting.plan(item.el,record,options(item))),t('已应用文字格式')),changed:notify,error:error=>announce(error.message)});
     function cancelPreview(){preview?.finish(false);preview=null;spacingSession=null;}
     function sameSelection(items){const now=writableTexts();return now.length===items.length&&now.every((item,i)=>identity(item)===identity(items[i])&&item.el===items[i].el);}
     function beginSpacing(){
@@ -55,8 +70,12 @@ const StudioTextToolsUI = (() => {
       input.addEventListener('input',()=>updateSpacing(input));input.addEventListener('change',commitSpacing);input.addEventListener('blur',commitSpacing);
       input.addEventListener('keydown',event=>{event.stopPropagation();if(event.key==='Enter'){event.preventDefault();commitSpacing();input.blur();}else if(event.key==='Escape'){event.preventDefault();cancelPreview();sync();input.blur();}});
     }
-    spacingButton.addEventListener('click',()=>{const show=popover.hidden;if(!show)commitSpacing();popover.hidden=!show;spacingButton.setAttribute('aria-expanded',String(show));if(show){sync();letter.focus();}});
-    painterButton.addEventListener('click',()=>{commitSpacing();eyeTargets=null;if(painter.status().active)painter.cancel();else {const items=selected().filter(item=>isText(item)&&valid(item,'source'));if(items.length===1&&painter.arm(items[0]))announce('已复制文字格式，请点击目标文字；Esc 取消。');}notify();});
+    spacingButton.addEventListener('click',()=>{const show=popover.hidden;if(!show)commitSpacing();painterPopover.hidden=true;painterOptionsButton.setAttribute('aria-expanded','false');popover.hidden=!show;spacingButton.setAttribute('aria-expanded',String(show));if(show){sync();letter.focus();}});
+    function armPainter(){const items=selected().filter(item=>isText(item)&&valid(item,'source'));if(items.length!==1||!painter.arm(items[0]))return false;announce(brushFields().length===Object.keys(painter.status().record).length?'已复制文字格式，请点击目标文字；Esc 取消。':'已复制可用的文字格式；不支持的样式将保留目标原样。');return true;}
+    painterButton.addEventListener('click',()=>{commitSpacing();eyeTargets=null;painterPopover.hidden=true;painterOptionsButton.setAttribute('aria-expanded','false');if(painter.status().active)painter.cancel();else armPainter();notify();});
+    painterOptionsButton.addEventListener('click',()=>{commitSpacing();const show=painterPopover.hidden;popover.hidden=true;spacingButton.setAttribute('aria-expanded','false');painterPopover.hidden=!show;painterOptionsButton.setAttribute('aria-expanded',String(show));if(show)brushChecks[0].input.focus();});
+    function changeBrushOptions(){brushFont.disabled=!brushChecks[0].input.checked;if(painter.status().active){painter.cancel();armPainter();}notify();}
+    for(const choice of brushChecks)choice.input.addEventListener('change',changeBrushOptions);brushFont.addEventListener('change',changeBrushOptions);
     eyeButton.addEventListener('click',()=>{commitSpacing();painter.cancel();eyeTargets=eyeTargets?null:writableShapes().slice();if(!eyeTargets?.length)eyeTargets=null;else announce('请点击图形吸取颜色，应用到已选图形；Esc 取消。');notify();});
     function colorOf(item){
       if(!isShape(item))return null;const supplied=adapter.readColor?.(item);if(supplied)return formatting.hex(supplied);
@@ -75,7 +94,7 @@ const StudioTextToolsUI = (() => {
       if(adapter.apply(items,plans,t('已应用吸取的图形颜色'))!==false){eyeTargets=null;notify();sync();}return true;
     }
     function cancel(){cancelPreview();const active=painter.cancel()||!!eyeTargets;eyeTargets=null;notify();sync();return active;}
-    function handleKey(event){if(event.key!=='Escape')return false;const active=!!preview||painter.status().active||!!eyeTargets||!popover.hidden;if(!active)return false;event.preventDefault?.();cancel();popover.hidden=true;spacingButton.setAttribute('aria-expanded','false');return true;}
+    function handleKey(event){if(event.key!=='Escape')return false;const active=!!preview||painter.status().active||!!eyeTargets||!popover.hidden||!painterPopover.hidden;if(!active)return false;event.preventDefault?.();cancel();popover.hidden=true;painterPopover.hidden=true;spacingButton.setAttribute('aria-expanded','false');painterOptionsButton.setAttribute('aria-expanded','false');return true;}
     function sync(){
       if(destroyed)return;localize();if(spacingSession&&!sameSelection(spacingSession.items))cancelPreview();
       const items=writableTexts(),sources=selected().filter(item=>isText(item)&&valid(item,'source'));spacingButton.disabled=!items.length;painterButton.disabled=sources.length!==1&&!painter.status().active;eyeButton.disabled=!writableShapes().length&&!eyeTargets;

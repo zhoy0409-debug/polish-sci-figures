@@ -21,6 +21,15 @@ const StudioCanvasClipboard=(()=>{
   const ATTRS=new Set(['id','x','y','x1','y1','x2','y2','dx','dy','cx','cy','fx','fy','fr','r','rx','ry','width','height','viewBox','preserveAspectRatio','d','points','transform','fill','stroke','opacity','fill-opacity','stroke-opacity','stroke-width','stroke-linecap','stroke-linejoin','stroke-miterlimit','stroke-dasharray','stroke-dashoffset','fill-rule','clip-rule','clip-path','font-family','font-size','font-style','font-weight','letter-spacing','word-spacing','text-anchor','dominant-baseline','alignment-baseline','baseline-shift','textLength','lengthAdjust','offset','stop-color','stop-opacity','gradientUnits','gradientTransform','spreadMethod','color-interpolation','clipPathUnits','href','version','color','display','visibility','overflow']);
   const STYLES=new Set(['display','visibility','fill','stroke','opacity','fill-opacity','stroke-opacity','stroke-width','stroke-linecap','stroke-linejoin','stroke-miterlimit','stroke-dasharray','stroke-dashoffset','fill-rule','clip-rule','clip-path','font','font-family','font-size','font-style','font-weight','font-stretch','font-variant','letter-spacing','word-spacing','text-anchor','dominant-baseline','alignment-baseline','baseline-shift','stop-color','stop-opacity','color-interpolation','color','overflow']);
   const ID=/^[\w.:-]+$/,KEY=/^e\d+$/,LOCAL=/^#[\w.:-]+$/;
+  // A live panel can inherit these values from the surrounding editor. Keep
+  // that text/paint context when its selection moves into a different panel.
+  // Do not materialize opacity, clips or transforms: they are not inherited
+  // properties and applying them again would change the copied artwork.
+  // Avoid font-variant shorthand here: Chromium expands even its default normal
+  // value into unsupported longhands when serializing CSSOM. The source's
+  // already supported explicit styles stay on its clone; no new shorthand is
+  // introduced by copying ordinary imported text.
+  const INHERITED=['font-family','font-size','font-style','font-weight','font-stretch','letter-spacing','word-spacing','text-anchor','dominant-baseline','alignment-baseline','fill','stroke','fill-opacity','stroke-opacity','stroke-width','stroke-linecap','stroke-linejoin','stroke-miterlimit','stroke-dasharray','stroke-dashoffset','fill-rule','clip-rule','color'];
   const imageColor=()=>typeof StudioImageColor!=='undefined'?StudioImageColor:typeof module!=='undefined'&&module.exports?require('./image-color.js'):null;
   let serial=0;
   function fail(code,message){const error=new Error(message);error.code='clipboard-'+code;throw error;}
@@ -101,6 +110,18 @@ const StudioCanvasClipboard=(()=>{
       else urls(attr.value);
     }
   }
+  function preserveRootInheritance(source,clone){
+    let css;
+    try{css=source.ownerDocument?.defaultView?.getComputedStyle?.(source);}catch{}
+    if(!css)return;
+    for(const prop of INHERITED){
+      const declared=source.style?.getPropertyValue(prop)||source.getAttribute(prop)||'';
+      if(declared&&!/^(?:inherit|unset|revert|revert-layer)$/i.test(declared.trim()))continue;
+      const value=css.getPropertyValue(prop)?.trim();if(!value)continue;
+      if(prop==='font-stretch'&&/^(?:normal|100%)$/i.test(value))continue;
+      urls(value);clone.style.setProperty(prop,value);
+    }
+  }
   function serialize(options){
     const {svg,keys}=options||{},bounds=rect(options?.bounds),m=matrix(options?.matrix);
     if(!svg||svg.namespaceURI!==NS||svg.localName!=='svg')fail('source','Select editable objects from one panel.');
@@ -120,7 +141,8 @@ const StudioCanvasClipboard=(()=>{
       return node;
     });
     selected=[...new Set(selected)].filter(node=>!selected.some(other=>other!==node&&other.contains(node)));
-    const selectedSet=new Set(selected),keep=new Set([svg]),full=new Set();
+    const selectedSet=new Set(selected),keep=new Set([svg]),full=new Set(),inheritance=svg.cloneNode(false);
+    preserveRootInheritance(svg,inheritance);
     const ancestors=node=>{for(let p=node;p&&p!==svg;p=p.parentElement)keep.add(p);};
     const entire=node=>{for(const child of [node,...node.querySelectorAll('*')]){keep.add(child);full.add(child);}ancestors(node);};
     selected.forEach(entire);
@@ -129,7 +151,7 @@ const StudioCanvasClipboard=(()=>{
     // reject them instead of duplicating visible artwork or guessing that style.
     for(const node of keep){
       if(node.localName==='style')fail('stylesheet','Inline SVG styles before copying this selection.');
-      for(const id of references(node)){
+      for(const id of references(node===svg?inheritance:node)){
         const target=ids.get(id);if(!target)fail('reference','The selection contains a missing SVG reference.');
         if(!target.closest('defs'))fail('reference','This selection references artwork outside its SVG definitions.');
         if(!full.has(target))entire(target);
@@ -144,7 +166,7 @@ const StudioCanvasClipboard=(()=>{
       for(const child of [target,...target.querySelectorAll('*')])for(const nested of references(child))checkReference(nested,depth+1);
       resolving.delete(id);resolved.add(id);
     };
-    for(const node of keep)for(const id of references(node))checkReference(id);
+    for(const node of keep)for(const id of references(node===svg?inheritance:node))checkReference(id);
     // An objectBoundingBox clip on a partially retained group changes when its
     // siblings are removed. Ordinary PDF userSpaceOnUse clipping stays exact.
     for(const node of keep)if(!full.has(node))for(const id of urls(node.style?.getPropertyValue('clip-path')||node.getAttribute('clip-path')||'')){
@@ -156,6 +178,7 @@ const StudioCanvasClipboard=(()=>{
     // inherited text/font state or multiplying shared group opacity.
     for(let i=nodes.length-1;i>0;i--)if(!keep.has(nodes[i])||['metadata','style'].includes(nodes[i].localName))copies[i].remove();
     for(const node of [clone,...clone.querySelectorAll('*')])cleanElement(node,owned);
+    for(const prop of INHERITED){const declared=svg.style?.getPropertyValue(prop)||svg.getAttribute(prop)||'';if((!declared||/^(?:inherit|unset|revert|revert-layer)$/i.test(declared.trim()))&&inheritance.style.getPropertyValue(prop))clone.style.setProperty(prop,inheritance.style.getPropertyValue(prop));}
     const box=String(svg.getAttribute('viewBox')||'').trim().split(/[\s,]+/).map(Number);
     if(box.length!==4||box.some(v=>!finite(v))||box[2]<=0||box[3]<=0)fail('viewport','The panel requires a finite SVG viewBox before copying.');
     // The caller's matrix already contains the root viewport/transform. Set an
@@ -182,6 +205,103 @@ const StudioCanvasClipboard=(()=>{
     if(serialized.length>MAX_BYTES||new TextEncoder().encode(serialized).length>MAX_BYTES)fail('size','The selection is too large to copy.');
     return {svg:serialized,width:bounds.width,height:bounds.height,viewBox:[0,0,bounds.width,bounds.height],bounds,count:selectedSet.size,keys:selected.map(node=>node.getAttribute('data-key'))};
   }
-  return {serialize,limits:{maxBytes:MAX_BYTES,maxNodes:MAX_NODES,maxKeys:MAX_KEYS}};
+  const templateCache=new Map(),MAX_CACHE_ENTRIES=12,MAX_CACHE_CHARS=16000000,MAX_CACHE_NODES=50000;let cachedChars=0,cachedNodes=0;
+  function selectionTemplate(text,doc){
+    if(typeof text!=='string'||text.length>MAX_BYTES)fail('source','The copied selection is invalid.');
+    const cached=templateCache.get(text);if(cached){templateCache.delete(text);templateCache.set(text,cached);return cached;}
+    if(/<!DOCTYPE|<!ENTITY/i.test(text))fail('source','The copied selection is invalid.');
+    const bytes=new TextEncoder().encode(text).length;if(bytes>MAX_BYTES)fail('size','The copied selection is too large.');
+    const Parser=doc?.defaultView?.DOMParser||(typeof DOMParser!=='undefined'?DOMParser:null);if(!Parser)fail('source','The copied selection cannot be read in this environment.');
+    const parsed=new Parser().parseFromString(text,'image/svg+xml'),incoming=parsed.documentElement;
+    if(parsed.querySelector('parsererror')||incoming.namespaceURI!==NS||incoming.localName!=='svg')fail('source','The copied selection is invalid.');
+    const box=String(incoming.getAttribute('viewBox')||'').trim().split(/[\s,]+/).map(Number);
+    if(box.length!==4||box.some(value=>!finite(value))||box[0]!==0||box[1]!==0)fail('viewport','The copied selection has inconsistent dimensions.');
+    const size=rect({x:0,y:0,width:box[2],height:box[3]}),newNodes=[incoming,...incoming.querySelectorAll('*')];
+    if(newNodes.length+1>MAX_NODES)fail('size','The copied selection is too large.');
+    const ids=new Map();
+    for(const node of newNodes)if(node.id){if(!ID.test(node.id)||ids.has(node.id))fail('reference','The copied selection contains ambiguous SVG references.');ids.set(node.id,node);}
+    const colorNodes=retainedColorNodes(incoming,new Set(newNodes));
+    for(const node of newNodes)cleanElement(node,colorNodes);
+    const resolved=new Set(),resolving=new Set(),check=(id,depth=0)=>{
+      if(!ids.has(id)||resolving.has(id)||depth>64)fail('reference','The copied selection contains missing, cyclic or excessively nested SVG references.');
+      if(resolved.has(id))return;resolving.add(id);
+      for(const child of [ids.get(id),...ids.get(id).querySelectorAll('*')])for(const next of references(child))check(next,depth+1);
+      resolving.delete(id);resolved.add(id);
+    };
+    for(const node of newNodes)for(const id of references(node))check(id);
+    const result={root:incoming,width:size.width,height:size.height,nodeCount:newNodes.length,bytes};
+    if(text.length<=MAX_CACHE_CHARS&&result.nodeCount<=MAX_CACHE_NODES){while(templateCache.size>=MAX_CACHE_ENTRIES||cachedChars+text.length>MAX_CACHE_CHARS||cachedNodes+result.nodeCount>MAX_CACHE_NODES){const first=templateCache.keys().next().value;cachedChars-=first.length;cachedNodes-=templateCache.get(first).nodeCount;templateCache.delete(first);}templateCache.set(text,result);cachedChars+=text.length;cachedNodes+=result.nodeCount;}
+    return result;
+  }
+  function destinationContext(svg){
+    if(!svg||svg.namespaceURI!==NS||svg.localName!=='svg')fail('source','Select an editable destination panel.');
+    const nodes=[svg,...svg.querySelectorAll('*')],usedIds=new Set(),usedKeys=new Set();let nextKey=0;
+    if(nodes.length>MAX_NODES)fail('size','The destination panel is too large.');
+    for(const node of nodes){
+      if(node.id){if(usedIds.has(node.id))fail('reference','The destination panel contains ambiguous SVG references.');usedIds.add(node.id);}
+      const key=node.getAttribute('data-key');if(key){if(!KEY.test(key)||usedKeys.has(key)||!Number.isSafeInteger(+key.slice(1)))fail('selection','The destination panel contains ambiguous editing keys.');usedKeys.add(key);nextKey=Math.max(nextKey,+key.slice(1)+1);}
+    }
+    return {svg,usedIds,usedKeys,nextKey,nodeCount:nodes.length,insertedBytes:0};
+  }
+  function buildInsertion(context,record,{dimensions=null,stable=false}={}){
+    if(stable&&!Array.isArray(record?.matrix))fail('matrix','The inserted selection has an invalid transform.');
+    const {svg,usedIds,usedKeys}=context,m=matrix(record?.matrix),template=selectionTemplate(record?.svg,svg.ownerDocument),incoming=template.root.cloneNode(true),newNodes=[incoming,...incoming.querySelectorAll('*')];
+    if(dimensions&&(dimensions.width!==template.width||dimensions.height!==template.height))fail('viewport','The copied selection has inconsistent dimensions.');
+    context.insertedBytes+=template.bytes;if(context.insertedBytes>MAX_BYTES)fail('size','The inserted selections are too large.');
+    context.nodeCount+=newNodes.length+1;if(context.nodeCount>MAX_NODES)fail('size','The selection is too large to paste into this panel.');
+    let nextKey=context.nextKey;
+    if(record.keyStart!==undefined){if(!Number.isSafeInteger(record.keyStart)||record.keyStart<(stable?1000000000:0))fail('selection','The pasted editing keys are invalid.');nextKey=stable?record.keyStart:Math.max(nextKey,record.keyStart);}else if(stable)fail('selection','The pasted editing keys are invalid.');
+    const ids=new Map();for(const node of newNodes)if(node.id)ids.set(node.id,node);
+    let selectionId='selection';while(ids.has(selectionId))selectionId+='-group';
+    let prefix;do{prefix='clipboard-paste-'+(++serial)+'-';}while(usedIds.has(prefix+selectionId)||[...ids.keys()].some(id=>usedIds.has(prefix+id)));
+    const mapping=new Map([...ids.keys()].map(id=>[id,prefix+id]));
+    usedIds.add(prefix+selectionId);for(const id of mapping.values())usedIds.add(id);
+    for(const node of newNodes){
+      if(node.id)node.id=mapping.get(node.id);
+      for(const attr of [...node.attributes]){
+        if(attr.name==='data-studio-image-color')continue;
+        if(attr.localName==='href'&&LOCAL.test(attr.value))attr.value='#'+mapping.get(attr.value.slice(1));
+        else if(/url\s*\(/i.test(attr.value))attr.value=attr.value.replace(/url\(\s*(['"]?)#([\w.:-]+)\1\s*\)/gi,(_,q,id)=>'url(#'+mapping.get(id)+')');
+      }
+    }
+    // SVG length units on a nested root are resolved in destination user space.
+    // The clipboard dimensions are already physical pt, so remove its pt suffix
+    // before applying the explicit pt-to-destination matrix exactly once.
+    incoming.setAttribute('x','0');incoming.setAttribute('y','0');incoming.setAttribute('width',String(template.width));incoming.setAttribute('height',String(template.height));incoming.setAttribute('preserveAspectRatio','none');
+    const group=svg.ownerDocument.createElementNS(NS,'g');group.id=prefix+selectionId;group.setAttribute('data-studio-inserted','true');group.setAttribute('transform','matrix('+m.join(' ')+')');group.append(svg.ownerDocument.importNode(incoming,true));
+    const keys=[];
+    for(const node of [group,...group.querySelectorAll('*')]){
+      // Verified filter primitives intentionally have no editable object keys.
+      if(!TAGS.has(node.localName))continue;
+      if(stable&&usedKeys.has('e'+nextKey))fail('selection','The pasted editing keys overlap existing objects.');
+      while(usedKeys.has('e'+nextKey))nextKey++;
+      if(!Number.isSafeInteger(nextKey))fail('selection','The pasted editing keys are invalid.');
+      const key='e'+nextKey++;usedKeys.add(key);node.setAttribute('data-key',key);keys.push(key);
+    }
+    context.nextKey=Math.max(context.nextKey,nextKey);
+    const textKeys=[...group.querySelectorAll('text[data-key]')].filter(node=>!node.closest('defs,clipPath,symbol,linearGradient,radialGradient,filter')).map(node=>node.getAttribute('data-key'));
+    return {group,key:group.getAttribute('data-key'),keys,textKeys,selectedId:group.id};
+  }
+  // Standalone immutable composition is useful for import/export integrations.
+  function append(options){
+    const {svg,snapshot}=options||{},size=rect({x:0,y:0,width:snapshot?.width,height:snapshot?.height}),context=destinationContext(svg);
+    const result=buildInsertion(context,{svg:snapshot?.svg,matrix:options?.matrix,keyStart:options?.keyStart},{dimensions:size}),clone=svg.cloneNode(true);clone.append(result.group);const serialized=clone.outerHTML;
+    if(serialized.length>MAX_BYTES||new TextEncoder().encode(serialized).length>MAX_BYTES)fail('size','The pasted panel is too large.');
+    return {svg:serialized,key:result.key,keys:result.keys,textKeys:result.textKeys,selectedId:result.selectedId};
+  }
+  // This rendering path mutates only the caller-owned temporary SVG. Build and
+  // validate every fragment first; a bad later record must never partially mount.
+  // Stable high key ranges let ordinary per-object edits survive redraw/reopen.
+  function mountAll(options){
+    const {svg,insertions}=options||{};
+    if(!svg||svg.namespaceURI!==NS||svg.localName!=='svg')fail('source','Select an editable destination panel.');
+    if(!Array.isArray(insertions)||insertions.length>300)fail('selection','The inserted selections are invalid.');
+    if(!insertions.length)return {svg,keys:[],groups:[]};
+    const context=destinationContext(svg);
+    const prepared=insertions.map(record=>buildInsertion(context,record,{stable:true}));
+    if(options.validateOnly!==true){const fragment=svg.ownerDocument.createDocumentFragment();for(const record of prepared)fragment.append(record.group);svg.append(fragment);}
+    return {svg,keys:prepared.map(record=>record.key),groups:prepared.map(({key,keys,textKeys,selectedId})=>({key,keys,textKeys,selectedId}))};
+  }
+  return {serialize,append,mountAll,limits:{maxBytes:MAX_BYTES,maxNodes:MAX_NODES,maxKeys:MAX_KEYS,insertionKeyStride:MAX_NODES+1,minInsertionKey:1000000000,maxInsertions:300}};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=StudioCanvasClipboard;

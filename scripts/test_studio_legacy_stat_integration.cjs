@@ -13,7 +13,7 @@ const declarations=source.split('\n').filter(line=>['const TAGS =','const ATTRS 
 const ctx={document,DOMParser:dom.window.DOMParser,NS,T:x=>x,StudioLegacyStatCleanup:cleanup,
  StudioI18n:{validateDisplayNames(){}},StudioMarkStyle:require(base+'mark-style.js'),StudioGroupSpacing:require(base+'group-spacing.js'),
  paletteDeclaredColors:helpers.paletteDeclaredColors,svgElementMap:helpers.svgElementMap,validateState:helpers.validateState,
- project:null,templateCache:new Map(),panel:id=>ctx.project.panels.find(p=>p.id===id),reflowSpec:()=>({key:'cached-plot'}),heatmapCellInfo:helpers.heatmapCellInfo};
+ project:null,state:()=>ctx.project?.initialState||{panels:{}},templateCache:new Map(),panel:id=>ctx.project.panels.find(p=>p.id===id),reflowSpec:()=>({key:'cached-plot'}),heatmapCellInfo:helpers.heatmapCellInfo};
 vm.createContext(ctx);vm.runInContext(declarations+'\n'+chunk('  function safeValue(','  function svgContentSummary(')+'\n'+chunk('  function inlineSvgStyles(','  async function validateSvgImportFeatures(')+'\n'+chunk('  function sanitize(','  const heatmapUpgradeRequests=')+'\n'+source.split('\n').find(line=>line.includes('  function statisticalSourceBinding('))+'\n'+chunk('  function statisticalAnchorMetadata(','  function statisticalSemanticPoint(')+'\n'+chunk('  function reflowSvg(','  const reflowRequests=')+'\n'+chunk('  function currentHeatmapMetadata(','  let editableSourceCache='),ctx);
 const generator=fs.readFileSync(require.resolve('./fixtures/legacy-statistical-band-builder.txt'),'utf8');
 const sizes=[['original',300,200],['portrait',200,300],['wide',450,200],['spanWide',600,200],['spanThree',900,200],['spanTall',300,400],['large',600,400]];

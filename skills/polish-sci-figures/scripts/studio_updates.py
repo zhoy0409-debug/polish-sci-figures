@@ -12,8 +12,8 @@ import time
 from datetime import datetime, timezone
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 
-STUDIO_VERSION = '0.1.17'
-SUITE_VERSION = '1.4.17'
+STUDIO_VERSION = '0.1.18'
+SUITE_VERSION = '1.4.18'
 REPOSITORY = 'https://github.com/zhoy0409-debug/polish-sci-figures'
 RELEASES_URL = REPOSITORY + '/releases'
 API_URL = 'https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/releases?per_page=30'

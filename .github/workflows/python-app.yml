@@ -243,6 +243,7 @@ jobs:
           node scripts/test_studio_selection_resize_integration.cjs
           node scripts/test_studio_continuous_commands.cjs
           node scripts/test_studio_alignment_icons.cjs
+          node scripts/test_studio_alignment_guides.cjs
           node scripts/test_studio_layers_panel.cjs
           node scripts/test_studio_selection_performance.cjs
           node scripts/test_studio_edited_svg_performance.cjs
@@ -262,6 +263,16 @@ jobs:
           node scripts/test_studio_legacy_stat_integration.cjs
           node scripts/test_studio_direct_text_editing.cjs
           node scripts/test_studio_canvas_clipboard.cjs
+          node scripts/test_studio_canvas_clipboard_append.cjs
+          node scripts/test_studio_element_insertions.cjs
+          node scripts/test_studio_element_insertions_render.cjs
+          node scripts/test_studio_imported_font_brush.cjs
+          node scripts/test_studio_quick_style_blur.cjs
+          node scripts/test_studio_inserted_text_font_scale.cjs
+          node scripts/test_studio_group_alignment.cjs
+          node scripts/test_studio_clipboard_event_guards.cjs
+          node scripts/test_studio_clipboard_compact_layout.cjs
+          node scripts/test_studio_nudge_hotpath.cjs
           node scripts/test_studio_canvas_clipboard_integration.cjs
           node scripts/test_studio_file_import.cjs
           node scripts/test_studio_resize_text.cjs

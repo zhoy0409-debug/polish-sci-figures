@@ -5,7 +5,7 @@ const {JSDOM}=require('jsdom');
 const base='../skills/polish-sci-figures/assets/figure-studio/';
 const source=fs.readFileSync(require.resolve(base+'studio.js'),'utf8');
 const html=fs.readFileSync(require.resolve(base+'studio.html'),'utf8');
-const rich=require(base+'rich-text.js'),{History,validateState,preparePositionedTextEdit}=require(base+'studio.js');
+const rich=require(base+'rich-text.js'),{History,validateState,preparePositionedTextEdit,selectionAlignmentPlan}=require(base+'studio.js');
 const copy=x=>JSON.parse(JSON.stringify(x));
 function chunk(start,end){const a=source.indexOf(start),b=source.indexOf(end,a+start.length);assert.ok(a>=0&&b>a,`production block ${start}`);return source.slice(a,b);}
 const edits=chunk('    // Prepare all positioned text before styles change inherited font bases.','    // Work on complete category groups');
@@ -32,7 +32,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1']}={}){
   const project={id:'pdf-text-test',panels:[asset]},initial={order:['p0'],columns:1,gap:12,panels:{p0:{variant:0,edits:{}}}};
   let current=copy(initial),outputScale=scale;const history=new History(current),messages=[];
   const parse=()=>new dom.window.DOMParser().parseFromString(raw,'image/svg+xml').documentElement;
-  const ctx={copy,document,$,StudioRichText:rich,StudioTextFormatting:require(base+'text-formatting.js'),StudioI18n:{panelName:p=>p.name},project,preparePositionedTextEdit,
+  const ctx={copy,document,$,selectionAlignmentPlan,StudioRichText:rich,StudioTextFormatting:require(base+'text-formatting.js'),StudioI18n:{panelName:p=>p.name},project,preparePositionedTextEdit,
     original:false,selectedPanel:'p0',selected:[...keys],selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],contentSelection:null,selectedEmptyCell:null,textTools:null,
     state:()=>current,panel:()=>asset,currentOutput:()=>({scale:outputScale}),
     selectionGroups:()=>[{id:'p0',vi:0,keys:[...ctx.selected]}],keysToObjects:svg=>[...svg.querySelectorAll('[data-key]')],

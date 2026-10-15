@@ -2,11 +2,12 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),{JSDOM}=require('jsdom');
 const source=fs.readFileSync(require.resolve('../skills/polish-sci-figures/assets/figure-studio/studio.js'),'utf8');
-const a=source.indexOf('  function baseSvg(id, vi) {'),b=source.indexOf('  const heatmapUpgradeRequests=',a);
+const a=source.indexOf('  function baseSvg(id, vi,'),b=source.indexOf('  const heatmapUpgradeRequests=',a);
 assert.ok(a>=0&&b>a);const dom=new JSDOM(),document=dom.window.document;
 let parses=0;
 const asset={id:'p',variants:[{svg:'<svg xmlns="http://www.w3.org/2000/svg"><text data-key="e1">Original</text></svg>'}]};
-const ctx={project:{panels:[asset]},templateCache:new Map(),panel:id=>ctx.project.panels.find(p=>p.id===id),sanitize(text){parses++;return new dom.window.DOMParser().parseFromString(text,'image/svg+xml').documentElement;},statisticalSourceBinding:()=> 'bound',svgElementMap:()=>new Map([['e1','e1']])};
+const current={panels:{p:{variant:0,edits:{}}}};
+const ctx={project:{panels:[asset]},state:()=>current,templateCache:new Map(),panel:id=>ctx.project.panels.find(p=>p.id===id),sanitize(text){parses++;return new dom.window.DOMParser().parseFromString(text,'image/svg+xml').documentElement;},statisticalSourceBinding:()=> 'bound',svgElementMap:()=>new Map([['e1','e1']])};
 vm.createContext(ctx);vm.runInContext(source.slice(a,b),ctx);
 for(let i=0;i<100;i++){const svg=ctx.baseSvg('p',0);assert.equal(svg.textContent,'Original');svg.firstChild.textContent='Consumer mutation';}
 assert.equal(parses,1,'100 selection/style renders reuse one sanitized source and get independent clones');

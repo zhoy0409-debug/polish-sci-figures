@@ -96,23 +96,43 @@ const StudioTextFormatting = (() => {
   }
   function applySpacing(el,config){return applyMeasured(measure(el),config);}
   function readSpacing(el){const m=measure(el);return {letterSpacing:m.letterSpacing,lineHeight:Math.min(5,Math.max(.5,m.lineHeight)),lines:Math.max(1,m.bases.length)};}
-  function validTypography(record){
-    return !!record&&typeof record==='object'&&!Array.isArray(record)&&Object.keys(record).every(k=>['fontFamily','fontSize','fontWeight','fontStyle','fill','letterSpacing','lineHeight'].includes(k))&&fontFamily(record.fontFamily)&&Number.isFinite(record.fontSize)&&record.fontSize>=.1&&record.fontSize<=1000&&['400','700'].includes(record.fontWeight)&&['normal','italic','oblique'].includes(record.fontStyle)&&/^#[a-f\d]{6}$/i.test(record.fill)&&Number.isFinite(record.letterSpacing)&&Math.abs(record.letterSpacing)<=1000&&validateSpacing('line-height',String(record.lineHeight));
+  const typographyFields=['fontFamily','fontSize','fontWeight','fontStyle','fill','letterSpacing','lineHeight'];
+  function validTypographyField(key,value){
+    return key==='fontFamily'?fontFamily(value):key==='fontSize'?Number.isFinite(value)&&value>=.1&&value<=1000:key==='fontWeight'?['400','700'].includes(value):key==='fontStyle'?['normal','italic','oblique'].includes(value):key==='fill'?typeof value==='string'&&/^#[a-f\d]{6}$/i.test(value):key==='letterSpacing'?Number.isFinite(value)&&Math.abs(value)<=1000:key==='lineHeight'?validateSpacing('line-height',String(value)):false;
+  }
+  function validTypography(record,partial=false){
+    if(!record||typeof record!=='object'||Array.isArray(record))return false;
+    const fields=Object.keys(record);return fields.length>0&&(partial||fields.length===typographyFields.length)&&fields.every(key=>typographyFields.includes(key)&&validTypographyField(key,record[key]));
   }
   function hex(color){
     const value=String(color||'').trim();if(/^#[a-f\d]{6}$/i.test(value))return value.toLowerCase();if(/^#[a-f\d]{3}$/i.test(value))return '#'+value.slice(1).split('').map(c=>c+c).join('').toLowerCase();
-    const rgb=value.match(/^rgb\(\s*(\d+)\s*[, ]\s*(\d+)\s*[, ]\s*(\d+)\s*\)$/i);if(rgb&&rgb.slice(1).every(n=>+n<=255))return '#'+rgb.slice(1).map(n=>(+n).toString(16).padStart(2,'0')).join('');
+    const rgb=value.match(/^rgba?\(\s*(\d+(?:\.\d+)?%?)\s*[, ]\s*(\d+(?:\.\d+)?%?)\s*[, ]\s*(\d+(?:\.\d+)?%?)(?:\s*[,/]\s*(1(?:\.0+)?|100%))?\s*\)$/i);
+    if(rgb&&(!/^rgba\(/i.test(value)||rgb[4])){const channels=rgb.slice(1,4).map(n=>n.endsWith('%')?parseFloat(n)*255/100:+n);if(channels.every(n=>n>=0&&n<=255))return '#'+channels.map(n=>Math.round(n).toString(16).padStart(2,'0')).join('');}
     const named={black:'#000000',white:'#ffffff',red:'#ff0000',blue:'#0000ff',green:'#008000',gray:'#808080',grey:'#808080'};return named[value.toLowerCase()]||null;
   }
   function factor(options){const value=Number(options?.pointFactor??1);if(!Number.isFinite(value)||value<=0||value>MAX)throw Error('文字坐标换算无效');return value;}
   function letterFactor(options){return factor({pointFactor:options?.letterPointFactor??options?.pointFactor??1});}
-  function dominant(el,property,fallback){
-    const counts=new Map();const visit=node=>{if(node.nodeType===3){const value=inherited(node.parentElement,property,fallback),n=String(node.nodeValue||'').trim().length;if(n)counts.set(value,(counts.get(value)||0)+n);}else for(const child of node.childNodes||[])visit(child);};visit(el);
+  function dominant(el,property,fallback,resolve){
+    const counts=new Map();const visit=node=>{if(node.nodeType===3){let value=inherited(node.parentElement,property,fallback);if(resolve)value=resolve(node.parentElement,value);const n=String(node.nodeValue||'').trim().length;if(n)counts.set(value,(counts.get(value)||0)+n);}else for(const child of node.childNodes||[])visit(child);};visit(el);
     return [...counts].sort((a,b)=>b[1]-a[1])[0]?.[0]||inherited(el,property,fallback);
   }
+  function textColor(el,value){
+    const direct=hex(value);if(direct)return direct;
+    if(String(value).trim().toLowerCase()==='currentcolor'){const color=hex(inherited(el,'color','black'));if(color)return color;}
+    // The browser resolves CSS named/HSL colours on the existing native run.
+    // No probe node, font request or source-tree change is needed. Gradients
+    // and alpha colours are deliberately left out rather than flattened.
+    try{return hex(el.ownerDocument?.defaultView?.getComputedStyle(el).fill);}catch{return null;}
+  }
   function capture(el,options={}){
-    if(!text(el))throw Error('请选择可编辑文字');const f=factor(options),api=rich(),spacing=readSpacing(el),weight=dominant(el,'font-weight','400'),record={fontFamily:dominant(el,'font-family','Arial'),fontSize:(api?.pointSize(el)||12)*f,fontWeight:weight==='bold'||+weight>=600?'700':'400',fontStyle:dominant(el,'font-style','normal'),fill:options.fill||hex(dominant(el,'fill','black')),letterSpacing:spacing.letterSpacing*letterFactor(options),lineHeight:spacing.lineHeight};
-    if(!validTypography(record))throw Error('当前文字格式暂不能复制');return Object.freeze(record);
+    if(!text(el))throw Error('请选择可编辑文字');const f=factor(options),api=rich(),spacing=readSpacing(el),weight=dominant(el,'font-weight','400'),record={fontFamily:dominant(el,'font-family','Arial'),fontSize:(api?.pointSize(el)||12)*f,fontWeight:weight==='bold'||+weight>=600?'700':'400',fontStyle:dominant(el,'font-style','normal'),fill:options.fill||dominant(el,'fill','black',textColor),letterSpacing:spacing.letterSpacing*letterFactor(options),lineHeight:spacing.lineHeight};
+    // A gradient or unsupported colour must not block copying a perfectly
+    // usable native font. Only the brush opts in to skipping unsupported
+    // fields; regular complete typography records keep their strict schema.
+    const fields=options.fields||typographyFields;if(!Array.isArray(fields)||!fields.length||fields.some(key=>!typographyFields.includes(key)))throw Error('请至少选择一种文字格式');
+    if(options.fontFamily!==undefined)record.fontFamily=options.fontFamily;
+    const chosen={};for(const key of fields)if(!options.skipUnsupported||validTypographyField(key,record[key]))chosen[key]=record[key];
+    if(!validTypography(chosen,true))throw Error('当前文字格式暂不能复制');return Object.freeze(chosen);
   }
   function nativeRichRecord(el){
     const content=el.textContent,styles=[];
@@ -128,15 +148,19 @@ const StudioTextFormatting = (() => {
     return {baseText:content,runs};
   }
   function plan(el,record,options={}){
-    if(!text(el)||!validTypography(record))throw Error('文字格式无效');const f=factor(options),oldSize=rich()?.pointSize(el)||12,size=record.fontSize/f,props={'font-family':record.fontFamily,'font-size':rounded(size),'font-weight':record.fontWeight,'font-style':record.fontStyle,fill:record.fill,'letter-spacing':rounded(record.letterSpacing/letterFactor(options)),'line-height':String(record.lineHeight)},children=[];
+    if(!text(el)||!validTypography(record,true))throw Error('文字格式无效');const f=factor(options),oldSize=rich()?.pointSize(el)||12,size=record.fontSize===undefined?oldSize:record.fontSize/f,props={},children=[],mapping={fontFamily:'font-family',fontWeight:'font-weight',fontStyle:'font-style',fill:'fill'};
+    for(const [field,property]of Object.entries(mapping))if(record[field]!==undefined)props[property]=record[field];
+    if(record.fontSize!==undefined)props['font-size']=rounded(size);
+    if(record.letterSpacing!==undefined)props['letter-spacing']=rounded(record.letterSpacing/letterFactor(options));
+    if(record.lineHeight!==undefined)props['line-height']=String(record.lineHeight);
     for(const node of el.querySelectorAll('tspan[data-key]')){
       const key=node.getAttribute('data-key'),values={},ownSize=node.style?.getPropertyValue?.('font-size')||node.getAttribute('font-size')||'';
-      if(ownSize&&!/(?:%|em)$/i.test(ownSize.trim())){const childSize=rich()?.pointSize(node);if(childSize>0&&oldSize>0)values['font-size']=rounded(childSize*size/oldSize);}
+      if(record.fontSize!==undefined&&ownSize&&!/(?:%|em)$/i.test(ownSize.trim())){const childSize=rich()?.pointSize(node);if(childSize>0&&oldSize>0)values['font-size']=rounded(childSize*size/oldSize);}
       // Explicit native fonts/colors must follow the new base appearance. A
       // character's bold/italic/script semantics stay in its own native/run
       // span, rather than being copied from unrelated source characters.
-      if(node.style?.getPropertyValue?.('font-family')||node.hasAttribute('font-family'))values['font-family']=record.fontFamily;
-      if(node.style?.getPropertyValue?.('fill')||node.hasAttribute('fill'))values.fill=record.fill;
+      if(record.fontFamily!==undefined&&(node.style?.getPropertyValue?.('font-family')||node.hasAttribute('font-family')))values['font-family']=record.fontFamily;
+      if(record.fill!==undefined&&(node.style?.getPropertyValue?.('fill')||node.hasAttribute('fill')))values.fill=record.fill;
       if(Object.keys(values).length)children.push({key,props:values});
     }
     // A former whole-text character override must not defeat a regular brush
@@ -144,7 +168,7 @@ const StudioTextFormatting = (() => {
     // the source string's character ranges or re-encoding native PDF offsets.
     const api=rich(),native=api?.nativeStyles(el),content=el.textContent;
     if(api&&content){let runs=options.richText?api.remap(options.richText,content):nativeRichRecord(el),changed=false;
-      for(const [property,next]of [['bold',record.fontWeight==='700'],['italic',record.fontStyle!=='normal']])if(!next&&native?.runs.filter(run=>run.style[property]===true).reduce((n,run)=>n+run.end-run.start,0)===content.length){runs=api.format(runs,content,0,content.length,property,false);changed=true;}
+      for(const [field,property,next]of [['fontWeight','bold',record.fontWeight==='700'],['fontStyle','italic',record.fontStyle!=='normal']])if(record[field]!==undefined&&!next&&native?.runs.filter(run=>run.style[property]===true).reduce((n,run)=>n+run.end-run.start,0)===content.length){runs=api.format(runs,content,0,content.length,property,false);changed=true;}
       if(changed)props['rich-text']=JSON.stringify(runs);
     }
     return {props,children};
@@ -160,7 +184,7 @@ const StudioTextFormatting = (() => {
     const changed=()=>adapter.changed?.(status());
     const valid=(target,role)=>available(target,role)&&adapter.valid?.(target,role)!==false;
     return {
-      arm(source){if(!valid(source,'source'))return false;try{const record=adapter.read?adapter.read(source):capture(source.el,{pointFactor:source.pointFactor,fill:source.fill});if(!validTypography(record))return false;armed={identity:source.identity||source.el,record:Object.freeze({...record})};changed();return true;}catch(error){adapter.error?.(error);return false;}},
+      arm(source){if(!valid(source,'source'))return false;try{const record=adapter.read?adapter.read(source):capture(source.el,{pointFactor:source.pointFactor,fill:source.fill});if(!validTypography(record,true))return false;armed={identity:source.identity||source.el,record:Object.freeze({...record})};changed();return true;}catch(error){adapter.error?.(error);return false;}},
       apply(targets){if(!armed)return false;const items=Array.isArray(targets)?targets:[targets],seen=new Set(),chosen=items.filter(target=>valid(target,'target')&&!seen.has(target.identity||target.el)&&(seen.add(target.identity||target.el),true));if(!chosen.length)return false;try{const result=adapter.write?.(chosen,armed.record);if(result===false)return false;armed=null;changed();return true;}catch(error){adapter.error?.(error);return false;}},
       cancel(){if(!armed)return false;armed=null;changed();return true;},
       status

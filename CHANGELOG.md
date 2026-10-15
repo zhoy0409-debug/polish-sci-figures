@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.4.18 · Figure Studio 0.1.18
+
+- Paste editable selections into the current panel or another cell as separate insertion records, preserving original artwork, paper bounds, grid tracks and transformed PDF text scale.
+- Guard asynchronous clipboard ownership, retain internal copying when system permission is denied, and copy selected text to the system clipboard when allowed.
+- Add independent format-painter fields and explicit Arial / Times New Roman alternatives while retaining original font-family stacks; unsupported paint no longer blocks other chosen typography.
+- Commit quick text-size and colour previews on blur, avoid duplicate or stale commits, and reduce keyboard-nudge measurements of unrelated objects.
+- Keep inserted-text font sizes consistent between the sidebar and fitted native plots. Align or distribute groups by their outer bounds, preserve their internal layout and protect a locked group as a whole; ungroup before aligning its internal objects independently.
+- 保留原图、母版与格子尺寸，修复可编辑文字复制粘贴及 PDF 文字尺度；格式刷增加独立选项和字体来源，颜色不兼容不再阻断其他格式。快速输入离开焦点即可提交，异步剪贴板与过期预览核对所有权，方向键微调减少无关测量。
+- 插入文字的侧栏字号与适配后的画布字号保持一致；组合按整体外框对齐和分布，保持内部相对位置，锁定时保护整组。单个组合不自动对齐内部元素，需先取消组合再单独调整。
+
+[Release notes / 本版更新](docs/release-notes-v1.4.18.md)
+
 ## v1.4.17 · Figure Studio 0.1.17
 
 - Reduce repeated SVG scans and layer-list rebuilds during large-file editing; coalesce autosaves while preserving undo history and project ownership.

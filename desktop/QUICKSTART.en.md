@@ -6,7 +6,7 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 ## Install and open
 
-1. Download the [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.17/polish-sci-figures-Studio-0.1.17-Setup-x64.exe), then run it and follow the installer for your Windows user account.
+1. Download the [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.18/polish-sci-figures-Studio-0.1.18-Setup-x64.exe), then run it and follow the installer for your Windows user account.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
 3. Choose **English** or **中文** at the top right. Opening the shortcut again opens the editor already running.
 
@@ -30,6 +30,8 @@ Statistical styles and condition tables are in **Annotations**. For optional pub
 
 Select text to use **Text spacing** or copy its style with **Format painter**; use **Eyedropper** separately for shape colours. Shift-click panels to select several, then use the alignment control or **Delete**. Panel labels can be selected together with artwork. Lock finished content before further grid adjustments; unlock it to edit again. Deleting an empty cell removes only a wholly empty row or column.
 
+The arrow beside **Format painter** chooses which styles to copy and whether to keep the imported font or use Arial / Times New Roman; keeping a font name does not install a missing font. Use **Copy** then **Paste elements** to duplicate editable text or shapes in the current panel, or select another panel or empty cell before pasting. Existing artwork, paper bounds and grid track sizes are preserved. Quick font-size edits apply when you leave the field. See the [editing guide](../README.en.md#image-insets-and-updates).
+
 Open the alignment icon to see left, centre, right, top, middle and bottom actions. Equal horizontal or vertical spacing requires three or more editable items. The selection stays active after alignment, so direction keys can fine-tune its position before the next edit; hold Shift for a larger step.
 
 ## Save, quit and upgrade
@@ -40,11 +42,11 @@ Application settings, the workspace page and logs are under `%LOCALAPPDATA%\Figu
 
 Closing a browser tab leaves the local service running. To stop it, choose **Quit** in the small Figure Studio launcher window, or close that window. Accepted calculations finish before the service exits.
 
-**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.17 installer. The older update entry only opens a download; it cannot install this upgrade for you.
+**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.18 installer. The older update entry only opens a download; it cannot install this upgrade for you.
 
-**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.17 installer manually. Version 0.1.17 includes the long-path fix introduced in 0.1.10.
+**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.18 installer manually. Version 0.1.18 includes the long-path fix introduced in 0.1.10.
 
-**Future updates from the 0.1.17 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
+**Future updates from the 0.1.18 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
 
 The update progress shows download, preparation and installation stages with a small moving companion. Once the installer has taken over, an expected service shutdown retains the neutral installation message rather than appearing as a failed update. A connection problem before that handoff has its own retry action.
 
