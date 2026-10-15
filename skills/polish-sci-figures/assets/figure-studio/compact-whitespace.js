@@ -56,7 +56,7 @@
     for(const key of ['x','y','width','height'])rect.setAttribute(key,position[key]);
     clip.append(rect);defs.append(clip);group.setAttribute('clip-path',`url(#${id})`);group.append(svg);rootSvg.append(defs,group);return group;
   }
-  function measure(svg,{ignorePageBackgrounds=false}={}){
+  function measure(svg,{ignorePageBackgrounds=false,ignoreInserted=false}={}){
     for(const node of svg.querySelectorAll('.chosen'))node.classList.remove('chosen');
     const host=document.createElement('div');host.style.cssText='position:fixed;left:-50000px;top:0;pointer-events:none';host.append(svg);document.body.append(host);
     try{
@@ -91,6 +91,10 @@
         // visible marks that must also be protected from trimming.
         let result=null;const nodes=parent.matches?.('[data-inset-content]')?[...parent.querySelectorAll('[data-inset-frame],[data-inset-roi],[data-inset-connector]')]:parent.matches?.('text,use,path,line,polyline,polygon,rect,circle,ellipse,image')?[parent]:[...parent.querySelectorAll('text,use,path,line,polyline,polygon,rect,circle,ellipse,image')];
         for(const node of nodes){
+          // Automatic whitespace trimming follows the original figure. Newly
+          // pasted objects must not reflow neighbouring cells after each edit.
+          // Explicit paper fitting uses the default and still counts this ink.
+          if(ignoreInserted&&node.closest('[data-studio-inserted]'))continue;
           if(node.closest('defs,clipPath,mask,pattern')||!visible(node)||background(node))continue;
           const style=getComputedStyle(node),fill=style.fill,stroke=style.stroke,hasStroke=stroke!=='none'&&Number(style.strokeOpacity)!==0;
           if(node.localName!=='image'&&(fill==='none'||Number(style.fillOpacity)===0)&&!hasStroke)continue;

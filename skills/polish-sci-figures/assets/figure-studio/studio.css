@@ -850,6 +850,14 @@ body>header .autosave.unsaved{color:#a64f55}
 .canvasbar .text-spacing-popover input{width:96px;margin:0!important;padding:7px}
 .text-spacing-popover input[aria-invalid=true]{border-color:#c33;background:#fff2f2}
 .text-spacing-popover p{margin:8px 0 0;white-space:normal;line-height:1.6}
+.text-painter-options{position:relative;display:inline-flex;align-items:center;gap:2px}
+.canvasbar .text-painter-settings-toggle{min-width:24px;padding-inline:5px;border-radius:4px}
+.canvasbar .text-painter-popover label.text-painter-choice{grid-template-columns:16px 1fr;gap:9px;cursor:pointer;text-align:left}
+.canvasbar .text-painter-popover label.text-painter-choice input[type=checkbox]{width:16px!important;height:16px;margin:0!important;padding:0;accent-color:#42668c}
+.canvasbar .text-painter-popover label.text-painter-choice input{grid-column:1;grid-row:1}
+.canvasbar .text-painter-popover label.text-painter-choice span{grid-column:2;grid-row:1}
+.canvasbar .text-painter-popover label.text-painter-font{grid-template-columns:1fr;gap:6px;margin-top:14px;text-align:left}
+.canvasbar .text-painter-popover label.text-painter-font select{width:100%;max-width:none}
 #artboard.is-format-painting,#artboard.is-format-painting [data-key],#artboard.is-format-painting [data-panel-label]{cursor:copy}
 @media(max-width:750px){.text-spacing-popover{position:fixed;top:auto;bottom:80px;left:12px;right:12px;width:auto}.text-tools{border-left:0;padding-left:0}}
 

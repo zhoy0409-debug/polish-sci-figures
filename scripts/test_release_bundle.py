@@ -24,7 +24,7 @@ def main():
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             for module in ("studio_server.py", "studio_statistics.py", "studio_facets.py", "studio_duplicates.py", "studio_duplicate_jobs.py", "duplicate_files.py", "studio_image_links.py"):
                 assert f"skills/polish-sci-figures/scripts/{module}" in names, module
-            for asset in ("selection-transform.js", "selection-transform-dom.js", "selection-resize-controller.js", "canvas-clipboard.js", "grid-resize-ui.js"):
+            for asset in ("selection-transform.js", "selection-transform-dom.js", "selection-resize-controller.js", "canvas-clipboard.js", "element-insertions.js", "grid-resize-ui.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             for module in ("gallery_registry", "gallery_workbench", "gallery_compare", "gallery_time_composition",
                            "gallery_clinical", "gallery_omics_special", "gallery_misc", "gallery_model_extras",

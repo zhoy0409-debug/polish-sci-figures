@@ -38,7 +38,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1'],edits={},cont
   let current=copy(initial);const history=new main.History(current),messages=[];
   const parse=()=>new dom.window.DOMParser().parseFromString(raw,'image/svg+xml').documentElement;
   const layout=()=>{const w=current.grid?.widths?.[0]||width,h=current.grid?.heights?.[0]||200;return {width:w,height:h,positions:[{id:'p0',x:0,y:0,width:w,height:h}],cells:[]};};
-  const ctx={copy,NS,document,$,parse,StudioGridResize:gridResize,StudioRichText:rich,StudioTextFormatting:require(base+'text-formatting.js'),StudioImageInsets:geometry,StudioSelectionTransform:affine,StudioSelectionTransformDOM:presentation,StudioI18n:{panelName:p=>p.name},project,preparePositionedTextEdit:main.preparePositionedTextEdit,
+  const ctx={copy,NS,document,$,parse,selectionAlignmentPlan:main.selectionAlignmentPlan,StudioGridResize:gridResize,StudioRichText:rich,StudioTextFormatting:require(base+'text-formatting.js'),StudioImageInsets:geometry,StudioSelectionTransform:affine,StudioSelectionTransformDOM:presentation,StudioI18n:{panelName:p=>p.name},project,preparePositionedTextEdit:main.preparePositionedTextEdit,
     original:false,selectedPanel:'p0',selected:[...keys],selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],contentSelection:null,selectedEmptyCell:null,textTools:null,layoutMode:false,showGuides:false,renderSerial:0,
     state:()=>current,panel:()=>asset,currentOutput:()=>({scale}),layout,
     selectionGroups:()=>[{id:'p0',vi:0,keys:[...ctx.selected]}],keysToObjects:svg=>[...svg.querySelectorAll('[data-key]')],

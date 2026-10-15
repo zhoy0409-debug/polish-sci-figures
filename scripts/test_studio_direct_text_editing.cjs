@@ -3,7 +3,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),{JSDOM}=require('jsdom');
 const dir='../skills/polish-sci-figures/assets/figure-studio/',source=fs.readFileSync(require.resolve(dir+'studio.js'),'utf8');
-const {History,arrange,validateState,gridFor}=require(dir+'studio.js'),rich=require(dir+'rich-text.js'),copy=x=>JSON.parse(JSON.stringify(x));
+const {History,arrange,validateState,gridFor,selectionAlignmentPlan}=require(dir+'studio.js'),rich=require(dir+'rich-text.js'),copy=x=>JSON.parse(JSON.stringify(x));
 const section=(a,b)=>{const start=source.indexOf(a),end=source.indexOf(b,start+1);assert.ok(start>=0&&end>start,a);return source.slice(start,end);};
 function harness(){
   const dom=new JSDOM('<!doctype html><body><div id="viewport" tabindex="0"><div id="artboard"></div></div><div class="inspector"><input id="fontSize" type="number"><div id="richTextControls"></div><label><input id="textContent"></label><button id="applyText"></button></div><input id="quickFontSize" type="number" min="0.1" max="1000"><button id="undo" disabled>Undo</button><button id="redo" disabled>Redo</button><button id="other">Other operation</button><button id="quickBold">B</button><button id="quickItalic">I</button><button id="quickSuperscript">sup</button><button id="quickSubscript">sub</button></body>',{pretendToBeVisual:true}),{window}=dom,document=window.document,$=id=>document.getElementById(id);
@@ -18,7 +18,7 @@ function harness(){
     renderSelectionProperties(){},renderSelectionCommands(){},renderEditingPanels(){},quickObjectSize:item=>rich.pointSize(item.el),paint:(el,p)=>el.style.getPropertyValue(p)||el.getAttribute(p),hex:value=>value==='black'?'#000000':/^#[0-9a-f]{6}$/i.test(value||'')?value:null,renderRichTextControls(){},getComputedStyle:window.getComputedStyle.bind(window),editingTextTarget:el=>!!el?.closest('input,textarea,[contenteditable="true"]'),
     layout:()=>({width:200,height:100}),currentOutput:()=>({scale:1}),displayedPanelLabel:(s,id)=>s.panels[id].label,
     requestAnimationFrame:fn=>{frames.set(++frameId,fn);return frameId;},cancelAnimationFrame:id=>frames.delete(id),renderCanvas:render,textPointSize:rich.pointSize,textPointFactor:()=>1,focusRichTextControls(){throw Error('An editable canvas text should not require the sidebar');},getActiveRichTextSelection:()=>null};
-  ctx.StudioLayoutLock=require(dir+'layout-lock.js');
+  ctx.StudioLayoutLock=require(dir+'layout-lock.js');ctx.selectionAlignmentPlan=selectionAlignmentPlan;
   vm.createContext(ctx);vm.runInContext(`let original=false,selectedPanel='p0',selected=[],elementSelections=[],selectedAnnotations=[],selectedPanelLabel=null,selectedAlignmentGuide=null,activePane='detail',inlineEditor=null,quickCharacterSelection=null,richTextEditor=null,quickPreview=null,quickPreviewFrame=0,panelSelection=[],contentSelection=null,selectedEmptyCell=null,textTools=null;
     const selectionGroups=()=>elementSelections;const setElementSelection=groups=>{elementSelections=groups;selected=groups[0]?.keys||[];};
     ${section('function layoutLockAPI(){','function imageInsetsAPI(){')}
