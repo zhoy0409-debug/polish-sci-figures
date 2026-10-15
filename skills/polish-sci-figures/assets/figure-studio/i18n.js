@@ -1,7 +1,32 @@
 /* UI-only localization. Scientific artwork, records and user-authored names are never translated. */
 'use strict';
 const StudioI18n = (() => {
-  const en = {
+  const en = {"顶对齐":"Align top","底对齐":"Align bottom","水平分布":"Distribute horizontally","垂直分布":"Distribute vertically",
+"文字 ":"Text ",
+"图片":"Image",
+"路径":"Path",
+"已显示元素":"Object shown",
+"已隐藏元素":"Object hidden",
+"显示元素":"Show object",
+"隐藏元素":"Hide object",
+"解锁元素":"Unlock object",
+"锁定元素":"Lock object",
+"已更新文字对齐":"Text alignment updated",
+"已更新段落格式":"Paragraph formatting updated",
+"图层显示栏":"Layers",
+"查找文字、图片或元素编号":"Find text, images or object IDs",
+"当前小图内的元素；Shift 点击可追加选择。锁定元素也可选中。":"Objects in the current panel; Shift-click to add to selection. Locked objects remain selectable.",
+"显示更多":"Show more",
+"对齐 · 对象":"Align objects",
+"段落 · 文字":"Paragraph",
+"以所选对象的外边界对齐；分布至少选择三个对象。":"Align to selection bounds; distribution requires at least three objects.",
+"行距（倍）":"Line spacing (multiple)",
+"字距（pt）":"Letter spacing (pt)",
+"左缩进（pt）":"Left indent (pt)",
+"右缩进（pt）":"Right indent (pt)",
+"首行缩进（pt）":"First-line indent (pt)",
+"对已选文字生效。保留显式换行；左／右缩进作用于相应对齐边界，不自动换行。":"Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment edges without automatic wrapping.",
+
 "框选锁定元素后，一次解锁所选内容":"Unlock all selected locked objects after marquee selection",
 "解锁所有小图、元素、图号和标注；可撤销":"Unlock all panels, elements, labels and annotations; undoable",
 "恢复所选内容的正常宽高比例，保留字体、字号和位置":"Restore selected aspect ratios; retain font, size and position",
@@ -828,3 +853,4 @@ const StudioI18n = (() => {
   return {t,choose,setLanguage,panelName,projectTitle,validateDisplayNames,preserveDisplayNames,restoreDisplayNames,get language(){return language;},en};
 })();
 if(typeof module!=='undefined')module.exports=StudioI18n;
+

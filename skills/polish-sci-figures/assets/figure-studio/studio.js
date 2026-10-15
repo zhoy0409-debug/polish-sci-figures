@@ -3054,15 +3054,15 @@ if (typeof document !== 'undefined') (async () => {
     const signature=JSON.stringify([project.id,id,vi,p.edits,p.locked,p.lockedElements,original]);
     if(signature!==layerSourceKey){
       layerSourceKey=signature;const svg=editedSvg(id,vi);
-      layerRows=[...svg.querySelectorAll('[data-key]')].filter(el=>!el.closest('defs,clipPath,mask')&&!el.matches('tspan')&&(!el.matches('g,svg')||!el.querySelector('[data-key]'))).map(el=>({key:el.dataset.key,name:(el.matches('text')?'文字 '+el.textContent:el.localName==='image'?'图片':el.localName==='path'?'路径':el.localName)+' · '+el.dataset.key})).reverse();
+      layerRows=[...svg.querySelectorAll('[data-key]')].filter(el=>!el.closest('defs,clipPath,mask')&&!el.matches('tspan')&&(!el.matches('g,svg')||!el.querySelector('[data-key]'))).map(el=>({key:el.dataset.key,name:(el.matches('text')?T('文字 ')+el.textContent:el.localName==='image'?T('图片'):el.localName==='path'?T('路径'):el.localName)+' · '+el.dataset.key})).reverse();
     }
     const chosen=new Set(selectionGroups().filter(g=>g.id===id&&g.vi===vi).flatMap(g=>g.keys)),rows=layerRows.filter(r=>!layerQuery||r.name.toLowerCase().includes(layerQuery));
     const host=$('layerObjects'),scroll=host.scrollTop;host.replaceChildren();
     const choose=(key,append=false)=>{const groups=append?selectionGroups().map(g=>({...g,keys:[...g.keys]})):[],g=groups.find(g=>g.id===id&&g.vi===vi);if(g){g.keys=g.keys.includes(key)?g.keys.filter(k=>k!==key):[...g.keys,key];}else groups.push({id,vi,keys:[key]});setElementSelection(groups);activePane='detail';renderCanvas();renderSelectionProperties();};
     for(const item of rows.slice(0,layerLimit||150)){
       const hidden=editsFor(id,vi)[item.key]?.hidden==='true',locked=!!(p.locked||p.lockedElements?.[vi]?.includes(item.key)),row=document.createElement('div');row.className='studio-layer-row'+(hidden?' is-hidden':'');row.dataset.layerKey=item.key;row.setAttribute('aria-selected',String(chosen.has(item.key)));
-      const eye=button(hidden?'○':'●',()=>{if(original||locked)return;const next=copy(state());if(hidden)delete next.panels[id].edits[vi][item.key].hidden;else setEdit(next,id,vi,item.key,'hidden','true');commit(next,hidden?'已显示元素':'已隐藏元素');});eye.title=hidden?'显示元素':'隐藏元素';eye.setAttribute('aria-label',eye.title);eye.disabled=original||locked;
-      const lock=button(locked?'🔒':'◇',()=>{choose(item.key);lockSelection(!locked);});lock.title=locked?'解锁元素':'锁定元素';lock.setAttribute('aria-label',lock.title);lock.disabled=original;
+      const eye=button(hidden?'○':'●',()=>{if(original||locked)return;const next=copy(state());if(hidden)delete next.panels[id].edits[vi][item.key].hidden;else setEdit(next,id,vi,item.key,'hidden','true');commit(next,hidden?'已显示元素':'已隐藏元素');});eye.title=T(hidden?'显示元素':'隐藏元素');eye.setAttribute('aria-label',eye.title);eye.disabled=original||locked;
+      const lock=button(locked?'🔒':'◇',()=>{choose(item.key);lockSelection(!locked);});lock.title=T(locked?'解锁元素':'锁定元素');lock.setAttribute('aria-label',lock.title);lock.disabled=original;
       const name=button(item.name,e=>choose(item.key,e.shiftKey||e.ctrlKey||e.metaKey));name.className='layer-name';name.title=item.name;row.append(eye,lock,name);host.append(row);
     }
     host.scrollTop=scroll;$('layerMore').hidden=rows.length<=(layerLimit||150);$('layerMore').onclick=()=>{layerLimit=(layerLimit||150)+150;renderEditingPanels();};
