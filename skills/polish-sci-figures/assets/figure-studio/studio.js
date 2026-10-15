@@ -2984,8 +2984,8 @@ if (typeof document !== 'undefined') (async () => {
       changed:()=>{$('artboard').classList.toggle('is-format-painting',!!textTools?.active);},previewed:()=>zoomView?.refreshSelection?.()
     });
     let consumed=false;
-    document.addEventListener('pointerdown',event=>{if(textTools.active&&$('artboard').contains(event.target)&&textTools.handlePointer(event)){consumed=true;event.stopImmediatePropagation();}},true);
-    document.addEventListener('click',event=>{if(consumed){consumed=false;event.preventDefault();event.stopImmediatePropagation();}},true);
+    document.addEventListener('pointerdown',event=>{consumed=false;if(textTools.active&&$('artboard').contains(event.target)&&textTools.handlePointer(event)){consumed=true;event.stopImmediatePropagation();}},true);
+    document.addEventListener('click',event=>{if(consumed){consumed=false;if(!$('artboard').contains(event.target))return;event.preventDefault();event.stopImmediatePropagation();}},true);
     document.addEventListener('keydown',event=>{if(textTools.handleKey(event))event.stopImmediatePropagation();},true);
   }
   function setupQuickToolbar(){
@@ -3662,7 +3662,7 @@ if (typeof document !== 'undefined') (async () => {
     $('panels').replaceChildren();
     visualPanelOrder(state()).forEach((id,i)=>{
       const row=document.createElement('div');row.className='panel-list-row';row.dataset.panelId=id;
-      const b=button('',event=>{panelSelection=event?.shiftKey?(panelSelection.includes(id)?panelSelection.filter(x=>x!==id):[...panelSelection,id]):[id];selectedPanel=id;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];selectedPanelLabel=null;selectedAlignmentGuide=null;$('scope').value='panel';render();});
+      const b=button('',event=>{panelSelection=event?.shiftKey?(panelSelection.includes(id)?panelSelection.filter(x=>x!==id):[...panelSelection,id]):[id];selectedPanel=id;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];setLabelSelection([]);contentSelection=null;selectedEmptyCell=null;selectionAfterMarquee=false;selectedAlignmentGuide=null;$('scope').value='panel';render();});
       b.className='panel-button'+(id===selectedPanel||panelSelection.includes(id)?' active':'');b.setAttribute('aria-label',T('选择面板 ')+(i+1));b.draggable=true;
       b.ondragstart=()=>{dragging=id;layoutMode=true;renderCanvas();};b.ondragend=()=>{if(dragging){dragging=null;renderCanvas();}};b.ondragover=e=>e.preventDefault();
       b.ondrop=e=>{if(droppedFiles(e,gridFor(state()).places[id],id))return;e.preventDefault();if(dragging){const pos=gridFor(state()).places[id],source=dragging;dragging=null;commit(moveWithSizes(state(),source,pos.row,pos.col),T('已交换小图'));}};
