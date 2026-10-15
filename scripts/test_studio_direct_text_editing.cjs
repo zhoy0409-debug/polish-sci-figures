@@ -15,7 +15,7 @@ function harness(){
   function render(){if(ctx)vm.runInContext('pointerEditRefresh=false;',ctx);renders++;$('artboard').replaceChildren(editable());const svg=$('artboard').firstElementChild;svg.addEventListener('pointerdown',event=>{event.preventDefault();if(event.target.closest('text')?.getAttribute('data-key')==='e2')vm.runInContext("setElementSelection([{id:'p0',vi:0,keys:['e2']}]);",ctx);});svg.onclick=()=>{actions++;};}
   ctx={window,document,Event:window.Event,WeakSet,Math,setTimeout,clearTimeout,NS:'http://www.w3.org/2000/svg',StudioRichText:vm.runInNewContext(fs.readFileSync(require.resolve(dir+'rich-text.js'),'utf8')+';StudioRichText;',{document}),project,history,copy,validateState,gridFor,$,T:x=>x,state:()=>history.current,panel:id=>project.panels.find(p=>p.id===id),editableSource:editable,editsFor:(id,vi,s=history.current)=>s.panels[id].edits[vi]||{},
     setEdit(s,id,vi,key,prop,value){((s.panels[id].edits[vi]??={})[key]??={})[prop]=value;},persist(){persists++;},say:m=>messages.push(m),render,
-    renderSelectionProperties(){},renderSelectionCommands(){},quickObjectSize:item=>rich.pointSize(item.el),paint:(el,p)=>el.style.getPropertyValue(p)||el.getAttribute(p),hex:value=>value==='black'?'#000000':/^#[0-9a-f]{6}$/i.test(value||'')?value:null,renderRichTextControls(){},getComputedStyle:window.getComputedStyle.bind(window),editingTextTarget:el=>!!el?.closest('input,textarea,[contenteditable="true"]'),
+    renderSelectionProperties(){},renderSelectionCommands(){},renderEditingPanels(){},quickObjectSize:item=>rich.pointSize(item.el),paint:(el,p)=>el.style.getPropertyValue(p)||el.getAttribute(p),hex:value=>value==='black'?'#000000':/^#[0-9a-f]{6}$/i.test(value||'')?value:null,renderRichTextControls(){},getComputedStyle:window.getComputedStyle.bind(window),editingTextTarget:el=>!!el?.closest('input,textarea,[contenteditable="true"]'),
     layout:()=>({width:200,height:100}),currentOutput:()=>({scale:1}),displayedPanelLabel:(s,id)=>s.panels[id].label,
     requestAnimationFrame:fn=>{frames.set(++frameId,fn);return frameId;},cancelAnimationFrame:id=>frames.delete(id),renderCanvas:render,textPointSize:rich.pointSize,textPointFactor:()=>1,focusRichTextControls(){throw Error('An editable canvas text should not require the sidebar');},getActiveRichTextSelection:()=>null};
   ctx.StudioLayoutLock=require(dir+'layout-lock.js');
@@ -79,3 +79,4 @@ async function main(){
   console.log('PASS 13 direct-text DOM regressions: first canvas/blank/action click, numeric blur, one undo, IME/Escape, range/whole formatting and F2 guards.');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});
+
