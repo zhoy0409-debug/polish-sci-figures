@@ -10,6 +10,8 @@ const StudioI18n = (() => {
 "未找到要锁定的元素":"No elements were found to lock",
 "重新锁定前请重新选中元素":"Select the elements again before locking them",
 "对齐方向无效":"Invalid alignment direction",
+"水平等距分布":"Distribute horizontal spacing",
+"垂直等距分布":"Distribute vertical spacing",
 "无法测量所选小图，请重新选择":"The selected panels could not be measured. Select them again.",
 "母版尺寸无效":"Invalid canvas dimensions",
 "所选小图超出母版，请先调整母版尺寸":"The selected panels extend beyond the canvas. Resize the canvas first.",
