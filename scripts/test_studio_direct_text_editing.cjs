@@ -18,8 +18,12 @@ function harness(){
     renderSelectionProperties(){},renderSelectionCommands(){},quickObjectSize:item=>rich.pointSize(item.el),paint:(el,p)=>el.style.getPropertyValue(p)||el.getAttribute(p),hex:value=>value==='black'?'#000000':/^#[0-9a-f]{6}$/i.test(value||'')?value:null,renderRichTextControls(){},getComputedStyle:window.getComputedStyle.bind(window),editingTextTarget:el=>!!el?.closest('input,textarea,[contenteditable="true"]'),
     layout:()=>({width:200,height:100}),currentOutput:()=>({scale:1}),displayedPanelLabel:(s,id)=>s.panels[id].label,
     requestAnimationFrame:fn=>{frames.set(++frameId,fn);return frameId;},cancelAnimationFrame:id=>frames.delete(id),renderCanvas:render,textPointSize:rich.pointSize,textPointFactor:()=>1,focusRichTextControls(){throw Error('An editable canvas text should not require the sidebar');},getActiveRichTextSelection:()=>null};
-  vm.createContext(ctx);vm.runInContext(`let original=false,selectedPanel='p0',selected=[],elementSelections=[],selectedAnnotations=[],selectedPanelLabel=null,selectedAlignmentGuide=null,activePane='detail',inlineEditor=null,quickCharacterSelection=null,richTextEditor=null,quickPreview=null,quickPreviewFrame=0;
+  ctx.StudioLayoutLock=require(dir+'layout-lock.js');
+  vm.createContext(ctx);vm.runInContext(`let original=false,selectedPanel='p0',selected=[],elementSelections=[],selectedAnnotations=[],selectedPanelLabel=null,selectedAlignmentGuide=null,activePane='detail',inlineEditor=null,quickCharacterSelection=null,richTextEditor=null,quickPreview=null,quickPreviewFrame=0,panelSelection=[],contentSelection=null,selectedEmptyCell=null,textTools=null;
     const selectionGroups=()=>elementSelections;const setElementSelection=groups=>{elementSelections=groups;selected=groups[0]?.keys||[];};
+    ${section('function layoutLockAPI(){','function imageInsetsAPI(){')}
+    ${section('  let labelSelections=[];','  const sizeNames=')}
+    ${section('  function selectionCommandInfo(){','  function renderSelectionCommands(){')}
     ${section('  let pointerEditCommit=','  function migrateLabelHistory(')}
     ${section('  function richTextTarget(){','  function focusRichTextControls(')}
     ${section('  function startInlineTextEdit(','  $(\'addOverlay\').onclick=')}

@@ -60,17 +60,19 @@ function harness(){
  const viewport={clientLeft:1,clientTop:1,clientWidth:400,clientHeight:300,getBoundingClientRect:()=>({left:20,top:30}),setAttribute(k,v){this[k]=v;},focus(options){assert.equal(options.preventScroll,true);focuses++;}};
  const preview={draw(s,delta){draws.push({s:copy(s),delta:copy(delta)});},clear(){clears++;}};
  const ctx={copy,nudgeSelectionState,editingTextTarget,history,project:{id:'figure'},original:false,layoutMode:false,dragging:null,overlayPlacement:null,inlineEditor:null,
-  contentSelection:null,selectedAnnotations:['note'],selectedPanelLabel:'q',selectedAlignmentGuide:null,
+  contentSelection:null,selectedAnnotations:['note'],selectedPanelLabel:'q',selectedAlignmentGuide:null,panelSelection:[],selectedEmptyCell:null,
   state:()=>history.current,panel:id=>assets[id],selectionGroups:()=>groups,quickSelectedObjects:()=>objects,currentOutput:()=>({scale}),
   zoomView:{nudgeCanvas:{geometry,capture:()=>preview}},cancelQueuedZoom(){},cancelQuickPreview(){},
   $:id=>id==='viewport'?viewport:buttons[id],T:s=>s,selected:[],persist(){},say(){},
   render(){renders++;buttons.undo.disabled=history.index===0;buttons.redo.disabled=history.index===history.states.length-1;},
   commit(next,label,renderNow=true){if(history.commit(next)){commits++;if(renderNow)renders++;}return true;},
   requestAnimationFrame:fn=>{frames.set(++serial,fn);return serial;},cancelAnimationFrame:id=>frames.delete(id),
-  document:{addEventListener:(type,fn)=>{(documentEvents[type]||=[]).push(fn);}},
+  document:{addEventListener:(type,fn)=>{(documentEvents[type]||=[]).push(fn);},querySelector:()=>null},
   window:{addEventListener:(type,fn)=>{(windowEvents[type]||=[]).push(fn);}}
  };
  vm.createContext(ctx);
+ vm.runInContext(source.slice(source.indexOf('function panelContentDelta('),source.indexOf('function nudgeSelectionState(')),ctx);
+ vm.runInContext(source.slice(source.indexOf('  let labelSelections=[];'),source.indexOf('  const sizeNames=')),ctx);
  const start=source.indexOf('  // Arrow-key repeats'),end=source.indexOf('  // Frequent actions',start);
  assert.ok(start>0&&end>start);vm.runInContext(source.slice(start,end),ctx);
  const bindingStart=source.indexOf("  document.addEventListener('keydown',e=>{if(!e.isComposing&&!editingTextTarget(e.target)&&nudgeGesture)"),bindingEnd=source.indexOf("  document.addEventListener('keydown',e=>{if(e.isComposing",bindingStart);
@@ -186,7 +188,7 @@ for(const zoom of [.25,1,3.5]){
  const l=geometry,svg={getBoundingClientRect:()=>({width:l.width*liveZoom,height:l.height*liveZoom}),querySelector:s=>s.includes('annotation')?overlay:null},selectionLayer=svgNode();
  const adapterItems=[native('p','e1',{el:text}),native('p','e900000',{el:stat}),{kind:'overlay',id:'note'},{kind:'label',id:'q',el:label},{kind:'guide',id:'guide-1'}];
  const ctx={imageLinks:null,zoomView:{},l,svg,selectionLayer,state:()=>initial,previewState:initial,selectionResize:null,elementDrag:null,overlayDrag:null,labelDrag:null,guideDrag:null,marquee:null,resizeDrag:null,panelDrag:null,DOMMatrix:Matrix,alignmentSnap,alignmentContext:()=>({bounds:{left:10,right:20,top:10,bottom:20},targets:[{axis:'x',position:11.1,manual:true}]}),overlayNode:a=>copy(a),drawAlignmentGuides:s=>manual=s.alignmentGuides[0].position,paintSnapGuides:g=>guides=g,drawSelection:()=>outlines++,selectedNodes:()=>[]};
- vm.createContext(ctx);const at=source.indexOf('    zoomView.nudgeCanvas='),end=source.indexOf('    svg.classList.toggle',at);assert.ok(at>0&&end>at);vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);
+ vm.createContext(ctx);vm.runInContext(source.slice(source.indexOf('    const captureLabelMotion='),source.indexOf('    const selectedDragItems=')),ctx);const at=source.indexOf('    zoomView.nudgeCanvas='),end=source.indexOf('    svg.classList.toggle',at);assert.ok(at>0&&end>at);vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);
  assert.equal(ctx.zoomView.nudgeCanvas.isPreview,false);assert.equal(ctx.zoomView.nudgeCanvas.isGestureActive(),false);
  for(const key of ['elementDrag','overlayDrag','labelDrag','guideDrag','marquee','resizeDrag','panelDrag']){ctx[key]={};assert.equal(ctx.zoomView.nudgeCanvas.isGestureActive(),true,key);ctx[key]=null;}
  ctx.previewState=copy(initial);ctx.previewState.panels.p.variant=1;vm.runInContext(source.slice(source.indexOf('  function refreshInsetGraphics('),source.indexOf('  function overlayNode('))+'\n'+source.slice(at,end),ctx);assert.equal(ctx.zoomView.nudgeCanvas.isPreview,true);

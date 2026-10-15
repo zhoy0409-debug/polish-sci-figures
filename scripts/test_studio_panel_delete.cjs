@@ -43,8 +43,8 @@ const {JSDOM}=require('jsdom');
 function harness(count=3){
   const setup=fixture(count),dom=new JSDOM('<div id="panels"></div><select id="scope"><option value="panel">Panel</option></select><dialog id="statisticsDialog"></dialog><input id="dataAutoUpdate" type="checkbox">'),doc=dom.window.document;
   let current=copy(setup.state);const history=new api.History(current),cleared=[],scheduled=[],messages=[];let renderCount=0,cancelled=0;
-  const ctx={...api,copy,document:doc,NS:'http://www.w3.org/2000/svg',StudioI18n:i18n,T:i18n.t,$:id=>doc.getElementById(id),state:()=>current,project:setup.project,original:false,
-    selectedPanel:'panel-0',selected:[],elementSelections:[],selectionAnchor:null,selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],dragging:null,layoutMode:false,
+  const ctx={...api,StudioPanelCommands:require(base+'panel-commands.js'),copy,document:doc,NS:'http://www.w3.org/2000/svg',StudioI18n:i18n,T:i18n.t,$:id=>doc.getElementById(id),state:()=>current,project:setup.project,original:false,
+    selectedPanel:'panel-0',selected:[],elementSelections:[],selectionAnchor:null,selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],dragging:null,layoutMode:false,contentSelection:null,selectedEmptyCell:null,
     dataDrafts:{'panel-0':[['value'],['manually typed']]},dataSerial:20,dataTimer:'data',dataValidationTimer:'validation',axisPending:null,axisRequest:1,axisTimer:'axis',statisticsSession:null,statisticsRequest:1,statisticsTimer:'stats',facetSplitRequest:4,
     panel:id=>ctx.project.panels.find(p=>p.id===id),say:x=>messages.push(x),guard:fn=>event=>fn(event),clearTimeout:id=>cleared.push(id),setTimeout:(fn,delay)=>{scheduled.push({fn,delay});return 99;},recomputeData(){},
     cancelPanelGesture:()=>cancelled++,cancelSelectionGesture:()=>cancelled++,cancelObjectGesture:()=>cancelled++,
@@ -54,7 +54,7 @@ function harness(count=3){
     commit:(next,label,renderNow)=>{assert.equal(renderNow,false);api.validateState(next,ctx.project);history.commit(next);current=history.current;messages.push(label);return true;},
     render:()=>{renderCount++;ctx.renderPanelList();},renderCanvas:()=>{throw Error('Trash must not start a drag or select a panel');}
   };
-  vm.createContext(ctx);vm.runInContext(extract('  function removePanel(id){','  function render() {'),ctx);ctx.renderPanelList();
+  vm.createContext(ctx);vm.runInContext(extract('  let labelSelections=[];','  const sizeNames=')+extract('  function gridMetrics(l){','  function render() {'),ctx);ctx.renderPanelList();
   return {ctx,dom,doc,history,current:()=>current,cleared,scheduled,messages,renderCount:()=>renderCount,cancelled:()=>cancelled,close:()=>dom.window.close()};
 }
 i18n.setLanguage('en');

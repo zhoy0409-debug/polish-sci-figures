@@ -35,6 +35,7 @@ function harness(){
   Object.assign(ctx,Object.fromEntries(["overlayInsertionGeometry","overlayLineGeometry","overlayEditingSpace","orientOverlayLine"].map(key=>[key,require(path)[key]])));
   vm.createContext(ctx);
   vm.runInContext(`let original=false,layoutMode=true,boxSelect=true,selectedPanel='p0',selected=[],elementSelections=[],selectedAnnotations=[],selectedPanelLabel=null,activePane='detail';
+    ${source.slice(source.indexOf('  let labelSelections=[];'),source.indexOf('  const sizeNames='))}
     const setElementSelection=g=>{elementSelections=g;selected=g[0]?.keys||[];};
     function richTextTarget(){let kind,id,key,text,vi=0;if(selectedPanelLabel){kind='label';id=selectedPanelLabel;text=state().panels[id].label.text;}else if(selectedAnnotations.length){kind='overlay';id=selectedAnnotations[0];text=state().overlays.find(a=>a.id===id).text;}else if(elementSelections.length){kind='element';({id,vi}=elementSelections[0]);key=elementSelections[0].keys[0];text=state().panels[id].edits[vi]?.[key]?.text||'P = 0.032';}else return null;return {kind,id,vi,key,text,record:JSON.stringify({baseText:text,runs:[]}),projectId:project.id,asset:panel(id),locked:kind==='overlay'?state().overlays.find(a=>a.id===id).locked:state().panels[id].locked,statistical:kind==='element'};}
     ${source.slice(source.indexOf('  function validRichTextTarget('),source.indexOf('  function renderRichTextControls('))}

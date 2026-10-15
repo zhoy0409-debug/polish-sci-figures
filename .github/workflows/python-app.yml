@@ -109,7 +109,11 @@ jobs:
         run: |
           python scripts/test_composite_statistics.py
           python scripts/test_interaction_stat_metadata.py
+      - name: Install pinned DOM fixtures for host command tests
+        run: npm install --prefix .cache/studio-dom --ignore-scripts --no-audit --no-fund --save-exact jsdom@26.1.0
       - name: Figure Studio history and state validation
+        env:
+          NODE_PATH: ${{ github.workspace }}/.cache/studio-dom/node_modules
         run: |
           node scripts/test_studio_browser_transport.cjs
           node scripts/test_studio_native_download.cjs
@@ -139,6 +143,7 @@ jobs:
           node scripts/test_studio_selection_transform.cjs
           node scripts/test_studio_selection_commands.cjs
           node scripts/test_studio_panel_delete.cjs
+          node scripts/test_studio_panel_commands.cjs
           node scripts/test_studio_heatmap_palettes.cjs
           node scripts/test_studio_swatch_schemes.cjs
           node scripts/test_studio_insert_inline.cjs
@@ -224,6 +229,14 @@ jobs:
         run: |
           node scripts/test_studio_text_geometry.cjs
           node scripts/test_studio_pdf_text_editing.cjs
+          node scripts/test_studio_text_formatting.cjs
+          node scripts/test_studio_text_tools_integration.cjs
+          node scripts/test_studio_panel_commands.cjs --dom
+          node scripts/test_studio_layout_lock.cjs
+          node scripts/test_studio_layout_lock_integration.cjs
+          node scripts/test_studio_released_motion.cjs
+          node scripts/test_studio_panel_commands_host.cjs
+          node scripts/test_studio_mixed_label_selection.cjs
           node scripts/test_studio_selection_transform_dom.cjs
           node scripts/test_studio_selection_resize_integration.cjs
           node scripts/test_studio_selection_performance.cjs

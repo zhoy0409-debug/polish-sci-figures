@@ -14,7 +14,7 @@
   function positions(state,base,widths,heights){
     const g=state.grid||{rows:heights.length,places:Object.fromEntries(state.order.map((id,i)=>[id,{row:Math.floor(i/state.columns),col:i%state.columns,rs:1,cs:1}]))},gx=state.gapX??state.gap,gy=state.gapY??state.gap;
     const box=p=>({x:sum(widths.slice(0,p.col))+gx*p.col,y:sum(heights.slice(0,p.row))+gy*p.row,width:sum(widths.slice(p.col,p.col+p.cs))+gx*(p.cs-1),height:sum(heights.slice(p.row,p.row+p.rs))+gy*(p.rs-1)});
-    return {...base,compact:undefined,width:sum(widths)+gx*(widths.length-1),height:sum(heights)+gy*(heights.length-1),cells:heights.flatMap((_,row)=>widths.map((_,col)=>({row,col,...box({row,col,rs:1,cs:1})}))),positions:base.positions.map(pos=>({...pos,...box(g.places[pos.id]),renderBox:undefined,trim:undefined}))};
+    return {...base,compact:undefined,width:sum(widths)+gx*(widths.length-1),height:sum(heights)+gy*(heights.length-1),cells:heights.flatMap((_,row)=>widths.map((_,col)=>({row,col,...box({row,col,rs:1,cs:1})}))),positions:base.positions.map(pos=>{const value=box(g.places[pos.id]),offset=state.panels[pos.id]?.frameOffset||{x:0,y:0};return {...pos,...value,x:value.x+(offset.x||0),y:value.y+(offset.y||0),renderBox:undefined,trim:undefined};})};
   }
   function panelViewport(pos,metrics,manual=false){
     // A manual cell resizes the complete edited figure, including its labels
@@ -31,12 +31,15 @@
     const next={...state,grid:copy(state.grid||{rows:sizes.heights.length,places:Object.fromEntries(state.order.map((id,i)=>[id,{row:Math.floor(i/state.columns),col:i%state.columns,rs:1,cs:1}]))}),compactWhitespace:false};
     Object.assign(next.grid,sizes,{manualTracks:true});return next;
   }
+  function hasUncapturedPanelLock(state){return state.order.some(id=>state.panels[id]?.locked&&!state.panels[id]?.layoutLock?.panel);}
+  function pinnedExtent(state){if(typeof StudioLayoutLock!=='undefined'){const box=StudioLayoutLock.pinnedBounds(state);if(box)return {width:Math.max(0,box.x+box.width),height:Math.max(0,box.y+box.height)};}const boxes=[];for(const p of Object.values(state.panels||{})){const lock=p.layoutLock;if(lock?.panel?.locked){boxes.push(lock.panel.bounds);if(lock.panel.label?.locked)boxes.push(lock.panel.label.bounds);}if(lock?.label?.locked)boxes.push(lock.label.bounds);for(const records of Object.values(lock?.elements||{}))for(const record of records)if(record.lockedKeys?.length)boxes.push(record.bounds);}return {width:Math.max(0,...boxes.filter(Boolean).map(b=>b.x+b.width)),height:Math.max(0,...boxes.filter(Boolean).map(b=>b.y+b.height))};}
   function protectLocked(state,base,result){
-    for(const pos of result.positions){const old=base.positions.find(p=>p.id===pos.id);if(state.panels[pos.id]?.locked&&['x','y','width','height'].some(k=>Math.abs(pos[k]-old[k])>.001))throw Error('调整会改变已锁定小图的格子，请先解锁');}
+    const pinned=pinnedExtent(state);if(result.width+.001<pinned.width||result.height+.001<pinned.height)throw Error('母版不能裁掉已锁定的内容，请先解锁');
+    for(const pos of result.positions){const old=base.positions.find(p=>p.id===pos.id);if(state.panels[pos.id]?.locked&&!state.panels[pos.id]?.layoutLock?.panel&&['x','y','width','height'].some(k=>Math.abs(pos[k]-old[k])>.001))throw Error('调整会改变已锁定小图的格子，请先解锁');}
   }
   function planWhole(state,layout,width=layout.width,height=layout.height,{proportional=false}={}){
     if(![width,height].every(Number.isFinite))throw Error('工程布局无效');
-    if(!state.grid?.manualTracks&&state.order.some(id=>state.panels[id]?.locked))throw Error('调整会改变已锁定小图的格子，请先解锁');
+    if(!state.grid?.manualTracks&&hasUncapturedPanelLock(state))throw Error('调整会改变已锁定小图的格子，请先解锁');
     const sizes=tracks(state,layout),mins=minimums(state,layout),gx=state.gapX??state.gap,gy=state.gapY??state.gap,spaces={widths:gx*(sizes.widths.length-1),heights:gy*(sizes.heights.length-1)},limits={};let minimumChanged=false;
     for(const axis of ['widths','heights']){
       sizes[axis]=sizes[axis].map((value,i)=>{if(value<mins[axis][i]){minimumChanged=true;return mins[axis][i];}return value;});
@@ -46,6 +49,7 @@
     // Preserve an explicit publication scale while resizing the actual master.
     // A fixed old width would otherwise make a committed width drag snap back.
     if(state.exportSettings){limits.widths.minimum=Math.max(limits.widths.minimum,layout.width*20/state.exportSettings.widthMm);limits.widths.maximum=Math.min(limits.widths.maximum,layout.width*2000/state.exportSettings.widthMm);}
+    const pinned=pinnedExtent(state);limits.widths.minimum=Math.max(limits.widths.minimum,pinned.width);limits.heights.minimum=Math.max(limits.heights.minimum,pinned.height);
     let actualWidth,actualHeight,requestedWidth=width,requestedHeight=height;
     if(proportional){
       const wanted=(width*layout.width+height*layout.height)/(layout.width**2+layout.height**2),lower=Math.max(limits.widths.minimum/layout.width,limits.heights.minimum/layout.height),upper=Math.min(limits.widths.maximum/layout.width,limits.heights.maximum/layout.height);
@@ -62,7 +66,7 @@
   }
   function plan(state,layout,axis,index,value,{adjacent=false}={}){
     if(!['widths','heights'].includes(axis)||!Number.isInteger(index)||!Number.isFinite(value))throw Error('工程布局无效');
-    if(!state.grid?.manualTracks&&state.order.some(id=>state.panels[id]?.locked))throw Error('调整会改变已锁定小图的格子，请先解锁');
+    if(!state.grid?.manualTracks&&hasUncapturedPanelLock(state))throw Error('调整会改变已锁定小图的格子，请先解锁');
     const sizes=tracks(state,layout),mins=minimums(state,layout);let minimumChanged=false;for(const key of ['widths','heights'])sizes[key]=sizes[key].map((value,i)=>{if(value<mins[key][i]){minimumChanged=true;return mins[key][i];}return value;});const values=sizes[axis],limits=mins[axis];if(index<0||index>=values.length||adjacent&&index>=values.length-1)throw Error('工程布局无效');
     const total=values[index]+(adjacent?values[index+1]:0),lower=adjacent?Math.max(limits[index],total-MAX):limits[index],upper=adjacent?Math.min(MAX,total-limits[index+1]):MAX;if(lower>upper)throw Error('格子已达到最小可读尺寸');
     const actual=Math.max(lower,Math.min(upper,value));values[index]=actual;if(adjacent)values[index+1]=total-actual;
@@ -109,12 +113,12 @@
       }
     }
     const point=(event,svg,m=svg.getScreenCTM()?.inverse())=>{if(!m)throw Error('工程布局无效');return {x:m.a*event.clientX+m.c*event.clientY+m.e,y:m.b*event.clientX+m.d*event.clientY+m.f};};
-    function capture(svg,l){const entries=[];for(const pos of l.positions){const node=svg.querySelector(`svg[data-panel="${pos.id}"]`);if(node)entries.push({node,pos,metrics:JSON.parse(node.getAttribute('data-grid-panel')||'null'),attrs:Object.fromEntries(['x','y','width','height'].map(k=>[k,node.getAttribute(k)]))});}return entries;}
+    function capture(svg,l){const entries=[];for(const pos of l.positions){const node=svg.querySelector(`svg[data-panel="${pos.id}"]`);if(node&&host.state().panels[pos.id]?.layoutLock?.panel?.variant!==host.state().panels[pos.id]?.variant)entries.push({node,pos,metrics:JSON.parse(node.getAttribute('data-grid-panel')||'null'),attrs:Object.fromEntries(['x','y','width','height'].map(k=>[k,node.getAttribute(k)]))});}return entries;}
     function preview(){frame=0;const g=gesture;if(!g||!valid())return cancel(false);try{g.next=g.whole?planWhole(g.owner,g.base,g.value.width,g.value.height,{proportional:g.edge==='corner'&&!g.freeAspect}):plan(g.owner,g.base,g.axis,g.index,g.value,{adjacent:true});const byId=new Map(g.next.layout.positions.map(pos=>[pos.id,pos]));for(const entry of g.entries){const pos=byId.get(entry.pos.id),box=panelViewport(pos,entry.metrics||{width:Number(entry.attrs.width),height:Number(entry.attrs.height)},true);for(const [key,value]of Object.entries(box))entry.node.setAttribute(key,value);}
       if(g.whole){const l=g.next.layout;g.svg.setAttribute('viewBox',`0 0 ${l.width} ${l.height}`);g.svg.setAttribute('width',l.width+'pt');g.svg.setAttribute('height',l.height+'pt');g.svg.style.width=g.screen.width*l.width/g.base.width+'px';g.svg.style.height=g.screen.height*l.height/g.base.height+'px';host.previewCanvas?.(g.svg,l,g.next.state,g.base);}
       for(const rect of g.svg.querySelectorAll('[data-guide-slot]')){const key=rect.getAttribute('data-guide-slot'),pos=g.next.layout.positions.find(p=>p.id===key)||g.next.layout.cells.find(c=>key===`empty-${c.row}-${c.col}`);if(pos)for(const k of ['x','y','width','height'])rect.setAttribute(k,pos[k]);}
       for(const entry of g.decorations){const pos=byId.get(entry.id),old=entry.pos;if(!pos||!old)continue;if(entry.label){const x=pos.x+(entry.x-old.x)*pos.width/old.width,y=pos.y+(entry.y-old.y)*pos.height/old.height;entry.node.setAttribute('x',x);entry.node.setAttribute('y',y);const stretch=g.owner.panels[entry.id]?.label?.stretch;if(stretch&&stretch!==1)entry.node.setAttribute('transform',`translate(${x} ${y}) scale(${stretch} 1) translate(${-x} ${-y})`);}else entry.node.setAttribute('transform',`translate(${pos.x+pos.width/2-old.x-old.width/2} ${pos.y-old.y}) ${entry.transform||''}`);}
-      host.previewDependents?.(g.svg,g.next.layout,g.next.state);draw(g.next.layout);status.textContent=t(g.next.clamped||g.minimumChanged?'格子已达到最小可读尺寸':'松开应用；Escape 取消');}catch(error){say(error.message);cancel();}}
+      if(typeof StudioLayoutLock!=='undefined')StudioLayoutLock.refresh(g.svg,g.next.state);host.previewDependents?.(g.svg,g.next.layout,g.next.state);draw(g.next.layout);status.textContent=t(g.next.clamped||g.minimumChanged?'格子已达到最小可读尺寸':'松开应用；Escape 取消');}catch(error){say(error.message);cancel();}}
     const valid=()=>gesture&&host.state()===gesture.owner&&host.project?.()===gesture.project&&host.root()===gesture.svg;
     function cancel(repaint=true){const g=gesture;if(!g)return false;gesture=null;if(frame)caf(frame);frame=0;try{g.svg.releasePointerCapture?.(g.pointer);}catch{}for(const entry of g.entries)for(const [k,value]of Object.entries(entry.attrs))value===null?entry.node.removeAttribute(k):entry.node.setAttribute(k,value);if(g.whole){for(const [key,value]of Object.entries(g.rootAttrs))value===null?g.svg.removeAttribute(key):g.svg.setAttribute(key,value);g.svg.style.width=g.rootStyle.width;g.svg.style.height=g.rootStyle.height;host.previewCanvas?.(g.svg,g.base,g.owner,g.base);}if(repaint)host.repaint();return true;}
     function down(event){
@@ -123,7 +127,7 @@
         host.cancelOtherGestures?.();const owner=host.state(),project=host.project?.(),axis=handle.dataset.gridResize,whole=axis==='outer',edge=handle.dataset.gridEdge,index=Number(handle.dataset.gridIndex);let base=host.layout(),sizes=tracks(owner,base);
         const prepared=whole?planWhole(owner,base):plan(owner,base,axis,index,sizes[axis][index],{adjacent:true});
         if(owner.compactWhitespace||!owner.grid?.manualTracks){host.repaint(prepared.state);base=prepared.layout;sizes=tracks(owner,base);}
-        const svg=host.root(),mapping=svg.getScreenCTM()?.inverse(),screen=svg.getBoundingClientRect(),byId=new Map(base.positions.map(pos=>[pos.id,pos])),decorations=[...svg.querySelectorAll('[data-panel-label],[data-panel-move]')].map(node=>{const id=node.getAttribute('data-panel-label')||node.getAttribute('data-panel-move');return {node,id,pos:byId.get(id),label:node.hasAttribute('data-panel-label'),x:Number(node.getAttribute('x')),y:Number(node.getAttribute('y')),transform:node.getAttribute('transform')};}),startValue=whole?{width:base.width,height:base.height}:sizes[axis][index];
+        const svg=host.root(),mapping=svg.getScreenCTM()?.inverse(),screen=svg.getBoundingClientRect(),byId=new Map(base.positions.map(pos=>[pos.id,pos])),decorations=[...svg.querySelectorAll('[data-panel-label],[data-panel-move]')].filter(node=>{const id=node.getAttribute('data-panel-label')||node.getAttribute('data-panel-move'),lock=owner.panels[id]?.layoutLock;return !node.hasAttribute('data-panel-label')||!(lock?.label||lock?.panel?.variant===owner.panels[id]?.variant&&lock?.panel?.label);}).map(node=>{const id=node.getAttribute('data-panel-label')||node.getAttribute('data-panel-move');return {node,id,pos:byId.get(id),label:node.hasAttribute('data-panel-label'),x:Number(node.getAttribute('x')),y:Number(node.getAttribute('y')),transform:node.getAttribute('transform')};}),startValue=whole?{width:base.width,height:base.height}:sizes[axis][index];
         gesture={owner,project,base,axis,whole,edge,index,svg,mapping,screen,pointer:event.pointerId,start:point(event,svg,mapping),startValue,value:startValue,freeAspect:!!event.shiftKey,entries:capture(svg,base),decorations,minimumChanged:prepared.clamped,next:null,rootAttrs:Object.fromEntries(['viewBox','width','height'].map(key=>[key,svg.getAttribute(key)])),rootStyle:{width:svg.style.width,height:svg.style.height}};
         svg.setPointerCapture?.(event.pointerId);say(prepared.clamped?'格子已达到最小可读尺寸':whole?'拖动调整母版大小；松开应用':'拖动调整列宽或行高；松开应用');
       }catch(error){say(error.message);}
@@ -141,7 +145,7 @@
     }
     function change(axis,control,index){if(host.enabled?.()===false)return;try{const result=plan(host.state(),host.layout(),axis,Number(index.value),Number(control.value));host.commit(result.state,t('已调整格子尺寸'));if(result.clamped)say('格子已达到最小可读尺寸');}catch(error){say(error.message);fields();}}
     check.onchange=()=>{shown=check.checked;refresh();};column.onchange=row.onchange=fields;width.onchange=()=>change('widths',width,column);height.onchange=()=>change('heights',height,row);
-    reset.onclick=()=>{if(host.enabled?.()===false)return;const next=copy(host.state());if(!next.grid?.manualTracks)return;delete next.grid.manualTracks;delete next.grid.widths;delete next.grid.heights;if(next.order.some(id=>next.panels[id].locked))return say('调整会改变已锁定小图的格子，请先解锁');host.commit(next,t('已恢复自动格子尺寸'));};
+    reset.onclick=()=>{if(host.enabled?.()===false)return;const next=copy(host.state());if(!next.grid?.manualTracks)return;delete next.grid.manualTracks;delete next.grid.widths;delete next.grid.heights;if(hasUncapturedPanelLock(next))return say('调整会改变已锁定小图的格子，请先解锁');host.commit(next,t('已恢复自动格子尺寸'));};
     const abort=event=>{if(gesture&&(!event?.pointerId||event.pointerId===gesture.pointer))cancel();},blur=()=>cancel();viewport.addEventListener('pointerdown',down,true);viewport.addEventListener('pointermove',move,true);viewport.addEventListener('pointerup',up,true);viewport.addEventListener('pointercancel',abort,true);viewport.addEventListener('lostpointercapture',abort,true);viewport.addEventListener('keydown',keyboard,true);view.addEventListener('blur',blur);view.addEventListener('keydown',keyboard,true);
     return {refresh,cancel,destroy(){cancel(false);disposed=true;layer?.remove();controls.replaceChildren();for(const [name,fn]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',abort],['lostpointercapture',abort],['keydown',keyboard]])viewport.removeEventListener(name,fn,true);view.removeEventListener('blur',blur);view.removeEventListener('keydown',keyboard,true);}};
   }
