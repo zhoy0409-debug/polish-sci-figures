@@ -59,7 +59,7 @@ assert.match(source,/const STYLES = new Set\(\['display'/,'hidden appearance sur
 let keyboard,deleteCalls=0,undoCalls=0;let groups=[{id:ids[0],vi:0,keys:['e3']}];
 const keyboardLine=source.split('\n').find(line=>line.includes("document.addEventListener('keydown',e=>{if(e.isComposing||editingTextTarget"));
 assert.ok(keyboardLine);
-vm.runInNewContext(keyboardLine,{document:{addEventListener:(_,handler)=>keyboard=handler},editingTextTarget,selectionGroups:()=>groups,selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,deleteSelectedObjects:()=>deleteCalls++,$:()=>({click:()=>undoCalls++})});
+vm.runInNewContext(keyboardLine,{document:{addEventListener:(_,handler)=>keyboard=handler,querySelector:()=>null},editingTextTarget,selectionGroups:()=>groups,selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],selectedEmptyCell:null,deleteSelectedObjects:()=>deleteCalls++,$:()=>({click:()=>undoCalls++})});
 function press(key,target={closest:()=>null},extra={}){let prevented=false;keyboard({key,target,ctrlKey:false,metaKey:false,altKey:false,isComposing:false,preventDefault(){prevented=true;},...extra});return prevented;}
 assert.equal(press('Delete'),true);assert.equal(press('Backspace'),true);assert.equal(deleteCalls,2);
 for(const target of [{closest:()=>({tagName:'INPUT'})},{closest:()=>({tagName:'TEXTAREA'})},{closest:()=>({tagName:'SELECT'})},{isContentEditable:true,closest:()=>null}]){assert.equal(press('Delete',target),false);assert.equal(press('Backspace',target),false);}
@@ -108,6 +108,8 @@ const doubleClick=source.split('\n').find(line=>line.includes('svg.ondblclick=ev
 const clickStart=source.indexOf('    svg.onclick=event=>{',pointerStart),clickEnd=source.indexOf('    viewport.onpointerdown=',clickStart);
 vm.createContext(dragContext);
 vm.runInContext(`let labelDrag=null,overlayDrag=null,elementDrag=null,guideDrag=null,marquee=null,suppressClick=false,pending=null,layoutMode=false,boxSelect=false,resizeDrag=null,panelDrag=null,ghost=null,dragging=null,original=false,selectedPanel='${ids[0]}',selected=[],elementSelections=[],selectionAnchor=null,selectedAnnotations=[],panelSelection=[],selectedPanelLabel=null,selectionAfterMarquee=false,activePane='explore',selectedAlignmentGuide=null;
+let contentSelection=null;
+${source.slice(source.indexOf('  function selectionGroups(){'),source.indexOf('  const sizeNames='))}
 ${source.slice(selectStart,selectEnd)}
 ${source.slice(behindStart,behindEnd)}
 ${source.slice(pointerStart,pointerEnd)}

@@ -60,17 +60,18 @@ function harness(){
  const viewport={clientLeft:1,clientTop:1,clientWidth:400,clientHeight:300,getBoundingClientRect:()=>({left:20,top:30}),setAttribute(k,v){this[k]=v;},focus(options){assert.equal(options.preventScroll,true);focuses++;}};
  const preview={draw(s,delta){draws.push({s:copy(s),delta:copy(delta)});},clear(){clears++;}};
  const ctx={copy,nudgeSelectionState,editingTextTarget,history,project:{id:'figure'},original:false,layoutMode:false,dragging:null,overlayPlacement:null,inlineEditor:null,
-  contentSelection:null,selectedAnnotations:['note'],selectedPanelLabel:'q',selectedAlignmentGuide:null,
+  contentSelection:null,selectedAnnotations:['note'],selectedPanelLabel:'q',selectedAlignmentGuide:null,panelSelection:[],selectedEmptyCell:null,
   state:()=>history.current,panel:id=>assets[id],selectionGroups:()=>groups,quickSelectedObjects:()=>objects,currentOutput:()=>({scale}),
   zoomView:{nudgeCanvas:{geometry,capture:()=>preview}},cancelQueuedZoom(){},cancelQuickPreview(){},
   $:id=>id==='viewport'?viewport:buttons[id],T:s=>s,selected:[],persist(){},say(){},
   render(){renders++;buttons.undo.disabled=history.index===0;buttons.redo.disabled=history.index===history.states.length-1;},
   commit(next,label,renderNow=true){if(history.commit(next)){commits++;if(renderNow)renders++;}return true;},
   requestAnimationFrame:fn=>{frames.set(++serial,fn);return serial;},cancelAnimationFrame:id=>frames.delete(id),
-  document:{addEventListener:(type,fn)=>{(documentEvents[type]||=[]).push(fn);}},
+  document:{addEventListener:(type,fn)=>{(documentEvents[type]||=[]).push(fn);},querySelector:()=>null},
   window:{addEventListener:(type,fn)=>{(windowEvents[type]||=[]).push(fn);}}
  };
  vm.createContext(ctx);
+ vm.runInContext(source.slice(source.indexOf('  let labelSelections=[];'),source.indexOf('  const sizeNames=')),ctx);
  const start=source.indexOf('  // Arrow-key repeats'),end=source.indexOf('  // Frequent actions',start);
  assert.ok(start>0&&end>start);vm.runInContext(source.slice(start,end),ctx);
  const bindingStart=source.indexOf("  document.addEventListener('keydown',e=>{if(!e.isComposing&&!editingTextTarget(e.target)&&nudgeGesture)"),bindingEnd=source.indexOf("  document.addEventListener('keydown',e=>{if(e.isComposing",bindingStart);

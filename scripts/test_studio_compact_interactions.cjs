@@ -60,6 +60,7 @@ eq(ctx.selectionLayer.attrs.transform,'translate(1 2)','nudge outlines track the
 // deltas for mixed overlays and panel labels, without scaling either object.
 current=copy(state);const labelItem={kind:'label',id:'b',el:{getBoundingClientRect:()=>({left:600,right:620,top:0,bottom:20})}},overlayItem={kind:'overlay',id:'note',el:{getBoundingClientRect:()=>({left:700,right:730,top:0,bottom:20})}};
 Object.assign(ctx,{original:false,cancelQuickPreview(){},quickSelectedObjects:()=>[labelItem,overlayItem],say(){},$:()=>({querySelector:()=>ctx.svg})});
-vm.runInContext(extract('  function alignSelectedObjects(','  function renderQuickToolbar('),ctx);ctx.alignSelectedObjects('left');near((current.overlays[0].x-state.overlays[0].x)*1000,-50);near(current.panels.b.label.x,state.panels.b.label.x);eq(current.overlays[0].size,state.overlays[0].size);eq(current.overlays[0].w,state.overlays[0].w);
+Object.assign(ctx,{selectionAnchor:null,panelSelection:[],contentSelection:null});
+vm.runInContext(extract('  function selectionGroups(){','  const sizeNames=')+extract('  function alignSelectedObjects(','  function renderQuickToolbar('),ctx);ctx.alignSelectedObjects('left');near((current.overlays[0].x-state.overlays[0].x)*1000,-50);near(current.panels.b.label.x,state.panels.b.label.x);eq(current.overlays[0].size,state.overlays[0].size);eq(current.overlays[0].w,state.overlays[0].w);
 eq(JSON.stringify(state),before,'Preview gestures do not touch live data or state');
 console.log(`PASS compact interaction: ${checks} coordinate/size/identity/undo assertions`);

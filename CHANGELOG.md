@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.4.14 · Figure Studio 0.1.14
+
+- Add line spacing and final-output letter spacing, including transformed PDF text; preview selected text on animation frames and apply once on blur or confirmation.
+- Add a text format painter and a separate graphics eyedropper. Preserve target text, positions and partial scientific character formatting.
+- Delete selected panels with Delete, align multiple panels together, and remove wholly empty grid tracks without deleting occupied rows or columns.
+- Include panel labels in shared artwork selection, movement, alignment, resizing and reversible deletion.
+- Preserve locked panels, elements and labels in canvas coordinates through later grid and appearance changes; keep editable vector snapshots and reject clipping locked content.
+- Add production-adapter and DOM regressions for saved projects, Undo/Redo, transformed typography, mixed selections and locked layout. Package validation is recorded separately for each new build.
+- 新增文字行距、最终成图 pt 字间距、文本格式刷与独立图形吸色笔；支持小图多选对齐、Delete 删除和整条空白行列清理。图号可与图内元素共同选择、移动、缩放及删除；锁定内容在后续排版中保留画布位置和外观。间距预览只更新选中文字，完成后记录一次撤销；新版安装包的验收范围单独随发行记录。
+
+[Release notes / 本版更新](docs/release-notes-v1.4.14.md)
+
 ## v1.4.13 · Figure Studio 0.1.13
 
 - Retire legacy statistical appendices when restoring figures, variants and editing state; keep comparison results in the analysis workflow.

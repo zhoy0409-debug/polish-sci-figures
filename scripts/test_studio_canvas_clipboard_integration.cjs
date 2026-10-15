@@ -15,12 +15,13 @@ function fixture(){
  main.getBoundingClientRect=()=>({left:100,top:100,right:900,bottom:500,width:800,height:400});
  for(const [key,rect]of [['e1',{left:120,top:130,right:200,bottom:160,width:80,height:30}],['e2',{left:260,top:120,right:300,bottom:180,width:40,height:60}],['e3',{left:360,top:160,right:400,bottom:200,width:40,height:40}]])live.querySelector(`[data-key="${key}"]`).getBoundingClientRect=()=>rect;
  const ctx={...helpers,copy,project,history,selectedPanel:'panel-0',selected:['e1','e2'],elementSelections:[],selectionAnchor:null,selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:['panel-0'],layoutMode:false,boxSelect:false,contentSelection:null,original:false,dragging:null,inlineEditor:null,pointerEditRefresh:false,pointerEditCommit:false,
- document:d,window:w,DOMParser:w.DOMParser,XMLSerializer:w.XMLSerializer,FileReader:w.FileReader,Image:w.Image,NS,StudioCanvasClipboard:clipboard,StudioImageInsets:geometry,
+ document:d,window:w,DOMParser:w.DOMParser,XMLSerializer:w.XMLSerializer,FileReader:w.FileReader,Image:w.Image,NS,StudioCanvasClipboard:clipboard,StudioImageInsets:geometry,StudioLayoutLock:require(path.join(base,'layout-lock.js')),
  getComputedStyle:node=>w.getComputedStyle(node),$:id=>d.getElementById(id),T:(text,...args)=>text.replace(/\{(\d+)\}/g,(_,i)=>args[+i]),say:text=>messages.push(text),guard:fn=>async(...args)=>{try{return await fn(...args);}catch(e){messages.push(e.message);}},
  state:()=>ctx.history.current,panel:id=>ctx.project.panels.find(p=>p.id===id),editableSource:()=>live,isVisibleObject:el=>!el.closest('defs')&&el.style.display!=='none',validateProject(){},matchSizes:s=>s,commit:next=>ctx.history.commit(next),prepareTouchEditing(){},showPane(){},renderCanvas(){},
  localEngine:null,templateCache:new Map(),dataDrafts:{},dataSerial:0,dataTimer:null,setTimeout,clearTimeout,templateStarters:{},StudioGalleryContracts:{},button(text,fn){const b=d.createElement('button');b.textContent=text;b.onclick=fn;return b;},
  };
  vm.createContext(ctx);
+ vm.runInContext(source.slice(source.indexOf('function layoutLockAPI(){'),source.indexOf('function imageInsetsAPI(){')),ctx);
  vm.runInContext(source.split('\n').filter(line=>/^  const (TAGS|ATTRS|STYLES) = new Set/.test(line)).join('\n')+source.slice(source.indexOf('  function safeValue('),source.indexOf('  function validateProject(')),ctx);
  vm.runInContext(source.slice(source.indexOf('  function selectionGroups(){'),source.indexOf('  const sizeNames=')),ctx);
  vm.runInContext(source.slice(source.indexOf('  function deleteSelectedObjects(){'),source.indexOf('  function renderLabelControls(){')),ctx);
