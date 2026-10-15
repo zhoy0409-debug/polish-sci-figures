@@ -4314,7 +4314,51 @@ if (typeof document !== 'undefined') (async () => {
     if(dataBusy)return true;
     clearTimeout(fileImportDataTimer);fileImportDataTimer=setTimeout(async()=>{if(fileImportDataRefresh!==task)return;if(project.id!==task.projectId||history!==task.history||fileImportSession||!$('dataAutoUpdate').checked){resumeImportedDataRefresh();return;}if(dataBusy)return;const id=task.pending.shift();await recomputeData({id,background:true});if(fileImportDataRefresh===task)resumeImportedDataRefresh();},100);return true;
   }
-  function importHasFiles(event){return [...(event.dataTransfer?.types||[])].includes('Files');}
+  function importHasFiles(event){const transfer=event.dataTransfer;return !!transfer&&(Array.from(transfer.types||[]).some(type=>String(type).toLowerCase()==='files')||Array.from(transfer.items||[]).some(item=>item.kind==='file')||transfer.files?.length>0);}
+  function transferredFiles(transfer){const files=Array.from(transfer?.files||[]);return files.length?files:Array.from(transfer?.items||[]).filter(item=>item.kind==='file').map(item=>item.getAsFile?.()).filter(Boolean);}
+  function fileDropKind(transfer){
+    // Browsers protect filenames until drop. MIME hints are optional; an unknown
+    // file remains droppable and is checked again after the OS releases it.
+    const files=Array.from(transfer?.files||[]),items=Array.from(transfer?.items||[]).filter(item=>item.kind==='file');
+    if(files.length){if(files.filter(file=>/\.json$/i.test(file.name)).length>1)return 'multiple-projects';if(files.some(file=>/\.json$/i.test(file.name)))return 'project';if(files.some(file=>!(/\.(svg|pdf|png|jpe?g|webp|csv|tsv)$/i.test(file.name)||/^(image\/(png|jpeg|webp)|application\/pdf)$/.test(file.type))))return 'unsupported';return files.every(file=>/\.(csv|tsv)$/i.test(file.name))?'data':'figure';}
+    if(items.some(item=>/^(application|text)\/(json|[^/]+\+json)$/.test(item.type)))return 'project';
+    if(items.length&&items.every(item=>item.type)){if(items.some(item=>!(/^(image\/(png|jpeg|webp|svg\+xml)|application\/pdf|text\/(csv|tab-separated-values))$/.test(item.type))))return 'unsupported';return items.every(item=>/^text\/(csv|tab-separated-values)$/.test(item.type))?'data':'figure';}
+    return 'unknown';
+  }
+  let fileDropHover=null;
+  function clearFileDrop(){const viewport=$('viewport');viewport?.classList.remove('is-file-drop','is-file-drop-invalid');$('artboard')?.querySelector('[data-file-drop-target]')?.remove();fileDropHover=null;}
+  function fileDropGeometry(event){
+    const svg=$('artboard')?.firstElementChild;if(!svg)return {svg:null,cell:null};
+    if(fileDropHover?.svg!==svg||fileDropHover.state!==state())fileDropHover={svg,state:state(),layout:layout(),key:null};
+    const rect=svg.getBoundingClientRect(),l=fileDropHover.layout,x=(event.clientX-rect.left)/rect.width*l.width,y=(event.clientY-rect.top)/rect.height*l.height;
+    return {svg,layout:l,cell:rect.width>0&&rect.height>0?l.cells.find(cell=>x>=cell.x&&x<=cell.x+cell.width&&y>=cell.y&&y<=cell.y+cell.height)||null:null};
+  }
+  function paintFileDrop(event){
+    if(!importHasFiles(event))return false;event.preventDefault();const viewport=$('viewport'),geometry=fileDropGeometry(event),kind=fileDropKind(event.dataTransfer),{svg,layout:l,cell}=geometry;
+    let target=null,occupied=null,invalid='',message='';
+    if(fileImportSession)invalid=T('请先完成或取消当前导入');
+    else if(kind==='multiple-projects')invalid=T('每次只能打开一个工程；图片和数据表可以批量导入');
+    else if(kind==='unsupported')invalid=T('支持工程 JSON、PDF、SVG、PNG、JPEG、WebP、CSV 或 TSV');
+    else if(kind==='project')message=T('松开打开工程；确认后替换整个工作区');
+    else if(kind==='data')message=T('松开导入数据表；确认目标图形后应用');
+    else{
+      try{target=availableFigureImportTarget(cell);occupied=cell&&state().order.find(id=>{const p=gridFor(state()).places[id];return cell.row>=p.row&&cell.row<p.row+p.rs&&cell.col>=p.col&&cell.col<p.col+p.cs;});
+        const place=target.oldId?gridFor(state()).places[target.oldId]:target.cell;
+        message=occupied&&occupied!==target.oldId?T('保留现有小图；导入第 {0} 行、第 {1} 列',place.row+1,place.col+1):T('松开导入第 {0} 行、第 {1} 列',place.row+1,place.col+1);
+        if(kind==='unknown')message+=' · '+T('如果是工程文件，将确认后打开整个工作区');
+      }catch(error){invalid=error.message;}
+    }
+    viewport.classList.add('is-file-drop');viewport.classList.toggle('is-file-drop-invalid',!!invalid);viewport.dataset.fileDropLabel=invalid||message;
+    try{event.dataTransfer.dropEffect=invalid?'none':'copy';}catch{}
+    const key=[kind,cell?.row,cell?.col,target?.oldId,target?.cell?.row,target?.cell?.col,invalid].join(':');
+    if(fileDropHover&&fileDropHover.key!==key){fileDropHover.key=key;svg.querySelector('[data-file-drop-target]')?.remove();const layer=document.createElementNS(NS,'g');layer.dataset.fileDropTarget=key;layer.dataset.editorGuides='file-drop';layer.style.pointerEvents='none';
+      const mark=(box,color,dash)=>{if(!box)return;const rect=document.createElementNS(NS,'rect');for(const [name,value]of Object.entries({x:box.x,y:box.y,width:box.width,height:box.height,fill:color,'fill-opacity':.1,stroke:color,'stroke-width':2,'vector-effect':'non-scaling-stroke',...(dash?{'stroke-dasharray':'6 4'}:{})}))rect.setAttribute(name,value);layer.append(rect);};
+      if(invalid)mark(cell,'#c84e5e');
+      else if(target){if(occupied&&occupied!==target.oldId)mark(cell,'#b7862d',true);const place=target.oldId?gridFor(state()).places[target.oldId]:target.cell;mark(target.oldId?l.positions.find(pos=>pos.id===target.oldId):l.cells.find(box=>box.row===place.row&&box.col===place.col),'#31866c');}
+      else mark({x:0,y:0,width:l.width,height:l.height},'#4c77b1',true);svg.append(layer);
+    }
+    return true;
+  }
   function fileImportCurrent(session){return fileImportSession===session&&!session.cancelled&&project.id===session.projectId&&history===session.history;}
   function paintFileImportStatus(message){if($('importQueueStatus'))$('importQueueStatus').textContent=message;if($('cancelFileImport'))$('cancelFileImport').hidden=!fileImportSession;for(const id of ['importFiles','quickImportFiles'])if($(id))$(id).disabled=!!fileImportSession;}
   function nextImportTarget(session,forceAppend=false){
@@ -4340,6 +4384,9 @@ if (typeof document !== 'undefined') (async () => {
     if(fileImportSession)return say(T('请先完成或取消当前导入'));
     files=Array.from(files||[]);if(!files.length)return;
     if(files.length>24)throw Error(T('每次最多导入 24 个文件'));
+    const projectFiles=files.filter(file=>/\.json$/i.test(file.name));
+    if(projectFiles.length>1)throw Error(T('每次只能打开一个工程；图片和数据表可以批量导入'));
+    if(projectFiles.length){if(!await openProjectFile(projectFiles[0],destination))return;const remaining=files.filter(file=>file!==projectFiles[0]);if(remaining.length)await importFiles(remaining);return;}
     const session={files,projectId:destination.projectId||project.id,history:destination.history||history,oldId:destination.oldId||null,cell:destination.cell||null,dataPanelId:destination.dataPanelId||selectedPanel,index:0,applied:0,errors:[],cancelled:false};fileImportSession=session;
     // Keep an in-flight data rerender from replacing destination IDs underneath the chooser.
     clearTimeout(dataTimer);clearTimeout(fileImportDataTimer);fileImportDataRefresh=null;dataSerial++;
@@ -4363,8 +4410,8 @@ if (typeof document !== 'undefined') (async () => {
     }
   }
   function droppedFiles(event,cell=null,dataPanelId=null){
-    if(!importHasFiles(event))return false;event.preventDefault();event.stopPropagation();$('viewport').classList.remove('is-file-drop');
-    const files=Array.from(event.dataTransfer.files||[]),destination={cell,dataPanelId,projectId:project.id,history};
+    if(!importHasFiles(event))return false;event.preventDefault();event.stopPropagation();if(!cell)cell=fileDropGeometry(event).cell;const files=transferredFiles(event.dataTransfer),destination={cell,dataPanelId,projectId:project.id,history};clearFileDrop();
+    if(!files.length){say(T('未读取到文件。请从文件夹拖入文件，或使用“导入文件”。'));return true;}
     guard(()=>importFiles(files,destination))();return true;
   }
   async function openQueuedDataImport(file,session){
@@ -4416,12 +4463,17 @@ if (typeof document !== 'undefined') (async () => {
     let applied=false;const completed=new Promise(resolve=>dialog.addEventListener('close',()=>{clearTimeout(headerTimer);dialog.remove();resolve(applied);},{once:true}));document.body.append(dialog);dialog.showModal();return completed;
   }
   // The viewport remains present when canvas SVGs are replaced after imports.
-  $('viewport').addEventListener('dragover',event=>{if(!importHasFiles(event))return;event.preventDefault();event.dataTransfer.dropEffect='copy';$('viewport').classList.add('is-file-drop');$('viewport').dataset.fileDropLabel=T('松开以导入；现有小图不会被覆盖');});
-  $('viewport').addEventListener('dragleave',event=>{if(!event.relatedTarget||!$('viewport').contains(event.relatedTarget))$('viewport').classList.remove('is-file-drop');});
+  $('viewport').addEventListener('dragover',paintFileDrop);
+  $('viewport').addEventListener('dragleave',event=>{if(!event.relatedTarget||!$('viewport').contains(event.relatedTarget))clearFileDrop();});
   $('viewport').addEventListener('drop',event=>droppedFiles(event));
   // Never let a dropped OS file navigate away from an unsaved local project.
-  document.addEventListener('dragover',event=>{if(importHasFiles(event))event.preventDefault();});
-  document.addEventListener('drop',event=>{if(importHasFiles(event))event.preventDefault();});
+  // Include the empty welcome view, toolbar and sidebars. Previously these
+  // locations prevented browser navigation but silently discarded OS files.
+  document.addEventListener('dragenter',paintFileDrop);
+  document.addEventListener('dragover',paintFileDrop);
+  document.addEventListener('dragleave',event=>{if(!event.relatedTarget||!document.documentElement.contains(event.relatedTarget))clearFileDrop();});
+  document.addEventListener('dragend',clearFileDrop);
+  document.addEventListener('drop',event=>droppedFiles(event));
   let pdfImportSession=null;
   function pdfWarningText(code,message){const labels={page_appearance:'这一页使用了目前无法分别保真转换的颜色混合或透明效果，已保留为整页图片，内部细节暂不能单独编辑。这是转换能力的限制，不代表原 PDF 本身只有图片。',image_resolution:'拉伸的图片已按适合编辑的分辨率重新采样，以保持操作流畅。',font_substitution:'PDF 文字仍可编辑；使用本机可用字体，请在导出前核对字形。',text_spacing:'部分文字缺少原始字符间距，请核对这些文字的排版。',appearance_layer:'部分图层含暂不支持的 PDF 绘制效果，已保留为图片；这部分内部细节不能单独编辑，其他已识别对象仍可编辑。',image_only:'这一页只有图片内容。图片可移动、缩放；图片内部文字和图形不能单独编辑。',outlined_text:'未发现原生文字。已经转为轮廓的文字可以作为矢量形状调整，不能直接改字。'};return T(labels[code]||message);}
   function validateImportTarget(target){if(project.id!==target.projectId||target.history&&history!==target.history||target.session&&!fileImportCurrent(target.session)||target.oldId&&!state().order.includes(target.oldId))throw Error(T('目标已变化，请重新选择导入位置'));if(target.oldId&&state().panels[target.oldId].locked)throw Error(T('小图已锁定'));}
@@ -4734,15 +4786,20 @@ if (typeof document !== 'undefined') (async () => {
 
   $('save').onclick=guard(async()=>{const signature=saveSignature();if(await download(projectFileBlob(currentPayload()),'figure-studio-project.json')===false)return;savedCurrent=signature;learnPreferences();say(T('已下载工程；包含原图、当前修改和版本。'));});
   $('load').onclick=()=>{const input=$('projectFile');input.value='';input.click();};
-  $('projectFile').onchange=guard(async()=>{
-    const file=$('projectFile').files[0];if(!file)return;if(file.size>PROJECT_FILE_LIMIT)throw Error(T('工程超过 200 MB，请拆分工程后保存。'));
+  async function openProjectFile(file,destination={}){
+    if(!file)return false;if(fileImportSession)return say(T('请先完成或取消当前导入'));if(file.size>PROJECT_FILE_LIMIT)throw Error(T('工程超过 200 MB，请拆分工程后保存。'));
+    const owner=destination.projectId||project.id,ownerHistory=destination.history||history;
     const payload=JSON.parse(await file.text());validateProject(payload.project);validateState(payload.state,payload.project);
     const restoredHistory=History.restore(payload.history,payload.project,payload.state);
     if(!Array.isArray(payload.checkpoints)||payload.checkpoints.length>20)throw Error(T('版本无效'));
     for(const c of payload.checkpoints){if(typeof c.name!=='string'||c.name.length>60)throw Error(T('版本名称无效'));validateState(c.state,payload.project);}
-    if(!confirm(T('打开工程将替换当前工作区。若当前修改尚未下载，请先取消并保存工程。')))return;
-    project=payload.project;history=restoredHistory;checkpoints=payload.checkpoints;dataDrafts=copy(payload.dataDrafts||{});dataSerial++;selectedPanel=state().order[0];contentSelection=null;selected=[];templateCache.clear();original=false;migrateLabelHistory();savedCurrent=saveSignature();knownCache=undefined;persist();render();say(T('工程已恢复'));$('projectFile').value='';
-  });
+    if(fileImportSession)throw Error(T('请先完成或取消当前导入'));
+    if(project.id!==owner||history!==ownerHistory)throw Error(T('目标已变化，请重新选择导入位置'));
+    if(!confirm(T('打开工程将替换当前工作区。若当前修改尚未下载，请先取消并保存工程。')))return false;
+    cancelPanelGesture?.();cancelSelectionGesture?.();cancelObjectGesture?.();clearTimeout(dataTimer);clearTimeout(fileImportDataTimer);fileImportDataRefresh=null;
+    project=payload.project;history=restoredHistory;checkpoints=payload.checkpoints;dataDrafts=copy(payload.dataDrafts||{});dataSerial++;selectedPanel=state().order[0];contentSelection=null;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];setLabelSelection([]);selectedAlignmentGuide=null;selectedEmptyCell=null;panelSelection=[selectedPanel];selectionAfterMarquee=false;layoutMode=false;boxSelect=false;dragging=null;templateCache.clear();original=false;migrateLabelHistory();savedCurrent=saveSignature();knownCache=undefined;persist();render();say(T('工程已恢复'));return true;
+  }
+  $('projectFile').onchange=guard(async()=>{const file=$('projectFile').files[0];try{await openProjectFile(file);}finally{$('projectFile').value='';}});
   $('dimensions').onclick=()=>{$('exportOptions').open=true;$('exportOptions').scrollIntoView({block:'nearest'});$('exportWidth').focus();};
   function currentOutput(){const l=layout();return exportGeometry(l.width,l.height,state().exportSettings);}
   function setOutputWidth(width){const next=copy(state());next.exportSettings={widthMm:width,dpi:+$('exportDpi').value};commit(next,T('已等比例调整投稿尺寸'));}
