@@ -48,6 +48,9 @@ def build():
             question=dict(zip(['zh-CN','en'],notes)),limitation=dict(zip(['zh-CN','en'],notes)),estimand={'zh-CN':zh,'en':en},goals=['overview'],priority=105,
             renderer={'family':view,'parameters':params} if params else {'family':'gallery'},supported_views=[view],source_contract='skills/make-sci-data-figures/scripts/advanced_template_workbench.py' if params else 'skills/make-sci-data-figures/scripts/gallery_discovery_summary.py',last_review_version='1.0.0'))
     for entry in entries:
+        if entry['kind']=='relationship':entry['goals']=['overview','relationship']
+        if entry['kind']=='longitudinal':entry['goals']=['overview','longitudinal']
+        if entry['chart_id']=='compare_mean_ci':entry['goals']=['overview','uncertainty']
         explanations={
           'compare_strip_median':('保留每一个观测值；中位数短线便于小样本组间比较。','Show every observation; a median marker supports small-sample comparisons.','不显示组间效应量或其置信区间。','Does not display a between-group effect or its confidence interval.'),
           'compare_mean_ci':('比较组均值及其估计不确定性。','Compare group means and estimation uncertainty.','t 分布 95% CI；小样本时应同时查看原始观测。','t-based 95% CIs; inspect individual observations alongside them, especially for small samples.'),
