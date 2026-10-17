@@ -15,7 +15,7 @@ For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-
 
 ## Start with Figure Discovery
 
-Open **Figure Discovery** on the start page or Explore tab. Upload CSV, TSV or XLSX (first worksheet, headers in row one), check the column mapping and confirm the design, experimental unit, data level, technical replicates and nesting. Describe your research purpose, sample and assay. Inferred information is marked separately and never establishes independence or pairing.
+Open **Figure Discovery** on the start page or **Chart types** tab. Upload CSV, TSV or XLSX (first worksheet, headers in row one), check the column mapping and confirm the design, experimental unit, data level, technical replicates and nesting. Describe your research purpose, sample and assay. Inferred information is marked separately and never establishes independence or pairing.
 
 Generate candidates and compare their reasons, limitations and previews rendered from your own data. Normally 3–6 views are offered; scientific restrictions can yield fewer or none. Apply a view, continue editing, undo/redo, and save a project JSON. Desktop discovery needs no Node.js installation. The template data editor still accepts CSV/TSV; use Discovery for direct XLSX upload.
 
