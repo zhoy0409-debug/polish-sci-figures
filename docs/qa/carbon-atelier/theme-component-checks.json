@@ -1,0 +1,103 @@
+{
+  "scope": "Actual Chromium CSS on representative component fixtures; not full-page WCAG AA certification",
+  "generatedUTC": "2026-10-17T11:36:15.550Z",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "status": "PASS",
+  "sourceProofSha256": "d593122b7ce97b95ac09fbd3274a6d7ddd98518bb7593da2a0766a319970ad41",
+  "testScript": "scripts/test_studio_theme_tokens.cjs",
+  "testScriptSha256": "2444028adf2c9600d2cd8b1fb853ddc1f59d965f9489b60f2e3f60f7227f411a",
+  "themes": {
+    "carbon": {
+      "textChecks": 15,
+      "minimumTextContrast": 6.601047808711634,
+      "boundaryChecks": 3,
+      "minimumBoundaryContrast": 4.286780788307974,
+      "stateChecks": [
+        {
+          "selector": "#primary",
+          "state": "hover",
+          "contrast": 10.834053567018241
+        },
+        {
+          "selector": "#primary",
+          "state": "pressed",
+          "contrast": 4.806096670448365
+        },
+        {
+          "selector": "#exportSummary",
+          "state": "hover",
+          "contrast": 10.834053567018241
+        },
+        {
+          "selector": "#exportSummary",
+          "state": "pressed",
+          "contrast": 4.806096670448365
+        },
+        {
+          "selector": "#input",
+          "state": "keyboard-focus",
+          "contrast": 9.31199493885704
+        }
+      ],
+      "tokenPairChecks": 27,
+      "minimumTokenPairContrast": 4.703580308085979,
+      "artwork": {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(48, 52, 59)",
+        "stroke": "rgb(48, 52, 59)",
+        "fill": "rgb(179, 92, 113)",
+        "rasterSHA256": "2ef4cfe732d5bbad77d0991733670c765f953e47bbf0a36b216072b4d97eef15"
+      },
+      "reducedMotion": "PASS: asserted before raw proof was written"
+    },
+    "pearl": {
+      "textChecks": 15,
+      "minimumTextContrast": 5.309164464464362,
+      "boundaryChecks": 3,
+      "minimumBoundaryContrast": 3.7051817601604817,
+      "stateChecks": [
+        {
+          "selector": "#primary",
+          "state": "hover",
+          "contrast": 8.436342609169499
+        },
+        {
+          "selector": "#primary",
+          "state": "pressed",
+          "contrast": 10.139521434087776
+        },
+        {
+          "selector": "#exportSummary",
+          "state": "hover",
+          "contrast": 8.436342609169499
+        },
+        {
+          "selector": "#exportSummary",
+          "state": "pressed",
+          "contrast": 10.139521434087776
+        },
+        {
+          "selector": "#input",
+          "state": "keyboard-focus",
+          "contrast": 6.3683211313221335
+        }
+      ],
+      "tokenPairChecks": 27,
+      "minimumTokenPairContrast": 4.664215858184953,
+      "artwork": {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(48, 52, 59)",
+        "stroke": "rgb(48, 52, 59)",
+        "fill": "rgb(179, 92, 113)",
+        "rasterSHA256": "2ef4cfe732d5bbad77d0991733670c765f953e47bbf0a36b216072b4d97eef15"
+      },
+      "reducedMotion": "PASS: asserted before raw proof was written"
+    }
+  },
+  "externalRequests": 0
+}

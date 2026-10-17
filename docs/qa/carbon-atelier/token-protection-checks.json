@@ -1,0 +1,19 @@
+{
+  "baseline": "2c6d11a",
+  "scope": "Presentation migration guards; this does not validate scientific algorithms or every export format",
+  "checks": {
+    "image-color-ui.js: non-CSS code unchanged": true,
+    "image-insets-ui.js: non-CSS code unchanged": true,
+    "image-links-ui.js: non-CSS code unchanged": true,
+    "axis-settings-ui.css: non-editor SVG fill/stroke unchanged": true,
+    "discovery-ui.css: non-editor SVG fill/stroke unchanged": true,
+    "duplicate-check.css: non-editor SVG fill/stroke unchanged": true,
+    "duplicate-viewer.css: non-editor SVG fill/stroke unchanged": true,
+    "experience-tools.css: non-editor SVG fill/stroke unchanged": true,
+    "literature.css: non-editor SVG fill/stroke unchanged": true,
+    "mobile-ui.css: non-editor SVG fill/stroke unchanged": true,
+    "rich-text.css: non-editor SVG fill/stroke unchanged": true,
+    "studio.css: non-editor SVG fill/stroke unchanged": true,
+    "workspace-layout.css: non-editor SVG fill/stroke unchanged": true
+  }
+}

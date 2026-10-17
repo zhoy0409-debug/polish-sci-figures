@@ -70,7 +70,7 @@ final class UpdateChecker {
     }
 
     private JSONObject result(JSONObject offer, boolean fromCache, boolean stale, String reason) throws Exception {
-        JSONObject value = new JSONObject(offer.toString()).put("currentVersion", version).put("suiteVersion", "1.4.20")
+        JSONObject value = new JSONObject(offer.toString()).put("currentVersion", version).put("suiteVersion", "1.4.21")
             .put("platform", "android").put("architecture", "universal").put("channel", "preview").put("cached", fromCache).put("stale", stale);
         if (checkedAt > 0) value.put("checkedAt", Instant.ofEpochMilli(checkedAt).toString());
         if (reason != null) value.put("reason", reason);

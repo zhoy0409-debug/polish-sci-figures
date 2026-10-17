@@ -1,0 +1,177 @@
+{
+  "kind": "controlled_transport_fixture",
+  "realBrowser": "Chrome",
+  "realDownload": false,
+  "realInstaller": false,
+  "limitations": [
+    "State responses are controlled component fixtures, not an actual installer run.",
+    "125% and 150% use an effective CSS viewport plus emulated device pixel ratio, not Windows system display scaling.",
+    "Component timing is a short run on this host, without a full editor workload or GPU utilization measurement. It does not demonstrate sustained frame rate on other machines."
+  ],
+  "retainedAttempts": [
+    {
+      "kind": "root_css_zoom",
+      "result": "visual_review_rejected",
+      "reason": "CSS root zoom scales dialog pixels without scaling dvh; the artificial 150% fixture clipped its top. Replaced with effective CSS viewport and DPR emulation, with vertical geometry assertions."
+    }
+  ],
+  "states": [
+    {
+      "name": "rest-main",
+      "state": "idle",
+      "animation": "on",
+      "caption": ""
+    },
+    {
+      "name": "download-0",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.0 / 1.0 MB"
+    },
+    {
+      "name": "download-13",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.13 / 1.0 MB"
+    },
+    {
+      "name": "download-52",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.52 / 1.0 MB"
+    },
+    {
+      "name": "download-99",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.99 / 1.0 MB"
+    },
+    {
+      "name": "download-100",
+      "state": "verifying",
+      "animation": "on",
+      "caption": "Download complete. Verifying the update…"
+    },
+    {
+      "name": "verified-ready",
+      "state": "ready",
+      "animation": "on",
+      "caption": "Update verified. Ready to install."
+    },
+    {
+      "name": "backup-preparing",
+      "state": "preparing",
+      "animation": "on",
+      "caption": "Preserving the previous version…"
+    },
+    {
+      "name": "connection-lost",
+      "state": "paused",
+      "animation": "on",
+      "caption": "Waiting for the updater. Reconnecting…"
+    },
+    {
+      "name": "backend-error",
+      "state": "error",
+      "animation": "on",
+      "caption": ""
+    },
+    {
+      "name": "unknown-total",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.52 MB received"
+    },
+    {
+      "name": "manual-motion-off",
+      "state": "downloading",
+      "animation": "off",
+      "caption": "Downloading: 0.52 MB received"
+    },
+    {
+      "name": "reduced-motion-live-progress",
+      "state": "downloading",
+      "animation": "off",
+      "caption": "Downloading: 0.99 / 1.0 MB"
+    }
+  ],
+  "checks": [
+    "scrolling the illustration out of view pauses its animation through IntersectionObserver",
+    "manual motion off pauses character CSS animations",
+    "reduced motion stops animation while byte progress continues",
+    {
+      "emulatedScale": 1,
+      "geometry": {
+        "sceneWidth": 350,
+        "dialogLeft": 16,
+        "dialogRight": 404,
+        "dialogTop": 129.734375,
+        "dialogBottom": 770.25,
+        "viewport": 420,
+        "viewportHeight": 900,
+        "dpr": 1
+      },
+      "bottomActionReachable": true
+    },
+    {
+      "emulatedScale": 1.25,
+      "geometry": {
+        "sceneWidth": 266,
+        "dialogLeft": 16,
+        "dialogRight": 320,
+        "dialogTop": 28.375,
+        "dialogBottom": 691.609375,
+        "viewport": 336,
+        "viewportHeight": 720,
+        "dpr": 1.25
+      },
+      "bottomActionReachable": true
+    },
+    {
+      "emulatedScale": 1.5,
+      "geometry": {
+        "sceneWidth": 210,
+        "dialogLeft": 16,
+        "dialogRight": 264,
+        "dialogTop": 14,
+        "dialogBottom": 586,
+        "viewport": 280,
+        "viewportHeight": 600,
+        "dpr": 1.5
+      },
+      "bottomActionReachable": true
+    },
+    "closing pauses; scoped scene IDs unique; no image/network dependencies; narrow 100/125/150% emulated DPI geometry"
+  ],
+  "fixtureDoubleRafVisibleMs": 78.59999999403954,
+  "runtimeAssetBytes": {
+    "update-scene.js": 4127,
+    "update-scene.css": 14502,
+    "mascot-scene.svg": 11820
+  },
+  "componentTiming": [
+    {
+      "animationEnabled": true,
+      "elapsedMs": 2504.19999999404,
+      "frames": 301,
+      "p50Ms": 8.300000000000182,
+      "p95Ms": 8.400000000000546,
+      "maxMs": 8.599999999999909,
+      "longTasks": [],
+      "cdpTaskDurationSeconds": 0.223974
+    },
+    {
+      "animationEnabled": false,
+      "elapsedMs": 2506.999999994039,
+      "frames": 301,
+      "p50Ms": 8.300000000000182,
+      "p95Ms": 8.400000000000546,
+      "maxMs": 8.900000000000546,
+      "longTasks": [],
+      "cdpTaskDurationSeconds": 0.035794999999999993
+    }
+  ],
+  "remoteRequests": 0,
+  "browserErrors": [],
+  "passed": true
+}

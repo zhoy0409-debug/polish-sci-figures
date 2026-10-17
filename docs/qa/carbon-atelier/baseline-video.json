@@ -1,0 +1,12 @@
+{
+  "schema": "figure-studio-carbon-baseline-video/1",
+  "file": "baseline-public-workflow.webm",
+  "sha256": "a568ad2577c47e0ff97d6746aba09ad207bc2ca8c44aac1f9717e6655dcc103b",
+  "bytes": 1729100,
+  "browserMode": "headful Windows Google Chrome",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "scope": "Frozen baseline actual public-project workflow; UCI Iris, licensed public H&E and clearly labelled engineering examples. No private images, no local-engine token displayed."
+}

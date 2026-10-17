@@ -1,0 +1,153 @@
+/* Figure Studio UI only. Scientific artwork never consumes these theme tokens. */
+:root,
+:root[data-theme="carbon"] {
+  color-scheme: dark;
+  --fs-app-bg: #151B25;
+  --fs-header-bg: #1C2430;
+  --fs-nav-bg: #202A37;
+  --fs-inspector-bg: #253142;
+  --fs-toolbar-bg: #202B39;
+  --fs-workspace-bg: #BFC9D6;
+  --fs-surface-0: #151B25;
+  --fs-surface-1: #202A37;
+  --fs-surface-2: #253142;
+  --fs-surface-raised: #253142;
+  --fs-control-bg: #1C2735;
+  --fs-text-primary: #F0F4FA;
+  --fs-text-secondary: #BCC8D8;
+  --fs-text-muted: #B2BFD0;
+  --fs-text-disabled: #8998AD;
+  --fs-stroke-subtle: #405064;
+  --fs-stroke-default: #788AA3;
+  --fs-stroke-strong: #A4B6CE;
+  --fs-accent: #49C3A5;
+  --fs-accent-hover: #70DEC6;
+  --fs-accent-pressed: #1D806F;
+  --fs-accent-text: #70DEC6;
+  --fs-accent-selected-bg: #22443D;
+  --fs-on-accent: #101B1C;
+  --fs-on-accent-pressed: #FFFFFF;
+  --fs-focus: #70DEC6;
+  --fs-focus-soft: #70DEC62B;
+  --fs-hover: #304256;
+  --fs-pressed: #354D63;
+  --fs-success: #76D7B8;
+  --fs-success-bg: #1E4038;
+  --fs-warning: #F3C477;
+  --fs-warning-bg: #433822;
+  --fs-error: #F7A6B1;
+  --fs-error-bg: #482E39;
+  --fs-backdrop: #080F1BB3;
+  --fs-shadow-control: 0 1px 3px #080F1B33;
+  --fs-shadow-pressed: inset 0 1px 2px #080F1B4D;
+  --fs-shadow-popover: 0 4px 12px #080F1B33, 0 14px 32px #080F1B4D;
+  --fs-shadow-dialog: 0 20px 64px #080F1B66;
+  --fs-shadow-drawer: 0 0 32px #080F1B4D;
+}
+
+:root[data-theme="pearl"] {
+  color-scheme: light;
+  --fs-app-bg: #E6EBF2;
+  --fs-header-bg: #F9FAFC;
+  --fs-nav-bg: #F4F7FB;
+  --fs-inspector-bg: #FFFFFF;
+  --fs-toolbar-bg: #E9EDF5;
+  --fs-workspace-bg: #D0D8E3;
+  --fs-surface-0: #E6EBF2;
+  --fs-surface-1: #F4F7FB;
+  --fs-surface-2: #FFFFFF;
+  --fs-surface-raised: #FFFFFF;
+  --fs-control-bg: #FFFFFF;
+  --fs-text-primary: #253246;
+  --fs-text-secondary: #4D5E73;
+  --fs-text-muted: #526278;
+  --fs-text-disabled: #6F7D90;
+  --fs-stroke-subtle: #BCC9D8;
+  --fs-stroke-default: #77869B;
+  --fs-stroke-strong: #4D627E;
+  --fs-accent: #176B5D;
+  --fs-accent-hover: #145749;
+  --fs-accent-pressed: #104A3E;
+  --fs-accent-text: #176B5D;
+  --fs-accent-selected-bg: #D7F0E7;
+  --fs-on-accent: #FFFFFF;
+  --fs-on-accent-pressed: #FFFFFF;
+  --fs-focus: #176B5D;
+  --fs-focus-soft: #176B5D26;
+  --fs-hover: #E4EAF2;
+  --fs-pressed: #D7E0EB;
+  --fs-success: #146C53;
+  --fs-success-bg: #E3F3EB;
+  --fs-warning: #88520A;
+  --fs-warning-bg: #FFF2D9;
+  --fs-error: #B33E4F;
+  --fs-error-bg: #FCECF0;
+  --fs-backdrop: #18283B66;
+  --fs-shadow-control: 0 1px 3px #25324612;
+  --fs-shadow-pressed: inset 0 1px 2px #2532461F;
+  --fs-shadow-popover: 0 4px 12px #25324612, 0 14px 32px #25324621;
+  --fs-shadow-dialog: 0 20px 64px #25324633;
+  --fs-shadow-drawer: 0 0 32px #25324626;
+}
+
+:root {
+  --fs-artboard-bg: #FFFFFF;
+  /* Baseline inherited currentColor before the UI theme upgrade. */
+  --fs-artwork-ink: #30343B;
+  --fs-preview-bg: #EDF0F5;
+  --fs-checker: #E2E7EF;
+  --fs-workspace-dark: #394453;
+  --fs-workspace-light: #E8EDF3;
+  /* Editor guides must remain readable against the fixed white paper. */
+  --fs-guide: #176B5D;
+  --fs-guide-hover: #145749;
+  --fs-guide-soft: #D7F0E7;
+  --fs-radius-xs: 2px;
+  --fs-radius-sm: 4px;
+  --fs-radius-md: 6px;
+  --fs-radius-lg: 8px;
+  --fs-radius-dialog: 12px;
+  --fs-radius-round: 999px;
+  --fs-space-1: 4px;
+  --fs-space-2: 8px;
+  --fs-space-3: 12px;
+  --fs-space-4: 16px;
+  --fs-space-5: 20px;
+  --fs-space-6: 24px;
+  --fs-space-7: 28px;
+  --fs-space-8: 32px;
+  --fs-font-family: "Segoe UI Variable Text", "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  --fs-font-xs: 12px;
+  --fs-font-sm: 13px;
+  --fs-font-md: 14px;
+  --fs-font-lg: 16px;
+  --fs-font-heading: 18px;
+  --fs-font-title: 20px;
+  --fs-font-display: 24px;
+  --fs-control-height: 36px;
+  --fs-primary-height: 38px;
+  --fs-motion-hover: 130ms;
+  --fs-motion-pressed: 100ms;
+  --fs-motion-panel: 160ms;
+  --fs-ease: cubic-bezier(.2, 0, .2, 1);
+  --fs-shadow-paper: 0 2px 6px #20253418, 0 12px 32px #20253424;
+  --fs-control-transition: background-color var(--fs-motion-hover) var(--fs-ease), border-color var(--fs-motion-hover) var(--fs-ease), color var(--fs-motion-hover) var(--fs-ease), box-shadow var(--fs-motion-hover) var(--fs-ease), outline-color var(--fs-motion-hover) var(--fs-ease);
+  /* Existing component contracts remain compatible during the in-place migration. */
+  --ui-accent: var(--fs-accent);
+  --ui-accent-hover: var(--fs-accent-hover);
+  --ui-accent-pressed: var(--fs-accent-pressed);
+  --ui-hover: var(--fs-hover);
+  --ui-pressed: var(--fs-pressed);
+  --ui-selected: var(--fs-accent-selected-bg);
+  --ui-border-hover: var(--fs-stroke-strong);
+  --ui-focus: var(--fs-focus);
+  --ui-ring: var(--fs-focus-soft);
+  --ui-control-transition: var(--fs-control-transition);
+  --green: var(--fs-accent);
+  --line: var(--fs-stroke-subtle);
+  --muted: var(--fs-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --fs-motion-hover: 0ms; --fs-motion-pressed: 0ms; --fs-motion-panel: 0ms; --fs-control-transition: none; }
+}

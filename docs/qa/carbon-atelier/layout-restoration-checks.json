@@ -1,0 +1,227 @@
+{
+  "schema": "figure-studio-carbon-layout-acceptance/1",
+  "status": "PASS",
+  "browser": "155.0.8059.82",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "selections": [
+        {
+          "kind": "panel",
+          "metrics": {
+            "artboard": {
+              "x": 391.34375,
+              "y": 400.78125,
+              "width": 397.296875,
+              "height": 245
+            },
+            "toolbarHeight": 223,
+            "quickbarHeight": 176,
+            "zoom": "fit",
+            "formatGroupHidden": false,
+            "mainWidth": 728
+          }
+        },
+        {
+          "kind": "text",
+          "metrics": {
+            "artboard": {
+              "x": 391.34375,
+              "y": 400.78125,
+              "width": 397.296875,
+              "height": 245
+            },
+            "toolbarHeight": 223,
+            "quickbarHeight": 176,
+            "zoom": "fit",
+            "formatGroupHidden": false,
+            "mainWidth": 728
+          }
+        },
+        {
+          "kind": "shape",
+          "metrics": {
+            "artboard": {
+              "x": 391.34375,
+              "y": 400.78125,
+              "width": 397.296875,
+              "height": 245
+            },
+            "toolbarHeight": 223,
+            "quickbarHeight": 176,
+            "zoom": "fit",
+            "formatGroupHidden": false,
+            "mainWidth": 728
+          }
+        }
+      ],
+      "sidebar": {
+        "passed": true,
+        "before": {
+          "stored": "{\"left\":230,\"right\":320}",
+          "width": 230
+        },
+        "after": {
+          "stored": "{\"left\":230,\"right\":320}",
+          "width": 230
+        }
+      },
+      "colourUndoRedo": true,
+      "singleGestureUndo": true,
+      "remoteRequests": [],
+      "errors": [],
+      "selectionFitSizeStable": true
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "selections": [
+        {
+          "kind": "panel",
+          "metrics": {
+            "artboard": {
+              "x": 430,
+              "y": 346,
+              "width": 480,
+              "height": 296
+            },
+            "toolbarHeight": 181,
+            "quickbarHeight": 134,
+            "zoom": "fit",
+            "formatGroupHidden": false,
+            "mainWidth": 888
+          }
+        },
+        {
+          "kind": "text",
+          "metrics": {
+            "artboard": {
+              "x": 430,
+              "y": 346,
+              "width": 480,
+              "height": 296
+            },
+            "toolbarHeight": 181,
+            "quickbarHeight": 134,
+            "zoom": "fit",
+            "formatGroupHidden": false,
+            "mainWidth": 888
+          }
+        },
+        {
+          "kind": "shape",
+          "metrics": {
+            "artboard": {
+              "x": 430,
+              "y": 346,
+              "width": 480,
+              "height": 296
+            },
+            "toolbarHeight": 181,
+            "quickbarHeight": 134,
+            "zoom": "fit",
+            "formatGroupHidden": false,
+            "mainWidth": 888
+          }
+        }
+      ],
+      "sidebar": {
+        "passed": true,
+        "before": {
+          "stored": "{\"left\":230,\"right\":320}",
+          "width": 230
+        },
+        "after": {
+          "stored": "{\"left\":230,\"right\":320}",
+          "width": 230
+        }
+      },
+      "colourUndoRedo": true,
+      "singleGestureUndo": true,
+      "remoteRequests": [],
+      "errors": [],
+      "selectionFitSizeStable": true
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "selections": [
+        {
+          "kind": "panel",
+          "metrics": {
+            "artboard": {
+              "x": 670,
+              "y": 304,
+              "width": 480,
+              "height": 296
+            },
+            "toolbarHeight": 139,
+            "quickbarHeight": 92,
+            "zoom": "fit",
+            "formatGroupHidden": false,
+            "mainWidth": 1368
+          }
+        },
+        {
+          "kind": "text",
+          "metrics": {
+            "artboard": {
+              "x": 670,
+              "y": 304,
+              "width": 480,
+              "height": 296
+            },
+            "toolbarHeight": 139,
+            "quickbarHeight": 92,
+            "zoom": "fit",
+            "formatGroupHidden": false,
+            "mainWidth": 1368
+          }
+        },
+        {
+          "kind": "shape",
+          "metrics": {
+            "artboard": {
+              "x": 670,
+              "y": 304,
+              "width": 480,
+              "height": 296
+            },
+            "toolbarHeight": 139,
+            "quickbarHeight": 92,
+            "zoom": "fit",
+            "formatGroupHidden": false,
+            "mainWidth": 1368
+          }
+        }
+      ],
+      "sidebar": {
+        "passed": true,
+        "before": {
+          "stored": "{\"left\":230,\"right\":320}",
+          "width": 230
+        },
+        "after": {
+          "stored": "{\"left\":230,\"right\":320}",
+          "width": 230
+        }
+      },
+      "colourUndoRedo": true,
+      "singleGestureUndo": true,
+      "remoteRequests": [],
+      "errors": [],
+      "selectionFitSizeStable": true
+    }
+  ],
+  "errors": [],
+  "scope": "Actual Windows Chrome. DPR/reduced-motion are browser emulations, not physical Windows scaling.",
+  "rawProofSha256": "4861d52931d4f03837de1ff712fa4e32a4c6d0c65d5fddb882d1c7ffe4b31c8b",
+  "restorationRegression": "Existing freeze baseline also reproduced undefined variant after import/edit/undo/reload. Current source aligns selectedPanel with restored order and passes this operation chain."
+}

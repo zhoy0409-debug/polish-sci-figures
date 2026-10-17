@@ -5,7 +5,7 @@ const {fit,init}=require('../skills/polish-sci-figures/assets/figure-studio/work
 for(const total of [751,800,1200,2200])for(const side of [null,'left','right'])for(const [left,right]of [[220,320],[800,900],[-1,-3],[NaN,Infinity]]){
   const fitted=fit(total,left,right,side);assert.ok(fitted.left>=150);assert.ok(fitted.right>=220);assert.ok(fitted.left+fitted.right+272<=total+1,'center remains at least 260 px, within integer rounding');
 }
-function node(){const classes=new Set();return{children:[],dataset:{},attrs:{},classList:{add:s=>classes.add(s),remove:s=>classes.delete(s),contains:s=>classes.has(s)},style:{setProperty(k,v){this[k]=v;}},append(n){this.children.push(n);},setAttribute(k,v){this.attrs[k]=String(v);},setPointerCapture(id){this.capture=id;},hasPointerCapture(id){return this.capture===id;},releasePointerCapture(id){if(this.capture===id)this.capture=null;}};}
+function node(){const classes=new Set();return{children:[],dataset:{},attrs:{},classList:{add:s=>classes.add(s),remove:s=>classes.delete(s),contains:s=>classes.has(s)},style:{setProperty(k,v){this[k]=v;},getPropertyValue(k){return this[k]||'';}},append(n){this.children.push(n);},setAttribute(k,v){this.attrs[k]=String(v);},setPointerCapture(id){this.capture=id;},hasPointerCapture(id){return this.capture===id;},releasePointerCapture(id){if(this.capture===id)this.capture=null;}};}
 const previous=Object.fromEntries(['document','window','localStorage','requestAnimationFrame','cancelAnimationFrame'].map(k=>[k,globalThis[k]]));
 function harness(storage=new Map(),width=1200){
   const workspace=node(),body=node(),events={},raf=new Map();workspace.clientWidth=width;let serial=0,resizes=0,saves=0,translated=false;

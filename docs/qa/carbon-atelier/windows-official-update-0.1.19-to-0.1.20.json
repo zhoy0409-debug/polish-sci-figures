@@ -1,0 +1,64 @@
+{
+  "kind": "actual_official_0.1.19_to_0.1.20_with_current_presentation",
+  "verifiedUTC": "2026-10-17T11:40:19.567Z",
+  "client": "Official 0.1.19 frozen security backend and installation; current Carbon presentation HTML only. Real official 0.1.20 package. Dedicated child LOCALAPPDATA profile; no mock transport.",
+  "isFinal0_1_21InstallerAcceptance": false,
+  "operatorReportedHelperResult": "installed",
+  "helperResultIndependentlyReadByThisSubtask": false,
+  "installerCommands": {
+    "download": 1,
+    "install": 1
+  },
+  "before": {
+    "currentVersion": "0.1.19",
+    "suiteVersion": "1.4.19",
+    "platform": "windows"
+  },
+  "reopenedHeader": {
+    "currentVersion": "0.1.20",
+    "suiteVersion": "1.4.20",
+    "platform": "windows"
+  },
+  "sameOriginReopened": true,
+  "observedStages": [
+    "idle",
+    "checking",
+    "downloading",
+    "ready",
+    "preparing",
+    "paused"
+  ],
+  "unobservedStages": [
+    "verifying",
+    "installing"
+  ],
+  "installingHandshakeObserved": false,
+  "originalRun": {
+    "passed": false,
+    "failureStage": "Post-install editor locator; outer and nested SVGs both matched a strict descendant locator",
+    "originalReportSHA256": "7642b88c97b98cb26681771d1b2b93d04e2b68118642c22401271f6311adb90e",
+    "preserved": true
+  },
+  "separateContinuation": {
+    "passed": true,
+    "noAdditionalUpdateCommands": true,
+    "servedBuild": {
+      "currentVersion": "0.1.20",
+      "suiteVersion": "1.4.20",
+      "platform": "windows"
+    },
+    "explicitSavedProjectReadable": true,
+    "scientificTableSHA256": "ca7d70f935e74618b78234d9e83d3c4893a91a9f8a884777aba237894feae71b",
+    "priorEvidenceUnchanged": true,
+    "reportSHA256": "677a67d76d2f7baae690fb39afa85814991aa43a240e36b3ad67076f27de1d13"
+  },
+  "automaticRestore": {
+    "established": false,
+    "reason": "The original run stopped before its final Save. The separate continuation used a new Chrome context without the original IndexedDB; its explicit Open verifies readability and cannot establish automatic restoration."
+  },
+  "limitations": [
+    "Brief verifying and installing UI states were not observed and are not fabricated.",
+    "This older-backend/current-presentation regression is separate from acceptance of the final 0.1.21 installer.",
+    "Actual videos and raw local evidence remain in ignored cache; no profile paths, request tokens or project table values are included here."
+  ]
+}

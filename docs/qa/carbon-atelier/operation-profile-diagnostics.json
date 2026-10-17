@@ -1,0 +1,792 @@
+{
+  "schema": "figure-studio-carbon-operation-profile/1",
+  "status": "DIAGNOSTIC_ONLY",
+  "scope": "Same-device actual headful Chrome, no video; three sequential rounds per operation, 5000 synthetic editable elements. CDP tracing/CPU sampling adds overhead. Event type durations overlap and must not be added. This is attribution, not formal performance or scientific image accuracy.",
+  "cases": [
+    {
+      "label": "baseline",
+      "browser": "155.0.8059.82",
+      "mode": "unaltered",
+      "rawSha256": "75f6a0f5158097884733491f79aec1d89f55a275580a65f82426c1b14722719d",
+      "traceSha256": "e95273b7ea3f2c1250de458753d0440c8050c69ebad4504a2a29083ee54a660c",
+      "cpuSha256": "5c36d4c226e337f63b96cab0d49ad06b713277a9ae688ac7095e69be456a6b26",
+      "operations": {
+        "select-text": {
+          "rounds": 3,
+          "wallMs": [
+            533.5,
+            659.3000000119209,
+            578.2999999821186
+          ],
+          "wallP50Ms": 578.2999999821186,
+          "cpuSamples": 1562,
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 193.502,
+            "Layout": 271.64700000000005,
+            "Paint": 157.453,
+            "FunctionCall": 757.7049999999999
+          },
+          "pageJavaScriptTopSelfMs": [
+            {
+              "function": "paint",
+              "bundledLine": 9411,
+              "selfMs": 103.73599999999999
+            },
+            {
+              "function": "isVisibleObject",
+              "bundledLine": 11167,
+              "selfMs": 22.357
+            },
+            {
+              "function": "quickSelectedObjects",
+              "bundledLine": 12865,
+              "selfMs": 16.186
+            },
+            {
+              "function": "canvasClipboardSelection",
+              "bundledLine": 14691,
+              "selfMs": 8.705
+            },
+            {
+              "function": "keysToObjects",
+              "bundledLine": 11175,
+              "selfMs": 8.176
+            },
+            {
+              "function": "(anonymous)",
+              "bundledLine": 12869,
+              "selfMs": 3.3920000000000003
+            },
+            {
+              "function": "(anonymous)",
+              "bundledLine": 11175,
+              "selfMs": 3.321
+            },
+            {
+              "function": "sync",
+              "bundledLine": 4232,
+              "selfMs": 1.758
+            },
+            {
+              "function": "(anonymous)",
+              "bundledLine": 12386,
+              "selfMs": 1.752
+            },
+            {
+              "function": "matrix",
+              "bundledLine": 6418,
+              "selfMs": 1.711
+            },
+            {
+              "function": "readSpacing",
+              "bundledLine": 4010,
+              "selfMs": 1.664
+            },
+            {
+              "function": "inspect",
+              "bundledLine": 7894,
+              "selfMs": 1.653
+            }
+          ]
+        },
+        "drag-shape": {
+          "rounds": 3,
+          "wallMs": [
+            806.8000000119209,
+            1187.4000000059605,
+            1138.5
+          ],
+          "wallP50Ms": 1138.5,
+          "cpuSamples": 2530,
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 286.234,
+            "Layout": 296.796,
+            "Paint": 155.25600000000003,
+            "FunctionCall": 1537.099
+          },
+          "pageJavaScriptTopSelfMs": [
+            {
+              "function": "paint",
+              "bundledLine": 9411,
+              "selfMs": 167.601
+            },
+            {
+              "function": "previewFitZoom",
+              "bundledLine": 13391,
+              "selfMs": 112.256
+            },
+            {
+              "function": "namespace",
+              "bundledLine": 11763,
+              "selfMs": 59.73700000000001
+            },
+            {
+              "function": "alignmentContext",
+              "bundledLine": 13504,
+              "selfMs": 17.108
+            },
+            {
+              "function": "renderCanvas",
+              "bundledLine": 13462,
+              "selfMs": 12.906
+            },
+            {
+              "function": "alignmentSnap",
+              "bundledLine": 9960,
+              "selfMs": 9.425999999999998
+            },
+            {
+              "function": "value",
+              "bundledLine": 10648,
+              "selfMs": 7.911
+            },
+            {
+              "function": "snap",
+              "bundledLine": 13510,
+              "selfMs": 5.3469999999999995
+            },
+            {
+              "function": "visit",
+              "bundledLine": 10657,
+              "selfMs": 5.079000000000001
+            },
+            {
+              "function": "isVisibleObject",
+              "bundledLine": 11167,
+              "selfMs": 4.9079999999999995
+            },
+            {
+              "function": "box",
+              "bundledLine": 13504,
+              "selfMs": 4.753
+            },
+            {
+              "function": "related",
+              "bundledLine": 13506,
+              "selfMs": 3.343
+            }
+          ]
+        },
+        "switch-tab": {
+          "rounds": 3,
+          "wallMs": [
+            1449.800000011921,
+            459.30000001192093,
+            1399.2000000178814
+          ],
+          "wallP50Ms": 1399.2000000178814,
+          "cpuSamples": 2433,
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 394.66599999999994,
+            "Layout": 277.298,
+            "Paint": 264.053,
+            "FunctionCall": 1758.6370000000002
+          },
+          "pageJavaScriptTopSelfMs": [
+            {
+              "function": "previewFitZoom",
+              "bundledLine": 13391,
+              "selfMs": 439.05999999999995
+            },
+            {
+              "function": "namespace",
+              "bundledLine": 11763,
+              "selfMs": 382.646
+            },
+            {
+              "function": "editedSvg",
+              "bundledLine": 11608,
+              "selfMs": 39.771
+            },
+            {
+              "function": "paint",
+              "bundledLine": 9411,
+              "selfMs": 33.445
+            },
+            {
+              "function": "editNode",
+              "bundledLine": 11638,
+              "selfMs": 26.644000000000002
+            },
+            {
+              "function": "renderCanvas",
+              "bundledLine": 13462,
+              "selfMs": 20.567999999999998
+            },
+            {
+              "function": "isVisibleObject",
+              "bundledLine": 11167,
+              "selfMs": 9.582
+            },
+            {
+              "function": "quickSelectedObjects",
+              "bundledLine": 12865,
+              "selfMs": 7.9799999999999995
+            },
+            {
+              "function": "(anonymous)",
+              "bundledLine": 13511,
+              "selfMs": 6.541
+            },
+            {
+              "function": "paint",
+              "bundledLine": 11191,
+              "selfMs": 4.991
+            },
+            {
+              "function": "applyObjectTransforms",
+              "bundledLine": 8198,
+              "selfMs": 4.912
+            },
+            {
+              "function": "canvasClipboardSelection",
+              "bundledLine": 14691,
+              "selfMs": 4.797
+            }
+          ]
+        }
+      },
+      "resizeObservers": [
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "layerObjects"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "viewport"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "candidate1",
+      "browser": "155.0.8059.82",
+      "mode": "unaltered",
+      "rawSha256": "4b65d19a3eab2d7f123550ca0c91fce1cb6107a5e9e4f754569a757248f0de75",
+      "traceSha256": "ce0c4dd223b39028ba22cb692dc517b3f524ae0d7a9e9d6f348c82a22d958adf",
+      "cpuSha256": "9465f749a54970994c6bef7c5840563ca39a11df25cc620bd4a2017a38f7820a",
+      "operations": {
+        "select-text": {
+          "rounds": 3,
+          "wallMs": [
+            608.9000000059605,
+            678.1999999880791,
+            590.3999999761581
+          ],
+          "wallP50Ms": 608.9000000059605,
+          "cpuSamples": 1622,
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 241.364,
+            "Layout": 301.101,
+            "Paint": 114.89099999999999,
+            "FunctionCall": 870.2629999999998
+          },
+          "pageJavaScriptTopSelfMs": [
+            {
+              "function": "paint",
+              "bundledLine": 9789,
+              "selfMs": 115.47500000000001
+            },
+            {
+              "function": "quickSelectedObjects",
+              "bundledLine": 13416,
+              "selfMs": 39.666999999999994
+            },
+            {
+              "function": "isVisibleObject",
+              "bundledLine": 11715,
+              "selfMs": 27.274
+            },
+            {
+              "function": "canvasClipboardSelection",
+              "bundledLine": 15243,
+              "selfMs": 6.476000000000001
+            },
+            {
+              "function": "keysToObjects",
+              "bundledLine": 11723,
+              "selfMs": 6.367
+            },
+            {
+              "function": "renderSelectionProperties",
+              "bundledLine": 13640,
+              "selfMs": 4.724
+            },
+            {
+              "function": "(anonymous)",
+              "bundledLine": 12934,
+              "selfMs": 3.201
+            },
+            {
+              "function": "targetObjects",
+              "bundledLine": 12931,
+              "selfMs": 3.1790000000000003
+            },
+            {
+              "function": "renderEditingPanels",
+              "bundledLine": 13610,
+              "selfMs": 1.752
+            },
+            {
+              "function": "details",
+              "bundledLine": 8204,
+              "selfMs": 1.673
+            },
+            {
+              "function": "measure",
+              "bundledLine": 4370,
+              "selfMs": 1.672
+            },
+            {
+              "function": "richTextTarget",
+              "bundledLine": 12882,
+              "selfMs": 1.642
+            }
+          ]
+        },
+        "drag-shape": {
+          "rounds": 3,
+          "wallMs": [
+            846,
+            900.5,
+            1110.5999999940395
+          ],
+          "wallP50Ms": 900.5,
+          "cpuSamples": 2387,
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 260.884,
+            "Layout": 297.242,
+            "Paint": 135.60700000000003,
+            "FunctionCall": 1519.4450000000002
+          },
+          "pageJavaScriptTopSelfMs": [
+            {
+              "function": "paint",
+              "bundledLine": 9789,
+              "selfMs": 139.52700000000002
+            },
+            {
+              "function": "previewFitZoom",
+              "bundledLine": 13943,
+              "selfMs": 112.089
+            },
+            {
+              "function": "namespace",
+              "bundledLine": 12311,
+              "selfMs": 61.46
+            },
+            {
+              "function": "alignmentSnap",
+              "bundledLine": 10504,
+              "selfMs": 21.750999999999998
+            },
+            {
+              "function": "isVisibleObject",
+              "bundledLine": 11715,
+              "selfMs": 15.982000000000001
+            },
+            {
+              "function": "alignmentContext",
+              "bundledLine": 14056,
+              "selfMs": 15.715
+            },
+            {
+              "function": "renderCanvas",
+              "bundledLine": 14014,
+              "selfMs": 14.293
+            },
+            {
+              "function": "value",
+              "bundledLine": 11192,
+              "selfMs": 5.007
+            },
+            {
+              "function": "box",
+              "bundledLine": 14056,
+              "selfMs": 4.798
+            },
+            {
+              "function": "visit",
+              "bundledLine": 11201,
+              "selfMs": 4.7669999999999995
+            },
+            {
+              "function": "editNode",
+              "bundledLine": 12186,
+              "selfMs": 4.516
+            }
+          ]
+        },
+        "switch-tab": {
+          "rounds": 3,
+          "wallMs": [
+            1399.699999988079,
+            434.69999998807907,
+            2113.5
+          ],
+          "wallP50Ms": 1399.699999988079,
+          "cpuSamples": 2819,
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 519.6370000000001,
+            "Layout": 434.546,
+            "Paint": 384.486,
+            "FunctionCall": 2179.648
+          },
+          "pageJavaScriptTopSelfMs": [
+            {
+              "function": "previewFitZoom",
+              "bundledLine": 13943,
+              "selfMs": 578.7730000000001
+            },
+            {
+              "function": "namespace",
+              "bundledLine": 12311,
+              "selfMs": 447.3069999999999
+            },
+            {
+              "function": "editedSvg",
+              "bundledLine": 12156,
+              "selfMs": 49.562000000000005
+            },
+            {
+              "function": "paint",
+              "bundledLine": 9789,
+              "selfMs": 42.128
+            },
+            {
+              "function": "editNode",
+              "bundledLine": 12186,
+              "selfMs": 34.977
+            },
+            {
+              "function": "isVisibleObject",
+              "bundledLine": 11715,
+              "selfMs": 16.92
+            },
+            {
+              "function": "renderCanvas",
+              "bundledLine": 14014,
+              "selfMs": 16.15
+            },
+            {
+              "function": "quickSelectedObjects",
+              "bundledLine": 13416,
+              "selfMs": 6.373
+            },
+            {
+              "function": "applyObjectTransforms",
+              "bundledLine": 8576,
+              "selfMs": 4.7780000000000005
+            },
+            {
+              "function": "collect",
+              "bundledLine": 9755,
+              "selfMs": 3.428
+            },
+            {
+              "function": "add",
+              "bundledLine": 9762,
+              "selfMs": 3.268
+            },
+            {
+              "function": "drawPalettes",
+              "bundledLine": 13175,
+              "selfMs": 3.199
+            }
+          ]
+        }
+      },
+      "resizeObservers": [
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "canvasQuickToolbar"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "layerObjects"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "viewport"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "candidate1-ui-token-reset",
+      "browser": "155.0.8059.82",
+      "mode": "artwork-token-reset",
+      "rawSha256": "1f99f50a773b753d9cd774b4fd4c322a0e5eb4374c93d36b618f536ba40cac0b",
+      "traceSha256": "deeacdabc4fb59d96e33b4add973b27f30e425e5b142a658f31da45bfc7471ed",
+      "cpuSha256": "7bc44171735089bfd32017c5382df92ede5a5f9416d3d6788705ada3a919eff2",
+      "operations": {
+        "select-text": {
+          "rounds": 3,
+          "wallMs": [
+            417.7999999821186,
+            697.2000000178814,
+            546.5999999940395
+          ],
+          "wallP50Ms": 546.5999999940395,
+          "cpuSamples": 1508,
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 221.05700000000002,
+            "Layout": 269.096,
+            "Paint": 100.579,
+            "FunctionCall": 765.5959999999995
+          },
+          "pageJavaScriptTopSelfMs": [
+            {
+              "function": "paint",
+              "bundledLine": 9789,
+              "selfMs": 104.23900000000002
+            },
+            {
+              "function": "quickSelectedObjects",
+              "bundledLine": 13416,
+              "selfMs": 38.815999999999995
+            },
+            {
+              "function": "isVisibleObject",
+              "bundledLine": 11715,
+              "selfMs": 27.031000000000002
+            },
+            {
+              "function": "(anonymous)",
+              "bundledLine": 12934,
+              "selfMs": 8.115
+            },
+            {
+              "function": "canvasClipboardSelection",
+              "bundledLine": 15243,
+              "selfMs": 6.558
+            },
+            {
+              "function": "keysToObjects",
+              "bundledLine": 11723,
+              "selfMs": 6.4959999999999996
+            },
+            {
+              "function": "(anonymous)",
+              "bundledLine": 11723,
+              "selfMs": 4.979
+            },
+            {
+              "function": "layout",
+              "bundledLine": 12357,
+              "selfMs": 3.7830000000000004
+            },
+            {
+              "function": "renderQuickToolbar",
+              "bundledLine": 13526,
+              "selfMs": 1.747
+            },
+            {
+              "function": "refresh",
+              "bundledLine": 10071,
+              "selfMs": 1.732
+            },
+            {
+              "function": "inspect",
+              "bundledLine": 8272,
+              "selfMs": 1.65
+            },
+            {
+              "function": "relativeMatrix",
+              "bundledLine": 6877,
+              "selfMs": 1.647
+            }
+          ]
+        },
+        "drag-shape": {
+          "rounds": 3,
+          "wallMs": [
+            902,
+            1107.5,
+            987.8000000119209
+          ],
+          "wallP50Ms": 987.8000000119209,
+          "cpuSamples": 2483,
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 283.53999999999996,
+            "Layout": 314.825,
+            "Paint": 137.06400000000002,
+            "FunctionCall": 1604.383
+          },
+          "pageJavaScriptTopSelfMs": [
+            {
+              "function": "paint",
+              "bundledLine": 9789,
+              "selfMs": 158.18200000000004
+            },
+            {
+              "function": "previewFitZoom",
+              "bundledLine": 13943,
+              "selfMs": 116.995
+            },
+            {
+              "function": "namespace",
+              "bundledLine": 12311,
+              "selfMs": 63.114000000000004
+            },
+            {
+              "function": "isVisibleObject",
+              "bundledLine": 11715,
+              "selfMs": 29.557
+            },
+            {
+              "function": "renderCanvas",
+              "bundledLine": 14014,
+              "selfMs": 20.74
+            },
+            {
+              "function": "value",
+              "bundledLine": 11192,
+              "selfMs": 16.548000000000002
+            },
+            {
+              "function": "alignmentContext",
+              "bundledLine": 14056,
+              "selfMs": 15.194
+            },
+            {
+              "function": "alignmentSnap",
+              "bundledLine": 10504,
+              "selfMs": 13.400999999999996
+            }
+          ]
+        },
+        "switch-tab": {
+          "rounds": 3,
+          "wallMs": [
+            1479.2000000178814,
+            435.60000002384186,
+            1411.699999988079
+          ],
+          "wallP50Ms": 1411.699999988079,
+          "cpuSamples": 2417,
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 432.701,
+            "Layout": 390.12300000000005,
+            "Paint": 282.42,
+            "FunctionCall": 1866.057
+          },
+          "pageJavaScriptTopSelfMs": [
+            {
+              "function": "previewFitZoom",
+              "bundledLine": 13943,
+              "selfMs": 482.4980000000001
+            },
+            {
+              "function": "namespace",
+              "bundledLine": 12311,
+              "selfMs": 396.4679999999999
+            },
+            {
+              "function": "editedSvg",
+              "bundledLine": 12156,
+              "selfMs": 49.39699999999999
+            },
+            {
+              "function": "paint",
+              "bundledLine": 9789,
+              "selfMs": 36.285000000000004
+            },
+            {
+              "function": "editNode",
+              "bundledLine": 12186,
+              "selfMs": 29.292
+            },
+            {
+              "function": "renderCanvas",
+              "bundledLine": 14014,
+              "selfMs": 17.093
+            },
+            {
+              "function": "isVisibleObject",
+              "bundledLine": 11715,
+              "selfMs": 13.283
+            },
+            {
+              "function": "quickSelectedObjects",
+              "bundledLine": 13416,
+              "selfMs": 11.526
+            },
+            {
+              "function": "paint",
+              "bundledLine": 11739,
+              "selfMs": 9.68
+            },
+            {
+              "function": "applyObjectTransforms",
+              "bundledLine": 8576,
+              "selfMs": 7.993
+            },
+            {
+              "function": "(anonymous)",
+              "bundledLine": 14063,
+              "selfMs": 4.887
+            },
+            {
+              "function": "canvasClipboardSelection",
+              "bundledLine": 15243,
+              "selfMs": 4.814
+            }
+          ]
+        }
+      },
+      "temporaryResetTokenCount": 80,
+      "interventionDisclosure": "Synthetic pressure fixture only. UI --fs-* inheritance reset at SVG for diagnostic attribution; not a production design or scientific isolation approval.",
+      "resizeObservers": [
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "canvasQuickToolbar"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "layerObjects"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "viewport"
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": [
+    "The initial toolbar/geometry optimizations materially reduced sidebar cost; no production UI token reset was accepted.",
+    "With no video and CDP instrumentation, candidate1 tab wall P50 is close to baseline despite more style/layout work; this does not erase the recorded formal regressions.",
+    "The 80 UI-token reset is synthetic-only attribution, with mixed operation outcomes; scientific artwork or application-wide variable clearing is not authorized by this evidence.",
+    "Identical unrecorded baseline/current formal runs are required before a release performance decision."
+  ]
+}

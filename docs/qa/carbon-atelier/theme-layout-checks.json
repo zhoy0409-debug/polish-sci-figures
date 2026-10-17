@@ -1,0 +1,1371 @@
+{
+  "scope": "Windows Chrome source-build presentation acceptance; temporary text fixture; not scientific or installer validation",
+  "generatedUTC": "2026-10-17T11:29:15.347Z",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "status": "PASS",
+  "sourceProofSha256": "7378cfa66b78418fda2f7b1ec3683926a423a96318a50692b8298560a59f2bf8",
+  "testScript": "scripts/test_studio_theme_layout_browser.cjs",
+  "testScriptSha256": "720b40a844935fa4d8b724c87dbe3ddcb9ca2b2dfb7ec56f3a1e6590b51b052f",
+  "combinations": 12,
+  "results": [
+    {
+      "width": 1280,
+      "height": 900,
+      "language": "zh-CN",
+      "theme": "carbon",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 502,
+          "top": 356
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 388
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 179,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 502,
+          "top": 356
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 388
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 502,
+          "top": 356
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 388
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "\u56fe\u8868\u7c7b\u578b",
+            "clipped": false
+          },
+          {
+            "text": "\u5c5e\u6027",
+            "clipped": false
+          },
+          {
+            "text": "\u914d\u8272",
+            "clipped": false
+          },
+          {
+            "text": "\u6570\u636e\u8868",
+            "clipped": false
+          },
+          {
+            "text": "\u6807\u6ce8",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "language": "zh-CN",
+      "theme": "pearl",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 502,
+          "top": 356
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 388
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 179,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 502,
+          "top": 356
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 388
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 502,
+          "top": 356
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 388
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "\u56fe\u8868\u7c7b\u578b",
+            "clipped": false
+          },
+          {
+            "text": "\u5c5e\u6027",
+            "clipped": false
+          },
+          {
+            "text": "\u914d\u8272",
+            "clipped": false
+          },
+          {
+            "text": "\u6570\u636e\u8868",
+            "clipped": false
+          },
+          {
+            "text": "\u6807\u6ce8",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "language": "en",
+      "theme": "carbon",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 191.78125,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 489.21875,
+          "top": 368.78125
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 400.78125
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 191.78125,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 489.21875,
+          "top": 368.78125
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 400.78125
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 191.78125,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 489.21875,
+          "top": 368.78125
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 400.78125
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "Chart types",
+            "clipped": false
+          },
+          {
+            "text": "Properties",
+            "clipped": false
+          },
+          {
+            "text": "Colors",
+            "clipped": false
+          },
+          {
+            "text": "Data table",
+            "clipped": false
+          },
+          {
+            "text": "Annotations",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "language": "en",
+      "theme": "pearl",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 191.78125,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 489.21875,
+          "top": 368.78125
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 400.78125
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 191.78125,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 489.21875,
+          "top": 368.78125
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 400.78125
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 728,
+          "height": 176,
+          "top": 191.78125,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 728,
+          "height": 489.21875,
+          "top": 368.78125
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 400.78125
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "Chart types",
+            "clipped": false
+          },
+          {
+            "text": "Properties",
+            "clipped": false
+          },
+          {
+            "text": "Colors",
+            "clipped": false
+          },
+          {
+            "text": "Data table",
+            "clipped": false
+          },
+          {
+            "text": "Annotations",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "language": "zh-CN",
+      "theme": "carbon",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "\u56fe\u8868\u7c7b\u578b",
+            "clipped": false
+          },
+          {
+            "text": "\u5c5e\u6027",
+            "clipped": false
+          },
+          {
+            "text": "\u914d\u8272",
+            "clipped": false
+          },
+          {
+            "text": "\u6570\u636e\u8868",
+            "clipped": false
+          },
+          {
+            "text": "\u6807\u6ce8",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "language": "zh-CN",
+      "theme": "pearl",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "\u56fe\u8868\u7c7b\u578b",
+            "clipped": false
+          },
+          {
+            "text": "\u5c5e\u6027",
+            "clipped": false
+          },
+          {
+            "text": "\u914d\u8272",
+            "clipped": false
+          },
+          {
+            "text": "\u6570\u636e\u8868",
+            "clipped": false
+          },
+          {
+            "text": "\u6807\u6ce8",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "language": "en",
+      "theme": "carbon",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "Chart types",
+            "clipped": false
+          },
+          {
+            "text": "Properties",
+            "clipped": false
+          },
+          {
+            "text": "Colors",
+            "clipped": false
+          },
+          {
+            "text": "Data table",
+            "clipped": false
+          },
+          {
+            "text": "Annotations",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "language": "en",
+      "theme": "pearl",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 888,
+          "height": 134,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 888,
+          "height": 544,
+          "top": 314
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 346
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "Chart types",
+            "clipped": false
+          },
+          {
+            "text": "Properties",
+            "clipped": false
+          },
+          {
+            "text": "Colors",
+            "clipped": false
+          },
+          {
+            "text": "Data table",
+            "clipped": false
+          },
+          {
+            "text": "Annotations",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "height": 900,
+      "language": "zh-CN",
+      "theme": "carbon",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "\u56fe\u8868\u7c7b\u578b",
+            "clipped": false
+          },
+          {
+            "text": "\u5c5e\u6027",
+            "clipped": false
+          },
+          {
+            "text": "\u914d\u8272",
+            "clipped": false
+          },
+          {
+            "text": "\u6570\u636e\u8868",
+            "clipped": false
+          },
+          {
+            "text": "\u6807\u6ce8",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "height": 900,
+      "language": "zh-CN",
+      "theme": "pearl",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "\u56fe\u8868\u7c7b\u578b",
+            "clipped": false
+          },
+          {
+            "text": "\u5c5e\u6027",
+            "clipped": false
+          },
+          {
+            "text": "\u914d\u8272",
+            "clipped": false
+          },
+          {
+            "text": "\u6570\u636e\u8868",
+            "clipped": false
+          },
+          {
+            "text": "\u6807\u6ce8",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "height": 900,
+      "language": "en",
+      "theme": "carbon",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "Chart types",
+            "clipped": false
+          },
+          {
+            "text": "Properties",
+            "clipped": false
+          },
+          {
+            "text": "Colors",
+            "clipped": false
+          },
+          {
+            "text": "Data table",
+            "clipped": false
+          },
+          {
+            "text": "Annotations",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "height": 900,
+      "language": "en",
+      "theme": "pearl",
+      "before": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "text": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "text"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "cleared": {
+        "canvasQuickToolbar": {
+          "width": 1368,
+          "height": 92,
+          "top": 179,
+          "context": "canvas"
+        },
+        "viewport": {
+          "width": 1368,
+          "height": 586,
+          "top": 272
+        },
+        "artboard": {
+          "width": 460.796875,
+          "height": 345.59375,
+          "top": 304
+        }
+      },
+      "controls": {
+        "tabs": [
+          {
+            "text": "Chart types",
+            "clipped": false
+          },
+          {
+            "text": "Properties",
+            "clipped": false
+          },
+          {
+            "text": "Colors",
+            "clipped": false
+          },
+          {
+            "text": "Data table",
+            "clipped": false
+          },
+          {
+            "text": "Annotations",
+            "clipped": false
+          }
+        ],
+        "layers": [
+          {
+            "text": "rect",
+            "clipped": false
+          }
+        ],
+        "guide": [
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(23, 107, 93)",
+            "stroke": "rgb(255, 255, 255)"
+          },
+          {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "rgb(23, 107, 93)"
+          }
+        ]
+      },
+      "issues": []
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

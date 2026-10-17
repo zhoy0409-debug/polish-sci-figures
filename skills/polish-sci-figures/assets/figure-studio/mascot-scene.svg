@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 210" fill="none" class="update-mascot-art" aria-hidden="true" focusable="false">
+  <!-- Generated from the two original, layered mascot sources by scripts/build_update_mascot_scene.py. -->
+  <defs><linearGradient id="fs-update-parcel-paper" x1="0" y1="0" x2="50" y2="47" gradientUnits="userSpaceOnUse"><stop stop-color="#E4D7BC"/><stop offset="1" stop-color="#C8B592"/></linearGradient></defs>
+  <path d="M32 182H468" stroke="#C6CBC7" stroke-width="1"/>
+  <path d="M63 189H437" stroke="#D5D8D1" stroke-width=".6"/>
+  <ellipse cx="166" cy="179" rx="61" ry="7" fill="#3E4944" opacity=".1"/>
+  <ellipse cx="350" cy="179" rx="61" ry="7" fill="#3E4944" opacity=".1"/>
+  <g class="mascot-door"><path d="M436 174V73Q436 68 441 68H472V174" stroke="#ACB7AE" stroke-width="1.3"/><path d="M442 174V77H466V174" fill="#E2E7DE"/><circle cx="461" cy="127" r="2" fill="#97A79D"/></g>
+  <g class="mascot-version-mark"><rect x="32" y="52" width="48" height="41" rx="7" fill="#E1E8DF" stroke="#B9C7BD"/><path d="M46 69Q53 59 64 67M64 63V68H59M64 78Q55 86 46 78M46 82V77H51" stroke="#6B897C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="mascot-work-team">
+    <g xmlns="http://www.w3.org/2000/svg" class="mascot-cat" transform="translate(86 20)"><defs>
+    <linearGradient id="fs-update-cat-coat" x1="43" y1="42" x2="108" y2="152" gradientUnits="userSpaceOnUse"><stop stop-color="#B9BDC2" /><stop offset=".52" stop-color="#999EA5" /><stop offset="1" stop-color="#727982" /></linearGradient>
+    <linearGradient id="fs-update-cat-cream" x1="66" y1="66" x2="78" y2="146" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF8E9" /><stop offset="1" stop-color="#DFD8C9" /></linearGradient>
+    <linearGradient id="fs-update-cat-tail-shade" x1="11" y1="91" x2="62" y2="143" gradientUnits="userSpaceOnUse"><stop stop-color="#B7BBC1" /><stop offset="1" stop-color="#747C86" /></linearGradient>
+  </defs>
+  <g class="mascot-cat-tail">
+    <path d="M58 143C39 153 12 149 8 128C5 112 13 100 11 89L21 95L23 86C36 98 35 111 32 120C30 130 38 135 51 129Z" fill="url(#fs-update-cat-tail-shade)" stroke="#68717B" stroke-width="1.3" stroke-linejoin="round" />
+    <path d="M14 105C22 112 25 120 21 130M18 141C24 141 27 138 29 135" stroke="#D3D4D4" stroke-width="3" stroke-linecap="round" />
+  </g>
+  <g class="mascot-cat-body">
+    <path d="M55 74C46 86 45 98 44 114L38 123L43 124C37 132 40 144 48 147L50 155H111L113 149C125 145 128 136 122 124L126 122L118 111C117 94 110 81 101 75Z" fill="url(#fs-update-cat-coat)" stroke="#707985" stroke-width="1.3" stroke-linejoin="round" />
+    <path d="M57 78L64 75H96L105 83L101 91L107 96L100 100L104 110L95 108L91 122L84 116L75 125L72 115L63 120L62 108L53 109L58 98L51 95L59 89Z" fill="url(#fs-update-cat-cream)" />
+    <path d="M50 123L57 120M47 133L53 130M112 123L117 128M110 139L117 137" stroke="#C9CCD0" stroke-width="1.4" stroke-linecap="round" />
+    <path d="M67 114C65 126 63 139 65 151C64 158 53 158 50 153C49 145 51 133 52 126" fill="url(#fs-update-cat-cream)" stroke="#92989E" stroke-width="1.1" stroke-linecap="round" />
+    <path d="M53 151L53 155M58 151L58 156" stroke="#AAA79E" stroke-width=".9" stroke-linecap="round" />
+    <g class="mascot-cat-rest-arm"><path d="M97 113C101 130 103 143 101 151C102 158 114 158 116 152C115 141 112 128 109 122" fill="url(#fs-update-cat-cream)" stroke="#92989E" stroke-width="1.1" stroke-linecap="round" /><path d="M106 151V156M111 151V155" stroke="#AAA79E" stroke-width=".9" stroke-linecap="round" /></g>
+  </g>
+  <g class="mascot-cat-head">
+    <path d="M49 41L43 16L49 20L50 8L61 24L67 29C78 25 91 26 100 31L109 23L119 11L118 24L123 21L118 48L123 59L118 60L121 69L111 71L109 80L100 79C88 87 68 86 58 79L49 80L48 71L38 68L42 61L37 57Z" fill="url(#fs-update-cat-coat)" stroke="#6B7480" stroke-width="1.25" stroke-linejoin="round" />
+    <path d="M50 23L55 43L64 33ZM114 26L104 37L115 45Z" fill="#C5B5B3" />
+    <path d="M53 31L56 40M112 32L109 39" stroke="#E7DCD3" stroke-width="2" stroke-linecap="round" />
+    <path d="M70 32L75 43L79 34L85 42L90 33" stroke="#777F89" stroke-width="2.8" stroke-linecap="round" />
+    <path d="M44 53L58 55L47 60M115 51L104 56L116 59" stroke="#D5D4CF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M56 51C61 46 67 46 72 50M91 49C97 45 103 46 107 50" stroke="#747B82" stroke-width="1.4" stroke-linecap="round" />
+    <g class="mascot-cat-eyes"><path d="M56 54C59 49 67 49 71 53C67 60 60 59 56 54Z" fill="#BDD0B9" stroke="#59645E" stroke-width="1" /><ellipse cx="64" cy="54" rx="1.6" ry="3.6" fill="#293638" /><circle cx="65" cy="52.2" r=".8" fill="#FFFDF4" /><path d="M91 52C95 48 102 48 106 52C102 58 95 58 91 52Z" fill="#BDD0B9" stroke="#59645E" stroke-width="1" /><ellipse cx="99" cy="52.6" rx="1.6" ry="3.5" fill="#293638" /><circle cx="100" cy="51" r=".8" fill="#FFFDF4" /></g>
+    <path d="M69 60C73 55 80 55 83 58C88 53 96 56 98 61C102 69 94 75 84 75C74 76 66 70 69 60Z" fill="#F8EFDF" />
+    <path d="M78 60Q83 57 88 60L83 64Z" fill="#9D7774" stroke="#806665" stroke-width=".8" stroke-linejoin="round" />
+    <path d="M83 64V67M83 67Q78 71 74 68M83 67Q88 71 92 67" stroke="#776F6D" stroke-width="1.1" stroke-linecap="round" />
+    <path d="M72 65L52 62M72 68L51 69M94 63L113 59M95 67L115 67" stroke="#F7F1E6" stroke-width=".9" stroke-linecap="round" />
+  </g>
+  <path d="M59 84Q81 94 102 83L99 90Q80 100 61 91Z" fill="#3D9E89" stroke="#2F756A" stroke-width=".8" /><path d="M91 93L101 91L105 103L96 99L91 106Z" fill="#62BDA6" />
+  <g class="mascot-cat-paw mascot-paw-work"><path d="M105 102Q116 105 124 113L137 111Q143 111 142 117Q142 123 133 124L119 125Q108 123 102 116Z" fill="url(#fs-update-cat-cream)" stroke="#92989E" stroke-width="1.1" /><path d="M136 117L141 117" stroke="#AAA79E" stroke-linecap="round" /></g>
+  <g class="mascot-cat-paw mascot-paw-greet"><path d="M104 109Q113 105 116 89L114 78Q114 72 120 72Q125 72 127 80L130 89Q129 111 116 120Z" fill="url(#fs-update-cat-cream)" stroke="#92989E" stroke-width="1.1" /><path d="M117 79L125 77M119 83L128 82" stroke="#AAA79E" stroke-width=".8" stroke-linecap="round" /></g>
+</g>
+    <g xmlns="http://www.w3.org/2000/svg" class="mascot-dog" transform="translate(270 20)"><defs>
+    <linearGradient id="fs-update-dog-coat" x1="53" y1="33" x2="114" y2="146" gradientUnits="userSpaceOnUse"><stop stop-color="#4A535D" /><stop offset="1" stop-color="#252E38" /></linearGradient>
+    <linearGradient id="fs-update-dog-white" x1="57" y1="56" x2="83" y2="153" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFCF2" /><stop offset="1" stop-color="#E0DED6" /></linearGradient>
+  </defs>
+  <g class="mascot-dog-tail"><path d="M109 119C126 128 139 119 141 101C150 108 153 120 147 131L151 129C145 145 128 150 110 140Z" fill="url(#fs-update-dog-coat)" stroke="#252F39" stroke-width="1.2" stroke-linejoin="round" /><path d="M141 103C150 111 151 120 146 131L151 129C148 139 139 145 130 145L134 139L128 139C137 133 141 122 141 103Z" fill="#F5F1E6" /></g>
+  <g class="mascot-dog-body">
+    <path d="M50 76C40 87 38 103 40 118L35 125L39 128C34 140 43 150 53 152H108C120 149 124 139 119 127L123 125L116 117C116 97 108 84 98 76Z" fill="url(#fs-update-dog-coat)" stroke="#29333E" stroke-width="1.3" stroke-linejoin="round" />
+    <path d="M56 77H91L99 89L95 95L101 100L93 106L95 115L85 114L82 125L75 119L66 127L64 115L56 120L54 108L47 109L51 99L45 94Z" fill="url(#fs-update-dog-white)" />
+    <g class="mascot-dog-rest-arm"><path d="M53 117C49 131 48 143 48 151C46 158 60 160 64 153L66 120" fill="url(#fs-update-dog-white)" stroke="#AAAEB0" stroke-width="1.1" stroke-linecap="round" /><path d="M50 152V157M56 152V158" stroke="#B8B7AF" stroke-width=".9" stroke-linecap="round" /></g>
+    <path d="M95 115C100 132 105 143 103 152C104 160 117 159 119 153C119 143 112 128 109 123" fill="url(#fs-update-dog-white)" stroke="#AAAEB0" stroke-width="1.1" stroke-linecap="round" />
+    <path d="M108 153V158M114 153V157" stroke="#B8B7AF" stroke-width=".9" stroke-linecap="round" />
+    <path d="M42 124L47 121M112 137L117 140" stroke="#68717A" stroke-width="1.4" stroke-linecap="round" />
+  </g>
+  <g class="mascot-dog-head">
+    <path d="M48 28L41 11Q36 6 33 15L26 43Q26 52 36 56L47 42M93 31L102 18Q111 12 118 19L125 39Q128 49 119 59L105 48" fill="url(#fs-update-dog-coat)" stroke="#29333E" stroke-width="1.3" stroke-linejoin="round" />
+    <path d="M35 21L31 43L39 39M110 23L118 40L114 48" stroke="#7B7779" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M44 30Q69 18 96 30C110 38 115 53 109 67L114 74L105 75L103 82L95 79C82 87 60 87 49 78L40 81L41 72L33 68L39 61C34 46 35 39 44 30Z" fill="url(#fs-update-dog-coat)" stroke="#29333E" stroke-width="1.25" stroke-linejoin="round" />
+    <path d="M70 26L82 26L80 36L78 44L83 52L80 58L91 62L96 72C89 81 61 83 51 72L58 62L69 57L66 49L71 41Z" fill="url(#fs-update-dog-white)" />
+    <path d="M45 50Q52 45 59 49M87 49Q94 45 101 49" stroke="#77818A" stroke-width="1.4" stroke-linecap="round" />
+    <g class="mascot-dog-eyes"><path d="M45 53Q52 47 59 53Q53 59 45 53Z" fill="#B8A786" stroke="#141D27" stroke-width="1" /><ellipse cx="52" cy="53" rx="2.3" ry="3" fill="#202A31" /><circle cx="51" cy="51.6" r=".8" fill="#FFFDF5" /><path d="M87 53Q94 47 101 53Q94 59 87 53Z" fill="#B8A786" stroke="#141D27" stroke-width="1" /><ellipse cx="94" cy="53" rx="2.3" ry="3" fill="#202A31" /><circle cx="93" cy="51.6" r=".8" fill="#FFFDF5" /></g>
+    <path d="M57 64Q64 58 73 61Q82 58 91 64L92 70Q82 81 70 79Q58 79 54 72Z" fill="#FBF6EB" />
+    <path d="M66 62Q73 58 80 62L78 67Q73 70 68 67Z" fill="#26313C" /><path d="M69 62L73 61" stroke="#626C75" stroke-width="1.1" stroke-linecap="round" />
+    <path d="M73 68V71M73 71Q66 77 60 72M73 71Q80 77 86 72" stroke="#697076" stroke-width="1" stroke-linecap="round" />
+    <path d="M41 62L47 64M101 63L106 61" stroke="#92999F" stroke-linecap="round" />
+  </g>
+  <path d="M50 84Q74 94 98 83L96 91Q74 99 52 92Z" fill="#337F72" stroke="#286458" stroke-width=".9" /><path d="M60 93L70 95L66 108L59 101L55 104Z" fill="#69BAA4" />
+  <g class="mascot-dog-paw mascot-paw-work"><path d="M52 105Q42 104 33 113L19 112Q13 113 15 119Q18 125 25 124L39 125Q51 124 59 115Z" fill="url(#fs-update-dog-white)" stroke="#AAAEB0" stroke-width="1.1" /><path d="M15 118L22 118" stroke="#B8B7AF" stroke-linecap="round" /></g>
+  <g class="mascot-dog-paw mascot-paw-greet"><path d="M52 110Q43 104 40 89L43 77Q43 71 37 72Q31 72 30 80L27 90Q28 112 41 120Z" fill="url(#fs-update-dog-white)" stroke="#AAAEB0" stroke-width="1.1" /><path d="M33 78L42 80M31 83L41 85" stroke="#B8B7AF" stroke-width=".8" stroke-linecap="round" /></g>
+</g>
+    <g class="mascot-parcel" transform="translate(229 133)"><ellipse cx="24" cy="47" rx="33" ry="4" fill="#6F6A58" opacity=".13"/><path d="M0 8L12 0H43L50 8V43Q50 47 46 47H4Q0 47 0 43Z" fill="url(#fs-update-parcel-paper)" stroke="#AB9877" stroke-width="1.2" stroke-linejoin="round"/><path d="M0 9H50M24 9V47M19 0L24 9L30 0" stroke="#8EAB95" stroke-width="5"/><path d="M8 25H16M8 30H19" stroke="#F5EDDD" stroke-width="1.6" stroke-linecap="round"/><path d="M37 31V22M33 26L37 22L41 26" stroke="#6B806D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g class="mascot-inspect" transform="translate(220 119)"><path d="M0 22L12 9" stroke="#6B746E" stroke-width="4" stroke-linecap="round"/><circle cx="19" cy="2" r="13" fill="#F6FAF4" fill-opacity=".6" stroke="#7C8E80" stroke-width="3"/><path d="M13-4Q19-8 25-3" stroke="#FFFDF5" stroke-width="2" stroke-linecap="round"/></g>
+    <g class="mascot-verified" transform="translate(248 99)"><circle r="13" fill="#E2F2E5" stroke="#81AA8E" stroke-width="1.1"/><path d="M-6 0L-1 5L7-5" stroke="#387B61" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </g>
+</svg>
