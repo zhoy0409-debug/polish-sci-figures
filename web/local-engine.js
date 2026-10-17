@@ -14,7 +14,7 @@
   const makeWorker = options.workerFactory || (url => new Worker(url));
   const listeners = new Set(), jobs = new Map(), queue = [];
   const MAX_WAITING = 2, JOB_TTL = 900000;
-  const endpoints = new Set(['/api/analyze', '/api/render', '/api/reflow', '/api/split-facets', '/api/image-duplicates', '/api/image-links', '/api/import-pdf']);
+  const endpoints = new Set(['/api/import-table', '/api/analyze', '/api/render', '/api/reflow', '/api/split-facets', '/api/image-duplicates', '/api/image-links', '/api/import-pdf']);
   let worker = null, active = null, initialization = null, resolveInit = null, rejectInit = null;
   let phase = 'idle', detail = '', sequence = 0, readyTimer = null, errorDetail = '', lastWarnings = [];
   let operationTimer = null, elapsedTimer = null, initializationStarted = null;

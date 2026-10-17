@@ -3201,6 +3201,28 @@ if (typeof document !== 'undefined') (async () => {
     if(count>1){const scale=currentOutput().scale,sizes=selectionGroups().flatMap(g=>{const svg=editableSource(g.id,g.vi),indexed=new Map([...svg.querySelectorAll('text[data-key],tspan[data-key]')].map(el=>[el.getAttribute('data-key'),el]));return g.keys.map(k=>indexed.get(k)).filter(Boolean).map(el=>textOutputSize(el,g.id,g.vi,scale));}).filter(Number.isFinite);if(sizes.length){const same=sizes.every(n=>Math.abs(n-sizes[0])<.01);$('fontSize').value=same?+sizes[0].toFixed(3):'';$('fontSize').placeholder=same?'':T('混合');}}
     syncColorControls();renderFontTargets();renderHeatmapControls();renderRichTextControls();renderStatisticalLineControls();renderComponentStyle();renderQuickToolbar();
   }
+  let figureDiscovery=null,figureDiscoveryLanguage='';
+  function discoveryContext(){const source=panel(selectedPanel),discovered=!dataDrafts[selectedPanel]&&source.discovery?.tableKey===source.table?.sha256?source.discovery:null;return {project:project.id,title:project.title,key:project.id+'/'+selectedPanel+'/'+(source.table?.sha256||'')+'/'+dataSerial,rows:dataDrafts[selectedPanel]||discovered?.sourceRows||source.table?.rows,provenance:source.provenance,declarations:discovered?.declarations};}
+  function openFigureDiscovery(){
+    if(typeof FigureDiscoveryUI==='undefined')return;
+    if(figureDiscoveryLanguage!==StudioI18n.language){figureDiscovery?.destroy();figureDiscovery=null;figureDiscoveryLanguage=StudioI18n.language;}
+    if(!figureDiscovery)figureDiscovery=FigureDiscoveryUI.mount($('figureDiscoveryDialog'),{
+      language:()=>StudioI18n.language,registry:JSON.parse($('chartKnowledge').textContent),context:discoveryContext,
+      parse:text=>parseDelimited(text,text.includes('\t')?'\t':',',true),preview:svg=>preview(sanitize(svg)),
+      readWorkbook:async file=>{
+        if(!localEngine)throw Error('local workbook engine unavailable');
+        const data=(await readFileDataUrl(file)).split(',')[1],response=await engineFetch('/api/import-table',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({data})});
+        if(!response.ok)throw Error('workbook rejected');return (await response.json()).rows;
+      },
+      render:async(candidate,signal)=>{
+        if(!localEngine){const existing=panel(selectedPanel);if(existing.table&&JSON.stringify(existing.table.rows)===JSON.stringify(candidate.rendering.rows)&&existing.variants.some(v=>v.name===candidate.chart_id))return copy(existing);return DiscoveryOffline.render(candidate);}
+        const response=await engineFetch(localEngine.endpoint,{method:'POST',signal,headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify(candidate.rendering)});
+        if(!response.ok)throw Error('render contract rejected');return (await response.json()).panel;
+      },
+      apply:asset=>{const source=panel(selectedPanel),blank=source.provenance==='blank-canvas';if(state().panels[selectedPanel].locked)throw Error(T('小图已锁定'));asset.provenance='user-data';installAsset(copy(asset),blank?selectedPanel:null,null,T('智能选图已应用；可撤销'));activateImportedFigure();}
+    });
+    figureDiscovery.open();
+  }
   let literatureBrowser=null,literaturePreview=null;
   function previewLiteratureChart(view){
     const source=panel(selectedPanel),current=variant(selectedPanel),index=source.variants.findIndex(v=>v.name===view&&(v.size||'original')===(current.size||'original'));
@@ -3212,7 +3234,7 @@ if (typeof document !== 'undefined') (async () => {
   $('applyLiteraturePreview').onclick=guard(async()=>{const pending=literaturePreview;$('literaturePreviewDialog').close();literaturePreview=null;if(!pending||project!==pending.owner||selectedPanel!==pending.id||panel(pending.id)!==pending.source||dataDrafts[pending.id])return;await activateVariant(pending.vi);});
   function renderLiteratureExamples(){
     if(typeof StudioLiterature==='undefined'||!$('literatureExamples'))return;
-    literatureBrowser||=StudioLiterature.mount($('literatureExamples'),{getContext:()=>{const source=panel(selectedPanel);return {views:source?.table&&!['blank-canvas','user-import'].includes(source.provenance)?StudioCatalogue.rank(source,$('chartGoal').value).map(({v})=>v.name):[],goal:$('chartGoal').value,language:StudioI18n.language,contextKey:project.id+'/'+selectedPanel+'/'+(source?.table?.sha256||'')};},onPreview:previewLiteratureChart});
+    literatureBrowser||=StudioLiterature.mount($('literatureExamples'),{getContext:()=>{const source=panel(selectedPanel);return {views:source?.table&&!['blank-canvas','user-import'].includes(source.provenance)?StudioCatalogue.rank(source,$('chartGoal').value).map(({v})=>v.name):[],goal:$('chartGoal').value,language:StudioI18n.language,contextKey:project.id+'/'+selectedPanel+'/'+(source?.table?.sha256||'')};},validateTopic:text=>ResearchDiscovery.publicQueryAllowed(text,panel(selectedPanel).table?.rows||[],[project.title,panel(selectedPanel).table?.name]),onPreview:previewLiteratureChart});
     literatureBrowser.refresh();
   }
   function renderChartChoices() {
@@ -3893,7 +3915,7 @@ if (typeof document !== 'undefined') (async () => {
     renderPanelList();
     $('versions').replaceChildren();for(const saved of checkpoints)$('versions').append(button(saved.name,()=>{selected=[];commit(saved.state,T('已恢复版本 ')+saved.name);}));
     renderMasters();renderCanvas();renderInspector();renderRecommendations();showPane(activePane,false);renderHeatmapControls();renderCompactWhitespaceControls();
-    renderConnectionNotice();ensureHeatmapMetadata().catch(()=>{});ensureStatisticalMetadata().catch(()=>{});literatureBrowser?.refresh();duplicateCheck?.refresh();
+    renderConnectionNotice();ensureHeatmapMetadata().catch(()=>{});ensureStatisticalMetadata().catch(()=>{});literatureBrowser?.refresh();duplicateCheck?.refresh();figureDiscovery?.refresh();
   }
   async function download(blob,name) {
     const native=globalThis.StudioNativeBridge;
@@ -5002,6 +5024,10 @@ if (typeof document !== 'undefined') (async () => {
   if($('confirmNewProject'))$('confirmNewProject').onclick=guard(createNewProject);
   if($('cancelNewProject'))$('cancelNewProject').onclick=()=>$('newProjectDialog').close();
   if($('backupBeforeNew'))$('backupBeforeNew').onclick=()=>$('save').click();
+  if(typeof FigureDiscoveryUI!=='undefined'){
+    if($('startDiscovery'))$('startDiscovery').onclick=guard(openFigureDiscovery);
+    if($('openDiscovery')){document.querySelector('section[data-pane="explore"]')?.prepend($('openDiscovery'));$('openDiscovery').onclick=guard(openFigureDiscovery);}
+  }
   if($('startTemplates'))$('startTemplates').onclick=openStartTemplates;
   if($('startImportImage'))$('startImportImage').onclick=()=>chooseImage(null,null);
   if($('startOpenProject'))$('startOpenProject').onclick=()=>$('load').click();

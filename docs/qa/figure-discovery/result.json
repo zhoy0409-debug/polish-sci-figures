@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "checks": [
+    "CSV upload",
+    "shared core",
+    ">=3 real independent previews",
+    "paired long-table pivot",
+    "Chinese and English",
+    "apply",
+    "undo",
+    "redo",
+    "save/reopen",
+    "design invalidation",
+    "zero unauthorized remote requests",
+    "private table value blocked on search click",
+    "standalone offline summary render and apply"
+  ],
+  "remoteRequests": [],
+  "errors": []
+}

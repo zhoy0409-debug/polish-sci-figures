@@ -38,7 +38,10 @@ def _studio_dispatch(endpoint, payload_json):
                         'en': f'The browser calculation engine does not include {requested_font}; this generated preview uses bundled DejaVu Sans. Imported artwork is unchanged. CJK characters remain editable SVG text and depend on the browser display font.',
                         'zh': f'浏览器计算引擎未包含 {requested_font}；本次生成预览使用内置 DejaVu Sans。导入的原图不受影响。中文字符保留为可编辑 SVG 文字，显示依赖浏览器字体。',
                     })
-        if endpoint == '/api/image-links':
+        if endpoint == '/api/import-table':
+            from studio_discovery import import_table
+            response = import_table(payload)
+        elif endpoint == '/api/image-links':
             if keys != {'images'}:
                 raise ValueError('Image localization requires images')
             from studio_image_links import locate_image_links

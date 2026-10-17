@@ -202,7 +202,7 @@ class Handler(BaseHTTPRequestHandler):
         text=text.replace('</head>',f'<script id="local-engine" type="application/json">{config}</script></head>',1)
         raw=text.encode();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(raw)
     def do_POST(self):
-        if self.path not in ('/api/render','/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf','/api/image-duplicates','/api/image-links','/api/updates','/api/update-install') or self.headers.get('Host')!=self.server.address or self.headers.get('Origin')!='http://'+self.server.address or self.headers.get('X-Studio-Token')!=self.server.token:return self.send_json(403,{'error':'Local editor authorization required'})
+        if self.path not in ('/api/import-table','/api/render','/api/reflow','/api/analyze','/api/split-facets','/api/import-pdf','/api/image-duplicates','/api/image-links','/api/updates','/api/update-install') or self.headers.get('Host')!=self.server.address or self.headers.get('Origin')!='http://'+self.server.address or self.headers.get('X-Studio-Token')!=self.server.token:return self.send_json(403,{'error':'Local editor authorization required'})
         try:
             size=int(self.headers.get('Content-Length','0'))
             limit=256 if self.path in ('/api/updates','/api/update-install') else 44000000 if self.path in ('/api/image-duplicates','/api/image-links') else 27000000 if self.path=='/api/import-pdf' else 3000000
@@ -223,7 +223,10 @@ class Handler(BaseHTTPRequestHandler):
                 from studio_duplicate_jobs import JOBS
                 return self.send_json(200,JOBS.request(payload))
             with LOCK:
-                if self.path=='/api/image-links':
+                if self.path=='/api/import-table':
+                    from studio_discovery import import_table
+                    response=import_table(payload)
+                elif self.path=='/api/image-links':
                     if set(payload)!={'images'}:raise ValueError('Image localization requires images')
                     from studio_image_links import locate_image_links
                     response=locate_image_links(payload['images'])

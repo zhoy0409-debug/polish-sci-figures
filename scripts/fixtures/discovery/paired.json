@@ -1,0 +1,12 @@
+{
+  "design": "paired",
+  "data_level": "raw",
+  "outcome_type": "continuous",
+  "unit_confirmed": true,
+  "technical_replicates": "no",
+  "nesting": "none",
+  "pair_order": [
+    "Before",
+    "After"
+  ]
+}

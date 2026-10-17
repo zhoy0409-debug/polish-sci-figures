@@ -71,7 +71,7 @@ async function main(){
   let resolveFetch;const lateClient=api.createClient({fetch:()=>new Promise(resolve=>resolveFetch=resolve)}),abort=new AbortController();
   const late=lateClient.searchExamples({views,signal:abort.signal});abort.abort();await assert.rejects(late,e=>e.code==='aborted');resolveFetch(response({resultList:{result:[]}}));await tick();
   let partialCalls=0;const partialClient=api.createClient({fetch:async url=>{partialCalls++;return url.includes('/search?')?response({resultList:{result:[paper(1)]}}):response({},429);}});
-  const partial=await partialClient.searchExamples({views});assert.equal(partial.partial,true);assert.equal(partial.papers[0].verified,false);assert.equal(partial.papers[0].verification,'rate_limit');await partialClient.searchExamples({views});assert.equal(partialCalls,4,'partial verification is retried rather than cached');
+  const partial=await partialClient.searchExamples({views});assert.equal(partial.partial,true);assert.equal(partial.papers[0].verified,false);assert.equal(partial.papers[0].verification,'rate_limit');await partialClient.searchExamples({views});assert.equal(partialCalls,6,'each rate-limited full text gets one bounded retry; partial verification is not cached');
 
   // UI never starts a request on mount, refresh, topic edits or language changes.
   const host=new Node('div',document);let context={views,goal:'distribution',language:'en',contextKey:'panel-1'},calls=0,resolveSearch,previewed=[];

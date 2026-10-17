@@ -1,0 +1,8 @@
+{
+  "design": "repeated",
+  "data_level": "raw",
+  "outcome_type": "continuous",
+  "unit_confirmed": true,
+  "technical_replicates": "no",
+  "nesting": "none"
+}

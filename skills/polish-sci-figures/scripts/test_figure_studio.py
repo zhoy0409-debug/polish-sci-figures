@@ -47,15 +47,20 @@ class StudioTests(unittest.TestCase):
         self.assertIn('id="checkImageDuplicates"',html)
         class Scripts(HTMLParser):
             def __init__(self):
-                super().__init__(); self.scripts=[]; self.active=False
+                super().__init__(); self.scripts=[]; self.attributes=[]; self.active=False
             def handle_starttag(self,tag,attrs):
-                if tag=='script':self.active=True; self.scripts.append('')
+                if tag=='script':self.active=True; self.scripts.append('');self.attributes.append(dict(attrs))
             def handle_endtag(self,tag):
                 if tag=='script':self.active=False
             def handle_data(self,data):
                 if self.active:self.scripts[-1]+=data
         parsed=Scripts();parsed.feed(html)
-        self.assertEqual(len(parsed.scripts),4)
+        self.assertEqual(len(parsed.scripts),5)
+        knowledge=next(i for i,attrs in enumerate(parsed.attributes) if attrs.get('id')=='chartKnowledge')
+        self.assertEqual(parsed.attributes[knowledge].get('type'),'application/json')
+        self.assertEqual(json.loads(parsed.scripts[knowledge])['schema_version'],'1.0.0')
+        self.assertTrue(json.loads(parsed.scripts[knowledge])['charts'])
+        self.assertEqual(sum(attrs.get('type')!='application/json' for attrs in parsed.attributes),1,'Only the bundled runtime may execute; knowledge remains inert JSON')
         self.assertIn('function reportHTML(',parsed.scripts[-1])
         self.assertIn('finally{document.body.inert=false;}',parsed.scripts[-1])
         with self.assertRaises(ValueError):write_html(project,out)

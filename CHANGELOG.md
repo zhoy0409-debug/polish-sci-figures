@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.4.19 · Figure Studio 0.1.19 · Scientific Figure Discovery & Recommendation
+
+- Add a versioned local Chart Knowledge Registry and one deterministic profile/recommendation engine shared by Figure Studio, `sci_figures.py discover` and the make-data Skill.
+- Add bilingual smart selection, field mapping/design confirmations, real-data previews, reversible editor application, local XLSX import and a limited descriptive standalone fallback.
+- Require explicit unit/design/data-level/outcome/replicate declarations; reject pseudoreplication, fabricated summary distributions, incomplete pairs and unsupported result inputs. Preserve observed/declared/inferred/unknown provenance and reviewable recommendation traces.
+- Extend optional Europe PMC lookup with separate public topic/method/sample keywords, evidence/exploration modes, caption excerpts, evidence levels, check dates and stable-ID deduplication. No automatic network requests, raw-data upload or paper-image embedding.
+- Add scientific fixtures, shared-engine parity, real-renderer, privacy, XLSX, CLI and real-browser history/project/offline tests. See `docs/figure-discovery-validation.md` for results and unverified platforms. Windows installer and portable packages ship this feature; OpenAlex and broad semantic AI services remain disabled.
+- Add bilingual desktop onboarding for data-first discovery. Windows installation and packaged runtime acceptance are recorded in the release validation attachments.
+
+[Release notes / 本版更新](docs/release-notes-v1.4.19.md)
+
 ## v1.4.18 · Figure Studio 0.1.18
 
 - Paste editable selections into the current panel or another cell as separate insertion records, preserving original artwork, paper bounds, grid tracks and transformed PDF text scale.
