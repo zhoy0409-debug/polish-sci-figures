@@ -1,0 +1,174 @@
+{
+  "schema": "figure-studio-additional-regressions/1",
+  "scope": "Source09 existing copy/paste, layout, PDF physical text, TIFF, and actual Chrome component regressions. Counts are distinct scripts, not end-user workflows.",
+  "distinctScripts": 20,
+  "initial": {
+    "passed": 19,
+    "failed": 1,
+    "summarySha256": "e1544e910182f516c58fd4640dcdafca87ceb1758f4a52948c2ba52297d8d735",
+    "tests": [
+      {
+        "test": "test_studio_canvas_clipboard.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.594,
+        "logSha256": "e3d73802bfa13caf499cc7f6f1c13c45401f1fbc93a89b20daa6a6d6d15299d2"
+      },
+      {
+        "test": "test_studio_canvas_clipboard_append.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.687,
+        "logSha256": "98cf55039a2ef6339b6bf27c3ec2d7a06e4b71a39b5ce80f36e4634360236c7a"
+      },
+      {
+        "test": "test_studio_canvas_clipboard_integration.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 3.672,
+        "logSha256": "6a5c8adbbb90ab6f1bfdc9857f559039292e7f99256c960df4cd75a188074e28"
+      },
+      {
+        "test": "test_studio_clipboard_event_guards.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 3.188,
+        "logSha256": "24b57c7267bac943b6dcd59f4e987213882631b3b57f1e61a84556fb861cd6f7"
+      },
+      {
+        "test": "test_studio_clipboard_compact_layout.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.687,
+        "logSha256": "4b49ede814fd6f01fecf7b70f12c5aca5aa7d9d6119c92a8613947e56969a741"
+      },
+      {
+        "test": "test_studio_layout_lock.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.797,
+        "logSha256": "7ebd710a87d9108106359fdc76cf33bba30aacb53c026a7465b6fa7e84e545c2"
+      },
+      {
+        "test": "test_studio_layout_lock_integration.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.547,
+        "logSha256": "1434b6f8b849bdbbaa2f034dd0025778e41aa2b6300ddcf662fb17ebd5643305"
+      },
+      {
+        "test": "test_studio_layers_panel.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.016,
+        "logSha256": "c1d3285014d982e6ba355c426d40852565beef6aba36d97242757359d3be535b"
+      },
+      {
+        "test": "test_studio_panel_commands.cjs",
+        "arguments": [
+          "--dom"
+        ],
+        "exitCode": 0,
+        "seconds": 1.125,
+        "logSha256": "9d24b133a292cdc61491fb158f8d41e6031accae257b9c8579a9498e94005373"
+      },
+      {
+        "test": "test_studio_master_frame.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.093,
+        "logSha256": "afe1f515f0b6ecde00a47abf3d18afd40a485a45ff9f952c243321bb34356d0c"
+      },
+      {
+        "test": "test_studio_master_frame_integration.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.313,
+        "logSha256": "a06fe8273e648fe2fea1afe56d9b6fae7e7f5418aa0d5a48a73c3e350d1983f6"
+      },
+      {
+        "test": "test_studio_grid_resize.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.172,
+        "logSha256": "c87bac50d02ef855c73faba0421aa74dcbfe56429262be61e44e51a7d0cbeb41"
+      },
+      {
+        "test": "test_studio_grid_outer_resize.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.172,
+        "logSha256": "a960ce8d89d3c3bd96bcf762149331e7b3e039eae2b009fbc47766d308ba7d73"
+      },
+      {
+        "test": "test_studio_pdf_text_editing.cjs",
+        "arguments": [],
+        "exitCode": 1,
+        "seconds": 1.203,
+        "logSha256": "e3aad8221255b701eb56684bad97d5ec12559598360f8dbe69195fbd7a338f6f"
+      },
+      {
+        "test": "test_studio_tiff_export.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.468,
+        "logSha256": "cd3a71292dcb82cb8ae5b4dbcb1580bbf25e1cf34996153d0d0978ee3ba3ad6c"
+      },
+      {
+        "test": "test_studio_object_borders_browser.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.454,
+        "logSha256": "367e4f872daf1393d74a3e5d2b9c9bd90c9b06ae858836168033c042504ef784"
+      },
+      {
+        "test": "test_studio_style_preview_browser.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.89,
+        "logSha256": "10d2994dc3b74090a67ba6a44848597619732ddab763c612cdf0398ef0f7637d"
+      },
+      {
+        "test": "test_studio_object_borders_live_preview_browser.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 3.672,
+        "logSha256": "73ddc10157228c050727b44e06f1da60dde6cb448719320e6ccf9effcd153036"
+      },
+      {
+        "test": "test_studio_image_dock_preview_browser.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 4.563,
+        "logSha256": "8732c6b7cd106fd70ea9ab55b3eaf7430b12354d06d75d782075cb2120250b1d"
+      },
+      {
+        "test": "test_studio_performance_summary.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.25,
+        "logSha256": "04139492ad8188a6da1f54049d17e9e910708891a97df0b51b13a84dca507f3a"
+      }
+    ]
+  },
+  "sourceAssetsUnchanged": true,
+  "retainedAttempts": [
+    {
+      "log": "pdf-text-harness-dependencies-retry.log",
+      "status": "PASS",
+      "sha256": "ba25ebb50163aa92670aaf63054cfb824081b70e7453f543b2bd21f5821ffe05",
+      "reason": "Original unit sandbox omitted newly referenced production DRAW/isVisibleObject helpers; load the real production helpers, retain all eight original physical-font assertions. No product change."
+    },
+    {
+      "log": "style-preview-output-retry.log",
+      "status": "PASS",
+      "sha256": "d5555a52e56cce7317f261cc74d839bb201526b486e78f2870ef986f5c01690d",
+      "reason": "Make component evidence use a unique explicit output directory. The previous current result was copied before this retry. No product change."
+    }
+  ],
+  "finalStatus": "ALL_20_DISTINCT_SCRIPTS_HAVE_PASS_EVIDENCE",
+  "scopeNotes": [
+    "Initial 19/20 passed; the PDF sandbox-only failure and corrected retry are both retained.",
+    "Chrome module tests use public/synthetic fixtures. Independent image-detection accuracy is not assessed."
+  ]
+}

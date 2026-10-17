@@ -98,7 +98,7 @@ const StudioImageLinksController=(()=>{
       }
       return result;
     }
-    ui=UI.create({container:host.container,document:host.container.ownerDocument,core,language:host.language,activePane:host.activePane,say:host.say,sources,resolve:get,current,match,
+    ui=UI.create({container:host.container,document:host.container.ownerDocument,core,language:host.language,activePane:host.activePane,say:host.say,sources,resolve:get,current,match,previewSessions:host.previewSessions,contextIdentity:host.contextIdentity,dockContainer:host.dockContainer,
       preview:links=>{preview=links;draw();},clearPreview:()=>{preview=null;draw();},
       commit:(links,message)=>{const next=JSON.parse(JSON.stringify(host.state()));next.imageLinks=core.validateAll(links);preview=null;return host.commit(next,message);},
       errorText:error=>error?.message&&!(/[\u4e00-\u9fff]/.test(error.message)&&String(host.language?.()).startsWith('en'))?error.message:t('无法完成图片关联，请核对图片后重试。','Image linking could not be completed. Check the source images and try again.'),

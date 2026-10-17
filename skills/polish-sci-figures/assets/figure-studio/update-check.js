@@ -139,7 +139,7 @@ const StudioUpdateCheck = (() => {
     function open(){
       if(destroyed)return;if(!dialog.open){lastFocus=doc.activeElement;if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','');}refresh();check({manual:true});if(canInstall())installRequest('status');
     }
-    function pollInstallation(){clearTimeout(installTimer);if(!destroyed&&!handoffConfirmed&&statusFailures<3&&(connectionLost||['checking','downloading','preparing'].includes(installation?.status)))installTimer=setTimeout(()=>installRequest('status'),Math.max(100,host.installPollMs||1000));}
+    function pollInstallation(){clearTimeout(installTimer);if(!destroyed&&!handoffConfirmed&&statusFailures<3&&(connectionLost||['checking','downloading','preparing'].includes(installation?.status)))installTimer=setTimeout(()=>installRequest('status'),Math.max(100,host.installPollMs||(installation?.status==='preparing'?100:1000)));}
     async function installRequest(action){
       if(destroyed||!canInstall()||installBusy)return null;if(action==='install'&&!savedBox.checked)return null;
       // Server-confirmed "installing" means the preserved helper is ready and

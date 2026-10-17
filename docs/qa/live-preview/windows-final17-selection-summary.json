@@ -1,0 +1,216 @@
+{
+  "schema": "figure-studio-selection-scientific-regression-summary/2",
+  "status": "PASS_ALL_FIVE_SAME_FREEZE",
+  "label": "source17-installed-selection",
+  "kind": "installed-candidate",
+  "browser": "155.0.8059.82",
+  "browserMode": "headless",
+  "platform": "win32",
+  "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+  "harnessSha256": "f57c704af5dca0606eb44ffb59872aa02ad4b18b7511da68844249404ab07dbb",
+  "rawReportSha256": "f04389cfac1d9b4398c5b22eb3908345b1c0b5288f9c89fedd7a6a516bcc7c79",
+  "startedAt": "2026-10-17T17:57:51.902Z",
+  "finishedAt": "2026-10-17T17:58:22.469Z",
+  "source": {
+    "id": "iris",
+    "doi": "10.24432/C56C76",
+    "url": "https://archive.ics.uci.edu/dataset/53/iris",
+    "license": "CC BY 4.0"
+  },
+  "cases": [
+    {
+      "name": "multi-selection-8",
+      "status": "PASS",
+      "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+      "localSourceProof": {
+        "localHtmlSha256": "6edf33716e077c4da21cbcd241e9024167ecc85d215fa04aa85c4e05126a9846",
+        "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "reconstructedExpectedSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "selectedCount": 8,
+      "selectedKeys": [
+        "e9",
+        "e10",
+        "e11",
+        "e12",
+        "e13",
+        "e14",
+        "e15",
+        "e16"
+      ],
+      "quickAndInspectorColour": true,
+      "exactUndoRedo": true,
+      "sourceContractUnchanged": true
+    },
+    {
+      "name": "multi-selection-9",
+      "status": "PASS",
+      "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+      "localSourceProof": {
+        "localHtmlSha256": "6edf33716e077c4da21cbcd241e9024167ecc85d215fa04aa85c4e05126a9846",
+        "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "reconstructedExpectedSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "selectedCount": 9,
+      "selectedKeys": [
+        "e9",
+        "e10",
+        "e11",
+        "e12",
+        "e13",
+        "e14",
+        "e15",
+        "e16",
+        "e17"
+      ],
+      "quickAndInspectorColour": true,
+      "exactUndoRedo": true,
+      "sourceContractUnchanged": true
+    },
+    {
+      "name": "same-colour-and-preserved-channels",
+      "status": "PASS",
+      "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+      "localSourceProof": {
+        "localHtmlSha256": "6edf33716e077c4da21cbcd241e9024167ecc85d215fa04aa85c4e05126a9846",
+        "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "reconstructedExpectedSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "sameColourIncludesTenSolidAndOneHollow": true,
+      "definitionHiddenGradientAndImageExcluded": true,
+      "hollowNeverFilled": true,
+      "exactUndoRedo": true
+    },
+    {
+      "name": "layer-lock-visibility-and-rich-text",
+      "status": "PASS",
+      "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+      "localSourceProof": {
+        "localHtmlSha256": "6edf33716e077c4da21cbcd241e9024167ecc85d215fa04aa85c4e05126a9846",
+        "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "reconstructedExpectedSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "lockedLayerSelection": true,
+      "lockColourProtection": true,
+      "visibilityUndo": true,
+      "italicAndSuperscriptSizeRatioPreserved": true,
+      "sourceContractUnchanged": true,
+      "beforeTextMetrics": {
+        "italic": "italic",
+        "baseSize": 16,
+        "scriptSize": 12,
+        "baseKey": "e6",
+        "scriptKey": "e8",
+        "ratio": 0.75
+      },
+      "afterTextMetrics": {
+        "italic": "italic",
+        "baseSize": 27.7778,
+        "scriptSize": 20.8333,
+        "baseKey": "e6",
+        "scriptKey": "e8",
+        "ratio": 0.74999820000144
+      },
+      "committedTextSizeEdits": {
+        "base": "27.77777777777778",
+        "script": "20.833333333333336"
+      },
+      "textSizeRatioChecks": {
+        "stateRatio": 0.7500000000000001,
+        "stateTolerance": 1e-12,
+        "computedScriptErrorCssPx": 0.000049999999998107114,
+        "computedToleranceCssPx": 0.0001,
+        "reason": "Actual Chrome CSSOM serialization reports 27.7778 and 20.8333 while saved values retain full precision. Check exact stored ratio and a bounded 0.0001 CSS-pixel rendering error separately; earlier overstrict ratio-only failures remain retained."
+      }
+    },
+    {
+      "name": "public-iris-contract-edit-roundtrip-and-theme-exports",
+      "status": "PASS",
+      "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+      "localSourceProof": {
+        "localHtmlSha256": "6edf33716e077c4da21cbcd241e9024167ecc85d215fa04aa85c4e05126a9846",
+        "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "reconstructedExpectedSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "observations": 150,
+      "exactOriginalTable": true,
+      "originalSvgAnalysisAndRecipeUnchanged": true,
+      "exactEditUndoRedo": true,
+      "saveReopenStateAndPanelsEqual": true,
+      "matchesFrozenV1421PublicReport": "docs/qa/carbon-atelier/windows-installed-final-browser-acceptance.json",
+      "exports": [
+        {
+          "theme": "carbon",
+          "svgSha256": "51a873f1c399ee94fcc78fe3181ee7caf16fd10d3190a8d2f201c46cc19fa9e5",
+          "canonicalSvgSha256": "b76582d84052bfc4f6e5de92050acc8b2fd2f1db4bf609a2949a3af38d43847a",
+          "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+          "pixels": {
+            "width": 2880,
+            "height": 2160,
+            "sha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+          }
+        },
+        {
+          "theme": "pearl",
+          "svgSha256": "4d69b59681bc97a099b8cccc3671ca2c10b88ba527fe3ce5949ac873f462790e",
+          "canonicalSvgSha256": "b76582d84052bfc4f6e5de92050acc8b2fd2f1db4bf609a2949a3af38d43847a",
+          "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+          "pixels": {
+            "width": 2880,
+            "height": 2160,
+            "sha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+          }
+        }
+      ]
+    }
+  ],
+  "externalRequests": 0,
+  "pageErrors": 0,
+  "scope": "Five same-freeze actual Windows Chrome cases. Synthetic vectors test selection, edit channels, layers and typography. Public Iris supplies 150 unchanged measurements and source SVG/analysis/recipe checks, Save roundtrip and actual theme-independent SVG/PNG exports matching the frozen final v1.4.21 device reference.",
+  "limitations": [
+    "No private images or project files are used.",
+    "Export SVG normalization only removes the already-verified incrementing fNN- namespace from ID/reference attributes; raw hashes are retained.",
+    "PNG pixel equality is in this Chrome/device; it does not establish cross-platform font or raster equivalence."
+  ],
+  "installation": "Installed identity, when claimed by kind, requires the independent original Setup and installed file-manifest proof."
+}

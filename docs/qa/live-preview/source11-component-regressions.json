@@ -1,0 +1,645 @@
+{
+  "schema": "figure-studio-component-regressions/1",
+  "scope": "Source11 relevant Node/DOM and actual Chrome component scripts. The 11 earlier Python scripts cover unchanged backend/runtime code; they are not claimed to have rerun in this batch. Script counts are not user workflows.",
+  "frozenHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+  "frozenManifestSha256": "6a836da6602abb7467d36418c30d1b490f0bbed7da151e5f1dc1ef612496c76e",
+  "node": {
+    "scripts": 78,
+    "allPassed": true,
+    "sourceAssetCount": 78,
+    "sourceBackendCount": 27,
+    "sourceAssetsAndBackendUnchanged": true,
+    "testHarnessesUnchanged": true,
+    "summarySha256": "bf47c347d7cdea2f4f015a0f8a6dfea72898767e8bef090546f99d087cccfbb2",
+    "tests": [
+      {
+        "test": "test_studio_preview_sessions.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.203,
+        "logSha256": "0ea0adf7687a2df76a0dd58db26abf31096067c89cb75d1972492025e6226fb7"
+      },
+      {
+        "test": "test_studio_field_preview.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.032,
+        "logSha256": "b4ebf18cd3536a2655f769140d8c87b86a9720130ae30f5e4220b8aedd19e93d"
+      },
+      {
+        "test": "test_studio_selection_lookup.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.828,
+        "logSha256": "0b7cddc1ef53a703ac23cf592acf48a315c5ccdbd89999abfeedf5f1cd9dd2f5"
+      },
+      {
+        "test": "test_studio_selection_performance.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.875,
+        "logSha256": "4fd5d59d2fc0ad499106807421afb36561fc666fcf942073d908531cedb072d5"
+      },
+      {
+        "test": "test_studio_quick_toolbar.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.156,
+        "logSha256": "b7fe9eacac79588d0bad48478630e1fc671286d9b2dab6bcdb000f46cf49d998"
+      },
+      {
+        "test": "test_studio_state.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.234,
+        "logSha256": "4246fa3c6593e28e49088a9a8555e59918321515dea7970d902d72a59dcbc070"
+      },
+      {
+        "test": "test_studio_data_text_preservation.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 3.875,
+        "logSha256": "a119100b8ea2159b6dcf60fac43641b531841db4ed6b6af328b4d33f2dfe2159"
+      },
+      {
+        "test": "test_studio_data_validation.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.235,
+        "logSha256": "596c9c719e006b1545a9a21d35cf2ac7fd3d3d2aa2c76286d4825d5dcd43b122"
+      },
+      {
+        "test": "test_studio_text_geometry.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.344,
+        "logSha256": "f065cecc25754bbc13f9264dbdb7ef79b40f91274eb2f58bdf8092e6f22a3d93"
+      },
+      {
+        "test": "test_studio_text_formatting.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.39,
+        "logSha256": "bb8d57474a7f9d962d160d55e2502ad556f6b243b797f28bd5a78a0bf2fa0823"
+      },
+      {
+        "test": "test_studio_text_tools_integration.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.157,
+        "logSha256": "0e37faeda8aa8a4c9ce28514899cf09710519fe72680a2fe5472a06098d7ae49"
+      },
+      {
+        "test": "test_studio_imported_font_brush.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.156,
+        "logSha256": "2b03d056379dd9ef5f50274eed5cf2d181bd2d0dd7caf8ee6c7b8a629248949d"
+      },
+      {
+        "test": "test_studio_text_spacing_preview.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.954,
+        "logSha256": "5d91adb0f5dcf0d9211a9a4f6d74b6dd26e5cd3b82e86befd9c74b2d936bc57d"
+      },
+      {
+        "test": "test_studio_font_replacement.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.953,
+        "logSha256": "4178050c0ac5a9b14cd70e77374202891ccf4209849dea438e416bbd14f1f55f"
+      },
+      {
+        "test": "test_studio_axis_settings_ui.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.89,
+        "logSha256": "c2b8d8d95c3ba4cc1b2ed7c19f6869e9091baa01e5116f177b8514fb53e1b035"
+      },
+      {
+        "test": "test_studio_axis_settings_async.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.969,
+        "logSha256": "6c880dd558181a567a664b4c78eb3e25df90cf024405441a20fd7071cb788181"
+      },
+      {
+        "test": "test_studio_axis_preview_isolation.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.093,
+        "logSha256": "daa49cf216741a8b752280a1c6c08130309fb5c2c3cac61ceefab298edcbe06b"
+      },
+      {
+        "test": "test_studio_axis_asset_draft.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.813,
+        "logSha256": "b37ae656e4fcad2a35c92e29c4f23500561a84ebe5d4323be48fb2204899753b"
+      },
+      {
+        "test": "test_studio_border_replacement.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.171,
+        "logSha256": "280f705bcbb994bde1814fc4954bcd88dd3d5d117d2c11739065c6e9776cbfab"
+      },
+      {
+        "test": "test_studio_object_borders_live_preview.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.141,
+        "logSha256": "e017cb166d01f15b015659d771976983a38e8e63dd8c2506c87d48a64647ab6a"
+      },
+      {
+        "test": "test_studio_image_color.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.203,
+        "logSha256": "976d45feee9e59f9b0dd9728b03ac63b0eb55c0d52a63cdadf93fcadb4337c82"
+      },
+      {
+        "test": "test_studio_image_color_ui.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.437,
+        "logSha256": "8e5026ae1f04b9e5e508e49cc8e991df756496a0e26d6fee31b5bd7a7703d0dd"
+      },
+      {
+        "test": "test_studio_image_color_roundtrip.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.172,
+        "logSha256": "f8dab99d65c3ecdb71e01643fca2f6c6156c8fb0083a5fccee07380a251433f2"
+      },
+      {
+        "test": "test_studio_image_display_statistics.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.156,
+        "logSha256": "1d970e1faa11bd829ebd50e5c7576537c7233ad8b697321c154eac839e55d9ce"
+      },
+      {
+        "test": "test_studio_image_links.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.172,
+        "logSha256": "8dc7341cc4db49f0da62cb8a9846070eacc62feeaf06889b7087cc29d6ff7993"
+      },
+      {
+        "test": "test_studio_image_links_ui.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.531,
+        "logSha256": "6846ede968f265f4a9c4c0883a073f591e009284dafe3240b32602d4b723479c"
+      },
+      {
+        "test": "test_studio_image_links_controller.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.047,
+        "logSha256": "29e4be85485d4f56e496b22783638880c7fc934df567ff0bac0a2d4d838ec9f4"
+      },
+      {
+        "test": "test_studio_image_insets.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.438,
+        "logSha256": "b6a6e69b413636e1e728a7e09b3f7903f2e1f7f082021f21e316d2f868532430"
+      },
+      {
+        "test": "test_studio_image_insets_ui.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.937,
+        "logSha256": "f6943753872a197126e28c4159353c52a4ee6c0a7d01a242de035499199d5eab"
+      },
+      {
+        "test": "test_studio_image_insets_controller.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.203,
+        "logSha256": "392f5db2ceac3d027cbf76b3d433f81effb9bd51c2c6ded048d5ef735a6913b3"
+      },
+      {
+        "test": "test_studio_image_insets_integration.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.828,
+        "logSha256": "ccfab4a8a8cc86a3a49076eccf60bed56432960a0093b2f1b967be764171683e"
+      },
+      {
+        "test": "test_studio_image_insets_draft.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.766,
+        "logSha256": "509c4e8245638e06822581da94c850d7fd24dbdd7367acbbbb3f2d00c0098594"
+      },
+      {
+        "test": "test_studio_statistical_annotations.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.234,
+        "logSha256": "12420458476c21db7590062cd5c54a46a4812ffcc127bf064273cc04f9f940c7"
+      },
+      {
+        "test": "test_studio_statistical_line_geometry.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.125,
+        "logSha256": "98a98a58b75342e07cacb02bba5fc7c5f7d1199d5baa7c81fbc32d3d1a88df42"
+      },
+      {
+        "test": "test_studio_statistical_line_editing.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.141,
+        "logSha256": "a514eb7afc79f72e72f560eb6745a064b1cbcd963151172af15969591eebb9d7"
+      },
+      {
+        "test": "test_studio_statistical_metadata.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 6.062,
+        "logSha256": "36da4c4e50997b4ed33cd542aeb60072584d8a4b99cfa2272fc3644c6dbddede"
+      },
+      {
+        "test": "test_studio_panel_export.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.188,
+        "logSha256": "da88929ee5ae6502e01eb78b371ac50de648a3ef3a3a3e93149eae553abc014f"
+      },
+      {
+        "test": "test_studio_tiff_export.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.391,
+        "logSha256": "cd3a71292dcb82cb8ae5b4dbcb1580bbf25e1cf34996153d0d0978ee3ba3ad6c"
+      },
+      {
+        "test": "test_studio_panel_gaps.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.156,
+        "logSha256": "15e9d706c3dd08ee04af4e59d0246388c78657b8c51ccf1f3ac426ad6b9cb3f1"
+      },
+      {
+        "test": "test_studio_workspace_selection.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.25,
+        "logSha256": "7e50d58ea3e6d9794ca71c4d206f20819c1bb068c6be8a953feef0c9fcf10a62"
+      },
+      {
+        "test": "test_studio_selection_transform.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.125,
+        "logSha256": "f823c6044e70a99845c14cc27115293803c347399b839ad343fc13a6abdd4487"
+      },
+      {
+        "test": "test_studio_selection_resize_integration.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.265,
+        "logSha256": "d4ed3bc67717d6222b59a575cdad28876badbb3eaa8570664a732f08dad7aaed"
+      },
+      {
+        "test": "test_studio_selection_commands.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.938,
+        "logSha256": "e781902c46da7399d39e646733fa4e6f3bb04cc92bc7c4181669bf3d54eb1a6f"
+      },
+      {
+        "test": "test_studio_experience_tools.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.906,
+        "logSha256": "99305ec681e8b9c2f3ab20a0ccf714bb0a91f6dfab29337aea2201067c33becb"
+      },
+      {
+        "test": "test_studio_literature.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.0,
+        "logSha256": "d0d5d708e36e09861b0e746ecb4282bc79f92a04fc41ce6cf3f93eba6f81f7cd"
+      },
+      {
+        "test": "test_figure_discovery.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.297,
+        "logSha256": "9d36caaf89fbd283edf130719d84cabc0d211be72a61529e626d86b65798332d"
+      },
+      {
+        "test": "test_discovery_literature.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.407,
+        "logSha256": "d14c84933ca721c50eedbeaa7a670aa0c3b35aedb5bf54d7132a33aa4a91690f"
+      },
+      {
+        "test": "test_studio_update_real_evidence.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.203,
+        "logSha256": "cf6f62a5f76f9f4f19f36734abb6bb7071aba68607bae4e9decd445695128914"
+      },
+      {
+        "test": "test_studio_performance_v2.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.172,
+        "logSha256": "9f519e3cf57e13893fcf49c1547c358b511bd867a376f07ca6969141baa13618"
+      },
+      {
+        "test": "test_studio_axis_canvas_restore.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.234,
+        "logSha256": "5ca6f1f492ecc7f1e3fe1b226521fb00420457a7a2523842d9447349c805b92f"
+      },
+      {
+        "test": "test_studio_quick_style_blur.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.328,
+        "logSha256": "483ef09dfe389302ab6c780fab527d36a0542324636c3332699e22e2dc3943d2"
+      },
+      {
+        "test": "test_studio_legacy_axis_preview.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.0,
+        "logSha256": "25634a62aeb964b11627a4e2778887e3f25d5aefb286d44d0962fc8d223a591b"
+      },
+      {
+        "test": "test_studio_scale_preview.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.188,
+        "logSha256": "8df2ce6870d3b3abb431686388b2d97ae9033166b48f7647b3a8a12b4ab69f9c"
+      },
+      {
+        "test": "test_studio_scale_geometry.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.156,
+        "logSha256": "1b2abfc834d77dc65fe038403d94712a5532883fbaf09c6ad9e66b8d4ee3777c"
+      },
+      {
+        "test": "test_studio_palette_preview.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.11,
+        "logSha256": "18988b6abbc474e651ab9569c35e3a92de89eb755a2ba5a42379573827e3ca44"
+      },
+      {
+        "test": "test_studio_palette_pane_layout.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.39,
+        "logSha256": "1523167c51e61b808479ad5f1d7dc1afe2dd028bbf4f48ac3d62c415da01449d"
+      },
+      {
+        "test": "test_studio_scale_controls.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.875,
+        "logSha256": "41df7906c982bbfa70d14fb790fefe8a31913f48d9d0d553789a240e64db302f"
+      },
+      {
+        "test": "test_mobile_dom_preview.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.125,
+        "logSha256": "03c8e5ecc78e91685220012002d57475cfeba8cef43bacc5afa5f384c4f87b31"
+      },
+      {
+        "test": "test_studio_mobile_ui.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.156,
+        "logSha256": "220136a9e9eab2ca863367ce876c89e1e86a8be41955667da5a434410d091ea3"
+      },
+      {
+        "test": "test_studio_canvas_clipboard.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.406,
+        "logSha256": "e3d73802bfa13caf499cc7f6f1c13c45401f1fbc93a89b20daa6a6d6d15299d2"
+      },
+      {
+        "test": "test_studio_canvas_clipboard_append.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.61,
+        "logSha256": "98cf55039a2ef6339b6bf27c3ec2d7a06e4b71a39b5ce80f36e4634360236c7a"
+      },
+      {
+        "test": "test_studio_canvas_clipboard_integration.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.891,
+        "logSha256": "6a5c8adbbb90ab6f1bfdc9857f559039292e7f99256c960df4cd75a188074e28"
+      },
+      {
+        "test": "test_studio_clipboard_event_guards.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.875,
+        "logSha256": "24b57c7267bac943b6dcd59f4e987213882631b3b57f1e61a84556fb861cd6f7"
+      },
+      {
+        "test": "test_studio_clipboard_compact_layout.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.641,
+        "logSha256": "4b49ede814fd6f01fecf7b70f12c5aca5aa7d9d6119c92a8613947e56969a741"
+      },
+      {
+        "test": "test_studio_layout_lock.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.766,
+        "logSha256": "7ebd710a87d9108106359fdc76cf33bba30aacb53c026a7465b6fa7e84e545c2"
+      },
+      {
+        "test": "test_studio_layout_lock_integration.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.766,
+        "logSha256": "1434b6f8b849bdbbaa2f034dd0025778e41aa2b6300ddcf662fb17ebd5643305"
+      },
+      {
+        "test": "test_studio_layers_panel.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.61,
+        "logSha256": "c1d3285014d982e6ba355c426d40852565beef6aba36d97242757359d3be535b"
+      },
+      {
+        "test": "test_studio_panel_commands.cjs",
+        "arguments": [
+          "--dom"
+        ],
+        "exitCode": 0,
+        "seconds": 0.875,
+        "logSha256": "9d24b133a292cdc61491fb158f8d41e6031accae257b9c8579a9498e94005373"
+      },
+      {
+        "test": "test_studio_master_frame.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.094,
+        "logSha256": "afe1f515f0b6ecde00a47abf3d18afd40a485a45ff9f952c243321bb34356d0c"
+      },
+      {
+        "test": "test_studio_master_frame_integration.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 1.875,
+        "logSha256": "a06fe8273e648fe2fea1afe56d9b6fae7e7f5418aa0d5a48a73c3e350d1983f6"
+      },
+      {
+        "test": "test_studio_grid_resize.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.266,
+        "logSha256": "c87bac50d02ef855c73faba0421aa74dcbfe56429262be61e44e51a7d0cbeb41"
+      },
+      {
+        "test": "test_studio_grid_outer_resize.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.297,
+        "logSha256": "a960ce8d89d3c3bd96bcf762149331e7b3e039eae2b009fbc47766d308ba7d73"
+      },
+      {
+        "test": "test_studio_pdf_text_editing.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.203,
+        "logSha256": "f15b83c9eadede669d112d38cb0b87f18ae99c56314f35193f9fa2477e9156bd"
+      },
+      {
+        "test": "test_studio_object_borders_browser.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 2.594,
+        "logSha256": "367e4f872daf1393d74a3e5d2b9c9bd90c9b06ae858836168033c042504ef784"
+      },
+      {
+        "test": "test_studio_style_preview_browser.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 3.422,
+        "logSha256": "10d2994dc3b74090a67ba6a44848597619732ddab763c612cdf0398ef0f7637d"
+      },
+      {
+        "test": "test_studio_object_borders_live_preview_browser.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 4.062,
+        "logSha256": "68a9d7d77796490e1714ff395dc11fccaf873701f308e772d0223d2c185b524f"
+      },
+      {
+        "test": "test_studio_image_dock_preview_browser.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 4.594,
+        "logSha256": "7280134f1ed3ed0246aa168c67a3e767376b3d2ea754df605c15ed6a3c726fa4"
+      },
+      {
+        "test": "test_studio_performance_summary.cjs",
+        "arguments": [],
+        "exitCode": 0,
+        "seconds": 0.234,
+        "logSha256": "04139492ad8188a6da1f54049d17e9e910708891a97df0b51b13a84dca507f3a"
+      }
+    ],
+    "environmentEvidence": "The raw batch records its actual explicit environment. Source10 did not record environment, so no equality of earlier environment is inferred."
+  },
+  "python": {
+    "scripts": 11,
+    "allPassed": true,
+    "summarySha256": "014b5aec012e42a81abf5dd6f5fc9a9bfff2ad493f3d8fa71a0da49be8ee9cf9",
+    "tests": [
+      {
+        "test": "scripts/test_studio_render_statistics_cache.py",
+        "exitCode": 0,
+        "seconds": 6.66,
+        "logSha256": "8866dea436a96119d0f0088c0ca6cd803cb75c9b879be006924c7274a1f2a7d5"
+      },
+      {
+        "test": "scripts/test_studio_statistics.py",
+        "exitCode": 0,
+        "seconds": 9.67,
+        "logSha256": "064e4f3ba085090e2aff0b7285296cc22ef2399e7fcab115883824fdb7f8f687"
+      },
+      {
+        "test": "scripts/test_studio_axis_settings.py",
+        "exitCode": 0,
+        "seconds": 3.97,
+        "logSha256": "840927e0ffa0c7ec945888c7f758abd6dad633e783b3300f1d429a43445c91a0"
+      },
+      {
+        "test": "scripts/test_studio_axes_regression.py",
+        "exitCode": 0,
+        "seconds": 6.33,
+        "logSha256": "4946e7615b0e0c64746757729d8287eb9a00d2668931d0f880ecaa308274fc2c"
+      },
+      {
+        "test": "scripts/test_studio_axis_formatters.py",
+        "exitCode": 0,
+        "seconds": 0.88,
+        "logSha256": "62b3be9fb6b60235122d08d7f2629a7c0f907dfe9e05e05353b5b5c6e9200be7"
+      },
+      {
+        "test": "scripts/test_figure_discovery.py",
+        "exitCode": 0,
+        "seconds": 34.14,
+        "logSha256": "b2c07d2c1851a3fc9ee5dcbbe4cfc81ed147f0d085749367227c2e631ab2b34f"
+      },
+      {
+        "test": "scripts/test_studio_image_links.py",
+        "exitCode": 0,
+        "seconds": 17.06,
+        "logSha256": "8c7999f7dfd0dc282099cd20a1499cad3ca92e169bda4d9f3569dae18d894e3f"
+      },
+      {
+        "test": "scripts/test_studio_image_links_endpoint.py",
+        "exitCode": 0,
+        "seconds": 1.86,
+        "logSha256": "0ee87fc8c70d75d4dcc6bd47c29642985899161e46edfeeed6c1edaa6cd3d8b4"
+      },
+      {
+        "test": "skills/polish-sci-figures/scripts/test_figure_studio.py",
+        "exitCode": 0,
+        "seconds": 14.58,
+        "logSha256": "b506ac017dec66657fe12f73ebd302b106af86e9fbc4c3f4da06c5f725e03d0c"
+      },
+      {
+        "test": "desktop/test_windows_updater.py",
+        "exitCode": 0,
+        "seconds": 2.06,
+        "logSha256": "6f277712879895fdf52d594f1fe4242dde20fbcf763be93dd9eafaa9035dd7a3"
+      },
+      {
+        "test": "scripts/test_release_versions.py",
+        "exitCode": 0,
+        "seconds": 0.45,
+        "logSha256": "f6ba3598bea03698902ebe8303149cec1895b2b61d618a78ae484c7e768f3d6b"
+      }
+    ]
+  },
+  "publicationHold": true,
+  "limitations": [
+    "Component checks include unit and DOM checks and four actual Chrome component harnesses, not 78 end-user workflows.",
+    "No remote CI, Windows installation, physical touch, Chinese IME or independent user-success claim follows from this batch.",
+    "Raw argv/environment include local paths and remain in ignored evidence; the public report contains hashes and bounded facts."
+  ]
+}

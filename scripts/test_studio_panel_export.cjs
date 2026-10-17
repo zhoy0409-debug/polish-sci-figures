@@ -123,12 +123,13 @@ async function testHandlers(){
   await control('downloadImageExport').onclick();eq(downloads.length,beforeAwait,'A state change during export preflight must invalidate the dialog preview, not export a fresh unpreviewed state');eq(control('downloadImageExport').disabled,true);active=state;reflowHook=null;
   // Capture-phase guards stop underlying delete, nudge and undo handlers while
   // preserving standard text-field editing and normal modal keyboard navigation.
-  let capture;ctx.document.addEventListener=(name,fn,phase)=>{eq(name,'keydown');eq(phase,true);capture=fn;};ctx.document.querySelector=selector=>selector==='dialog[open]'&&control('imageExportDialog').open?control('imageExportDialog'):null;
-  vm.runInContext(extract("  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')",'  let savedLanguage'),ctx);
+  const modalSelector='dialog[open]:not(.discovery-docked):not(.literature-preview-docked)';let capture,dialogClass='';ctx.document.addEventListener=(name,fn,phase)=>{eq(name,'keydown');eq(phase,true);capture=fn;};ctx.document.querySelector=selector=>{eq(selector,modalSelector);return control('imageExportDialog').open&&!['discovery-docked','literature-preview-docked'].includes(dialogClass)?control('imageExportDialog'):null;};
+  vm.runInContext(extract("  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]",'  let savedLanguage'),ctx);
   const key=(key,extras={},editing=false)=>{const event={key,target:{closest:()=>editing?{}:null},prevented:0,stopped:0,preventDefault(){this.prevented++;},stopImmediatePropagation(){this.stopped++;},...extras};capture(event);return event;};
   control('imageExportDialog').open=true;
   for(const [name,mod] of [['Delete',{}],['Backspace',{}],['ArrowLeft',{}],['ArrowRight',{}],['ArrowUp',{}],['ArrowDown',{}],['z',{ctrlKey:true}],['Z',{ctrlKey:true,shiftKey:true}],['z',{metaKey:true}]]){const blocked=key(name,mod);eq(blocked.prevented,1);eq(blocked.stopped,1);const editable=key(name,mod,true);eq(editable.prevented,0);eq(editable.stopped,0);}
   for(const name of ['Tab','Enter','Escape','a']){const allowed=key(name);eq(allowed.prevented,0);eq(allowed.stopped,0);}
+  for(const dock of ['discovery-docked','literature-preview-docked']){dialogClass=dock;for(const [name,extras]of [['Delete',{}],['ArrowLeft',{}],['z',{ctrlKey:true}]]){const allowed=key(name,extras);eq(allowed.prevented,0);eq(allowed.stopped,0);}}dialogClass='';
   control('imageExportDialog').open=false;for(const name of ['Delete','ArrowLeft']){const allowed=key(name);eq(allowed.prevented,0);eq(allowed.stopped,0);}
   eq(JSON.stringify(state),snapshot,'All exporter paths leave the original state untouched');
   console.log(`PASS panel export: ${checks} composition/crop/vector/state and async export assertions`);

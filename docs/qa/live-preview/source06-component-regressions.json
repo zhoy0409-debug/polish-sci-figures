@@ -1,0 +1,348 @@
+{
+  "schema": "figure-studio-source-component-regressions/1",
+  "status": "PASS_COMPONENT_SCOPE",
+  "sourceFreezeHtmlSha256": "72ed3bcbf0cf9f875cfe5fb8776af056014e0afa6db283955163ade273e8c989",
+  "sourceManifestSha256": "ee47c4c2988f5caf0d6b728321c10bb2603ea8be92e8719b8765571fd8153da3",
+  "node": {
+    "scriptCount": 54,
+    "allExitCodesZero": true,
+    "beforeAndAfterFrozenAssetCount": 78,
+    "allAssetsIdenticalToFreeze": true,
+    "rawReportSha256": "95250fb6b458142faf47f31a7626a8ebb6e2747b144b7cc3a935102ef1f65c73",
+    "scripts": [
+      {
+        "file": "test_studio_preview_sessions.cjs",
+        "exitCode": 0,
+        "logSha256": "0ea0adf7687a2df76a0dd58db26abf31096067c89cb75d1972492025e6226fb7"
+      },
+      {
+        "file": "test_studio_field_preview.cjs",
+        "exitCode": 0,
+        "logSha256": "a8698cb2d373be4e01e82a0357cb1c3bae04585f6d6c068a2fbe1bffa1bd0a83"
+      },
+      {
+        "file": "test_studio_selection_lookup.cjs",
+        "exitCode": 0,
+        "logSha256": "0b7cddc1ef53a703ac23cf592acf48a315c5ccdbd89999abfeedf5f1cd9dd2f5"
+      },
+      {
+        "file": "test_studio_selection_performance.cjs",
+        "exitCode": 0,
+        "logSha256": "4fd5d59d2fc0ad499106807421afb36561fc666fcf942073d908531cedb072d5"
+      },
+      {
+        "file": "test_studio_quick_toolbar.cjs",
+        "exitCode": 0,
+        "logSha256": "b7fe9eacac79588d0bad48478630e1fc671286d9b2dab6bcdb000f46cf49d998"
+      },
+      {
+        "file": "test_studio_state.cjs",
+        "exitCode": 0,
+        "logSha256": "4246fa3c6593e28e49088a9a8555e59918321515dea7970d902d72a59dcbc070"
+      },
+      {
+        "file": "test_studio_data_text_preservation.cjs",
+        "exitCode": 0,
+        "logSha256": "a119100b8ea2159b6dcf60fac43641b531841db4ed6b6af328b4d33f2dfe2159"
+      },
+      {
+        "file": "test_studio_data_validation.cjs",
+        "exitCode": 0,
+        "logSha256": "596c9c719e006b1545a9a21d35cf2ac7fd3d3d2aa2c76286d4825d5dcd43b122"
+      },
+      {
+        "file": "test_studio_text_geometry.cjs",
+        "exitCode": 0,
+        "logSha256": "f065cecc25754bbc13f9264dbdb7ef79b40f91274eb2f58bdf8092e6f22a3d93"
+      },
+      {
+        "file": "test_studio_text_formatting.cjs",
+        "exitCode": 0,
+        "logSha256": "bb8d57474a7f9d962d160d55e2502ad556f6b243b797f28bd5a78a0bf2fa0823"
+      },
+      {
+        "file": "test_studio_text_tools_integration.cjs",
+        "exitCode": 0,
+        "logSha256": "0e37faeda8aa8a4c9ce28514899cf09710519fe72680a2fe5472a06098d7ae49"
+      },
+      {
+        "file": "test_studio_imported_font_brush.cjs",
+        "exitCode": 0,
+        "logSha256": "2b03d056379dd9ef5f50274eed5cf2d181bd2d0dd7caf8ee6c7b8a629248949d"
+      },
+      {
+        "file": "test_studio_text_spacing_preview.cjs",
+        "exitCode": 0,
+        "logSha256": "5d91adb0f5dcf0d9211a9a4f6d74b6dd26e5cd3b82e86befd9c74b2d936bc57d"
+      },
+      {
+        "file": "test_studio_font_replacement.cjs",
+        "exitCode": 0,
+        "logSha256": "4178050c0ac5a9b14cd70e77374202891ccf4209849dea438e416bbd14f1f55f"
+      },
+      {
+        "file": "test_studio_axis_settings_ui.cjs",
+        "exitCode": 0,
+        "logSha256": "c2b8d8d95c3ba4cc1b2ed7c19f6869e9091baa01e5116f177b8514fb53e1b035"
+      },
+      {
+        "file": "test_studio_axis_settings_async.cjs",
+        "exitCode": 0,
+        "logSha256": "6c880dd558181a567a664b4c78eb3e25df90cf024405441a20fd7071cb788181"
+      },
+      {
+        "file": "test_studio_axis_preview_isolation.cjs",
+        "exitCode": 0,
+        "logSha256": "daa49cf216741a8b752280a1c6c08130309fb5c2c3cac61ceefab298edcbe06b"
+      },
+      {
+        "file": "test_studio_axis_asset_draft.cjs",
+        "exitCode": 0,
+        "logSha256": "b37ae656e4fcad2a35c92e29c4f23500561a84ebe5d4323be48fb2204899753b"
+      },
+      {
+        "file": "test_studio_border_replacement.cjs",
+        "exitCode": 0,
+        "logSha256": "280f705bcbb994bde1814fc4954bcd88dd3d5d117d2c11739065c6e9776cbfab"
+      },
+      {
+        "file": "test_studio_object_borders_live_preview.cjs",
+        "exitCode": 0,
+        "logSha256": "e017cb166d01f15b015659d771976983a38e8e63dd8c2506c87d48a64647ab6a"
+      },
+      {
+        "file": "test_studio_image_color.cjs",
+        "exitCode": 0,
+        "logSha256": "e37a3c773739125458b98f271099fa0f78c9446e38602ed8927022ee067e0bf3"
+      },
+      {
+        "file": "test_studio_image_color_ui.cjs",
+        "exitCode": 0,
+        "logSha256": "8e5026ae1f04b9e5e508e49cc8e991df756496a0e26d6fee31b5bd7a7703d0dd"
+      },
+      {
+        "file": "test_studio_image_color_roundtrip.cjs",
+        "exitCode": 0,
+        "logSha256": "f8dab99d65c3ecdb71e01643fca2f6c6156c8fb0083a5fccee07380a251433f2"
+      },
+      {
+        "file": "test_studio_image_display_statistics.cjs",
+        "exitCode": 0,
+        "logSha256": "1d970e1faa11bd829ebd50e5c7576537c7233ad8b697321c154eac839e55d9ce"
+      },
+      {
+        "file": "test_studio_image_links.cjs",
+        "exitCode": 0,
+        "logSha256": "d48369a57e2151ad2ea19467173e083995b1fb14214e42aac28725b5c228862c"
+      },
+      {
+        "file": "test_studio_image_links_ui.cjs",
+        "exitCode": 0,
+        "logSha256": "6846ede968f265f4a9c4c0883a073f591e009284dafe3240b32602d4b723479c"
+      },
+      {
+        "file": "test_studio_image_links_controller.cjs",
+        "exitCode": 0,
+        "logSha256": "29e4be85485d4f56e496b22783638880c7fc934df567ff0bac0a2d4d838ec9f4"
+      },
+      {
+        "file": "test_studio_image_insets.cjs",
+        "exitCode": 0,
+        "logSha256": "b6a6e69b413636e1e728a7e09b3f7903f2e1f7f082021f21e316d2f868532430"
+      },
+      {
+        "file": "test_studio_image_insets_ui.cjs",
+        "exitCode": 0,
+        "logSha256": "f6943753872a197126e28c4159353c52a4ee6c0a7d01a242de035499199d5eab"
+      },
+      {
+        "file": "test_studio_image_insets_controller.cjs",
+        "exitCode": 0,
+        "logSha256": "392f5db2ceac3d027cbf76b3d433f81effb9bd51c2c6ded048d5ef735a6913b3"
+      },
+      {
+        "file": "test_studio_image_insets_integration.cjs",
+        "exitCode": 0,
+        "logSha256": "ccfab4a8a8cc86a3a49076eccf60bed56432960a0093b2f1b967be764171683e"
+      },
+      {
+        "file": "test_studio_image_insets_draft.cjs",
+        "exitCode": 0,
+        "logSha256": "509c4e8245638e06822581da94c850d7fd24dbdd7367acbbbb3f2d00c0098594"
+      },
+      {
+        "file": "test_studio_statistical_annotations.cjs",
+        "exitCode": 0,
+        "logSha256": "12420458476c21db7590062cd5c54a46a4812ffcc127bf064273cc04f9f940c7"
+      },
+      {
+        "file": "test_studio_statistical_line_geometry.cjs",
+        "exitCode": 0,
+        "logSha256": "98a98a58b75342e07cacb02bba5fc7c5f7d1199d5baa7c81fbc32d3d1a88df42"
+      },
+      {
+        "file": "test_studio_statistical_line_editing.cjs",
+        "exitCode": 0,
+        "logSha256": "a514eb7afc79f72e72f560eb6745a064b1cbcd963151172af15969591eebb9d7"
+      },
+      {
+        "file": "test_studio_statistical_metadata.cjs",
+        "exitCode": 0,
+        "logSha256": "36da4c4e50997b4ed33cd542aeb60072584d8a4b99cfa2272fc3644c6dbddede"
+      },
+      {
+        "file": "test_studio_panel_export.cjs",
+        "exitCode": 0,
+        "logSha256": "da88929ee5ae6502e01eb78b371ac50de648a3ef3a3a3e93149eae553abc014f"
+      },
+      {
+        "file": "test_studio_tiff_export.cjs",
+        "exitCode": 0,
+        "logSha256": "cd3a71292dcb82cb8ae5b4dbcb1580bbf25e1cf34996153d0d0978ee3ba3ad6c"
+      },
+      {
+        "file": "test_studio_panel_gaps.cjs",
+        "exitCode": 0,
+        "logSha256": "15e9d706c3dd08ee04af4e59d0246388c78657b8c51ccf1f3ac426ad6b9cb3f1"
+      },
+      {
+        "file": "test_studio_workspace_selection.cjs",
+        "exitCode": 0,
+        "logSha256": "7e50d58ea3e6d9794ca71c4d206f20819c1bb068c6be8a953feef0c9fcf10a62"
+      },
+      {
+        "file": "test_studio_selection_transform.cjs",
+        "exitCode": 0,
+        "logSha256": "f823c6044e70a99845c14cc27115293803c347399b839ad343fc13a6abdd4487"
+      },
+      {
+        "file": "test_studio_selection_resize_integration.cjs",
+        "exitCode": 0,
+        "logSha256": "d4ed3bc67717d6222b59a575cdad28876badbb3eaa8570664a732f08dad7aaed"
+      },
+      {
+        "file": "test_studio_selection_commands.cjs",
+        "exitCode": 0,
+        "logSha256": "e781902c46da7399d39e646733fa4e6f3bb04cc92bc7c4181669bf3d54eb1a6f"
+      },
+      {
+        "file": "test_studio_experience_tools.cjs",
+        "exitCode": 0,
+        "logSha256": "99305ec681e8b9c2f3ab20a0ccf714bb0a91f6dfab29337aea2201067c33becb"
+      },
+      {
+        "file": "test_studio_literature.cjs",
+        "exitCode": 0,
+        "logSha256": "d0d5d708e36e09861b0e746ecb4282bc79f92a04fc41ce6cf3f93eba6f81f7cd"
+      },
+      {
+        "file": "test_figure_discovery.cjs",
+        "exitCode": 0,
+        "logSha256": "9d36caaf89fbd283edf130719d84cabc0d211be72a61529e626d86b65798332d"
+      },
+      {
+        "file": "test_discovery_literature.cjs",
+        "exitCode": 0,
+        "logSha256": "d14c84933ca721c50eedbeaa7a670aa0c3b35aedb5bf54d7132a33aa4a91690f"
+      },
+      {
+        "file": "test_studio_update_real_evidence.cjs",
+        "exitCode": 0,
+        "logSha256": "cf6f62a5f76f9f4f19f36734abb6bb7071aba68607bae4e9decd445695128914"
+      },
+      {
+        "file": "test_studio_performance_v2.cjs",
+        "exitCode": 0,
+        "logSha256": "9f519e3cf57e13893fcf49c1547c358b511bd867a376f07ca6969141baa13618"
+      },
+      {
+        "file": "test_studio_axis_canvas_restore.cjs",
+        "exitCode": 0,
+        "logSha256": "5ca6f1f492ecc7f1e3fe1b226521fb00420457a7a2523842d9447349c805b92f"
+      },
+      {
+        "file": "test_studio_quick_style_blur.cjs",
+        "exitCode": 0,
+        "logSha256": "483ef09dfe389302ab6c780fab527d36a0542324636c3332699e22e2dc3943d2"
+      },
+      {
+        "file": "test_studio_legacy_axis_preview.cjs",
+        "exitCode": 0,
+        "logSha256": "25634a62aeb964b11627a4e2778887e3f25d5aefb286d44d0962fc8d223a591b"
+      },
+      {
+        "file": "test_studio_scale_preview.cjs",
+        "exitCode": 0,
+        "logSha256": "8df2ce6870d3b3abb431686388b2d97ae9033166b48f7647b3a8a12b4ab69f9c"
+      },
+      {
+        "file": "test_studio_scale_geometry.cjs",
+        "exitCode": 0,
+        "logSha256": "1b2abfc834d77dc65fe038403d94712a5532883fbaf09c6ad9e66b8d4ee3777c"
+      }
+    ]
+  },
+  "python": {
+    "scriptCount": 11,
+    "allExitCodesZero": true,
+    "rawReportSha256": "014b5aec012e42a81abf5dd6f5fc9a9bfff2ad493f3d8fa71a0da49be8ee9cf9",
+    "scripts": [
+      {
+        "file": "scripts/test_studio_render_statistics_cache.py",
+        "exitCode": 0,
+        "logSha256": "8866dea436a96119d0f0088c0ca6cd803cb75c9b879be006924c7274a1f2a7d5"
+      },
+      {
+        "file": "scripts/test_studio_statistics.py",
+        "exitCode": 0,
+        "logSha256": "064e4f3ba085090e2aff0b7285296cc22ef2399e7fcab115883824fdb7f8f687"
+      },
+      {
+        "file": "scripts/test_studio_axis_settings.py",
+        "exitCode": 0,
+        "logSha256": "840927e0ffa0c7ec945888c7f758abd6dad633e783b3300f1d429a43445c91a0"
+      },
+      {
+        "file": "scripts/test_studio_axes_regression.py",
+        "exitCode": 0,
+        "logSha256": "4946e7615b0e0c64746757729d8287eb9a00d2668931d0f880ecaa308274fc2c"
+      },
+      {
+        "file": "scripts/test_studio_axis_formatters.py",
+        "exitCode": 0,
+        "logSha256": "62b3be9fb6b60235122d08d7f2629a7c0f907dfe9e05e05353b5b5c6e9200be7"
+      },
+      {
+        "file": "scripts/test_figure_discovery.py",
+        "exitCode": 0,
+        "logSha256": "b2c07d2c1851a3fc9ee5dcbbe4cfc81ed147f0d085749367227c2e631ab2b34f"
+      },
+      {
+        "file": "scripts/test_studio_image_links.py",
+        "exitCode": 0,
+        "logSha256": "8c7999f7dfd0dc282099cd20a1499cad3ca92e169bda4d9f3569dae18d894e3f"
+      },
+      {
+        "file": "scripts/test_studio_image_links_endpoint.py",
+        "exitCode": 0,
+        "logSha256": "0ee87fc8c70d75d4dcc6bd47c29642985899161e46edfeeed6c1edaa6cd3d8b4"
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/test_figure_studio.py",
+        "exitCode": 0,
+        "logSha256": "b506ac017dec66657fe12f73ebd302b106af86e9fbc4c3f4da06c5f725e03d0c"
+      },
+      {
+        "file": "desktop/test_windows_updater.py",
+        "exitCode": 0,
+        "logSha256": "6f277712879895fdf52d594f1fe4242dde20fbcf763be93dd9eafaa9035dd7a3"
+      },
+      {
+        "file": "scripts/test_release_versions.py",
+        "exitCode": 0,
+        "logSha256": "f6ba3598bea03698902ebe8303149cec1895b2b61d618a78ae484c7e768f3d6b"
+      }
+    ]
+  },
+  "scope": "Node and Python component/scientific rule regressions. Counts describe executed scripts, not internal assertions, actual browser workflows, installed GUI acceptance, or image-detection accuracy. Earlier failed attempts remain in their original cache directories."
+}

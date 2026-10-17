@@ -4,15 +4,20 @@ const FigureDiscoveryUI=(()=>{
  const messages={design:['实验设计','Study design'],data_level:['数据层级','Data level'],unit_confirmed:['确认实验单位和字段','Confirm experimental unit and fields'],outcome_type:['结局类型','Outcome type'],technical_replicates:['是否有技术重复','Technical replicates'],nesting:['嵌套关系','Nesting'],columns:['缺少字段','Missing fields'],numeric:['数值字段须为有限数值','Numeric fields must be finite'],missing_values:['必需字段有缺失值；请先处理','Required values are missing; resolve first'],duplicate_cells:['同一对象有重复记录','Duplicate observation keys'],repeated_units:['对象 ID 重复，不能当独立样本','Repeated IDs cannot be treated as independent'],sample_size:['观测数或变化不足','Insufficient observations or variation'],constant_values:['组内数值变化不足','Insufficient within-group variation'],group_count:['组数超出图型范围','Group count outside supported range'],pair_order:['确认前后对比顺序','Confirm before/after contrast order'],pair_cells:['配对字段或组别不完整','Incomplete pairing fields'],incomplete_pairs:['存在不完整配对；请处理后重试','Incomplete pairs; resolve before plotting'],time_points:['每个对象至少两个时间点','At least two time points per unit'],unit_changes_group:['同一对象不能跨组','A unit cannot change groups'],common_baseline:['需要共同基线时间','Common baseline required'],summary_values:['SD ≥ 0，n 为至少 2 的整数','SD ≥ 0; integer n ≥ 2'],adjusted_p:['校正 P 值须在 (0, 1]','Adjusted P values must be in (0, 1]'],positive_class:['确认阳性类别','Confirm positive class'],binary_labels:['需两类真实标签','Two observed classes required'],constant_scores:['预测分数没有变化','Prediction scores are constant'],thresholds:['确认效应量和校正 P 值阈值','Confirm effect and adjusted-P thresholds']};
  function mount(host,api){
   const doc=host.ownerDocument,lang=()=>api.language()==='en'?'en':'zh-CN',t=(zh,en)=>lang()==='en'?en:zh;
+  const copy=value=>value==null?value:JSON.parse(JSON.stringify(value));
   const el=(tag,text,cls)=>{const node=doc.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
   const btn=(zh,en,fn)=>{const b=el('button',t(zh,en));b.type='button';b.onclick=fn;return b;};
-  let rows=null,result=null,serial=0,assets=new Map(),literature=null,origin=null,controller=null,privateFilename='',runContext='';
+  let rows=null,result=null,profile=null,serial=0,assets=new Map(),literature=null,origin=null,controller=null,privateFilename='',runContext='',sourceKind=null,destroyed=false,opened=false,restored=false,resumePreview=null;
+  let decoratedCache=null;
+  let previewRevision=0,previewAbort=null,selectedChartId=null,activeChartId=null,previewPhase='idle',previewFailed=false,committing=false,lastFocus=null;
+  const entries=new Map();
   const title=el('h2',t('智能选图','Figure Discovery')),intro=el('p',t('从研究问题和数据出发，比较真正适用的呈现方式。原始数据留在本机。','Start with your question and data. Compare scientifically suitable views. Raw data stay on this device.'));
-  const close=btn('返回编辑器','Back to editor',()=>host.close());const head=el('div',undefined,'dialog-head');head.append(title,close);host.append(head,intro);
+  const close=btn('关闭并取消对照','Close & cancel preview',()=>{if(!committing)host.close();});const head=el('div',undefined,'dialog-head');head.append(title,close);host.append(head,intro);
+  host.classList.add('discovery-docked');host.setAttribute('aria-modal','false');(api.dockContainer||host.parentElement).prepend(host);
   const upload=el('input');upload.type='file';upload.accept='.csv,.tsv,.xlsx';upload.id='discoveryFile';
   const paste=el('textarea');paste.rows=4;paste.id='discoveryData';paste.placeholder=t('拖入数据，或在这里粘贴带列名的 CSV / TSV','Drop data or paste CSV / TSV with headers');
   const use=btn('读取数据','Read data',()=>readText());use.id='discoveryRead';
-  const current=btn('使用当前数据工作台','Use current workbench',()=>{const c=api.context();if(c.rows){rows=c.rows;origin=c.key;updateFields();}else status.textContent=t('当前没有数据表','No current data table');});
+  const current=btn('使用当前数据工作台','Use current workbench',()=>{const c=api.context();if(c.rows){sourceKind='workbench';rows=copy(c.rows);origin=c.key;upload.value='';paste.value='';updateFields();}else status.textContent=t('当前没有数据表','No current data table');});
   const inputs=el('div',undefined,'discovery-inputs');inputs.append(upload,paste,use,current);host.append(inputs);
   const form=el('div',undefined,'discovery-form'),fields={},roles={},roleSection=el('details'),roleHeading=el('summary',t('核对字段映射（自动识别仅为推断）','Review column roles (automatic matches are unverified)'));roleSection.append(roleHeading);
   function input(key,zh,en,choices){const label=el('label',t(zh,en)),node=el(choices?'select':'input');node.id='discovery-'+key;if(choices)for(const [value,zhText,enText]of choices){const option=el('option',t(zhText,enText));option.value=value;node.append(option);}else node.maxLength=120;label.append(node);form.append(label);fields[key]=node;node.oninput=invalidate;return node;}
@@ -28,13 +33,30 @@ const FigureDiscoveryUI=(()=>{
   const confirmed=input('unit_confirmed','已核对：实验单位与字段映射正确','Reviewed: experimental unit and column roles are correct');confirmed.type='checkbox';
   const goal=input('goal','重点呈现什么？','What should the figure emphasize?',[['auto','依据研究目的（可修改）','From my question (editable)'],['overview','主要结果','Main finding'],['distribution','完整分布','Distribution'],['effect','效应量','Effect'],['uncertainty','不确定性','Uncertainty']]);
   host.append(form,roleSection);
-  const summary=el('div',undefined,'discovery-summary');summary.id='discoverySummary';const status=el('p');status.id='discoveryStatus';status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+  const overview=el('details',undefined,'discovery-overview'),overviewHeading=el('summary',t('数据概况与确认信息','Data overview and confirmations')),summary=el('div',undefined,'discovery-summary');summary.id='discoverySummary';overview.open=true;overview.append(overviewHeading,summary);
+  const status=el('p');status.id='discoveryStatus';status.setAttribute('role','status');status.setAttribute('aria-live','polite');
   const recommend=btn('寻找适合我的数据的方案','Find suitable views',run);recommend.className='primary';recommend.id='discoveryRun';
   const filter=el('select');filter.id='discoveryFilter';for(const [v,zh,en]of [['','全部科学家族','All scientific families'],['independent','独立组','Independent groups'],['paired','配对','Paired'],['technical','技术重复','Technical replicates'],['longitudinal','纵向','Longitudinal'],['relationship','关联','Association'],['omics','组学','Omics'],['roc','分类评估','Classification'],['summary','汇总','Summary']]){const o=el('option',t(zh,en));o.value=v;filter.append(o);}filter.onchange=()=>{for(const card of cards.children)card.hidden=!!filter.value&&card.dataset.kind!==filter.value;};
   const cards=el('div',undefined,'discovery-cards');cards.id='discoveryCards';const rejected=el('details'),rejectedTitle=el('summary',t('暂不适合的图型：查看原因','Unavailable views: see why'));rejected.append(rejectedTitle);
-  const evidence=el('div');evidence.id='discoveryEvidence';host.append(summary,status,recommend,filter,cards,rejected,evidence);
+  const evidence=el('div');evidence.id='discoveryEvidence';
+  const footer=el('div',undefined,'discovery-preview-actions'),previewStatus=el('p',undefined,'discovery-preview-status'),cancel=btn('取消画布对照','Cancel canvas preview',()=>cancelPreview('user-cancelled')),keep=btn('应用当前方案','Apply current view',()=>applyCandidate(selectedChartId));
+  previewStatus.id='discoveryPreviewStatus';previewStatus.setAttribute('role','status');previewStatus.setAttribute('aria-live','polite');cancel.id='discoveryCancelPreview';keep.id='discoveryApplyPreview';keep.className='primary';footer.append(previewStatus,cancel,keep);host.append(overview,status,recommend,filter,cards,rejected,evidence);intro.after(footer);
   function syncVisibility(){const raw=fields.data_level.value==='raw',paired=raw&&fields.design.value==='paired';for(const key of ['design','outcome_type','technical_replicates','nesting','unit_confirmed'])fields[key].parentElement.hidden=!raw;for(const key of ['pair_before','pair_after'])fields[key].parentElement.hidden=!paired;fields.positive_class.parentElement.hidden=!raw||fields.outcome_type.value!=='binary';for(const key of ['effect_threshold','p_threshold'])fields[key].parentElement.hidden=fields.data_level.value!=='results';}
-  function invalidate(){serial++;controller?.abort();controller=null;result=null;assets.clear();cards.replaceChildren();literature?.destroy();literature=null;if(fields.p_threshold)syncVisibility();status.textContent=t('数据或设计已更改，请重新推荐。','Data or design changed. Recompute recommendations.');}
+  function paintPreviewState(){
+   recommend.disabled=committing||!rows;keep.disabled=committing||previewFailed||previewPhase!=='previewing'||!selectedChartId||activeChartId!==selectedChartId;
+   cancel.disabled=committing||(!previewAbort&&!activeChartId&&previewPhase==='idle');close.disabled=committing;
+   for(const [id,entry]of entries){entry.card.classList.toggle('discovery-card-selected',id===selectedChartId);entry.card.dataset.previewState=id===selectedChartId?previewPhase:'idle';entry.show.disabled=committing||!assets.has(id)||!api.previewCandidate;entry.apply.disabled=committing||!assets.has(id)||previewFailed&&id===selectedChartId;}
+   if(committing)previewStatus.textContent=t('正在应用已核对的方案…','Applying the checked view…');
+   else if(previewFailed)previewStatus.textContent=t('该方案暂时无法对照；保留上一个有效画面。请重试或取消，当前不可应用。','This view could not be previewed. The last valid canvas remains. Retry or cancel; applying is disabled.')+(activeChartId?t(' 当前画面：',' Showing: ')+name(activeChartId):'');
+   else if(previewPhase==='pending-heavy'||previewPhase==='pending')previewStatus.textContent=t('正在准备主画布对照，尚未应用…','Preparing the canvas comparison; not applied…');
+   else if(previewPhase==='previewing'&&activeChartId)previewStatus.textContent=t('主画布对照 · 尚未应用：','Canvas comparison · not applied: ')+name(activeChartId);
+   else previewStatus.textContent=t('点击方案的“在画布对照”，再决定是否应用。','Choose “Compare on canvas” on a view before deciding to apply.');
+  }
+  function cancelPreview(reason='cancelled'){
+   previewRevision++;previewAbort?.abort();previewAbort=null;resumePreview=null;activeChartId=null;previewPhase='idle';previewFailed=false;api.cancelPreview?.(reason);paintPreviewState();
+  }
+  function invalidate(){cancelPreview('data-or-design-changed');serial++;controller?.abort();controller=null;result=null;decoratedCache=null;assets.clear();entries.clear();cards.replaceChildren();literature?.destroy();literature=null;if(fields.p_threshold)syncVisibility();status.textContent=t('数据或设计已更改，请重新推荐。','Data or design changed. Recompute recommendations.');}
+  function clearSource(kind){rows=null;origin=null;profile=null;sourceKind=kind;confirmed.checked=false;summary.replaceChildren(el('p',t('请读取数据后查看概况。','Read a data table to view its overview.')));fillRoles(null);rejected.replaceChildren(rejectedTitle);invalidate();}
   function declarations(){const d=Object.fromEntries(Object.entries(fields).filter(([k])=>k!=='goal').map(([k,v])=>[k,v.type==='checkbox'?v.checked:v.value]));d.roles=Object.fromEntries(Object.entries(roles).filter(([,v])=>v.value).map(([k,v])=>[k,v.value]));if(d.pair_before&&d.pair_after)d.pair_order=[d.pair_before,d.pair_after];return d;}
   function updateSummary(p){
    summary.replaceChildren(el('strong',t('数据概况 · 观察到的信息','Data overview · observed')));
@@ -50,49 +72,69 @@ const FigureDiscoveryUI=(()=>{
    for(const [role,source]of Object.entries(p.role_sources))if(p.roles[role])cols.append(el('p',`${role} → ${p.roles[role]} · ${source}`));summary.append(cols);
    if(p.confirmation_needed.length)summary.append(el('p',t('等待确认：','Awaiting confirmation: ')+p.confirmation_needed.map(k=>(messages[k]||[k,k])[lang()==='en'?1:0]).join(' · ')));
   }
-  function updateFields(){invalidate();confirmed.checked=false;const p=ResearchDiscovery.profile(rows);roleSection.replaceChildren(roleHeading);for(const [role,value]of Object.entries(p.roles)){const label=el('label',role),select=el('select');const none=el('option','—');none.value='';select.append(none);for(const name of rows[0]){const o=el('option',name);o.value=name;select.append(o);}select.value=value||'';select.onchange=()=>{confirmed.checked=false;invalidate();};roles[role]=select;label.append(select);roleSection.append(label);}updateSummary(p);status.textContent=t('请确认影响适用性的实验设计。','Confirm the design details that determine suitability.');}
-  function readText(){try{rows=api.parse(paste.value);origin=null;updateFields();}catch{status.textContent=t('无法读取，请粘贴带唯一列名的 CSV / TSV。','Cannot read data. Paste CSV / TSV with unique headers.');}}
-  upload.onchange=async()=>{const file=upload.files[0];if(!file)return;privateFilename=file.name;invalidate();const ticket=serial;if(file.size>2000000){status.textContent=t('文件上限 2 MB','File limit: 2 MB');return;}try{const data=/\.xlsx$/i.test(file.name)?await api.readWorkbook(file):api.parse(await file.text());if(serial!==ticket)return;rows=data;origin=null;paste.value='';updateFields();}catch{status.textContent=t('无法读取；可将工作表导出为 CSV 后导入。','Cannot read workbook. Export a sheet as CSV and import it.');}};
-  paste.oninput=()=>{rows=null;origin=null;invalidate();};
-  host.ondragover=e=>{e.preventDefault();};host.ondrop=e=>{e.preventDefault();if(e.dataTransfer.files.length){upload.files=e.dataTransfer.files;upload.onchange();}};
+  function fillRoles(known,values={}){roleSection.replaceChildren(roleHeading);for(const key of Object.keys(roles))delete roles[key];if(!rows)return;for(const [role,value]of Object.entries(known||{})){const label=el('label',role),select=el('select'),none=el('option','—');none.value='';select.append(none);for(const name of rows[0]){const o=el('option',name);o.value=name;select.append(o);}select.value=Object.prototype.hasOwnProperty.call(values,role)?values[role]:value||'';select.onchange=()=>{confirmed.checked=false;invalidate();};roles[role]=select;label.append(select);roleSection.append(label);}}
+  function updateFields(observed=ResearchDiscovery.profile(rows)){invalidate();confirmed.checked=false;profile=observed;fillRoles(profile.roles);updateSummary(profile);status.textContent=t('请确认影响适用性的实验设计。','Confirm the design details that determine suitability.');}
+  function readText(){clearSource('paste');try{const parsed=api.parse(paste.value),observed=ResearchDiscovery.profile(parsed);rows=parsed;origin=null;upload.value='';privateFilename='';updateFields(observed);}catch{status.textContent=t('无法读取，请粘贴带唯一列名的 CSV / TSV。','Cannot read data. Paste CSV / TSV with unique headers.');}}
+  upload.onchange=async()=>{const file=upload.files[0];if(!file)return;privateFilename=file.name;clearSource('file');const ticket=serial;try{if(file.size>2000000){status.textContent=t('文件上限 2 MB','File limit: 2 MB');return;}const data=/\.xlsx$/i.test(file.name)?await api.readWorkbook(file):api.parse(await file.text());if(serial!==ticket||destroyed)return;const observed=ResearchDiscovery.profile(data);rows=data;origin=null;paste.value='';updateFields(observed);}catch{if(ticket===serial){clearSource('file');status.textContent=t('无法读取；可将工作表导出为 CSV 后导入。','Cannot read workbook. Export a sheet as CSV and import it.');}}finally{upload.value='';}};
+  paste.oninput=()=>clearSource('paste');host.ondragover=e=>e.preventDefault();host.ondrop=e=>{e.preventDefault();if(e.dataTransfer.files.length){upload.files=e.dataTransfer.files;upload.onchange();}};
   function name(id){return api.registry.charts.find(c=>c.chart_id===id)?.names[lang()]||id;}
-  async function run(){
-   invalidate();if(!rows){status.textContent=t('请先读取一份数据。','Read a data table first.');return;}
-   const ticket=serial,context=api.context();runContext=context.key;controller=new AbortController();
-   try{result=ResearchDiscovery.discover({rows,declarations:declarations(),goal:goal.value},api.registry);updateSummary(result.profile);
-    rejected.replaceChildren(rejectedTitle);for(const x of result.excluded)rejected.append(el('p',name(x.chart_id)+' · '+x.reasons.map(k=>(messages[k]||[k,k])[lang()==='en'?1:0]).join(' / ')+(x.missing.length?' · '+x.missing.join(', '):'')));
-    status.textContent=result.candidates.length?t('正在用您的真实数据绘制预览…','Rendering previews with your actual data…'):t('暂时没有满足条件的方案；请查看待确认项及排除原因。','No eligible views yet. Review confirmations and exclusion reasons.');
-    if(!result.candidates.length)return;
-    for(const [i,c]of result.candidates.entries()){
-     const card=el('article',undefined,'discovery-card');card.dataset.kind=c.kind;
-     card.append(el('small',i===0?t('最推荐','Recommended'):t('可选替代','Alternative')),el('h3',name(c.chart_id)),el('p',c.reason[lang()]));
-     const art=el('div',undefined,'discovery-art'),label=el('small',t('用户真实数据预览','Your actual data preview')),detail=el('p',c.limitation[lang()]);
-     const apply=btn('应用到编辑器','Apply to editor',()=>{if(ticket!==serial||context.key!==api.context().key){invalidate();return;}const asset=assets.get(c.chart_id);if(!asset)return;asset.discovery={declarations:declarations(),sourceRows:rows,tableKey:asset.table?.sha256,trace:c.trace};try{api.apply(asset);host.close();}catch{status.textContent=t('无法应用，请检查目标是否锁定。','Cannot apply. Check whether the destination is locked.');}});apply.disabled=true;apply.className='primary discovery-apply';
-     card.append(label,art,detail,apply);cards.append(card);
-     try{const asset=await api.render(c,controller.signal);if(ticket!==serial)return;assets.set(c.chart_id,asset);const variant=asset.variants.find(v=>v.name===c.chart_id)||asset.variants[asset.initialVariant||0];art.append(api.preview(variant.svg));apply.disabled=false;c.renderer_status='rendered';}
-     catch{if(ticket!==serial)return;c.renderer_status='contract_rejected';art.textContent=t('当前数据未通过绘图合同，或本地绘图服务不可用。','The renderer rejected this table, or the local engine is unavailable.');}
-    }
-    if(ticket!==serial)return;filter.onchange();const usable=result.candidates.filter(c=>c.renderer_status==='rendered');
-    status.textContent=t(`已生成 ${usable.length} 个真实数据方案；应用后可撤销。`,`Generated ${usable.length} actual-data views. Applying can be undone.`);
-    literature=StudioLiterature.mount(evidence,{getContext:()=>({views:usable.map(c=>c.chart_id),goal:goal.value,language:lang(),contextKey:String(ticket)}),validateTopic:text=>ResearchDiscovery.publicQueryAllowed(text,rows,[privateFilename,api.context().title]),onPreview:view=>cards.children[result.candidates.findIndex(c=>c.chart_id===view)]?.scrollIntoView({block:'center'})});
-   }catch{if(ticket===serial)status.textContent=t('无法推荐，请检查数据及设计。','Cannot recommend. Check the data and design.');}
+  function candidate(id){return result?.candidates.find(c=>c.chart_id===id);}
+  function decoratedAsset(id){const asset=assets.get(id),c=candidate(id);if(!asset||!c)return null;const declared=declarations(),signature=JSON.stringify(declared);if(decoratedCache?.source===asset&&decoratedCache.serial===serial&&decoratedCache.signature===signature)return decoratedCache.value;const value={...asset,discovery:{declarations:copy(declared),sourceRows:copy(rows),tableKey:asset.table?.sha256,trace:copy(c.trace)}};decoratedCache={source:asset,serial,signature,value};return value;}
+  function currentContext(){return !runContext||runContext===api.context().key;}
+  function metaFor(id,revision,signal,selection=id,preserveFailure=false){const generation=serial,asset=assets.get(id);return {revision,signal,isCurrent:()=>!destroyed&&host.open&&generation===serial&&revision===previewRevision&&selectedChartId===selection&&assets.get(id)===asset&&currentContext(),onState:info=>{if(destroyed||generation!==serial||revision!==previewRevision||selectedChartId!==selection)return;if(['cancelled','invalidated','idle'].includes(info.status)){if(!committing){previewRevision++;previewAbort?.abort();previewAbort=null;}activeChartId=null;previewPhase='idle';previewFailed=false;}else if(info.status==='error'){previewFailed=true;previewPhase='error';}else if(info.status==='pending-heavy'){previewPhase=preserveFailure?'error':'pending-heavy';previewFailed=preserveFailure;}paintPreviewState();}};}
+  async function previewCandidate(id,options={}){
+   if(committing||!api.previewCandidate||!assets.has(id)||!currentContext()){if(!currentContext())invalidate();return false;}
+   previewAbort?.abort();previewAbort=new AbortController();const revision=++previewRevision,failedFor=options.failedFor&&assets.has(options.failedFor)?options.failedFor:null;selectedChartId=failedFor||id;previewFailed=!!failedFor;previewPhase=failedFor?'error':'pending';const meta=metaFor(id,revision,previewAbort.signal,selectedChartId,!!failedFor);paintPreviewState();
+   try{const ok=await api.previewCandidate(decoratedAsset(id),meta);if(!meta.isCurrent())return false;if(ok===false)throw Error('Preview rejected');activeChartId=id;previewPhase=failedFor?'error':'previewing';previewFailed=!!failedFor;paintPreviewState();return true;}
+   catch(error){if(!meta.isCurrent()||meta.signal.aborted)return false;previewPhase='error';previewFailed=true;paintPreviewState();return false;}
   }
-  syncVisibility();const onClose=()=>{serial++;controller?.abort();literature?.destroy();};host.addEventListener('close',onClose);
-  return {
-   destroy(){onClose();host.removeEventListener('close',onClose);host.replaceChildren();},
-   open(){
-    origin=null;runContext='';const c=api.context();
-    if(c.rows&&!['synthetic-template','blank-canvas','user-import'].includes(c.provenance)){
-     rows=c.rows;origin=c.key;updateFields();
-     if(c.declarations){
-      for(const [k,v]of Object.entries(c.declarations))if(fields[k])fields[k].type==='checkbox'?fields[k].checked=v:fields[k].value=v;
-      for(const [role,column]of Object.entries(c.declarations.roles||{}))if(roles[role]&&rows[0].includes(column))roles[role].value=column;
-     }
-     updateSummary(ResearchDiscovery.profile(rows,declarations()));
-    }
-    syncVisibility();host.showModal();
-   },
-   refresh(){if(host.open&&(origin&&api.context().key!==origin||runContext&&api.context().key!==runContext)){rows=null;runContext='';invalidate();}}
+  async function applyCandidate(id){
+   if(committing||!assets.has(id)||!currentContext()){if(!currentContext())invalidate();return false;}
+   if(previewFailed&&selectedChartId===id)return false;selectedChartId=id;
+   if(api.commitCandidate&&api.previewCandidate&&(activeChartId!==id||previewPhase!=='previewing'))if(!await previewCandidate(id))return false;
+   const asset=decoratedAsset(id),revision=previewRevision,signal=previewAbort?.signal||new AbortController().signal,meta=metaFor(id,revision,signal);committing=true;paintPreviewState();
+   try{const ok=api.commitCandidate?await api.commitCandidate(asset,meta):await api.apply(asset);if(ok===false)throw Error('Apply rejected');if(destroyed)return false;committing=false;host.close();return true;}
+   catch(error){if(!destroyed){committing=false;previewFailed=true;previewPhase='error';status.textContent=t('无法应用，请检查目标是否锁定或已经更改。','Cannot apply. Check whether the destination is locked or changed.');paintPreviewState();}return false;}
+  }
+  function drawCards(){
+   cards.replaceChildren();entries.clear();rejected.replaceChildren(rejectedTitle);if(!result){paintPreviewState();return;}
+   for(const x of result.excluded||[])rejected.append(el('p',name(x.chart_id)+' · '+x.reasons.map(k=>(messages[k]||[k,k])[lang()==='en'?1:0]).join(' / ')+(x.missing.length?' · '+x.missing.join(', '):'')));
+   for(const [i,c]of result.candidates.entries()){
+    const card=el('article',undefined,'discovery-card');card.dataset.kind=c.kind;card.dataset.chartId=c.chart_id;card.append(el('small',i===0?t('最推荐','Recommended'):t('可选替代','Alternative')),el('h3',name(c.chart_id)),el('p',c.reason[lang()]));
+    const art=el('div',undefined,'discovery-art'),label=el('small',t('用户真实数据预览','Your actual data preview')),detail=el('p',c.limitation[lang()]);
+    const show=btn('在画布对照','Compare on canvas',()=>previewCandidate(c.chart_id));show.className='discovery-preview';const apply=btn('应用到编辑器','Apply to editor',()=>applyCandidate(c.chart_id));apply.className='primary discovery-apply';
+    card.append(label,art,detail,show,apply);cards.append(card);entries.set(c.chart_id,{card,art,show,apply});const asset=assets.get(c.chart_id);
+    if(asset){const variant=asset.variants.find(v=>v.name===c.chart_id)||asset.variants[asset.initialVariant||0];art.append(api.preview(variant.svg));}else if(c.renderer_status==='contract_rejected')art.textContent=t('当前数据未通过绘图合同，或本地绘图服务不可用。','The renderer rejected this table, or the local engine is unavailable.');else art.textContent=controller?t('等待本地绘图结果…','Waiting for the local renderer…'):t('该方案尚未完成绘图；可重新推荐。','This view did not finish rendering. Recompute recommendations.');
+   }
+   filter.onchange();paintPreviewState();
+  }
+  function literatureDraft(){const section=evidence.querySelector('details'),semantics=evidence.querySelectorAll('.literature-semantics input');return {open:!!section?.open,topic:evidence.querySelector('.literature-topic')?.value||'',sample:semantics[0]?.value||'',assay:semantics[1]?.value||'',mode:evidence.querySelector('.literature-semantics select')?.value||'evidence'};}
+  function mountLiterature(draft){
+   literature?.destroy();literature=null;const usable=result?.candidates.filter(c=>assets.has(c.chart_id))||[];if(!usable.length)return;
+   literature=StudioLiterature.mount(evidence,{getContext:()=>({views:usable.map(c=>c.chart_id),goal:goal.value,language:lang(),contextKey:String(serial)}),validateTopic:text=>ResearchDiscovery.publicQueryAllowed(text,rows,[privateFilename,api.context().title]),onPreview:view=>{const entry=entries.get(view);entry?.card.scrollIntoView?.({block:'nearest'});if(entry)previewCandidate(view);}});
+   if(draft){const semantics=evidence.querySelectorAll('.literature-semantics input');if(evidence.querySelector('details'))evidence.querySelector('details').open=!!draft.open;if(evidence.querySelector('.literature-topic'))evidence.querySelector('.literature-topic').value=draft.topic||'';if(semantics[0])semantics[0].value=draft.sample||'';if(semantics[1])semantics[1].value=draft.assay||'';if(evidence.querySelector('.literature-semantics select'))evidence.querySelector('.literature-semantics select').value=draft.mode||'evidence';}
+  }
+  async function run(){
+   invalidate();if(!rows){status.textContent=t('请先读取一份数据。','Read a data table first.');return;}const ticket=serial,context=api.context();runContext=context.key;controller=new AbortController();
+   try{result=ResearchDiscovery.discover({rows,declarations:declarations(),goal:goal.value},api.registry);profile=result.profile;updateSummary(profile);drawCards();status.textContent=result.candidates.length?t('正在用您的真实数据绘制预览…','Rendering previews with your actual data…'):t('暂时没有满足条件的方案；请查看待确认项及排除原因。','No eligible views yet. Review confirmations and exclusion reasons.');if(!result.candidates.length)return;
+    for(const c of result.candidates){try{const asset=await api.render(c,controller.signal);if(ticket!==serial||destroyed)return;assets.set(c.chart_id,asset);c.renderer_status='rendered';const entry=entries.get(c.chart_id),variant=asset.variants.find(v=>v.name===c.chart_id)||asset.variants[asset.initialVariant||0];entry.art.replaceChildren(api.preview(variant.svg));paintPreviewState();}catch{if(ticket!==serial||destroyed)return;c.renderer_status='contract_rejected';entries.get(c.chart_id).art.textContent=t('当前数据未通过绘图合同，或本地绘图服务不可用。','The renderer rejected this table, or the local engine is unavailable.');}}
+    if(ticket!==serial||destroyed)return;controller=null;filter.onchange();const usable=result.candidates.filter(c=>assets.has(c.chart_id));status.textContent=t(`已生成 ${usable.length} 个真实数据方案；可先在画布对照，再应用。`,`Generated ${usable.length} actual-data views. Compare on canvas, then apply.`);mountLiterature();
+   }catch{if(ticket===serial&&!destroyed)status.textContent=t('无法推荐，请检查数据及设计。','Cannot recommend. Check the data and design.');}
+  }
+  function snapshot(){return copy({version:1,contextKey:api.context().key,rows,paste:paste.value,privateFilename,origin,runContext,sourceKind,declarations:declarations(),goal:goal.value,filter:filter.value,profile,result,assets:[...assets],selectedChartId,activeChartId,previewPhase,previewFailed,roleOpen:roleSection.open,overviewOpen:overview.open,rejectedOpen:rejected.open,literature:literatureDraft(),scrollTop:host.scrollTop});}
+  function restore(saved){
+   if(!saved||saved.version!==1)return false;cancelPreview('restoring-ui');serial++;controller?.abort();controller=null;decoratedCache=null;rows=copy(saved.rows);paste.value=typeof saved.paste==='string'?saved.paste:'';privateFilename=typeof saved.privateFilename==='string'?saved.privateFilename:'';upload.value='';origin=saved.origin;sourceKind=['file','paste','workbench'].includes(saved.sourceKind)?saved.sourceKind:saved.privateFilename?'file':saved.rows||saved.paste?'paste':null;profile=copy(saved.profile);const same=saved.contextKey===api.context().key;
+   for(const [key,value]of Object.entries(saved.declarations||{}))if(fields[key])fields[key].type==='checkbox'?fields[key].checked=!!value:fields[key].value=value;goal.value=saved.goal||'auto';filter.value=saved.filter||'';fillRoles(profile?.roles||saved.declarations?.roles,saved.declarations?.roles);if(profile)updateSummary(profile);else summary.replaceChildren(el('p',t('请读取数据后查看概况。','Read a data table to view its overview.')));
+   result=same?copy(saved.result):null;assets=new Map(same?copy(saved.assets||[]):[]);runContext=same&&result?api.context().key:'';selectedChartId=same?saved.selectedChartId:null;activeChartId=null;previewFailed=!!(same&&(saved.previewFailed||saved.previewPhase==='error'));previewPhase=previewFailed?'error':'idle';resumePreview=same&&['previewing','error'].includes(saved.previewPhase)&&assets.has(saved.activeChartId)?{chartId:saved.activeChartId,failedFor:previewFailed?(saved.selectedChartId||saved.activeChartId):null}:null;roleSection.open=!!saved.roleOpen;overview.open=saved.overviewOpen!==false;rejected.open=!!saved.rejectedOpen;drawCards();mountLiterature(saved.literature);host.scrollTop=Number(saved.scrollTop)||0;status.textContent=same?t('已保留本机数据、设计与已完成方案；尚未应用。','Local data, design and completed views retained; not applied.'):t('目标已变化；已保留输入，请重新推荐。','The destination changed. Inputs retained; recompute recommendations.');syncVisibility();restored=true;return true;
+  }
+  function onClose(){decoratedCache=null;serial++;controller?.abort();controller=null;cancelPreview('closed');literature?.destroy();literature=null;if(lastFocus?.isConnected)lastFocus.focus({preventScroll:true});lastFocus=null;}
+  const textTarget=target=>!!target?.closest?.('input,textarea,select,[contenteditable]:not([contenteditable="false"]),[role="textbox"]');const onKeyDown=event=>{if(event.key==='Escape'&&!event.isComposing){event.preventDefault();event.stopPropagation();if(!committing)cancelPreview('escape');}else if(textTarget(event.target))event.stopPropagation();},onKeyUp=event=>{if(textTarget(event.target)||event.key==='Escape'&&!event.isComposing)event.stopPropagation();};host.addEventListener('close',onClose);host.addEventListener('keydown',onKeyDown);host.addEventListener('keyup',onKeyUp);
+  syncVisibility();paintPreviewState();
+  return {snapshot,restore,
+   destroy(){if(destroyed)return;onClose();destroyed=true;host.removeEventListener('close',onClose);host.removeEventListener('keydown',onKeyDown);host.removeEventListener('keyup',onKeyUp);host.ondragover=host.ondrop=null;host.replaceChildren();},
+   cancel:cancelPreview,
+   open(){if(destroyed)return false;upload.value='';if(!restored&&runContext&&runContext!==api.context().key){runContext='';clearSource(sourceKind||'workbench');}if((!opened||!rows&&!result)&&!restored&&!sourceKind){origin=null;runContext='';const c=api.context();if(c.rows&&!['synthetic-template','blank-canvas','user-import'].includes(c.provenance)){sourceKind='workbench';rows=copy(c.rows);origin=c.key;updateFields();if(c.declarations){for(const [k,v]of Object.entries(c.declarations))if(fields[k])fields[k].type==='checkbox'?fields[k].checked=v:fields[k].value=v;for(const [role,column]of Object.entries(c.declarations.roles||{}))if(roles[role]&&rows[0].includes(column))roles[role].value=column;}profile=ResearchDiscovery.profile(rows,declarations());updateSummary(profile);}}else if(result){drawCards();if(!literature)mountLiterature();status.textContent=t(`本机保留 ${assets.size} 个已完成方案；尚未应用。`,`Retained ${assets.size} completed local views; not applied.`);}opened=true;restored=false;syncVisibility();lastFocus=doc.activeElement;if(!host.open)host.show();api.reveal?.();const resume=resumePreview;resumePreview=null;if(resume)previewCandidate(resume.chartId,{failedFor:resume.failedFor});return true;},
+   refresh(){if(committing){paintPreviewState();return;}if(host.open&&(origin&&api.context().key!==origin||runContext&&api.context().key!==runContext)){runContext='';clearSource(sourceKind||'workbench');}else if(host.open)paintPreviewState();}
   };
  }
  return {mount};

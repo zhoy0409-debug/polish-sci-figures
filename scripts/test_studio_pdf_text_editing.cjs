@@ -10,6 +10,8 @@ const copy=x=>JSON.parse(JSON.stringify(x));
 function chunk(start,end){const a=source.indexOf(start),b=source.indexOf(end,a+start.length);assert.ok(a>=0&&b>a,`production block ${start}`);return source.slice(a,b);}
 const edits=chunk('    // Prepare all positioned text before styles change inherited font bases.','    // Work on complete category groups');
 const helpers=[
+  source.match(/^  const DRAW = .*;$/m)[0],
+  chunk('  function isVisibleObject(', '  // Editor-only hit areas'),
   chunk('function richTextAPI(){','function imageInsetsAPI(){'),
   chunk('  let labelSelections=[];','  const sizeNames='),
   chunk('  function selectionCommandInfo(){','  function renderSelectionCommands(){'),
@@ -35,7 +37,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1']}={}){
   const ctx={copy,document,$,selectionAlignmentPlan,StudioRichText:rich,StudioTextFormatting:require(base+'text-formatting.js'),StudioI18n:{panelName:p=>p.name},project,preparePositionedTextEdit,
     original:false,selectedPanel:'p0',selected:[...keys],selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],contentSelection:null,selectedEmptyCell:null,textTools:null,
     state:()=>current,panel:()=>asset,currentOutput:()=>({scale:outputScale}),
-    selectionGroups:()=>[{id:'p0',vi:0,keys:[...ctx.selected]}],keysToObjects:svg=>[...svg.querySelectorAll('[data-key]')],
+    selectionGroups:()=>[{id:'p0',vi:0,keys:[...ctx.selected]}],
     editsFor:(id,vi,s=current)=>s.panels[id].edits[vi]||{},
     paint:(el,prop)=>el.style.getPropertyValue(prop)||el.getAttribute(prop)|| (prop==='fill'?'#000000':'none'),
     hex:value=>/^#[a-f0-9]{6}$/i.test(value||'')?value:null,chromatic:()=>false,

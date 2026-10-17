@@ -1,0 +1,16 @@
+{
+  "schema": "figure-studio-timing-trace-disclosure/1",
+  "sourceSha256": "02372354f70f691da699f5709f589adb5b247e2dc487442bdb415cef6b77ea51",
+  "sourceBytes": 25908264,
+  "eventsRetained": 102246,
+  "eventsDropped": 0,
+  "allArgumentsRemoved": true,
+  "originalMetadataRemoved": true,
+  "orderedTimingFieldsVerifiedExact": true,
+  "file": "four-panel-source17-timing-trace.json.gz",
+  "bytes": 1133146,
+  "sha256": "850261d58937cfd27f17d25ca4de1d580eca3ff394863ad1bd73814344168e23",
+  "uncompressedSha256": "6c2e018e42aa8c8b2c79659d6c84bd89c4286750c82f39cf88d60f5fee389588",
+  "scriptSha256": "7d30af2c4bde1760f344f591c99eed03fd4a6c2af1d53282a5becb137eda7d6d",
+  "scope": "Original ordered event timing, names, phases and IDs; every args field and original top-level metadata removed. No events, timestamps or durations synthesized. Source-development four-panel diagnostic, including selections, exports and checks. Not installed-build performance, optical latency, continuous FPS or a new capture."
+}

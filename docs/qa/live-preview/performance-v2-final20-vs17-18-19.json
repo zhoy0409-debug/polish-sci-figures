@@ -1,0 +1,2313 @@
+{
+  "schema": "studio-source20-versus17-18-19-performance/1",
+  "status": "COMPLETE_PROTOCOL_MATCHED",
+  "createdAt": "2026-10-17T20:35:42.642Z",
+  "conditions": {
+    "browser": "155.0.8059.82",
+    "browserMode": "headful",
+    "recording": {
+      "enabled": false
+    },
+    "platform": "win32",
+    "architecture": "x64",
+    "logicalCpus": 22,
+    "node": "v24.18.0"
+  },
+  "protocol": {
+    "samplesPerOperation": 20,
+    "warmupIterations": 3,
+    "operationOrder": [
+      "select-text",
+      "text-colour",
+      "tab-detail-to-palette",
+      "tab-palette-to-detail"
+    ],
+    "settleMinimumMs": 250,
+    "settleRule": "Minimum pause, autosave no longer saving, and two rAF callbacks before each action; actions/assertions outside the timed operation are excluded.",
+    "tabRule": "Actual detail→palette and palette→detail, separate operations with explicit aria-pressed preconditions.",
+    "dragRule": "First motion jumps12 CSSpx (above production3px threshold); primary event must move≥8px; live preview, committed pose, singleUndo, Redo and restoration checked.",
+    "colourRule": "Actual quickColor control fill + Tab; input/change/blur recorded. Native colour-picker window latency excluded.",
+    "quantile": "Nearest rank ceil(n*p). At20 samples P95 is second largest; fixed sample count and no removal of outliers."
+  },
+  "measurement": "Capture-phase performance.now() to next/second rAF callback execution; presentation opportunities, not actual pixel/photon paint. rAF callback intervals are not continuous rendered FPS. Playwright wall time is reported separately.",
+  "runs": {
+    "source17": {
+      "label": "candidate17-core",
+      "htmlSha256": "b659049bad8c3305b6639437fa55e33fdf77a409d2a645bacf6df7552473d1b5",
+      "rawSha256": "3525e5a55f9f07346b5cfc105070f0e87c6cf4d84dab6ca361a55830cee2a1aa",
+      "summarySha256": "55a9c65ed850c33b7a3ebe8b670ef934c939da8a232cd069cecfc2ad7b5092e7",
+      "startedAt": "2026-10-17T17:37:18.762Z",
+      "finishedAt": "2026-10-17T17:39:27.633Z"
+    },
+    "source18": {
+      "label": "candidate18-core",
+      "htmlSha256": "b596058ff9fec68257d8bfecc41e56762db2b056f22c8a219520fda343eefca4",
+      "rawSha256": "89345d220ab305d0b5e93477be6989a7fd7f2276c375aae919bb97c60bc71b7d",
+      "summarySha256": "e179579cc4d77fcc07f1e7caa98474207811fb05e180739a6e3c350c16513638",
+      "startedAt": "2026-10-17T19:27:07.364Z",
+      "finishedAt": "2026-10-17T19:29:12.688Z"
+    },
+    "source19": {
+      "label": "candidate19-core",
+      "htmlSha256": "4091e5b2f75e3a3b6e332736ae789da60e88a888559ee839402b06697730fba5",
+      "rawSha256": "27b63f96267d2ce35534ae2118b39e811d6442510e20b90742434d53d0ff1352",
+      "summarySha256": "7966110150a313b8e7c84c4f2000d1fe5542d89a6f717e7d9bdc9aac3b50460e",
+      "startedAt": "2026-10-17T19:48:47.405Z",
+      "finishedAt": "2026-10-17T19:50:49.830Z"
+    },
+    "source20": {
+      "label": "candidate20-core",
+      "htmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+      "rawSha256": "bd97fd84e38e5a47cea000aaaf4b4dcd91dbfdf83d0b6eac57a3f207ad554cd6",
+      "summarySha256": "6afab89763810b6db91d0a60afacc1024711e79d7c677f4533bbd5454573d92e",
+      "startedAt": "2026-10-17T20:31:24.020Z",
+      "finishedAt": "2026-10-17T20:33:27.476Z"
+    }
+  },
+  "rows": [
+    {
+      "elements": 120,
+      "operation": "select-text",
+      "values": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": 22.900000005960464,
+            "p95": 28.099999994039536
+          },
+          "inputToSecondRafMs": {
+            "p50": 42.900000005960464,
+            "p95": 52
+          },
+          "commitToSecondRafMs": {
+            "p50": 21.599999994039536,
+            "p95": 24.700000017881393
+          },
+          "actionWallMs": {
+            "p50": 99.40000000596046,
+            "p95": 115.7999999821186
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": 23.200000017881393,
+            "p95": 32.099999994039536
+          },
+          "inputToSecondRafMs": {
+            "p50": 40.900000005960464,
+            "p95": 56.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 19.099999994039536,
+            "p95": 25.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 99.59999999403954,
+            "p95": 148.30000001192093
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": 15.5,
+            "p95": 17.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 33.39999997615814,
+            "p95": 36.79999998211861
+          },
+          "commitToSecondRafMs": {
+            "p50": 18.30000001192093,
+            "p95": 20.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 91,
+            "p95": 99.40000000596046
+          }
+        },
+        "source20": {
+          "inputToNextRafMs": {
+            "p50": 17.80000001192093,
+            "p95": 19.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 37.70000001788139,
+            "p95": 43.599999994039536
+          },
+          "commitToSecondRafMs": {
+            "p50": 21.900000005960464,
+            "p95": 27.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 99.19999998807907,
+            "p95": 107.69999998807907
+          }
+        }
+      },
+      "changes": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -5.0999999940395355,
+              "percent": -22.27074232625369,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -8.400000005960464,
+              "percent": -29.893238461716155,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -5.199999988079071,
+              "percent": -12.121212091740308,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -8.400000005960464,
+              "percent": -16.153846165308583,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 0.30000001192092896,
+              "percent": 1.3888889444616304,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 2.4999999701976776,
+              "percent": 10.121457361894004,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -0.20000001788139343,
+              "percent": -0.20120726143803003,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -8.099999994039536,
+              "percent": -6.994818648782653,
+              "improved": true
+            }
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -5.4000000059604645,
+              "percent": -23.275862076717313,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -12.400000005960464,
+              "percent": -38.62928351483785,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -3.199999988079071,
+              "percent": -7.823960849908862,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -13.099999994039536,
+              "percent": -23.10405643173502,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 2.800000011920929,
+              "percent": 14.659685930862377,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 1.5,
+              "percent": 5.836575878193684,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -0.4000000059604645,
+              "percent": -0.40160643171124333,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -40.60000002384186,
+              "percent": -27.376938651772264,
+              "improved": true
+            }
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 2.300000011920929,
+              "percent": 14.838709754328573,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 2,
+              "percent": 11.299435035858751,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 4.300000041723251,
+              "percent": 12.874251631115907,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 6.800000011920929,
+              "percent": 18.47826091093776,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 3.5999999940395355,
+              "percent": 19.672131102155376,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 7,
+              "percent": 34.653465366985216,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 8.199999988079071,
+              "percent": 9.01098899788908,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 8.299999982118607,
+              "percent": 8.350100585131681,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 120,
+      "operation": "text-colour",
+      "values": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": 17.099999994039536,
+            "p95": 21.19999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 51.599999994039536,
+            "p95": 59.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 51.19999998807907,
+            "p95": 59.099999994039536
+          },
+          "actionWallMs": {
+            "p50": 76.89999997615814,
+            "p95": 90.80000001192093
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": 14.5,
+            "p95": 17.899999976158142
+          },
+          "inputToSecondRafMs": {
+            "p50": 47.400000005960464,
+            "p95": 62.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 47.099999994039536,
+            "p95": 62.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 73.59999999403954,
+            "p95": 92
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": 12.799999982118607,
+            "p95": 13.700000017881393
+          },
+          "inputToSecondRafMs": {
+            "p50": 41.900000005960464,
+            "p95": 45.89999997615814
+          },
+          "commitToSecondRafMs": {
+            "p50": 41.60000002384186,
+            "p95": 45.5
+          },
+          "actionWallMs": {
+            "p50": 66.09999999403954,
+            "p95": 74.30000001192093
+          }
+        },
+        "source20": {
+          "inputToNextRafMs": {
+            "p50": 14,
+            "p95": 17.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 49.19999998807907,
+            "p95": 57.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 48.900000005960464,
+            "p95": 56.900000005960464
+          },
+          "actionWallMs": {
+            "p50": 76.19999998807907,
+            "p95": 107.30000001192093
+          }
+        }
+      },
+      "changes": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -3.0999999940395355,
+              "percent": -18.12865494222273,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -3.899999976158142,
+              "percent": -18.39622631297709,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -2.4000000059604645,
+              "percent": -4.651162802786235,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -2.199999988079071,
+              "percent": -3.697478971561463,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -2.2999999821186066,
+              "percent": -4.492187466121322,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -2.199999988079071,
+              "percent": -3.7225042103230965,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -0.699999988079071,
+              "percent": -0.9102730667049364,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 16.5,
+              "percent": 18.17180616501515,
+              "improved": false
+            }
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -0.5,
+              "percent": -3.4482758620689613,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -0.5999999642372131,
+              "percent": -3.35195511193509,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 1.7999999821186066,
+              "percent": 3.797468316228403,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -5.399999976158142,
+              "percent": -8.612440154999723,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 1.800000011920929,
+              "percent": 3.8216560767488694,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -5.4000000059604645,
+              "percent": -8.667736765533206,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 2.5999999940395355,
+              "percent": 3.5326086878398,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 15.300000011920929,
+              "percent": 16.63043479556623,
+              "improved": false
+            }
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 1.2000000178813934,
+              "percent": 9.37500015279511,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 3.5999999940395355,
+              "percent": 26.277372184969174,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 7.299999982118607,
+              "percent": 17.42243432238699,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 11.400000035762787,
+              "percent": 24.836601398004987,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 7.299999982118607,
+              "percent": 17.54807687003561,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 11.400000005960464,
+              "percent": 25.054945068044976,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 10.099999994039536,
+              "percent": 15.279878963616177,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 33,
+              "percent": 44.41453565909204,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 120,
+      "operation": "tab-detail-to-palette",
+      "values": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": 17.100000023841858,
+            "p95": 19.400000005960464
+          },
+          "inputToSecondRafMs": {
+            "p50": 37.5,
+            "p95": 44.099999994039536
+          },
+          "commitToSecondRafMs": {
+            "p50": 37.5,
+            "p95": 44.099999994039536
+          },
+          "actionWallMs": {
+            "p50": 90.40000000596046,
+            "p95": 99
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": 16.5,
+            "p95": 22.900000005960464
+          },
+          "inputToSecondRafMs": {
+            "p50": 34.5,
+            "p95": 51.60000002384186
+          },
+          "commitToSecondRafMs": {
+            "p50": 34.5,
+            "p95": 51.70000001788139
+          },
+          "actionWallMs": {
+            "p50": 90.69999998807907,
+            "p95": 115
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": 15.299999982118607,
+            "p95": 19.599999994039536
+          },
+          "inputToSecondRafMs": {
+            "p50": 33.19999998807907,
+            "p95": 38.400000005960464
+          },
+          "commitToSecondRafMs": {
+            "p50": 33.19999998807907,
+            "p95": 38.5
+          },
+          "actionWallMs": {
+            "p50": 82.59999999403954,
+            "p95": 98.5
+          }
+        },
+        "source20": {
+          "inputToNextRafMs": {
+            "p50": 17,
+            "p95": 21.600000023841858
+          },
+          "inputToSecondRafMs": {
+            "p50": 38.70000001788139,
+            "p95": 45.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 38.70000001788139,
+            "p95": 45.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 90.89999997615814,
+            "p95": 99.19999998807907
+          }
+        }
+      },
+      "changes": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -0.10000002384185791,
+              "percent": -0.5847954602481442,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 2.2000000178813934,
+              "percent": 11.340206274254982,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 1.2000000178813934,
+              "percent": 3.2000000476837265,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 1.2000000178813934,
+              "percent": 2.721088476289313,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 1.2000000178813934,
+              "percent": 3.2000000476837265,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 1.2000000178813934,
+              "percent": 2.721088476289313,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 0.4999999701976776,
+              "percent": 0.5530973121291138,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 0.19999998807907104,
+              "percent": 0.20202018997885762,
+              "improved": false
+            }
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 0.5,
+              "percent": 3.0303030303030276,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -1.2999999821186066,
+              "percent": -5.67685581563423,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 4.200000017881393,
+              "percent": 12.173913095308396,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -6.300000011920929,
+              "percent": -12.20930234304265,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 4.200000017881393,
+              "percent": 12.173913095308396,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -6.4000000059604645,
+              "percent": -12.379110258698079,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 0.19999998807907104,
+              "percent": 0.22050715336863203,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -15.800000011920929,
+              "percent": -13.739130445148628,
+              "improved": true
+            }
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 1.7000000178813934,
+              "percent": 11.111111240968729,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 2.0000000298023224,
+              "percent": 10.20408178780885,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 5.500000029802322,
+              "percent": 16.56626515595534,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 6.9000000059604645,
+              "percent": 17.968750012732926,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 5.500000029802322,
+              "percent": 16.56626515595534,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 6.800000011920929,
+              "percent": 17.662337693301122,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 8.299999982118607,
+              "percent": 10.048426129197985,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 0.699999988079071,
+              "percent": 0.7106598863746871,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 120,
+      "operation": "tab-palette-to-detail",
+      "values": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": 10.400000005960464,
+            "p95": 17.399999976158142
+          },
+          "inputToSecondRafMs": {
+            "p50": 30.5,
+            "p95": 51.20000001788139
+          },
+          "commitToSecondRafMs": {
+            "p50": 30.5,
+            "p95": 51.400000005960464
+          },
+          "actionWallMs": {
+            "p50": 81.7999999821186,
+            "p95": 107.2000000178814
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": 9.5,
+            "p95": 13.300000011920929
+          },
+          "inputToSecondRafMs": {
+            "p50": 25.19999998807907,
+            "p95": 36.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 25.19999998807907,
+            "p95": 36.400000005960464
+          },
+          "actionWallMs": {
+            "p50": 73.5,
+            "p95": 82
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": 9,
+            "p95": 10.299999982118607
+          },
+          "inputToSecondRafMs": {
+            "p50": 25,
+            "p95": 27.799999982118607
+          },
+          "commitToSecondRafMs": {
+            "p50": 25.099999994039536,
+            "p95": 27.799999982118607
+          },
+          "actionWallMs": {
+            "p50": 73.19999998807907,
+            "p95": 81.69999998807907
+          }
+        },
+        "source20": {
+          "inputToNextRafMs": {
+            "p50": 9.900000005960464,
+            "p95": 11.400000005960464
+          },
+          "inputToSecondRafMs": {
+            "p50": 29.099999994039536,
+            "p95": 35.60000002384186
+          },
+          "commitToSecondRafMs": {
+            "p50": 29.099999994039536,
+            "p95": 35.60000002384186
+          },
+          "actionWallMs": {
+            "p50": 74.2000000178814,
+            "p95": 82.59999999403954
+          }
+        }
+      },
+      "changes": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -0.5,
+              "percent": -4.807692304936917,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -5.999999970197678,
+              "percent": -34.48275849666097,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -1.4000000059604645,
+              "percent": -4.59016395396874,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -15.599999994039536,
+              "percent": -30.46874997771738,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -1.4000000059604645,
+              "percent": -4.59016395396874,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -15.799999982118607,
+              "percent": -30.739299572541633,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -7.599999964237213,
+              "percent": -9.290953503543475,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -24.600000023841858,
+              "percent": -22.947761212442607,
+              "improved": true
+            }
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 0.4000000059604645,
+              "percent": 4.21052637853121,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -1.9000000059604645,
+              "percent": -14.285714317725374,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 3.9000000059604645,
+              "percent": 15.476190507164178,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -0.699999988079071,
+              "percent": -1.9283746221740783,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 3.9000000059604645,
+              "percent": 15.476190507164178,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -0.7999999821186066,
+              "percent": -2.197802148317607,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 0.7000000178813934,
+              "percent": 0.9523809767093772,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 0.5999999940395355,
+              "percent": 0.7317073098043192,
+              "improved": false
+            }
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 0.9000000059604645,
+              "percent": 10.000000066227388,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 1.100000023841858,
+              "percent": 10.679611900500197,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 4.0999999940395355,
+              "percent": 16.399999976158153,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 7.800000041723251,
+              "percent": 28.057554124965222,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 4,
+              "percent": 15.936254983864039,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 7.800000041723251,
+              "percent": 28.057554124965222,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 1.0000000298023224,
+              "percent": 1.3661202595152577,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 0.9000000059604645,
+              "percent": 1.101591194726792,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "operation": "select-text",
+      "values": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": 81.39999997615814,
+            "p95": 94
+          },
+          "inputToSecondRafMs": {
+            "p50": 155.40000000596046,
+            "p95": 169.2999999821186
+          },
+          "commitToSecondRafMs": {
+            "p50": 83.7000000178814,
+            "p95": 89.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 240.30000001192093,
+            "p95": 257.7999999821186
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": 75.59999999403954,
+            "p95": 103.09999999403954
+          },
+          "inputToSecondRafMs": {
+            "p50": 144.09999999403954,
+            "p95": 226.40000000596046
+          },
+          "commitToSecondRafMs": {
+            "p50": 77.09999999403954,
+            "p95": 139.09999999403954
+          },
+          "actionWallMs": {
+            "p50": 223,
+            "p95": 290.09999999403954
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": 71.90000000596046,
+            "p95": 81.90000000596046
+          },
+          "inputToSecondRafMs": {
+            "p50": 140.09999999403954,
+            "p95": 157.60000002384186
+          },
+          "commitToSecondRafMs": {
+            "p50": 80.7999999821186,
+            "p95": 90
+          },
+          "actionWallMs": {
+            "p50": 224.2999999821186,
+            "p95": 240.5
+          }
+        },
+        "source20": {
+          "inputToNextRafMs": {
+            "p50": 67.7999999821186,
+            "p95": 78.59999999403954
+          },
+          "inputToSecondRafMs": {
+            "p50": 138.5,
+            "p95": 154.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 80.40000000596046,
+            "p95": 84.90000000596046
+          },
+          "actionWallMs": {
+            "p50": 216,
+            "p95": 240.30000001192093
+          }
+        }
+      },
+      "changes": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -13.599999994039536,
+              "percent": -16.70761670518789,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -15.400000005960464,
+              "percent": -16.38297872974518,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -16.900000005960464,
+              "percent": -10.875160878579315,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -14.599999994039536,
+              "percent": -8.623744829049961,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -3.300000011920929,
+              "percent": -3.9426523431492555,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -4.299999982118607,
+              "percent": -4.820627783288423,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -24.30000001192093,
+              "percent": -10.112359555020989,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -17.499999970197678,
+              "percent": -6.788207902021526,
+              "improved": true
+            }
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -7.800000011920929,
+              "percent": -10.317460334042195,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -24.5,
+              "percent": -23.763336567814164,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -5.5999999940395355,
+              "percent": -3.8861901417565403,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -71.7000000178814,
+              "percent": -31.669611314484868,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 3.300000011920929,
+              "percent": 4.280155657815876,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -54.19999998807907,
+              "percent": -38.964773537312404,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -7,
+              "percent": -3.139013452914796,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -49.79999998211861,
+              "percent": -17.16649430649494,
+              "improved": true
+            }
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -4.100000023841858,
+              "percent": -5.702364427680074,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -3.300000011920929,
+              "percent": -4.029304043566251,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -1.5999999940395355,
+              "percent": -1.1420413947948682,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -2.900000035762787,
+              "percent": -1.8401015452563896,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -0.3999999761581421,
+              "percent": -0.4950494755528001,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -5.0999999940395355,
+              "percent": -5.666666660043928,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -8.299999982118607,
+              "percent": -3.700401240651041,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -0.19999998807907104,
+              "percent": -0.08316007820335924,
+              "improved": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "operation": "text-colour",
+      "values": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": 64.09999999403954,
+            "p95": 91
+          },
+          "inputToSecondRafMs": {
+            "p50": 122.5,
+            "p95": 198.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 122.09999999403954,
+            "p95": 198.40000000596046
+          },
+          "actionWallMs": {
+            "p50": 173.90000000596046,
+            "p95": 250.90000000596046
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": 61.80000001192093,
+            "p95": 68.90000000596046
+          },
+          "inputToSecondRafMs": {
+            "p50": 110.19999998807907,
+            "p95": 121.90000000596046
+          },
+          "commitToSecondRafMs": {
+            "p50": 109.7999999821186,
+            "p95": 121.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 149.40000000596046,
+            "p95": 174.09999999403954
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": 62.599999994039536,
+            "p95": 68.19999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 114.40000000596046,
+            "p95": 123.7000000178814
+          },
+          "commitToSecondRafMs": {
+            "p50": 114.09999999403954,
+            "p95": 123.2000000178814
+          },
+          "actionWallMs": {
+            "p50": 156.7999999821186,
+            "p95": 173
+          }
+        },
+        "source20": {
+          "inputToNextRafMs": {
+            "p50": 63.099999994039536,
+            "p95": 123.09999999403954
+          },
+          "inputToSecondRafMs": {
+            "p50": 118,
+            "p95": 195.40000000596046
+          },
+          "commitToSecondRafMs": {
+            "p50": 117.5,
+            "p95": 195
+          },
+          "actionWallMs": {
+            "p50": 166,
+            "p95": 270.09999999403954
+          }
+        }
+      },
+      "changes": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -1,
+              "percent": -1.5600624026411603,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 32.099999994039536,
+              "percent": 35.274725268175324,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -4.5,
+              "percent": -3.6734693877551017,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -3.2999999821186066,
+              "percent": -1.6607951596963155,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -4.5999999940395355,
+              "percent": -3.7674037627060564,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -3.4000000059604645,
+              "percent": -1.713709680372133,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -7.9000000059604645,
+              "percent": -4.5428407163252915,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 19.19999998807907,
+              "percent": 7.652451170834174,
+              "improved": false
+            }
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 1.2999999821186066,
+              "percent": 2.103559841210112,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 54.19999998807907,
+              "percent": 78.6647314708132,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 7.800000011920929,
+              "percent": 7.078039938987923,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 73.5,
+              "percent": 60.29532403314695,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 7.700000017881393,
+              "percent": 7.012750472800877,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 73.69999998807907,
+              "percent": 60.758450107861584,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 16.599999994039536,
+              "percent": 11.111111106678218,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 96,
+              "percent": 55.14072372388663,
+              "improved": false
+            }
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 0.5,
+              "percent": 0.7987220448044896,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 54.900000005960464,
+              "percent": 80.4985337471505,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 3.5999999940395355,
+              "percent": 3.146853141479,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 71.69999998807907,
+              "percent": 57.96281323986623,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 3.4000000059604645,
+              "percent": 2.9798422490254772,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 71.7999999821186,
+              "percent": 58.27922075624794,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 9.200000017881393,
+              "percent": 5.867346950848562,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 97.09999999403954,
+              "percent": 56.12716762661245,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "operation": "tab-detail-to-palette",
+      "values": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": 303.69999998807907,
+            "p95": 375.19999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 509.40000000596046,
+            "p95": 611.0999999940395
+          },
+          "commitToSecondRafMs": {
+            "p50": 509.40000000596046,
+            "p95": 611.0999999940395
+          },
+          "actionWallMs": {
+            "p50": 596.1000000238419,
+            "p95": 706.5999999940395
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": 313.19999998807907,
+            "p95": 371.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 521.6999999880791,
+            "p95": 632.8999999761581
+          },
+          "commitToSecondRafMs": {
+            "p50": 521.6999999880791,
+            "p95": 633
+          },
+          "actionWallMs": {
+            "p50": 616.5,
+            "p95": 723.6999999880791
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": 295.5,
+            "p95": 360.19999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 494.69999998807907,
+            "p95": 607.5999999940395
+          },
+          "commitToSecondRafMs": {
+            "p50": 494.69999998807907,
+            "p95": 607.5999999940395
+          },
+          "actionWallMs": {
+            "p50": 581.5,
+            "p95": 693.9000000059605
+          }
+        },
+        "source20": {
+          "inputToNextRafMs": {
+            "p50": 289,
+            "p95": 366
+          },
+          "inputToSecondRafMs": {
+            "p50": 489.80000001192093,
+            "p95": 610.7000000178814
+          },
+          "commitToSecondRafMs": {
+            "p50": 489.80000001192093,
+            "p95": 610.8000000119209
+          },
+          "actionWallMs": {
+            "p50": 571.3000000119209,
+            "p95": 703.6999999880791
+          }
+        }
+      },
+      "changes": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -14.699999988079071,
+              "percent": -4.8403029267883095,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -9.199999988079071,
+              "percent": -2.4520255832546356,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -19.599999994039536,
+              "percent": -3.847663917120181,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -0.3999999761581421,
+              "percent": -0.065455731658004,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -19.599999994039536,
+              "percent": -3.847663917120181,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -0.29999998211860657,
+              "percent": -0.04909179874350578,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -24.80000001192093,
+              "percent": -4.160375777709946,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -2.9000000059604645,
+              "percent": -0.410416077835396,
+              "improved": true
+            }
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -24.19999998807907,
+              "percent": -7.726692205938745,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -5.699999988079071,
+              "percent": -1.533494750675779,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -31.899999976158142,
+              "percent": -6.114625259131124,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -22.19999995827675,
+              "percent": -3.507663131476224,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -31.899999976158142,
+              "percent": -6.114625259131124,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -22.19999998807907,
+              "percent": -3.5071090028560903,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -45.19999998807907,
+              "percent": -7.331711271383467,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -20,
+              "percent": -2.7635760674767806,
+              "improved": true
+            }
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -6.5,
+              "percent": -2.1996615905245376,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 5.800000011920929,
+              "percent": 1.6102165497259513,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -4.899999976158142,
+              "percent": -0.9904992877049157,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 3.100000023841858,
+              "percent": 0.5102040855615941,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -4.899999976158142,
+              "percent": -0.9904992877049157,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 3.2000000178813934,
+              "percent": 0.5266622807624799,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -10.199999988079071,
+              "percent": -1.7540842627822961,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 9.799999982118607,
+              "percent": 1.4123072462940423,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "operation": "tab-palette-to-detail",
+      "values": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": 47.69999998807907,
+            "p95": 58.89999997615814
+          },
+          "inputToSecondRafMs": {
+            "p50": 133.59999999403954,
+            "p95": 157.2999999821186
+          },
+          "commitToSecondRafMs": {
+            "p50": 133.59999999403954,
+            "p95": 157.2999999821186
+          },
+          "actionWallMs": {
+            "p50": 198.60000002384186,
+            "p95": 223.7000000178814
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": 45.80000001192093,
+            "p95": 66
+          },
+          "inputToSecondRafMs": {
+            "p50": 124.80000001192093,
+            "p95": 183.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 124.90000000596046,
+            "p95": 183.40000000596046
+          },
+          "actionWallMs": {
+            "p50": 182.59999999403954,
+            "p95": 248.10000002384186
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": 48,
+            "p95": 61.400000005960464
+          },
+          "inputToSecondRafMs": {
+            "p50": 129.90000000596046,
+            "p95": 146.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 130,
+            "p95": 146.7999999821186
+          },
+          "actionWallMs": {
+            "p50": 182.7000000178814,
+            "p95": 207.5
+          }
+        },
+        "source20": {
+          "inputToNextRafMs": {
+            "p50": 46.400000005960464,
+            "p95": 55.599999994039536
+          },
+          "inputToSecondRafMs": {
+            "p50": 126.60000002384186,
+            "p95": 143.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 126.59999999403954,
+            "p95": 143.59999999403954
+          },
+          "actionWallMs": {
+            "p50": 182.5,
+            "p95": 207.2000000178814
+          }
+        }
+      },
+      "changes": {
+        "source17": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -1.2999999821186066,
+              "percent": -2.725366839504184,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -3.2999999821186066,
+              "percent": -5.602716440499822,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -6.999999970197678,
+              "percent": -5.239520936010466,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -13.799999982118607,
+              "percent": -8.773045126311096,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -7,
+              "percent": -5.2395209583175895,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -13.699999988079071,
+              "percent": -8.709472339247581,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -16.100000023841858,
+              "percent": -8.106747241646051,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -16.5,
+              "percent": -7.375949932356319,
+              "improved": true
+            }
+          }
+        },
+        "source18": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 0.5999999940395355,
+              "percent": 1.3100436547671679,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -10.400000005960464,
+              "percent": -15.757575766606768,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 1.800000011920929,
+              "percent": 1.4423077017219565,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -39.80000001192093,
+              "percent": -21.71303873940673,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 1.699999988079071,
+              "percent": 1.361088861487536,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": -39.80000001192093,
+              "percent": -21.701199569589658,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -0.09999999403953552,
+              "percent": -0.05476450933340482,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -40.900000005960464,
+              "percent": -16.485288191064118,
+              "improved": true
+            }
+          }
+        },
+        "source19": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -1.5999999940395355,
+              "percent": -3.333333320915699,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -5.800000011920929,
+              "percent": -9.446254090159423,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -3.2999999821186066,
+              "percent": -2.540415690505915,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -3.199999988079071,
+              "percent": -2.181322418772391,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -3.4000000059604645,
+              "percent": -2.615384619969585,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -3.199999988079071,
+              "percent": -2.1798365044065737,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -0.20000001788139343,
+              "percent": -0.10946908476290318,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -0.29999998211860657,
+              "percent": -0.1445783046354676,
+              "improved": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "allMeasuredActions": 160,
+  "allWarmupActions": 24,
+  "outliersRemoved": 0,
+  "captureRetries": 0,
+  "separateFourPanelDiagnostic": {
+    "runs": {
+      "source17": {
+        "htmlSha256": "b659049bad8c3305b6639437fa55e33fdf77a409d2a645bacf6df7552473d1b5",
+        "rawSha256": "199b23559b305115e6ef2222f7ad95efd11beed85918962d30b1d43437591206",
+        "timelineSha256": "02372354f70f691da699f5709f589adb5b247e2dc487442bdb415cef6b77ea51",
+        "captureHarnessSha256": "d8d54811afc931d0c3a556996c874a26cf6247b6b7298cdb868d38ba77b52a8f",
+        "browser": "155.0.8059.82",
+        "protocol": {
+          "panels": 4,
+          "elementsPerPanel": 120,
+          "totalElements": 480,
+          "layout": "2 by 2",
+          "warmup": 3,
+          "measuredSamples": 20,
+          "gesture": "Round-robin selected panel text: actual HEX input then Enter; one semantic commit; Undo/Redo after timing.",
+          "measurement": "Input/Enter capture-phase timestamps to next/second rAF callback execution. Not optical latency or continuous FPS.",
+          "memorySampling": "CDP Performance.getMetrics and Memory.getDOMCounters at baseline, after input preview, after commit, after Undo/Redo, and final, including all three warmup and twenty measured gestures. Maximum is an observed stage-sampled high-water mark, not a continuous peak; no forced GC, process RSS, native/GPU memory or allocation-complete claim.",
+          "trace": "CDP timeline spans all gestures, selections, downloads and validation. Event categories may overlap; trace totals are not independent additive wall time."
+        },
+        "latencies": {
+          "inputPreview": {
+            "nextRafMs": {
+              "p50": 7,
+              "p95": 8.199999988079071
+            },
+            "secondRafMs": {
+              "p50": 35.10000002384186,
+              "p95": 43
+            }
+          },
+          "enterCommit": {
+            "nextRafMs": {
+              "p50": 30.19999998807907,
+              "p95": 60.099999994039536
+            },
+            "secondRafMs": {
+              "p50": 79.90000000596046,
+              "p95": 144.09999999403954
+            }
+          }
+        },
+        "observedStageSampledMemoryHighWater": {
+          "jsHeapUsedBytes": 28856984,
+          "jsHeapTotalBytes": 51191808,
+          "documents": 16,
+          "nodes": 43873,
+          "eventListeners": 1987
+        },
+        "all23SourceAndUndoContracts": true,
+        "integrity": {
+          "all23SourceProjectsExact": true,
+          "all23DraftsUncommitted": true,
+          "all23SingleCommitUndoRedo": true,
+          "remoteRequests": 0,
+          "pageErrors": 0
+        }
+      },
+      "source18": {
+        "htmlSha256": "b596058ff9fec68257d8bfecc41e56762db2b056f22c8a219520fda343eefca4",
+        "rawSha256": "c16729a10ed52acb179ea2ec401a8341480a20284e0c3050094009eb8196ed4d",
+        "timelineSha256": "76bb05a2114b05d2e32db73b04a2b26a3c460a6e5798baa2769c22b9fed447bd",
+        "captureHarnessSha256": "d8d54811afc931d0c3a556996c874a26cf6247b6b7298cdb868d38ba77b52a8f",
+        "browser": "155.0.8059.82",
+        "protocol": {
+          "panels": 4,
+          "elementsPerPanel": 120,
+          "totalElements": 480,
+          "layout": "2 by 2",
+          "warmup": 3,
+          "measuredSamples": 20,
+          "gesture": "Round-robin selected panel text: actual HEX input then Enter; one semantic commit; Undo/Redo after timing.",
+          "measurement": "Input/Enter capture-phase timestamps to next/second rAF callback execution. Not optical latency or continuous FPS.",
+          "memorySampling": "CDP Performance.getMetrics and Memory.getDOMCounters at baseline, after input preview, after commit, after Undo/Redo, and final, including all three warmup and twenty measured gestures. Maximum is an observed stage-sampled high-water mark, not a continuous peak; no forced GC, process RSS, native/GPU memory or allocation-complete claim.",
+          "trace": "CDP timeline spans all gestures, selections, downloads and validation. Event categories may overlap; trace totals are not independent additive wall time."
+        },
+        "latencies": {
+          "inputPreview": {
+            "nextRafMs": {
+              "p50": 8.400000005960464,
+              "p95": 10.899999976158142
+            },
+            "secondRafMs": {
+              "p50": 46.20000001788139,
+              "p95": 54.89999997615814
+            }
+          },
+          "enterCommit": {
+            "nextRafMs": {
+              "p50": 38.5,
+              "p95": 41.19999998807907
+            },
+            "secondRafMs": {
+              "p50": 99.80000001192093,
+              "p95": 110.2999999821186
+            }
+          }
+        },
+        "observedStageSampledMemoryHighWater": {
+          "jsHeapUsedBytes": 28824716,
+          "jsHeapTotalBytes": 51982336,
+          "documents": 13,
+          "nodes": 54297,
+          "eventListeners": 2056
+        },
+        "all23SourceAndUndoContracts": true,
+        "integrity": {
+          "all23SourceProjectsExact": true,
+          "all23DraftsUncommitted": true,
+          "all23SingleCommitUndoRedo": true,
+          "remoteRequests": 0,
+          "pageErrors": 0
+        }
+      },
+      "source19": {
+        "htmlSha256": "4091e5b2f75e3a3b6e332736ae789da60e88a888559ee839402b06697730fba5",
+        "rawSha256": "0dacbb8d2be22bdd53080d403abbed5cd6c3920cdb199843f4de2bdcae7fbb2c",
+        "timelineSha256": "557bb51ec1cc9bbe12b5c937a780cb56b4a46cb2bfc5d45833b80e746e215daf",
+        "captureHarnessSha256": "d8d54811afc931d0c3a556996c874a26cf6247b6b7298cdb868d38ba77b52a8f",
+        "browser": "155.0.8059.82",
+        "protocol": {
+          "panels": 4,
+          "elementsPerPanel": 120,
+          "totalElements": 480,
+          "layout": "2 by 2",
+          "warmup": 3,
+          "measuredSamples": 20,
+          "gesture": "Round-robin selected panel text: actual HEX input then Enter; one semantic commit; Undo/Redo after timing.",
+          "measurement": "Input/Enter capture-phase timestamps to next/second rAF callback execution. Not optical latency or continuous FPS.",
+          "memorySampling": "CDP Performance.getMetrics and Memory.getDOMCounters at baseline, after input preview, after commit, after Undo/Redo, and final, including all three warmup and twenty measured gestures. Maximum is an observed stage-sampled high-water mark, not a continuous peak; no forced GC, process RSS, native/GPU memory or allocation-complete claim.",
+          "trace": "CDP timeline spans all gestures, selections, downloads and validation. Event categories may overlap; trace totals are not independent additive wall time."
+        },
+        "latencies": {
+          "inputPreview": {
+            "nextRafMs": {
+              "p50": 4.699999988079071,
+              "p95": 5.5999999940395355
+            },
+            "secondRafMs": {
+              "p50": 27.19999998807907,
+              "p95": 32.69999998807907
+            }
+          },
+          "enterCommit": {
+            "nextRafMs": {
+              "p50": 19.399999976158142,
+              "p95": 22.30000001192093
+            },
+            "secondRafMs": {
+              "p50": 51.30000001192093,
+              "p95": 58.599999994039536
+            }
+          }
+        },
+        "observedStageSampledMemoryHighWater": {
+          "jsHeapUsedBytes": 27624380,
+          "jsHeapTotalBytes": 50147328,
+          "documents": 21,
+          "nodes": 48565,
+          "eventListeners": 2141
+        },
+        "all23SourceAndUndoContracts": true,
+        "integrity": {
+          "all23SourceProjectsExact": true,
+          "all23DraftsUncommitted": true,
+          "all23SingleCommitUndoRedo": true,
+          "remoteRequests": 0,
+          "pageErrors": 0
+        }
+      },
+      "source20": {
+        "htmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+        "rawSha256": "df0de513a3d680b7753036d079518a9d8b012f3bab0f963ceaf8e297da247518",
+        "timelineSha256": "fe7466f9091fb7f059d118df8c94be4e255b45db0601b8e5da3810dfc3716e0b",
+        "captureHarnessSha256": "d8d54811afc931d0c3a556996c874a26cf6247b6b7298cdb868d38ba77b52a8f",
+        "browser": "155.0.8059.82",
+        "protocol": {
+          "panels": 4,
+          "elementsPerPanel": 120,
+          "totalElements": 480,
+          "layout": "2 by 2",
+          "warmup": 3,
+          "measuredSamples": 20,
+          "gesture": "Round-robin selected panel text: actual HEX input then Enter; one semantic commit; Undo/Redo after timing.",
+          "measurement": "Input/Enter capture-phase timestamps to next/second rAF callback execution. Not optical latency or continuous FPS.",
+          "memorySampling": "CDP Performance.getMetrics and Memory.getDOMCounters at baseline, after input preview, after commit, after Undo/Redo, and final, including all three warmup and twenty measured gestures. Maximum is an observed stage-sampled high-water mark, not a continuous peak; no forced GC, process RSS, native/GPU memory or allocation-complete claim.",
+          "trace": "CDP timeline spans all gestures, selections, downloads and validation. Event categories may overlap; trace totals are not independent additive wall time."
+        },
+        "latencies": {
+          "inputPreview": {
+            "nextRafMs": {
+              "p50": 6.9000000059604645,
+              "p95": 7.5
+            },
+            "secondRafMs": {
+              "p50": 33.80000001192093,
+              "p95": 37.70000001788139
+            }
+          },
+          "enterCommit": {
+            "nextRafMs": {
+              "p50": 23.200000017881393,
+              "p95": 30.099999994039536
+            },
+            "secondRafMs": {
+              "p50": 70.59999999403954,
+              "p95": 82.39999997615814
+            }
+          }
+        },
+        "observedStageSampledMemoryHighWater": {
+          "jsHeapUsedBytes": 29018464,
+          "jsHeapTotalBytes": 51195904,
+          "documents": 22,
+          "nodes": 68746,
+          "eventListeners": 2194
+        },
+        "all23SourceAndUndoContracts": true,
+        "integrity": {
+          "all23SourceProjectsExact": true,
+          "all23DraftsUncommitted": true,
+          "all23SingleCommitUndoRedo": true,
+          "remoteRequests": 0,
+          "pageErrors": 0
+        }
+      }
+    },
+    "changes": {
+      "source17": {
+        "inputPreview": {
+          "nextRafMs": {
+            "p50": {
+              "deltaMs": -0.09999999403953552,
+              "percent": -1.428571343421936,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -0.699999988079071,
+              "percent": -8.536585232886729,
+              "improved": true
+            }
+          },
+          "secondRafMs": {
+            "p50": {
+              "deltaMs": -1.300000011920929,
+              "percent": -3.7037037351507096,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -5.299999982118607,
+              "percent": -12.325581353764203,
+              "improved": true
+            }
+          }
+        },
+        "enterCommit": {
+          "nextRafMs": {
+            "p50": {
+              "deltaMs": -6.999999970197678,
+              "percent": -23.178807857486117,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -30,
+              "percent": -49.916805329409776,
+              "improved": true
+            }
+          },
+          "secondRafMs": {
+            "p50": {
+              "deltaMs": -9.300000011920929,
+              "percent": -11.639549450847507,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -61.70000001788139,
+              "percent": -42.817487869835894,
+              "improved": true
+            }
+          }
+        }
+      },
+      "source18": {
+        "inputPreview": {
+          "nextRafMs": {
+            "p50": {
+              "deltaMs": -1.5,
+              "percent": -17.857142844471806,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -3.399999976158142,
+              "percent": -31.192660399954608,
+              "improved": true
+            }
+          },
+          "secondRafMs": {
+            "p50": {
+              "deltaMs": -12.400000005960464,
+              "percent": -26.83982684234011,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -17.19999995827675,
+              "percent": -31.329690283690947,
+              "improved": true
+            }
+          }
+        },
+        "enterCommit": {
+          "nextRafMs": {
+            "p50": {
+              "deltaMs": -15.299999982118607,
+              "percent": -39.740259693814565,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -11.099999994039536,
+              "percent": -26.941747566143793,
+              "improved": true
+            }
+          },
+          "secondRafMs": {
+            "p50": {
+              "deltaMs": -29.200000017881393,
+              "percent": -29.258517048490486,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -27.900000005960464,
+              "percent": -25.29465096145377,
+              "improved": true
+            }
+          }
+        }
+      },
+      "source19": {
+        "inputPreview": {
+          "nextRafMs": {
+            "p50": {
+              "deltaMs": 2.2000000178813934,
+              "percent": 46.80851113747666,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 1.9000000059604645,
+              "percent": 33.92857157112079,
+              "improved": false
+            }
+          },
+          "secondRafMs": {
+            "p50": {
+              "deltaMs": 6.600000023841858,
+              "percent": 24.2647059806413,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 5.000000029802322,
+              "percent": 15.290519974388662,
+              "improved": false
+            }
+          }
+        },
+        "enterCommit": {
+          "nextRafMs": {
+            "p50": {
+              "deltaMs": 3.8000000417232513,
+              "percent": 19.58762910512013,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 7.799999982118607,
+              "percent": 34.9775783764527,
+              "improved": false
+            }
+          },
+          "secondRafMs": {
+            "p50": {
+              "deltaMs": 19.299999982118607,
+              "percent": 37.6218323150755,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 23.799999982118607,
+              "percent": 40.61433444460649,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    "scope": "Separate4x120 synthetic editor fixture,3warm+20measured real input/Enter gestures. Not pooled with v2. Stage-sampled heap/DOM high-water is not RSS or a continuous true peak."
+  },
+  "retainedPreflightObservation": {
+    "kind": "Overbroad all-name process gate stopped before Chrome or formal capture; preserved separately, then classified by actual ownership and protected-user identity under explicit root direction.",
+    "formalAttemptsStarted": 1,
+    "formalRetries": 0,
+    "userApplicationsTerminated": 0
+  },
+  "scope": "Fixed sequential captures on one Windows device. All8operation/size rows and4metrics retained, including slower results. Descriptive differences are not statistical significance, optical latency, continuous FPS or controlled thermal/scheduling/background equivalence."
+}

@@ -1,0 +1,959 @@
+{
+  "schema": "figure-studio-pane-selection-targeted/1",
+  "status": "SOURCE17_TARGETED_DUAL_THEME_14_PASS_FULL_MATRIX_AND_PERFORMANCE_PENDING",
+  "scope": "Actual Chrome UI with complete synthetic120/5000 SVGs and public Iris/raw CSV. Local backend output is real; no transport mocking, installation, publishing or formal performance claim.",
+  "sourceProof": {
+    "localHtmlSha256": "b659049bad8c3305b6639437fa55e33fdf77a409d2a645bacf6df7552473d1b5",
+    "servedHtmlSha256": "2d94a22aa8f4dbd2d649a1f69b6adce915c3984b5cca8a7ce5097038967be7a9",
+    "reconstructedExpectedSha256": "2d94a22aa8f4dbd2d649a1f69b6adce915c3984b5cca8a7ce5097038967be7a9",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "browser": "155.0.8059.82",
+  "harnessSha256": "027975040ec3b173ab8f665f5b9f591257218ef8fa2309d1d6d2330c8e83f0f2",
+  "sourceFilesChanged": [
+    "skills/polish-sci-figures/assets/figure-studio/studio.js"
+  ],
+  "changes": [
+    "Only ordinary stable committed vector-canvas tab clicks can reuse the existing SVG; transient/shared/legacy/image/ROI/unknown modes preserve canonical rendering. Other showPane callers keep the original path.",
+    "Data editor, mobile adjustments, metadata/module refresh and fit scheduling are retained. All eight cards contain full scientific SVG content.",
+    "Palette pending hover is explicitly cancelled; late callbacks check the active pane. Painted hover still restores canonically.",
+    "A no-move newly selected pointer release skips the duplicate inspector refresh only when the per-gesture project/state/source/selection/language identity still matches. Other pointer branches keep original semantics."
+  ],
+  "unitTests": [
+    {
+      "file": "scripts/test_studio_pane_reuse.cjs",
+      "groups": 8,
+      "exitCode": 0,
+      "sha256": "0de4499c1efe64ab018ea992919373a1b2c2050f2346622e3f36883e66e8daf5"
+    },
+    {
+      "file": "scripts/test_studio_selection_click_reuse.cjs",
+      "groups": 8,
+      "exitCode": 0,
+      "sha256": "7c0732271c0d911b07c79c00da0298fbf473ee44b36895aa92835cd921ba7e6d"
+    },
+    {
+      "file": "scripts/test_studio_palette_pane_layout.cjs",
+      "groups": 6,
+      "exitCode": 0,
+      "sha256": "f3ae949415e58030da9b043b191749d485fadc54af83dbf71092037d0aa04495"
+    },
+    {
+      "file": "scripts/test_studio_palette_preview.cjs",
+      "groups": 12,
+      "exitCode": 0,
+      "fixtureChange": "Only initializes the two new host variables; all existing assertions remain.",
+      "sha256": "eaf3b4b7e99d5483636ce4586fb829154cae78c0779bdc9db16c74b98be8ab1d"
+    }
+  ],
+  "cases": [
+    {
+      "id": "committed-tabs-120",
+      "theme": "carbon",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 3172.800000011921,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 3298.300000011921,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 3320.4000000059605,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 3461.5,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-data",
+          "at": 3469.7000000178814,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-data",
+          "at": 3546.5999999940395,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-annotation",
+          "at": 3552.5,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-annotation",
+          "at": 3635.5,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-explore",
+          "at": 3644.7000000178814,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-explore",
+          "at": 3725.7000000178814,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 3736.7000000178814,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 3822.800000011921,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "neutral-pointer-before-scroll",
+          "at": 3928.300000011921,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-scroll",
+          "at": 3962,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 3976.4000000059605,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 4035.4000000059605,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "fit": {
+        "width": 480,
+        "height": 296,
+        "availableWidth": 824,
+        "availableHeight": 481,
+        "zoom": "fit"
+      },
+      "completeCards": 8,
+      "objectsPerCard": 120,
+      "mainSvgIdentityPreserved": true,
+      "fullCommittedPayloadExact": true
+    },
+    {
+      "id": "committed-tabs-5000",
+      "theme": "carbon",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 6027.800000011921,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 6456,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 6494.200000017881,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 6618.800000011921,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-data",
+          "at": 6627.9000000059605,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-data",
+          "at": 6719.0999999940395,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-annotation",
+          "at": 6728.5999999940395,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-annotation",
+          "at": 6812.200000017881,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-explore",
+          "at": 6820.300000011921,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-explore",
+          "at": 6938.5,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 6946.700000017881,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 7187.200000017881,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "neutral-pointer-before-scroll",
+          "at": 7555.5999999940395,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-scroll",
+          "at": 7593.700000017881,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 7617.5,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 7702.300000011921,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "fit": {
+        "width": 480,
+        "height": 296,
+        "availableWidth": 824,
+        "availableHeight": 481,
+        "zoom": "fit"
+      },
+      "completeCards": 8,
+      "objectsPerCard": 5000,
+      "mainSvgIdentityPreserved": true,
+      "fullCommittedPayloadExact": true
+    },
+    {
+      "id": "selection-pointer-and-keyboard",
+      "theme": "carbon",
+      "status": "PASS",
+      "titleWritesAfterDown": 1,
+      "titleWritesAfterUp": 1,
+      "sameGesturePaints": 1,
+      "clearShiftDragCancelLockKeyboard": true,
+      "rawSourceUnchanged": true
+    },
+    {
+      "id": "late-hover-canonical-restore",
+      "theme": "carbon",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 16346,
+          "mainId": 15,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 16762.90000000596,
+          "mainId": 15,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 17878.40000000596,
+          "mainId": 16,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 18083.70000001788,
+          "mainId": 16,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "pendingAndPaintedHoverCanonical": true
+    },
+    {
+      "id": "border-session-tab-fallback",
+      "theme": "carbon",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 19929.40000000596,
+          "mainId": 18,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 20479.90000000596,
+          "mainId": 19,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "draftRepaintAndCancelExact": true
+    },
+    {
+      "id": "axis-session-tab-fallback",
+      "theme": "carbon",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 21503,
+          "mainId": 20,
+          "status": "Project restored"
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 21578.20000001788,
+          "mainId": 20,
+          "status": "Project restored"
+        },
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 22699.59999999404,
+          "mainId": 21,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 22831.20000001788,
+          "mainId": 22,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "realEngineDraftRepaintAndCancelExact": true
+    },
+    {
+      "id": "resource-session-tab-fallback",
+      "theme": "carbon",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-explore",
+          "at": 23353.90000000596,
+          "mainId": 24,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-explore",
+          "at": 23509,
+          "mainId": 24,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 24915.70000001788,
+          "mainId": 25,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 25077.09999999404,
+          "mainId": 26,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "realLocalRowsPreviewRepaintAndCancelExact": true
+    },
+    {
+      "id": "committed-tabs-120",
+      "theme": "pearl",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 4009.5999999940395,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 4277.5,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 4292.699999988079,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 4435.699999988079,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-data",
+          "at": 4451.5999999940395,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-data",
+          "at": 4590.4000000059605,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-annotation",
+          "at": 4600.299999982119,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-annotation",
+          "at": 4751.799999982119,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-explore",
+          "at": 4766.299999982119,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-explore",
+          "at": 4881.699999988079,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 4890.9000000059605,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 5007.0999999940395,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "neutral-pointer-before-scroll",
+          "at": 5116.199999988079,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-scroll",
+          "at": 5150.299999982119,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 5164.4000000059605,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 5265,
+          "mainId": 2,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "fit": {
+        "width": 480,
+        "height": 296,
+        "availableWidth": 824,
+        "availableHeight": 481,
+        "zoom": "fit"
+      },
+      "completeCards": 8,
+      "objectsPerCard": 120,
+      "mainSvgIdentityPreserved": true,
+      "fullCommittedPayloadExact": true
+    },
+    {
+      "id": "committed-tabs-5000",
+      "theme": "pearl",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 7867.0999999940395,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 8567.40000000596,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 8594.40000000596,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 8858.299999982119,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-data",
+          "at": 8866.09999999404,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-data",
+          "at": 9040.5,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-annotation",
+          "at": 9049.90000000596,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-annotation",
+          "at": 9240.59999999404,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-explore",
+          "at": 9250.09999999404,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-explore",
+          "at": 9530.40000000596,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 9544.5,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 10055.799999982119,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "neutral-pointer-before-scroll",
+          "at": 10374,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-scroll",
+          "at": 10423.799999982119,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 10456.199999988079,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 10747.59999999404,
+          "mainId": 4,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "fit": {
+        "width": 480,
+        "height": 296,
+        "availableWidth": 824,
+        "availableHeight": 481,
+        "zoom": "fit"
+      },
+      "completeCards": 8,
+      "objectsPerCard": 5000,
+      "mainSvgIdentityPreserved": true,
+      "fullCommittedPayloadExact": true
+    },
+    {
+      "id": "selection-pointer-and-keyboard",
+      "theme": "pearl",
+      "status": "PASS",
+      "titleWritesAfterDown": 1,
+      "titleWritesAfterUp": 1,
+      "sameGesturePaints": 1,
+      "clearShiftDragCancelLockKeyboard": true,
+      "rawSourceUnchanged": true
+    },
+    {
+      "id": "late-hover-canonical-restore",
+      "theme": "pearl",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 23062.19999998808,
+          "mainId": 15,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 23771.90000000596,
+          "mainId": 15,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 25075.5,
+          "mainId": 16,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 25513.40000000596,
+          "mainId": 16,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "pendingAndPaintedHoverCanonical": true
+    },
+    {
+      "id": "border-session-tab-fallback",
+      "theme": "pearl",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 27879.69999998808,
+          "mainId": 18,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 28706.40000000596,
+          "mainId": 19,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "draftRepaintAndCancelExact": true
+    },
+    {
+      "id": "axis-session-tab-fallback",
+      "theme": "pearl",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 30028.5,
+          "mainId": 20,
+          "status": "Project restored"
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 30190.90000000596,
+          "mainId": 20,
+          "status": "Project restored"
+        },
+        {
+          "type": "step",
+          "step": "before-tab-palette",
+          "at": 31434.90000000596,
+          "mainId": 21,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-palette",
+          "at": 31653.5,
+          "mainId": 22,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "realEngineDraftRepaintAndCancelExact": true
+    },
+    {
+      "id": "resource-session-tab-fallback",
+      "theme": "pearl",
+      "status": "PASS",
+      "observations": [
+        {
+          "type": "step",
+          "step": "before-tab-explore",
+          "at": 32203.69999998808,
+          "mainId": 24,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-explore",
+          "at": 32575.79999998212,
+          "mainId": 24,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "before-tab-detail",
+          "at": 34334.79999998212,
+          "mainId": 25,
+          "status": "Project downloaded with source assets, current edits and versions."
+        },
+        {
+          "type": "step",
+          "step": "after-tab-detail",
+          "at": 34618.79999998212,
+          "mainId": 26,
+          "status": "Project downloaded with source assets, current edits and versions."
+        }
+      ],
+      "realLocalRowsPreviewRepaintAndCancelExact": true
+    }
+  ],
+  "contextObservations": [
+    {
+      "theme": "carbon",
+      "pageErrors": [],
+      "remoteRequests": [],
+      "unexpectedDialogs": []
+    },
+    {
+      "theme": "pearl",
+      "pageErrors": [],
+      "remoteRequests": [],
+      "unexpectedDialogs": []
+    }
+  ],
+  "evidence": [
+    {
+      "file": "pane-reuse.json",
+      "bytes": 26711,
+      "sha256": "166f201968777cae7f9d160f5193b550c0a4788e215452633acf9c8167552ab9"
+    },
+    {
+      "file": "carbon-events.json",
+      "bytes": 30716,
+      "sha256": "e03cd663115419f82d53e5f31b4722a793677bc838a196bbcc75a05a11f35060"
+    },
+    {
+      "file": "pearl-events.json",
+      "bytes": 30889,
+      "sha256": "981956b359053ee18a8b928e3472af236d82a55f6d8d1390375c9e6e0e9910cc"
+    },
+    {
+      "file": "page@13e0e111e33f28955c569688c0ed5ddd.webm",
+      "bytes": 3524402,
+      "sha256": "c0b9a3193a839682de9090f37f6b4328ec6b53c5737f591165154376c02e7498"
+    },
+    {
+      "file": "page@1f47e6403de6947e10816490bf1c2c3c.webm",
+      "bytes": 2844579,
+      "sha256": "da53727acae16e29996a830f6e30741b2e733419b3e1532388bf171f3d53f326"
+    }
+  ],
+  "retainedAttempt01": {
+    "status": "FAIL",
+    "rawReport": {
+      "file": "pane-reuse.json",
+      "bytes": 3508,
+      "sha256": "a5da24c58937b9ab4edd2270ef7f18495eab65720705c24484662c649de30d0e"
+    },
+    "harnessSha256": "dc4b2fe46e8e87b82e849114730b47bb73debba1b85945275058b4ff4e97aad5",
+    "executedCases": [
+      {
+        "id": "committed-tabs-120",
+        "theme": "carbon",
+        "status": "PASS"
+      },
+      {
+        "id": "committed-tabs-5000",
+        "theme": "carbon",
+        "status": "PASS"
+      },
+      {
+        "id": "selection-pointer-and-keyboard",
+        "theme": "carbon",
+        "status": "PASS"
+      },
+      {
+        "id": "late-hover-canonical-restore",
+        "theme": "carbon",
+        "status": "PASS"
+      },
+      {
+        "id": "border-session-tab-fallback",
+        "theme": "carbon",
+        "status": "PASS"
+      },
+      {
+        "id": "axis-session-tab-fallback",
+        "theme": "carbon",
+        "status": "PASS"
+      },
+      {
+        "id": "resource-session-tab-fallback",
+        "theme": "carbon",
+        "status": "PASS"
+      },
+      {
+        "id": "committed-tabs-120",
+        "theme": "pearl",
+        "status": "PASS"
+      },
+      {
+        "id": "committed-tabs-5000",
+        "theme": "pearl",
+        "status": "FAIL"
+      }
+    ],
+    "finding": "A strict SVG identity assertion failed after scrolling to the last palette card and returning to detail. The pointer was not parked outside cards before scrolling. Screenshot status said Current edits restored, but native pointer/main-replacement history was not collected in01, so that clue is not reported as a confirmed causal trace.",
+    "unexecuted": "Remaining five Pearl cases were not executed in01.",
+    "qaCorrectionOnly": "In02 the ordinary stable-canvas scenario parks the real pointer on the neutral header before ordinary tab/scroll actions. Native pointer over/enter/leave, per-step SVG identity/status and main replacements are recorded. Independent pending/painted hover cases and all strict card/science/history/fit assertions remain enabled.",
+    "productionChangedBetweenAttempts": false
+  },
+  "limits": [
+    "Actual functional browser acceptance only; these wall-clock event timestamps are not a formal latency improvement result.",
+    "No Chrome transport or scientific output is fabricated. No installation, update, release, external request or OS change was performed.",
+    "Source16 formal failures, all historical raw evidence and targeted01FAIL remain retained; source17 final performance/full-source/installed acceptance are separate pending checks."
+  ]
+}

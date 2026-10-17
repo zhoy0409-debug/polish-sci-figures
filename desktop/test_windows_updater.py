@@ -238,5 +238,62 @@ class WindowsUpdateTests(unittest.TestCase):
             self.assertEqual(post({'action':'install'},False)[0],403);self.assertEqual(calls,['status'])
         finally:server.shutdown();server.server_close();thread.join()
 
+    def test_audit_is_bounded_allowlisted_and_not_a_path_or_project_log(self):
+        job=self.root/'audit-job';job.mkdir()
+        with mock.patch.object(update,'AUDIT_MAX_BYTES',1024):
+            for _ in range(30):
+                update.audit_event(job,'state',status='downloading',received=13,total=100,
+                    token='secret',path='private-user-path',project='private-table',sha256='not-a-digest')
+        path=job/'audit.jsonl';self.assertLessEqual(path.stat().st_size,1024)
+        rows=[json.loads(line) for line in path.read_text().splitlines()];self.assertGreater(len(rows),0)
+        for row in rows:
+            self.assertEqual(set(row),{'event','utc','monotonicNs','status','received','total'})
+            self.assertEqual(row['received'],13);self.assertGreater(row['monotonicNs'],0)
+        self.assertNotIn('secret',path.read_text());self.assertNotIn('private',path.read_text())
+        before=path.read_bytes();update.audit_event(job,'private-path-as-event',received=99)
+        with mock.patch.object(update,'linked_path',return_value=True):update.audit_event(job,'state',status='ready')
+        self.assertEqual(path.read_bytes(),before)
+
+    def test_real_verification_audit_brackets_actual_fsync_and_rejects_bad_bytes(self):
+        data=b'real audit bytes'*10000;value=offer(data);events=[];original=update.os.fsync
+        def fsync(fd):
+            events.append('actual-fsync');return original(fd)
+        target=self.root/'audit-verified.exe'
+        with mock.patch.object(update.os,'fsync',side_effect=fsync):
+            update.download_asset(value,target,opener=lambda url:Response(data),audit=lambda event,**fields:events.append(event))
+        self.assertEqual(events,['download-body-complete','verification-started','actual-fsync','verification-passed'])
+        self.assertEqual(target.read_bytes(),data)
+        failed=[]
+        with self.assertRaises(ValueError):update.download_asset(value,self.root/'bad-audited.exe',opener=lambda url:Response(b'wrong',len(data)),audit=lambda event,**fields:failed.append(event))
+        self.assertNotIn('verification-passed',failed);self.assertFalse((self.root/'bad-audited.exe').exists())
+
+    def test_audit_write_or_callback_failure_cannot_change_download_safety(self):
+        data=b'correct bytes';value=offer(data)
+        def broken(*args,**kwargs):raise OSError('audit unavailable')
+        target=self.root/'audit-failed-but-verified.exe'
+        update.download_asset(value,target,opener=lambda url:Response(data),audit=broken)
+        self.assertEqual(target.read_bytes(),data)
+        with mock.patch.object(update.Path,'open',side_effect=OSError('no audit access')):
+            update.audit_event(self.root,'state',status='ready')
+        program,_=self.installation();controller=update.WindowsUpdater(types.SimpleNamespace(check=lambda **kwargs:value),self.root/'cache',program,on_install=lambda:None,opener=lambda url:Response(data))
+        with mock.patch.object(update,'AUDIT_MAX_BYTES',0):
+            controller.request('download');controller.worker.join(5)
+        self.assertEqual(controller.snapshot()['status'],'ready');self.assertFalse((controller.job/'audit.jsonl').exists())
+
+    def test_worker_and_helper_audit_truthful_stage_order_without_native_install(self):
+        program,research=self.installation();data=b'synthetic executable; never launch';value=offer(data)
+        controller=update.WindowsUpdater(types.SimpleNamespace(check=lambda **kwargs:value),self.root/'cache',program,on_install=lambda:None,opener=lambda url:Response(data))
+        controller.request('download');controller.worker.join(5)
+        rows=[json.loads(line) for line in (controller.job/'audit.jsonl').read_text().splitlines()]
+        events=[row['event'] for row in rows];self.assertLess(events.index('verification-passed'),next(i for i,row in enumerate(rows) if row.get('status')=='ready'))
+        self.assertEqual(rows[0]['sha256'],value['assetSha256']);self.assertEqual(rows[-1]['received'],len(data))
+        path,backup=self.handoff(program)
+        outcome=update.apply_handoff(path,executable=backup/'Figure Studio.exe',registration=lambda *args,**kwargs:program,wait=lambda *a:None,run=lambda *a,**k:types.SimpleNamespace(returncode=0),launch=lambda *a,**k:None)
+        self.assertEqual(outcome,'installed')
+        rows=[json.loads(line) for line in (path.parent/'audit.jsonl').read_text().splitlines()];events=[row['event'] for row in rows]
+        self.assertEqual(events,['helper-backup-verified','helper-ready-written','wait-for-editor','previous-editor-exited','installer-requested','installer-exited','result-recorded','restart-requested','restart-dispatched'])
+        self.assertEqual(next(row['exitCode'] for row in rows if row['event']=='installer-exited'),0)
+        self.assertEqual((research/'private.json').read_bytes(),b'unchanged research')
+
 
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,11 @@
+'use strict';
+const {assert,sha}=require('./test_studio_carbon_helpers.cjs'),{verifyServedHtml,ENDPOINTS}=require('./verify_studio_served_html.cjs');
+const local=Buffer.from('<html><head><meta content="connect-src https://www.ebi.ac.uk;"><script>const measuredValue=1.234;</script></head><body><svg><text>真实观测 n = 150</text></svg></body></html>'),config={token:'a'.repeat(43),...ENDPOINTS,updateInfo:{currentVersion:'0.1.22'}};
+const served=Buffer.from(local.toString().replace('connect-src https://www.ebi.ac.uk',"connect-src 'self' https://www.ebi.ac.uk").replace('</head>','<script id="local-engine" type="application/json">'+JSON.stringify(config)+'</script></head>'));
+assert.equal(verifyServedHtml(local,served,sha(local)).byteExactOutsideDocumentedInjection,true);
+assert.throws(()=>verifyServedHtml(local,Buffer.from(served.toString().replace('1.234','1.235')),sha(local)));
+assert.throws(()=>verifyServedHtml(local,Buffer.from(served.toString().replace('n = 150','n = 149')),sha(local)));
+assert.throws(()=>verifyServedHtml(local,Buffer.from(served.toString().replace('/api/render','https://remote.invalid/api/render')),sha(local)));
+assert.throws(()=>verifyServedHtml(local,Buffer.from(served.toString().replace('a'.repeat(43),'</script><script>bad()</script>')),sha(local)));
+assert.throws(()=>verifyServedHtml(local,served,'0'.repeat(64)));
+console.log('PASS exact served HTML injection and five forbidden alteration groups');

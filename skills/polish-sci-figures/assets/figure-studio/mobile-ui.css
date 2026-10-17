@@ -11,6 +11,11 @@ body.studio-mobile #artboard{touch-action:none}
 body.studio-mobile .workspace>.navigator,body.studio-mobile .workspace>.inspector{display:none;position:absolute;inset:0 auto 0 0;width:min(390px,100%);max-width:100%;max-height:none;height:100%;box-sizing:border-box;overflow:auto;overscroll-behavior:contain;background:var(--fs-inspector-bg);z-index:42;padding:var(--fs-space-3) var(--fs-space-4) var(--fs-space-7);border:0;box-shadow:var(--fs-shadow-drawer)}
 body.studio-mobile .workspace>.inspector{left:auto;right:0;box-shadow:var(--fs-shadow-drawer)}
 body.studio-mobile[data-mobile-tab=panels] .workspace>.navigator,body.studio-mobile[data-mobile-tab=adjustments] .workspace>.inspector{display:block}
+/* A live adjustment dock reserves its own space instead of covering the plot. */
+body.studio-mobile[data-mobile-tab=adjustments]>.workspace{display:flex}
+body.studio-mobile[data-mobile-tab=adjustments] .workspace>main{flex:1;min-width:0;width:auto}
+body.studio-mobile[data-mobile-tab=adjustments] .workspace>.inspector{position:relative;inset:auto;flex:0 0 min(390px,42%);width:min(390px,42%);box-shadow:none;border-left:1px solid var(--fs-stroke-subtle)}
+@media(max-width:779px){body.studio-mobile[data-mobile-tab=adjustments]>.workspace{flex-direction:column}body.studio-mobile[data-mobile-tab=adjustments] .workspace>main{height:60%;flex:1 1 60%;width:100%}body.studio-mobile[data-mobile-tab=adjustments] .workspace>.inspector{height:40%;flex:0 0 40%;width:100%;border-left:0;border-top:1px solid var(--fs-stroke-subtle)}body.studio-mobile[data-mobile-tab=adjustments] .mobile-touch-hint{display:none}body.studio-mobile #viewport{padding:var(--fs-space-2)}}
 body.studio-mobile .workspace-splitter,body.studio-mobile .workspace-resizer,body.studio-mobile [data-workspace-resize]{display:none!important}
 body.studio-mobile .mobile-drawer-scrim{display:block;position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;border-radius:0;background:var(--fs-backdrop);z-index:40;font-size:0;box-shadow:none}
 body.studio-mobile .mobile-drawer-close{display:flex;align-items:center;justify-content:center;min-height:44px;width:100%;margin:0 0 var(--fs-space-4);color:var(--fs-text-primary);background:var(--fs-surface-1);border:1px solid var(--fs-stroke-subtle);font-weight:600}
@@ -60,7 +65,29 @@ body.studio-mobile>header .header-save{padding:var(--fs-space-2)}
 body.studio-mobile>header .autosave{display:none}
 body.studio-mobile .header-menu-content{max-width:calc(100vw - 24px)}
 body.studio-mobile .context-menu{max-width:calc(100vw - 24px);max-height:calc(100dvh - 90px)}
+body.studio-mobile .workflow-navigation button{flex:0 0 auto}
 body.studio-mobile dialog{max-width:calc(100vw - 20px);max-height:calc(100dvh - 28px);box-sizing:border-box;overscroll-behavior:contain}
 body.studio-mobile dialog input,body.studio-mobile dialog textarea{font-size:var(--fs-font-lg)}
 @media(max-width:480px){body.studio-mobile>header .brand{display:none}body.studio-mobile>header .header-controls{width:100%}body.studio-mobile>header .toolbar{justify-content:space-between}body.studio-mobile>header .header-history{gap:2px}body.studio-mobile>header .header-menu>summary svg,body.studio-mobile>header .header-save svg{display:none}body.studio-mobile .mobile-touch-tools{gap:var(--fs-space-1)}body.studio-mobile .mobile-touch-tools>button{padding-inline:var(--fs-space-2)}body.studio-mobile .mobile-modes button{padding-inline:var(--fs-space-2)}body.studio-mobile .mobile-touch-hint{font-size:var(--fs-font-xs)}}
+/* Two stable action rows leave room for the scientific canvas on a phone.
+   Menus retain visible overflow; the workflow strip scrolls independently. */
+@media(max-width:480px){
+  html body.studio-mobile>header{display:flex;flex-direction:column;align-items:stretch;gap:2px;padding:4px 8px}
+  html body.studio-mobile>header .project-identity{flex:none;width:100%;max-width:100%;margin:0;gap:0}
+  html body.studio-mobile>header .project-identity>strong{max-width:100%;line-height:20px;font-size:var(--fs-font-xs)}
+  html body.studio-mobile>header .header-controls{flex:none;display:block;width:100%;min-width:0}
+  html body.studio-mobile>header .toolbar{display:grid;grid-template-columns:80px 80px minmax(88px,1fr) 44px;grid-template-rows:44px 44px;gap:2px;align-items:center;width:100%}
+  html body.studio-mobile>header .header-appearance{grid-column:1;grid-row:1;min-width:0}
+  html body.studio-mobile>header .header-appearance>summary{box-sizing:border-box;width:100%;padding-inline:3px;gap:3px;font-size:11px}
+  html body.studio-mobile>header .language-picker{grid-column:2;grid-row:1;min-width:0}
+  html body.studio-mobile>header .language-picker>select{box-sizing:border-box;width:100%;min-width:0;padding-inline:4px 20px}
+  html body.studio-mobile>header .header-history{grid-column:3;grid-row:1;justify-content:flex-end;gap:0}
+  html body.studio-mobile>header .header-history button{flex:0 0 44px;width:44px}
+  html body.studio-mobile>header #studioCheckUpdates{grid-column:4;grid-row:1;width:44px;padding:4px;gap:0}
+  html body.studio-mobile>header #studioCheckUpdates>span:not(.studio-update-badge){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  html body.studio-mobile>header .header-document{grid-column:1/4;grid-row:2;width:100%;min-width:0;justify-content:flex-start;padding:0;margin:0;gap:4px}
+  html body.studio-mobile>header .header-document .header-menu:first-child{margin-right:0}
+  html body.studio-mobile>header #commandSearch{grid-column:4;grid-row:2;width:44px;min-width:44px;max-width:44px;padding:4px;font-size:0}
+  html body.studio-mobile>header #commandSearch::before{content:'⌕';font-size:24px;line-height:1}
+}
 @media(prefers-reduced-motion:reduce){body.studio-mobile *{scroll-behavior:auto}}

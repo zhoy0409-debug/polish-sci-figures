@@ -1,0 +1,67 @@
+{
+  "schema": "studio-controlled-invalid-composition-tail-review/1",
+  "status": "PASS_FOR_SIX_REVIEWED_CONTROLLED_CONTRACTS",
+  "stage": "Read-only review before the source20 axis fix is frozen",
+  "generatedAt": "2026-10-17T20:11:17.366390+00:00",
+  "rawResultSha256": "34bd2b56de1d142797b1e511cb45654590ec011176fd167a4538ce336011157d",
+  "testCount": 6,
+  "tests": [
+    {
+      "name": "text spacing empty sanitized numeric composition tail stays invalid and cannot commit last valid spacing",
+      "status": "PASS",
+      "commitsBeforeCorrection": 0,
+      "commitsAfterCorrection": 1,
+      "blankRejected": true
+    },
+    {
+      "name": "inset numeric width composition tail cannot clear width or commit last valid preview",
+      "status": "PASS",
+      "commitsBeforeCorrection": 0,
+      "lastValidWidth": 2,
+      "commitsAfterCorrection": 1
+    },
+    {
+      "name": "physical calibration blank numeric tail cannot apply zero or delete calibration",
+      "status": "PASS",
+      "calibrations": 0,
+      "dialogRemainsOpen": true
+    },
+    {
+      "name": "generic numeric host invalid composition tail retains last-valid draft without commit",
+      "status": "PASS",
+      "commits": 0,
+      "historyIndex": 0,
+      "emptyRejected": true
+    },
+    {
+      "name": "quick font invalid numeric composition tail cannot commit old preview",
+      "status": "PASS",
+      "commits": 0,
+      "emptyRejected": true
+    },
+    {
+      "name": "legacy ranges are text inputs and Chinese text remains invalid rather than becoming Automatic",
+      "status": "PASS",
+      "actualInputType": "text",
+      "requestsAfterLastValid": 0,
+      "installs": 0,
+      "nonemptyChinesePreserved": true
+    }
+  ],
+  "reviewedProductionHashes": {
+    "text-tools-ui.js": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e",
+    "image-insets-ui.js": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035",
+    "studio.js": "fd1b600b233a045cbacc0ce144969c5e9b7af5f5761e8d68e9f620e20702d69d"
+  },
+  "reviewedSourcesUnchanged": true,
+  "method": "Controlled DOM events and existing production fixture hosts. The legacy range input type was checked against the actual host setup; no numeric-to-Automatic assumption was substituted for its text-input validator.",
+  "scope": {
+    "controlledDOMContracts": true,
+    "nativeWindowsIMEAcceptance": false,
+    "browserRun": false,
+    "desktopOrRegistryOperation": false,
+    "runtimeOrTrackedTestEdited": false,
+    "professionalAxisFixIncluded": false,
+    "conclusion": "No additional reproducible empty-composition-tail clearing or old-value commit was found in the six reviewed non-professional-axis contracts. This report does not validate the pending professional-axis fix or a later source20 build."
+  }
+}

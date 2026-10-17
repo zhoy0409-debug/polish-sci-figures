@@ -1,10 +1,10 @@
 # Figure Discovery / 科研图表智能发现与推荐
 
-Figure Studio now starts from a table and a research question. Open **智能选图 / Figure Discovery** on the welcome screen or in **图表类型 / Chart types**, import CSV/TSV/XLSX (2 MB; 10,000 rows; 100 columns), or use the current workbench table. XLSX uses the local Python/WASM engine and the first sheet; export another sheet as CSV, or select it with CLI `--sheet`.
+Figure Studio now starts from a table and a research question. Choose **数据与智能选图 / Data & discovery** above the canvas, or **智能选图 / Figure Discovery** on the welcome screen or in **图表类型 / Chart types**. Import CSV/TSV/XLSX (2 MB; 10,000 rows; 100 columns), or use the current workbench table. XLSX uses the local Python/WASM engine and the first sheet; export another sheet as CSV, or select it with CLI `--sheet`.
 
 Confirm data level, design, experimental unit, outcome type, technical repeats and nesting. Review automatically suggested column roles. These suggestions do not establish biological independence. Long-format paired records require before/after labels in their true order. Continuous models are not automatically assigned to counts. A missing required value is reported rather than imputed.
 
-The page offers up to six distinct scientific views, with fewer when appropriate. Compare **your actual data** and apply a view to the editor; the existing undo/redo, save, project reopening, element editing and exports remain available. Applying to an occupied editor adds a panel and retains existing artwork; an empty starter canvas is replaced. Changing the table or design invalidates previews. Original uploaded rows, declarations and rule trace are retained locally with the applied asset; editing its data invalidates that binding.
+The page offers up to six distinct scientific views, with fewer when appropriate. Compare **your actual data** and apply a view to the editor; the existing undo/redo, save, project reopening, element editing and exports remain available. Applying to an occupied editor uses a free cell or adds a row and retains existing artwork; an untouched empty starter canvas is replaced. The existing panel and grid limits still apply. One undo restores the previous layout. Changing the table or design invalidates previews. Original uploaded rows, declarations and rule trace are retained locally with the applied asset; editing its data invalidates that binding.
 
 The question, sample type and assay fields stay local. In the separate literature section, enter only public search keywords and click **Find examples**. The privacy note describes the exact outbound content: chart names plus the topic/sample/assay keywords entered in that section. No automatic transfer from your research description, table, filename or project occurs. Known local cell values and private labels are blocked from discovery queries; obvious identifiers, emails, numbers and query syntax are rejected. This is a guard against accidental disclosure, not a reliable detector of every personal name: review the keywords before clicking. Literature results never determine experimental independence or statistical eligibility.
 
@@ -77,6 +77,8 @@ The `providers` interface exposes Europe PMC capabilities and a disabled OpenAle
 ## 中文使用说明与范围
 
 首页点击“智能选图”，上传数据，核对字段与实验设计，再点“寻找适合我的数据的方案”。候选卡使用本人真实数据；不满足条件的图会列出原因，不凑足数量。应用后可撤销，原有编辑器功能继续可用。断网不影响本地推荐和绘图；纯 HTML 降级只提供有限描述性图，不伪造推断结果。
+
+已有工程可从画布上方的“数据与智能选图”进入。应用时使用空格或追加一行，保留原有图形；只有尚未编辑的空白画布会被替换。原有小图和行数上限继续有效，一次撤销即可恢复应用前的布局。
 
 初版支持独立连续组比较、前后配对、独立实验内技术重复的描述性展示、纵向轨迹、连续变量关联、已完成差异分析结果、真实二分类标签/预测分数及均值/SD/n 汇总。其他图型仍可通过原有模板库和专业工作台使用。多因素剂量×时间、混合模型、其他嵌套结构、自动自然语言诊断与跨领域语义 AI 均未新增。顺序型剂量/时间不应伪装为任意独立组；请声明重复结构并使用已有专业工作台。
 

@@ -1,0 +1,88 @@
+{
+  "schema": "figure-studio-windows-stage/1",
+  "status": "SUPERSEDED_SOURCE09_INSTALL_AND_INCOMPLETE_ATTEMPT_CLEANUP_PASSED",
+  "finalAcceptance": false,
+  "reason": "A real source09 slider-cancel control snapshot defect was found in P1. The original Setup installed and passed frozen self-test; it was never started for final browser acceptance and was formally uninstalled before the corrected build.",
+  "stages": [
+    {
+      "record": "safe-install.json",
+      "rawSha256": "42816c27004c6fe350f099aca0d1b70c588afb6eb69f5234444bdeb5e32114f0",
+      "result": {
+        "phase": "Install",
+        "selfTestPassed": true,
+        "protectedProcessCount": 2,
+        "schema": "figure-studio-live-preview-windows/1",
+        "checks": [
+          "Four exact AppId hive/view combinations initially absent",
+          "Protected application process identities and binaries unchanged",
+          "All packaged files match actual installed files",
+          "Actually installed x64 PE version matches",
+          "Frozen installed self-test passes with Python removed from PATH and invalid PYTHONHOME"
+        ],
+        "incompleteAttemptCleanup": false,
+        "externalDataPreserved": false,
+        "completedPhases": [
+          "Install"
+        ],
+        "protectedProcessIdentitiesUnchanged": true,
+        "frozen": true,
+        "uninstalled": false,
+        "packageVerification": {
+          "fileCount": 2552,
+          "everyPackagedFileMatches": true,
+          "manifestSha256": "be2e7df574fb519942fd19e13680625801ba4cdc8bfc7611cb8b491f0c1ef474"
+        },
+        "initialRegistryViewsAbsent": 4,
+        "environment": "Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.",
+        "setupSha256": "647f5c03dc06ae59621c749fb7494255285c93c345d5304df37b6ce6b74f3243",
+        "reinstallPreserved": false,
+        "version": "0.1.22",
+        "selfTestReportSha256": "eaadeab63c89e09a986ad3a3331e9ab61baa7674deed3b0538a20a71903a14ee"
+      }
+    },
+    {
+      "record": "safe-uninstall.json",
+      "rawSha256": "797150d051b869b4a87d560625e395d9932917be90c7466175d468c7cf49e59d",
+      "result": {
+        "initialRegistryViewsAbsent": 4,
+        "phase": "Uninstall",
+        "selfTestPassed": true,
+        "packageVerification": {
+          "fileCount": 2552,
+          "everyPackagedFileMatches": true,
+          "manifestSha256": "be2e7df574fb519942fd19e13680625801ba4cdc8bfc7611cb8b491f0c1ef474"
+        },
+        "schema": "figure-studio-live-preview-windows/1",
+        "incompleteAttemptCleanup": true,
+        "protectedProcessIdentitiesUnchanged": true,
+        "uninstalled": true,
+        "reinstallPreserved": false,
+        "externalDataPreserved": true,
+        "frozen": true,
+        "setupSha256": "647f5c03dc06ae59621c749fb7494255285c93c345d5304df37b6ce6b74f3243",
+        "protectedProcessCount": 2,
+        "completedPhases": [
+          "Install",
+          "Uninstall"
+        ],
+        "checks": [
+          "Four exact AppId hive/view combinations initially absent",
+          "Protected application process identities and binaries unchanged",
+          "All packaged files match actual installed files",
+          "Actually installed x64 PE version matches",
+          "Frozen installed self-test passes with Python removed from PATH and invalid PYTHONHOME",
+          "Actual uninstaller restores all four AppId combinations to absence and preserves external data/protected processes"
+        ],
+        "selfTestReportSha256": "eaadeab63c89e09a986ad3a3331e9ab61baa7674deed3b0538a20a71903a14ee",
+        "environment": "Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.",
+        "version": "0.1.22"
+      }
+    }
+  ],
+  "retainedQaGuardIssue": {
+    "status": "RESOLVED_QA_PARSER_ERROR_WITHOUT_WEAKENING_IDENTITY_CHECKS",
+    "cause": "ConvertFrom-Json converted ISO process-creation text to DateTime. Both protected process PID, exact UTC creation instant, path and EXE SHA were unchanged; String-vs-DateTime comparison blocked cleanup before any uninstall.",
+    "fix": "PowerShell 7.5+ ConvertFrom-Json -DateKind String preserves original identity text. All original protected-process and registration checks remain.",
+    "postfixCleanup": "PASS; all four registry views absent, both protected processes unchanged, external sentinel preserved."
+  }
+}

@@ -1,0 +1,755 @@
+{
+  "schema": "figure-studio-parameterized-installed-p1/1",
+  "status": "PASS_ACTUAL_INSTALLED_P1_74_CASES",
+  "sourceStage": "source20",
+  "version": "0.1.22",
+  "setupSha256": "85b0355490eb2615f2cebc1097e6e51da1d89a9f3b5851a60d95831930be3d1a",
+  "sourceFreezeManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+  "sourceFreezeHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+  "installedStarterHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+  "packageSourceProofSha256": "6aff7122b3e1c62efa5e4967ca625c430cfa453bfded051b9e18af028a841eef",
+  "packageHtmlProof": {
+    "sourceFreezeManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+    "sourceFreezeHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+    "actualPackagedStarterFile": "_internal/suite/desktop/resources/starter.html",
+    "actualPackagedStarterSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+    "installedWorkspaceHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+    "installedFileManifestSha256": "a53de948baae58fabeeaa953db95222cfe48b7f6fedbe9a15856d0d7b2c6e80d",
+    "installedFileCount": 2622,
+    "assetHashCount": 78,
+    "backendHashCount": 27,
+    "compiledBackendModuleCount": 23,
+    "notPackagedTestSources": [
+      "test_check_source_portability.py",
+      "test_figure_studio.py",
+      "test_figure_text_qa.py",
+      "test_font_policy.py"
+    ],
+    "starterBytesMatchOriginalPackageInstalledCopyAndWorkspace": true,
+    "scope": "The source freeze can contain Iris while the desktop starter is blank. Only the UI and production backend are tied to the freeze; non-distributed test-source hashes remain parent manifest references."
+  },
+  "runnerReportSha256": "03ef6850c4019c9601fb51d00492c3024917eb7fb8c55f132c8b8ceb72a3a89c",
+  "runnerSha256": "7d2abc6d09cb1b8ece230a117e4fe475c5937974f295882fcc8e2a70c274d485",
+  "summaryHarnessSha256": "e0b2dfa844a9247c00da6eb0eefc58c1c3e9324d2dde0259d65ec7a97db9807d",
+  "identityBefore": {
+    "version": "0.1.22",
+    "installedExecutableMatchesPackage": true,
+    "currentRegistrationOwned": true,
+    "protectedIdentitiesUnchanged": true,
+    "powerShellVersion": "7.6.5",
+    "status": "PASS_READ_ONLY_IDENTITY",
+    "registeredViewCount": 2,
+    "protectedProcessCount": 1,
+    "qaProcessExact": true,
+    "initialRegistryViewsAbsent": 4,
+    "scope": "Read-only CIM, file hashes and exact AppId registry queries. No process, registry or installed file is modified."
+  },
+  "identityAfter": {
+    "installedExecutableMatchesPackage": true,
+    "registeredViewCount": 2,
+    "currentRegistrationOwned": true,
+    "powerShellVersion": "7.6.5",
+    "protectedProcessCount": 1,
+    "qaProcessExact": true,
+    "protectedIdentitiesUnchanged": true,
+    "status": "PASS_READ_ONLY_IDENTITY",
+    "version": "0.1.22",
+    "scope": "Read-only CIM, file hashes and exact AppId registry queries. No process, registry or installed file is modified.",
+    "initialRegistryViewsAbsent": 4
+  },
+  "runs": [
+    {
+      "theme": "carbon",
+      "status": "PASS",
+      "startedAt": "2026-10-17T21:01:15.885Z",
+      "finishedAt": "2026-10-17T21:05:13.534Z",
+      "caseCount": 37,
+      "sourceProof": {
+        "localHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+        "servedHtmlSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+        "reconstructedExpectedSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "fixtureManifestSha256": "a3a95982a2c1262925f0c749de603dc265654f27ada16f7571738f81c09201b8",
+      "computedStatisticsFixture": {
+        "sha256": "0c867b8a3984af91429c9d6e7aa943f393d44ec0ea6b0f431ff73809117816e7",
+        "kind": "Explicitly synthetic stored computed comparison; not independently generated in this harness"
+      },
+      "rawBarsFixture": {
+        "sha256": "63a9de98e7c0a3d848571ddb34de758c1ab6699418efce4d8ec9fbeb1cc715b7",
+        "kind": "Explicitly synthetic raw-data project prepared by the existing real renderer"
+      },
+      "cases": [
+        {
+          "id": "P01-hex-colour",
+          "status": "PASS",
+          "features": [
+            "Inspector HEX preview",
+            "Node identity",
+            "Invalid colour/cancel",
+            "Single commit"
+          ]
+        },
+        {
+          "id": "P02-font-size",
+          "status": "PASS",
+          "features": [
+            "fontSize actual-canvas preview",
+            "fontSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P03-stroke-width",
+          "status": "PASS",
+          "features": [
+            "elementStroke actual-canvas preview",
+            "elementStroke cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P04-opacity",
+          "status": "PASS",
+          "features": [
+            "opacity pointer preview",
+            "opacity single release commit"
+          ]
+        },
+        {
+          "id": "P05-label-text",
+          "status": "PASS",
+          "features": [
+            "panelLabel actual-canvas preview",
+            "panelLabel cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P06-label-position",
+          "status": "PASS",
+          "features": [
+            "labelX actual-canvas preview",
+            "labelX cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P07-label-size",
+          "status": "PASS",
+          "features": [
+            "labelSize actual-canvas preview",
+            "labelSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P08-export-width",
+          "status": "PASS",
+          "features": [
+            "exportWidth actual-canvas preview",
+            "exportWidth cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P09-export-height",
+          "status": "PASS",
+          "features": [
+            "exportHeight actual-canvas preview",
+            "exportHeight cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P10-export-dpi",
+          "status": "PASS",
+          "features": [
+            "Export DPI dimensions"
+          ]
+        },
+        {
+          "id": "P11-font-family",
+          "status": "PASS",
+          "features": [
+            "Font replacement actual glyph style"
+          ]
+        },
+        {
+          "id": "P12-bold",
+          "status": "PASS",
+          "features": [
+            "fontWeight actual text"
+          ]
+        },
+        {
+          "id": "P13-italic",
+          "status": "PASS",
+          "features": [
+            "fontStyle actual text"
+          ]
+        },
+        {
+          "id": "P14-superscript",
+          "status": "PASS",
+          "features": [
+            "super selected character"
+          ]
+        },
+        {
+          "id": "P15-subscript",
+          "status": "PASS",
+          "features": [
+            "sub selected character"
+          ]
+        },
+        {
+          "id": "P16-letter-spacing",
+          "status": "PASS",
+          "features": [
+            "para-letter-spacing actual-canvas preview",
+            "para-letter-spacing cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P17-line-height",
+          "status": "PASS",
+          "features": [
+            "para-line-height actual-canvas preview",
+            "para-line-height cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P18-panel-gap",
+          "status": "PASS",
+          "features": [
+            "gapYSlider pointer preview",
+            "gapYSlider single release commit"
+          ]
+        },
+        {
+          "id": "P19-protected-paints",
+          "status": "PASS",
+          "features": [
+            "Hollow fill protection",
+            "Gradient protection",
+            "Original raster protection",
+            "Locked object protection"
+          ]
+        },
+        {
+          "id": "P20-label-colour",
+          "status": "PASS",
+          "features": [
+            "Panel label visible colour"
+          ]
+        },
+        {
+          "id": "P21-roi-scale-guard",
+          "status": "PASS",
+          "features": [
+            "Actual public TEM ROI",
+            "Uncalibrated scale guard"
+          ]
+        },
+        {
+          "id": "P22-palette-hover",
+          "status": "PASS",
+          "features": [
+            "Palette hover/leave restores without history"
+          ]
+        },
+        {
+          "id": "P23-statistics-display",
+          "status": "PASS",
+          "features": [
+            "Existing statistics display",
+            "Error-bar visibility/direction"
+          ]
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "PASS",
+          "features": [
+            "statisticalFontSize actual-canvas preview",
+            "statisticalFontSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P25-heatmap-font",
+          "status": "PASS",
+          "features": [
+            "heatmapFontSize actual-canvas preview",
+            "heatmapFontSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P26-scale-calibration",
+          "status": "PASS",
+          "features": [
+            "scaleCalibration actual-canvas preview",
+            "scaleCalibration cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P27-overlay-stroke",
+          "status": "PASS",
+          "features": [
+            "overlayStroke actual-canvas preview",
+            "overlayStroke cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P28-bar-width",
+          "status": "PASS",
+          "features": [
+            "barWidth visible real-canvas preview",
+            "barWidth cancel and single release commit"
+          ]
+        },
+        {
+          "id": "P29-numeric-panel-gap",
+          "status": "PASS",
+          "features": [
+            "gapY actual-canvas preview",
+            "gapY cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P30-heatmap-decimals",
+          "status": "PASS",
+          "features": [
+            "heatmapDecimals actual-canvas preview",
+            "heatmapDecimals cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P31-grid-rows",
+          "status": "PASS",
+          "features": [
+            "rows actual-canvas preview",
+            "rows cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P32-panel-span",
+          "status": "PASS",
+          "features": [
+            "rowSpan actual-canvas preview",
+            "rowSpan cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P33-scale-letterbox-geometry",
+          "status": "PASS",
+          "features": [
+            "Real displayed image content and scientific scale length",
+            "Scale preview/commit/export agreement"
+          ]
+        },
+        {
+          "id": "P34-scale-unsupported-clip",
+          "status": "PASS",
+          "features": [
+            "Actual clipped image rejects unverified scale geometry"
+          ]
+        },
+        {
+          "id": "P35-scale-overflow-last-valid",
+          "status": "PASS",
+          "features": [
+            "Overflow cannot shorten a requested scientific scale",
+            "Invalid appearance retains last valid bar and model"
+          ]
+        },
+        {
+          "id": "P36-main-scale-unknown",
+          "status": "PASS",
+          "features": [
+            "Uncalibrated image cannot invent a physical scale"
+          ]
+        },
+        {
+          "id": "P37-per-image-calibration",
+          "status": "PASS",
+          "features": [
+            "Per-image physical calibration isolation",
+            "Selection cannot write model/history",
+            "Undo removing calibration restores unknown"
+          ]
+        }
+      ],
+      "heldRangeCancel": {
+        "pointerMoves": 6,
+        "mouseStillHeld": true,
+        "value": "1",
+        "canvasSha256": "0fcae910898c8f73cb52d26ad1295eb0ba055adf569c95f6e2e7ca599b756d7e",
+        "cancelRestoresField": true,
+        "oneCommitUndoRedo": true
+      },
+      "rawReport": {
+        "file": "live-properties.json",
+        "sizeBytes": 161000,
+        "sha256": "e5c218945321acdf9ecc9ebeba625c4e69e7cf26e9bd6a77579655a4bd6fa168"
+      },
+      "trace": {
+        "file": "chrome-timeline.json",
+        "sizeBytes": 130511863,
+        "sha256": "242e34fb68b6244afe45d7df73c0e50e2dd900c34af8fd026036f1e43d4b5af1"
+      },
+      "videos": [
+        {
+          "file": "page@56dde9da5f9d5509cef2baf5a255fc7f.webm",
+          "sizeBytes": 26557915,
+          "sha256": "b1a2e20330b992abf0d121315dc2f1f211eef928ef1a028b8c54976b68eaef26"
+        }
+      ]
+    },
+    {
+      "theme": "pearl",
+      "status": "PASS",
+      "startedAt": "2026-10-17T21:05:16.578Z",
+      "finishedAt": "2026-10-17T21:09:07.734Z",
+      "caseCount": 37,
+      "sourceProof": {
+        "localHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+        "servedHtmlSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+        "reconstructedExpectedSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "fixtureManifestSha256": "a3a95982a2c1262925f0c749de603dc265654f27ada16f7571738f81c09201b8",
+      "computedStatisticsFixture": {
+        "sha256": "0c867b8a3984af91429c9d6e7aa943f393d44ec0ea6b0f431ff73809117816e7",
+        "kind": "Explicitly synthetic stored computed comparison; not independently generated in this harness"
+      },
+      "rawBarsFixture": {
+        "sha256": "63a9de98e7c0a3d848571ddb34de758c1ab6699418efce4d8ec9fbeb1cc715b7",
+        "kind": "Explicitly synthetic raw-data project prepared by the existing real renderer"
+      },
+      "cases": [
+        {
+          "id": "P01-hex-colour",
+          "status": "PASS",
+          "features": [
+            "Inspector HEX preview",
+            "Node identity",
+            "Invalid colour/cancel",
+            "Single commit"
+          ]
+        },
+        {
+          "id": "P02-font-size",
+          "status": "PASS",
+          "features": [
+            "fontSize actual-canvas preview",
+            "fontSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P03-stroke-width",
+          "status": "PASS",
+          "features": [
+            "elementStroke actual-canvas preview",
+            "elementStroke cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P04-opacity",
+          "status": "PASS",
+          "features": [
+            "opacity pointer preview",
+            "opacity single release commit"
+          ]
+        },
+        {
+          "id": "P05-label-text",
+          "status": "PASS",
+          "features": [
+            "panelLabel actual-canvas preview",
+            "panelLabel cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P06-label-position",
+          "status": "PASS",
+          "features": [
+            "labelX actual-canvas preview",
+            "labelX cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P07-label-size",
+          "status": "PASS",
+          "features": [
+            "labelSize actual-canvas preview",
+            "labelSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P08-export-width",
+          "status": "PASS",
+          "features": [
+            "exportWidth actual-canvas preview",
+            "exportWidth cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P09-export-height",
+          "status": "PASS",
+          "features": [
+            "exportHeight actual-canvas preview",
+            "exportHeight cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P10-export-dpi",
+          "status": "PASS",
+          "features": [
+            "Export DPI dimensions"
+          ]
+        },
+        {
+          "id": "P11-font-family",
+          "status": "PASS",
+          "features": [
+            "Font replacement actual glyph style"
+          ]
+        },
+        {
+          "id": "P12-bold",
+          "status": "PASS",
+          "features": [
+            "fontWeight actual text"
+          ]
+        },
+        {
+          "id": "P13-italic",
+          "status": "PASS",
+          "features": [
+            "fontStyle actual text"
+          ]
+        },
+        {
+          "id": "P14-superscript",
+          "status": "PASS",
+          "features": [
+            "super selected character"
+          ]
+        },
+        {
+          "id": "P15-subscript",
+          "status": "PASS",
+          "features": [
+            "sub selected character"
+          ]
+        },
+        {
+          "id": "P16-letter-spacing",
+          "status": "PASS",
+          "features": [
+            "para-letter-spacing actual-canvas preview",
+            "para-letter-spacing cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P17-line-height",
+          "status": "PASS",
+          "features": [
+            "para-line-height actual-canvas preview",
+            "para-line-height cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P18-panel-gap",
+          "status": "PASS",
+          "features": [
+            "gapYSlider pointer preview",
+            "gapYSlider single release commit"
+          ]
+        },
+        {
+          "id": "P19-protected-paints",
+          "status": "PASS",
+          "features": [
+            "Hollow fill protection",
+            "Gradient protection",
+            "Original raster protection",
+            "Locked object protection"
+          ]
+        },
+        {
+          "id": "P20-label-colour",
+          "status": "PASS",
+          "features": [
+            "Panel label visible colour"
+          ]
+        },
+        {
+          "id": "P21-roi-scale-guard",
+          "status": "PASS",
+          "features": [
+            "Actual public TEM ROI",
+            "Uncalibrated scale guard"
+          ]
+        },
+        {
+          "id": "P22-palette-hover",
+          "status": "PASS",
+          "features": [
+            "Palette hover/leave restores without history"
+          ]
+        },
+        {
+          "id": "P23-statistics-display",
+          "status": "PASS",
+          "features": [
+            "Existing statistics display",
+            "Error-bar visibility/direction"
+          ]
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "PASS",
+          "features": [
+            "statisticalFontSize actual-canvas preview",
+            "statisticalFontSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P25-heatmap-font",
+          "status": "PASS",
+          "features": [
+            "heatmapFontSize actual-canvas preview",
+            "heatmapFontSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P26-scale-calibration",
+          "status": "PASS",
+          "features": [
+            "scaleCalibration actual-canvas preview",
+            "scaleCalibration cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P27-overlay-stroke",
+          "status": "PASS",
+          "features": [
+            "overlayStroke actual-canvas preview",
+            "overlayStroke cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P28-bar-width",
+          "status": "PASS",
+          "features": [
+            "barWidth visible real-canvas preview",
+            "barWidth cancel and single release commit"
+          ]
+        },
+        {
+          "id": "P29-numeric-panel-gap",
+          "status": "PASS",
+          "features": [
+            "gapY actual-canvas preview",
+            "gapY cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P30-heatmap-decimals",
+          "status": "PASS",
+          "features": [
+            "heatmapDecimals actual-canvas preview",
+            "heatmapDecimals cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P31-grid-rows",
+          "status": "PASS",
+          "features": [
+            "rows actual-canvas preview",
+            "rows cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P32-panel-span",
+          "status": "PASS",
+          "features": [
+            "rowSpan actual-canvas preview",
+            "rowSpan cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P33-scale-letterbox-geometry",
+          "status": "PASS",
+          "features": [
+            "Real displayed image content and scientific scale length",
+            "Scale preview/commit/export agreement"
+          ]
+        },
+        {
+          "id": "P34-scale-unsupported-clip",
+          "status": "PASS",
+          "features": [
+            "Actual clipped image rejects unverified scale geometry"
+          ]
+        },
+        {
+          "id": "P35-scale-overflow-last-valid",
+          "status": "PASS",
+          "features": [
+            "Overflow cannot shorten a requested scientific scale",
+            "Invalid appearance retains last valid bar and model"
+          ]
+        },
+        {
+          "id": "P36-main-scale-unknown",
+          "status": "PASS",
+          "features": [
+            "Uncalibrated image cannot invent a physical scale"
+          ]
+        },
+        {
+          "id": "P37-per-image-calibration",
+          "status": "PASS",
+          "features": [
+            "Per-image physical calibration isolation",
+            "Selection cannot write model/history",
+            "Undo removing calibration restores unknown"
+          ]
+        }
+      ],
+      "heldRangeCancel": {
+        "pointerMoves": 6,
+        "mouseStillHeld": true,
+        "value": "1",
+        "canvasSha256": "0fcae910898c8f73cb52d26ad1295eb0ba055adf569c95f6e2e7ca599b756d7e",
+        "cancelRestoresField": true,
+        "oneCommitUndoRedo": true
+      },
+      "rawReport": {
+        "file": "live-properties.json",
+        "sizeBytes": 161065,
+        "sha256": "6b7acf1f6aefb26bd2694f291fbd251b8e06417a1aaf4f291bcfe2d30ca44d6a"
+      },
+      "trace": {
+        "file": "chrome-timeline.json",
+        "sizeBytes": 129320057,
+        "sha256": "622a9d827db6b8af715e4a05dd8e5ddcdb4fa42722462b240feb4946842e50f1"
+      },
+      "videos": [
+        {
+          "file": "page@06f52694e5c2a271abb2b3dc3bb03aa7.webm",
+          "sizeBytes": 25386969,
+          "sha256": "67d39728e3c9c5537f4a35b17dee4475391d3d9c23d5f8f2e010fb00810f2519"
+        }
+      ]
+    }
+  ],
+  "executedCases": 74,
+  "scope": "One actual newly installed Windows candidate, two sequential English 1440x900 Chrome contexts, 37 UI cases per theme. No installation lifecycle, formal performance, physical touch, native IME or independent image-accuracy claim.",
+  "limits": [
+    "Calibration numbers and computed statistics in engineering fixtures do not establish real specimen calibration or independent statistical validation.",
+    "Only these finalized input reports are summarized. Historical failed attempts remain separately retained; no earlier result is selected into this pass.",
+    "Native human-operator IME and official release/update acceptance require their independent actual package-bound evidence."
+  ],
+  "servedHtmlSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+  "browser": "155.0.8059.82"
+}

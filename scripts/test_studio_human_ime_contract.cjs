@@ -1,0 +1,12 @@
+/* Operator-harness contracts only; no browser or native input is executed. */
+'use strict';
+const assert=require('node:assert/strict'),path=require('node:path'),Q=require('./run_studio_human_ime_acceptance.cjs');
+let groups=0;function test(name,run){run();groups++;console.log('PASS '+name);}
+const args=['--url=http://127.0.0.1:18982/','--out=.cache/SYNTHETIC-ime-contract','--html=SYNTHETIC.html','--expected-html-sha256='+'a'.repeat(64)];
+test('explicit loopback, source hash and owned cache directory are required',()=>{const a=Q.options(args);assert.equal(a.browser,'msedge');assert.equal(a.expectedHtml,'a'.repeat(64));assert.equal(a.out,path.resolve('.cache/SYNTHETIC-ime-contract'));});
+test('external origins, credentials and missing approved hash are rejected',()=>{assert.throws(()=>Q.options(args.map(v=>v.startsWith('--url=')?'--url=https://example.org/':v)));assert.throws(()=>Q.options(args.map(v=>v.startsWith('--url=')?'--url=http://user:secret@127.0.0.1:18982/':v)));assert.throws(()=>Q.options(args.filter(v=>!v.startsWith('--expected-html-sha256='))));});
+test('the operator cannot write evidence outside the owned cache',()=>{for(const out of ['.cache/../outside','.cache',path.resolve('../SYNTHETIC-other')])assert.throws(()=>Q.options(args.map(v=>v.startsWith('--out=')?'--out='+out:v)));});
+test('synthesized composition is never counted as native',()=>{const r=Q.eventSummary([{type:'compositionstart',trusted:false},{type:'input',trusted:false,isComposing:true},{type:'passive-post-event',historyIndex:0}]);assert.equal(r.trustedCompositionStarts,0);assert.equal(r.trustedComposingInputs,0);});
+test('ordinary trusted keys and inserted text alone are not native IME evidence',()=>{const r=Q.eventSummary([{type:'keydown',trusted:true,keyCode:13},{type:'input',trusted:true,isComposing:false}]);assert.equal(r.trustedCompositionStarts,0);assert.equal(r.trustedComposingInputs,0);assert.equal(r.process229Keys,0);});
+test('actual observed composition, process keys and followup snapshots stay distinct',()=>{const r=Q.eventSummary([{type:'compositionstart',trusted:true},{type:'input',trusted:true,isComposing:true},{type:'keydown',trusted:true,keyCode:229},{type:'passive-post-event',historyIndex:0}]);assert.deepEqual([r.events,r.trustedCompositionStarts,r.trustedComposingInputs,r.process229Keys],[4,1,1,1]);assert.equal(r.types['passive-post-event'],1);});
+console.log('PASS '+groups+' operator-harness contracts; not native Windows IME acceptance.');

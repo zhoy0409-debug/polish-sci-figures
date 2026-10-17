@@ -1,0 +1,80 @@
+{
+  "incompleteAttemptCleanup": true,
+  "protectedOriginalIdentityUnchanged": true,
+  "originalPartialReportUnchanged": true,
+  "version": "0.1.22",
+  "ownedExecutableAbsent": true,
+  "actualIrisObservationCount": 150,
+  "ownedQaProcessCount": 0,
+  "reinstallExecuted": false,
+  "originalPartialSummarySha256": "7d4edd6cf35c92e259d1a0f86305629b8126d1a31e10602d50ae80281fc851f8",
+  "qaProcessStoppedInState": true,
+  "scope": "Independent read-only CIM identity, exact AppId four-view registry, executable absence, and three external-file SHA-256 queries after actual cleanup of the superseded candidate. No browser, process or registry mutation; no local paths, PIDs, usernames, tokens or measurements disclosed.",
+  "powerShellVersion": "7.6.5",
+  "sourceStage": "source19",
+  "protectedOriginalCount": 1,
+  "schema": "figure-studio-windows-incomplete-native-final-query/1",
+  "preservedFiles": [
+    {
+      "byteExact": true,
+      "sizeBytes": 48,
+      "beforeCleanupSha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509",
+      "role": "externalSentinel",
+      "afterCleanupSha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509"
+    },
+    {
+      "byteExact": true,
+      "sizeBytes": 59,
+      "beforeCleanupSha256": "f4d74f8a1913024038b1d106e0a6e24c2889eb4fdb6b258337b896a75776a468",
+      "role": "settings",
+      "afterCleanupSha256": "f4d74f8a1913024038b1d106e0a6e24c2889eb4fdb6b258337b896a75776a468"
+    },
+    {
+      "byteExact": true,
+      "sizeBytes": 577820,
+      "beforeCleanupSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+      "role": "actualSavedPublicIris",
+      "afterCleanupSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5"
+    }
+  ],
+  "browserAcceptanceComplete": false,
+  "originalSetupSha256": "d72d01598c19a11bb84b470bff9dcdfd90cf426cda67627986ceb08d1f9f045e",
+  "registryViews": [
+    {
+      "exists": false,
+      "hive": "HKCU",
+      "view": "Registry32"
+    },
+    {
+      "exists": false,
+      "hive": "HKCU",
+      "view": "Registry64"
+    },
+    {
+      "exists": false,
+      "hive": "HKLM",
+      "view": "Registry32"
+    },
+    {
+      "exists": false,
+      "hive": "HKLM",
+      "view": "Registry64"
+    }
+  ],
+  "status": "PASS_ACTUAL_READ_ONLY_POST_CLEANUP_QUERY",
+  "queriedAtUtc": "2026-10-17T20:28:06.6660800Z",
+  "processExitCode": 0,
+  "processExitEvidence": "Observed actual pwsh execution result returned exit_code 0 for Phase Uninstall -CleanupIncompleteAttempt; original console output retained locally.",
+  "nativeExitCode": null,
+  "nativeExitEvidence": "The native uninstaller numeric exit code is not independently persisted. The actual helper synchronously waited and required native ExitCode 0 plus executable removal before returning successfully.",
+  "safeUninstallStageSha256": "1c5b7f5c2c5f17ff0f61b0c936c350eb7f2b5b4801e73dd9d4416b29c567ba69",
+  "independentPostCleanupQuerySha256": "be701e639e4481c31e36bad0d27e248baedee1d4709da63cb3b1c707cfe02648",
+  "originalPartialStatus": "RETAINED_SCOPED_STAGE_NOT_RELEASE_ACCEPTANCE",
+  "notExecuted": [
+    "Reinstall",
+    "BrowserAcceptanceComplete",
+    "external P1",
+    "duplicate60",
+    "large-import acceptance"
+  ]
+}

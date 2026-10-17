@@ -1,0 +1,798 @@
+{
+  "schema": "figure-studio-public-large-import/1",
+  "status": "PASS_SCOPED_SYNTHETIC_IMPORT_EDIT_ROUNDTRIP",
+  "environment": "installed-windows",
+  "label": "windows-final17-installed",
+  "rawReportSha256": "4a2cf2c31e232854dd935b38f4e0305adacf0ceabe9cd55307e9b4517b7aeadd",
+  "harnessSha256": "13efceccec17482fca0b82f92e58cff99979956446306730aa3b07a5bdcb5818",
+  "servedHtmlVerifierSha256": "ce054638a5a51212e08b37e03d1bf3f0458a337403305878ebfe854cee5d364d",
+  "installedProofHelperSha256": "f51a870b1f6cf761db32ad98d8c144bc06c7626f46746c6d7fe9ee8777660c31",
+  "sourceProof": {
+    "localHtmlSha256": "6edf33716e077c4da21cbcd241e9024167ecc85d215fa04aa85c4e05126a9846",
+    "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+    "reconstructedExpectedSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "installedProof": {
+    "listenerExecutableExact": true,
+    "listenerCount": 1,
+    "fileVersion": "0.1.22",
+    "appId": "{51D78749-35EE-43BB-BA21-F79D6A1D5094}",
+    "registryOwned": true,
+    "registryPresentViews": 2,
+    "registryViews": [
+      {
+        "hive": "CurrentUser",
+        "view": "Registry64",
+        "exists": true,
+        "directoryExact": true,
+        "checkedValueNames": [
+          "Inno Setup: App Path",
+          "InstallLocation"
+        ]
+      },
+      {
+        "hive": "CurrentUser",
+        "view": "Registry32",
+        "exists": true,
+        "directoryExact": true,
+        "checkedValueNames": [
+          "Inno Setup: App Path",
+          "InstallLocation"
+        ]
+      },
+      {
+        "hive": "LocalMachine",
+        "view": "Registry64",
+        "exists": false,
+        "directoryExact": null,
+        "checkedValueNames": []
+      },
+      {
+        "hive": "LocalMachine",
+        "view": "Registry32",
+        "exists": false,
+        "directoryExact": null,
+        "checkedValueNames": []
+      }
+    ],
+    "executableSha256": "c2a6497e96300c88414e80b7c8d6c1b0c9d06d4ee41227a730a75d5322b98fa1",
+    "executableSizeBytes": 18306386,
+    "scope": "Read-only explicit executable hash, file version, live loopback listener ownership and original AppId in all four registry views. No process termination, installation or registry mutation. Update installation capability is checked separately."
+  },
+  "updateInstallationCapability": {
+    "expectedInAppInstall": false,
+    "actualInAppInstall": false,
+    "scope": "Separately asserted capability; isolated QA --data-dir deliberately disables automatic update installation. This is not an official-version update installation/release acceptance."
+  },
+  "browser": "155.0.8059.82",
+  "browserMode": "headful",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "fixtureManifestSha256": "74ea6ba30cae47e3cf7ca86ac1287c69438ca3b9bd4d10d1b9138301e898e793",
+  "pdfFixture": {
+    "schema": "studio-synthetic-large-pdf-fixture/1",
+    "synthetic": true,
+    "file": "SYNTHETIC-large-pdf-10000-marks.pdf",
+    "sha256": "a97209654ff8cf0e2d49b4a7c0622eef1cca81dcc6b227d7d5f7c990aaec64f6",
+    "sizeBytes": 298401,
+    "baseFile": "SYNTHETIC-base-chart.pdf",
+    "baseSha256": "2ab2b9d4723f94a3798b5583bbfe81b0c5526adbac40cd2eba3ffa2d9dc690cf",
+    "baseSizeBytes": 16963,
+    "pageCount": 1,
+    "addedNativePathMarks": 10000,
+    "uniqueNativeText": "SYNTHETIC PDF 10000 MARKS",
+    "generator": "scripts/prepare_studio_large_pdf_qa.py",
+    "generatorSha256": "5b29ba5cdbe727ef289c9bd3f2eb007a5a5a92c874b03ac359cd8fe4990250ed",
+    "reusedFactory": "scripts/test_studio_pdf.py:chart_pdf",
+    "reusedFactorySourceSha256": "52674eca36a1c839a97e490012e5ae6a0261a74adde18ed46351e07f9d46f38c",
+    "scope": "Existing explicitly synthetic Matplotlib chart plus 10,000 native rectangular PDF marks and one labelled native text object. Object complexity only; not a large-file-byte-size benchmark, real research dataset, or independent scientific validation."
+  },
+  "retainedFocusAudit": {
+    "initialFailure": {
+      "status": "FAIL",
+      "rawReportSha256": "b154b442a637f7434e541560eccf3fe642ff75383ea8ce27cf940e1ce2d859f2",
+      "captureHarnessSha256": "27acba8b3543fd63b81c2275e322a9564c3ed0eea416447c110471cd068392e8",
+      "classification": "QA_DOM_CLICK_FOCUS_PREMISE_INVALID_FOR_HEADER_EXPORT_MENU",
+      "cases": [
+        {
+          "id": "synthetic-pdf-10000-marks",
+          "status": "FAIL",
+          "assertion": "SVG export must exclude uncommitted draft",
+          "actualPreviewCounts": {
+            "texts": 14,
+            "paths": 10020,
+            "images": 0
+          },
+          "actualImportedElementCount": null,
+          "remoteRequests": 0,
+          "pageErrors": 0
+        },
+        {
+          "id": "synthetic-svg-10000-elements",
+          "status": "FAIL",
+          "assertion": "SVG export must exclude uncommitted draft",
+          "actualPreviewCounts": null,
+          "actualImportedElementCount": 10000,
+          "remoteRequests": 0,
+          "pageErrors": 0
+        }
+      ]
+    },
+    "diagnostic": {
+      "rawReportSha256": "4516cd7491b12bc6e2007faa5fe8c98609c8684b356498c7e632720656871cfc",
+      "harnessSha256": "36b67b7252adf4e68574abb9d73e58f90af009b452fbc2f7f1e74b1f867b5101",
+      "headerRule": {
+        "file": "studio.js",
+        "sha256": "76939c1f9fdacc22b51fb99cb4d283b0ed87479291842310ec32324995285280",
+        "line": 910,
+        "capturePhaseFocusBeforeButtonCallback": true
+      },
+      "rounds": [
+        {
+          "order": [
+            "save",
+            "export"
+          ],
+          "probes": [
+            {
+              "stage": "before-fill",
+              "activeId": "",
+              "fieldValue": "#243349",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(36, 51, 73)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "after-fill",
+              "activeId": "colorHex",
+              "fieldValue": "#9b3f51",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "before-save",
+              "activeId": "colorHex",
+              "fieldValue": "#9b3f51",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "after-save",
+              "activeId": "colorHex",
+              "fieldValue": "#9b3f51",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "before-export",
+              "activeId": "colorHex",
+              "fieldValue": "#9b3f51",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "after-export",
+              "activeId": "",
+              "fieldValue": "#9B3F51",
+              "historyIndex": 2,
+              "stateSha256": "ce146387c87cce722efe88dbc14287be8f914db834dea45d94c73bd67878e12d",
+              "historySha256": "8ce449496009fb92d059e6f756c61c35f631ebe66b17f22916496c70c1e5df6b",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": "#9b3f51",
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            }
+          ],
+          "downloads": [
+            {
+              "button": "save",
+              "sizeBytes": 1000918,
+              "sha256": "6d2a12b691df5320879e5668f6bed002bb1a3cb89609c52627f91d9f38f5ee8d",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "committedFill": null
+            },
+            {
+              "button": "export",
+              "sizeBytes": 710456,
+              "sha256": "67549740f06f55983e5c7830d02ee2625a5125ca22b4478eb9f0193ee743cbfb",
+              "canonicalSvgSha256": "67549740f06f55983e5c7830d02ee2625a5125ca22b4478eb9f0193ee743cbfb",
+              "originalColourExact": false
+            }
+          ],
+          "timeline": [
+            {
+              "event": "focus",
+              "trusted": true,
+              "activeId": "colorHex",
+              "value": "#243349",
+              "at": 8362.199999988079
+            },
+            {
+              "event": "focusin",
+              "trusted": true,
+              "activeId": "colorHex",
+              "value": "#243349",
+              "at": 8362.199999988079
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "activeId": "colorHex",
+              "value": "#9b3f51",
+              "at": 8401.399999976158
+            },
+            {
+              "event": "change",
+              "trusted": true,
+              "activeId": "",
+              "value": "#9b3f51",
+              "at": 9762.899999976158
+            },
+            {
+              "event": "blur",
+              "trusted": true,
+              "activeId": "",
+              "value": "#9B3F51",
+              "at": 9886.399999976158
+            },
+            {
+              "event": "focusout",
+              "trusted": true,
+              "activeId": "",
+              "value": "#9B3F51",
+              "at": 9886.5
+            }
+          ]
+        },
+        {
+          "order": [
+            "export",
+            "save"
+          ],
+          "probes": [
+            {
+              "stage": "before-fill",
+              "activeId": "",
+              "fieldValue": "#243349",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(36, 51, 73)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "after-fill",
+              "activeId": "colorHex",
+              "fieldValue": "#9b3f51",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "before-export",
+              "activeId": "colorHex",
+              "fieldValue": "#9b3f51",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "after-export",
+              "activeId": "",
+              "fieldValue": "#9B3F51",
+              "historyIndex": 2,
+              "stateSha256": "ce146387c87cce722efe88dbc14287be8f914db834dea45d94c73bd67878e12d",
+              "historySha256": "8ce449496009fb92d059e6f756c61c35f631ebe66b17f22916496c70c1e5df6b",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": "#9b3f51",
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "before-save",
+              "activeId": "",
+              "fieldValue": "#9B3F51",
+              "historyIndex": 2,
+              "stateSha256": "ce146387c87cce722efe88dbc14287be8f914db834dea45d94c73bd67878e12d",
+              "historySha256": "8ce449496009fb92d059e6f756c61c35f631ebe66b17f22916496c70c1e5df6b",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": "#9b3f51",
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "after-save",
+              "activeId": "",
+              "fieldValue": "#9B3F51",
+              "historyIndex": 2,
+              "stateSha256": "ce146387c87cce722efe88dbc14287be8f914db834dea45d94c73bd67878e12d",
+              "historySha256": "8ce449496009fb92d059e6f756c61c35f631ebe66b17f22916496c70c1e5df6b",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": "#9b3f51",
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            }
+          ],
+          "downloads": [
+            {
+              "button": "export",
+              "sizeBytes": 710456,
+              "sha256": "67549740f06f55983e5c7830d02ee2625a5125ca22b4478eb9f0193ee743cbfb",
+              "canonicalSvgSha256": "67549740f06f55983e5c7830d02ee2625a5125ca22b4478eb9f0193ee743cbfb",
+              "originalColourExact": false
+            },
+            {
+              "button": "save",
+              "sizeBytes": 1001200,
+              "sha256": "b4755f8ad692c3e59c0055cee700bcdcc9596e86ca8f327222270fccf021de8c",
+              "historyIndex": 2,
+              "stateSha256": "ce146387c87cce722efe88dbc14287be8f914db834dea45d94c73bd67878e12d",
+              "committedFill": "#9b3f51"
+            }
+          ],
+          "timeline": [
+            {
+              "event": "focus",
+              "trusted": true,
+              "activeId": "colorHex",
+              "value": "#243349",
+              "at": 12325.59999999404
+            },
+            {
+              "event": "focusin",
+              "trusted": true,
+              "activeId": "colorHex",
+              "value": "#243349",
+              "at": 12325.699999988079
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "activeId": "colorHex",
+              "value": "#9b3f51",
+              "at": 12370.299999982119
+            },
+            {
+              "event": "change",
+              "trusted": true,
+              "activeId": "",
+              "value": "#9b3f51",
+              "at": 13026.199999988079
+            },
+            {
+              "event": "blur",
+              "trusted": true,
+              "activeId": "",
+              "value": "#9B3F51",
+              "at": 13178.199999988079
+            },
+            {
+              "event": "focusout",
+              "trusted": true,
+              "activeId": "",
+              "value": "#9B3F51",
+              "at": 13178.299999982119
+            }
+          ]
+        },
+        {
+          "order": [
+            "png",
+            "save"
+          ],
+          "probes": [
+            {
+              "stage": "before-fill",
+              "activeId": "",
+              "fieldValue": "#243349",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(36, 51, 73)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "after-fill",
+              "activeId": "colorHex",
+              "fieldValue": "#9b3f51",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "before-png",
+              "activeId": "colorHex",
+              "fieldValue": "#9b3f51",
+              "historyIndex": 1,
+              "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+              "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": null,
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "after-png",
+              "activeId": "",
+              "fieldValue": "#9B3F51",
+              "historyIndex": 2,
+              "stateSha256": "ce146387c87cce722efe88dbc14287be8f914db834dea45d94c73bd67878e12d",
+              "historySha256": "8ce449496009fb92d059e6f756c61c35f631ebe66b17f22916496c70c1e5df6b",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": "#9b3f51",
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "before-save",
+              "activeId": "",
+              "fieldValue": "#9B3F51",
+              "historyIndex": 2,
+              "stateSha256": "ce146387c87cce722efe88dbc14287be8f914db834dea45d94c73bd67878e12d",
+              "historySha256": "8ce449496009fb92d059e6f756c61c35f631ebe66b17f22916496c70c1e5df6b",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": "#9b3f51",
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            },
+            {
+              "stage": "after-save",
+              "activeId": "",
+              "fieldValue": "#9B3F51",
+              "historyIndex": 2,
+              "stateSha256": "ce146387c87cce722efe88dbc14287be8f914db834dea45d94c73bd67878e12d",
+              "historySha256": "8ce449496009fb92d059e6f756c61c35f631ebe66b17f22916496c70c1e5df6b",
+              "projectSha256": "beef64333bcd54f2d983b3d2b1c5bc16dda5d8eb76c370c2adc9bd740206fcca",
+              "committedFill": "#9b3f51",
+              "canvasFill": "rgb(155, 63, 81)",
+              "autosaveState": "saved"
+            }
+          ],
+          "downloads": [
+            {
+              "button": "png",
+              "sizeBytes": 450932,
+              "sha256": "87da8e38004fc242800bc8138c6377270304e9edcb7e0e71fa2326374cd1265e",
+              "pixels": {
+                "width": 3000,
+                "height": 2880,
+                "sha256": "28882301c63d7b0d40257c912d6f6f25d29ca51daf4e661d5ae9323fbcb52bff"
+              },
+              "originalPixelsExact": false
+            },
+            {
+              "button": "save",
+              "sizeBytes": 1001200,
+              "sha256": "b4755f8ad692c3e59c0055cee700bcdcc9596e86ca8f327222270fccf021de8c",
+              "historyIndex": 2,
+              "stateSha256": "ce146387c87cce722efe88dbc14287be8f914db834dea45d94c73bd67878e12d",
+              "committedFill": "#9b3f51"
+            }
+          ],
+          "timeline": [
+            {
+              "event": "focus",
+              "trusted": true,
+              "activeId": "colorHex",
+              "value": "#243349",
+              "at": 16347.59999999404
+            },
+            {
+              "event": "focusin",
+              "trusted": true,
+              "activeId": "colorHex",
+              "value": "#243349",
+              "at": 16347.699999988079
+            },
+            {
+              "event": "input",
+              "trusted": true,
+              "activeId": "colorHex",
+              "value": "#9b3f51",
+              "at": 16399.19999998808
+            },
+            {
+              "event": "change",
+              "trusted": true,
+              "activeId": "",
+              "value": "#9b3f51",
+              "at": 17041.19999998808
+            },
+            {
+              "event": "blur",
+              "trusted": true,
+              "activeId": "",
+              "value": "#9B3F51",
+              "at": 17236.19999998808
+            },
+            {
+              "event": "focusout",
+              "trusted": true,
+              "activeId": "",
+              "value": "#9B3F51",
+              "at": 17236.19999998808
+            }
+          ]
+        }
+      ],
+      "scope": "Actual read-only IndexedDB and trusted focus events show one legal blur commit during each header SVG/PNG activation. The original failure is retained; no product fix, focus suppression or event shielding was applied."
+    }
+  },
+  "accuracyEvidence": false,
+  "cases": [
+    {
+      "id": "synthetic-pdf-10000-marks",
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows",
+        "architecture": "x86_64",
+        "inAppInstall": false
+      },
+      "pdfRequests": [
+        {
+          "action": "inspect",
+          "page": 0,
+          "inputPdfSha256": "a97209654ff8cf0e2d49b4a7c0622eef1cca81dcc6b227d7d5f7c990aaec64f6",
+          "httpStatus": 200,
+          "pageCount": 1,
+          "convertedSvgSha256": null
+        },
+        {
+          "action": "page",
+          "page": 0,
+          "inputPdfSha256": "a97209654ff8cf0e2d49b4a7c0622eef1cca81dcc6b227d7d5f7c990aaec64f6",
+          "httpStatus": 200,
+          "pageCount": 1,
+          "editable": {
+            "texts": 14,
+            "paths": 10019,
+            "images": 0
+          },
+          "rasterOnly": false,
+          "rasterizedObjects": 0,
+          "warningCodes": [
+            "font_substitution"
+          ],
+          "convertedSvgSha256": "b371e2c231049a4454705f49337d17032586bf99ba9d1e8fb8fb0ec99acad8f4"
+        }
+      ],
+      "actualPreviewCounts": {
+        "texts": 14,
+        "paths": 10020,
+        "images": 0
+      },
+      "actualImportedObjectCounts": {
+        "texts": 14,
+        "paths": 10019,
+        "images": 0
+      },
+      "pdfWarningCodes": [
+        "font_substitution"
+      ],
+      "importApplyOneUndo": true,
+      "originalPdfBytesExact": true,
+      "draftUncommittedAndExportsCommittedOnly": true,
+      "readOnlyAutosaveProbes": [
+        {
+          "stage": "valid-draft-after-real-Save-download",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "invalid-current-value-retains-last-valid-paint",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "after-real-SVG-and-PNG-downloads",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "Escape-restores-original-artwork-and-state",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        }
+      ],
+      "draftExportContext": "The actual header menu focuses its summary. An invalid current HEX value forbids commit at native blur, retains the last valid preview, and permits strict committed-only SVG/PNG and read-only autosave checks. Valid draft persistence is separately checked before this invalid input; no focus or event is suppressed.",
+      "invalidDraftEscExact": true,
+      "actualChromePaintParserContracts": {
+        "hexAndRgbExact": true,
+        "invalidAndPaintServerRejected": true
+      },
+      "exportedSelectedTextColour": "#9b3f51",
+      "singleCommitUndoRedoExact": true,
+      "saveReopenProjectStateAndExportsExact": true,
+      "sourceProjectSha256": "d2c6b91d388c16637bd38e03f6cb3f9d9dd36d9de62dd50dc820c21a8daeda23",
+      "baselineExports": {
+        "svgSha256": "7b20ae667d0f46409f67b4bce84e36c03fd800ed79d0f771ad6e77a27eaa05d0",
+        "canonicalSvgSha256": "9814a08c7f63ed821c6ec8f6355cb0593d3210d4d134a3b6dc21fab3c2c39868",
+        "pngSha256": "e53ab6fd05289a3e804247517356db2e6fea0385b17f8c46b03a867850c17e07",
+        "pngPixels": {
+          "width": 2400,
+          "height": 1850,
+          "sha256": "5c16af005436454ddabba1875a1300037f6c1ed84ee90313f05833e913fb4c02"
+        }
+      },
+      "committedExports": {
+        "svg": {
+          "file": "synthetic-pdf-10000-marks-committed.svg",
+          "sha256": "985c203e68ce6f8c54aa5e7726eb415ffdc767e577e389e2ad3cd24055318d2f",
+          "sizeBytes": 1804231
+        },
+        "canonicalSvgSha256": "dbd827a1a171dd0055bdde87aa7ae5d307b32627c630c90c7ba2f42c1b1bc969",
+        "png": {
+          "file": "synthetic-pdf-10000-marks-committed.png",
+          "sha256": "6b50cc232dc5049623b82d314fee04791a8302bf4ed68d03e680cf630dd2b17e",
+          "sizeBytes": 511113
+        },
+        "pngPixels": {
+          "width": 2400,
+          "height": 1850,
+          "sha256": "251b3a4862ac8e0a93a2e179773d3252b1eba93a9ff90f019c7609748d3fd6af"
+        }
+      },
+      "savedProject": {
+        "file": "synthetic-pdf-10000-marks-saved-project.json",
+        "sha256": "ed84b22f1dde283a36de71de1b1cc49712224bc13aaae00842d39e38c1bc0a17",
+        "sizeBytes": 2076706
+      },
+      "remoteRequests": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "synthetic-svg-10000-elements",
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows",
+        "architecture": "x86_64",
+        "inAppInstall": false
+      },
+      "pdfRequests": [],
+      "actualImportedElementCount": 10000,
+      "originalSvgSha256": "24f699b7c040d7c0722826b28d54efb70fcaeadc37675220ba1b4f2d857cc714",
+      "originalSvgBytes": 710228,
+      "draftUncommittedAndExportsCommittedOnly": true,
+      "readOnlyAutosaveProbes": [
+        {
+          "stage": "valid-draft-after-real-Save-download",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "invalid-current-value-retains-last-valid-paint",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "after-real-SVG-and-PNG-downloads",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "Escape-restores-original-artwork-and-state",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        }
+      ],
+      "draftExportContext": "The actual header menu focuses its summary. An invalid current HEX value forbids commit at native blur, retains the last valid preview, and permits strict committed-only SVG/PNG and read-only autosave checks. Valid draft persistence is separately checked before this invalid input; no focus or event is suppressed.",
+      "invalidDraftEscExact": true,
+      "actualChromePaintParserContracts": {
+        "hexAndRgbExact": true,
+        "invalidAndPaintServerRejected": true
+      },
+      "exportedSelectedTextColour": "#9b3f51",
+      "singleCommitUndoRedoExact": true,
+      "saveReopenProjectStateAndExportsExact": true,
+      "sourceProjectSha256": "2b8cd860dacaa9ad7517250a6bb20c367bfc4d1c5803da50b0c150a3d0f7a248",
+      "baselineExports": {
+        "svgSha256": "9c818591a585879eb2d704a823ecacec80056ded43b94ef120a7a6aafbd361f9",
+        "canonicalSvgSha256": "9c818591a585879eb2d704a823ecacec80056ded43b94ef120a7a6aafbd361f9",
+        "pngSha256": "ff24d26eef1b807fd220294df9c6340cb4a73668c1ab80a07c628e47cddefb4e",
+        "pngPixels": {
+          "width": 3000,
+          "height": 2880,
+          "sha256": "520ba5c61a08375d8740e3434efa8060d6ccd1cd3f98451518f2adff51b3fe87"
+        }
+      },
+      "committedExports": {
+        "svg": {
+          "file": "synthetic-svg-10000-elements-committed.svg",
+          "sha256": "67549740f06f55983e5c7830d02ee2625a5125ca22b4478eb9f0193ee743cbfb",
+          "sizeBytes": 710456
+        },
+        "canonicalSvgSha256": "67549740f06f55983e5c7830d02ee2625a5125ca22b4478eb9f0193ee743cbfb",
+        "png": {
+          "file": "synthetic-svg-10000-elements-committed.png",
+          "sha256": "87da8e38004fc242800bc8138c6377270304e9edcb7e0e71fa2326374cd1265e",
+          "sizeBytes": 450932
+        },
+        "pngPixels": {
+          "width": 3000,
+          "height": 2880,
+          "sha256": "28882301c63d7b0d40257c912d6f6f25d29ca51daf4e661d5ae9323fbcb52bff"
+        }
+      },
+      "savedProject": {
+        "file": "synthetic-svg-10000-elements-saved-project.json",
+        "sha256": "bfe051a7e26ad04cf8e14bfed46f538da7f6e6fe28a33226c39d1c19a3c8050f",
+        "sizeBytes": 1001236
+      },
+      "remoteRequests": 0,
+      "pageErrors": 0
+    }
+  ],
+  "scope": "Explicit synthetic object-complexity UI regression. Actual local PDF conversion and actual imported 10,000-element SVG; no formal latency/FPS, large-file-byte-size or independent research-accuracy claim.",
+  "limitations": [
+    "The PDF is an explicitly synthetic chart plus 10,000 added vector marks; object count does not establish large PDF byte size, arbitrary-document compatibility or real scientific validity.",
+    "The separate 10,000-element SVG is a functional UI smoke, not a formal performance comparison or continuous FPS measurement.",
+    "PNG equality is exact decoded pixels on this Chrome/device; it does not establish cross-platform font or raster equivalence.",
+    "The original PDF bytes and imported project source artwork remain exact; a converted PDF representation is not asserted to be byte-identical to its original PDF or to reconstruct scientific data."
+  ]
+}

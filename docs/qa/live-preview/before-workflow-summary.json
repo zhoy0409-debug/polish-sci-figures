@@ -1,0 +1,1154 @@
+{
+  "schema": "figure-studio-live-preview-before-summary/1",
+  "status": "BASELINE_OBSERVED_DEFECTS_RETAINED",
+  "generatedAt": "2026-10-17T14:12:51.855Z",
+  "kind": "frozen-runtime-not-installed",
+  "servedBuild": {
+    "currentVersion": "0.1.21",
+    "suiteVersion": "1.4.21",
+    "platform": "windows"
+  },
+  "servedHtmlSha256": "d88060709b7bdf2d4ee4c77401344e82c3e3083a68c2cd3760043486d2a8f05f",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "observedWorkflows": 17,
+  "distinctFunctionalAreas": 16,
+  "countScope": "LP13 and LP14 are two border workflows in the same functional area; all remaining workflow IDs identify different controls/features.",
+  "cases": [
+    {
+      "id": "LP01",
+      "label": "Quick font size draft and Escape",
+      "fixture": "iris",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Select X label",
+        "Type 18 pt without leaving field",
+        "Inspect canvas",
+        "Escape"
+      ],
+      "historyBefore": 0,
+      "historyAfter": 1,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 2295,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP01-before.png",
+          "canvasDomSha256": "a1f4b75d577f00f80788a8a5d0b10119f97bb132e17946127d58add6a531f979",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "draft": {
+          "file": "LP01-draft.png",
+          "canvasDomSha256": "352a6e7f7068d7521b064f128deaa5dcf6a63c8a7dc407e8261f726802945981",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "quickFontSize",
+          "autosave": "saved"
+        },
+        "cancel": {
+          "file": "LP01-cancel.png",
+          "canvasDomSha256": "71d28d9d26d484064a4cb5ce889a7e100a3e062bbb91b9bcaf8eeec263fcbedc",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": null,
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP02",
+      "label": "Quick colour confirmed at change boundary",
+      "fixture": "iris",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Select X label",
+        "Set quick colour",
+        "Tab to finish"
+      ],
+      "historyBefore": 0,
+      "historyAfter": 1,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 1642,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP02-before.png",
+          "canvasDomSha256": "0ebc21c6ae575ffd9138f2e6e13a03eec3df5e597a26aac44a0a5aca4184eaac",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP02-committed.png",
+          "canvasDomSha256": "c88d20b675eb8474ee8aa75fba3922c98aca180f5680b8e0e3270cd0b0315e83",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "quickDelete",
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP03",
+      "label": "Inspector HEX draft and change",
+      "fixture": "iris",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Select X label",
+        "Find colour HEX in Properties",
+        "Type HEX",
+        "Inspect before blur",
+        "Tab"
+      ],
+      "historyBefore": 0,
+      "historyAfter": 1,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 2081,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP03-before.png",
+          "canvasDomSha256": "cfe1ee9e4cdb7ce4fcb983d107731c5eb15e7e2eb1a6ca57e30eda5e92adbfa6",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "draft": {
+          "file": "LP03-draft.png",
+          "canvasDomSha256": "7063e6f98b4acbfa69dadb021ecb99d9e0eda8794d66ca093baaf63518b1f7bb",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "colorHex",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP03-committed.png",
+          "canvasDomSha256": "5a02e7ff47dcd4b28ff1671d36d99672f7f50f7f277a549fd6ec55e8712c719c",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "swatchScheme",
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP04",
+      "label": "Font family selection",
+      "fixture": "iris",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Select X label",
+        "Properties font",
+        "Choose Times New Roman"
+      ],
+      "historyBefore": 0,
+      "historyAfter": 1,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 2312,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP04-before.png",
+          "canvasDomSha256": "cf30059acb1dcd71b4ab004404ba2ba866bf65c347a69766ea779ad3958a7b51",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP04-committed.png",
+          "canvasDomSha256": "f9e82a1692bc3db7b219de0591f840513f43c22612a1273aedd4dc50880793a6",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": null,
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP05",
+      "label": "Bold toggle",
+      "fixture": "iris",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Select X label",
+        "Click quick Bold"
+      ],
+      "historyBefore": 0,
+      "historyAfter": 1,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 2318,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP05-before.png",
+          "canvasDomSha256": "2cad974c5a90e9356620777c8a9b49118ebb5fc26e0bb7792931aa91bd8edb37",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP05-committed.png",
+          "canvasDomSha256": "1e66e94de76f0a5ac8d1a7596b5b751a0be0a4a10fdb0b78637cbd61bf9c1f2f",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP06",
+      "label": "Shape stroke numeric draft",
+      "fixture": "synthetic",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Select large rectangle",
+        "Properties stroke width",
+        "Type 2 pt",
+        "Inspect before blur",
+        "Tab"
+      ],
+      "historyBefore": 1,
+      "historyAfter": 2,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 4146,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP06-before.png",
+          "canvasDomSha256": "b133008207c1205382291a30055a2cb673d861feafa565075e57a8e70e6d0a5d",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "draft": {
+          "file": "LP06-draft.png",
+          "canvasDomSha256": "814f5b264018f1648d08596e9de18acecd5099e86c297a7ab38bc29a03e6677b",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "elementStroke",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP06-committed.png",
+          "canvasDomSha256": "e070806b5e47289e879ace163b62912fd9807a12f5b853f9d58165e34398bfc7",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "fillMode",
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP07",
+      "label": "Shape hollow fill",
+      "fixture": "synthetic",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Select large rectangle",
+        "Properties fill",
+        "Choose hollow"
+      ],
+      "historyBefore": 1,
+      "historyAfter": 2,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 3187,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP07-before.png",
+          "canvasDomSha256": "b133008207c1205382291a30055a2cb673d861feafa565075e57a8e70e6d0a5d",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP07-committed.png",
+          "canvasDomSha256": "873ba11a26961999bf308bd51ccf1a4524dcf9d0aa9572268fc2ff4546ad81ba",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": null,
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP08",
+      "label": "Opacity keyboard adjustments",
+      "fixture": "synthetic",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Select rectangle",
+        "Properties opacity",
+        "Three ArrowLeft key gestures"
+      ],
+      "historyBefore": 1,
+      "historyAfter": 4,
+      "historyDelta": 3,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 3765,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP08-before.png",
+          "canvasDomSha256": "b133008207c1205382291a30055a2cb673d861feafa565075e57a8e70e6d0a5d",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP08-committed.png",
+          "canvasDomSha256": "8868f7218977fda01f1e0f660d09be386a0166eed43373c33745634af8c0d12a",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "opacity",
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP09",
+      "label": "Palette hover preview and leave",
+      "fixture": "iris",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Select panel scope",
+        "Palette tab",
+        "Hover first palette",
+        "Move back to canvas"
+      ],
+      "historyBefore": 0,
+      "historyAfter": 0,
+      "historyDelta": 0,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 2587,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP09-before.png",
+          "canvasDomSha256": "eaa78de932f37a4392e52b141a272413e86206b384595e84fe73e391b0f7977c",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "draft": {
+          "file": "LP09-draft.png",
+          "canvasDomSha256": "ba0c618163a33016635eecca2f805ffec15d2f85bbe615a8fd38878262d916c1",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": null,
+          "autosave": "saved"
+        },
+        "cancel": {
+          "file": "LP09-cancel.png",
+          "canvasDomSha256": "2585aa0746c8d21265564a2c9b4de97ffc02cca5505653d925d8b0fb46235764",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": null,
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP10",
+      "label": "Panel gap numeric input",
+      "fixture": "synthetic",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Navigator layout",
+        "Type horizontal gap 20 pt",
+        "Inspect before blur",
+        "Tab"
+      ],
+      "historyBefore": 1,
+      "historyAfter": 2,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 3257,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP10-before.png",
+          "canvasDomSha256": "b133008207c1205382291a30055a2cb673d861feafa565075e57a8e70e6d0a5d",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "draft": {
+          "file": "LP10-draft.png",
+          "canvasDomSha256": "b133008207c1205382291a30055a2cb673d861feafa565075e57a8e70e6d0a5d",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "gap",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP10-committed.png",
+          "canvasDomSha256": "a6f30dcb253e5c654023cd27a690eaa8de76377db029e4fa8330518911b0e175",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "gapSlider",
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP11",
+      "label": "Export physical width",
+      "fixture": "iris",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Navigator export dimensions",
+        "Type 180 mm",
+        "Inspect before blur",
+        "Tab"
+      ],
+      "historyBefore": 0,
+      "historyAfter": 1,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 2310,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP11-before.png",
+          "canvasDomSha256": "fde434670b45c26686dde922cd1dce1ac89f2d1e5b3d314efcde98c061ee41c7",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "draft": {
+          "file": "LP11-draft.png",
+          "canvasDomSha256": "fde434670b45c26686dde922cd1dce1ac89f2d1e5b3d314efcde98c061ee41c7",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "exportWidth",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP11-committed.png",
+          "canvasDomSha256": "c21a889feb49c10d5ff6af47c7846236df1ac879b2dfdf7d6cb1977ff308f06c",
+          "mainCanvas": {
+            "x": 341.66668701171875,
+            "y": 345.3333435058594,
+            "width": 641.3333740234375,
+            "height": 481
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "exportHeight",
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP12",
+      "label": "Professional axis live mode three edits",
+      "fixture": "iris",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Properties professional axes",
+        "Live preview enabled",
+        "Set maximum 8 then 9 then 10",
+        "Wait for real local redraw after each"
+      ],
+      "historyBefore": 0,
+      "historyAfter": 3,
+      "historyDelta": 3,
+      "axisSavedHistory": [
+        1,
+        2,
+        3
+      ],
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 12417,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP12-before.png",
+          "canvasDomSha256": "d3158bfe20f88dfb4df7888dcc5c1f2626a8be50313b04ca3a7bd55fe74f8bac",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "auto-applied": {
+          "file": "LP12-auto-applied.png",
+          "canvasDomSha256": "8452ef978ea61c7fc0994618643d03a361f2f01c7919133b8e6e5ed20ac8eff0",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP13",
+      "label": "Object border fields without Apply",
+      "fixture": "public-he",
+      "captureLabel": "before-v1421-supplement",
+      "steps": [
+        "Select H&E image",
+        "Open object borders",
+        "Set 2 pt and dotted",
+        "Inspect while panel stays open",
+        "Back to editor without Apply"
+      ],
+      "historyBefore": 1,
+      "historyAfter": 1,
+      "historyDelta": 0,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 4533,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP13-before.png",
+          "canvasDomSha256": "26d5b4960460c30adb46f222a9f01dd8e1ff80eef177bab1aadf8a35c89a5ea8",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "draft": {
+          "file": "LP13-draft.png",
+          "canvasDomSha256": "7164125f8035af85a04c7dcd8cfac8801f9be1862b1e03499ed4ff146ccca775",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [
+            {
+              "id": "objectBorderDialog",
+              "modal": true,
+              "rect": {
+                "x": 325,
+                "y": 97.4375,
+                "width": 790,
+                "height": 705.125
+              }
+            }
+          ],
+          "canvasHitPoints": 0,
+          "canvasPointSamples": 9,
+          "focusedId": "border-width",
+          "autosave": "saved"
+        },
+        "cancel": {
+          "file": "LP13-cancel.png",
+          "canvasDomSha256": "7164125f8035af85a04c7dcd8cfac8801f9be1862b1e03499ed4ff146ccca775",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "quickObjectBorder",
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP14",
+      "label": "Object border Apply retains modal",
+      "fixture": "public-he",
+      "captureLabel": "before-v1421-supplement",
+      "steps": [
+        "Select H&E image",
+        "Open object borders",
+        "Set white 1 pt",
+        "Apply borders",
+        "Inspect modal and canvas",
+        "Back to editor"
+      ],
+      "historyBefore": 1,
+      "historyAfter": 2,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 3585,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP14-before.png",
+          "canvasDomSha256": "26d5b4960460c30adb46f222a9f01dd8e1ff80eef177bab1aadf8a35c89a5ea8",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "applied-modal": {
+          "file": "LP14-applied-modal.png",
+          "canvasDomSha256": "5576824937e03b1b854bc744ab3d0ef4088786393a8918604a5ee5905716d7f4",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [
+            {
+              "id": "objectBorderDialog",
+              "modal": true,
+              "rect": {
+                "x": 325,
+                "y": 83.4375,
+                "width": 790,
+                "height": 733.125
+              }
+            }
+          ],
+          "canvasHitPoints": 0,
+          "canvasPointSamples": 9,
+          "focusedId": null,
+          "autosave": "saved"
+        },
+        "visible-after-close": {
+          "file": "LP14-visible-after-close.png",
+          "canvasDomSha256": "5576824937e03b1b854bc744ab3d0ef4088786393a8918604a5ee5905716d7f4",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": null,
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP15",
+      "label": "Image display adjustment preview",
+      "fixture": "public-he",
+      "captureLabel": "before-v1421",
+      "steps": [
+        "Select H&E image",
+        "Image colors and display",
+        "Manual contrast",
+        "Inspect main canvas and modal comparison",
+        "Cancel"
+      ],
+      "historyBefore": 1,
+      "historyAfter": 1,
+      "historyDelta": 0,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 4967,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP15-before.png",
+          "canvasDomSha256": "26d5b4960460c30adb46f222a9f01dd8e1ff80eef177bab1aadf8a35c89a5ea8",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "draft": {
+          "file": "LP15-draft.png",
+          "canvasDomSha256": "7c2554707ce691425dc4720b47565b628a718f133ecd8dc4cdf95c02bf25cb7a",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [
+            {
+              "id": "imageColorDialog",
+              "modal": true,
+              "rect": {
+                "x": 250,
+                "y": 12,
+                "width": 940,
+                "height": 876
+              }
+            }
+          ],
+          "canvasHitPoints": 0,
+          "canvasPointSamples": 9,
+          "focusedId": null,
+          "autosave": "saved"
+        },
+        "cancel": {
+          "file": "LP15-cancel.png",
+          "canvasDomSha256": "61bd739b280adf0ddc344c4abd4262d0b6905da4abf0c41d0768367eb83219e6",
+          "mainCanvas": {
+            "x": 430,
+            "y": 345.3333435058594,
+            "width": 480,
+            "height": 296
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": null,
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP16",
+      "label": "Paragraph line height draft",
+      "fixture": "iris",
+      "captureLabel": "before-v1421-supplement",
+      "steps": [
+        "Select X label",
+        "Properties paragraph line height",
+        "Type 1.8",
+        "Inspect before blur",
+        "Tab"
+      ],
+      "historyBefore": 0,
+      "historyAfter": 1,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 2219,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP16-before.png",
+          "canvasDomSha256": "1c266275156475cc930058fc6b637474111cbd2d7621aba027e97bc8224e5005",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "draft": {
+          "file": "LP16-draft.png",
+          "canvasDomSha256": "fc6f41d600916022fa61a5b41967ca94912b358c6fb160e1268a13a9ca606a6b",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "para-line-height",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP16-committed.png",
+          "canvasDomSha256": "6b0019ab07e4fd579d8be280fe103dba52023ba05eb5ed07a45e037867c70ed5",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "para-letter-spacing",
+          "autosave": "saved"
+        }
+      }
+    },
+    {
+      "id": "LP17",
+      "label": "Panel label size draft",
+      "fixture": "iris",
+      "captureLabel": "before-v1421-supplement",
+      "steps": [
+        "Properties panel label section",
+        "Type label size 16 pt",
+        "Inspect before blur",
+        "Tab"
+      ],
+      "historyBefore": 0,
+      "historyAfter": 1,
+      "historyDelta": 1,
+      "originalTableUnchanged": true,
+      "harnessCaseWallMs": 2392,
+      "timeScope": "Includes fixture setup, state downloads and screenshots; not a novice task completion time or isolated interaction latency.",
+      "snapshots": {
+        "before": {
+          "file": "LP17-before.png",
+          "canvasDomSha256": "4c854e86d880f3ef6c5da58f0402293f05ac5bc8bff7b00382e55a3b482f3cc3",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "save",
+          "autosave": "saved"
+        },
+        "draft": {
+          "file": "LP17-draft.png",
+          "canvasDomSha256": "05b1c21967dce39e6c6875642d2b669b43c59133baa35bf0a546c1443d227b80",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "labelSize",
+          "autosave": "saved"
+        },
+        "committed": {
+          "file": "LP17-committed.png",
+          "canvasDomSha256": "54ca5faffed136d442aed836e1282d882b7d2e5102c658ef5df79f20baedebda",
+          "mainCanvas": {
+            "x": 439.60418701171875,
+            "y": 345.3333435058594,
+            "width": 460.79168701171875,
+            "height": 345.59375
+          },
+          "modalDialogs": [],
+          "canvasHitPoints": 9,
+          "canvasPointSamples": 9,
+          "focusedId": "labelBold",
+          "autosave": "saved"
+        }
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "label": "before-v1421",
+      "status": "PARTIAL_WITH_FLOW_FAILURES",
+      "rawReportSha256": "82beff99c2dc7ca39255aac119af04156a1220f2312e36cd823159462610e93b",
+      "videos": [
+        {
+          "file": "page@eb2cb6ead345b516def915bf8ea782b7.webm",
+          "bytes": 10475311,
+          "sha256": "b1cae9624edc09742a3bf40600323f51537d5625370bf5598190bbbeeeab9bad",
+          "edited": false
+        }
+      ],
+      "retainedFailures": [
+        {
+          "id": "LP13",
+          "kind": "hidden legacy selector used by harness",
+          "selector": "#openObjectBorder",
+          "resolution": "Supplement uses existing visible #quickObjectBorder; original failure is retained. This does not establish that all border entry points were unavailable."
+        },
+        {
+          "id": "LP14",
+          "kind": "hidden legacy selector used by harness",
+          "selector": "#openObjectBorder",
+          "resolution": "Supplement uses existing visible #quickObjectBorder; original failure is retained. This does not establish that all border entry points were unavailable."
+        }
+      ]
+    },
+    {
+      "label": "before-v1421-supplement",
+      "status": "COMPLETE_OBSERVATIONS",
+      "rawReportSha256": "79646ec35459d4dd7afaa3a7063db3bc77e13d0ff9abb33a3038174235da435a",
+      "videos": [
+        {
+          "file": "page@d92be93d674beeecbbc4dde2ce4233e7.webm",
+          "bytes": 1824791,
+          "sha256": "84fd5eeee1951b6d873cde3fb38b7a33e617e2debba88f21d0ae9b2b82d04f3b",
+          "edited": false
+        }
+      ],
+      "retainedFailures": []
+    }
+  ],
+  "findings": [
+    {
+      "id": "axis-live-autocommits",
+      "evidence": "LP12 actual saved history indices 1,2,3 after three waited live redraws",
+      "status": "CONFIRMED_BASELINE_BEHAVIOUR"
+    },
+    {
+      "id": "quick-font-escape-history",
+      "evidence": "LP01 font input then Escape increased actual history index by one",
+      "status": "BASELINE_CANCEL_DEFECT_CANDIDATE"
+    },
+    {
+      "id": "border-has-no-field-preview",
+      "evidence": "LP13 field changes then close added zero history; LP14 Apply added one while modal remained",
+      "status": "CONFIRMED_BASELINE_BEHAVIOUR"
+    },
+    {
+      "id": "modal-canvas-occlusion",
+      "evidence": "Object border and image display modals were manually inspected in screenshots. Their sampled canvas locations returned modal elements; this nine-point hit test is an occlusion proxy, not a percentage pixel-visibility measurement.",
+      "status": "CONFIRMED_BASELINE_BEHAVIOUR"
+    },
+    {
+      "id": "working-palette-and-image-display-drafts",
+      "evidence": "LP09 hover/leave and LP15 image display draft/cancel added zero history; preserve these mechanisms.",
+      "status": "PRESERVE_EXISTING_CAPABILITY"
+    }
+  ],
+  "limitations": [
+    "No new-user participants, clinical accuracy, independent ground truth, native colour-picker window, physical touch device, or Chinese IME test.",
+    "Browser automation expanded some setup disclosures programmatically; this is not discoverability or unaided novice completion evidence.",
+    "Saved history was read after the explicitly recorded confirmation/cancellation boundary. The Save button may blur an active field and therefore cannot by itself prove in-progress draft isolation.",
+    "DOM hashes contain runtime IDs and editor markup; unequal hashes do not prove unequal output pixels or failed cancellation. Later isolation tests must compare committed state and canonical/pixel exports.",
+    "This report is a BEFORE baseline, not an assertion that the new implementation passes. Raw videos and full screenshots remain in ignored local cache."
+  ]
+}

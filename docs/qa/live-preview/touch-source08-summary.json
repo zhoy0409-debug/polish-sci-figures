@@ -1,0 +1,261 @@
+{
+  "schema": "figure-studio-live-preview-touch-summary/1",
+  "label": "source08-touch",
+  "kind": "source-development-runtime",
+  "status": "PASS",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "browserMode": "headless",
+  "startedAt": "2026-10-17T15:30:11.296Z",
+  "finishedAt": "2026-10-17T15:30:31.106Z",
+  "harnessSha256": "fafdd806b068415ecf2fdde99a1f740edaf1edd614d4a796bf7164b863f5652b",
+  "conditions": {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "deviceScaleFactor": 1,
+    "hasTouch": true,
+    "isMobile": false,
+    "reducedMotion": "reduce",
+    "video": false
+  },
+  "scope": "Actual Chrome page.tap supplies emulated touch pointer events for selection, border entry, field focus, Cancel, Commit and Undo/Redo. Text values are entered through Playwright fill after tap; native soft keyboard, physical touchscreen, IME composition, physical Windows scaling and novice users are not tested. Public H&E bytes only.",
+  "htmlSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+  "rawReportSha256": "14b562bbdb53393e35e5e953cb4bda85c9f9d94363948718d347bd0e023e8bde",
+  "retainedEarlierFailureReport": "touch-source06-retained-failures.json",
+  "cases": [
+    {
+      "language": "en",
+      "theme": "carbon",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "localSourceProof": {
+        "localHtmlSha256": "4289e026e479ba6a2c1310dd414b8da6df2641a898ebd2ac598c4f8e9ce22de4",
+        "servedHtmlSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "reconstructedExpectedSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "actualTargetReachable": {
+        "x": 445,
+        "y": 495.796875,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 8
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689",
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "language": "en",
+      "theme": "pearl",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "localSourceProof": {
+        "localHtmlSha256": "4289e026e479ba6a2c1310dd414b8da6df2641a898ebd2ac598c4f8e9ce22de4",
+        "servedHtmlSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "reconstructedExpectedSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "actualTargetReachable": {
+        "x": 445,
+        "y": 495.796875,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 8
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689",
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "language": "zh-CN",
+      "theme": "carbon",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "localSourceProof": {
+        "localHtmlSha256": "4289e026e479ba6a2c1310dd414b8da6df2641a898ebd2ac598c4f8e9ce22de4",
+        "servedHtmlSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "reconstructedExpectedSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "actualTargetReachable": {
+        "x": 445,
+        "y": 495.796875,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 8
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689",
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "language": "zh-CN",
+      "theme": "pearl",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "localSourceProof": {
+        "localHtmlSha256": "4289e026e479ba6a2c1310dd414b8da6df2641a898ebd2ac598c4f8e9ce22de4",
+        "servedHtmlSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "reconstructedExpectedSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "actualTargetReachable": {
+        "x": 445,
+        "y": 495.796875,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 8
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689",
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "source08-touch-draft-en-carbon.png",
+      "sha256": "4a567446f6994bf9a817a8d70951439c8b0810fe7ef6ced96cbcef91a2ed997e",
+      "state": "Actual uncommitted 2 pt public H&E border preview, emulated touch; not an applied state."
+    },
+    {
+      "file": "source08-touch-draft-zh-CN-pearl.png",
+      "sha256": "3e700b6a7d7dd4c13f4d10889d4ba12608dc7f8e9c4ed9640823cae05f354106",
+      "state": "Actual uncommitted 2 pt public H&E border preview, emulated touch; not an applied state."
+    }
+  ]
+}

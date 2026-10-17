@@ -1,0 +1,160 @@
+{
+  "schema": "figure-studio-public-four-panel-style/1",
+  "status": "PASS_SEPARATE_DIAGNOSTIC",
+  "browser": "155.0.8059.82",
+  "declaredViewport": {
+    "width": 1440,
+    "height": 900,
+    "origin": "Explicit capture-harness context; not added retroactively to the raw event samples."
+  },
+  "htmlSha256": "b659049bad8c3305b6639437fa55e33fdf77a409d2a645bacf6df7552473d1b5",
+  "rawSha256": "199b23559b305115e6ef2222f7ad95efd11beed85918962d30b1d43437591206",
+  "timelineSha256": "02372354f70f691da699f5709f589adb5b247e2dc487442bdb415cef6b77ea51",
+  "captureHarnessSha256": "d8d54811afc931d0c3a556996c874a26cf6247b6b7298cdb868d38ba77b52a8f",
+  "summaryHarnessSha256": "b365a5907fcf7f194c2b7906bcc02ca0346c94dbe200e885d5a057fab71b4512",
+  "protocol": {
+    "panels": 4,
+    "elementsPerPanel": 120,
+    "totalElements": 480,
+    "layout": "2 by 2",
+    "warmup": 3,
+    "measuredSamples": 20,
+    "gesture": "Round-robin selected panel text: actual HEX input then Enter; one semantic commit; Undo/Redo after timing.",
+    "measurement": "Input/Enter capture-phase timestamps to next/second rAF callback execution. Not optical latency or continuous FPS.",
+    "memorySampling": "CDP Performance.getMetrics and Memory.getDOMCounters at baseline, after input preview, after commit, after Undo/Redo, and final, including all three warmup and twenty measured gestures. Maximum is an observed stage-sampled high-water mark, not a continuous peak; no forced GC, process RSS, native/GPU memory or allocation-complete claim.",
+    "trace": "CDP timeline spans all gestures, selections, downloads and validation. Event categories may overlap; trace totals are not independent additive wall time."
+  },
+  "fixtureSources": [
+    {
+      "name": "SYNTHETIC-panel-1.svg",
+      "sha256": "c0d80fdd5f0ee97b980fa63a19afe5e9b0cbdde7f6f805f5549293e298280536",
+      "synthetic": true,
+      "elements": 120
+    },
+    {
+      "name": "SYNTHETIC-panel-2.svg",
+      "sha256": "151b76a09cf1b772249c567e7a205368d5ccf6edcb5d9ac3399686233d5d6b04",
+      "synthetic": true,
+      "elements": 120
+    },
+    {
+      "name": "SYNTHETIC-panel-3.svg",
+      "sha256": "a3d0abf955ef6c21f41f18fc3db020a181111cc5e0cd2e95565f1f2c78ee885b",
+      "synthetic": true,
+      "elements": 120
+    },
+    {
+      "name": "SYNTHETIC-panel-4.svg",
+      "sha256": "bd3b3d672cbf4772ffda76f422925974bca0cf98940a3a9150a27349eb4026eb",
+      "synthetic": true,
+      "elements": 120
+    }
+  ],
+  "sourceProjectSha256": "92933ce1f337acd127428ca192c888587d2c5ecaf38544d5527d70b44ffb5470",
+  "measuredSamples": 20,
+  "warmupExcluded": 3,
+  "outliersRemoved": 0,
+  "latencies": {
+    "inputPreview": {
+      "nextRafMs": {
+        "p50": 7,
+        "p95": 8.199999988079071
+      },
+      "secondRafMs": {
+        "p50": 35.10000002384186,
+        "p95": 43
+      }
+    },
+    "enterCommit": {
+      "nextRafMs": {
+        "p50": 30.19999998807907,
+        "p95": 60.099999994039536
+      },
+      "secondRafMs": {
+        "p50": 79.90000000596046,
+        "p95": 144.09999999403954
+      }
+    }
+  },
+  "integrity": {
+    "all23DraftsUncommitted": true,
+    "all23SingleCommitUndoRedo": true,
+    "all23SourceProjectsExact": true,
+    "panelsRetained": 4,
+    "totalElements": 480,
+    "remoteRequests": 0,
+    "pageErrors": 0
+  },
+  "memory": {
+    "samples": 71,
+    "baseline": {
+      "stage": "baseline",
+      "iteration": null,
+      "jsHeapUsedBytes": 27132932,
+      "jsHeapTotalBytes": 48832512,
+      "documents": 16,
+      "nodes": 43873,
+      "eventListeners": 1987
+    },
+    "final": {
+      "stage": "final",
+      "iteration": null,
+      "jsHeapUsedBytes": 22505604,
+      "jsHeapTotalBytes": 50405376,
+      "documents": 2,
+      "nodes": 11280,
+      "eventListeners": 1670
+    },
+    "observedHighWater": {
+      "jsHeapUsedBytes": 28856984,
+      "jsHeapTotalBytes": 51191808,
+      "documents": 16,
+      "nodes": 43873,
+      "eventListeners": 1987
+    },
+    "definition": "Stage-sampled JS heap/DOM high-water mark across baseline, all three warmup and twenty measured gestures, and final. Includes the whole application UI and retained caches, not just the 480 figure elements. Not a continuous true peak, process RSS, native/GPU memory or forced-GC retained size."
+  },
+  "timeline": {
+    "eventTotals": {
+      "EventDispatch": {
+        "count": 5372,
+        "totalMs": 5205.087000000182,
+        "maxMs": 109.404
+      },
+      "UpdateLayoutTree": {
+        "count": 4673,
+        "totalMs": 1283.300999999998,
+        "maxMs": 13.553
+      },
+      "FunctionCall": {
+        "count": 10830,
+        "totalMs": 4919.904000000175,
+        "maxMs": 108.927
+      },
+      "Layout": {
+        "count": 2199,
+        "totalMs": 7550.874999999996,
+        "maxMs": 16.082
+      },
+      "Paint": {
+        "count": 5509,
+        "totalMs": 6162.675999999979,
+        "maxMs": 5.637
+      }
+    },
+    "definition": "Complete diagnostic trace includes selection, setup between gestures, Save/download integrity checks and Undo/Redo. Event categories can nest and overlap; totals are not additive CPU or measured-action wall time."
+  },
+  "retainedEarlierFailure": {
+    "status": "FAIL",
+    "rawSha256": "b85e423af60f66cd710660a5b9ff9964b313b3da9076a3c51bb8b9cd7a750685",
+    "captureHarnessSha256": "aff17401981463415bc13077782ee41167e43f2c59dd957c5059dd2fc4a9bd30",
+    "samples": 0,
+    "classification": "QA_SETUP_ERROR",
+    "explanation": "The first harness targeted the deliberately hidden legacy Apply grid button. It captured zero performance samples. The retained successful retry uses the existing rows Enter and automatic columns controls; production code was unchanged."
+  },
+  "scope": "Explicit synthetic vector editing fixture only. Four complete imported SVG panels, all source bytes unchanged. This separate diagnostic is not pooled with single-panel v2 baselines or scientific algorithm accuracy evidence.",
+  "limitations": [
+    "A separate engineering diagnostic on four synthetic vector panels. Not pooled with the single-panel release baselines; nine-panel and real-image/real-scientific-plot performance are not measured by this case.",
+    "rAF callback execution is not optical display latency or continuous FPS. Both input preview and Enter commit are reported without a blanket responsiveness claim."
+  ]
+}

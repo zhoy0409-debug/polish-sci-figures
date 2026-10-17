@@ -135,14 +135,18 @@ async function run(){
   const left=viewport.scrollLeft;h.send('pointermove',30,190,100);h.flush();h.send('pointerup',30,190,100);
   assert.equal(viewport.scrollLeft,left);assert.equal(h.ends.at(-1).cancelled,true);
 
-  // Drawer views remove the hidden regions from keyboard interaction. Controls
-  // stay mounted so switching drawers does not discard edits or selection state.
+  // Live adjustments keep the canvas reachable; the navigator remains a modal
+  // drawer. All controls stay mounted while switching views.
   const region=doc.querySelector('.inspector');mobile.showTab('adjustments');
-  assert.equal(doc.querySelector('main').inert,true);assert.equal(region.inert,false);assert.equal(region.getAttribute('aria-hidden'),'false');
+  assert.equal(doc.querySelector('main').inert,false);assert.equal(region.inert,false);assert.equal(region.getAttribute('aria-hidden'),'false');
+  assert.equal(doc.querySelector('main').getAttribute('aria-hidden'),'false');
+  assert.equal(doc.getElementById('mobileDrawerScrim').hidden,true);
   assert.equal(doc.getElementById('mobileTab-adjustments').getAttribute('aria-selected'),'true');
   assert.equal(h.window.getComputedStyle(region).display,'block');
   assert.equal(h.window.getComputedStyle(doc.querySelector('.navigator')).display,'none');
   doc.getElementById('property').focus();mobile.showTab('panels');
+  assert.equal(doc.querySelector('main').inert,true);assert.equal(region.inert,true);
+  assert.equal(doc.getElementById('mobileDrawerScrim').hidden,false);
   assert.equal(doc.activeElement,doc.getElementById('mobileTab-panels'));
   mobile.showTab('adjustments');
   doc.getElementById('mobileClose-'+region.id).click();assert.equal(doc.body.dataset.mobileTab,'canvas');

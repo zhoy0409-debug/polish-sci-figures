@@ -1,0 +1,1437 @@
+{
+  "schema": "figure-studio-p1-acceptance-status/1",
+  "status": "SOURCE16_DUAL_THEME_37_EACH_PASS_INSTALLED_ACCEPTANCE_PENDING",
+  "scope": {
+    "browser": "Actual Chrome",
+    "theme": "Carbon and Pearl, separate fresh Chrome/context per theme",
+    "language": "English",
+    "viewportCss": [
+      1440,
+      900
+    ],
+    "runtime": "Frozen local source instances, not installed Windows acceptance",
+    "formalPerformanceClaim": false,
+    "scientificAccuracyClaim": false,
+    "latestProductionFreeze": "dev-final-16",
+    "latestFreezeHtmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8"
+  },
+  "attempts": [
+    {
+      "label": "p1-carbon-fresh04-all-07",
+      "status": "FAIL",
+      "servedHtmlSha256": "0fa24e48c380238009bb33eac2243a84a85ebda470a1a6ba074e0e18fac506f8",
+      "sourceFreeze": null,
+      "cases": [
+        {
+          "id": "P01-hex-colour",
+          "status": "PASS"
+        },
+        {
+          "id": "P02-font-size",
+          "status": "PASS"
+        },
+        {
+          "id": "P03-stroke-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P04-opacity",
+          "status": "PASS"
+        },
+        {
+          "id": "P05-label-text",
+          "status": "PASS"
+        },
+        {
+          "id": "P06-label-position",
+          "status": "PASS"
+        },
+        {
+          "id": "P07-label-size",
+          "status": "PASS"
+        },
+        {
+          "id": "P08-export-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P09-export-height",
+          "status": "PASS"
+        },
+        {
+          "id": "P10-export-dpi",
+          "status": "PASS"
+        },
+        {
+          "id": "P11-font-family",
+          "status": "PASS"
+        },
+        {
+          "id": "P12-bold",
+          "status": "PASS"
+        },
+        {
+          "id": "P13-italic",
+          "status": "PASS"
+        },
+        {
+          "id": "P14-superscript",
+          "status": "PASS"
+        },
+        {
+          "id": "P15-subscript",
+          "status": "PASS"
+        },
+        {
+          "id": "P16-letter-spacing",
+          "status": "PASS"
+        },
+        {
+          "id": "P17-line-height",
+          "status": "PASS"
+        },
+        {
+          "id": "P18-panel-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "P19-protected-paints",
+          "status": "PASS"
+        },
+        {
+          "id": "P20-label-colour",
+          "status": "PASS"
+        },
+        {
+          "id": "P21-roi-scale-guard",
+          "status": "PASS"
+        },
+        {
+          "id": "P22-palette-hover",
+          "status": "PASS"
+        },
+        {
+          "id": "P23-statistics-display",
+          "status": "FAIL",
+          "error": "Source SVG/table/recipe/analysis/checkpoints/drafts must remain exact: project"
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "FAIL",
+          "error": "Invalid draft keeps last valid canvas"
+        },
+        {
+          "id": "P25-heatmap-font",
+          "status": "PASS"
+        },
+        {
+          "id": "P26-scale-calibration",
+          "status": "FAIL",
+          "error": "Input must visibly affect the actual canvas"
+        },
+        {
+          "id": "P27-overlay-stroke",
+          "status": "PASS"
+        },
+        {
+          "id": "P28-bar-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P29-numeric-panel-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "P30-heatmap-decimals",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0
+    },
+    {
+      "label": "p1-carbon-fresh04-diagnostic-08",
+      "status": "FAIL",
+      "servedHtmlSha256": "0fa24e48c380238009bb33eac2243a84a85ebda470a1a6ba074e0e18fac506f8",
+      "sourceFreeze": null,
+      "cases": [
+        {
+          "id": "P23-statistics-display",
+          "status": "PASS"
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "FAIL",
+          "error": "Invalid draft keeps last valid canvas"
+        },
+        {
+          "id": "P26-scale-calibration",
+          "status": "FAIL",
+          "error": "Input must visibly affect the actual canvas"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0
+    },
+    {
+      "label": "p1-carbon-fresh05-cold-09",
+      "status": "FAIL",
+      "servedHtmlSha256": "74bae2035a97f11a25733208f2757d24794ca215af0a39cab92693f9c1e46b83",
+      "sourceFreeze": null,
+      "cases": [
+        {
+          "id": "P23-statistics-display",
+          "status": "FAIL",
+          "error": "Source SVG/table/recipe/analysis/checkpoints/drafts must remain exact: project"
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "FAIL",
+          "error": "Invalid statistics font draft must retain exact actual Chrome canvas pixels"
+        },
+        {
+          "id": "P26-scale-calibration",
+          "status": "PASS"
+        },
+        {
+          "id": "P31-grid-rows",
+          "status": "PASS"
+        },
+        {
+          "id": "P32-panel-span",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0
+    },
+    {
+      "label": "p1-carbon-fresh05-scale-geometry-10",
+      "status": "FAIL",
+      "servedHtmlSha256": "74bae2035a97f11a25733208f2757d24794ca215af0a39cab92693f9c1e46b83",
+      "sourceFreeze": null,
+      "cases": [
+        {
+          "id": "P33-scale-letterbox-geometry",
+          "status": "FAIL",
+          "error": "Scale length must use real letterboxed image content width: actual 120 vs expected 90.66666666666669"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0
+    },
+    {
+      "label": "p1-carbon-fresh05-metadata-11",
+      "status": "FAIL",
+      "servedHtmlSha256": "74bae2035a97f11a25733208f2757d24794ca215af0a39cab92693f9c1e46b83",
+      "sourceFreeze": null,
+      "cases": [
+        {
+          "id": "P23-statistics-display",
+          "status": "FAIL",
+          "error": "Canonical metadata migration cannot rewrite original project initialState"
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "FAIL",
+          "error": "Canonical metadata migration cannot rewrite original project initialState"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0
+    },
+    {
+      "label": "p1-carbon-fresh05-metadata-12",
+      "status": "PASS_SUBSET",
+      "servedHtmlSha256": "74bae2035a97f11a25733208f2757d24794ca215af0a39cab92693f9c1e46b83",
+      "sourceFreeze": {
+        "localHtmlSha256": "eb4d16b4442713ee1cbb722a1b956cce14c32dabee6fb07dc101b3c96451f105",
+        "servedHtmlSha256": "74bae2035a97f11a25733208f2757d24794ca215af0a39cab92693f9c1e46b83",
+        "reconstructedExpectedSha256": "74bae2035a97f11a25733208f2757d24794ca215af0a39cab92693f9c1e46b83",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P23-statistics-display",
+          "status": "PASS"
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0
+    },
+    {
+      "label": "p1-carbon-fresh06-scale-13",
+      "status": "FAIL",
+      "servedHtmlSha256": "378b55f7063ac6a5173b1018b7e14785107e999082695882a9351d3e42f65601",
+      "sourceFreeze": {
+        "localHtmlSha256": "72ed3bcbf0cf9f875cfe5fb8776af056014e0afa6db283955163ade273e8c989",
+        "servedHtmlSha256": "378b55f7063ac6a5173b1018b7e14785107e999082695882a9351d3e42f65601",
+        "reconstructedExpectedSha256": "378b55f7063ac6a5173b1018b7e14785107e999082695882a9351d3e42f65601",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P26-scale-calibration",
+          "status": "PASS"
+        },
+        {
+          "id": "P33-scale-letterbox-geometry",
+          "status": "FAIL",
+          "error": "Uncommitted state must stay exact: SHA eecca7523453a1e979c085c459e2f64c8d0d49b879e95855e300eede466b8e24 vs ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0
+    },
+    {
+      "label": "p1-carbon-fresh06-scale-14",
+      "status": "PASS_SUBSET",
+      "servedHtmlSha256": "378b55f7063ac6a5173b1018b7e14785107e999082695882a9351d3e42f65601",
+      "sourceFreeze": {
+        "localHtmlSha256": "72ed3bcbf0cf9f875cfe5fb8776af056014e0afa6db283955163ade273e8c989",
+        "servedHtmlSha256": "378b55f7063ac6a5173b1018b7e14785107e999082695882a9351d3e42f65601",
+        "reconstructedExpectedSha256": "378b55f7063ac6a5173b1018b7e14785107e999082695882a9351d3e42f65601",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P33-scale-letterbox-geometry",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0
+    },
+    {
+      "label": "p1-carbon-fresh07-calibration-15",
+      "status": "FAIL",
+      "servedHtmlSha256": "0733d5956d0775e7154ee91996cb9387d3059ee63720de7b6f2d13c48fb15764",
+      "sourceFreeze": {
+        "localHtmlSha256": "cff3858a810affa1522af0ec755415b772e841776d29d9a28cfac4040bd88dc3",
+        "servedHtmlSha256": "0733d5956d0775e7154ee91996cb9387d3059ee63720de7b6f2d13c48fb15764",
+        "reconstructedExpectedSha256": "0733d5956d0775e7154ee91996cb9387d3059ee63720de7b6f2d13c48fb15764",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P36-main-scale-unknown",
+          "status": "PASS"
+        },
+        {
+          "id": "P37-per-image-calibration",
+          "status": "FAIL",
+          "error": "Expected values to be strictly equal:"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0
+    },
+    {
+      "label": "p1-carbon-fresh07-calibration-16",
+      "status": "PASS_SUBSET",
+      "servedHtmlSha256": "0733d5956d0775e7154ee91996cb9387d3059ee63720de7b6f2d13c48fb15764",
+      "sourceFreeze": {
+        "localHtmlSha256": "cff3858a810affa1522af0ec755415b772e841776d29d9a28cfac4040bd88dc3",
+        "servedHtmlSha256": "0733d5956d0775e7154ee91996cb9387d3059ee63720de7b6f2d13c48fb15764",
+        "reconstructedExpectedSha256": "0733d5956d0775e7154ee91996cb9387d3059ee63720de7b6f2d13c48fb15764",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P37-per-image-calibration",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0
+    },
+    {
+      "label": "p1-carbon-final09-17",
+      "status": "FAIL",
+      "harnessSha256": "a2d093f01b8d56756973d1d73aead799fd8d34080fea0630355712b11ef1aa5c",
+      "servedHtmlSha256": "def860bd112812cec3d48e2d793478d3b841bed3852f564d3c85b8292acdf5dc",
+      "sourceFreeze": {
+        "localHtmlSha256": "10891b89e04c673437f75b713d92c99e3d9435532d3d9b74df0dc05df31f5030",
+        "servedHtmlSha256": "def860bd112812cec3d48e2d793478d3b841bed3852f564d3c85b8292acdf5dc",
+        "reconstructedExpectedSha256": "def860bd112812cec3d48e2d793478d3b841bed3852f564d3c85b8292acdf5dc",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P01-hex-colour",
+          "status": "PASS"
+        },
+        {
+          "id": "P02-font-size",
+          "status": "PASS"
+        },
+        {
+          "id": "P03-stroke-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P04-opacity",
+          "status": "PASS"
+        },
+        {
+          "id": "P05-label-text",
+          "status": "PASS"
+        },
+        {
+          "id": "P06-label-position",
+          "status": "PASS"
+        },
+        {
+          "id": "P07-label-size",
+          "status": "PASS"
+        },
+        {
+          "id": "P08-export-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P09-export-height",
+          "status": "PASS"
+        },
+        {
+          "id": "P10-export-dpi",
+          "status": "PASS"
+        },
+        {
+          "id": "P11-font-family",
+          "status": "PASS"
+        },
+        {
+          "id": "P12-bold",
+          "status": "PASS"
+        },
+        {
+          "id": "P13-italic",
+          "status": "PASS"
+        },
+        {
+          "id": "P14-superscript",
+          "status": "PASS"
+        },
+        {
+          "id": "P15-subscript",
+          "status": "PASS"
+        },
+        {
+          "id": "P16-letter-spacing",
+          "status": "PASS"
+        },
+        {
+          "id": "P17-line-height",
+          "status": "PASS"
+        },
+        {
+          "id": "P18-panel-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "P19-protected-paints",
+          "status": "PASS"
+        },
+        {
+          "id": "P20-label-colour",
+          "status": "PASS"
+        },
+        {
+          "id": "P21-roi-scale-guard",
+          "status": "PASS"
+        },
+        {
+          "id": "P22-palette-hover",
+          "status": "PASS"
+        },
+        {
+          "id": "P23-statistics-display",
+          "status": "PASS"
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "PASS"
+        },
+        {
+          "id": "P25-heatmap-font",
+          "status": "PASS"
+        },
+        {
+          "id": "P26-scale-calibration",
+          "status": "PASS"
+        },
+        {
+          "id": "P27-overlay-stroke",
+          "status": "PASS"
+        },
+        {
+          "id": "P28-bar-width",
+          "status": "FAIL",
+          "error": "Escape restores the original visible range value"
+        },
+        {
+          "id": "P29-numeric-panel-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "P30-heatmap-decimals",
+          "status": "PASS"
+        },
+        {
+          "id": "P31-grid-rows",
+          "status": "PASS"
+        },
+        {
+          "id": "P32-panel-span",
+          "status": "PASS"
+        },
+        {
+          "id": "P33-scale-letterbox-geometry",
+          "status": "PASS"
+        },
+        {
+          "id": "P34-scale-unsupported-clip",
+          "status": "FAIL",
+          "error": "The input did not match the regular expression /clipping|masking/i. Input:"
+        },
+        {
+          "id": "P35-scale-overflow-last-valid",
+          "status": "FAIL",
+          "error": "The input did not match the regular expression /do not fit/i. Input:"
+        },
+        {
+          "id": "P36-main-scale-unknown",
+          "status": "PASS"
+        },
+        {
+          "id": "P37-per-image-calibration",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": true,
+      "actualVideoRecorded": true
+    },
+    {
+      "label": "p1-carbon-final09-diagnostic-18",
+      "status": "FAIL",
+      "harnessSha256": "294c73296262b526426cf2f47241d603f183d70a3831930bd28bb8ca212521f8",
+      "servedHtmlSha256": "def860bd112812cec3d48e2d793478d3b841bed3852f564d3c85b8292acdf5dc",
+      "sourceFreeze": {
+        "localHtmlSha256": "10891b89e04c673437f75b713d92c99e3d9435532d3d9b74df0dc05df31f5030",
+        "servedHtmlSha256": "def860bd112812cec3d48e2d793478d3b841bed3852f564d3c85b8292acdf5dc",
+        "reconstructedExpectedSha256": "def860bd112812cec3d48e2d793478d3b841bed3852f564d3c85b8292acdf5dc",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P28-bar-width",
+          "status": "FAIL",
+          "error": "Escape restores the original visible range value"
+        },
+        {
+          "id": "P34-scale-unsupported-clip",
+          "status": "PASS"
+        },
+        {
+          "id": "P35-scale-overflow-last-valid",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": true,
+      "actualVideoRecorded": true
+    },
+    {
+      "label": "p1-carbon-final09-range-19",
+      "status": "FAIL",
+      "harnessSha256": "d88964a0dabd2e1ce200730f39dd6db94800789220c229196794a5e9b096d746",
+      "servedHtmlSha256": "def860bd112812cec3d48e2d793478d3b841bed3852f564d3c85b8292acdf5dc",
+      "sourceFreeze": {
+        "localHtmlSha256": "10891b89e04c673437f75b713d92c99e3d9435532d3d9b74df0dc05df31f5030",
+        "servedHtmlSha256": "def860bd112812cec3d48e2d793478d3b841bed3852f564d3c85b8292acdf5dc",
+        "reconstructedExpectedSha256": "def860bd112812cec3d48e2d793478d3b841bed3852f564d3c85b8292acdf5dc",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P28-bar-width",
+          "status": "FAIL",
+          "error": "Escape restores the original visible range value"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": true,
+      "actualVideoRecorded": true
+    },
+    {
+      "label": "p1-carbon-final10-range-20",
+      "status": "PASS_SUBSET",
+      "harnessSha256": "a7d862fb19bdcf224c52a0654cff3d6e5ee5c268f73fa11e84caaf66161a300e",
+      "servedHtmlSha256": "352c6bc13f33fc35fa27d4b295de8e597f4d737bb8ad3cadac88111452f88fa0",
+      "sourceFreeze": {
+        "localHtmlSha256": "ed423492de204ddcacf54260aca05e149dc0664d587e8c6b04a37d1feb14329e",
+        "servedHtmlSha256": "352c6bc13f33fc35fa27d4b295de8e597f4d737bb8ad3cadac88111452f88fa0",
+        "reconstructedExpectedSha256": "352c6bc13f33fc35fa27d4b295de8e597f4d737bb8ad3cadac88111452f88fa0",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P28-bar-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P34-scale-unsupported-clip",
+          "status": "PASS"
+        },
+        {
+          "id": "P35-scale-overflow-last-valid",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": false,
+      "actualVideoRecorded": true
+    },
+    {
+      "label": "p1-carbon-final10-trailing-21",
+      "status": "FAIL",
+      "harnessSha256": "ece475715c0e7b668f7e1bfc05c5d77ab7b1b00a06a5d5e6cfe8126f69ddb8c3",
+      "servedHtmlSha256": "352c6bc13f33fc35fa27d4b295de8e597f4d737bb8ad3cadac88111452f88fa0",
+      "sourceFreeze": {
+        "localHtmlSha256": "ed423492de204ddcacf54260aca05e149dc0664d587e8c6b04a37d1feb14329e",
+        "servedHtmlSha256": "352c6bc13f33fc35fa27d4b295de8e597f4d737bb8ad3cadac88111452f88fa0",
+        "reconstructedExpectedSha256": "352c6bc13f33fc35fa27d4b295de8e597f4d737bb8ad3cadac88111452f88fa0",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P28-bar-width",
+          "status": "FAIL",
+          "error": "Uncommitted state must stay exact: SHA 23eda57a530e08030f36c947bc17317b9d925d4c1bd733c0eb1d33e47bad14cc vs d614536269adb9e8750ae1086ffd51c51267e966471357c0c564842ac73a7c2c"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": false,
+      "actualVideoRecorded": true
+    },
+    {
+      "label": "p1-carbon-final10-trailing-22",
+      "status": "FAIL",
+      "harnessSha256": "224396576c03f743e347307279b27c21dab20c37f79416be42fc1548f6e0c4ed",
+      "servedHtmlSha256": "352c6bc13f33fc35fa27d4b295de8e597f4d737bb8ad3cadac88111452f88fa0",
+      "sourceFreeze": {
+        "localHtmlSha256": "ed423492de204ddcacf54260aca05e149dc0664d587e8c6b04a37d1feb14329e",
+        "servedHtmlSha256": "352c6bc13f33fc35fa27d4b295de8e597f4d737bb8ad3cadac88111452f88fa0",
+        "reconstructedExpectedSha256": "352c6bc13f33fc35fa27d4b295de8e597f4d737bb8ad3cadac88111452f88fa0",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P28-bar-width",
+          "status": "FAIL",
+          "error": "A cancelled drag cannot re-open from trailing pointer motion before release"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": false,
+      "actualVideoRecorded": true
+    },
+    {
+      "label": "p1-carbon-final11-trailing-23",
+      "status": "PASS_SUBSET",
+      "harnessSha256": "1b4d6cdb7fc5b5041ee206c8447dd8a53e42f930ce175bdfa204932546732e3f",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "sourceFreeze": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P28-bar-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P34-scale-unsupported-clip",
+          "status": "PASS"
+        },
+        {
+          "id": "P35-scale-overflow-last-valid",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": false,
+      "actualVideoRecorded": true
+    },
+    {
+      "label": "p1-carbon-final11-saveprobe-24",
+      "status": "PASS_SUBSET",
+      "harnessSha256": "59c794ec9411f59c2dacc2af0567fba9df26d2d6bd2871170208ee84c4690411",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "sourceFreeze": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P28-bar-width",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": false,
+      "actualVideoRecorded": true
+    },
+    {
+      "label": "p1-carbon-final11-full-25",
+      "status": "PASS",
+      "harnessSha256": "59c794ec9411f59c2dacc2af0567fba9df26d2d6bd2871170208ee84c4690411",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "sourceFreeze": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P01-hex-colour",
+          "status": "PASS"
+        },
+        {
+          "id": "P02-font-size",
+          "status": "PASS"
+        },
+        {
+          "id": "P03-stroke-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P04-opacity",
+          "status": "PASS"
+        },
+        {
+          "id": "P05-label-text",
+          "status": "PASS"
+        },
+        {
+          "id": "P06-label-position",
+          "status": "PASS"
+        },
+        {
+          "id": "P07-label-size",
+          "status": "PASS"
+        },
+        {
+          "id": "P08-export-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P09-export-height",
+          "status": "PASS"
+        },
+        {
+          "id": "P10-export-dpi",
+          "status": "PASS"
+        },
+        {
+          "id": "P11-font-family",
+          "status": "PASS"
+        },
+        {
+          "id": "P12-bold",
+          "status": "PASS"
+        },
+        {
+          "id": "P13-italic",
+          "status": "PASS"
+        },
+        {
+          "id": "P14-superscript",
+          "status": "PASS"
+        },
+        {
+          "id": "P15-subscript",
+          "status": "PASS"
+        },
+        {
+          "id": "P16-letter-spacing",
+          "status": "PASS"
+        },
+        {
+          "id": "P17-line-height",
+          "status": "PASS"
+        },
+        {
+          "id": "P18-panel-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "P19-protected-paints",
+          "status": "PASS"
+        },
+        {
+          "id": "P20-label-colour",
+          "status": "PASS"
+        },
+        {
+          "id": "P21-roi-scale-guard",
+          "status": "PASS"
+        },
+        {
+          "id": "P22-palette-hover",
+          "status": "PASS"
+        },
+        {
+          "id": "P23-statistics-display",
+          "status": "PASS"
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "PASS"
+        },
+        {
+          "id": "P25-heatmap-font",
+          "status": "PASS"
+        },
+        {
+          "id": "P26-scale-calibration",
+          "status": "PASS"
+        },
+        {
+          "id": "P27-overlay-stroke",
+          "status": "PASS"
+        },
+        {
+          "id": "P28-bar-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P29-numeric-panel-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "P30-heatmap-decimals",
+          "status": "PASS"
+        },
+        {
+          "id": "P31-grid-rows",
+          "status": "PASS"
+        },
+        {
+          "id": "P32-panel-span",
+          "status": "PASS"
+        },
+        {
+          "id": "P33-scale-letterbox-geometry",
+          "status": "PASS"
+        },
+        {
+          "id": "P34-scale-unsupported-clip",
+          "status": "PASS"
+        },
+        {
+          "id": "P35-scale-overflow-last-valid",
+          "status": "PASS"
+        },
+        {
+          "id": "P36-main-scale-unknown",
+          "status": "PASS"
+        },
+        {
+          "id": "P37-per-image-calibration",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": true,
+      "actualVideoRecorded": true
+    },
+    {
+      "label": "final16-p1-carbon",
+      "status": "PASS",
+      "harnessSha256": "59c794ec9411f59c2dacc2af0567fba9df26d2d6bd2871170208ee84c4690411",
+      "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+      "sourceFreeze": {
+        "localHtmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+        "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "reconstructedExpectedSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P01-hex-colour",
+          "status": "PASS"
+        },
+        {
+          "id": "P02-font-size",
+          "status": "PASS"
+        },
+        {
+          "id": "P03-stroke-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P04-opacity",
+          "status": "PASS"
+        },
+        {
+          "id": "P05-label-text",
+          "status": "PASS"
+        },
+        {
+          "id": "P06-label-position",
+          "status": "PASS"
+        },
+        {
+          "id": "P07-label-size",
+          "status": "PASS"
+        },
+        {
+          "id": "P08-export-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P09-export-height",
+          "status": "PASS"
+        },
+        {
+          "id": "P10-export-dpi",
+          "status": "PASS"
+        },
+        {
+          "id": "P11-font-family",
+          "status": "PASS"
+        },
+        {
+          "id": "P12-bold",
+          "status": "PASS"
+        },
+        {
+          "id": "P13-italic",
+          "status": "PASS"
+        },
+        {
+          "id": "P14-superscript",
+          "status": "PASS"
+        },
+        {
+          "id": "P15-subscript",
+          "status": "PASS"
+        },
+        {
+          "id": "P16-letter-spacing",
+          "status": "PASS"
+        },
+        {
+          "id": "P17-line-height",
+          "status": "PASS"
+        },
+        {
+          "id": "P18-panel-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "P19-protected-paints",
+          "status": "PASS"
+        },
+        {
+          "id": "P20-label-colour",
+          "status": "PASS"
+        },
+        {
+          "id": "P21-roi-scale-guard",
+          "status": "PASS"
+        },
+        {
+          "id": "P22-palette-hover",
+          "status": "PASS"
+        },
+        {
+          "id": "P23-statistics-display",
+          "status": "PASS"
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "PASS"
+        },
+        {
+          "id": "P25-heatmap-font",
+          "status": "PASS"
+        },
+        {
+          "id": "P26-scale-calibration",
+          "status": "PASS"
+        },
+        {
+          "id": "P27-overlay-stroke",
+          "status": "PASS"
+        },
+        {
+          "id": "P28-bar-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P29-numeric-panel-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "P30-heatmap-decimals",
+          "status": "PASS"
+        },
+        {
+          "id": "P31-grid-rows",
+          "status": "PASS"
+        },
+        {
+          "id": "P32-panel-span",
+          "status": "PASS"
+        },
+        {
+          "id": "P33-scale-letterbox-geometry",
+          "status": "PASS"
+        },
+        {
+          "id": "P34-scale-unsupported-clip",
+          "status": "PASS"
+        },
+        {
+          "id": "P35-scale-overflow-last-valid",
+          "status": "PASS"
+        },
+        {
+          "id": "P36-main-scale-unknown",
+          "status": "PASS"
+        },
+        {
+          "id": "P37-per-image-calibration",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": true,
+      "actualVideoRecorded": true
+    },
+    {
+      "label": "final16-p1-pearl",
+      "status": "PASS",
+      "harnessSha256": "59c794ec9411f59c2dacc2af0567fba9df26d2d6bd2871170208ee84c4690411",
+      "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+      "sourceFreeze": {
+        "localHtmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+        "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "reconstructedExpectedSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "cases": [
+        {
+          "id": "P01-hex-colour",
+          "status": "PASS"
+        },
+        {
+          "id": "P02-font-size",
+          "status": "PASS"
+        },
+        {
+          "id": "P03-stroke-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P04-opacity",
+          "status": "PASS"
+        },
+        {
+          "id": "P05-label-text",
+          "status": "PASS"
+        },
+        {
+          "id": "P06-label-position",
+          "status": "PASS"
+        },
+        {
+          "id": "P07-label-size",
+          "status": "PASS"
+        },
+        {
+          "id": "P08-export-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P09-export-height",
+          "status": "PASS"
+        },
+        {
+          "id": "P10-export-dpi",
+          "status": "PASS"
+        },
+        {
+          "id": "P11-font-family",
+          "status": "PASS"
+        },
+        {
+          "id": "P12-bold",
+          "status": "PASS"
+        },
+        {
+          "id": "P13-italic",
+          "status": "PASS"
+        },
+        {
+          "id": "P14-superscript",
+          "status": "PASS"
+        },
+        {
+          "id": "P15-subscript",
+          "status": "PASS"
+        },
+        {
+          "id": "P16-letter-spacing",
+          "status": "PASS"
+        },
+        {
+          "id": "P17-line-height",
+          "status": "PASS"
+        },
+        {
+          "id": "P18-panel-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "P19-protected-paints",
+          "status": "PASS"
+        },
+        {
+          "id": "P20-label-colour",
+          "status": "PASS"
+        },
+        {
+          "id": "P21-roi-scale-guard",
+          "status": "PASS"
+        },
+        {
+          "id": "P22-palette-hover",
+          "status": "PASS"
+        },
+        {
+          "id": "P23-statistics-display",
+          "status": "PASS"
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "PASS"
+        },
+        {
+          "id": "P25-heatmap-font",
+          "status": "PASS"
+        },
+        {
+          "id": "P26-scale-calibration",
+          "status": "PASS"
+        },
+        {
+          "id": "P27-overlay-stroke",
+          "status": "PASS"
+        },
+        {
+          "id": "P28-bar-width",
+          "status": "PASS"
+        },
+        {
+          "id": "P29-numeric-panel-gap",
+          "status": "PASS"
+        },
+        {
+          "id": "P30-heatmap-decimals",
+          "status": "PASS"
+        },
+        {
+          "id": "P31-grid-rows",
+          "status": "PASS"
+        },
+        {
+          "id": "P32-panel-span",
+          "status": "PASS"
+        },
+        {
+          "id": "P33-scale-letterbox-geometry",
+          "status": "PASS"
+        },
+        {
+          "id": "P34-scale-unsupported-clip",
+          "status": "PASS"
+        },
+        {
+          "id": "P35-scale-overflow-last-valid",
+          "status": "PASS"
+        },
+        {
+          "id": "P36-main-scale-unknown",
+          "status": "PASS"
+        },
+        {
+          "id": "P37-per-image-calibration",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "remoteRequestCount": 0,
+      "actualTraceRecorded": true,
+      "actualVideoRecorded": true
+    }
+  ],
+  "confirmedAndFixedProductIssues": [
+    {
+      "issue": "Raster image selection exposes an empty font control, causing valid scale-bar drafts to be rejected",
+      "proof": "fresh04 diagnostics: aria-invalid true, Invalid scale-bar parameters, font empty, otherwise valid 159/20 engineering values",
+      "fix": "Existing scale font, saved typography or Arial supplies a validated fallback",
+      "actualRetest": "fresh05 P26 and fresh06 P26 PASS"
+    },
+    {
+      "issue": "Letterboxed image scale length was calculated from the SVG image viewport rather than displayed source content",
+      "before": {
+        "sourcePixels": [
+          1280,
+          960
+        ],
+        "imageViewport": [
+          600,
+          340
+        ],
+        "displayedContentWidth": 453.33333333333337,
+        "engineeringFullWidthMicrometres": 100,
+        "engineeringBarLengthMicrometres": 20,
+        "actualOldBarWidth": 120,
+        "expectedBarWidth": 90.66666666666669,
+        "excessPercent": 32.35294117647057
+      },
+      "fix": "Existing source dimension and imageRect geometry reused; ambiguous/clipped and overflowing scales are rejected",
+      "actualRetest": {
+        "case": "fresh06 P33 PASS",
+        "previewBarWidth": 90.66666666666669,
+        "committedBarWidth": 90.66666666666669,
+        "actualExportBarWidth": 90.66666666666669,
+        "originalImageBytesUnchanged": true,
+        "singleEditHistoryBefore": 2,
+        "singleEditHistoryAfter": 3
+      }
+    },
+    {
+      "case": "P28",
+      "issue": "Native range input can fire before focus. The cancellation snapshot therefore captures the changed pointer value instead of the original field value.",
+      "realTrustedEventOrder": [
+        "pointerdown value 1",
+        "input value 0.7",
+        "focus value 0.7"
+      ],
+      "observedUiValues": {
+        "before": 1,
+        "dragEnd": 1.3,
+        "afterEscapeBeforeMouseup": 0.7,
+        "afterMouseup": 0.7
+      },
+      "actualFirstBarDisplayWidthCssPx": {
+        "before": 23.687908172607422,
+        "afterPointerdown": 16.58150291442871,
+        "afterDrag": 30.794189453125,
+        "afterEscape": 23.687908172607422,
+        "afterMouseup": 23.687908172607422
+      },
+      "committedGeometryAbsentBeforeAndAfter": true,
+      "committedProjectAndStateUnchanged": true,
+      "historyIndexBefore": 1,
+      "historyIndexAfter": 1,
+      "canvasRestoredExactly": true,
+      "proof": "final09 range-19 actual pointer events, per-step screenshots, SVG dimensions, downloaded payloads, video and Chrome timeline",
+      "status": "Fixed; actual source10 subset retest PASS",
+      "fix": "Capture original control values on pointerdown before the browser native range action; focus cannot overwrite that snapshot.",
+      "actualRetest": {
+        "case": "source10 P28 PASS",
+        "beforeUiValue": 1,
+        "afterEscapeUiValue": 1,
+        "afterMouseupUiValue": 1,
+        "projectAndStateExact": true,
+        "historyBeforeCancel": 1,
+        "historyAfterCancel": 1,
+        "subsequentReleaseHistoryChanges": 1,
+        "actualRepeatedPointerInputs": 60,
+        "sourceDataAndUncertaintyVerticalGeometryUnchanged": true
+      }
+    },
+    {
+      "case": "P28",
+      "issue": "After Escape, the same held native range drag can still emit trusted input events and recreate a draft.",
+      "proof": "final10 trailing-22: no held-drag download probe; actual Escape restores original field and canvas, then six pointer moves without a new pointerdown issue trusted values 0.75/1.25 and change the actual canvas.",
+      "actualBeforeValue": 1,
+      "actualAfterEscapeValue": 1,
+      "actualAfterTrailingMotionValue": 1.25,
+      "pointerStillHeld": true,
+      "persistenceAfterTrailingMotion": "Not assessed in this failing attempt: the strict assertion stopped before mouseup.",
+      "status": "Fixed and actually retested in source11; narrow and Carbon full37 PASS",
+      "fix": "Suppress native range events belonging to the same cancelled gesture until its terminal event; permit a fresh gesture.",
+      "actualRetest": {
+        "noDownloadTailAndFreshGesture": "source11 trailing-23 PASS",
+        "independentPreReleaseActualSave": "source11 saveprobe-24 PASS",
+        "fullCarbonCase": "source11 full-25 P28 PASS",
+        "completedIndexedDbBaselineAndReadOnlyDraftSnapshotsExact": true
+      }
+    }
+  ],
+  "qaAndLegacyLoadFindings": [
+    {
+      "case": "P23",
+      "finding": "Cold local metadata migration completed during the original display test. The sole exact project difference was statisticalRenders added; source panels, table, recipe, analysis and variant SVG were unchanged.",
+      "actualColdRequestUtc": "2026-10-17T15:00:15.509Z",
+      "actualColdResponseUtc": "2026-10-17T15:00:18.994Z",
+      "coldRequestWallMs": 3485,
+      "correction": "Wait at most 30s for the real successful view-specific reflow, then at most 5s for an actual saved payload containing its cache; retain exact project equality for all editing operations. Do not interpret migration time as editing latency.",
+      "additionalHarnessAttempt": "The raw input initialState also gains the existing default labelNumbering:upper during opening. Compare the first actual opened project to the post-migration project, while requiring all original source panels to remain exact.",
+      "actualRetest": "fresh05 metadata-12 P23 PASS"
+    },
+    {
+      "case": "P24",
+      "finding": "SVG namespace IDs also occur inside known statistical metadata JSON, beyond ID attributes. Actual valid/invalid SVGs differ only in generated identifiers.",
+      "correction": "Normalize only references to actual existing IDs within known metadata contracts; no numeric, text, style or geometry normalization. Retain raw SVG snapshots and hashes.",
+      "windowScreenshotComparison": {
+        "width": 824,
+        "height": 386,
+        "differentPixels": 0,
+        "differentPixelFraction": 0,
+        "maxChannelDifference": 0,
+        "validPixelSha256": "9e23d131d76e11d458e694850aededbacd63f2f22e68ac5c5b9a70b0ac28f285",
+        "invalidPixelSha256": "9e23d131d76e11d458e694850aededbacd63f2f22e68ac5c5b9a70b0ac28f285",
+        "scope": "Actual window compositor screenshots; exact source SVG/style/geometry is asserted separately, with no pixel-tolerance substitution"
+      },
+      "independentRawSvgRasterComparison": {
+        "width": 938,
+        "height": 438,
+        "differentPixels": 0,
+        "differentPixelFraction": 0,
+        "maxChannelDifference": 0,
+        "validPixelSha256": "defaa229c952c9589acf3ee2e72b5b0a865c04131b4318a72453bac71e61d797",
+        "invalidPixelSha256": "defaa229c952c9589acf3ee2e72b5b0a865c04131b4318a72453bac71e61d797",
+        "scope": "Actual Chrome SVG decoder and canvas raster, separate documents using unmodified raw SVG snapshots and original unique IDs"
+      },
+      "actualRetest": "fresh05 metadata-12 P24 PASS; raw SVG snapshots use their original unique IDs in separate real Chrome SVG decoder/canvas rasters"
+    },
+    {
+      "case": "P33",
+      "finding": "Switching between two valid fields legitimately commits blur-bound edits. The strengthened draft test initially used a baseline before that setup.",
+      "correction": "Complete and record the explicit engineering calibration first, then preview one thickness field, check zero draft writes, Enter once, Undo/Redo and actual export.",
+      "retainedFailedAttempt": "fresh06 scale-13 P33",
+      "actualRetest": "fresh06 scale-14 P33 PASS"
+    },
+    {
+      "case": "P37",
+      "finding": "The initial panel/content click did not establish actual image element selection. The retained initial attempt failed its expected history assertion.",
+      "correction": "Use actual panel navigation and its matching image layer name, then require element scope before calibration edits.",
+      "retainedFailedAttempt": "fresh07 calibration-15 P37",
+      "actualRetest": "fresh07 calibration-16 P37 PASS; each image independently keeps its declared calibration; selection writes no history; Undo removes only the second image calibration and restores unknown; Redo restores that calibration."
+    },
+    {
+      "case": "P34",
+      "finding": "The initial QA expected an older English substring instead of the exact current localized error. The raw invalid field and scientific rejection were observed.",
+      "actualMessage": "Cannot verify the scale bar's visible region. Check the source image, crop and calibration.",
+      "correction": "Require the exact current message while retaining every canvas, model, blocked-Enter and Escape field-restoration assertion.",
+      "retainedFailedAttempt": "final09-17",
+      "actualRetest": "final09 diagnostic-18 PASS"
+    },
+    {
+      "case": "P35",
+      "finding": "The initial QA expected an older English substring instead of the exact current localized error. The raw invalid field and scientific rejection were observed.",
+      "actualMessage": "The scale bar does not fit the visible image. Reduce its length, font size or line width.",
+      "correction": "Require the exact current message while retaining every canvas, model, blocked-Enter and Escape field-restoration assertion.",
+      "retainedFailedAttempt": "final09-17",
+      "actualRetest": "final09 diagnostic-18 PASS"
+    },
+    {
+      "case": "P28-pre-Escape-attempt21",
+      "finding": "An earlier boundary attempt failed before Escape: a saved payload already contained width0.7 and one history entry. The saved focus observation remained on the same range node; its cause has not been established.",
+      "scope": "Retained unresolved pre-Escape failure; not labelled a download-focus defect or a successful cancellation test.",
+      "retainedFailedAttempt": "final10 trailing-21",
+      "nextCheck": "Require both the original held-drag committed-state probe and the independent no-download trailing-motion cancellation probe on the final source."
+    }
+  ],
+  "scientificLimits": [
+    "The 100/20 micrometre calibration is an explicit engineering assumption used to validate geometry. It is not evidence of the specimen physical size.",
+    "Public CDC TEM is an officially digitally colorized low-resolution derivative, not acquisition raw data. Uncalibrated ROI scale remains disabled.",
+    "Computed comparison and bar-width fixtures are explicitly synthetic, generated with existing production scientific renderers. No biological inference or image-matching accuracy claim is made.",
+    "No private patient image or private measurement was used in these P1 runs. Remote browser requests were blocked and none were observed."
+  ],
+  "pending": [
+    "Final installed Windows P1 complete37 acceptance in each theme.",
+    "Original failed attempts, including unclassified attempt21, remain retained and are not rewritten by later passes."
+  ],
+  "perImageCalibrationDiagnostic": {
+    "sourceFreeze": "dev-final-07",
+    "uncalibratedImageCase": "P36 PASS",
+    "perImageIsolationCase": "P37 PASS",
+    "originalImageBytesUnchanged": true,
+    "selectionHistoryWrites": 0,
+    "engineeringCalibrations": [
+      {
+        "source": "Public H&E",
+        "wholeWidthMicrometres": 100,
+        "barLengthMicrometres": 20
+      },
+      {
+        "source": "Public CDC TEM derivative",
+        "wholeWidthMicrometres": 200,
+        "barLengthMicrometres": 40
+      }
+    ],
+    "limits": "These are explicit engineering calibration assumptions, not evidence of the specimen physical size; this subset does not substitute for the final frozen-source or installed Windows matrix."
+  },
+  "latestIndependentSummary": "p1-source16-summary.json"
+}

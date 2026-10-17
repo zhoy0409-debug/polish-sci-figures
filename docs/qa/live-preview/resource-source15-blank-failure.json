@@ -1,0 +1,58 @@
+{
+  "schema": "figure-studio-resource-usability-failure/1",
+  "status": "CONFIRMED_USABILITY_FAILURE",
+  "target": "source15 frozen local runtime",
+  "localHtmlSha256": "a495489851e6019f1e88b289b80de7ab3d15d24f15fcbbc432044208ab6d2c7f",
+  "browser": "155.0.8059.82",
+  "conditions": {
+    "theme": "carbon",
+    "language": "en",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "headless": true,
+    "video": false
+  },
+  "trigger": "New untouched blank project → upload actual repository CSV → confirm design → recommend → Compare on canvas.",
+  "actual": {
+    "projectStart": {
+      "x": 226,
+      "y": 356,
+      "width": 728,
+      "height": 238.1875,
+      "clientHeight": 237,
+      "hidden": false
+    },
+    "viewport": {
+      "x": 226,
+      "y": 594.1875,
+      "width": 728,
+      "height": 83.8125,
+      "clientHeight": 84,
+      "hidden": false
+    },
+    "svg": {
+      "x": 566.953125,
+      "y": 626.1875,
+      "width": 46.078125,
+      "height": 34.546875,
+      "clientHeight": 35
+    },
+    "window": {
+      "width": 1280,
+      "height": 720,
+      "scrollY": 0
+    }
+  },
+  "expected": "The welcome section yields space while the scientific preview is active; the main SVG exceeds the unchanged 100 × 90 CSS px visibility floor. Cancel restores the untouched welcome without editing the project.",
+  "scientificDataAndSaveUnchanged": true,
+  "pageErrors": 0,
+  "externalRequests": 0,
+  "rawReportSha256": "c7604831dcf3dcd5d599f7829f8fe5a1f6e5c4b486bca10da5b64b792a839b9d",
+  "screenshot": {
+    "file": "resource-source15-blank-failure.png",
+    "sha256": "54c2ccebe84c425158d221ee88912fd5c45d844132527ebc09a440ace8458293"
+  },
+  "disposition": "Reported to the main developer for a minimal transient UI lifecycle fix. This file preserves the original failure and must not be overwritten by later passing results."
+}

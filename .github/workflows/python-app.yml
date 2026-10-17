@@ -43,6 +43,8 @@ jobs:
         run: |
           python skills/polish-sci-figures/scripts/test_figure_studio.py
           python scripts/test_studio_pdf_font_fallback.py
+          python scripts/test_verify_studio_windows_package_source.py
+          python scripts/test_sanitize_studio_performance_trace.py
       - name: Desktop launcher lifecycle and local authorization
         run: |
           python desktop/test_figure_studio_app.py
@@ -184,6 +186,7 @@ jobs:
       - name: Figure Studio analysis and data reflow
         run: |
           python scripts/test_studio_statistics.py
+          python scripts/test_studio_render_statistics_cache.py
           python scripts/test_studio_updates.py
           python scripts/test_studio_image_links.py
           python scripts/test_studio_image_links_endpoint.py
@@ -259,6 +262,37 @@ jobs:
           node scripts/test_studio_alignment_guides.cjs
           node scripts/test_studio_layers_panel.cjs
           node scripts/test_studio_selection_performance.cjs
+          node scripts/test_studio_selection_lookup.cjs
+          node scripts/test_studio_preview_sessions.cjs
+          node scripts/test_studio_field_preview.cjs
+          node scripts/test_studio_host_ime.cjs
+          node scripts/test_studio_component_ime.cjs
+          node scripts/test_studio_commit_preview_efficiency.cjs
+          node scripts/test_studio_palette_cache.cjs
+          node scripts/test_studio_human_ime_contract.cjs
+          node scripts/test_studio_discovery_install.cjs
+          node scripts/test_studio_resource_preview.cjs
+          node scripts/test_studio_resource_preview_harness.cjs
+          node scripts/test_verify_studio_served_html.cjs
+          node scripts/test_studio_pane_reuse.cjs
+          node scripts/test_studio_selection_click_reuse.cjs
+          node scripts/test_studio_selection_refresh_efficiency.cjs
+          node scripts/test_studio_pane_zoom.cjs
+          node scripts/test_studio_installed_acceptance_contract.cjs
+          node scripts/test_studio_installed_manifest_contract.cjs
+          node scripts/test_studio_installed_browser_identity.cjs
+          node scripts/test_studio_duplicate_network_capture.cjs
+          node scripts/test_studio_large_import_contracts.cjs
+          node scripts/test_studio_discovery_preview_ui.cjs
+          node scripts/test_studio_quick_paint_preview.cjs
+          node scripts/test_studio_palette_preview.cjs
+          node scripts/test_studio_palette_pane_layout.cjs
+          node scripts/test_studio_object_borders_live_preview.cjs
+          node scripts/test_studio_scale_geometry.cjs
+          node scripts/test_studio_scale_controls.cjs
+          node scripts/test_studio_performance_v2.cjs
+          node scripts/test_studio_performance_summary.cjs
+          node scripts/test_studio_update_real_evidence.cjs
           node scripts/test_studio_edited_svg_performance.cjs
           node scripts/test_studio_autosave_coalescing.cjs
           node scripts/test_studio_template_cache.cjs
@@ -267,6 +301,13 @@ jobs:
           node scripts/test_studio_axis_editing.cjs --dom --real
           node scripts/test_studio_axis_settings_ui.cjs
           node scripts/test_studio_axis_settings_async.cjs
+          node scripts/test_studio_axis_preview_isolation.cjs
+          node scripts/test_studio_axis_asset_draft.cjs
+          node scripts/test_studio_axis_canvas_restore.cjs
+          node scripts/test_studio_legacy_axis_preview.cjs
+          node scripts/test_studio_scale_preview.cjs
+          node scripts/test_studio_text_spacing_preview.cjs
+          node scripts/test_studio_image_insets_draft.cjs
           node scripts/test_studio_border_replacement.cjs
           node scripts/test_studio_experience_tools.cjs
           node scripts/test_studio_component_style.cjs --dom --real

@@ -1,0 +1,96 @@
+{
+  "schema": "figure-studio-windows-final-native-state/1",
+  "status": "PASS_ACTUAL_REINSTALL_UNINSTALL_AND_READ_ONLY_FINAL_QUERY",
+  "generatedAt": "2026-10-17T18:44:50.323Z",
+  "applicationVersion": "0.1.22",
+  "setupSha256": "dfe79e35f01929e3af6d796ee4333bfea1f1833e7ab5a0c0029dadfef40ce8f5",
+  "phases": {
+    "reinstall": {
+      "powerShellProcessExitCode": 0,
+      "nativeExitCodeIndependentRecord": null,
+      "nativeExitCodeIndependentlyPersisted": false,
+      "nativeExitGuardCheckedByPassingHarness": true,
+      "distinction": "The actual PowerShell phase process returned 0. The harness synchronously awaited the native process and rejects a nonzero ExitCode. No separate numeric native-exit record was persisted; null is intentional and is not a fabricated native log value.",
+      "completedAtUtc": "2026-10-17T18:42:06.1866285Z",
+      "reinstallPreserved": true,
+      "stageReportSha256": "3a1352434f8c5c2bb9422599385c81736f47bb467f913ae56df5d2f4bb5ad372",
+      "privateNativeInstallerLogSha256": "3f4d2373de83047b7a4baf3059fac7e5759151a7790ab48f7a1aa0d9898a570e",
+      "nativeLogReportsInstallationSucceeded": true
+    },
+    "uninstall": {
+      "powerShellProcessExitCode": 0,
+      "nativeExitCodeIndependentRecord": null,
+      "nativeExitCodeIndependentlyPersisted": false,
+      "nativeExitGuardCheckedByPassingHarness": true,
+      "distinction": "The actual PowerShell phase process returned 0. The harness synchronously awaited the native process and rejects a nonzero ExitCode. No separate numeric native-exit record was persisted; null is intentional and is not a fabricated native log value.",
+      "completedAtUtc": "2026-10-17T18:42:59.3436548Z",
+      "stageReportSha256": "7e94150a965c92dd6bebd89953603ea1d94556d52a9fd51d28dc4996457ef509",
+      "nativeUninstallerLogRecorded": false,
+      "normalUninstall": true,
+      "incompleteAttemptCleanup": false
+    }
+  },
+  "actualFinalQuery": {
+    "preserved": [
+      {
+        "role": "externalSentinel",
+        "byteExact": true,
+        "afterUninstallSha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509",
+        "beforeReinstallSha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509"
+      },
+      {
+        "role": "settings",
+        "byteExact": true,
+        "afterUninstallSha256": "e3fec64160b4ab1ab37679c0bd3117ff059c97069a7206e260731eeb16b544d5",
+        "beforeReinstallSha256": "e3fec64160b4ab1ab37679c0bd3117ff059c97069a7206e260731eeb16b544d5"
+      },
+      {
+        "role": "actualSavedPublicIris",
+        "byteExact": true,
+        "afterUninstallSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+        "beforeReinstallSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5"
+      }
+    ],
+    "protectedOriginalIdentityUnchanged": true,
+    "actualIrisObservationCount": 150,
+    "powerShellVersion": "7.6.5",
+    "qaProcessStoppedInState": true,
+    "ownedExecutableAbsent": true,
+    "schema": "figure-studio-windows-final-native-query/1",
+    "status": "PASS_ACTUAL_READ_ONLY_FINAL_QUERY",
+    "version": "0.1.22",
+    "registryViews": [
+      {
+        "hive": "HKCU",
+        "view": "Registry32",
+        "exists": false
+      },
+      {
+        "hive": "HKCU",
+        "view": "Registry64",
+        "exists": false
+      },
+      {
+        "hive": "HKLM",
+        "view": "Registry32",
+        "exists": false
+      },
+      {
+        "hive": "HKLM",
+        "view": "Registry64",
+        "exists": false
+      }
+    ],
+    "protectedOriginalCount": 1,
+    "queriedAtUtc": "2026-10-17T18:44:27.9689699Z",
+    "scope": "Read-only CIM, file SHA-256 and all four exact AppId registry view queries after actual normal uninstall. No PID, local path, registry values, token or measurement is disclosed; no process or registry mutation.",
+    "ownedQaProcessCount": 0
+  },
+  "actualIrisOriginalTableExact": true,
+  "stateSnapshotSha256": "fbded8b4ce22768bca1daacce1f3f73ac5feeefb6b892eb5d58c825814751acc",
+  "readOnlyQuerySha256": "c6e15dc7513b4a9ebb1be4ba3eb70127e47366b6b953a66deebccb2b471c1ed2",
+  "installerHarnessSha256": "19fadc35c2308c5ab10cfa0a6c661a07df16a9e60510a3fda7c5c7563fc95c29",
+  "finalQueryHarnessSha256": "5dcfc4794243c72ac0c32b448a1cc8e70470425833bc258c5848befa9e508aab",
+  "scope": "Actual original Setup/AppId in a deliberately isolated local Windows installation, followed by fresh read-only CIM/all-four-view registry/file-hash queries. Stage JSON remains byte-for-byte unchanged. No clean-VM, official online update, physical touchscreen or release claim.",
+  "mutationsByThisSidecarCheck": []
+}

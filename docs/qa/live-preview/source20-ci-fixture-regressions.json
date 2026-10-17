@@ -1,0 +1,1550 @@
+{
+  "schema": "figure-studio-ci-fixture-regressions/1",
+  "stage": "source20",
+  "status": "LOCAL_QA_FIXTURES_GREEN_REMOTE_RERUN_NOT_ESTABLISHED",
+  "generatedUTC": "2026-10-17T21:13:52.411143+00:00",
+  "scope": "QA-only repairs to four standalone extracted-VM fixtures. Production source20 and shipped runtime bytes are unchanged. Local Node/JSDOM execution is separate from Ubuntu GitHub CI and installed Windows/native acceptance.",
+  "initialRemoteCI": {
+    "pullRequest": 31,
+    "pullRequestUrl": "https://github.com/zhoy0409-debug/polish-sci-figures/pull/31",
+    "head": "9e2aa0acdb5a74d93c8b89c7e0181beabefc53f9",
+    "runId": 39068492241,
+    "runUrl": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39068492241",
+    "completedJobs": 8,
+    "success": 6,
+    "failure": 2,
+    "jobs": [
+      {
+        "id": 117501004954,
+        "name": "local browser preview (ubuntu, py3.12, Node24)",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "9e2aa0acdb5a74d93c8b89c7e0181beabefc53f9"
+      },
+      {
+        "id": 117501005003,
+        "name": "full integration (ubuntu, py3.12)",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "9e2aa0acdb5a74d93c8b89c7e0181beabefc53f9"
+      },
+      {
+        "id": 117501005085,
+        "name": "basic (macos-latest, py3.12)",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "9e2aa0acdb5a74d93c8b89c7e0181beabefc53f9"
+      },
+      {
+        "id": 117501005097,
+        "name": "basic (macos-latest, py3.10)",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "9e2aa0acdb5a74d93c8b89c7e0181beabefc53f9"
+      },
+      {
+        "id": 117501005099,
+        "name": "basic (windows-latest, py3.10)",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "9e2aa0acdb5a74d93c8b89c7e0181beabefc53f9"
+      },
+      {
+        "id": 117501005105,
+        "name": "basic (windows-latest, py3.12)",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "9e2aa0acdb5a74d93c8b89c7e0181beabefc53f9"
+      },
+      {
+        "id": 117501005131,
+        "name": "basic (ubuntu-latest, py3.10)",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "9e2aa0acdb5a74d93c8b89c7e0181beabefc53f9"
+      },
+      {
+        "id": 117501005155,
+        "name": "basic (ubuntu-latest, py3.12)",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "9e2aa0acdb5a74d93c8b89c7e0181beabefc53f9"
+      }
+    ],
+    "primaryFailures": [
+      {
+        "jobId": 117501005003,
+        "error": "ReferenceError: resourcePreviewDraft is not defined",
+        "primaryLogSha256": "f66da54aab8010bf0758435adf8c05036b6537f9bbbb68e65f21ff60d6125703",
+        "primaryLogBytes": 995944
+      },
+      {
+        "jobId": 117501004954,
+        "error": "ReferenceError: quickCommitPending is not defined; consequent original 0 !== 1 assertion",
+        "primaryLogSha256": "92ee36eb1bb0998591326ecc50b22bc8c39a50905bcf5c8414cf7a0fd3cb776c",
+        "primaryLogBytes": 147477
+      }
+    ],
+    "freshHeadResult": "No fresh GitHub CI success is asserted by this local report."
+  },
+  "localEnvironment": {
+    "platform": "Windows",
+    "node": "v24.18.0",
+    "jsdom": "26.1.0",
+    "originalFullIntegrationCI": "Ubuntu, Python 3.12, Node v22.23.3; same missing-binding error, not identical runtime conditions",
+    "originalMobileDomCI": "Ubuntu, Python 3.12, Node24",
+    "browserLaunched": false,
+    "nativeAppOrProductEngineLaunched": false
+  },
+  "fixtures": [
+    {
+      "file": "scripts/test_studio_new_project.cjs",
+      "cause": "Production renderProjectStart reads resourcePreviewDraft, but the extracted VM omitted its existing host binding.",
+      "correction": "Add the real null host binding. Extend welcome coverage for showing/restoring a resource preview without changing source, history or data drafts.",
+      "beforeSha256": "26484b2aa1342e067960548cbc56387a6f7a65ed4a66e16db9359fd597a9bfe7",
+      "afterSha256": "70f65bbffca5ef0550655609badfb3a26e4a10738df7d7aae3b53360ac6fbca9",
+      "originalLocalRed": {
+        "exitCode": 1,
+        "error": "ReferenceError: resourcePreviewDraft is not defined",
+        "logSha256": "348e83f301f311f5a646b1a39bdf34859038d95b903c18baaa767cead43b3284"
+      },
+      "after": {
+        "exitCode": 0,
+        "logSha256": "69db315a8ea1687c797cfb69e39eaa157488adfcf842350151ce0df026bda1a7",
+        "scope": "All original New Project, cancellation, stale-state, backup and history assertions plus preview-welcome isolation."
+      }
+    },
+    {
+      "file": "scripts/test_studio_direct_text_editing.cjs",
+      "cause": "Production previewQuickStyle reads quickCommitPending; handwritten VM declarations omitted that binding.",
+      "correction": "Extract the exact existing production declaration slice from let quickPreview to function quickSelectedObjects, including quickCommitPending and quickCancelledInputs. This fixture exercises the production quick-style fallback; managed sessions have separate acceptance.",
+      "beforeSha256": "4f2d5de8d13d9c99006335eaafd5a3313e3608fccc5656aaeab368f277198f39",
+      "afterSha256": "680093b83e8368cf75f8723b8427a8fdf800ad4daab6d8a091dbfabfce14b46e",
+      "originalLocalRed": {
+        "exitCode": 1,
+        "error": "ReferenceError: quickCommitPending is not defined",
+        "logSha256": "5599fd00948e53cc3615bf6fc8c895dd3cc7774cf9e10174c6778259a16ccc17"
+      },
+      "after": {
+        "exitCode": 0,
+        "assertionGroups": 13,
+        "logSha256": "e7b1d6be8c43055d29fddfb4493b0032e1a48d7629dbac144120f58594f99897",
+        "scope": "All original frame cancellation, single persist, target identity, IME/Escape, range/whole rich text formatting and F2 guards."
+      }
+    },
+    {
+      "file": "scripts/test_studio_inserted_text_font_scale.cjs",
+      "cause": "Extracted production targetObjects now uses the existing DRAW declaration and isVisibleObject function; both were absent from the isolated VM.",
+      "correction": "Assert and inject the exact production DRAW declaration and extract the full production isVisibleObject function. No invented selector, always-visible stub, caught ReferenceError, or removed behavior assertion.",
+      "beforeSha256": "440bed9f56cb04bbe3ea488876e9a29278b1950ba18c122a50d94dc3f66b01e0",
+      "afterSha256": "11b82430bbc1bc91a85affecc0bf763ebff2e1311b3d7a983ee03679d015f186",
+      "originalLocalRed": {
+        "exitCode": 1,
+        "error": "ReferenceError: DRAW is not defined",
+        "logSha256": "aeff9c655a4c27f612b10be17e6611302932ea3909a310f0dcf81ed8a472c6f3"
+      },
+      "intermediateDrawOnlyRed": {
+        "exitCode": 1,
+        "error": "ReferenceError: isVisibleObject is not defined",
+        "logSha256": "e5b24354cef6bb6be327c914f556984997fb17662534942463e2ebff34a7e2c8"
+      },
+      "after": {
+        "exitCode": 0,
+        "assertionGroups": 7,
+        "logSha256": "5a137ad1b075e4428223dd52e2d12bb925255286511094eae96dc3ee0a6908ba",
+        "scope": "All original real-DOM physical font size, scaling, output geometry, history/reopen and source guards."
+      }
+    },
+    {
+      "file": "scripts/test_studio_resize_text.cjs",
+      "cause": "Extracted production targetObjects now uses the existing DRAW declaration and isVisibleObject function; both were absent from the isolated VM.",
+      "correction": "Assert and inject the exact production DRAW declaration and extract the full production isVisibleObject function. No invented selector, always-visible stub, caught ReferenceError, or removed behavior assertion.",
+      "beforeSha256": "9136344c23ad8c9b6da043406754ca85dede7745a9f01910c10d894982a2f0e0",
+      "afterSha256": "86ef4e5b0f0af72e91cb91436036db3bd102ec0a14c1a8953a0f9ed6cbd40094",
+      "originalLocalRed": {
+        "exitCode": 1,
+        "error": "ReferenceError: DRAW is not defined",
+        "logSha256": "5ebadda436cb0c69b440914284ee126ec7468631dd527c12e642985a3371f2b0"
+      },
+      "intermediateDrawOnlyRed": {
+        "exitCode": 1,
+        "error": "ReferenceError: isVisibleObject is not defined",
+        "logSha256": "5ef68f290f76abae09b0cbe998ab181ffcbefe5f574253042e57c930a386cd9a"
+      },
+      "after": {
+        "exitCode": 0,
+        "assertionGroups": 10,
+        "logSha256": "53c56549e97786e26ef2c016d50b27df2448061efb88a2e64c36528e0f4370e3",
+        "scope": "All original real-DOM physical font size, scaling, output geometry, history/reopen and source guards."
+      }
+    }
+  ],
+  "localBatches": {
+    "historyAndState": {
+      "planned": 33,
+      "passed": 33,
+      "failed": 0,
+      "previous12RemotePassedCommandsNotRepeated": 12,
+      "sourceAndHarnessBeforeAfterExact": true,
+      "commands": [
+        {
+          "script": "scripts/test_studio_new_project.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_new_project.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.26600000000325963,
+          "log": "01-test_studio_new_project.log",
+          "logSha256": "69db315a8ea1687c797cfb69e39eaa157488adfcf842350151ce0df026bda1a7"
+        },
+        {
+          "script": "scripts/test_studio_beginner_flow.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_beginner_flow.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.20300000000861473,
+          "log": "02-test_studio_beginner_flow.log",
+          "logSha256": "82d0c15a4b7ac5aa4638ee7a3eb3a22e90b9d6598947c28311568d4fc5f6560d"
+        },
+        {
+          "script": "scripts/test_studio_easy_statistics.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_easy_statistics.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.21799999999348074,
+          "log": "03-test_studio_easy_statistics.log",
+          "logSha256": "6b0469bf2ab8e0e8f3900142cbaf55e9179e3bcaafcde44113982c0a4fdddc62"
+        },
+        {
+          "script": "scripts/test_studio_statistical_line_editing.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_statistical_line_editing.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.23499999998603016,
+          "log": "04-test_studio_statistical_line_editing.log",
+          "logSha256": "a514eb7afc79f72e72f560eb6745a064b1cbcd963151172af15969591eebb9d7"
+        },
+        {
+          "script": "scripts/test_studio_grouped_stat_layout.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_grouped_stat_layout.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 69.03100000001723,
+          "log": "05-test_studio_grouped_stat_layout.log",
+          "logSha256": "f829065d0044f6892dda17f0430ce411918d2bc96fc25841b457205593c8cc0d"
+        },
+        {
+          "script": "scripts/test_studio_interaction_statistics.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_interaction_statistics.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 4.89100000000326,
+          "log": "06-test_studio_interaction_statistics.log",
+          "logSha256": "c9c6de849b5cee79baf2ad8877839af58475febc8de6320a721e288ba62935f0"
+        },
+        {
+          "script": "scripts/test_studio_annotation_pane.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_annotation_pane.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.125,
+          "log": "07-test_studio_annotation_pane.log",
+          "logSha256": "0417969e3a847ba7c00c9b3a955f30a736df18e08cf3771dace118fabd827bb2"
+        },
+        {
+          "script": "scripts/test_studio_statistical_metadata.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_statistical_metadata.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 5.812999999994645,
+          "log": "08-test_studio_statistical_metadata.log",
+          "logSha256": "36da4c4e50997b4ed33cd542aeb60072584d8a4b99cfa2272fc3644c6dbddede"
+        },
+        {
+          "script": "scripts/test_studio_literature.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_literature.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.9220000000204891,
+          "log": "09-test_studio_literature.log",
+          "logSha256": "30e33eacb26bc2616e8ebebb7188034cc346d8888915bb045805aa03d9868af4"
+        },
+        {
+          "script": "scripts/test_studio_variant_switch.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_variant_switch.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.139999999984866,
+          "log": "10-test_studio_variant_switch.log",
+          "logSha256": "9231cd23a14d6224ba5ca63d521eda4bf811410bce0b5ed68b5d5988c8dadcd6"
+        },
+        {
+          "script": "scripts/test_studio_stat_layout.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_stat_layout.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.1720000000204891,
+          "log": "11-test_studio_stat_layout.log",
+          "logSha256": "9e9ac2ffabdff3cb3529e070f5043cb795503dcf57f151aae3db32630dfcf18b"
+        },
+        {
+          "script": "scripts/test_studio_composite_stat_layout.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_composite_stat_layout.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.28099999998812564,
+          "log": "12-test_studio_composite_stat_layout.log",
+          "logSha256": "11c4c7b6bb25979946851275696ab2e1e09c4f87c9d0ea8e019833b4835c6d7c"
+        },
+        {
+          "script": "scripts/test_studio_workspace_selection.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_workspace_selection.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.28200000000651926,
+          "log": "13-test_studio_workspace_selection.log",
+          "logSha256": "7e50d58ea3e6d9794ca71c4d206f20819c1bb068c6be8a953feef0c9fcf10a62"
+        },
+        {
+          "script": "scripts/test_studio_selection_transform.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_selection_transform.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.125,
+          "log": "14-test_studio_selection_transform.log",
+          "logSha256": "f823c6044e70a99845c14cc27115293803c347399b839ad343fc13a6abdd4487"
+        },
+        {
+          "script": "scripts/test_studio_selection_commands.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_selection_commands.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.4219999999913853,
+          "log": "15-test_studio_selection_commands.log",
+          "logSha256": "e781902c46da7399d39e646733fa4e6f3bb04cc92bc7c4181669bf3d54eb1a6f"
+        },
+        {
+          "script": "scripts/test_studio_panel_delete.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_panel_delete.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.125,
+          "log": "16-test_studio_panel_delete.log",
+          "logSha256": "fd1a2a759e33f2be64eb31153b5f9135e4e2f7122fa0d5f419c049f132329d00"
+        },
+        {
+          "script": "scripts/test_studio_panel_commands.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_panel_commands.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.14000000001396984,
+          "log": "17-test_studio_panel_commands.log",
+          "logSha256": "a13fdac554f187f0e958ec75c1d2b91d36816aa29a58b2d1eb3a4b442e57f8a8"
+        },
+        {
+          "script": "scripts/test_studio_heatmap_palettes.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_heatmap_palettes.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.1409999999741558,
+          "log": "18-test_studio_heatmap_palettes.log",
+          "logSha256": "84496bde60958d232d7f102fc61b1df12fd5e96a3589508bb281c241e75b3898"
+        },
+        {
+          "script": "scripts/test_studio_swatch_schemes.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_swatch_schemes.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.14000000001396984,
+          "log": "19-test_studio_swatch_schemes.log",
+          "logSha256": "0289d790d1069b26d23e6f3f536e6e8ae7630d43d722bf24e00ad7c5eefa6665"
+        },
+        {
+          "script": "scripts/test_studio_insert_inline.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_insert_inline.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.20399999999790452,
+          "log": "20-test_studio_insert_inline.log",
+          "logSha256": "d85ae44050bab5e3e921e9b34791d0cf544e5998f4e71651aeff690beca9ae23"
+        },
+        {
+          "script": "scripts/test_studio_line_controls.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_line_controls.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.14000000001396984,
+          "log": "21-test_studio_line_controls.log",
+          "logSha256": "2cd9b8143edd89a09b14a7cdc4a0097dbf20983e26bb73f291082c8a5031ba93"
+        },
+        {
+          "script": "scripts/test_studio_svg_content.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_svg_content.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.1409999999741558,
+          "log": "22-test_studio_svg_content.log",
+          "logSha256": "417cd9ac78ec7d67d75b94ea471a8c2dff5797c85544efee222bcdd38e52c07e"
+        },
+        {
+          "script": "scripts/test_studio_positioned_text.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_positioned_text.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.1090000000258442,
+          "log": "23-test_studio_positioned_text.log",
+          "logSha256": "9437d49b063ac45718a5a8ff0152bcd4f3018754f2cc41ae3b3d263dd53d1151"
+        },
+        {
+          "script": "scripts/test_studio_mark_styles.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_mark_styles.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.09400000001187436,
+          "log": "24-test_studio_mark_styles.log",
+          "logSha256": "a04e6091db1dd75161b16fad5efe4cb1c9ccd3f8fec407711c9afac67a084b64"
+        },
+        {
+          "script": "scripts/test_studio_mark_controls.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_mark_controls.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.125,
+          "log": "25-test_studio_mark_controls.log",
+          "logSha256": "053c9898e4e5ba10a791f2bd7f78de0758213aa4216a9d3beabc60ff53244efd"
+        },
+        {
+          "script": "scripts/test_studio_rich_text_regression.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_rich_text_regression.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.125,
+          "log": "26-test_studio_rich_text_regression.log",
+          "logSha256": "6840adeccbcc8d30f7cd8c84794a3a39f29f423fa7e27534ec5c058c70c62b39"
+        },
+        {
+          "script": "scripts/test_studio_data_text_preservation.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_data_text_preservation.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 3.375,
+          "log": "27-test_studio_data_text_preservation.log",
+          "logSha256": "a119100b8ea2159b6dcf60fac43641b531841db4ed6b6af328b4d33f2dfe2159"
+        },
+        {
+          "script": "scripts/test_studio_data_validation.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_data_validation.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.1409999999741558,
+          "log": "28-test_studio_data_validation.log",
+          "logSha256": "596c9c719e006b1545a9a21d35cf2ac7fd3d3d2aa2c76286d4825d5dcd43b122"
+        },
+        {
+          "script": "scripts/test_studio_tiff_export.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_tiff_export.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.42199999999138527,
+          "log": "29-test_studio_tiff_export.log",
+          "logSha256": "cd3a71292dcb82cb8ae5b4dbcb1580bbf25e1cf34996153d0d0978ee3ba3ad6c"
+        },
+        {
+          "script": "scripts/test_studio_panel_export.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_panel_export.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.14100000000325963,
+          "log": "30-test_studio_panel_export.log",
+          "logSha256": "1be6c2a2f31a881ad8db8d64d3d06767cb2d3cea4aeedc85b4ee74563de02d95"
+        },
+        {
+          "script": "scripts/test_studio_panel_gaps.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_panel_gaps.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.125,
+          "log": "31-test_studio_panel_gaps.log",
+          "logSha256": "15e9d706c3dd08ee04af4e59d0246388c78657b8c51ccf1f3ac426ad6b9cb3f1"
+        },
+        {
+          "script": "scripts/test_studio_compact_whitespace.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_compact_whitespace.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.125,
+          "log": "32-test_studio_compact_whitespace.log",
+          "logSha256": "ff20896a28dcf8c3aa0bf075406b5781944dc497537ae0d3df8c0c8f64f7c116"
+        },
+        {
+          "script": "scripts/test_studio_compact_interactions.cjs",
+          "argv": [
+            "node",
+            "scripts/test_studio_compact_interactions.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.14100000000325963,
+          "log": "33-test_studio_compact_interactions.log",
+          "logSha256": "0b69a4a1b34e4e16db4bceaf7ff8dd9e119d343b2d935cb796282c1a3dc0435d"
+        }
+      ]
+    },
+    "directText": {
+      "scripts": 1,
+      "passed": 1,
+      "assertionGroups": 13,
+      "sourceBeforeAfterExact": true
+    },
+    "remainingMobileDomInitial": {
+      "planned": 36,
+      "passed": 34,
+      "failed": 2,
+      "sourceAndHarnessBeforeAfterExact": true,
+      "commands": [
+        {
+          "workflowOrdinalAfterDirectText": 1,
+          "argv": [
+            "node",
+            "scripts/test_studio_canvas_clipboard.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.406,
+          "log": "01-test_studio_canvas_clipboard.log",
+          "logSha256": "e3d73802bfa13caf499cc7f6f1c13c45401f1fbc93a89b20daa6a6d6d15299d2"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 2,
+          "argv": [
+            "node",
+            "scripts/test_studio_canvas_clipboard_append.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.563,
+          "log": "02-test_studio_canvas_clipboard_append.log",
+          "logSha256": "98cf55039a2ef6339b6bf27c3ec2d7a06e4b71a39b5ce80f36e4634360236c7a"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 3,
+          "argv": [
+            "node",
+            "scripts/test_studio_element_insertions.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.703,
+          "log": "03-test_studio_element_insertions.log",
+          "logSha256": "d665d618582346334d58b6b004526bddae40be1228f0e4a7833fdce82d299034"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 4,
+          "argv": [
+            "node",
+            "scripts/test_studio_element_insertions_render.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.687,
+          "log": "04-test_studio_element_insertions_render.log",
+          "logSha256": "f1d92fa48046ad6dfb2eb70c0acaf85acbf1cecdbdb2127aedf8baf2baff3b53"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 5,
+          "argv": [
+            "node",
+            "scripts/test_studio_imported_font_brush.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.219,
+          "log": "05-test_studio_imported_font_brush.log",
+          "logSha256": "2b03d056379dd9ef5f50274eed5cf2d181bd2d0dd7caf8ee6c7b8a629248949d"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 6,
+          "argv": [
+            "node",
+            "scripts/test_studio_quick_style_blur.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.234,
+          "log": "06-test_studio_quick_style_blur.log",
+          "logSha256": "483ef09dfe389302ab6c780fab527d36a0542324636c3332699e22e2dc3943d2"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 7,
+          "argv": [
+            "node",
+            "scripts/test_studio_inserted_text_font_scale.cjs"
+          ],
+          "exitCode": 1,
+          "seconds": 1.219,
+          "log": "07-test_studio_inserted_text_font_scale.log",
+          "logSha256": "aeff9c655a4c27f612b10be17e6611302932ea3909a310f0dcf81ed8a472c6f3"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 8,
+          "argv": [
+            "node",
+            "scripts/test_studio_group_alignment.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.375,
+          "log": "08-test_studio_group_alignment.log",
+          "logSha256": "245408a49a0d8d0fd964a57164d710727b3bed1b3cdde7ecfead64c8391a5bff"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 9,
+          "argv": [
+            "node",
+            "scripts/test_studio_clipboard_event_guards.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 3.062,
+          "log": "09-test_studio_clipboard_event_guards.log",
+          "logSha256": "24b57c7267bac943b6dcd59f4e987213882631b3b57f1e61a84556fb861cd6f7"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 10,
+          "argv": [
+            "node",
+            "scripts/test_studio_clipboard_compact_layout.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.297,
+          "log": "10-test_studio_clipboard_compact_layout.log",
+          "logSha256": "4b49ede814fd6f01fecf7b70f12c5aca5aa7d9d6119c92a8613947e56969a741"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 11,
+          "argv": [
+            "node",
+            "scripts/test_studio_nudge_hotpath.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.469,
+          "log": "11-test_studio_nudge_hotpath.log",
+          "logSha256": "e707b43a5aea8f7bc359b532b8e73b45a8df8f59114fa310003858c4124531da"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 12,
+          "argv": [
+            "node",
+            "scripts/test_studio_canvas_clipboard_integration.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 2.047,
+          "log": "12-test_studio_canvas_clipboard_integration.log",
+          "logSha256": "6a5c8adbbb90ab6f1bfdc9857f559039292e7f99256c960df4cd75a188074e28"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 13,
+          "argv": [
+            "node",
+            "scripts/test_studio_file_import.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 2.094,
+          "log": "13-test_studio_file_import.log",
+          "logSha256": "9e4a6c71be69db098df1e3a2b095757e78b05ebaa2bb0b3101372c8da463ec59"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 14,
+          "argv": [
+            "node",
+            "scripts/test_studio_resize_text.cjs"
+          ],
+          "exitCode": 1,
+          "seconds": 1.515,
+          "log": "14-test_studio_resize_text.log",
+          "logSha256": "5ebadda436cb0c69b440914284ee126ec7468631dd527c12e642985a3371f2b0"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 15,
+          "argv": [
+            "node",
+            "scripts/test_studio_panel_delete.cjs",
+            "--dom"
+          ],
+          "exitCode": 0,
+          "seconds": 0.75,
+          "log": "15-test_studio_panel_delete.log",
+          "logSha256": "19330a25e2f3b27ae0e49e39cbeca5ad64bac74f8c4d7286db42d88d8899055d"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 16,
+          "argv": [
+            "node",
+            "scripts/test_mobile_dom_preview.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.938,
+          "log": "16-test_mobile_dom_preview.log",
+          "logSha256": "03c8e5ecc78e91685220012002d57475cfeba8cef43bacc5afa5f384c4f87b31"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 17,
+          "argv": [
+            "node",
+            "scripts/test_studio_mark_styles.cjs",
+            "--dom"
+          ],
+          "exitCode": 0,
+          "seconds": 1.187,
+          "log": "17-test_studio_mark_styles.log",
+          "logSha256": "6567c5c6a102f30ea806e64c167b2d2f8a0008410785bdfdce25fd4f9f82dd07"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 18,
+          "argv": [
+            "node",
+            "scripts/test_studio_mark_controls.cjs",
+            "--dom"
+          ],
+          "exitCode": 0,
+          "seconds": 0.969,
+          "log": "18-test_studio_mark_controls.log",
+          "logSha256": "da67f43dfa509fee1c10c9e6f233e743d84ce74a5035e155cbc9a9d86db8c727"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 19,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_insets.cjs",
+            "--dom"
+          ],
+          "exitCode": 0,
+          "seconds": 2.219,
+          "log": "19-test_studio_image_insets.log",
+          "logSha256": "f032e4d79ac5bd786c7d76fab8a95b440e5d5fb198f1bcf6d86e6625e9f0d131"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 20,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_color.cjs",
+            "--dom"
+          ],
+          "exitCode": 0,
+          "seconds": 1.25,
+          "log": "20-test_studio_image_color.log",
+          "logSha256": "0ee06994025940c1487690d4b577cdae688c9455eab6d7642944e02ef39f6c65"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 21,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_color_ui.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 2.328,
+          "log": "21-test_studio_image_color_ui.log",
+          "logSha256": "8e5026ae1f04b9e5e508e49cc8e991df756496a0e26d6fee31b5bd7a7703d0dd"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 22,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_color_roundtrip.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.235,
+          "log": "22-test_studio_image_color_roundtrip.log",
+          "logSha256": "f8dab99d65c3ecdb71e01643fca2f6c6156c8fb0083a5fccee07380a251433f2"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 23,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_display_statistics.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.125,
+          "log": "23-test_studio_image_display_statistics.log",
+          "logSha256": "1d970e1faa11bd829ebd50e5c7576537c7233ad8b697321c154eac839e55d9ce"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 24,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_links.cjs",
+            "--dom"
+          ],
+          "exitCode": 0,
+          "seconds": 1.078,
+          "log": "24-test_studio_image_links.log",
+          "logSha256": "2ccee78b62a8b6c86ed977e10d313caeae97037fad92fd5f6803bbaed0ad5bb9"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 25,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_links_ui.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.562,
+          "log": "25-test_studio_image_links_ui.log",
+          "logSha256": "6846ede968f265f4a9c4c0883a073f591e009284dafe3240b32602d4b723479c"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 26,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_links_controller.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.11,
+          "log": "26-test_studio_image_links_controller.log",
+          "logSha256": "29e4be85485d4f56e496b22783638880c7fc934df567ff0bac0a2d4d838ec9f4"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 27,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_insets_ui.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.953,
+          "log": "27-test_studio_image_insets_ui.log",
+          "logSha256": "f6943753872a197126e28c4159353c52a4ee6c0a7d01a242de035499199d5eab"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 28,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_insets_controller.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.531,
+          "log": "28-test_studio_image_insets_controller.log",
+          "logSha256": "392f5db2ceac3d027cbf76b3d433f81effb9bd51c2c6ded048d5ef735a6913b3"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 29,
+          "argv": [
+            "node",
+            "scripts/test_studio_image_insets_integration.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.0,
+          "log": "29-test_studio_image_insets_integration.log",
+          "logSha256": "ccfab4a8a8cc86a3a49076eccf60bed56432960a0093b2f1b967be764171683e"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 30,
+          "argv": [
+            "node",
+            "scripts/test_studio_update_check.cjs",
+            "--dom"
+          ],
+          "exitCode": 0,
+          "seconds": 1.25,
+          "log": "30-test_studio_update_check.log",
+          "logSha256": "a8ad77a703300c8dfd6ed12c0f3efacef0838ab9ce802989bd9ace9bdcbc1033"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 31,
+          "argv": [
+            "node",
+            "scripts/test_studio_update_install.cjs",
+            "--dom"
+          ],
+          "exitCode": 0,
+          "seconds": 2.969,
+          "log": "31-test_studio_update_install.log",
+          "logSha256": "4f2b490db6caa76fe6fbf665c8ccab38cc0d09011c57e5d420630ff18a171ccd"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 32,
+          "argv": [
+            "node",
+            "scripts/test_studio_update_transport.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 0.141,
+          "log": "32-test_studio_update_transport.log",
+          "logSha256": "ac63db61e66ce2bb1a7cd88f12467c7d8359fbec21943fe289e057eb04c8aa54"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 33,
+          "argv": [
+            "node",
+            "scripts/test_studio_update_scene.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.25,
+          "log": "33-test_studio_update_scene.log",
+          "logSha256": "c3a281155914ac3664f629d17be4c353bff2980601eb861c93bff996bc39d211"
+        },
+        {
+          "workflowOrdinalAfterDirectText": 34,
+          "argv": [
+            "node",
+            "scripts/test_studio_theme_controller.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.64,
+          "log": "34-test_studio_theme_controller.log",
+          "logSha256": "4c42c5dd0e28397b2fd1f7ce4e9ab2038b861b3a0be75300fa3f59f65bd8b2e7"
+        },
+        {
+          "argv": [
+            "node",
+            "scripts/test_studio_theme_tokens.cjs",
+            "--static"
+          ],
+          "scope": "Explicit top-level --static branch logs after CSS assertions; else main() is not called; no browser, no contrast claim",
+          "exitCode": 0,
+          "seconds": 0.14,
+          "log": "35-test_studio_theme_tokens-static.log",
+          "logSha256": "43499b42d8e0773f26be5027b6731ca1d772312a572dcf587c1f5188b7a0bde0",
+          "workflowOrdinalAfterDirectText": 35
+        },
+        {
+          "workflowOrdinalAfterDirectText": 36,
+          "argv": [
+            "node",
+            "scripts/test_studio_compact_whitespace.cjs",
+            "--dom"
+          ],
+          "exitCode": 0,
+          "seconds": 1.235,
+          "log": "36-test_studio_compact_whitespace.log",
+          "logSha256": "9ce9ac2f8d7bfbef99378715c22b9ab9be1eb88b888aa26acdac12b768ce10a6"
+        }
+      ],
+      "staticThemeScope": "Explicit --static top-level branch verified and run separately; it does not call browser main(). Combined initial command was rejected before execution, then split transparently."
+    },
+    "fontFixturesDrawOnlyIntermediate": {
+      "scripts": 2,
+      "passed": 0,
+      "failed": 2,
+      "sourceBeforeAfterExact": true,
+      "commands": [
+        {
+          "argv": [
+            "node",
+            "scripts/test_studio_inserted_text_font_scale.cjs"
+          ],
+          "exitCode": 1,
+          "seconds": 1.391,
+          "qaBeforeSha256": "440bed9f56cb04bbe3ea488876e9a29278b1950ba18c122a50d94dc3f66b01e0",
+          "qaAfterSha256": "38b01bff81fb52a592ea1086dd53aab2dd9c172ee6e3bafe2706aa2a08e34014",
+          "log": "test_studio_inserted_text_font_scale-after.log",
+          "logSha256": "e5b24354cef6bb6be327c914f556984997fb17662534942463e2ebff34a7e2c8"
+        },
+        {
+          "argv": [
+            "node",
+            "scripts/test_studio_resize_text.cjs"
+          ],
+          "exitCode": 1,
+          "seconds": 2.047,
+          "qaBeforeSha256": "9136344c23ad8c9b6da043406754ca85dede7745a9f01910c10d894982a2f0e0",
+          "qaAfterSha256": "40cb11137ec09602f1208618b387348abfcdf92df22ac3e8792e596e9bff38e3",
+          "log": "test_studio_resize_text-after.log",
+          "logSha256": "5ef68f290f76abae09b0cbe998ab181ffcbefe5f574253042e57c930a386cd9a"
+        }
+      ]
+    },
+    "fontFixturesFinal": {
+      "scripts": 2,
+      "passed": 2,
+      "failed": 0,
+      "originalAssertionGroups": [
+        7,
+        10
+      ],
+      "sourceAndHarnessBeforeAfterExact": true,
+      "commands": [
+        {
+          "argv": [
+            "node",
+            "scripts/test_studio_inserted_text_font_scale.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.11,
+          "qaOriginalSha256": "440bed9f56cb04bbe3ea488876e9a29278b1950ba18c122a50d94dc3f66b01e0",
+          "qaBeforeSha256": "11b82430bbc1bc91a85affecc0bf763ebff2e1311b3d7a983ee03679d015f186",
+          "qaAfterSha256": "11b82430bbc1bc91a85affecc0bf763ebff2e1311b3d7a983ee03679d015f186",
+          "log": "test_studio_inserted_text_font_scale-after.log",
+          "logSha256": "5a137ad1b075e4428223dd52e2d12bb925255286511094eae96dc3ee0a6908ba"
+        },
+        {
+          "argv": [
+            "node",
+            "scripts/test_studio_resize_text.cjs"
+          ],
+          "exitCode": 0,
+          "seconds": 1.796,
+          "qaOriginalSha256": "9136344c23ad8c9b6da043406754ca85dede7745a9f01910c10d894982a2f0e0",
+          "qaBeforeSha256": "86ef4e5b0f0af72e91cb91436036db3bd102ec0a14c1a8953a0f9ed6cbd40094",
+          "qaAfterSha256": "86ef4e5b0f0af72e91cb91436036db3bd102ec0a14c1a8953a0f9ed6cbd40094",
+          "log": "test_studio_resize_text-after.log",
+          "logSha256": "53c56549e97786e26ef2c016d50b27df2448061efb88a2e64c36528e0f4370e3"
+        }
+      ]
+    },
+    "remainingMobileDomResolvedCoverage": {
+      "distinctWorkflowCommands": 36,
+      "originalIndependentPassesRetained": 34,
+      "previouslyFailedCommandsSeparatelyPassedAfterCorrection": 2,
+      "whole36ReexecutedAfterFinalFix": false,
+      "note": "This is separate-batch local coverage, not a fabricated single green CI run."
+    }
+  },
+  "sourceIntegrity": {
+    "sourceManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+    "uiAssets": 78,
+    "backendSources": 27,
+    "filesVerified": 105,
+    "allFrozenSourceHashesMatchCurrent": true,
+    "allRuntimeBeforeAfterGuardsExact": true,
+    "canonicalMapSha256": "3f5c1efa954f884ebde0d51f20e164b059c8aca8d74ff3bea8af2e01f6a58e77",
+    "canonicalMapEncoding": "UTF-8 JSON sorted keys and compact separators of ui/backend relative source keys to SHA256",
+    "workflowSha256": "d8b380698eada367f78670eb6f86a44fc329b9f8805c90059f51f43f5b69a995",
+    "files": [
+      {
+        "file": "backend/check_source_portability.py",
+        "sha256": "3754a11f060d50c86ef11243d5bbb4625c55769719828a2b7e6d3139cb65a1d1"
+      },
+      {
+        "file": "backend/check_svg_canvas.py",
+        "sha256": "5e92708c5a31e26382e0676d5b4d53781783e89517649f4b0831a4898436cf1b"
+      },
+      {
+        "file": "backend/check_svg_editability.py",
+        "sha256": "a3284efbf2283bc101c0eb3ea10e0ad366ee96f2a0af9787133f314c6b4a39f2"
+      },
+      {
+        "file": "backend/duplicate_files.py",
+        "sha256": "081a527f4fa2dd4ac0abe3f76473540931288d364ba543cef7502a04c1c91110"
+      },
+      {
+        "file": "backend/figure_accessibility_qa.py",
+        "sha256": "71ae0f25d4e8a7fe4348f5993e08a7ce6692da449505e120bd03fb4b93d23803"
+      },
+      {
+        "file": "backend/figure_studio.py",
+        "sha256": "45f0838d089e883873774091fe1415f58a6b083a489242dd0a6e5f1a6b850039"
+      },
+      {
+        "file": "backend/figure_text_qa.py",
+        "sha256": "1862f09451eea65430ee330426fb6716c0177427f4e60ddfacfbf8b7d70faf32"
+      },
+      {
+        "file": "backend/make_montage.py",
+        "sha256": "253b3defccc3d1b7cf0cbd6fef791aeb7f5799e2f59eca168925da66d76489b2"
+      },
+      {
+        "file": "backend/panel_labels.py",
+        "sha256": "1b6351b6b76061b31eb223bce3dbd6c31cdac145c196c8ae4533a86cfdb911dd"
+      },
+      {
+        "file": "backend/render_doc_pages.py",
+        "sha256": "4aa5d3d9a587872049e0d9d7cf1632a10e830d3bca482c6c8a3bd463fabd837f"
+      },
+      {
+        "file": "backend/studio_discovery.py",
+        "sha256": "84cd8cae79ee192981599362c857f25b455bbb73a5999151f148a31b8f470b8f"
+      },
+      {
+        "file": "backend/studio_duplicate_jobs.py",
+        "sha256": "ffbb18ec65d117ca6498cf1e9b6fe40fc0d142b4786e9cd70f0f393fafe71352"
+      },
+      {
+        "file": "backend/studio_duplicates.py",
+        "sha256": "cabc1b8c64674b757efb799b16c0f2dd19c519912eb8a6e471d9e2db9867f3a2"
+      },
+      {
+        "file": "backend/studio_facets.py",
+        "sha256": "37765088bc8d5e4dede224f62e3020ea3b8ec4751664d90499e0d61737bb47ee"
+      },
+      {
+        "file": "backend/studio_image_links.py",
+        "sha256": "9f239a7d6daf57d6ca853caa0d04494839fceeb993f7e827f571baad40408cc1"
+      },
+      {
+        "file": "backend/studio_pdf.py",
+        "sha256": "10bb68b8ab2d351746bf218ed8c86be559c1d79ad702d829d426ed36d7149cea"
+      },
+      {
+        "file": "backend/studio_render_statistics.py",
+        "sha256": "001b0c66afd1404c74ef5d6f5d3c6a85a80bced2f5679227a2155288ced43302"
+      },
+      {
+        "file": "backend/studio_roc_sizes.py",
+        "sha256": "226bf49e00b1d6dd34a9b5b3e5720844e2a25df53883329219c3e75c2a501b44"
+      },
+      {
+        "file": "backend/studio_server.py",
+        "sha256": "1da74ac9c9df7708ae86b4bdcafff768785056a903aa65f12b7413c5bf4f7969"
+      },
+      {
+        "file": "backend/studio_sizes.py",
+        "sha256": "931835d8e693ac1618d4300902fbb2473b46c8a4ddb44888e9303d437f51cfb3"
+      },
+      {
+        "file": "backend/studio_statistics.py",
+        "sha256": "69c232bc9fab2e0cdb48b31d9ed03ce8956c2881352f4eaac1e139c22eb319ad"
+      },
+      {
+        "file": "backend/studio_updates.py",
+        "sha256": "1586f89b65f8b3d820d1c9f862820dcdfcd839a055424939513efedda2abbdb1"
+      },
+      {
+        "file": "backend/template_router.py",
+        "sha256": "227409cad611326809bf50d4d2b6207d0b5b58f336586ca4335bc95767bcb740"
+      },
+      {
+        "file": "backend/test_check_source_portability.py",
+        "sha256": "f777ff885736f6c3298ba667e93d418232fe5dc346ebdeffcdd7ca8e5ebee422"
+      },
+      {
+        "file": "backend/test_figure_studio.py",
+        "sha256": "d36bebba4375f22b696e8f070f2f29242e6197e4b2d0d4acafa747926763e032"
+      },
+      {
+        "file": "backend/test_figure_text_qa.py",
+        "sha256": "bf023bcafc7de833ca4ec1bc179b8b45ea9503798d8f9fa32925c307900908e4"
+      },
+      {
+        "file": "backend/test_font_policy.py",
+        "sha256": "3b3e91be177db1549f38cd0df993979807d67aa40dff4c68af143531850bdd43"
+      },
+      {
+        "file": "ui/alignment-icons.js",
+        "sha256": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216"
+      },
+      {
+        "file": "ui/axis-editing.js",
+        "sha256": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115"
+      },
+      {
+        "file": "ui/axis-settings-ui.css",
+        "sha256": "7d50d0bbc47253a0e6f673b294bf2d26ae413525eaf7d4f4729141ff7d2ca7c2"
+      },
+      {
+        "file": "ui/axis-settings-ui.js",
+        "sha256": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9"
+      },
+      {
+        "file": "ui/canvas-clipboard.js",
+        "sha256": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be"
+      },
+      {
+        "file": "ui/catalogue-previews.json",
+        "sha256": "a3644e7455c498ef2613ae1b02f8b04d52cd84e19f049e5240a84b9d3b129f19"
+      },
+      {
+        "file": "ui/catalogue.js",
+        "sha256": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35"
+      },
+      {
+        "file": "ui/chart-knowledge.json",
+        "sha256": "182d057d26602c57a292bdc8f1124458a22a90d89e42c96dba1ffad61416630b"
+      },
+      {
+        "file": "ui/compact-whitespace.js",
+        "sha256": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb"
+      },
+      {
+        "file": "ui/component-style.js",
+        "sha256": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234"
+      },
+      {
+        "file": "ui/discovery-offline.js",
+        "sha256": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38"
+      },
+      {
+        "file": "ui/discovery-ui.css",
+        "sha256": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099"
+      },
+      {
+        "file": "ui/discovery-ui.js",
+        "sha256": "cf1decd45eea8adcb2c7e3215780a3ee31ded139fc967931c40362cbbe9b5871"
+      },
+      {
+        "file": "ui/discovery.js",
+        "sha256": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43"
+      },
+      {
+        "file": "ui/duplicate-check.css",
+        "sha256": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e"
+      },
+      {
+        "file": "ui/duplicate-check.js",
+        "sha256": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1"
+      },
+      {
+        "file": "ui/duplicate-review.js",
+        "sha256": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf"
+      },
+      {
+        "file": "ui/duplicate-viewer.css",
+        "sha256": "b64a440392b3822afe5bcb1d0be97903bfafe5d37c36b90be1d6b4bdef0999cf"
+      },
+      {
+        "file": "ui/duplicate-viewer.js",
+        "sha256": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf"
+      },
+      {
+        "file": "ui/element-insertions.js",
+        "sha256": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608"
+      },
+      {
+        "file": "ui/experience-tools.css",
+        "sha256": "41ae415b30e3e71b7a7c265d8a426416a8713804c21fce33d5add71ee2c4fa81"
+      },
+      {
+        "file": "ui/experience-tools.js",
+        "sha256": "546d1232bef1dc0d868cdef099056ffa75980bb3842e1879ed025fb8e997f1be"
+      },
+      {
+        "file": "ui/gallery-contracts.js",
+        "sha256": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f"
+      },
+      {
+        "file": "ui/grid-resize-ui.js",
+        "sha256": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed"
+      },
+      {
+        "file": "ui/group-spacing.js",
+        "sha256": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8"
+      },
+      {
+        "file": "ui/i18n.js",
+        "sha256": "fdf2bb3e6a89037858c1bcbfb9b555bb27468076b71cbd7a1d7435529c351b5d"
+      },
+      {
+        "file": "ui/image-color-ui.js",
+        "sha256": "b8334f01cb21b70be040a818a9d4d6b8d11b1000e2be6bcf57aa64624ec2a5f3"
+      },
+      {
+        "file": "ui/image-color.js",
+        "sha256": "dacfda2f9b8a8ba4a69b11aa34e6ecc2bdc03485d052dd1e0b63964a5d9b8698"
+      },
+      {
+        "file": "ui/image-insets-controller.js",
+        "sha256": "2ceb66b2eb1736e7dd6a78bae701090588a4d49cdafb2fba3d051ad1225f65ff"
+      },
+      {
+        "file": "ui/image-insets-ui.js",
+        "sha256": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035"
+      },
+      {
+        "file": "ui/image-insets.js",
+        "sha256": "df43d58d908de2bab4ea14432dae10a9c7b0ae2950272688cb771e2694210a0c"
+      },
+      {
+        "file": "ui/image-links-controller.js",
+        "sha256": "82c9e72262b734455973550d822e32a0d37d2b8268d767fdff5fca0efeb59151"
+      },
+      {
+        "file": "ui/image-links-ui.js",
+        "sha256": "cd89e8606765cef22e76095d27e1e351ed37a9fee7e3507419a5072400bbf837"
+      },
+      {
+        "file": "ui/image-links.js",
+        "sha256": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886"
+      },
+      {
+        "file": "ui/layers-panel.js",
+        "sha256": "5b25bebe5e6f44879b21781d6b7f58496759cabfcf27643aa58637118ebc41bb"
+      },
+      {
+        "file": "ui/layout-lock.js",
+        "sha256": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242"
+      },
+      {
+        "file": "ui/legacy-stat-cleanup.js",
+        "sha256": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92"
+      },
+      {
+        "file": "ui/library.js",
+        "sha256": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51"
+      },
+      {
+        "file": "ui/literature.css",
+        "sha256": "f696eccd3cfba3c0ea3fac45cbd5a74c6adb55728e59abf4ce1c5547f06e49f0"
+      },
+      {
+        "file": "ui/literature.js",
+        "sha256": "66b6852716cc59c622620504bac9c87ab6d2547a36c8d7b7fd3aa23574fa194b"
+      },
+      {
+        "file": "ui/mark-style.js",
+        "sha256": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419"
+      },
+      {
+        "file": "ui/mascot-border-collie.svg",
+        "sha256": "bc17f3211a96529966fc744fd1e28df518ad43a2f79c3d199ba383079996472d"
+      },
+      {
+        "file": "ui/mascot-maine-coon.svg",
+        "sha256": "87a2ac6f885101abba85c45f013fdc8f303d5398c0756419bdb38d08509103f3"
+      },
+      {
+        "file": "ui/mascot-scene.svg",
+        "sha256": "b860330552656eabca002e48283b19db8882a2067551d1581533afc20dcd96a0"
+      },
+      {
+        "file": "ui/master-frame.js",
+        "sha256": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9"
+      },
+      {
+        "file": "ui/memory.js",
+        "sha256": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c"
+      },
+      {
+        "file": "ui/mobile-ui.css",
+        "sha256": "101335ce269683a514ceb526b46b15634019b57405144615b29debd897bfb14b"
+      },
+      {
+        "file": "ui/mobile-ui.js",
+        "sha256": "f9c1ad0e5db4794b9a79726fe5d19b458839ee1305ece35585b669f55b6c14c4"
+      },
+      {
+        "file": "ui/object-borders.js",
+        "sha256": "5ba4ed9c9d2971d3372ee14b8d04cf540753c879f40b165e1a37d758d542404a"
+      },
+      {
+        "file": "ui/panel-commands.js",
+        "sha256": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd"
+      },
+      {
+        "file": "ui/preview-sessions.js",
+        "sha256": "218ce572c39a858f5ff519531ea5d7c7424d293db5d9184672688a5423182a88"
+      },
+      {
+        "file": "ui/research-discovery.js",
+        "sha256": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f"
+      },
+      {
+        "file": "ui/rich-text.css",
+        "sha256": "1deadd7d55d7edee1f120d2f80062e034fca198d3b74da8acb62022fa41c43e3"
+      },
+      {
+        "file": "ui/rich-text.js",
+        "sha256": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4"
+      },
+      {
+        "file": "ui/scale-geometry.js",
+        "sha256": "cbf84b487787292009917c5e3f1e0ad0a677c5bf32e5ed1faaf726258677b73f"
+      },
+      {
+        "file": "ui/selection-resize-controller.js",
+        "sha256": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61"
+      },
+      {
+        "file": "ui/selection-transform-dom.js",
+        "sha256": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3"
+      },
+      {
+        "file": "ui/selection-transform.js",
+        "sha256": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719"
+      },
+      {
+        "file": "ui/statistical-line-geometry.js",
+        "sha256": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8"
+      },
+      {
+        "file": "ui/statistical-metadata.js",
+        "sha256": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747"
+      },
+      {
+        "file": "ui/studio.css",
+        "sha256": "951eea56f81bb985e412ea09c3f6bd59949ee39c9053da3e6d05db84a73b685c"
+      },
+      {
+        "file": "ui/studio.html",
+        "sha256": "951f7b0b900f5d58654e63db0f217b3c3917a885bf61c3c9a3b18344b46e5fae"
+      },
+      {
+        "file": "ui/studio.js",
+        "sha256": "fd1b600b233a045cbacc0ce144969c5e9b7af5f5761e8d68e9f620e20702d69d"
+      },
+      {
+        "file": "ui/style-preview.js",
+        "sha256": "c0da41e0c15c37545f199525ec1f6db04086d68a146736b28ed7275f37fe767f"
+      },
+      {
+        "file": "ui/template-starters.json",
+        "sha256": "eb8f5d4c60a2cfbb03ad2d334e9aa4f44802e0e3df29fc8a1779ab6088c636ba"
+      },
+      {
+        "file": "ui/text-formatting.js",
+        "sha256": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1"
+      },
+      {
+        "file": "ui/text-tools-ui.js",
+        "sha256": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e"
+      },
+      {
+        "file": "ui/theme-controller.js",
+        "sha256": "e8c4266aa056f411f4bd14a823f7fda4b3564214854384e64eeb7d24d8234cdc"
+      },
+      {
+        "file": "ui/theme-tokens.css",
+        "sha256": "a36192cf3ce610e3ce7a1fb4413cc54efc58fc91c998a1570e27c8e2d4a4d5d6"
+      },
+      {
+        "file": "ui/theme.css",
+        "sha256": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab"
+      },
+      {
+        "file": "ui/third-party-notices.js",
+        "sha256": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682"
+      },
+      {
+        "file": "ui/tiff-export.js",
+        "sha256": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f"
+      },
+      {
+        "file": "ui/update-check.js",
+        "sha256": "c75da2a09ecf66f6637cb5587095a4751b3f5281d982cf8844e9d731243e9905"
+      },
+      {
+        "file": "ui/update-scene.css",
+        "sha256": "5b6b3354a16f5a12b1680d986d75f7ce7fc9f4ce0df585f739d77f13a3aba2a6"
+      },
+      {
+        "file": "ui/update-scene.js",
+        "sha256": "19000de5cec4f52fdaa04bc2a13bff4eeb897d12dfc68cbf949f9d539bcdcede"
+      },
+      {
+        "file": "ui/vector-interaction.js",
+        "sha256": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4"
+      },
+      {
+        "file": "ui/workspace-layout.css",
+        "sha256": "0a271a9e0d53de091efd2a8fc6cda1f11caed3a5f5147e000f99a449974e74ea"
+      },
+      {
+        "file": "ui/workspace-layout.js",
+        "sha256": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+      }
+    ]
+  },
+  "retainedEvidence": [
+    {
+      "label": "officialInitialJobs",
+      "sha256": "ebb6f920613ae58daf2388608093d66855ac0f9d53f173526b96aea78abd4508",
+      "bytes": 33192,
+      "retainedLocal": true
+    },
+    {
+      "label": "officialFullIntegrationPrimaryLog",
+      "sha256": "f66da54aab8010bf0758435adf8c05036b6537f9bbbb68e65f21ff60d6125703",
+      "bytes": 995944,
+      "retainedLocal": true
+    },
+    {
+      "label": "officialMobileDomPrimaryLog",
+      "sha256": "92ee36eb1bb0998591326ecc50b22bc8c39a50905bcf5c8414cf7a0fd3cb776c",
+      "bytes": 147477,
+      "retainedLocal": true
+    },
+    {
+      "label": "localOriginalNewProjectRed",
+      "sha256": "2897197bb79a311b56efa9f8b391e599b9371837f8b8757f1ec2cf792cd40bf4",
+      "bytes": 1150,
+      "retainedLocal": true
+    },
+    {
+      "label": "history33",
+      "sha256": "75b9f1b4e0b93abf4de942d61017e6a7cd9a52153d0a34a939fc11dcb4115d36",
+      "bytes": 41417,
+      "retainedLocal": true
+    },
+    {
+      "label": "directText13",
+      "sha256": "c99d7f5d09239fda42657cf37456d7cbc4b57a6ae2cd26459be565b629382f99",
+      "bytes": 536,
+      "retainedLocal": true
+    },
+    {
+      "label": "remainingMobile36Initial",
+      "sha256": "db97cc1d5094c478193c4bf8633bc700ff93e574efd83d715fe9e884aa1c92e8",
+      "bytes": 14064,
+      "retainedLocal": true
+    },
+    {
+      "label": "fontDrawOnlyRed",
+      "sha256": "7c6a7d332105832ca4fcd40a08c1cd86fef19b2e4427b6c3cd040c7f6df3b6fc",
+      "bytes": 12251,
+      "retainedLocal": true
+    },
+    {
+      "label": "fontFinalTwoGreen",
+      "sha256": "7f06742f03fed347734809b383460a82d35919df4d4b3ef8ac1c881e2e039521",
+      "bytes": 12508,
+      "retainedLocal": true
+    }
+  ],
+  "boundaries": [
+    "No assertion thresholds or product behavior were relaxed.",
+    "All original CI failures and the DRAW-only intermediate failures remain retained.",
+    "The local green checks do not establish fresh GitHub CI approval, Linux browser acceptance, native IME acceptance, or official updater acceptance.",
+    "No patient data, private project paths, tokens, screenshots, or raw request payloads are included."
+  ]
+}

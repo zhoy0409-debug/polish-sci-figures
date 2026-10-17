@@ -1,0 +1,165 @@
+{
+  "scope": "Component and existing UI/controller regressions; not whole-app or installed Windows acceptance",
+  "status": "PASS_COMPONENT_SCOPE",
+  "atUtc": "2026-10-17T14:25:52.464486+00:00",
+  "scripts": [
+    {
+      "file": "scripts/test_studio_object_borders_live_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_object_borders_live_preview_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_object_borders_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_image_color_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_image_links_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_image_links_controller.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_image_dock_preview_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_image_insets_draft.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_image_insets_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_image_insets_controller.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_image_insets_integration.cjs",
+      "exitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_image_insets.cjs",
+      "exitCode": 0
+    }
+  ],
+  "controlledBrowser": {
+    "viewportCss": {
+      "width": 1280,
+      "height": 720
+    },
+    "fixtures": "Explicitly synthetic generated pixels; known rectangular crop. No patient/private/third-party image.",
+    "border": {
+      "kind": "real_chrome_controlled_border_component",
+      "wholeAppAcceptance": false,
+      "source": "explicit synthetic image fixture",
+      "checks": [
+        "nonmodal right inspector; four selected, mixed values, one locked",
+        "30 real input events keep history/source unchanged; invalid numeric draft/other field/language retain last valid canvas and stable input node",
+        "cancel exact restoration; hold original comparison; valid multi-property draft commits exactly once; undo/redo exact; locked target unchanged",
+        "Esc and no-border preview/cancel preserve committed records and locked frame",
+        "selection invalidation clears draft without history and raw image hrefs remain byte-exact",
+        "unsupported rounded geometry keeps last valid preview atomically and blocks commit"
+      ],
+      "errors": [],
+      "remoteRequests": [],
+      "passed": true
+    },
+    "imageTools": {
+      "kind": "real_chrome_controlled_image_dock",
+      "wholeAppAcceptance": false,
+      "fixture": "explicit synthetic pixels and known rectangular crop",
+      "checks": [
+        "nonmodal colour dock: 30 inputs/zero commits, actual canvas SVG filter, histogram viewport access, incomplete draft, language persistence, Esc exact restoration",
+        "one colour commit with original href unchanged",
+        "opening links cancels colour draft; actual known-crop ROI preview uses raw coordinates without network or committed records",
+        "invalid link width retains preview and blocks commit; valid link appearance commits exactly once",
+        "cancel restores committed link overlay; selection invalidates colour draft; source SVG and embedded pixels remain exact; Carbon/Pearl screenshots"
+      ],
+      "pageErrors": [],
+      "remoteRequests": [],
+      "passed": true,
+      "linkPreflight": {
+        "choices": [
+          {
+            "checked": true,
+            "disabled": false
+          },
+          {
+            "checked": true,
+            "disabled": false
+          }
+        ],
+        "common": true
+      }
+    }
+  },
+  "sourceSha256": {
+    "skills/polish-sci-figures/assets/figure-studio/object-borders.js": "2cd2e774ba063eba8c32225a3f3857e8959239679851aaeb1c9dbf2ba993cdd7",
+    "skills/polish-sci-figures/assets/figure-studio/image-color-ui.js": "b8334f01cb21b70be040a818a9d4d6b8d11b1000e2be6bcf57aa64624ec2a5f3",
+    "skills/polish-sci-figures/assets/figure-studio/image-links-ui.js": "cd89e8606765cef22e76095d27e1e351ed37a9fee7e3507419a5072400bbf837",
+    "skills/polish-sci-figures/assets/figure-studio/image-links-controller.js": "82c9e72262b734455973550d822e32a0d37d2b8268d767fdff5fca0efeb59151",
+    "skills/polish-sci-figures/assets/figure-studio/image-insets-ui.js": "6f380254f69956cc2f794b869d72152c7db130c3536bf2acc812198f66c1bddd",
+    "skills/polish-sci-figures/assets/figure-studio/image-insets-controller.js": "2ceb66b2eb1736e7dd6a78bae701090588a4d49cdafb2fba3d051ad1225f65ff"
+  },
+  "additionalChecks": {
+    "realUpdateEvidenceHelpers": "PASS: full project/state/history/checkpoints/dataDrafts and settings JSON/bytes; no installer or download executed",
+    "realUpdateHarnessSyntax": "PASS",
+    "runtimeModuleSyntax": [
+      "object-borders.js",
+      "image-color-ui.js",
+      "image-links-ui.js",
+      "image-links-controller.js"
+    ]
+  },
+  "retainedAttempts": [
+    {
+      "scope": "image dock fixture initial attempts",
+      "status": "FAIL_FIXTURE",
+      "cause": "Fixture used p/q IDs although existing inset/controller contract requires panel-N; corrected only test IDs. No matched candidate was claimed."
+    },
+    {
+      "scope": "style-preview helper independent initial run",
+      "status": "FAIL_REPORTED_TO_OWNER",
+      "cause": "Chrome lazy CSSOM re-created empty style attribute during restore. Owner separately fixed and re-ran; not included among these seven PASS scripts."
+    },
+    {
+      "scope": "Inset controller first run after draft UI patch",
+      "status": "FAIL_FIXED_AND_RERUN",
+      "cause": "New UI refresh initially cleared a mapped scientific error. Persisted the local error until correction/cancel; final controller 15 groups and all five inset scripts passed."
+    }
+  ],
+  "notEstablished": [
+    "Whole-app save/reopen/export parity while previewing",
+    "Real H&E, TEM, cropped ROI and four-image whole-app gestures",
+    "Installed Windows runtime of this live-preview change",
+    "1080p/touch/browser matrix",
+    "Input latency/frame rate/performance targets",
+    "Novice user task completion"
+  ],
+  "insets": {
+    "scope": "Controlled DOM, existing production/controller/core regression; not new matching-accuracy evidence",
+    "controllerGroups": 16,
+    "productionIntegrationGroups": 7,
+    "coreGroups": 11,
+    "draftChecks": [
+      "Valid to invalid keeps last good temporary display and raw input",
+      "Invalid Enter/change/blur add no commit",
+      "Language/theme refresh retains dirty input node and text",
+      "Esc/pointercancel/lock cancel the draft",
+      "Thirty inputs produce one semantic commit",
+      "beforePreview callback once per local preview or ROI/calibration gesture",
+      "Same-ID state/project replacement and simulated Undo clear old valid/invalid input before Enter can reapply it"
+    ],
+    "engineChanges": "No geometry/statistical changes; beforePreview cross-tool hooks and existing cancel() reused when preview context changes."
+  }
+}

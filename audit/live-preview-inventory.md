@@ -1,0 +1,66 @@
+# 全局实时预览流程审计
+
+source16 已通过 Carbon／Pearl × 中英文共 4 个完整资源流程：智能选图与本地图型对照直接使用主画布，支持 A／B、取消和一次 Undo／Redo，实际 Save／自动保存／SVG／PNG／TIFF 均只包含已提交内容；元数据与语言恢复、锁定、换工程、新文件拒读和按钮焦点下的键盘边界也通过。见[最终资源专项](../docs/qa/live-preview/resource-source16-summary.json)。新建空白工程的欢迎区曾把主预览挤到约 46 × 35 像素，已修复为 344 × 258，并验证取消／撤销恢复欢迎区，见[实际修复验收](../docs/qa/live-preview/resource-source16-blank-summary.json)。
+
+同一 source16 冻结版还完成了[72／72 项 P0](../docs/qa/live-preview/p0-source16-matrix-summary.json)、[两主题各 37 项高频功能](../docs/qa/live-preview/p1-source16-summary.json)、[8 条件触控模拟](../docs/qa/live-preview/touch-source16-summary.json)、[完整 5 项科学／编辑回归](../docs/qa/live-preview/selection-source16-summary.json)及[智能选图完整流程](../docs/qa/live-preview/discovery-source16-summary.json)。科学回归保留 Iris 150 原始观测、源 SVG／分析／配方及同设备 v1.4.21 导出参考；standalone 已实际保存并核对离线应用后的源行。后续 source17 完成 85 组件及 14 项定向真实流程，减少普通页签重建与同次选择的重复读取；[唯一正式性能](../docs/stable-performance-validation.md)中，5000 图元全部操作指标改善，部分小工程尾指标与确认后延迟仍有优化空间。最终原 Windows Setup 已通过实际安装、自检、P0／P1、资源对照、智能选图、60 图后台任务、10,000 图元 PDF／SVG，以及重装／卸载保留真实工程与设置；各独立范围和成品哈希见[最终安装版汇总](../docs/qa/live-preview/windows-final17-acceptance-summary.json)及[主验收记录](../docs/live-preview-validation.md)。
+
+下表保留升级前的 21 类入口、行为与验收路径。基线是 `f14c6f3`／0.1.21 冻结 Windows runtime，在隔离数据目录采集 17 个操作流程、16 类功能；[原始行为与录像哈希](../docs/qa/live-preview/before-workflow-summary.json)包含初始选择器失败及可见入口补采。它不是本轮新安装验收。
+
+当前打包源码 source20 完成 [95 个组件脚本](../docs/qa/live-preview/source20-component-regressions.json)、[双主题 10 项真实 Iris 轴流程](../docs/qa/live-preview/source20-axis-composition-browser.json)、[唯一正式性能](../docs/qa/live-preview/performance-v2-final20-summary.json)和[独立四面板](../docs/qa/live-preview/four-panel-style-final20-diagnostic.json)。[数值轴红绿回归](../docs/qa/live-preview/source20-axis-composition-fix-regressions.json)保留尾事件／再次取消候选的真实失败及最终 25 组通过。5000 选择 second-rAF P95 为 154.7 ms、改色 195.4 ms、完整八卡 610.7 ms，全部行和阶段退步见[四阶段对照](../docs/qa/live-preview/performance-v2-final20-vs17-18-19.json)。新 Windows 包待构建和实际安装，官方 0.1.20 → 0.1.22 更新待目标发布。
+
+source18 阶段保留真实草稿渲染、规范最终校验、完整八卡和组合态保护。[94 个组件脚本](../docs/qa/live-preview/source18-component-regressions.json)（90 Node、4 Chrome）及[6 项人工微软拼音检查](../docs/qa/live-preview/source18-human-ime-summary.json)通过，最终 F2／失焦、Undo／Redo、保存重开和 SVG／PNG 已核对，原表与源 SVG 精确一致，见[Windows 输入法记录](../docs/windows-native-ime-acceptance.md)。当时混合性能的[完整比较](../docs/qa/live-preview/performance-v2-final18-vs17.json)与[独立四面板](../docs/qa/live-preview/four-panel-style-final18-diagnostic.json)分别保留。source19、source20 未再次人工 IME；[source20 范围](../docs/qa/live-preview/source20-ime-change-scope.json)明确轴模块已修改，不能以其余处理器未变冒称全部连续或新安装版原生通过。source19 [95 组件](../docs/qa/live-preview/source19-component-regressions.json)、[双主题 14 项](../docs/qa/live-preview/source19-selection-refresh-browser.json)、[原正式性能](../docs/qa/live-preview/performance-v2-final19-summary.json)与[四面板](../docs/qa/live-preview/four-panel-style-final19-diagnostic.json)保持阶段事实；[部分安装 108 项](../docs/qa/live-preview/windows-final19-partial-installed-summary.json)随后因轴缺陷弃用并[正规清理](../docs/qa/live-preview/windows-final19-incomplete-cleanup-summary.json)，不称最终通过。以上 source17 数字和下表 BEFORE 观察也不改写为新阶段结果。
+
+## 已确认的关键行为
+
+实际 Chrome 中，原生 Iris 图的坐标轴开启“实时预览”后，连续改变上限三次，保存工程的历史索引依次为 1、2、3。这是三次真实提交，不能称为可取消草稿。色板悬停后移出则没有新增历史，可复用其临时渲染和明确提交边界。
+
+快捷字号输入后按 Esc 的 BEFORE 观察新增了一条历史；fresh01 修复后精确取消检查通过。两个阶段的画面和原始记录同时保留。普通用户首次使用的完成率和实体触控设备尚未组织测试；中文输入法的源码 6 项人工检查不代替未覆盖的输入路径与新安装版验收。
+
+## 功能清单与新版验收路径
+
+下表的“BEFORE 证据”描述原行为；AFTER 结果以上方对应冻结版报告为准。“源码”表示核对事件与调用链，“实测”表示实际 Chrome 控件和历史观察。一次独立动作提交一次，与连续输入污染同一手势历史分别判断。
+
+| 编号／功能 | 现有入口和步骤 | 原位预览／遮挡 | 原历史边界与异步 | 可复用机制 | 新版验收路径 | BEFORE 证据 |
+|---|---|---|---|---|---|---|
+| LP01 快捷字号 | 选文字 → 顶部字号输入 → Enter／失焦 | `previewQuickStyle` 在主画布绘制，非模态 | 草稿按 rAF 合并；Esc 后首轮出现 1 条历史，需纠正取消顺序 | 快捷样式 shadow state | 连续输入 → Esc 完全恢复；完成一次提交，焦点和缩放稳定 | 实测，取消缺陷候选 |
+| LP02 快捷文字颜色 | 选文字 → 顶部颜色 → 完成 | 主画布预览，非模态 | `input` 预览、`change`／失焦提交；原生系统色窗未测 | `previewQuickStyle`／`commitQuickStyle` | 同一颜色手势只提交一次，取消不写历史 | 实测控件；非系统色窗 |
+| LP03 属性 HEX 颜色 | 选对象 → 属性 → HEX → 失焦 | HEX 输入本身只清错误，失焦后才应用 | `onchange → applyChosenColor → updateStyle → commit` | 原通道、锁定和同色范围判断 | 有效 HEX 即原位预览，未完成字符串保留上个有效值 | 实测 |
+| LP04 字体 | 选文字 → 属性 → 字体下拉 | 选择后直接改画布，无模态 | 一次选择提交一次 | 现有文字物理单位与子 tspan 比例 | 保留原位、字体缺失提示和明确提交边界 | 实测 |
+| LP05 加粗／斜体／上下标 | 选文字／字符 → 顶部格式按钮 | 直接反馈，非模态 | 格式动作提交；字符范围与整体范围须区分 | rich-text runs 与格式命令 | 不丢字符选区，不改普通数字和测量值，逐动作 Undo | 加粗实测；其余待本轮复测 |
+| LP06 形状线宽 | 选路径 → 属性 → 线宽输入 → 失焦 | 原字段只在 `change` 时应用 | 一次有效 change 提交；无异步 | `updateStyle` 的最终 pt 换算 | 合法数字 input 预览；负号、空串、中间态不清画布 | 实测 |
+| LP07 填充／空心 | 选形状 → 属性 → 填充下拉 | 选项变动即主画布显示 | 选择一次提交一次 | 原空心与描边规则 | 保持不自动给空心图形加填充；撤销精确恢复 | 实测 |
+| LP08 透明度 | 选对象 → 属性 → 滑块／键盘 | `input` 在主画布预览，无模态 | 三次独立方向键手势观察为三条历史；连续拖动须另测 | 现有预览态与 change 提交 | 单次拖动多 input 只提交一次，Esc 取消当前手势 | 三个键盘手势实测 |
+| LP09 色板／候选图 | 配色或图表类型 → 悬停 → 点选 | 主画布临时替换；卡片同时有小预览 | 色板悬停不提交，移出恢复；图型可能需本地重绘 | `bindPaletteCard`、候选渲染缓存 | 保留已有成功行为；提交、工程切换和迟到结果校验 | 色板 hover／leave 实测 |
+| LP10 图间留白 | 左侧布局 → 数字或滑块 → 完成 | 滑块已有主画布 rAF 预览；数字路径需统一 | `previewPanelGap`／gesture snapshot | 锁定边界与原物理布局计算 | 拖动或连续输入保持空间关系，一个 Undo；取消恢复 | 数字路径实测，滑块待复测 |
+| LP11 导出物理尺寸／DPI | 左侧投稿尺寸 → 输入宽度／选择 DPI | 尺寸 change 后改变主画布与像素说明 | 规格字段提交；栅格导出另有异步 | `exportGeometry`、现有像素／字体提示 | 草稿不得污染最终导出；真实 mm、pt、DPI 数值核对 | 宽度路径实测 |
+| LP12 专业坐标轴 | 属性 → 专业坐标轴 → live 开关 → 改范围／刻度 | 面板在侧栏；真实数据由本机重绘 | live 650 ms 后走 `onApply`，三次输入实测三次提交 | 原生配方、导入轴几何限制、本地引擎 | 拆 draft preview／commit；旧请求不覆盖新值，取消零历史，完成一次提交 | 实测确认需修 |
+| LP13 图片／对象边框 | 选对象 → 上下文边框或图片工具 → 参数 → 应用 → 返回编辑 | 原 `showModal()` 阻断主工作区；字段没有持续预览 | `apply()` 才 `host.commit`；同步真实几何验证 | `boundary`／`draw`、裁剪、矩阵、打印 pt、锁定 | 侧栏原位预览，原／可见外缘、圆角、虚线、批量、取消与一次提交 | 实测；旧隐藏入口选择器失败保留，可见快捷入口补采完成 |
+| LP14 图片显示调整 | 选图 → 图片颜色与显示 → 调整／对照 → 应用或取消 | 已有原图／调整 wipe 和主画布临时预览；大模态可能遮挡 | rAF 预览，原图采样异步，Apply 一次提交 | 原有 `host.preview`、样本界限和共同参数 | 保留滤镜和科学限制，改善停靠可见性；取消不动原始像素 | 实测，画布九点采样均被模态遮挡 |
+| LP15 字距／行距／段落 | 选文字 → 属性中的文字工具 | 现有字段以 `change` 更新；需验证 live 与输入焦点 | `applyTextToolPlans` 提交 | rich-text、物理换算与段落模型 | 有效草稿原位预览，保留 run 级斜体／上下标比例 | 行距已实测；字距待复测 |
+| LP16 面板图号／图例 | 选图号或属性图号模块 → 改字号、位置、颜色 | 主画布可选、可拖；字段入口分散 | 多个字段直接 change 提交 | 已有 label selection、自动编号与字号控制 | “图号改色”可直接找到，草稿取消与一次提交 | 图号字号已实测；其他字段待复测 |
+| LP17 ROI／局部放大／比例尺 | 选位图 → 插入局部放大 → 调区域、边框或标定 | 局部放大样式已有 preview／finish；标定有模态 | rAF 轻预览；标定需用户提供真实单位 | 原 ROI 坐标、缩放、`bindPreview` | 未标定不得生成假 μm；非法值维持有效预览；移动取消与锁定回归 | 源码，待本轮真实图复测 |
+| LP18 关联放大图 | 图片工具 → 关联 → 原图 ROI → 确认 | `queuePreview` 已映射主画布，但模态会遮挡 | SIFT 异步；手动 ROI 不伪称算法证据 | `host.preview`、abort、source fingerprint | 主编辑不中断；取消／换图无迟到写入；失败不造默认位置 | 源码，待本轮复测 |
+| LP19 统计标注／误差棒 | 标注页 → 已有结果样式或线型 | 显示模式可主画布变动；真正重算有单独流程 | 只改显示不应再次统计；重算异步 | 现有完整精度结果、标注几何 | 不造 *P* 值，不改变真实数据；显示草稿与统计重算分开 | 源码，待本轮复测 |
+| LP20 智能选图／文献 | 智能选图 → 导数据 → 设计确认 → 候选 → 应用 | 候选真实数据预览在独立对话框，应用才换主图 | 本地真实重绘异步；文献须用户触发 | 数据合同、科学排除规则和证据级别 | 与主画布对照、可取消再应用；联网和推荐解释保持约束 | 既有功能与源码核对；AFTER 见上方 source16 专项 |
+| LP21 查重／匹配／重统计 | 图片工具／统计页 → 启动 → 进度 → 复核 | 不应伪装每个 input 都有真实结果 | 后台任务、取消、复用旧报告 | 现有任务 ID、进度与报告保留 | 主编辑可操作；进度真实、取消及时、无自动无关计算 | 既有验收可参考，本轮待复测 |
+
+## 示例和负载准备
+
+真实／授权示例使用不同证据类别，不将重复裁剪或同源四图当独立生物学样本。
+
+| 示例 | 来源和权限 | 使用目的 | 交付边界 |
+|---|---|---|---|
+| 原生 Iris 图表 | [UCI Iris](https://archive.ics.uci.edu/dataset/53/iris)，DOI `10.24432/C56C76`，CC BY 4.0；沿用已有 150 个观测的真实工程 | 数据合同、坐标重绘、文字、保存重开、导出隔离 | 可以提供公开复现协议和安全哈希 |
+| H&E 原图 | [scikit-image 分发的 Kilbad public-domain skin 图](https://scikit-image.org/docs/0.25.x/api/skimage.data.html#skimage.data.skin)；沿用已核实 fixture | 实际边框与显示调整 | 保留原始嵌入 JPEG 字节和来源 |
+| 同源 ROI 与四图组合 | 以上授权 H&E 原图的 SVG 裁剪／重复布局，明确是工程构造 | 可见／原始外缘、批量三可编辑加一锁定、组图空间关系 | 不声称独立准确率或真实实验分组 |
+| 公开 TEM 图 | [CDC PHIL 23354](https://wwwn.cdc.gov/phil/Details.aspx?pid=23354)，公有领域；署名 CDC / Hannah A Bullock、Azaibi Tamin | TEM 白色 1 pt 边框、显示和原始嵌入字节保留 | 700 × 466 官方人工着色副本，不称采集原始数据 |
+
+另保留用户授权的私有 TEM 本地工程复测；它不进入上述公开输入目录。原图、文件名、工程、截图和录像均留在 gitignored 私有目录，不上传。公开输入已完成哈希核对；H&E、TEM 及 Iris 在对应阶段实际保存／重开，记录见 P0 与智能选图报告。
+
+压力档使用确定性 `pressureSvg(120)`、`pressureSvg(5000)`、`pressureSvg(10000)`；均标为合成压力数据，不能支持科研图像准确率。每档保留 SVG SHA-256、源资产／HTML 哈希、实际图元计数、相同视口／DPR／字体条件。正式耗时记录与带录像的功能演示分开；rAF 只描述呈现机会，真实像素反馈需要另行 trace／截图证据。
+
+## 记录结构与完成边界
+
+每一项最终记录包含：基线与新版入口和操作步骤、主画布更新证据、模态／遮挡采样、输入焦点、真实历史索引、取消后的状态及像素／SVG 哈希、完成后的单次 Undo／Redo、异步请求顺序、保存重开和导出结果。保存和导出应只使用已提交状态；测试中为了读状态而触发失焦的步骤须明确记录，不能用其证明草稿隔离。
+
+安全汇总只引用匿名案例、公开素材来源及统计结果。私有示例的文件、路径、像素、工程和可识别研究内容不进入仓库。Windows 安装版结果以对应独立报告为准，本表保留 BEFORE 审计，不替代最终验收。真实新手测试、实体触控和官方新版本完整更新仍未验证；中文输入法的已执行与待完成范围见上述独立记录。

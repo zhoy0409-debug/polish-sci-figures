@@ -1,0 +1,93 @@
+{
+  "schema": "figure-studio-resource-stage-evidence/1",
+  "status": "STAGE_EVIDENCE",
+  "target": "source13 frozen local runtime",
+  "localHtmlSha256": "ca8301f7331240eb1d550a939910467123ad902634f507682193f00cd52319de",
+  "browser": "155.0.8059.82",
+  "conditions": {
+    "theme": "carbon",
+    "language": "en",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "headless": true,
+    "video": false
+  },
+  "scope": "Supplementary actual UI runs on public Iris and repository CSV. This stage is not a complete four-condition resource acceptance. Original failed attempts are retained; source15 is the later integrated target.",
+  "verifiedDiscoveryInEarlierPilot": [
+    "Real A/B main-canvas comparison",
+    "Same CSV selected twice",
+    "Metadata and roles retained across language changes with zero backend rerenders",
+    "Save and readonly IndexedDB use committed data",
+    "Actual SVG/PNG/TIFF 600 dpi draft exports match committed baseline",
+    "Canvas F2/Esc and one keyboard nudge/Undo with dock open",
+    "Occupied-project Apply adds a panel and preserves prior source assets; one Undo/Redo"
+  ],
+  "verifiedLiterature": {
+    "status": "PASS",
+    "rawReportSha256": "cac53f7cc2e65e97bd7dccb92e637ed3e2627bdb49dbbb5ea80c43e8d23abec9",
+    "views": [
+      "compare_bar_points",
+      "compare_ecdf"
+    ],
+    "realTransportFailureKeptLastValidScientificSvg": true,
+    "failureApplyDisabled": true,
+    "saveIdbSvgPngTiffCommittedOnly": true,
+    "actual600dpiPngTiffPixelsEqual": true,
+    "f2EscapeAndNudgeUndoWithDockOpen": {
+      "inlineF2Started": true,
+      "escapeExact": true,
+      "nudgeCommits": 1,
+      "undoStateExact": true
+    },
+    "singleUndoRedoAndSourceDataExact": true,
+    "lockedOwnerNoRendererAndNotice": true,
+    "externalRequests": 0,
+    "pageErrors": 0,
+    "paperEvidenceClaim": false
+  },
+  "idbQaContractCorrection": {
+    "allowedOwnUndefinedOnly": [
+      "project.layoutRenders",
+      "project.heatmapRenders",
+      "project.statisticalRenders"
+    ],
+    "allOtherScientificValuesSourceSvgStateHistoryCheckpointsDataDrafts": "strict deep equality",
+    "reason": "Structured clone preserves these own undefined derived caches; JSON Save omits them. No blanket JSON normalization is applied.",
+    "regressionCases": 5
+  },
+  "fitObservation": {
+    "rawReportSha256": "ac51ae704f5466e6d807e5b6f9c527ab6b6bcac45b4d1647adc00cae57bb7ce2",
+    "scientificSvgNodeCountBefore": 359,
+    "scientificSvgNodeCountAfter": 359,
+    "onlySvgDifference": "Root editor CSS fit width/height; all child nodes, text and other root attributes are exact.",
+    "windowScrollYBefore": 0,
+    "windowScrollYAfter": 0,
+    "viewportHeightBefore": 322,
+    "viewportHeightAfter": 260,
+    "svgDisplayHeightBefore": 258,
+    "svgDisplayHeightAfter": 196,
+    "cause": "An actual reconnect notice consumes 62 CSS px after the aborted local request. The last valid scientific figure remains visible."
+  },
+  "screenshots": [
+    {
+      "file": "A-valid.png",
+      "sha256": "5852c67e935d61a132c784dbefc607c3f318cd47c34cfbb3310ec6947ba9beba"
+    },
+    {
+      "file": "B-transport-failed.png",
+      "sha256": "4fc8d429af6ac26800c395be5ef67986635d2e069effbc5c3684cbe5808acdee"
+    }
+  ],
+  "retainedFailureClassification": {
+    "source13-resource-pilot-en-carbon": "QA strict IDB/JSON representation mismatch",
+    "source13-resource-pilot02-en-carbon": "QA strict IDB/JSON representation mismatch",
+    "source13-resource-pilot03-en-carbon": "Exact three-undefined-cache diagnosis; original FAIL retained",
+    "source13-resource-pilot04-en-carbon": "QA did not expand the ordinary literature details summary",
+    "source13-resource-pilot05-en-carbon": "QA did not expand the ordinary literature details summary",
+    "source13-literature-resume01": "QA compared editor fit CSS dimensions as scientific content",
+    "source13-literature-resume02": "Exact SVG difference captured; only root CSS width/height differed"
+  },
+  "laterVisualCorrection": "Manual inspection found the literature dock status light text on a white box in Carbon; source15 adds a theme surface background. Source15 computed contrast and screenshots are separate evidence."
+}

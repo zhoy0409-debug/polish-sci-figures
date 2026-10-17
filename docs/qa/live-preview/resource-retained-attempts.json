@@ -1,0 +1,169 @@
+{
+  "schema": "figure-studio-resource-retained-attempts/1",
+  "status": "HISTORICAL_FAILURES_RETAINED",
+  "scope": "Unedited failed attempts are retained in local QA storage with these hashes. Later corrected assertions preserve strict scientific data/source/history checks; subsequent passing results are separate files. No earlier failed status is rewritten.",
+  "attempts": [
+    {
+      "attempt": "source13-resource-pilot-en-carbon",
+      "rawStatus": "FAIL",
+      "completedConditions": 1,
+      "conditionStatuses": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL"
+        }
+      ],
+      "rawReportSha256": "4790efd7e9c19eeb582ce9318645117054a5268d274577114a8aa810c2c5255a",
+      "harnessSha256": "ab5416e1d16747c7368795f5d5f811aa8449b36d8e3dbc2576d57f0f7f931919",
+      "classification": "QA_CONTRACT",
+      "finding": "Structured clone own undefined derived caches differ from JSON Save omission."
+    },
+    {
+      "attempt": "source13-resource-pilot02-en-carbon",
+      "rawStatus": "FAIL",
+      "completedConditions": 1,
+      "conditionStatuses": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL"
+        }
+      ],
+      "rawReportSha256": "7852a0cfc6c18194af4bb151c9d994ac375ee662c3bf38592f8a21ccfc3de1cc",
+      "harnessSha256": "c84a4c92370ec79a8bcdd4a61fe58a4d484ad9dba7b02af70f5468ac00d55465",
+      "classification": "QA_CONTRACT",
+      "finding": "Structured clone own undefined derived caches differ from JSON Save omission."
+    },
+    {
+      "attempt": "source13-resource-pilot03-en-carbon",
+      "rawStatus": "FAIL",
+      "completedConditions": 1,
+      "conditionStatuses": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL"
+        }
+      ],
+      "rawReportSha256": "0bca598ef5427d3011290c167f2a5ed190b56ca4e7b9ddcf52a0beee2ed0cf33",
+      "harnessSha256": "c6e2dd2b30c3433d611bdc35ef38064f972daf53bce5ada85c11ddfbf6f7b2f4",
+      "classification": "QA_DIAGNOSIS",
+      "finding": "Recorded exactly three own undefined cache keys; no other serialized difference."
+    },
+    {
+      "attempt": "source13-resource-pilot04-en-carbon",
+      "rawStatus": "FAIL",
+      "completedConditions": 1,
+      "conditionStatuses": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL"
+        }
+      ],
+      "rawReportSha256": "88d49c2035da89d9aee55134a325fb72e54f643f87c5b8759662a2c40b4b420d",
+      "harnessSha256": "45ab420024fa5f9afe4ac9f8a93e99c176d52edd0fbdbd40e97e2d4ff882a77f",
+      "classification": "QA_NAVIGATION",
+      "finding": "Ordinary closed literature details summary had not been opened."
+    },
+    {
+      "attempt": "source13-resource-pilot05-en-carbon",
+      "rawStatus": "FAIL",
+      "completedConditions": 1,
+      "conditionStatuses": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL"
+        }
+      ],
+      "rawReportSha256": "c33ffaaf62528ed68633a86297c39d9b6282baf4ebb542397c172f289a0be5f3",
+      "harnessSha256": "dce9b03673e71254bfb2eaaab081238671758ff7db06bb5978ef97befc3b982f",
+      "classification": "QA_NAVIGATION",
+      "finding": "Detailed visibility diagnosis confirmed closed details summary."
+    },
+    {
+      "attempt": "source15-resource-matrix01",
+      "rawStatus": "FAIL",
+      "completedConditions": 4,
+      "conditionStatuses": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL"
+        },
+        {
+          "language": "en",
+          "theme": "pearl",
+          "status": "FAIL"
+        },
+        {
+          "language": "zh-CN",
+          "theme": "carbon",
+          "status": "FAIL"
+        },
+        {
+          "language": "zh-CN",
+          "theme": "pearl",
+          "status": "FAIL"
+        }
+      ],
+      "rawReportSha256": "28a9d0c07d59a7642e3ac956e628247812447ec6f83658616df137a78a96271c",
+      "harnessSha256": "6f066f1556fb03704be23297f3ffb03e0af6b960e2e225d95599d9113dc6da92",
+      "classification": "QA_METHOD_CALL",
+      "finding": "New source-rejection check omitted the textContent() method invocation."
+    },
+    {
+      "attempt": "source15-resource-matrix02",
+      "rawStatus": "RUNNING",
+      "completedConditions": 2,
+      "conditionStatuses": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL"
+        },
+        {
+          "language": "en",
+          "theme": "pearl",
+          "status": "FAIL"
+        }
+      ],
+      "rawReportSha256": "2dae86f1d3e919ddea6cb51e28bc32b33cd1dab4dd3549e1cbedf3c935af8f1d",
+      "harnessSha256": "06f6e71ed865ddf74bc9e232bde62f40566c709d5b41ac4c94e1c55f3bbe5ba1",
+      "classification": "QA_NATIVE_DISABLED_CONTRACT",
+      "finding": "Source rejection correctly disabled Find. QA incorrectly waited for an enabled locator click; stopped after two identical failures."
+    },
+    {
+      "attempt": "source15-resource-pilot03-en-carbon",
+      "rawStatus": "FAIL",
+      "completedConditions": 1,
+      "conditionStatuses": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL"
+        }
+      ],
+      "rawReportSha256": "710e9d59d93931f71170409aa32c6d4e3f57150c618c902f7ae1bac6ec6cfb93",
+      "harnessSha256": "0f87984b1642c576a242a19b75d9076041626f779c6f82ec9e42422b7a3653e6",
+      "classification": "PRODUCT_USABILITY",
+      "finding": "Real untouched blank-project preview was squeezed to 46.08 × 34.55 CSS px by the still-visible welcome section; unchanged visibility floor rejected it."
+    },
+    {
+      "attempt": "source13-literature-resume01",
+      "rawStatus": "FAIL",
+      "rawReportSha256": "13e2436d09c26817e2e7b523fe62dabb63b1a8659d93583040f8194d7e9dfbd2",
+      "classification": "QA_FIT_VERSUS_SCIENTIFIC_CONTENT",
+      "finding": "Raw outerHTML included root editor fit CSS width/height."
+    },
+    {
+      "attempt": "source13-literature-resume02",
+      "rawStatus": "FAIL",
+      "rawReportSha256": "dba53da8a957ab35bacf8a89d825bb5e687d61af6fbe50fe2e1ded101584e5a1",
+      "classification": "QA_FIT_VERSUS_SCIENTIFIC_CONTENT",
+      "finding": "Both 359-node SVGs were captured; only root editor fit width/height differed."
+    }
+  ]
+}

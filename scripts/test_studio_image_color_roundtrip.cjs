@@ -22,7 +22,7 @@ const ctx={...helpers,document,NS,DOMParser:dom.window.DOMParser,StudioImageColo
   // Import validates embedded decoding; this adapter never fetches or rasterizes.
   Image:class{set src(value){assert.equal(value,href);this.naturalWidth=this.naturalHeight=1;queueMicrotask(()=>this.onload());}}
 };
-vm.createContext(ctx);vm.runInContext(code.split('\n').filter(line=>/^  const (TAGS|ATTRS|STYLES) =/.test(line)).join('\n'),ctx);
+ctx.previewCommitDepth=0;vm.createContext(ctx);vm.runInContext(extract('  function commitPreviewState(','  function refreshLivePreviews('),ctx);vm.runInContext(code.split('\n').filter(line=>/^  const (TAGS|ATTRS|STYLES) =/.test(line)).join('\n'),ctx);
 for(const [a,b]of [
   ['  function safeValue(','  function svgContentSummary('],
   ['  function inlineSvgStyles(','  function validateProject('],

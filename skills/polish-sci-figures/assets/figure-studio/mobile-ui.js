@@ -123,13 +123,16 @@ const StudioMobileUI = (() => {
     function updateRegions(){
       body.dataset.mobileTab=tab;
       for(const [name,node]of [['canvas',main],['panels',navigator],['adjustments',inspector]]){
-        const visible=!enabled||name===tab;
+        // Adjustments share the workspace with the live canvas. Only the panel
+        // navigator is a modal drawer; previewing a field must not inert or dim
+        // the figure the user is changing.
+        const visible=!enabled||name===tab||name==='canvas'&&tab==='adjustments';
         node.inert=enabled&&!visible;
         if(enabled){node.setAttribute('aria-hidden',String(!visible));node.setAttribute('role','tabpanel');node.setAttribute('aria-labelledby',buttons[name].id);}
         else{const saved=previous.get(node);node.inert=saved.inert;restoreAttribute(node,'aria-hidden',saved.aria);restoreAttribute(node,'role',saved.role);restoreAttribute(node,'aria-labelledby',saved.labelledBy);}
         buttons[name].setAttribute('aria-selected',String(name===tab));buttons[name].tabIndex=name===tab?0:-1;
       }
-      scrim.hidden=!enabled||tab==='canvas';
+      scrim.hidden=!enabled||tab!=='panels';
     }
     function restoreAttribute(node,name,value){if(value===null)node.removeAttribute(name);else node.setAttribute(name,value);}
     function showTab(next){
@@ -160,7 +163,7 @@ const StudioMobileUI = (() => {
     function point(event){return {id:event.pointerId,x:event.clientX,y:event.clientY};}
     function down(event){
       if(event.pointerType!=='touch'){if(event.pointerType==='mouse')blockClickUntil=0;return;}
-      if(!enabled||tab!=='canvas'||!viewport.contains(event.target)||editingTarget(event.target))return;
+      if(!enabled||tab==='panels'||!viewport.contains(event.target)||editingTarget(event.target))return;
       const action=session.begin(point(event));
       if(!action.consume)return;stop(event);
       if(action.start){cancelFrame();cancelApp(session.size>1?'pinch-start':'pan-start');gestureStarted=true;}

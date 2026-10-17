@@ -1,0 +1,99 @@
+{
+  "schema": "figure-studio-blank-resource-preview/1",
+  "label": "source17-installed-blank",
+  "kind": "installed-candidate",
+  "status": "PASS",
+  "harnessSha256": "b68101d5e3abb118da1d520fc5d0a6f4ac2ff1d8606f99847d7c420b986f0da6",
+  "conditions": {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "language": "en",
+    "theme": "carbon",
+    "headless": true
+  },
+  "scope": "Actual ordinary new blank project, repository public CSV and real local engine. No production hooks. Installed identity requires the separate exact Setup and file-manifest proof.",
+  "browser": "155.0.8059.82",
+  "sourceProof": {
+    "localHtmlSha256": "6edf33716e077c4da21cbcd241e9024167ecc85d215fa04aa85c4e05126a9846",
+    "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+    "reconstructedExpectedSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "preview": {
+    "viewport": {
+      "x": 226,
+      "y": 356,
+      "width": 728,
+      "height": 322,
+      "clientHeight": 322
+    },
+    "svg": {
+      "x": 418,
+      "y": 388,
+      "width": 344,
+      "height": 258,
+      "clientHeight": 258
+    },
+    "welcomeVisible": false
+  },
+  "previewIdb": {
+    "projectSha256": "f81511c9881631a5675d9819b9d0ab0676a65ef1b36a28a096e81805ac84be73",
+    "stateSha256": "e94c9b8772a2ffd173c150645dbb143298919feccbc5cc09912802a6ace82f96",
+    "historySha256": "fda0a170cf2d7c86ee67b2fa1450dc074ab7fa7d5d5693fc678f823fd94203ba",
+    "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "readonly": true,
+    "allOtherValuesStrictDeepEqual": true,
+    "representationOmissions": [],
+    "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+  },
+  "cancel": {
+    "viewport": {
+      "x": 226,
+      "y": 594.1875,
+      "width": 728,
+      "height": 83.8125,
+      "clientHeight": 84
+    },
+    "svg": {
+      "x": 566.953125,
+      "y": 626.1875,
+      "width": 46.078125,
+      "height": 34.546875,
+      "clientHeight": 35
+    },
+    "welcomeVisible": true
+  },
+  "applied": {
+    "viewport": {
+      "x": 226,
+      "y": 356,
+      "width": 728,
+      "height": 322,
+      "clientHeight": 322
+    },
+    "svg": {
+      "x": 418,
+      "y": 388,
+      "width": 344,
+      "height": 258,
+      "clientHeight": 258
+    },
+    "welcomeVisible": false
+  },
+  "cancelRestoresWelcome": true,
+  "previewCommittedPayloadExact": true,
+  "singleUndoRedo": true,
+  "undoRestoresWelcome": true,
+  "redoHidesWelcome": true,
+  "rawReportSha256": "24b7be43850f103a2a26bb6f0813338337e1a18a5cbcd8afaf6e45badc00a1be",
+  "setupSha256": "dfe79e35f01929e3af6d796ee4333bfea1f1833e7ab5a0c0029dadfef40ce8f5",
+  "externalRequestCount": 0,
+  "pageErrorCount": 0,
+  "priorFailure": "resource-source15-blank-failure.json",
+  "installationProof": "windows-final17-install-stage.json"
+}

@@ -1,0 +1,231 @@
+{
+  "schema": "figure-studio-source20-axis-composition-fix-regressions/1",
+  "status": "CONTROLLED_COMPONENT_RED_TO_GREEN_AND_NINE_EXISTING_REGRESSIONS_PASS",
+  "sourceStage": "source20",
+  "sourceManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+  "sourceHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+  "scope": "Actual production UI modules executed in Node/JSDOM with deliberately controlled DOM composition, input and keyboard events. This report establishes the listed component contracts and existing pure Node regressions, not a native Windows IME or real browser/installer acceptance.",
+  "finalFiles": [
+    {
+      "file": "skills/polish-sci-figures/assets/figure-studio/axis-settings-ui.js",
+      "sha256": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9"
+    },
+    {
+      "file": "scripts/test_studio_component_ime.cjs",
+      "sha256": "7eec5b437b4de13f993344668cf0b8dfac73d15ba93a22253af2d83db70d8965"
+    }
+  ],
+  "actualExecutionTimeline": [
+    {
+      "phase": "actual-frozen-source19-with-the-23-group-expanded-test",
+      "axisModuleSha256": "caeefa92f053e1afd1ab0f1d7c0df3fa4804ecb25422b5f484bf08346d20e7c5",
+      "componentImeTestSha256": "4b9d69758095455ebb3b827cf2cb9b6ed8c8a8e336963c3ce7a8079a95a8b275",
+      "testGroupCount": 23,
+      "passedGroups": 13,
+      "failedGroups": 10,
+      "actualExitCode": 1,
+      "failedCases": [
+        "axis rejected composition remains invalid through tail input, change and blur, retaining the actual upper bound",
+        "axis changes in another field cannot bypass a rejected composition or partially replace the saved range",
+        "axis explicit deletion can request Automatic after rejection, while corrected and renewed valid compositions still apply once",
+        "axis rejected dimensions cannot change aspect geometry through tail events or another dimension field",
+        "axis reset and context replacement clear rejected composition ownership without stranding valid edits",
+        "axis candidate termination, neutral navigation and select-all cannot authorize an Automatic limit",
+        "axis new pointer editing can recover the same finite value and actual cut can explicitly clear a limit",
+        "axis empty composition-end data cannot turn an existing numeric limit into Automatic",
+        "axis explicit deletion of a clean empty rejected field requests Automatic even when the browser emits no input",
+        "axis explicit deletion never accepts a still-malformed native number or deletes its last valid bound"
+      ],
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/before-final.log",
+        "sha256": "040e5db34089aa33ad07c2f9802c9a053897c9fa9c348e626c4ba85712516b5f",
+        "sizeBytes": 6835
+      }
+    },
+    {
+      "phase": "first-latch-fix-before-adding-the-second-composition-cases",
+      "axisModuleSha256": "7b7703a247ea56fcd7e5929cc319ab6c93940e9c432a05cc564580be6eb16205",
+      "componentImeTestSha256": "4b9d69758095455ebb3b827cf2cb9b6ed8c8a8e336963c3ce7a8079a95a8b275",
+      "testGroupCount": 23,
+      "passedGroups": 23,
+      "failedGroups": 0,
+      "actualExitCode": 0,
+      "failedCases": [],
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/after-final.log",
+        "sha256": "41875ab6be088e97e9ce9c6deb1375e48c4724d0b4da2b3358c186cc2ef77dbe",
+        "sizeBytes": 2538
+      }
+    },
+    {
+      "phase": "same-25-group-test-before-the-second-composition-fix",
+      "axisModuleSha256": "7b7703a247ea56fcd7e5929cc319ab6c93940e9c432a05cc564580be6eb16205",
+      "componentImeTestSha256": "7eec5b437b4de13f993344668cf0b8dfac73d15ba93a22253af2d83db70d8965",
+      "testGroupCount": 25,
+      "passedGroups": 23,
+      "failedGroups": 2,
+      "actualExitCode": 1,
+      "failedCases": [
+        "axis a second cancelled composition retains the first rejected limit and clears earlier edit intentions",
+        "axis a renewed finite composition can recover the same displayed value without authorizing a cancelled composition"
+      ],
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/before-second-composition.log",
+        "sha256": "8833e5e07d54611d37e4d8b6693cbb9d6a2b8906abe62099100f5d837b127a48",
+        "sizeBytes": 3632
+      }
+    },
+    {
+      "phase": "same-25-group-test-after-the-second-composition-fix",
+      "axisModuleSha256": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9",
+      "componentImeTestSha256": "7eec5b437b4de13f993344668cf0b8dfac73d15ba93a22253af2d83db70d8965",
+      "testGroupCount": 25,
+      "passedGroups": 25,
+      "failedGroups": 0,
+      "actualExitCode": 0,
+      "failedCases": [],
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/after-second-composition.log",
+        "sha256": "86a722ca08af7858739762593573818ad4510af380617bea9d25c47dc0855f7b",
+        "sizeBytes": 2769
+      }
+    }
+  ],
+  "caseCountBoundary": {
+    "frozenSource19ActuallyExecutedGroups": 23,
+    "finalExpandedTestGroups": 25,
+    "frozenSource19ExecutedWithFinal25GroupTest": false,
+    "explanation": "The frozen source19 baseline was actually run with 23 groups (13 passed, 10 failed). The two second-composition groups were added later and first run on the intermediate latch fix (23 passed, 2 failed). No hypothetical 13-pass/12-fail source19 result is asserted."
+  },
+  "verifiedContracts": [
+    "Rejected number composition followed by input/change/blur/Enter retains the previous finite bound and prevents preview/commit.",
+    "A second cancelled composition, including an earlier deferred deletion intention, cannot convert the rejected blank field to Automatic.",
+    "Cross-field edits cannot partially delete a range while any number-composition rejection remains unresolved.",
+    "Plot-width/height aspect-lock handling checks rejection before changing the partner dimension.",
+    "Different complete finite values can recover without a preceding key event; explicit same-value pointer editing and successful renewed finite composition can recover too.",
+    "Enter/Escape/Tab/modifiers/select-all/navigation are not evidence of a new numeric edit.",
+    "Explicit Backspace/Delete on a clean empty rejected field requests Automatic even when no subsequent input event occurs; badInput continues to block.",
+    "Reset, cancellation and context replacement clear rejected-field ownership and allow later valid edits."
+  ],
+  "existingRegressionResults": [
+    {
+      "script": "scripts/test_studio_axis_settings_ui.cjs",
+      "scriptSha256": "70e1c949a6849f66f882dd4c48de36a0a769b97d488ed54ea30eb8351627eb90",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/second-composition-test_studio_axis_settings_ui.cjs.log",
+        "sha256": "c2b8d8d95c3ba4cc1b2ed7c19f6869e9091baa01e5116f177b8514fb53e1b035",
+        "sizeBytes": 162
+      }
+    },
+    {
+      "script": "scripts/test_studio_axis_settings_async.cjs",
+      "scriptSha256": "be3e04ab51c522135fe6b5be39a82e98ea743c356fb1430c43a329ffb097f022",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/second-composition-test_studio_axis_settings_async.cjs.log",
+        "sha256": "6c880dd558181a567a664b4c78eb3e25df90cf024405441a20fd7071cb788181",
+        "sizeBytes": 199
+      }
+    },
+    {
+      "script": "scripts/test_studio_axis_canvas_restore.cjs",
+      "scriptSha256": "749277cd6e5bf6ae51e69c0c1b7e28b1a74208747762ee893069c877f8efe5d3",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/second-composition-test_studio_axis_canvas_restore.cjs.log",
+        "sha256": "5ca6f1f492ecc7f1e3fe1b226521fb00420457a7a2523842d9447349c805b92f",
+        "sizeBytes": 152
+      }
+    },
+    {
+      "script": "scripts/test_studio_host_ime.cjs",
+      "scriptSha256": "c5fb2c1d20e58e6858790d701665c86e296e798f255a913d84c56108563b25c6",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/second-composition-test_studio_host_ime.cjs.log",
+        "sha256": "05273d89a2db02b57342e6bf3e37817482056c1541980f5cb0e9229e848889d9",
+        "sizeBytes": 649
+      }
+    },
+    {
+      "script": "scripts/test_studio_legacy_axis_preview.cjs",
+      "scriptSha256": "7c363dc783f69667583e6731102d551f894d0e2fab8ef775f5169231609b0a46",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/second-composition-test_studio_legacy_axis_preview.cjs.log",
+        "sha256": "25634a62aeb964b11627a4e2778887e3f25d5aefb286d44d0962fc8d223a591b",
+        "sizeBytes": 179
+      }
+    },
+    {
+      "script": "scripts/test_studio_text_spacing_preview.cjs",
+      "scriptSha256": "26aadec12759e03186750d0444fe40f973b893ef33637251e9f97adea6a22696",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/second-composition-test_studio_text_spacing_preview.cjs.log",
+        "sha256": "5d91adb0f5dcf0d9211a9a4f6d74b6dd26e5cd3b82e86befd9c74b2d936bc57d",
+        "sizeBytes": 102
+      }
+    },
+    {
+      "script": "scripts/test_studio_image_insets_ui.cjs",
+      "scriptSha256": "98a0a27d838360f873f9a84ae89ce4b15236caeb67aeeb06528f997080275a31",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/second-composition-test_studio_image_insets_ui.cjs.log",
+        "sha256": "f6943753872a197126e28c4159353c52a4ee6c0a7d01a242de035499199d5eab",
+        "sizeBytes": 250
+      }
+    },
+    {
+      "script": "scripts/test_studio_image_insets_draft.cjs",
+      "scriptSha256": "a23fc3985bf9a4c895699aa4a70e29400289f68bee7f6f9abbcba1953cd789bf",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/second-composition-test_studio_image_insets_draft.cjs.log",
+        "sha256": "509c4e8245638e06822581da94c850d7fd24dbdd7367acbbbb3f2d00c0098594",
+        "sizeBytes": 227
+      }
+    },
+    {
+      "script": "scripts/test_studio_image_insets_controller.cjs",
+      "scriptSha256": "110b737ac0d68e4a108a9fd849f5e5987f9059848f7c03b6be3552901c9a675e",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/ime-axis-invalid-tail-proof/second-composition-test_studio_image_insets_controller.cjs.log",
+        "sha256": "392f5db2ceac3d027cbf76b3d433f81effb9bd51c2c6ded048d5ef735a6913b3",
+        "sizeBytes": 1584
+      }
+    }
+  ],
+  "syntaxChecks": [
+    {
+      "file": "skills/polish-sci-figures/assets/figure-studio/axis-settings-ui.js",
+      "arguments": [
+        "--check"
+      ],
+      "actualExitCode": 0
+    },
+    {
+      "file": "scripts/test_studio_component_ime.cjs",
+      "arguments": [
+        "--check"
+      ],
+      "actualExitCode": 0
+    }
+  ],
+  "regressionRunRecord": {
+    "file": ".cache/ime-axis-invalid-tail-proof/second-composition-regressions.json",
+    "sha256": "1c3595a24dedab3f3cbc572a3f642851e4d27fb2e4eb2ae5b2be4593512c1691",
+    "axisSha256Before": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9",
+    "axisSha256After": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9"
+  },
+  "evidenceLimits": {
+    "nativeWindowsImeOnChangedAxisHandlers": "Not performed by these controlled tests. The separate source18 human IME report remains bound to source18; the changed source20 axis module is not claimed byte-identical.",
+    "actualChromeAxisRendererOnSource20": "Not established by this report; requires a separate actual browser result.",
+    "windowsInstallerAndLifecycleOnSource20": "Not established by this report; requires a separate installed-package result.",
+    "performance": "Not measured by these tests.",
+    "scientificDataAndRendering": "This patch changes input acceptance/session ownership only. Source data, scientific transforms and renderer algorithms are outside its changed code; the controlled tests check draft preservation and callback counts, not statistical or detection accuracy."
+  }
+}

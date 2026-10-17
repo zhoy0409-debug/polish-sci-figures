@@ -1,0 +1,21 @@
+{
+  "schema": "figure-studio-touch-retained-usability-failure/1",
+  "status": "FUNCTIONAL_ASSERTIONS_PASS_MANUAL_USABILITY_FAIL",
+  "originalRawStatus": "PASS",
+  "rawReportSha256": "c58fce85fe98daf900e6c355470acf0da33cabe95506fd7ed2f75e02a7442c70",
+  "harnessSha256": "1cc0845611caf57b11f4171804a7ad22508a6dbf1f505f06544447ad92b581dc",
+  "sourceLocalHtmlSha256": "4289e026e479ba6a2c1310dd414b8da6df2641a898ebd2ac598c4f8e9ce22de4",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "browser": "155.0.8059.82",
+  "observation": "The earlier functional-only harness passed reachability/history checks, but manual review found an approximately 50 x 30 CSS-pixel image and overlapping workflow labels. The original raw PASS is retained; it is not presented as narrow-layout usability acceptance.",
+  "computedHeaderHeightCssPx": 242,
+  "readonlyLayoutReportSha256": "7b7c87c2fff30dfc4ffe7782e9fbeff1a7e113bc6c981f87db4f721190b82233",
+  "screenshot": {
+    "file": "source08-touch-390-functional-pass-usability-fail.png",
+    "sha256": "7424e1f8b6217356a9858b0b97486ab59e053d49e51c8f458a0fdfc2f2c1daed"
+  },
+  "laterProtocol": "The source09 harness explicitly checks decoded raster content >=160 x 90 CSS pixels, header <=140 CSS pixels at narrow width, workflow label containment and no button overlap, plus original state/history checks. The floor is a UI engineering check, with manual image review retained."
+}

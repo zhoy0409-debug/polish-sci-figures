@@ -1,0 +1,105 @@
+{
+  "schema": "figure-studio-ime-code-continuity/1",
+  "status": "SOURCE19_CONTINUITY_VERIFIED_NOT_A_NEW_NATIVE_IME_TEST",
+  "humanEvidence": {
+    "stage": "source18",
+    "file": "source18-human-ime-summary.json",
+    "sha256": "3ffe2c081f0ec2268ebd2478447e059fd1faa18fc06e9077650f966bed088ad2",
+    "reviewedChecks": 6,
+    "nativeMethod": "Human-operated Windows Microsoft Pinyin in actual Edge155.0.4283.45"
+  },
+  "source18StudioSha256": "9be32d028418b42299401590a11ebba7b340f31128c1768a820cac07e825f2cf",
+  "source19StudioSha256": "fd1b600b233a045cbacc0ce144969c5e9b7af5f5761e8d68e9f620e20702d69d",
+  "source19FreezeSha256": "bf5299072f654e7ec01115b787cb2db9e6582566327afd086153532da98cc178",
+  "onlyChangedStudioLines": [
+    4265,
+    4571,
+    4572
+  ],
+  "changeMeaning": [
+    "Skip old-guide UI refresh only when no guide was selected.",
+    "Skip HEX setter only for the exact same current string.",
+    "Skip swatch ARIA setter only for the exact same attribute string."
+  ],
+  "exactCodeRegions": [
+    {
+      "name": "global-composition-tracking",
+      "startLine": 1005,
+      "endLine": 1040,
+      "sha256": "828096c4dc0cb96202060378c072dcdac2cdf80179fb4bdbab182c728df00546",
+      "byteExact": true,
+      "byteExactIncludingLineEndings": true
+    },
+    {
+      "name": "field-live-preview-and-composition",
+      "startLine": 2670,
+      "endLine": 2785,
+      "sha256": "4254a687e42afe4f6c97557dab3f588ed0ccffcaeadf6bbf9b418e949879a2b6",
+      "byteExact": true,
+      "byteExactIncludingLineEndings": true
+    },
+    {
+      "name": "legacy-axis-field-composition",
+      "startLine": 3110,
+      "endLine": 3205,
+      "sha256": "7c2c1e553d3c9b8c4246e5a38c2e8e2aebec722a5bcbdb5e5326872f9dcae408",
+      "byteExact": true,
+      "byteExactIncludingLineEndings": true
+    },
+    {
+      "name": "quick-toolbar-composition",
+      "startLine": 3540,
+      "endLine": 3620,
+      "sha256": "15af6f8fb3a6a78ff33c1b7891e050890b91a0cac85b7db1ffb3efb1523f20dc",
+      "byteExact": true,
+      "byteExactIncludingLineEndings": true
+    },
+    {
+      "name": "inline-editor-F2-and-global-composition",
+      "startLine": 4658,
+      "endLine": 4740,
+      "sha256": "8954479c81dce3a489ff07bfbc42948d486361b83700ad34d81d317b93ef43b0",
+      "byteExact": true,
+      "byteExactIncludingLineEndings": true
+    }
+  ],
+  "exactWholeModules": [
+    {
+      "file": "axis-settings-ui.js",
+      "sha256": "caeefa92f053e1afd1ab0f1d7c0df3fa4804ecb25422b5f484bf08346d20e7c5",
+      "byteExact": true
+    },
+    {
+      "file": "text-tools-ui.js",
+      "sha256": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e",
+      "byteExact": true
+    },
+    {
+      "file": "image-insets-ui.js",
+      "sha256": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035",
+      "byteExact": true
+    }
+  ],
+  "confirmed": "The source19 production diff is exactly3lines outside the listed unchanged composition/input/F2 regions. The actual source18 manual evidence remains separately bound to its source and browser.",
+  "inference": "Unchanged composition event handlers support continuity; source comparison does not constitute a second native IME operation on the final installer.",
+  "finalInstalledScope": "Final source19 installer receives separate package/source and functional acceptance. No second human-assisted source19 installed native IME operation is claimed. No synthetic composition or input injection is substituted.",
+  "bytePolicy": "Raw UTF-8 file bytes, split on original line endings with keepends=True; no newline normalization.",
+  "exactChangedLines": [
+    {
+      "line": 4265,
+      "source18Utf8IncludingEnding": "    svg.onpointerdown=e=>{cancelQueuedZoom();if(e.button!==0||original)return;e.preventDefault();window.getSelection()?.removeAllRanges();if(chooseBehind(e))return;const guideTarget=e.target.closest('[data-alignment-guide]');if(guideTarget){selectedAlignmentGuide=guideTarget.dataset.alignmentGuide;selected=[];elementSelections=[];selectedAnnotations=[];selectedPanelLabel=null;const guide=state().alignmentGuides.find(item=>item.id===selectedAlignmentGuide);guideDrag={id:guide.id,axis:guide.axis,position:guide.position,screen:{x:e.clientX,y:e.clientY},moved:false,next:copy(state())};drawAlignmentGuides();renderAlignmentGuideControls();drawSelection([]);svg.setPointerCapture(e.pointerId);return;}selectedAlignmentGuide=null;drawAlignmentGuides();renderAlignmentGuideControls();const moveHandle=e.target.closest('[data-panel-move]'),mark=e.target.closest('[data-annotation]');if(mark&&!layoutMode&&(!boxSelect||selectedAnnotations.includes(mark.dataset.annotation))&&(!e.shiftKey||selectedAnnotations.includes(mark.dataset.annotation)||e.target.closest('[data-overlay-resize]'))){const id=mark.dataset.annotation;if(!selectedAnnotations.includes(id)){selectedAnnotations=[id];selected=[];elementSelections=[];selectedPanelLabel=null;}activePane='annotation';renderOverlayProperties();document.querySelectorAll('[data-pane]').forEach(el=>el.hidden=el.getAttribute('data-pane')!=='annotation'&&!['statisticalAnnotations','conditionMatrixControls'].includes(el.id));(mark.querySelector('[data-inset-content]')?svg:e.target.closest('text')||svg).setPointerCapture(e.pointerId);const a=state().overlays.find(a=>a.id===id);if(!a.locked){overlayDrag={screen:{x:e.clientX,y:e.clientY},moved:false,clearOnTap:selectionAfterMarquee&&!e.shiftKey,point:canvasPoint(e),resize:!!e.target.closest('[data-overlay-resize]'),endpoint:+(e.target.closest('[data-overlay-resize]')?.dataset.overlayEndpoint||0),id,base:state(),next:null};if(!overlayDrag.resize){overlayDrag.nodes=selectedDragItems(false);overlayDrag.overlayIds=selectedAnnotations.filter(id=>!state().overlays.find(a=>a.id===id)?.locked);svg.classList.add('is-dragging-object');}}return;}const target=e.target.closest('[data-panel-label]');if(target&&!layoutMode&&(!boxSelect||selectedLabelIds().includes(target.getAttribute('data-panel-label')))&&(!e.shiftKey||selectedLabelIds().includes(target.getAttribute('data-panel-label')))){const id=target.getAttribute('data-panel-label');if(state().panels[id].locked)return say(T('小图已锁定'));if(state().panels[id].label?.locked)return say(T('元素已锁定'));if(selectedLabelIds().includes(id)&&(selectionGroups().length||selectedAnnotations.length||selectedLabelIds().length>1)){elementDrag={moved:false,newSelection:false,appendOnTap:true,point:canvasPoint(e),id:selectedPanel,vi:state().panels[selectedPanel].variant,base:state(),next:null,nodes:selectedDragItems(false),overlayIds:[...selectedAnnotations],screen:{x:e.clientX,y:e.clientY}};svg.classList.add('is-dragging-object');target.setPointerCapture(e.pointerId);return;}selectedPanel=id;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];panelSelection=[id];setLabelSelection([id]);labelDrag={id,point:{x:e.clientX,y:e.clientY},start:{...state().panels[id].label},preview:captureLabelMotion(target),alignment:alignmentContext([target]),moved:false,clearOnTap:selectionAfterMarquee&&!e.shiftKey};svg.classList.add('is-dragging-object');target.setPointerCapture(e.pointerId);return;}if(!layoutMode&&!moveHandle){const el=canvasObjectTarget(e.target),pan=e.target.closest('[data-panel]');let newSelection=false;if(!boxSelect&&!e.shiftKey&&!selectionAfterMarquee&&el&&isVisibleObject(el)&&el.localName!=='tspan'&&pan&&!state().panels[pan.dataset.panel].locked&&!state().panels[pan.dataset.panel].lockedElements?.[state().panels[pan.dataset.panel].variant]?.includes(el.dataset.key)&&!selectionGroups().some(group=>group.id===pan.dataset.panel&&group.keys.includes(el.dataset.key))){setElementSelection([{id:pan.dataset.panel,vi:state().panels[pan.dataset.panel].variant,keys:state().panels[pan.dataset.panel].elementGroups?.[state().panels[pan.dataset.panel].variant]?.find(group=>group.includes(el.dataset.key))||[el.dataset.key]}]);selectedAnnotations=[];selectedPanelLabel=null;activePane='detail';$('scope').value='element';newSelection=true;finishSelectionUI();}if((!e.shiftKey||!boxSelect)&&el&&pan&&selectionGroups().some(group=>group.id===pan.dataset.panel&&group.keys.includes(el.dataset.key))){\n",
+      "source19Utf8IncludingEnding": "    svg.onpointerdown=e=>{cancelQueuedZoom();if(e.button!==0||original)return;e.preventDefault();window.getSelection()?.removeAllRanges();if(chooseBehind(e))return;const guideTarget=e.target.closest('[data-alignment-guide]');if(guideTarget){selectedAlignmentGuide=guideTarget.dataset.alignmentGuide;selected=[];elementSelections=[];selectedAnnotations=[];selectedPanelLabel=null;const guide=state().alignmentGuides.find(item=>item.id===selectedAlignmentGuide);guideDrag={id:guide.id,axis:guide.axis,position:guide.position,screen:{x:e.clientX,y:e.clientY},moved:false,next:copy(state())};drawAlignmentGuides();renderAlignmentGuideControls();drawSelection([]);svg.setPointerCapture(e.pointerId);return;}if(selectedAlignmentGuide!==null){selectedAlignmentGuide=null;drawAlignmentGuides();renderAlignmentGuideControls();}const moveHandle=e.target.closest('[data-panel-move]'),mark=e.target.closest('[data-annotation]');if(mark&&!layoutMode&&(!boxSelect||selectedAnnotations.includes(mark.dataset.annotation))&&(!e.shiftKey||selectedAnnotations.includes(mark.dataset.annotation)||e.target.closest('[data-overlay-resize]'))){const id=mark.dataset.annotation;if(!selectedAnnotations.includes(id)){selectedAnnotations=[id];selected=[];elementSelections=[];selectedPanelLabel=null;}activePane='annotation';renderOverlayProperties();document.querySelectorAll('[data-pane]').forEach(el=>el.hidden=el.getAttribute('data-pane')!=='annotation'&&!['statisticalAnnotations','conditionMatrixControls'].includes(el.id));(mark.querySelector('[data-inset-content]')?svg:e.target.closest('text')||svg).setPointerCapture(e.pointerId);const a=state().overlays.find(a=>a.id===id);if(!a.locked){overlayDrag={screen:{x:e.clientX,y:e.clientY},moved:false,clearOnTap:selectionAfterMarquee&&!e.shiftKey,point:canvasPoint(e),resize:!!e.target.closest('[data-overlay-resize]'),endpoint:+(e.target.closest('[data-overlay-resize]')?.dataset.overlayEndpoint||0),id,base:state(),next:null};if(!overlayDrag.resize){overlayDrag.nodes=selectedDragItems(false);overlayDrag.overlayIds=selectedAnnotations.filter(id=>!state().overlays.find(a=>a.id===id)?.locked);svg.classList.add('is-dragging-object');}}return;}const target=e.target.closest('[data-panel-label]');if(target&&!layoutMode&&(!boxSelect||selectedLabelIds().includes(target.getAttribute('data-panel-label')))&&(!e.shiftKey||selectedLabelIds().includes(target.getAttribute('data-panel-label')))){const id=target.getAttribute('data-panel-label');if(state().panels[id].locked)return say(T('小图已锁定'));if(state().panels[id].label?.locked)return say(T('元素已锁定'));if(selectedLabelIds().includes(id)&&(selectionGroups().length||selectedAnnotations.length||selectedLabelIds().length>1)){elementDrag={moved:false,newSelection:false,appendOnTap:true,point:canvasPoint(e),id:selectedPanel,vi:state().panels[selectedPanel].variant,base:state(),next:null,nodes:selectedDragItems(false),overlayIds:[...selectedAnnotations],screen:{x:e.clientX,y:e.clientY}};svg.classList.add('is-dragging-object');target.setPointerCapture(e.pointerId);return;}selectedPanel=id;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];panelSelection=[id];setLabelSelection([id]);labelDrag={id,point:{x:e.clientX,y:e.clientY},start:{...state().panels[id].label},preview:captureLabelMotion(target),alignment:alignmentContext([target]),moved:false,clearOnTap:selectionAfterMarquee&&!e.shiftKey};svg.classList.add('is-dragging-object');target.setPointerCapture(e.pointerId);return;}if(!layoutMode&&!moveHandle){const el=canvasObjectTarget(e.target),pan=e.target.closest('[data-panel]');let newSelection=false;if(!boxSelect&&!e.shiftKey&&!selectionAfterMarquee&&el&&isVisibleObject(el)&&el.localName!=='tspan'&&pan&&!state().panels[pan.dataset.panel].locked&&!state().panels[pan.dataset.panel].lockedElements?.[state().panels[pan.dataset.panel].variant]?.includes(el.dataset.key)&&!selectionGroups().some(group=>group.id===pan.dataset.panel&&group.keys.includes(el.dataset.key))){setElementSelection([{id:pan.dataset.panel,vi:state().panels[pan.dataset.panel].variant,keys:state().panels[pan.dataset.panel].elementGroups?.[state().panels[pan.dataset.panel].variant]?.find(group=>group.includes(el.dataset.key))||[el.dataset.key]}]);selectedAnnotations=[];selectedPanelLabel=null;activePane='detail';$('scope').value='element';newSelection=true;finishSelectionUI();}if((!e.shiftKey||!boxSelect)&&el&&pan&&selectionGroups().some(group=>group.id===pan.dataset.panel&&group.keys.includes(el.dataset.key))){\n"
+    },
+    {
+      "line": 4571,
+      "source18Utf8IncludingEnding": "    const value=$('color').value.toUpperCase();$('colorHex').value=value;\n",
+      "source19Utf8IncludingEnding": "    const value=$('color').value.toUpperCase(),input=$('colorHex');if(input.value!==value)input.value=value;\n"
+    },
+    {
+      "line": 4572,
+      "source18Utf8IncludingEnding": "    for(const b of document.querySelectorAll('.color-swatches button'))b.setAttribute('aria-pressed',String(b.title===value));\n",
+      "source19Utf8IncludingEnding": "    for(const b of document.querySelectorAll('.color-swatches button')){const pressed=String(b.title===value);if(b.getAttribute('aria-pressed')!==pressed)b.setAttribute('aria-pressed',pressed);}\n"
+    }
+  ],
+  "source18ReconstructionFromFinalSourceAndThreeExactLinesVerified": true
+}

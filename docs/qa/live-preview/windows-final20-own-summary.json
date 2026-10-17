@@ -1,0 +1,182 @@
+{
+  "schema": "figure-studio-installed-own8-acceptance/1",
+  "sourceStage": "source20",
+  "status": "PASS_ACTUAL_INSTALLED_OWN8_SCOPE",
+  "applicationVersion": "0.1.22",
+  "setupSha256": "85b0355490eb2615f2cebc1097e6e51da1d89a9f3b5851a60d95831930be3d1a",
+  "sourceFreezeManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+  "sourceFreezeHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+  "actualInstalledHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+  "packageSourceProofSha256": "6aff7122b3e1c62efa5e4967ca625c430cfa453bfded051b9e18af028a841eef",
+  "packageHtmlProof": {
+    "sourceFreezeManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+    "sourceFreezeHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+    "actualPackagedStarterFile": "_internal/suite/desktop/resources/starter.html",
+    "actualPackagedStarterSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+    "installedWorkspaceHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+    "installedFileManifestSha256": "a53de948baae58fabeeaa953db95222cfe48b7f6fedbe9a15856d0d7b2c6e80d",
+    "installedFileCount": 2622,
+    "assetHashCount": 78,
+    "backendHashCount": 27,
+    "compiledBackendModuleCount": 23,
+    "notPackagedTestSources": [
+      "test_check_source_portability.py",
+      "test_figure_studio.py",
+      "test_figure_text_qa.py",
+      "test_font_policy.py"
+    ],
+    "starterBytesMatchOriginalPackageInstalledCopyAndWorkspace": true,
+    "scope": "The source freeze can contain Iris while the desktop starter is blank. Only the UI and production backend are tied to the freeze; non-distributed test-source hashes remain parent manifest references."
+  },
+  "actualServedSourceProof": {
+    "localHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+    "servedHtmlSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+    "reconstructedExpectedSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "actualProcessExitCode": 0,
+  "runnerSha256": "7d2abc6d09cb1b8ece230a117e4fe475c5937974f295882fcc8e2a70c274d485",
+  "rawRunnerSummarySha256": "2ba7fda48e0ed1a65de87e6ca39409856e9c9164ada603214ba4a969583cfcdd",
+  "stageExecutionSha256": "56112d86feb75afb2e35397f4ab40b83d1b18f98e0dc74187e95b26f040bef14",
+  "installedRunManifestSha256": "cd4fd4265f90137d6b2924c33c7244069dbec3cb67f47acf8b03f0ba59214b89",
+  "suites": [
+    {
+      "suite": "p0",
+      "startedAt": "2026-10-17T20:47:19.357Z",
+      "finishedAt": "2026-10-17T20:54:24.799Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 72,
+      "harnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+      "rawReportSha256": "d133db4f2d0e450c9a2c02c3d2c464f1f71ad4b1a0ba735ff9941bb555b7c5d8"
+    },
+    {
+      "suite": "resources",
+      "startedAt": "2026-10-17T20:54:26.804Z",
+      "finishedAt": "2026-10-17T20:56:47.429Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 4,
+      "harnessSha256": "55bc143a9626e1325ca6beabcfd13ea2ee9664cbe0454b44db9a7990f1f6c050",
+      "rawReportSha256": "7972d87bad7961248be4d556285c6cae0fe288085b6db81c36cbff1b2602cd62"
+    },
+    {
+      "suite": "blank",
+      "startedAt": "2026-10-17T20:56:49.421Z",
+      "finishedAt": "2026-10-17T20:56:55.613Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 1,
+      "harnessSha256": "b68101d5e3abb118da1d520fc5d0a6f4ac2ff1d8606f99847d7c420b986f0da6",
+      "rawReportSha256": "3b54b24513cdf4a9c7afb9dbc724fa678a6e609fabeeb73b5bfdfa74e63f1cb0"
+    },
+    {
+      "suite": "touch390",
+      "startedAt": "2026-10-17T20:56:57.495Z",
+      "finishedAt": "2026-10-17T20:57:14.086Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 4,
+      "harnessSha256": "eaf9c6b4bb33f9d37019debb93d1386f59f906e42bf36a8a7c0cf4bf6cded2cf",
+      "rawReportSha256": "facccbea6b161cd2edae0ec11950cb0e47f069466cbdabcf146104136a895b97"
+    },
+    {
+      "suite": "touch1280",
+      "startedAt": "2026-10-17T20:57:16.061Z",
+      "finishedAt": "2026-10-17T20:57:32.868Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 4,
+      "harnessSha256": "eaf9c6b4bb33f9d37019debb93d1386f59f906e42bf36a8a7c0cf4bf6cded2cf",
+      "rawReportSha256": "7ae83bfb93643b54bc38579bd3ec83de18f069bf0beacf8a3644c9843be61d59"
+    },
+    {
+      "suite": "selection",
+      "startedAt": "2026-10-17T20:57:34.701Z",
+      "finishedAt": "2026-10-17T20:58:05.074Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 5,
+      "harnessSha256": "f57c704af5dca0606eb44ffb59872aa02ad4b18b7511da68844249404ab07dbb",
+      "rawReportSha256": "36696c345957d31af2e5b0e393c2968c43f0a6fdb4d040a957ca6be8e3f72090"
+    },
+    {
+      "suite": "discovery",
+      "startedAt": "2026-10-17T20:58:07.647Z",
+      "finishedAt": "2026-10-17T20:58:24.860Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 16,
+      "harnessSha256": "2968917b47b7a524bea82b6c20edf35ca845f54eb3cd0218efbbde81fe7f143c",
+      "rawReportSha256": "2e767047d946545bb1db00f0ce78feb02cec1f677c8545f17b0e5a34b5aabef2"
+    },
+    {
+      "suite": "core-demo",
+      "startedAt": "2026-10-17T20:58:27.368Z",
+      "finishedAt": "2026-10-17T20:58:59.004Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 2,
+      "harnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+      "rawReportSha256": "9fd102b16663b70a872020e5b9326f9c607f44b1af87ee82c7d69a4bb0de537c"
+    }
+  ],
+  "totalScopedChecks": 108,
+  "identityBefore": {
+    "protectedIdentitiesUnchanged": true,
+    "currentRegistrationOwned": true,
+    "registeredViewCount": 2,
+    "initialRegistryViewsAbsent": 4,
+    "protectedProcessCount": 1,
+    "qaProcessExact": true,
+    "powerShellVersion": "7.6.5",
+    "version": "0.1.22",
+    "scope": "Read-only CIM, file hashes and exact AppId registry queries. No process, registry or installed file is modified.",
+    "installedExecutableMatchesPackage": true,
+    "status": "PASS_READ_ONLY_IDENTITY"
+  },
+  "identityAfter": {
+    "qaProcessExact": true,
+    "registeredViewCount": 2,
+    "protectedProcessCount": 1,
+    "version": "0.1.22",
+    "initialRegistryViewsAbsent": 4,
+    "scope": "Read-only CIM, file hashes and exact AppId registry queries. No process, registry or installed file is modified.",
+    "powerShellVersion": "7.6.5",
+    "currentRegistrationOwned": true,
+    "installedExecutableMatchesPackage": true,
+    "protectedIdentitiesUnchanged": true,
+    "status": "PASS_READ_ONLY_IDENTITY"
+  },
+  "sourceAndPackageGuardsUnchanged": true,
+  "browserClosure": {
+    "schema": "figure-studio-installed-owned-browser-closure/1",
+    "queriedAtUtc": "2026-10-17T21:00:59.5314188Z",
+    "browserProfilesScopedToOwnedTemp": true,
+    "phase": "own8",
+    "scope": "Read-only CIM query restricted to exact owned temporary-profile command lines. User browser processes are neither stopped nor modified.",
+    "sourceStage": "source20",
+    "allChromeProcessCount": 0,
+    "processesStopped": 0,
+    "status": "PASS_READ_ONLY_OWNED_PROFILE_BROWSER_CLOSURE",
+    "ownedQaChromeOrEdgeCount": 0
+  },
+  "browserClosureProofSha256": "5a0246cda9c9f032d1b24d8da710e0821378cfa3aec93dbacbad8e4f827bc04d",
+  "actualSavedIrisPreservationPayloadSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+  "startedAt": "2026-10-17T20:47:17.272Z",
+  "finishedAt": "2026-10-17T20:59:03.964Z",
+  "browserAcceptanceComplete": false,
+  "reinstallExecuted": false,
+  "uninstallExecuted": false,
+  "additionalEvidenceStillRequiredAtThisStage": [
+    "P1 both themes",
+    "60-image background cancellation",
+    "10000-mark PDF and SVG import/save/reopen/export",
+    "extra controlled-event axis upper-bound checks",
+    "manual review of final real recordings",
+    "authorized actual reinstall/uninstall preservation"
+  ],
+  "scope": "Eight actual installed-browser suites only. Touch is emulated. Real public Iris and microscopy inputs are engineering fixtures; synthetic stress inputs are not detector accuracy evidence. No repeated source20 human IME, official update or release acceptance is inferred."
+}

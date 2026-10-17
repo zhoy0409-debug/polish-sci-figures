@@ -1,0 +1,40 @@
+{
+  "schema": "figure-studio-windows-native-finalization-readiness/1",
+  "status": "READ_ONLY_READY_WAITING_LARGE_ACCEPTANCE",
+  "generatedAt": "2026-10-17T18:33:58.690Z",
+  "version": "0.1.22",
+  "setupSha256": "dfe79e35f01929e3af6d796ee4333bfea1f1833e7ab5a0c0029dadfef40ce8f5",
+  "actualSavedIrisSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+  "irisObservationCount": 150,
+  "irisTableMatchesPublicOriginal": true,
+  "setupBytesMatchApproved": true,
+  "installedFileCount": 2606,
+  "initialRegistryViewsAbsent": 4,
+  "protectedProcessCount": 1,
+  "readOnlyIdentityCheck": {
+    "protectedIdentitiesUnchanged": true,
+    "currentRegistrationOwned": true,
+    "scope": "Read-only CIM, file hashes and exact AppId registry queries. No process, registry or installed file is modified.",
+    "version": "0.1.22",
+    "initialRegistryViewsAbsent": 4,
+    "protectedProcessCount": 1,
+    "installedExecutableMatchesPackage": true,
+    "status": "PASS_READ_ONLY_IDENTITY",
+    "registeredViewCount": 2,
+    "powerShellVersion": "7.6.5",
+    "qaProcessExact": true
+  },
+  "identityProofSha256": "eab533dc75eac9ef5ef1c9ca4e386b63ae4ce4ba616eec9fe33e5bb00e254173",
+  "stateSnapshotSha256": "ba71fddd8fe68217d7a60b1da1f23533d2c0b8d3eb787c91f2e827ce41fdfa98",
+  "installerHarnessSha256": "19fadc35c2308c5ab10cfa0a6c661a07df16a9e60510a3fda7c5c7563fc95c29",
+  "readinessHarnessSha256": "3003de14164238cce9abd14f242b6b3a6ffc3529e6b4c35d21006d2266523c33",
+  "privatePlanSha256": "51ef3985abb06362456ad942d4e207b77b359734b11975419e84b0d6da8c3899",
+  "phasesAlreadyExecuted": [
+    "Install",
+    "Start"
+  ],
+  "phasesExecutedByThisReadinessCheck": [],
+  "browserAcceptanceComplete": false,
+  "blockedUntil": "Root confirmation of final large-document acceptance and all browser contexts closed.",
+  "scope": "Read-only file hashes, public-Iris row comparison, static phase-contract review and separate exact process/registry query. No browser, service mutation, reinstall, uninstall, process stop or publishing action."
+}

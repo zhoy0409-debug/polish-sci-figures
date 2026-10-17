@@ -1,0 +1,296 @@
+{
+  "schema": "figure-studio-live-preview-after-summary/1",
+  "label": "windows-final17-headful-core2",
+  "kind": "installed-candidate",
+  "status": "SCOPED_ACCEPTANCE_PASS",
+  "generatedAt": "2026-10-17T17:59:56.985Z",
+  "scope": "Public or authorized public-domain image bytes and UCI Iris observations, actual Chrome and real local backend redraw. Scope is only the listed conditions and cases. This does not establish global completion, novice-user success, clinical accuracy, independent image ground truth, physical touch or Chinese IME compatibility.",
+  "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+  "browser": "155.0.8059.82",
+  "conditions": [
+    {
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "browserMode": "headful"
+    }
+  ],
+  "cases": [
+    {
+      "id": "border-draft-isolation",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "captureLabel": "source17-installed-core-demo",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "startedAt": "2026-10-17T17:58:43.285Z",
+      "finishedAt": "2026-10-17T17:59:02.187Z",
+      "videoFile": "page@acefeea183b85623fd80ede6d3f5f793.webm",
+      "videoSha256": "d9b3df57401bd907010a9380d3c9fbfa53c8b1179556d5998f79673677f70001",
+      "videoBytes": 2066605,
+      "stages": [
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "navigate",
+          "at": "2026-10-17T17:58:43.634Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "exercise",
+          "at": "2026-10-17T17:58:45.760Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "baseline-state",
+          "at": "2026-10-17T17:58:47.553Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "export-svg",
+          "at": "2026-10-17T17:58:47.868Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "export-png",
+          "at": "2026-10-17T17:58:48.389Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "decode-png-pixels",
+          "at": "2026-10-17T17:58:49.228Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "border-input",
+          "at": "2026-10-17T17:58:49.737Z"
+        }
+      ],
+      "localSourceProof": {
+        "localHtmlSha256": "6edf33716e077c4da21cbcd241e9024167ecc85d215fa04aa85c4e05126a9846",
+        "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "reconstructedExpectedSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "realSavedProject": {
+        "file": "border-draft-isolation-carbon.json",
+        "sha256": "ddd5066693733fbbd7776b23ee579781158f82dd560559900ce59f5b6f5587eb",
+        "origin": "Actual application Save download payload; not a hand-constructed project schema. Public inputs only."
+      },
+      "realTemSavedProject": {
+        "file": "border-draft-isolation-carbon-tem.json",
+        "sha256": "2c5b0e5d9b912a62b33956186723d286172c373d513ab169a8832f3f6d0ae81f",
+        "origin": "Actual application Save download payload; not a hand-constructed project schema. Public inputs only."
+      },
+      "publicTemWhite1ptBorder": {
+        "cancelExact": true,
+        "oneUndoRedo": true,
+        "originalHrefSha256": "0a31321a129e3aa685fa554f65b025856a9fd6511ec859a23340db7305e9f9a5",
+        "source": "CDC PHIL 23354 public-domain colourized TEM derivative, not acquisition raw or independent diagnostic ground truth."
+      },
+      "screenshot": "border-draft-isolation-carbon.png",
+      "cancelExact": true,
+      "thirtyInputsUncommitted": true,
+      "invalidInputRetainsLastValid": true,
+      "saveAndExportCommittedOnly": true,
+      "draftPersistenceActivation": "real DOM Save/export buttons without synthesized pointer/focus events; actual download focus is separately observed",
+      "oneUndoRedo": true,
+      "saveReopen": true,
+      "sourceImageHash": "c16e924653f3f2f3f562280fb927f8263511f11d02357e2df34db471cdba1400",
+      "exportsBefore": {
+        "rawSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "canonicalSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "pngSha256": "652c79480861e7568c0645965f16d047c3d60cf856b1ed25732ec5e301651420",
+        "pixels": {
+          "width": 3000,
+          "height": 1850,
+          "sha256": "3b150822fcddd6e83a1967a976f0d8daa6ed8c405f6126cc03ed7ac7b1edc4cf"
+        }
+      },
+      "exportsDuring": {
+        "rawSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "canonicalSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "pngSha256": "652c79480861e7568c0645965f16d047c3d60cf856b1ed25732ec5e301651420",
+        "pixels": {
+          "width": 3000,
+          "height": 1850,
+          "sha256": "3b150822fcddd6e83a1967a976f0d8daa6ed8c405f6126cc03ed7ac7b1edc4cf"
+        }
+      },
+      "canvasTargetReachability": {
+        "x": 670,
+        "y": 493.3333435058594,
+        "inViewport": true,
+        "artboardHit": true
+      }
+    },
+    {
+      "id": "native-axis-draft-isolation",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "captureLabel": "source17-installed-core-demo",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "startedAt": "2026-10-17T17:59:02.189Z",
+      "finishedAt": "2026-10-17T17:59:14.618Z",
+      "videoFile": "page@012639daf1095b367e12a99bf1a34e5f.webm",
+      "videoSha256": "510b76d9016d7cee0799f1b47e33b1b224a055450a6d673a28726c35243f5567",
+      "videoBytes": 1119016,
+      "stages": [
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "stage": "navigate",
+          "at": "2026-10-17T17:59:02.464Z"
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "stage": "exercise",
+          "at": "2026-10-17T17:59:04.129Z"
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "stage": "export-svg",
+          "at": "2026-10-17T17:59:05.394Z"
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "stage": "export-png",
+          "at": "2026-10-17T17:59:05.986Z"
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "stage": "decode-png-pixels",
+          "at": "2026-10-17T17:59:06.684Z"
+        }
+      ],
+      "localSourceProof": {
+        "localHtmlSha256": "6edf33716e077c4da21cbcd241e9024167ecc85d215fa04aa85c4e05126a9846",
+        "servedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "reconstructedExpectedSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "screenshot": "native-axis-draft-isolation-carbon.png",
+      "latestRangeDrawnOnActualCanvas": true,
+      "threeDraftEditsZeroHistory": true,
+      "saveSvgPngCommittedOnly": true,
+      "invalidInputBlocked": true,
+      "invalidKeepsLastValidAxisCanvas": true,
+      "cancelExact": true,
+      "oneCommitUndoRedo": true,
+      "observationsUnchanged": true
+    }
+  ],
+  "attempts": [
+    {
+      "label": "source17-installed-core-demo",
+      "status": "PASS",
+      "rawReportSha256": "8a3c1dbffb29bf7bc1663f7c46e381cb31b72d97162b2a8696ef1552ce096e73",
+      "harnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+      "videos": [
+        {
+          "file": "page@012639daf1095b367e12a99bf1a34e5f.webm",
+          "bytes": 1119016,
+          "sha256": "510b76d9016d7cee0799f1b47e33b1b224a055450a6d673a28726c35243f5567",
+          "edited": false,
+          "complete": true
+        },
+        {
+          "file": "page@acefeea183b85623fd80ede6d3f5f793.webm",
+          "bytes": 2066605,
+          "sha256": "d9b3df57401bd907010a9380d3c9fbfa53c8b1179556d5998f79673677f70001",
+          "edited": false,
+          "complete": true
+        }
+      ],
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "theme": "carbon",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "theme": "carbon",
+          "status": "PASS"
+        }
+      ],
+      "domActivationFocusObservations": [
+        {
+          "case": "border-draft-isolation-carbon",
+          "button": "save",
+          "focusedEditableBefore": true,
+          "sameNodeAfterDownload": true,
+          "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "button": "export",
+          "focusedEditableBefore": true,
+          "sameNodeAfterDownload": false,
+          "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "button": "png",
+          "focusedEditableBefore": false,
+          "sameNodeAfterDownload": true,
+          "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "button": "save",
+          "focusedEditableBefore": true,
+          "sameNodeAfterDownload": true,
+          "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "button": "export",
+          "focusedEditableBefore": true,
+          "sameNodeAfterDownload": false,
+          "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "button": "png",
+          "focusedEditableBefore": false,
+          "sameNodeAfterDownload": true,
+          "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "These checks use public inputs. No private image, raw project, profile, local endpoint or service token is included.",
+    "DOM Save/export activation adds no synthetic pointer or focus event. Actual application/download focus changes are recorded separately; ordinary pointer activation can also blur and commit simple direct-edit fields.",
+    "Network-delay tests delay actual backend responses; an aborted network request is not proof of an uncooperative producer ignoring cancellation.",
+    "Raster dimensions and DPI metadata describe the exported grid, not newly recovered source detail. H&E input pixels are preserved; upscaling cannot restore image resolution.",
+    "A source runtime, frozen executable runtime and installed executable are distinct. The kind is explicit; installation identity requires separate installer and file-manifest verification."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "figure-studio-reviewed-selection-screens/1",
+  "stage": "source19",
+  "htmlSha256": "4091e5b2f75e3a3b6e332736ae789da60e88a888559ee839402b06697730fba5",
+  "acceptanceRawSha256": "3c4736de8872dfc6f2a2924f5cbcfefec995d24f8a459a34a220c973826a1c76",
+  "harnessSha256": "7b040abbba7fcb6407f9ef58874d6a931350cf63220a00cd7c6320221389f663",
+  "screenshots": [
+    {
+      "theme": "carbon",
+      "file": "source19-selection-carbon.png",
+      "sha256": "c3abfcf6ac06eaed9078c258fbf63aa7a2460a2e47a7f1ea1ca69974ced644c0",
+      "sourceFile": "carbon-selection-refresh.png",
+      "scope": "Actual complete5000-object synthetic engineering fixture, full viewport screenshot, no image edits."
+    },
+    {
+      "theme": "pearl",
+      "file": "source19-selection-pearl.png",
+      "sha256": "569d897e572918babd05c3126d30ab4757394de40d61c7aa9cfd73174541f0f4",
+      "sourceFile": "pearl-selection-refresh.png",
+      "scope": "Actual complete5000-object synthetic engineering fixture, full viewport screenshot, no image edits."
+    }
+  ],
+  "review": "Both actual1440x900 Carbon/Pearl captures opened and visually inspected. Full5000-object canvas and current controls render, original theme hierarchy retained. Source fixture is explicitly synthetic; no patient/private scientific image, native IME or optical-latency claim."
+}

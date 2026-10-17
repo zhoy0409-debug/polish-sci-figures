@@ -1,0 +1,51 @@
+{
+  "schema": "figure-studio-discovery-error-language-regression/1",
+  "scope": "Controlled JSDOM/controller regression with actual recommendation core and controlled preview host; not real Chrome or installed Windows acceptance.",
+  "test": {
+    "file": "scripts/test_studio_discovery_preview_ui.cjs",
+    "sha256": "987872ae40b272bbbf88b18e6c15746e4869f9cf0f95379aa7c2200826dd47db",
+    "sameScriptUsedForFailureAndPass": true
+  },
+  "initial13GroupStageHashesPreserved": {
+    "skills/polish-sci-figures/assets/figure-studio/discovery-ui.js": "21a9ebd399348ca41b9fae0a41ee0b9847f23e298587bc8343949bf193309a98",
+    "skills/polish-sci-figures/assets/figure-studio/discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+    "scripts/test_studio_discovery_preview_ui.cjs": "c30c56ea279d04bcd920f39f3df2a3bb731aedc67da9abe93b347edf93a5a8f4"
+  },
+  "beforeFix": {
+    "uiSha256": "21a9ebd399348ca41b9fae0a41ee0b9847f23e298587bc8343949bf193309a98",
+    "result": "FAIL",
+    "executedSequence": [
+      "Render eligible controlled candidate assets",
+      "Preview A successfully",
+      "Fail preview B while A remains the last valid controlled visual",
+      "Snapshot local draft",
+      "Destroy/remount with Chinese language",
+      "Restore snapshot and open",
+      "Read actual controlled visual"
+    ],
+    "observed": "COMMITTED",
+    "expected": "compare_strip_median (the actual last-valid A controlled visual)",
+    "failedAssertion": "Language rebuild must restore the real last-valid A shadow, not committed baseline",
+    "unexecutedLaterAssertions": "The initial attempt stopped at the visual assertion; later checks are only reported after the fix."
+  },
+  "fix": {
+    "uiSha256": "f78a0a39e86ba74236254887c76181e730aa0cbd15cc7f0acaccab2e879bf0ab",
+    "behaviour": "Rebuild cached last-valid A shadow with a new revision while independently retaining selected failed B, error state and disabled Apply. A host cancellation also synchronizes the B footer.",
+    "newRenderOrDiscoveryOrNetworkRequests": false
+  },
+  "afterFix": {
+    "exitCode": 0,
+    "groups": 14,
+    "original13GroupsRetained": true,
+    "extraChecks": [
+      "Actual controlled visual returns to cached A",
+      "Active chart remains A",
+      "Selected failed chart remains B",
+      "Error state remains visible and Apply disabled",
+      "Applying B remains blocked with zero commits",
+      "Host canvas cancellation of restored A clears the footer"
+    ],
+    "limits": "A controlled callback visual is the assertion target here. Full app actual canonical main-canvas proof is separately pending source13 browser acceptance."
+  },
+  "originalEvidence": "The failed tool output and original13-stage source hashes are retained; neither is rewritten as a pass."
+}

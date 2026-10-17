@@ -1,0 +1,1117 @@
+{
+  "schema": "figure-studio-touch-emulation-summary/2",
+  "label": "source11-touch-stage",
+  "kind": "source-development-runtime",
+  "status": "SCOPED_ACCEPTANCE_PASS",
+  "generatedAt": "2026-10-17T16:19:13.698Z",
+  "browser": "155.0.8059.82",
+  "harnessSha256": "eaf9c6b4bb33f9d37019debb93d1386f59f906e42bf36a8a7c0cf4bf6cded2cf",
+  "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+  "attempts": [
+    {
+      "label": "source11-touch-390",
+      "status": "PASS",
+      "rawReportSha256": "d78240437eec9ecfc7989313b3db3f3db22edc409071620d6372f73680cbb420",
+      "conditions": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "deviceScaleFactor": 1,
+        "hasTouch": true,
+        "isMobile": false,
+        "reducedMotion": "reduce",
+        "video": false
+      },
+      "browserMode": "headless",
+      "startedAt": "2026-10-17T16:11:17.203Z",
+      "finishedAt": "2026-10-17T16:11:44.593Z"
+    },
+    {
+      "label": "source11-touch-1280",
+      "status": "PASS",
+      "rawReportSha256": "be4a4419efd312b7244dfa3101cde6698aa77989d0918b7bb78d73dfb9b874b2",
+      "conditions": {
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "deviceScaleFactor": 1,
+        "hasTouch": true,
+        "isMobile": false,
+        "reducedMotion": "reduce",
+        "video": false
+      },
+      "browserMode": "headless",
+      "startedAt": "2026-10-17T16:11:45.700Z",
+      "finishedAt": "2026-10-17T16:12:11.644Z"
+    }
+  ],
+  "cases": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "browserMode": "headless",
+      "captureLabel": "source11-touch-390",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "language": "en",
+      "theme": "carbon",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "localSourceProof": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "saveDraftCommittedOnly": true,
+      "actualTargetReachable": {
+        "x": 194.9921875,
+        "y": 424,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "actualRasterDisplay": {
+        "frameWidthCssPx": 256.203125,
+        "frameHeightCssPx": 145.1817626953125,
+        "sourceWidth": 1280,
+        "sourceHeight": 960,
+        "preserveAspectRatio": "xMidYMid meet",
+        "contentWidthCssPx": 193.57568359375,
+        "contentHeightCssPx": 145.1817626953125
+      },
+      "previewSizeFloor": {
+        "minimumContentWidthCssPx": 160,
+        "minimumContentHeightCssPx": 90,
+        "meaning": "Fixture-specific engineering floor to reject a tiny thumbnail; manual screenshot review is also required. Not proof of diagnostic detail sufficiency or physical-phone usability."
+      },
+      "mobileLayout": {
+        "headerHeightCssPx": 121,
+        "workflowButtons": [
+          {
+            "text": "Data & discovery",
+            "x": 4,
+            "y": 125,
+            "width": 116.0625,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Edit artwork",
+            "x": 120.0625,
+            "y": 125,
+            "width": 86.890625,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Image tools",
+            "x": 206.953125,
+            "y": 125,
+            "width": 85.59375,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Statistics & axes",
+            "x": 292.546875,
+            "y": 125,
+            "width": 110.078125,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Publication export",
+            "x": 402.625,
+            "y": 125,
+            "width": 122.25,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Multiple images · Screen duplicates",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "textInside": true
+          }
+        ],
+        "overlaps": []
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 9
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "browserMode": "headless",
+      "captureLabel": "source11-touch-390",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "language": "en",
+      "theme": "pearl",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "localSourceProof": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "saveDraftCommittedOnly": true,
+      "actualTargetReachable": {
+        "x": 194.9921875,
+        "y": 424,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "actualRasterDisplay": {
+        "frameWidthCssPx": 256.203125,
+        "frameHeightCssPx": 145.1817626953125,
+        "sourceWidth": 1280,
+        "sourceHeight": 960,
+        "preserveAspectRatio": "xMidYMid meet",
+        "contentWidthCssPx": 193.57568359375,
+        "contentHeightCssPx": 145.1817626953125
+      },
+      "previewSizeFloor": {
+        "minimumContentWidthCssPx": 160,
+        "minimumContentHeightCssPx": 90,
+        "meaning": "Fixture-specific engineering floor to reject a tiny thumbnail; manual screenshot review is also required. Not proof of diagnostic detail sufficiency or physical-phone usability."
+      },
+      "mobileLayout": {
+        "headerHeightCssPx": 121,
+        "workflowButtons": [
+          {
+            "text": "Data & discovery",
+            "x": 4,
+            "y": 125,
+            "width": 116.0625,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Edit artwork",
+            "x": 120.0625,
+            "y": 125,
+            "width": 86.890625,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Image tools",
+            "x": 206.953125,
+            "y": 125,
+            "width": 85.59375,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Statistics & axes",
+            "x": 292.546875,
+            "y": 125,
+            "width": 110.078125,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Publication export",
+            "x": 402.625,
+            "y": 125,
+            "width": 122.25,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Multiple images · Screen duplicates",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "textInside": true
+          }
+        ],
+        "overlaps": []
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 9
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "browserMode": "headless",
+      "captureLabel": "source11-touch-390",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "language": "zh-CN",
+      "theme": "carbon",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "localSourceProof": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "saveDraftCommittedOnly": true,
+      "actualTargetReachable": {
+        "x": 194.9921875,
+        "y": 424,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "actualRasterDisplay": {
+        "frameWidthCssPx": 256.203125,
+        "frameHeightCssPx": 145.1817626953125,
+        "sourceWidth": 1280,
+        "sourceHeight": 960,
+        "preserveAspectRatio": "xMidYMid meet",
+        "contentWidthCssPx": 193.57568359375,
+        "contentHeightCssPx": 145.1817626953125
+      },
+      "previewSizeFloor": {
+        "minimumContentWidthCssPx": 160,
+        "minimumContentHeightCssPx": 90,
+        "meaning": "Fixture-specific engineering floor to reject a tiny thumbnail; manual screenshot review is also required. Not proof of diagnostic detail sufficiency or physical-phone usability."
+      },
+      "mobileLayout": {
+        "headerHeightCssPx": 121,
+        "workflowButtons": [
+          {
+            "text": "数据与智能选图",
+            "x": 4,
+            "y": 125,
+            "width": 109,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "编辑图形",
+            "x": 113,
+            "y": 125,
+            "width": 70,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "图片工具",
+            "x": 183,
+            "y": 125,
+            "width": 70,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "统计与坐标轴",
+            "x": 253,
+            "y": 125,
+            "width": 96,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "投稿导出",
+            "x": 349,
+            "y": 125,
+            "width": 70,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "已导入多张图片 · 可手动查重",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "textInside": true
+          }
+        ],
+        "overlaps": []
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 9
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "browserMode": "headless",
+      "captureLabel": "source11-touch-390",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "language": "zh-CN",
+      "theme": "pearl",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "localSourceProof": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "saveDraftCommittedOnly": true,
+      "actualTargetReachable": {
+        "x": 194.9921875,
+        "y": 424,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "actualRasterDisplay": {
+        "frameWidthCssPx": 256.203125,
+        "frameHeightCssPx": 145.1817626953125,
+        "sourceWidth": 1280,
+        "sourceHeight": 960,
+        "preserveAspectRatio": "xMidYMid meet",
+        "contentWidthCssPx": 193.57568359375,
+        "contentHeightCssPx": 145.1817626953125
+      },
+      "previewSizeFloor": {
+        "minimumContentWidthCssPx": 160,
+        "minimumContentHeightCssPx": 90,
+        "meaning": "Fixture-specific engineering floor to reject a tiny thumbnail; manual screenshot review is also required. Not proof of diagnostic detail sufficiency or physical-phone usability."
+      },
+      "mobileLayout": {
+        "headerHeightCssPx": 121,
+        "workflowButtons": [
+          {
+            "text": "数据与智能选图",
+            "x": 4,
+            "y": 125,
+            "width": 109,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "编辑图形",
+            "x": 113,
+            "y": 125,
+            "width": 70,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "图片工具",
+            "x": 183,
+            "y": 125,
+            "width": 70,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "统计与坐标轴",
+            "x": 253,
+            "y": 125,
+            "width": 96,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "投稿导出",
+            "x": 349,
+            "y": 125,
+            "width": 70,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "已导入多张图片 · 可手动查重",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "textInside": true
+          }
+        ],
+        "overlaps": []
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 9
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "browserMode": "headless",
+      "captureLabel": "source11-touch-1280",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "language": "en",
+      "theme": "carbon",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "localSourceProof": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "saveDraftCommittedOnly": true,
+      "actualTargetReachable": {
+        "x": 445,
+        "y": 495.796875,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "actualRasterDisplay": {
+        "frameWidthCssPx": 356.75,
+        "frameHeightCssPx": 202.1583251953125,
+        "sourceWidth": 1280,
+        "sourceHeight": 960,
+        "preserveAspectRatio": "xMidYMid meet",
+        "contentWidthCssPx": 269.54443359375,
+        "contentHeightCssPx": 202.1583251953125
+      },
+      "previewSizeFloor": {
+        "minimumContentWidthCssPx": 160,
+        "minimumContentHeightCssPx": 90,
+        "meaning": "Fixture-specific engineering floor to reject a tiny thumbnail; manual screenshot review is also required. Not proof of diagnostic detail sufficiency or physical-phone usability."
+      },
+      "mobileLayout": {
+        "headerHeightCssPx": 109,
+        "workflowButtons": [
+          {
+            "text": "Data & discovery",
+            "x": 16,
+            "y": 117,
+            "width": 124.0625,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Edit artwork",
+            "x": 144.0625,
+            "y": 117,
+            "width": 94.890625,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Image tools",
+            "x": 242.953125,
+            "y": 117,
+            "width": 93.59375,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Statistics & axes",
+            "x": 340.546875,
+            "y": 117,
+            "width": 118.078125,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Publication export",
+            "x": 462.625,
+            "y": 117,
+            "width": 130.25,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Multiple images · Screen duplicates",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "textInside": true
+          }
+        ],
+        "overlaps": []
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 9
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "browserMode": "headless",
+      "captureLabel": "source11-touch-1280",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "language": "en",
+      "theme": "pearl",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "localSourceProof": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "saveDraftCommittedOnly": true,
+      "actualTargetReachable": {
+        "x": 445,
+        "y": 495.796875,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "actualRasterDisplay": {
+        "frameWidthCssPx": 356.75,
+        "frameHeightCssPx": 202.1583251953125,
+        "sourceWidth": 1280,
+        "sourceHeight": 960,
+        "preserveAspectRatio": "xMidYMid meet",
+        "contentWidthCssPx": 269.54443359375,
+        "contentHeightCssPx": 202.1583251953125
+      },
+      "previewSizeFloor": {
+        "minimumContentWidthCssPx": 160,
+        "minimumContentHeightCssPx": 90,
+        "meaning": "Fixture-specific engineering floor to reject a tiny thumbnail; manual screenshot review is also required. Not proof of diagnostic detail sufficiency or physical-phone usability."
+      },
+      "mobileLayout": {
+        "headerHeightCssPx": 109,
+        "workflowButtons": [
+          {
+            "text": "Data & discovery",
+            "x": 16,
+            "y": 117,
+            "width": 124.0625,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Edit artwork",
+            "x": 144.0625,
+            "y": 117,
+            "width": 94.890625,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Image tools",
+            "x": 242.953125,
+            "y": 117,
+            "width": 93.59375,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Statistics & axes",
+            "x": 340.546875,
+            "y": 117,
+            "width": 118.078125,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Publication export",
+            "x": 462.625,
+            "y": 117,
+            "width": 130.25,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "Multiple images · Screen duplicates",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "textInside": true
+          }
+        ],
+        "overlaps": []
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 9
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "browserMode": "headless",
+      "captureLabel": "source11-touch-1280",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "language": "zh-CN",
+      "theme": "carbon",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "localSourceProof": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "saveDraftCommittedOnly": true,
+      "actualTargetReachable": {
+        "x": 445,
+        "y": 495.796875,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "actualRasterDisplay": {
+        "frameWidthCssPx": 356.75,
+        "frameHeightCssPx": 202.1583251953125,
+        "sourceWidth": 1280,
+        "sourceHeight": 960,
+        "preserveAspectRatio": "xMidYMid meet",
+        "contentWidthCssPx": 269.54443359375,
+        "contentHeightCssPx": 202.1583251953125
+      },
+      "previewSizeFloor": {
+        "minimumContentWidthCssPx": 160,
+        "minimumContentHeightCssPx": 90,
+        "meaning": "Fixture-specific engineering floor to reject a tiny thumbnail; manual screenshot review is also required. Not proof of diagnostic detail sufficiency or physical-phone usability."
+      },
+      "mobileLayout": {
+        "headerHeightCssPx": 109,
+        "workflowButtons": [
+          {
+            "text": "数据与智能选图",
+            "x": 16,
+            "y": 117,
+            "width": 117,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "编辑图形",
+            "x": 137,
+            "y": 117,
+            "width": 78,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "图片工具",
+            "x": 219,
+            "y": 117,
+            "width": 78,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "统计与坐标轴",
+            "x": 301,
+            "y": 117,
+            "width": 104,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "投稿导出",
+            "x": 409,
+            "y": 117,
+            "width": 78,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "已导入多张图片 · 可手动查重",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "textInside": true
+          }
+        ],
+        "overlaps": []
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 9
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "browserMode": "headless",
+      "captureLabel": "source11-touch-1280",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "language": "zh-CN",
+      "theme": "pearl",
+      "status": "PASS",
+      "currentVersion": "0.1.22",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "localSourceProof": {
+        "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+        "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "borderEntry": {
+        "panelHidden": false,
+        "inspectorInert": false,
+        "mobileTab": "adjustments",
+        "inspectorAriaHidden": "false"
+      },
+      "saveDraftCommittedOnly": true,
+      "actualTargetReachable": {
+        "x": 445,
+        "y": 495.796875,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "actualRasterDisplay": {
+        "frameWidthCssPx": 356.75,
+        "frameHeightCssPx": 202.1583251953125,
+        "sourceWidth": 1280,
+        "sourceHeight": 960,
+        "preserveAspectRatio": "xMidYMid meet",
+        "contentWidthCssPx": 269.54443359375,
+        "contentHeightCssPx": 202.1583251953125
+      },
+      "previewSizeFloor": {
+        "minimumContentWidthCssPx": 160,
+        "minimumContentHeightCssPx": 90,
+        "meaning": "Fixture-specific engineering floor to reject a tiny thumbnail; manual screenshot review is also required. Not proof of diagnostic detail sufficiency or physical-phone usability."
+      },
+      "mobileLayout": {
+        "headerHeightCssPx": 109,
+        "workflowButtons": [
+          {
+            "text": "数据与智能选图",
+            "x": 16,
+            "y": 117,
+            "width": 117,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "编辑图形",
+            "x": 137,
+            "y": 117,
+            "width": 78,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "图片工具",
+            "x": 219,
+            "y": 117,
+            "width": 78,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "统计与坐标轴",
+            "x": 301,
+            "y": 117,
+            "width": 104,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "投稿导出",
+            "x": 409,
+            "y": 117,
+            "width": 78,
+            "height": 44,
+            "textInside": true
+          },
+          {
+            "text": "已导入多张图片 · 可手动查重",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "textInside": true
+          }
+        ],
+        "overlaps": []
+      },
+      "inputEvents": {
+        "pointerTypes": [
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse",
+          "touch",
+          "mouse"
+        ],
+        "touchStarts": 9
+      },
+      "media": {
+        "pointerCoarse": true,
+        "reducedMotion": true,
+        "maxTouchPoints": 1
+      },
+      "thirtyDraftInputs": true,
+      "cancelExact": true,
+      "singleCommitUndoRedo": true,
+      "originalImageHrefSha256": "d96650ecb2d25b5fa0afe0a5b24ba342f92175450b8aa6d638c8f6a13f03f689"
+    }
+  ],
+  "scope": "Actual Chrome emulated touch on public H&E artwork. Two viewport sizes, two languages and two themes; fixed DPR 1. This is browser emulation, with automated field entry, and is separate from physical touchscreen, native keyboard/IME, Windows system scaling and novice-user studies.",
+  "limitations": [
+    "The raster-content floor and header/navigation geometry are engineering usability checks; screenshots require visual review.",
+    "The original image href is unchanged. This does not assess microscopy image interpretation or independent detection accuracy.",
+    "Installed identity requires the separate original Setup, file-manifest and protected-process proof. A source runtime is not an installed executable."
+  ],
+  "caseCount": 8,
+  "passedCases": 8,
+  "failedCases": 0
+}

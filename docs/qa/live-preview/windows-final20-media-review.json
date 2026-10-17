@@ -1,0 +1,123 @@
+{
+  "schema": "figure-studio-installed20-reviewed-public-media/1",
+  "status": "ACTUAL_CAPTURE_COPIED_BYTE_EXACT_AND_SAMPLED_VISUALLY_REVIEWED",
+  "reviewedAtUtc": "2026-10-17T21:27:32.429550+00:00",
+  "sourceStage": "source20",
+  "applicationVersion": "0.1.22",
+  "setupSha256": "85b0355490eb2615f2cebc1097e6e51da1d89a9f3b5851a60d95831930be3d1a",
+  "packageSourceProofSha256": "6aff7122b3e1c62efa5e4967ca625c430cfa453bfded051b9e18af028a841eef",
+  "ownAcceptanceSha256": "f1c74e4cc09a4e5b75f04d8a5a593c0aea92bd2db671ee42bbed799262250869",
+  "coreRawReportSha256": "9fd102b16663b70a872020e5b9326f9c607f44b1af87ee82c7d69a4bb0de537c",
+  "captureHarnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+  "videos": [
+    {
+      "file": "windows-final20-border-operation.webm",
+      "sha256": "89c758ad6a2c945ac07bd20dcae9eaf082760decae8f82c78897ac867d5f1a5d",
+      "sizeBytes": 2108808,
+      "byteExactWithActualCapture": true,
+      "case": "border-draft-isolation",
+      "fullUnmodifiedRecording": true
+    },
+    {
+      "file": "windows-final20-axis-operation.webm",
+      "sha256": "428ab6639ded589c2d2ce19a819c5dd603987b3386580ea0474d3e0e015186ac",
+      "sizeBytes": 1120815,
+      "byteExactWithActualCapture": true,
+      "case": "native-axis-draft-isolation",
+      "fullUnmodifiedRecording": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "windows-final20-border-preview-carbon.png",
+      "sha256": "2b9d2f10d4386b94faffadaaa302d0d80e075f6e9a533bc1af369af5f359296a",
+      "sizeBytes": 391235,
+      "byteExactWithActualCapture": true,
+      "actuallyViewedByRoot": true
+    },
+    {
+      "file": "windows-final20-tem-white-border-carbon.png",
+      "sha256": "8ec9f57305efa3a7ec66c4f2e4387d1ae16c02c4f750c0201b122115c2b196e7",
+      "sizeBytes": 484834,
+      "byteExactWithActualCapture": true,
+      "actuallyViewedByRoot": true
+    },
+    {
+      "file": "windows-final20-axis-applied-carbon.png",
+      "sha256": "371711db2527c877db2ad5cb54a74265edf1ea7da70b23fcb1740b3e8dc3674a",
+      "sizeBytes": 134922,
+      "byteExactWithActualCapture": true,
+      "actuallyViewedByRoot": true
+    }
+  ],
+  "sampledFrameReview": [
+    {
+      "case": "border-draft-isolation",
+      "sampleSeconds": 6,
+      "sha256": "2e3849a8019b091c1f989d49b52dc77245d9f11727c064295914c388788b0bc1",
+      "actuallyViewedByRoot": true,
+      "framePublished": false
+    },
+    {
+      "case": "border-draft-isolation",
+      "sampleSeconds": 10,
+      "sha256": "f2ab4e9b5b996fe0689a93b440719cd3905158fbd2b2755086b416b5759b3169",
+      "actuallyViewedByRoot": true,
+      "framePublished": false
+    },
+    {
+      "case": "border-draft-isolation",
+      "sampleSeconds": 14,
+      "sha256": "a82d251fa3a31663b5da5841cbd22d30fbd39475030f37db61bb475754d91fda",
+      "actuallyViewedByRoot": true,
+      "framePublished": false
+    },
+    {
+      "case": "native-axis-draft-isolation",
+      "sampleSeconds": 4,
+      "sha256": "1d72a5b4fb32ca27bd0f4fef09ef87c60c5d30add5c9c2a7722ddbd1092431b6",
+      "actuallyViewedByRoot": true,
+      "framePublished": false
+    },
+    {
+      "case": "native-axis-draft-isolation",
+      "sampleSeconds": 8,
+      "sha256": "8671413968481a582823b0bf42028689e21b6cd74b825c4752cd79a898b3a610",
+      "actuallyViewedByRoot": true,
+      "framePublished": false
+    },
+    {
+      "case": "native-axis-draft-isolation",
+      "sampleSeconds": 10.5,
+      "sha256": "253e1c44d05ae3b0b08c58bf4c34db67bfce955e52bb9f9216da775dcf191e43",
+      "actuallyViewedByRoot": true,
+      "framePublished": false
+    }
+  ],
+  "sourceCredits": [
+    {
+      "subject": "H&E skin",
+      "credit": "Kilbad; scikit-image skin sample",
+      "license": "Public domain dedication",
+      "provenance": "scripts/fixtures/real-image-sources.json:he"
+    },
+    {
+      "subject": "Digitally colourized published TEM derivative; not acquisition raw",
+      "credit": "CDC / Hannah A Bullock; Azaibi Tamin; PHIL23354",
+      "license": "Public domain per CDC PHIL record",
+      "provenance": "scripts/fixtures/real-image-sources.json:tem"
+    },
+    {
+      "subject": "Iris 150 observations",
+      "credit": "UCI Machine Learning Repository, Iris, DOI10.24432/C56C76",
+      "license": "CC BY4.0"
+    }
+  ],
+  "reviewMethod": "Root actually viewed six decoded original-video sample frames and three original final PNG captures. This is a sampled visual review, not a claim to have watched every frame or measured optical latency. Two additional installed-axis final theme screenshots were viewed and are separately bound in windows-final20-axis-composition-browser.json.",
+  "observations": [
+    "H&E stays on the real canvas while the dock shows0.5pt then2pt/dotted border drafts and explicit not-applied status.",
+    "The untrimmed recording includes genuine import transitions, including a temporary blank canvas while the public TEM input is importing. No frames or progress were replaced.",
+    "Final original PNGs show the actual white1pt border on the published colourized TEM derivative and Iris axis applied at maximum10. The separate axis regression ends at0..11 in both themes."
+  ],
+  "scope": "Real headful Chrome content recording from the exact installed Windows package, public fixtures only. Original full WebM and original PNG bytes are copied without crop, retouch, time compression or generated frames. This is engineering operation evidence, not detector accuracy, native IME, OS candidate-window video or a formal performance capture."
+}

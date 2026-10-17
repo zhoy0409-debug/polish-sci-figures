@@ -1,0 +1,88 @@
+{
+  "schema": "figure-studio-discovery-source-keyboard-regressions/1",
+  "status": "PASS_CONTROLLED_COMPONENT_SCOPE",
+  "scope": "JSDOM controller regressions with the actual shared recommendation core and literature privacy UI, plus controlled local rendering/preview/commit callbacks. No real Chrome, installed Windows, scientific accuracy or paper retrieval claim.",
+  "historicalStage": {
+    "report": "docs/qa/live-preview/discovery-component-summary.json",
+    "groups": 14,
+    "frozenSourceLabel": "source13",
+    "frozenHtmlSha256": "ca8301f7331240eb1d550a939910467123ad902634f507682193f00cd52319de",
+    "preservedWithoutRewrite": true,
+    "sourceSha256": {
+      "skills/polish-sci-figures/assets/figure-studio/discovery-ui.js": "f78a0a39e86ba74236254887c76181e730aa0cbd15cc7f0acaccab2e879bf0ab",
+      "skills/polish-sci-figures/assets/figure-studio/discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+      "scripts/test_studio_discovery_preview_ui.cjs": "987872ae40b272bbbf88b18e6c15746e4869f9cf0f95379aa7c2200826dd47db"
+    }
+  },
+  "beforeFix": {
+    "uiSha256": "f78a0a39e86ba74236254887c76181e730aa0cbd15cc7f0acaccab2e879bf0ab",
+    "newTestsWereWrittenBeforeProductionFix": true,
+    "failures": [
+      {
+        "filter": "non-text",
+        "exitCode": 1,
+        "failedAssertion": "An eligible non-text button must not swallow editor Undo",
+        "actual": 0,
+        "expected": 1,
+        "meaning": "A non-text dock button swallowed the editor Ctrl+Z event.",
+        "unexecutedLaterAssertions": "The first attempt stopped before later text-editing and Escape assertions."
+      },
+      {
+        "filter": "failed",
+        "exitCode": 1,
+        "failedAssertion": "A rejected new file cannot leave old measurements available",
+        "actual": "Previous seven source rows, including a header and six synthetic measurements, remained available after rejecting a new oversized file.",
+        "expected": null,
+        "unexecutedLaterAssertions": "The first oversized-file branch failed; read-error and duplicate-column branches were exercised only after the fix."
+      },
+      {
+        "filter": "editing pasted",
+        "exitCode": 1,
+        "failedAssertionExpression": "assert.equal(f.ui.snapshot().profile, null)",
+        "actual": "The previous six-measurement profile remained available.",
+        "expected": null,
+        "unexecutedLaterAssertions": "Later raw-draft and overview assertions were exercised only after the fix."
+      }
+    ],
+    "originalFailedToolOutputsRetained": true
+  },
+  "fix": {
+    "behaviour": [
+      "Only handled Escape and keys within text-entry controls are consumed by the dock; editor shortcuts from non-text buttons can bubble.",
+      "New-file attempts, failed reads and pasted-source edits clear stale rows, source identity, profile, role overview, exclusions, candidates and unit confirmation while preserving human-entered design declarations and unfinished pasted text.",
+      "The memory-only source kind prevents reopening or language restoration after a failed file from silently importing older current-project rows.",
+      "Successful upload resets the file input and preserves the existing local private-filename guard."
+    ],
+    "cssChangedInThisFix": false,
+    "sharedScientificRulesChanged": false,
+    "noExternalRequests": true
+  },
+  "afterFix": {
+    "script": "scripts/test_studio_discovery_preview_ui.cjs",
+    "exitCode": 0,
+    "groups": 17,
+    "original14GroupsRetained": true,
+    "same17GroupScriptUsedForFailureAndPass": true,
+    "extraChecks": [
+      "Non-text Ctrl+Z reaches the editor while text Ctrl+Z remains local and handled Escape is prevented and consumed.",
+      "Oversized file, read error and duplicate-column failures all clear old scientific source and overview.",
+      "Disabled Recommend and a direct handler call both refuse to recommend from stale measurements.",
+      "Failed-source reopen and language restore do not fall back to current-project data.",
+      "Pasted raw draft and research declarations remain intact while obsolete profile, role overview and candidates are cleared."
+    ],
+    "syntax": {
+      "discovery-ui.js": "PASS",
+      "test_studio_discovery_preview_ui.cjs": "PASS"
+    }
+  },
+  "workingSourceSha256": {
+    "skills/polish-sci-figures/assets/figure-studio/discovery-ui.js": "cf1decd45eea8adcb2c7e3215780a3ee31ded139fc967931c40362cbbe9b5871",
+    "skills/polish-sci-figures/assets/figure-studio/discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+    "scripts/test_studio_discovery_preview_ui.cjs": "586b0806f757a38474ccacd87479cad88caab03fae6332f7892028b3a19eac57"
+  },
+  "pending": [
+    "Freeze the corrected source independently of source13.",
+    "Actual Chrome keyboard bubbling, failed-file retry and pasted-source workflow acceptance.",
+    "Final full source and installed Windows acceptance."
+  ]
+}

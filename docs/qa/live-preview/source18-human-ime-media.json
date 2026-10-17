@@ -1,0 +1,43 @@
+{
+  "schema": "figure-studio-reviewed-human-ime-media/1",
+  "sourceStage": "source18",
+  "sourceHtmlSha256": "b596058ff9fec68257d8bfecc41e56762db2b056f22c8a219520fda343eefca4",
+  "rawVideo": {
+    "file": "page@f571382801b9bb5086a18c9ed4b0ed53.webm",
+    "sha256": "0a13b9d050ee65b2cc2f2e0afbec9ea30b2a94c043276dd9af56a2bc37a9145a",
+    "bytes": 51559122,
+    "width": 1440,
+    "height": 900,
+    "fps": 25,
+    "durationSeconds": 886.4
+  },
+  "excerpt": {
+    "file": "source18-native-ime-blur.gif",
+    "sha256": "1cb3b9c22a48f03290bb5cf3f3236b7a3517669e49ab91c32578107934ec7093",
+    "bytes": 1332287,
+    "sourceStartSeconds": 835,
+    "sourceDurationSeconds": 13,
+    "fps": 6,
+    "width": 1008,
+    "timeScale": 1,
+    "transformation": "One continuous actual browser-recorded interval, fps reduction and Lanczos resize, GIF palette/dither only. No generated frames, compositing, simulated candidate popup or artificial progress."
+  },
+  "screenshot": {
+    "file": "source18-native-ime-final.png",
+    "sha256": "9e9fb2ac878c27a309939592a7e8346e4f254de2a9317b422ae639ef3190d7c2",
+    "source": "Actual final-save-reopen-export checkpoint, no crop or edit."
+  },
+  "review": {
+    "actualFramesReviewedAtSeconds": [
+      835,
+      841,
+      846
+    ],
+    "visibleSequence": "Inline 实验组 selection → real native input → 对照组 still in editor → actual click outside and committed 对照组. Browser capture excludes Windows candidate popup.",
+    "sourceAndSaveEvidence": "source18-human-ime-summary.json",
+    "candidateChoice": "Human-attested separately from visible browser recording.",
+    "scientificMeaning": "Public Iris display label changed solely for UI acceptance, not an experimental-group claim.",
+    "notPerformanceEvidence": true,
+    "privateImagesOrIdentifiers": false
+  }
+}

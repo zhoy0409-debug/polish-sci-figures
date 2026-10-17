@@ -1,0 +1,150 @@
+{
+  "schema": "figure-studio-selection-scientific-regression-summary/1",
+  "status": "PASS_TWO_SOURCE08_CASES_EARLIER_FAILURES_RETAINED",
+  "scope": "Two source08 actual Chrome cases only: actual layer-based hollow selection and colour-channel exclusions, plus lock/visibility and rich-text typography. Separate source06 8/9-selection and Iris passes are retained as earlier-stage evidence; this is not one same-freeze full-five-case run. Final installed acceptance must run all five together.",
+  "browser": "155.0.8059.82",
+  "harnessSha256": "f57c704af5dca0606eb44ffb59872aa02ad4b18b7511da68844249404ab07dbb",
+  "rawReportSha256": "7d2a1f48d6d5e925611e4af6da94d7acc8999f97cd8f9674a7883fa75e70dffa",
+  "cases": [
+    {
+      "name": "same-colour-and-preserved-channels",
+      "status": "PASS",
+      "servedHtmlSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+      "localSourceProof": {
+        "localHtmlSha256": "4289e026e479ba6a2c1310dd414b8da6df2641a898ebd2ac598c4f8e9ce22de4",
+        "servedHtmlSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "reconstructedExpectedSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "sameColourIncludesTenSolidAndOneHollow": true,
+      "definitionHiddenGradientAndImageExcluded": true,
+      "hollowNeverFilled": true,
+      "exactUndoRedo": true
+    },
+    {
+      "name": "layer-lock-visibility-and-rich-text",
+      "status": "PASS",
+      "servedHtmlSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+      "localSourceProof": {
+        "localHtmlSha256": "4289e026e479ba6a2c1310dd414b8da6df2641a898ebd2ac598c4f8e9ce22de4",
+        "servedHtmlSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "reconstructedExpectedSha256": "19bf6e0a7e1f07f881fba158646f16a6f844b7130052b39963dd24a0a524bbde",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "lockedLayerSelection": true,
+      "lockColourProtection": true,
+      "visibilityUndo": true,
+      "italicAndSuperscriptSizeRatioPreserved": true,
+      "sourceContractUnchanged": true,
+      "beforeTextMetrics": {
+        "italic": "italic",
+        "baseSize": 16,
+        "scriptSize": 12,
+        "baseKey": "e6",
+        "scriptKey": "e8",
+        "ratio": 0.75
+      },
+      "afterTextMetrics": {
+        "italic": "italic",
+        "baseSize": 27.7778,
+        "scriptSize": 20.8333,
+        "baseKey": "e6",
+        "scriptKey": "e8",
+        "ratio": 0.74999820000144
+      },
+      "committedTextSizeEdits": {
+        "base": "27.77777777777778",
+        "script": "20.833333333333336"
+      },
+      "textSizeRatioChecks": {
+        "stateRatio": 0.7500000000000001,
+        "stateTolerance": 1e-12,
+        "computedScriptErrorCssPx": 4.9999999998107114e-05,
+        "computedToleranceCssPx": 0.0001,
+        "reason": "Actual Chrome CSSOM serialization reports 27.7778 and 20.8333 while saved values retain full precision. Check exact stored ratio and a bounded 0.0001 CSS-pixel rendering error separately; earlier overstrict ratio-only failures remain retained."
+      }
+    }
+  ],
+  "retainedAttempts": [
+    {
+      "label": "source06-scientific-selection",
+      "status": "FAIL",
+      "rawReportSha256": "8fc1eaccf3d98d3034d12c98a92f9cbbda37bbcdf08f1345a5aac0da479f3bf6",
+      "cases": [
+        {
+          "name": "multi-selection-8",
+          "status": "PASS"
+        },
+        {
+          "name": "multi-selection-9",
+          "status": "PASS"
+        },
+        {
+          "name": "same-colour-and-preserved-channels",
+          "status": "FAIL"
+        },
+        {
+          "name": "layer-lock-visibility-and-rich-text",
+          "status": "FAIL"
+        },
+        {
+          "name": "public-iris-contract-edit-roundtrip-and-theme-exports",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "label": "source08-selection-diagnostic",
+      "status": "FAIL",
+      "rawReportSha256": "75075219df80544ecae45a0a738df5b773ea340923c96e2393518e7a21063e16",
+      "cases": [
+        {
+          "name": "same-colour-and-preserved-channels",
+          "status": "FAIL"
+        },
+        {
+          "name": "layer-lock-visibility-and-rich-text",
+          "status": "FAIL",
+          "beforeTextMetrics": {
+            "italic": "italic",
+            "baseSize": 16,
+            "scriptSize": 12,
+            "baseKey": "e6",
+            "scriptKey": "e8",
+            "ratio": 0.75
+          },
+          "afterTextMetrics": {
+            "italic": "italic",
+            "baseSize": 27.7778,
+            "scriptSize": 20.8333,
+            "baseKey": "e6",
+            "scriptKey": "e8",
+            "ratio": 0.74999820000144
+          },
+          "committedTextSizeEdits": {
+            "base": "27.77777777777778",
+            "script": "20.833333333333336"
+          }
+        }
+      ]
+    }
+  ],
+  "qaCorrections": [
+    "Earlier direct path-click positions did not hit the hollow path. The real visible Layers name button is now used, with no forced click or application selection hook.",
+    "The observed computed sizes 27.7778/20.8333 differ from an exact 0.75 ratio by about 0.0000018 because of serialization. Saved full-precision sizes retain the ratio to 1e-12, while the computed script-size residual is limited to 0.0001 CSS pixels. Original failures remain retained."
+  ]
+}

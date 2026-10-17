@@ -1,0 +1,106 @@
+{
+  "schema": "figure-studio-blank-resource-preview/1",
+  "status": "PASS",
+  "harnessSha256": "7f31365f62d13791637fac8b7b988c69b6fe5e887df42404bedecafa4f9f2377",
+  "conditions": {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "language": "en",
+    "theme": "carbon",
+    "headless": true
+  },
+  "scope": "Narrow actual Chrome blank-project lifecycle acceptance, Carbon/en at 1280 × 720. Full integrated resource matrix is reported separately.",
+  "browser": "155.0.8059.82",
+  "sourceProof": {
+    "localHtmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+    "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+    "reconstructedExpectedSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "preview": {
+    "viewport": {
+      "x": 226,
+      "y": 356,
+      "width": 728,
+      "height": 322,
+      "clientHeight": 322
+    },
+    "svg": {
+      "x": 418,
+      "y": 388,
+      "width": 344,
+      "height": 258,
+      "clientHeight": 258
+    },
+    "welcomeVisible": false
+  },
+  "previewIdb": {
+    "projectSha256": "25be994d4e92fcdb3e28c6aa821a89956b69d697b5b8bc2175de36d31b4a6c78",
+    "stateSha256": "e94c9b8772a2ffd173c150645dbb143298919feccbc5cc09912802a6ace82f96",
+    "historySha256": "fda0a170cf2d7c86ee67b2fa1450dc074ab7fa7d5d5693fc678f823fd94203ba",
+    "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "readonly": true,
+    "allOtherValuesStrictDeepEqual": true,
+    "representationOmissions": [],
+    "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+  },
+  "cancel": {
+    "viewport": {
+      "x": 226,
+      "y": 594.1875,
+      "width": 728,
+      "height": 83.8125,
+      "clientHeight": 84
+    },
+    "svg": {
+      "x": 566.953125,
+      "y": 626.1875,
+      "width": 46.078125,
+      "height": 34.546875,
+      "clientHeight": 35
+    },
+    "welcomeVisible": true
+  },
+  "applied": {
+    "viewport": {
+      "x": 226,
+      "y": 356,
+      "width": 728,
+      "height": 322,
+      "clientHeight": 322
+    },
+    "svg": {
+      "x": 418,
+      "y": 388,
+      "width": 344,
+      "height": 258,
+      "clientHeight": 258
+    },
+    "welcomeVisible": false
+  },
+  "cancelRestoresWelcome": true,
+  "previewCommittedPayloadExact": true,
+  "singleUndoRedo": true,
+  "undoRestoresWelcome": true,
+  "redoHidesWelcome": true,
+  "externalRequests": [],
+  "pageErrors": [],
+  "rawReportSha256": "bcb1846c48247436cd254a6cb085f209ba19df45965d6541d43530e8b576517c",
+  "target": "source16 frozen local runtime",
+  "screenshots": [
+    {
+      "file": "resource-source16-blank-preview.png",
+      "sha256": "8263f13099d032857254667db8fb6227bbf6bae5a33dfc83dc0ed122bf9a1a10"
+    },
+    {
+      "file": "resource-source16-blank-cancel.png",
+      "sha256": "9429d483eb0674303c395df1748f19b6c8520ebeb35a9df7172336d22f0f8b7e"
+    }
+  ],
+  "priorFailure": "resource-source15-blank-failure.json"
+}

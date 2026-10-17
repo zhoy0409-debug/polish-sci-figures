@@ -19,8 +19,12 @@ function harness(){
     layout:()=>({width:200,height:100}),currentOutput:()=>({scale:1}),displayedPanelLabel:(s,id)=>s.panels[id].label,
     requestAnimationFrame:fn=>{frames.set(++frameId,fn);return frameId;},cancelAnimationFrame:id=>frames.delete(id),renderCanvas:render,textPointSize:rich.pointSize,textPointFactor:()=>1,focusRichTextControls(){throw Error('An editable canvas text should not require the sidebar');},getActiveRichTextSelection:()=>null};
   ctx.StudioLayoutLock=require(dir+'layout-lock.js');ctx.selectionAlignmentPlan=selectionAlignmentPlan;
-  vm.createContext(ctx);vm.runInContext(`let original=false,selectedPanel='p0',selected=[],elementSelections=[],selectedAnnotations=[],selectedPanelLabel=null,selectedAlignmentGuide=null,activePane='detail',inlineEditor=null,quickCharacterSelection=null,richTextEditor=null,quickPreview=null,quickPreviewFrame=0,panelSelection=[],contentSelection=null,selectedEmptyCell=null,textTools=null;
+  // This isolated VM exercises the actual production quick-style fallback;
+  // managed preview sessions have separate component and installed acceptance.
+  // Extract its declarations too, so new cancellation state is never omitted.
+  vm.createContext(ctx);vm.runInContext(`let original=false,selectedPanel='p0',selected=[],elementSelections=[],selectedAnnotations=[],selectedPanelLabel=null,selectedAlignmentGuide=null,activePane='detail',inlineEditor=null,richTextEditor=null,panelSelection=[],contentSelection=null,selectedEmptyCell=null,textTools=null;
     const selectionGroups=()=>elementSelections;const setElementSelection=groups=>{elementSelections=groups;selected=groups[0]?.keys||[];};
+    ${section('  let quickPreview=','  function quickSelectedObjects(')}
     ${section('function layoutLockAPI(){','function imageInsetsAPI(){')}
     ${section('  let labelSelections=[];','  const sizeNames=')}
     ${section('  function selectionCommandInfo(){','  function renderSelectionCommands(){')}
