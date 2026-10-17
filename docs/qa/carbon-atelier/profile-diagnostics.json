@@ -1,0 +1,3439 @@
+{
+  "schema": "figure-studio-carbon-profile-comparison/1",
+  "status": "DIAGNOSTIC_ONLY",
+  "scope": "Same-device controlled source response/style interventions; no video, not formal release performance. Production files were not modified by these interventions. Trace event totals may nest/overlap.",
+  "cases": [
+    {
+      "schema": "figure-studio-carbon-cpu-diagnostic/1",
+      "mode": "unaltered",
+      "url": "http://127.0.0.1:18961/",
+      "elements": 5000,
+      "rounds": 4,
+      "browser": "155.0.8059.82",
+      "scope": "Diagnostic CPU sampling and devtools trace with no video. Wall times are not comparable to the formal video benchmark. Interventions are temporary served-response edits, never production changes.",
+      "cpu": {
+        "sampledMs": 12326.097,
+        "samples": 10009,
+        "topSelf": [
+          {
+            "function": "(program)",
+            "line": 0,
+            "url": "",
+            "selfMs": 5737.83700000002,
+            "inclusiveMs": 5737.83700000002
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 953.3839999999992,
+            "inclusiveMs": 968.0129999999991
+          },
+          {
+            "function": "previewFitZoom",
+            "line": 13927,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 503.38699999999983,
+            "inclusiveMs": 503.38699999999983
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 315.24799999999993,
+            "inclusiveMs": 315.24799999999993
+          },
+          {
+            "function": "query",
+            "line": 5607,
+            "url": "",
+            "selfMs": 305.2619999999999,
+            "inclusiveMs": 349.4229999999999
+          },
+          {
+            "function": "(idle)",
+            "line": 0,
+            "url": "",
+            "selfMs": 298.059,
+            "inclusiveMs": 298.059
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 249.61600000000013,
+            "inclusiveMs": 249.61600000000013
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 218.50100000000015,
+            "inclusiveMs": 222.9200000000001
+          },
+          {
+            "function": "namespace",
+            "line": 12295,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 193.42499999999998,
+            "inclusiveMs": 193.42499999999998
+          },
+          {
+            "function": "(garbage collector)",
+            "line": 0,
+            "url": "",
+            "selfMs": 177.94900000000007,
+            "inclusiveMs": 177.94900000000007
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 171.14299999999994,
+            "inclusiveMs": 171.14299999999994
+          },
+          {
+            "function": "parentElementOrShadowHost",
+            "line": 2925,
+            "url": "",
+            "selfMs": 129.164,
+            "inclusiveMs": 129.164
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 121.04799999999994,
+            "inclusiveMs": 121.04799999999994
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 106.55899999999998,
+            "inclusiveMs": 106.55899999999998
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 101.99099999999997,
+            "inclusiveMs": 101.99099999999997
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 99.18399999999997,
+            "inclusiveMs": 99.18399999999997
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 98.63399999999996,
+            "inclusiveMs": 98.63399999999996
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 96.782,
+            "inclusiveMs": 96.782
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 95.42399999999998,
+            "inclusiveMs": 95.42399999999998
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 95.08599999999998,
+            "inclusiveMs": 95.08599999999998
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 94.13399999999996,
+            "inclusiveMs": 94.13399999999996
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 91.52499999999999,
+            "inclusiveMs": 91.52499999999999
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 90.38999999999996,
+            "inclusiveMs": 93.57599999999995
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 90.36099999999998,
+            "inclusiveMs": 90.36099999999998
+          },
+          {
+            "function": "namespace",
+            "line": 12295,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 73.79400000000001,
+            "inclusiveMs": 73.79400000000001
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 64.761,
+            "inclusiveMs": 64.761
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 52.49100000000001,
+            "inclusiveMs": 52.49100000000001
+          },
+          {
+            "function": "querySelectorAll",
+            "line": 0,
+            "url": "",
+            "selfMs": 44.160999999999994,
+            "inclusiveMs": 44.160999999999994
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 43.36000000000001,
+            "inclusiveMs": 43.36000000000001
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 42.58900000000001,
+            "inclusiveMs": 42.58900000000001
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 38.682,
+            "inclusiveMs": 38.682
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 37.36600000000001,
+            "inclusiveMs": 37.36600000000001
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 37.36200000000001,
+            "inclusiveMs": 244.03700000000006
+          },
+          {
+            "function": "isVisibleObject",
+            "line": 11699,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 33.471000000000004,
+            "inclusiveMs": 46.346999999999994
+          },
+          {
+            "function": "append",
+            "line": 0,
+            "url": "",
+            "selfMs": 33.431,
+            "inclusiveMs": 33.431
+          },
+          {
+            "function": "replaceChildren",
+            "line": 0,
+            "url": "",
+            "selfMs": 30.743999999999996,
+            "inclusiveMs": 30.743999999999996
+          },
+          {
+            "function": "isVisibleObject",
+            "line": 11699,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 29.242000000000004,
+            "inclusiveMs": 43.914
+          },
+          {
+            "function": "editedSvg",
+            "line": 12140,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 26.25,
+            "inclusiveMs": 182.66400000000002
+          },
+          {
+            "function": "append",
+            "line": 0,
+            "url": "",
+            "selfMs": 26.059,
+            "inclusiveMs": 26.059
+          },
+          {
+            "function": "editNode",
+            "line": 12170,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 23.334,
+            "inclusiveMs": 27.194999999999997
+          }
+        ],
+        "topInclusive": [
+          {
+            "function": "(root)",
+            "line": 0,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 12326.097
+          },
+          {
+            "function": "(program)",
+            "line": 0,
+            "url": "",
+            "selfMs": 5737.83700000002,
+            "inclusiveMs": 5737.83700000002
+          },
+          {
+            "function": "el.onclick",
+            "line": 14489,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 1536.1410000000017
+          },
+          {
+            "function": "showPane",
+            "line": 11321,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 1536.1410000000017
+          },
+          {
+            "function": "svg.onpointerdown",
+            "line": 14200,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 1528.9620000000014
+          },
+          {
+            "function": "renderCanvas",
+            "line": 13998,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 22.255000000000003,
+            "inclusiveMs": 1014.3940000000007
+          },
+          {
+            "function": "finishSelectionUI",
+            "line": 14152,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 1001.1359999999996
+          },
+          {
+            "function": "(anonymous)",
+            "line": 4660,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 968.0129999999991
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 953.3839999999992,
+            "inclusiveMs": 968.0129999999991
+          },
+          {
+            "function": "svg.onpointerup",
+            "line": 14216,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 880.9580000000002
+          },
+          {
+            "function": "finishSelectionUI",
+            "line": 14152,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0.136,
+            "inclusiveMs": 880.9580000000002
+          },
+          {
+            "function": "renderSelectionProperties",
+            "line": 13624,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 1.128,
+            "inclusiveMs": 861.1409999999998
+          },
+          {
+            "function": "renderSelectionProperties",
+            "line": 13624,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 1.633,
+            "inclusiveMs": 687.6210000000002
+          },
+          {
+            "function": "(anonymous)",
+            "line": 1,
+            "url": "",
+            "selfMs": 1.643,
+            "inclusiveMs": 682.1310000000002
+          },
+          {
+            "function": "evaluate",
+            "line": 305,
+            "url": "",
+            "selfMs": 1.597,
+            "inclusiveMs": 680.4880000000003
+          },
+          {
+            "function": "callMatchedElements",
+            "line": 1,
+            "url": "",
+            "selfMs": 1.066,
+            "inclusiveMs": 627.59
+          },
+          {
+            "function": "querySelectorAll",
+            "line": 6920,
+            "url": "",
+            "selfMs": 1.794,
+            "inclusiveMs": 616.1980000000003
+          },
+          {
+            "function": "_queryEngineAll",
+            "line": 6968,
+            "url": "",
+            "selfMs": 1.6,
+            "inclusiveMs": 614.4040000000003
+          },
+          {
+            "function": "queryAll",
+            "line": 6989,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 612.8040000000004
+          },
+          {
+            "function": "query",
+            "line": 5422,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 612.8040000000004
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 612.8040000000004
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5426,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 612.8040000000004
+          },
+          {
+            "function": "_queryEngine",
+            "line": 5584,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 612.8040000000004
+          },
+          {
+            "function": "_callQuery",
+            "line": 5596,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 612.8040000000004
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 612.8040000000004
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5597,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 612.8040000000004
+          },
+          {
+            "function": "query",
+            "line": 5635,
+            "url": "",
+            "selfMs": 1.401,
+            "inclusiveMs": 612.8040000000004
+          },
+          {
+            "function": "query",
+            "line": 5422,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 611.4030000000005
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 611.4030000000005
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5426,
+            "url": "",
+            "selfMs": 3.191,
+            "inclusiveMs": 611.4030000000005
+          },
+          {
+            "function": "renderInspectorPreviews",
+            "line": 13696,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0.882,
+            "inclusiveMs": 518.4700000000003
+          },
+          {
+            "function": "drawPalettes",
+            "line": 13159,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 1.7999999999999998,
+            "inclusiveMs": 517.5880000000002
+          },
+          {
+            "function": "previewFitZoom",
+            "line": 13927,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 503.38699999999983,
+            "inclusiveMs": 503.38699999999983
+          },
+          {
+            "function": "_querySimple",
+            "line": 5483,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 354.25199999999995
+          },
+          {
+            "function": "_queryCSS",
+            "line": 5604,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 354.25199999999995
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 354.25199999999995
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5605,
+            "url": "",
+            "selfMs": 4.829,
+            "inclusiveMs": 354.25199999999995
+          },
+          {
+            "function": "query",
+            "line": 5607,
+            "url": "",
+            "selfMs": 305.2619999999999,
+            "inclusiveMs": 349.4229999999999
+          },
+          {
+            "function": "canvasPoint",
+            "line": 14031,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 315.24799999999993
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 315.24799999999993,
+            "inclusiveMs": 315.24799999999993
+          }
+        ]
+      },
+      "traceEventTotals": {
+        "FunctionCall": {
+          "count": 837,
+          "totalMs": 5511.423000000007,
+          "maxMs": 936.014
+        },
+        "EventDispatch": {
+          "count": 588,
+          "totalMs": 4248.482000000011,
+          "maxMs": 936.237
+        },
+        "UpdateLayoutTree": {
+          "count": 306,
+          "totalMs": 2434.5850000000005,
+          "maxMs": 207.153
+        },
+        "Layout": {
+          "count": 222,
+          "totalMs": 1656.7720000000002,
+          "maxMs": 35.017
+        },
+        "FireAnimationFrame": {
+          "count": 100,
+          "totalMs": 1249.8420000000003,
+          "maxMs": 85.827
+        },
+        "Paint": {
+          "count": 189,
+          "totalMs": 832.632,
+          "maxMs": 40.271
+        },
+        "Layerize": {
+          "count": 150,
+          "totalMs": 307.22599999999994,
+          "maxMs": 14.76
+        },
+        "PrePaint": {
+          "count": 342,
+          "totalMs": 292.08899999999954,
+          "maxMs": 25.113
+        },
+        "V8.GC_MC_BACKGROUND_MARKING": {
+          "count": 151,
+          "totalMs": 149.68399999999997,
+          "maxMs": 5.441
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+          "count": 212,
+          "totalMs": 96.95900000000005,
+          "maxMs": 2.939
+        },
+        "MajorGC": {
+          "count": 3,
+          "totalMs": 95.90700000000001,
+          "maxMs": 41.189
+        },
+        "V8.GC_MARK_COMPACTOR": {
+          "count": 3,
+          "totalMs": 95.708,
+          "maxMs": 41.133
+        },
+        "V8.GC_MC_INCREMENTAL": {
+          "count": 73,
+          "totalMs": 61.77900000000001,
+          "maxMs": 10.094
+        },
+        "V8.GC_MC_INCREMENTAL_EMBEDDER_TRACING": {
+          "count": 73,
+          "totalMs": 57.33700000000001,
+          "maxMs": 9.331
+        },
+        "HitTest": {
+          "count": 176,
+          "totalMs": 54.78899999999999,
+          "maxMs": 0.981
+        },
+        "MinorGC": {
+          "count": 15,
+          "totalMs": 48.666,
+          "maxMs": 4.76
+        },
+        "V8.StackGuard": {
+          "count": 217,
+          "totalMs": 47.682999999999986,
+          "maxMs": 27.961
+        },
+        "V8.GC_SCAVENGER": {
+          "count": 15,
+          "totalMs": 47.20000000000001,
+          "maxMs": 4.693
+        },
+        "V8.GC_SCAVENGER_SCAVENGE": {
+          "count": 15,
+          "totalMs": 46.79,
+          "maxMs": 4.657
+        },
+        "V8.HandleInterrupts": {
+          "count": 216,
+          "totalMs": 46.345999999999975,
+          "maxMs": 27.956
+        },
+        "TimerFire": {
+          "count": 16,
+          "totalMs": 29.415,
+          "maxMs": 28.235
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": {
+          "count": 15,
+          "totalMs": 20.455999999999996,
+          "maxMs": 3.059
+        },
+        "RunMicrotasks": {
+          "count": 238,
+          "totalMs": 17.46199999999999,
+          "maxMs": 0.537
+        },
+        "V8.GC_MC_BACKGROUND_SWEEPING": {
+          "count": 19,
+          "totalMs": 16.415,
+          "maxMs": 1.291
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 30,
+          "totalMs": 16.001,
+          "maxMs": 1.549
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": {
+          "count": 15,
+          "totalMs": 13.504999999999999,
+          "maxMs": 1.751
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 30,
+          "totalMs": 10.494,
+          "maxMs": 1.01
+        },
+        "V8.GC_MC_MARK": {
+          "count": 3,
+          "totalMs": 9.418,
+          "maxMs": 7.601
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 15,
+          "totalMs": 8.378,
+          "maxMs": 1.554
+        },
+        "V8.GC_MC_MARK_FULL_CLOSURE_PARALLEL": {
+          "count": 3,
+          "totalMs": 8.200000000000001,
+          "maxMs": 7.118
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_ROOTS": {
+          "count": 15,
+          "totalMs": 7.9620000000000015,
+          "maxMs": 2.483
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": {
+          "count": 15,
+          "totalMs": 6.425000000000001,
+          "maxMs": 1.104
+        },
+        "V8.GC_MC_CLEAR": {
+          "count": 3,
+          "totalMs": 6.013000000000001,
+          "maxMs": 2.341
+        },
+        "V8.GC_MC_CLEAR_JOIN_JOB": {
+          "count": 3,
+          "totalMs": 5.742,
+          "maxMs": 2.246
+        },
+        "V8.GC_MC_EVACUATE": {
+          "count": 6,
+          "totalMs": 5.675000000000001,
+          "maxMs": 1.955
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 15,
+          "totalMs": 5.606,
+          "maxMs": 1.026
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL": {
+          "count": 37,
+          "totalMs": 5.399,
+          "maxMs": 1.57
+        },
+        "V8.GC_MC_EVACUATE_UPDATE_POINTERS": {
+          "count": 3,
+          "totalMs": 4.66,
+          "maxMs": 1.604
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 427,
+          "totalMs": 3.9339999999999784,
+          "maxMs": 0.157
+        },
+        "V8.GC_MC_CLEAR_SWEEP_EXTERNAL_POINTER_TABLE": {
+          "count": 3,
+          "totalMs": 3.436,
+          "maxMs": 1.461
+        }
+      },
+      "resizeObservers": [
+        {
+          "calls": 16,
+          "callbackMs": 1.7999998927116394,
+          "maxCallbackMs": 0.19999998807907104,
+          "targets": [
+            "canvasQuickToolbar"
+          ]
+        },
+        {
+          "calls": 16,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "layerObjects"
+          ]
+        },
+        {
+          "calls": 16,
+          "callbackMs": 0.09999999403953552,
+          "maxCallbackMs": 0.09999999403953552,
+          "targets": [
+            "viewport"
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "name": "select-text-0",
+          "wallMs": 618.3000000119209
+        },
+        {
+          "name": "resize-sidebar-0",
+          "wallMs": 1057.1000000238419
+        },
+        {
+          "name": "switch-tab-0",
+          "wallMs": 1471.199999988079
+        },
+        {
+          "name": "select-text-1",
+          "wallMs": 525.5
+        },
+        {
+          "name": "resize-sidebar-1",
+          "wallMs": 1006.4000000059605
+        },
+        {
+          "name": "switch-tab-1",
+          "wallMs": 403.5
+        },
+        {
+          "name": "select-text-2",
+          "wallMs": 544.4000000059605
+        },
+        {
+          "name": "resize-sidebar-2",
+          "wallMs": 864.7000000178814
+        },
+        {
+          "name": "switch-tab-2",
+          "wallMs": 731.5
+        },
+        {
+          "name": "select-text-3",
+          "wallMs": 535.7000000178814
+        },
+        {
+          "name": "resize-sidebar-3",
+          "wallMs": 943.5
+        },
+        {
+          "name": "switch-tab-3",
+          "wallMs": 385.39999997615814
+        }
+      ],
+      "errors": [],
+      "remoteRequests": [],
+      "status": "PASS_DIAGNOSTIC",
+      "traceDisclosure": "Event type totals can nest/overlap and must not be added as independent wall time. Raw trace remains local; no screenshots or scientific source payloads are collected.",
+      "rawProofSha256": "df217e321ba1bfc312510d185098a65c3b73690a1cf75065aba131d0238d89ab",
+      "rawTraceSha256": "12c399202e95e0566ea6ea1b24b45b50d28904a243bdabbe3b134c40371a226d",
+      "rawCpuSha256": "fd62fb8a6e1daf10a0539edf02e0dcf24821caebaa693f91eacbfcf46f0a4ca0"
+    },
+    {
+      "schema": "figure-studio-carbon-cpu-diagnostic/1",
+      "mode": "no-toolbar-ro",
+      "url": "http://127.0.0.1:18961/",
+      "elements": 5000,
+      "rounds": 4,
+      "browser": "155.0.8059.82",
+      "scope": "Diagnostic CPU sampling and devtools trace with no video. Wall times are not comparable to the formal video benchmark. Interventions are temporary served-response edits, never production changes.",
+      "cpu": {
+        "sampledMs": 12163.387,
+        "samples": 9693,
+        "topSelf": [
+          {
+            "function": "(program)",
+            "line": 0,
+            "url": "",
+            "selfMs": 5802.013000000003,
+            "inclusiveMs": 5802.013000000003
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 970.0660000000001,
+            "inclusiveMs": 982.777
+          },
+          {
+            "function": "previewFitZoom",
+            "line": 13927,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 479.0919999999999,
+            "inclusiveMs": 479.0919999999999
+          },
+          {
+            "function": "(idle)",
+            "line": 0,
+            "url": "",
+            "selfMs": 368.30400000000003,
+            "inclusiveMs": 368.30400000000003
+          },
+          {
+            "function": "query",
+            "line": 5607,
+            "url": "",
+            "selfMs": 337.0420000000003,
+            "inclusiveMs": 383.70700000000016
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 321.76599999999996,
+            "inclusiveMs": 321.76599999999996
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 258.39800000000025,
+            "inclusiveMs": 261.5160000000003
+          },
+          {
+            "function": "(garbage collector)",
+            "line": 0,
+            "url": "",
+            "selfMs": 227.95900000000003,
+            "inclusiveMs": 227.95900000000003
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 178.142,
+            "inclusiveMs": 178.142
+          },
+          {
+            "function": "namespace",
+            "line": 12295,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 154.93799999999996,
+            "inclusiveMs": 154.93799999999996
+          },
+          {
+            "function": "parentElementOrShadowHost",
+            "line": 2925,
+            "url": "",
+            "selfMs": 133.46699999999998,
+            "inclusiveMs": 133.46699999999998
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 109.46000000000001,
+            "inclusiveMs": 109.46000000000001
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 91.33299999999994,
+            "inclusiveMs": 91.33299999999994
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 90.51699999999995,
+            "inclusiveMs": 90.51699999999995
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 90.10999999999996,
+            "inclusiveMs": 90.10999999999996
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 88.439,
+            "inclusiveMs": 88.439
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 88.13500000000002,
+            "inclusiveMs": 88.13500000000002
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 88.00699999999999,
+            "inclusiveMs": 89.59999999999998
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 86.56799999999998,
+            "inclusiveMs": 86.56799999999998
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 84.56799999999998,
+            "inclusiveMs": 84.56799999999998
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 82.29700000000001,
+            "inclusiveMs": 82.29700000000001
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 81.83800000000001,
+            "inclusiveMs": 81.83800000000001
+          },
+          {
+            "function": "namespace",
+            "line": 12295,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 81.505,
+            "inclusiveMs": 81.505
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 79.91799999999999,
+            "inclusiveMs": 79.91799999999999
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 75.99300000000001,
+            "inclusiveMs": 75.99300000000001
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 61.265,
+            "inclusiveMs": 61.265
+          },
+          {
+            "function": "querySelectorAll",
+            "line": 0,
+            "url": "",
+            "selfMs": 46.66499999999999,
+            "inclusiveMs": 46.66499999999999
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 44.97500000000001,
+            "inclusiveMs": 44.97500000000001
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 43.934,
+            "inclusiveMs": 43.934
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 41.897000000000006,
+            "inclusiveMs": 41.897000000000006
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 41.355,
+            "inclusiveMs": 41.355
+          },
+          {
+            "function": "append",
+            "line": 0,
+            "url": "",
+            "selfMs": 39.25299999999999,
+            "inclusiveMs": 39.25299999999999
+          },
+          {
+            "function": "isVisibleObject",
+            "line": 11699,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 35.67,
+            "inclusiveMs": 51.911
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 32.171,
+            "inclusiveMs": 247.32300000000004
+          },
+          {
+            "function": "replaceChildren",
+            "line": 0,
+            "url": "",
+            "selfMs": 30.856999999999996,
+            "inclusiveMs": 30.856999999999996
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5521,
+            "url": "",
+            "selfMs": 30.803000000000004,
+            "inclusiveMs": 213.577
+          },
+          {
+            "function": "isVisibleObject",
+            "line": 11699,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 27.514,
+            "inclusiveMs": 48.65800000000001
+          },
+          {
+            "function": "renderCanvas",
+            "line": 13998,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 20.775,
+            "inclusiveMs": 1069.3639999999998
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 19.769,
+            "inclusiveMs": 31.958999999999996
+          },
+          {
+            "function": "quickSelectedObjects",
+            "line": 13400,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 16.005,
+            "inclusiveMs": 24.214000000000002
+          }
+        ],
+        "topInclusive": [
+          {
+            "function": "(root)",
+            "line": 0,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 12163.386999999942
+          },
+          {
+            "function": "(program)",
+            "line": 0,
+            "url": "",
+            "selfMs": 5802.013000000003,
+            "inclusiveMs": 5802.013000000003
+          },
+          {
+            "function": "el.onclick",
+            "line": 14489,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 1489.6100000000026
+          },
+          {
+            "function": "showPane",
+            "line": 11321,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 1.585,
+            "inclusiveMs": 1489.6100000000026
+          },
+          {
+            "function": "svg.onpointerdown",
+            "line": 14200,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 1.584,
+            "inclusiveMs": 1439.6450000000002
+          },
+          {
+            "function": "renderCanvas",
+            "line": 13998,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 20.775,
+            "inclusiveMs": 1069.3639999999998
+          },
+          {
+            "function": "(anonymous)",
+            "line": 4660,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 982.777
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 970.0660000000001,
+            "inclusiveMs": 982.777
+          },
+          {
+            "function": "finishSelectionUI",
+            "line": 14152,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 3.274,
+            "inclusiveMs": 911.4249999999995
+          },
+          {
+            "function": "svg.onpointerup",
+            "line": 14216,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 835.1290000000002
+          },
+          {
+            "function": "finishSelectionUI",
+            "line": 14152,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 835.0430000000002
+          },
+          {
+            "function": "renderSelectionProperties",
+            "line": 13624,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 3.159,
+            "inclusiveMs": 792.583
+          },
+          {
+            "function": "(anonymous)",
+            "line": 1,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 737.9750000000005
+          },
+          {
+            "function": "evaluate",
+            "line": 305,
+            "url": "",
+            "selfMs": 1.747,
+            "inclusiveMs": 737.9750000000005
+          },
+          {
+            "function": "callMatchedElements",
+            "line": 1,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 682.9230000000001
+          },
+          {
+            "function": "querySelectorAll",
+            "line": 6920,
+            "url": "",
+            "selfMs": 3.1719999999999997,
+            "inclusiveMs": 670.6950000000002
+          },
+          {
+            "function": "_queryEngineAll",
+            "line": 6968,
+            "url": "",
+            "selfMs": 1.42,
+            "inclusiveMs": 667.5230000000001
+          },
+          {
+            "function": "queryAll",
+            "line": 6989,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 666.1030000000002
+          },
+          {
+            "function": "query",
+            "line": 5422,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 664.5170000000002
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 664.5170000000002
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5426,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 664.5170000000002
+          },
+          {
+            "function": "_queryEngine",
+            "line": 5584,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 664.5170000000002
+          },
+          {
+            "function": "_callQuery",
+            "line": 5596,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 664.5170000000002
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 664.5170000000002
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5597,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 664.5170000000002
+          },
+          {
+            "function": "query",
+            "line": 5635,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 664.5170000000002
+          },
+          {
+            "function": "query",
+            "line": 5422,
+            "url": "",
+            "selfMs": 1.622,
+            "inclusiveMs": 664.5170000000002
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 662.8950000000002
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5426,
+            "url": "",
+            "selfMs": 9.607,
+            "inclusiveMs": 662.8950000000002
+          },
+          {
+            "function": "renderSelectionProperties",
+            "line": 13624,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 4.876,
+            "inclusiveMs": 642.7500000000001
+          },
+          {
+            "function": "previewFitZoom",
+            "line": 13927,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 479.0919999999999,
+            "inclusiveMs": 479.0919999999999
+          },
+          {
+            "function": "renderInspectorPreviews",
+            "line": 13696,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 415.4319999999998
+          },
+          {
+            "function": "drawPalettes",
+            "line": 13159,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 3.856,
+            "inclusiveMs": 415.4319999999998
+          },
+          {
+            "function": "_querySimple",
+            "line": 5483,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 390.2810000000001
+          },
+          {
+            "function": "_queryCSS",
+            "line": 5604,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 390.2810000000001
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 390.2810000000001
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5605,
+            "url": "",
+            "selfMs": 6.574,
+            "inclusiveMs": 390.2810000000001
+          },
+          {
+            "function": "query",
+            "line": 5607,
+            "url": "",
+            "selfMs": 337.0420000000003,
+            "inclusiveMs": 383.70700000000016
+          },
+          {
+            "function": "(idle)",
+            "line": 0,
+            "url": "",
+            "selfMs": 368.30400000000003,
+            "inclusiveMs": 368.30400000000003
+          },
+          {
+            "function": "canvasPoint",
+            "line": 14031,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 321.76599999999996
+          }
+        ]
+      },
+      "traceEventTotals": {
+        "FunctionCall": {
+          "count": 805,
+          "totalMs": 5151.615,
+          "maxMs": 841.394
+        },
+        "EventDispatch": {
+          "count": 588,
+          "totalMs": 4151.925000000002,
+          "maxMs": 841.621
+        },
+        "UpdateLayoutTree": {
+          "count": 254,
+          "totalMs": 2497.887,
+          "maxMs": 166.073
+        },
+        "Layout": {
+          "count": 174,
+          "totalMs": 1362.8699999999994,
+          "maxMs": 50.051
+        },
+        "FireAnimationFrame": {
+          "count": 84,
+          "totalMs": 996.6419999999999,
+          "maxMs": 86.766
+        },
+        "Paint": {
+          "count": 170,
+          "totalMs": 758.8149999999995,
+          "maxMs": 36.988
+        },
+        "V8.GC_MC_BACKGROUND_MARKING": {
+          "count": 178,
+          "totalMs": 311.8709999999998,
+          "maxMs": 21.796
+        },
+        "PrePaint": {
+          "count": 343,
+          "totalMs": 269.6899999999994,
+          "maxMs": 20.693
+        },
+        "Layerize": {
+          "count": 151,
+          "totalMs": 264.6769999999999,
+          "maxMs": 11.996
+        },
+        "V8.GC_MC_INCREMENTAL": {
+          "count": 246,
+          "totalMs": 121.041,
+          "maxMs": 18.404
+        },
+        "V8.StackGuard": {
+          "count": 218,
+          "totalMs": 120.50999999999996,
+          "maxMs": 45.586
+        },
+        "V8.HandleInterrupts": {
+          "count": 219,
+          "totalMs": 119.46700000000014,
+          "maxMs": 45.579
+        },
+        "MajorGC": {
+          "count": 4,
+          "totalMs": 116.13,
+          "maxMs": 45.525
+        },
+        "V8.GC_MARK_COMPACTOR": {
+          "count": 4,
+          "totalMs": 115.825,
+          "maxMs": 45.47
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+          "count": 180,
+          "totalMs": 80.24599999999998,
+          "maxMs": 2.532
+        },
+        "V8.GC_MC_INCREMENTAL_EMBEDDER_TRACING": {
+          "count": 245,
+          "totalMs": 77.674,
+          "maxMs": 7.068
+        },
+        "HitTest": {
+          "count": 178,
+          "totalMs": 54.966,
+          "maxMs": 0.91
+        },
+        "MinorGC": {
+          "count": 14,
+          "totalMs": 41.1,
+          "maxMs": 4.116
+        },
+        "V8.GC_SCAVENGER": {
+          "count": 14,
+          "totalMs": 39.881,
+          "maxMs": 4.029
+        },
+        "V8.GC_SCAVENGER_SCAVENGE": {
+          "count": 14,
+          "totalMs": 39.477000000000004,
+          "maxMs": 3.995
+        },
+        "V8.GC_MC_BACKGROUND_SWEEPING": {
+          "count": 80,
+          "totalMs": 23.235999999999997,
+          "maxMs": 1.457
+        },
+        "TimerFire": {
+          "count": 16,
+          "totalMs": 21.343000000000004,
+          "maxMs": 20.17
+        },
+        "V8.GC_MC_BACKGROUND_EVACUATE_COPY": {
+          "count": 21,
+          "totalMs": 18.571,
+          "maxMs": 1.703
+        },
+        "V8.GC_MC_MARK": {
+          "count": 4,
+          "totalMs": 17.764,
+          "maxMs": 7.735
+        },
+        "RunMicrotasks": {
+          "count": 236,
+          "totalMs": 17.25,
+          "maxMs": 0.411
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": {
+          "count": 14,
+          "totalMs": 16.301000000000002,
+          "maxMs": 2.703
+        },
+        "V8.GC_MC_MARK_FULL_CLOSURE_PARALLEL": {
+          "count": 4,
+          "totalMs": 15.747999999999998,
+          "maxMs": 7.284
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 28,
+          "totalMs": 12.558,
+          "maxMs": 1.554
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": {
+          "count": 14,
+          "totalMs": 12.002,
+          "maxMs": 1.676
+        },
+        "V8.GC_MC_EVACUATE": {
+          "count": 8,
+          "totalMs": 11.524,
+          "maxMs": 4.031
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 28,
+          "totalMs": 8.904000000000002,
+          "maxMs": 0.951
+        },
+        "V8.GC_MC_CLEAR": {
+          "count": 4,
+          "totalMs": 7.950000000000001,
+          "maxMs": 2.209
+        },
+        "V8.GC_MC_CLEAR_JOIN_JOB": {
+          "count": 4,
+          "totalMs": 7.686999999999999,
+          "maxMs": 2.145
+        },
+        "V8.GC_MC_EVACUATE_UPDATE_POINTERS": {
+          "count": 4,
+          "totalMs": 7.266,
+          "maxMs": 2.069
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 14,
+          "totalMs": 6.648000000000001,
+          "maxMs": 1.558
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": {
+          "count": 14,
+          "totalMs": 5.665,
+          "maxMs": 1.04
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_ROOTS": {
+          "count": 14,
+          "totalMs": 5.5779999999999985,
+          "maxMs": 1.482
+        },
+        "V8.GC_MC_EVACUATE_UPDATE_POINTERS_TO_NEW_ROOTS": {
+          "count": 4,
+          "totalMs": 5.458,
+          "maxMs": 1.622
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 14,
+          "totalMs": 4.763000000000001,
+          "maxMs": 0.967
+        },
+        "V8.GC_BACKGROUND_UNPARK": {
+          "count": 1,
+          "totalMs": 4.029,
+          "maxMs": 4.029
+        }
+      },
+      "resizeObservers": [
+        {
+          "calls": 16,
+          "callbackMs": 0.09999999403953552,
+          "maxCallbackMs": 0.09999999403953552,
+          "targets": [
+            "layerObjects"
+          ]
+        },
+        {
+          "calls": 16,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "viewport"
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "name": "select-text-0",
+          "wallMs": 466.19999998807907
+        },
+        {
+          "name": "resize-sidebar-0",
+          "wallMs": 644.5
+        },
+        {
+          "name": "switch-tab-0",
+          "wallMs": 1323.5999999940395
+        },
+        {
+          "name": "select-text-1",
+          "wallMs": 582
+        },
+        {
+          "name": "resize-sidebar-1",
+          "wallMs": 985.7999999821186
+        },
+        {
+          "name": "switch-tab-1",
+          "wallMs": 441.19999998807907
+        },
+        {
+          "name": "select-text-2",
+          "wallMs": 551.0999999940395
+        },
+        {
+          "name": "resize-sidebar-2",
+          "wallMs": 783.4000000059605
+        },
+        {
+          "name": "switch-tab-2",
+          "wallMs": 873.8000000119209
+        },
+        {
+          "name": "select-text-3",
+          "wallMs": 614.0999999940395
+        },
+        {
+          "name": "resize-sidebar-3",
+          "wallMs": 1164
+        },
+        {
+          "name": "switch-tab-3",
+          "wallMs": 429.7000000178814
+        }
+      ],
+      "errors": [],
+      "remoteRequests": [],
+      "status": "PASS_DIAGNOSTIC",
+      "traceDisclosure": "Event type totals can nest/overlap and must not be added as independent wall time. Raw trace remains local; no screenshots or scientific source payloads are collected.",
+      "rawProofSha256": "9d6d1ff8efc91295b41a09ca1df1a858c521454b1431ae5f8259a5ab8b76100a",
+      "rawTraceSha256": "782aa4b93b64fab074a3c8f3871ef4446dca8049aa0b2946b6fd360eb24a5339",
+      "rawCpuSha256": "9d059d5974e62a1f4b938780d628ea7cada0839ed2f8691aedd64536e55c9fbe"
+    },
+    {
+      "schema": "figure-studio-carbon-cpu-diagnostic/1",
+      "mode": "geometry-non-inheriting",
+      "url": "http://127.0.0.1:18961/",
+      "elements": 5000,
+      "rounds": 4,
+      "browser": "155.0.8059.82",
+      "scope": "Diagnostic CPU sampling and devtools trace with no video. Wall times are not comparable to the formal video benchmark. Interventions are temporary served-response edits, never production changes.",
+      "cpu": {
+        "sampledMs": 9581.108,
+        "samples": 8365,
+        "topSelf": [
+          {
+            "function": "(program)",
+            "line": 0,
+            "url": "",
+            "selfMs": 4695.5320000000165,
+            "inclusiveMs": 4695.5320000000165
+          },
+          {
+            "function": "previewFitZoom",
+            "line": 13927,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 416.778,
+            "inclusiveMs": 416.778
+          },
+          {
+            "function": "(idle)",
+            "line": 0,
+            "url": "",
+            "selfMs": 327.04299999999984,
+            "inclusiveMs": 327.04299999999984
+          },
+          {
+            "function": "query",
+            "line": 5607,
+            "url": "",
+            "selfMs": 289.898,
+            "inclusiveMs": 327.16900000000015
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 283.4650000000001,
+            "inclusiveMs": 283.4650000000001
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 205.363,
+            "inclusiveMs": 205.363
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 196.635,
+            "inclusiveMs": 200.55300000000003
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 154.109,
+            "inclusiveMs": 154.109
+          },
+          {
+            "function": "(garbage collector)",
+            "line": 0,
+            "url": "",
+            "selfMs": 143.884,
+            "inclusiveMs": 143.884
+          },
+          {
+            "function": "namespace",
+            "line": 12295,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 136.03900000000002,
+            "inclusiveMs": 136.03900000000002
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 132.03799999999993,
+            "inclusiveMs": 147.636
+          },
+          {
+            "function": "parentElementOrShadowHost",
+            "line": 2925,
+            "url": "",
+            "selfMs": 119.12499999999997,
+            "inclusiveMs": 119.12499999999997
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 99.61599999999997,
+            "inclusiveMs": 99.61599999999997
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 80.53600000000002,
+            "inclusiveMs": 80.53600000000002
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 80.06500000000001,
+            "inclusiveMs": 80.06500000000001
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 79.21,
+            "inclusiveMs": 79.21
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 77.63199999999999,
+            "inclusiveMs": 77.63199999999999
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 75.001,
+            "inclusiveMs": 75.001
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 74.73399999999998,
+            "inclusiveMs": 74.73399999999998
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 72.79199999999997,
+            "inclusiveMs": 72.79199999999997
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 69.94099999999999,
+            "inclusiveMs": 69.94099999999999
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 68.335,
+            "inclusiveMs": 68.335
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 67.42399999999999,
+            "inclusiveMs": 67.42399999999999
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 65.67100000000002,
+            "inclusiveMs": 65.67100000000002
+          },
+          {
+            "function": "namespace",
+            "line": 12295,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 61.57599999999999,
+            "inclusiveMs": 61.57599999999999
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 56.40700000000002,
+            "inclusiveMs": 56.40700000000002
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 39.84,
+            "inclusiveMs": 39.84
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 38.16799999999999,
+            "inclusiveMs": 38.16799999999999
+          },
+          {
+            "function": "querySelectorAll",
+            "line": 0,
+            "url": "",
+            "selfMs": 37.27100000000001,
+            "inclusiveMs": 37.27100000000001
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 33.757000000000005,
+            "inclusiveMs": 230.59100000000007
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 33.685,
+            "inclusiveMs": 33.685
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 33.437000000000005,
+            "inclusiveMs": 33.437000000000005
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 31.794000000000004,
+            "inclusiveMs": 31.794000000000004
+          },
+          {
+            "function": "replaceChildren",
+            "line": 0,
+            "url": "",
+            "selfMs": 28.688,
+            "inclusiveMs": 28.688
+          },
+          {
+            "function": "isVisibleObject",
+            "line": 11699,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 28.346999999999994,
+            "inclusiveMs": 49.169000000000004
+          },
+          {
+            "function": "append",
+            "line": 0,
+            "url": "",
+            "selfMs": 25.479000000000003,
+            "inclusiveMs": 25.479000000000003
+          },
+          {
+            "function": "renderCanvas",
+            "line": 13998,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 23.751,
+            "inclusiveMs": 862.5229999999998
+          },
+          {
+            "function": "isVisibleObject",
+            "line": 11699,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 23.154999999999998,
+            "inclusiveMs": 34.21
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5521,
+            "url": "",
+            "selfMs": 20.903999999999996,
+            "inclusiveMs": 196.83400000000006
+          },
+          {
+            "function": "_matchesSimple",
+            "line": 5470,
+            "url": "",
+            "selfMs": 20.487000000000002,
+            "inclusiveMs": 53.64000000000001
+          }
+        ],
+        "topInclusive": [
+          {
+            "function": "(root)",
+            "line": 0,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 9581.107999999997
+          },
+          {
+            "function": "(program)",
+            "line": 0,
+            "url": "",
+            "selfMs": 4695.5320000000165,
+            "inclusiveMs": 4695.5320000000165
+          },
+          {
+            "function": "svg.onpointerdown",
+            "line": 14200,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 1242.1099999999992
+          },
+          {
+            "function": "el.onclick",
+            "line": 14489,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 1229.712999999999
+          },
+          {
+            "function": "showPane",
+            "line": 11321,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 1229.712999999999
+          },
+          {
+            "function": "renderCanvas",
+            "line": 13998,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 23.751,
+            "inclusiveMs": 862.5229999999998
+          },
+          {
+            "function": "finishSelectionUI",
+            "line": 14152,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 783.729999999999
+          },
+          {
+            "function": "svg.onpointerup",
+            "line": 14216,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 711.0410000000002
+          },
+          {
+            "function": "finishSelectionUI",
+            "line": 14152,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 1.395,
+            "inclusiveMs": 711.0000000000002
+          },
+          {
+            "function": "renderSelectionProperties",
+            "line": 13624,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 3.528,
+            "inclusiveMs": 679.2709999999993
+          },
+          {
+            "function": "(anonymous)",
+            "line": 1,
+            "url": "",
+            "selfMs": 1.596,
+            "inclusiveMs": 652.0900000000003
+          },
+          {
+            "function": "evaluate",
+            "line": 305,
+            "url": "",
+            "selfMs": 1.756,
+            "inclusiveMs": 650.4940000000003
+          },
+          {
+            "function": "callMatchedElements",
+            "line": 1,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 593.3510000000002
+          },
+          {
+            "function": "querySelectorAll",
+            "line": 6920,
+            "url": "",
+            "selfMs": 1.074,
+            "inclusiveMs": 583.3840000000004
+          },
+          {
+            "function": "_queryEngineAll",
+            "line": 6968,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 582.3100000000004
+          },
+          {
+            "function": "queryAll",
+            "line": 6989,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 582.3100000000004
+          },
+          {
+            "function": "query",
+            "line": 5422,
+            "url": "",
+            "selfMs": 1.516,
+            "inclusiveMs": 582.3100000000004
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 580.7940000000003
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5426,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 580.7940000000003
+          },
+          {
+            "function": "_queryEngine",
+            "line": 5584,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 580.7940000000003
+          },
+          {
+            "function": "_callQuery",
+            "line": 5596,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 580.7940000000003
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 580.7940000000003
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5597,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 580.7940000000003
+          },
+          {
+            "function": "query",
+            "line": 5635,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 580.7940000000003
+          },
+          {
+            "function": "query",
+            "line": 5422,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 580.7940000000003
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 580.7940000000003
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5426,
+            "url": "",
+            "selfMs": 3.143,
+            "inclusiveMs": 580.7940000000003
+          },
+          {
+            "function": "renderSelectionProperties",
+            "line": 13624,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 5.157,
+            "inclusiveMs": 541.717
+          },
+          {
+            "function": "previewFitZoom",
+            "line": 13927,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 416.778,
+            "inclusiveMs": 416.778
+          },
+          {
+            "function": "renderInspectorPreviews",
+            "line": 13696,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 365.626
+          },
+          {
+            "function": "drawPalettes",
+            "line": 13159,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0.425,
+            "inclusiveMs": 365.626
+          },
+          {
+            "function": "_querySimple",
+            "line": 5483,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 339.13000000000017
+          },
+          {
+            "function": "_queryCSS",
+            "line": 5604,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 339.13000000000017
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 339.13000000000017
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5605,
+            "url": "",
+            "selfMs": 11.961,
+            "inclusiveMs": 339.13000000000017
+          },
+          {
+            "function": "query",
+            "line": 5607,
+            "url": "",
+            "selfMs": 289.898,
+            "inclusiveMs": 327.16900000000015
+          },
+          {
+            "function": "(idle)",
+            "line": 0,
+            "url": "",
+            "selfMs": 327.04299999999984,
+            "inclusiveMs": 327.04299999999984
+          },
+          {
+            "function": "canvasPoint",
+            "line": 14031,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 283.4650000000001
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 283.4650000000001,
+            "inclusiveMs": 283.4650000000001
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5434,
+            "url": "",
+            "selfMs": 1.571,
+            "inclusiveMs": 238.52100000000007
+          }
+        ]
+      },
+      "traceEventTotals": {
+        "FunctionCall": {
+          "count": 837,
+          "totalMs": 3832.421000000005,
+          "maxMs": 659.769
+        },
+        "EventDispatch": {
+          "count": 588,
+          "totalMs": 3463.8469999999998,
+          "maxMs": 659.944
+        },
+        "Layout": {
+          "count": 222,
+          "totalMs": 1448.276000000001,
+          "maxMs": 50.406
+        },
+        "UpdateLayoutTree": {
+          "count": 317,
+          "totalMs": 1412.2619999999997,
+          "maxMs": 149.731
+        },
+        "Paint": {
+          "count": 207,
+          "totalMs": 753.1460000000001,
+          "maxMs": 33.39
+        },
+        "FireAnimationFrame": {
+          "count": 100,
+          "totalMs": 381.56100000000004,
+          "maxMs": 17.002
+        },
+        "PrePaint": {
+          "count": 340,
+          "totalMs": 276.1199999999998,
+          "maxMs": 20.967
+        },
+        "Layerize": {
+          "count": 148,
+          "totalMs": 256.6790000000001,
+          "maxMs": 12.677
+        },
+        "V8.GC_MC_BACKGROUND_MARKING": {
+          "count": 66,
+          "totalMs": 106.87599999999999,
+          "maxMs": 18.667
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+          "count": 166,
+          "totalMs": 88.77100000000002,
+          "maxMs": 2.922
+        },
+        "MajorGC": {
+          "count": 2,
+          "totalMs": 65.132,
+          "maxMs": 41.048
+        },
+        "V8.GC_MARK_COMPACTOR": {
+          "count": 2,
+          "totalMs": 65.01599999999999,
+          "maxMs": 40.988
+        },
+        "V8.StackGuard": {
+          "count": 206,
+          "totalMs": 55.75600000000001,
+          "maxMs": 41.115
+        },
+        "V8.HandleInterrupts": {
+          "count": 205,
+          "totalMs": 54.84099999999999,
+          "maxMs": 41.107
+        },
+        "HitTest": {
+          "count": 173,
+          "totalMs": 50.44899999999998,
+          "maxMs": 0.887
+        },
+        "MinorGC": {
+          "count": 15,
+          "totalMs": 49.661000000000016,
+          "maxMs": 4.406
+        },
+        "V8.GC_SCAVENGER": {
+          "count": 15,
+          "totalMs": 48.313,
+          "maxMs": 4.307
+        },
+        "V8.GC_SCAVENGER_SCAVENGE": {
+          "count": 15,
+          "totalMs": 47.95400000000001,
+          "maxMs": 4.265
+        },
+        "V8.GC_MC_INCREMENTAL": {
+          "count": 42,
+          "totalMs": 29.412999999999997,
+          "maxMs": 6.897
+        },
+        "V8.GC_MC_INCREMENTAL_EMBEDDER_TRACING": {
+          "count": 42,
+          "totalMs": 25.82,
+          "maxMs": 6.865
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": {
+          "count": 15,
+          "totalMs": 19.779,
+          "maxMs": 3.053
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 30,
+          "totalMs": 18.326999999999998,
+          "maxMs": 1.624
+        },
+        "V8.GC_MC_MARK": {
+          "count": 2,
+          "totalMs": 17.007,
+          "maxMs": 15.579
+        },
+        "V8.GC_MC_MARK_FULL_CLOSURE_PARALLEL": {
+          "count": 2,
+          "totalMs": 16.218999999999998,
+          "maxMs": 15.104
+        },
+        "RunMicrotasks": {
+          "count": 236,
+          "totalMs": 14.681999999999993,
+          "maxMs": 0.294
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": {
+          "count": 15,
+          "totalMs": 14.504999999999999,
+          "maxMs": 1.788
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 30,
+          "totalMs": 11.261,
+          "maxMs": 0.819
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 15,
+          "totalMs": 9.533,
+          "maxMs": 1.633
+        },
+        "V8.GC_MC_BACKGROUND_SWEEPING": {
+          "count": 14,
+          "totalMs": 8.377,
+          "maxMs": 0.941
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_ROOTS": {
+          "count": 15,
+          "totalMs": 7.818999999999999,
+          "maxMs": 1.944
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL": {
+          "count": 28,
+          "totalMs": 7.145999999999999,
+          "maxMs": 1.974
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": {
+          "count": 15,
+          "totalMs": 6.934,
+          "maxMs": 0.891
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 15,
+          "totalMs": 6.063999999999998,
+          "maxMs": 0.831
+        },
+        "V8.GC_MC_EVACUATE": {
+          "count": 4,
+          "totalMs": 3.9079999999999995,
+          "maxMs": 2.179
+        },
+        "V8.GC_MC_CLEAR": {
+          "count": 2,
+          "totalMs": 3.657,
+          "maxMs": 2.64
+        },
+        "V8.GC_MC_CLEAR_JOIN_JOB": {
+          "count": 2,
+          "totalMs": 3.529,
+          "maxMs": 2.572
+        },
+        "IntersectionObserverController::computeIntersections": {
+          "count": 309,
+          "totalMs": 2.772999999999994,
+          "maxMs": 0.122
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 407,
+          "totalMs": 2.7639999999999847,
+          "maxMs": 0.061
+        },
+        "V8.GC_MC_EVACUATE_UPDATE_POINTERS": {
+          "count": 2,
+          "totalMs": 2.5789999999999997,
+          "maxMs": 1.335
+        },
+        "V8.GC_MC_CLEAR_SWEEP_EXTERNAL_POINTER_TABLE": {
+          "count": 2,
+          "totalMs": 2.211,
+          "maxMs": 1.873
+        }
+      },
+      "resizeObservers": [
+        {
+          "calls": 16,
+          "callbackMs": 1.5999999642372131,
+          "maxCallbackMs": 0.20000001788139343,
+          "targets": [
+            "canvasQuickToolbar"
+          ]
+        },
+        {
+          "calls": 16,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "layerObjects"
+          ]
+        },
+        {
+          "calls": 16,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "viewport"
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "name": "select-text-0",
+          "wallMs": 400.7999999821186
+        },
+        {
+          "name": "resize-sidebar-0",
+          "wallMs": 420.59999999403954
+        },
+        {
+          "name": "switch-tab-0",
+          "wallMs": 1172.6000000238419
+        },
+        {
+          "name": "select-text-1",
+          "wallMs": 489.5
+        },
+        {
+          "name": "resize-sidebar-1",
+          "wallMs": 589.0999999940395
+        },
+        {
+          "name": "switch-tab-1",
+          "wallMs": 369.09999999403954
+        },
+        {
+          "name": "select-text-2",
+          "wallMs": 506.39999997615814
+        },
+        {
+          "name": "resize-sidebar-2",
+          "wallMs": 641.3999999761581
+        },
+        {
+          "name": "switch-tab-2",
+          "wallMs": 696.3000000119209
+        },
+        {
+          "name": "select-text-3",
+          "wallMs": 474.09999999403954
+        },
+        {
+          "name": "resize-sidebar-3",
+          "wallMs": 659
+        },
+        {
+          "name": "switch-tab-3",
+          "wallMs": 381.2999999821186
+        }
+      ],
+      "errors": [],
+      "remoteRequests": [],
+      "status": "PASS_DIAGNOSTIC",
+      "traceDisclosure": "Event type totals can nest/overlap and must not be added as independent wall time. Raw trace remains local; no screenshots or scientific source payloads are collected.",
+      "rawProofSha256": "591b424607cdda96c5b1bda4625d8b2f80a75be34825ec2087ed708cbd27a61f",
+      "rawTraceSha256": "ee817fecbab90c7f9d2deb5c92169b9449ed8ec7d879cae25b4952144e6b9529",
+      "rawCpuSha256": "cac90bd2d0cbc84382dc8f75ceec29312d508b7825d176dfc9d09cd43f3271da"
+    },
+    {
+      "schema": "figure-studio-carbon-cpu-diagnostic/1",
+      "mode": "no-theme-mount",
+      "url": "http://127.0.0.1:18961/",
+      "elements": 5000,
+      "rounds": 4,
+      "browser": "155.0.8059.82",
+      "scope": "Diagnostic CPU sampling and devtools trace with no video. Wall times are not comparable to the formal video benchmark. Interventions are temporary served-response edits, never production changes.",
+      "cpu": {
+        "sampledMs": 11405.69,
+        "samples": 9256,
+        "topSelf": [
+          {
+            "function": "(program)",
+            "line": 0,
+            "url": "",
+            "selfMs": 5223.57200000002,
+            "inclusiveMs": 5223.57200000002
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 929.9519999999998,
+            "inclusiveMs": 944.8799999999998
+          },
+          {
+            "function": "previewFitZoom",
+            "line": 13927,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 496.57700000000006,
+            "inclusiveMs": 496.57700000000006
+          },
+          {
+            "function": "(idle)",
+            "line": 0,
+            "url": "",
+            "selfMs": 389.1020000000004,
+            "inclusiveMs": 389.1020000000004
+          },
+          {
+            "function": "query",
+            "line": 5607,
+            "url": "",
+            "selfMs": 292.02399999999994,
+            "inclusiveMs": 344.1639999999999
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 260.3629999999999,
+            "inclusiveMs": 260.3629999999999
+          },
+          {
+            "function": "namespace",
+            "line": 12295,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 256.7089999999999,
+            "inclusiveMs": 256.7089999999999
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 225.00599999999991,
+            "inclusiveMs": 228.60999999999993
+          },
+          {
+            "function": "(garbage collector)",
+            "line": 0,
+            "url": "",
+            "selfMs": 186.9800000000001,
+            "inclusiveMs": 186.9800000000001
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 139.82799999999997,
+            "inclusiveMs": 139.82799999999997
+          },
+          {
+            "function": "parentElementOrShadowHost",
+            "line": 2925,
+            "url": "",
+            "selfMs": 124.02799999999993,
+            "inclusiveMs": 124.02799999999993
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 117.34300000000002,
+            "inclusiveMs": 117.34300000000002
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 106.29699999999998,
+            "inclusiveMs": 106.29699999999998
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 102.35399999999998,
+            "inclusiveMs": 102.35399999999998
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 86.76099999999998,
+            "inclusiveMs": 86.76099999999998
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 86.61300000000003,
+            "inclusiveMs": 86.61300000000003
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 85.84699999999997,
+            "inclusiveMs": 85.84699999999997
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 81.159,
+            "inclusiveMs": 81.159
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 80.00599999999999,
+            "inclusiveMs": 80.00599999999999
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 79.958,
+            "inclusiveMs": 79.958
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 78.92,
+            "inclusiveMs": 78.92
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 76.37299999999999,
+            "inclusiveMs": 76.37299999999999
+          },
+          {
+            "function": "namespace",
+            "line": 12295,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 75.71900000000001,
+            "inclusiveMs": 78.98000000000002
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 70.82800000000002,
+            "inclusiveMs": 70.82800000000002
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 68.79899999999999,
+            "inclusiveMs": 68.79899999999999
+          },
+          {
+            "function": "querySelectorAll",
+            "line": 0,
+            "url": "",
+            "selfMs": 52.14000000000001,
+            "inclusiveMs": 52.14000000000001
+          },
+          {
+            "function": "paint",
+            "line": 9786,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 44.959999999999994,
+            "inclusiveMs": 46.56099999999999
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 44.851000000000006,
+            "inclusiveMs": 44.851000000000006
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 43.080999999999996,
+            "inclusiveMs": 43.080999999999996
+          },
+          {
+            "function": "getBoundingClientRect",
+            "line": 0,
+            "url": "",
+            "selfMs": 41.224000000000004,
+            "inclusiveMs": 41.224000000000004
+          },
+          {
+            "function": "cloneNode",
+            "line": 0,
+            "url": "",
+            "selfMs": 37.815000000000005,
+            "inclusiveMs": 37.815000000000005
+          },
+          {
+            "function": "isVisibleObject",
+            "line": 11699,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 35.303,
+            "inclusiveMs": 49.46999999999999
+          },
+          {
+            "function": "isVisibleObject",
+            "line": 11699,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 35.187000000000005,
+            "inclusiveMs": 41.511
+          },
+          {
+            "function": "append",
+            "line": 0,
+            "url": "",
+            "selfMs": 33.616,
+            "inclusiveMs": 33.616
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 33.146,
+            "inclusiveMs": 244.76600000000005
+          },
+          {
+            "function": "append",
+            "line": 0,
+            "url": "",
+            "selfMs": 31.948000000000004,
+            "inclusiveMs": 31.948000000000004
+          },
+          {
+            "function": "replaceChildren",
+            "line": 0,
+            "url": "",
+            "selfMs": 31.262999999999998,
+            "inclusiveMs": 31.262999999999998
+          },
+          {
+            "function": "editNode",
+            "line": 12170,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 27.623999999999995,
+            "inclusiveMs": 30.939
+          },
+          {
+            "function": "_matchesSimple",
+            "line": 5470,
+            "url": "",
+            "selfMs": 27.384999999999998,
+            "inclusiveMs": 60.29399999999999
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5521,
+            "url": "",
+            "selfMs": 27.298,
+            "inclusiveMs": 211.6200000000001
+          }
+        ],
+        "topInclusive": [
+          {
+            "function": "(root)",
+            "line": 0,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 11405.68999999998
+          },
+          {
+            "function": "(program)",
+            "line": 0,
+            "url": "",
+            "selfMs": 5223.57200000002,
+            "inclusiveMs": 5223.57200000002
+          },
+          {
+            "function": "el.onclick",
+            "line": 14489,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 1654.0069999999992
+          },
+          {
+            "function": "showPane",
+            "line": 11321,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 1654.0069999999992
+          },
+          {
+            "function": "svg.onpointerdown",
+            "line": 14200,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 3.167,
+            "inclusiveMs": 1262.2509999999997
+          },
+          {
+            "function": "renderCanvas",
+            "line": 13998,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 25.769,
+            "inclusiveMs": 1017.4649999999998
+          },
+          {
+            "function": "(anonymous)",
+            "line": 4660,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 944.8799999999998
+          },
+          {
+            "function": "update",
+            "line": 4655,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 929.9519999999998,
+            "inclusiveMs": 944.8799999999998
+          },
+          {
+            "function": "finishSelectionUI",
+            "line": 14152,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 823.9549999999999
+          },
+          {
+            "function": "svg.onpointerup",
+            "line": 14216,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 799.9419999999999
+          },
+          {
+            "function": "finishSelectionUI",
+            "line": 14152,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0.278,
+            "inclusiveMs": 799.9419999999999
+          },
+          {
+            "function": "renderSelectionProperties",
+            "line": 13624,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 1.595,
+            "inclusiveMs": 721.4140000000002
+          },
+          {
+            "function": "(anonymous)",
+            "line": 1,
+            "url": "",
+            "selfMs": 6.486000000000001,
+            "inclusiveMs": 691.8009999999999
+          },
+          {
+            "function": "evaluate",
+            "line": 305,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 685.3149999999998
+          },
+          {
+            "function": "renderSelectionProperties",
+            "line": 13624,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 1.571,
+            "inclusiveMs": 649.6779999999998
+          },
+          {
+            "function": "callMatchedElements",
+            "line": 1,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 634.6469999999994
+          },
+          {
+            "function": "renderInspectorPreviews",
+            "line": 13696,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 0,
+            "inclusiveMs": 633.6810000000004
+          },
+          {
+            "function": "drawPalettes",
+            "line": 13159,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 3.625,
+            "inclusiveMs": 633.6810000000004
+          },
+          {
+            "function": "querySelectorAll",
+            "line": 6920,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 621.2009999999996
+          },
+          {
+            "function": "_queryEngineAll",
+            "line": 6968,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 621.2009999999996
+          },
+          {
+            "function": "queryAll",
+            "line": 6989,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 621.2009999999996
+          },
+          {
+            "function": "query",
+            "line": 5422,
+            "url": "",
+            "selfMs": 1.777,
+            "inclusiveMs": 621.2009999999996
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 619.4239999999996
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5426,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 619.4239999999996
+          },
+          {
+            "function": "_queryEngine",
+            "line": 5584,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 619.4239999999996
+          },
+          {
+            "function": "_callQuery",
+            "line": 5596,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 619.4239999999996
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 619.4239999999996
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5597,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 619.4239999999996
+          },
+          {
+            "function": "query",
+            "line": 5635,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 619.4239999999996
+          },
+          {
+            "function": "query",
+            "line": 5422,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 619.4239999999996
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 619.4239999999996
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5426,
+            "url": "",
+            "selfMs": 10.806999999999999,
+            "inclusiveMs": 619.4239999999996
+          },
+          {
+            "function": "previewFitZoom",
+            "line": 13927,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 496.57700000000006,
+            "inclusiveMs": 496.57700000000006
+          },
+          {
+            "function": "(idle)",
+            "line": 0,
+            "url": "",
+            "selfMs": 389.1020000000004,
+            "inclusiveMs": 389.1020000000004
+          },
+          {
+            "function": "_querySimple",
+            "line": 5483,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 359.0159999999998
+          },
+          {
+            "function": "_queryCSS",
+            "line": 5604,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 359.0159999999998
+          },
+          {
+            "function": "_cached",
+            "line": 5388,
+            "url": "",
+            "selfMs": 0,
+            "inclusiveMs": 359.0159999999998
+          },
+          {
+            "function": "(anonymous)",
+            "line": 5605,
+            "url": "",
+            "selfMs": 14.852,
+            "inclusiveMs": 359.0159999999998
+          },
+          {
+            "function": "query",
+            "line": 5607,
+            "url": "",
+            "selfMs": 292.02399999999994,
+            "inclusiveMs": 344.1639999999999
+          },
+          {
+            "function": "preview",
+            "line": 13078,
+            "url": "http://127.0.0.1:18961/",
+            "selfMs": 6.685,
+            "inclusiveMs": 263.39399999999995
+          }
+        ]
+      },
+      "traceEventTotals": {
+        "FunctionCall": {
+          "count": 789,
+          "totalMs": 5011.9659999999985,
+          "maxMs": 1056.709
+        },
+        "EventDispatch": {
+          "count": 574,
+          "totalMs": 4068.4409999999984,
+          "maxMs": 1056.912
+        },
+        "UpdateLayoutTree": {
+          "count": 253,
+          "totalMs": 2241.8770000000018,
+          "maxMs": 196.211
+        },
+        "Layout": {
+          "count": 164,
+          "totalMs": 1233.3420000000003,
+          "maxMs": 31.125
+        },
+        "FireAnimationFrame": {
+          "count": 84,
+          "totalMs": 963.7180000000001,
+          "maxMs": 84.478
+        },
+        "Paint": {
+          "count": 176,
+          "totalMs": 762.054,
+          "maxMs": 42.448
+        },
+        "PrePaint": {
+          "count": 343,
+          "totalMs": 261.6399999999997,
+          "maxMs": 22.997
+        },
+        "Layerize": {
+          "count": 151,
+          "totalMs": 255.13000000000025,
+          "maxMs": 13.747
+        },
+        "V8.GC_MC_BACKGROUND_MARKING": {
+          "count": 82,
+          "totalMs": 164.461,
+          "maxMs": 15.07
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+          "count": 210,
+          "totalMs": 113.856,
+          "maxMs": 3.766
+        },
+        "MajorGC": {
+          "count": 3,
+          "totalMs": 88.634,
+          "maxMs": 30.954
+        },
+        "V8.GC_MARK_COMPACTOR": {
+          "count": 3,
+          "totalMs": 88.464,
+          "maxMs": 30.906
+        },
+        "V8.GC_MC_INCREMENTAL": {
+          "count": 148,
+          "totalMs": 70.83799999999998,
+          "maxMs": 6.973
+        },
+        "V8.GC_MC_INCREMENTAL_EMBEDDER_TRACING": {
+          "count": 148,
+          "totalMs": 65.38900000000001,
+          "maxMs": 6.934
+        },
+        "MinorGC": {
+          "count": 14,
+          "totalMs": 51.75199999999999,
+          "maxMs": 6.045
+        },
+        "V8.GC_SCAVENGER": {
+          "count": 14,
+          "totalMs": 49.75900000000001,
+          "maxMs": 5.977
+        },
+        "V8.GC_SCAVENGER_SCAVENGE": {
+          "count": 14,
+          "totalMs": 49.376000000000005,
+          "maxMs": 5.948
+        },
+        "HitTest": {
+          "count": 176,
+          "totalMs": 49.14800000000002,
+          "maxMs": 1.232
+        },
+        "V8.StackGuard": {
+          "count": 213,
+          "totalMs": 47.34799999999995,
+          "maxMs": 30.15
+        },
+        "V8.HandleInterrupts": {
+          "count": 211,
+          "totalMs": 46.184999999999945,
+          "maxMs": 30.148
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": {
+          "count": 14,
+          "totalMs": 25.378999999999998,
+          "maxMs": 4.317
+        },
+        "RunMicrotasks": {
+          "count": 236,
+          "totalMs": 21.386000000000013,
+          "maxMs": 5.302
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 28,
+          "totalMs": 17.346,
+          "maxMs": 2.131
+        },
+        "V8.GC_MC_BACKGROUND_SWEEPING": {
+          "count": 29,
+          "totalMs": 14.376,
+          "maxMs": 1.142
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": {
+          "count": 14,
+          "totalMs": 11.247,
+          "maxMs": 2.293
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_ROOTS": {
+          "count": 14,
+          "totalMs": 11.236999999999998,
+          "maxMs": 4.265
+        },
+        "V8.GC_MC_MARK": {
+          "count": 3,
+          "totalMs": 11.219999999999999,
+          "maxMs": 9.248
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 28,
+          "totalMs": 10.952999999999998,
+          "maxMs": 1.118
+        },
+        "V8.GC_MC_MARK_FULL_CLOSURE_PARALLEL": {
+          "count": 3,
+          "totalMs": 9.859999999999998,
+          "maxMs": 8.758
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 14,
+          "totalMs": 8.956999999999999,
+          "maxMs": 2.14
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL": {
+          "count": 28,
+          "totalMs": 8.281,
+          "maxMs": 2.709
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": {
+          "count": 14,
+          "totalMs": 6.799000000000001,
+          "maxMs": 1.315
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 14,
+          "totalMs": 5.816,
+          "maxMs": 1.167
+        },
+        "V8.GC_MC_EVACUATE": {
+          "count": 6,
+          "totalMs": 5.643,
+          "maxMs": 2.205
+        },
+        "V8.GC_MC_CLEAR": {
+          "count": 3,
+          "totalMs": 5.624,
+          "maxMs": 2.372
+        },
+        "V8.GC_MC_CLEAR_JOIN_JOB": {
+          "count": 3,
+          "totalMs": 5.404,
+          "maxMs": 2.309
+        },
+        "V8.GC_BACKGROUND_SAFEPOINT": {
+          "count": 1,
+          "totalMs": 4.477,
+          "maxMs": 4.477
+        },
+        "V8.GC_MC_EVACUATE_UPDATE_POINTERS": {
+          "count": 3,
+          "totalMs": 4.161,
+          "maxMs": 1.533
+        },
+        "V8.GC_MC_CLEAR_SWEEP_EXTERNAL_POINTER_TABLE": {
+          "count": 3,
+          "totalMs": 3.337,
+          "maxMs": 1.601
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 413,
+          "totalMs": 3.1709999999999825,
+          "maxMs": 0.06
+        }
+      },
+      "resizeObservers": [
+        {
+          "calls": 16,
+          "callbackMs": 0.19999998807907104,
+          "maxCallbackMs": 0.09999999403953552,
+          "targets": [
+            "layerObjects"
+          ]
+        },
+        {
+          "calls": 16,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "viewport"
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "name": "select-text-0",
+          "wallMs": 525.3999999761581
+        },
+        {
+          "name": "resize-sidebar-0",
+          "wallMs": 836.5
+        },
+        {
+          "name": "switch-tab-0",
+          "wallMs": 1595.199999988079
+        },
+        {
+          "name": "select-text-1",
+          "wallMs": 569.5
+        },
+        {
+          "name": "resize-sidebar-1",
+          "wallMs": 872.8000000119209
+        },
+        {
+          "name": "switch-tab-1",
+          "wallMs": 395.39999997615814
+        },
+        {
+          "name": "select-text-2",
+          "wallMs": 508
+        },
+        {
+          "name": "resize-sidebar-2",
+          "wallMs": 681.3000000119209
+        },
+        {
+          "name": "switch-tab-2",
+          "wallMs": 743.5
+        },
+        {
+          "name": "select-text-3",
+          "wallMs": 578.9000000059605
+        },
+        {
+          "name": "resize-sidebar-3",
+          "wallMs": 908.2000000178814
+        },
+        {
+          "name": "switch-tab-3",
+          "wallMs": 422.2999999821186
+        }
+      ],
+      "errors": [],
+      "remoteRequests": [],
+      "status": "PASS_DIAGNOSTIC",
+      "traceDisclosure": "Event type totals can nest/overlap and must not be added as independent wall time. Raw trace remains local; no screenshots or scientific source payloads are collected.",
+      "rawProofSha256": "ed0d082740f8b771b163b5fd87cb241a858120f3ad33d46db6f8531d0671ae05",
+      "rawTraceSha256": "37f1dca1888a4d5e48aac5e32a5f3979733368765b1f3b09bde6c47d7387bac0",
+      "rawCpuSha256": "d8c8e37dcd551badb8e7f9c6a59e4e5673cf6794796adecd23cf7f5457ddc409"
+    }
+  ]
+}

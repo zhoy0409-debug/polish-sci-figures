@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.4.21 · Figure Studio 0.1.21 · Carbon Atelier and update companions
+
+- Add default Carbon Atelier and light Pearl Pro themes, independent canvas-surround preferences and browser-local appearance persistence without changing scientific artwork or project history.
+- Migrate existing UI declarations to semantic tokens; unify readable controls, selection markers, hover/pressed/focus and reduced-motion behaviour. Keep scientific SVG paint, palettes and image-processing parameters intact.
+- Identify the current selection in the inspector, retain advanced groups and command search, and prevent inspector tab names from being clipped.
+- Replace the old single companion with original offline SVG cat-and-dog artwork, tied to actual updater stages and received bytes. Preserve verification, save confirmation, backups and Windows installer handoff; add an animation-off preference.
+- Record bounded Chrome/component checks, actual candidate CLI upgrade and portable checks, a 22-image installed-build matrix and real Windows 100%/125%/150% display scaling. Preserve the narrow-header finding and 48-case source fix; identify candidate artifacts by their hashes and use the independent build reports for the last repackaged files.
+- Record a formal performance comparison without video: ordinary-project metrics and sidebar handling improve, while 5,000-element selection/colour tail latency still regresses. Do not infer whole-page AA, broad platform acceptance or a sustained frame rate.
+- 新增 Carbon 深色／Pearl 浅色主题、独立画布周边与当前选中检查器；原组件迁移到统一令牌，科研作品与界面外观分开。原创离线猫狗按真实更新进度协作，支持关闭动效，保留原校验、备份及确认安装流程。Windows 候选升级、便携、22 图矩阵及实际三档系统缩放分别留证，窄标题栏源码修复通过 48 项复核；最后重打包文件以独立成品报告为准。无录屏正式对照保留 5000 图元选择／改色尾部回退。
+
+[Release notes / 本版更新](docs/release-notes-v1.4.21.md) · [Appearance guide / 外观指南](docs/figure-studio-appearance.md)
+
 ## v1.4.20 · Figure Studio 0.1.20 · Image workflows and professional axes
 
 - Add five workflow entries, bilingual local command search and contextual image actions without replacing the existing editor.

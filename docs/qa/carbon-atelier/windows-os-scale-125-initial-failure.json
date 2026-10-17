@@ -1,0 +1,55 @@
+{
+  "schema": "figure-studio-carbon-windows-os-scale-failure/1",
+  "status": "FAIL",
+  "sourceProofSha256": "299829480faa3d1c050e82d3a3d12a52d9dc6ea8e70a0253641b4f17254247a6",
+  "generatedUTC": "2026-10-17T12:19:35.356Z",
+  "browser": "155.0.8059.82",
+  "operatorDeclaredWindowsScalePercent": 125,
+  "browserDprEmulation": false,
+  "servedBuild": {
+    "currentVersion": "0.1.21",
+    "suiteVersion": "1.4.21",
+    "platform": "windows"
+  },
+  "failure": "page.waitForFunction: Timeout 60000ms exceeded.",
+  "initialGeometry": {
+    "devicePixelRatio": 1.25,
+    "innerWidth": 2048,
+    "innerHeight": 1146,
+    "outerWidth": 2048,
+    "outerHeight": 1232,
+    "screenX": 0,
+    "screenY": 0,
+    "screen": {
+      "width": 2048,
+      "height": 1280,
+      "availWidth": 2048,
+      "availHeight": 1232,
+      "availLeft": 0,
+      "availTop": 0,
+      "colorDepth": 24,
+      "pixelDepth": 24
+    },
+    "document": {
+      "clientWidth": 2048,
+      "clientHeight": 1146,
+      "scrollWidth": 2048,
+      "scrollHeight": 1146
+    },
+    "visualViewport": {
+      "width": 2048,
+      "height": 1145.5999755859375,
+      "scale": 1,
+      "offsetLeft": 0,
+      "offsetTop": 0
+    }
+  },
+  "recordedUpdateChecks": 0,
+  "finalUpdaterStateRecorded": false,
+  "screenshotsCaptured": 1,
+  "limitations": [
+    "The initial harness waited only for scene=current and timed out after 60 seconds.",
+    "It did not record the final updater state; the timeout alone cannot establish an offline condition.",
+    "A later passing run is separate evidence and does not overwrite this failure."
+  ]
+}

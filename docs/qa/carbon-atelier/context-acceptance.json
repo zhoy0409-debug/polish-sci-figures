@@ -1,0 +1,4129 @@
+{
+  "schema": "figure-studio-carbon-context-acceptance/1",
+  "status": "PASS",
+  "browser": "155.0.8059.82",
+  "browserMode": "headless",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "themes": [
+    {
+      "theme": "carbon",
+      "axisContext": "Axes",
+      "axisContrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1440,
+          "height": 900,
+          "devicePixelRatio": 1
+        },
+        "theme": "carbon",
+        "checked": 110,
+        "minimumContrast": 6.601,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally \u00b7 Undo history kept",
+            "foreground": "rgb(118, 215, 184)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 9.0617,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(112, 222, 198)",
+            "background": [
+              34,
+              68,
+              61,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.601,
+            "passed": true
+          },
+          {
+            "selector": "#layerPanel p.muted",
+            "role": "p",
+            "text": "Objects in the current panel; Shift-click to add to selection. Locked objects remain selectable.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Project restored",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          }
+        ],
+        "unscored": [
+          {
+            "selector": "#canvasQuickToolbar span",
+            "reason": "ancestor opacity"
+          }
+        ],
+        "samples": [
+          {
+            "selector": "span.mark",
+            "role": "span",
+            "text": "F",
+            "foreground": "rgb(16, 27, 28)",
+            "background": [
+              73,
+              195,
+              165,
+              1
+            ],
+            "fontSizePx": 23,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 8.0569,
+            "passed": true
+          },
+          {
+            "selector": "strong",
+            "role": "strong",
+            "text": "Figure Studio",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 18,
+            "fontWeight": 650,
+            "requiredContrast": 4.5,
+            "contrast": 14.1518,
+            "passed": true
+          },
+          {
+            "selector": "a.brand-latin.official-project",
+            "role": "a",
+            "text": "POLISH SCI FIGURES",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 8.3726,
+            "passed": true
+          },
+          {
+            "selector": "#headerProjectTitle",
+            "role": "strong",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 14.1518,
+            "passed": true
+          },
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally \u00b7 Undo history kept",
+            "foreground": "rgb(118, 215, 184)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 9.0617,
+            "passed": true
+          },
+          {
+            "selector": "#appearanceMenu span.appearance-symbol",
+            "role": "span",
+            "text": "\u25d0",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 9.2171,
+            "passed": true
+          },
+          {
+            "selector": "#appearanceMenu span",
+            "role": "span",
+            "text": "Appearance",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 9.2171,
+            "passed": true
+          },
+          {
+            "selector": "#appearanceMenu span",
+            "role": "span",
+            "text": "Interface theme",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#appearanceMenu span",
+            "role": "span",
+            "text": "Canvas surround",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#appearanceMenu p.appearance-feedback",
+            "role": "status",
+            "text": "Remembered on this device only. Figure colours, images and exports stay unchanged.",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#compare",
+            "role": "button",
+            "text": "Compare",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 14.1518,
+            "passed": true
+          },
+          {
+            "selector": "#projectMenu span",
+            "role": "span",
+            "text": "Project",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 14.1518,
+            "passed": true
+          },
+          {
+            "selector": "#newProject",
+            "role": "button",
+            "text": "New project",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#load",
+            "role": "button",
+            "text": "Open project",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#openLibrary",
+            "role": "button",
+            "text": "Projects & presets",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#reset",
+            "role": "button",
+            "text": "Restore initial version",
+            "foreground": "rgb(247, 166, 177)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 6.9171,
+            "passed": true
+          },
+          {
+            "selector": "#save span",
+            "role": "span",
+            "text": "Save",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 14.1518,
+            "passed": true
+          },
+          {
+            "selector": "#exportMenu span",
+            "role": "span",
+            "text": "Export",
+            "foreground": "rgb(16, 27, 28)",
+            "background": [
+              73,
+              195,
+              165,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 8.0569,
+            "passed": true
+          },
+          {
+            "selector": "#exportMenu p.header-menu-label",
+            "role": "p",
+            "text": "Export entire figure",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#export b",
+            "role": "b",
+            "text": "SVG",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#export span",
+            "role": "span",
+            "text": "Editable vector",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#png b",
+            "role": "b",
+            "text": "PNG",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#png span",
+            "role": "span",
+            "text": "Lossless image",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#tiff b",
+            "role": "b",
+            "text": "TIF",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#tiff span",
+            "role": "span",
+            "text": "Publication image",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#studioCheckUpdates span",
+            "role": "span",
+            "text": "Updates",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 14.1518,
+            "passed": true
+          },
+          {
+            "selector": "#commandSearch",
+            "role": "button",
+            "text": "Find command \u2318 / Ctrl K",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 14.1518,
+            "passed": true
+          },
+          {
+            "selector": "#workflowNavigation button",
+            "role": "button",
+            "text": "Data & discovery",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              32,
+              43,
+              57,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9776,
+            "passed": true
+          },
+          {
+            "selector": "#workflowNavigation button",
+            "role": "button",
+            "text": "Edit artwork",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              32,
+              43,
+              57,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9776,
+            "passed": true
+          },
+          {
+            "selector": "#workflowNavigation button",
+            "role": "button",
+            "text": "Image tools",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              32,
+              43,
+              57,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9776,
+            "passed": true
+          },
+          {
+            "selector": "#workflowNavigation button",
+            "role": "button",
+            "text": "Statistics & axes",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              32,
+              43,
+              57,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9776,
+            "passed": true
+          },
+          {
+            "selector": "#workflowNavigation button",
+            "role": "button",
+            "text": "Publication export",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              32,
+              43,
+              57,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9776,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion div.eyebrow",
+            "role": "div",
+            "text": "Layers",
+            "foreground": "rgb(112, 222, 198)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9468,
+            "passed": true
+          },
+          {
+            "selector": "#projectTitle",
+            "role": "h1",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 13.1414,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion span.desktop-panel-instructions",
+            "role": "span",
+            "text": "Shift-click to select multiple objects. Double-click text to edit.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#importFiles",
+            "role": "button",
+            "text": "Import files\u2026",
+            "foreground": "rgb(16, 27, 28)",
+            "background": [
+              73,
+              195,
+              165,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 8.0569,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p",
+            "role": "p",
+            "text": "Select multiple files, or drop them into empty canvas cells",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.5591,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(112, 222, 198)",
+            "background": [
+              34,
+              68,
+              61,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.601,
+            "passed": true
+          },
+          {
+            "selector": "#layerPanel summary",
+            "role": "summary",
+            "text": "Layers",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 650,
+            "requiredContrast": 4.5,
+            "contrast": 13.1414,
+            "passed": true
+          },
+          {
+            "selector": "#layerPanel p.muted",
+            "role": "p",
+            "text": "Objects in the current panel; Shift-click to add to selection. Locked objects remain selectable.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#dimensions",
+            "role": "button",
+            "text": "1 \u00d7 1 grid \u00b7 121.9 \u00d7 91.4 mm",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0922,
+            "passed": true
+          },
+          {
+            "selector": "#quickImportFiles",
+            "role": "button",
+            "text": "Import files\u2026",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              32,
+              43,
+              57,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 12.9776,
+            "passed": true
+          },
+          {
+            "selector": "#arrangePanels",
+            "role": "button",
+            "text": "Arrange panels",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0922,
+            "passed": true
+          },
+          {
+            "selector": "#selectPanelContent",
+            "role": "button",
+            "text": "Resize panel content",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#fitPanelContent",
+            "role": "button",
+            "text": "Fit to cell",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0922,
+            "passed": true
+          },
+          {
+            "selector": "#boxSelect",
+            "role": "button",
+            "text": "Select elements",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0922,
+            "passed": true
+          },
+          {
+            "selector": "#checkImageDuplicates",
+            "role": "button",
+            "text": "Check images",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0922,
+            "passed": true
+          },
+          {
+            "selector": "#toggleGuides",
+            "role": "button",
+            "text": "Grid guides",
+            "foreground": "rgb(112, 222, 198)",
+            "background": [
+              34,
+              68,
+              61,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.601,
+            "passed": true
+          },
+          {
+            "selector": "#insertTrackMenu",
+            "role": "button",
+            "text": "Insert rows / columns",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0922,
+            "passed": true
+          },
+          {
+            "selector": "#quickObjectBorder",
+            "role": "button",
+            "text": "Borders",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0922,
+            "passed": true
+          },
+          {
+            "selector": "#canvasQuickToolbar span",
+            "role": "span",
+            "text": "pt",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              32,
+              43,
+              57,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.4524,
+            "passed": true
+          },
+          {
+            "selector": "#quickInsertText span.quick-tool-glyph",
+            "role": "span",
+            "text": "T",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 8.0922,
+            "passed": true
+          },
+          {
+            "selector": "#addOverlay",
+            "role": "button",
+            "text": "+",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 18,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0922,
+            "passed": true
+          },
+          {
+            "selector": "#quickLock",
+            "role": "button",
+            "text": "Lock",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#restoreShape",
+            "role": "button",
+            "text": "Restore aspect 100%",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#restoreAllShapes",
+            "role": "button",
+            "text": "Restore all aspects",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#quickSelectionStatus",
+            "role": "status",
+            "text": "Select text to format",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              43,
+              57,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.6779,
+            "passed": true
+          },
+          {
+            "selector": "#canvasQuickToolbar button.text-painter-settings-toggle",
+            "role": "button",
+            "text": "\u25be",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0922,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Project restored",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls h3",
+            "role": "h3",
+            "text": "Sample points",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls label",
+            "role": "label",
+            "text": "Show points",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls button",
+            "role": "button",
+            "text": "Original",
+            "foreground": "rgb(16, 27, 28)",
+            "background": [
+              73,
+              195,
+              165,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0569,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls button",
+            "role": "button",
+            "text": "Solid",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls button",
+            "role": "button",
+            "text": "Hollow",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls button",
+            "role": "button",
+            "text": "Custom",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#pointStyleStatus",
+            "role": "status",
+            "text": "Keeps the original appearance",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls label",
+            "role": "label",
+            "text": "Point size",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#pointScaleValue",
+            "role": "output",
+            "text": "100%",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost strong",
+            "role": "strong",
+            "text": "Axis settings",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 14,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost button",
+            "role": "button",
+            "text": "Close",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost p.axis-settings-notice",
+            "role": "p",
+            "text": "Ranges rerender observations, intervals and curves without changing source data. Log10 requires revi",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.1414,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost summary",
+            "role": "summary",
+            "text": "Range",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Minimum",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Maximum",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Scale",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost summary",
+            "role": "summary",
+            "text": "Ticks",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Major interval",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Major count",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Minor subdivisions",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Label format",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost summary",
+            "role": "summary",
+            "text": "Size",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Plot width",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Plot height",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost summary",
+            "role": "summary",
+            "text": "Appearance",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 11.916,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Tick direction",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Tick length",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label.axis-settings-live",
+            "role": "label",
+            "text": "Live preview",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7609,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost button",
+            "role": "button",
+            "text": "Reset",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost button.primary",
+            "role": "button",
+            "text": "Apply",
+            "foreground": "rgb(16, 27, 28)",
+            "background": [
+              73,
+              195,
+              165,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 8.0569,
+            "passed": true
+          },
+          {
+            "selector": "#studioTheme",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#studioSurround",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#language",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 14.1518,
+            "passed": true
+          },
+          {
+            "selector": "#layerSearch",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#overlayType",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#quickGuideAction",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#selectionAspect",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost select",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost select",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              43,
+              60,
+              78,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 10.234,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost select",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost select",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          }
+        ]
+      },
+      "realSaveTransitions": [
+        {
+          "at": 1609.5999999940395,
+          "identity": "saved",
+          "status": "saved",
+          "text": "Saved locally \u00b7 Undo history kept"
+        },
+        {
+          "at": 2054.699999988079,
+          "identity": "saving",
+          "status": "saving",
+          "text": "Saving\u2026"
+        },
+        {
+          "at": 2197.5,
+          "identity": "saved",
+          "status": "saved",
+          "text": "Saved locally \u00b7 Undo history kept"
+        },
+        {
+          "at": 3075.4000000059605,
+          "identity": "saving",
+          "status": "saving",
+          "text": "Saving\u2026"
+        },
+        {
+          "at": 3174.5999999940395,
+          "identity": "saved",
+          "status": "saved",
+          "text": "Saved locally \u00b7 Undo history kept"
+        }
+      ],
+      "surrounds": [
+        "dark",
+        "light",
+        "neutral"
+      ],
+      "whiteArtboardPreserved": true,
+      "sourceSvgAndTableUnchanged": true,
+      "preferenceReload": true,
+      "errors": [],
+      "remoteRequests": []
+    },
+    {
+      "theme": "pearl",
+      "axisContext": "Axes",
+      "axisContrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1440,
+          "height": 900,
+          "devicePixelRatio": 1
+        },
+        "theme": "pearl",
+        "checked": 110,
+        "minimumContrast": 5.2996,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally \u00b7 Undo history kept",
+            "foreground": "rgb(20, 108, 83)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.0939,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(23, 107, 93)",
+            "background": [
+              215,
+              240,
+              231,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.3092,
+            "passed": true
+          },
+          {
+            "selector": "#layerPanel p.muted",
+            "role": "p",
+            "text": "Objects in the current panel; Shift-click to add to selection. Locked objects remain selectable.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Project restored",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          }
+        ],
+        "unscored": [
+          {
+            "selector": "#canvasQuickToolbar span",
+            "reason": "ancestor opacity"
+          }
+        ],
+        "samples": [
+          {
+            "selector": "span.mark",
+            "role": "span",
+            "text": "F",
+            "foreground": "rgb(255, 255, 255)",
+            "background": [
+              23,
+              107,
+              93,
+              1
+            ],
+            "fontSizePx": 23,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 6.3683,
+            "passed": true
+          },
+          {
+            "selector": "strong",
+            "role": "strong",
+            "text": "Figure Studio",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 18,
+            "fontWeight": 650,
+            "requiredContrast": 4.5,
+            "contrast": 12.3867,
+            "passed": true
+          },
+          {
+            "selector": "a.brand-latin.official-project",
+            "role": "a",
+            "text": "POLISH SCI FIGURES",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 5.9543,
+            "passed": true
+          },
+          {
+            "selector": "#headerProjectTitle",
+            "role": "strong",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 12.3867,
+            "passed": true
+          },
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally \u00b7 Undo history kept",
+            "foreground": "rgb(20, 108, 83)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.0939,
+            "passed": true
+          },
+          {
+            "selector": "#appearanceMenu span.appearance-symbol",
+            "role": "span",
+            "text": "\u25d0",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.3548,
+            "passed": true
+          },
+          {
+            "selector": "#appearanceMenu span",
+            "role": "span",
+            "text": "Appearance",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.3548,
+            "passed": true
+          },
+          {
+            "selector": "#appearanceMenu span",
+            "role": "span",
+            "text": "Interface theme",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#appearanceMenu span",
+            "role": "span",
+            "text": "Canvas surround",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#appearanceMenu p.appearance-feedback",
+            "role": "status",
+            "text": "Remembered on this device only. Figure colours, images and exports stay unchanged.",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#compare",
+            "role": "button",
+            "text": "Compare",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.3867,
+            "passed": true
+          },
+          {
+            "selector": "#projectMenu span",
+            "role": "span",
+            "text": "Project",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.3867,
+            "passed": true
+          },
+          {
+            "selector": "#newProject",
+            "role": "button",
+            "text": "New project",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#load",
+            "role": "button",
+            "text": "Open project",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#openLibrary",
+            "role": "button",
+            "text": "Projects & presets",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#reset",
+            "role": "button",
+            "text": "Restore initial version",
+            "foreground": "rgb(179, 62, 79)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 5.6471,
+            "passed": true
+          },
+          {
+            "selector": "#save span",
+            "role": "span",
+            "text": "Save",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.3867,
+            "passed": true
+          },
+          {
+            "selector": "#exportMenu span",
+            "role": "span",
+            "text": "Export",
+            "foreground": "rgb(255, 255, 255)",
+            "background": [
+              23,
+              107,
+              93,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 6.3683,
+            "passed": true
+          },
+          {
+            "selector": "#exportMenu p.header-menu-label",
+            "role": "p",
+            "text": "Export entire figure",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#export b",
+            "role": "b",
+            "text": "SVG",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#export span",
+            "role": "span",
+            "text": "Editable vector",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#png b",
+            "role": "b",
+            "text": "PNG",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#png span",
+            "role": "span",
+            "text": "Lossless image",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#tiff b",
+            "role": "b",
+            "text": "TIF",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#tiff span",
+            "role": "span",
+            "text": "Publication image",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#studioCheckUpdates span",
+            "role": "span",
+            "text": "Updates",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.3867,
+            "passed": true
+          },
+          {
+            "selector": "#commandSearch",
+            "role": "button",
+            "text": "Find command \u2318 / Ctrl K",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.3867,
+            "passed": true
+          },
+          {
+            "selector": "#workflowNavigation button",
+            "role": "button",
+            "text": "Data & discovery",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              233,
+              237,
+              245,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 11.0247,
+            "passed": true
+          },
+          {
+            "selector": "#workflowNavigation button",
+            "role": "button",
+            "text": "Edit artwork",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              233,
+              237,
+              245,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 11.0247,
+            "passed": true
+          },
+          {
+            "selector": "#workflowNavigation button",
+            "role": "button",
+            "text": "Image tools",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              233,
+              237,
+              245,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 11.0247,
+            "passed": true
+          },
+          {
+            "selector": "#workflowNavigation button",
+            "role": "button",
+            "text": "Statistics & axes",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              233,
+              237,
+              245,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 11.0247,
+            "passed": true
+          },
+          {
+            "selector": "#workflowNavigation button",
+            "role": "button",
+            "text": "Publication export",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              233,
+              237,
+              245,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 11.0247,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion div.eyebrow",
+            "role": "div",
+            "text": "Layers",
+            "foreground": "rgb(23, 107, 93)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 5.9268,
+            "passed": true
+          },
+          {
+            "selector": "#projectTitle",
+            "role": "h1",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 12.0393,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion span.desktop-panel-instructions",
+            "role": "span",
+            "text": "Shift-click to select multiple objects. Double-click text to edit.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#importFiles",
+            "role": "button",
+            "text": "Import files\u2026",
+            "foreground": "rgb(255, 255, 255)",
+            "background": [
+              23,
+              107,
+              93,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 6.3683,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p",
+            "role": "p",
+            "text": "Select multiple files, or drop them into empty canvas cells",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.1766,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(23, 107, 93)",
+            "background": [
+              215,
+              240,
+              231,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.3092,
+            "passed": true
+          },
+          {
+            "selector": "#layerPanel summary",
+            "role": "summary",
+            "text": "Layers",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 650,
+            "requiredContrast": 4.5,
+            "contrast": 12.0393,
+            "passed": true
+          },
+          {
+            "selector": "#layerPanel p.muted",
+            "role": "p",
+            "text": "Objects in the current panel; Shift-click to add to selection. Locked objects remain selectable.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#dimensions",
+            "role": "button",
+            "text": "1 \u00d7 1 grid \u00b7 121.9 \u00d7 91.4 mm",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#quickImportFiles",
+            "role": "button",
+            "text": "Import files\u2026",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              233,
+              237,
+              245,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 11.0247,
+            "passed": true
+          },
+          {
+            "selector": "#arrangePanels",
+            "role": "button",
+            "text": "Arrange panels",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#selectPanelContent",
+            "role": "button",
+            "text": "Resize panel content",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#fitPanelContent",
+            "role": "button",
+            "text": "Fit to cell",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#boxSelect",
+            "role": "button",
+            "text": "Select elements",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#checkImageDuplicates",
+            "role": "button",
+            "text": "Check images",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#toggleGuides",
+            "role": "button",
+            "text": "Grid guides",
+            "foreground": "rgb(23, 107, 93)",
+            "background": [
+              215,
+              240,
+              231,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.3092,
+            "passed": true
+          },
+          {
+            "selector": "#insertTrackMenu",
+            "role": "button",
+            "text": "Insert rows / columns",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#quickObjectBorder",
+            "role": "button",
+            "text": "Borders",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#canvasQuickToolbar span",
+            "role": "span",
+            "text": "pt",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              233,
+              237,
+              245,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.6561,
+            "passed": true
+          },
+          {
+            "selector": "#quickInsertText span.quick-tool-glyph",
+            "role": "span",
+            "text": "T",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#addOverlay",
+            "role": "button",
+            "text": "+",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 18,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#quickLock",
+            "role": "button",
+            "text": "Lock",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#restoreShape",
+            "role": "button",
+            "text": "Restore aspect 100%",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#restoreAllShapes",
+            "role": "button",
+            "text": "Restore all aspects",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#quickSelectionStatus",
+            "role": "status",
+            "text": "Select text to format",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              233,
+              237,
+              245,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.2996,
+            "passed": true
+          },
+          {
+            "selector": "#canvasQuickToolbar button.text-painter-settings-toggle",
+            "role": "button",
+            "text": "\u25be",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Project restored",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls h3",
+            "role": "h3",
+            "text": "Sample points",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 600,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls label",
+            "role": "label",
+            "text": "Show points",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls button",
+            "role": "button",
+            "text": "Original",
+            "foreground": "rgb(255, 255, 255)",
+            "background": [
+              23,
+              107,
+              93,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.3683,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls button",
+            "role": "button",
+            "text": "Solid",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls button",
+            "role": "button",
+            "text": "Hollow",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls button",
+            "role": "button",
+            "text": "Custom",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#pointStyleStatus",
+            "role": "status",
+            "text": "Keeps the original appearance",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#pointControls label",
+            "role": "label",
+            "text": "Point size",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#pointScaleValue",
+            "role": "output",
+            "text": "100%",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost strong",
+            "role": "strong",
+            "text": "Axis settings",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 14,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost button",
+            "role": "button",
+            "text": "Close",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost p.axis-settings-notice",
+            "role": "p",
+            "text": "Ranges rerender observations, intervals and curves without changing source data. Log10 requires revi",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.0393,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost summary",
+            "role": "summary",
+            "text": "Range",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Minimum",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Maximum",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Scale",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost summary",
+            "role": "summary",
+            "text": "Ticks",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Major interval",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Major count",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Minor subdivisions",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Label format",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost summary",
+            "role": "summary",
+            "text": "Size",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Plot width",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Plot height",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost summary",
+            "role": "summary",
+            "text": "Appearance",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Tick direction",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label",
+            "role": "label",
+            "text": "Tick length",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost label.axis-settings-live",
+            "role": "label",
+            "text": "Live preview",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost button",
+            "role": "button",
+            "text": "Reset",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost button.primary",
+            "role": "button",
+            "text": "Apply",
+            "foreground": "rgb(255, 255, 255)",
+            "background": [
+              23,
+              107,
+              93,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.3683,
+            "passed": true
+          },
+          {
+            "selector": "#studioTheme",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#studioSurround",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#language",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 500,
+            "requiredContrast": 4.5,
+            "contrast": 12.3867,
+            "passed": true
+          },
+          {
+            "selector": "#layerSearch",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#overlayType",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#quickGuideAction",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#selectionAspect",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost select",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost select",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 13,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              234,
+              239,
+              245,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 11.189,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost select",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost select",
+            "role": "select",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#professionalAxesHost input",
+            "role": "input",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          }
+        ]
+      },
+      "realSaveTransitions": [
+        {
+          "at": 1346.2999999821186,
+          "identity": "saved",
+          "status": "saved",
+          "text": "Saved locally \u00b7 Undo history kept"
+        },
+        {
+          "at": 1845.7999999821186,
+          "identity": "saving",
+          "status": "saving",
+          "text": "Saving\u2026"
+        },
+        {
+          "at": 2008.0999999940395,
+          "identity": "saved",
+          "status": "saved",
+          "text": "Saved locally \u00b7 Undo history kept"
+        },
+        {
+          "at": 2763.0999999940395,
+          "identity": "saving",
+          "status": "saving",
+          "text": "Saving\u2026"
+        },
+        {
+          "at": 2823.699999988079,
+          "identity": "saved",
+          "status": "saved",
+          "text": "Saved locally \u00b7 Undo history kept"
+        }
+      ],
+      "surrounds": [
+        "dark",
+        "light",
+        "neutral"
+      ],
+      "whiteArtboardPreserved": true,
+      "sourceSvgAndTableUnchanged": true,
+      "preferenceReload": true,
+      "errors": [],
+      "remoteRequests": []
+    }
+  ],
+  "scope": "Actual public Iris project; real autosave status observations and supported native-axis context. No fake save failure or real-system storage-failure claim.",
+  "rawProofSha256": "6f2ecc016b6cfe2b42f56946c96edbdd28347706d96aea631955ea91a0db8032",
+  "resolves": "ui-contrast-initial.json"
+}

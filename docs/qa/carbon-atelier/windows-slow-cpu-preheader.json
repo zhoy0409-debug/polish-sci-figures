@@ -1,0 +1,187 @@
+{
+  "kind": "installed_editor_4x_cpu_offline_functional_acceptance",
+  "generatedUTC": "2026-10-17T12:28:18.07Z",
+  "cpuThrottleRate": 4,
+  "formalPerformanceBenchmark": false,
+  "headful": true,
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "source": {
+    "id": "UCI Iris",
+    "doi": "10.24432/C56C76",
+    "license": "CC BY 4.0",
+    "inputProjectSHA256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5"
+  },
+  "networkPolicy": "Exact local origin for initial load only; update endpoints and all other HTTP origins always aborted. Browser context offline before project Open and throughout every edit, Save and theme operation.",
+  "operations": [
+    {
+      "name": "initial-installed-editor-load",
+      "wallMs": 7069.5356,
+      "completed": true
+    },
+    {
+      "name": "open-public-iris-offline",
+      "wallMs": 3773.0622000000003,
+      "completed": true
+    },
+    {
+      "name": "save-public-iris-before-slow-cpu-edit",
+      "wallMs": 1148.6989000000012,
+      "completed": true
+    },
+    {
+      "name": "select-real-axis-text",
+      "wallMs": 1865.636199999999,
+      "completed": true
+    },
+    {
+      "name": "change-selected-text-colour",
+      "wallMs": 1804.6944000000003,
+      "completed": true
+    },
+    {
+      "name": "save-public-iris-colour-edited",
+      "wallMs": 420.3120999999992,
+      "completed": true
+    },
+    {
+      "name": "undo-text-colour",
+      "wallMs": 2507.065200000001,
+      "completed": true
+    },
+    {
+      "name": "save-public-iris-colour-undo",
+      "wallMs": 492.3810000000012,
+      "completed": true
+    },
+    {
+      "name": "redo-text-colour",
+      "wallMs": 1781.0620999999992,
+      "completed": true
+    },
+    {
+      "name": "save-public-iris-colour-redo",
+      "wallMs": 456.1977000000006,
+      "completed": true
+    },
+    {
+      "name": "switch-theme-carbon",
+      "wallMs": 984.6746999999996,
+      "completed": true
+    },
+    {
+      "name": "save-public-iris-carbon-offline",
+      "wallMs": 479.46830000000045,
+      "completed": true
+    },
+    {
+      "name": "switch-theme-pearl",
+      "wallMs": 2620.871500000001,
+      "completed": true
+    },
+    {
+      "name": "save-public-iris-pearl-offline",
+      "wallMs": 414.09950000000026,
+      "completed": true
+    },
+    {
+      "name": "final-undo-to-original-state",
+      "wallMs": 1795.2585,
+      "completed": true
+    },
+    {
+      "name": "save-public-iris-final-original",
+      "wallMs": 414.4403999999995,
+      "completed": true
+    }
+  ],
+  "themeChecks": [
+    {
+      "theme": "carbon",
+      "tableRowsExact": true,
+      "sourceSVGExact": true,
+      "editedStateExact": true,
+      "browserOffline": true
+    },
+    {
+      "theme": "pearl",
+      "tableRowsExact": true,
+      "sourceSVGExact": true,
+      "editedStateExact": true,
+      "browserOffline": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "4x-offline-carbon.png",
+      "sha256": "47e5542ff9edb28bbec68745a438d107bca67beb2a4c08bfc1861c117d4a9f16"
+    },
+    {
+      "file": "4x-offline-pearl.png",
+      "sha256": "3e991739d2af63be1d4489ed70df041504ab45858190c8bf111c3f00e9dee6f3"
+    }
+  ],
+  "blockedRequests": [
+    {
+      "method": "POST",
+      "origin": "local-editor",
+      "path": "/api/updates",
+      "reason": "updater-endpoint"
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "limitations": [
+    "CDP 4x CPU throttling is a browser simulation, not a measured low-end device, OS CPU utilization or GPU benchmark.",
+    "Wall times include Playwright command and condition-wait overhead; Save also includes writing the actual downloaded project. They establish functional completion only.",
+    "No updater dialog, external release check, download-update command or installer is invoked. The only user downloads are local saved project JSON files.",
+    "Theme switching is checked in the loaded offline editor; offline navigation/reload is outside this test."
+  ],
+  "installedExecutable": {
+    "name": "Figure Studio.exe",
+    "bytes": 18303610,
+    "sha256": "ff5cb0e82f7e4127bc2dd3306839fb60af4f5ebf574874b5eb5acfe004952248"
+  },
+  "resourceStage": "Installed 0.1.21 candidate before final header-only styling adjustment; functional JS retained",
+  "browser": "155.0.8059.82",
+  "throttleCommandAcknowledged": true,
+  "servedHTML": {
+    "bytes": 11385403,
+    "sha256": "3cec574d331f8f80d514dd7309d7236a2200960b8408a70650c60f0d7176d010",
+    "measurement": "Exact unmodified local-server response bytes delivered to browser navigation; buffered before fulfilment because the large starter exceeds the Chrome inspector response cache."
+  },
+  "servedBuild": {
+    "currentVersion": "0.1.21",
+    "suiteVersion": "1.4.21",
+    "platform": "windows"
+  },
+  "browserOfflineConfirmed": true,
+  "exactProjectReplacementConfirmAccepted": true,
+  "editedSourceIdentity": {
+    "panelId": "panel-0",
+    "variant": 4,
+    "key": "e190"
+  },
+  "undoRedoVerified": true,
+  "finalOriginalStateRestored": true,
+  "scientificTableSHA256": "ca7d70f935e74618b78234d9e83d3c4893a91a9f8a884777aba237894feae71b",
+  "originalSVGSHA256": "b68c3c82e9c1a9e6935d79d09e1402f3eff5c56d349dc9043977563b233c0d82",
+  "retainedAttempts": [
+    {
+      "kind": "sandbox_loopback_access_denied",
+      "passed": false,
+      "editingStarted": false,
+      "reason": "Browser initial local navigation was denied by sandbox policy; retained and rerun with explicit local-access approval."
+    },
+    {
+      "kind": "inspector_response_cache_eviction",
+      "passed": false,
+      "editingStarted": false,
+      "reason": "Large real starter response was evicted from Chrome inspector response cache before body hashing; retained. Final test hashes the actual server response before delivering the same unmodified bytes to the browser."
+    }
+  ],
+  "finalHeaderAcceptance": false,
+  "evidenceRelation": "Installed 0.1.21 preheader candidate. Actual EXE and delivered HTML hashes identify this run; it does not certify later header-only resources. No final installer report is embedded into that same installer."
+}

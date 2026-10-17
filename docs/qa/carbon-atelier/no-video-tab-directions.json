@@ -1,0 +1,174 @@
+{
+  "schema": "figure-studio-carbon-tab-directions/1",
+  "scope": "Same formal no-video raw runs, split by the fixed benchmark protocol: even iteration opens palette and odd iteration detail. Six samples per direction; P95 equals the maximum, not a population estimate. No samples removed.",
+  "cases": [
+    {
+      "label": "baseline",
+      "rawSha256": "9b4a812e01c021509c6bf926d524a19f36cc116aeceec4999bae63cc6eb3693e",
+      "fixtures": [
+        {
+          "elements": 120,
+          "directions": {
+            "palette": {
+              "inputToNextRafMs": {
+                "samples": 6,
+                "p50": 50.5,
+                "p95": 62.80000001192093
+              },
+              "inputToSecondRafMs": {
+                "samples": 6,
+                "p50": 86.59999999403954,
+                "p95": 122.69999998807907
+              },
+              "actionWallMs": {
+                "samples": 6,
+                "p50": 170.7999999821186,
+                "p95": 211.7999999821186
+              }
+            },
+            "detail": {
+              "inputToNextRafMs": {
+                "samples": 6,
+                "p50": 36.70000001788139,
+                "p95": 50.5
+              },
+              "inputToSecondRafMs": {
+                "samples": 6,
+                "p50": 60.80000001192093,
+                "p95": 78.5
+              },
+              "actionWallMs": {
+                "samples": 6,
+                "p50": 142.7000000178814,
+                "p95": 163.40000000596046
+              }
+            }
+          }
+        },
+        {
+          "elements": 5000,
+          "directions": {
+            "palette": {
+              "inputToNextRafMs": {
+                "samples": 6,
+                "p50": 645.5999999940395,
+                "p95": 792.9000000059605
+              },
+              "inputToSecondRafMs": {
+                "samples": 6,
+                "p50": 994.3000000119209,
+                "p95": 1130.9000000059605
+              },
+              "actionWallMs": {
+                "samples": 6,
+                "p50": 1210.5,
+                "p95": 1336.800000011921
+              }
+            },
+            "detail": {
+              "inputToNextRafMs": {
+                "samples": 6,
+                "p50": 144.0,
+                "p95": 177.7000000178814
+              },
+              "inputToSecondRafMs": {
+                "samples": 6,
+                "p50": 297.30000001192093,
+                "p95": 353.0
+              },
+              "actionWallMs": {
+                "samples": 6,
+                "p50": 365.90000000596046,
+                "p95": 420.19999998807907
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "current",
+      "rawSha256": "a2c9ceca3a2af14a3baa248a552a9b2d5399b86f388dece6da26d7e7d2483909",
+      "fixtures": [
+        {
+          "elements": 120,
+          "directions": {
+            "palette": {
+              "inputToNextRafMs": {
+                "samples": 6,
+                "p50": 52.19999998807907,
+                "p95": 58.5
+              },
+              "inputToSecondRafMs": {
+                "samples": 6,
+                "p50": 89.2999999821186,
+                "p95": 98.09999999403954
+              },
+              "actionWallMs": {
+                "samples": 6,
+                "p50": 182.59999999403954,
+                "p95": 214.0
+              }
+            },
+            "detail": {
+              "inputToNextRafMs": {
+                "samples": 6,
+                "p50": 34.20000001788139,
+                "p95": 45.599999994039536
+              },
+              "inputToSecondRafMs": {
+                "samples": 6,
+                "p50": 59.20000001788139,
+                "p95": 76.7000000178814
+              },
+              "actionWallMs": {
+                "samples": 6,
+                "p50": 147.59999999403954,
+                "p95": 162.40000000596046
+              }
+            }
+          }
+        },
+        {
+          "elements": 5000,
+          "directions": {
+            "palette": {
+              "inputToNextRafMs": {
+                "samples": 6,
+                "p50": 702.7999999821186,
+                "p95": 793.6999999880791
+              },
+              "inputToSecondRafMs": {
+                "samples": 6,
+                "p50": 1042.4000000059605,
+                "p95": 1156.5
+              },
+              "actionWallMs": {
+                "samples": 6,
+                "p50": 1156.5999999940395,
+                "p95": 1266.9000000059605
+              }
+            },
+            "detail": {
+              "inputToNextRafMs": {
+                "samples": 6,
+                "p50": 164.89999997615814,
+                "p95": 174.59999999403954
+              },
+              "inputToSecondRafMs": {
+                "samples": 6,
+                "p50": 333.80000001192093,
+                "p95": 342.69999998807907
+              },
+              "actionWallMs": {
+                "samples": 6,
+                "p50": 404.40000000596046,
+                "p95": 447.7999999821186
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

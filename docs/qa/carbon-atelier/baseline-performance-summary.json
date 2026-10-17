@@ -1,0 +1,455 @@
+{
+  "schema": "figure-studio-carbon-interaction-summary/1",
+  "label": "baseline",
+  "status": "PASS",
+  "rawSha256": "f250f087a67bae37db3043f8662428ae34653413efe6e1cd4266dd95441f28dc",
+  "baselineCommit": "2c6d11a0b494c3668a929cc272482e74be58e0fe",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "architecture": "x64",
+  "logicalCpus": 22,
+  "conditions": "Same Windows device; actual Google Chrome, no CPU throttle. Other user processes are not controlled. No clean-machine or GPU-occupancy claim.",
+  "measurement": "Trusted UI events captured before application handlers → next rAF and second rAF opportunities. These are presentation opportunities, not direct screen-pixel paint measurements. Event Timing is Chrome-granular; action wall time includes Playwright overhead.",
+  "startedAt": "2026-10-17T11:14:33.074Z",
+  "finishedAt": "2026-10-17T11:15:40.829Z",
+  "operationSampling": "Selection: pointerdown (actual selection handler); tab: click; colour: input; drags: first pointermove after pointerdown. Callback execution uses performance.now(), never the rAF vsync timestamp which can predate input.",
+  "limitations": [
+    "One device, 12 repeated operations per kind, sequential batches; no population or worst-case performance guarantee.",
+    "No direct GPU occupancy measurement. rAF records presentation opportunities, not photons or continuous 60 fps.",
+    "Video recording and Playwright are active in both versions. Browser window uses a temporary isolated profile."
+  ],
+  "fixtures": [
+    {
+      "elements": 120,
+      "kind": "synthetic_pressure_only",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1.0000000298023224,
+      "systemScaling": "Not changed or inferred from browser DPR",
+      "observerTypes": [
+        "element",
+        "event",
+        "first-input",
+        "interaction-contentful-paint",
+        "largest-contentful-paint",
+        "layout-shift",
+        "long-animation-frame",
+        "longtask",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource",
+        "soft-navigation",
+        "visibility-state"
+      ],
+      "remoteRequests": [],
+      "errors": [],
+      "operations": {
+        "select-text": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 53.30000001192093,
+            "p95": 78.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 87.5,
+            "p95": 132.30000001192093
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 87.90000000596046,
+            "p95": 134.5
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 46.19999998807907,
+            "p95": 82.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 193.7999999821186,
+            "p95": 260.5
+          },
+          "frames": {
+            "count": 156,
+            "p50": 8.399999999999636,
+            "p95": 58.29999999999973,
+            "max": 83.29999999999927,
+            "over33ms": 18,
+            "over50ms": 10,
+            "over50msFraction": 0.0641025641025641
+          },
+          "longTasks": {
+            "count": 11,
+            "totalMs": 640,
+            "maxMs": 79
+          }
+        },
+        "text-colour": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 61.5,
+            "p95": 107.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 115.39999997615814,
+            "p95": 202.40000000596046
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 115.39999997615814,
+            "p95": 202.40000000596046
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": null,
+            "p95": null
+          },
+          "actionWallMs": {
+            "p50": 168.7000000178814,
+            "p95": 302.59999999403954
+          },
+          "frames": {
+            "count": 108,
+            "p50": 8.399999999999636,
+            "p95": 75,
+            "max": 108.29999999999927,
+            "over33ms": 24,
+            "over50ms": 18,
+            "over50msFraction": 0.16666666666666666
+          },
+          "longTasks": {
+            "count": 11,
+            "totalMs": 680,
+            "maxMs": 88
+          }
+        },
+        "drag-shape": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.20000001788139343,
+            "p95": 0.30000001192092896
+          },
+          "inputToSecondRafMs": {
+            "p50": 5.699999988079071,
+            "p95": 9.100000023841858
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 81.30000001192093,
+            "p95": 254
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 81.30000001192093,
+            "p95": 254
+          },
+          "actionWallMs": {
+            "p50": 236.5,
+            "p95": 492.7000000178814
+          },
+          "frames": {
+            "count": 252,
+            "p50": 8.399999999999636,
+            "p95": 41.70000000000073,
+            "max": 149.59999999999854,
+            "over33ms": 19,
+            "over50ms": 6,
+            "over50msFraction": 0.023809523809523808
+          },
+          "longTasks": {
+            "count": 10,
+            "totalMs": 635,
+            "maxMs": 140
+          }
+        },
+        "resize-sidebar": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.19999998807907104,
+            "p95": 0.30000001192092896
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.399999976158142,
+            "p95": 116.90000000596046
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 50.80000001192093,
+            "p95": 116.90000000596046
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 47.5,
+            "p95": 53.400000005960464
+          },
+          "actionWallMs": {
+            "p50": 288.30000001192093,
+            "p95": 550.8999999761581
+          },
+          "frames": {
+            "count": 259,
+            "p50": 8.399999999999636,
+            "p95": 33.30000000000018,
+            "max": 67.10000000000036,
+            "over33ms": 14,
+            "over50ms": 3,
+            "over50msFraction": 0.011583011583011582
+          },
+          "longTasks": {
+            "count": 8,
+            "totalMs": 502,
+            "maxMs": 116
+          }
+        },
+        "switch-inspector-tab": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 35,
+            "p95": 65
+          },
+          "inputToSecondRafMs": {
+            "p50": 60.900000005960464,
+            "p95": 128.5
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 63,
+            "p95": 131.69999998807907
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 61,
+            "p95": 128.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 131.80000001192093,
+            "p95": 196.30000001192093
+          },
+          "frames": {
+            "count": 113,
+            "p50": 8.399999999999636,
+            "p95": 41.70000000000073,
+            "max": 75,
+            "over33ms": 13,
+            "over50ms": 4,
+            "over50msFraction": 0.035398230088495575
+          },
+          "longTasks": {
+            "count": 3,
+            "totalMs": 175,
+            "maxMs": 67
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "kind": "synthetic_pressure_only",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1.0000000298023224,
+      "systemScaling": "Not changed or inferred from browser DPR",
+      "observerTypes": [
+        "element",
+        "event",
+        "first-input",
+        "interaction-contentful-paint",
+        "largest-contentful-paint",
+        "layout-shift",
+        "long-animation-frame",
+        "longtask",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource",
+        "soft-navigation",
+        "visibility-state"
+      ],
+      "remoteRequests": [],
+      "errors": [],
+      "operations": {
+        "select-text": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 236.2000000178814,
+            "p95": 267.09999999403954
+          },
+          "inputToSecondRafMs": {
+            "p50": 405.60000002384186,
+            "p95": 466.2000000178814
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 407.5,
+            "p95": 468.60000002384186
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 236.30000001192093,
+            "p95": 293.89999997615814
+          },
+          "actionWallMs": {
+            "p50": 483.19999998807907,
+            "p95": 563.5999999940395
+          },
+          "frames": {
+            "count": 106,
+            "p50": 8.400000000001455,
+            "p95": 241.59999999999854,
+            "max": 275,
+            "over33ms": 25,
+            "over50ms": 24,
+            "over50msFraction": 0.22641509433962265
+          },
+          "longTasks": {
+            "count": 23,
+            "totalMs": 4199,
+            "maxMs": 269
+          }
+        },
+        "text-colour": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 296.7000000178814,
+            "p95": 790.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 447.80000001192093,
+            "p95": 1124.199999988079
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 447.80000001192093,
+            "p95": 1124.199999988079
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": null,
+            "p95": null
+          },
+          "actionWallMs": {
+            "p50": 521.8000000119209,
+            "p95": 1263.800000011921
+          },
+          "frames": {
+            "count": 159,
+            "p50": 8.399999999997817,
+            "p95": 308.2999999999993,
+            "max": 807.9000000000015,
+            "over33ms": 24,
+            "over50ms": 24,
+            "over50msFraction": 0.1509433962264151
+          },
+          "longTasks": {
+            "count": 24,
+            "totalMs": 5442,
+            "maxMs": 736
+          }
+        },
+        "drag-shape": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.29999998211860657
+          },
+          "inputToSecondRafMs": {
+            "p50": 5.5999999940395355,
+            "p95": 13.199999988079071
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 395.90000000596046,
+            "p95": 520.7000000178814
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 395.90000000596046,
+            "p95": 520.7000000178814
+          },
+          "actionWallMs": {
+            "p50": 690.0999999940395,
+            "p95": 881.0999999940395
+          },
+          "frames": {
+            "count": 261,
+            "p50": 8.399999999999636,
+            "p95": 141.39999999999418,
+            "max": 383.3000000000029,
+            "over33ms": 56,
+            "over50ms": 41,
+            "over50msFraction": 0.15708812260536398
+          },
+          "longTasks": {
+            "count": 21,
+            "totalMs": 4588,
+            "maxMs": 440
+          }
+        },
+        "resize-sidebar": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.19999998807907104,
+            "p95": 0.30000001192092896
+          },
+          "inputToSecondRafMs": {
+            "p50": 132.69999998807907,
+            "p95": 176
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 136.2000000178814,
+            "p95": 197.09999999403954
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 55.30000001192093,
+            "p95": 165.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 660.1000000238419,
+            "p95": 851.9000000059605
+          },
+          "frames": {
+            "count": 243,
+            "p50": 8.700000000004366,
+            "p95": 83.39999999999418,
+            "max": 116.59999999999854,
+            "over33ms": 107,
+            "over50ms": 74,
+            "over50msFraction": 0.3045267489711934
+          },
+          "longTasks": {
+            "count": 58,
+            "totalMs": 5333,
+            "maxMs": 175
+          }
+        },
+        "switch-inspector-tab": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 199.89999997615814,
+            "p95": 552.4000000059605
+          },
+          "inputToSecondRafMs": {
+            "p50": 378.09999999403954,
+            "p95": 870.4000000059605
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 380,
+            "p95": 872.5
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 378.09999999403954,
+            "p95": 870.4000000059605
+          },
+          "actionWallMs": {
+            "p50": 453.2999999821186,
+            "p95": 1056
+          },
+          "frames": {
+            "count": 106,
+            "p50": 8.399999999999636,
+            "p95": 508.2000000000007,
+            "max": 633.2999999999956,
+            "over33ms": 29,
+            "over50ms": 29,
+            "over50msFraction": 0.27358490566037735
+          },
+          "longTasks": {
+            "count": 36,
+            "totalMs": 6866,
+            "maxMs": 553
+          }
+        }
+      }
+    }
+  ]
+}

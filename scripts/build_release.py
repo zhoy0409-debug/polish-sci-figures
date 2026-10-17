@@ -11,12 +11,30 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "v1.4.20"
+VERSION = "v1.4.21"
 SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    'docs/release-notes-v1.4.21.md',
+    'docs/figure-studio-appearance.md',
+    'docs/update-scene-design.md',
+    'docs/qa/carbon-atelier/design-tokens.md',
+    'docs/qa/carbon-atelier/browser-validation.md',
+    'docs/qa/carbon-atelier/theme-component-checks.json',
+    'docs/qa/carbon-atelier/theme-layout-checks.json',
+    'docs/qa/carbon-atelier/token-protection-checks.json',
+    'docs/qa/carbon-atelier/token-audit-current.json',
+    'docs/qa/carbon-atelier/update-scene-controlled.json',
+    'docs/qa/carbon-atelier/regression-summary.json',
+    'docs/qa/carbon-atelier/update-scene-controlled-rest-main.png',
+    'docs/qa/carbon-atelier/update-scene-controlled-download-52.png',
+    'docs/qa/carbon-atelier/update-scene-controlled-download-100.png',
+    'docs/qa/carbon-atelier/update-scene-controlled-verified-ready.png',
+    'docs/qa/carbon-atelier/update-scene-controlled-reduced-motion-live-progress.png',
+    'docs/qa/carbon-atelier/update-scene-controlled-narrow-emulated-dpr-150.png',
+    'scripts/build_update_mascot_scene.py',
     'docs/figure-studio-image-tools.md',
     'docs/figure-studio-axes-round2.md',
     'docs/figure-studio-experience-round2-validation.md',

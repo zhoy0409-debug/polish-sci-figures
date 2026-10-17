@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 162 168" fill="none" class="fs-update-character-source">
+  <title>Figure Studio original black and white Border Collie</title>
+  <desc>Original layered vector source. Asymmetric feathered ears, white blaze, white chest and feathered tail. Editable neutral, working and greeting paws.</desc>
+  <style>.fs-update-character-source .mascot-paw-work,.fs-update-character-source .mascot-paw-greet{display:none}</style>
+  <defs>
+    <linearGradient id="fs-update-dog-coat" x1="53" y1="33" x2="114" y2="146" gradientUnits="userSpaceOnUse"><stop stop-color="#4A535D"/><stop offset="1" stop-color="#252E38"/></linearGradient>
+    <linearGradient id="fs-update-dog-white" x1="57" y1="56" x2="83" y2="153" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFCF2"/><stop offset="1" stop-color="#E0DED6"/></linearGradient>
+  </defs>
+  <g class="mascot-dog-tail"><path d="M109 119C126 128 139 119 141 101C150 108 153 120 147 131L151 129C145 145 128 150 110 140Z" fill="url(#fs-update-dog-coat)" stroke="#252F39" stroke-width="1.2" stroke-linejoin="round"/><path d="M141 103C150 111 151 120 146 131L151 129C148 139 139 145 130 145L134 139L128 139C137 133 141 122 141 103Z" fill="#F5F1E6"/></g>
+  <g class="mascot-dog-body">
+    <path d="M50 76C40 87 38 103 40 118L35 125L39 128C34 140 43 150 53 152H108C120 149 124 139 119 127L123 125L116 117C116 97 108 84 98 76Z" fill="url(#fs-update-dog-coat)" stroke="#29333E" stroke-width="1.3" stroke-linejoin="round"/>
+    <path d="M56 77H91L99 89L95 95L101 100L93 106L95 115L85 114L82 125L75 119L66 127L64 115L56 120L54 108L47 109L51 99L45 94Z" fill="url(#fs-update-dog-white)"/>
+    <g class="mascot-dog-rest-arm"><path d="M53 117C49 131 48 143 48 151C46 158 60 160 64 153L66 120" fill="url(#fs-update-dog-white)" stroke="#AAAEB0" stroke-width="1.1" stroke-linecap="round"/><path d="M50 152V157M56 152V158" stroke="#B8B7AF" stroke-width=".9" stroke-linecap="round"/></g>
+    <path d="M95 115C100 132 105 143 103 152C104 160 117 159 119 153C119 143 112 128 109 123" fill="url(#fs-update-dog-white)" stroke="#AAAEB0" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M108 153V158M114 153V157" stroke="#B8B7AF" stroke-width=".9" stroke-linecap="round"/>
+    <path d="M42 124L47 121M112 137L117 140" stroke="#68717A" stroke-width="1.4" stroke-linecap="round"/>
+  </g>
+  <g class="mascot-dog-head">
+    <path d="M48 28L41 11Q36 6 33 15L26 43Q26 52 36 56L47 42M93 31L102 18Q111 12 118 19L125 39Q128 49 119 59L105 48" fill="url(#fs-update-dog-coat)" stroke="#29333E" stroke-width="1.3" stroke-linejoin="round"/>
+    <path d="M35 21L31 43L39 39M110 23L118 40L114 48" stroke="#7B7779" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M44 30Q69 18 96 30C110 38 115 53 109 67L114 74L105 75L103 82L95 79C82 87 60 87 49 78L40 81L41 72L33 68L39 61C34 46 35 39 44 30Z" fill="url(#fs-update-dog-coat)" stroke="#29333E" stroke-width="1.25" stroke-linejoin="round"/>
+    <path d="M70 26L82 26L80 36L78 44L83 52L80 58L91 62L96 72C89 81 61 83 51 72L58 62L69 57L66 49L71 41Z" fill="url(#fs-update-dog-white)"/>
+    <path d="M45 50Q52 45 59 49M87 49Q94 45 101 49" stroke="#77818A" stroke-width="1.4" stroke-linecap="round"/>
+    <g class="mascot-dog-eyes"><path d="M45 53Q52 47 59 53Q53 59 45 53Z" fill="#B8A786" stroke="#141D27" stroke-width="1"/><ellipse cx="52" cy="53" rx="2.3" ry="3" fill="#202A31"/><circle cx="51" cy="51.6" r=".8" fill="#FFFDF5"/><path d="M87 53Q94 47 101 53Q94 59 87 53Z" fill="#B8A786" stroke="#141D27" stroke-width="1"/><ellipse cx="94" cy="53" rx="2.3" ry="3" fill="#202A31"/><circle cx="93" cy="51.6" r=".8" fill="#FFFDF5"/></g>
+    <path d="M57 64Q64 58 73 61Q82 58 91 64L92 70Q82 81 70 79Q58 79 54 72Z" fill="#FBF6EB"/>
+    <path d="M66 62Q73 58 80 62L78 67Q73 70 68 67Z" fill="#26313C"/><path d="M69 62L73 61" stroke="#626C75" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M73 68V71M73 71Q66 77 60 72M73 71Q80 77 86 72" stroke="#697076" stroke-width="1" stroke-linecap="round"/>
+    <path d="M41 62L47 64M101 63L106 61" stroke="#92999F" stroke-linecap="round"/>
+  </g>
+  <path d="M50 84Q74 94 98 83L96 91Q74 99 52 92Z" fill="#337F72" stroke="#286458" stroke-width=".9"/><path d="M60 93L70 95L66 108L59 101L55 104Z" fill="#69BAA4"/>
+  <g class="mascot-dog-paw mascot-paw-work"><path d="M52 105Q42 104 33 113L19 112Q13 113 15 119Q18 125 25 124L39 125Q51 124 59 115Z" fill="url(#fs-update-dog-white)" stroke="#AAAEB0" stroke-width="1.1"/><path d="M15 118L22 118" stroke="#B8B7AF" stroke-linecap="round"/></g>
+  <g class="mascot-dog-paw mascot-paw-greet"><path d="M52 110Q43 104 40 89L43 77Q43 71 37 72Q31 72 30 80L27 90Q28 112 41 120Z" fill="url(#fs-update-dog-white)" stroke="#AAAEB0" stroke-width="1.1"/><path d="M33 78L42 80M31 83L41 85" stroke="#B8B7AF" stroke-width=".8" stroke-linecap="round"/></g>
+</svg>

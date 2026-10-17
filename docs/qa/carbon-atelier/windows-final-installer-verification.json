@@ -1,0 +1,79 @@
+{
+  "schema": "figure-studio-final-windows-installer/1",
+  "status": "PASS",
+  "version": "0.1.21",
+  "artifact": {
+    "name": "polish-sci-figures-Studio-0.1.21-Setup-x64.exe",
+    "bytes": 102544858,
+    "sha256": "35d76ea2a4c4a471fada83723a3802bc29478793d49be5498c3ae61c1f7e5200"
+  },
+  "sourceProofSHA256": "f966472d94436b18aa616c93e45598cb2bfee95d612b9643d9ae4974fb399066",
+  "environment": "local Windows x64; isolated PATH, PYTHONHOME and working directory; not a clean VM",
+  "checks": [
+    "Installer installs x64 executable without admin requirement",
+    "Every installed application file matches the packaged build",
+    "Installed EXE completes Tk, HTTP analysis, rendering and reflow with no Python on PATH",
+    "Reinstall / upgrade preserves external project data and settings",
+    "Uninstall removes application and keeps external project data"
+  ],
+  "selfTest": {
+    "passed": true,
+    "checks": [
+      "Tk desktop shell resources",
+      "GET editor",
+      "Local update endpoint and installation version (no release request)",
+      "Host / Origin / token guards",
+      "/api/analyze",
+      "/api/render",
+      "/api/reflow",
+      "/api/import-pdf",
+      "/api/import-pdf",
+      "/api/image-duplicates",
+      "Bundled OpenCV image check and evidence via local HTTP",
+      "/api/image-links",
+      "Bundled SIFT crop localization and original-pixel coordinates via local HTTP"
+    ],
+    "data_sha256": "678e786f20cbdccc2359caa49aa155c68ec6cd8e35858ff9d68b28e49c2f2452",
+    "variants": 17,
+    "frozen": true,
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "tk": "8.6.12",
+    "tcl": "8.6.12",
+    "pdfObjects": {
+      "texts": 11,
+      "paths": 17,
+      "images": 0
+    }
+  },
+  "localUpdateInfo": {
+    "currentVersion": "0.1.21",
+    "suiteVersion": "1.4.21",
+    "platform": "windows",
+    "architecture": "x86_64",
+    "channel": "stable",
+    "inAppInstall": false
+  },
+  "selfTestUsesExplicitDataDirectory": true,
+  "selfTestInAppInstallFalseReason": "The self-test uses an explicit isolated data directory. Actual installed browser metadata independently establishes installer eligibility.",
+  "nativeLauncherObservation": {
+    "method": "Actual native launcher Open editor gesture, then the newly opened Edge tab inspected without a reload",
+    "version": "0.1.21",
+    "appearanceMenuPresent": true,
+    "rememberedTheme": "pearl",
+    "headerControlsFlexShrink": "0",
+    "identityMinWidth": "120px",
+    "screenshot": "windows-final-native-launcher.jpg"
+  },
+  "limitations": [
+    "Local Windows x64 host, not a clean VM.",
+    "Synthetic image engineering checks do not establish independent scientific-image detection accuracy.",
+    "Installed browser and header results are recorded separately."
+  ],
+  "finalCleanup": {
+    "qaApplicationRemoved": true,
+    "qaRegistrationRemoved": true,
+    "preexistingUserProcessUnchanged": true,
+    "externalProjectDataPreserved": true,
+    "displayScaleRestoredPercent": 150
+  }
+}

@@ -1,0 +1,65 @@
+/* Base UI and new appearance components; legacy components consume tokens in place. */
+:root { font-family: var(--fs-font-family); font-size: var(--fs-font-sm); color: var(--fs-text-primary); background: var(--fs-app-bg); }
+body { background: var(--fs-app-bg); }
+button, select, input, textarea { font-family: inherit; }
+button, select, input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]) { min-height: var(--fs-control-height); }
+button.primary { min-height: var(--fs-primary-height); }
+dialog { color: var(--fs-text-primary); background: var(--fs-surface-raised); }
+textarea { color: var(--fs-text-primary); background: var(--fs-control-bg); }
+::placeholder { color: var(--fs-text-muted); opacity: 1; }
+
+/* Lock inherited currentColor and native color scheme at scientific preview boundaries. */
+:where(#artboard, .candidate svg, .palette svg, .master svg, .library-card svg,
+  .catalogue-card svg, .chart-choice svg, #chartDetailArt, .discovery-art,
+  #literatureFigurePreview, #imageExportPreview, .pdf-import-preview svg,
+  .statistics-preview-art svg, .color-preview-stage, .links-roi-stage) {
+  color: var(--fs-artwork-ink);
+  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  color-scheme: light;
+}
+#artboard { background: var(--fs-artboard-bg); }
+html[data-canvas-surround="dark"] #viewport:not(.is-file-drop) { background: var(--fs-workspace-dark); }
+html[data-canvas-surround="light"] #viewport:not(.is-file-drop) { background: var(--fs-workspace-light); }
+
+.header-appearance { position: relative; flex: none; margin: 0; padding: 0; border: 0; }
+.header-appearance > summary { display: flex; align-items: center; justify-content: center; gap: var(--fs-space-2); min-height: var(--fs-control-height); padding: var(--fs-space-2) var(--fs-space-3); border: 1px solid transparent; border-radius: var(--fs-radius-md); color: var(--fs-text-secondary); list-style: none; cursor: pointer; font-size: var(--fs-font-xs); white-space: nowrap; }
+.header-appearance > summary::-webkit-details-marker { display: none; }
+.header-appearance > summary::marker { content: ""; }
+.header-appearance > summary:hover { background: var(--fs-hover); color: var(--fs-text-primary); box-shadow: none; }
+.header-appearance > summary:active { background: var(--fs-pressed); transition-duration: var(--fs-motion-pressed); }
+.header-appearance[open] > summary { border-color: var(--fs-accent); background: var(--fs-accent-selected-bg); color: var(--fs-accent-text); }
+.appearance-menu { position: absolute; top: calc(100% + 8px); right: 0; width: min(280px, calc(100vw - 24px)); z-index: 60; padding: var(--fs-space-4); border: 1px solid var(--fs-stroke-default); border-radius: var(--fs-radius-lg); background: var(--fs-surface-raised); color: var(--fs-text-primary); box-shadow: var(--fs-shadow-popover); }
+.appearance-menu label { display: grid; gap: var(--fs-space-2); margin: 0 0 var(--fs-space-3); color: var(--fs-text-secondary); font-size: var(--fs-font-xs); }
+.appearance-menu label:last-of-type { margin-bottom: 0; }
+.appearance-menu select { display: block; width: 100%; margin: 0; min-height: var(--fs-control-height); border: 1px solid var(--fs-stroke-default); background: var(--fs-control-bg); color: var(--fs-text-primary); }
+.appearance-feedback { margin: var(--fs-space-3) 0 0; white-space: normal; font-size: var(--fs-font-xs); line-height: 1.5; color: var(--fs-warning); }
+.appearance-feedback[data-state="info"] { color: var(--fs-text-secondary); }
+.appearance-feedback:empty { display: none; }
+.project-identity { min-width: 120px; flex: 1; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--fs-space-1); }
+.project-identity > strong { display: block; min-width: 0; max-width: 34vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-font-sm); font-weight: 600; color: var(--fs-text-primary); }
+.project-identity .autosave { min-width: 0; width: 100%; max-width: 100%; white-space: normal; overflow-wrap: anywhere; text-align: left; font-size: var(--fs-font-xs); }
+.project-identity[data-save-state="error"] .autosave, .project-identity[data-save-state="conflict"] .autosave { color: var(--fs-error); }
+.project-identity[data-save-state="saving"] .autosave { color: var(--fs-warning); }
+.project-identity[data-save-state="saved"] .autosave { color: var(--fs-success); }
+body > header .header-controls { flex: 0 0 auto; }
+.inspector-context { display: grid; gap: var(--fs-space-1); padding: 0 0 var(--fs-space-3); margin: 0 0 var(--fs-space-3); border-bottom: 1px solid var(--fs-stroke-subtle); }
+.inspector-context-label { font-size: var(--fs-font-xs); color: var(--fs-text-muted); }
+.inspector-context strong { font-size: var(--fs-font-md); font-weight: 600; color: var(--fs-text-primary); }
+.inspector-context small { font-size: var(--fs-font-xs); line-height: 1.5; color: var(--fs-text-secondary); overflow-wrap: anywhere; }
+
+@media (min-width: 781px) and (max-width: 1439px) {
+  html body > header { gap: var(--fs-space-3); padding-inline: var(--fs-space-4); }
+  html body > header .brand { gap: var(--fs-space-2); }
+  html body > header .toolbar { gap: var(--fs-space-2); }
+  html body > header .header-history { padding-inline: var(--fs-space-2); }
+  html body > header .toolbar button, html body > header .header-menu > summary,
+  html body > header .header-appearance > summary, html body > header .toolbar .language-picker > select { padding-inline: var(--fs-space-2); }
+}
+@media (max-width: 1100px) { .project-identity { min-width: 80px; } .project-identity > strong { max-width: 19vw; } }
+@media (max-width: 780px) { .project-identity { min-width: 0; margin-left: auto; flex: 0 1 45%; } .project-identity > strong { max-width: 40vw; } }
+@media (pointer: coarse) { .header-appearance > summary, .appearance-menu select { min-height: 44px; } }
+@media (prefers-reduced-motion: reduce) { .header-appearance > summary, .appearance-menu { transition: none; animation: none; } }
+@media (forced-colors: active) {
+  :is(button, input, select, textarea, summary, a[href], [tabindex]):focus-visible { outline: 2px solid Highlight !important; outline-offset: 2px; box-shadow: none !important; }
+  button:is(.active, [aria-pressed="true"], [aria-selected="true"]), .header-appearance[open] > summary { outline: 1px solid Highlight; outline-offset: -2px; }
+}

@@ -311,6 +311,9 @@ jobs:
           node scripts/test_studio_update_check.cjs --dom
           node scripts/test_studio_update_install.cjs --dom
           node scripts/test_studio_update_transport.cjs
+          node scripts/test_studio_update_scene.cjs
+          node scripts/test_studio_theme_controller.cjs
+          node scripts/test_studio_theme_tokens.cjs --static
           node scripts/test_studio_compact_whitespace.cjs --dom
       - name: Retain synthetic calculation evidence and public-file checksums
         if: always()

@@ -1,0 +1,779 @@
+{
+  "schema": "figure-studio-carbon-ci-dom-summary/1",
+  "status": "PASS_AFTER_TEST_FIX",
+  "scope": "Local Windows Node/JSDOM replay of all 73 commands in the workflow Mobile DOM step, continuing after failures. 72 passed in the initial run; the sole failed test passed after a test-only token-contract correction. This is aggregate evidence, not a fresh same-head full rerun or actual mobile-device validation.",
+  "initialHead": "5df62df3f7aa72407082359d0a907aec992d4702",
+  "node": "v24.18.0",
+  "platform": "win32",
+  "workflowSha256": "c25bed0f2bb4c764c0466e04ff8831820ea5c43dd8ee0e1cdd2e09a8a214c20d",
+  "initialRawSha256": "45370d2e33ddbb67f63920b0bf3deb3fab568f08cd56a0c1fa2c51838669f3e6",
+  "initialResult": {
+    "passed": 72,
+    "failed": 1,
+    "total": 73
+  },
+  "initialCommands": [
+    {
+      "command": "node scripts/test_studio_text_geometry.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2382,
+      "logSha256": "3297fe24eb09c311c945b45e7f0c83264adba85f42d9498ea1adad43241ff2e4",
+      "stdoutSha256": "f065cecc25754bbc13f9264dbdb7ef79b40f91274eb2f58bdf8092e6f22a3d93",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_pdf_text_editing.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2304,
+      "logSha256": "97473140b59688d03bb33ab199863704efe136b236ea1122332c74a345239ee0",
+      "stdoutSha256": "f15b83c9eadede669d112d38cb0b87f18ae99c56314f35193f9fa2477e9156bd",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_text_formatting.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2098,
+      "logSha256": "e86cb14466a50e3a545e63473d9683c87a40c4dd1bdd5c5e8f003589f5c8e424",
+      "stdoutSha256": "bb8d57474a7f9d962d160d55e2502ad556f6b243b797f28bd5a78a0bf2fa0823",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_text_tools_integration.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2204,
+      "logSha256": "7978ed1fa67957fab504ed64a8d6282f62e6ed5149668fd99cd97240d587e7ec",
+      "stdoutSha256": "1a719ce5d1c04cd9f35ac32d9a3ad6c1e44f7de10217ea0d305281ade7854143",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_panel_commands.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1979,
+      "logSha256": "74b1facabb58327e83b91bff43c760032da361059e1d7da509daa4635fd62917",
+      "stdoutSha256": "9d24b133a292cdc61491fb158f8d41e6031accae257b9c8579a9498e94005373",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_layout_lock.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2907,
+      "logSha256": "fa9ef26e570034ae6ffdcb99cf57c063476aece408a3038f9fe48b7ce7fd68d2",
+      "stdoutSha256": "7ebd710a87d9108106359fdc76cf33bba30aacb53c026a7465b6fa7e84e545c2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_layout_lock_integration.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 3619,
+      "logSha256": "853bfc2eed4e2df9b67c87dccc41ccbfc72abad5ee8e70cd4604295fd6948e6e",
+      "stdoutSha256": "1434b6f8b849bdbbaa2f034dd0025778e41aa2b6300ddcf662fb17ebd5643305",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_released_motion.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2685,
+      "logSha256": "36248235e3b7adf424ef80761054ae492d52f3afbcc20255f6dc76395a1f7335",
+      "stdoutSha256": "820f5d96d144142e6e67ac5ef38d3c8556fe932f3615baa76116f4ba8e577d66",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_panel_commands_host.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2227,
+      "logSha256": "ff0ea60a3a3449a5c6117d1de96a15e4a7d9a1b7cb8b5979a1931098ed8b5ecf",
+      "stdoutSha256": "620fd90b4e76703abab27922fd116d9a9409f35ba7413b79e942db89a75bc490",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_mixed_label_selection.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1787,
+      "logSha256": "b61e3a5ffbd84d4199670bb526e0b933eadf4901e62e1aa7ef167b50e7ebd30f",
+      "stdoutSha256": "1cf6dbbd02e7075dbf8b7cf4edc3e3497cfc687bbdf59d6f524ecd588d2bbb65",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_selection_transform_dom.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1278,
+      "logSha256": "1ebd4ddddbbadc39783ec4507b4a622d776e9da6ebfa724aaeb6e75175bf9356",
+      "stdoutSha256": "1212d733a8cecb2b24b17baf4b2bf68c160a78e6c82a8ba2712087a371172a74",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_selection_resize_integration.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2571,
+      "logSha256": "0afb087b1afcbc0331701bcf50c5d280727d3e633764c520222bad61af9cff57",
+      "stdoutSha256": "d4ed3bc67717d6222b59a575cdad28876badbb3eaa8570664a732f08dad7aaed",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_continuous_commands.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1311,
+      "logSha256": "16d366cf869174ff24cda890ce46ef1e0dde69903045607803caf84efc0e80f6",
+      "stdoutSha256": "feb6a61552abea95ed4470cbe7a708e8d89479c19e3b12ca57818721306ee7f6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_alignment_icons.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2138,
+      "logSha256": "442b56d956d3e87689b4ef3cc30a62204208e6615869b0e18a55d1afd89619da",
+      "stdoutSha256": "92524fddcd5223e1e340aa46237868637929dd0af09cd1c77304c30198867d20",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_alignment_guides.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 170,
+      "logSha256": "d67cf9552c3525c487b863237fb09e815e4219b706d10d5c3112edd309916529",
+      "stdoutSha256": "3ae8b9f9081f815db55047a56cf3a1b01d2275047174fc51ea4fcbee0d6efda9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_layers_panel.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1989,
+      "logSha256": "248e1acfdf635dd2881f1cfc1075342975a6315a9594c294204cc6c72013f02f",
+      "stdoutSha256": "c1d3285014d982e6ba355c426d40852565beef6aba36d97242757359d3be535b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_selection_performance.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1507,
+      "logSha256": "a0a820bca0911ad49339e47ae29886ffedad61c0108d7a8f45cbe09f494e511e",
+      "stdoutSha256": "4fd5d59d2fc0ad499106807421afb36561fc666fcf942073d908531cedb072d5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_edited_svg_performance.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2069,
+      "logSha256": "8cbbdef52ad3c9774d14d65d07d421084881a65b018bf64b042df1c437287b08",
+      "stdoutSha256": "7d87d7ee871c91e6975e0bc3c4b51f3b04c98a1832a5431db8a70e94b5a0caa5",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_autosave_coalescing.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 173,
+      "logSha256": "08a3ef350b78c4932bd8c1b6a6f1220e45c7963e8a2e4552549c3178211a2b9c",
+      "stdoutSha256": "19139666fcb4099b7cbd892f12c4389f8fd842212871816eca3546671f3f20f4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_template_cache.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1123,
+      "logSha256": "007ef4698f38aa13c929c18c60f918697bbc6139aafcaa662e532eb6a921afe0",
+      "stdoutSha256": "fa7157b5469feff67707a852cc96044807f0cd4f3cb32ae72a883e17a4104032",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_font_replacement.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1163,
+      "logSha256": "e9deddeeb39cfe7bc4b1fcede2c74e7d7a58cd5b469b5208363b3b2c64f35ef2",
+      "stdoutSha256": "4178050c0ac5a9b14cd70e77374202891ccf4209849dea438e416bbd14f1f55f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_vector_interaction.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1469,
+      "logSha256": "3d7886ac17c068c76792f218ffe44bd1b5c3fc05d87f127f5eb774a6a8d571d1",
+      "stdoutSha256": "4468f9e94bb1c4b0561ba2b43fbe28b4ce310ac1f64d3c6501bef6f38dfeb42e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_axis_editing.cjs --dom --real",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2663,
+      "logSha256": "a54740d6b99bcdf75cb1bda67dc64800a90345873dcb495468c1cb353a3fc6c6",
+      "stdoutSha256": "8499ea2bbb0dec76871f0ac753febf85be51b72c57244e8132b0fe78084c8b9c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_axis_settings_ui.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1132,
+      "logSha256": "4d00c76cf8a28d1162e101a681c4f6a6d4887eddabf64a698d0f9b769d26b305",
+      "stdoutSha256": "c2b8d8d95c3ba4cc1b2ed7c19f6869e9091baa01e5116f177b8514fb53e1b035",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_axis_settings_async.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1236,
+      "logSha256": "482f1539d7f6b9215dcaa03562ac1f383bdf26e4c3593aec9633a269b845d46b",
+      "stdoutSha256": "5038aa8ec7fa5759553f30219d2cf3f226ec08bcb619d25469f8face44938cee",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_border_replacement.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 207,
+      "logSha256": "52efaa63043f444e65f74c4258e92f5c5edc59cacbf048622a70645e86827bc3",
+      "stdoutSha256": "280f705bcbb994bde1814fc4954bcd88dd3d5d117d2c11739065c6e9776cbfab",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_experience_tools.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2514,
+      "logSha256": "1b735fa651b8800f39ee5ea0766984d75642ce16fae1809ec92bf426d512b8ac",
+      "stdoutSha256": "99305ec681e8b9c2f3ab20a0ccf714bb0a91f6dfab29337aea2201067c33becb",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_component_style.cjs --dom --real",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 4447,
+      "logSha256": "15020659437915a9665d873cb168c51ce0dd4e28b523a409d8da90806cc01829",
+      "stdoutSha256": "362ab6f7bcefcdadc1c19bc412d164b1c4b124d8da5bc2ce1ea61d37fef247a3",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_component_controls.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2705,
+      "logSha256": "db7e8eb44d65a42da67574c6cbf33b90b910e18a55db08934e90afef62df297a",
+      "stdoutSha256": "05f7fd8439754ee54e534ce7c523d4309078b225187bdc9d36c78519ef2578c2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_grid_resize.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1818,
+      "logSha256": "139d1758af54e7696fbdbbe0978088d5f2363b6f8aa7aa0a8230b09d31ee620f",
+      "stdoutSha256": "84d598271ce79970ae87baae9288a07d45649355f371edb812063cb648bab7e8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_statistical_line_geometry.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 254,
+      "logSha256": "a6ecf9736505272e32f89970e32692e705e68668d9704448a207e4f0ed6cbe82",
+      "stdoutSha256": "98a98a58b75342e07cacb02bba5fc7c5f7d1199d5baa7c81fbc32d3d1a88df42",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_grid_outer_resize.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1518,
+      "logSha256": "a535e7196af864e577649ccc819e854d2993f39ec08f617f30de978fb28834de",
+      "stdoutSha256": "bd6a62dad18204e6be6e5246a63d481ea6cff2e1c418eed38f3997aa00966b5d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_master_frame.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1537,
+      "logSha256": "9b1b1cc6b7bcd021979b893c2421ee4de40f5bfd1852036dd99fc86b918f658c",
+      "stdoutSha256": "afe1f515f0b6ecde00a47abf3d18afd40a485a45ff9f952c243321bb34356d0c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_master_frame_integration.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2048,
+      "logSha256": "2e2d11310ac76d5fbc11b9e22761e1142ed77952ac12dc5027fc2fe78ea38f0a",
+      "stdoutSha256": "a06fe8273e648fe2fea1afe56d9b6fae7e7f5418aa0d5a48a73c3e350d1983f6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_legacy_stat_cleanup.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1594,
+      "logSha256": "78905a166ec0b09fbb86222bd97e27e71ec141bdc7b72bd98bb1485a144169cb",
+      "stdoutSha256": "1c48f9f0aca0466243dadfb271a8ae53e076c3fd6ac0c1ce7c9adb66e5c468c6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_legacy_stat_integration.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1651,
+      "logSha256": "eaa153881c0319592514ec8c543862737b01ffae68a54485a452a06aa996e428",
+      "stdoutSha256": "6baf9025fba563c4bf554fee30a5f05ae340d4dbd79dd82324e94bb66d89e70a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_direct_text_editing.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2140,
+      "logSha256": "48586d46d35b90c632df8b718d1698b5a92fafcc9e9cba9e82d5ff627fd5c772",
+      "stdoutSha256": "e7b1d6be8c43055d29fddfb4493b0032e1a48d7629dbac144120f58594f99897",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_canvas_clipboard.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1729,
+      "logSha256": "eea9ad2014b2bc913ae79743106095e5c7cc99c94e027ab5637a37b3f91f24b6",
+      "stdoutSha256": "e3d73802bfa13caf499cc7f6f1c13c45401f1fbc93a89b20daa6a6d6d15299d2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_canvas_clipboard_append.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1676,
+      "logSha256": "bf5b2a01f865d146fc5f2615726b942f927d7b831dc6cdc7ff30af0ad3960c9c",
+      "stdoutSha256": "98cf55039a2ef6339b6bf27c3ec2d7a06e4b71a39b5ce80f36e4634360236c7a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_element_insertions.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 648,
+      "logSha256": "d9b041018ba2f788dd7e84bd0b3eb85e870ac83b037906eea892454dab42be53",
+      "stdoutSha256": "d665d618582346334d58b6b004526bddae40be1228f0e4a7833fdce82d299034",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_element_insertions_render.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1964,
+      "logSha256": "f042fb0f080ba993b018f898cf0a8dd9ef60303d1adda40cce2c26a783a8edf7",
+      "stdoutSha256": "f1d92fa48046ad6dfb2eb70c0acaf85acbf1cecdbdb2127aedf8baf2baff3b53",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_imported_font_brush.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1517,
+      "logSha256": "b649e5463d298b57a850c30c5ecee99447779f55d0797a254eda7554ddb937db",
+      "stdoutSha256": "2b03d056379dd9ef5f50274eed5cf2d181bd2d0dd7caf8ee6c7b8a629248949d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_quick_style_blur.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1511,
+      "logSha256": "529bdf8e0db22f8d6ef1bfae0fca7c120e2ce8dcee0e52455740af9f16a3f4a5",
+      "stdoutSha256": "5068d10f8a4df4c83877166dc623f882e9f49969ec18de13df31e6240a886c39",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_inserted_text_font_scale.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1854,
+      "logSha256": "796bc89c03aad3a5c7ef96a78321d11f61405a573290e21d1b633d388d472082",
+      "stdoutSha256": "5a137ad1b075e4428223dd52e2d12bb925255286511094eae96dc3ee0a6908ba",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_group_alignment.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1796,
+      "logSha256": "fc5099a981ba8b7e22a59a1cf6d71fc5fe2b27303ba20cd49d13d6aaa1fa89c5",
+      "stdoutSha256": "245408a49a0d8d0fd964a57164d710727b3bed1b3cdde7ecfead64c8391a5bff",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_clipboard_event_guards.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 3964,
+      "logSha256": "2e02b2e04e32ca6905b9236dce86fdfd11a425acc9754659a194d09381830e5c",
+      "stdoutSha256": "24b57c7267bac943b6dcd59f4e987213882631b3b57f1e61a84556fb861cd6f7",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_clipboard_compact_layout.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2108,
+      "logSha256": "2c5e5890109e698c7d9fedee52392aaf025916d1d9f50001dcbe0fd7a7fa8dbc",
+      "stdoutSha256": "4b49ede814fd6f01fecf7b70f12c5aca5aa7d9d6119c92a8613947e56969a741",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_nudge_hotpath.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2657,
+      "logSha256": "76ce05f136df3a644f0aef75510c78baa6c82704a65a32f75aedf03ae1766996",
+      "stdoutSha256": "e707b43a5aea8f7bc359b532b8e73b45a8df8f59114fa310003858c4124531da",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_canvas_clipboard_integration.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 3016,
+      "logSha256": "ead122e5049b1c0a6aff433d9c4dcf795e138db1aa2caec1f6652b684a62fdc1",
+      "stdoutSha256": "6a5c8adbbb90ab6f1bfdc9857f559039292e7f99256c960df4cd75a188074e28",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_file_import.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 4807,
+      "logSha256": "85acf3987d12ab7491efc5fe8b10d8d1fcc7986c2c3ff7e10becfccf76ae746a",
+      "stdoutSha256": "9e4a6c71be69db098df1e3a2b095757e78b05ebaa2bb0b3101372c8da463ec59",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_resize_text.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 3347,
+      "logSha256": "b368696b6ff02b0e398784280d1dc9e121566a3243d4266b8d2be5d4c8fed799",
+      "stdoutSha256": "53c56549e97786e26ef2c016d50b27df2448061efb88a2e64c36528e0f4370e3",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_panel_delete.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1603,
+      "logSha256": "6c7eb53984b17a384f2b8b5972119216887e1d6ddff1027d6331f263beb49bac",
+      "stdoutSha256": "19330a25e2f3b27ae0e49e39cbeca5ad64bac74f8c4d7286db42d88d8899055d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_mobile_dom_preview.cjs",
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1505,
+      "logSha256": "5b0d03c3aa2853cf00fb5171f36aa6466f9f3c123e903548654a3626722e11e8",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "d3f019180f190f6251094f82038e02f6976d218874001f2d22eae1628200b212"
+    },
+    {
+      "command": "node scripts/test_studio_mark_styles.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2368,
+      "logSha256": "c59738c18389baee52c558f7103b32145dd754ad703ca15ddf8b1573ed98da15",
+      "stdoutSha256": "6567c5c6a102f30ea806e64c167b2d2f8a0008410785bdfdce25fd4f9f82dd07",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_mark_controls.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2160,
+      "logSha256": "872d49c349fcf18517b198aff0baaaf10737408144f3530a2419dbce04fd16aa",
+      "stdoutSha256": "da67f43dfa509fee1c10c9e6f233e743d84ce74a5035e155cbc9a9d86db8c727",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_insets.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 3065,
+      "logSha256": "390f3c2eb146772d93f468f578071bf8ba43c593bf684b4850f4e0488da2c793",
+      "stdoutSha256": "f032e4d79ac5bd786c7d76fab8a95b440e5d5fb198f1bcf6d86e6625e9f0d131",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_color.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1625,
+      "logSha256": "b65e1522618b64d5c52e1d919f3ad90c15e64799e8431e227c8cec3b53b364a1",
+      "stdoutSha256": "c749bea6979866c096be8b5249433630cb7032724da83c8236712acd85ea42e2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_color_ui.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2992,
+      "logSha256": "65028120e3ae9571494bf2a2e8b999ff01ef1927348f3e7e5dc8d29eab582ceb",
+      "stdoutSha256": "8e5026ae1f04b9e5e508e49cc8e991df756496a0e26d6fee31b5bd7a7703d0dd",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_color_roundtrip.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1769,
+      "logSha256": "b16cae43bad442119368ddca99794d0f946060472a796e965472659423f9d15f",
+      "stdoutSha256": "f8dab99d65c3ecdb71e01643fca2f6c6156c8fb0083a5fccee07380a251433f2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_display_statistics.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 250,
+      "logSha256": "1e9e1495a78e22a54678f7f496e48a70dcd9325db68b38bf4afbebb596db9915",
+      "stdoutSha256": "1d970e1faa11bd829ebd50e5c7576537c7233ad8b697321c154eac839e55d9ce",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_links.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1623,
+      "logSha256": "6d830401fd1f2603f52aacc048db6a1320b67ae96bd637197923913add37f744",
+      "stdoutSha256": "0ce2a918006dfa9257202316bf7cdfad8c265f284cc9c04a792c7c94983bf0d1",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_links_ui.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 2187,
+      "logSha256": "fa4294799d9976e44a9cba3580b349e473c0fb7b3315b475957288ece7a9fbd6",
+      "stdoutSha256": "6846ede968f265f4a9c4c0883a073f591e009284dafe3240b32602d4b723479c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_links_controller.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1691,
+      "logSha256": "6d29a12e757f7ed97b17b530087241811b46d68a4e03918852387e1ee90afecc",
+      "stdoutSha256": "29e4be85485d4f56e496b22783638880c7fc934df567ff0bac0a2d4d838ec9f4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_insets_ui.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1521,
+      "logSha256": "c9c58ab2b635e97907f5db2ba5865716e17148b2c021b7cf41a993e2b01aa42f",
+      "stdoutSha256": "f6943753872a197126e28c4159353c52a4ee6c0a7d01a242de035499199d5eab",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_insets_controller.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1932,
+      "logSha256": "f6b6873c80f40d2a892868323494352f59edaa9b901e6c2dbec219ab562775ab",
+      "stdoutSha256": "a56a47617f1b45229cceb6c2897857a988a1329d58afc08b6306126f7b9a013b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_image_insets_integration.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1696,
+      "logSha256": "08bf5931b0294f15e69e3bccf22bc0336d6585bca330db06a86a2b627a5fd7f4",
+      "stdoutSha256": "ccfab4a8a8cc86a3a49076eccf60bed56432960a0093b2f1b967be764171683e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_update_check.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1607,
+      "logSha256": "27616f3d1213a150a4a8de728e2690e5fa98e45ae81ffda3ab789b89598202a6",
+      "stdoutSha256": "a8ad77a703300c8dfd6ed12c0f3efacef0838ab9ce802989bd9ace9bdcbc1033",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_update_install.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 3223,
+      "logSha256": "1699b144bf04be72d7ae36d0c56fd7d66b5f6982ba7128c9f4e2535ff3ee7297",
+      "stdoutSha256": "4f2b490db6caa76fe6fbf665c8ccab38cc0d09011c57e5d420630ff18a171ccd",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_update_transport.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 106,
+      "logSha256": "c7017bf060432da384291e3fa1153413a74e31699f9d20bb435ee6faed318939",
+      "stdoutSha256": "ac63db61e66ce2bb1a7cd88f12467c7d8359fbec21943fe289e057eb04c8aa54",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_update_scene.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1077,
+      "logSha256": "a843cc1549cb761a7f83a2b00b67b9d12aa56643cde6b78fb62f9d7d8d52af9c",
+      "stdoutSha256": "c3a281155914ac3664f629d17be4c353bff2980601eb861c93bff996bc39d211",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_theme_controller.cjs",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1233,
+      "logSha256": "b4f779282cc616c54a17f65cda5d7d436d69561ac4a4661f5dfc7bb7ccdce0c5",
+      "stdoutSha256": "4c42c5dd0e28397b2fd1f7ce4e9ab2038b861b3a0be75300fa3f59f65bd8b2e7",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_theme_tokens.cjs --static",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 132,
+      "logSha256": "9c0536e4da1496f1b1f0452d2a8e1754539a0933cf9bdf3eaa239b9fbb830c54",
+      "stdoutSha256": "43499b42d8e0773f26be5027b6731ca1d772312a572dcf587c1f5188b7a0bde0",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/test_studio_compact_whitespace.cjs --dom",
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "wallMs": 1104,
+      "logSha256": "ea9077135d4332949b5f1cd2f8c3c3605daf615ee225471f1b9919b18a0604a9",
+      "stdoutSha256": "9ce9ac2f8d7bfbef99378715c22b9ab9be1eb88b888aa26acdac12b768ce10a6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "failedCase": {
+    "command": "node scripts/test_mobile_dom_preview.cjs",
+    "line": 79,
+    "actual": "var(--fs-font-lg)",
+    "expected": "16px",
+    "reason": "Existing JSDOM-only fixture loaded mobile CSS and compared the unresolved var() expression with a literal pixel value.",
+    "rawLogSha256": "5b0d03c3aa2853cf00fb5171f36aa6466f9f3c123e903548654a3626722e11e8"
+  },
+  "correction": {
+    "productionChanges": false,
+    "script": "scripts/test_mobile_dom_preview.cjs",
+    "scriptSha256": "1b003d9bd18661961ca630e7b3cadfaf18103464703d7d9e22b23d9a632ba49f",
+    "contract": "Retain per-control semantic var(--fs-font-lg) assertion and independently assert the production --fs-font-lg token is 16px.",
+    "rerunExitCode": 0,
+    "rerunLogSha256": "ef15c6cdfe3c3c3a4b221a8ee94cb72114bc69d6adedcc5fbf51eadbd2988c7d",
+    "actualChromeProof": "mobile-font-chrome.json"
+  },
+  "aggregate": {
+    "passed": 73,
+    "failed": 0,
+    "total": 73
+  },
+  "remoteInitialHeadCi": {
+    "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39031735117/job/117393384717",
+    "status": "failure",
+    "wasmStep": "success",
+    "mobileDomStep": "failure",
+    "failureMatchesLocal": true,
+    "logSha256": "e218fecd072992ad7492ea7406ef93ea504823ce8af2fef4854e325350e29549",
+    "scope": "Observed initial-head failure, not a corrected-head CI success claim."
+  },
+  "privateLogs": "Full stdout/stderr retained locally in ignored QA cache; public report includes only command results and hashes."
+}

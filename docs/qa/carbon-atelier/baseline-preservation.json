@@ -1,0 +1,11 @@
+{
+  "schema": "figure-studio-carbon-baseline-preservation/1",
+  "baselineCommit": "2c6d11a0b494c3668a929cc272482e74be58e0fe",
+  "filesChecked": 68,
+  "allFrozenFilesUnchanged": true,
+  "editorSha256": "9a284c2d4efb049e8331be0cc2d1614396f8323e780c7270efbd0ae9f26995b3",
+  "publicSourcesOnly": true,
+  "performanceRawSha256": "f250f087a67bae37db3043f8662428ae34653413efe6e1cd4266dd95441f28dc",
+  "videoDisclosure": "Actual Windows Chrome recordings retained in ignored local QA cache. All baseline video/project artwork is public UCI Iris, public-domain H&E or explicitly synthetic interaction fixtures.",
+  "performanceProtocolCorrection": "Initial pilot used the rAF vsync timestamp, which can predate the input event. It is retained as superseded in the local cache and excluded. Formal accepted runs use performance.now() at callback execution; all accepted event latencies are non-negative."
+}

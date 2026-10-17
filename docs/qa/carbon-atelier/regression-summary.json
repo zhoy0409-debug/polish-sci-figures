@@ -1,0 +1,1015 @@
+{
+  "generatedUTC": "2026-10-17T11:37:27.908Z",
+  "status": "completed",
+  "scope": "Source regressions with no real browser launch, Windows build or installed updater access. Update Python tests use isolated synthetic files and explicit process/registration fixtures.",
+  "sourceHEAD": "2c6d11a0b494c3668a929cc272482e74be58e0fe",
+  "tests": [
+    {
+      "kind": "python",
+      "script": "scripts/test_studio_updates.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": null,
+      "passed": true,
+      "executionContext": "Isolated fixture rerun with localhost socket access",
+      "originalElapsedMs": 1184,
+      "cases": 11,
+      "unittestSeconds": 0.623
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_update_check.cjs",
+      "args": [
+        "--dom"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 2197,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "desktop/test_windows_updater.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": null,
+      "passed": true,
+      "executionContext": "Isolated fixture rerun with localhost socket access",
+      "originalElapsedMs": 2503,
+      "cases": 14,
+      "unittestSeconds": 3.119
+    },
+    {
+      "kind": "python",
+      "script": "scripts/validate_skill_structure.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 162,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_update_install.cjs",
+      "args": [
+        "--dom"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 4043,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_update_transport.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 175,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_update_scene.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1950,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_theme_controller.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 2229,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_theme_tokens.cjs",
+      "args": [
+        "--static"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 293,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_state.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 343,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_header_menu.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 185,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_mobile_ui.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 193,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_new_project.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 230,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_display_names.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 216,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_easy_statistics.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 229,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_literature.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 994,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_variant_styles.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 484,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_selection_commands.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1877,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_selection_transform_dom.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1642,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_layout_lock_integration.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 2068,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_workspace_layout.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 152,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_quick_toolbar.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 175,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_experience_tools.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1372,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_font_replacement.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1348,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_rich_text_regression.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 182,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "skills/polish-sci-figures/scripts/test_figure_studio.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 20972,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_data_text_preservation.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 4623,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_data_validation.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 206,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "scripts/test_studio_statistics.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": null,
+      "passed": true,
+      "executionContext": "Isolated fixture rerun with localhost socket access",
+      "originalElapsedMs": 8368,
+      "cases": 20,
+      "unittestSeconds": 6.553
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_statistical_metadata.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 7553,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_axis_settings_async.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1433,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_axis_settings_ui.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1390,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_border_replacement.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 194,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_image_color.cjs",
+      "args": [
+        "--dom"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1795,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_image_color_ui.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 3116,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_image_color_roundtrip.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1895,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_image_display_statistics.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 181,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_image_links.cjs",
+      "args": [
+        "--dom"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 2261,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_image_links_ui.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 2337,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_image_links_controller.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 2002,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_image_insets_integration.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1203,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_tiff_export.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 471,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_panel_export.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 190,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_browser_transport.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 197,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_studio_native_download.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 152,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_figure_discovery.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 170,
+      "passed": true
+    },
+    {
+      "kind": "javascript",
+      "script": "scripts/test_discovery_literature.cjs",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 396,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "scripts/test_figure_discovery.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 27830,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "scripts/test_studio_axis_settings.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 2982,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "scripts/test_studio_axis_formatters.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 738,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "scripts/test_studio_axes_regression.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 4991,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "skills/make-sci-data-figures/scripts/test_figure_workbench.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 16800,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "skills/polish-sci-figures/scripts/test_font_policy.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 6146,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "skills/polish-sci-figures/scripts/test_figure_text_qa.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 981,
+      "passed": true
+    },
+    {
+      "kind": "python",
+      "script": "scripts/test_release_versions.py",
+      "args": [],
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 452,
+      "passed": true
+    }
+  ],
+  "syntax": [
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/alignment-icons.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/axis-editing.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/axis-settings-ui.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/canvas-clipboard.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/catalogue.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/compact-whitespace.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/component-style.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/discovery-offline.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/discovery-ui.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/discovery.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/duplicate-check.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/duplicate-review.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/duplicate-viewer.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/element-insertions.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/experience-tools.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/gallery-contracts.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/grid-resize-ui.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/group-spacing.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/i18n.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/image-color-ui.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/image-color.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/image-insets-controller.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/image-insets-ui.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/image-insets.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/image-links-controller.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/image-links-ui.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/image-links.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/layers-panel.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/layout-lock.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/legacy-stat-cleanup.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/library.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/literature.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/mark-style.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/master-frame.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/memory.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/mobile-ui.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/object-borders.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/panel-commands.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/research-discovery.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/rich-text.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/selection-resize-controller.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/selection-transform-dom.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/selection-transform.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/statistical-line-geometry.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/statistical-metadata.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/studio.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/text-formatting.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/text-tools-ui.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/theme-controller.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/third-party-notices.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/tiff-export.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/update-check.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/update-scene.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/vector-interaction.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "skills/polish-sci-figures/assets/figure-studio/workspace-layout.js",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/test_studio_update_real_windows.cjs",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/test_studio_update_scene_browser.cjs",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/test_studio_theme_tokens.cjs",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/test_studio_update_postverify.cjs",
+      "exitCode": 0,
+      "passed": true
+    }
+  ],
+  "deferred": [
+    {
+      "script": "scripts/test_studio_update_scene_browser.cjs",
+      "reason": "Previously verified controlled Chrome fixture; no browser run during the real updater operation."
+    },
+    {
+      "script": "scripts/test_studio_update_real_windows.cjs",
+      "reason": "Only root operates the real isolated installed updater."
+    },
+    {
+      "script": "scripts/test_studio_theme_tokens.cjs",
+      "args": [],
+      "reason": "Browser contrast mode deferred here; --static is included and does not certify contrast."
+    },
+    {
+      "script": "desktop/build_windows.py",
+      "reason": "Packaging audit only; no Windows build or stage mutation in this run."
+    }
+  ],
+  "buildAudit": {
+    "skillAssetsAutomaticallyIncluded": true,
+    "windowsExplicitAssetListChangeNeeded": false,
+    "missingSupportFilesBeforePatch": [
+      "docs/update-scene-design.md",
+      "scripts/build_update_mascot_scene.py",
+      "docs/qa/carbon-atelier/update-scene-controlled.json",
+      "docs/qa/carbon-atelier/regression-summary.json"
+    ],
+    "ciAdded": [
+      "node scripts/test_studio_update_scene.cjs",
+      "node scripts/test_studio_theme_controller.cjs",
+      "node scripts/test_studio_theme_tokens.cjs --static"
+    ],
+    "releaseSupportFilesAddedOnlyAfterFilesExist": true,
+    "androidSourceVersionCode": 14,
+    "nativeMobileBuildOrDeviceTestPerformed": false
+  },
+  "summary": {
+    "scripts": 55,
+    "passed": 55,
+    "failed": 0,
+    "syntax": 59,
+    "syntaxPassed": 59,
+    "targetedRefresh": 4
+  },
+  "failures": [],
+  "completedUTC": "2026-10-17T11:34:04.863Z",
+  "retainedAttempts": [
+    {
+      "kind": "python",
+      "script": "scripts/test_studio_updates.py",
+      "args": [],
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 1184,
+      "passed": false,
+      "reason": "Network sandbox blocked the test fixture socket with WinError 10013; no protocol assertion failure.",
+      "resolvedBy": "Same unmodified test rerun outside network sandbox against its own ephemeral loopback fixture."
+    },
+    {
+      "kind": "python",
+      "script": "desktop/test_windows_updater.py",
+      "args": [],
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 2503,
+      "passed": false,
+      "reason": "Network sandbox blocked the test fixture socket with WinError 10013; no protocol assertion failure.",
+      "resolvedBy": "Same unmodified test rerun outside network sandbox against its own ephemeral loopback fixture."
+    },
+    {
+      "kind": "python",
+      "script": "scripts/test_studio_statistics.py",
+      "args": [],
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "elapsedMs": 8368,
+      "passed": false,
+      "reason": "Network sandbox blocked the test fixture socket with WinError 10013; no protocol assertion failure.",
+      "resolvedBy": "Same unmodified test rerun outside network sandbox against its own ephemeral loopback fixture."
+    }
+  ],
+  "targetedRefresh": [
+    {
+      "script": "scripts/test_studio_update_check.cjs",
+      "args": [
+        "--dom"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "elapsedMs": 1473,
+      "scope": "Targeted JS/DOM refresh after server-confirmed paused-display patch"
+    },
+    {
+      "script": "scripts/test_studio_update_install.cjs",
+      "args": [
+        "--dom"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "elapsedMs": 3208,
+      "scope": "Targeted JS/DOM refresh after server-confirmed paused-display patch"
+    },
+    {
+      "script": "scripts/test_studio_update_transport.cjs",
+      "args": [],
+      "exitCode": 0,
+      "passed": true,
+      "elapsedMs": 141,
+      "scope": "Targeted JS/DOM refresh after server-confirmed paused-display patch"
+    },
+    {
+      "script": "scripts/test_studio_update_scene.cjs",
+      "args": [],
+      "exitCode": 0,
+      "passed": true,
+      "elapsedMs": 1467,
+      "scope": "Targeted JS/DOM refresh after server-confirmed paused-display patch"
+    }
+  ],
+  "runtimeSnapshot": {
+    "beforeSHA256": "42936fb5233e10ee9a0d6fefe3ad4da83229fa47f90e337089b30244d7e18869",
+    "afterOriginalBroadRunSHA256": "42936fb5233e10ee9a0d6fefe3ad4da83229fa47f90e337089b30244d7e18869",
+    "changedDuringOriginalBroadRun": []
+  },
+  "currentSourceSHA256": {
+    "skills/polish-sci-figures/assets/figure-studio/update-check.js": "98d477f4f3eef24e9e0cd1cc32482d4817752ffb2098fd68fff67457965722bc",
+    "skills/polish-sci-figures/assets/figure-studio/update-scene.js": "03939130918187a3213b1cf200b07818b68aa4cddfa82768c2c70f52c0ccb8b6",
+    "skills/polish-sci-figures/assets/figure-studio/update-scene.css": "ccc4d39de0c6c78bd76d18b23af5ccedf4c2a65b4092e3c5d77e05541ac2606c",
+    "skills/polish-sci-figures/assets/figure-studio/theme-controller.js": "5b4024d2d0b650240ceb362433f24a787127cb925b19ab661517fa713346c9f5",
+    "skills/polish-sci-figures/assets/figure-studio/theme-tokens.css": "27bfb2584950d3200fc72a2fd1fc309cb1ca8de1b748233a7a4f77bbfcc7e8ff",
+    "skills/polish-sci-figures/assets/figure-studio/theme.css": "0f0b3b36c46b97f90bbc0373b92c8f990e53b513ea158ef4fb4fa4981df8d49c",
+    "skills/polish-sci-figures/assets/figure-studio/mascot-scene.svg": "e32271bdfd081ec6ab637d9c9638ddf4ebf99499fbd910886a84da72a651d5ff"
+  },
+  "pendingChecks": []
+}

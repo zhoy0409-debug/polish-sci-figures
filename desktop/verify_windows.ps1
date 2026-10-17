@@ -1,4 +1,4 @@
-param([string]$Version = '0.1.20', [string]$PackageRoot = '')
+param([string]$Version = '0.1.21', [string]$PackageRoot = '')
 $ErrorActionPreference = 'Stop'
 $studioRoot = Split-Path -Parent $PSScriptRoot
 $studioCache = [IO.Path]::GetFullPath((Join-Path $studioRoot '.cache'))
@@ -25,7 +25,7 @@ $studioSentinel = Join-Path $studioData 'project-backup-test.json'
 $studioSentinelHash = (Get-FileHash -LiteralPath $studioSentinel).Hash
 function Invoke-StudioInstaller([string]$label) {
     $studioLog = Join-Path $studioProof "$label.log"
-    $studioArgs = '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /NOICONS /TASKS="" /DIR="' + $studioInstall + '" /LOG="' + $studioLog + '"'
+    $studioArgs = '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /NOCLOSEAPPLICATIONS /STUDIOUPDATE=1 /NOICONS /TASKS="" /DIR="' + $studioInstall + '" /LOG="' + $studioLog + '"'
     $studioProcess = Start-Process -FilePath $studioSetup -ArgumentList $studioArgs -WindowStyle Hidden -PassThru -Wait
     if ($studioProcess.ExitCode -ne 0) { throw "$label failed: $($studioProcess.ExitCode)" }
 }

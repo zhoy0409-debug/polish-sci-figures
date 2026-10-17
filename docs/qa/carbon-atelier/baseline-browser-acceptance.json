@@ -1,0 +1,153 @@
+{
+  "schema": "figure-studio-carbon-browser-acceptance/1",
+  "label": "baseline",
+  "status": "PASS",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "url": "http://127.0.0.1:18960/",
+  "startedAt": "2026-10-17T11:17:14.008Z",
+  "scope": "Actual Windows Google Chrome with isolated temporary context. Browser DPR emulation is not actual Windows 125/150% system scaling.",
+  "sources": [
+    {
+      "id": "iris",
+      "url": "https://archive.ics.uci.edu/dataset/53/iris",
+      "doi": "10.24432/C56C76",
+      "license": "CC BY 4.0",
+      "purpose": "Existing real-data editable project; no statistical independence claim"
+    },
+    {
+      "id": "public-he-skin",
+      "sha256": "8759fe080509712163453f4b17106582b8513e73b0788d80160abf840e272075",
+      "license": "Public domain dedication by author Kilbad; distributed by scikit-image",
+      "url": "https://scikit-image.org/docs/0.25.x/api/skimage.data.html#skimage.data.skin"
+    }
+  ],
+  "screens": [
+    {
+      "file": "baseline-legacy-1440x900-dpr1-new-project.png",
+      "state": "new-project",
+      "theme": "legacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "devicePixelRatio": 1.0000000298023224,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      }
+    },
+    {
+      "file": "baseline-legacy-1440x900-dpr1-svg-text.png",
+      "state": "svg-text",
+      "theme": "legacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "devicePixelRatio": 1.0000000298023224,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      }
+    },
+    {
+      "file": "baseline-legacy-1440x900-dpr1-axis-properties.png",
+      "state": "axis-properties",
+      "theme": "legacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "devicePixelRatio": 1.0000000298023224,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      }
+    },
+    {
+      "file": "baseline-legacy-1440x900-dpr1-pathology-image.png",
+      "state": "pathology-image",
+      "theme": "legacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "devicePixelRatio": 1.0000000298023224,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": [
+          "imageToolsDialog"
+        ]
+      }
+    },
+    {
+      "file": "baseline-legacy-1440x900-dpr1-duplicate-screening.png",
+      "state": "duplicate-screening",
+      "theme": "legacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "devicePixelRatio": 1.0000000298023224,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": [
+          "imageDuplicateDialog"
+        ]
+      }
+    },
+    {
+      "file": "baseline-legacy-1440x900-dpr1-discovery-candidates-example-data.png",
+      "state": "discovery-candidates-example-data",
+      "theme": "legacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "devicePixelRatio": 1.0000000298023224,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": [
+          "figureDiscoveryDialog"
+        ]
+      }
+    }
+  ],
+  "checks": [],
+  "themeIsolation": [
+    {
+      "theme": "legacy",
+      "svgSha256": "435584fe43760b818e475e3a28db5a450e12737b58c8d2e1e4818b62a3546316",
+      "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+      "pixels": {
+        "width": 2880,
+        "height": 2160,
+        "pixelSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      },
+      "sourceTableSha256": "627b9f8e89f8fad5290ba854731720d4afd002081a6de64834d397d3bc51323e",
+      "sourceSvgSha256": "94cc547fe838040f314d443b7d32247477f70285bdf59453e188b0e039c2db89"
+    }
+  ],
+  "remoteRequests": [],
+  "errors": [],
+  "finishedAt": "2026-10-17T11:17:30.756Z"
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "figure-studio-carbon-windows-acceptance-index/1",
+  "generatedUTC": "2026-10-17T12:27:21.947833+00:00",
+  "scope": "Only explicitly supplied completed Windows proofs; release approval is separate",
+  "portable": {
+    "status": "PASS",
+    "report": "windows-portable-verification.json",
+    "reportSha256": "744b01d3476da4ab7e3827f0ed107ef1056b0f17bdf363b5e134d8dc58cbbb8a"
+  },
+  "cliUpgrade": {
+    "status": "PASS",
+    "report": "windows-cli-upgrade-verification.json"
+  },
+  "actualOsScales": {
+    "100": {
+      "status": "PASS",
+      "report": "windows-os-scale-100-verification.json"
+    },
+    "125": {
+      "status": "PASS",
+      "report": "windows-os-scale-125-verification.json"
+    },
+    "150": {
+      "status": "PASS",
+      "report": "windows-os-scale-150-verification.json"
+    }
+  },
+  "preservedInitialFailures": [
+    {
+      "scalePercent": 125,
+      "status": "FAIL",
+      "report": "windows-os-scale-125-initial-failure.json"
+    }
+  ],
+  "packaging": "Post-build evidence; do not embed final-archive hash reports in SUPPORT_FILES"
+}

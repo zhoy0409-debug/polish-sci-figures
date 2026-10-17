@@ -6,11 +6,17 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 ## Install and open
 
-1. Download the [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.20/polish-sci-figures-Studio-0.1.20-Setup-x64.exe), then run it and follow the installer for your Windows user account.
+1. Download the [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.21/polish-sci-figures-Studio-0.1.21-Setup-x64.exe), then run it and follow the installer for your Windows user account.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
 3. Choose **English** or **中文** at the top right. Opening the shortcut again opens the editor already running.
 
 For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-Portable-x64.zip` before running `Figure Studio.exe`. Keep its adjacent `_internal` folder.
+
+## Choose appearance and find tools
+
+In Studio 0.1.21, open **Appearance → Interface theme** for default **Carbon Atelier** or light **Pearl Pro**. **Canvas surround** changes the area around the white figure page to neutral, dark or light. Figure colours, image pixels and exported artwork are independent of these preferences. The current browser remembers your choice; if it cannot save the preference, the menu explains this.
+
+The inspector identifies the selected object type and prioritises related controls; expand other headings for more settings. Choose **Find command** or press **Ctrl + K** to search for `theme`, `border`, `duplicates` or `axis`. Search opens the existing tools. See the [appearance and update guide](../docs/figure-studio-appearance.md) for the exact controls, and the [0.1.21 release notes](../docs/release-notes-v1.4.21.md) for this build's validation status.
 
 
 ## Start with Figure Discovery
@@ -51,13 +57,13 @@ Application settings, the workspace page and logs are under `%LOCALAPPDATA%\Figu
 
 Closing a browser tab leaves the local service running. To stop it, choose **Quit** in the small Figure Studio launcher window, or close that window. Accepted calculations finish before the service exits.
 
-**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.20 installer. The older update entry only opens a download; it cannot install this upgrade for you.
+**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.21 installer. The older update entry only opens a download; it cannot install this upgrade for you.
 
-**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.20 installer manually. Version 0.1.20 includes the long-path fix introduced in 0.1.10.
+**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.21 installer manually. Version 0.1.21 includes the long-path fix introduced in 0.1.10.
 
-**Future updates from the 0.1.20 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
+**Future updates from the 0.1.21 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
 
-The update progress shows download, preparation and installation stages with a small moving companion. Once the installer has taken over, an expected service shutdown retains the neutral installation message rather than appearing as a failed update. A connection problem before that handoff has its own retry action.
+The update window's cat and dog follow the actual download, verification and installation stage. Download 100% still requires integrity verification; wait for **Ready when you are** before confirming installation. Clear **Character animation (respects reduced motion)** to keep them still; progress and controls keep updating. A system reduced-motion preference also stops movement. Once the installer has taken over, an expected service shutdown retains the neutral installation message rather than appearing as a failed update. A connection problem before that handoff has its own **Check progress** action.
 
 Normal upgrades and uninstallation do not deliberately delete the user data directory. Browser records remain subject to browser storage behavior and are not guaranteed to persist indefinitely. Unsigned releases may show an unknown-publisher or Windows security message; check the download source and the publisher's supplied checksum.
 

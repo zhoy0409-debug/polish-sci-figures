@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152 168" fill="none" class="fs-update-character-source">
+  <title>Figure Studio original silver and cream Maine Coon</title>
+  <desc>Original layered vector source. Tufted ears, long muzzle, cream ruff and a full silver tail. Neutral, working and greeting paw layers are independently editable.</desc>
+  <style>.fs-update-character-source .mascot-paw-work,.fs-update-character-source .mascot-paw-greet{display:none}</style>
+  <defs>
+    <linearGradient id="fs-update-cat-coat" x1="43" y1="42" x2="108" y2="152" gradientUnits="userSpaceOnUse"><stop stop-color="#B9BDC2"/><stop offset=".52" stop-color="#999EA5"/><stop offset="1" stop-color="#727982"/></linearGradient>
+    <linearGradient id="fs-update-cat-cream" x1="66" y1="66" x2="78" y2="146" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF8E9"/><stop offset="1" stop-color="#DFD8C9"/></linearGradient>
+    <linearGradient id="fs-update-cat-tail-shade" x1="11" y1="91" x2="62" y2="143" gradientUnits="userSpaceOnUse"><stop stop-color="#B7BBC1"/><stop offset="1" stop-color="#747C86"/></linearGradient>
+  </defs>
+  <g class="mascot-cat-tail">
+    <path d="M58 143C39 153 12 149 8 128C5 112 13 100 11 89L21 95L23 86C36 98 35 111 32 120C30 130 38 135 51 129Z" fill="url(#fs-update-cat-tail-shade)" stroke="#68717B" stroke-width="1.3" stroke-linejoin="round"/>
+    <path d="M14 105C22 112 25 120 21 130M18 141C24 141 27 138 29 135" stroke="#D3D4D4" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <g class="mascot-cat-body">
+    <path d="M55 74C46 86 45 98 44 114L38 123L43 124C37 132 40 144 48 147L50 155H111L113 149C125 145 128 136 122 124L126 122L118 111C117 94 110 81 101 75Z" fill="url(#fs-update-cat-coat)" stroke="#707985" stroke-width="1.3" stroke-linejoin="round"/>
+    <path d="M57 78L64 75H96L105 83L101 91L107 96L100 100L104 110L95 108L91 122L84 116L75 125L72 115L63 120L62 108L53 109L58 98L51 95L59 89Z" fill="url(#fs-update-cat-cream)"/>
+    <path d="M50 123L57 120M47 133L53 130M112 123L117 128M110 139L117 137" stroke="#C9CCD0" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M67 114C65 126 63 139 65 151C64 158 53 158 50 153C49 145 51 133 52 126" fill="url(#fs-update-cat-cream)" stroke="#92989E" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M53 151L53 155M58 151L58 156" stroke="#AAA79E" stroke-width=".9" stroke-linecap="round"/>
+    <g class="mascot-cat-rest-arm"><path d="M97 113C101 130 103 143 101 151C102 158 114 158 116 152C115 141 112 128 109 122" fill="url(#fs-update-cat-cream)" stroke="#92989E" stroke-width="1.1" stroke-linecap="round"/><path d="M106 151V156M111 151V155" stroke="#AAA79E" stroke-width=".9" stroke-linecap="round"/></g>
+  </g>
+  <g class="mascot-cat-head">
+    <path d="M49 41L43 16L49 20L50 8L61 24L67 29C78 25 91 26 100 31L109 23L119 11L118 24L123 21L118 48L123 59L118 60L121 69L111 71L109 80L100 79C88 87 68 86 58 79L49 80L48 71L38 68L42 61L37 57Z" fill="url(#fs-update-cat-coat)" stroke="#6B7480" stroke-width="1.25" stroke-linejoin="round"/>
+    <path d="M50 23L55 43L64 33ZM114 26L104 37L115 45Z" fill="#C5B5B3"/>
+    <path d="M53 31L56 40M112 32L109 39" stroke="#E7DCD3" stroke-width="2" stroke-linecap="round"/>
+    <path d="M70 32L75 43L79 34L85 42L90 33" stroke="#777F89" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M44 53L58 55L47 60M115 51L104 56L116 59" stroke="#D5D4CF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M56 51C61 46 67 46 72 50M91 49C97 45 103 46 107 50" stroke="#747B82" stroke-width="1.4" stroke-linecap="round"/>
+    <g class="mascot-cat-eyes"><path d="M56 54C59 49 67 49 71 53C67 60 60 59 56 54Z" fill="#BDD0B9" stroke="#59645E" stroke-width="1"/><ellipse cx="64" cy="54" rx="1.6" ry="3.6" fill="#293638"/><circle cx="65" cy="52.2" r=".8" fill="#FFFDF4"/><path d="M91 52C95 48 102 48 106 52C102 58 95 58 91 52Z" fill="#BDD0B9" stroke="#59645E" stroke-width="1"/><ellipse cx="99" cy="52.6" rx="1.6" ry="3.5" fill="#293638"/><circle cx="100" cy="51" r=".8" fill="#FFFDF4"/></g>
+    <path d="M69 60C73 55 80 55 83 58C88 53 96 56 98 61C102 69 94 75 84 75C74 76 66 70 69 60Z" fill="#F8EFDF"/>
+    <path d="M78 60Q83 57 88 60L83 64Z" fill="#9D7774" stroke="#806665" stroke-width=".8" stroke-linejoin="round"/>
+    <path d="M83 64V67M83 67Q78 71 74 68M83 67Q88 71 92 67" stroke="#776F6D" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M72 65L52 62M72 68L51 69M94 63L113 59M95 67L115 67" stroke="#F7F1E6" stroke-width=".9" stroke-linecap="round"/>
+  </g>
+  <path d="M59 84Q81 94 102 83L99 90Q80 100 61 91Z" fill="#3D9E89" stroke="#2F756A" stroke-width=".8"/><path d="M91 93L101 91L105 103L96 99L91 106Z" fill="#62BDA6"/>
+  <g class="mascot-cat-paw mascot-paw-work"><path d="M105 102Q116 105 124 113L137 111Q143 111 142 117Q142 123 133 124L119 125Q108 123 102 116Z" fill="url(#fs-update-cat-cream)" stroke="#92989E" stroke-width="1.1"/><path d="M136 117L141 117" stroke="#AAA79E" stroke-linecap="round"/></g>
+  <g class="mascot-cat-paw mascot-paw-greet"><path d="M104 109Q113 105 116 89L114 78Q114 72 120 72Q125 72 127 80L130 89Q129 111 116 120Z" fill="url(#fs-update-cat-cream)" stroke="#92989E" stroke-width="1.1"/><path d="M117 79L125 77M119 83L128 82" stroke="#AAA79E" stroke-width=".8" stroke-linecap="round"/></g>
+</svg>

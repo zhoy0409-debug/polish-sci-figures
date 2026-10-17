@@ -1,0 +1,381 @@
+{
+  "schema": "figure-studio-carbon-windows-os-scale/1",
+  "status": "PASS",
+  "sourceProofSha256": "880158a0e058b9ef53b87f63c0492073a2a859ca6fb89163b1c964fbeabb8e60",
+  "generatedUTC": "2026-10-17T12:22:36.023Z",
+  "browser": "155.0.8059.82",
+  "operatorDeclaredWindowsScalePercent": 125,
+  "browserDprEmulation": false,
+  "osSettingChangedByTestScript": false,
+  "viewportConfiguration": null,
+  "windowPolicy": "Native maximized Chrome; measured dimensions are recorded, not assigned to a fixed CSS resolution",
+  "servedBuild": {
+    "currentVersion": "0.1.21",
+    "suiteVersion": "1.4.21",
+    "platform": "windows"
+  },
+  "initialGeometry": {
+    "devicePixelRatio": 1.25,
+    "innerWidth": 2048,
+    "innerHeight": 1146,
+    "outerWidth": 2048,
+    "outerHeight": 1232,
+    "screenX": 0,
+    "screenY": 0,
+    "screen": {
+      "width": 2048,
+      "height": 1280,
+      "availWidth": 2048,
+      "availHeight": 1232,
+      "availLeft": 0,
+      "availTop": 0,
+      "colorDepth": 24,
+      "pixelDepth": 24
+    },
+    "document": {
+      "clientWidth": 2048,
+      "clientHeight": 1146,
+      "scrollWidth": 2048,
+      "scrollHeight": 1146
+    },
+    "visualViewport": {
+      "width": 2048,
+      "height": 1145.5999755859375,
+      "scale": 1,
+      "offsetLeft": 0,
+      "offsetTop": 0
+    }
+  },
+  "finalGeometry": {
+    "devicePixelRatio": 1.25,
+    "innerWidth": 2048,
+    "innerHeight": 1146,
+    "outerWidth": 2048,
+    "outerHeight": 1232,
+    "screenX": 0,
+    "screenY": 0,
+    "screen": {
+      "width": 2048,
+      "height": 1280,
+      "availWidth": 2048,
+      "availHeight": 1232,
+      "availLeft": 0,
+      "availTop": 0,
+      "colorDepth": 24,
+      "pixelDepth": 24
+    },
+    "document": {
+      "clientWidth": 2048,
+      "clientHeight": 1146,
+      "scrollWidth": 2048,
+      "scrollHeight": 1146
+    },
+    "visualViewport": {
+      "width": 2048,
+      "height": 1145.5999755859375,
+      "scale": 1,
+      "offsetLeft": 0,
+      "offsetTop": 0
+    }
+  },
+  "sources": [
+    {
+      "id": "UCI Iris",
+      "doi": "10.24432/C56C76",
+      "license": "CC BY 4.0",
+      "inputProjectSHA256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5"
+    }
+  ],
+  "themeChecks": [
+    {
+      "theme": "carbon",
+      "surround": "neutral",
+      "persistsAfterReload": true,
+      "tableRowsExact": true,
+      "originalSVGExact": true,
+      "stateExact": true
+    },
+    {
+      "theme": "pearl",
+      "surround": "dark",
+      "persistsAfterReload": true,
+      "tableRowsExact": true,
+      "originalSVGExact": true,
+      "stateExact": true
+    }
+  ],
+  "updateChecks": [
+    {
+      "theme": "carbon",
+      "actualSceneState": "current",
+      "manualMotionOff": true,
+      "noDownloadOrInstall": true,
+      "summary": "You are up to date on this release channel",
+      "staleCachedResult": false,
+      "freshCurrentReleaseConfirmed": true
+    },
+    {
+      "theme": "pearl",
+      "actualSceneState": "current",
+      "manualMotionOff": true,
+      "noDownloadOrInstall": true,
+      "summary": "You are up to date on this release channel",
+      "staleCachedResult": false,
+      "freshCurrentReleaseConfirmed": true
+    }
+  ],
+  "visibleControlsChecked": 18,
+  "allControlsInsideViewport": true,
+  "autosaveEstablished": true,
+  "scientificTableSha256": "ca7d70f935e74618b78234d9e83d3c4893a91a9f8a884777aba237894feae71b",
+  "originalSvgSha256": "b68c3c82e9c1a9e6935d79d09e1402f3eff5c56d349dc9043977563b233c0d82",
+  "screenshots": [
+    {
+      "file": "os-125-carbon-workspace.png",
+      "sha256": "71f634e2420b22b620b443a7e82bfd1e4702cba03b84a5f55ecc1463a3fdf9a1",
+      "geometry": {
+        "devicePixelRatio": 1.25,
+        "innerWidth": 2048,
+        "innerHeight": 1146,
+        "outerWidth": 2048,
+        "outerHeight": 1232,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 2048,
+          "height": 1280,
+          "availWidth": 2048,
+          "availHeight": 1232,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 2048,
+          "clientHeight": 1146,
+          "scrollWidth": 2048,
+          "scrollHeight": 1146
+        },
+        "visualViewport": {
+          "width": 2048,
+          "height": 1145.5999755859375,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2560,
+        "height": 1433
+      }
+    },
+    {
+      "file": "os-125-carbon-actual-current.png",
+      "sha256": "ea3e69f0e56562f9c6dff75a21b9b37fd37d65b3c6db24f986b37511f369e1b9",
+      "geometry": {
+        "devicePixelRatio": 1.25,
+        "innerWidth": 2048,
+        "innerHeight": 1146,
+        "outerWidth": 2048,
+        "outerHeight": 1232,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 2048,
+          "height": 1280,
+          "availWidth": 2048,
+          "availHeight": 1232,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 2048,
+          "clientHeight": 1146,
+          "scrollWidth": 2048,
+          "scrollHeight": 1146
+        },
+        "visualViewport": {
+          "width": 2048,
+          "height": 1145.5999755859375,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2560,
+        "height": 1433
+      }
+    },
+    {
+      "file": "os-125-carbon-motion-off.png",
+      "sha256": "d0704d84d65b405ad6f16d7204a77b36198c4e1164564a1900a11206e69dce3b",
+      "geometry": {
+        "devicePixelRatio": 1.25,
+        "innerWidth": 2048,
+        "innerHeight": 1146,
+        "outerWidth": 2048,
+        "outerHeight": 1232,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 2048,
+          "height": 1280,
+          "availWidth": 2048,
+          "availHeight": 1232,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 2048,
+          "clientHeight": 1146,
+          "scrollWidth": 2048,
+          "scrollHeight": 1146
+        },
+        "visualViewport": {
+          "width": 2048,
+          "height": 1145.5999755859375,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2560,
+        "height": 1433
+      }
+    },
+    {
+      "file": "os-125-pearl-workspace.png",
+      "sha256": "1e2ff96f3cb4aa52c96179edef3a00753e0af0922ead3d51f15967a02a13ff2b",
+      "geometry": {
+        "devicePixelRatio": 1.25,
+        "innerWidth": 2048,
+        "innerHeight": 1146,
+        "outerWidth": 2048,
+        "outerHeight": 1232,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 2048,
+          "height": 1280,
+          "availWidth": 2048,
+          "availHeight": 1232,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 2048,
+          "clientHeight": 1146,
+          "scrollWidth": 2048,
+          "scrollHeight": 1146
+        },
+        "visualViewport": {
+          "width": 2048,
+          "height": 1145.5999755859375,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2560,
+        "height": 1433
+      }
+    },
+    {
+      "file": "os-125-pearl-actual-current.png",
+      "sha256": "64a4ed3a00beea80057c4c27c3ac1157203d03417f232971d97c913ccffdd95d",
+      "geometry": {
+        "devicePixelRatio": 1.25,
+        "innerWidth": 2048,
+        "innerHeight": 1146,
+        "outerWidth": 2048,
+        "outerHeight": 1232,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 2048,
+          "height": 1280,
+          "availWidth": 2048,
+          "availHeight": 1232,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 2048,
+          "clientHeight": 1146,
+          "scrollWidth": 2048,
+          "scrollHeight": 1146
+        },
+        "visualViewport": {
+          "width": 2048,
+          "height": 1145.5999755859375,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2560,
+        "height": 1433
+      }
+    },
+    {
+      "file": "os-125-pearl-motion-off.png",
+      "sha256": "64a4ed3a00beea80057c4c27c3ac1157203d03417f232971d97c913ccffdd95d",
+      "geometry": {
+        "devicePixelRatio": 1.25,
+        "innerWidth": 2048,
+        "innerHeight": 1146,
+        "outerWidth": 2048,
+        "outerHeight": 1232,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 2048,
+          "height": 1280,
+          "availWidth": 2048,
+          "availHeight": 1232,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 2048,
+          "clientHeight": 1146,
+          "scrollWidth": 2048,
+          "scrollHeight": 1146
+        },
+        "visualViewport": {
+          "width": 2048,
+          "height": 1145.5999755859375,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2560,
+        "height": 1433
+      }
+    }
+  ],
+  "remoteRequestCount": 0,
+  "errorCount": 0,
+  "limitations": [
+    "The operator must pair this report with Windows Display settings evidence. DOM DPR alone does not identify which OS setting produced it.",
+    "Screenshot sizes are actual browser content pixel dimensions; they do not include the Chrome toolbar or the Windows desktop.",
+    "This run does not measure GPU utilization, frame-rate performance or other display configurations."
+  ]
+}

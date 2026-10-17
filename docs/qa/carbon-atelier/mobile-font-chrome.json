@@ -1,0 +1,33 @@
+{
+  "schema": "figure-studio-carbon-mobile-font/1",
+  "scope": "Actual headless Windows Chrome CSS fixture at 420x800 CSS pixels and fixed DPR1. Both themes, production CSS. Does not claim a mobile device or OS scaling validation.",
+  "sourceHashes": {
+    "theme-tokens.css": "e459d26f0ad10fb276bffb4f35d0a0bb6223e613b8f49add286b24c14182adb9",
+    "theme.css": "0f0b3b36c46b97f90bbc0373b92c8f990e53b513ea158ef4fb4fa4981df8d49c",
+    "mobile-ui.css": "97481bc44bedb7d4310c4e47bb25e613e27a5df1e0507ecba61db146dd8b9f57"
+  },
+  "results": [
+    {
+      "theme": "carbon",
+      "computedFontSizes": {
+        "text": "16px",
+        "number": "16px",
+        "property": "16px",
+        "select": "16px"
+      },
+      "passed": true
+    },
+    {
+      "theme": "pearl",
+      "computedFontSizes": {
+        "text": "16px",
+        "number": "16px",
+        "property": "16px",
+        "select": "16px"
+      },
+      "passed": true
+    }
+  ],
+  "browser": "155.0.8059.82",
+  "status": "PASS"
+}

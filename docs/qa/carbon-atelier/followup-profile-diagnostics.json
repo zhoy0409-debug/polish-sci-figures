@@ -1,0 +1,343 @@
+{
+  "schema": "figure-studio-carbon-followup-profile/1",
+  "status": "DIAGNOSTIC_ONLY",
+  "scope": "Final frozen source; actual headful Windows Chrome, 5000 explicitly synthetic editable elements; two rounds of selection, drag and tab. No video. Small CDP-instrumented attribution experiment, not formal P95 or population inference. Trace totals may overlap.",
+  "htmlSha256": "5081c161d61e4a0547cec6340399152308c55df0747829f323fbf465e74d750b",
+  "cases": [
+    {
+      "label": "control",
+      "mode": "unaltered",
+      "browser": "155.0.8059.82",
+      "rawSha256": "3b9164fa91af2f8930b3a92380acc362f671503cdb8fa80a416a14c17fae9f6c",
+      "cpuSha256": "9746b55303837dc93cf4153068ca66d6d9b42ec5d74ff466b2eb598cc5e49c5f",
+      "traceSha256": "b0771f6333a5f034a9074671f284aa398619bc574bdb48d4057e41eade61d9da",
+      "operations": {
+        "select-text": {
+          "samples": 2,
+          "wallMs": [
+            468.59999999403954,
+            731.2999999821186
+          ],
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 144.888,
+            "Layout": 184.29199999999997,
+            "Paint": 107.778,
+            "FunctionCall": 585.4359999999999
+          }
+        },
+        "drag-shape": {
+          "samples": 2,
+          "wallMs": [
+            806.6999999880791,
+            956.0999999940395
+          ],
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 173.72,
+            "Layout": 166.047,
+            "Paint": 78.29899999999999,
+            "FunctionCall": 972.904
+          }
+        },
+        "switch-tab": {
+          "samples": 2,
+          "wallMs": [
+            1161,
+            376.69999998807907
+          ],
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 212.479,
+            "Layout": 163.889,
+            "Paint": 144.516,
+            "FunctionCall": 885.2810000000001
+          }
+        }
+      },
+      "resizeObservers": [
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "canvasQuickToolbar"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "layerObjects"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "viewport"
+          ]
+        }
+      ],
+      "themeControllerSampledSelf": [
+        {
+          "function": "setSelection",
+          "bundledLine": 10288,
+          "selfMs": 1.608
+        }
+      ]
+    },
+    {
+      "label": "post-initial-context-header-muted",
+      "mode": "mute-context-header",
+      "browser": "155.0.8059.82",
+      "rawSha256": "339f7543ec6236a3b004386d462efc6f20c0be1924cbaa959b915ed1454031cb",
+      "cpuSha256": "1ce87d302ffad2dd96f01b84d4d03dff4065a8e6d761db0bc0fa5d04a66aedeb",
+      "traceSha256": "f73eb2204292ef00c980a0a3f481dfb13ad3b25b48e1dbde7cde7e303447759c",
+      "operations": {
+        "select-text": {
+          "samples": 2,
+          "wallMs": [
+            541,
+            668.0999999940395
+          ],
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 177.428,
+            "Layout": 209.39299999999997,
+            "Paint": 126.18200000000002,
+            "FunctionCall": 595.8509999999999
+          }
+        },
+        "drag-shape": {
+          "samples": 2,
+          "wallMs": [
+            861.9000000059605,
+            830.1000000238419
+          ],
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 146.35200000000003,
+            "Layout": 181.82000000000005,
+            "Paint": 80.458,
+            "FunctionCall": 977.832
+          }
+        },
+        "switch-tab": {
+          "samples": 2,
+          "wallMs": [
+            1202,
+            346
+          ],
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 206.42800000000008,
+            "Layout": 173.798,
+            "Paint": 143.578,
+            "FunctionCall": 865.211
+          }
+        }
+      },
+      "resizeObservers": [
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "canvasQuickToolbar"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "layerObjects"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "viewport"
+          ]
+        }
+      ],
+      "themeControllerSampledSelf": []
+    },
+    {
+      "label": "artboard-ancestor-reset-only",
+      "mode": "artboard-ui-token-reset",
+      "browser": "155.0.8059.82",
+      "rawSha256": "9324c5ce24025ae05bdf0b31f1a192462d5a188a2912094e4d8d1a29469d7cc9",
+      "cpuSha256": "09a4aff683b258bb84388125dde8a20756e3b12446fa528ec0675edacc5d1ecd",
+      "traceSha256": "b07f44f6e1f894653c1b08001d4e62e22ca3aca8c3e16514225c66b8feb892ab",
+      "operations": {
+        "select-text": {
+          "samples": 2,
+          "wallMs": [
+            483.90000000596046,
+            624.2000000178814
+          ],
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 147.16200000000003,
+            "Layout": 191.144,
+            "Paint": 148.12599999999998,
+            "FunctionCall": 563.5799999999999
+          }
+        },
+        "drag-shape": {
+          "samples": 2,
+          "wallMs": [
+            761.9000000059605,
+            959
+          ],
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 167.248,
+            "Layout": 166.25799999999998,
+            "Paint": 78.332,
+            "FunctionCall": 956.6350000000001
+          }
+        },
+        "switch-tab": {
+          "samples": 2,
+          "wallMs": [
+            1263.9000000059605,
+            390.40000000596046
+          ],
+          "traceTotalsMs": {
+            "UpdateLayoutTree": 207.814,
+            "Layout": 185.608,
+            "Paint": 147.91799999999998,
+            "FunctionCall": 945.7810000000001
+          }
+        }
+      },
+      "resizeObservers": [
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "canvasQuickToolbar"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "layerObjects"
+          ]
+        },
+        {
+          "calls": 0,
+          "callbackMs": 0,
+          "maxCallbackMs": 0,
+          "targets": [
+            "viewport"
+          ]
+        }
+      ],
+      "resetTokens": [
+        "--fs-space-2",
+        "--fs-on-accent-pressed",
+        "--fs-primary-height",
+        "--fs-radius-xs",
+        "--fs-accent-pressed",
+        "--fs-error-bg",
+        "--fs-warning",
+        "--fs-radius-md",
+        "--fs-warning-bg",
+        "--fs-surface-0",
+        "--fs-accent-text",
+        "--fs-nav-bg",
+        "--fs-shadow-dialog",
+        "--fs-shadow-drawer",
+        "--fs-font-title",
+        "--fs-success-bg",
+        "--fs-workspace-light",
+        "--fs-inspector-bg",
+        "--fs-shadow-pressed",
+        "--fs-text-secondary",
+        "--fs-radius-sm",
+        "--fs-surface-2",
+        "--fs-preview-bg",
+        "--fs-radius-lg",
+        "--fs-radius-round",
+        "--fs-space-5",
+        "--fs-space-1",
+        "--fs-shadow-control",
+        "--fs-radius-dialog",
+        "--fs-accent",
+        "--fs-text-muted",
+        "--fs-workspace-bg",
+        "--fs-space-4",
+        "--fs-focus-soft",
+        "--fs-motion-pressed",
+        "--fs-space-3",
+        "--fs-ease",
+        "--fs-space-8",
+        "--fs-error",
+        "--fs-surface-raised",
+        "--fs-control-height",
+        "--fs-font-display",
+        "--fs-app-bg",
+        "--fs-space-7",
+        "--fs-workspace-dark",
+        "--fs-control-transition",
+        "--fs-font-lg",
+        "--fs-shadow-popover",
+        "--fs-control-bg",
+        "--fs-font-heading",
+        "--fs-font-md",
+        "--fs-header-bg",
+        "--fs-pressed",
+        "--fs-text-primary",
+        "--fs-stroke-subtle",
+        "--fs-stroke-default",
+        "--fs-toolbar-bg",
+        "--fs-space-6",
+        "--fs-backdrop",
+        "--fs-text-disabled",
+        "--fs-hover",
+        "--fs-accent-hover",
+        "--fs-on-accent",
+        "--fs-checker",
+        "--fs-accent-selected-bg",
+        "--fs-font-family",
+        "--fs-stroke-strong",
+        "--fs-success",
+        "--fs-surface-1",
+        "--fs-motion-panel",
+        "--fs-font-xs",
+        "--fs-font-sm"
+      ],
+      "preservedCanvasTokens": [
+        "--fs-guide",
+        "--fs-guide-hover",
+        "--fs-guide-soft",
+        "--fs-motion-hover",
+        "--fs-artboard-bg",
+        "--fs-shadow-paper",
+        "--fs-artwork-ink",
+        "--fs-focus"
+      ],
+      "interventionDisclosure": "Temporary #artboard ancestor resets new UI-only --fs-* tokens without !important, preserving eight canvas helper tokens. User local SVG definitions can override. This is attribution only; production/scientific acceptance requires dedicated fallback/export regressions.",
+      "themeControllerSampledSelf": [
+        {
+          "function": "renderContext",
+          "bundledLine": 10282,
+          "selfMs": 1.113
+        }
+      ]
+    }
+  ],
+  "excludedAttempt": {
+    "folderLabel": "profile-final-short-ancestor-reset",
+    "reason": "A QA route guard inadvertently combined ancestor reset with no theme mount. Kept locally and excluded from ancestor-only inference; the guard was corrected and an assertion now requires the theme UI to remain mounted."
+  },
+  "interpretation": [
+    "Muting the post-initialization header/context updates did not produce a consistent style/layout or wall-time benefit. Neither apply() nor refresh() is on the ordinary selection path.",
+    "Resetting 72 UI tokens at the artboard ancestor without !important while preserving eight canvas helper tokens did not consistently reduce style/layout cost. It is not supported as a performance fix by these short samples.",
+    "A scientific variable-inheritance boundary can be evaluated separately for fallback/local override/export correctness; this performance diagnostic does not certify it.",
+    "Same-value guards for header title and save-state attributes are a minimal cleanup opportunity, without evidence that they resolve the 5000-element tails. No production files were modified by this experiment."
+  ]
+}

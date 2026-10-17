@@ -1,0 +1,2565 @@
+{
+  "schema": "figure-studio-carbon-installed-browser-summary/1",
+  "label": "windows-installed",
+  "status": "PASS_FUNCTIONAL_MATRIX_WITH_VISUAL_FOLLOWUP",
+  "browserMode": "headless",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "url": "http://127.0.0.1:18962/",
+  "startedAt": "2026-10-17T12:16:22.823Z",
+  "scope": "Actual Windows Google Chrome with isolated temporary context. Browser DPR emulation is not actual Windows 125/150% system scaling. Installed 0.1.21 service, headless actual Chrome. No OS scaling was changed by this matrix. Functional assertions do not certify every pixel or all-page accessibility.",
+  "sources": [
+    {
+      "id": "iris",
+      "url": "https://archive.ics.uci.edu/dataset/53/iris",
+      "doi": "10.24432/C56C76",
+      "license": "CC BY 4.0",
+      "purpose": "Existing real-data editable project; no statistical independence claim"
+    },
+    {
+      "id": "public-he-skin",
+      "sha256": "8759fe080509712163453f4b17106582b8513e73b0788d80160abf840e272075",
+      "license": "Public domain dedication by author Kilbad; distributed by scikit-image",
+      "url": "https://scikit-image.org/docs/0.25.x/api/skimage.data.html#skimage.data.skin"
+    }
+  ],
+  "screens": [
+    {
+      "file": "windows-installed-carbon-1280x720-dpr1-new-project.png",
+      "state": "new-project",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "carbon",
+        "checked": 96,
+        "minimumContrast": 6.3515,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(118, 215, 184)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 9.0617,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(112, 222, 198)",
+            "background": [
+              34,
+              68,
+              61,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.601,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Project downloaded with source assets, current edits and versions.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#objectAlignmentPanel p.muted",
+            "role": "p",
+            "text": "Align to selection bounds; distribution requires at least three objects.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          },
+          {
+            "selector": "#paragraphPanel p.muted",
+            "role": "p",
+            "text": "Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment e",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-carbon-1280x720-dpr1-svg-text.png",
+      "state": "svg-text",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "carbon",
+        "checked": 97,
+        "minimumContrast": 6.601,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(118, 215, 184)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 9.0617,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(112, 222, 198)",
+            "background": [
+              34,
+              68,
+              61,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.601,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Project restored",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#objectAlignmentPanel p.muted",
+            "role": "p",
+            "text": "Align to selection bounds; distribution requires at least three objects.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          },
+          {
+            "selector": "#paragraphPanel p.muted",
+            "role": "p",
+            "text": "Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment e",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-carbon-1280x720-dpr1-axis-properties.png",
+      "state": "axis-properties",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "carbon",
+        "checked": 99,
+        "minimumContrast": 6.601,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(118, 215, 184)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 9.0617,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(112, 222, 198)",
+            "background": [
+              34,
+              68,
+              61,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.601,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Project restored",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-carbon-1280x720-dpr1-pathology-image.png",
+      "state": "pathology-image",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "carbon",
+        "checked": 84,
+        "minimumContrast": 5.178,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(118, 215, 184)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 9.0617,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(112, 222, 198)",
+            "background": [
+              34,
+              68,
+              61,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.601,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Imported 1/1 files. Each import can be undone.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#objectAlignmentPanel p.muted",
+            "role": "p",
+            "text": "Align to selection bounds; distribution requires at least three objects.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          },
+          {
+            "selector": "#paragraphPanel p.muted",
+            "role": "p",
+            "text": "Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment e",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-carbon-1280x720-dpr1-duplicate-screening.png",
+      "state": "duplicate-screening",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": [
+          "imageDuplicateDialog"
+        ]
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "carbon",
+        "checked": 95,
+        "minimumContrast": 6.601,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(118, 215, 184)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 9.0617,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(112, 222, 198)",
+            "background": [
+              34,
+              68,
+              61,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.601,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Imported 1/1 files. Each import can be undone.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#objectAlignmentPanel p.muted",
+            "role": "p",
+            "text": "Align to selection bounds; distribution requires at least three objects.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          },
+          {
+            "selector": "#paragraphPanel p.muted",
+            "role": "p",
+            "text": "Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment e",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-carbon-1280x720-dpr1-discovery-candidates-example-data.png",
+      "state": "discovery-candidates-example-data",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": [
+          "figureDiscoveryDialog"
+        ]
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "carbon",
+        "checked": 117,
+        "minimumContrast": 6.601,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(118, 215, 184)",
+            "background": [
+              28,
+              36,
+              48,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 9.0617,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(240, 244, 250)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 13.6778,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(188, 200, 216)",
+            "background": [
+              28,
+              39,
+              53,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 8.9084,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(112, 222, 198)",
+            "background": [
+              34,
+              68,
+              61,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.601,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Imported 1/1 files. Each import can be undone.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              32,
+              42,
+              55,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.7748,
+            "passed": true
+          },
+          {
+            "selector": "#paragraphPanel p.muted",
+            "role": "p",
+            "text": "Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment e",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          },
+          {
+            "selector": "#methodExplorer p.muted",
+            "role": "p",
+            "text": "Analyze the current data or connect existing comparison results. Methods are ranked by research ques",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          },
+          {
+            "selector": "#mobileAdjustmentsRegion p.muted",
+            "role": "p",
+            "text": "Preview orientation and canvas aspect ratios.",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          },
+          {
+            "selector": "#sizes p.muted",
+            "role": "p",
+            "text": "Only the original size is available. Prepare canvas variants with a supported recipe and source data",
+            "foreground": "rgb(178, 191, 208)",
+            "background": [
+              37,
+              49,
+              66,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 7.0498,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-pearl-1280x720-dpr1-new-project.png",
+      "state": "new-project",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "pearl",
+        "checked": 96,
+        "minimumContrast": 5.2615,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(20, 108, 83)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.0939,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(23, 107, 93)",
+            "background": [
+              215,
+              240,
+              231,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.3092,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Project downloaded with source assets, current edits and versions.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#objectAlignmentPanel p.muted",
+            "role": "p",
+            "text": "Align to selection bounds; distribution requires at least three objects.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#paragraphPanel p.muted",
+            "role": "p",
+            "text": "Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment e",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-pearl-1280x720-dpr1-svg-text.png",
+      "state": "svg-text",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "pearl",
+        "checked": 97,
+        "minimumContrast": 5.2996,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(20, 108, 83)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.0939,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(23, 107, 93)",
+            "background": [
+              215,
+              240,
+              231,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.3092,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Project restored",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#objectAlignmentPanel p.muted",
+            "role": "p",
+            "text": "Align to selection bounds; distribution requires at least three objects.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#paragraphPanel p.muted",
+            "role": "p",
+            "text": "Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment e",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-pearl-1280x720-dpr1-axis-properties.png",
+      "state": "axis-properties",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "pearl",
+        "checked": 99,
+        "minimumContrast": 5.2996,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(20, 108, 83)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.0939,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(23, 107, 93)",
+            "background": [
+              215,
+              240,
+              231,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.3092,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Project restored",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-pearl-1280x720-dpr1-pathology-image.png",
+      "state": "pathology-image",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "pearl",
+        "checked": 84,
+        "minimumContrast": 4.978,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(20, 108, 83)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.0939,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(23, 107, 93)",
+            "background": [
+              215,
+              240,
+              231,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.3092,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Imported 1/1 files. Each import can be undone.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#objectAlignmentPanel p.muted",
+            "role": "p",
+            "text": "Align to selection bounds; distribution requires at least three objects.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#paragraphPanel p.muted",
+            "role": "p",
+            "text": "Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment e",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-pearl-1280x720-dpr1-duplicate-screening.png",
+      "state": "duplicate-screening",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": [
+          "imageDuplicateDialog"
+        ]
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "pearl",
+        "checked": 93,
+        "minimumContrast": 5.2996,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(20, 108, 83)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.0939,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(23, 107, 93)",
+            "background": [
+              215,
+              240,
+              231,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.3092,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Imported 1/1 files. Each import can be undone.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#objectAlignmentPanel p.muted",
+            "role": "p",
+            "text": "Align to selection bounds; distribution requires at least three objects.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#paragraphPanel p.muted",
+            "role": "p",
+            "text": "Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment e",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-pearl-1280x720-dpr1-discovery-candidates-example-data.png",
+      "state": "discovery-candidates-example-data",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": [
+          "figureDiscoveryDialog"
+        ]
+      },
+      "contrast": {
+        "scope": "Visible UI text and native form content computed-style sample. Artwork/illustrations, raw data tables, disabled/hidden/clipped text are excluded; opacity and non-solid-background cases are unscored. This is not whole-page WCAG AA certification.",
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "devicePixelRatio": 1
+        },
+        "theme": "pearl",
+        "checked": 117,
+        "minimumContrast": 5.2996,
+        "failures": [],
+        "prioritySamples": [
+          {
+            "selector": "#autosaveStatus",
+            "role": "status",
+            "text": "Saved locally · Undo history kept",
+            "foreground": "rgb(20, 108, 83)",
+            "background": [
+              249,
+              250,
+              252,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.0939,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Select a panel, then click an object inside it.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#mobilePanelsRegion p.muted",
+            "role": "p",
+            "text": "Ctrl / Command-click to cycle overlapping objects; select, then Shift-drag to constrain direction.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(37, 50, 70)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 12.9363,
+            "passed": true
+          },
+          {
+            "selector": "#panels b",
+            "role": "b",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(77, 94, 115)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "requiredContrast": 4.5,
+            "contrast": 6.6368,
+            "passed": true
+          },
+          {
+            "selector": "#panels span",
+            "role": "span",
+            "text": "<project/layer/input text>",
+            "foreground": "rgb(23, 107, 93)",
+            "background": [
+              215,
+              240,
+              231,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.3092,
+            "passed": true
+          },
+          {
+            "selector": "#status",
+            "role": "status",
+            "text": "Imported 1/1 files. Each import can be undone.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              244,
+              247,
+              251,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 5.7873,
+            "passed": true
+          },
+          {
+            "selector": "#paragraphPanel p.muted",
+            "role": "p",
+            "text": "Applies to selected text. Preserve explicit line breaks; left/right indents affect their alignment e",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#methodExplorer p.muted",
+            "role": "p",
+            "text": "Analyze the current data or connect existing comparison results. Methods are ranked by research ques",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#mobileAdjustmentsRegion p.muted",
+            "role": "p",
+            "text": "Preview orientation and canvas aspect ratios.",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          },
+          {
+            "selector": "#sizes p.muted",
+            "role": "p",
+            "text": "Only the original size is available. Prepare canvas variants with a supported recipe and source data",
+            "foreground": "rgb(82, 98, 120)",
+            "background": [
+              255,
+              255,
+              255,
+              1
+            ],
+            "fontSizePx": 12,
+            "fontWeight": 400,
+            "requiredContrast": 4.5,
+            "contrast": 6.2184,
+            "passed": true
+          }
+        ],
+        "unscored": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-carbon-1920x1080-dpr1-new-project.png",
+      "state": "new-project",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1920,
+        "scrollWidth": 1920,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "screenshotArchived": false
+    },
+    {
+      "file": "windows-installed-carbon-1920x1080-dpr1-svg-text.png",
+      "state": "svg-text",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1920,
+        "scrollWidth": 1920,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "screenshotArchived": false
+    },
+    {
+      "file": "windows-installed-carbon-1920x1080-dpr1-axis-properties.png",
+      "state": "axis-properties",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1920,
+        "scrollWidth": 1920,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-carbon-1920x1080-dpr1-pathology-image.png",
+      "state": "pathology-image",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1920,
+        "scrollWidth": 1920,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "screenshotArchived": false
+    },
+    {
+      "file": "windows-installed-carbon-1920x1080-dpr1-duplicate-screening.png",
+      "state": "duplicate-screening",
+      "theme": "carbon",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1920,
+        "scrollWidth": 1920,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": [
+          "imageDuplicateDialog"
+        ]
+      },
+      "screenshotArchived": false
+    },
+    {
+      "file": "windows-installed-pearl-1920x1080-dpr1-new-project.png",
+      "state": "new-project",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1920,
+        "scrollWidth": 1920,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "screenshotArchived": false
+    },
+    {
+      "file": "windows-installed-pearl-1920x1080-dpr1-svg-text.png",
+      "state": "svg-text",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1920,
+        "scrollWidth": 1920,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "screenshotArchived": false
+    },
+    {
+      "file": "windows-installed-pearl-1920x1080-dpr1-axis-properties.png",
+      "state": "axis-properties",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1920,
+        "scrollWidth": 1920,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "screenshotArchived": true
+    },
+    {
+      "file": "windows-installed-pearl-1920x1080-dpr1-pathology-image.png",
+      "state": "pathology-image",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1920,
+        "scrollWidth": 1920,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": []
+      },
+      "screenshotArchived": false
+    },
+    {
+      "file": "windows-installed-pearl-1920x1080-dpr1-duplicate-screening.png",
+      "state": "duplicate-screening",
+      "theme": "pearl",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "geometry": {
+        "clientWidth": 1920,
+        "scrollWidth": 1920,
+        "devicePixelRatio": 1,
+        "artboardBackground": "rgb(255, 255, 255)",
+        "openDialogs": [
+          "imageDuplicateDialog"
+        ]
+      },
+      "screenshotArchived": false
+    }
+  ],
+  "checks": [
+    {
+      "theme": "carbon",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "check": "theme preference persists across reload",
+      "passed": true
+    },
+    {
+      "theme": "pearl",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      },
+      "check": "theme preference persists across reload",
+      "passed": true
+    },
+    {
+      "theme": "carbon",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "check": "theme preference persists across reload",
+      "passed": true
+    },
+    {
+      "theme": "pearl",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "check": "theme preference persists across reload",
+      "passed": true
+    },
+    {
+      "check": "Carbon/Pearl SVG equality after export ID namespace normalization; exact PNG pixels, original SVG and original table equality",
+      "passed": true
+    }
+  ],
+  "themeIsolation": [
+    {
+      "theme": "carbon",
+      "svgSha256": "471d8de9023763dddb71aaabb65caefe16e7b2e3d33265818ea5513e7ab2cd84",
+      "canonicalSvgSha256": "b76582d84052bfc4f6e5de92050acc8b2fd2f1db4bf609a2949a3af38d43847a",
+      "svgComparison": "Only the pre-existing incrementing fNN- export ID namespace is normalized; raw SVG hashes retained.",
+      "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+      "pixels": {
+        "width": 2880,
+        "height": 2160,
+        "pixelSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      },
+      "sourceTableSha256": "627b9f8e89f8fad5290ba854731720d4afd002081a6de64834d397d3bc51323e",
+      "sourceSvgSha256": "94cc547fe838040f314d443b7d32247477f70285bdf59453e188b0e039c2db89"
+    },
+    {
+      "theme": "pearl",
+      "svgSha256": "c2f5e1aa927320c4dc5c27da3757e097cd41575ae1d7835147606bed1958279a",
+      "canonicalSvgSha256": "b76582d84052bfc4f6e5de92050acc8b2fd2f1db4bf609a2949a3af38d43847a",
+      "svgComparison": "Only the pre-existing incrementing fNN- export ID namespace is normalized; raw SVG hashes retained.",
+      "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+      "pixels": {
+        "width": 2880,
+        "height": 2160,
+        "pixelSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      },
+      "sourceTableSha256": "627b9f8e89f8fad5290ba854731720d4afd002081a6de64834d397d3bc51323e",
+      "sourceSvgSha256": "94cc547fe838040f314d443b7d32247477f70285bdf59453e188b0e039c2db89"
+    }
+  ],
+  "remoteRequests": [],
+  "errors": [],
+  "finishedAt": "2026-10-17T12:17:46.178Z",
+  "rawSha256": "97b8be4e4ff4a4fd95ba407ce2885c85310250ec77068d360a253d68ae186f1c",
+  "installedService": {
+    "schema": "figure-studio-carbon-installed-origin/1",
+    "origin": "http://127.0.0.1:18962/",
+    "servedHtmlSha256": "3cec574d331f8f80d514dd7309d7236a2200960b8408a70650c60f0d7176d010",
+    "updateInfo": {
+      "currentVersion": "0.1.21",
+      "suiteVersion": "1.4.21",
+      "platform": "windows",
+      "architecture": "x86_64",
+      "inAppInstall": true
+    },
+    "scope": "Installed service metadata read locally; authentication token intentionally excluded. Process/executable provenance is verified by the parent Windows upgrade report."
+  },
+  "screenshotRetention": "22 raw screenshots and actual browser recordings retained in ignored local cache; 14 representative public screenshots copied alongside this report. Public Iris, public-domain H&E and explicitly synthetic discovery example only.",
+  "visualReview": {
+    "inspected": [
+      "windows-installed-carbon-1280x720-dpr1-axis-properties.png",
+      "windows-installed-pearl-1280x720-dpr1-discovery-candidates-example-data.png",
+      "windows-installed-carbon-1920x1080-dpr1-pathology-image.png"
+    ],
+    "flag": {
+      "status": "VISUAL_REVIEW_FLAG",
+      "viewport": "1280x720 DPR1",
+      "description": "Header saved-status text appears close to or overlapping Appearance icon at narrow project-identity width; reported to maintainer for geometry confirmation. Not covered by the functional matrix assertions."
+    }
+  },
+  "contrastScope": {
+    "states": 12,
+    "scoredSamples": 1174,
+    "failures": 0,
+    "minimumContrast": 4.978,
+    "scope": "Visible UI text sampling in two themes at 1280 DPR1 across six states; excluded scientific artwork/disabled/unscorable backgrounds. Not a full AA certification. Initial source failures remain separately archived."
+  }
+}
