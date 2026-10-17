@@ -25,6 +25,7 @@ const tech=run(cases.technical);assert.deepEqual(ids(tech),['superplot']);assert
 const time=run(cases.longitudinal);assert.equal(time.candidates.length,3);assert.ok(time.candidates.every(c=>c.kind==='longitudinal'));
 const sum=run(cases.summary);assert.deepEqual(ids(sum),['summary_mean_sd']);assert.ok(!JSON.stringify(sum.candidates).includes('raincloud'));assert.equal(run({rows:summary,declarations:base}).candidates.length,0);
 assert.deepEqual(ids(run(cases.omics)),['volcano']);assert.equal(run({rows:omics,declarations:{data_level:'results'}}).candidates.length,0,'no automatic significance threshold');
+assert.deepEqual(ids(run({rows:omics,declarations:{...cases.omics.declarations,nesting:'other'}})),['volcano'],'displaying supplied model results does not refit the nested study');
 assert.equal(run({rows:[['feature','sample1','sample2'],['G1','1','2']],declarations:{data_level:'raw'}}).candidates.length,0,'expression matrix cannot imply differential analysis');
 assert.deepEqual(ids(run(cases.roc)),['roc']);assert.equal(run({rows:[['auc'],['.9']],declarations:cases.roc.declarations}).candidates.length,0);
 assert.equal(run({rows:independent,declarations:{...base,nesting:'other'}}).candidates.length,0);

@@ -66,7 +66,7 @@ const ResearchDiscovery=(()=>{
    if(entry.data_level==='raw'){need(d.unit_confirmed===true,'unit_confirmed');need(d.outcome_type===entry.outcome_type,'outcome_type');}
    if(entry.kind==='technical')need(d.technical_replicates==='yes','technical_replicates');
    else if(entry.data_level==='raw')need(d.technical_replicates==='no','technical_replicates');
-   if(d.nesting&&d.nesting!=='none')need(entry.kind==='technical'&&d.nesting==='experiment','nesting');
+   if(entry.data_level==='raw'&&d.nesting&&d.nesting!=='none')need(entry.kind==='technical'&&d.nesting==='experiment','nesting');
    if(entry.data_level==='raw')need(!!d.nesting,'nesting');
    const data=prepare(rows,p,entry,d);if(data.error)reasons.push(data.error);
    const mapped=entry.kind==='paired'&&(!p.roles.before||!p.roles.after)?['unit','group','value']:entry.required;
