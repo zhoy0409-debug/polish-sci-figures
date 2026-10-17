@@ -41,5 +41,12 @@ test('click-away, scroll and selection loss close the popover while pointer comm
   const toggle=f.doc.getElementById('quickAlignmentToggle'),popup=f.doc.getElementById('quickAlignmentPopover'),canvas=f.doc.getElementById('viewport');canvas.tabIndex=-1;canvas.focus();toggle.click();const event=new f.dom.window.Event('pointerdown',{bubbles:true,cancelable:true});popup.querySelector('button').dispatchEvent(event);assert.equal(event.defaultPrevented,true);assert.equal(f.doc.activeElement,canvas);
   f.doc.body.dispatchEvent(new f.dom.window.Event('pointerdown',{bubbles:true}));assert.equal(popup.hidden,true);toggle.click();f.doc.getElementById('viewport').dispatchEvent(new f.dom.window.Event('scroll',{bubbles:false}));assert.equal(popup.hidden,true);toggle.click();f.select.disabled=true;f.ui.sync();assert.equal(popup.hidden,true);assert.equal(toggle.getAttribute('aria-expanded'),'false');
 }finally{f.close();}});
-test('lifecycle restores native fallback selects and bundler includes the module before its host',()=>{const f=fixture();try{f.ui.destroy();assert.equal(f.select.hidden,false);assert.equal(f.doc.getElementById('quickAlignmentPopover'),null);assert.equal(f.doc.getElementById('textAlign').hidden,false);const builder=fs.readFileSync('skills/polish-sci-figures/scripts/figure_studio.py','utf8');assert.match(builder,/'alignment-icons\.js', 'studio\.js'/);}finally{f.dom.window.close();}});
+test('lifecycle restores native fallback selects and bundler includes the module before its host',()=>{const f=fixture();try{
+  f.ui.destroy();assert.equal(f.select.hidden,false);assert.equal(f.doc.getElementById('quickAlignmentPopover'),null);assert.equal(f.doc.getElementById('textAlign').hidden,false);
+  const builder=fs.readFileSync('skills/polish-sci-figures/scripts/figure_studio.py','utf8'),bundleLines=builder.split(/\r?\n/).filter(line=>line.includes('/*__STUDIO_JS__*/'));
+  assert.ok(bundleLines.length,'the builder declares its JavaScript bundle');
+  const modules=Array.from(bundleLines.join('\n').matchAll(/'([^']+\.js)'/g),match=>match[1]);
+  for(const name of ['alignment-icons.js','studio.js'])assert.equal(modules.filter(module=>module===name).length,1,`${name} is bundled exactly once`);
+  assert.ok(modules.indexOf('alignment-icons.js')<modules.indexOf('studio.js'),'alignment icons load before the host; other modules may load between them');
+}finally{f.dom.window.close();}});
 console.log(`${passed} alignment icon tests passed`);
