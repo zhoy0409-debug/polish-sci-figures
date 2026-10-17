@@ -1,0 +1,428 @@
+{
+  "schema": "figure-studio-official-stable-real-update-public-summary/1",
+  "status": "PREVIEW21_TO_STABLE22_STRICT_UPDATE_AND_NORMAL_CLEANUP_PASS_WITH_RETAINED_AUXILIARY_BROWSER_GUARD_FAILURE",
+  "createdAtUtc": "2026-10-17T22:22:33.443726+00:00",
+  "versions": {
+    "before": {
+      "currentVersion": "0.1.21",
+      "suiteVersion": "1.4.21",
+      "platform": "windows"
+    },
+    "after": {
+      "currentVersion": "0.1.22",
+      "suiteVersion": "1.4.22",
+      "platform": "windows"
+    }
+  },
+  "strictOriginalHarnessResultPassed": true,
+  "downloadCommands": 1,
+  "installCommands": 1,
+  "actualOfficialSetup": {
+    "bytes": 105856481,
+    "sha256": "85b0355490eb2615f2cebc1097e6e51da1d89a9f3b5851a60d95831930be3d1a"
+  },
+  "completedProofs": {
+    "realResult": {
+      "sha256": "80d811b3fb16d42909ef7bf913b5176b0ff9e720f12db9edaba18d9d88c81ddd",
+      "sizeBytes": 5794
+    },
+    "timedEvents": {
+      "sha256": "5df2726e624285e2764bb738c7042f1e118ef463aa22aa962f690caffc2770a9",
+      "sizeBytes": 75790
+    },
+    "installed22Gate": {
+      "sha256": "87d00455cafb262de80aaae128ea64c52d953cde439f321667134fb1b19bf902",
+      "sizeBytes": 3499
+    },
+    "updatedTree": {
+      "sha256": "aa73e9c6a41f9031dd27badb4dd026b7c1723b0b6561720311b837b33d8bedee",
+      "sizeBytes": 939449
+    }
+  },
+  "updatedTree": {
+    "acceptedFiles": 2622,
+    "actualFiles": 2624,
+    "allExpectedFileNamesSizesAndSha256Match": true,
+    "missingCount": 0,
+    "mismatchCount": 0,
+    "extras": [
+      {
+        "file": "unins000.dat",
+        "sizeBytes": 1916372,
+        "sha256": "bf7a7b956ffab831e529eba57f068f161c548c6a4cdf18d1a40b0a9c214caa0b",
+        "classification": "INNO_GENERATED_UNINSTALLER_METADATA"
+      },
+      {
+        "file": "unins000.exe",
+        "sizeBytes": 4390390,
+        "sha256": "0b4913a350d37da7a8cc8f2e675020b349dee8ca2c1516cd1ddd0c6ccd0ba66e",
+        "classification": "INNO_GENERATED_UNINSTALLER_METADATA"
+      }
+    ],
+    "noUnclassifiedExtras": true
+  },
+  "actualSavePayloads": {
+    "fileCount": 8,
+    "eachBytes": 582496,
+    "allBytesSha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+    "allEightByteExact": true,
+    "observationCount": 150,
+    "originalSvgVariantCount": 12,
+    "originalTableAndAllSvgSourcesExact": true,
+    "completeProjectStateHistoryCheckpointsAndDraftObjectsExact": true,
+    "historyStateCount": 3,
+    "historyIndex": 2,
+    "checkpointCount": 1,
+    "dataDraftCount": 1,
+    "dataDraftAllOriginal151RowsExact": true,
+    "coverage": "Actual ordinary official21 UI produced two committed edits, three history states at index2, one checkpoint and one valid unapplied draft with all original151 rows. All eight strict saves preserved the complete core byte-exactly across automatic restore and both themes."
+  },
+  "automaticProjectRestore": true,
+  "completeCorePayloadPreserved": true,
+  "appearancePreferencePreserved": true,
+  "beforeAndAfterThemeChecks": [
+    {
+      "phase": "before-update",
+      "theme": "carbon",
+      "completeProjectExact": true,
+      "historyExact": true,
+      "checkpointsExact": true,
+      "dataDraftsExact": true,
+      "editableStateExact": true
+    },
+    {
+      "phase": "before-update",
+      "theme": "pearl",
+      "completeProjectExact": true,
+      "historyExact": true,
+      "checkpointsExact": true,
+      "dataDraftsExact": true,
+      "editableStateExact": true
+    },
+    {
+      "phase": "after-update",
+      "theme": "carbon",
+      "completeProjectExact": true,
+      "historyExact": true,
+      "checkpointsExact": true,
+      "dataDraftsExact": true,
+      "editableStateExact": true
+    },
+    {
+      "phase": "after-update",
+      "theme": "pearl",
+      "completeProjectExact": true,
+      "historyExact": true,
+      "checkpointsExact": true,
+      "dataDraftsExact": true,
+      "editableStateExact": true
+    }
+  ],
+  "settings": {
+    "settingsBefore": {
+      "bytes": 59,
+      "sha256": "0f88f5edded2330e467e40ed8516c17014d04fbea0b6f34835b25f00abc4740c"
+    },
+    "settingsBeforeInstall": {
+      "bytes": 59,
+      "sha256": "0f88f5edded2330e467e40ed8516c17014d04fbea0b6f34835b25f00abc4740c",
+      "jsonEqual": true,
+      "bytesEqual": true
+    },
+    "settingsAfterUpdate": {
+      "bytes": 59,
+      "sha256": "0f88f5edded2330e467e40ed8516c17014d04fbea0b6f34835b25f00abc4740c",
+      "jsonEqual": true,
+      "bytesEqual": true
+    }
+  },
+  "protectedOriginal": {
+    "count": 1,
+    "strictHarnessBeforeAfterPidPathCreationEqual": true,
+    "freshInstalled22GateIncludesOriginalPidPathCreationAndExeShaVerification": true
+  },
+  "completion": {
+    "helperReadyVerified": true,
+    "result": "installed",
+    "backupFileCount": 2533,
+    "backupOriginalHashesExact": true,
+    "auditAvailable": false
+  },
+  "nativeInstallerExitCodeIndependentlyPersistedInOriginalResult": null,
+  "progressEvidence": {
+    "uiObservedStages": [
+      "checking",
+      "downloading",
+      "ready",
+      "preparing",
+      "paused"
+    ],
+    "backendObservedStages": [
+      "idle",
+      "checking",
+      "downloading",
+      "ready",
+      "preparing",
+      "installing"
+    ],
+    "uiUnobservedStages": [
+      "verifying",
+      "installing"
+    ],
+    "rawTimedEventCount": 454,
+    "eventKindCounts": {
+      "open-project-confirmation": 1,
+      "operator-project-opened": 1,
+      "project-saved": 8,
+      "updater-request": 52,
+      "updater-response": 49,
+      "passive-authenticated-status": 300,
+      "user-started-real-download": 1,
+      "ui": 36,
+      "user-confirmed-install-once": 1,
+      "updater-transport-disconnected": 3,
+      "old-origin-unreachable": 1,
+      "real-browser-acceptance-complete": 1
+    },
+    "safeAllRowsSha256": "2c15cac3071e241a91875ce9b90bd6a784573b8e0e923277f96bd5b84fed6a9e",
+    "noUnobservedFramesReconstructed": true,
+    "passiveStatusObserver": {
+      "intervalMs": 100,
+      "readOnlyAuthenticatedAction": "status",
+      "drivesUI": false
+    },
+    "actualVisibleDownloadByteReadback": {
+      "evidence": {
+        "sha256": "c5fad601658200b3c4f9d019360d44d4fafd744d81987affe4f2f3a89abc11d3",
+        "sizeBytes": 13141
+      },
+      "downloadSceneSamples": 31,
+      "visibleDownloadBytesFirst": 0,
+      "visibleDownloadBytesLast": 104333312,
+      "visibleDownloadTotalBytes": 105856481,
+      "allVisibleByteSamplesValid": true,
+      "visibleBytesMonotonicWithinSingleJob": true
+    }
+  },
+  "originalUneditedVideo": {
+    "sha256": "0e384b8754481baca1cb449ec120ebeec9daa89b2885cace35385492bdc7056d",
+    "sizeBytes": 6967701
+  },
+  "reportedBrowserErrorCount": 0,
+  "reportedCleanupErrorCount": 0,
+  "limits": [
+    "The original updater has no new audit journal. Actual helper-ready/result and 2533 complete rollback-file hashes were verified.",
+    "UI verifying/installing scenes were not observed and were not reconstructed. Backend installing evidence is separately reported.",
+    "This derivative contains no new human/native IME acceptance, scientific image accuracy estimate or optical frame-rate measurement. History/checkpoint/draft preservation covers the actual3-state/1-checkpoint/1-valid-draft case; broader case coverage is not implied.",
+    "Numeric installer exit is not independently recorded in the original strict result; do not infer it from the browser PASS.",
+    "The UI prelude uses ordinary editing and saving; it is not native IME or a new scientific experiment.",
+    "The original21 updater performs the upgrade; the newer22 helper audit and22-only100ms preparing-poll implementation are not covered by this upgrade run."
+  ],
+  "actualOuterHarnessExecution": {
+    "evidence": {
+      "sha256": "b94ca8157abbd05b6aa927bda91a194a7601b29451572e9ec8f747d95eade3cb",
+      "sizeBytes": 413
+    },
+    "actualExitCode": 0,
+    "harnessInvocations": 1,
+    "startedAtUtc": "2026-10-17T22:16:13.1534262Z",
+    "endedAtUtc": "2026-10-17T22:18:00.2290385Z",
+    "originalLogSha256": "b7301e5c57d8897d42ceeae7c2f71f4f88eba3991cf5d03b0ca1c998da7cab55",
+    "distinction": "Actual outer unchanged strict browser harness exit. The older helper internal numeric installer exit was not persisted and remains null."
+  },
+  "actualUiPrelude": {
+    "evidence": {
+      "sha256": "257f3fd0dade1612f647b085778b1f68c5bd09a207e0003d23d1dc8369b5d7a0",
+      "sizeBytes": 6309
+    },
+    "passed": true,
+    "actualUiCommits": 2,
+    "historyStates": 3,
+    "historyIndex": 2,
+    "checkpoints": 1,
+    "dataDrafts": 1,
+    "all151OriginalRowsAnd12SourceSvgVariantsExact": true,
+    "inputSha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+    "inputBytes": 582496,
+    "nativeImeClaimed": false
+  },
+  "rootIndependentDataReadback": {
+    "evidence": {
+      "sha256": "c09b7f0f20e5fe6c0596e5ca67b97eb84c641e0b31ddb3dcea88d3a89b6a97d6",
+      "sizeBytes": 2631
+    },
+    "savedFiles": 8,
+    "eachBytes": 582496,
+    "allEightByteExact": true,
+    "allBytesSha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+    "completeOriginalProjectDeepExact": true,
+    "observationCount": 150,
+    "originalSvgVariantCount": 12,
+    "historyStates": 3,
+    "historyIndex": 2,
+    "checkpoints": 1,
+    "dataDrafts": 1,
+    "draftAllOriginal151RowsExact": true,
+    "automaticRestoreBeforeAnyPostUpdateExplicitOpen": true
+  },
+  "rootActualMediaReview": {
+    "evidence": {
+      "sha256": "23405e63d1353d83df704800d6acf87406a097bb2a4d81d9150fe9ae29561ba9",
+      "sizeBytes": 2046
+    },
+    "reviewedAtUtc": "2026-10-17T22:18:56.634359+00:00",
+    "actualScreensViewed": 3,
+    "screenSha256": [
+      "c9f52816706ec95338a111ac4d1d6eb80d9abb6143923bbaad82310cb874e9f3",
+      "1bb0b7261e614b2ffbd3f256d2395ddaabbce20182fdb76be0944e312f3a4c44",
+      "f1542efbb3b34754c9a101771f3666f6279d4de5661d74cfa2c4168275c2ab5c"
+    ],
+    "preludeScreenViewed": true,
+    "decodedOriginalVideoSampleSeconds": [
+      25,
+      45,
+      65,
+      95
+    ],
+    "wholeVideoWatched": false,
+    "sourceVideoAltered": false,
+    "findings": [
+      "Actual original21 companion shows both original cat and dog with a real stable22 offer.",
+      "25-second original frame shows43 percent with46.14/105.86MB actual downloaded bytes;45-second frame shows verified ready with saved-project checkbox unchecked and installation disabled.",
+      "65-second original frame shows preparing with previous-version preservation;95-second frame retains the real paused/not-responding fallback during legitimate handoff.",
+      "Actual reopened22 Carbon editor contains Iris QA label and original scientific plot; whole saved payload is independently byte-identical.",
+      "UI verifying/installing were not observed; authenticated backend installing and actual helper completion are separate evidence.",
+      "Old21 helper does not implement new22 audit; neither that audit nor22-only100ms production polling is established."
+    ]
+  },
+  "browserHygieneReview": {
+    "initialStageEvidence": {
+      "sha256": "0610578393ca04ac2d643732e82c93c7350a0b3a57d03f1d6621d97d93965fc2",
+      "sizeBytes": 569
+    },
+    "baselineBrowserProcessCount": 21,
+    "originalBrowserTuplesExact": true,
+    "initialAddedBrowserProcesses": 1,
+    "initialBrowserReviewRequired": true,
+    "classificationEvidence": {
+      "sha256": "f6f7df028f8a770a15cfb1a865b486a448ec0d38e673b83a16726f2ac2120b46",
+      "sizeBytes": 2496
+    },
+    "readOnlyAncestryFoundDirectParentInOriginalBrowserBaseline": true,
+    "newRendererHasNoAutomationFlags": true,
+    "causalityNotAssumed": true,
+    "noBrowserProcessStopped": true,
+    "boundary": "The initial hygiene wrapper review requirement/failure is retained separately from strict updater exit0. One added renderer had a direct parent in the original browser baseline and no fixed-origin/remote-debugging/Playwright profile flags. It was not stopped; it is not rewritten as zero added processes.",
+    "actualOuterGuardWrapperExitObservation": {
+      "evidence": {
+        "sha256": "99d6cb4e2ea7bc87db2d821db8cf270a83b62ab27fca77b36a51a6c37af44d73",
+        "sizeBytes": 1469
+      },
+      "observedOuterGuardProcessExitCode": 1,
+      "observedChildInstalled22GateExitCode": 0,
+      "originalRecordsUnchanged": true,
+      "recordedAtUtc": "2026-10-17T22:21:44.429019+00:00",
+      "provenance": "Post-hoc record of the actual tool return already observed, not a new native execution. The original stage8-result records the child identity gate exit0; the outer wrapper subsequently threw on one added browser process and its actual tool exit was1.",
+      "scope": "This is an auxiliary process-hygiene guard failure, not an installer/uninstaller exit, and does not overwrite the strict update harness actual exit0. The added renderer was retained and its page URL/cause were not inferred.",
+      "observedTool": "tools.exec_command",
+      "observedToolChunkId": "b3333d",
+      "recordedPostHoc": true
+    }
+  },
+  "actualNormalCleanup": {
+    "evidence": {
+      "sha256": "8894dff620a2e1ba07ed58a198037f1885e05d03e95006e633789505e9852338",
+      "sizeBytes": 722595
+    },
+    "actualOuterExitCode": 0,
+    "actualNativeUninstallExitCode": 0,
+    "normalUninstall": true,
+    "ownedProcessCount": 0,
+    "ownedExecutableAbsent": true,
+    "fixedListenerReleased": true,
+    "allFourRegistryViewsAbsent": true,
+    "protectedOriginalCount": 1,
+    "protectedOriginalPidPathCreationAndShaExact": true,
+    "allScopeFilesPreserved": true,
+    "preservedFileCounts": {
+      "inputs": 2,
+      "strictProof": 14,
+      "profile": 2545,
+      "preludeProof": 11
+    },
+    "preservedManifestSha256": "24dbb85886d9c902cbd3119fcfab0223338d69de7530549d064bf0d93ef4bdb4",
+    "scope": "Every actual file in this run external profile, strict proof, UI prelude proof and inputs directories, captured after exact own-app stop and natural helper completion then compared by name/size/SHA after normal uninstall."
+  },
+  "rootSpecificOfficialTargetPostCleanupQuery": {
+    "evidence": {
+      "sha256": "424e2222575a43d4bfa54386a7f81947fa5c286a3ef1900f79e2569f5252cca3",
+      "sizeBytes": 1925
+    },
+    "status": "PASS_ACTUAL_READ_ONLY_OFFICIAL_UPDATE_TARGET_QUERY",
+    "queriedAtUtc": "2026-10-17T22:21:25.9147092Z",
+    "ownedActualOfficialProcessCount": 0,
+    "actualOfficialExecutableAbsent": true,
+    "fixedListenerReleased": true,
+    "protectedOriginalCount": 1,
+    "protectedOriginalIdentityUnchanged": true,
+    "registryViews": [
+      {
+        "view": "Registry32",
+        "hive": "HKCU",
+        "exists": false
+      },
+      {
+        "view": "Registry64",
+        "hive": "HKCU",
+        "exists": false
+      },
+      {
+        "view": "Registry32",
+        "hive": "HKLM",
+        "exists": false
+      },
+      {
+        "view": "Registry64",
+        "hive": "HKLM",
+        "exists": false
+      }
+    ],
+    "actualOfficialSettings": {
+      "sha256": "0f88f5edded2330e467e40ed8516c17014d04fbea0b6f34835b25f00abc4740c",
+      "bytes": 59
+    },
+    "actualOfficialSavedProjects": [
+      {
+        "bytes": 582496,
+        "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975"
+      },
+      {
+        "bytes": 582496,
+        "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975"
+      }
+    ],
+    "wholeProfileRehashedHere": false,
+    "scope": "Fresh actual official21 target/process/listener/settings and two saved projects; fresh global registry/protected checks use the prior QA reference helper. The full2545/14/11/2 preservation remains the separately hashed normal-cleanup evidence, not this selected-file query."
+  },
+  "datasetAttribution": {
+    "title": "Iris",
+    "creator": "R. A. Fisher",
+    "year": 1936,
+    "repository": "UCI Machine Learning Repository",
+    "doi": "10.24432/C56C76",
+    "source": "https://archive.ics.uci.edu/dataset/53/iris",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "presentation": "Public plant measurements rendered in the editor; the original150 observations and12 sourceSVG variants are unchanged. UI label edits and a preserved draft are software acceptance states, not new measurements."
+  },
+  "retainedPreviousSafeSummary": {
+    "sha256": "05c1c417e3f0dec4deade9630b098c81e8b6e75bef15b6e5948f5ed316fcc807",
+    "sizeBytes": 14397
+  },
+  "sourceReleaseKind": "prerelease",
+  "targetReleaseKind": "stable",
+  "retainedPriorUnpublishedDerivative": {
+    "sha256": "abce4779e532d8a54ca372019cd30a3287840ced252370e895ea5dbcc755c820",
+    "sizeBytes": 16084
+  }
+}

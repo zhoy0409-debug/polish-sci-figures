@@ -2,6 +2,8 @@
 
 Figure Studio 0.1.22 支持可取消的画布实时编辑；无效的坐标轴输入保留上一有效范围。[下载 Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe) · [画布编辑说明](docs/live-preview-editing.zh-CN.md) · [实际验收范围](docs/live-preview-validation.md)。
 
+[2026-10-18 发布后更新验收](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)：原官方 0.1.20／0.1.21 → 0.1.22 更新、工程自动恢复和正常清理均已实测通过。
+
 
 # polish-sci-figures
 

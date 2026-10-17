@@ -1,6 +1,6 @@
 # 实时预览验收记录
 
-当前打包源码为 source20：源码组件、轴专项和正式性能已完成，原始 Windows 包已完成本机完整编辑与正常生命周期验收；真实官方 0.1.20 → 0.1.22 更新待正式目标发布。source19 已被已知轴输入缺陷替代，历史部分安装记录保留；source17 的完整安装、生命周期与成品哈希见[历史汇总](windows-final17-acceptance-summary.json)。所有旧 JSON 保持原始字节，不改写为 source20 结果。
+当前打包源码为 source20：源码组件、轴专项和正式性能已完成，原始 Windows 包已完成本机完整编辑与正常生命周期验收；原官方 0.1.20 → 0.1.22 的[发布后实测及正常清理](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)已完成；官方预览版 21 → 22 的非空历史／检查点／原表草稿及正常清理也已另行实测通过。source19 已被已知轴输入缺陷替代，历史部分安装记录保留；source17 的完整安装、生命周期与成品哈希见[历史汇总](windows-final17-acceptance-summary.json)。所有旧 JSON 保持原始字节，不改写为 source20 结果。
 
 | source20 已完成范围 | 当前证据 |
 |---|---|
@@ -10,7 +10,7 @@
 | 唯一正式性能 | [184 动作、全部八行四指标](performance-v2-final20-summary.json)与[17／18／19 对照](performance-v2-final20-vs17-18-19.json)；5000 选择 next／second-rAF P95 78.6／154.7 ms，改色 123.1／195.4 ms，完整八卡第二 rAF P95 610.7 ms。不得用 source19 更快尾部替代 |
 | 独立四面板 | [23 手势完整性与 trace](four-panel-style-final20-diagnostic.json)；输入第二 rAF P50／P95 33.8／37.7 ms、Enter 70.6／82.4 ms，未声称所有指标改善 |
 | 人工 IME 边界 | source18 的 6 项真实检查继续绑定原阶段；[source20 代码范围](source20-ime-change-scope.json)确认相关 host 处理器及文字／inset 两模块未变，轴模块已改，不主张重复原生 IME |
-| Windows 原始包 | 实际安装／启动、Own 108、P1 74、额外轴 10、60 图／1770 对任务取消、10000 图元 PDF／SVG 两项及正常重装／卸载均完成；见[本次汇总](windows-final20-acceptance-summary.json)。官方更高版本更新仍为发布后待实测 |
+| Windows 原始包 | 实际安装／启动、Own 108、P1 74、额外轴 10、60 图／1770 对任务取消、10000 图元 PDF／SVG 两项及正常重装／卸载均完成；见[本次汇总](windows-final20-acceptance-summary.json)。原官方 20 → 22 更新及正常清理另见[发布后补充](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)，不与普通重装合并 |
 
 相对官方 0.1.20／0.1.21，5000 选择第二 rAF P95 358.2／332.9 → 154.7 ms，改色 451.8／520.2 → 195.4 ms；仅这两个核心操作的四指标 P50／P95 均改善。全部负载、内部阶段退步和测量边界见[性能报告](../../stable-performance-validation.md)。
 
@@ -100,7 +100,7 @@ node scripts/test_studio_resource_preview_browser.cjs --url=http://127.0.0.1:POR
 
 实际 IDB 结构化克隆保留 3 个 own `undefined` 派生缓存键，JSON Save 会省略它们；专项比较仅允许这 3 个缺失且 `undefined` 的键（`layoutRenders`、`heatmapRenders`、`statisticalRenders`），其余科学值、源 SVG、state、history、checkpoints、dataDrafts 均严格比较，不做整体 JSON 归一化。`test_studio_resource_preview_harness.cjs` 另检查未知键、已定义缓存、负零、源图与历史改变仍被拒绝。资源公共摘要可用 `summarize_studio_resource_preview_browser.cjs --input=RAW/resource-preview.json --out=NEW-SUMMARY.json` 重跑，要求完整四条件、同一捕获 harness、全部通过及零外部请求；不会把单条件 pilot 汇总为完整通过。
 
-安装版运行需要独立的安装器 SHA、完整安装文件清单和进程路径证明；仅把 `kind` 写成安装版不能证明已安装。安装与清理流程见[隔离验收方案](../../../audit/live-preview-windows-qa-plan.md)。本轮专用 `verify_live_preview_windows.ps1` 要求 PowerShell 7.5 或以上：读取原 JSON 状态使用 `ConvertFrom-Json -DateKind String` 保留进程创建时间的原始 ISO 字符串，并核对 PID、创建时间、路径及 EXE 哈希。Windows PowerShell 5.1 不满足此 QA 脚本前提。每次尝试使用全新的 QaRoot；阶段失败后的正规卸载另记为清理，不能改写成完整验收通过。当前本机验收已完成，尚未发布；本地安装通过不等于已经创建正式 Release，官方更新仍须发布后实测。
+安装版运行需要独立的安装器 SHA、完整安装文件清单和进程路径证明；仅把 `kind` 写成安装版不能证明已安装。安装与清理流程见[隔离验收方案](../../../audit/live-preview-windows-qa-plan.md)。本轮专用 `verify_live_preview_windows.ps1` 要求 PowerShell 7.5 或以上：读取原 JSON 状态使用 `ConvertFrom-Json -DateKind String` 保留进程创建时间的原始 ISO 字符串，并核对 PID、创建时间、路径及 EXE 哈希。Windows PowerShell 5.1 不满足此 QA 脚本前提。每次尝试使用全新的 QaRoot；阶段失败后的正规卸载另记为清理，不能改写成完整验收通过。当前 source20 已正式发布，本机验收与[原官方 20 → 22 更新实测](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)分别报告；单次本地安装本身不能替代真实官方更新链。
 
 ## 结果解释
 

@@ -1,6 +1,6 @@
 # v1.4.22 大型工程性能与 Windows 本地候选验收
 
-本报告记录 Suite v1.4.22／Studio 0.1.22 的版本化性能与 Windows 验收。source20 已完成 95 个组件脚本（91 Node、4 Chrome）、双主题 10 项真实 Iris 轴流程、唯一正式 184 动作和独立四面板 23 手势；source20 原始 Windows 包已完成实际安装、完整编辑范围、正常重装／卸载及独立最终状态核对。真实官方 0.1.20 → 0.1.22 更新待目标发布，旧包结果不计为新包通过。
+本报告记录 Suite v1.4.22／Studio 0.1.22 的版本化性能与 Windows 验收。source20 已完成 95 个组件脚本（91 Node、4 Chrome）、双主题 10 项真实 Iris 轴流程、唯一正式 184 动作和独立四面板 23 手势；source20 原始 Windows 包已完成实际安装、完整编辑范围、正常重装／卸载及独立最终状态核对。原官方 0.1.20 → 0.1.22 更新及正常清理已由[2026-10-18 发布后记录](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)独立完成；独立的 0.1.21 → 0.1.22 非空历史／检查点／原表草稿和正常清理也已实测通过。正式性能数字和旧阶段结果保持原始范围。
 
 source18 人工微软拼音已核查画布选词、候选 Esc／Enter、无效 HEX、F2／失焦、Undo／Redo、保存／重开及 SVG／PNG 导出，原表和源 SVG 保持精确一致，见[Windows 输入法实际记录](windows-native-ime-acceptance.md)。source19 的三行选择／控件刷新优化保留；source20 另修数值轴拒绝组合后的输入锁存，未重复人工原生 IME。[范围核对](qa/live-preview/source20-ime-change-scope.json)明确轴模块已变，主编辑器相关处理器及文字间距／局部放大图模块保持 source18 字节；源码人工结果不冒称新安装版实操。这些功能观察不计入正式性能样本。
 
@@ -36,7 +36,7 @@ source18 人工微软拼音已核查画布选词、候选 Esc／Enter、无效 H
 
 Enter 第二 rAF P50／P95 为 70.6／82.4 ms，相比 source17 的 79.9／144.1 ms 改善，但慢于 source19 的 51.3／58.6 ms；输入为 33.8／37.7 ms，亦慢于 source19 的 27.2／32.7 ms。它是本机负载下的结果，不是任意科研工程的延迟保证。[95 组件](qa/live-preview/source20-component-regressions.json)、[双主题 10 项真实轴流程](qa/live-preview/source20-axis-composition-browser.json)与[25 组轴输入合同](qa/live-preview/source20-axis-composition-fix-regressions.json)分别证明其范围；合成组合事件不作为重复原生 IME。
 
-source19 原 Windows 包已完成部分 8 套件／108 项，因随后确认的数值轴缺陷被替代；[原部分结果](qa/live-preview/windows-final19-partial-installed-summary.json)与[正规清理](qa/live-preview/windows-final19-incomplete-cleanup-summary.json)保留。source20 Windows 原包已另完成实际安装验收，见[本次汇总](qa/live-preview/windows-final20-acceptance-summary.json)；官方 0.1.20 → 0.1.22 仍待发布后实际更新，不用普通重装代替。
+source19 原 Windows 包已完成部分 8 套件／108 项，因随后确认的数值轴缺陷被替代；[原部分结果](qa/live-preview/windows-final19-partial-installed-summary.json)与[正规清理](qa/live-preview/windows-final19-incomplete-cleanup-summary.json)保留。source20 Windows 原包已另完成实际安装验收，见[本次汇总](qa/live-preview/windows-final20-acceptance-summary.json)；原官方 0.1.20 → 0.1.22 的[独立发布后实测](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)已完成，不用普通重装代替。
 
 ## source19 阶段性能（原样保留）
 
@@ -165,4 +165,4 @@ source18 阶段改色与 Enter 尾延迟改善，但选择、完整色板和部�
 
 ## 更新与发布状态
 
-source20 原包的本机安装、编辑、重装和卸载验收已完成，尚未正式发布；真实官方 0.1.20 → 0.1.22 下载、校验、安装、自动重开与恢复待目标发布后执行。旧 0.1.20 → 0.1.21 证据或 source17 同版本重装不能替代此流程。实际条件见[更新验收说明](windows-update-real-acceptance.md)。本地构建、源码测试和未来下载链接均不构成已发布或已安装通过的证明，实际发行状态以版本发布记录为准。
+source20 原包已正式发布，其本机安装、编辑、重装和卸载验收保持原记录；原官方 0.1.20 → 0.1.22 下载、校验、安装、同会话自动恢复及正常清理已完成，见[发布后补充](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)。该更新输入为单状态历史、空检查点和空草稿；独立的原官方预览版 21 → 22 已核对历史 3 状态、检查点 1、有效原表草稿 1 精确保留及正常清理；原始动画另行保留。旧 0.1.20 → 0.1.21 证据或 source17 同版本重装不能替代此流程。实际条件见[更新验收说明](windows-update-real-acceptance.md)。本地构建、源码测试和未来下载链接均不构成已发布或已安装通过的证明，实际发行状态以版本发布记录为准。

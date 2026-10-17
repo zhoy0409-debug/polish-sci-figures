@@ -4,6 +4,8 @@ Figure Studio 用于绘制、编辑和排版科研组图。Windows 桌面版适�
 
 Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库 [zhoy0409-debug/polish-sci-figures](https://github.com/zhoy0409-debug/polish-sci-figures) 是本项目唯一的维护与发布入口，安装包请从该仓库的 **Releases** 下载。启动小窗口中的 **官方项目** 按钮仅在点击后打开此仓库；软件无需登录、激活或联网验证。
 
+2026-10-18：[原官方 0.1.20 → 0.1.22 更新实测](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)已通过，原工程自动恢复并完成正常清理。此结果有明确输入范围；独立的 21 → 22 非空历史／检查点／原表草稿及正常清理也已通过。
+
 ## 安装与打开
 
 1. 从 [v1.4.22 官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22)下载 [polish-sci-figures-Studio-0.1.22-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe)，运行后按提示安装到当前 Windows 用户。
