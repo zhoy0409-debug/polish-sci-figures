@@ -2,6 +2,8 @@
 
 Figure Studio 0.1.22 supports reversible editing directly on the canvas. [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe) · [Live canvas editing](docs/live-preview-editing.en.md) · [Validation scope](docs/live-preview-validation.md).
 
+[Post-release update verification, 2026-10-18](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md): official 0.1.20 and 0.1.21 → 0.1.22 updates, automatic project recovery and normal cleanup passed.
+
 
 [Home](README.md) · [English](README.en.md) · [中文](README.zh-CN.md)
 
@@ -221,7 +223,7 @@ Each candidate directory becomes one panel. The generated HTML supports offline 
 
 ## Verification scope and current limits
 
-Existing validation records cover input contracts, actual redraws, data replacement, SVG text and dimensions, statistical bindings, undo, and the local service. Recorded browser scenarios include object editing, heatmap values and palettes, statistical recomputation, facet splitting, axis settings, character formatting, and export. See the [validation record](docs/figure-studio-validation.md) and the [build guide](desktop/BUILD.md). For 1.4.22 themes and update presentation, consult the [current release evidence and pending scope](docs/release-notes-v1.4.22.md#use-and-compatibility).
+Existing validation records cover input contracts, actual redraws, data replacement, SVG text and dimensions, statistical bindings, undo, and the local service. Recorded browser scenarios include object editing, heatmap values and palettes, statistical recomputation, facet splitting, axis settings, character formatting, and export. See the [validation record](docs/figure-studio-validation.md) and the [build guide](desktop/BUILD.md). For 1.4.22 themes and update presentation, consult the [current release evidence and recorded scope](docs/release-notes-v1.4.22.md#use-and-compatibility).
 
 These records do not mean every template, dataset, label length, imported SVG, or browser has received visual approval. Automated bounds checks do not replace inspection of readability, legend meaning, overlap, and journal requirements at the intended output size. A common exact plotting frame applies only to explicitly supported templates. Other assets keep their existing canvas or geometry to avoid unequal stretching.
 

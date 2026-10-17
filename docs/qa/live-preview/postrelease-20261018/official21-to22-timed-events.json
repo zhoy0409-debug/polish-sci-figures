@@ -1,0 +1,4210 @@
+{
+  "schema": "figure-studio-real-updater-events-allowlist/1",
+  "scope": "Cache-only derivative of all actual timed rows; paths, project IDs, tokens, messages, UI captions and unapproved strings omitted or hashed.",
+  "rawSha256": "5df2726e624285e2764bb738c7042f1e118ef463aa22aa962f690caffc2770a9",
+  "rawEventCount": 454,
+  "excludedUnknownEventCount": 0,
+  "events": [
+    {
+      "rawRowSha256": "8fbacbf57d62a2553c6d93449d6eb87b6c02c5b94f6b2880a0b6988ef90447fc",
+      "at": "2026-10-17T22:16:18.932Z",
+      "elapsedMs": 5466.9741,
+      "kind": "open-project-confirmation",
+      "action": "accept",
+      "type": "confirm",
+      "messageSha256": "cb2e9e85761d4fea50b99f92c21fb8bf30d61a98257604d4a1c24833465c3472"
+    },
+    {
+      "rawRowSha256": "64a6c2d446a72cdba11d66b7ff88bc8dbac1e966aa88fbe04385790f8f323e81",
+      "at": "2026-10-17T22:16:19.305Z",
+      "elapsedMs": 5839.2823,
+      "kind": "operator-project-opened",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975"
+    },
+    {
+      "rawRowSha256": "e1a8783dfdc8dd9bcf985a0f1f843f190b197a133fa73117db33f3ac2037bc97",
+      "at": "2026-10-17T22:16:19.619Z",
+      "elapsedMs": 6153.2463,
+      "kind": "project-saved",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+      "file": "project-before-update.json"
+    },
+    {
+      "rawRowSha256": "c6690466c0b227f0906465b802d8f741721856cef119eabb2c633f035b71f26e",
+      "at": "2026-10-17T22:16:20.297Z",
+      "elapsedMs": 6830.952,
+      "kind": "project-saved",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+      "file": "before-update-theme-carbon.json"
+    },
+    {
+      "rawRowSha256": "7af7b426fbe4f4c720a97a95637dbce332d289d54b587d780e1b5df69bc92f51",
+      "at": "2026-10-17T22:16:21.080Z",
+      "elapsedMs": 7614.4306,
+      "kind": "project-saved",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+      "file": "before-update-theme-pearl.json"
+    },
+    {
+      "rawRowSha256": "e3fef45c889d7ab5f06ca95da5640b98e4d61f9c967d16b350f99197ee6021e8",
+      "at": "2026-10-17T22:16:21.916Z",
+      "elapsedMs": 8450.2034,
+      "kind": "project-saved",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+      "file": "before-update-theme-restored.json"
+    },
+    {
+      "rawRowSha256": "ce8db01282f731213844b0355c8aa491b956a769379a22c6427d5f7280d0f590",
+      "at": "2026-10-17T22:16:22.065Z",
+      "elapsedMs": 8599.2148,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "e8a58405f55962f09cb11db4acbc2011a476a4a303ee91dc1f112b1617815d47",
+      "at": "2026-10-17T22:16:22.181Z",
+      "elapsedMs": 8714.9742,
+      "kind": "updater-response",
+      "received": 0,
+      "total": 0,
+      "status": "idle",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "e2aee68234f898a4475d42579151aee19d1cfd290a95bc3377acd56bc0bb255c",
+      "at": "2026-10-17T22:16:23.327Z",
+      "elapsedMs": 9861.859,
+      "kind": "updater-request",
+      "action": "download"
+    },
+    {
+      "rawRowSha256": "dd2955b8146b1b1d31a4a5cbecadb7a53ac1ccf89e848c4d171ffa0d3013c682",
+      "at": "2026-10-17T22:16:23.397Z",
+      "elapsedMs": 9931.5767,
+      "kind": "passive-authenticated-status",
+      "status": "checking",
+      "received": 0,
+      "total": 0
+    },
+    {
+      "rawRowSha256": "0be8ddc83e8bd737af23067f0d98d744689f92c9a1376b0ac9180e799d1fd6e2",
+      "at": "2026-10-17T22:16:23.407Z",
+      "elapsedMs": 9941.7955,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 0,
+      "total": 0,
+      "status": "checking",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "587a0c10ffa32c678731474662c6439a9683a3fc00c30f6db0d03c4b41d090c6",
+      "at": "2026-10-17T22:16:23.408Z",
+      "elapsedMs": 9942.7469,
+      "kind": "user-started-real-download"
+    },
+    {
+      "rawRowSha256": "2d858a788485a934367b53e5479079cecb5c38435c001b453647cd1c7c2a6b87",
+      "at": "2026-10-17T22:16:23.415Z",
+      "elapsedMs": 9949.5844,
+      "kind": "ui",
+      "ratioSha256": "98089e6d36f78e9766c9ea34d5acb3611f3a92cd81c5eb102095d924ffc7d08b",
+      "percent": null,
+      "received": null,
+      "total": null,
+      "indeterminateSha256": "18d10c7d2b4b04aaf04254d1ae5d655a5dc0407cbcdd5a8c3986e985370f36ee",
+      "motion": "working",
+      "scene": "checking"
+    },
+    {
+      "rawRowSha256": "d4dd483d4255eee5a725c9bda86d184cb4b2a0f326ca9eb9db6e792ea7892dd1",
+      "at": "2026-10-17T22:16:23.880Z",
+      "elapsedMs": 10413.9521,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 0,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a62e83c6babe5c2ed71d6b4fb3d8deaf9a7dd7de11ca26552dc322a5525f8167",
+      "at": "2026-10-17T22:16:24.386Z",
+      "elapsedMs": 10920.6325,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "25a8048905b7f83065ae5be264e5275b0b0a5c8a4998ff27d5e84f52bfaed4c5",
+      "at": "2026-10-17T22:16:24.414Z",
+      "elapsedMs": 10948.1247,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 0,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "9b91f5b859b0a8dd0e491512b1d6df152afade244eb947ce0170e2af02ff1f40",
+      "at": "2026-10-17T22:16:24.470Z",
+      "elapsedMs": 11004.122,
+      "kind": "ui",
+      "ratioSha256": "98089e6d36f78e9766c9ea34d5acb3611f3a92cd81c5eb102095d924ffc7d08b",
+      "percentSha256": "18ea18e47f60aab08224c31fef173c0a31d710db788dd15121a512fd45a35c53",
+      "received": 0,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "8b2692639c6ef3cd371816f86d6dd2c9373f7da2cb48a445b2803745b8f10cd9",
+      "at": "2026-10-17T22:16:24.594Z",
+      "elapsedMs": 11128.6974,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 262144,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "9666c0af59987a5e092c146b36a60924ea4b9c1b67ff2ef22f786bd8cddb7522",
+      "at": "2026-10-17T22:16:24.693Z",
+      "elapsedMs": 11227.556,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 524288,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "917f901d52944e32f46f46dda2773ec620e3066713970b1c0b8701d8f5e111c7",
+      "at": "2026-10-17T22:16:24.794Z",
+      "elapsedMs": 11328.36,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 1048576,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "85fd361a89a1324550f53cece500b83c998b058a0eeea40cdb1f647098a4360f",
+      "at": "2026-10-17T22:16:24.897Z",
+      "elapsedMs": 11431.6113,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 1310720,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3e98d0abb16abfaf56aac340cce7c76266c13b3c3ef77ef2037d3255739e8f70",
+      "at": "2026-10-17T22:16:24.996Z",
+      "elapsedMs": 11529.9449,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 1835008,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6d2e2737544aa26cb6fd8ee1bf70c3f6c5866dabefffba79f1767c1c174c0971",
+      "at": "2026-10-17T22:16:25.096Z",
+      "elapsedMs": 11630.0031,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 2097152,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "2e0308461eb0717d36b2d6711a1ed43a90eb30207be17f3ec83974c37cb2bf1c",
+      "at": "2026-10-17T22:16:25.197Z",
+      "elapsedMs": 11730.9879,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 2621440,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3c0fdd547267611463fbf960fc69bb3bfa72da034437b5a214880c766989dfab",
+      "at": "2026-10-17T22:16:25.304Z",
+      "elapsedMs": 11838.3268,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 2883584,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "565450732300ee537785487a770a11d2e739833933230f36abff3623b72de856",
+      "at": "2026-10-17T22:16:25.404Z",
+      "elapsedMs": 11938.3235,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 3145728,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3c369fa26f8ad77817523e972caca3e3061b035e4d0a20918fb0bb291fa7b2c0",
+      "at": "2026-10-17T22:16:25.428Z",
+      "elapsedMs": 11962.0893,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "1c2c222cc69eca16e8e2b730dfed2345b42e80e575d9d4011ad3104d2215c48d",
+      "at": "2026-10-17T22:16:25.464Z",
+      "elapsedMs": 11998.0685,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 3407872,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "cab4d2996aa3d3634b09c1a5bca7042c5c8a32c038bbfd8633fa9f7551af1b89",
+      "at": "2026-10-17T22:16:25.513Z",
+      "elapsedMs": 12047.09,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 3670016,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "e695f6b217eb7bfe64626a360787fccd084452ef6b47a73aefab345a0ed8c16d",
+      "at": "2026-10-17T22:16:25.517Z",
+      "elapsedMs": 12051.8631,
+      "kind": "ui",
+      "ratioSha256": "dc2aee78ed5506f96687c6128ca27a326686a0f777dd1a587deb7c6091abc02b",
+      "percentSha256": "9ceb772c37a686748e78e8c083c25b0e4d78b6bdbfc789d326b91f06b780cfd2",
+      "received": 3407872,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "48e3239c5b6261d1fd8b24b8fbcff91d86b7ab16c4dede98b4d0947ef304ac90",
+      "at": "2026-10-17T22:16:25.611Z",
+      "elapsedMs": 12145.0779,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 3932160,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "4dde82f35a09dc552918ed79f858187d7c2a8bb0347423d7e367e28f0048a39a",
+      "at": "2026-10-17T22:16:25.712Z",
+      "elapsedMs": 12246.7495,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 4456448,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8daf2c79e6c29d4ed42327a241f11f4cbc1f38090d8e7e6ea28748879463dbcd",
+      "at": "2026-10-17T22:16:25.815Z",
+      "elapsedMs": 12349.6597,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 4718592,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a9cf0d72e1e0c6112e5961c78beea4f7c7da25ff95d9439f6297ca3ccac13d93",
+      "at": "2026-10-17T22:16:25.917Z",
+      "elapsedMs": 12451.6888,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 4980736,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "10c80e22c4ebfc6427af13a9791482b5841ee801db1b5c6a7be0214efd4f5e9d",
+      "at": "2026-10-17T22:16:26.020Z",
+      "elapsedMs": 12553.9493,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 5242880,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "55fb1cd3724b05864ece6ffff7460198bed39712386c1d7f769945e8c2b91e18",
+      "at": "2026-10-17T22:16:26.123Z",
+      "elapsedMs": 12657.5655,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 5505024,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3653752615666d2ac4edcf26e3400e1dd5ddb51a86c3cf1240af6ff52dbd1ac6",
+      "at": "2026-10-17T22:16:26.236Z",
+      "elapsedMs": 12770.6146,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 6029312,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "e11e960ac299695c4d2f15f6cc8ca96c5cb82c3ec9886e5e08a60b3e5a682999",
+      "at": "2026-10-17T22:16:26.340Z",
+      "elapsedMs": 12874.6089,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 6291456,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c3745950a72604717e53083f5a21be174299d5c14243d38bb3b1d7ba4bd9242b",
+      "at": "2026-10-17T22:16:26.441Z",
+      "elapsedMs": 12975.4713,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 6553600,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6e7b52a29e54b1341b37f77afc59adc50b28b23c35d0b0334dd1eb2dc850e722",
+      "at": "2026-10-17T22:16:26.466Z",
+      "elapsedMs": 13000.2958,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "5ffb46f0a43f6f03056a333b647acbdc07c1d425cb5187d68966fa2bba8e875a",
+      "at": "2026-10-17T22:16:26.493Z",
+      "elapsedMs": 13027.2474,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 6553600,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "46558e695db6453b7035971b486c1e63f123d355e89d0dda41876a9daed1d289",
+      "at": "2026-10-17T22:16:26.545Z",
+      "elapsedMs": 13079.844,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 6815744,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "969d3ba7ee78bf905d380f7954e43ad2d2957f5ea7abf5e35b4f054c4eb78925",
+      "at": "2026-10-17T22:16:26.548Z",
+      "elapsedMs": 13082.7795,
+      "kind": "ui",
+      "ratioSha256": "ae20261e7a7a35204909d65186e1b45b2c426f7382ec96fe1b29c22ff452d0d7",
+      "percentSha256": "39072bd0e1b87e4f7e09fda72e7bafe0a94a79815c1f13a5364fc67c11ad1130",
+      "received": 6553600,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "5542b9f7843ccf33bb13ccd752132e918db80b650808dfd40dc51a77d7f93735",
+      "at": "2026-10-17T22:16:26.645Z",
+      "elapsedMs": 13179.4955,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 7077888,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "800447f44c70dbb05bb53e8baa5f9910ab21cbf9235fcff0b197109848a6e048",
+      "at": "2026-10-17T22:16:26.745Z",
+      "elapsedMs": 13278.9803,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 7340032,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f0f0529918dd818b307e95fdd91c16b59278fe4bf4b1394d32c529c9d0a84f35",
+      "at": "2026-10-17T22:16:26.845Z",
+      "elapsedMs": 13379.8061,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 7602176,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "5562a7c3331de263052a95203b4f5f4cce701b0ba636f4fc9f652ec254878c08",
+      "at": "2026-10-17T22:16:26.948Z",
+      "elapsedMs": 13482.8371,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 7864320,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a8bad65572d22931d99859d7d3f7a83a6f1b20bae0595d81db4bae4f45642209",
+      "at": "2026-10-17T22:16:27.046Z",
+      "elapsedMs": 13580.4567,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 8126464,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "ecd6f76f0dd60c0ad649c987296ae1876215b095dc7a6c7876a3e894750c4fd2",
+      "at": "2026-10-17T22:16:27.146Z",
+      "elapsedMs": 13680.2411,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 8388608,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1a4ac5a69385003d5632e84cf99be74f30140d068eda04d2f0ff1e66fbcfe34d",
+      "at": "2026-10-17T22:16:27.249Z",
+      "elapsedMs": 13783.0219,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 8650752,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "fd40865ca23fa36b478984f0bc1dabd7d00b453c01971df551e1466cfd6f80a7",
+      "at": "2026-10-17T22:16:27.350Z",
+      "elapsedMs": 13883.8785,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 8912896,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "dcf0ec2094f3026247689fd0caddba81805f552d74181afa150ed4d78d63e577",
+      "at": "2026-10-17T22:16:27.454Z",
+      "elapsedMs": 13988.2244,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 9175040,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6f521989d1f11c7aa579a599258f32ca5de4cb5753b0df4702b814db20ef366b",
+      "at": "2026-10-17T22:16:27.501Z",
+      "elapsedMs": 14034.9862,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "b48bdcae368e4f30eb315c0246eac9327ccb8e8e487421f2b1193275ddb11129",
+      "at": "2026-10-17T22:16:27.534Z",
+      "elapsedMs": 14068.6899,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 9175040,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "fefc4d23e5d6be159de3c6889026cbbee8752f7ce28476817af6580ed4600393",
+      "at": "2026-10-17T22:16:27.562Z",
+      "elapsedMs": 14096.0736,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 9437184,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "487b9f8d2578343e1b2f44581d7b25b32556f40761a4054cfc4ccf5111e4f8be",
+      "at": "2026-10-17T22:16:27.566Z",
+      "elapsedMs": 14100.28,
+      "kind": "ui",
+      "ratioSha256": "ac62a770699d222d82a7d5456da5fa87ba75fe0a70571636aaef7f75011f72f6",
+      "percentSha256": "73afa694113ae3bdd69845fe39dccbdfafc3a1ad308eb74604eff7ccda0094b9",
+      "received": 9175040,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "d760aa561933c4f74fd1c31ec162be30154b98c4c273fc51fe3fb3cdc2c43f6a",
+      "at": "2026-10-17T22:16:27.662Z",
+      "elapsedMs": 14196.6894,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 9699328,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b85887783326f139b5c85f727d539fc4611d0900dab6aadc297214fa88f52c4e",
+      "at": "2026-10-17T22:16:27.769Z",
+      "elapsedMs": 14303.8458,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 9961472,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "40437d6e0e4e25c9fb4bb3ff341b4f1d4e8b5d701d346459ae618b02c35034ee",
+      "at": "2026-10-17T22:16:27.870Z",
+      "elapsedMs": 14404.6685,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 10223616,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "863d5ead50bc76d578cb699f8dd488a8848f85e94721ee30b37ce5fd63cf454a",
+      "at": "2026-10-17T22:16:27.970Z",
+      "elapsedMs": 14503.927,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 10485760,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f389bd2dbef1602dbbf13e2aee2061d3bd63bcc1b46f2d0446cc0053343918f2",
+      "at": "2026-10-17T22:16:28.076Z",
+      "elapsedMs": 14610.3967,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 10747904,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f59e0f07ce49c0497c539fdc646b6760d7cc69c6c351ff38b8f81240f91788ca",
+      "at": "2026-10-17T22:16:28.171Z",
+      "elapsedMs": 14705.1088,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 11010048,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "bc1d13a58bec531527d7351f8dfdc5d2ceeb5e3fef20a7342e9728a7c01954c6",
+      "at": "2026-10-17T22:16:28.276Z",
+      "elapsedMs": 14809.9867,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 11272192,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b136a2aa24f170cd7951cf0e82530432f14b793a8c18bc7c7a51eafed7287ef4",
+      "at": "2026-10-17T22:16:28.377Z",
+      "elapsedMs": 14911.5228,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 11534336,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "41a614b827da00e2742e9cd7c509a2a7fd52b195ee76d332e51de9d5317dbe51",
+      "at": "2026-10-17T22:16:28.479Z",
+      "elapsedMs": 15013.2432,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 11796480,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "04e84d8b6bb5cc9bd1a4c25b755a347d29a71691b8ee54c8240fddb007ba9712",
+      "at": "2026-10-17T22:16:28.541Z",
+      "elapsedMs": 15075.395,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "1253caa59ca294a7d69d40626eb06058b358536bb3fe454ee6791a62cfda7d7a",
+      "at": "2026-10-17T22:16:28.577Z",
+      "elapsedMs": 15111.6954,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 12058624,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "a2f42ceed8e9169f91c63b56680a143d4c11f940993eaefdf4e9dc08babcf028",
+      "at": "2026-10-17T22:16:28.580Z",
+      "elapsedMs": 15114.5921,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 12058624,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b37eff21578588eed56ce5d0c4656061efd505c1f501268dfc500ba197af4fa5",
+      "at": "2026-10-17T22:16:28.601Z",
+      "elapsedMs": 15135.0781,
+      "kind": "ui",
+      "ratioSha256": "c816f9830adb6fea45c80cfa86a6932e782dfc31e327521f4cdd569463356bdc",
+      "percentSha256": "aa0ae487be0044e57b9ba8d3c13ee1adcad7aa64d057689187b2b6e7be7d790a",
+      "received": 12058624,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "a2ed26cb6761283047ed444ba92d7a2325b668b8f96c31aa3d69c3f944ac9842",
+      "at": "2026-10-17T22:16:28.685Z",
+      "elapsedMs": 15219.1337,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 12320768,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "d5d8a7c32cf53cc310677a39bb603f5ffb9e68084f52655d208f55af6d814b33",
+      "at": "2026-10-17T22:16:28.787Z",
+      "elapsedMs": 15320.9434,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 12582912,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8ceaeb6f77c2a3b161b1d97d2251449649f699212111cef80d29dd144cb489b1",
+      "at": "2026-10-17T22:16:28.889Z",
+      "elapsedMs": 15422.8958,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 12845056,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "9f32c4f90fa6648f042c137344b625bc762a16ab5f2140ede43ba523aaf555d7",
+      "at": "2026-10-17T22:16:28.988Z",
+      "elapsedMs": 15522.5389,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 13107200,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "dfe10442aaad3c98db1fb99c8f5f4f8919786cbf54b16a348e3c627c1568b823",
+      "at": "2026-10-17T22:16:29.094Z",
+      "elapsedMs": 15627.924,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 13369344,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "0f450e63f9783166d7db63eeecbd0103bf607d8851888a793f13d343c12cd968",
+      "at": "2026-10-17T22:16:29.201Z",
+      "elapsedMs": 15735.1376,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 13631488,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3cbd5f5c137c744041e2d596208fef4a741737eb68da2304b81e19fd6c18790f",
+      "at": "2026-10-17T22:16:29.304Z",
+      "elapsedMs": 15837.9341,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 14155776,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "d14a2489bf1edea19b89b8a212b402eeab645a2d3f08d24f4c73372f62e5aa5b",
+      "at": "2026-10-17T22:16:29.409Z",
+      "elapsedMs": 15943.5195,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 14417920,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "97400efb0f66ae0cd31c5df79dcb217be87b316c2db2de326a8349005b5af8d5",
+      "at": "2026-10-17T22:16:29.510Z",
+      "elapsedMs": 16044.118,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 14942208,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "943d4ce4e11472293dc7c9890f45a868dd219e679cd62dc7db913855c86b2ef7",
+      "at": "2026-10-17T22:16:29.582Z",
+      "elapsedMs": 16116.3818,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "a5f60d5aa839f3a086737825ae76f2195215083f2668dc16e1b624a82fa3ed89",
+      "at": "2026-10-17T22:16:29.611Z",
+      "elapsedMs": 16145.4312,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 15204352,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "465da92e85c4ff7e24181d11cd4b97558843d95f00f6e2d660267daa26d5fe7e",
+      "at": "2026-10-17T22:16:29.625Z",
+      "elapsedMs": 16159.7386,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 15204352,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "6025e5b98aea91269a080c91293f68658fe4e082e31331cdc3e6d0e7dffc517e",
+      "at": "2026-10-17T22:16:29.699Z",
+      "elapsedMs": 16232.9676,
+      "kind": "ui",
+      "ratioSha256": "a006dfe89376221b15e79405b87c949cc1032a769effeb4ab5799f04eeffa6ca",
+      "percentSha256": "50add4fe393973ddc6ff3992b5fe43e7f1665bb8b7e65f0a3294cda1de2abf9b",
+      "received": 15204352,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "b1bb96e4a1dcfc65e8422f3e72d740fa1bef2b865fc53d4e8a5429ce61446907",
+      "at": "2026-10-17T22:16:29.709Z",
+      "elapsedMs": 16243.7968,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 15728640,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "468ebdf8df53ca4e2865615042c997aba31aa30c60a389a53b8243c078600a2d",
+      "at": "2026-10-17T22:16:29.813Z",
+      "elapsedMs": 16347.1601,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 16252928,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "52596f3a865679f45890c1ea12dbe315fcc914a2170df75645bf4ff718b13b07",
+      "at": "2026-10-17T22:16:29.912Z",
+      "elapsedMs": 16446.6396,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 16515072,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "452dcd9c94eed813c992f3c89df82f13dae842ca87237ffadd2444bbe41e1ee3",
+      "at": "2026-10-17T22:16:30.011Z",
+      "elapsedMs": 16545.6436,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 17039360,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "459becb1488457177ed665c6c53f3fe23661237cd210dea57fea370eea2dd2fe",
+      "at": "2026-10-17T22:16:30.112Z",
+      "elapsedMs": 16646.6189,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 17301504,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1cc1424c4fd1a0cf5a9927da1d2eda6fd846755e5f7a97cd484d4e3507ebc0cc",
+      "at": "2026-10-17T22:16:30.216Z",
+      "elapsedMs": 16750.7132,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 17563648,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c360de5bc4336cf64ffa6f53af40077b5aa8628a3c52ff2baec28b6869a50e0f",
+      "at": "2026-10-17T22:16:30.320Z",
+      "elapsedMs": 16853.9971,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 17825792,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "787c3c670228a718a83f80d31d9c2c35f3df923d0a37c4b5cf41a6314a740e73",
+      "at": "2026-10-17T22:16:30.416Z",
+      "elapsedMs": 16950.3354,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 18350080,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6b5a3cf4340e104ae98d34e136b19e270f49a9d8071abd12d1b246b1106fdd87",
+      "at": "2026-10-17T22:16:30.517Z",
+      "elapsedMs": 17051.8396,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 18612224,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "fc9ebed970300104df9b91ca2f868922a4145f91d28b93ea8deea01fa687fd71",
+      "at": "2026-10-17T22:16:30.619Z",
+      "elapsedMs": 17153.2075,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "959dedab6a730f41d85c4c172d1dcf556c3579bb669c20ec758c54daee7d7fbd",
+      "at": "2026-10-17T22:16:30.622Z",
+      "elapsedMs": 17155.9858,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 19136512,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "79c5ee076c497755a701cf9e35b206fd51be950f795002cf2561f7c1996a2cf1",
+      "at": "2026-10-17T22:16:30.648Z",
+      "elapsedMs": 17182.5028,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 18874368,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "580408df4a15f37814498aa51fac0cea958f15af907e6d89b2a8fdd2b2a83c75",
+      "at": "2026-10-17T22:16:30.725Z",
+      "elapsedMs": 17259.4837,
+      "kind": "ui",
+      "ratioSha256": "3c5889424f06e7da7586f83c17a25b33f16e17377a94d1c659ba67d3eb7c13fe",
+      "percentSha256": "ed58c8abad0b8276a797298406aeec11cf7ff0e6762812921448ef261c2bf271",
+      "received": 18874368,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "c704498187ea3765dbceb0d5dd33492d5c982660525b1dcfc1934a1b59e264f3",
+      "at": "2026-10-17T22:16:30.823Z",
+      "elapsedMs": 17357.1156,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 19398656,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1b4f0f97ceb566c3e5c3fbc77ab6fa71e9ab6d5ed891f5d93cd1469f048627be",
+      "at": "2026-10-17T22:16:30.929Z",
+      "elapsedMs": 17462.8791,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 19660800,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7d709772aa9ffa026572272d0f288705b332f7b058bbcc2c56a8f9c880702699",
+      "at": "2026-10-17T22:16:31.035Z",
+      "elapsedMs": 17569.2711,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 19922944,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c63fb4beedf6271efc7f298fd538faeaf7fc1e1838a8d3c21b7f8b02dea1c885",
+      "at": "2026-10-17T22:16:31.145Z",
+      "elapsedMs": 17679.4698,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 20185088,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c4366bca3cabe36cae894a9b91e4f8c89c001d9755c97d9e570b1240b2829c37",
+      "at": "2026-10-17T22:16:31.246Z",
+      "elapsedMs": 17779.8875,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 20447232,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a3dd9956ec1783b17babe0837cd2fdcce6f85d41bdec18aa96ba38e1e972f4dd",
+      "at": "2026-10-17T22:16:31.351Z",
+      "elapsedMs": 17885.5443,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 20709376,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7568afe748effa5b923cf5e7bae2161a206753dbe1faaf148aa52ae6afe061f7",
+      "at": "2026-10-17T22:16:31.450Z",
+      "elapsedMs": 17984.3837,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 20971520,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "d28e54279da2f0f909c2e0e49ab4f39365c4f0c5405fab9586c6551b909805ad",
+      "at": "2026-10-17T22:16:31.552Z",
+      "elapsedMs": 18086.6428,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 21233664,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a8f585c6b22aeeeac0c78882cf52349c7f631afa6abf3fc599d0b85ff945acbc",
+      "at": "2026-10-17T22:16:31.652Z",
+      "elapsedMs": 18186.2104,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 21495808,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "10e9d16ebc43daac588c86177326f00684342aa8dfdcdbb03d8c80cae615491f",
+      "at": "2026-10-17T22:16:31.657Z",
+      "elapsedMs": 18191.4769,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "4f4a86a82117f37a42da5c25a43dc57635b8461627f8ae63fb67e286b440ca96",
+      "at": "2026-10-17T22:16:31.685Z",
+      "elapsedMs": 18219.7728,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 21495808,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "3162e4875cf94c9682001ff84401b9c2fe490ecb9274bf9f53d2b82686f7f9ae",
+      "at": "2026-10-17T22:16:31.748Z",
+      "elapsedMs": 18282.3295,
+      "kind": "ui",
+      "ratioSha256": "40d486a1112781db0de2b0d86170dd3ce059aeaa5132c6a81c8e8c9b5c360cea",
+      "percentSha256": "e23689ffda89861c976e59304ee20d3de3a6b9ac25307d958196d53aad21e1e7",
+      "received": 21495808,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "1c3ae7cf8c5124023653a61ff845cf687e4f07d3f242c8b10f12665391fef3a2",
+      "at": "2026-10-17T22:16:31.753Z",
+      "elapsedMs": 18287.3106,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 21757952,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8a6240c922ebf0830fa612f6a532738cbd5dd338f9557cfe2fd1dbe69fb5cbbb",
+      "at": "2026-10-17T22:16:31.854Z",
+      "elapsedMs": 18388.7008,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 22020096,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3265f83ecc6b6f09f11a725d9671033fac946b9af3b3e1b525486391b0d1697a",
+      "at": "2026-10-17T22:16:31.953Z",
+      "elapsedMs": 18487.2638,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 22282240,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c9df910a2be58a94eb91faba9d86c77de6e11d13ed42b7a8dd8484dbcb142d61",
+      "at": "2026-10-17T22:16:32.162Z",
+      "elapsedMs": 18696.7084,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 22806528,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f19f8c9309bf1851f2efa13b6b78fd5a18c3247766fe9b40b19eb8abcc259857",
+      "at": "2026-10-17T22:16:32.268Z",
+      "elapsedMs": 18801.9596,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 23068672,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "eda1245a818f6f3ce4feda414eff5d744a695e80b3cd95484d6fa7e4a357b278",
+      "at": "2026-10-17T22:16:32.377Z",
+      "elapsedMs": 18911.6815,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 23330816,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3eccf4cbe9da47a8faf1363c1fdc099548d285e0d3125fc96dbdd0f492ec1adb",
+      "at": "2026-10-17T22:16:32.478Z",
+      "elapsedMs": 19012.0599,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 23855104,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "0c08e53914801f948e62bf538da7421987a7636fc60adab712f4a2dad2839237",
+      "at": "2026-10-17T22:16:32.579Z",
+      "elapsedMs": 19113.0721,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 24117248,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7516a9f29d5590471c5979e3d98e1cb31bfddab20f98f22931a14562d254d590",
+      "at": "2026-10-17T22:16:32.679Z",
+      "elapsedMs": 19213.8287,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 24641536,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a8502b2f3a2875d0b798911cc4ccb9de4a8ce85a9f6e2daf041a021dcacce4b0",
+      "at": "2026-10-17T22:16:32.691Z",
+      "elapsedMs": 19225.8455,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "ca963e3aa4f3aa5e646606bba41c787b6ee22224efaccbf51285bd95b49ce0ff",
+      "at": "2026-10-17T22:16:32.721Z",
+      "elapsedMs": 19255.079,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 24641536,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "1b1fc5ee9c4f0a1cec483a1fc693630898d1de534d862bc0b409091b2f2b811e",
+      "at": "2026-10-17T22:16:32.779Z",
+      "elapsedMs": 19313.7052,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 25165824,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "d9196556ae196f17982570c3bfa7d475857fa10aabe948a3b1c2c6b7a7b36fc8",
+      "at": "2026-10-17T22:16:32.782Z",
+      "elapsedMs": 19316.3732,
+      "kind": "ui",
+      "ratioSha256": "57391c7e1f0dd263e4c9c1392dd6eab84a4ab02b2aa33c0f051283dcbe61f88b",
+      "percentSha256": "0c09edefd0ab7ccfea8e15dd66fd5547dee24b09564b35952c62c87c34a8aa13",
+      "received": 24641536,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "d3f14f99f9cbdaac7e79b4e80db2d184b52de4c8a9e10b713e993cb40196f571",
+      "at": "2026-10-17T22:16:32.885Z",
+      "elapsedMs": 19419.6204,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 25427968,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8a8fa74ef0a934477d093ed683393f291401846c9cf55d3d9b29d8a16ea8dc3f",
+      "at": "2026-10-17T22:16:32.989Z",
+      "elapsedMs": 19522.9886,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 25952256,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "0be36a810b00b6927188b163374097531cc1ed197093d55ac1a651a33064409a",
+      "at": "2026-10-17T22:16:33.087Z",
+      "elapsedMs": 19621.0602,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 26214400,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "65a96783aa9440ae3e57532ae1e4b3c5fe30203f5b6df5bcdc02afc59fc39847",
+      "at": "2026-10-17T22:16:33.187Z",
+      "elapsedMs": 19720.9935,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 26738688,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "15fcac4c06c4156ca0922a41de0a6b8c1a56d601082875cf912710faab5f42ac",
+      "at": "2026-10-17T22:16:33.288Z",
+      "elapsedMs": 19821.9448,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 27000832,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8a169c64e7f54bb0a478d8cfcbdb1f5e8c91c999385bc0614c520832b305c219",
+      "at": "2026-10-17T22:16:33.387Z",
+      "elapsedMs": 19921.534,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 27525120,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "fe60d42455a56dbccdc1fc28a16ce830a6106789b7f0256d3186881324b3f275",
+      "at": "2026-10-17T22:16:33.487Z",
+      "elapsedMs": 20021.14,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 27787264,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "38760a61b03155e88fb5806d23bbaad45f2b59ef4a055155a50de1bec3018974",
+      "at": "2026-10-17T22:16:33.590Z",
+      "elapsedMs": 20124.2173,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 28311552,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "54e920f0b1354be9d7b662ff308e047b7b42e6bd108f06a3f994f90487949e47",
+      "at": "2026-10-17T22:16:33.702Z",
+      "elapsedMs": 20236.542,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 28835840,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a5792fb725c36071c4c55f420ea1f4609221c2fed510cd2bc889776ff53f81d1",
+      "at": "2026-10-17T22:16:33.723Z",
+      "elapsedMs": 20257.4254,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "d0a7d7e2686bd812291f1ba4929d057c879b92d800d6a227534af40c0f5b4a46",
+      "at": "2026-10-17T22:16:33.758Z",
+      "elapsedMs": 20292.8658,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 28835840,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "c5b8c07678d839a6ec514d9d54347f7c67c95dbf8829148f81e1beb9256dc01a",
+      "at": "2026-10-17T22:16:33.805Z",
+      "elapsedMs": 20339.8828,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 29097984,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "afb686097212cafddc14221fe4326a5ba06cc7582c3b9013e0604a27caa50ab6",
+      "at": "2026-10-17T22:16:33.822Z",
+      "elapsedMs": 20356.3045,
+      "kind": "ui",
+      "ratioSha256": "828f4ed036b33092553c819319dfdd90f46c4dd73b055b45debea157c03d6762",
+      "percentSha256": "1f2e5711e76f81a307e084117422516df9303f3f1731a445bd000528fcab520c",
+      "received": 28835840,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "8646b9caf83ef18a899957c9ef7437c80c8f3c7437a679ba9a1b74124df6b7a1",
+      "at": "2026-10-17T22:16:33.910Z",
+      "elapsedMs": 20443.9448,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 29622272,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b83eef34cfafdcef453f1ff23ada75d786208698495501558d69162e0cb2b560",
+      "at": "2026-10-17T22:16:34.011Z",
+      "elapsedMs": 20545.3404,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 29884416,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "19dfcaac0e7f06707fd5e962b3968e76dbec720eb19ad153fd05aaf5e484e8ad",
+      "at": "2026-10-17T22:16:34.110Z",
+      "elapsedMs": 20644.7573,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 30408704,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c28519f0397ef7b7b982a4bce02c5de0a80b01d75d39a03ce8ecbf9527b3c85d",
+      "at": "2026-10-17T22:16:34.211Z",
+      "elapsedMs": 20745.7588,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 30670848,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c82b59d828024852543c82f464b83147e126b00ef2eb037b6c0f95fbb7028443",
+      "at": "2026-10-17T22:16:34.311Z",
+      "elapsedMs": 20845.8455,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 31195136,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1f8e65628803dd9efdbfca7b2d35fc81f3e864d52de73b350f38e10640ad911f",
+      "at": "2026-10-17T22:16:34.513Z",
+      "elapsedMs": 21047.7707,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 31457280,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "517be22108bb5d934b995f63c037f8b00db813b297cddc66694f3256ac491eb3",
+      "at": "2026-10-17T22:16:34.621Z",
+      "elapsedMs": 21155.0326,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 31719424,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3a4692ce0ef92593812e2961c7b74485a2f0bfa3a5079a36dcde878105d6ce85",
+      "at": "2026-10-17T22:16:34.766Z",
+      "elapsedMs": 21300.6536,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "fb43da2fc0736ce4794dfdb38c7bc9ba014233df898dcd1a10b36505e5effc8e",
+      "at": "2026-10-17T22:16:34.796Z",
+      "elapsedMs": 21330.2321,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 32243712,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "45e02638903b384c6dbd7d4ffab9b3c357a2eb86cdfad36ca6377f5000683d85",
+      "at": "2026-10-17T22:16:34.822Z",
+      "elapsedMs": 21356.3217,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 32243712,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "5bd2baf3b52093b4dc602483bc9df08590b7990778645e8acbe2cf1a6745596b",
+      "at": "2026-10-17T22:16:34.826Z",
+      "elapsedMs": 21360.0905,
+      "kind": "ui",
+      "ratioSha256": "f511b6649f4abe5715a33ca1f8ab082658ad6f33c17aa1d481190ebebe8fa5ff",
+      "percentSha256": "fb0cac020a397403622b58fc654e0d888d4f7b12d294802d8c997e2902bfbe65",
+      "received": 32243712,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "94d1b16abed0d1a3f051312209fd367fe0afd9b409c04811a1426c3784539b10",
+      "at": "2026-10-17T22:16:34.920Z",
+      "elapsedMs": 21454.438,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 32505856,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "5f15e58dea06553c5a8aac5cbe12c31c5bf3762744fe6c23b9fbe82d4d676964",
+      "at": "2026-10-17T22:16:35.021Z",
+      "elapsedMs": 21555.2468,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 32768000,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "cdfe3e25439c10065f24d0b3f941464d5116849d1d169ce7236700d391cd53c5",
+      "at": "2026-10-17T22:16:35.123Z",
+      "elapsedMs": 21657.1572,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 33030144,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "76d96313d922af64177540453f3bc1a20b6fc5b94610d2e76ac5bf9e1e39037e",
+      "at": "2026-10-17T22:16:35.227Z",
+      "elapsedMs": 21761.7348,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 33292288,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b1d1eebf9fae97c72e40c0adb8dddfaff1f3877908318fd7b3cca6c8b9cf7be5",
+      "at": "2026-10-17T22:16:35.336Z",
+      "elapsedMs": 21870.2955,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 33554432,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "01531b95384cca0af3182b4def009a3b326ca5359571c3a365e63534d424d134",
+      "at": "2026-10-17T22:16:35.445Z",
+      "elapsedMs": 21978.9814,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 33816576,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "ba99bd77f57580e610709b7aaaf63008542f45c95e033f59ded94ca57fc2ab36",
+      "at": "2026-10-17T22:16:35.554Z",
+      "elapsedMs": 22088.2241,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 34078720,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3810d0ae7846f00df0ffb9aaf05979ec88666042c84364e28e79dfa4acfdcf88",
+      "at": "2026-10-17T22:16:35.663Z",
+      "elapsedMs": 22197.2233,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 34340864,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "5157b443766977f7777432f994ba29e8bd7af17c79058647d6b821d35a2bb20e",
+      "at": "2026-10-17T22:16:35.762Z",
+      "elapsedMs": 22296.7732,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 34603008,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a7f68cce0bca5549edf65baf47104133a787079387f7fd48676e7a2f82a59285",
+      "at": "2026-10-17T22:16:35.799Z",
+      "elapsedMs": 22333.2643,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "8cb1f329ab862b70ae868e9e10e5749156921717e6ddadceafc8545671b09172",
+      "at": "2026-10-17T22:16:35.827Z",
+      "elapsedMs": 22360.9868,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 34603008,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "5b1a83b2647c4006f68ec2159ed8b8b6180251c432c46a711dec357510350697",
+      "at": "2026-10-17T22:16:35.866Z",
+      "elapsedMs": 22400.0198,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 34865152,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6898a3196618c9c001a13e351b015e792368d981fe7c87da58302f49d4268afc",
+      "at": "2026-10-17T22:16:35.874Z",
+      "elapsedMs": 22407.8897,
+      "kind": "ui",
+      "ratioSha256": "211276ebc1a94baeb1728464d68bf72dcf021a952265a401a54ce0e6d00d4d9c",
+      "percentSha256": "2c4db9b54711f6a776ad67a3cd33e089e59ebf2cd3402704477519cf0bf59331",
+      "received": 34603008,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "4886bd75c2292d04eff3d4f861753276cefa23c4efc2cdfb8d21bf078e12dae8",
+      "at": "2026-10-17T22:16:35.970Z",
+      "elapsedMs": 22504.6535,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 35127296,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "81f8a52b2d54ad6378b53f721d1e8c1763e63eeb53c07de5c446ede71298c2e3",
+      "at": "2026-10-17T22:16:36.071Z",
+      "elapsedMs": 22604.8944,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 35651584,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "af6ddcf2f3b786d6dc790c17f53ce2d149cc0b7b08502a21e02a5dd0209514e0",
+      "at": "2026-10-17T22:16:36.171Z",
+      "elapsedMs": 22705.8251,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 35913728,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "eb3cf9814ea5b7e6da341dc1fc3ad304c9c59a9d178ed2f5cdac0cb5c41089d0",
+      "at": "2026-10-17T22:16:36.271Z",
+      "elapsedMs": 22805.4741,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 36175872,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f2294ac7ec6e5ed892f7bd0575bba6f0d6349e44c793a2479940b71751a55368",
+      "at": "2026-10-17T22:16:36.377Z",
+      "elapsedMs": 22911.4869,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 36438016,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "ebe0dca4bccb18f2cb593c3601504a69d4c6d92910a6bf4291e178eb54e2ab7d",
+      "at": "2026-10-17T22:16:36.476Z",
+      "elapsedMs": 23010.836,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 36700160,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "471923a718b0b13b46b8ee9b39414e42d237eddf56b06354f9894a4ba85d39af",
+      "at": "2026-10-17T22:16:36.578Z",
+      "elapsedMs": 23111.8874,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 37224448,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "782cc07985e9c5d43cfab1e860f407ce4773c4302f76ad89d9bba62c702a30ab",
+      "at": "2026-10-17T22:16:36.678Z",
+      "elapsedMs": 23212.708,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 37486592,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "cfd37bb5a40a9762300194670831510fdf38aa6427023ef801b858a30d16b8c2",
+      "at": "2026-10-17T22:16:36.779Z",
+      "elapsedMs": 23313.3275,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 38010880,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7efa2c196108c8bc3b265f016b5a8e4279e3f935bbf18b0136f219bfe90f65c8",
+      "at": "2026-10-17T22:16:36.832Z",
+      "elapsedMs": 23366.4709,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "cb31bd134da4d1ad831a49c022b9505bef549005c477b5eab1e1c82db5088ea4",
+      "at": "2026-10-17T22:16:36.865Z",
+      "elapsedMs": 23399.4886,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 38273024,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "46d90f2a6975abace2166a303c72d019a9d273906e44db43a8b3f3648dfdf647",
+      "at": "2026-10-17T22:16:36.888Z",
+      "elapsedMs": 23422.3296,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 38535168,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1e01920a5ae9977f1a1425bd724b93173ae78ed6096c92337018e11f96e5e860",
+      "at": "2026-10-17T22:16:36.899Z",
+      "elapsedMs": 23433.3321,
+      "kind": "ui",
+      "ratioSha256": "2766ec6f0ce94d285f566a311ce3aed9ace0396bbfdd94b1ddff2269c5dbbc83",
+      "percentSha256": "ac71d887a6c6ada6ecafb72bf5544f556c5446a6caa5539e549209ee23b418df",
+      "received": 38273024,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "514d833b0c01208d162bc5223afed2cb5a7222074ce060d39be24690778fe464",
+      "at": "2026-10-17T22:16:36.987Z",
+      "elapsedMs": 23521.2752,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 38797312,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7e9d904ac7db3de12157ae9f86f02f7b515df4ab509f50422852f956ac09e948",
+      "at": "2026-10-17T22:16:37.093Z",
+      "elapsedMs": 23627.3943,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 39321600,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "80653a1c7928e1b2ed6b24bce0b5ba28e4bf72f664f62d26db73b565f398d2ac",
+      "at": "2026-10-17T22:16:37.195Z",
+      "elapsedMs": 23728.9772,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 39583744,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "ee8bd16786db237526bac11d842937828c3ccc0c22846e543dba8f9d10634eaa",
+      "at": "2026-10-17T22:16:37.304Z",
+      "elapsedMs": 23838.7397,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 40108032,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f208f0b3ec26a4df4264e77d86b05c0563169db7a77af189a8679cb32ae2eb75",
+      "at": "2026-10-17T22:16:37.405Z",
+      "elapsedMs": 23939.8109,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 40632320,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "97b0ce532e2d682a51faffeba37511ae4fa816a95c66db345c5adbb870dd4689",
+      "at": "2026-10-17T22:16:37.510Z",
+      "elapsedMs": 24044.0676,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 40894464,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "cd5657dd006a2a05fb7c3fb49060b689de679fce420fb813a375d56cc41a29a0",
+      "at": "2026-10-17T22:16:37.615Z",
+      "elapsedMs": 24149.1016,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 41418752,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f6df8bb17fea92bf44293c60e48d38ab8559de90888bbc7d56516f3019d60afe",
+      "at": "2026-10-17T22:16:37.709Z",
+      "elapsedMs": 24243.7282,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 41680896,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "86967c1851fd06ad2bc6dfce438eb04ec547569dd78762b67f9d02eb3282f91d",
+      "at": "2026-10-17T22:16:37.810Z",
+      "elapsedMs": 24344.7482,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 41943040,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "41898357876e85220eb2127681095c4ed86a7bb35b116ef5b013cc5048830d76",
+      "at": "2026-10-17T22:16:37.878Z",
+      "elapsedMs": 24412.3481,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "f8497b0e3b0a1b8c15912348491dff594d510db2ec0ac80d04edba553d576226",
+      "at": "2026-10-17T22:16:37.911Z",
+      "elapsedMs": 24445.4372,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 42205184,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "f8cad879a50254995490bebf04fb81a153e65a9b31280b7e4254440ebe01452c",
+      "at": "2026-10-17T22:16:37.914Z",
+      "elapsedMs": 24448.7055,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 42467328,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a6b7f3178d3ae137edd2a5af8f58e4362f7efe86736abb50f39ae5ad927fb743",
+      "at": "2026-10-17T22:16:37.935Z",
+      "elapsedMs": 24469.8219,
+      "kind": "ui",
+      "ratioSha256": "578c5f5f68c807b0139c57ba7915efffe6f22b3ca1693d07ebaa04025b4da873",
+      "percentSha256": "5dea0bd0da70e4fd607115900f421ce2a8545f8ca37361b4e14a1e2fc4a61b21",
+      "received": 42205184,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "3bf69c7fc3222702fb54c737771fdd8b8ada69b7b5fa3fde8fa76ea96850fcd9",
+      "at": "2026-10-17T22:16:38.015Z",
+      "elapsedMs": 24548.9349,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 42729472,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "4cb9b4dc2a4580467609cd464ac71ca4e67d0f3088a7cdeeffe82ceb20e9e447",
+      "at": "2026-10-17T22:16:38.112Z",
+      "elapsedMs": 24646.2833,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 43253760,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6e867d2b2277eca37639bac8bdee2ea05d9f32d7e67b331accba8df02114635b",
+      "at": "2026-10-17T22:16:38.218Z",
+      "elapsedMs": 24751.924,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 43515904,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "832b71ae42a6e5a8384e330639bc1be28cb68e598ba3971f286ca22629ee3d29",
+      "at": "2026-10-17T22:16:38.322Z",
+      "elapsedMs": 24856.0948,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 44040192,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c721bcd7546800092e94ac9880eaab25ac7145d0cab119876112235eb89dbdb7",
+      "at": "2026-10-17T22:16:38.421Z",
+      "elapsedMs": 24955.8312,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 44564480,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c2141229bb13f98b3cbb68222b80f4422aca633a3d60210d42f550f1b6f16ff5",
+      "at": "2026-10-17T22:16:38.524Z",
+      "elapsedMs": 25058.469,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 44826624,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6d38984f64cebdff50b5999defc6f28b80385fa16320c4fad6eca70d6349ad4c",
+      "at": "2026-10-17T22:16:38.627Z",
+      "elapsedMs": 25161.2177,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 45350912,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "369cd3e6013d32d036b4c7305a9887e035017d3d931def37c59f471990de87b6",
+      "at": "2026-10-17T22:16:38.726Z",
+      "elapsedMs": 25260.1633,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 45613056,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "808d8005dae633232096125bf23aaae129a03dbae3a26c54940d88b98f3f63b3",
+      "at": "2026-10-17T22:16:38.829Z",
+      "elapsedMs": 25363.0586,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 45875200,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "db0ae8838e273111da1bdafa975e616b1d2653593d2bf53142191a1baa41a833",
+      "at": "2026-10-17T22:16:38.915Z",
+      "elapsedMs": 25449.6086,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "417ed44c2c9b34c878b49a96612be666f0163157a69cdaf4b181360ce0c24684",
+      "at": "2026-10-17T22:16:38.929Z",
+      "elapsedMs": 25463.4209,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 46137344,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "4e3a6092755d8bbe20c574c21f6ce4b00b0a33b41c2b3b5f9229fc9d6b2a739b",
+      "at": "2026-10-17T22:16:38.943Z",
+      "elapsedMs": 25477.6751,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 46137344,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "4078c1000a43f4962a24e1a7e29bca2329fe8a34da4f31c7513dcef2eb436daa",
+      "at": "2026-10-17T22:16:39.034Z",
+      "elapsedMs": 25568.3406,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 46399488,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "81391c625a8b2f560d2c03c703f20b2ea5fb4c9c792aeba6846c4e085c2aacf8",
+      "at": "2026-10-17T22:16:39.040Z",
+      "elapsedMs": 25574.1505,
+      "kind": "ui",
+      "ratioSha256": "063e8d1937e1d753576b8cddb4d3736ee2fca781d870d04ad36511e69830f21a",
+      "percentSha256": "1adcec12192fa6ad31bc332ea330c0784c2131f5d242ca2cff4e51256fd928e2",
+      "received": 46137344,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "43a8d01213630ff7adc599681dfeeb4c7510df2b378e5ee4b25e359cc2881e99",
+      "at": "2026-10-17T22:16:39.136Z",
+      "elapsedMs": 25670.5377,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 46661632,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "347d609d2cc3404cd0307dacd506a260cf88aeb1b59879bfb46c402108e74d1d",
+      "at": "2026-10-17T22:16:39.236Z",
+      "elapsedMs": 25770.8481,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 46923776,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c34e1da680617431938e4e831d4530c0d6709493e0cc41f5c076d2a619c929ff",
+      "at": "2026-10-17T22:16:39.337Z",
+      "elapsedMs": 25871.2533,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 47185920,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "0ddc01889587877a239d08e3ce9bc607eff6571bb58635988d1eb8ca827c3e20",
+      "at": "2026-10-17T22:16:39.446Z",
+      "elapsedMs": 25980.7784,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 47448064,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "84b7af5929e97db8be23a9d83c06951092fa6c6a36cc6d9f390ddb422bedd11f",
+      "at": "2026-10-17T22:16:39.545Z",
+      "elapsedMs": 26079.1422,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 47710208,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "bc9a3a716179e31104ff644b874c3b3a45584259354bc95856dc13bca30b45ec",
+      "at": "2026-10-17T22:16:39.646Z",
+      "elapsedMs": 26180.4234,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 47972352,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "49ce57936695ff862227337a7594a0aab3ddc46b80cb4ea86e64a694bae8317d",
+      "at": "2026-10-17T22:16:39.749Z",
+      "elapsedMs": 26283.4347,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 48496640,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "9d3325f74384cee474dff6a39e1bfa83b75ad0b570d22bece7549e674e0c2acb",
+      "at": "2026-10-17T22:16:39.955Z",
+      "elapsedMs": 26488.8641,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 49020928,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "bd2e20177d0fe4e36ac1188fbe4dd031daf33cdf2e36e2b4b8807521b4b597cf",
+      "at": "2026-10-17T22:16:39.957Z",
+      "elapsedMs": 26491.513,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "7a493b46f8d37c11ea668ade8d7b6149b96b50a8c90c42a83dc707b6aadb647b",
+      "at": "2026-10-17T22:16:39.984Z",
+      "elapsedMs": 26517.9087,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 49020928,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "84e229383f44e045b07a03f69260c0261f62a94ba4bc83e9b26ef69d30f41c30",
+      "at": "2026-10-17T22:16:40.054Z",
+      "elapsedMs": 26588.254,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 49545216,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "0dbfcb5165483f034e2580b0e432403daee87fa180ef852b54d34936b400af5b",
+      "at": "2026-10-17T22:16:40.059Z",
+      "elapsedMs": 26592.925,
+      "kind": "ui",
+      "ratioSha256": "28e929d769a9a68f60c3ee3f3d90ec70ca4d7b345e3def2fbe9aadfd504e8a0c",
+      "percentSha256": "843e3fdc47a9307765a253252526f8933873c788c011247c7554997803df7a9e",
+      "received": 49020928,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "1e1ae3110db03c2847903ec54f58761d4d4fbf94072fdd821d5bcf082f39ed7e",
+      "at": "2026-10-17T22:16:40.162Z",
+      "elapsedMs": 26696.5307,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 50069504,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "cb778d86c89978344f1dfae1e12ad3d858162c193bdd502004792e143c65bcf5",
+      "at": "2026-10-17T22:16:40.262Z",
+      "elapsedMs": 26795.9469,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 50331648,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "81ec2e2717066e94cd37813f169f01e23430d8489b7d859926c6da00914009b5",
+      "at": "2026-10-17T22:16:40.362Z",
+      "elapsedMs": 26896.2771,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 50855936,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6680f714e40032d484e4b9a346c33253dc23d6325e38536e573c48d5ebe84eb7",
+      "at": "2026-10-17T22:16:40.463Z",
+      "elapsedMs": 26997.4451,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 51118080,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3def34d93ee5bf0e74758814cce94a6c1bb3a13f01e13c0fb737484683df5843",
+      "at": "2026-10-17T22:16:40.566Z",
+      "elapsedMs": 27100.6929,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 51642368,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1fc5851d5166b1a2e3da87ef0023baac014fe7a01da5a0d9de137be744419a31",
+      "at": "2026-10-17T22:16:40.669Z",
+      "elapsedMs": 27202.9666,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 51904512,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "00bef2ea1519d6d352d024843d62c562f9931091758fb4109740742890c2e92c",
+      "at": "2026-10-17T22:16:40.771Z",
+      "elapsedMs": 27305.4285,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 52428800,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f1378d13964050068c7e22aaa7e0dad1fe66cd57530bacfe4e1723471bdd909e",
+      "at": "2026-10-17T22:16:40.872Z",
+      "elapsedMs": 27406.081,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 52690944,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "ed0500abf6242c6654386a04df528c1f261d972e962bf9a22b98d9dc5bebd000",
+      "at": "2026-10-17T22:16:40.970Z",
+      "elapsedMs": 27504.4358,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 53215232,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a27d87558a364078974ede01ce1276eed7a709bdb733e44e5ba1feef2595a10a",
+      "at": "2026-10-17T22:16:40.999Z",
+      "elapsedMs": 27532.88,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "83ec6328105980e3ccfa286966a17e2849c2e36f50e5272502921d4564985c6c",
+      "at": "2026-10-17T22:16:41.041Z",
+      "elapsedMs": 27575.6233,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 53477376,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "470df5d78d87ed19ad24375a5e9826a220690fd1c42c774d6b73048a534ec681",
+      "at": "2026-10-17T22:16:41.073Z",
+      "elapsedMs": 27607.0403,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 53739520,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c2e361a16645d94841d77fdfd6b0131e8d7d7734d1eb4a01cc17716f8a3193f5",
+      "at": "2026-10-17T22:16:41.083Z",
+      "elapsedMs": 27617.0495,
+      "kind": "ui",
+      "ratioSha256": "3fa8cc4f93703af71eb51eca24ecc7a4cf760c01bda31fdf545864d590394bd0",
+      "percentSha256": "f823f52dcf4e93eef598c356c46c25b241187b78ac28b6e85a8de461944c19b1",
+      "received": 53477376,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "13c8a3f2fc0041d1455deb1609734110bb3f6306411b9eac379af9ff960f2ae4",
+      "at": "2026-10-17T22:16:41.178Z",
+      "elapsedMs": 27712.2044,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 54001664,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "160272486cd5a566709429206b86bc5503692a9feaaa4cc1d3cf620e5d381e45",
+      "at": "2026-10-17T22:16:41.287Z",
+      "elapsedMs": 27821.7686,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 54263808,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "809a9d9b75a0f64523a491152ef551e3d294c41eedcc4ad909f3585d1f29bb61",
+      "at": "2026-10-17T22:16:41.388Z",
+      "elapsedMs": 27922.7593,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 54788096,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "17d6a86f17ea2cc1c5bcc57938319c3668d883ea3ddaf82c27513ab29ab7c16d",
+      "at": "2026-10-17T22:16:41.487Z",
+      "elapsedMs": 28021.6623,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 55050240,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "552fa9b3986faeb940a27213917b61c2667ba43f02e36c7cb5107f466c77b1e6",
+      "at": "2026-10-17T22:16:41.590Z",
+      "elapsedMs": 28123.8945,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 55574528,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "d13ac34bffbf93f4ea561f8f9ee266a8cd5f8235d2c21f9c506053b1cf70e37d",
+      "at": "2026-10-17T22:16:41.695Z",
+      "elapsedMs": 28229.7502,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 55836672,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6f62f71de378850b1cedf2005169a8480c1363123ebcc9080309bf16ffa42363",
+      "at": "2026-10-17T22:16:41.797Z",
+      "elapsedMs": 28331.7584,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 56360960,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "4ed4595f16772caf3e7b6c947eb0b354d7fa46ee862de1ca2012d6913f336c96",
+      "at": "2026-10-17T22:16:41.896Z",
+      "elapsedMs": 28429.9124,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 56623104,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6e09be12de231ff00fc9dc8ff8073d806fe0da4b191a61f3e2b49d2f079a5059",
+      "at": "2026-10-17T22:16:42.000Z",
+      "elapsedMs": 28533.9275,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 57147392,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "17f416d53e79d12b6329f4d9d7fbf12bdf34e3eaf1302665ba93bd9a0ea75679",
+      "at": "2026-10-17T22:16:42.034Z",
+      "elapsedMs": 28568.2134,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "c0d04eb16acaac9140b48fa1f5271a7fb3f9cde9600f52ac695ad4e034ecb3be",
+      "at": "2026-10-17T22:16:42.065Z",
+      "elapsedMs": 28599.8063,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 57147392,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "198174b082d60d18d0fdc2d026fd9231497288d0099290f4ca2dd0a2630141f2",
+      "at": "2026-10-17T22:16:42.100Z",
+      "elapsedMs": 28634.8443,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 57409536,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "94bda09a695acb780a48a7f5fdd23c1b848cb766e18ba0239e7128dc43cd7de9",
+      "at": "2026-10-17T22:16:42.105Z",
+      "elapsedMs": 28639.7327,
+      "kind": "ui",
+      "ratioSha256": "9175ea349341eb09c2bff2b81f39187fa531cfe1c7a9352c3d4f6d10ae7c4557",
+      "percentSha256": "1fd11417d10cb931887981fcb2b1890d4c5f26ca2a843509a3f5715612b0280c",
+      "received": 57147392,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "c80425fbf9c710bbf284e516c5ab2555f4955c08d3209b026917fa343ca70932",
+      "at": "2026-10-17T22:16:42.204Z",
+      "elapsedMs": 28738.0301,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 57671680,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1e1cb5bed7823aeca4b2c34361fccbdaa675131964f95ea19e4c4a48f5f56849",
+      "at": "2026-10-17T22:16:42.307Z",
+      "elapsedMs": 28841.5152,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 58195968,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "14ff1535d06c5dc50b17cf1aba4db1e071d7e1c0f5aec5accfdb824f61761fc3",
+      "at": "2026-10-17T22:16:42.412Z",
+      "elapsedMs": 28945.9306,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 58720256,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3e484ce06d8b4902cc201a6aa1ef9f019288fe91224a56fdab6456314004fe22",
+      "at": "2026-10-17T22:16:42.512Z",
+      "elapsedMs": 29045.8803,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 58982400,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3583cd060dfb9983634655d4df45b78b96fd5573ea7f9c222db2ff46e61969e3",
+      "at": "2026-10-17T22:16:42.612Z",
+      "elapsedMs": 29146.1115,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 59244544,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3ec13c3a4eeacc6fcf94ace101a7afc74ffb4da4778f25c3e98b9b6afd3594c7",
+      "at": "2026-10-17T22:16:42.719Z",
+      "elapsedMs": 29253.6332,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 59768832,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3d15c6e3aefa950e8134938c220816356f2e9fc05beb963e987b44e58a594178",
+      "at": "2026-10-17T22:16:42.819Z",
+      "elapsedMs": 29353.436,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 60293120,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c8d52c6c6b919dc499403e8794115726b798ca11288801265f3a9fe8a5139e52",
+      "at": "2026-10-17T22:16:42.920Z",
+      "elapsedMs": 29454.2067,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 60555264,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "e5a87ae81bf24518618877c8fddfff4c80587fa9baa9638a68568e745c0074ea",
+      "at": "2026-10-17T22:16:43.021Z",
+      "elapsedMs": 29555.8538,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 60817408,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a5790d46826279a3395ea778dd12683cfc235d15094031daf8a51b21733fbf3d",
+      "at": "2026-10-17T22:16:43.074Z",
+      "elapsedMs": 29608.1433,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "c162a5a7ca60e1bccaf760f56d6efe7fca3f20ea8d188bc9d5327bafaf13b72a",
+      "at": "2026-10-17T22:16:43.105Z",
+      "elapsedMs": 29639.5922,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 61079552,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "a5dc0d633815304f1b274d89f9d024e8ff8c1d97cb4447578c033982457eb2a5",
+      "at": "2026-10-17T22:16:43.121Z",
+      "elapsedMs": 29655.2849,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 61079552,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "9a36fb084560fb7a5370adb9e77568ee5abd677d432003769175e2f994ff6f2d",
+      "at": "2026-10-17T22:16:43.133Z",
+      "elapsedMs": 29667.0887,
+      "kind": "ui",
+      "ratioSha256": "0b35566edf3611f3a63d94b62dadb713cf29ba9139a922f71f3c4a2cd81b0c1a",
+      "percentSha256": "3d0d25846d69a5ff43a583302c3a5c21d3249b2cead9dca6bf3da90e8cc8116b",
+      "received": 61079552,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "c5f8c9e319ec7586c86234e6c1a4e81efecff229172f7a329ad5efaa57674e50",
+      "at": "2026-10-17T22:16:43.221Z",
+      "elapsedMs": 29755.2761,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 61341696,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b923ad4e165ee7dcc00952504fe51f22cdee3ba1608613b62550f11f8bd4048d",
+      "at": "2026-10-17T22:16:43.323Z",
+      "elapsedMs": 29857.2452,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 61603840,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b452b74d4a1355cc7163c827edf8e2384ffaccada37456670461ddc8af506a27",
+      "at": "2026-10-17T22:16:43.426Z",
+      "elapsedMs": 29960.8325,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 61865984,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "87d550070820d7be6401d8ef1839bb308d299edf3587bc3a99eeb10eea8c27a1",
+      "at": "2026-10-17T22:16:43.532Z",
+      "elapsedMs": 30065.9576,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 62128128,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "aeeedfafb98b900466f4d7bea0d041e76f77ce88a4c795989330108102333404",
+      "at": "2026-10-17T22:16:43.633Z",
+      "elapsedMs": 30167.537,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 62390272,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "529f7daceefc1f8f18882b4f4c4ece28610be2553a95d67dc342c5996bcf952f",
+      "at": "2026-10-17T22:16:43.735Z",
+      "elapsedMs": 30269.3125,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 62652416,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "580380b1fbed6279ae1377bd336060eb515b790b51f4ce24bd54a391793a6f6a",
+      "at": "2026-10-17T22:16:43.836Z",
+      "elapsedMs": 30370.1089,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 62914560,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "cb498c1e22c496690aa150ed9bf46bc3ce974b3c1190a9112df6c4681f835d70",
+      "at": "2026-10-17T22:16:43.936Z",
+      "elapsedMs": 30470.6921,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 63176704,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7c48d8fde564f7f27a037c303e1376c30220e632ef6c3f165c832ddfbd059251",
+      "at": "2026-10-17T22:16:44.037Z",
+      "elapsedMs": 30570.9281,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 63438848,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7bf7d28794e4af111a93089d24d00cd601f2d2b74457c010588cf8c6cf58c57b",
+      "at": "2026-10-17T22:16:44.117Z",
+      "elapsedMs": 30651.062,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "52022d22600954c512bf46acb26eb758b18452a92e929092c5a41a50c5720eb1",
+      "at": "2026-10-17T22:16:44.146Z",
+      "elapsedMs": 30680.555,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 63700992,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "2fbdd47027d8924f2e5feab81b3f383dc1bfbcb181a18a031c946ef1e66a931d",
+      "at": "2026-10-17T22:16:44.169Z",
+      "elapsedMs": 30703.7842,
+      "kind": "ui",
+      "ratioSha256": "c4f6bdf104c1d6cd80adcc083b52cfb6b32f90c9e15f339b79b1d0a4fc5d4a74",
+      "percentSha256": "7da7e3109fb81bd5eddc99afe57a5119d66fe98c801e8ebe45f0f769d5a946d3",
+      "received": 63700992,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "4a9e4a5fb7728f07341f55d0d56aae8797c07c1dd421a93a8e0897552dc14ff6",
+      "at": "2026-10-17T22:16:44.170Z",
+      "elapsedMs": 30704.8598,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 63700992,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "5bb1da2b72c5b148fcbd007ae986768a5e7e8dd79da69e4ed67714221bbf7013",
+      "at": "2026-10-17T22:16:44.345Z",
+      "elapsedMs": 30879.8431,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 63963136,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8be95240ed2d45ca669a17cc4ef681821ca9901c095d86e10d065b712ffb9eb1",
+      "at": "2026-10-17T22:16:44.446Z",
+      "elapsedMs": 30980.306,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 64487424,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "cb902054d03363076cc371ad70a41cf7e3f5f517473fb2cbd346ecac4d34d158",
+      "at": "2026-10-17T22:16:44.550Z",
+      "elapsedMs": 31084.5991,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 64749568,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "e4633d9b94333f440f408c66b006ff37630590ade3040b379f120ed03267e6bf",
+      "at": "2026-10-17T22:16:44.653Z",
+      "elapsedMs": 31187.6659,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 65011712,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "aad3ea653dd7107b4ad5b8f393ff47f3968320fe169a7947b3581669157ce226",
+      "at": "2026-10-17T22:16:44.861Z",
+      "elapsedMs": 31395.6747,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 65536000,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "cfac7bf93ba77204c832a5835c8b90b645ec719471352e9c02f91ad0e2d77d64",
+      "at": "2026-10-17T22:16:44.963Z",
+      "elapsedMs": 31497.5105,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 65798144,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f1d624455c5cacf08d97b959a6fe060440103167893d71a2e1b082c717e4a2a9",
+      "at": "2026-10-17T22:16:45.062Z",
+      "elapsedMs": 31596.709,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 66060288,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "5ca0e8c679aae6e0fb56098068611572bd7b09fd016b826b6826c10847230c38",
+      "at": "2026-10-17T22:16:45.163Z",
+      "elapsedMs": 31696.9276,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 66322432,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "fd2b84da73242cc057ec3168afa3b3540a10c1724ec0dc1522dda05eaefc4aff",
+      "at": "2026-10-17T22:16:45.165Z",
+      "elapsedMs": 31698.8909,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "1c1c1ee4b0bfc53f696813c0381ae4045a9e71c5935dd8585dd1ee6594d0a5f6",
+      "at": "2026-10-17T22:16:45.212Z",
+      "elapsedMs": 31745.9533,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 66322432,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "edfd81a5189829b1e82ac2e29ce3f8c9355555a9670c3ebf56677efb463f2504",
+      "at": "2026-10-17T22:16:45.262Z",
+      "elapsedMs": 31796.4974,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 66584576,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "9a03270d8351315d46a2ddfaa3a000c1b9d53ce3eb2162aba15c43b2f625b765",
+      "at": "2026-10-17T22:16:45.268Z",
+      "elapsedMs": 31801.9953,
+      "kind": "ui",
+      "ratioSha256": "f8e07e7170bb08867c8b5e129606f200dcc64364b692ef524278038f697c17aa",
+      "percentSha256": "7c181886da742803aa9b6c7b761545ef076490609623f7d441e177ddee77efe1",
+      "received": 66322432,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "79a0a8d50a64cfec0f97f983bca827651c32d9189af903f691fb3afd80b532b6",
+      "at": "2026-10-17T22:16:45.567Z",
+      "elapsedMs": 32101.2118,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 66846720,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "57669076d6275aa3f1428709c7039d06eddc30268db3f9a8df439874ccd47d3d",
+      "at": "2026-10-17T22:16:45.671Z",
+      "elapsedMs": 32205.0958,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 67371008,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "bde990f487c1e641a61d55ef7ddb2a0d76eb85203762f0e8a0c536d337611a5c",
+      "at": "2026-10-17T22:16:45.778Z",
+      "elapsedMs": 32312.3417,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 67895296,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b42581d055048d3bb28e4b93f4af99d9ff6b3dcf32c9a570818cb3663952381f",
+      "at": "2026-10-17T22:16:45.986Z",
+      "elapsedMs": 32520.171,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 68157440,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "dd5c3123e14d7bad03d486efc0be55d44261fb70b089c7cf63dbab6e4e18c481",
+      "at": "2026-10-17T22:16:46.087Z",
+      "elapsedMs": 32621.0234,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 68419584,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f5771683b27917cde431eab1b83fc50a7227b56e950814d5ee66c0e04e5cfd70",
+      "at": "2026-10-17T22:16:46.193Z",
+      "elapsedMs": 32727.8425,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 68943872,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "00973647230fa628e78e9ac0ea055da8b7220a1afa2b9105f2616283f5f319b3",
+      "at": "2026-10-17T22:16:46.197Z",
+      "elapsedMs": 32731.4121,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "3bff6d2773a3c0cff3757c9cd69795ab9abc0d452074e73b3ccb74c801edf572",
+      "at": "2026-10-17T22:16:46.233Z",
+      "elapsedMs": 32766.9195,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 68943872,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "17587ae2c79505b7ca6b2be4917c25c33dbc0f9bed4def1d1937e0d97ef73f31",
+      "at": "2026-10-17T22:16:46.292Z",
+      "elapsedMs": 32826.7882,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 69206016,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "634a113394fc0ee3c5e76648e2dfb530ecc8d938dd79a9931aedecd5b3bcf40f",
+      "at": "2026-10-17T22:16:46.297Z",
+      "elapsedMs": 32831.5931,
+      "kind": "ui",
+      "ratioSha256": "079843f7a0805932590387fd55f394847c0aa4ad41e85724e68396eff7973063",
+      "percentSha256": "e8771ce0f6d638c855461346e473d598a062b1060f298b2af251e6756d985f3f",
+      "received": 68943872,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "1449c882f157f5208bd9a6910db79f147570fc919d6de1a4f45555b690506a19",
+      "at": "2026-10-17T22:16:46.393Z",
+      "elapsedMs": 32927.654,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 69730304,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "92e6903ba8f6879a967ce7bd44554eefa61c2ccab2e354aa4d6ff42f3fd7c1e4",
+      "at": "2026-10-17T22:16:46.493Z",
+      "elapsedMs": 33027.7967,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 70254592,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "755705acedf0325551bc1166c26e21df36905998e755b123e1502808b3c460bd",
+      "at": "2026-10-17T22:16:46.593Z",
+      "elapsedMs": 33127.6775,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 70516736,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "e7c5b68ae05f341a44d6b89033b97c39e58809edca0c881bd0ac44b11b053820",
+      "at": "2026-10-17T22:16:46.694Z",
+      "elapsedMs": 33228.6537,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 71041024,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "32eea6fced1dedae8a2ff4d94a1a1deea66b0936aab0dc339db6ef6ae5528ee5",
+      "at": "2026-10-17T22:16:46.799Z",
+      "elapsedMs": 33333.1761,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 71303168,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c0da384297248752812980ea2dceb69a6cf06f6f8e4ae005856ced3d4209702c",
+      "at": "2026-10-17T22:16:46.901Z",
+      "elapsedMs": 33435.6281,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 71827456,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "fcfd1b9c79568cba253f97975c978a2c734db34aafcd7dc74fe5866d2c96825d",
+      "at": "2026-10-17T22:16:47.002Z",
+      "elapsedMs": 33536.6753,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 72351744,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "365033431a4153b05d72ba90ab3ebff2ae676c4975ca84261a2baf6c5a7b30c4",
+      "at": "2026-10-17T22:16:47.111Z",
+      "elapsedMs": 33645.1326,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 72613888,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "e1d31f033e1b6159cdc8a822916856ffaddcbcf810b690ec01d71c1e272fd260",
+      "at": "2026-10-17T22:16:47.211Z",
+      "elapsedMs": 33745.565,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 73138176,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b4178d9b375c9342e66690a80a18cafc275d284a6f6ca2146cdbd889ac1bd7ae",
+      "at": "2026-10-17T22:16:47.232Z",
+      "elapsedMs": 33766.5446,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "15e048398ca514b451b0dbc1bca1a0d82e8887eedf496d6d424a8194581c4cb2",
+      "at": "2026-10-17T22:16:47.276Z",
+      "elapsedMs": 33810.4172,
+      "kind": "ui",
+      "ratioSha256": "7244be1a3dd8002b8eea2d585cef3aa31dd76e7a67e5051d3af218624c665f1a",
+      "percentSha256": "aaefc4a1e1395cfc04ad0e49ee38245f95d0b96b644ac2743c94fa1fdfbdd63d",
+      "received": 73138176,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "17b7160108ddaff3e73a761b55576d247ba01cc8dbf617cc58b6cabe98808421",
+      "at": "2026-10-17T22:16:47.277Z",
+      "elapsedMs": 33811.6971,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 73138176,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "47a32984ae93b8593bddac597cb13958a1d76186f33f7366fab5b1b9a9e225b9",
+      "at": "2026-10-17T22:16:47.312Z",
+      "elapsedMs": 33846.845,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 73400320,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "4ef49045cadbae8f27c77bfbb9cab12ce95e026e029d6cce9cffe4f4cd3b60ff",
+      "at": "2026-10-17T22:16:47.419Z",
+      "elapsedMs": 33952.9961,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 73924608,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "d43294ae6351b02ebe2307f1fbee5a2ec8436597f4e018ebeaab3650f56d363b",
+      "at": "2026-10-17T22:16:47.519Z",
+      "elapsedMs": 34053.4039,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 74186752,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7013d224e05133f509c16f59259385395d943839bede08533d52ad6cf5217b9a",
+      "at": "2026-10-17T22:16:47.620Z",
+      "elapsedMs": 34154.5436,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 74448896,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1983acad64f1d4ae8403df6d50f9a3826a198eb7483a1c1d87a7bde64bd0974c",
+      "at": "2026-10-17T22:16:47.719Z",
+      "elapsedMs": 34253.0765,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 74973184,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "9138273c49bfede65936c2ac000a8df23fdf7869317ccde541149fedb0915f9a",
+      "at": "2026-10-17T22:16:47.819Z",
+      "elapsedMs": 34353.0572,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 75497472,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a23122aa7fb2fbcede867575ae96ff62297579ed92087c49e573de5629ae5e1f",
+      "at": "2026-10-17T22:16:47.920Z",
+      "elapsedMs": 34454.0503,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 75759616,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8d706974f4cff8b4d44b0ee52411cf8aee638e65a4abb864fab769f59f3fbdcc",
+      "at": "2026-10-17T22:16:48.020Z",
+      "elapsedMs": 34554.0226,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 76021760,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7952d4350fcf4116fb3195a87f1d863a02a0c2505aff392c3616fe6ec366ecd7",
+      "at": "2026-10-17T22:16:48.122Z",
+      "elapsedMs": 34656.7936,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 76546048,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "eca8ba46dc5e0e18dd7bbb460d0ab5e206e00b2537bff1e8b87ff27de43cf847",
+      "at": "2026-10-17T22:16:48.223Z",
+      "elapsedMs": 34756.9438,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 76808192,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f1ee1194e96e1efa9ba56c0f801dd6bc236dd731ea2dbfcc750782c0404848fa",
+      "at": "2026-10-17T22:16:48.265Z",
+      "elapsedMs": 34799.0416,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "bfef7479a30f0a63d147e39e8bdec9dff569c2b9abcbd020eeec7a0db385d64e",
+      "at": "2026-10-17T22:16:48.291Z",
+      "elapsedMs": 34825.592,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 77070336,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "de736ed6c92e555ea1888653655b3ffef922fbf03f9f7282ae391beb76f91a31",
+      "at": "2026-10-17T22:16:48.322Z",
+      "elapsedMs": 34856.8542,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 77332480,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "ea894baab00f651e2195820738a616ee7c7038a9991000de4e96b3a2ddbf3e70",
+      "at": "2026-10-17T22:16:48.325Z",
+      "elapsedMs": 34859.6602,
+      "kind": "ui",
+      "ratioSha256": "121fc137dff94be1dbaa9ec7d5fbf64cf4594188aa2b47cc563cfb39214b8ad2",
+      "percentSha256": "1df644188b99c3058945feb77d0f9de04bb5a0c375bd137f5285b814aa45d7f6",
+      "received": 77070336,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "42450f7ee58e7703eb8256ba93e260f1188c47807291a50432f90ed7a5689071",
+      "at": "2026-10-17T22:16:48.424Z",
+      "elapsedMs": 34958.3634,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 77594624,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c1cf1802e7c1184ba315f58be788329118a62b506c461bbfa4f1f00d5480091c",
+      "at": "2026-10-17T22:16:48.525Z",
+      "elapsedMs": 35059.6814,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 78118912,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "10a94447ce93b553928d6cf4ccd8ef3ef54d33c7b1fa396d501d42bc838e5d2c",
+      "at": "2026-10-17T22:16:48.631Z",
+      "elapsedMs": 35165.1137,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 78643200,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "bd27bece8c1e8eb6d789d92d36daba919f823d5793be898ed8bfc61884c3efc0",
+      "at": "2026-10-17T22:16:48.725Z",
+      "elapsedMs": 35259.7144,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 78905344,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1c4928b0d4ca9cd76cb589608d76a3153ba6e5c986962eb12c229834076c2b20",
+      "at": "2026-10-17T22:16:48.827Z",
+      "elapsedMs": 35361.0074,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 79429632,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1a0eb131fe6b4d95b8d73b74c792c8dcc7d5728cf44b09e1affa5c56d0a979cb",
+      "at": "2026-10-17T22:16:48.927Z",
+      "elapsedMs": 35461.7346,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 79953920,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "74ae2c4c4b994e8ef29d2455c17e5cbad92bb0fe913fa575ae877eff58bac92a",
+      "at": "2026-10-17T22:16:49.029Z",
+      "elapsedMs": 35563.4034,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 80216064,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "00ca516c2e9cb20096e2614dd8b5480e4dad39405356d4aa2f03bf8b1502201c",
+      "at": "2026-10-17T22:16:49.137Z",
+      "elapsedMs": 35670.9417,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 80740352,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8d37a15d0389a152a9ee0e17f47b56e7aad71c8ffb3b13d8da93c078de83cd34",
+      "at": "2026-10-17T22:16:49.240Z",
+      "elapsedMs": 35774.0236,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 81264640,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7dace80937355ae8a1651b9a23af219d48eebdfe32ae6fd00b58804786ad8dc1",
+      "at": "2026-10-17T22:16:49.298Z",
+      "elapsedMs": 35831.9587,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "739ee747ea13f9583d8061ba5540c7c6f480e79b82bf568c7b05de4dd64d7a34",
+      "at": "2026-10-17T22:16:49.326Z",
+      "elapsedMs": 35860.6857,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 81264640,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "b093a0702e01a9e0f281389078b0aa848e1f6704ff31c1fa064bcf47494ca0d8",
+      "at": "2026-10-17T22:16:49.344Z",
+      "elapsedMs": 35878.5268,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 81526784,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "d82b2dc07fe7dde156d63e9b4f5ed6eb097bb546bf58003c02a55487916abfa8",
+      "at": "2026-10-17T22:16:49.354Z",
+      "elapsedMs": 35888.1527,
+      "kind": "ui",
+      "ratioSha256": "1073d99d62f166c69adac585c9d8326cee2cf69c795ca6c45bc48cdfe8028d95",
+      "percentSha256": "c0977e8432a3196e91429b8183b2e7a2b2e9b25e5b12d0497492e8406e31d207",
+      "received": 81264640,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "6b50655b04d632bd6475875e64cdb368655da08ac197245901ae25b72ad7368a",
+      "at": "2026-10-17T22:16:49.445Z",
+      "elapsedMs": 35979.7835,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 81788928,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "95035582c77476b3ab98a999205ae8b1aed7ad247f233062c69559de3ba6ea34",
+      "at": "2026-10-17T22:16:49.544Z",
+      "elapsedMs": 36078.4809,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 82051072,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "5a04fb2ac405ce0fd726aa972c907d6fff34dc2b03a505617134f7a1a7b79942",
+      "at": "2026-10-17T22:16:49.651Z",
+      "elapsedMs": 36184.9308,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 82575360,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "80baff01d1707702e39b5fa967adbb31acb3968b631588c7ecf8e9339536f400",
+      "at": "2026-10-17T22:16:49.751Z",
+      "elapsedMs": 36285.2331,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 83099648,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "2982af43a2eb357c3981bd8d6a4a48bde694a504bc0262bcee59da989575d300",
+      "at": "2026-10-17T22:16:49.859Z",
+      "elapsedMs": 36393.1887,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 83361792,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a9f3a516d345a0c6ebfc49b77dee559c033bc8e16e10470ce5dc09a40ecfa4ec",
+      "at": "2026-10-17T22:16:49.959Z",
+      "elapsedMs": 36493.6582,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 83623936,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3359ff5f4b8efb3d7072f808985ae44d62192a979943c061df067298726090e1",
+      "at": "2026-10-17T22:16:50.063Z",
+      "elapsedMs": 36597.1849,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 83886080,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "12d0d1c0bb3a6a10b8e5fb34bfde3f8dde1e3ea140b32df4e29530bc0cf1d7d7",
+      "at": "2026-10-17T22:16:50.272Z",
+      "elapsedMs": 36806.22,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 84148224,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "0ce0d324a7d029f63f1ad38250d9f56c87f11c5c5bfe23b20fc845e6d05c5b8f",
+      "at": "2026-10-17T22:16:50.333Z",
+      "elapsedMs": 36866.8767,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "f34700301c72e6f4d75d742220e133ce12bbf1f49f13196ca3a8cef083d182a1",
+      "at": "2026-10-17T22:16:50.359Z",
+      "elapsedMs": 36893.8356,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 84148224,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "4ad1ed0bc7c043fee19b8c4f7c23fc6852b3c44682f9e2b128990f09b81c1116",
+      "at": "2026-10-17T22:16:50.379Z",
+      "elapsedMs": 36912.9486,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 84410368,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "bc9260bb313f411678479199f9d632ec9b1468e4f18095fddc472bb9c4b5e813",
+      "at": "2026-10-17T22:16:50.395Z",
+      "elapsedMs": 36929.4377,
+      "kind": "ui",
+      "ratioSha256": "58b723459c2e34965d8178ddc8a9e4b47d4449f12243e95bbaa881f8297b43c6",
+      "percentSha256": "6060db4c29f4b5ed36933f37742eae6483a95970bea2775e24477dc86369f94e",
+      "received": 84148224,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "851dd56b9d4c9494f451af2309aad9fb2f1b2ea457d2e5e529ff6e853b72b29d",
+      "at": "2026-10-17T22:16:50.482Z",
+      "elapsedMs": 37016.1738,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 84672512,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "0297771c7ebe3d64b27f55f92566604b5892273399793430b7c728f4ed0d24ae",
+      "at": "2026-10-17T22:16:50.585Z",
+      "elapsedMs": 37119.86,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 84934656,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1a0af5924323c68dd6049d626129b9b155a764cebb6ffddb623edf4abb69917e",
+      "at": "2026-10-17T22:16:50.698Z",
+      "elapsedMs": 37231.8875,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 85196800,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "4b3d9dcdb6b46981f18d8c2ccaa082dd500f0c17783c9781a3bb0916fbe72605",
+      "at": "2026-10-17T22:16:50.798Z",
+      "elapsedMs": 37332.3049,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 85458944,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8fe55fb8eb1b9346f6a6995ab6cbeeb9663db5ee9b84df19673abbd371964981",
+      "at": "2026-10-17T22:16:50.903Z",
+      "elapsedMs": 37436.9657,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 85983232,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "483caebaff01172bb333bfc6fadd6e457d5c588e02bdff14e9255abee75d7576",
+      "at": "2026-10-17T22:16:51.008Z",
+      "elapsedMs": 37542.5026,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 86507520,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "4c6846ecce5728e8929f130a2d7986f952a8f6091f2288c4aecb50d19de0f434",
+      "at": "2026-10-17T22:16:51.110Z",
+      "elapsedMs": 37644.6443,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 86769664,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3aaa582627e7af71a45f54d7c65ac000a035a4167c04fc938737170f5f5ee1fc",
+      "at": "2026-10-17T22:16:51.216Z",
+      "elapsedMs": 37749.8762,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 87293952,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1e0e6183e574aba061cde3d4d2192eab2837f17d664f9a4d6aa70f78809a702f",
+      "at": "2026-10-17T22:16:51.317Z",
+      "elapsedMs": 37851.4454,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 87818240,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "29f468ae2b5c9832abbbe40f0f99ebae0f24ef69c757ca676fee7ec485e075d9",
+      "at": "2026-10-17T22:16:51.364Z",
+      "elapsedMs": 37898.5155,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "d0b944464c4841aae9d6de00c98076d4c2b2408fab79ce8446ae83f588e67f41",
+      "at": "2026-10-17T22:16:51.402Z",
+      "elapsedMs": 37936.4472,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 87818240,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "421c93fc7ae58bb9e736b0b486fbe8d5ebfbc9151350c80afa10aec7996a65f1",
+      "at": "2026-10-17T22:16:51.417Z",
+      "elapsedMs": 37951.8558,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 88080384,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "072708b3069d58fd9ee677eea2ffed42a90e2fd47707949f904f01c6a68ed0fb",
+      "at": "2026-10-17T22:16:51.429Z",
+      "elapsedMs": 37963.6942,
+      "kind": "ui",
+      "ratioSha256": "c0191b7b203fc478730944f084ad65adc541b3d97b23cf50d049f2ad13a1084c",
+      "percentSha256": "1bcea0f165abf09ac568e4f6c2208c801b0076098e8bdda2525c978ac48f9596",
+      "received": 87818240,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "e356339916e783f02da7e6aa588a98cc8f69ceed98078efbe2f6682fce699586",
+      "at": "2026-10-17T22:16:51.519Z",
+      "elapsedMs": 38053.3811,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 88342528,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "de50f7bef1dc069b9be4a367314270d782828b9a425b60e2bef7e2ac72ccd2b0",
+      "at": "2026-10-17T22:16:51.618Z",
+      "elapsedMs": 38152.8106,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 88866816,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "2337730da1a1428f6063ce28e6707c8a3558acf6e32fd84c1eea2b1b27f82465",
+      "at": "2026-10-17T22:16:51.717Z",
+      "elapsedMs": 38251.5762,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 89128960,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "38501dfa4c0933dd7ad46a8bfdd7f4aec6cdefbc51a413fdd3146616500cdd4f",
+      "at": "2026-10-17T22:16:51.819Z",
+      "elapsedMs": 38353.2315,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 89391104,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "56cd2b820d0bd11445b299c8f1a487d14325b951c2e9ef8be3c264aa9fbd57d0",
+      "at": "2026-10-17T22:16:51.920Z",
+      "elapsedMs": 38454.6287,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 89915392,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3f87470526e0ec9277786049ccca321e421ae11c2da2bdda3ce066c3b68b4df2",
+      "at": "2026-10-17T22:16:52.019Z",
+      "elapsedMs": 38553.6093,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 90439680,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3038804750c2ac51fd6dc7639819ea1a166ca9a4e1f1043e87113307903a6217",
+      "at": "2026-10-17T22:16:52.125Z",
+      "elapsedMs": 38659.5872,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 90963968,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6f67bb3a5642b81ac40b059cbd5a2aa596c6507942343aebef11477d837fdf46",
+      "at": "2026-10-17T22:16:52.229Z",
+      "elapsedMs": 38762.9783,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 91226112,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b76d8d3ea79cef6b2e7cfa8c73651cabfaf63f980ad1793e1aae275d3f75afc6",
+      "at": "2026-10-17T22:16:52.334Z",
+      "elapsedMs": 38868.1673,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 91488256,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "4c0d621aa651c88fc8ac2b387ba1ebf764f86a8f9d77ad4606e27d032a00c2a9",
+      "at": "2026-10-17T22:16:52.406Z",
+      "elapsedMs": 38940.3513,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "991684083e9fe8c5fbf551637227fc607fb7674569313f1119af3ec40d03a4e7",
+      "at": "2026-10-17T22:16:52.436Z",
+      "elapsedMs": 38970.4882,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 92012544,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8f8acf6422dd1467f4d5026b7985c7e038c6dc317b34a6f7da81a7da8c7638f9",
+      "at": "2026-10-17T22:16:52.449Z",
+      "elapsedMs": 38983.1165,
+      "kind": "ui",
+      "ratioSha256": "dbda81f7daed679ef41bb3dbb0bdd2c05f297773ede0906d5b9a530f2c7990c4",
+      "percentSha256": "1059f0221243223cfd6cffa280bd6bfe24aa86e2095781eb7e4c47081fceebd5",
+      "received": 91750400,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "82a510523489462b7dc89b6f31e95011c9034011745323b85a5e2441475d4133",
+      "at": "2026-10-17T22:16:52.450Z",
+      "elapsedMs": 38983.9635,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 91750400,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "03d38c01882faae907981e38942fdb52483708e34b61882dfe1c85fab1c38066",
+      "at": "2026-10-17T22:16:52.545Z",
+      "elapsedMs": 39079.4519,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 92274688,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8dfb3a429eefb7ebdcd11a28ffe638ea33a2d189f77da58a3b6ad6e69d81fdc0",
+      "at": "2026-10-17T22:16:52.642Z",
+      "elapsedMs": 39176.5982,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 92798976,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "db32a543255a13af595e19159c4f6ef4907952c6a3d96df915dba2ce3927c6c3",
+      "at": "2026-10-17T22:16:52.746Z",
+      "elapsedMs": 39280.0217,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 93323264,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "2f38ca5dc8f89c32da3737b17784dddedf12b414ee2305bce94afa7f87099315",
+      "at": "2026-10-17T22:16:52.845Z",
+      "elapsedMs": 39379.1414,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 93585408,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "e5dd7009b2ad398c53d2c3a3c2549bfbee3285258698a91eeb7809e973c027ed",
+      "at": "2026-10-17T22:16:52.945Z",
+      "elapsedMs": 39479.4249,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 94109696,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f5b884015f5d78a6f448e5821b86e4614326b923e1d71ffbb75047295ee3f944",
+      "at": "2026-10-17T22:16:53.146Z",
+      "elapsedMs": 39680.5039,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 94633984,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "fb0d307d7c811de964f0c53539e3208e3d1a65dd19d11f005fe30b2c1584b555",
+      "at": "2026-10-17T22:16:53.259Z",
+      "elapsedMs": 39793.4371,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 94896128,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "8660391a6dc0d0a198447ffd3d01367258d76d11f942124c2e57970f7293db25",
+      "at": "2026-10-17T22:16:53.359Z",
+      "elapsedMs": 39893.7209,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 95158272,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "fa747b79fdac38a4edd22d12dbdbda0111fdeb36533ea193d255f0b9e6039b4e",
+      "at": "2026-10-17T22:16:53.449Z",
+      "elapsedMs": 39983.3136,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "dd25dc510a9e45366a92a5c4a8b9e63064c56bda12a6aafd6c7899dc8b67c21a",
+      "at": "2026-10-17T22:16:53.460Z",
+      "elapsedMs": 39994.3656,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 95682560,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "2bbaf3d7bd9a9f8e1e89c7a293275b0be497a31f5e967cd054862efbe5f60c1a",
+      "at": "2026-10-17T22:16:53.479Z",
+      "elapsedMs": 40013.7657,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 95682560,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "27e2d933e18113aa75080a04de17f6903ebffdec33f911486450500e0aa08093",
+      "at": "2026-10-17T22:16:53.561Z",
+      "elapsedMs": 40094.9482,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 96206848,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c23076aafe9696cc684cd6c595aa9d5df658aa0b37c243b358c5b3ac54708328",
+      "at": "2026-10-17T22:16:53.565Z",
+      "elapsedMs": 40098.9137,
+      "kind": "ui",
+      "ratioSha256": "b6f57cc9d10b82f697dfa0e3ce9eee3bf4eaa7afccafdef52320225d7ccb52e9",
+      "percentSha256": "c1afdf520dcefb7c0fc540c00c4787d91336e3cf250bee9f70694b24ad5cd777",
+      "received": 95682560,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "57e2db42448ed7c87e44b2d6ecb73e85cdc6038500c9ea567c82f3973553b68c",
+      "at": "2026-10-17T22:16:53.664Z",
+      "elapsedMs": 40198.3345,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 96468992,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "1a1acef13985707e10027c9ee56745a2fa3700fbfb02641b19a9c306c26d32bb",
+      "at": "2026-10-17T22:16:53.769Z",
+      "elapsedMs": 40303.7103,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 96993280,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "4ea670a258348b37e19d734c5b38581f497f3da0052939a4cdd5701b5ca20610",
+      "at": "2026-10-17T22:16:53.870Z",
+      "elapsedMs": 40404.4629,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 97255424,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "f501d044f610541006af45d95f918f38cd24c018be95132ba8a119171e3314ba",
+      "at": "2026-10-17T22:16:53.979Z",
+      "elapsedMs": 40513.7958,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 97779712,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "6b3a1a23b85a139b22cf3937930881d593959be2075a390da2f1818e797c262a",
+      "at": "2026-10-17T22:16:54.078Z",
+      "elapsedMs": 40612.4016,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 98304000,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "5b486c33be9550912311d13da261fbea59affbdd7f6086b9be1162a5fe24c9be",
+      "at": "2026-10-17T22:16:54.178Z",
+      "elapsedMs": 40712.099,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 98566144,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "62313aa6a0eee8a9723fa1e88d256f44b5a8a3d3c49cde91f10437b9e5d9cedb",
+      "at": "2026-10-17T22:16:54.280Z",
+      "elapsedMs": 40814.5813,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 99090432,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "2de6b8eaca7b213daee10f26096284986851af37664a5efbb39a1b7ce78c59b6",
+      "at": "2026-10-17T22:16:54.387Z",
+      "elapsedMs": 40921.1727,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 99614720,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7177d513c5b48294a8524b55a44f961ba9dd931a699c4f2ffb1b92128d8d519b",
+      "at": "2026-10-17T22:16:54.486Z",
+      "elapsedMs": 41019.9826,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "2b762c624ce13aee5651dcff970bf98d3974930f7a3148cc720ac24bc39f29bc",
+      "at": "2026-10-17T22:16:54.488Z",
+      "elapsedMs": 41022.2833,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 99876864,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "62e4802ca92a453cc04527c9fa2a6dc3cdf22d16874ed8ebbb3439039d0ec520",
+      "at": "2026-10-17T22:16:54.514Z",
+      "elapsedMs": 41048.6698,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 99876864,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "a97d970b2bb45d9ca0c5bd65ae4e4adcb8c221215c63fb0e5aef56252b0503a0",
+      "at": "2026-10-17T22:16:54.587Z",
+      "elapsedMs": 41121.5675,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 100401152,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "72a645850b6c810220f16b84996e0f2a1691293f67fd831c668a207fee2565d8",
+      "at": "2026-10-17T22:16:54.590Z",
+      "elapsedMs": 41124.1539,
+      "kind": "ui",
+      "ratioSha256": "6780cd18ee1082b6f4794d6945391b95d538bb61d228adfd6c45808412ebec87",
+      "percentSha256": "489445558d730ec943ec8b02fb66df4acf81fcd9be3dc2dcdb7dc8ee1e288eef",
+      "received": 99876864,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "79a3dc8c79368ea336527fb7c897c15f15cfecde0737f1054088b4fa22403727",
+      "at": "2026-10-17T22:16:54.687Z",
+      "elapsedMs": 41221.343,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 100663296,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "a5dfa2073e3a92c8ce6cc4c513e2da442bba6978bbad76c6c42b872269d8efe1",
+      "at": "2026-10-17T22:16:54.788Z",
+      "elapsedMs": 41321.9875,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 101187584,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "ade534ad9f0f688ff2e48c2309bcb831f0a0aa9b9ff6f29f388434a3dd5ed2a0",
+      "at": "2026-10-17T22:16:54.894Z",
+      "elapsedMs": 41428.3439,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 101711872,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "2ab65ec5c443d39bfb4dea9142b944ffb6a669991d6fd898eac8f49051338523",
+      "at": "2026-10-17T22:16:54.993Z",
+      "elapsedMs": 41527.0595,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 101974016,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7561fa274ea3dba1fc1bacc1661e3d645b393288d32068066badbb25f22f1172",
+      "at": "2026-10-17T22:16:55.096Z",
+      "elapsedMs": 41630.0072,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 102498304,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "fcb011b61f5bea87b6858ad0838b4437a82df8df40b98e2e970a565e5bfd9fc3",
+      "at": "2026-10-17T22:16:55.194Z",
+      "elapsedMs": 41728.4228,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 103022592,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "3a4f323e218757c19a6a3b32722b2ee60350e75a3f3bf5b6b6797f6e93ffb120",
+      "at": "2026-10-17T22:16:55.295Z",
+      "elapsedMs": 41829.0454,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 103284736,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "439071ff309447324d4eeb7c8a1f3bcc5c7f876ffea52c17796385c2587754fe",
+      "at": "2026-10-17T22:16:55.395Z",
+      "elapsedMs": 41928.9892,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 103809024,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "442d235ad7689c90e892045a040767452c5302942d588d9332e2051d08404062",
+      "at": "2026-10-17T22:16:55.498Z",
+      "elapsedMs": 42031.9409,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 104071168,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "bf2ca7703626338c9c2208e17a286c969f728e06cd15f417e5beddb7ab4aa7e2",
+      "at": "2026-10-17T22:16:55.523Z",
+      "elapsedMs": 42057.5761,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "9562342b666bb557b48c4491a7da87ddc481bfc2507714fc7b1fee3e1a2d2035",
+      "at": "2026-10-17T22:16:55.556Z",
+      "elapsedMs": 42089.9339,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 104333312,
+      "total": 105856481,
+      "status": "downloading",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "10b559fae2ce3c2925d2a771d3f44e0f5cb441a36cae4b4c2831423773667d0c",
+      "at": "2026-10-17T22:16:55.598Z",
+      "elapsedMs": 42131.8714,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 104595456,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "d65ef33849647e9df512d0fd56fdc13d8c80e24f685f8de85b761cdaac1f0cf3",
+      "at": "2026-10-17T22:16:55.602Z",
+      "elapsedMs": 42136.7432,
+      "kind": "ui",
+      "ratioSha256": "2501cc7c0b66ba18c2343f66e602cbc3c04182805de5efc7a4521933f52bb0d4",
+      "percentSha256": "b623f5337fc505cd864ef699c0ef39a7dadd7b7d05054ed50f13ae65896282d2",
+      "received": 104333312,
+      "total": 105856481,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "working",
+      "scene": "downloading"
+    },
+    {
+      "rawRowSha256": "a3f998497b4e1e61e42e68441a09f7c065bcffe160bc972ab760a7a8ea4513c5",
+      "at": "2026-10-17T22:16:55.701Z",
+      "elapsedMs": 42235.4557,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 104857600,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "453fa0897c9c7f849d1738987ca9066591a40f0477ff660197d85321fa820a68",
+      "at": "2026-10-17T22:16:55.802Z",
+      "elapsedMs": 42336.6891,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 105381888,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "7d8b99bb7e77e5a93ac8ae82d0bf491de9c7a70516f5055d8b3da794dd61cf4a",
+      "at": "2026-10-17T22:16:55.903Z",
+      "elapsedMs": 42437.1932,
+      "kind": "passive-authenticated-status",
+      "status": "downloading",
+      "received": 105644032,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "452e7a59d9b10fad36d01260cf527686df1ad2bd0f451753e73ac0ed8724e8e3",
+      "at": "2026-10-17T22:16:56.003Z",
+      "elapsedMs": 42537.3156,
+      "kind": "passive-authenticated-status",
+      "status": "ready",
+      "received": 105856481,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "c1360e386cb1750b372aa92a7a9c9309aa5e3a4056a635316b9d16433e0f303b",
+      "at": "2026-10-17T22:16:56.565Z",
+      "elapsedMs": 43099.3479,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "11e714dfa2082104873676c2e2d1a025a1e7b7c24cb1e6cf274d37212d92d92e",
+      "at": "2026-10-17T22:16:56.591Z",
+      "elapsedMs": 43125.3534,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "ready",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "d6e4da593767d93af232e9cf5850a6b7e78f357f6f48a4b1b99e81deb47ada37",
+      "at": "2026-10-17T22:16:56.624Z",
+      "elapsedMs": 43158.1295,
+      "kind": "ui",
+      "ratioSha256": "391552c099c101b131feaf24c5795a6a15bc8ec82015424e0d2b4274a369a0bf",
+      "percentSha256": "d00492fda826ed48646d6fa5cc09443ba93fc4a85e863ee2734d62dd3f130a90",
+      "received": 1,
+      "total": 1,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "still",
+      "scene": "ready"
+    },
+    {
+      "rawRowSha256": "2abc41733b839e3c68ddf5cd747f41ad01f5bdeb36260092ffb14dff3d9278d1",
+      "at": "2026-10-17T22:17:06.301Z",
+      "elapsedMs": 52835.1104,
+      "kind": "updater-request",
+      "action": "install"
+    },
+    {
+      "rawRowSha256": "9b1b4311505e05bd3aa7c062540c1ea67f10f6741880a3e5dd3f6c7705e3a006",
+      "at": "2026-10-17T22:17:06.320Z",
+      "elapsedMs": 52854.1355,
+      "kind": "passive-authenticated-status",
+      "status": "preparing",
+      "received": 105856481,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "b45bd822d82ae7c0ea0473e38bcbe69fb0c536c54fe3216b7533bc0cd42ef129",
+      "at": "2026-10-17T22:17:06.332Z",
+      "elapsedMs": 52866.5967,
+      "kind": "ui",
+      "ratioSha256": "98089e6d36f78e9766c9ea34d5acb3611f3a92cd81c5eb102095d924ffc7d08b",
+      "percent": null,
+      "received": null,
+      "total": null,
+      "indeterminateSha256": "18d10c7d2b4b04aaf04254d1ae5d655a5dc0407cbcdd5a8c3986e985370f36ee",
+      "motion": "working",
+      "scene": "preparing"
+    },
+    {
+      "rawRowSha256": "f6a41dd0d00bd5f320a00c50a087ae62ef4509eed93fea1a3f3d0f2b0decbefd",
+      "at": "2026-10-17T22:17:06.334Z",
+      "elapsedMs": 52868.0812,
+      "kind": "user-confirmed-install-once"
+    },
+    {
+      "rawRowSha256": "762c33b9c494d81bd91a1a3ec41340afff032c22592ee157e090f9da14bbfb50",
+      "at": "2026-10-17T22:17:06.371Z",
+      "elapsedMs": 52905.084,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "1ad6497a7970b309a12dc46d6ddf3722a42a95ee66ea4d3d3b2eb8f664d1cbed",
+      "at": "2026-10-17T22:17:07.342Z",
+      "elapsedMs": 53876.3658,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "52df1b435b7471cdd523fcbc9463c1b97b8005afcdeff0de47e5be5da65d0665",
+      "at": "2026-10-17T22:17:07.373Z",
+      "elapsedMs": 53907.5873,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "704b7036913ca26ede49e7ac77b98c3cc89a3a3e6f49b54b58154bcfa7253955",
+      "at": "2026-10-17T22:17:08.383Z",
+      "elapsedMs": 54917.5649,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "4c8ea1cc147070eb4f95002ea0c6bc556a9a567094e88e1a428824b7ddccdf91",
+      "at": "2026-10-17T22:17:08.422Z",
+      "elapsedMs": 54956.6604,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "88cfd66b300170849851dda7e1b253a452084888a048fa47a7b5d2afefe69bb1",
+      "at": "2026-10-17T22:17:09.414Z",
+      "elapsedMs": 55948.3755,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "15c80599183c4f2be2722700bd3650b3c07b10289b32ac7bd822cd84363684e2",
+      "at": "2026-10-17T22:17:09.445Z",
+      "elapsedMs": 55979.3509,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "91b4c9c693c340c7612af2fc9ad116c6293a8fe6e69221521ec992054278a748",
+      "at": "2026-10-17T22:17:10.456Z",
+      "elapsedMs": 56990.7131,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "ebc862a61da46aee2c13aee14de77e7a55eb2f55cdad565532923d9a21ff7c1b",
+      "at": "2026-10-17T22:17:10.491Z",
+      "elapsedMs": 57024.9486,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "00ad4859541ac48d67e114521187b2c8fb0bf3f35e2ebd4f2e385e92c6c5a79a",
+      "at": "2026-10-17T22:17:11.505Z",
+      "elapsedMs": 58039.7931,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "ea58252dfe416c1517fc31eadd8accf8b1ddd91249ff476113669ee60a488085",
+      "at": "2026-10-17T22:17:11.733Z",
+      "elapsedMs": 58267.2646,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "a883da01ebcc0fdaeeff92274957668bc7ba5f19157d8c9e969ea57c31b0184e",
+      "at": "2026-10-17T22:17:12.682Z",
+      "elapsedMs": 59216.5552,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "dbf7102327c4074972de857c7aaa16e4b8a26f98c115145fd2e08b6dc9e9006c",
+      "at": "2026-10-17T22:17:12.721Z",
+      "elapsedMs": 59255.7307,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "687b1dba0f872407d1794c441e51409c353e7004f3f07870ba485f4495550a40",
+      "at": "2026-10-17T22:17:13.725Z",
+      "elapsedMs": 60258.8755,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "8031cf3dbe63e502a5a5883bc9db1b3525333ae2debea0a0860e95a6e6c1ee5c",
+      "at": "2026-10-17T22:17:13.757Z",
+      "elapsedMs": 60291.5439,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "891184953a3b166df5bf762abd5377b3c0e071f13b247cb24df19298aee1405f",
+      "at": "2026-10-17T22:17:14.766Z",
+      "elapsedMs": 61300.3191,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "f9051177b68729f3c0ac11c99ce9795ff9706427c8276d8d1e135a92269f544c",
+      "at": "2026-10-17T22:17:14.794Z",
+      "elapsedMs": 61328.653,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "e35ddf8db9c0db60c26bcaf277e0afc0412391bbaa7a35f93bbf0da218834be0",
+      "at": "2026-10-17T22:17:15.799Z",
+      "elapsedMs": 62333.8198,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "1e6a727698ed4060d8ac9d3a6a67b0cdd9f573315cc44dcdc869c14f4fa14412",
+      "at": "2026-10-17T22:17:15.830Z",
+      "elapsedMs": 62364.7832,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "4fbeb48366cd7bb2ce48c155265954977b0777a19da9b408b3c1fa487d93c65f",
+      "at": "2026-10-17T22:17:16.831Z",
+      "elapsedMs": 63365.1814,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "fce658458d4d6ace4f75eac416ac8a4fb55c531faa88a9469e812003bc53ff41",
+      "at": "2026-10-17T22:17:16.857Z",
+      "elapsedMs": 63391.5756,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "92dfc4cf97b29d5e7cbb662468d789f071baea74bc00f231cd0e43e69180617d",
+      "at": "2026-10-17T22:17:17.866Z",
+      "elapsedMs": 64400.7013,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "9034e87723ed642c0e1526862bafe7eaead751894a0ffaaa64ff272de772c586",
+      "at": "2026-10-17T22:17:18.067Z",
+      "elapsedMs": 64601.0807,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "2d7e6d9770d466ad3a67f488083586ac3652edf515c939b4b77afc57006f3ebf",
+      "at": "2026-10-17T22:17:19.024Z",
+      "elapsedMs": 65558.6613,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "fb97032f5846a3372459c39ce415426b606aad0bc5fbe73eee4b334d1c25036f",
+      "at": "2026-10-17T22:17:19.059Z",
+      "elapsedMs": 65592.9814,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "03abd8fa418cf25e066e19ee871d0b9518863f3e717789eb5d79e9de15d607d2",
+      "at": "2026-10-17T22:17:20.064Z",
+      "elapsedMs": 66598.2711,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "0548c6814f03e2ff11bfd8067c866d6c23f437bf2694c00727235adbd08ad0d0",
+      "at": "2026-10-17T22:17:20.091Z",
+      "elapsedMs": 66625.6528,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "25cae7f69355ceaa4f6592d65178961337774913f2f4b35c60f3a7f1c3f816fc",
+      "at": "2026-10-17T22:17:21.107Z",
+      "elapsedMs": 67641.6757,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "cd7746df4e7f07658d49a5dee36357d07f46c769d5893c6f9028dd9de7589348",
+      "at": "2026-10-17T22:17:21.138Z",
+      "elapsedMs": 67672.5044,
+      "kind": "updater-response",
+      "errorStage": null,
+      "received": 105856481,
+      "total": 105856481,
+      "status": "preparing",
+      "httpStatus": 200
+    },
+    {
+      "rawRowSha256": "20391cb675a77c89e0d03d45c249976a188941d886c5af0c65256bb029de8a52",
+      "at": "2026-10-17T22:17:21.809Z",
+      "elapsedMs": 68343.5945,
+      "kind": "passive-authenticated-status",
+      "status": "installing",
+      "received": 105856481,
+      "total": 105856481
+    },
+    {
+      "rawRowSha256": "e1b629c9cf6d43672ae12c8332e9cecff9f892e1f5536ad060859057398b26b6",
+      "at": "2026-10-17T22:17:22.157Z",
+      "elapsedMs": 68691.5308,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "950d889582bd0fb616720919aa1c4c23a2fc2d949004029ca858b31ef893da74",
+      "at": "2026-10-17T22:17:22.197Z",
+      "elapsedMs": 68730.9712,
+      "kind": "updater-transport-disconnected",
+      "afterInstallClick": true,
+      "reasonSha256": "1fe880c05d6c6e2286d3e37914355fe19566d988d1de3c5d4b64480a99f45b6c"
+    },
+    {
+      "rawRowSha256": "93ca57045594f8f1f4662f07bfc28b49ed62a825a4f883c0b02b056195db86c9",
+      "at": "2026-10-17T22:17:22.242Z",
+      "elapsedMs": 68776.2917,
+      "kind": "ui",
+      "ratioSha256": "391552c099c101b131feaf24c5795a6a15bc8ec82015424e0d2b4274a369a0bf",
+      "percent": null,
+      "received": null,
+      "total": null,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "still",
+      "scene": "paused"
+    },
+    {
+      "rawRowSha256": "6a2b60a06630e294358dcb58d30d83af196bfabf273b1877f852a1f3808d794f",
+      "at": "2026-10-17T22:17:22.897Z",
+      "elapsedMs": 69431.7533,
+      "kind": "old-origin-unreachable",
+      "installingObserved": true
+    },
+    {
+      "rawRowSha256": "adfd7a971b8afe829d384a58a4f98aba1a6c719138588cd45ef3f88492308594",
+      "at": "2026-10-17T22:17:23.193Z",
+      "elapsedMs": 69726.8049,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "4a506c280c203c4b470321e7378ca05542e5970f29378bc3762baef6a327077b",
+      "at": "2026-10-17T22:17:23.195Z",
+      "elapsedMs": 69728.7959,
+      "kind": "updater-transport-disconnected",
+      "afterInstallClick": true,
+      "reasonSha256": "1fe880c05d6c6e2286d3e37914355fe19566d988d1de3c5d4b64480a99f45b6c"
+    },
+    {
+      "rawRowSha256": "784528b6867fbc0f23d3116dc05d62da9f47a24f2cfa62f125e5cc85bc3e0e5a",
+      "at": "2026-10-17T22:17:24.200Z",
+      "elapsedMs": 70733.8713,
+      "kind": "updater-request",
+      "action": "status"
+    },
+    {
+      "rawRowSha256": "4923bdbecccf2c383392f1b76c0cf2cf708540eeb606f36cfcebd09d191098a3",
+      "at": "2026-10-17T22:17:24.238Z",
+      "elapsedMs": 70772.3756,
+      "kind": "updater-transport-disconnected",
+      "afterInstallClick": true,
+      "reasonSha256": "1fe880c05d6c6e2286d3e37914355fe19566d988d1de3c5d4b64480a99f45b6c"
+    },
+    {
+      "rawRowSha256": "bdbf2818828c95572f2e76396f5aed610f48e456a3ad614237ff26b49a6466db",
+      "at": "2026-10-17T22:17:24.309Z",
+      "elapsedMs": 70842.8481,
+      "kind": "ui",
+      "ratioSha256": "391552c099c101b131feaf24c5795a6a15bc8ec82015424e0d2b4274a369a0bf",
+      "percent": null,
+      "received": null,
+      "total": null,
+      "indeterminateSha256": "076de6e730df0b4c3860877a0f619c6ac11f8aefd78313ac793a2a703c026869",
+      "motion": "still",
+      "scene": "paused"
+    },
+    {
+      "rawRowSha256": "11bd0d9198e514a8957d394bf13e3c55e101393b23be65388fc839ea736ca972",
+      "at": "2026-10-17T22:17:56.006Z",
+      "elapsedMs": 102539.9897,
+      "kind": "project-saved",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+      "file": "project-after-reopen.json"
+    },
+    {
+      "rawRowSha256": "ab6eaff613aa07ee0f345ae4231e6a20ed090e89e1ef39095e8f3193d2026862",
+      "at": "2026-10-17T22:17:56.962Z",
+      "elapsedMs": 103496.036,
+      "kind": "project-saved",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+      "file": "after-update-theme-carbon.json"
+    },
+    {
+      "rawRowSha256": "36f62a885e34282e1486a2ca6df131d06094e3216608fb8a3d5da6a97af7c474",
+      "at": "2026-10-17T22:17:58.149Z",
+      "elapsedMs": 104683.0319,
+      "kind": "project-saved",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+      "file": "after-update-theme-pearl.json"
+    },
+    {
+      "rawRowSha256": "a16f1ffc5d9e92222ef9a0fc88aed58380ea699d81fad0841d71b0011b6208ee",
+      "at": "2026-10-17T22:17:59.430Z",
+      "elapsedMs": 105964.5413,
+      "kind": "project-saved",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+      "file": "after-update-theme-restored.json"
+    },
+    {
+      "rawRowSha256": "0b50dbf1be7b544ee6fbaad277d2926a051c98447b32ed1271d28f4c22ce3b5a",
+      "at": "2026-10-17T22:17:59.591Z",
+      "elapsedMs": 106125.1368,
+      "kind": "real-browser-acceptance-complete",
+      "version": "0.1.22",
+      "automaticProjectRestore": true
+    }
+  ]
+}

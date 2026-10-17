@@ -4,6 +4,8 @@ Figure Studio creates, edits and arranges scientific figures. The Windows deskto
 
 Figure Studio is the **official companion editor for polish-sci-figures**. The [zhoy0409-debug/polish-sci-figures repository](https://github.com/zhoy0409-debug/polish-sci-figures) is the project's sole official maintenance and release channel. Download installers from its **Releases** page. The launcher's **Official project** button opens that repository only when clicked. No account, activation or online verification is required.
 
+2026-10-18: the [actual original official 0.1.20 → 0.1.22 update](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md) passed, including automatic project recovery and normal cleanup. Its input scope is explicit; the separate 0.1.21 → 0.1.22 update with nonempty history, checkpoint and original-table draft also passed, including normal cleanup.
+
 ## Install and open
 
 1. Download [polish-sci-figures-Studio-0.1.22-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe) from the [official v1.4.22 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22), then follow the installer for your Windows user account.

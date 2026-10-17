@@ -2,9 +2,11 @@
 
 本页优先提供 source20 原始 Windows Setup 实际安装后的完整操作录像，并分别标明来源和查看边界。原有 BEFORE 短片为 Studio 0.1.21 冻结 runtime，历史 AFTER 为 source17 实际安装的 Studio 0.1.22；它们使用公开 H&E 与 Iris 150 个观测，原媒体和哈希保持不变，不改称 source20 演示。
 
-source18 的 94 个组件脚本和 6 项人工微软拼音检查保持阶段事实；F2／失焦、Undo／Redo、保存重开、SVG／PNG 与原表／源 SVG 已核对，见[Windows 输入法记录及同次录像](windows-native-ime-acceptance.md)。source19 的 95 组件、双主题 14 项和正式性能保留原阶段；source20 已完成 95 组件、双主题 10 项真实轴流程及正式性能，见[验收报告](live-preview-validation.md)。source20 原包已完成实际安装、编辑和正常重装／卸载保留数据，见[本次安装版汇总](qa/live-preview/windows-final20-acceptance-summary.json)；官方更高版本更新仍为发布后待实测。本页 source17 短片不证明新安装版或重复人工 IME。
+source18 的 94 个组件脚本和 6 项人工微软拼音检查保持阶段事实；F2／失焦、Undo／Redo、保存重开、SVG／PNG 与原表／源 SVG 已核对，见[Windows 输入法记录及同次录像](windows-native-ime-acceptance.md)。source19 的 95 组件、双主题 14 项和正式性能保留原阶段；source20 已完成 95 组件、双主题 10 项真实轴流程及正式性能，见[验收报告](live-preview-validation.md)。source20 原包已完成实际安装、编辑和正常重装／卸载保留数据，见[本次安装版汇总](qa/live-preview/windows-final20-acceptance-summary.json)；原官方 20 → 22 已完成[独立发布后更新实测](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)；独立的 21 → 22 非空历史／检查点／原表草稿及正常清理也已通过。本页 source17 短片不证明新安装版或重复人工 IME。
 
 ## source20 实际 Windows 安装版完整操作
+
+[2026-10-18 官方 20 → 22 更新完整原录屏](https://raw.githubusercontent.com/zhoy0409-debug/polish-sci-figures/main/docs/qa/live-preview/postrelease-20261018/official20-to22-original.webm)及[实际查看范围](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)另行提供。旧 20 UI 在安装交接时短暂显示 paused／未响应，原录像保留该画面；界面未观测到 verifying／installing，后端握手与安装成功证据分开报告。它不证明新 22 客户端的 audit 或生产轮询策略已被实际触发。
 
 本次两个 WebM 是实际 core-demo 完整原录屏，未剪辑、改速或合成界面，不把旧 source17 GIF 重新标记为本次安装版。
 

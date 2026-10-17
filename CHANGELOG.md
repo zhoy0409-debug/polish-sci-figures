@@ -3,6 +3,8 @@
 
 ## v1.4.22 · Figure Studio 0.1.22
 
+- Post-release verification (2026-10-18): the original official stable 0.1.20 → 0.1.22 download/install, same-context automatic project restoration and normal cleanup passed. [Dated scope and retained original media](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md) distinguish the one-state/empty-container input, old-helper installer exit evidence and unobserved short UI stages. The separate official preview 0.1.21 → 0.1.22 update also passed with three history states, one checkpoint and one valid original-table draft, followed by normal cleanup; original release assets are unchanged.
+
 - Add reversible real-canvas drafts, explicit commit/cancel and shared async invalidation. Dock object borders, image display and linked-detail tools beside the canvas; retain their existing geometry, filters, calibration and matching engines.
 - Separate native/imported axis preview from durable application. Reuse canonical asset migration and rendering in isolated shadow resources; preserve source observations and reject unsupported scientific settings.
 - Reuse existing text/ROI previews; improve unfinished-input handling. Add live inspector fields, panel-label colour access and publication-size drafts. Keep one semantic undo step and committed-only save/export boundaries.

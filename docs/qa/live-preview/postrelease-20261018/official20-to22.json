@@ -1,0 +1,363 @@
+{
+  "schema": "figure-studio-official-stable-real-update-public-summary/1",
+  "status": "PASS_ACTUAL_OFFICIAL_STABLE_20_TO22_AND_NORMAL_CLEANUP",
+  "createdAtUtc": "2026-10-17T22:07:45.950859+00:00",
+  "versions": {
+    "before": {
+      "currentVersion": "0.1.20",
+      "suiteVersion": "1.4.20",
+      "platform": "windows"
+    },
+    "after": {
+      "currentVersion": "0.1.22",
+      "suiteVersion": "1.4.22",
+      "platform": "windows"
+    }
+  },
+  "strictOriginalHarnessResultPassed": true,
+  "downloadCommands": 1,
+  "installCommands": 1,
+  "actualOfficialSetup": {
+    "bytes": 105856481,
+    "sha256": "85b0355490eb2615f2cebc1097e6e51da1d89a9f3b5851a60d95831930be3d1a"
+  },
+  "completedProofs": {
+    "realResult": {
+      "sha256": "0970820ce0a20d56f3cfef99c6e1954d0f6d3292ca4a2c210a8b8be2beb33ca5",
+      "sizeBytes": 5295
+    },
+    "timedEvents": {
+      "sha256": "720f6e2a14bf1a0f669cd7bf7a791c7dced9c39b563292c0ca4a6084984ea8cb",
+      "sizeBytes": 108869
+    },
+    "installed22Gate": {
+      "sha256": "24f5cef2dcb28ccc0f28ebe6bd914627550788073f7a97565b778a3fd328766a",
+      "sizeBytes": 2562
+    },
+    "updatedTree": {
+      "sha256": "4dbf86ef55e8193d3b60a45acb05c619843fec1060149a01a40d8177e8b11a3d",
+      "sizeBytes": 939449
+    }
+  },
+  "updatedTree": {
+    "acceptedFiles": 2622,
+    "actualFiles": 2624,
+    "allExpectedFileNamesSizesAndSha256Match": true,
+    "missingCount": 0,
+    "mismatchCount": 0,
+    "extras": [
+      {
+        "file": "unins000.dat",
+        "sizeBytes": 1906290,
+        "sha256": "e77a88f0fe761d2e3e32d080a1e65b998d64a6b49352d06f7127e1fedd1e9c03",
+        "classification": "INNO_GENERATED_UNINSTALLER_METADATA"
+      },
+      {
+        "file": "unins000.exe",
+        "sizeBytes": 4390390,
+        "sha256": "0b4913a350d37da7a8cc8f2e675020b349dee8ca2c1516cd1ddd0c6ccd0ba66e",
+        "classification": "INNO_GENERATED_UNINSTALLER_METADATA"
+      }
+    ],
+    "noUnclassifiedExtras": true
+  },
+  "actualSavePayloads": {
+    "fileCount": 5,
+    "eachBytes": 577820,
+    "allBytesSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+    "allFiveByteExact": true,
+    "observationCount": 150,
+    "originalSvgVariantCount": 12,
+    "originalTableAndAllSvgSourcesExact": true,
+    "completeProjectStateHistoryCheckpointsAndDraftObjectsExact": true,
+    "historyStateCount": 1,
+    "checkpointCount": 0,
+    "dataDraftCount": 0,
+    "coverage": "History equality covers a one-state history. Checkpoint and data-draft equality covers empty collections; nonempty/multistep preservation is not established by this run."
+  },
+  "automaticProjectRestore": true,
+  "completeCorePayloadPreserved": true,
+  "appearancePreferencePreserved": true,
+  "afterUpdateThemeChecks": [
+    {
+      "phase": "after-update",
+      "theme": "carbon",
+      "completeProjectExact": true,
+      "historyExact": true,
+      "checkpointsExact": true,
+      "dataDraftsExact": true,
+      "editableStateExact": true
+    },
+    {
+      "phase": "after-update",
+      "theme": "pearl",
+      "completeProjectExact": true,
+      "historyExact": true,
+      "checkpointsExact": true,
+      "dataDraftsExact": true,
+      "editableStateExact": true
+    }
+  ],
+  "settings": {
+    "settingsBefore": {
+      "bytes": 59,
+      "sha256": "258c8380d6fc63b4a9afe341928e536c141782cbcd516461d0789ae8db8bef14"
+    },
+    "settingsBeforeInstall": {
+      "bytes": 59,
+      "sha256": "258c8380d6fc63b4a9afe341928e536c141782cbcd516461d0789ae8db8bef14",
+      "jsonEqual": true,
+      "bytesEqual": true
+    },
+    "settingsAfterUpdate": {
+      "bytes": 59,
+      "sha256": "258c8380d6fc63b4a9afe341928e536c141782cbcd516461d0789ae8db8bef14",
+      "jsonEqual": true,
+      "bytesEqual": true
+    }
+  },
+  "protectedOriginal": {
+    "count": 1,
+    "strictHarnessBeforeAfterPidPathCreationEqual": true,
+    "freshInstalled22GateIncludesOriginalPidPathCreationAndExeShaVerification": true
+  },
+  "completion": {
+    "helperReadyVerified": true,
+    "result": "installed",
+    "backupFileCount": 2507,
+    "backupOriginalHashesExact": true,
+    "auditAvailable": false
+  },
+  "nativeInstallerExitCodeIndependentlyPersistedInOriginalResult": null,
+  "progressEvidence": {
+    "uiObservedStages": [
+      "checking",
+      "downloading",
+      "ready",
+      "preparing",
+      "paused"
+    ],
+    "backendObservedStages": [
+      "idle",
+      "checking",
+      "downloading",
+      "ready",
+      "preparing",
+      "installing"
+    ],
+    "uiUnobservedStages": [
+      "verifying",
+      "installing"
+    ],
+    "rawTimedEventCount": 647,
+    "eventKindCounts": {
+      "open-project-confirmation": 1,
+      "operator-project-opened": 1,
+      "project-saved": 5,
+      "updater-request": 93,
+      "updater-response": 90,
+      "user-started-real-download": 1,
+      "passive-authenticated-status": 384,
+      "ui": 66,
+      "user-confirmed-install-once": 1,
+      "updater-transport-disconnected": 3,
+      "old-origin-unreachable": 1,
+      "real-browser-acceptance-complete": 1
+    },
+    "safeAllRowsSha256": "6fe879de63194624c4f2bcde7a6a101b518f872ef816e5f61084e41b642002b8",
+    "noUnobservedFramesReconstructed": true,
+    "passiveStatusObserver": {
+      "intervalMs": 100,
+      "readOnlyAuthenticatedAction": "status",
+      "drivesUI": false
+    }
+  },
+  "originalUneditedVideo": {
+    "sha256": "287462f24a6faef675b666e6f240dd5e01d5220257dd24e083f073e97b3e4510",
+    "sizeBytes": 8058796
+  },
+  "reportedBrowserErrorCount": 0,
+  "reportedCleanupErrorCount": 0,
+  "limits": [
+    "The older official 0.1.20 UI has no appearance controls; actual Carbon/Pearl checks were performed after update only.",
+    "The original updater has no new audit journal. Actual helper-ready/result and 2507 complete rollback-file hashes were verified.",
+    "UI verifying/installing scenes were not observed and were not reconstructed. Backend installing evidence is separately reported.",
+    "This derivative contains no new human/native IME acceptance, scientific image accuracy estimate, optical frame-rate measurement or additional project history coverage.",
+    "Numeric installer exit is not independently recorded in the original strict result; do not infer it from the browser PASS."
+  ],
+  "derivedFromAllowlistedSummary": {
+    "sha256": "94f2fb272f7621879e18aef72b696fa39f5d37f3b75da1e4530c7d9dabee0749",
+    "sizeBytes": 6391
+  },
+  "actualOuterHarnessExecution": {
+    "stage": "StrictOriginal20To22UI",
+    "actualExitCode": 0,
+    "startedAtUtc": "2026-10-17T21:55:27.277411+00:00",
+    "endedAtUtc": "2026-10-17T21:57:57.310882+00:00",
+    "harnessBeforeAfterExact": true,
+    "preExistingChromeCount": 0,
+    "remainingNewChromeCount": 0,
+    "evidence": {
+      "sha256": "23174e63d0795d6d330c4bc011e0e907031d783bf8cebbd19223df6505de458f",
+      "sizeBytes": 1865
+    },
+    "originalCommandLogSha256": "f2816ac69a3f091ba6843e16b87acd21d2961023c1e7934d8bc011e9f63838c9",
+    "distinction": "This is the actual outer unmodified strict browser harness exit, not a numeric exit of the older helper internal installer."
+  },
+  "actualNormalCleanup": {
+    "evidence": {
+      "sha256": "1a8b70771c500fcf133b5e0515e0a27298811966126cb11c5d7a130a6a323a8f",
+      "sizeBytes": 685430
+    },
+    "actualOuterExitCode": 0,
+    "actualNativeUninstallExitCode": 0,
+    "normalUninstall": true,
+    "ownedProcessCount": 0,
+    "ownedExecutableAbsent": true,
+    "allFourRegistryViewsAbsent": true,
+    "fixedListenerReleased": true,
+    "protectedOriginalCount": 1,
+    "protectedOriginalPidPathCreationAndShaExact": true,
+    "wholeExternalProfilePreserved": true,
+    "externalProfileFiles": 2519,
+    "finalizedProofDirectoryPreserved": true,
+    "finalizedProofFiles": 11,
+    "profileManifestSha256": "337c9819803770b016e71bd7f0397f6a1e124bdcf3d5ff17804ffff46ca2854b",
+    "finalizedProofManifestSha256": "fef56fcbd20f629c8564f26483925a6758fb955a7bb0a8932b503d09ffc070d6",
+    "preservationScope": "All files in this run external profile and finalized proof directories, sampled after stopping only the exact gate-bound native instance and natural helper completion, then compared by name, size and SHA-256 after normal uninstallation."
+  },
+  "rootReferenceGlobalPostCleanupQuery": {
+    "evidence": {
+      "sha256": "5c561c735b03b4bc377aa757b73ce36072676699f9d4a1f39cd6b728e4be23bb",
+      "sizeBytes": 1893
+    },
+    "scope": "ORIGINAL_FINAL20_QA_REFERENCE_ONLY",
+    "status": "PASS_ACTUAL_READ_ONLY_FINAL_QUERY",
+    "queriedAtUtc": "2026-10-17T22:05:28.8691423Z",
+    "ownedExecutableAbsent": true,
+    "ownedProcessCount": 0,
+    "protectedOriginalCount": 1,
+    "protectedOriginalIdentityUnchanged": true,
+    "registryViews": [
+      {
+        "hive": "HKCU",
+        "view": "Registry32",
+        "exists": false
+      },
+      {
+        "hive": "HKCU",
+        "view": "Registry64",
+        "exists": false
+      },
+      {
+        "hive": "HKLM",
+        "view": "Registry32",
+        "exists": false
+      },
+      {
+        "hive": "HKLM",
+        "view": "Registry64",
+        "exists": false
+      }
+    ]
+  },
+  "rootSpecificOfficialTargetPostCleanupQuery": {
+    "evidence": {
+      "sha256": "63bbbe0825c740b2eef52598e1c65bbffbe9fede3dc59be6e290e610404b8582",
+      "sizeBytes": 1881
+    },
+    "status": "PASS_ACTUAL_READ_ONLY_OFFICIAL_UPDATE_TARGET_QUERY",
+    "queriedAtUtc": "2026-10-17T22:07:23.2460551Z",
+    "ownedActualOfficialProcessCount": 0,
+    "actualOfficialExecutableAbsent": true,
+    "actualOfficialPort19022Free": true,
+    "protectedOriginalCount": 1,
+    "protectedOriginalIdentityUnchanged": true,
+    "registryViews": [
+      {
+        "hive": "HKCU",
+        "view": "Registry32",
+        "exists": false
+      },
+      {
+        "hive": "HKCU",
+        "view": "Registry64",
+        "exists": false
+      },
+      {
+        "hive": "HKLM",
+        "view": "Registry32",
+        "exists": false
+      },
+      {
+        "hive": "HKLM",
+        "view": "Registry64",
+        "exists": false
+      }
+    ],
+    "actualOfficialSettings": {
+      "sha256": "258c8380d6fc63b4a9afe341928e536c141782cbcd516461d0789ae8db8bef14",
+      "bytes": 59
+    },
+    "actualOfficialSavedProjects": [
+      {
+        "bytes": 577820,
+        "sha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5"
+      },
+      {
+        "bytes": 577820,
+        "sha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5"
+      }
+    ],
+    "wholeProfileRehashedHere": false,
+    "scope": "Fresh exact official-update target/process/listener and selected actual settings/saved-project queries, plus fresh global four-view and original-protected checks. The whole 2519-file profile and 11-file proof preservation is independently established by actual normal cleanup; the older reference helper preserved-file checks describe the older QA reference only."
+  },
+  "rootIndependentDataReadback": {
+    "evidence": {
+      "sha256": "3c7b70b279215a8b4d7a561e126cf3ce123b8803824078a9f42ee40b8b1f225e",
+      "sizeBytes": 1160
+    },
+    "status": "ROOT_INDEPENDENT_FULL_SAVED_BYTES_EQUAL",
+    "savedFiles": 5,
+    "eachBytes": 577820,
+    "allFiveByteExact": true,
+    "allBytesSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+    "observationCount": 150,
+    "originalSvgVariantCount": 12,
+    "historyStateCount": 1,
+    "checkpointCount": 0,
+    "dataDraftCount": 0,
+    "nonemptyHistoryCheckpointsOrDraftsEstablished": false
+  },
+  "rootActualMediaReview": {
+    "evidence": {
+      "sha256": "9c2d56e7c2c49a1c61677d45366682f169196879af2e37c0f62412a5d30962bc",
+      "sizeBytes": 2521
+    },
+    "status": "ACTUAL_RESULT_DATA_AND_SAMPLED_MEDIA_REVIEW_PASS",
+    "reviewedAtUtc": "2026-10-17T22:01:38.814099+00:00",
+    "actualScreensViewed": 3,
+    "screenSha256": [
+      "78c25dd9776ca000b9944a39410a2435a60010834276dc1af1be47fb8c116775",
+      "e9bc47b644bf24f2f5897a808278c8f95ada82a8c50991a2c299a02884240203",
+      "45523b819539a2e67dd41f01028c5627881d2ccbee0fe7516e752d9a90bd0ab5"
+    ],
+    "originalVideoSha256": "287462f24a6faef675b666e6f240dd5e01d5220257dd24e083f073e97b3e4510",
+    "decodedOriginalVideoSampleSeconds": [
+      30,
+      47,
+      64,
+      115
+    ],
+    "wholeVideoWatched": false,
+    "sourceVideoAltered": false,
+    "findings": [
+      "Actual former20 UI shows stable22 offer and independently verified ready package; saved checkbox initially unchecked and installation disabled.",
+      "Decoded original30/47/64-second frames visibly show actual download progress; these are sampling positions, not optical timing measurements.",
+      "115-second frame shows the old-page paused/not-responding fallback during legitimate native handoff; it is retained, not replaced.",
+      "Actual reopened22 Carbon editor visibly contains the original Iris scatter plot.",
+      "UI verifying/installing were not sampled, while the authenticated backend installing handshake and helper completion were verified.",
+      "The old helper has no new22 audit; the new audit production path is not claimed covered."
+    ]
+  }
+}
