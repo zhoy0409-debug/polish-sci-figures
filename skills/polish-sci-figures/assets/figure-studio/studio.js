@@ -32,6 +32,7 @@ function layoutLockAPI(){return typeof StudioLayoutLock!=='undefined'?StudioLayo
 function imageInsetsAPI(){return typeof StudioImageInsets!=='undefined'?StudioImageInsets:typeof module!=='undefined'&&module.exports?require('./image-insets.js'):null;}
 function imageLinksAPI(){return typeof StudioImageLinks!=='undefined'?StudioImageLinks:typeof module!=='undefined'&&module.exports?require('./image-links.js'):null;}
 function imageColorAPI(){return typeof StudioImageColor!=='undefined'?StudioImageColor:typeof module!=='undefined'&&module.exports?require('./image-color.js'):null;}
+function objectBordersAPI(){return typeof StudioObjectBorders!=='undefined'?StudioObjectBorders:typeof module!=='undefined'&&module.exports?require('./object-borders.js'):null;}
 function axisEditingAPI(){return typeof StudioAxisEditing!=='undefined'?StudioAxisEditing:typeof module!=='undefined'&&module.exports?require('./axis-editing.js'):null;}
 function insetCalibrationWidth(source,s){const p=s.panels[source.panelId];return p?.imageCalibrations?.[source.variant]?.[source.key]??p?.scales?.[source.variant]?.[source.key]?.calibration;}
 function validValue(key, value) {
@@ -169,6 +170,7 @@ function panelGaps(s){return {x:s.gapX??s.gap,y:s.gapY??s.gap};}
 function copyPanelGaps(target,source){target.gap=source.gap;for(const key of ['gapX','gapY']){if(source[key]!==undefined)target[key]=source[key];else delete target[key];}return target;}
 function validateTextSpacingState(record){for(const [field,property]of [['letterSpacing','letter-spacing'],['lineHeight','line-height'],['fontStyle','font-style'],['color','fill']])if(record?.[field]!==undefined&&!validValue(property,String(record[field])))throw Error('文字样式参数无效');if(record?.locked!==undefined&&typeof record.locked!=='boolean')throw Error('锁定状态无效');}
 function validateState(state, project) {
+  if(state?.objectBorders!==undefined)objectBordersAPI().validate(state.objectBorders);
   if(state?.alignmentGuides!==undefined)validateAlignmentGuides(state.alignmentGuides);
   if(state?.compactWhitespace!==undefined&&typeof state.compactWhitespace!=='boolean')throw Error('留白设置无效');
   if (!state || !Array.isArray(state.order) || state.order.length < 1 || state.order.length > 24 ||
@@ -999,6 +1001,29 @@ if (typeof document !== 'undefined') (async () => {
     if(repaint){renderCanvas();if(mobileWorkspace?.enabled)mobileWorkspace.showTab('adjustments');if(name==='detail'&&typeof ensureStatisticalMetadata==='function')ensureStatisticalMetadata().catch(()=>{});}
   }
   const state = () => history.current;
+  let objectBordersUI=null,experienceTools=null;
+  function borderTargets(){
+    const items=quickSelectedObjects(),out=[],grouped=new Set();
+    for(const group of selectionGroups())for(const keys of state().panels[group.id].elementGroups?.[group.vi]||[]){if(keys.length>1&&keys.every(k=>group.keys.includes(k))){out.push({target:{kind:'group',panelId:group.id,variant:group.vi,keys:[...keys]},locked:items.some(i=>i.id===group.id&&keys.includes(i.key)&&i.locked)});keys.forEach(k=>grouped.add(group.id+'/'+group.vi+'/'+k));}}
+    for(const item of items){if(item.kind==='element'){if(!grouped.has(item.id+'/'+item.vi+'/'+item.key))out.push({target:{kind:'element',panelId:item.id,variant:item.vi,key:item.key},locked:item.locked});}else out.push({target:item.kind==='label'?{kind:'label',panelId:item.id}:{kind:'overlay',id:item.id},locked:item.locked});}
+    if(!out.length)for(const id of panelSelection.length?panelSelection:[selectedPanel])if(state().panels[id])out.push({target:{kind:'panel',panelId:id},locked:state().panels[id].locked});
+    return out;
+  }
+  function setupRound2Tools(){
+    const language=()=>StudioI18n.language;
+    if(typeof StudioObjectBorders!=='undefined')objectBordersUI=StudioObjectBorders.create({container:document.body,language,targets:borderTargets,state,project:()=>project,root:()=>$('artboard').querySelector('svg'),selectedPanel:()=>selectedPanel,scale:()=>currentOutput().scale,commit,say});
+    const selectImage=ref=>{original=false;selectedPanel=ref.panelId;panelSelection=[ref.panelId];setElementSelection([{id:ref.panelId,vi:ref.variant,keys:[ref.key]}]);showPane('detail');render();};
+    const color=()=>{showPane('detail');if(!insetSelection().source){const images=imageColorSources();if(images.length===1)selectImage(images[0]);else return experienceTools?.openImages('color');}imageColorUI?.open();};
+    if(typeof StudioExperienceTools!=='undefined')experienceTools=StudioExperienceTools.create({document,language,say,images:imageColorSources,selectedImage:()=>insetSelection().source,selectImage,
+      context:()=>({selected:!!selectedPanel,image:!!insetSelection().source}),duplicateStatus:()=>duplicateCheck?.status?.(),
+      discovery:()=>{showPane('explore');$('openDiscovery')?.click();},edit:()=>showPane('detail'),
+      axes:()=>typeof openProfessionalAxes==='function'?openProfessionalAxes():showPane('detail'),
+      export:()=>{$('exportOptions').open=true;$('exportOptions').scrollIntoView({block:'nearest'});$('exportMenu').open=true;},
+      borders:()=>objectBordersUI?.open(),duplicates:scope=>duplicateCheck?.open?.(scope),color,
+      links:()=>{showPane('detail');imageLinks?.open();},inset:()=>{showPane('detail');const choice=insetSelection();if(choice.source)imageInsets?.startROI(choice.source,choice.inset?.id,2);else say(StudioI18n.language==='en'?'Select a source image first.':'请先选中原图。');}
+    });
+    const context=document.createElement('div');context.id='contextObjectTools';context.className='row';const border=document.createElement('button');border.id='openObjectBorder';border.textContent=language()==='en'?'Object borders':'对象边框';border.onclick=()=>objectBordersUI?.open();const images=document.createElement('button');images.id='openImageTools';images.textContent=language()==='en'?'Image tools':'图片工具';images.onclick=()=>experienceTools?.openImages();context.append(border,images);document.querySelector('[data-pane="detail"]')?.prepend(context);experienceTools?.refresh();
+  }
   const saveSignature = () => JSON.stringify({state:state(),checkpoints,dataDrafts,imageReview:project?.imageDuplicateReview?{createdAt:project.imageDuplicateReview.createdAt,updatedAt:project.imageDuplicateReview.updatedAt,reviews:project.imageDuplicateReview.reviews}:null});
   const panel = id => project.panels.find(p => p.id === id);
   const variant = id => panel(id).variants[state().panels[id].variant];
@@ -2139,6 +2164,7 @@ if (typeof document !== 'undefined') (async () => {
       // generic selection transform here would apply that resize twice.
       const transform=fresh.getAttribute('transform');if(transform===null)group.removeAttribute('transform');else group.setAttribute('transform',transform);
     }
+    if(s.objectBorders?.length&&typeof StudioObjectBorders!=='undefined')StudioObjectBorders.draw(svg,s,{scale:exportGeometry(l.width,l.height,s.exportSettings).scale,project});
     imageLinks?.draw(svg,s);
   }
   function overlayNode(a,l,editing=true,root=null,s=null){
@@ -2258,6 +2284,7 @@ if (typeof document !== 'undefined') (async () => {
       root.append(overlayNode(a,l,!exportMode,root,s));
     }
     if(!raw&&typeof StudioLayoutLock!=='undefined')StudioLayoutLock.apply(root,s,{edits:(id,vi)=>editsFor(id,vi,s),frame:id=>{const pos=l.positions.find(pos=>pos.id===id);return pos?.renderBox||pos;}});
+    if(!raw&&s.objectBorders?.length&&typeof StudioObjectBorders!=='undefined')StudioObjectBorders.draw(root,s,{scale:exportGeometry(l.width,l.height,s.exportSettings).scale,project,strict:exportMode,onlyPanel});
     if(!raw&&s.imageLinks?.length&&typeof StudioImageLinksController!=='undefined')root.append(StudioImageLinksController.render(root,s,{onlyPanel}));
     if(!region&&l.masterFrame&&typeof StudioMasterFrame!=='undefined')StudioMasterFrame.clip(root,l.masterFrame);
     if (exportMode) {const ownedColors=typeof StudioImageColor==='undefined'?new Set():verifiedImageColorElements(root,true);for (const el of [root,...root.querySelectorAll('*')]) for (const a of [...el.attributes]) if ((a.name.startsWith('data-')||a.name==='class')&&!(a.name==='data-studio-image-color'&&ownedColors.has(el))) el.removeAttributeNode(a);}
@@ -2311,7 +2338,7 @@ if (typeof document !== 'undefined') (async () => {
       for(const vi of Object.keys(lock.elements||{})){lock.elements[vi]=lock.elements[vi].filter(record=>record.lockedKeys.length);if(!lock.elements[vi].length)delete lock.elements[vi];}
     }
   }
-  function commit(next,label,renderNow=true) {invalidateReleasedLayoutLocks(next,state());if(next.imageLinks){const present=ref=>ref.insetId?next.overlays?.some(a=>a.id===ref.insetId):next.order.includes(ref.panelId);next.imageLinks=next.imageLinks.filter(a=>present(a.parent)&&present(a.child));}if(next.overlays)next.overlays=next.overlays.filter(a=>a.type!=='inset'||next.order.includes(a.source.panelId));try{validateState(next,project);for(const id of state().order){const before=state().panels[id],after=next.panels[id];if(before.locked&&(!after||after.locked)&&(JSON.stringify(before)!==JSON.stringify(after)||!before.layoutLock?.panel&&JSON.stringify(gridFor(state()).places[id])!==JSON.stringify(gridFor(next).places[id])))throw Error(T('小图已锁定'));for(const [vi,keys]of Object.entries(before.lockedElements||{}))for(const key of keys)if(after?.lockedElements?.[vi]?.includes(key)&&JSON.stringify(before.edits?.[vi]?.[key])!==JSON.stringify(after.edits?.[vi]?.[key]))throw Error(T('元素已锁定'));if(before.label?.locked&&after?.label?.locked&&JSON.stringify(before.label)!==JSON.stringify(after.label))throw Error(T('元素已锁定'));}const pinned=layoutLockAPI()?.pinnedBounds(next);if(pinned){const l=layout(next);if(l.masterFrame?!StudioMasterFrame.contains(l.masterFrame,pinned):l.width+.001<pinned.x+pinned.width||l.height+.001<pinned.y+pinned.height)throw Error(T('母版不能裁掉已锁定的内容，请先解锁'));}}catch(e){say(e.message);return false;}if(history.commit(next)){original=false;$('undo').disabled=history.index===0;$('redo').disabled=history.index===history.states.length-1;persist();if(renderNow){if(pointerEditCommit)pointerEditRefresh=true;else render();}say(label+T(' · 已记录，可撤销'));}return true;}
+  function commit(next,label,renderNow=true) {if(next.objectBorders||state().objectBorders){try{objectBordersAPI().assertLocks(state(),next);}catch(e){say(e.message);return false;}next.objectBorders=(next.objectBorders||[]).filter(r=>r.target.kind==='overlay'?next.overlays?.some(a=>a.id===r.target.id):next.order.includes(r.target.panelId));}invalidateReleasedLayoutLocks(next,state());if(next.imageLinks){const present=ref=>ref.insetId?next.overlays?.some(a=>a.id===ref.insetId):next.order.includes(ref.panelId);next.imageLinks=next.imageLinks.filter(a=>present(a.parent)&&present(a.child));}if(next.overlays)next.overlays=next.overlays.filter(a=>a.type!=='inset'||next.order.includes(a.source.panelId));try{validateState(next,project);for(const id of state().order){const before=state().panels[id],after=next.panels[id];if(before.locked&&(!after||after.locked)&&(JSON.stringify(before)!==JSON.stringify(after)||!before.layoutLock?.panel&&JSON.stringify(gridFor(state()).places[id])!==JSON.stringify(gridFor(next).places[id])))throw Error(T('小图已锁定'));for(const [vi,keys]of Object.entries(before.lockedElements||{}))for(const key of keys)if(after?.lockedElements?.[vi]?.includes(key)&&JSON.stringify(before.edits?.[vi]?.[key])!==JSON.stringify(after.edits?.[vi]?.[key]))throw Error(T('元素已锁定'));if(before.label?.locked&&after?.label?.locked&&JSON.stringify(before.label)!==JSON.stringify(after.label))throw Error(T('元素已锁定'));}const pinned=layoutLockAPI()?.pinnedBounds(next);if(pinned){const l=layout(next);if(l.masterFrame?!StudioMasterFrame.contains(l.masterFrame,pinned):l.width+.001<pinned.x+pinned.width||l.height+.001<pinned.y+pinned.height)throw Error(T('母版不能裁掉已锁定的内容，请先解锁'));}}catch(e){say(e.message);return false;}if(history.commit(next)){original=false;$('undo').disabled=history.index===0;$('redo').disabled=history.index===history.states.length-1;persist();if(renderNow){if(pointerEditCommit)pointerEditRefresh=true;else render();}say(label+T(' · 已记录，可撤销'));}return true;}
   function migrateLabelHistory(){
     const initial=project.initialState;
     history.states=history.states.map(s=>migratePanelLabels(s,initial));
@@ -2849,6 +2876,7 @@ if (typeof document !== 'undefined') (async () => {
   const numericAxisViews=new Set(['relation_scatter','relation_transparent','relation_regression_ci','relation_group_regression','relation_color','relation_bubble','relation_density_contour','relation_density_fill','relation_identity','relation_loess','relation_model_compare','relation_labelled','relation_residual_fitted','relation_residual_qq','relation_influence','compare_density','compare_ecdf','compare_hist_facets','time_individual_paths','time_mean_replicates','time_mean_sd','time_mean_band','time_small_multiples','time_baseline_change','time_steps','time_series','time_moving_average','time_supplied_fit','time_interrupted','time_stacked_area','time_percent_area','time_pk_target','time_mutant_window']);
   const axisInputMap={axisXMin:'x_min',axisXMax:'x_max',axisYMin:'y_min',axisYMax:'y_max',firstGroupGap:'first_group_gap'};
   let axisPending=null,axisRequest=0,axisBusy=false,axisTimer=null;
+  let professionalAxesUI=null,professionalAxisSelection=null,professionalAxesLanguage='';
   function axisControlsInfo(source=panel(selectedPanel)){
     if(source.axis_controls)return source.axis_controls;
     const view=source.recipe?.family==='gallery'?source.recipe.parameters?.view:'',category=categoricalAxisViews.has(view),numeric=numericAxisViews.has(view),xOnly=['compare_cleveland','compare_ridgeline'].includes(view),supported=category||numeric||xOnly;
@@ -2861,6 +2889,8 @@ if (typeof document !== 'undefined') (async () => {
     $('firstGroupGapSlider').value=settings.first_group_gap??info.defaults?.first_group_gap??.5;$('firstGroupGapSlider').disabled=locked||!localEngine;$('resetAxes').disabled=locked||!localEngine;
     $('axisControlStatus').textContent=(info.warnings||[]).map(w=>typeof w==='string'?w:w[StudioI18n.language==='en'?'en':'zh']).filter(Boolean).join(' ');
     renderReferenceLines(settings,info);
+    if(typeof StudioAxisSettingsUI!=='undefined'&&professionalAxesLanguage!==StudioI18n.language)setupProfessionalAxes();
+    if(typeof professionalAxesUI!=='undefined'&&professionalAxesUI)professionalAxesUI.refresh();
   }
   function renderReferenceLines(settings,info){
     const allowed=info.reference_lines||[],locked=state().panels[selectedPanel].locked||!localEngine,rows=settings.reference_lines||[];$('referenceLineControls').hidden=!allowed.length;$('referenceLines').replaceChildren();
@@ -2882,26 +2912,97 @@ if (typeof document !== 'undefined') (async () => {
     for(const axis of ['x','y'])if(Number.isFinite(settings[axis+'_min'])&&Number.isFinite(settings[axis+'_max'])&&settings[axis+'_min']>=settings[axis+'_max'])throw Error(T('坐标下限必须小于上限'));
     return settings;
   }
-  function queueAxisSettings(settings,immediate=false){
-    if(!localEngine||state().panels[selectedPanel].locked)return;
-    if(dataDrafts[selectedPanel]){$('axisControlStatus').textContent=T('请先完成当前数据修改，再调整坐标。');return;}
-    axisPending={id:selectedPanel,projectId:project.id,axes:settings,request:++axisRequest};clearTimeout(axisTimer);$('axisControlStatus').textContent=T('正在重绘坐标与参考线…');if(immediate)applyAxisSettings();else axisTimer=setTimeout(applyAxisSettings,400);
+  function queueAxisSettings(settings,immediate=false,options={}){
+    if(!localEngine||state().panels[selectedPanel].locked)return Promise.resolve({ok:false,error:T('小图已锁定')});
+    if(dataDrafts[selectedPanel]){const error=T('请先完成当前数据修改，再调整坐标。');$('axisControlStatus').textContent=error;return Promise.resolve({ok:false,error});}
+    axisPending?.complete?.({ok:false,error:T('目标已变化，请重新选择')});
+    return new Promise(complete=>{axisPending={id:selectedPanel,projectId:project.id,axes:settings,request:++axisRequest,complete,options};clearTimeout(axisTimer);$('axisControlStatus').textContent=T('正在重绘坐标与参考线…');if(immediate)applyAxisSettings();else axisTimer=setTimeout(applyAxisSettings,400);});
   }
   async function applyAxisSettings(){
     if(axisBusy||!axisPending)return;const task=axisPending,id=task.id;
-    if(task.projectId!==project.id||selectedPanel!==id||!state().panels[id]||dataDrafts[id]){axisPending=null;return;}
+    if(task.projectId!==project.id||selectedPanel!==id||!state().panels[id]||dataDrafts[id]){task.complete?.({ok:false,error:T('目标已变化，请重新选择')});axisPending=null;return;}
     const source=panel(id),record=state().panels[id].statistics,statistics=record?.binding==='current'&&!record.stale?record.config:undefined,statsSnapshot=JSON.stringify(record),serial=dataSerial,oldName=variant(id).name,oldSize=variant(id).size||'original';axisBusy=true;
     try{const response=await engineFetch(localEngine.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe:source.recipe,rows:source.table.rows,axes:task.axes,statistics})}),result=await response.json();if(!response.ok)throw Error(result.error);
       if(axisPending!==task||project.id!==task.projectId||selectedPanel!==id||!state().panels[id]||state().panels[id].locked||panel(id)!==source||dataSerial!==serial||JSON.stringify(state().panels[id].statistics)!==statsSnapshot)return;
-      axisPending=null;const asset=result.panel;asset.name=source.name;asset.initialVariant=Math.max(0,asset.variants.findIndex(v=>v.name===oldName&&(v.size||'original')===oldSize));installAsset(asset,id,null,T('坐标与参考线已更新'),true,true);
-    }catch(error){if(axisPending===task&&project.id===task.projectId&&selectedPanel===id){axisPending=null;$('axisControlStatus').textContent=String(error.message).split(' / ')[StudioI18n.language==='en'?1:0]||error.message;}}
-    finally{axisBusy=false;if(axisPending===task)axisPending=null;else if(axisPending)applyAxisSettings();}
+      axisPending=null;const asset=result.panel;asset.name=source.name;asset.initialVariant=Math.max(0,asset.variants.findIndex(v=>v.name===oldName&&(v.size||'original')===oldSize));installAsset(asset,id,null,T('坐标与参考线已更新'),true,true,false,task.options?.physicalScale?next=>{
+        if(next.exportSettings)next.exportSettings={...next.exportSettings,widthMm:layout(next).width*task.options.physicalScale*25.4/72};
+        // Explicit axis recipe choices take precedence over migrated role styles.
+        const installed=panel(selectedPanel);installed.variants.forEach((v,vi)=>{const svg=sanitize(v.svg),edits=next.panels[selectedPanel].edits[vi]||{};for(const el of svg.querySelectorAll('text[data-key],tspan[data-key]')){let dimension=null,tick=false;for(let node=el;node&&node!==svg;node=node.parentElement){const found=(node.id||'').match(/(?:^|[-_])([xy])tick_\d+$/);if(found){dimension=found[1];tick=true;break;}const group=(node.id||'').match(/(?:^|[-_])matplotlib\.axis_(\d+)$/);if(group){dimension=Number(group[1])%2?'x':'y';break;}}if(!dimension)continue;const props=edits[el.dataset.key];if(!props)continue;const reset=task.options.resetAxis==='panel'||task.options.resetAxis===dimension;if(reset||task.axes[dimension+'_'+(tick?'tick_label_size_pt':'title_size_pt')]!==undefined||task.axes[tick?'tick_label_size_pt':'title_size_pt']!==undefined)delete props['font-size'];if(reset||task.axes[dimension+'_tick_color']!==undefined||task.axes.tick_color!==undefined)delete props.fill;if(reset||task.axes[dimension+'_'+(tick?'label_pad_pt':'title_pad_pt')]!==undefined||task.axes[tick?'label_pad_pt':'title_pad_pt']!==undefined){delete props['offset-x'];delete props['offset-y'];}}});
+      }:null);task.complete?.({ok:true});
+    }catch(error){task.complete?.({ok:false,error:error.message});if(axisPending===task&&project.id===task.projectId&&selectedPanel===id){axisPending=null;$('axisControlStatus').textContent=String(error.message).split(' / ')[StudioI18n.language==='en'?1:0]||error.message;}}
+    finally{task.complete?.({ok:false,error:T('目标已变化，请重新选择')});axisBusy=false;if(axisPending===task)axisPending=null;else if(axisPending)applyAxisSettings();}
   }
   for(const id of Object.keys(axisInputMap)){$(id).onchange=()=>{try{queueAxisSettings(axisSettingsFromControls());}catch(e){$('axisControlStatus').textContent=e.message;}};$(id).onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();try{queueAxisSettings(axisSettingsFromControls(),true);}catch(error){$('axisControlStatus').textContent=error.message;}}};}
   $('firstGroupGapSlider').oninput=()=>{$('firstGroupGap').value=$('firstGroupGapSlider').value;try{queueAxisSettings(axisSettingsFromControls());}catch(e){$('axisControlStatus').textContent=e.message;}};
   $('resetAxes').onclick=()=>queueAxisSettings({},true);
   function addReferenceLine(zero=false){const settings=axisSettingsFromControls(),info=axisControlsInfo(),axis=(info.reference_lines||[]).includes('y')?'y':'x',range=info.effective?.[0]||info.defaults||{},lo=range[axis+'_min']??0,hi=range[axis+'_max']??1,value=zero?0:range[axis+'_scale']==='log'?Math.sqrt(lo*hi):(lo+hi)/2;settings.reference_lines=[...(settings.reference_lines||[]),{axis,value:+value.toPrecision(5),style:zero?'solid':'dotted',width:.8,color:'#7b8797'}];queueAxisSettings(settings,true);}
   $('addReferenceLine').onclick=()=>addReferenceLine();$('addZeroLine').onclick=()=>addReferenceLine(true);
+  const professionalAxisText=(zh,en)=>StudioI18n.language==='en'?en:zh;
+  function professionalAxisContext(){
+    const id=selectedPanel,p=state().panels[id],source=panel(id),vi=p.variant,v=source.variants[vi],controls=v.axis_controls||source.axis_controls||axisControlsInfo(source),native=!!(source.table&&source.recipe?.family==='gallery'&&controls.supported),root=$('artboard')?.querySelector(`svg[data-panel="${id}"]`);
+    let key=professionalAxisSelection?.panelId===id?professionalAxisSelection.key:null;
+    if(!key&&selected.length===1)key=selected[0];let imported=null;
+    if(key&&root&&typeof StudioAxisEditing!=='undefined'){
+      let inspected=root;
+      if(editsFor(id,vi)[key]?.hidden==='true'){inspected=root.cloneNode(true);const node=inspected.querySelector(`[data-key="${key}"]`);if(node){node.removeAttribute('display');node.style.removeProperty('display');node.removeAttribute('visibility');node.style.removeProperty('visibility');}}
+      imported=StudioAxisEditing.inspect(inspected,key,{controls});
+    }
+    const locked=!!(original||p.locked||p.layoutLock?.panel||imported?.relatedKeys?.some(k=>p.lockedElements?.[vi]?.includes(k))),scale=currentOutput().scale,settings=copy(source.recipe?.axis_settings||{}),displayControls=copy(controls);
+    for(const key of Object.keys(settings))if(key.endsWith('_pt'))settings[key]*=scale;
+    displayControls.percentage_base||={x:1,y:source.recipe?.parameters?.view==='time_percent_area'?100:1};
+    if(displayControls.geometry)for(const key of Object.keys(displayControls.geometry))if(key.endsWith('_pt'))displayControls.geometry[key]*=scale;
+    return {native,settings,controls:displayControls,engine:!!localEngine,locked,imported,key,panelId:id,variant:vi,root,physicalScale:scale,contextKey:project.id+'/'+id+'/'+vi+'/'+(source.table?.sha256||v.sha256||''),
+      advisory:professionalAxisText('数据重绘保留可匹配的文字和统一样式；自由元素位移、局部图形改动与轴延伸可能重置。整步可撤销。','Data reflow retains matching text and shared styles. Free object positions, individual artwork edits and axis extensions may reset. The whole change can be undone.')};
+  }
+  function professionalAxisHit(target){
+    const root=target?.closest?.('svg[data-panel]');if(!root)return null;const id=root.dataset.panel,p=state().panels[id];if(!p)return null;
+    const v=panel(id).variants[p.variant],controls=v.axis_controls||panel(id).axis_controls;let tick=null;
+    for(let node=target;node&&node!==root;node=node.parentElement){const match=(node.id||'').match(/(?:^|[-_])([xy])tick_\d+$/);if(match){tick=match[1];break;}}
+    const key=target.closest?.('[data-key]')?.dataset.key,info=key&&typeof StudioAxisEditing!=='undefined'?StudioAxisEditing.inspect(root,key,{controls}):null;
+    if(info?.supported||info?.candidate)return {panelId:id,key,axis:info.axis||'y'};
+    if(tick&&panel(id).table&&panel(id).recipe?.family==='gallery')return {panelId:id,key:null,axis:tick};
+    if(tick&&typeof StudioAxisEditing!=='undefined'){let axes=target;while(axes&&axes!==root&&!/(?:^|[-_])axes_\d+$/.test(axes.id||''))axes=axes.parentElement;if(axes&&axes!==root)for(const spine of axes.querySelectorAll('path[data-key],line[data-key]')){if(!/(?:^|[-_])patch_\d+$/.test(spine.parentElement?.id||''))continue;const found=StudioAxisEditing.inspect(root,spine.dataset.key,{controls});if(found.supported&&found.axis===tick)return {panelId:id,key:spine.dataset.key,axis:tick};}}
+    return null;
+  }
+  function setupProfessionalAxes(){
+    if(typeof StudioAxisSettingsUI==='undefined'||!$('axisControls'))return;
+    if(professionalAxesUI&&professionalAxesLanguage===StudioI18n.language)return;
+    professionalAxesUI?.destroy();professionalAxesLanguage=StudioI18n.language;
+    let entry=$('professionalAxes');if(!entry){entry=button('',()=>openProfessionalAxes());entry.id='professionalAxes';$('axisControls').before(entry);}
+    entry.textContent=professionalAxisText('专业坐标轴设置','Professional axis settings');entry.title=professionalAxisText('范围、刻度、绘图区尺寸和外观；也可双击识别轴。','Ranges, ticks, plot dimensions and appearance; or double-click a recognized axis.');
+    let host=$('professionalAxesHost');if(!host){host=document.createElement('div');host.id='professionalAxesHost';$('axisControls').before(host);}
+    professionalAxesUI=StudioAxisSettingsUI.mount(host,{language:()=>StudioI18n.language,getContext:professionalAxisContext,
+      onApply:async(settings)=>{
+        const before=professionalAxisContext(),source=panel(before.panelId),raw=copy(settings);if(before.locked)throw Error(T('小图已锁定'));
+        if(Object.keys(raw).some(key=>key.startsWith('plot_'))&&state().grid?.manualTracks)throw Error(professionalAxisText('当前为手动网格；请先恢复自动网格尺寸，再设置真实绘图区尺寸。','This layout uses manual grid tracks. Restore automatic grid sizes before setting an exact plot frame.'));
+        for(const key of Object.keys(raw))if(key.endsWith('_pt'))raw[key]/=before.physicalScale;
+        const result=await queueAxisSettings(raw,true,{physicalScale:before.physicalScale});if(!result?.ok)throw Error(result?.error||T('目标已变化，请重新选择'));
+        if(panel(selectedPanel)===source)throw Error(T('目标已变化，请重新选择'));professionalAxisSelection=null;return {contextKey:professionalAxisContext().contextKey};
+      },
+      onReset:async({axis,scope,native,context})=>{
+        if(context.locked)throw Error(T('小图已锁定'));
+        if(native){const next=copy(panel(selectedPanel).recipe?.axis_settings||{});if(scope==='axis')for(const key of Object.keys(next))if(key.startsWith(axis+'_'))delete next[key];const result=await queueAxisSettings(scope==='panel'?{}:next,true,{physicalScale:context.physicalScale,resetAxis:scope==='panel'?'panel':axis});if(!result?.ok)throw Error(result?.error||T('目标已变化，请重新选择'));}
+        else {const next=copy(state()),props=next.panels[context.panelId]?.edits?.[context.variant]?.[context.key];if(props)for(const name of ['axis-extension','stroke','stroke-width','hidden'])delete props[name];if(!commit(next,T('已恢复原始坐标轴')))throw Error(T('目标已变化，请重新选择'));}
+      },
+      onImportedApply:async({extension,style},context)=>{
+        const current=professionalAxisContext();if(current.panelId!==context.panelId||current.variant!==context.variant||current.key!==context.key||current.locked||!current.imported?.supported)throw Error(T('目标已变化，请重新选择'));
+        // Plan on a detached copy first, so invalid bounds never enter history.
+        const next=copy(state());setEdit(next,context.panelId,context.variant,context.key,'axis-extension',JSON.stringify(extension));
+        for(const name of ['object-transform','offset-x','offset-y'])delete next.panels[context.panelId].edits[context.variant][context.key][name];
+        if(style.axis_width_pt!==undefined)setEdit(next,context.panelId,context.variant,context.key,'stroke-width',String(style.axis_width_pt/context.physicalScale*variant(context.panelId).viewBox[2]/variant(context.panelId).width));
+        if(style.axis_color!==undefined)setEdit(next,context.panelId,context.variant,context.key,'stroke',style.axis_color);
+        if(style.axis_visible!==undefined){if(style.axis_visible)delete next.panels[context.panelId].edits[context.variant][context.key].hidden;else setEdit(next,context.panelId,context.variant,context.key,'hidden','true');}
+        const probe=context.root.cloneNode(true),spine=probe.querySelector(`[data-key="${context.key}"]`);if(spine){spine.removeAttribute('display');spine.style.removeProperty('display');spine.removeAttribute('visibility');spine.style.removeProperty('visibility');}const check=StudioAxisEditing.apply(probe,{[context.key]:{'axis-extension':JSON.stringify(extension)}},1,{controls:variant(context.panelId).axis_controls||panel(context.panelId).axis_controls});if(check.skipped?.length)throw Error(check.skipped[0].message);
+        if(!commit(next,T('坐标与参考线已更新')))throw Error(T('目标已变化，请重新选择'));
+      }
+    });
+  }
+  function openProfessionalAxes(selection={}){
+    if(typeof StudioAxisSettingsUI==='undefined')return false;
+    if(selection.panelId&&state().panels[selection.panelId]){selectedPanel=selection.panelId;selected=selection.key?[selection.key]:[];elementSelections=[];}
+    professionalAxisSelection={panelId:selectedPanel,key:selection.key||selected[0]||null};setupProfessionalAxes();if(!professionalAxesUI)return false;
+    activePane='detail';showPane('detail',false);professionalAxesUI.open(selection);return true;
+  }
   let variantRequest=0;
   async function activateVariant(index){
     const request=++variantRequest,id=selectedPanel,source=panel(id),target=source.variants[index],owner=project,serial=dataSerial,initialVariant=state().panels[id].variant;
@@ -3095,6 +3196,7 @@ if (typeof document !== 'undefined') (async () => {
     $('quickSelectionStatus').textContent=guide?T('已选参考线'):text.length===1&&all.length===1?T('双击文字编辑 · 点击外部完成'):all.length?T('已选 {0} 个对象',all.length):T('选择文字以设置格式');
     $('quickSelectionStatus').title=T('方向键微调 1 pt；Shift + 方向键 10 pt；Alt + 方向键 0.1 pt。');
     if(typeof alignmentIcons!=='undefined')alignmentIcons?.sync();
+    if(typeof experienceTools!=='undefined')experienceTools?.refresh();
   }
   function textToolTarget(event){
     const target=event.target,overlay=target.closest?.('[data-annotation]'),label=target.closest?.('[data-panel-label]');
@@ -3791,7 +3893,7 @@ if (typeof document !== 'undefined') (async () => {
     svg.onlostpointercapture=()=>{if(marquee)cancelSelectionGesture();else if(panelDrag||resizeDrag||elementDrag||overlayDrag||labelDrag||guideDrag)svg.onpointercancel();};
     svg.ondragstart=e=>e.preventDefault();
     svg.ondragover=e=>{if(importHasFiles(e)){e.preventDefault();e.dataTransfer.dropEffect='copy';return;}if(layoutMode&&dragging){e.preventDefault();previewLayoutDrop(e);}};svg.ondragleave=()=>clearGhost();svg.ondrop=e=>{if(droppedFiles(e,destination(e),at(destination(e))))return;e.preventDefault();clearGhost();drop(e);};
-    svg.ondblclick=event=>{if(event.target.closest('[data-inset-content]')||event.target.closest('[data-inset-window]'))return;const text=event.target.closest('text');if(text){event.preventDefault();startInlineTextEdit(text);}};
+    svg.ondblclick=event=>{if(event.target.closest('[data-inset-content]')||event.target.closest('[data-inset-window]'))return;const axis=typeof professionalAxisHit==='function'?professionalAxisHit(event.target):null;if(axis&&openProfessionalAxes(axis)){event.preventDefault();return;}const text=event.target.closest('text');if(text){event.preventDefault();startInlineTextEdit(text);}};
     svg.onclick=event=>{
       if(suppressClick){suppressClick=false;return;}const mark=event.target.closest('[data-annotation]');if(mark){if(!selectedAnnotations.includes(mark.dataset.annotation)){selectedAnnotations=event.shiftKey?[...selectedAnnotations,mark.dataset.annotation]:[mark.dataset.annotation];if(!event.shiftKey){selected=[];elementSelections=[];selectedPanelLabel=null;}}activePane='annotation';finishSelectionUI();return;}const appendLabels=event.shiftKey?selectedLabelIds():[],appendAnnotations=event.shiftKey?[...selectedAnnotations]:[];if(!event.shiftKey)selectedAnnotations=[];
       if(event.target.closest('[data-panel-label]')){selectPanelLabel(event.target.closest('[data-panel-label]').dataset.panelLabel,false,event.shiftKey);return;}
@@ -3817,6 +3919,7 @@ if (typeof document !== 'undefined') (async () => {
     viewport.onclick=e=>{if(!svg.contains(e.target))suppressClick=false;};
     viewport.onscroll=()=>{if(marquee)cancelSelectionGesture();};
     if(typeof gridResizeUI!=='undefined')gridResizeUI?.refresh();
+    if(typeof experienceTools!=='undefined')experienceTools?.refresh();
     imageInsets?.refresh();imageColorUI?.refresh();imageLinks?.refresh();if(imageInsets&&insetSelection().inset){$('statisticalAnnotations').hidden=true;$('conditionMatrixControls').hidden=true;}
   }
   function renderMethods(){
@@ -4532,13 +4635,16 @@ if (typeof document !== 'undefined') (async () => {
     }finally{facetSplitBusy=false;renderFacetSplitControls();}
   }
   if($('splitFacets'))$('splitFacets').onclick=guard(splitSelectedFacets);
-  function installAsset(asset,oldId,cell,label,preserveAppearance=false,preserveStatistics=false,keepSelection=false){
+  function installAsset(asset,oldId,cell,label,preserveAppearance=false,preserveStatistics=false,keepSelection=false,stateAdjust=null){
     const resetAxisExtension=preserveAppearance&&oldId&&Object.values(state().panels[oldId]?.edits||{}).some(edits=>Object.values(edits).some(props=>props['axis-extension']));
+    let resetObjectBorders=0;
     if(project.panels.length>=512)throw Error(T('工程版本资源已达上限，请另存为新工程'));
     if(preserveAppearance&&oldId)StudioI18n.preserveDisplayNames(asset,panel(oldId));
     const profile=preserveAppearance&&oldId?captureProfile()[state().order.indexOf(oldId)]:null;
     const id='panel-'+(Math.max(...project.panels.map(p=>+p.id.slice(6)))+1);asset={...asset,id};
-    const next=installPanelState(state(),oldId,id,asset.initialVariant||0,cell),candidate={...project,panels:[...project.panels,asset]};validateProject(candidate);validateState(next,candidate);
+    const next=installPanelState(state(),oldId,id,asset.initialVariant||0,cell),candidate={...project,panels:[...project.panels,asset]};
+    if(oldId&&next.objectBorders)next.objectBorders=next.objectBorders.flatMap(record=>{if(record.target.panelId!==oldId)return [record];if(['panel','label'].includes(record.target.kind))return [{...record,target:{...record.target,panelId:id}}];resetObjectBorders++;return [];});
+    validateProject(candidate);validateState(next,candidate);
     project=candidate;
     if(profile){
       asset.variants.forEach((v,vi)=>{const svg=sanitize(v.svg),colors=[];for(const el of keysToObjects(svg))for(const prop of ['fill','stroke']){const c=hex(paint(el,prop));if(c&&chromatic(c)&&!colors.includes(c))colors.push(c);}
@@ -4562,7 +4668,7 @@ if (typeof document !== 'undefined') (async () => {
       if(old.annotationStyle&&available){next.panels[id].annotationStyle=old.annotationStyle;if(old.annotationFont)next.panels[id].annotationFont=copy(old.annotationFont);if(old.annotationLine)next.panels[id].annotationLine=old.annotationLine;const updated=next.panels[id].statistics?.analysis;if(old.annotationStyle==='letters'&&updated&&!(updated.facets||[updated]).every(set=>statisticalComparisons(set).letters))next.panels[id].annotationStyle='p';}
     }
     if(keepSelection&&selectedPanel!==oldId){elementSelections=elementSelections.filter(group=>group.id!==oldId);panelSelection=panelSelection.map(key=>key===oldId?id:key);}
-    else{selectedPanel=id;selected=[];panelSelection=[id];}templateCache.clear();commit(preserveAppearance?next:matchSizes(next,[id]),resetAxisExtension?label+' '+T('坐标轴延伸已按新图重置。'):label);
+    else{selectedPanel=id;selected=[];panelSelection=[id];}if(stateAdjust)stateAdjust(next);templateCache.clear();let message=resetAxisExtension?label+' '+T('坐标轴延伸已按新图重置。'):label;if(resetObjectBorders)message+=' '+(StudioI18n.language==='en'?`${resetObjectBorders} element/group border(s) reset because the source artwork changed; reapply them to verified objects. Undo restores the previous borders.`:`因源图变化，已重置 ${resetObjectBorders} 个元素／组合边框；请在新图确认对象后重新应用。撤销可恢复原边框。`);commit(preserveAppearance?next:matchSizes(next,[id]),message);
   }
   $('importImage').onclick=()=>chooseImage(selectedPanel,null);
   let fileImportSession=null,fileImportDataRefresh=null,fileImportDataTimer=null;
@@ -4901,6 +5007,10 @@ if (typeof document !== 'undefined') (async () => {
     if(context){
       trackCanvasClipboardCell(cell);const clipboardInfo=canvasClipboardSelection();add('复制所选元素',guard(()=>copyCanvasSelection(false)),canvasClipboardBusy||!!clipboardInfo.reason);add('剪切所选元素',guard(()=>copyCanvasSelection(true)),canvasClipboardBusy||!!clipboardInfo.reason||clipboardInfo.cutLocked);add('粘贴元素',guard(()=>pasteCanvasClipboard()),original||!canvasClipboard&&!canvasCopyPending);
       const insetChoice=insetSelection();if(insetChoice.source)add(StudioI18n.language==='en'?'Zoom inset…':'局部放大…',()=>imageInsets?.startROI(insetChoice.source,insetChoice.inset?.id,2),insetChoice.locked);
+      add(StudioI18n.language==='en'?'Object borders':'对象边框',()=>objectBordersUI?.open());
+      add(StudioI18n.language==='en'?'Image tools':'图片工具',()=>experienceTools?.openImages());
+      add(StudioI18n.language==='en'?'Axis settings':'坐标轴设置',()=>typeof openProfessionalAxes==='function'?openProfessionalAxes():showPane('detail'));
+      if(insetChoice.source){add(StudioI18n.language==='en'?'Screen selected images':'检查已选图片',()=>duplicateCheck?.open?.('selected'));add(StudioI18n.language==='en'?'Image display':'图片颜色与显示',()=>{showPane('detail');imageColorUI?.open();},insetChoice.locked);add(StudioI18n.language==='en'?'Link overview and detail':'关联总览与放大图',()=>{showPane('detail');imageLinks?.open();});}
       if(hasPanel){const exportId=contextPanelId||selectedPanel;add('单图另存为…',guard(()=>openImageExport(exportId)),exportBusy||!!dataDrafts[exportId]);}
       if(selected.length||selectedAnnotations.length)add('对象对齐',()=>{showPane(selectedAnnotations.length?'annotation':'detail');document.querySelector(`[data-pane="${selectedAnnotations.length?'annotation':'detail'}"] .object-align`)?.scrollIntoView({block:'nearest'});});
       for(const [type,name]of [['text','插入文本'],['line','插入水平线'],['lineVertical','插入垂直线'],['bracket','插入比较括号'],['rect','插入矩形'],['ellipse','插入椭圆']])add(name,()=>insertOverlay(type,insertionCell));
@@ -5276,7 +5386,7 @@ if (typeof document !== 'undefined') (async () => {
       previewDependents:(svg,l,next)=>{if(typeof StudioLayoutLock!=='undefined')StudioLayoutLock.refresh(svg,next);refreshInsetGraphics(svg,l,next);for(const a of next.overlays||[]){if(a.type==='inset')continue;const node=svg.querySelector(`[data-annotation="${a.id}"]`);if(node)node.replaceWith(overlayNode(a,l,true,svg,next));}},
       cancelOtherGestures:()=>{cancelQueuedZoom();cancelOverlayPlacement();cancelPanelGesture?.();cancelSelectionGesture?.();cancelObjectGesture?.();}
     });
-    migrateLabelHistory();setupTextTools();$('scope').value='panel';render();if(message)say(message);
+    migrateLabelHistory();setupTextTools();setupProfessionalAxes();$('scope').value='panel';render();if(message)say(message);
     if(typeof StudioMobileUI!=='undefined')mobileWorkspace=StudioMobileUI.init({
       viewport:$('viewport'),workspace:document.querySelector('.workspace'),t:T,
       getZoom:()=>zoomView?.zoom??1,zoomAt:(zoom,point)=>applyPreviewZoom(zoom,point),
@@ -5326,6 +5436,7 @@ if (typeof document !== 'undefined') (async () => {
         }return true;
       }
     });
+    setupRound2Tools();
     persist();
   } catch(e){const div=document.createElement('div');div.className='fatal';div.textContent=T('无法打开工程：')+T(e.message);document.body.replaceChildren(div);}finally{document.body.inert=false;}
 })();

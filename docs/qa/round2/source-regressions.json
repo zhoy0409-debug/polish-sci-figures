@@ -1,0 +1,804 @@
+{
+  "schema": "figure-studio-source-regressions/1",
+  "date": "2026-10-17T07:51:57.826928+00:00",
+  "scope": "Windows source and local-engine regression, not native installer certification",
+  "passed": true,
+  "javascript": {
+    "total": 138,
+    "results": [
+      {
+        "script": "scripts/test_studio_state.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_new_project.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_autosave_coalescing.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_variant_switch.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_variant_styles.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_template_cache.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_property_commit.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_continuous_commands.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_beginner_flow.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_file_import.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_data_text_preservation.cjs",
+        "scope": "state and project",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_selection.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_selection_commands.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_selection_transform.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_selection_transform_dom.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_selection_resize_integration.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_workspace_selection.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_mixed_label_selection.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_canvas_clipboard.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_canvas_clipboard_integration.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_canvas_clipboard_append.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_clipboard_compact_layout.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_clipboard_event_guards.cjs",
+        "scope": "selection and clipboard",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_direct_text_editing.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_text_formatting.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_text_geometry.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_rich_text_regression.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_text_tools_integration.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_font_replacement.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_imported_font_brush.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_inserted_text_font_scale.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_positioned_text.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_resize_text.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_pdf_text_editing.cjs",
+        "scope": "text and typography",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_layout_lock.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_layout_lock_integration.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_released_motion.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_panel_commands.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_panel_commands_host.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_panel_drag.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_panel_delete.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_panel_gaps.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_master_frame.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_master_frame_integration.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_grid_resize.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_grid_outer_resize.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_compact_whitespace.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_compact_interactions.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_workspace_layout.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_alignment_guides.cjs",
+        "scope": "locks, geometry and layout",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_quick_toolbar.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_quick_style_blur.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_line_controls.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_component_controls.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_component_style.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_layers_panel.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_axes_events.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_axis_editing.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_axis_settings_ui.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_axis_settings_async.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_experience_tools.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_border_replacement.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_panel_export.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_tiff_export.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_native_download.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_svg_content.cjs",
+        "scope": "controls, axes and exports",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_color.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_color_ui.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_color_roundtrip.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_display_statistics.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_links.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_links_ui.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_links_controller.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_insets.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_insets_ui.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_insets_controller.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_insets_integration.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_duplicate_check.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_duplicate_review.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_duplicate_viewer.cjs",
+        "scope": "image workflows",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_update_check.cjs",
+        "scope": "update and transport",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_update_transport.cjs",
+        "scope": "update and transport",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_update_install.cjs",
+        "scope": "update and transport",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_browser_transport.cjs",
+        "scope": "update and transport",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_header_menu.cjs",
+        "scope": "update and transport",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:alignment-icons.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:axis-editing.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:axis-settings-ui.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:canvas-clipboard.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:catalogue.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:compact-whitespace.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:component-style.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:discovery-offline.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:discovery-ui.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:discovery.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:duplicate-check.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:duplicate-review.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:duplicate-viewer.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:element-insertions.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:experience-tools.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:gallery-contracts.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:grid-resize-ui.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:group-spacing.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:i18n.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:image-color-ui.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:image-color.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:image-insets-controller.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:image-insets-ui.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:image-insets.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:image-links-controller.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:image-links-ui.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:image-links.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:layers-panel.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:layout-lock.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:legacy-stat-cleanup.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:library.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:literature.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:mark-style.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:master-frame.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:memory.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:mobile-ui.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:object-borders.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:panel-commands.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:research-discovery.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:rich-text.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:selection-resize-controller.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:selection-transform-dom.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:selection-transform.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:statistical-line-geometry.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:statistical-metadata.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:studio.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:text-formatting.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:text-tools-ui.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:third-party-notices.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:tiff-export.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:update-check.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:vector-interaction.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      },
+      {
+        "script": "syntax:workspace-layout.js",
+        "scope": "All bundled classic JavaScript syntax, including main studio.js and round2 modules",
+        "exitCode": 0
+      }
+    ],
+    "initialAttemptsRetainedLocally": true
+  },
+  "python": {
+    "scripts": 19,
+    "results": [
+      {
+        "script": "scripts/test_release_versions.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/validate_skill_structure.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "skills/polish-sci-figures/scripts/test_figure_studio.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_statistics.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_reflow.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_axes_regression.py",
+        "arguments": [
+          "--engine"
+        ],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_axis_settings.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_axis_formatters.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_figure_discovery.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_updates.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_links.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_image_links_endpoint.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_image_duplicates.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_image_screening_cache.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_scientific_image_evaluation.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_duplicate_integration.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "desktop/test_figure_studio_app.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "desktop/test_windows_updater.py",
+        "arguments": [],
+        "exitCode": 0
+      },
+      {
+        "script": "test_sci_figures_cli.py",
+        "arguments": [],
+        "exitCode": 0
+      }
+    ]
+  }
+}

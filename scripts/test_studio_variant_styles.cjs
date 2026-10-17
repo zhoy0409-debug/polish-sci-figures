@@ -58,18 +58,30 @@ const missing=text(to,'y','7.5').getAttribute('data-key');transferred.edits[1][m
 const smaller=transferVariantEdits(transferred,1,0,svgElementMap(to,from),target,original);
 assert.equal(smaller.edits[1][missing].fill,'#123456');
 assert.ok(!Object.values(smaller.edits[0]).some(entry=>entry.fill==='#123456'));
-// Real matchSizes path, followed by undo/redo, preserves font/color/locks/groups.
+// Automatic slot adaptation retains the released lock policy: a locked element
+// prevents automatic source-variant replacement. Explicitly unlock before
+// checking style transfer and undo/redo; the pure mapping checks above still
+// cover lock/group identity transfer between variants.
 const state=arrange({order:['panel-0'],columns:3,gap:12,panels:{'panel-0':panel}},3,3);
 const project={panels:[{id:'panel-0',variants:[original,target]}]},history=new History(state);
 const script=fs.readFileSync(filename,'utf8'),start=script.indexOf('  function matchSizes('),end=script.indexOf('  function moveWithSizes(',start);
 const context={$:()=>({checked:true}),gridFor,panel:()=>project.panels[0],state:()=>history.current,layout:()=>({positions:[]}),
   fittedVariant:()=>null,baseSvg:(_,index)=>index===0?from:to,svgElementMap,transferVariantEdits};
 vm.createContext(context);vm.runInContext(script.slice(start,end),context);
+const lockedResized=context.matchSizes(resizePanel(history.current,'panel-0',1,2));validateState(lockedResized,project);history.commit(lockedResized);
+assert.equal(history.current.panels['panel-0'].variant,0,'locked artwork retains its original source variant during automatic slot adaptation');
+assert.equal(history.current.panels['panel-0'].edits[0][oldKey]['font-size'],'12');
+assert.deepEqual(history.current.panels['panel-0'].lockedElements[0],[oldKey,oldMark]);
+const unlocked=JSON.parse(JSON.stringify(history.current));unlocked.panels['panel-0'].lockedElements={};history.commit(unlocked);
 const resized=context.matchSizes(resizePanel(history.current,'panel-0',1,2));validateState(resized,project);history.commit(resized);
 assert.equal(history.current.panels['panel-0'].variant,1);
 assert.equal(history.current.panels['panel-0'].edits[1][newKey]['font-size'],'24');
+assert.equal(history.current.panels['panel-0'].edits[1][newKey].fill,props.fill,'explicitly unlocked automatic adaptation preserves text colour');
+assert.equal(history.current.panels['panel-0'].edits[1][newMark].stroke,'#c95770');
+assert.deepEqual(history.current.panels['panel-0'].elementGroups[1],[[newKey,newMark]]);
 history.undo();assert.equal(history.current.panels['panel-0'].edits[0][oldKey]['font-size'],'12');
-history.redo();assert.equal(history.current.panels['panel-0'].edits[1][newKey]['font-size'],'24');
+assert.equal(history.current.panels['panel-0'].edits[0][oldKey].fill,props.fill);
+history.redo();assert.equal(history.current.panels['panel-0'].edits[1][newKey]['font-size'],'24');assert.equal(history.current.panels['panel-0'].edits[1][newKey].fill,props.fill);
 const untouched=JSON.parse(JSON.stringify(state));untouched.panels['panel-0']={variant:0,edits:{}};
 context.state=()=>untouched;context.baseSvg=()=>{throw Error('Unedited previews should not parse both SVGs');};
 assert.equal(context.matchSizes(resizePanel(untouched,'panel-0',1,2)).panels['panel-0'].variant,1);
@@ -93,7 +105,7 @@ for(let i=0;i<2;i++)assert.equal(heatMap.get(oldCells[i].getAttribute('data-key'
 const heatOldKey=oldCells[0].getAttribute('data-key'),heatOldOther=oldCells[1].getAttribute('data-key');
 const heatState={variant:0,edits:{0:{[heatOldKey]:{'font-size':'14','offset-x':'5','offset-y':'-2',hidden:'true'},[heatOldOther]:{fill:'#123456'}}},lockedElements:{0:[heatOldKey]},elementGroups:{0:[[heatOldKey,heatOldOther]]}};
 const heatSnapshot=JSON.stringify(heatState),heatProject={heatmapRenders:{'panel-0/0':{svg:'enriched'}}},heatCache=new Map();
-const upgradeContext={project:heatProject,templateCache:heatCache,panel:()=>({variants:[{svg:'source'}]}),sanitize:text=>(text==='source'?oldHeat:newHeat).cloneNode(true),svgElementMap};
+const upgradeContext={project:heatProject,templateCache:heatCache,state:()=>({panels:{'panel-0':heatState}}),panel:()=>({variants:[{svg:'source'}]}),sanitize:text=>(text==='source'?oldHeat:newHeat).cloneNode(true),svgElementMap};
 vm.createContext(upgradeContext);
 vm.runInContext(script.slice(script.indexOf('  function baseSvg('),script.indexOf('  const heatmapUpgradeRequests=')),upgradeContext);
 const enriched=upgradeContext.baseSvg('panel-0',0),upgradedCells=enriched.querySelectorAll('text');

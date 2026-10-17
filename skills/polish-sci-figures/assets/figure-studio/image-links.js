@@ -24,7 +24,7 @@ const StudioImageLinks=(()=>{
     const parent=reference(value.parent),child=reference(value.child);if(refKey(parent)===refKey(child))fail('图片不能关联自身。');
     const a={id:value.id,parent,child,polygon:polygon(value.polygon),visible:value.visible??true,connectors:value.connectors??true,color:value.color??'#202020',stroke:value.stroke??1,dash:value.dash??'short'};
     if(typeof a.visible!=='boolean'||typeof a.connectors!=='boolean'||!/^#[a-fA-F0-9]{6}$/.test(a.color)||!numeric(a.stroke)||a.stroke<.25||a.stroke>6||!['short','long','dot','solid'].includes(a.dash))fail('图片关联样式无效。');
-    a.color=a.color.toLowerCase();if(value.evidence!==undefined){const e=value.evidence;if(!e||Object.keys(e).some(k=>!['source','score'].includes(k))||!['known-crop','feature-match'].includes(e.source)||e.score!==undefined&&(!numeric(e.score)||e.score<0||e.score>1))fail('图片匹配证据无效。');a.evidence={source:e.source};if(e.score!==undefined)a.evidence.score=e.score;}
+    a.color=a.color.toLowerCase();if(value.evidence!==undefined){const e=value.evidence;if(!e||Object.keys(e).some(k=>!['source','score'].includes(k))||!['known-crop','feature-match','manual-confirmed'].includes(e.source)||e.score!==undefined&&(!numeric(e.score)||e.score<0||e.score>1)||e.source==='manual-confirmed'&&e.score!==undefined)fail('图片匹配证据无效。');a.evidence={source:e.source};if(e.score!==undefined)a.evidence.score=e.score;}
     if(value.anchors!==undefined){if(!value.anchors||Object.keys(value.anchors).length!==2||!Object.hasOwn(value.anchors,'parent')||!Object.hasOwn(value.anchors,'child'))fail('图片关联的原图记录无效。');a.anchors={parent:anchor(value.anchors.parent),child:anchor(value.anchors.child)};}
     return a;
   }

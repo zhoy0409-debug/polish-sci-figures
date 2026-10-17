@@ -1,0 +1,214 @@
+{
+  "schema": "figure-studio-real-reference-colour-ui/1",
+  "passed": true,
+  "startedAt": "2026-10-17T08:11:20.933Z",
+  "url": "http://127.0.0.1:18953/",
+  "cases": [
+    {
+      "id": "full-real-source-background-gate",
+      "expected": "observe-and-preserve-gate",
+      "servedBuild": {
+        "currentVersion": "0.1.20",
+        "suiteVersion": "1.4.20",
+        "platform": "windows",
+        "architecture": "x86_64"
+      },
+      "quickActionsRefreshed": true,
+      "before": {
+        "targetBackground": {
+          "eligible": false,
+          "count": 10633,
+          "fraction": 0.36925267398249756,
+          "rgb": [
+            0.8509803921568627,
+            0.8666666666666667,
+            0.8666666666666667
+          ],
+          "spread": [
+            0.050980392156862786,
+            0.05882352941176472,
+            0.05882352941176472
+          ],
+          "borderCoverage": [
+            0.8826992753623188,
+            0.029740338164251208,
+            0.11039402173913043,
+            0.3452596618357488
+          ]
+        },
+        "referenceBackground": {
+          "eligible": false,
+          "count": 10159,
+          "fraction": 0.35279205445200723,
+          "rgb": [
+            0.8392156862745098,
+            0.8627450980392157,
+            0.8705882352941177
+          ],
+          "spread": [
+            0.050980392156862786,
+            0.05490196078431375,
+            0.05490196078431364
+          ],
+          "borderCoverage": [
+            0.8410326086956522,
+            0.022795893719806764,
+            0.1068840579710145,
+            0.3366545893719807
+          ]
+        },
+        "targetSamplePixels": 110592
+      },
+      "message": "There is not enough bright background to estimate white balance. Use manual adjustments.",
+      "outcome": "correctly-refused-insufficient-background",
+      "rawHrefsUnchanged": true,
+      "errors": []
+    },
+    {
+      "id": "real-natural-field-positive-engineering-case",
+      "expected": "eligible-background",
+      "servedBuild": {
+        "currentVersion": "0.1.20",
+        "suiteVersion": "1.4.20",
+        "platform": "windows",
+        "architecture": "x86_64"
+      },
+      "quickActionsRefreshed": true,
+      "before": {
+        "targetBackground": {
+          "eligible": true,
+          "count": 11294,
+          "fraction": 0.38543444133506244,
+          "rgb": [
+            0.8509803921568627,
+            0.8627450980392157,
+            0.8627450980392157
+          ],
+          "spread": [
+            0.05490196078431375,
+            0.05882352941176472,
+            0.06274509803921569
+          ],
+          "borderCoverage": [
+            0.9196105072463768,
+            0.06994328922495274,
+            0.11492300724637682,
+            0.3460811400319907
+          ]
+        },
+        "referenceBackground": {
+          "eligible": true,
+          "count": 10767,
+          "fraction": 0.36744932086546994,
+          "rgb": [
+            0.8392156862745098,
+            0.8627450980392157,
+            0.8705882352941177
+          ],
+          "spread": [
+            0.04705882352941171,
+            0.05490196078431375,
+            0.05882352941176472
+          ],
+          "borderCoverage": [
+            0.8745471014492754,
+            0.056856187290969896,
+            0.11039402173913043,
+            0.33764722989675733
+          ]
+        },
+        "targetSamplePixels": 114816
+      },
+      "message": "",
+      "outcome": "suggested-applied-and-exported",
+      "measurements": {
+        "adjustment": {
+          "mode": "brightfield",
+          "strength": 1,
+          "exposureEv": -0.005263959487998578,
+          "temperature": 0,
+          "tint": 0,
+          "contrast": 1,
+          "whiteBalance": [
+            0.9726598178980007,
+            1.003655363281954,
+            1.024364255005485
+          ],
+          "reference": "PUBLIC-H-and-E-reference-display-real-natural-field-positive-engineering-case.svg · 2"
+        },
+        "estimatedLinearRgbGains": [
+          0.9691173419503306,
+          1,
+          1.0206334688989385
+        ],
+        "backgroundRgbBefore": [
+          0.8509803921568627,
+          0.8627450980392157,
+          0.8627450980392157
+        ],
+        "backgroundRgbReference": [
+          0.8392156862745098,
+          0.8627450980392157,
+          0.8705882352941177
+        ],
+        "backgroundRgbAfter": [
+          0.8392156862745098,
+          0.8627450980392157,
+          0.8705882352941177
+        ],
+        "backgroundMeanAbsoluteSrgbErrorBefore": 0.006535947712418277,
+        "backgroundMeanAbsoluteSrgbErrorAfter": 0,
+        "newlyClippedChannelFraction": 0,
+        "maximumAbsoluteGainRecoveryError": 0.010633468898938458
+      },
+      "applyUndoRedoSaveReopenExport": true,
+      "rawHrefsUnchanged": true,
+      "errors": []
+    }
+  ],
+  "remoteRequests": [],
+  "limitation": "Selected real-source controlled display-colour engineering cases. Not stain normalization, scanner calibration, fluorescence normalization or population accuracy.",
+  "source": {
+    "id": "he",
+    "modality": "H&E",
+    "file": "skin.jpg",
+    "url": "https://gitlab.com/scikit-image/data/-/raw/2cdc5ce89b334d28f06a58c9f0ca21aa6992a5ba/Normal_Epidermis_and_Dermis_with_Intradermal_Nevus_10x.JPG",
+    "sha256": "8759fe080509712163453f4b17106582b8513e73b0788d80160abf840e272075",
+    "license": "Public domain dedication by author Kilbad",
+    "credit": "Kilbad, distributed by scikit-image",
+    "source": "https://scikit-image.org/docs/0.25.x/api/skimage.data.html#skimage.data.skin"
+  },
+  "referenceConstruction": {
+    "cropOriginalPixels": [
+      0,
+      0,
+      1232,
+      960
+    ],
+    "knownLinearRgbGains": [
+      0.97,
+      0.99,
+      1.01
+    ],
+    "method": "sRGB decode → documented global linear RGB gains → clamp → sRGB encode → nearest 8-bit value",
+    "selection": "Full source retained. Natural crop selected for stable border after the full image failed the existing strict eligibility rule; no threshold changed."
+  },
+  "finishedAt": "2026-10-17T08:11:30.800Z",
+  "status": "PASS",
+  "installerTest": true,
+  "testedBuild": "Suite v1.4.20 / Figure Studio 0.1.20",
+  "resourceRevision": "Final reinstalled resource build including quick-context refresh",
+  "normalizationAccuracyClaim": false,
+  "sourceRuntimeStudioJsSha256": "5c700b382d3e3c9b20c29209edcd03269f245b989c80d972c7e38c0340b885ee",
+  "dataDisclosure": "The positive target is an explicitly recorded natural-field crop of the published H&E image. Its reference is a documented global display-colour derivative, not a second acquisition or a normalization gold standard.",
+  "metricDisclosure": "The zero post-match background error compares the method-defined eligible border medians; it is not tissue colour fidelity or independently evaluated normalization accuracy.",
+  "entryUsed": "Select exact image in layer list → visible Image display quick action → Suggest a match",
+  "retainedAttempt": {
+    "entry": "initial quick-context button",
+    "status": "FAIL",
+    "reason": "quickImageDisplay did not refresh after layer-list selection",
+    "resolvedInFinalResource": true,
+    "fix": "Refresh image context actions with the existing quick toolbar",
+    "finalVerification": "All three image quick actions are inside the actual viewport immediately after image selection; both real-source cases pass."
+  }
+}

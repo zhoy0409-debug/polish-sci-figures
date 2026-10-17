@@ -1,0 +1,2720 @@
+{
+  "schema": "scientific-image-evaluation/1",
+  "date": "2026-10-17T07:50:30.314856+00:00",
+  "declaredBuildVersion": {
+    "VERSION": "0.1.20",
+    "SUITE_VERSION": "v1.4.20"
+  },
+  "versionNote": "Working-tree version declaration; engine hashes identify the tested implementation",
+  "engineSha256": "cabc1b8c64674b757efb799b16c0f2dd19c519912eb8a6e471d9e2db9867f3a2",
+  "localizationSha256": "9f239a7d6daf57d6ca853caa0d04494839fceeb993f7e827f571baad40408cc1",
+  "manifestSha256": "f96e63dfbd995ed77052033f1177e33ab8c426c29984782dea3383c63fc179be",
+  "studyType": "engineered_real_source",
+  "independentBlindStudy": false,
+  "annotationIndependence": "Not independently annotated; deterministic constructed pairs",
+  "independenceVerification": "No independent blind-study claim",
+  "ciMethod": "Wilson 95% binomial intervals; nominal pair-level intervals only. Engineered pairs share sources and are correlated; these intervals cannot establish general scientific-image sensitivity or specificity.",
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.14",
+    "opencv": "4.11.0"
+  },
+  "exactIdentity": {
+    "status": "PASS",
+    "cases": 7
+  },
+  "summary": {
+    "IHC": {
+      "requestedLabelledPairs": 10,
+      "nonEvaluablePairs": 0,
+      "successfulScreeningCoverage": {
+        "value": 1.0,
+        "numerator": 10,
+        "denominator": 10,
+        "ci95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "duplicate": {
+        "TP": 9,
+        "FP": 0,
+        "FN": 0,
+        "TN": 1,
+        "n": 10,
+        "precision": {
+          "value": 1.0,
+          "numerator": 9,
+          "denominator": 9,
+          "ci95": [
+            0.7008549515804559,
+            1.0
+          ]
+        },
+        "recallSensitivity": {
+          "value": 1.0,
+          "numerator": 9,
+          "denominator": 9,
+          "ci95": [
+            0.7008549515804559,
+            1.0
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "ci95": [
+            0.20654931437723745,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 1,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ]
+        },
+        "accuracy": {
+          "value": 1.0,
+          "numerator": 10,
+          "denominator": 10,
+          "ci95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        }
+      },
+      "localizationPresence": {
+        "TP": 2,
+        "FP": 0,
+        "FN": 1,
+        "TN": 1,
+        "n": 4,
+        "precision": {
+          "value": 1.0,
+          "numerator": 2,
+          "denominator": 2,
+          "ci95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "recallSensitivity": {
+          "value": 0.6666666666666666,
+          "numerator": 2,
+          "denominator": 3,
+          "ci95": [
+            0.2076596008020477,
+            0.9385080552796037
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "ci95": [
+            0.20654931437723745,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 1,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ]
+        },
+        "accuracy": {
+          "value": 0.75,
+          "numerator": 3,
+          "denominator": 4,
+          "ci95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ]
+        }
+      },
+      "correctLocalizationRate": {
+        "value": 0.6666666666666666,
+        "numerator": 2,
+        "denominator": 3,
+        "ci95": [
+          0.2076596008020477,
+          0.9385080552796037
+        ]
+      },
+      "wrongLocalizationAmongReturned": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 2,
+        "ci95": [
+          0.0,
+          0.6576197724933469
+        ]
+      },
+      "roiIoUMedian": 0.9962233030578136,
+      "cornerMeanPixelsMedian": 0.45142544648380295,
+      "cornerMaxPixelsP95": 0.9579883234099649,
+      "maxDirectionalMedianResidualAnalysisPixelsP50": 0.2425,
+      "maxDirectionalMedianResidualAnalysisPixelsP95": 0.45624999999999993,
+      "cycleErrorAnalysisPixelsP95": 0.08889
+    },
+    "overall": {
+      "requestedLabelledPairs": 70,
+      "nonEvaluablePairs": 0,
+      "successfulScreeningCoverage": {
+        "value": 1.0,
+        "numerator": 70,
+        "denominator": 70,
+        "ci95": [
+          0.9479769375897331,
+          1.0
+        ]
+      },
+      "duplicate": {
+        "TP": 57,
+        "FP": 0,
+        "FN": 6,
+        "TN": 7,
+        "n": 70,
+        "precision": {
+          "value": 1.0,
+          "numerator": 57,
+          "denominator": 57,
+          "ci95": [
+            0.9368611651470209,
+            0.9999999999999998
+          ]
+        },
+        "recallSensitivity": {
+          "value": 0.9047619047619048,
+          "numerator": 57,
+          "denominator": 63,
+          "ci95": [
+            0.8073829893716311,
+            0.955616515723108
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 7,
+          "denominator": 7,
+          "ci95": [
+            0.6456695649333126,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 7,
+          "ci95": [
+            5.551115123125783e-17,
+            0.35433043506668743
+          ]
+        },
+        "accuracy": {
+          "value": 0.9142857142857143,
+          "numerator": 64,
+          "denominator": 70,
+          "ci95": [
+            0.8253432750766051,
+            0.9601233303548878
+          ]
+        }
+      },
+      "localizationPresence": {
+        "TP": 10,
+        "FP": 0,
+        "FN": 11,
+        "TN": 7,
+        "n": 28,
+        "precision": {
+          "value": 1.0,
+          "numerator": 10,
+          "denominator": 10,
+          "ci95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "recallSensitivity": {
+          "value": 0.47619047619047616,
+          "numerator": 10,
+          "denominator": 21,
+          "ci95": [
+            0.2834400610153417,
+            0.6763046541715557
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 7,
+          "denominator": 7,
+          "ci95": [
+            0.6456695649333126,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 7,
+          "ci95": [
+            5.551115123125783e-17,
+            0.35433043506668743
+          ]
+        },
+        "accuracy": {
+          "value": 0.6071428571428571,
+          "numerator": 17,
+          "denominator": 28,
+          "ci95": [
+            0.42409044296597176,
+            0.764343134584204
+          ]
+        }
+      },
+      "correctLocalizationRate": {
+        "value": 0.47619047619047616,
+        "numerator": 10,
+        "denominator": 21,
+        "ci95": [
+          0.2834400610153417,
+          0.6763046541715557
+        ]
+      },
+      "wrongLocalizationAmongReturned": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 10,
+        "ci95": [
+          0.0,
+          0.2775327998628892
+        ]
+      },
+      "roiIoUMedian": 0.9968298100020254,
+      "cornerMeanPixelsMedian": 0.4130149255894952,
+      "cornerMaxPixelsP95": 1.8309077811200916,
+      "maxDirectionalMedianResidualAnalysisPixelsP50": 0.227,
+      "maxDirectionalMedianResidualAnalysisPixelsP95": 0.7230999999999995,
+      "cycleErrorAnalysisPixelsP95": 0.285512
+    },
+    "H&E": {
+      "requestedLabelledPairs": 10,
+      "nonEvaluablePairs": 0,
+      "successfulScreeningCoverage": {
+        "value": 1.0,
+        "numerator": 10,
+        "denominator": 10,
+        "ci95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "duplicate": {
+        "TP": 9,
+        "FP": 0,
+        "FN": 0,
+        "TN": 1,
+        "n": 10,
+        "precision": {
+          "value": 1.0,
+          "numerator": 9,
+          "denominator": 9,
+          "ci95": [
+            0.7008549515804559,
+            1.0
+          ]
+        },
+        "recallSensitivity": {
+          "value": 1.0,
+          "numerator": 9,
+          "denominator": 9,
+          "ci95": [
+            0.7008549515804559,
+            1.0
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "ci95": [
+            0.20654931437723745,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 1,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ]
+        },
+        "accuracy": {
+          "value": 1.0,
+          "numerator": 10,
+          "denominator": 10,
+          "ci95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        }
+      },
+      "localizationPresence": {
+        "TP": 2,
+        "FP": 0,
+        "FN": 1,
+        "TN": 1,
+        "n": 4,
+        "precision": {
+          "value": 1.0,
+          "numerator": 2,
+          "denominator": 2,
+          "ci95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "recallSensitivity": {
+          "value": 0.6666666666666666,
+          "numerator": 2,
+          "denominator": 3,
+          "ci95": [
+            0.2076596008020477,
+            0.9385080552796037
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "ci95": [
+            0.20654931437723745,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 1,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ]
+        },
+        "accuracy": {
+          "value": 0.75,
+          "numerator": 3,
+          "denominator": 4,
+          "ci95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ]
+        }
+      },
+      "correctLocalizationRate": {
+        "value": 0.6666666666666666,
+        "numerator": 2,
+        "denominator": 3,
+        "ci95": [
+          0.2076596008020477,
+          0.9385080552796037
+        ]
+      },
+      "wrongLocalizationAmongReturned": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 2,
+        "ci95": [
+          0.0,
+          0.6576197724933469
+        ]
+      },
+      "roiIoUMedian": 0.9956548265274989,
+      "cornerMeanPixelsMedian": 1.1225363861671114,
+      "cornerMaxPixelsP95": 2.18863442765033,
+      "maxDirectionalMedianResidualAnalysisPixelsP50": 0.5005000000000001,
+      "maxDirectionalMedianResidualAnalysisPixelsP95": 0.87985,
+      "cycleErrorAnalysisPixelsP95": 0.2796325
+    },
+    "fluorescence": {
+      "requestedLabelledPairs": 10,
+      "nonEvaluablePairs": 0,
+      "successfulScreeningCoverage": {
+        "value": 1.0,
+        "numerator": 10,
+        "denominator": 10,
+        "ci95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "duplicate": {
+        "TP": 9,
+        "FP": 0,
+        "FN": 0,
+        "TN": 1,
+        "n": 10,
+        "precision": {
+          "value": 1.0,
+          "numerator": 9,
+          "denominator": 9,
+          "ci95": [
+            0.7008549515804559,
+            1.0
+          ]
+        },
+        "recallSensitivity": {
+          "value": 1.0,
+          "numerator": 9,
+          "denominator": 9,
+          "ci95": [
+            0.7008549515804559,
+            1.0
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "ci95": [
+            0.20654931437723745,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 1,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ]
+        },
+        "accuracy": {
+          "value": 1.0,
+          "numerator": 10,
+          "denominator": 10,
+          "ci95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        }
+      },
+      "localizationPresence": {
+        "TP": 2,
+        "FP": 0,
+        "FN": 1,
+        "TN": 1,
+        "n": 4,
+        "precision": {
+          "value": 1.0,
+          "numerator": 2,
+          "denominator": 2,
+          "ci95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "recallSensitivity": {
+          "value": 0.6666666666666666,
+          "numerator": 2,
+          "denominator": 3,
+          "ci95": [
+            0.2076596008020477,
+            0.9385080552796037
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "ci95": [
+            0.20654931437723745,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 1,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ]
+        },
+        "accuracy": {
+          "value": 0.75,
+          "numerator": 3,
+          "denominator": 4,
+          "ci95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ]
+        }
+      },
+      "correctLocalizationRate": {
+        "value": 0.6666666666666666,
+        "numerator": 2,
+        "denominator": 3,
+        "ci95": [
+          0.2076596008020477,
+          0.9385080552796037
+        ]
+      },
+      "wrongLocalizationAmongReturned": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 2,
+        "ci95": [
+          0.0,
+          0.6576197724933469
+        ]
+      },
+      "roiIoUMedian": 0.9961813498862667,
+      "cornerMeanPixelsMedian": 0.4798052152643973,
+      "cornerMaxPixelsP95": 1.202214443569616,
+      "maxDirectionalMedianResidualAnalysisPixelsP50": 0.1925,
+      "maxDirectionalMedianResidualAnalysisPixelsP95": 0.35945,
+      "cycleErrorAnalysisPixelsP95": 0.2621705
+    },
+    "SEM": {
+      "requestedLabelledPairs": 10,
+      "nonEvaluablePairs": 0,
+      "successfulScreeningCoverage": {
+        "value": 1.0,
+        "numerator": 10,
+        "denominator": 10,
+        "ci95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "duplicate": {
+        "TP": 9,
+        "FP": 0,
+        "FN": 0,
+        "TN": 1,
+        "n": 10,
+        "precision": {
+          "value": 1.0,
+          "numerator": 9,
+          "denominator": 9,
+          "ci95": [
+            0.7008549515804559,
+            1.0
+          ]
+        },
+        "recallSensitivity": {
+          "value": 1.0,
+          "numerator": 9,
+          "denominator": 9,
+          "ci95": [
+            0.7008549515804559,
+            1.0
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "ci95": [
+            0.20654931437723745,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 1,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ]
+        },
+        "accuracy": {
+          "value": 1.0,
+          "numerator": 10,
+          "denominator": 10,
+          "ci95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        }
+      },
+      "localizationPresence": {
+        "TP": 2,
+        "FP": 0,
+        "FN": 1,
+        "TN": 1,
+        "n": 4,
+        "precision": {
+          "value": 1.0,
+          "numerator": 2,
+          "denominator": 2,
+          "ci95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "recallSensitivity": {
+          "value": 0.6666666666666666,
+          "numerator": 2,
+          "denominator": 3,
+          "ci95": [
+            0.2076596008020477,
+            0.9385080552796037
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "ci95": [
+            0.20654931437723745,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 1,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ]
+        },
+        "accuracy": {
+          "value": 0.75,
+          "numerator": 3,
+          "denominator": 4,
+          "ci95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ]
+        }
+      },
+      "correctLocalizationRate": {
+        "value": 0.6666666666666666,
+        "numerator": 2,
+        "denominator": 3,
+        "ci95": [
+          0.2076596008020477,
+          0.9385080552796037
+        ]
+      },
+      "wrongLocalizationAmongReturned": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 2,
+        "ci95": [
+          0.0,
+          0.6576197724933469
+        ]
+      },
+      "roiIoUMedian": 0.9971140819750137,
+      "cornerMeanPixelsMedian": 0.3386491625071718,
+      "cornerMaxPixelsP95": 0.8581590533886402,
+      "maxDirectionalMedianResidualAnalysisPixelsP50": 0.1925,
+      "maxDirectionalMedianResidualAnalysisPixelsP95": 0.35675,
+      "cycleErrorAnalysisPixelsP95": 0.132376
+    },
+    "TEM": {
+      "requestedLabelledPairs": 10,
+      "nonEvaluablePairs": 0,
+      "successfulScreeningCoverage": {
+        "value": 1.0,
+        "numerator": 10,
+        "denominator": 10,
+        "ci95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "duplicate": {
+        "TP": 8,
+        "FP": 0,
+        "FN": 1,
+        "TN": 1,
+        "n": 10,
+        "precision": {
+          "value": 1.0,
+          "numerator": 8,
+          "denominator": 8,
+          "ci95": [
+            0.6755924351161198,
+            1.0
+          ]
+        },
+        "recallSensitivity": {
+          "value": 0.8888888888888888,
+          "numerator": 8,
+          "denominator": 9,
+          "ci95": [
+            0.5650002944233439,
+            0.9801091123614551
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "ci95": [
+            0.20654931437723745,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 1,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ]
+        },
+        "accuracy": {
+          "value": 0.9,
+          "numerator": 9,
+          "denominator": 10,
+          "ci95": [
+            0.5958499732047615,
+            0.9821237869049271
+          ]
+        }
+      },
+      "localizationPresence": {
+        "TP": 2,
+        "FP": 0,
+        "FN": 1,
+        "TN": 1,
+        "n": 4,
+        "precision": {
+          "value": 1.0,
+          "numerator": 2,
+          "denominator": 2,
+          "ci95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "recallSensitivity": {
+          "value": 0.6666666666666666,
+          "numerator": 2,
+          "denominator": 3,
+          "ci95": [
+            0.2076596008020477,
+            0.9385080552796037
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "ci95": [
+            0.20654931437723745,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 1,
+          "ci95": [
+            0.0,
+            0.7934506856227626
+          ]
+        },
+        "accuracy": {
+          "value": 0.75,
+          "numerator": 3,
+          "denominator": 4,
+          "ci95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ]
+        }
+      },
+      "correctLocalizationRate": {
+        "value": 0.6666666666666666,
+        "numerator": 2,
+        "denominator": 3,
+        "ci95": [
+          0.2076596008020477,
+          0.9385080552796037
+        ]
+      },
+      "wrongLocalizationAmongReturned": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 2,
+        "ci95": [
+          0.0,
+          0.6576197724933469
+        ]
+      },
+      "roiIoUMedian": 0.9968198871156807,
+      "cornerMeanPixelsMedian": 0.4065673438253155,
+      "cornerMaxPixelsP95": 0.9089472692746899,
+      "maxDirectionalMedianResidualAnalysisPixelsP50": 0.2335,
+      "maxDirectionalMedianResidualAnalysisPixelsP95": 0.44005,
+      "cycleErrorAnalysisPixelsP95": 0.112348
+    },
+    "Western_blot": {
+      "requestedLabelledPairs": 20,
+      "nonEvaluablePairs": 0,
+      "successfulScreeningCoverage": {
+        "value": 1.0,
+        "numerator": 20,
+        "denominator": 20,
+        "ci95": [
+          0.8388748419471806,
+          1.0
+        ]
+      },
+      "duplicate": {
+        "TP": 13,
+        "FP": 0,
+        "FN": 5,
+        "TN": 2,
+        "n": 20,
+        "precision": {
+          "value": 1.0,
+          "numerator": 13,
+          "denominator": 13,
+          "ci95": [
+            0.7719046276458016,
+            0.9999999999999999
+          ]
+        },
+        "recallSensitivity": {
+          "value": 0.7222222222222222,
+          "numerator": 13,
+          "denominator": 18,
+          "ci95": [
+            0.4912734343970254,
+            0.8750024662044601
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 2,
+          "denominator": 2,
+          "ci95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 2,
+          "ci95": [
+            0.0,
+            0.6576197724933469
+          ]
+        },
+        "accuracy": {
+          "value": 0.75,
+          "numerator": 15,
+          "denominator": 20,
+          "ci95": [
+            0.531299122381256,
+            0.8881382985923343
+          ]
+        }
+      },
+      "localizationPresence": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 6,
+        "TN": 2,
+        "n": 8,
+        "precision": {
+          "value": null,
+          "numerator": 0,
+          "denominator": 0,
+          "ci95": null
+        },
+        "recallSensitivity": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 6,
+          "ci95": [
+            2.7755575615628914e-17,
+            0.3903342879021653
+          ]
+        },
+        "specificity": {
+          "value": 1.0,
+          "numerator": 2,
+          "denominator": 2,
+          "ci95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "falsePositiveRate": {
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 2,
+          "ci95": [
+            0.0,
+            0.6576197724933469
+          ]
+        },
+        "accuracy": {
+          "value": 0.25,
+          "numerator": 2,
+          "denominator": 8,
+          "ci95": [
+            0.071479212752109,
+            0.5907245696898311
+          ]
+        }
+      },
+      "correctLocalizationRate": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 6,
+        "ci95": [
+          2.7755575615628914e-17,
+          0.3903342879021653
+        ]
+      },
+      "wrongLocalizationAmongReturned": {
+        "value": null,
+        "numerator": 0,
+        "denominator": 0,
+        "ci95": null
+      },
+      "roiIoUMedian": null,
+      "cornerMeanPixelsMedian": null,
+      "cornerMaxPixelsP95": null,
+      "maxDirectionalMedianResidualAnalysisPixelsP50": null,
+      "maxDirectionalMedianResidualAnalysisPixelsP95": null,
+      "cycleErrorAnalysisPixelsP95": null
+    }
+  },
+  "failures": [
+    {
+      "id": "tem/heavy_crop",
+      "type": "miss",
+      "construction": "heavy_crop",
+      "warnings": [
+        [],
+        []
+      ]
+    },
+    {
+      "id": "blot-c/crop_mirror_resize_jpeg",
+      "type": "miss",
+      "construction": "crop_mirror_resize_jpeg",
+      "warnings": [
+        [],
+        []
+      ]
+    },
+    {
+      "id": "blot-c/heavy_crop",
+      "type": "miss",
+      "construction": "heavy_crop",
+      "warnings": [
+        [],
+        [
+          "few_distinctive_features"
+        ]
+      ]
+    },
+    {
+      "id": "blot-d/brightness_contrast_jpeg",
+      "type": "miss",
+      "construction": "brightness_contrast_jpeg",
+      "warnings": [
+        [],
+        []
+      ]
+    },
+    {
+      "id": "blot-d/crop",
+      "type": "miss",
+      "construction": "crop",
+      "warnings": [
+        [],
+        []
+      ]
+    },
+    {
+      "id": "blot-d/heavy_crop",
+      "type": "miss",
+      "construction": "heavy_crop",
+      "warnings": [
+        [],
+        [
+          "few_distinctive_features"
+        ]
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "ihc/exact",
+      "stratum": "IHC",
+      "expectedDuplicate": true,
+      "construction": "exact",
+      "expectedExact": true,
+      "predictedDuplicate": true,
+      "kind": "exact",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.39161439999588765,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "ihc/resize",
+      "stratum": "IHC",
+      "expectedDuplicate": true,
+      "construction": "resize",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5097308000258636,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "ihc/rotate90",
+      "stratum": "IHC",
+      "expectedDuplicate": true,
+      "construction": "rotate90",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5843085999949835,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "ihc/mirror",
+      "stratum": "IHC",
+      "expectedDuplicate": true,
+      "construction": "mirror",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.6269763000018429,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "ihc/brightness_contrast_jpeg",
+      "stratum": "IHC",
+      "expectedDuplicate": true,
+      "construction": "brightness_contrast_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.6639981000043917,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "ihc/overlay",
+      "stratum": "IHC",
+      "expectedDuplicate": true,
+      "construction": "overlay",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.6446397000108846,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "ihc/crop",
+      "stratum": "IHC",
+      "expectedDuplicate": true,
+      "construction": "crop",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": true,
+        "reason": null,
+        "quality": {
+          "forwardInliers": 398,
+          "reverseInliers": 400,
+          "childCoverage": 0.8976,
+          "parentCoverage": 0.3796,
+          "contentAgreement": 1.0,
+          "residualPixels": 0.005,
+          "childDistribution": [
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.96325,
+              "spanY": 0.97598
+            },
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.96325,
+              "spanY": 0.97598
+            }
+          ],
+          "wholeChildAgreement": 1.0,
+          "orientation": "normal",
+          "orientationErrorDegrees": 0.00017,
+          "mirrored": false,
+          "cycleErrorPixels": 0.00548,
+          "cycleErrorFraction": 1.16e-05,
+          "parentAreaFraction": 0.422905
+        },
+        "roiIoU": 0.9999703254533859,
+        "cornerMeanPixels": 0.0037900517745822785,
+        "cornerMaxPixels": 0.005489019313748784,
+        "cornerMaxFractionDiagonal": 7.580708552374404e-06,
+        "correct": true
+      },
+      "elapsedSeconds": 1.1052651999925729,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "ihc/crop_mirror_resize_jpeg",
+      "stratum": "IHC",
+      "expectedDuplicate": true,
+      "construction": "crop_mirror_resize_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": true,
+        "reason": null,
+        "quality": {
+          "forwardInliers": 259,
+          "reverseInliers": 261,
+          "childCoverage": 0.853,
+          "parentCoverage": 0.3608,
+          "contentAgreement": 0.9958,
+          "residualPixels": 0.48,
+          "childDistribution": [
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.95793,
+              "spanY": 0.96628
+            },
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.95559,
+              "spanY": 0.9618
+            }
+          ],
+          "wholeChildAgreement": 0.99632,
+          "orientation": "flipX",
+          "orientationErrorDegrees": 0.00311,
+          "mirrored": true,
+          "cycleErrorPixels": 0.09328,
+          "cycleErrorFraction": 0.0002479,
+          "parentAreaFraction": 0.4224443
+        },
+        "roiIoU": 0.9924762806622413,
+        "cornerMeanPixels": 0.8990608411930237,
+        "cornerMaxPixels": 1.0081198657308184,
+        "cornerMaxFractionDiagonal": 0.0013922820181779948,
+        "correct": true
+      },
+      "elapsedSeconds": 1.0249783000035677,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "ihc/heavy_crop",
+      "stratum": "IHC",
+      "expectedDuplicate": true,
+      "construction": "heavy_crop",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.6856926000036765,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "ihc/nonoverlap",
+      "stratum": "IHC",
+      "expectedDuplicate": false,
+      "construction": "disjoint_regions_same_source",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": false,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.8747151000134181,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "he/exact",
+      "stratum": "H&E",
+      "expectedDuplicate": true,
+      "construction": "exact",
+      "expectedExact": true,
+      "predictedDuplicate": true,
+      "kind": "exact",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.982994799996959,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "he/resize",
+      "stratum": "H&E",
+      "expectedDuplicate": true,
+      "construction": "resize",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 1.5677296000067145,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "he/rotate90",
+      "stratum": "H&E",
+      "expectedDuplicate": true,
+      "construction": "rotate90",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 1.412780099984957,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "he/mirror",
+      "stratum": "H&E",
+      "expectedDuplicate": true,
+      "construction": "mirror",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 1.5008371000003535,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "he/brightness_contrast_jpeg",
+      "stratum": "H&E",
+      "expectedDuplicate": true,
+      "construction": "brightness_contrast_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 1.3916078000038397,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "he/overlay",
+      "stratum": "H&E",
+      "expectedDuplicate": true,
+      "construction": "overlay",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 1.3029229000094347,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "he/crop",
+      "stratum": "H&E",
+      "expectedDuplicate": true,
+      "construction": "crop",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": true,
+        "reason": null,
+        "quality": {
+          "forwardInliers": 236,
+          "reverseInliers": 237,
+          "childCoverage": 0.8564,
+          "parentCoverage": 0.3623,
+          "contentAgreement": 0.9913,
+          "residualPixels": 0.079,
+          "childDistribution": [
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.96556,
+              "spanY": 0.97247
+            },
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.98305,
+              "spanY": 0.97247
+            }
+          ],
+          "wholeChildAgreement": 0.99136,
+          "orientation": "normal",
+          "orientationErrorDegrees": 0.00044,
+          "mirrored": false,
+          "cycleErrorPixels": 0.01368,
+          "cycleErrorFraction": 1.32e-05,
+          "parentAreaFraction": 0.4231195
+        },
+        "roiIoU": 0.9993866909343778,
+        "cornerMeanPixels": 0.1553843752217922,
+        "cornerMaxPixels": 0.17927678236258915,
+        "cornerMaxFractionDiagonal": 0.00011204798897661822,
+        "correct": true
+      },
+      "elapsedSeconds": 2.3383265000011306,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "he/crop_mirror_resize_jpeg",
+      "stratum": "H&E",
+      "expectedDuplicate": true,
+      "construction": "crop_mirror_resize_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": true,
+        "reason": null,
+        "quality": {
+          "forwardInliers": 288,
+          "reverseInliers": 299,
+          "childCoverage": 0.8732,
+          "parentCoverage": 0.3695,
+          "contentAgreement": 0.9167,
+          "residualPixels": 0.922,
+          "childDistribution": [
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.98314,
+              "spanY": 0.97298
+            },
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.98439,
+              "spanY": 0.98183
+            }
+          ],
+          "wholeChildAgreement": 0.91084,
+          "orientation": "flipX",
+          "orientationErrorDegrees": 0.01977,
+          "mirrored": true,
+          "cycleErrorPixels": 0.29363,
+          "cycleErrorFraction": 0.0003546,
+          "parentAreaFraction": 0.423215
+        },
+        "roiIoU": 0.99192296212062,
+        "cornerMeanPixels": 2.0896883971124307,
+        "cornerMaxPixels": 2.2943900931917898,
+        "cornerMaxFractionDiagonal": 0.0014339938082448685,
+        "correct": true
+      },
+      "elapsedSeconds": 2.27190699998755,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "he/heavy_crop",
+      "stratum": "H&E",
+      "expectedDuplicate": true,
+      "construction": "heavy_crop",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "insufficient_spatial_support",
+        "quality": {
+          "forwardInliers": 17,
+          "reverseInliers": 16,
+          "childCoverage": 0.4002,
+          "parentCoverage": 0.016,
+          "contentAgreement": 0.99,
+          "residualPixels": 0.102,
+          "childDistribution": [
+            {
+              "occupiedCells": 6,
+              "quadrants": 3,
+              "spanX": 0.9095,
+              "spanY": 0.83086
+            },
+            {
+              "occupiedCells": 6,
+              "quadrants": 3,
+              "spanX": 0.87203,
+              "spanY": 0.83086
+            }
+          ]
+        }
+      },
+      "elapsedSeconds": 1.5014418000064325,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "he/nonoverlap",
+      "stratum": "H&E",
+      "expectedDuplicate": false,
+      "construction": "disjoint_regions_same_source",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": false,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 1.7181201000057627,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "fluorescence/exact",
+      "stratum": "fluorescence",
+      "expectedDuplicate": true,
+      "construction": "exact",
+      "expectedExact": true,
+      "predictedDuplicate": true,
+      "kind": "exact",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.27762580002308823,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "fluorescence/resize",
+      "stratum": "fluorescence",
+      "expectedDuplicate": true,
+      "construction": "resize",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.48540080001112074,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "fluorescence/rotate90",
+      "stratum": "fluorescence",
+      "expectedDuplicate": true,
+      "construction": "rotate90",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.6025460000091698,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "fluorescence/mirror",
+      "stratum": "fluorescence",
+      "expectedDuplicate": true,
+      "construction": "mirror",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5793678000045475,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "fluorescence/brightness_contrast_jpeg",
+      "stratum": "fluorescence",
+      "expectedDuplicate": true,
+      "construction": "brightness_contrast_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5703682000166737,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "fluorescence/overlay",
+      "stratum": "fluorescence",
+      "expectedDuplicate": true,
+      "construction": "overlay",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5891310999868438,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "fluorescence/crop",
+      "stratum": "fluorescence",
+      "expectedDuplicate": true,
+      "construction": "crop",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": true,
+        "reason": null,
+        "quality": {
+          "forwardInliers": 258,
+          "reverseInliers": 259,
+          "childCoverage": 0.7465,
+          "parentCoverage": 0.3154,
+          "contentAgreement": 1.0,
+          "residualPixels": 0.007,
+          "childDistribution": [
+            {
+              "occupiedCells": 8,
+              "quadrants": 4,
+              "spanX": 0.9327,
+              "spanY": 0.96152
+            },
+            {
+              "occupiedCells": 8,
+              "quadrants": 4,
+              "spanX": 0.93297,
+              "spanY": 0.96152
+            }
+          ],
+          "wholeChildAgreement": 1.0,
+          "orientation": "normal",
+          "orientationErrorDegrees": 0.0,
+          "mirrored": false,
+          "cycleErrorPixels": 0.0072,
+          "cycleErrorFraction": 1.53e-05,
+          "parentAreaFraction": 0.4229604
+        },
+        "roiIoU": 0.9998869429568489,
+        "cornerMeanPixels": 0.014419123432048493,
+        "cornerMaxPixels": 0.02013027710885385,
+        "cornerMaxFractionDiagonal": 2.7801280177411887e-05,
+        "correct": true
+      },
+      "elapsedSeconds": 0.9006745000078809,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "fluorescence/crop_mirror_resize_jpeg",
+      "stratum": "fluorescence",
+      "expectedDuplicate": true,
+      "construction": "crop_mirror_resize_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": true,
+        "reason": null,
+        "quality": {
+          "forwardInliers": 143,
+          "reverseInliers": 139,
+          "childCoverage": 0.6334,
+          "parentCoverage": 0.2681,
+          "contentAgreement": 0.9931,
+          "residualPixels": 0.378,
+          "childDistribution": [
+            {
+              "occupiedCells": 8,
+              "quadrants": 4,
+              "spanX": 0.91848,
+              "spanY": 0.89179
+            },
+            {
+              "occupiedCells": 8,
+              "quadrants": 4,
+              "spanX": 0.91948,
+              "spanY": 0.90399
+            }
+          ],
+          "wholeChildAgreement": 0.99199,
+          "orientation": "flipX",
+          "orientationErrorDegrees": 0.01512,
+          "mirrored": true,
+          "cycleErrorPixels": 0.27559,
+          "cycleErrorFraction": 0.0007325,
+          "parentAreaFraction": 0.4237056
+        },
+        "roiIoU": 0.9924757568156846,
+        "cornerMeanPixels": 0.945191307096746,
+        "cornerMaxPixels": 1.2644293996991298,
+        "cornerMaxFractionDiagonal": 0.00174626289620877,
+        "correct": true
+      },
+      "elapsedSeconds": 0.7209979000035673,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "fluorescence/heavy_crop",
+      "stratum": "fluorescence",
+      "expectedDuplicate": true,
+      "construction": "heavy_crop",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.5521012999815866,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "fluorescence/nonoverlap",
+      "stratum": "fluorescence",
+      "expectedDuplicate": false,
+      "construction": "disjoint_regions_same_source",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": false,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.4234209999849554,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "sem/exact",
+      "stratum": "SEM",
+      "expectedDuplicate": true,
+      "construction": "exact",
+      "expectedExact": true,
+      "predictedDuplicate": true,
+      "kind": "exact",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.33797449999838136,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "sem/resize",
+      "stratum": "SEM",
+      "expectedDuplicate": true,
+      "construction": "resize",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5069178999983706,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "sem/rotate90",
+      "stratum": "SEM",
+      "expectedDuplicate": true,
+      "construction": "rotate90",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5718259999994189,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "sem/mirror",
+      "stratum": "SEM",
+      "expectedDuplicate": true,
+      "construction": "mirror",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5828902999928687,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "sem/brightness_contrast_jpeg",
+      "stratum": "SEM",
+      "expectedDuplicate": true,
+      "construction": "brightness_contrast_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.6790437999879941,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "sem/overlay",
+      "stratum": "SEM",
+      "expectedDuplicate": true,
+      "construction": "overlay",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.6204410999780521,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "sem/crop",
+      "stratum": "SEM",
+      "expectedDuplicate": true,
+      "construction": "crop",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": true,
+        "reason": null,
+        "quality": {
+          "forwardInliers": 294,
+          "reverseInliers": 293,
+          "childCoverage": 0.9149,
+          "parentCoverage": 0.3867,
+          "contentAgreement": 1.0,
+          "residualPixels": 0.01,
+          "childDistribution": [
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.98494,
+              "spanY": 0.96706
+            },
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.98494,
+              "spanY": 0.96706
+            }
+          ],
+          "wholeChildAgreement": 1.0,
+          "orientation": "normal",
+          "orientationErrorDegrees": 0.00067,
+          "mirrored": false,
+          "cycleErrorPixels": 0.02666,
+          "cycleErrorFraction": 5.09e-05,
+          "parentAreaFraction": 0.4225432
+        },
+        "roiIoU": 0.9999552348803546,
+        "cornerMeanPixels": 0.006652849057145321,
+        "cornerMaxPixels": 0.007527870098638322,
+        "cornerMaxFractionDiagonal": 9.267965141273255e-06,
+        "correct": true
+      },
+      "elapsedSeconds": 0.9252401000121608,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "sem/crop_mirror_resize_jpeg",
+      "stratum": "SEM",
+      "expectedDuplicate": true,
+      "construction": "crop_mirror_resize_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": true,
+        "reason": null,
+        "quality": {
+          "forwardInliers": 169,
+          "reverseInliers": 159,
+          "childCoverage": 0.8919,
+          "parentCoverage": 0.3769,
+          "contentAgreement": 0.9988,
+          "residualPixels": 0.375,
+          "childDistribution": [
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.97549,
+              "spanY": 0.95983
+            },
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.97921,
+              "spanY": 0.94596
+            }
+          ],
+          "wholeChildAgreement": 0.99906,
+          "orientation": "flipX",
+          "orientationErrorDegrees": 0.04282,
+          "mirrored": true,
+          "cycleErrorPixels": 0.13794,
+          "cycleErrorFraction": 0.0003298,
+          "parentAreaFraction": 0.4237078
+        },
+        "roiIoU": 0.9942729290696729,
+        "cornerMeanPixels": 0.6706454759571983,
+        "cornerMaxPixels": 0.9029291156670614,
+        "cornerMaxFractionDiagonal": 0.0011116445235361742,
+        "correct": true
+      },
+      "elapsedSeconds": 0.726474800001597,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "sem/heavy_crop",
+      "stratum": "SEM",
+      "expectedDuplicate": true,
+      "construction": "heavy_crop",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "insufficient_spatial_support",
+        "quality": {
+          "forwardInliers": 20,
+          "reverseInliers": 20,
+          "childCoverage": 0.3954,
+          "parentCoverage": 0.0157,
+          "contentAgreement": 1.0,
+          "residualPixels": 0.004,
+          "childDistribution": [
+            {
+              "occupiedCells": 5,
+              "quadrants": 4,
+              "spanX": 0.83186,
+              "spanY": 0.8275
+            },
+            {
+              "occupiedCells": 5,
+              "quadrants": 4,
+              "spanX": 0.83186,
+              "spanY": 0.8275
+            }
+          ]
+        }
+      },
+      "elapsedSeconds": 0.5771578999992926,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "sem/nonoverlap",
+      "stratum": "SEM",
+      "expectedDuplicate": false,
+      "construction": "disjoint_regions_same_source",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": false,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.7105041999893729,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "tem/exact",
+      "stratum": "TEM",
+      "expectedDuplicate": true,
+      "construction": "exact",
+      "expectedExact": true,
+      "predictedDuplicate": true,
+      "kind": "exact",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.33506429998669773,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "tem/resize",
+      "stratum": "TEM",
+      "expectedDuplicate": true,
+      "construction": "resize",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5491651000047568,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "tem/rotate90",
+      "stratum": "TEM",
+      "expectedDuplicate": true,
+      "construction": "rotate90",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.6534692000132054,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "tem/mirror",
+      "stratum": "TEM",
+      "expectedDuplicate": true,
+      "construction": "mirror",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.6299334999930579,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "tem/brightness_contrast_jpeg",
+      "stratum": "TEM",
+      "expectedDuplicate": true,
+      "construction": "brightness_contrast_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5910284999990836,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "tem/overlay",
+      "stratum": "TEM",
+      "expectedDuplicate": true,
+      "construction": "overlay",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.5893291999818757,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "tem/crop",
+      "stratum": "TEM",
+      "expectedDuplicate": true,
+      "construction": "crop",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": true,
+        "reason": null,
+        "quality": {
+          "forwardInliers": 375,
+          "reverseInliers": 374,
+          "childCoverage": 0.9065,
+          "parentCoverage": 0.3835,
+          "contentAgreement": 1.0,
+          "residualPixels": 0.004,
+          "childDistribution": [
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.98028,
+              "spanY": 0.97621
+            },
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.97765,
+              "spanY": 0.97621
+            }
+          ],
+          "wholeChildAgreement": 1.0,
+          "orientation": "normal",
+          "orientationErrorDegrees": 6e-05,
+          "mirrored": false,
+          "cycleErrorPixels": 0.00344,
+          "cycleErrorFraction": 6.3e-06,
+          "parentAreaFraction": 0.4230225
+        },
+        "roiIoU": 0.9999568196159938,
+        "cornerMeanPixels": 0.005914927359840487,
+        "cornerMaxPixels": 0.006440898106945975,
+        "cornerMaxFractionDiagonal": 7.659295294303298e-06,
+        "correct": true
+      },
+      "elapsedSeconds": 0.9605594000022393,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "tem/crop_mirror_resize_jpeg",
+      "stratum": "TEM",
+      "expectedDuplicate": true,
+      "construction": "crop_mirror_resize_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": true,
+        "reason": null,
+        "quality": {
+          "forwardInliers": 206,
+          "reverseInliers": 184,
+          "childCoverage": 0.8579,
+          "parentCoverage": 0.3631,
+          "contentAgreement": 0.9901,
+          "residualPixels": 0.463,
+          "childDistribution": [
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.96763,
+              "spanY": 0.9605
+            },
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.97667,
+              "spanY": 0.96057
+            }
+          ],
+          "wholeChildAgreement": 0.99092,
+          "orientation": "flipX",
+          "orientationErrorDegrees": 0.02013,
+          "mirrored": true,
+          "cycleErrorPixels": 0.11808,
+          "cycleErrorFraction": 0.000272,
+          "parentAreaFraction": 0.4239507
+        },
+        "roiIoU": 0.9936829546153676,
+        "cornerMeanPixels": 0.8072197602907906,
+        "cornerMaxPixels": 0.9564476045993081,
+        "cornerMaxFractionDiagonal": 0.0011373747132026456,
+        "correct": true
+      },
+      "elapsedSeconds": 0.9075119000044651,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "tem/heavy_crop",
+      "stratum": "TEM",
+      "expectedDuplicate": true,
+      "construction": "heavy_crop",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.6658277000242379,
+      "duplicateCheckStatus": "FAIL",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "tem/nonoverlap",
+      "stratum": "TEM",
+      "expectedDuplicate": false,
+      "construction": "disjoint_regions_same_source",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": false,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.9275897000043187,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-c/exact",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "exact",
+      "expectedExact": true,
+      "predictedDuplicate": true,
+      "kind": "exact",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.13572920000297017,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-c/resize",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "resize",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.2242578000004869,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-c/rotate90",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "rotate90",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.1997601000184659,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-c/mirror",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "mirror",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.20760700001847,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-c/brightness_contrast_jpeg",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "brightness_contrast_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.2082399999781046,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-c/overlay",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "overlay",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.21218559998669662,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-c/crop",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "crop",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "insufficient_spatial_support",
+        "quality": {
+          "forwardInliers": 12,
+          "reverseInliers": 15,
+          "childCoverage": 0.1446,
+          "parentCoverage": 0.0593,
+          "contentAgreement": 0.9996,
+          "residualPixels": 0.61,
+          "childDistribution": [
+            {
+              "occupiedCells": 5,
+              "quadrants": 4,
+              "spanX": 0.54301,
+              "spanY": 0.49877
+            },
+            {
+              "occupiedCells": 6,
+              "quadrants": 4,
+              "spanX": 0.6481,
+              "spanY": 0.52216
+            }
+          ]
+        }
+      },
+      "elapsedSeconds": 0.31048349998309277,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "blot-c/crop_mirror_resize_jpeg",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "crop_mirror_resize_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.22056300000986084,
+      "duplicateCheckStatus": "FAIL",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "blot-c/heavy_crop",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "heavy_crop",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        [
+          "few_distinctive_features"
+        ]
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "insufficient_features",
+        "quality": null
+      },
+      "elapsedSeconds": 0.1760872000013478,
+      "duplicateCheckStatus": "FAIL",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "blot-c/nonoverlap",
+      "stratum": "Western_blot",
+      "expectedDuplicate": false,
+      "construction": "disjoint_regions_same_source",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": false,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.24812209999072365,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-d/exact",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "exact",
+      "expectedExact": true,
+      "predictedDuplicate": true,
+      "kind": "exact",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.09654509997926652,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-d/resize",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "resize",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.1487487999838777,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-d/rotate90",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "rotate90",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.16626900000846945,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-d/mirror",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "mirror",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.18678150000050664,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-d/brightness_contrast_jpeg",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "brightness_contrast_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.1655427000077907,
+      "duplicateCheckStatus": "FAIL"
+    },
+    {
+      "id": "blot-d/overlay",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "overlay",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "transformed",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "elapsedSeconds": 0.18577799998456612,
+      "duplicateCheckStatus": "PASS"
+    },
+    {
+      "id": "blot-d/crop",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "crop",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.2460031000082381,
+      "duplicateCheckStatus": "FAIL",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "blot-d/crop_mirror_resize_jpeg",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "crop_mirror_resize_jpeg",
+      "expectedExact": false,
+      "predictedDuplicate": true,
+      "kind": "overlap",
+      "imageWarnings": [
+        [],
+        []
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "no_reliable_match",
+        "quality": null
+      },
+      "elapsedSeconds": 0.21581319998949766,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "blot-d/heavy_crop",
+      "stratum": "Western_blot",
+      "expectedDuplicate": true,
+      "construction": "heavy_crop",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [],
+        [
+          "few_distinctive_features"
+        ]
+      ],
+      "localization": {
+        "positive": true,
+        "predicted": false,
+        "reason": "insufficient_features",
+        "quality": null
+      },
+      "elapsedSeconds": 0.1341860000102315,
+      "duplicateCheckStatus": "FAIL",
+      "localizationCheckStatus": "FAIL"
+    },
+    {
+      "id": "blot-d/nonoverlap",
+      "stratum": "Western_blot",
+      "expectedDuplicate": false,
+      "construction": "disjoint_regions_same_source",
+      "expectedExact": false,
+      "predictedDuplicate": false,
+      "kind": null,
+      "imageWarnings": [
+        [
+          "low_information"
+        ],
+        []
+      ],
+      "localization": {
+        "positive": false,
+        "predicted": false,
+        "reason": "insufficient_features",
+        "quality": null
+      },
+      "elapsedSeconds": 0.13301449999562465,
+      "duplicateCheckStatus": "PASS",
+      "localizationCheckStatus": "PASS"
+    }
+  ],
+  "unmeasured": [
+    "Representative independent human-adjudicated blind test"
+  ],
+  "geometryRule": "Correct = returned on positive, ROI IoU >= 0.8 and maximum ordered-corner error <= 2% parent diagonal; unreturned positives remain failures."
+}

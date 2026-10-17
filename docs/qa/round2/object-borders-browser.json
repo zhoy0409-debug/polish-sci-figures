@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "checks": [
+    "nested SVG + rotated image + rectangular clip boundary verified against browser CTM",
+    "whole-panel boundary uses root coordinate identity safely",
+    "visible/original image edges distinguish clipping and letterboxing",
+    "annotation excludes edit handles; zero-area line uses stroke; skewed round frame is rejected",
+    "inactive source variant retains its record and restores its border on return",
+    "inside border and final physical pt width respect output scale",
+    "hidden attribute, computed CSS and ancestor-source cases executed",
+    "changed original SVG blocks strict export",
+    "batch apply/remove + history undo/redo + locked target protection",
+    "all actions retain SHA-256 of embedded original image"
+  ],
+  "failures": [],
+  "source": "explicitly synthetic image",
+  "originalSha256": "87d62f52dcbc5d0c0937f1d49eef464b33678d7d60ff4c243a6f1610293df7ca",
+  "testedBuild": "Round 2 development source after Suite v1.4.19 / Figure Studio 0.1.19",
+  "status": "PASS",
+  "runtime": "Actual Chrome SVG geometry",
+  "installerTest": false
+}

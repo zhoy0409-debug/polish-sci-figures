@@ -22,6 +22,13 @@ REVIEWED = {
 def frame_for(fig):
     w, h = fig.get_size_inches() * 72
     m = MARGINS_PT
+    geometry=getattr(fig,'_studio_axis_geometry',None)
+    if geometry:
+        left=geometry.get('plot_left_pt',m['left']);bottom=geometry.get('plot_bottom_pt',m['bottom'])
+        width=geometry.get('plot_width_pt',w-left-m['right']);height=geometry.get('plot_height_pt',h-bottom-m['top'])
+        if width<36 or height<36 or left+width>w-m['right']+1e-6 or bottom+height>h-m['top']+1e-6:
+            raise ValueError('The physical plotting frame does not fit this canvas; enlarge the panel or reduce its plot dimensions/margins')
+        return left/w,bottom/h,width/w,height/h
     if w <= m['left'] + m['right'] + 36 or h <= m['top'] + m['bottom'] + 36:
         raise ValueError('Canvas is too small for this plot frame')
     return (m['left']/w, m['bottom']/h,
@@ -30,7 +37,7 @@ def frame_for(fig):
 
 def apply_layout(fig, view=None):
     """Align reviewed primary axes; leave unrelated, unreviewed layouts intact."""
-    if view not in REVIEWED and not hasattr(fig, '_studio_compound_layout'):
+    if view not in REVIEWED and not hasattr(fig, '_studio_compound_layout') and not hasattr(fig,'_studio_axis_geometry'):
         return fig
     # Resolve original layout once, then remove competing layout engines.
     if not getattr(fig, '_studio_layout_ready', False):
@@ -52,6 +59,16 @@ def apply_layout(fig, view=None):
         fig._studio_main_axes = axes
     fig._studio_frame = frame
     fig._studio_layout_ready = True
+    info=getattr(fig,'_studio_axis_controls',None)
+    if info and info.get('supported'):
+        w,h=fig.get_size_inches()*72
+        info['geometry']={'plot_left_pt':frame[0]*w,'plot_bottom_pt':frame[1]*h,
+                          'plot_width_pt':frame[2]*w,'plot_height_pt':frame[3]*h,
+                          'canvas_width_pt':float(w),'canvas_height_pt':float(h),
+                          'text_and_strokes':'fixed_physical_size'}
+        for record,ax in zip(info.get('effective',[]),getattr(fig,'_studio_main_axes',fig.axes)):
+            position=ax.get_position()
+            record.update(plot_width_pt=position.width*w,plot_height_pt=position.height*h)
     # This invisible semantic marker survives SVG export and permits checking
     # the actual composite, including its nested SVG coordinate systems.
     marker = getattr(fig, '_studio_frame_marker', None)

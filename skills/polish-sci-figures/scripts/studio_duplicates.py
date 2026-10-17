@@ -15,6 +15,10 @@ import io
 import math
 import re
 import warnings
+import copy
+import threading
+import time
+from collections import OrderedDict
 from dataclasses import dataclass
 
 import numpy as np
@@ -32,6 +36,90 @@ MAX_REVIEW_PREVIEW_BYTES = 12_000_000
 MAX_OPENCV_THREADS = 2
 _DATA_URL = re.compile(r'^data:(image/(?:png|jpeg|jpg|webp|gif|tiff|bmp|x-ms-bmp));base64,', re.I)
 _FORMATS = {'PNG', 'JPEG', 'WEBP', 'GIF', 'TIFF', 'BMP'}
+
+
+class ScreeningCache:
+    """Bounded, expiring process-memory reuse; never persists private images.
+
+    Callers opt in for repeated local reviews. Native pixels are still decoded
+    and hashed on each request, so replacing a source invalidates its entries.
+    Only descriptors and pair evidence geometry are retained (no source rasters,
+    labels, identifiers, encoded image payloads or reports). A cached negative is
+    distinguishable from a missing entry. Thresholds/resolution remain identical.
+    """
+    def __init__(self, max_bytes=24_000_000, max_entries=4096, ttl_seconds=300,
+                 clock=time.monotonic):
+        if max_bytes < 1 or max_entries < 1 or ttl_seconds <= 0:
+            raise ValueError('Cache bounds must be positive')
+        self.max_bytes, self.max_entries, self.ttl = max_bytes, max_entries, ttl_seconds
+        self.clock, self.entries, self.bytes = clock, OrderedDict(), 0
+        self.lock = threading.RLock()
+
+    def clear(self):
+        with self.lock:
+            self.entries.clear()
+            self.bytes = 0
+
+    def _prune(self, now):
+        for key in list(self.entries):
+            if now-self.entries[key][0] >= self.ttl:
+                self.bytes -= self.entries.pop(key)[2]
+
+    def get(self, key):
+        with self.lock:
+            self._prune(self.clock())
+            record = self.entries.get(key)
+            if record is None:
+                return False, None
+            self.entries.move_to_end(key)
+            return True, copy.deepcopy(record[1])
+
+    def put(self, key, value):
+        # Numpy buffers dominate feature storage. Include conservative object
+        # overhead for negative pairs and small dictionaries, not only buffers.
+        def size(v):
+            if isinstance(v, np.ndarray):
+                return v.nbytes+128
+            if isinstance(v, dict):
+                return 256+sum(size(k)+size(x) for k, x in v.items())
+            if isinstance(v, (list, tuple)):
+                return 128+sum(size(x) for x in v)
+            return 128+len(v)*4 if isinstance(v, str) else 64
+        amount = size(value)+size(key)
+        with self.lock:
+            self._prune(self.clock())
+            previous = self.entries.pop(key, None)
+            if previous:
+                self.bytes -= previous[2]
+            if amount > self.max_bytes:
+                return
+            # Feature arrays of a 60-image batch may exceed the small budget.
+            # Reserve one quarter for pair decisions so a sequential feature
+            # miss cannot evict every cached comparison on the next review.
+            namespace = key[0] if isinstance(key, tuple) and key and key[0] in {'features', 'pair'} else None
+            if namespace:
+                limit = self.max_bytes*(.75 if namespace == 'features' else .25)
+                if amount > limit:
+                    return
+                same = [k for k in self.entries if isinstance(k, tuple) and k and k[0] == namespace]
+                used = sum(self.entries[k][2] for k in same)
+                while same and used+amount > limit:
+                    removed = self.entries.pop(same.pop(0))[2]
+                    self.bytes -= removed
+                    used -= removed
+            while self.entries and (self.bytes+amount > self.max_bytes or len(self.entries) >= self.max_entries):
+                self.bytes -= self.entries.popitem(last=False)[1][2]
+            self.entries[key] = (self.clock(), copy.deepcopy(value), amount)
+            self.bytes += amount
+
+
+def _cache_identity(image):
+    # Include analysis settings and visible ROI; a full-image native hash alone
+    # cannot identify which cropped preview supplied the descriptors.
+    roi = image.info.get('analysisRoi')
+    return (image.info['sha256'], tuple(image.gray.shape),
+            tuple(roi[k] for k in ('x', 'y', 'w', 'h')) if roi else None,
+            MAX_SIDE, MAX_FEATURES, 'sift025-edge12-flann4-check48-v1')
 
 
 class ScanCancelled(Exception):
@@ -245,8 +333,21 @@ def _read(record, cv, roi=None):
     return _Image(info, array, gray, [])
 
 
-def _features(image, sift, cv, cancelled):
+def _features(image, sift, cv, cancelled, cache=None):
     if 'low_information' in image.info['warnings']:
+        return
+    cache_key = ('features', _cache_identity(image))
+    found, stored = cache.get(cache_key) if cache is not None else (False, None)
+    if found:
+        _check_cancel(cancelled)
+        image.info['warnings'].extend(stored['warnings'])
+        image.variants = stored['variants']
+        for variant in image.variants:
+            if variant is not None:
+                matcher = cv.FlannBasedMatcher(dict(algorithm=1, trees=4), dict(checks=48))
+                matcher.add([variant['descriptors']])
+                matcher.train()
+                variant['matcher'] = matcher
         return
     for mirrored in (False, True):
         _check_cancel(cancelled)
@@ -281,6 +382,11 @@ def _features(image, sift, cv, cancelled):
         image.info['warnings'].append('few_distinctive_features')
     elif image.variants[0] and image.variants[0]['ambiguous'] > .55:
         image.info['warnings'].append('repetitive_texture')
+    if cache is not None:
+        _check_cancel(cancelled)
+        cache.put(cache_key, {'variants': [None if variant is None else
+                  {key: value for key, value in variant.items() if key != 'matcher'} for variant in image.variants],
+                  'warnings': [w for w in image.info['warnings'] if w in {'few_distinctive_features', 'repetitive_texture'}]})
 
 
 def _hull_coverage(points, shape, cv):
@@ -412,7 +518,7 @@ def _evidence(a, b, result):
     return _png_url(out)
 
 
-def scan_images(images, progress=None, cancelled=None):
+def scan_images(images, progress=None, cancelled=None, cache=None):
     """Screen embedded image pairs; return JSON-safe review records and evidence.
 
     ``coverageA/B`` are convex-hull coverage of supporting features, not a
@@ -438,7 +544,7 @@ def scan_images(images, progress=None, cancelled=None):
         item = _read(record, cv)
         same_pixels = by_digest.get(item.info['sha256'])
         if same_pixels is None:
-            _features(item, sift, cv, cancelled)
+            _features(item, sift, cv, cancelled, cache=cache)
             by_digest[item.info['sha256']] = item
         else:
             item.rgb, item.gray, item.variants = same_pixels.rgb, same_pixels.gray, same_pixels.variants
@@ -477,12 +583,18 @@ def scan_images(images, progress=None, cancelled=None):
                 result = {'kind': 'exact', 'inliers': 0, 'coverageA': 1., 'coverageB': 1.,
                           'overlapA': 1., 'overlapB': 1., 'contentAgreement': 1., 'mirrored': False}
             else:
-                result = None
-                for variant in b.variants:
+                key = ('pair', _cache_identity(a), _cache_identity(b))
+                found, result = cache.get(key) if cache is not None else (False, None)
+                if not found:
+                    result = None
+                    for variant in b.variants:
+                        _check_cancel(cancelled)
+                        candidate = _candidate(a, b, variant, cv)
+                        if candidate and (result is None or candidate['inliers'] > result['inliers']):
+                            result = candidate
                     _check_cancel(cancelled)
-                    candidate = _candidate(a, b, variant, cv)
-                    if candidate and (result is None or candidate['inliers'] > result['inliers']):
-                        result = candidate
+                    if cache is not None:
+                        cache.put(key, result)
             if result:
                 result.update({'a': a.info['id'], 'b': b.info['id'], 'reviewRequired': True})
                 evidence = _evidence(a, b, result) if len(matches) < MAX_EVIDENCE and evidence_bytes < MAX_EVIDENCE_BYTES else None

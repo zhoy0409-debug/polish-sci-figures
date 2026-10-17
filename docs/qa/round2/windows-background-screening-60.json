@@ -1,0 +1,210 @@
+{
+  "schema": "figure-studio-background-screening-acceptance/1",
+  "passed": true,
+  "startedAt": "2026-10-17T07:56:24.101Z",
+  "build": "Figure Studio 0.1.20 isolated Windows installation",
+  "url": "http://127.0.0.1:18953/",
+  "conditions": "Actual Chrome on this Windows machine; concurrent build/load is not controlled. No cross-device performance claim.",
+  "accuracyEvidence": false,
+  "checks": [
+    "earlier completed real screening result and human review saved",
+    "explicit user preflight: 60 selected images and 1,770 pairs, no automatic scan",
+    "user started the full batch, closed its dialog, and screening remained active",
+    "phase progress reached actual pair comparisons, and cancellation was confirmed",
+    "cancelled replacement leaves the previous completed evidence and review intact"
+  ],
+  "operations": [
+    {
+      "name": "open command search and type border",
+      "elapsedMs": 320.4
+    },
+    {
+      "name": "change canvas zoom and return to fit",
+      "elapsedMs": 73
+    },
+    {
+      "name": "edit the real selected canvas image border",
+      "elapsedMs": 614.3
+    },
+    {
+      "name": "undo and redo the canvas edit",
+      "elapsedMs": 312.5
+    }
+  ],
+  "progress": [
+    {
+      "observedAt": "2026-10-17T07:56:26.923Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 0,
+      "total": 4
+    },
+    {
+      "observedAt": "2026-10-17T07:56:27.696Z",
+      "status": "complete",
+      "stage": "pairs",
+      "completed": 6,
+      "total": 6
+    },
+    {
+      "observedAt": "2026-10-17T07:56:30.376Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 0,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:31.133Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 3,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:31.809Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 7,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:32.464Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 11,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:33.128Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 15,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:33.795Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 19,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:34.463Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 23,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:35.121Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 27,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:35.788Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 31,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:36.444Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 34,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:37.113Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 39,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:37.769Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 43,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:38.437Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 48,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:39.097Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 53,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:39.763Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 56,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:40.441Z",
+      "status": "running",
+      "stage": "images",
+      "completed": 59,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T07:56:41.095Z",
+      "status": "running",
+      "stage": "pairs",
+      "completed": 22,
+      "total": 1770
+    },
+    {
+      "observedAt": "2026-10-17T07:56:41.831Z",
+      "status": "cancelled",
+      "stage": "pairs",
+      "completed": 48,
+      "total": 1770
+    }
+  ],
+  "remoteRequests": [],
+  "fixture": {
+    "kind": "synthetic_engineering_demo",
+    "count": 60,
+    "pairs": 1770,
+    "seeds": [
+      700,
+      759
+    ],
+    "size": "480 × 360",
+    "generator": "scripts/test_image_duplicates.py:raster()"
+  },
+  "servedBuild": {
+    "currentVersion": "0.1.20",
+    "suiteVersion": "1.4.20",
+    "platform": "windows",
+    "architecture": "x86_64"
+  },
+  "preflight": "60 of 60 images selected · 60 images · 1770 pairs",
+  "progressBeforeCancel": "Comparing images 22 / 1770",
+  "cancelUserToConfirmationMs": 635,
+  "fullBatchWallTimeUntilCancellationMs": 13112,
+  "animationFrames": {
+    "frames": 1431,
+    "maximumGapMs": 641.6,
+    "p50GapMs": 8.300000000001091,
+    "p95GapMs": 8.5,
+    "gapsOver100ms": 1
+  },
+  "errors": [],
+  "finishedAt": "2026-10-17T07:56:42.516Z",
+  "status": "PASS",
+  "installerTest": true,
+  "measurementLimit": "Single-device UI acceptance with startup and screenshot instrumentation; maximum RAF gap is retained and is not a zero-stutter claim."
+}

@@ -1,0 +1,990 @@
+{
+  "schema": "private-engineering-aggregate/2",
+  "independentBlindStudy": false,
+  "privacy": "Anonymous aggregates only. No filenames, original paths, image payloads, source hashes, contact sheets or experimental records are distributed.",
+  "engineSha256": "cabc1b8c64674b757efb799b16c0f2dd19c519912eb8a6e471d9e2db9867f3a2",
+  "ciMethod": "Wilson 95% binomial intervals; nominal pair-level intervals only. Engineered pairs share sources and are correlated; these intervals cannot establish general scientific-image sensitivity or specificity.",
+  "corpora": [
+    {
+      "id": "private-corpus-a",
+      "sourceImagesAudited": 167,
+      "sourceIntegrity": "PASS",
+      "studyType": "engineered_real_source",
+      "independentBlindStudy": false,
+      "exactIdentity": {
+        "status": "PASS",
+        "cases": 5
+      },
+      "summary": {
+        "fluorescence_appearance_unconfirmed": {
+          "duplicate": {
+            "TP": 18,
+            "FP": 0,
+            "FN": 0,
+            "TN": 2,
+            "n": 20,
+            "precision": {
+              "value": 1.0,
+              "numerator": 18,
+              "denominator": 18,
+              "ci95": [
+                0.8241207763533425,
+                1.0
+              ]
+            },
+            "recallSensitivity": {
+              "value": 1.0,
+              "numerator": 18,
+              "denominator": 18,
+              "ci95": [
+                0.8241207763533425,
+                1.0
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 2,
+              "denominator": 2,
+              "ci95": [
+                0.34238022750665303,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 2,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ]
+            },
+            "accuracy": {
+              "value": 1.0,
+              "numerator": 20,
+              "denominator": 20,
+              "ci95": [
+                0.8388748419471806,
+                1.0
+              ]
+            }
+          },
+          "localizationPresence": {
+            "TP": 6,
+            "FP": 0,
+            "FN": 0,
+            "TN": 2,
+            "n": 8,
+            "precision": {
+              "value": 1.0,
+              "numerator": 6,
+              "denominator": 6,
+              "ci95": [
+                0.6096657120978346,
+                1.0
+              ]
+            },
+            "recallSensitivity": {
+              "value": 1.0,
+              "numerator": 6,
+              "denominator": 6,
+              "ci95": [
+                0.6096657120978346,
+                1.0
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 2,
+              "denominator": 2,
+              "ci95": [
+                0.34238022750665303,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 2,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ]
+            },
+            "accuracy": {
+              "value": 1.0,
+              "numerator": 8,
+              "denominator": 8,
+              "ci95": [
+                0.6755924351161198,
+                1.0
+              ]
+            }
+          },
+          "correctLocalizationRate": {
+            "value": 0.8333333333333334,
+            "numerator": 5,
+            "denominator": 6,
+            "ci95": [
+              0.43649717781352987,
+              0.9699466302516935
+            ]
+          },
+          "wrongLocalizationAmongReturned": {
+            "value": 0.16666666666666666,
+            "numerator": 1,
+            "denominator": 6,
+            "ci95": [
+              0.030053369748306635,
+              0.5635028221864702
+            ]
+          },
+          "roiIoUMedian": 0.9968617089473856,
+          "cornerMeanPixelsMedian": 0.0008844477488535298,
+          "cornerMaxPixelsP95": 1.1974986289354044
+        },
+        "overall": {
+          "duplicate": {
+            "TP": 44,
+            "FP": 0,
+            "FN": 1,
+            "TN": 5,
+            "n": 50,
+            "precision": {
+              "value": 1.0,
+              "numerator": 44,
+              "denominator": 44,
+              "ci95": [
+                0.9197043962415192,
+                1.0
+              ]
+            },
+            "recallSensitivity": {
+              "value": 0.9777777777777777,
+              "numerator": 44,
+              "denominator": 45,
+              "ci95": [
+                0.8843331823158513,
+                0.9960664011171667
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 5,
+              "denominator": 5,
+              "ci95": [
+                0.5655175352168251,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 5,
+              "ci95": [
+                0.0,
+                0.43448246478317476
+              ]
+            },
+            "accuracy": {
+              "value": 0.98,
+              "numerator": 49,
+              "denominator": 50,
+              "ci95": [
+                0.8950455641036219,
+                0.9964607407283539
+              ]
+            }
+          },
+          "localizationPresence": {
+            "TP": 14,
+            "FP": 0,
+            "FN": 1,
+            "TN": 5,
+            "n": 20,
+            "precision": {
+              "value": 1.0,
+              "numerator": 14,
+              "denominator": 14,
+              "ci95": [
+                0.7846891972623643,
+                1.0
+              ]
+            },
+            "recallSensitivity": {
+              "value": 0.9333333333333333,
+              "numerator": 14,
+              "denominator": 15,
+              "ci95": [
+                0.7018347012621998,
+                0.9881331045067315
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 5,
+              "denominator": 5,
+              "ci95": [
+                0.5655175352168251,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 5,
+              "ci95": [
+                0.0,
+                0.43448246478317476
+              ]
+            },
+            "accuracy": {
+              "value": 0.95,
+              "numerator": 19,
+              "denominator": 20,
+              "ci95": [
+                0.763868806553258,
+                0.9911185511992047
+              ]
+            }
+          },
+          "correctLocalizationRate": {
+            "value": 0.8,
+            "numerator": 12,
+            "denominator": 15,
+            "ci95": [
+              0.5481455128483065,
+              0.9295245065301844
+            ]
+          },
+          "wrongLocalizationAmongReturned": {
+            "value": 0.14285714285714285,
+            "numerator": 2,
+            "denominator": 14,
+            "ci95": [
+              0.040093921271464966,
+              0.39941379496970353
+            ]
+          },
+          "roiIoUMedian": 0.9942568535629863,
+          "cornerMeanPixelsMedian": 0.5180314877001024,
+          "cornerMaxPixelsP95": 4.657319526792222
+        },
+        "histology_appearance_unconfirmed": {
+          "duplicate": {
+            "TP": 26,
+            "FP": 0,
+            "FN": 1,
+            "TN": 3,
+            "n": 30,
+            "precision": {
+              "value": 1.0,
+              "numerator": 26,
+              "denominator": 26,
+              "ci95": [
+                0.8712710781407846,
+                1.0
+              ]
+            },
+            "recallSensitivity": {
+              "value": 0.9629629629629629,
+              "numerator": 26,
+              "denominator": 27,
+              "ci95": [
+                0.8171653406642414,
+                0.9934318540192149
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 3,
+              "denominator": 3,
+              "ci95": [
+                0.4385029682449546,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 3,
+              "ci95": [
+                5.551115123125783e-17,
+                0.5614970317550454
+              ]
+            },
+            "accuracy": {
+              "value": 0.9666666666666667,
+              "numerator": 29,
+              "denominator": 30,
+              "ci95": [
+                0.8332960900859082,
+                0.9940914096183874
+              ]
+            }
+          },
+          "localizationPresence": {
+            "TP": 8,
+            "FP": 0,
+            "FN": 1,
+            "TN": 3,
+            "n": 12,
+            "precision": {
+              "value": 1.0,
+              "numerator": 8,
+              "denominator": 8,
+              "ci95": [
+                0.6755924351161198,
+                1.0
+              ]
+            },
+            "recallSensitivity": {
+              "value": 0.8888888888888888,
+              "numerator": 8,
+              "denominator": 9,
+              "ci95": [
+                0.5650002944233439,
+                0.9801091123614551
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 3,
+              "denominator": 3,
+              "ci95": [
+                0.4385029682449546,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 3,
+              "ci95": [
+                5.551115123125783e-17,
+                0.5614970317550454
+              ]
+            },
+            "accuracy": {
+              "value": 0.9166666666666666,
+              "numerator": 11,
+              "denominator": 12,
+              "ci95": [
+                0.646120088858883,
+                0.9851349055950829
+              ]
+            }
+          },
+          "correctLocalizationRate": {
+            "value": 0.7777777777777778,
+            "numerator": 7,
+            "denominator": 9,
+            "ci95": [
+              0.45258896910698887,
+              0.9367748928821533
+            ]
+          },
+          "wrongLocalizationAmongReturned": {
+            "value": 0.125,
+            "numerator": 1,
+            "denominator": 8,
+            "ci95": [
+              0.02241749145005667,
+              0.4708881822128535
+            ]
+          },
+          "roiIoUMedian": 0.994256618246788,
+          "cornerMeanPixelsMedian": 0.669413857172422,
+          "cornerMaxPixelsP95": 4.706596045599422
+        }
+      }
+    },
+    {
+      "id": "private-corpus-b",
+      "sourceImagesAudited": 54,
+      "sourceIntegrity": "PASS",
+      "studyType": "engineered_real_source",
+      "independentBlindStudy": false,
+      "exactIdentity": {
+        "status": "PASS",
+        "cases": 2
+      },
+      "summary": {
+        "Western_blot_user_declared": {
+          "requestedLabelledPairs": 20,
+          "nonEvaluablePairs": 0,
+          "successfulScreeningCoverage": {
+            "value": 1.0,
+            "numerator": 20,
+            "denominator": 20,
+            "ci95": [
+              0.8388748419471806,
+              1.0
+            ]
+          },
+          "duplicate": {
+            "TP": 16,
+            "FP": 0,
+            "FN": 2,
+            "TN": 2,
+            "n": 20,
+            "precision": {
+              "value": 1.0,
+              "numerator": 16,
+              "denominator": 16,
+              "ci95": [
+                0.8063923194655637,
+                1.0
+              ]
+            },
+            "recallSensitivity": {
+              "value": 0.8888888888888888,
+              "numerator": 16,
+              "denominator": 18,
+              "ci95": [
+                0.672002348698212,
+                0.9689804773543876
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 2,
+              "denominator": 2,
+              "ci95": [
+                0.34238022750665303,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 2,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ]
+            },
+            "accuracy": {
+              "value": 0.9,
+              "numerator": 18,
+              "denominator": 20,
+              "ci95": [
+                0.6989663547715128,
+                0.9721335187862319
+              ]
+            }
+          },
+          "localizationPresence": {
+            "TP": 0,
+            "FP": 0,
+            "FN": 6,
+            "TN": 2,
+            "n": 8,
+            "precision": {
+              "value": null,
+              "numerator": 0,
+              "denominator": 0,
+              "ci95": null
+            },
+            "recallSensitivity": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 6,
+              "ci95": [
+                2.7755575615628914e-17,
+                0.3903342879021653
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 2,
+              "denominator": 2,
+              "ci95": [
+                0.34238022750665303,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 2,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ]
+            },
+            "accuracy": {
+              "value": 0.25,
+              "numerator": 2,
+              "denominator": 8,
+              "ci95": [
+                0.071479212752109,
+                0.5907245696898311
+              ]
+            }
+          },
+          "correctLocalizationRate": {
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 6,
+            "ci95": [
+              2.7755575615628914e-17,
+              0.3903342879021653
+            ]
+          },
+          "wrongLocalizationAmongReturned": {
+            "value": null,
+            "numerator": 0,
+            "denominator": 0,
+            "ci95": null
+          },
+          "roiIoUMedian": null,
+          "cornerMeanPixelsMedian": null,
+          "cornerMaxPixelsP95": null,
+          "maxDirectionalMedianResidualAnalysisPixelsP50": null,
+          "maxDirectionalMedianResidualAnalysisPixelsP95": null,
+          "cycleErrorAnalysisPixelsP95": null
+        },
+        "overall": {
+          "requestedLabelledPairs": 20,
+          "nonEvaluablePairs": 0,
+          "successfulScreeningCoverage": {
+            "value": 1.0,
+            "numerator": 20,
+            "denominator": 20,
+            "ci95": [
+              0.8388748419471806,
+              1.0
+            ]
+          },
+          "duplicate": {
+            "TP": 16,
+            "FP": 0,
+            "FN": 2,
+            "TN": 2,
+            "n": 20,
+            "precision": {
+              "value": 1.0,
+              "numerator": 16,
+              "denominator": 16,
+              "ci95": [
+                0.8063923194655637,
+                1.0
+              ]
+            },
+            "recallSensitivity": {
+              "value": 0.8888888888888888,
+              "numerator": 16,
+              "denominator": 18,
+              "ci95": [
+                0.672002348698212,
+                0.9689804773543876
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 2,
+              "denominator": 2,
+              "ci95": [
+                0.34238022750665303,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 2,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ]
+            },
+            "accuracy": {
+              "value": 0.9,
+              "numerator": 18,
+              "denominator": 20,
+              "ci95": [
+                0.6989663547715128,
+                0.9721335187862319
+              ]
+            }
+          },
+          "localizationPresence": {
+            "TP": 0,
+            "FP": 0,
+            "FN": 6,
+            "TN": 2,
+            "n": 8,
+            "precision": {
+              "value": null,
+              "numerator": 0,
+              "denominator": 0,
+              "ci95": null
+            },
+            "recallSensitivity": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 6,
+              "ci95": [
+                2.7755575615628914e-17,
+                0.3903342879021653
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 2,
+              "denominator": 2,
+              "ci95": [
+                0.34238022750665303,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 2,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ]
+            },
+            "accuracy": {
+              "value": 0.25,
+              "numerator": 2,
+              "denominator": 8,
+              "ci95": [
+                0.071479212752109,
+                0.5907245696898311
+              ]
+            }
+          },
+          "correctLocalizationRate": {
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 6,
+            "ci95": [
+              2.7755575615628914e-17,
+              0.3903342879021653
+            ]
+          },
+          "wrongLocalizationAmongReturned": {
+            "value": null,
+            "numerator": 0,
+            "denominator": 0,
+            "ci95": null
+          },
+          "roiIoUMedian": null,
+          "cornerMeanPixelsMedian": null,
+          "cornerMaxPixelsP95": null,
+          "maxDirectionalMedianResidualAnalysisPixelsP50": null,
+          "maxDirectionalMedianResidualAnalysisPixelsP95": null,
+          "cycleErrorAnalysisPixelsP95": null
+        }
+      }
+    },
+    {
+      "id": "private-corpus-c",
+      "sourceImagesAudited": 19,
+      "sourceIntegrity": "PASS",
+      "studyType": "engineered_real_source",
+      "independentBlindStudy": false,
+      "exactIdentity": {
+        "status": "PASS",
+        "cases": 2
+      },
+      "summary": {
+        "TEM_uint16_user_declared": {
+          "requestedLabelledPairs": 12,
+          "nonEvaluablePairs": 0,
+          "successfulScreeningCoverage": {
+            "value": 1.0,
+            "numerator": 12,
+            "denominator": 12,
+            "ci95": [
+              0.7575059933447592,
+              1.0
+            ]
+          },
+          "duplicate": {
+            "TP": 10,
+            "FP": 0,
+            "FN": 0,
+            "TN": 2,
+            "n": 12,
+            "precision": {
+              "value": 1.0,
+              "numerator": 10,
+              "denominator": 10,
+              "ci95": [
+                0.7224672001371107,
+                0.9999999999999999
+              ]
+            },
+            "recallSensitivity": {
+              "value": 1.0,
+              "numerator": 10,
+              "denominator": 10,
+              "ci95": [
+                0.7224672001371107,
+                0.9999999999999999
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 2,
+              "denominator": 2,
+              "ci95": [
+                0.34238022750665303,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 2,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ]
+            },
+            "accuracy": {
+              "value": 1.0,
+              "numerator": 12,
+              "denominator": 12,
+              "ci95": [
+                0.7575059933447592,
+                1.0
+              ]
+            }
+          },
+          "localizationPresence": {
+            "TP": 4,
+            "FP": 0,
+            "FN": 0,
+            "TN": 2,
+            "n": 6,
+            "precision": {
+              "value": 1.0,
+              "numerator": 4,
+              "denominator": 4,
+              "ci95": [
+                0.5101091635454027,
+                1.0
+              ]
+            },
+            "recallSensitivity": {
+              "value": 1.0,
+              "numerator": 4,
+              "denominator": 4,
+              "ci95": [
+                0.5101091635454027,
+                1.0
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 2,
+              "denominator": 2,
+              "ci95": [
+                0.34238022750665303,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 2,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ]
+            },
+            "accuracy": {
+              "value": 1.0,
+              "numerator": 6,
+              "denominator": 6,
+              "ci95": [
+                0.6096657120978346,
+                1.0
+              ]
+            }
+          },
+          "correctLocalizationRate": {
+            "value": 1.0,
+            "numerator": 4,
+            "denominator": 4,
+            "ci95": [
+              0.5101091635454027,
+              1.0
+            ]
+          },
+          "wrongLocalizationAmongReturned": {
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 4,
+            "ci95": [
+              0.0,
+              0.4898908364545973
+            ]
+          },
+          "roiIoUMedian": 0.9991881236974343,
+          "cornerMeanPixelsMedian": 0.4752004711386162,
+          "cornerMaxPixelsP95": 1.0074560296851356,
+          "maxDirectionalMedianResidualAnalysisPixelsP50": 0.1385,
+          "maxDirectionalMedianResidualAnalysisPixelsP95": 0.159,
+          "cycleErrorAnalysisPixelsP95": 0.31261700000000003
+        },
+        "overall": {
+          "requestedLabelledPairs": 12,
+          "nonEvaluablePairs": 0,
+          "successfulScreeningCoverage": {
+            "value": 1.0,
+            "numerator": 12,
+            "denominator": 12,
+            "ci95": [
+              0.7575059933447592,
+              1.0
+            ]
+          },
+          "duplicate": {
+            "TP": 10,
+            "FP": 0,
+            "FN": 0,
+            "TN": 2,
+            "n": 12,
+            "precision": {
+              "value": 1.0,
+              "numerator": 10,
+              "denominator": 10,
+              "ci95": [
+                0.7224672001371107,
+                0.9999999999999999
+              ]
+            },
+            "recallSensitivity": {
+              "value": 1.0,
+              "numerator": 10,
+              "denominator": 10,
+              "ci95": [
+                0.7224672001371107,
+                0.9999999999999999
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 2,
+              "denominator": 2,
+              "ci95": [
+                0.34238022750665303,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 2,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ]
+            },
+            "accuracy": {
+              "value": 1.0,
+              "numerator": 12,
+              "denominator": 12,
+              "ci95": [
+                0.7575059933447592,
+                1.0
+              ]
+            }
+          },
+          "localizationPresence": {
+            "TP": 4,
+            "FP": 0,
+            "FN": 0,
+            "TN": 2,
+            "n": 6,
+            "precision": {
+              "value": 1.0,
+              "numerator": 4,
+              "denominator": 4,
+              "ci95": [
+                0.5101091635454027,
+                1.0
+              ]
+            },
+            "recallSensitivity": {
+              "value": 1.0,
+              "numerator": 4,
+              "denominator": 4,
+              "ci95": [
+                0.5101091635454027,
+                1.0
+              ]
+            },
+            "specificity": {
+              "value": 1.0,
+              "numerator": 2,
+              "denominator": 2,
+              "ci95": [
+                0.34238022750665303,
+                1.0
+              ]
+            },
+            "falsePositiveRate": {
+              "value": 0.0,
+              "numerator": 0,
+              "denominator": 2,
+              "ci95": [
+                0.0,
+                0.6576197724933469
+              ]
+            },
+            "accuracy": {
+              "value": 1.0,
+              "numerator": 6,
+              "denominator": 6,
+              "ci95": [
+                0.6096657120978346,
+                1.0
+              ]
+            }
+          },
+          "correctLocalizationRate": {
+            "value": 1.0,
+            "numerator": 4,
+            "denominator": 4,
+            "ci95": [
+              0.5101091635454027,
+              1.0
+            ]
+          },
+          "wrongLocalizationAmongReturned": {
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 4,
+            "ci95": [
+              0.0,
+              0.4898908364545973
+            ]
+          },
+          "roiIoUMedian": 0.9991881236974343,
+          "cornerMeanPixelsMedian": 0.4752004711386162,
+          "cornerMaxPixelsP95": 1.0074560296851356,
+          "maxDirectionalMedianResidualAnalysisPixelsP50": 0.1385,
+          "maxDirectionalMedianResidualAnalysisPixelsP95": 0.159,
+          "cycleErrorAnalysisPixelsP95": 0.31261700000000003
+        }
+      }
+    }
+  ],
+  "sourceIntegrity": {
+    "status": "PASS",
+    "checked": 240,
+    "changed": 0
+  },
+  "limits": {
+    "temFullFrames": "19 originals exceed 12 MB; full-frame screening not validated. All are within 20 megapixels by their recorded dimensions.",
+    "nativeTemEvaluatedScope": "Two explicitly selected native uint16 source ROIs, unchanged pixel values, not full-frame screening."
+  }
+}

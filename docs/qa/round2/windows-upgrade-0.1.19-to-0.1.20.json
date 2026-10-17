@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "fromVersion": "0.1.19",
+  "toVersion": "0.1.20",
+  "externalProjectUnchanged": true,
+  "settingsUnchanged": true,
+  "allPackagedFilesMatch": true,
+  "matchedFiles": 2501
+}

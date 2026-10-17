@@ -60,6 +60,19 @@ const StudioImageColor=(()=>{
     const total=s.count*3,warnings=[];if(additional/total>.001)warnings.push(warning('clipping','当前参数可能截断亮部或暗部细节，请降低强度或曝光。'));
     return {lowFraction:low/total,highFraction:high/total,additionalClippedFraction:additional/total,warnings};
   }
+  // RGB channel histograms describe display values, never stain concentration
+  // or biological signal. Keep the same bounded original sample for both views.
+  function displayStatistics(summary,value=defaults){
+    const s=validSample(summary),c=coefficients(value),before=Array(256).fill(0),after=Array(256).fill(0);
+    for(let ch=0;ch<3;ch++)for(let v=0;v<256;v++){
+      const n=s.hist[ch][v],mapped=toLinear(v/255)*c.slopes[ch]+c.intercept;
+      const bin=Math.round(toSrgb(Math.max(0,Math.min(1,mapped)))*255);
+      before[v]+=n;after[bin]+=n;
+    }
+    const total=s.count*3,clipping=estimateClipping(s,value);
+    return {pixels:s.count,width:s.width,height:s.height,before,after,
+      originalLowFraction:before[0]/total,originalHighFraction:before[255]/total,...clipping};
+  }
   function suggest(target,reference){
     validSample(target);validSample(reference);
     for(const s of [target,reference])if(!s.background?.eligible||!Array.isArray(s.background.rgb)||s.background.rgb.length!==3||s.background.rgb.some(v=>!finite(v)||v<.8||v>251/255))fail('background','未找到足够且未饱和的近白背景，无法自动匹配；请使用手动预览。');
@@ -136,6 +149,6 @@ const StudioImageColor=(()=>{
     for(let i=0;i<3;i++)transfer.append(make(doc,['feFuncR','feFuncG','feFuncB'][i],{type:'linear',slope:coeff.slopes[i],intercept:coeff.intercept}));transfer.append(make(doc,'feFuncA',{type:'identity'}));f.append(transfer);
     let defs=[...root.children].find(n=>n.localName==='defs'&&n.namespaceURI===NS);if(!defs){defs=make(doc,'defs');root.insertBefore(defs,root.firstChild);}defs.append(f);image.style?.removeProperty('filter');attr(image,'filter','url(#'+key+')');attr(image,MARK,meta);return f;
   }
-  return {validate,coefficients,transform,sample,analyze,suggest,estimateClipping,inspect,apply,clear,defaults:{...defaults,whiteBalance:[1,1,1]},limits:{maxSide:MAX_SIDE,maxPending:MAX_PENDING}};
+  return {validate,coefficients,transform,sample,analyze,suggest,estimateClipping,displayStatistics,inspect,apply,clear,defaults:{...defaults,whiteBalance:[1,1,1]},limits:{maxSide:MAX_SIDE,maxPending:MAX_PENDING}};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=StudioImageColor;

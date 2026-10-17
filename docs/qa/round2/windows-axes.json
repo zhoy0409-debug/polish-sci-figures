@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "source": "explicit local native-data project",
+  "checks": [
+    "discoverable professional axis entry; four sections; real local range/ticks/appearance/physical frame redraw",
+    "single undo/redo restores original artwork and new recipe",
+    "save/reopen retains unchanged source observations and declarative axis settings",
+    "double-click a recognized numeric axis tick opens settings",
+    "SVG and PNG export reflect actual data-axis redraw"
+  ],
+  "remoteRequests": [],
+  "errors": []
+}
