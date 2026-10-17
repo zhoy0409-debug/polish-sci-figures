@@ -2,7 +2,7 @@
 
 Figure Studio gains Carbon Atelier and Pearl Pro themes, a clearer selection inspector and a cat-and-dog update scene. Existing Figure Discovery, local scientific analysis, image tools, professional axes and editable exports remain available.
 
-Status checked 2026-10-17: source presentation checks are available; build-specific Windows installation/update acceptance and the final performance comparison are still in progress. Their completion must be recorded before this release is described as fully accepted. See the [validation summary](carbon-atelier-validation.md), [current browser record](qa/carbon-atelier/browser-validation.md) and [design-token evidence](qa/carbon-atelier/design-tokens.md).
+Status checked 2026-10-17: source functionality and the formal performance comparison without video recording are complete. The 5,000-element fixture still shows slower tail latency for selection and colour changes, so the results do not establish a performance-neutral release. Build-specific Windows installation/update and actual Windows display-scaling acceptance remain pending. See the [validation summary](carbon-atelier-validation.md), [current browser record](qa/carbon-atelier/browser-validation.md) and [design-token evidence](qa/carbon-atelier/design-tokens.md).
 
 ## What changed
 
@@ -26,7 +26,7 @@ This visual release does not extend statistical applicability, image-detection a
 
 本版增加默认 **Carbon Atelier** 深色工作台与可选 **Pearl Pro** 浅色主题，梳理当前选中内容的检查器，并以原创猫狗协作场景展示真实更新阶段。保留智能选图、本地统计、图片工具、专业坐标轴及可编辑导出。
 
-截至 2026-10-17：已有源码界面检查记录；本版 Windows 安装／升级实际验收和最终性能对照仍在进行，完成前不宣称全面验收。结果见[验收汇总](carbon-atelier-validation.md)、[浏览器记录](qa/carbon-atelier/browser-validation.md)与[设计令牌证据](qa/carbon-atelier/design-tokens.md)。
+截至 2026-10-17：源码功能和无录屏正式性能对照已完成；5000 图元下选择／改色的尾部延迟仍有退步，不能据此宣称性能无回退。本版 Windows 安装／升级及实际系统缩放仍待验收。结果见[验收汇总](carbon-atelier-validation.md)、[浏览器记录](qa/carbon-atelier/browser-validation.md)与[设计令牌证据](qa/carbon-atelier/design-tokens.md)。
 
 - 顶部**外观**可切换 Carbon（强调色 `#49C3A5`）和 Pearl（`#176B5D`），单独设置中性、深色或浅色的画布周边。图纸保留白色，界面偏好与作品配色、原始像素及撤销记录分开。
 - 右侧显示当前选中的对象类别，常用设置优先，其他分组仍可展开；保留五组工作入口和本地功能搜索，并新增外观命令。检查器标签可换行，避免隐藏操作名称。

@@ -60,10 +60,15 @@ def inventory():
                       "sha256": hashlib.sha256(data).hexdigest(), "css_fragments": len(fragments),
                       "literal_colors": sum(counters["colors"].values()),
                       "token_references": sum(fragment.count("var(--") for fragment in fragments)})
+    theme_source = (ASSETS / "theme-tokens.css").read_text(encoding="utf-8")
+    theme_names = re.findall(r"(--[\w-]+)\s*:", theme_source)
     return {"generated_utc": datetime.now(timezone.utc).isoformat(),
             "git_head": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
             "scope": "UI CSS assets and explicitly enumerated component-injected styles; excludes scientific SVG, palettes, data and rendering code",
             "files": files,
+            "theme_root_properties": {"unique": len(set(theme_names)), "declarations": len(theme_names),
+                                      "fs_tokens": len({name for name in theme_names if name.startswith("--fs-")}),
+                                      "legacy_aliases": len({name for name in theme_names if not name.startswith("--fs-")})},
             "totals": {key: {"occurrences": sum(value.values()), "distinct": len(value)} for key, value in groups.items()},
             "values": {key: dict(value.most_common()) for key, value in groups.items()}}
 

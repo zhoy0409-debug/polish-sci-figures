@@ -1,0 +1,729 @@
+{
+  "schema": "figure-studio-carbon-performance-comparison/1",
+  "status": "MEASURED",
+  "baselineSummarySha256": "edb05c19b4b02469f52cde8cb436157411fffdc672b2b444fc6cb95623de6d48",
+  "currentSummarySha256": "0da4773dcdc6d7e7689cdb4b764c3d1cf7d39165f581c4c1989ba4c16f433874",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "browserMode": "headful",
+  "recording": {
+    "enabled": false,
+    "format": null,
+    "size": null
+  },
+  "measurement": "Playwright UI control events captured before application handlers → next rAF and second rAF opportunities. These are presentation opportunities, not direct screen-pixel paint measurements. Event Timing is Chrome-granular; action wall time includes Playwright overhead. Colour uses the actual input control via fill; native colour-picker window latency is excluded.",
+  "conditions": "Same Windows device; actual Google Chrome, no CPU throttle. Other user processes are not controlled. No clean-machine or GPU-occupancy claim.",
+  "scope": "Same-device sequential engineering benchmark. Small repeated sample; no significance, population, worst-case or continuous-frame-rate claim.",
+  "fixtures": [
+    {
+      "elements": 120,
+      "operations": {
+        "select-text": {
+          "samples": 12,
+          "inputToNextRaf": {
+            "baselineP50Ms": 59.30000001192093,
+            "baselineP95Ms": 83.69999998807907,
+            "currentP50Ms": 56.5,
+            "currentP95Ms": 79.5,
+            "p50ChangePercent": -4.721753813419987,
+            "p95ChangePercent": -5.017921133425632
+          },
+          "inputToSecondRaf": {
+            "baselineP50Ms": 95.60000002384186,
+            "baselineP95Ms": 116.80000001192093,
+            "currentP50Ms": 91.59999999403954,
+            "currentP95Ms": 118.90000000596046,
+            "p50ChangePercent": -4.184100448540539,
+            "p95ChangePercent": 1.7979452001928113
+          },
+          "gestureCommitToSecondRaf": {
+            "baselineP50Ms": 54,
+            "baselineP95Ms": 66.90000000596046,
+            "currentP50Ms": 52.39999997615814,
+            "currentP95Ms": 58.30000001192093,
+            "p50ChangePercent": -2.962963007114552,
+            "p95ChangePercent": -12.855007463786723
+          },
+          "actionWall": {
+            "baselineP50Ms": 194.2999999821186,
+            "baselineP95Ms": 219.7000000178814,
+            "currentP50Ms": 187.40000000596046,
+            "currentP95Ms": 223.59999999403954,
+            "p50ChangePercent": -3.5512094579480946,
+            "p95ChangePercent": 1.775147917997597
+          },
+          "frames": {
+            "baseline": {
+              "count": 132,
+              "p50": 8.399999999999636,
+              "p95": 66.59999999999945,
+              "max": 83.40000000000009,
+              "over33ms": 23,
+              "over50ms": 11,
+              "over50msFraction": 0.08333333333333333
+            },
+            "current": {
+              "count": 127,
+              "p50": 8.399999999999636,
+              "p95": 66.59999999999945,
+              "max": 83.30000000000018,
+              "over33ms": 22,
+              "over50ms": 10,
+              "over50msFraction": 0.07874015748031496
+            }
+          },
+          "longTasks": {
+            "baseline": {
+              "count": 12,
+              "totalMs": 742,
+              "maxMs": 87
+            },
+            "current": {
+              "count": 12,
+              "totalMs": 715,
+              "maxMs": 80
+            }
+          },
+          "ordinary100msProxy": {
+            "nextRafP95Under100ms": true,
+            "secondRafP95Under100ms": false,
+            "scope": "Browser presentation-opportunity proxies, not direct visible-pixel first-frame measurements"
+          }
+        },
+        "text-colour": {
+          "samples": 12,
+          "inputToNextRaf": {
+            "baselineP50Ms": 69.90000000596046,
+            "baselineP95Ms": 115.2999999821186,
+            "currentP50Ms": 66.09999999403954,
+            "currentP95Ms": 94.09999999403954,
+            "p50ChangePercent": -5.436337641769525,
+            "p95ChangePercent": -18.386816991645176
+          },
+          "inputToSecondRaf": {
+            "baselineP50Ms": 135.90000000596046,
+            "baselineP95Ms": 209.69999998807907,
+            "currentP50Ms": 134.59999999403954,
+            "currentP95Ms": 180.80000001192093,
+            "p50ChangePercent": -0.9565857335275291,
+            "p95ChangePercent": -13.781592740963776
+          },
+          "gestureCommitToSecondRaf": {
+            "baselineP50Ms": null,
+            "baselineP95Ms": null,
+            "currentP50Ms": null,
+            "currentP95Ms": null,
+            "p50ChangePercent": null,
+            "p95ChangePercent": null
+          },
+          "actionWall": {
+            "baselineP50Ms": 196.59999999403954,
+            "baselineP95Ms": 311.5,
+            "currentP50Ms": 194.2000000178814,
+            "currentP95Ms": 266.19999998807907,
+            "p50ChangePercent": -1.2207527854684155,
+            "p95ChangePercent": -14.542536119396766
+          },
+          "frames": {
+            "baseline": {
+              "count": 117,
+              "p50": 8.399999999999636,
+              "p95": 75,
+              "max": 116.59999999999991,
+              "over33ms": 24,
+              "over50ms": 22,
+              "over50msFraction": 0.18803418803418803
+            },
+            "current": {
+              "count": 116,
+              "p50": 8.399999999999636,
+              "p95": 75.10000000000036,
+              "max": 100,
+              "over33ms": 24,
+              "over50ms": 24,
+              "over50msFraction": 0.20689655172413793
+            }
+          },
+          "longTasks": {
+            "baseline": {
+              "count": 15,
+              "totalMs": 945,
+              "maxMs": 101
+            },
+            "current": {
+              "count": 12,
+              "totalMs": 716,
+              "maxMs": 80
+            }
+          },
+          "ordinary100msProxy": {
+            "nextRafP95Under100ms": true,
+            "secondRafP95Under100ms": false,
+            "scope": "Browser presentation-opportunity proxies, not direct visible-pixel first-frame measurements"
+          }
+        },
+        "drag-shape": {
+          "samples": 12,
+          "inputToNextRaf": {
+            "baselineP50Ms": 0.20000001788139343,
+            "baselineP95Ms": 0.30000001192092896,
+            "currentP50Ms": 0.30000001192092896,
+            "currentP95Ms": 0.30000001192092896,
+            "p50ChangePercent": 49.99999254942007,
+            "p95ChangePercent": 0
+          },
+          "inputToSecondRaf": {
+            "baselineP50Ms": 8.5,
+            "baselineP95Ms": 8.700000017881393,
+            "currentP50Ms": 8.400000005960464,
+            "currentP95Ms": 8.600000023841858,
+            "p50ChangePercent": -1.1764705181121826,
+            "p95ChangePercent": -1.1494252164827847
+          },
+          "gestureCommitToSecondRaf": {
+            "baselineP50Ms": 125.09999999403954,
+            "baselineP95Ms": 163.2999999821186,
+            "currentP50Ms": 90.60000002384186,
+            "currentP95Ms": 143.7000000178814,
+            "p50ChangePercent": -27.577937627371263,
+            "p95ChangePercent": -12.002449458899827
+          },
+          "actionWall": {
+            "baselineP50Ms": 234.69999998807907,
+            "baselineP95Ms": 296,
+            "currentP50Ms": 218.09999999403954,
+            "currentP95Ms": 266.59999999403954,
+            "p50ChangePercent": -7.0728589667161,
+            "p95ChangePercent": -9.932432434446103
+          },
+          "frames": {
+            "baseline": {
+              "count": 179,
+              "p50": 8.399999999999636,
+              "p95": 66.60000000000036,
+              "max": 91.69999999999982,
+              "over33ms": 20,
+              "over50ms": 19,
+              "over50msFraction": 0.10614525139664804
+            },
+            "current": {
+              "count": 172,
+              "p50": 8.399999999999636,
+              "p95": 58.29999999999973,
+              "max": 83.30000000000018,
+              "over33ms": 18,
+              "over50ms": 15,
+              "over50msFraction": 0.0872093023255814
+            }
+          },
+          "longTasks": {
+            "baseline": {
+              "count": 12,
+              "totalMs": 803,
+              "maxMs": 91
+            },
+            "current": {
+              "count": 12,
+              "totalMs": 746,
+              "maxMs": 81
+            }
+          },
+          "ordinary100msProxy": {
+            "nextRafP95Under100ms": true,
+            "secondRafP95Under100ms": true,
+            "scope": "Browser presentation-opportunity proxies, not direct visible-pixel first-frame measurements"
+          }
+        },
+        "resize-sidebar": {
+          "samples": 12,
+          "inputToNextRaf": {
+            "baselineP50Ms": 0.20000001788139343,
+            "baselineP95Ms": 0.29999998211860657,
+            "currentP50Ms": 0.20000001788139343,
+            "currentP95Ms": 0.30000001192092896,
+            "p50ChangePercent": 0,
+            "p95ChangePercent": 0.000009934108054684087
+          },
+          "inputToSecondRaf": {
+            "baselineP50Ms": 26.200000017881393,
+            "baselineP95Ms": 33.69999998807907,
+            "currentP50Ms": 15,
+            "currentP95Ms": 25.19999998807907,
+            "p50ChangePercent": -42.748091642127626,
+            "p95ChangePercent": -25.222551937705525
+          },
+          "gestureCommitToSecondRaf": {
+            "baselineP50Ms": 57.19999998807907,
+            "baselineP95Ms": 77.7999999821186,
+            "currentP50Ms": 54.20000001788139,
+            "currentP95Ms": 62.099999994039536,
+            "p50ChangePercent": -5.244755193746331,
+            "p95ChangePercent": -20.17994857543384
+          },
+          "actionWall": {
+            "baselineP50Ms": 319.5,
+            "baselineP95Ms": 384,
+            "currentP50Ms": 240.5,
+            "currentP95Ms": 302.90000000596046,
+            "p50ChangePercent": -24.726134585289515,
+            "p95ChangePercent": -21.119791665114462
+          },
+          "frames": {
+            "baseline": {
+              "count": 265,
+              "p50": 8.400000000000091,
+              "p95": 33.30000000000018,
+              "max": 41.70000000000073,
+              "over33ms": 16,
+              "over50ms": 0,
+              "over50msFraction": 0
+            },
+            "current": {
+              "count": 219,
+              "p50": 8.399999999999636,
+              "p95": 25.100000000000364,
+              "max": 33.400000000000546,
+              "over33ms": 5,
+              "over50ms": 0,
+              "over50msFraction": 0
+            }
+          },
+          "longTasks": {
+            "baseline": {
+              "count": 10,
+              "totalMs": 587,
+              "maxMs": 72
+            },
+            "current": {
+              "count": 1,
+              "totalMs": 53,
+              "maxMs": 53
+            }
+          },
+          "ordinary100msProxy": {
+            "nextRafP95Under100ms": true,
+            "secondRafP95Under100ms": true,
+            "scope": "Browser presentation-opportunity proxies, not direct visible-pixel first-frame measurements"
+          }
+        },
+        "switch-inspector-tab": {
+          "samples": 12,
+          "inputToNextRaf": {
+            "baselineP50Ms": 48.30000001192093,
+            "baselineP95Ms": 62.80000001192093,
+            "currentP50Ms": 45.599999994039536,
+            "currentP95Ms": 58.5,
+            "p50ChangePercent": -5.590062147443077,
+            "p95ChangePercent": -6.847133775644406
+          },
+          "inputToSecondRaf": {
+            "baselineP50Ms": 78.5,
+            "baselineP95Ms": 122.69999998807907,
+            "currentP50Ms": 76.7000000178814,
+            "currentP95Ms": 98.09999999403954,
+            "p50ChangePercent": -2.2929936077944033,
+            "p95ChangePercent": -20.04889975259132
+          },
+          "gestureCommitToSecondRaf": {
+            "baselineP50Ms": 78.5,
+            "baselineP95Ms": 122.7999999821186,
+            "currentP50Ms": 76.7000000178814,
+            "currentP95Ms": 98.09999999403954,
+            "p50ChangePercent": -2.2929936077944033,
+            "p95ChangePercent": -20.114006507879264
+          },
+          "actionWall": {
+            "baselineP50Ms": 163.40000000596046,
+            "baselineP95Ms": 211.7999999821186,
+            "currentP50Ms": 162.40000000596046,
+            "currentP95Ms": 214,
+            "p50ChangePercent": -0.6119951040168434,
+            "p95ChangePercent": 1.0387157781242353
+          },
+          "frames": {
+            "baseline": {
+              "count": 124,
+              "p50": 8.399999999999636,
+              "p95": 50,
+              "max": 66.70000000000073,
+              "over33ms": 21,
+              "over50ms": 5,
+              "over50msFraction": 0.04032258064516129
+            },
+            "current": {
+              "count": 132,
+              "p50": 8.399999999999636,
+              "p95": 50,
+              "max": 58.399999999999636,
+              "over33ms": 16,
+              "over50ms": 6,
+              "over50msFraction": 0.045454545454545456
+            }
+          },
+          "longTasks": {
+            "baseline": {
+              "count": 6,
+              "totalMs": 330,
+              "maxMs": 64
+            },
+            "current": {
+              "count": 5,
+              "totalMs": 279,
+              "maxMs": 60
+            }
+          },
+          "ordinary100msProxy": {
+            "nextRafP95Under100ms": true,
+            "secondRafP95Under100ms": true,
+            "scope": "Browser presentation-opportunity proxies, not direct visible-pixel first-frame measurements"
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "operations": {
+        "select-text": {
+          "samples": 12,
+          "inputToNextRaf": {
+            "baselineP50Ms": 280.30000001192093,
+            "baselineP95Ms": 325.69999998807907,
+            "currentP50Ms": 281.7999999821186,
+            "currentP95Ms": 387.40000000596046,
+            "p50ChangePercent": 0.5351409097873292,
+            "p95ChangePercent": 18.943813331329345
+          },
+          "inputToSecondRaf": {
+            "baselineP50Ms": 422,
+            "baselineP95Ms": 539.9000000059605,
+            "currentP50Ms": 436.19999998807907,
+            "currentP95Ms": 722.8000000119209,
+            "p50ChangePercent": 3.364928907127742,
+            "p95ChangePercent": 33.87664382366017
+          },
+          "gestureCommitToSecondRaf": {
+            "baselineP50Ms": 264.19999998807907,
+            "baselineP95Ms": 309.80000001192093,
+            "currentP50Ms": 268.60000002384186,
+            "currentP95Ms": 472.60000002384186,
+            "p50ChangePercent": 1.6654050098263886,
+            "p95ChangePercent": 52.550032280715456
+          },
+          "actionWall": {
+            "baselineP50Ms": 504.19999998807907,
+            "baselineP95Ms": 631.1000000238419,
+            "currentP50Ms": 524.6999999880791,
+            "currentP95Ms": 813,
+            "p50ChangePercent": 4.065846886252417,
+            "p95ChangePercent": 28.822690535459717
+          },
+          "frames": {
+            "baseline": {
+              "count": 119,
+              "p50": 8.400000000001455,
+              "p95": 291.7000000000007,
+              "max": 333.29999999999563,
+              "over33ms": 26,
+              "over50ms": 25,
+              "over50msFraction": 0.21008403361344538
+            },
+            "current": {
+              "count": 109,
+              "p50": 8.400000000001455,
+              "p95": 299.89999999999964,
+              "max": 408.5,
+              "over33ms": 25,
+              "over50ms": 24,
+              "over50msFraction": 0.22018348623853212
+            }
+          },
+          "longTasks": {
+            "baseline": {
+              "count": 25,
+              "totalMs": 4995,
+              "maxMs": 327
+            },
+            "current": {
+              "count": 24,
+              "totalMs": 5238,
+              "maxMs": 390
+            }
+          },
+          "ordinary100msProxy": null
+        },
+        "text-colour": {
+          "samples": 12,
+          "inputToNextRaf": {
+            "baselineP50Ms": 382.30000001192093,
+            "baselineP95Ms": 485.19999998807907,
+            "currentP50Ms": 399.90000000596046,
+            "currentP95Ms": 564.2000000178814,
+            "p50ChangePercent": 4.603714358747248,
+            "p95ChangePercent": 16.28194559598996
+          },
+          "inputToSecondRaf": {
+            "baselineP50Ms": 560.2000000178814,
+            "baselineP95Ms": 681.6999999880791,
+            "currentP50Ms": 595.7000000178814,
+            "currentP95Ms": 822,
+            "p50ChangePercent": 6.337022491764879,
+            "p95ChangePercent": 20.580900691561443
+          },
+          "gestureCommitToSecondRaf": {
+            "baselineP50Ms": null,
+            "baselineP95Ms": null,
+            "currentP50Ms": null,
+            "currentP95Ms": null,
+            "p50ChangePercent": null,
+            "p95ChangePercent": null
+          },
+          "actionWall": {
+            "baselineP50Ms": 683.3000000119209,
+            "baselineP95Ms": 774,
+            "currentP50Ms": 687,
+            "currentP95Ms": 931.7999999821186,
+            "p50ChangePercent": 0.541489827018077,
+            "p95ChangePercent": 20.38759689691455
+          },
+          "frames": {
+            "baseline": {
+              "count": 146,
+              "p50": 8.399999999997817,
+              "p95": 374.8999999999978,
+              "max": 491.5,
+              "over33ms": 25,
+              "over50ms": 24,
+              "over50msFraction": 0.1643835616438356
+            },
+            "current": {
+              "count": 144,
+              "p50": 8.399999999997817,
+              "p95": 391.6999999999998,
+              "max": 566.6999999999971,
+              "over33ms": 24,
+              "over50ms": 24,
+              "over50msFraction": 0.16666666666666666
+            }
+          },
+          "longTasks": {
+            "baseline": {
+              "count": 24,
+              "totalMs": 6192,
+              "maxMs": 462
+            },
+            "current": {
+              "count": 25,
+              "totalMs": 6591,
+              "maxMs": 534
+            }
+          },
+          "ordinary100msProxy": null
+        },
+        "drag-shape": {
+          "samples": 12,
+          "inputToNextRaf": {
+            "baselineP50Ms": 0.20000001788139343,
+            "baselineP95Ms": 0.30000001192092896,
+            "currentP50Ms": 0.19999998807907104,
+            "currentP95Ms": 0.30000001192092896,
+            "p50ChangePercent": -0.000014901159861580145,
+            "p95ChangePercent": 0
+          },
+          "inputToSecondRaf": {
+            "baselineP50Ms": 6,
+            "baselineP95Ms": 11.900000005960464,
+            "currentP50Ms": 6.9000000059604645,
+            "currentP95Ms": 8.800000011920929,
+            "p50ChangePercent": 15.000000099341074,
+            "p95ChangePercent": -26.050420104931174
+          },
+          "gestureCommitToSecondRaf": {
+            "baselineP50Ms": 554.7000000178814,
+            "baselineP95Ms": 693.9000000059605,
+            "currentP50Ms": 573.3000000119209,
+            "currentP95Ms": 740.5999999940395,
+            "p50ChangePercent": 3.3531638711808083,
+            "p95ChangePercent": 6.730076378106057
+          },
+          "actionWall": {
+            "baselineP50Ms": 956.0999999940395,
+            "baselineP95Ms": 1243.699999988079,
+            "currentP50Ms": 954.6999999880791,
+            "currentP95Ms": 1179.199999988079,
+            "p50ChangePercent": -0.14642819851157748,
+            "p95ChangePercent": -5.18613813625619
+          },
+          "frames": {
+            "baseline": {
+              "count": 296,
+              "p50": 8.399999999999636,
+              "p95": 174.99999999999636,
+              "max": 533.2000000000044,
+              "over33ms": 65,
+              "over50ms": 49,
+              "over50msFraction": 0.16554054054054054
+            },
+            "current": {
+              "count": 269,
+              "p50": 8.399999999999636,
+              "p95": 216.59999999999854,
+              "max": 525,
+              "over33ms": 64,
+              "over50ms": 46,
+              "over50msFraction": 0.17100371747211895
+            }
+          },
+          "longTasks": {
+            "baseline": {
+              "count": 43,
+              "totalMs": 7496,
+              "maxMs": 520
+            },
+            "current": {
+              "count": 38,
+              "totalMs": 7345,
+              "maxMs": 537
+            }
+          },
+          "ordinary100msProxy": null
+        },
+        "resize-sidebar": {
+          "samples": 12,
+          "inputToNextRaf": {
+            "baselineP50Ms": 0.19999998807907104,
+            "baselineP95Ms": 0.3999999761581421,
+            "currentP50Ms": 0.20000001788139343,
+            "currentP95Ms": 0.4000000059604645,
+            "p50ChangePercent": 0.000014901162082026128,
+            "p95ChangePercent": 0.000007450581041013064
+          },
+          "inputToSecondRaf": {
+            "baselineP50Ms": 166.2999999821186,
+            "baselineP95Ms": 185.10000002384186,
+            "currentP50Ms": 33.19999998807907,
+            "currentP95Ms": 150.30000001192093,
+            "p50ChangePercent": -80.03607937964588,
+            "p95ChangePercent": -18.80064830223582
+          },
+          "gestureCommitToSecondRaf": {
+            "baselineP50Ms": 147.90000000596046,
+            "baselineP95Ms": 161.10000002384186,
+            "currentP50Ms": 182.59999999403954,
+            "currentP95Ms": 211.69999998807907,
+            "p50ChangePercent": 23.4617985035028,
+            "p95ChangePercent": 31.409062667131415
+          },
+          "actionWall": {
+            "baselineP50Ms": 785.9000000059605,
+            "baselineP95Ms": 885.0999999940395,
+            "currentP50Ms": 602.5999999940395,
+            "currentP95Ms": 664,
+            "p50ChangePercent": -23.323578064706798,
+            "p95ChangePercent": -24.980228222294482
+          },
+          "frames": {
+            "baseline": {
+              "count": 250,
+              "p50": 8.400000000001455,
+              "p95": 100,
+              "max": 133.3000000000029,
+              "over33ms": 109,
+              "over50ms": 91,
+              "over50msFraction": 0.364
+            },
+            "current": {
+              "count": 243,
+              "p50": 8.400000000001455,
+              "p95": 108.30000000000291,
+              "max": 141.59999999999854,
+              "over33ms": 57,
+              "over50ms": 47,
+              "over50msFraction": 0.1934156378600823
+            }
+          },
+          "longTasks": {
+            "baseline": {
+              "count": 83,
+              "totalMs": 7815,
+              "maxMs": 184
+            },
+            "current": {
+              "count": 46,
+              "totalMs": 4515,
+              "maxMs": 149
+            }
+          },
+          "ordinary100msProxy": null
+        },
+        "switch-inspector-tab": {
+          "samples": 12,
+          "inputToNextRaf": {
+            "baselineP50Ms": 177.7000000178814,
+            "baselineP95Ms": 792.9000000059605,
+            "currentP50Ms": 174.59999999403954,
+            "currentP95Ms": 793.6999999880791,
+            "p50ChangePercent": -1.7445132377771044,
+            "p95ChangePercent": 0.10089544483700248
+          },
+          "inputToSecondRaf": {
+            "baselineP50Ms": 353,
+            "baselineP95Ms": 1130.9000000059605,
+            "currentP50Ms": 342.69999998807907,
+            "currentP95Ms": 1156.5,
+            "p50ChangePercent": -2.9178470288727842,
+            "p95ChangePercent": 2.263683791131365
+          },
+          "gestureCommitToSecondRaf": {
+            "baselineP50Ms": 353.09999999403954,
+            "baselineP95Ms": 1130.9000000059605,
+            "currentP50Ms": 342.80000001192093,
+            "currentP95Ms": 1156.5999999940395,
+            "p50ChangePercent": -2.917020669015144,
+            "p95ChangePercent": 2.272526305415476
+          },
+          "actionWall": {
+            "baselineP50Ms": 420.19999998807907,
+            "baselineP95Ms": 1336.800000011921,
+            "currentP50Ms": 447.7999999821186,
+            "currentP95Ms": 1266.9000000059605,
+            "p50ChangePercent": 6.568300807906363,
+            "p95ChangePercent": -5.228904847796015
+          },
+          "frames": {
+            "baseline": {
+              "count": 108,
+              "p50": 8.399999999997817,
+              "p95": 650,
+              "max": 875.1000000000004,
+              "over33ms": 30,
+              "over50ms": 30,
+              "over50msFraction": 0.2777777777777778
+            },
+            "current": {
+              "count": 115,
+              "p50": 8.399999999997817,
+              "p95": 733.2999999999993,
+              "max": 833.4000000000005,
+              "over33ms": 28,
+              "over50ms": 24,
+              "over50msFraction": 0.20869565217391303
+            }
+          },
+          "longTasks": {
+            "baseline": {
+              "count": 36,
+              "totalMs": 8566,
+              "maxMs": 794
+            },
+            "current": {
+              "count": 28,
+              "totalMs": 7979,
+              "maxMs": 795
+            }
+          },
+          "ordinary100msProxy": null
+        }
+      }
+    }
+  ]
+}

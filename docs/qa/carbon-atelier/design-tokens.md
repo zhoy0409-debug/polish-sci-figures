@@ -24,6 +24,8 @@ Machine-readable details: [baseline inventory](token-audit-baseline.json), [curr
 
 Load `theme-tokens.css`, then `theme.css`, then the existing component styles. The default root uses Carbon. Setting `document.documentElement.dataset.theme` to `pearl` selects Pearl; appearance persistence belongs to the theme controller, outside scientific project state.
 
+The current catalogue contains 93 distinct root properties: 80 namespaced tokens and the 13 existing compatibility aliases. Four unused generic aliases (`--ink`, `--text`, `--card`, `--border`) were removed so that scientific SVG fallback colours are not captured by the interface theme. The two sidebar geometry properties are registered separately with `inherits: false`; their pixel values still resize the workspace grid without propagating drag changes into scientific SVG nodes.
+
 | Role | Carbon Atelier | Pearl Pro |
 | --- | --- | --- |
 | App / header | `#151B25` / `#1C2430` | `#E6EBF2` / `#F9FAFC` |
@@ -65,7 +67,7 @@ From the repository root, use the project's Python environment and a Node enviro
 node scripts/test_studio_theme_tokens.cjs
 ```
 
-The component test ran on Windows Chrome 155.0.8059.82 at 1440×900. Each theme passed 13 representative text checks, three important control-boundary checks, five hover/pressed/focus checks, 27 semantic foreground/background token pairs, reduced motion, scientific paint/DOM/raster invariance, and zero network requests. State assertions check the exact specified hover/pressed brand colors and their foregrounds. [Recorded component results](theme-component-checks.json) identify the browser and actual minimum ratios. These checks cover the named components and token pairs; they do not certify every page or all combinations as WCAG AA.
+The component test ran on Windows Chrome 155.0.8059.82 at 1440×900. Each theme passed 15 representative text checks, three important control-boundary checks, five hover/pressed/focus checks, 27 semantic foreground/background token pairs, reduced motion, scientific paint/DOM/raster invariance, and zero network requests. State assertions check the exact specified hover/pressed brand colors and their foregrounds. Actual Chrome checks also confirm that the four SVG variable fallbacks and an explicitly defined user `--ink` retain their colours, and that both sidebar widths remain adjustable without being inherited by the SVG. [Recorded component results](theme-component-checks.json) identify the browser and actual minimum ratios. These checks cover the named components and token pairs; they do not certify every page or all combinations as WCAG AA.
 
 For a running source build with the current assets:
 

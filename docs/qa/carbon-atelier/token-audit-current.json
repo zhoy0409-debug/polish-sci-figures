@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-10-17T11:54:37.435963+00:00",
-  "git_head": "2c6d11a0b494c3668a929cc272482e74be58e0fe",
+  "generated_utc": "2026-10-17T11:56:10.259836+00:00",
+  "git_head": "fbe15aa967bc51b9a3a1bf8dfae674a297d9a7a0",
   "scope": "UI CSS assets and explicitly enumerated component-injected styles; excludes scientific SVG, palettes, data and rendering code",
   "files": [
     {
@@ -140,6 +140,12 @@
       "token_references": 0
     }
   ],
+  "theme_root_properties": {
+    "unique": 93,
+    "declarations": 138,
+    "fs_tokens": 80,
+    "legacy_aliases": 13
+  },
   "totals": {
     "colors": {
       "occurrences": 194,

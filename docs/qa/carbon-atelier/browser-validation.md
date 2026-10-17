@@ -17,7 +17,8 @@
 | 工程恢复、工具栏高度、改色/拖动撤销、侧栏宽度记忆 | [三视口复核](layout-restoration-checks.json) | 已修复并通过 |
 | 轴上下文、真实保存状态、画布环绕及主题记忆 | [两主题补充复核](context-acceptance.json) | 已完成源码验收 |
 | 组件文字/边界与实际页面文字对比度 | [组件检查](theme-component-checks.json)、[首次页面失败记录](ui-contrast-initial.json)、[定点修复复核](context-acceptance.json) | 已修复发现的问题；不宣称全页面 AA |
-| 首版 Carbon 与冻结基线的性能对照 | [原始退步汇总](pre-optimization-performance-summary.json)、[前后对照](pre-optimization-performance-comparison.json)、[诊断](profile-diagnostics.json) | 存在退步，优化后正式复测未完成 |
+| 首版 Carbon 与冻结基线的录屏性能对照 | [原始退步汇总](pre-optimization-performance-summary.json)、[前后对照](pre-optimization-performance-comparison.json)、[诊断](profile-diagnostics.json) | 退步证据保留；优化版录屏条件未正式复测 |
+| 优化后无录屏正式对照，各操作 12 次 | [基线](baseline-no-video-performance-summary.json)、[候选](current-no-video-performance-summary.json)、[对照](no-video-performance-comparison.json) | 普通工程改善；5000 图元尾部仍有退步 |
 | Windows 实际系统缩放、安装、真实更新 | 由独立的安装与原生界面流程记录 | 不由本记录宣称完成 |
 
 原版还保留了 [16.64 秒实际窗口操作录像](baseline-public-workflow.webm)与[录像校验信息](baseline-video.json)。[公共 H&E 查重补充记录](baseline-browser-screening.json)在 headless Chrome 中实际重复导入同一许可素材并获得结果，验证工作流；它不构成检测准确率研究。
@@ -51,6 +52,8 @@
 首次页面文字抽样覆盖两主题、六类状态，共 1317 个可见样本；轴页面的同一状态文字出现两个低对比度结果。首次失败证据完整保留。修复后，该实际可见文字在 Carbon / Pearl 的比值为 7.76 / 6.64；补充轴上下文每主题 110 个样本通过。抽样排除了科研画布、禁用控件和无法可靠计算的非纯色背景，不等于完整 WCAG 合规认证。
 
 首轮正式性能对照在选择、拖拽和侧栏等操作出现退步。发布因此暂缓；诊断确认侧栏几何变量继承及重复布局读写是部分开销来源。优化方向验证已有侧栏改善，其他大图操作仍需归因与复测。[诊断记录](profile-diagnostics.json)保留临时浏览器干预条件，不将其与含录屏的正式性能数值直接混合。
+
+优化后的独立无录屏条件已完成同设备、同 Chrome、同视口、同顺序的基线及候选各 12 次测量。120 图元各项主要输入到下一 rAF 的 P95 均低于 100 ms，但到第二次回调并未全部低于 100 ms。5000 图元选择/改色的中位耗时接近基线，下一回调的 P95 分别由 325.7 / 485.2 ms 变为 387.4 / 564.2 ms；这组尾部退步未被删除。侧栏整操作中位耗时由 785.9 降至 602.6 ms。标签切换每轮交替打开两个面板，额外提供[按切换方向拆分](no-video-tab-directions.json)，避免把不同操作成本的混合中位数误当单一面板的响应。不能由本次小样本宣称所有大图操作无回退。
 
 ## 复跑入口
 

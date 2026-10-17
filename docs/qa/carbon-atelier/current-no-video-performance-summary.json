@@ -1,0 +1,536 @@
+{
+  "schema": "figure-studio-carbon-interaction-summary/1",
+  "label": "current-no-video",
+  "status": "PASS",
+  "rawSha256": "a2c9ceca3a2af14a3baa248a552a9b2d5399b86f388dece6da26d7e7d2483909",
+  "sourceHashes": {
+    "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
+    "axis-editing.js": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115",
+    "axis-settings-ui.css": "7d50d0bbc47253a0e6f673b294bf2d26ae413525eaf7d4f4729141ff7d2ca7c2",
+    "axis-settings-ui.js": "7490fdcb4098d61678e4ef7357a9bda2fb4ea8df665de7eca441afe462c822a6",
+    "canvas-clipboard.js": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be",
+    "catalogue.js": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35",
+    "compact-whitespace.js": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb",
+    "component-style.js": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234",
+    "discovery-offline.js": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38",
+    "discovery-ui.css": "386f268c149ad25bcaff876bf90b13a48bc6e7461589a84e0d57906397d3d49d",
+    "discovery-ui.js": "df4ad30c5076659045bdf1cf3333e05b50e49e55f081ef8215918cffd64e151a",
+    "discovery.js": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43",
+    "duplicate-check.css": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e",
+    "duplicate-check.js": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1",
+    "duplicate-review.js": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf",
+    "duplicate-viewer.css": "b64a440392b3822afe5bcb1d0be97903bfafe5d37c36b90be1d6b4bdef0999cf",
+    "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
+    "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
+    "experience-tools.css": "41ae415b30e3e71b7a7c265d8a426416a8713804c21fce33d5add71ee2c4fa81",
+    "experience-tools.js": "ce730a1e52c63e8e09e9030ee32992615cf2ce5b85fce2015e6062b57ccd3a96",
+    "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
+    "grid-resize-ui.js": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed",
+    "group-spacing.js": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8",
+    "i18n.js": "a588fd974802c878602c7070998c6a8f110d527bbc7d409a1e26f41f24e3daef",
+    "image-color-ui.js": "9f64fc879f8a9c4467c118b7c5b28531593f76eacd56895f570d1f75699d4f8f",
+    "image-color.js": "dacfda2f9b8a8ba4a69b11aa34e6ecc2bdc03485d052dd1e0b63964a5d9b8698",
+    "image-insets-controller.js": "7a9638810a6b24dbcf4c2cfdf8856ee24a5598abceb1eaf5ceefb9f722a23f05",
+    "image-insets-ui.js": "04e7f1fc711b42ae62afeb6b76aa1895e3f489a24fe91f28d568a23faddd2132",
+    "image-insets.js": "df43d58d908de2bab4ea14432dae10a9c7b0ae2950272688cb771e2694210a0c",
+    "image-links-controller.js": "c0686ee54e18f3f73ef143fd615e8826748e9287d7b160d3f9855d16d6af94e1",
+    "image-links-ui.js": "63d7504f0548485c1215b4e059fe2841b98139c1ce767639c52ed54dd37645b3",
+    "image-links.js": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886",
+    "layers-panel.js": "5b25bebe5e6f44879b21781d6b7f58496759cabfcf27643aa58637118ebc41bb",
+    "layout-lock.js": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242",
+    "legacy-stat-cleanup.js": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92",
+    "library.js": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51",
+    "literature.css": "7094b6d2ec62e37a811744f4a3d0c409e4e99a3de8ffe5074fdf3445bc3aabc1",
+    "literature.js": "e5813d535d6bbaa5777ef1f9b0891f6da9316d21395bf9a284702a2bce6d161e",
+    "mark-style.js": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419",
+    "mascot-border-collie.svg": "000b92f5424e927344ec79299212aeb757ded8e78615b545e1f2a399a96648f5",
+    "mascot-maine-coon.svg": "92932b1183aaece891d05e3223554547250c3cbb4bd2ab437b12c6dec779be36",
+    "mascot-scene.svg": "e32271bdfd081ec6ab637d9c9638ddf4ebf99499fbd910886a84da72a651d5ff",
+    "master-frame.js": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9",
+    "memory.js": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c",
+    "mobile-ui.css": "97481bc44bedb7d4310c4e47bb25e613e27a5df1e0507ecba61db146dd8b9f57",
+    "mobile-ui.js": "ebaf15be187b69ce2badc272860aefed3b40852ac8a12c9109342edfa23298ce",
+    "object-borders.js": "ba6c7620c8097b943f805f0d8a1c7ab47dcef439e61cbb7975e18e088084a64a",
+    "panel-commands.js": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd",
+    "research-discovery.js": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f",
+    "rich-text.css": "1deadd7d55d7edee1f120d2f80062e034fca198d3b74da8acb62022fa41c43e3",
+    "rich-text.js": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4",
+    "selection-resize-controller.js": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61",
+    "selection-transform-dom.js": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3",
+    "selection-transform.js": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719",
+    "statistical-line-geometry.js": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8",
+    "statistical-metadata.js": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747",
+    "studio.css": "9dd06565e0ec2e6caeaa793272359b96d6617c2d3526ce5eabbea8af3f2b925c",
+    "studio.html": "3b965a25f31b69c380f729ea3f1e79f097c340fd1a89bfc2d476613677910174",
+    "studio.js": "83f92b3b5b4af0acc1bfc787e928be33a6ef362dac9937d784d73a087edc479a",
+    "text-formatting.js": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1",
+    "text-tools-ui.js": "a0f0376d4aa03931f7e1d445d4d4427c8bfaf53591d33dda3db45770504f6623",
+    "theme-controller.js": "015281a2c63c29141dda955faa637a38a871c85b814c4ea0cbccfc2bb306dab5",
+    "theme-tokens.css": "e459d26f0ad10fb276bffb4f35d0a0bb6223e613b8f49add286b24c14182adb9",
+    "theme.css": "0f0b3b36c46b97f90bbc0373b92c8f990e53b513ea158ef4fb4fa4981df8d49c",
+    "third-party-notices.js": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682",
+    "tiff-export.js": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f",
+    "update-check.js": "98d477f4f3eef24e9e0cd1cc32482d4817752ffb2098fd68fff67457965722bc",
+    "update-scene.css": "ccc4d39de0c6c78bd76d18b23af5ccedf4c2a65b4092e3c5d77e05541ac2606c",
+    "update-scene.js": "03939130918187a3213b1cf200b07818b68aa4cddfa82768c2c70f52c0ccb8b6",
+    "vector-interaction.js": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4",
+    "workspace-layout.css": "0a271a9e0d53de091efd2a8fc6cda1f11caed3a5f5147e000f99a449974e74ea",
+    "workspace-layout.js": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+  },
+  "editorHtmlSha256": "5081c161d61e4a0547cec6340399152308c55df0747829f323fbf465e74d750b",
+  "baselineCommit": "2c6d11a0b494c3668a929cc272482e74be58e0fe",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "architecture": "x64",
+  "logicalCpus": 22,
+  "browserMode": "headful",
+  "recording": {
+    "enabled": false,
+    "format": null,
+    "size": null
+  },
+  "conditions": "Same Windows device; actual Google Chrome, no CPU throttle. Other user processes are not controlled. No clean-machine or GPU-occupancy claim.",
+  "measurement": "Playwright UI control events captured before application handlers → next rAF and second rAF opportunities. These are presentation opportunities, not direct screen-pixel paint measurements. Event Timing is Chrome-granular; action wall time includes Playwright overhead. Colour uses the actual input control via fill; native colour-picker window latency is excluded.",
+  "startedAt": "2026-10-17T11:58:01.340Z",
+  "finishedAt": "2026-10-17T11:59:15.253Z",
+  "operationSampling": "Selection: pointerdown (actual selection handler); tab: click; colour: input; drags: first pointermove after pointerdown. Callback execution uses performance.now(), never the rAF vsync timestamp which can predate input.",
+  "limitations": [
+    "One device, 12 repeated operations per kind, sequential batches; no population or worst-case performance guarantee.",
+    "No direct GPU occupancy measurement. rAF records presentation opportunities, not photons or continuous 60 fps.",
+    "Video recording disabled; Playwright remains active. Browser window uses a temporary isolated profile."
+  ],
+  "fixtures": [
+    {
+      "elements": 120,
+      "kind": "synthetic_pressure_only",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1.0000000298023224,
+      "systemScaling": "Not changed or inferred from browser DPR",
+      "observerTypes": [
+        "element",
+        "event",
+        "first-input",
+        "interaction-contentful-paint",
+        "largest-contentful-paint",
+        "layout-shift",
+        "long-animation-frame",
+        "longtask",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource",
+        "soft-navigation",
+        "visibility-state"
+      ],
+      "remoteRequests": [],
+      "errors": [],
+      "operations": {
+        "select-text": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 56.5,
+            "p95": 79.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 91.59999999403954,
+            "p95": 118.90000000596046
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 93.19999998807907,
+            "p95": 121.09999999403954
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 52.39999997615814,
+            "p95": 58.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 187.40000000596046,
+            "p95": 223.59999999403954
+          },
+          "frames": {
+            "count": 127,
+            "p50": 8.399999999999636,
+            "p95": 66.59999999999945,
+            "max": 83.30000000000018,
+            "over33ms": 22,
+            "over50ms": 10,
+            "over50msFraction": 0.07874015748031496
+          },
+          "longTasks": {
+            "count": 12,
+            "totalMs": 715,
+            "maxMs": 80
+          }
+        },
+        "text-colour": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 66.09999999403954,
+            "p95": 94.09999999403954
+          },
+          "inputToSecondRafMs": {
+            "p50": 134.59999999403954,
+            "p95": 180.80000001192093
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 134.59999999403954,
+            "p95": 180.80000001192093
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": null,
+            "p95": null
+          },
+          "actionWallMs": {
+            "p50": 194.2000000178814,
+            "p95": 266.19999998807907
+          },
+          "frames": {
+            "count": 116,
+            "p50": 8.399999999999636,
+            "p95": 75.10000000000036,
+            "max": 100,
+            "over33ms": 24,
+            "over50ms": 24,
+            "over50msFraction": 0.20689655172413793
+          },
+          "longTasks": {
+            "count": 12,
+            "totalMs": 716,
+            "maxMs": 80
+          }
+        },
+        "drag-shape": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.30000001192092896,
+            "p95": 0.30000001192092896
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.400000005960464,
+            "p95": 8.600000023841858
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 90.60000002384186,
+            "p95": 143.7000000178814
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 90.60000002384186,
+            "p95": 143.7000000178814
+          },
+          "actionWallMs": {
+            "p50": 218.09999999403954,
+            "p95": 266.59999999403954
+          },
+          "frames": {
+            "count": 172,
+            "p50": 8.399999999999636,
+            "p95": 58.29999999999973,
+            "max": 83.30000000000018,
+            "over33ms": 18,
+            "over50ms": 15,
+            "over50msFraction": 0.0872093023255814
+          },
+          "longTasks": {
+            "count": 12,
+            "totalMs": 746,
+            "maxMs": 81
+          }
+        },
+        "resize-sidebar": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.20000001788139343,
+            "p95": 0.30000001192092896
+          },
+          "inputToSecondRafMs": {
+            "p50": 15,
+            "p95": 25.19999998807907
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 54.20000001788139,
+            "p95": 62.099999994039536
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 54.20000001788139,
+            "p95": 62.099999994039536
+          },
+          "actionWallMs": {
+            "p50": 240.5,
+            "p95": 302.90000000596046
+          },
+          "frames": {
+            "count": 219,
+            "p50": 8.399999999999636,
+            "p95": 25.100000000000364,
+            "max": 33.400000000000546,
+            "over33ms": 5,
+            "over50ms": 0,
+            "over50msFraction": 0
+          },
+          "longTasks": {
+            "count": 1,
+            "totalMs": 53,
+            "maxMs": 53
+          }
+        },
+        "switch-inspector-tab": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 45.599999994039536,
+            "p95": 58.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 76.7000000178814,
+            "p95": 98.09999999403954
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 78.7999999821186,
+            "p95": 100
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 76.7000000178814,
+            "p95": 98.09999999403954
+          },
+          "actionWallMs": {
+            "p50": 162.40000000596046,
+            "p95": 214
+          },
+          "frames": {
+            "count": 132,
+            "p50": 8.399999999999636,
+            "p95": 50,
+            "max": 58.399999999999636,
+            "over33ms": 16,
+            "over50ms": 6,
+            "over50msFraction": 0.045454545454545456
+          },
+          "longTasks": {
+            "count": 5,
+            "totalMs": 279,
+            "maxMs": 60
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "kind": "synthetic_pressure_only",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1.0000000298023224,
+      "systemScaling": "Not changed or inferred from browser DPR",
+      "observerTypes": [
+        "element",
+        "event",
+        "first-input",
+        "interaction-contentful-paint",
+        "largest-contentful-paint",
+        "layout-shift",
+        "long-animation-frame",
+        "longtask",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource",
+        "soft-navigation",
+        "visibility-state"
+      ],
+      "remoteRequests": [],
+      "errors": [],
+      "operations": {
+        "select-text": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 281.7999999821186,
+            "p95": 387.40000000596046
+          },
+          "inputToSecondRafMs": {
+            "p50": 436.19999998807907,
+            "p95": 722.8000000119209
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 439.80000001192093,
+            "p95": 726.9000000059605
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 268.60000002384186,
+            "p95": 472.60000002384186
+          },
+          "actionWallMs": {
+            "p50": 524.6999999880791,
+            "p95": 813
+          },
+          "frames": {
+            "count": 109,
+            "p50": 8.400000000001455,
+            "p95": 299.89999999999964,
+            "max": 408.5,
+            "over33ms": 25,
+            "over50ms": 24,
+            "over50msFraction": 0.22018348623853212
+          },
+          "longTasks": {
+            "count": 24,
+            "totalMs": 5238,
+            "maxMs": 390
+          }
+        },
+        "text-colour": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 399.90000000596046,
+            "p95": 564.2000000178814
+          },
+          "inputToSecondRafMs": {
+            "p50": 595.7000000178814,
+            "p95": 822
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 595.7000000178814,
+            "p95": 822
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": null,
+            "p95": null
+          },
+          "actionWallMs": {
+            "p50": 687,
+            "p95": 931.7999999821186
+          },
+          "frames": {
+            "count": 144,
+            "p50": 8.399999999997817,
+            "p95": 391.6999999999998,
+            "max": 566.6999999999971,
+            "over33ms": 24,
+            "over50ms": 24,
+            "over50msFraction": 0.16666666666666666
+          },
+          "longTasks": {
+            "count": 25,
+            "totalMs": 6591,
+            "maxMs": 534
+          }
+        },
+        "drag-shape": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.19999998807907104,
+            "p95": 0.30000001192092896
+          },
+          "inputToSecondRafMs": {
+            "p50": 6.9000000059604645,
+            "p95": 8.800000011920929
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 573.3000000119209,
+            "p95": 740.5999999940395
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 573.3000000119209,
+            "p95": 740.5999999940395
+          },
+          "actionWallMs": {
+            "p50": 954.6999999880791,
+            "p95": 1179.199999988079
+          },
+          "frames": {
+            "count": 269,
+            "p50": 8.399999999999636,
+            "p95": 216.59999999999854,
+            "max": 525,
+            "over33ms": 64,
+            "over50ms": 46,
+            "over50msFraction": 0.17100371747211895
+          },
+          "longTasks": {
+            "count": 38,
+            "totalMs": 7345,
+            "maxMs": 537
+          }
+        },
+        "resize-sidebar": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.20000001788139343,
+            "p95": 0.4000000059604645
+          },
+          "inputToSecondRafMs": {
+            "p50": 33.19999998807907,
+            "p95": 150.30000001192093
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 197.39999997615814,
+            "p95": 233.5
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 182.59999999403954,
+            "p95": 211.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 602.5999999940395,
+            "p95": 664
+          },
+          "frames": {
+            "count": 243,
+            "p50": 8.400000000001455,
+            "p95": 108.30000000000291,
+            "max": 141.59999999999854,
+            "over33ms": 57,
+            "over50ms": 47,
+            "over50msFraction": 0.1934156378600823
+          },
+          "longTasks": {
+            "count": 46,
+            "totalMs": 4515,
+            "maxMs": 149
+          }
+        },
+        "switch-inspector-tab": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 174.59999999403954,
+            "p95": 793.6999999880791
+          },
+          "inputToSecondRafMs": {
+            "p50": 342.69999998807907,
+            "p95": 1156.5
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 345.40000000596046,
+            "p95": 1159.2000000178814
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 342.80000001192093,
+            "p95": 1156.5999999940395
+          },
+          "actionWallMs": {
+            "p50": 447.7999999821186,
+            "p95": 1266.9000000059605
+          },
+          "frames": {
+            "count": 115,
+            "p50": 8.399999999997817,
+            "p95": 733.2999999999993,
+            "max": 833.4000000000005,
+            "over33ms": 28,
+            "over50ms": 24,
+            "over50msFraction": 0.20869565217391303
+          },
+          "longTasks": {
+            "count": 28,
+            "totalMs": 7979,
+            "maxMs": 795
+          }
+        }
+      }
+    }
+  ]
+}

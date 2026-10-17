@@ -6,13 +6,19 @@
   "limitations": [
     "State responses are controlled component fixtures, not an actual installer run.",
     "125% and 150% use an effective CSS viewport plus emulated device pixel ratio, not Windows system display scaling.",
-    "Component timing is a short run on this host, without a full editor workload or GPU utilization measurement. It does not demonstrate sustained frame rate on other machines."
+    "Component timing is a short run on this host. CDP task/script duration is a Chrome main-thread CPU proxy, not OS CPU utilization. OS CPU and GPU utilization were not measured. It does not demonstrate full-editor or sustained frame rate on other machines."
   ],
   "retainedAttempts": [
     {
       "kind": "root_css_zoom",
       "result": "visual_review_rejected",
       "reason": "CSS root zoom scales dialog pixels without scaling dvh; the artificial 150% fixture clipped its top. Replaced with effective CSS viewport and DPR emulation, with vertical geometry assertions."
+    },
+    {
+      "kind": "parallel_source_audit",
+      "result": "passed_but_excluded_from_formal_timing",
+      "reason": "A local repository audit overlapped this earlier short run. Preserved as an attempt; only the subsequent run without that scan supplies the reported component timings.",
+      "checksPassed": true
     }
   ],
   "states": [
@@ -68,7 +74,7 @@
       "name": "connection-lost",
       "state": "paused",
       "animation": "on",
-      "caption": "Waiting for the updater. Reconnecting…"
+      "caption": "Waiting for the updater. Reconnecting… Last confirmed stage: Preparing to install."
     },
     {
       "name": "backend-error",
@@ -143,35 +149,47 @@
     },
     "closing pauses; scoped scene IDs unique; no image/network dependencies; narrow 100/125/150% emulated DPI geometry"
   ],
-  "fixtureDoubleRafVisibleMs": 78.59999999403954,
+  "fixtureDoubleRafVisibleMs": 138.90000000596046,
   "runtimeAssetBytes": {
-    "update-scene.js": 4127,
-    "update-scene.css": 14502,
+    "update-scene.js": 4792,
+    "update-scene.css": 14529,
     "mascot-scene.svg": 11820
   },
   "componentTiming": [
     {
       "animationEnabled": true,
-      "elapsedMs": 2504.19999999404,
+      "elapsedMs": 2504.5000000119207,
       "frames": 301,
       "p50Ms": 8.300000000000182,
       "p95Ms": 8.400000000000546,
-      "maxMs": 8.599999999999909,
+      "maxMs": 9.199999999999818,
       "longTasks": [],
-      "cdpTaskDurationSeconds": 0.223974
+      "cdpTaskDurationSeconds": 0.345891,
+      "cdpScriptDurationSeconds": 0.01091
     },
     {
       "animationEnabled": false,
-      "elapsedMs": 2506.999999994039,
+      "elapsedMs": 2503.500000005961,
       "frames": 301,
-      "p50Ms": 8.300000000000182,
-      "p95Ms": 8.400000000000546,
-      "maxMs": 8.900000000000546,
+      "p50Ms": 8.300000000001091,
+      "p95Ms": 8.400000000001455,
+      "maxMs": 8.699999999999818,
       "longTasks": [],
-      "cdpTaskDurationSeconds": 0.035794999999999993
+      "cdpTaskDurationSeconds": 0.065643,
+      "cdpScriptDurationSeconds": 0.009359999999999999
     }
   ],
+  "componentTimingScope": {
+    "measurement": "CDP Performance.getMetrics deltas over two 2.5-second windows, with character animation on and off",
+    "cpuMeaning": "Chrome main-thread task/script duration proxy; not operating-system CPU utilization",
+    "osCPUUtilizationMeasured": false,
+    "gpuUtilizationMeasured": false,
+    "instrumentation": "Both windows include the same requestAnimationFrame and long-task observer measurement overhead"
+  },
   "remoteRequests": 0,
   "browserErrors": [],
-  "passed": true
+  "passed": true,
+  "recordedUTC": "2026-10-17T12:02:42.2461195Z",
+  "firstVisibilityTimingScope": "Dialog open to the second requestAnimationFrame callback: a paint opportunity proxy, not a pixel-paint timestamp.",
+  "concurrentWorkScope": "No other heavy performance experiment during this final run, confirmed by the performance owner; operator performed no parallel repository scan during the final run."
 }

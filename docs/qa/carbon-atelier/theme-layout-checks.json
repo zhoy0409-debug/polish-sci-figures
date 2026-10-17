@@ -1,10 +1,10 @@
 {
   "scope": "Windows Chrome source-build presentation acceptance; temporary text fixture; not scientific or installer validation",
-  "generatedUTC": "2026-10-17T11:29:15.347Z",
+  "generatedUTC": "2026-10-17T11:54:46.758Z",
   "browser": "155.0.8059.82",
   "platform": "win32",
   "status": "PASS",
-  "sourceProofSha256": "7378cfa66b78418fda2f7b1ec3683926a423a96318a50692b8298560a59f2bf8",
+  "sourceProofSha256": "63e3dfaaa3d50a5ba44dcc8f7b9c268b228e16a742f3d642607c52dd0ee381b7",
   "testScript": "scripts/test_studio_theme_layout_browser.cjs",
   "testScriptSha256": "720b40a844935fa4d8b724c87dbe3ddcb9ca2b2dfb7ec56f3a1e6590b51b052f",
   "combinations": 12,
@@ -71,23 +71,23 @@
       "controls": {
         "tabs": [
           {
-            "text": "\u56fe\u8868\u7c7b\u578b",
+            "text": "图表类型",
             "clipped": false
           },
           {
-            "text": "\u5c5e\u6027",
+            "text": "属性",
             "clipped": false
           },
           {
-            "text": "\u914d\u8272",
+            "text": "配色",
             "clipped": false
           },
           {
-            "text": "\u6570\u636e\u8868",
+            "text": "数据表",
             "clipped": false
           },
           {
-            "text": "\u6807\u6ce8",
+            "text": "标注",
             "clipped": false
           }
         ],
@@ -184,23 +184,23 @@
       "controls": {
         "tabs": [
           {
-            "text": "\u56fe\u8868\u7c7b\u578b",
+            "text": "图表类型",
             "clipped": false
           },
           {
-            "text": "\u5c5e\u6027",
+            "text": "属性",
             "clipped": false
           },
           {
-            "text": "\u914d\u8272",
+            "text": "配色",
             "clipped": false
           },
           {
-            "text": "\u6570\u636e\u8868",
+            "text": "数据表",
             "clipped": false
           },
           {
-            "text": "\u6807\u6ce8",
+            "text": "标注",
             "clipped": false
           }
         ],
@@ -523,23 +523,23 @@
       "controls": {
         "tabs": [
           {
-            "text": "\u56fe\u8868\u7c7b\u578b",
+            "text": "图表类型",
             "clipped": false
           },
           {
-            "text": "\u5c5e\u6027",
+            "text": "属性",
             "clipped": false
           },
           {
-            "text": "\u914d\u8272",
+            "text": "配色",
             "clipped": false
           },
           {
-            "text": "\u6570\u636e\u8868",
+            "text": "数据表",
             "clipped": false
           },
           {
-            "text": "\u6807\u6ce8",
+            "text": "标注",
             "clipped": false
           }
         ],
@@ -636,23 +636,23 @@
       "controls": {
         "tabs": [
           {
-            "text": "\u56fe\u8868\u7c7b\u578b",
+            "text": "图表类型",
             "clipped": false
           },
           {
-            "text": "\u5c5e\u6027",
+            "text": "属性",
             "clipped": false
           },
           {
-            "text": "\u914d\u8272",
+            "text": "配色",
             "clipped": false
           },
           {
-            "text": "\u6570\u636e\u8868",
+            "text": "数据表",
             "clipped": false
           },
           {
-            "text": "\u6807\u6ce8",
+            "text": "标注",
             "clipped": false
           }
         ],
@@ -975,23 +975,23 @@
       "controls": {
         "tabs": [
           {
-            "text": "\u56fe\u8868\u7c7b\u578b",
+            "text": "图表类型",
             "clipped": false
           },
           {
-            "text": "\u5c5e\u6027",
+            "text": "属性",
             "clipped": false
           },
           {
-            "text": "\u914d\u8272",
+            "text": "配色",
             "clipped": false
           },
           {
-            "text": "\u6570\u636e\u8868",
+            "text": "数据表",
             "clipped": false
           },
           {
-            "text": "\u6807\u6ce8",
+            "text": "标注",
             "clipped": false
           }
         ],
@@ -1088,23 +1088,23 @@
       "controls": {
         "tabs": [
           {
-            "text": "\u56fe\u8868\u7c7b\u578b",
+            "text": "图表类型",
             "clipped": false
           },
           {
-            "text": "\u5c5e\u6027",
+            "text": "属性",
             "clipped": false
           },
           {
-            "text": "\u914d\u8272",
+            "text": "配色",
             "clipped": false
           },
           {
-            "text": "\u6570\u636e\u8868",
+            "text": "数据表",
             "clipped": false
           },
           {
-            "text": "\u6807\u6ce8",
+            "text": "标注",
             "clipped": false
           }
         ],

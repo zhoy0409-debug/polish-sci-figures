@@ -6,8 +6,8 @@
 - Migrate existing UI declarations to semantic tokens; unify readable controls, selection markers, hover/pressed/focus and reduced-motion behaviour. Keep scientific SVG paint, palettes and image-processing parameters intact.
 - Identify the current selection in the inspector, retain advanced groups and command search, and prevent inspector tab names from being clipped.
 - Replace the old single companion with original offline SVG cat-and-dog artwork, tied to actual updater stages and received bytes. Preserve verification, save confirmation, backups and Windows installer handoff; add an animation-off preference.
-- Record bounded Chrome/component evidence. Build-specific Windows installation/update acceptance and final performance results remain pending as of 2026-10-17; do not infer whole-page AA, broad platform acceptance or a sustained frame rate.
-- 新增 Carbon 深色／Pearl 浅色主题、独立画布周边与当前选中检查器；原组件迁移到统一令牌，科研作品与界面外观分开。原创离线猫狗按真实更新进度协作，支持关闭动效，保留原校验、备份及确认安装流程。本版 Windows 与最终性能验收结果另行记录。
+- Record bounded Chrome/component evidence and a formal performance comparison without video recording: ordinary-project metrics and sidebar handling improve, while 5,000-element selection/colour tail latency still regresses. Build-specific Windows installation/update and actual system-scaling acceptance remain pending as of 2026-10-17; do not infer whole-page AA, broad platform acceptance or a sustained frame rate.
+- 新增 Carbon 深色／Pearl 浅色主题、独立画布周边与当前选中检查器；原组件迁移到统一令牌，科研作品与界面外观分开。原创离线猫狗按真实更新进度协作，支持关闭动效，保留原校验、备份及确认安装流程。无录屏正式对照已完成，5000 图元选择／改色尾部回退仍保留；本版 Windows 最终验收待完成。
 
 [Release notes / 本版更新](docs/release-notes-v1.4.21.md) · [Appearance guide / 外观指南](docs/figure-studio-appearance.md)
 

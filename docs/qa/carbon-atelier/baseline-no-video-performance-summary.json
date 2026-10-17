@@ -1,0 +1,529 @@
+{
+  "schema": "figure-studio-carbon-interaction-summary/1",
+  "label": "baseline-no-video",
+  "status": "PASS",
+  "rawSha256": "9b4a812e01c021509c6bf926d524a19f36cc116aeceec4999bae63cc6eb3693e",
+  "sourceHashes": {
+    "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
+    "axis-editing.js": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115",
+    "axis-settings-ui.css": "b6f6eddbddc830d68a31ecadc563acc07b6cbab07b24daaa62b719edb85e80b5",
+    "axis-settings-ui.js": "7490fdcb4098d61678e4ef7357a9bda2fb4ea8df665de7eca441afe462c822a6",
+    "canvas-clipboard.js": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be",
+    "catalogue.js": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35",
+    "compact-whitespace.js": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb",
+    "component-style.js": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234",
+    "discovery-offline.js": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38",
+    "discovery-ui.css": "77224b3c66d3c288c3ddbda2b4d62252fabdb9ac7d20c9fcdd0c6a8949afda61",
+    "discovery-ui.js": "df4ad30c5076659045bdf1cf3333e05b50e49e55f081ef8215918cffd64e151a",
+    "discovery.js": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43",
+    "duplicate-check.css": "ce6c66aa7b46bc7fe4b7d38fee5cdee4f962ba8cfee6180fdfc8410e722d5826",
+    "duplicate-check.js": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1",
+    "duplicate-review.js": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf",
+    "duplicate-viewer.css": "735d02df48baa0c380697277595b528b69d6ebe8df9ec849e8e42cb0b85f86bb",
+    "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
+    "editor.html": "9a284c2d4efb049e8331be0cc2d1614396f8323e780c7270efbd0ae9f26995b3",
+    "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
+    "experience-tools.css": "77f7b43338940c38906581b6fa58fe7ee32438b3d6a39c264b2f1ee2cbc25d19",
+    "experience-tools.js": "a20d1aa91f7a98c0dfb00795ca7c7df6d34b094ae96d0bb6d112d11c713cb1fd",
+    "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
+    "grid-resize-ui.js": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed",
+    "group-spacing.js": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8",
+    "i18n.js": "a588fd974802c878602c7070998c6a8f110d527bbc7d409a1e26f41f24e3daef",
+    "image-color-ui.js": "5c526288a29df847a54ac30f78b03e02f043b0d18ab88efa701948fde3bdcdd3",
+    "image-color.js": "dacfda2f9b8a8ba4a69b11aa34e6ecc2bdc03485d052dd1e0b63964a5d9b8698",
+    "image-insets-controller.js": "7a9638810a6b24dbcf4c2cfdf8856ee24a5598abceb1eaf5ceefb9f722a23f05",
+    "image-insets-ui.js": "6ca1e91673a758edea04117e7b6f23fa589ec7ef00869816f240483206d195a4",
+    "image-insets.js": "df43d58d908de2bab4ea14432dae10a9c7b0ae2950272688cb771e2694210a0c",
+    "image-links-controller.js": "c0686ee54e18f3f73ef143fd615e8826748e9287d7b160d3f9855d16d6af94e1",
+    "image-links-ui.js": "a193f287cffbf463ddb6aec7065081c16eedb9f31771a683114eabd2faf2369b",
+    "image-links.js": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886",
+    "layers-panel.js": "5b25bebe5e6f44879b21781d6b7f58496759cabfcf27643aa58637118ebc41bb",
+    "layout-lock.js": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242",
+    "legacy-stat-cleanup.js": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92",
+    "library.js": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51",
+    "literature.css": "7bc7349424673fcb788865c455ba20ef8d96359627dec70197e6ef4633771a5c",
+    "literature.js": "e5813d535d6bbaa5777ef1f9b0891f6da9316d21395bf9a284702a2bce6d161e",
+    "mark-style.js": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419",
+    "master-frame.js": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9",
+    "memory.js": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c",
+    "mobile-ui.css": "871c4d3f425c1b62c7aefc21f0f0642127842d7a3fb9272f66f48b2ec57f79a6",
+    "mobile-ui.js": "ebaf15be187b69ce2badc272860aefed3b40852ac8a12c9109342edfa23298ce",
+    "object-borders.js": "ba6c7620c8097b943f805f0d8a1c7ab47dcef439e61cbb7975e18e088084a64a",
+    "panel-commands.js": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd",
+    "research-discovery.js": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f",
+    "rich-text.css": "ae6e4cfd84e6796f4d8a78961b8ec0f8b2f7a26f74bf03224080ac7cc3d5cbea",
+    "rich-text.js": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4",
+    "selection-resize-controller.js": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61",
+    "selection-transform-dom.js": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3",
+    "selection-transform.js": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719",
+    "statistical-line-geometry.js": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8",
+    "statistical-metadata.js": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747",
+    "studio.css": "bd182b94a1b194880a03a4a3bbe4a65c1cd10e027d3e6705a8072bfa55689ba3",
+    "studio.html": "e9a8479a08d582e09bbc51f457294ee23c63c5056c8da075ac6662dffbb3b7c0",
+    "studio.js": "d3d03c037cefb6bd4593a41a7096bc239fe052af1997f6e557b045fdb55a8ec1",
+    "text-formatting.js": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1",
+    "text-tools-ui.js": "a0f0376d4aa03931f7e1d445d4d4427c8bfaf53591d33dda3db45770504f6623",
+    "third-party-notices.js": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682",
+    "tiff-export.js": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f",
+    "update-check.js": "5e69491d05c3e425546ab413ea89cb3e4b586a5374ceca1c08f4e0639a3f59cb",
+    "vector-interaction.js": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4",
+    "workspace-layout.css": "7af30e3916723fd46b4d093ce3c6a43ce7fcf345403b3eb855ce629726a7cda8",
+    "workspace-layout.js": "e3348c3019720dc943dab54ea4c73993aedef6b0602f7f61f31ca2cc55ae3e7c"
+  },
+  "editorHtmlSha256": "9a284c2d4efb049e8331be0cc2d1614396f8323e780c7270efbd0ae9f26995b3",
+  "baselineCommit": "2c6d11a0b494c3668a929cc272482e74be58e0fe",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "architecture": "x64",
+  "logicalCpus": 22,
+  "browserMode": "headful",
+  "recording": {
+    "enabled": false,
+    "format": null,
+    "size": null
+  },
+  "conditions": "Same Windows device; actual Google Chrome, no CPU throttle. Other user processes are not controlled. No clean-machine or GPU-occupancy claim.",
+  "measurement": "Playwright UI control events captured before application handlers → next rAF and second rAF opportunities. These are presentation opportunities, not direct screen-pixel paint measurements. Event Timing is Chrome-granular; action wall time includes Playwright overhead. Colour uses the actual input control via fill; native colour-picker window latency is excluded.",
+  "startedAt": "2026-10-17T11:56:35.151Z",
+  "finishedAt": "2026-10-17T11:57:53.978Z",
+  "operationSampling": "Selection: pointerdown (actual selection handler); tab: click; colour: input; drags: first pointermove after pointerdown. Callback execution uses performance.now(), never the rAF vsync timestamp which can predate input.",
+  "limitations": [
+    "One device, 12 repeated operations per kind, sequential batches; no population or worst-case performance guarantee.",
+    "No direct GPU occupancy measurement. rAF records presentation opportunities, not photons or continuous 60 fps.",
+    "Video recording disabled; Playwright remains active. Browser window uses a temporary isolated profile."
+  ],
+  "fixtures": [
+    {
+      "elements": 120,
+      "kind": "synthetic_pressure_only",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1.0000000298023224,
+      "systemScaling": "Not changed or inferred from browser DPR",
+      "observerTypes": [
+        "element",
+        "event",
+        "first-input",
+        "interaction-contentful-paint",
+        "largest-contentful-paint",
+        "layout-shift",
+        "long-animation-frame",
+        "longtask",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource",
+        "soft-navigation",
+        "visibility-state"
+      ],
+      "remoteRequests": [],
+      "errors": [],
+      "operations": {
+        "select-text": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 59.30000001192093,
+            "p95": 83.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 95.60000002384186,
+            "p95": 116.80000001192093
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 96.80000001192093,
+            "p95": 118.30000001192093
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 54,
+            "p95": 66.90000000596046
+          },
+          "actionWallMs": {
+            "p50": 194.2999999821186,
+            "p95": 219.7000000178814
+          },
+          "frames": {
+            "count": 132,
+            "p50": 8.399999999999636,
+            "p95": 66.59999999999945,
+            "max": 83.40000000000009,
+            "over33ms": 23,
+            "over50ms": 11,
+            "over50msFraction": 0.08333333333333333
+          },
+          "longTasks": {
+            "count": 12,
+            "totalMs": 742,
+            "maxMs": 87
+          }
+        },
+        "text-colour": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 69.90000000596046,
+            "p95": 115.2999999821186
+          },
+          "inputToSecondRafMs": {
+            "p50": 135.90000000596046,
+            "p95": 209.69999998807907
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 135.90000000596046,
+            "p95": 209.69999998807907
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": null,
+            "p95": null
+          },
+          "actionWallMs": {
+            "p50": 196.59999999403954,
+            "p95": 311.5
+          },
+          "frames": {
+            "count": 117,
+            "p50": 8.399999999999636,
+            "p95": 75,
+            "max": 116.59999999999991,
+            "over33ms": 24,
+            "over50ms": 22,
+            "over50msFraction": 0.18803418803418803
+          },
+          "longTasks": {
+            "count": 15,
+            "totalMs": 945,
+            "maxMs": 101
+          }
+        },
+        "drag-shape": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.20000001788139343,
+            "p95": 0.30000001192092896
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 8.700000017881393
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 125.09999999403954,
+            "p95": 163.2999999821186
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 125.09999999403954,
+            "p95": 163.2999999821186
+          },
+          "actionWallMs": {
+            "p50": 234.69999998807907,
+            "p95": 296
+          },
+          "frames": {
+            "count": 179,
+            "p50": 8.399999999999636,
+            "p95": 66.60000000000036,
+            "max": 91.69999999999982,
+            "over33ms": 20,
+            "over50ms": 19,
+            "over50msFraction": 0.10614525139664804
+          },
+          "longTasks": {
+            "count": 12,
+            "totalMs": 803,
+            "maxMs": 91
+          }
+        },
+        "resize-sidebar": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.20000001788139343,
+            "p95": 0.29999998211860657
+          },
+          "inputToSecondRafMs": {
+            "p50": 26.200000017881393,
+            "p95": 33.69999998807907
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 58,
+            "p95": 77.7999999821186
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 57.19999998807907,
+            "p95": 77.7999999821186
+          },
+          "actionWallMs": {
+            "p50": 319.5,
+            "p95": 384
+          },
+          "frames": {
+            "count": 265,
+            "p50": 8.400000000000091,
+            "p95": 33.30000000000018,
+            "max": 41.70000000000073,
+            "over33ms": 16,
+            "over50ms": 0,
+            "over50msFraction": 0
+          },
+          "longTasks": {
+            "count": 10,
+            "totalMs": 587,
+            "maxMs": 72
+          }
+        },
+        "switch-inspector-tab": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 48.30000001192093,
+            "p95": 62.80000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 78.5,
+            "p95": 122.69999998807907
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 80.7999999821186,
+            "p95": 124.7999999821186
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 78.5,
+            "p95": 122.7999999821186
+          },
+          "actionWallMs": {
+            "p50": 163.40000000596046,
+            "p95": 211.7999999821186
+          },
+          "frames": {
+            "count": 124,
+            "p50": 8.399999999999636,
+            "p95": 50,
+            "max": 66.70000000000073,
+            "over33ms": 21,
+            "over50ms": 5,
+            "over50msFraction": 0.04032258064516129
+          },
+          "longTasks": {
+            "count": 6,
+            "totalMs": 330,
+            "maxMs": 64
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "kind": "synthetic_pressure_only",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1.0000000298023224,
+      "systemScaling": "Not changed or inferred from browser DPR",
+      "observerTypes": [
+        "element",
+        "event",
+        "first-input",
+        "interaction-contentful-paint",
+        "largest-contentful-paint",
+        "layout-shift",
+        "long-animation-frame",
+        "longtask",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource",
+        "soft-navigation",
+        "visibility-state"
+      ],
+      "remoteRequests": [],
+      "errors": [],
+      "operations": {
+        "select-text": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 280.30000001192093,
+            "p95": 325.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 422,
+            "p95": 539.9000000059605
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 424.19999998807907,
+            "p95": 542.5999999940395
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 264.19999998807907,
+            "p95": 309.80000001192093
+          },
+          "actionWallMs": {
+            "p50": 504.19999998807907,
+            "p95": 631.1000000238419
+          },
+          "frames": {
+            "count": 119,
+            "p50": 8.400000000001455,
+            "p95": 291.7000000000007,
+            "max": 333.29999999999563,
+            "over33ms": 26,
+            "over50ms": 25,
+            "over50msFraction": 0.21008403361344538
+          },
+          "longTasks": {
+            "count": 25,
+            "totalMs": 4995,
+            "maxMs": 327
+          }
+        },
+        "text-colour": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 382.30000001192093,
+            "p95": 485.19999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 560.2000000178814,
+            "p95": 681.6999999880791
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 560.2000000178814,
+            "p95": 681.6999999880791
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": null,
+            "p95": null
+          },
+          "actionWallMs": {
+            "p50": 683.3000000119209,
+            "p95": 774
+          },
+          "frames": {
+            "count": 146,
+            "p50": 8.399999999997817,
+            "p95": 374.8999999999978,
+            "max": 491.5,
+            "over33ms": 25,
+            "over50ms": 24,
+            "over50msFraction": 0.1643835616438356
+          },
+          "longTasks": {
+            "count": 24,
+            "totalMs": 6192,
+            "maxMs": 462
+          }
+        },
+        "drag-shape": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.20000001788139343,
+            "p95": 0.30000001192092896
+          },
+          "inputToSecondRafMs": {
+            "p50": 6,
+            "p95": 11.900000005960464
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 554.7000000178814,
+            "p95": 693.9000000059605
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 554.7000000178814,
+            "p95": 693.9000000059605
+          },
+          "actionWallMs": {
+            "p50": 956.0999999940395,
+            "p95": 1243.699999988079
+          },
+          "frames": {
+            "count": 296,
+            "p50": 8.399999999999636,
+            "p95": 174.99999999999636,
+            "max": 533.2000000000044,
+            "over33ms": 65,
+            "over50ms": 49,
+            "over50msFraction": 0.16554054054054054
+          },
+          "longTasks": {
+            "count": 43,
+            "totalMs": 7496,
+            "maxMs": 520
+          }
+        },
+        "resize-sidebar": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 0.19999998807907104,
+            "p95": 0.3999999761581421
+          },
+          "inputToSecondRafMs": {
+            "p50": 166.2999999821186,
+            "p95": 185.10000002384186
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 168.5,
+            "p95": 220.5
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 147.90000000596046,
+            "p95": 161.10000002384186
+          },
+          "actionWallMs": {
+            "p50": 785.9000000059605,
+            "p95": 885.0999999940395
+          },
+          "frames": {
+            "count": 250,
+            "p50": 8.400000000001455,
+            "p95": 100,
+            "max": 133.3000000000029,
+            "over33ms": 109,
+            "over50ms": 91,
+            "over50msFraction": 0.364
+          },
+          "longTasks": {
+            "count": 83,
+            "totalMs": 7815,
+            "maxMs": 184
+          }
+        },
+        "switch-inspector-tab": {
+          "samples": 12,
+          "inputToNextRafMs": {
+            "p50": 177.7000000178814,
+            "p95": 792.9000000059605
+          },
+          "inputToSecondRafMs": {
+            "p50": 353,
+            "p95": 1130.9000000059605
+          },
+          "worstInputToSecondRafMs": {
+            "p50": 356.09999999403954,
+            "p95": 1133
+          },
+          "gestureCommitToSecondRafMs": {
+            "p50": 353.09999999403954,
+            "p95": 1130.9000000059605
+          },
+          "actionWallMs": {
+            "p50": 420.19999998807907,
+            "p95": 1336.800000011921
+          },
+          "frames": {
+            "count": 108,
+            "p50": 8.399999999997817,
+            "p95": 650,
+            "max": 875.1000000000004,
+            "over33ms": 30,
+            "over50ms": 30,
+            "over50msFraction": 0.2777777777777778
+          },
+          "longTasks": {
+            "count": 36,
+            "totalMs": 8566,
+            "maxMs": 794
+          }
+        }
+      }
+    }
+  ]
+}
