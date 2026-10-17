@@ -1,5 +1,33 @@
 # Changelog
 
+
+## v1.4.22 — local candidate; publication on hold
+
+- Add reversible real-canvas drafts, explicit commit/cancel and shared async invalidation. Dock object borders, image display and linked-detail tools beside the canvas; retain their existing geometry, filters, calibration and matching engines.
+- Separate native/imported axis preview from durable application. Reuse canonical asset migration and rendering in isolated shadow resources; preserve source observations and reject unsupported scientific settings.
+- Reuse existing text/ROI previews; improve unfinished-input handling. Add live inspector fields, panel-label colour access and publication-size drafts. Keep one semantic undo step and committed-only save/export boundaries.
+- Extend real-canvas drafts to scale bars, statistical font size, heatmap values, supported bar geometry, grid dimensions/spans and numeric gaps. Preserve the caret and prevent delayed native change events from committing twice.
+- Capture a slider's starting controls before native value/focus events, so Escape restores the actual pre-drag value as well as the committed canvas.
+- Ignore the rest of a cancelled native slider drag, including input/change events after Escape and release outside the field; allow the next drag or keyboard adjustment normally.
+- Fix smart-selection application in occupied projects by reusing verified import-cell allocation. Preserve existing artwork, replace only an untouched blank canvas, and roll back a failed installation without adding history.
+- Compare rendered data candidates and supported literature chart alternatives on the actual composite canvas through temporary resource sessions; keep recommendation, real rendering and literature evidence rules separate.
+- Let non-text controls in the dock pass editing shortcuts to the canvas. Clear the previous table, profile and candidates when a replacement file cannot be read; reopening or changing language cannot silently restore an earlier data source.
+- Reserve the real canvas for a data-candidate preview in a blank project. Hide the welcome view temporarily and restore it on cancel without changing the project or the user's dismissal preference.
+- Reuse exact validated statistics during repeated axis-only renders with a bounded process-local cache keyed by all measurements, design, method and non-axis recipe fields. Explicit analysis remains a fresh calculation.
+- Correct image scale bars to use the actual full-source display width rather than letterboxed image-element bounds. Share preview/export geometry, keep calibration across slicing, and reject unverified or overflowing bars without changing their physical label.
+- Leave unknown image calibration blank and restore each image's own scale controls. Switching targets does not create a calibration or an undo entry.
+- Narrow small-selection lookups before visibility/lock checks; retain full enumeration for whole-panel and same-colour actions. Use reversible paint patches for eligible plain colours and canonical fallback for semantic charts.
+- Preserve all eight real palette previews while avoiding unnecessary ID rewriting and layout work during sidebar switches.
+- Reuse the existing canvas for ordinary tab switches when no draft or gesture is active; preserve canonical fallback for temporary previews and cancel stale palette hovers. Avoid reading the inspector twice for one unchanged selection click.
+- Keep the touch canvas interactive beside or above Adjustments. Reveal borders directly and reserve usable preview space on narrow screens with compact action rows and scrollable workflow navigation.
+- Add bounded local update-event audit with no project, path or credential fields; audit failures do not alter verification, backup or rollback decisions.
+- Strengthen real updater acceptance: original tables/SVG/state, committed autosave, actual downloaded package hashes, complete backup hashes, helper result and automatic restoration.
+- Use a separate v2 performance protocol with real tab directions and validated drag/Undo/Redo; preserve earlier measurements and their limitations.
+- Provide reviewed original-recording excerpts and a privacy-filtered timing trace with exact event order/timestamps; keep measured results and unperformed checks separate. See [actual demonstrations](docs/live-preview-demonstration.md).
+- Complete original-Setup local acceptance: P0 72, dual-theme P1 74, resource/discovery/scientific workflows, real 60-image worker cancellation, 10,000-object PDF/SVG round trips, same-version reinstall and uninstall with saved Iris data preserved. Keep earlier QA failures and official-update/physical-device limits in [the final record](docs/qa/live-preview/windows-final17-acceptance-summary.json). Publication remains on hold.
+- Target Suite v1.4.22 / Windows Studio 0.1.22; final artifact and publication status are recorded in [the acceptance report](docs/stable-performance-validation.md).
+- 本轮为本地候选，用户要求暂不发布。边框、坐标轴、图片显示与关联工具支持停留画布调整，复用稳定预览；科学计算保留真实异步结果。操作与验收边界见[使用说明](docs/live-preview-editing.zh-CN.md)和[实时预览报告](docs/live-preview-validation.md)。
+
 ## v1.4.21 · Figure Studio 0.1.21 · Carbon Atelier and update companions
 
 - Add default Carbon Atelier and light Pearl Pro themes, independent canvas-surround preferences and browser-local appearance persistence without changing scientific artwork or project history.

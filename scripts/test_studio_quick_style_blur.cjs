@@ -19,8 +19,8 @@ for(const paintFirst of [false,true])for(const change of [false,true])test(`inpu
 test('successive numeric inputs coalesce, then change + blur do not create duplicate history',()=>{
   const h=harness();h.input('14');h.input('16');h.input('18');assert.equal(h.frames.size,1);h.flush();h.change();h.blur();h.change();h.flush();assert.equal(h.commits,1);assert.equal(h.size(),'0.36');h.close();
 });
-test('invalid empty input cancels its old preview instead of committing that value on blur',()=>{
-  const h=harness();h.input('18');h.flush();h.input('');h.blur();h.flush();assert.equal(h.commits,0);assert.equal(h.size(),undefined);assert.equal(rich.pointSize(h.$('artboard').querySelector('[data-key="e2"]'))*50,12);h.close();
+test('invalid empty input keeps the last valid preview without committing on blur; Escape restores the original',()=>{
+  const h=harness();h.input('18');h.flush();h.input('');h.blur();h.flush();assert.equal(h.commits,0);assert.equal(h.size(),undefined);assert.equal(rich.pointSize(h.$('artboard').querySelector('[data-key="e2"]'))*50,18);h.$('quickFontSize').dispatchEvent(new h.dom.window.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));h.blur();h.flush();assert.equal(h.commits,0);assert.equal(h.size(),undefined);assert.equal(rich.pointSize(h.$('artboard').querySelector('[data-key="e2"]'))*50,12);h.close();
 });
 test('a stale preview cannot apply its old value after another state has taken ownership',()=>{
   const h=harness();h.input('18');const next=copy(h.history.current);next.panels.p0.edits[0]={e3:{stroke:'#123456'}};h.history.commit(next);h.ctx.renderCanvas();h.blur();h.flush();assert.equal(h.commits,0);assert.equal(h.size(),undefined);assert.equal(h.history.current.panels.p0.edits[0].e3.stroke,'#123456');assert.equal(h.frames.size,0);h.close();

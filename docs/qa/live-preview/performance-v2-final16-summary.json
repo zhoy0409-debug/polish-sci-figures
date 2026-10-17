@@ -1,0 +1,2252 @@
+{
+  "schema": "figure-studio-public-performance-v2/1",
+  "status": "COMPLETE_PROTOCOL_MATCHED_ALL_METRICS_RETAINED",
+  "createdAt": "2026-10-17T17:16:22.260Z",
+  "conditions": {
+    "browser": "155.0.8059.82",
+    "browserMode": "headful",
+    "recording": {
+      "enabled": false
+    },
+    "platform": "win32",
+    "architecture": "x64",
+    "logicalCpus": 22,
+    "node": "v24.18.0"
+  },
+  "protocol": {
+    "samplesPerOperation": 20,
+    "warmupIterations": 3,
+    "operationOrder": [
+      "select-text",
+      "text-colour",
+      "tab-detail-to-palette",
+      "tab-palette-to-detail"
+    ],
+    "settleMinimumMs": 250,
+    "settleRule": "Minimum pause, autosave no longer saving, and two rAF callbacks before each action; actions/assertions outside the timed operation are excluded.",
+    "tabRule": "Actual detail→palette and palette→detail, separate operations with explicit aria-pressed preconditions.",
+    "dragRule": "First motion jumps12 CSSpx (above production3px threshold); primary event must move≥8px; live preview, committed pose, singleUndo, Redo and restoration checked.",
+    "colourRule": "Actual quickColor control fill + Tab; input/change/blur recorded. Native colour-picker window latency excluded.",
+    "quantile": "Nearest rank ceil(n*p). At20 samples P95 is second largest; fixed sample count and no removal of outliers."
+  },
+  "measurement": "Capture-phase performance.now() to next/second rAF callback execution; presentation opportunities, not actual pixel/photon paint. rAF callback intervals are not continuous rendered FPS. Playwright wall time is reported separately.",
+  "metricDefinitions": {
+    "inputToNextRafMs": "Capture-phase primary input to next rAF callback execution.",
+    "inputToSecondRafMs": "Capture-phase primary input to second rAF callback execution.",
+    "commitToSecondRafMs": "Colour: final change/blur to second rAF. Selection/tab: pointerup to second rAF. This is an event endpoint, not IndexedDB or semantic persistence completion.",
+    "actionWallMs": "Measured action start to two final rAF callbacks; assertions and setup outside the timed operation are excluded."
+  },
+  "harnesses": {
+    "sha256RecordedAtSummary": {
+      "scripts/benchmark_studio_carbon_browser_v2.cjs": "5f56d9c7189ea133b340d0b2a4a40c5f7be46eb4b4bb355eade077053dc2c009",
+      "scripts/compare_studio_performance_v2.cjs": "f102342ee0a83546bab61a3d4ff4b296db0227393d2de7c86ea8457ae02a3803",
+      "scripts/test_studio_carbon_helpers.cjs": "d3e04bfc8f6f565a953e38da329d81d1caae57a7cc340cb42291c080eb3d863a",
+      "scripts/summarize_studio_performance_v2.cjs": "6d83be561fee09512a5d407b1d31d0d08107587c7308564d143a898b217d2437"
+    },
+    "finalCaptureBeforeAfterVerified": true,
+    "baselineCaptureSourceHash": "Not recorded in the historical raw schema; no retroactive harness-source attestation is made."
+  },
+  "runs": {
+    "baseline20": {
+      "label": "v20-core",
+      "htmlSha256": "3605aead341923181a73ea1a791410143fe89bda4d80189e188aa20e144a4f84",
+      "rawSha256": "f10c70464d418e8eb8dfc47160fe54a721d0d6b60e29cdf89f9ebcbfda4b3598",
+      "summarySha256": "43c5dc0bf5e37439accc8b49953845792a1a1cd105387b449f250380d36b5aca",
+      "assetSetSha256": "df861a40557df92110ea6837993503d4bba14eac918a55d2e38b170c83ae37a9",
+      "studioSourceSha256": "d3d03c037cefb6bd4593a41a7096bc239fe052af1997f6e557b045fdb55a8ec1",
+      "startedAt": "2026-10-17T13:53:51.352Z",
+      "finishedAt": "2026-10-17T13:56:14.926Z"
+    },
+    "baseline21": {
+      "label": "v21-core",
+      "htmlSha256": "3396c8e8eca1948ea4d0b9bad002d9ec53fd880c246b11f88ec592e422e5e494",
+      "rawSha256": "e8017413fb5fc70ca04ad399c450aea728a3a6af1e0b8471a82bc16e0f998165",
+      "summarySha256": "4686213713b4182b5e8adac9d5b07c1567f4dbfdf875621f5e62d21b01d9f7cb",
+      "assetSetSha256": "76afc0c95543bfb6c361097e6fb79addf4afec14eaaf741b4e82916716ddb9a3",
+      "studioSourceSha256": "1b60ba2c96414ea691fd828fb12e56056b0844c6709a6d62a45aeb6e26c2491c",
+      "startedAt": "2026-10-17T13:56:15.538Z",
+      "finishedAt": "2026-10-17T13:58:35.600Z"
+    },
+    "intermediate": {
+      "label": "candidate6-core",
+      "htmlSha256": "72ed3bcbf0cf9f875cfe5fb8776af056014e0afa6db283955163ade273e8c989",
+      "rawSha256": "afb682b6d5c96f63932de7967e23e1545b27c2de6ff44dca780cf1e91c3a87e1",
+      "summarySha256": "0969cdd32c63aadeb0c4efc31b0f1f966b244563de7e295425461830f124f24f",
+      "assetSetSha256": "87d36de620b220e9a2129fd4e7ff2a67b1b5dc92c0095e381eb61aa484b8bb84",
+      "studioSourceSha256": "caebb5d4cadb92bc9b57c0bf90bfe43a9bb4063b77b80e3a40e7aaf42cee93ff",
+      "startedAt": "2026-10-17T15:08:39.906Z",
+      "finishedAt": "2026-10-17T15:11:09.397Z"
+    },
+    "final": {
+      "label": "candidate16-core",
+      "htmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+      "rawSha256": "07eeb22bc80e4d8644f0659579c2d5fe95ee2e98c86eaf09615d1c5dd84fea25",
+      "summarySha256": "1941f9b60c580803b7736f697ca05fbae6ed5e7cd2d468eca923a32505b36280",
+      "assetSetSha256": "b5c9f939b77b2a2373582d3f07d199b25a0c515fe0987fb91d9cec5aab6ba0a6",
+      "studioSourceSha256": "af6aba59e7805044e57f461439e1c06029ba5894bc69e645c2daa212b1fd915e",
+      "startedAt": "2026-10-17T17:13:57.782Z",
+      "finishedAt": "2026-10-17T17:16:21.625Z"
+    }
+  },
+  "fixtures": [
+    {
+      "kind": "synthetic_pressure_only",
+      "elements": 120,
+      "svgSha256": "2583fd010aa59a8b92eb7453a644628c80ca6002f2ac8b108b62f42d084b7cf2",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1.0000000298023224
+    },
+    {
+      "kind": "synthetic_pressure_only",
+      "elements": 5000,
+      "svgSha256": "4d9b950601b3b95092251649c9d5d00f65a79f31a93b1fc9743d551d55928bd1",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1.0000000298023224
+    }
+  ],
+  "sampleRetention": {
+    "measuredPerOperation": 20,
+    "warmupPerOperation": 3,
+    "plannedActionsPerFixture": 92,
+    "retainedActionsPerFixture": 92,
+    "omittedMeasuredSamples": 0,
+    "outliersRemoved": 0,
+    "validation": "Every operation, iteration, warmup flag and derived metric is revalidated from each hash-verified original raw capture."
+  },
+  "rows": [
+    {
+      "elements": 120,
+      "operation": "select-text",
+      "values": {
+        "baseline20": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 29.099999994039536,
+            "p95": 37
+          },
+          "inputToSecondRafMs": {
+            "p50": 48.599999994039536,
+            "p95": 59.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 28.400000005960464,
+            "p95": 34.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 107.19999998807907,
+            "p95": 123.5
+          }
+        },
+        "baseline21": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 29,
+            "p95": 31.700000017881393
+          },
+          "inputToSecondRafMs": {
+            "p50": 45.599999994039536,
+            "p95": 49.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 25.400000005960464,
+            "p95": 28.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 99.30000001192093,
+            "p95": 107.69999998807907
+          }
+        },
+        "intermediate": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 31.200000017881393,
+            "p95": 38.79999998211861
+          },
+          "inputToSecondRafMs": {
+            "p50": 50.5,
+            "p95": 59.79999998211861
+          },
+          "commitToSecondRafMs": {
+            "p50": 28.599999994039536,
+            "p95": 33.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 107.60000002384186,
+            "p95": 139.60000002384186
+          }
+        },
+        "final": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 46.30000001192093,
+            "p95": 76.7999999821186
+          },
+          "inputToSecondRafMs": {
+            "p50": 74.09999999403954,
+            "p95": 123.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 43.30000001192093,
+            "p95": 71.7999999821186
+          },
+          "actionWallMs": {
+            "p50": 140,
+            "p95": 224
+          }
+        }
+      },
+      "finalChanges": {
+        "baseline20": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 17.200000017881393,
+              "percent": 59.1065292831767,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 39.79999998211861,
+              "percent": 107.56756751923947,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 25.5,
+              "percent": 52.469135808904134,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 64,
+              "percent": 108.10810812987751,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 14.900000005960464,
+              "percent": 52.464788742370835,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 37.49999997019768,
+              "percent": 109.32944593925535,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 32.80000001192093,
+              "percent": 30.597014939895885,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 100.5,
+              "percent": 81.37651821862349,
+              "improved": false
+            }
+          }
+        },
+        "baseline21": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 17.30000001192093,
+              "percent": 59.655172454899756,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 45.09999996423721,
+              "percent": 142.2712931823253,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 28.5,
+              "percent": 62.500000008169486,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 73.39999997615814,
+              "percent": 147.38955814977496,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 17.900000005960464,
+              "percent": 70.47244095181094,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 43.599999994039536,
+              "percent": 154.6099291222357,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 40.69999998807907,
+              "percent": 40.98690834158414,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 116.30000001192093,
+              "percent": 107.98514394131269,
+              "improved": false
+            }
+          }
+        },
+        "intermediate": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 15.099999994039536,
+              "percent": 48.39743585059424,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 38,
+              "percent": 97.93814437503275,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 23.599999994039536,
+              "percent": 46.732673255523835,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 63.400000005960464,
+              "percent": 106.02006693130157,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 14.700000017881393,
+              "percent": 51.39860147183561,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 38.599999994039536,
+              "percent": 116.26506026475725,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 32.39999997615814,
+              "percent": 30.111524134738854,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 84.39999997615814,
+              "percent": 60.45845269465884,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 120,
+      "operation": "text-colour",
+      "values": {
+        "baseline20": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 40,
+            "p95": 61.29999998211861
+          },
+          "inputToSecondRafMs": {
+            "p50": 76.90000000596046,
+            "p95": 111.40000000596046
+          },
+          "commitToSecondRafMs": {
+            "p50": 76.59999999403954,
+            "p95": 111.09999999403954
+          },
+          "actionWallMs": {
+            "p50": 106.09999999403954,
+            "p95": 148.30000001192093
+          }
+        },
+        "baseline21": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 35.599999994039536,
+            "p95": 41.099999994039536
+          },
+          "inputToSecondRafMs": {
+            "p50": 67.30000001192093,
+            "p95": 85.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 67.10000002384186,
+            "p95": 85.09999999403954
+          },
+          "actionWallMs": {
+            "p50": 91,
+            "p95": 132.59999999403954
+          }
+        },
+        "intermediate": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 16.799999982118607,
+            "p95": 20.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 48.70000001788139,
+            "p95": 55.89999997615814
+          },
+          "commitToSecondRafMs": {
+            "p50": 48.5,
+            "p95": 55.39999997615814
+          },
+          "actionWallMs": {
+            "p50": 74.09999999403954,
+            "p95": 89.7999999821186
+          }
+        },
+        "final": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 23.5,
+            "p95": 47.900000005960464
+          },
+          "inputToSecondRafMs": {
+            "p50": 70.40000000596046,
+            "p95": 138.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 70,
+            "p95": 138.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 106.80000001192093,
+            "p95": 225.09999999403954
+          }
+        }
+      },
+      "finalChanges": {
+        "baseline20": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -16.5,
+              "percent": -41.25,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -13.399999976158142,
+              "percent": -21.859706329636154,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -6.5,
+              "percent": -8.452535760073065,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 27.299999982118607,
+              "percent": 24.506283645114824,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -6.5999999940395355,
+              "percent": -8.6161879824453,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 27.099999994039536,
+              "percent": 24.39243923986809,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 0.7000000178813934,
+              "percent": 0.6597549650525059,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 76.7999999821186,
+              "percent": 51.78691839241074,
+              "improved": false
+            }
+          }
+        },
+        "baseline21": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -12.099999994039536,
+              "percent": -33.98876403389164,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 6.800000011920929,
+              "percent": 16.545012196854223,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 3.0999999940395355,
+              "percent": 4.606240703551889,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 53.5,
+              "percent": 62.79342723883281,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 2.899999976158142,
+              "percent": 4.3219075635286375,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 53.099999994039536,
+              "percent": 62.3971797858504,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 15.800000011920929,
+              "percent": 17.36263737573729,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 92.5,
+              "percent": 69.75867270298488,
+              "improved": false
+            }
+          }
+        },
+        "intermediate": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 6.700000017881393,
+              "percent": 39.88095252983727,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 27.200000017881393,
+              "percent": 131.40096634563093,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 21.69999998807907,
+              "percent": 44.55852151973592,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 82.80000001192093,
+              "percent": 148.12164588056507,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 21.5,
+              "percent": 44.329896907216494,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 82.80000001192093,
+              "percent": 149.4584838403513,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 32.70000001788139,
+              "percent": 44.129554683551575,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 135.30000001192093,
+              "percent": 150.6681514909382,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 120,
+      "operation": "tab-detail-to-palette",
+      "values": {
+        "baseline20": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 31.700000017881393,
+            "p95": 37.29999998211861
+          },
+          "inputToSecondRafMs": {
+            "p50": 53.5,
+            "p95": 60.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 53.5,
+            "p95": 60.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 107.7999999821186,
+            "p95": 123.7000000178814
+          }
+        },
+        "baseline21": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 30,
+            "p95": 33.099999994039536
+          },
+          "inputToSecondRafMs": {
+            "p50": 48.29999998211861,
+            "p95": 52.89999997615814
+          },
+          "commitToSecondRafMs": {
+            "p50": 48.29999998211861,
+            "p95": 52.89999997615814
+          },
+          "actionWallMs": {
+            "p50": 98.90000000596046,
+            "p95": 99.5
+          }
+        },
+        "intermediate": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 33.30000001192093,
+            "p95": 43.70000001788139
+          },
+          "inputToSecondRafMs": {
+            "p50": 54.5,
+            "p95": 65
+          },
+          "commitToSecondRafMs": {
+            "p50": 54.5,
+            "p95": 65.09999999403954
+          },
+          "actionWallMs": {
+            "p50": 107.5,
+            "p95": 124.69999998807907
+          }
+        },
+        "final": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 43.400000005960464,
+            "p95": 76
+          },
+          "inputToSecondRafMs": {
+            "p50": 72.40000000596046,
+            "p95": 151.90000000596046
+          },
+          "commitToSecondRafMs": {
+            "p50": 72.5,
+            "p95": 151.90000000596046
+          },
+          "actionWallMs": {
+            "p50": 132.19999998807907,
+            "p95": 222.59999999403954
+          }
+        }
+      },
+      "finalChanges": {
+        "baseline20": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 11.699999988079071,
+              "percent": 36.908517291732856,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 38.70000001788139,
+              "percent": 103.75335130411246,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 18.900000005960464,
+              "percent": 35.32710281487936,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 91.7000000178814,
+              "percent": 152.32558145521597,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 19,
+              "percent": 35.51401869158879,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 91.7000000178814,
+              "percent": 152.32558145521597,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 24.400000005960464,
+              "percent": 22.634508358077767,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 98.89999997615814,
+              "percent": 79.95149552292781,
+              "improved": false
+            }
+          }
+        },
+        "baseline21": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 13.400000005960464,
+              "percent": 44.666666686534874,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 42.900000005960464,
+              "percent": 129.6072507966334,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 24.100000023841858,
+              "percent": 49.8964803990974,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 99.00000002980232,
+              "percent": 187.1455577966376,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 24.200000017881393,
+              "percent": 50.10351972430767,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 99.00000002980232,
+              "percent": 187.1455577966376,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 33.29999998211861,
+              "percent": 33.67037409515843,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 123.09999999403954,
+              "percent": 123.71859295883371,
+              "improved": false
+            }
+          }
+        },
+        "intermediate": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 10.099999994039536,
+              "percent": 30.330330301573216,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 32.29999998211861,
+              "percent": 73.91304340709823,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 17.900000005960464,
+              "percent": 32.84403670818434,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 86.90000000596046,
+              "percent": 133.69230770147763,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 18,
+              "percent": 33.02752293577982,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 86.80000001192093,
+              "percent": 133.33333336385286,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 24.69999998807907,
+              "percent": 22.976744174957275,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 97.90000000596046,
+              "percent": 78.50842022078541,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 120,
+      "operation": "tab-palette-to-detail",
+      "values": {
+        "baseline20": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 26.299999982118607,
+            "p95": 37.099999994039536
+          },
+          "inputToSecondRafMs": {
+            "p50": 46.89999997615814,
+            "p95": 59.29999998211861
+          },
+          "commitToSecondRafMs": {
+            "p50": 47,
+            "p95": 59.29999998211861
+          },
+          "actionWallMs": {
+            "p50": 107.7999999821186,
+            "p95": 130.5
+          }
+        },
+        "baseline21": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 24,
+            "p95": 26.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 41.5,
+            "p95": 44.099999994039536
+          },
+          "commitToSecondRafMs": {
+            "p50": 41.69999998807907,
+            "p95": 44.20000001788139
+          },
+          "actionWallMs": {
+            "p50": 99.10000002384186,
+            "p95": 107.30000001192093
+          }
+        },
+        "intermediate": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 26.5,
+            "p95": 32.099999994039536
+          },
+          "inputToSecondRafMs": {
+            "p50": 46.099999994039536,
+            "p95": 55.099999994039536
+          },
+          "commitToSecondRafMs": {
+            "p50": 46.099999994039536,
+            "p95": 55.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 107.60000002384186,
+            "p95": 123.5
+          }
+        },
+        "final": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 36.900000005960464,
+            "p95": 62.599999994039536
+          },
+          "inputToSecondRafMs": {
+            "p50": 67.90000000596046,
+            "p95": 166.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 67.90000000596046,
+            "p95": 166.40000000596046
+          },
+          "actionWallMs": {
+            "p50": 140.5,
+            "p95": 223.59999999403954
+          }
+        }
+      },
+      "finalChanges": {
+        "baseline20": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 10.600000023841858,
+              "percent": 40.304182627562014,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 25.5,
+              "percent": 68.73315364985663,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 21.000000029802322,
+              "percent": 44.77611948929165,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 107.00000002980232,
+              "percent": 180.43844867127694,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 20.900000005960464,
+              "percent": 44.46808511906482,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 107.10000002384186,
+              "percent": 180.60708272535737,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 32.70000001788139,
+              "percent": 30.33395178414242,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 93.09999999403954,
+              "percent": 71.34099616401497,
+              "improved": false
+            }
+          }
+        },
+        "baseline21": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 12.900000005960464,
+              "percent": 53.75000002483527,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 36.29999998211861,
+              "percent": 138.0228135576616,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 26.400000005960464,
+              "percent": 63.614457845687866,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 122.2000000178814,
+              "percent": 277.09750574693356,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 26.200000017881393,
+              "percent": 62.829736271873585,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 122.19999998807907,
+              "percent": 276.47058809647575,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 41.39999997615814,
+              "percent": 41.77598382058323,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 116.2999999821186,
+              "percent": 108.38769801416382,
+              "improved": false
+            }
+          }
+        },
+        "intermediate": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 10.400000005960464,
+              "percent": 39.24528304136024,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 30.5,
+              "percent": 95.01557634163042,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 21.80000001192093,
+              "percent": 47.28850328576908,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 111.2000000178814,
+              "percent": 201.8148820869519,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 21.80000001192093,
+              "percent": 47.28850328576908,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 111.2000000178814,
+              "percent": 201.44927543821743,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 32.89999997615814,
+              "percent": 30.576208149505767,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 100.09999999403954,
+              "percent": 81.05263157412108,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "operation": "select-text",
+      "values": {
+        "baseline20": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 151.89999997615814,
+            "p95": 213.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 243.30000001192093,
+            "p95": 358.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 152.40000000596046,
+            "p95": 232.2999999821186
+          },
+          "actionWallMs": {
+            "p50": 298.89999997615814,
+            "p95": 423.5
+          }
+        },
+        "baseline21": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 153.7999999821186,
+            "p95": 212.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 248.7999999821186,
+            "p95": 332.89999997615814
+          },
+          "commitToSecondRafMs": {
+            "p50": 151.09999999403954,
+            "p95": 199.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 300,
+            "p95": 398.60000002384186
+          }
+        },
+        "intermediate": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 128.80000001192093,
+            "p95": 154.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 229,
+            "p95": 279.40000000596046
+          },
+          "commitToSecondRafMs": {
+            "p50": 151.90000000596046,
+            "p95": 192.5
+          },
+          "actionWallMs": {
+            "p50": 282.59999999403954,
+            "p95": 360.89999997615814
+          }
+        },
+        "final": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 125.2000000178814,
+            "p95": 276.59999999403954
+          },
+          "inputToSecondRafMs": {
+            "p50": 222.5,
+            "p95": 550.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 146.5,
+            "p95": 408.2000000178814
+          },
+          "actionWallMs": {
+            "p50": 274.2000000178814,
+            "p95": 626.5999999940395
+          }
+        }
+      },
+      "finalChanges": {
+        "baseline20": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -26.69999995827675,
+              "percent": -17.577353497345307,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 62.900000005960464,
+              "percent": 29.433785685292115,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -20.80000001192093,
+              "percent": -8.549116321784545,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 192.30000001192093,
+              "percent": 53.685092132417836,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -5.9000000059604645,
+              "percent": -3.8713910798751416,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 175.9000000357628,
+              "percent": 75.7210503871299,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -24.69999995827675,
+              "percent": -8.263633308881547,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 203.09999999403954,
+              "percent": 47.95749704699872,
+              "improved": false
+            }
+          }
+        },
+        "baseline21": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -28.599999964237213,
+              "percent": -18.595578652511293,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 64.09999999403954,
+              "percent": 30.164705879548027,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -26.299999982118607,
+              "percent": -10.5707395434119,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 217.60000002384186,
+              "percent": 65.36497447865005,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -4.5999999940395355,
+              "percent": -3.0443414918735923,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 209.00000002980232,
+              "percent": 104.91967873609926,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -25.799999982118607,
+              "percent": -8.599999994039532,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 227.99999997019768,
+              "percent": 57.20020069156049,
+              "improved": false
+            }
+          }
+        },
+        "intermediate": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -3.5999999940395355,
+              "percent": -2.7950310510142407,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 122.09999999403954,
+              "percent": 79.02912620973433,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -6.5,
+              "percent": -2.8384279475982543,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 271.09999999403954,
+              "percent": 97.02934859994852,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -5.4000000059604645,
+              "percent": -3.554970379031319,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 215.7000000178814,
+              "percent": 112.05194806123711,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -8.399999976158142,
+              "percent": -2.9723991423691865,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 265.7000000178814,
+              "percent": 73.6215018108712,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "operation": "text-colour",
+      "values": {
+        "baseline20": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 240.10000002384186,
+            "p95": 299.2000000178814
+          },
+          "inputToSecondRafMs": {
+            "p50": 349.2999999821186,
+            "p95": 451.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 347.5,
+            "p95": 450.09999999403954
+          },
+          "actionWallMs": {
+            "p50": 391,
+            "p95": 524.6000000238419
+          }
+        },
+        "baseline21": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 244.2000000178814,
+            "p95": 350.19999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 358.2000000178814,
+            "p95": 520.1999999880791
+          },
+          "commitToSecondRafMs": {
+            "p50": 356.7000000178814,
+            "p95": 518.5999999940395
+          },
+          "actionWallMs": {
+            "p50": 399.30000001192093,
+            "p95": 600.5999999940395
+          }
+        },
+        "intermediate": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 73.39999997615814,
+            "p95": 95.09999999403954
+          },
+          "inputToSecondRafMs": {
+            "p50": 131.40000000596046,
+            "p95": 162.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 131,
+            "p95": 162.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 182,
+            "p95": 240.39999997615814
+          }
+        },
+        "final": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 69.59999999403954,
+            "p95": 149.09999999403954
+          },
+          "inputToSecondRafMs": {
+            "p50": 124.5,
+            "p95": 260.7000000178814
+          },
+          "commitToSecondRafMs": {
+            "p50": 124,
+            "p95": 259.90000000596046
+          },
+          "actionWallMs": {
+            "p50": 167.5,
+            "p95": 355.5
+          }
+        }
+      },
+      "finalChanges": {
+        "baseline20": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -170.50000002980232,
+              "percent": -71.01207830606901,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -150.10000002384186,
+              "percent": -50.16711230443559,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -224.7999999821186,
+              "percent": -64.35728599874795,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -191.09999999403954,
+              "percent": -42.29747675719284,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -223.5,
+              "percent": -64.31654676258994,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -190.19999998807907,
+              "percent": -42.257276158764235,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -223.5,
+              "percent": -57.1611253196931,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -169.10000002384186,
+              "percent": -32.23408311402147,
+              "improved": true
+            }
+          }
+        },
+        "baseline21": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -174.60000002384186,
+              "percent": -71.4987715032993,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -201.09999999403954,
+              "percent": -57.42432895513565,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -233.7000000178814,
+              "percent": -65.24288107376188,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -259.4999999701977,
+              "percent": -49.884659741665594,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -232.7000000178814,
+              "percent": -65.23689374999051,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -258.69999998807907,
+              "percent": -49.88430389337686,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -231.80000001192093,
+              "percent": -58.0515902842476,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -245.09999999403954,
+              "percent": -40.80919080860339,
+              "improved": true
+            }
+          }
+        },
+        "intermediate": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -3.7999999821186066,
+              "percent": -5.177111693941317,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 54,
+              "percent": 56.78233438841691,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -6.9000000059604645,
+              "percent": -5.251141556809335,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 97.90000000596046,
+              "percent": 60.13513513439299,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -7,
+              "percent": -5.343511450381677,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 97.59999999403954,
+              "percent": 60.13555143984648,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -14.5,
+              "percent": -7.9670329670329725,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 115.10000002384186,
+              "percent": 47.87853578837644,
+              "improved": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "operation": "tab-detail-to-palette",
+      "values": {
+        "baseline20": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 430.40000000596046,
+            "p95": 497.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 689.2999999821186,
+            "p95": 742.6999999880791
+          },
+          "commitToSecondRafMs": {
+            "p50": 689.4000000059605,
+            "p95": 742.6999999880791
+          },
+          "actionWallMs": {
+            "p50": 865.3000000119209,
+            "p95": 939.8999999761581
+          }
+        },
+        "baseline21": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 465.80000001192093,
+            "p95": 735.7000000178814
+          },
+          "inputToSecondRafMs": {
+            "p50": 674.5,
+            "p95": 973.4000000059605
+          },
+          "commitToSecondRafMs": {
+            "p50": 674.5999999940395,
+            "p95": 973.4000000059605
+          },
+          "actionWallMs": {
+            "p50": 753.5999999940395,
+            "p95": 1061
+          }
+        },
+        "intermediate": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 524.1999999880791,
+            "p95": 833.9000000059605
+          },
+          "inputToSecondRafMs": {
+            "p50": 780.5,
+            "p95": 1211.300000011921
+          },
+          "commitToSecondRafMs": {
+            "p50": 780.5999999940395,
+            "p95": 1211.300000011921
+          },
+          "actionWallMs": {
+            "p50": 872.8000000119209,
+            "p95": 1318.699999988079
+          }
+        },
+        "final": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 372.7000000178814,
+            "p95": 767
+          },
+          "inputToSecondRafMs": {
+            "p50": 591.8000000119209,
+            "p95": 1062.9000000059605
+          },
+          "commitToSecondRafMs": {
+            "p50": 591.8000000119209,
+            "p95": 1063
+          },
+          "actionWallMs": {
+            "p50": 665.8999999761581,
+            "p95": 1144.5
+          }
+        }
+      },
+      "finalChanges": {
+        "baseline20": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -57.69999998807907,
+              "percent": -13.40613382604089,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 269.5,
+              "percent": 54.170854271356795,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -97.49999997019768,
+              "percent": -14.144784560093859,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 320.2000000178814,
+              "percent": 43.11296620748901,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -97.59999999403954,
+              "percent": -14.15723817713892,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 320.30000001192093,
+              "percent": 43.12643059338388,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -199.4000000357628,
+              "percent": -23.044030975732777,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 204.60000002384186,
+              "percent": 21.768273223644208,
+              "improved": false
+            }
+          }
+        },
+        "baseline21": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -93.09999999403954,
+              "percent": -19.98711893337417,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 31.299999982118607,
+              "percent": 4.254451540214466,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -82.69999998807907,
+              "percent": -12.260934023436487,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 89.5,
+              "percent": 9.194575713935894,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -82.7999999821186,
+              "percent": -12.273940110117131,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 89.59999999403954,
+              "percent": 9.20484898227767,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -87.7000000178814,
+              "percent": -11.637473463186708,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 83.5,
+              "percent": 7.869934024505176,
+              "improved": false
+            }
+          }
+        },
+        "intermediate": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -151.49999997019768,
+              "percent": -28.901182749645738,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -66.90000000596046,
+              "percent": -8.022544670282084,
+              "improved": true
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -188.69999998807907,
+              "percent": -24.176809735820505,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -148.40000000596046,
+              "percent": -12.251300256294895,
+              "improved": true
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -188.7999999821186,
+              "percent": -24.18652318518578,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -148.30000001192093,
+              "percent": -12.24304466362267,
+              "improved": true
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -206.9000000357628,
+              "percent": -23.705316227421736,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": -174.19999998807907,
+              "percent": -13.209979524505489,
+              "improved": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "elements": 5000,
+      "operation": "tab-palette-to-detail",
+      "values": {
+        "baseline20": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 122.40000000596046,
+            "p95": 165.39999997615814
+          },
+          "inputToSecondRafMs": {
+            "p50": 243.2999999821186,
+            "p95": 298.7000000178814
+          },
+          "commitToSecondRafMs": {
+            "p50": 243.2999999821186,
+            "p95": 298.7000000178814
+          },
+          "actionWallMs": {
+            "p50": 299.5,
+            "p95": 366.09999999403954
+          }
+        },
+        "baseline21": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 127.5,
+            "p95": 162.40000000596046
+          },
+          "inputToSecondRafMs": {
+            "p50": 254.40000000596046,
+            "p95": 305.2000000178814
+          },
+          "commitToSecondRafMs": {
+            "p50": 254.40000000596046,
+            "p95": 305.2000000178814
+          },
+          "actionWallMs": {
+            "p50": 307.2000000178814,
+            "p95": 373.39999997615814
+          }
+        },
+        "intermediate": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 138.5,
+            "p95": 157.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 283.19999998807907,
+            "p95": 323
+          },
+          "commitToSecondRafMs": {
+            "p50": 283.2999999821186,
+            "p95": 323.09999999403954
+          },
+          "actionWallMs": {
+            "p50": 340.40000000596046,
+            "p95": 382.09999999403954
+          }
+        },
+        "final": {
+          "samples": 20,
+          "verifiedOperations": 20,
+          "inputToNextRafMs": {
+            "p50": 129.5,
+            "p95": 190.09999999403954
+          },
+          "inputToSecondRafMs": {
+            "p50": 257,
+            "p95": 422.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 257,
+            "p95": 422.90000000596046
+          },
+          "actionWallMs": {
+            "p50": 307.2999999821186,
+            "p95": 481.7000000178814
+          }
+        }
+      },
+      "finalChanges": {
+        "baseline20": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 7.0999999940395355,
+              "percent": 5.80065358961912,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 24.700000017881393,
+              "percent": 14.93349457160933,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 13.700000017881393,
+              "percent": 5.630908351372077,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 124.09999999403954,
+              "percent": 41.54670237248423,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 13.700000017881393,
+              "percent": 5.630908351372077,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 124.19999998807907,
+              "percent": 41.58018077691461,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 7.799999982118607,
+              "percent": 2.604340561642271,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 115.60000002384186,
+              "percent": 31.576072118471444,
+              "improved": false
+            }
+          }
+        },
+        "baseline21": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": 2,
+              "percent": 1.5686274509803866,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 27.69999998807907,
+              "percent": 17.056650238338932,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": 2.5999999940395355,
+              "percent": 1.0220125762494536,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 117.59999999403954,
+              "percent": 38.53211008753259,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": 2.5999999940395355,
+              "percent": 1.0220125762494536,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 117.69999998807907,
+              "percent": 38.564875485315575,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": 0.09999996423721313,
+              "percent": 0.03255207168990637,
+              "improved": false
+            },
+            "p95": {
+              "deltaMs": 108.30000004172325,
+              "percent": 29.003749343502495,
+              "improved": false
+            }
+          }
+        },
+        "intermediate": {
+          "inputToNextRafMs": {
+            "p50": {
+              "deltaMs": -9,
+              "percent": -6.498194945848379,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 32.599999994039536,
+              "percent": 20.69841269462829,
+              "improved": false
+            }
+          },
+          "inputToSecondRafMs": {
+            "p50": {
+              "deltaMs": -26.19999998807907,
+              "percent": -9.251412425558591,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 99.80000001192093,
+              "percent": 30.89783282102816,
+              "improved": false
+            }
+          },
+          "commitToSecondRafMs": {
+            "p50": {
+              "deltaMs": -26.299999982118607,
+              "percent": -9.283445105463684,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 99.80000001192093,
+              "percent": 30.888269889743736,
+              "improved": false
+            }
+          },
+          "actionWallMs": {
+            "p50": {
+              "deltaMs": -33.10000002384186,
+              "percent": -9.723854295905488,
+              "improved": true
+            },
+            "p95": {
+              "deltaMs": 99.60000002384186,
+              "percent": 26.066474751477497,
+              "improved": false
+            }
+          }
+        }
+      }
+    }
+  ],
+  "retainedIntermediateStage": {
+    "label": "candidate6-core",
+    "elements": 5000,
+    "operation": "tab-detail-to-palette",
+    "inputToNextRafMs": {
+      "p50": 524.1999999880791,
+      "p95": 833.9000000059605
+    },
+    "inputToSecondRafMs": {
+      "p50": 780.5,
+      "p95": 1211.300000011921
+    },
+    "note": "The candidate6 regression is retained even when a later final run improves; its original raw evidence is never overwritten."
+  },
+  "finalCore5000Facts": {
+    "baseline20": {
+      "operations": {
+        "select-text": {
+          "inputToNextRafMs": {
+            "p50Improved": true,
+            "p95Improved": false,
+            "bothImproved": false
+          },
+          "inputToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": false,
+            "bothImproved": false
+          },
+          "commitToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": false,
+            "bothImproved": false
+          },
+          "actionWallMs": {
+            "p50Improved": true,
+            "p95Improved": false,
+            "bothImproved": false
+          }
+        },
+        "text-colour": {
+          "inputToNextRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "inputToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "commitToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "actionWallMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          }
+        }
+      },
+      "selectAndColourNextRafP50AndP95AllImproved": false,
+      "selectAndColourNextAndSecondRafP50AndP95AllImproved": false
+    },
+    "baseline21": {
+      "operations": {
+        "select-text": {
+          "inputToNextRafMs": {
+            "p50Improved": true,
+            "p95Improved": false,
+            "bothImproved": false
+          },
+          "inputToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": false,
+            "bothImproved": false
+          },
+          "commitToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": false,
+            "bothImproved": false
+          },
+          "actionWallMs": {
+            "p50Improved": true,
+            "p95Improved": false,
+            "bothImproved": false
+          }
+        },
+        "text-colour": {
+          "inputToNextRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "inputToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "commitToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "actionWallMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          }
+        }
+      },
+      "selectAndColourNextRafP50AndP95AllImproved": false,
+      "selectAndColourNextAndSecondRafP50AndP95AllImproved": false
+    }
+  },
+  "intermediateCore5000Facts": {
+    "baseline20": {
+      "operations": {
+        "select-text": {
+          "inputToNextRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "inputToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "commitToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "actionWallMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          }
+        },
+        "text-colour": {
+          "inputToNextRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "inputToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "commitToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "actionWallMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          }
+        }
+      },
+      "selectAndColourNextRafP50AndP95AllImproved": true,
+      "selectAndColourNextAndSecondRafP50AndP95AllImproved": true
+    },
+    "baseline21": {
+      "operations": {
+        "select-text": {
+          "inputToNextRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "inputToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "commitToSecondRafMs": {
+            "p50Improved": false,
+            "p95Improved": true,
+            "bothImproved": false
+          },
+          "actionWallMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          }
+        },
+        "text-colour": {
+          "inputToNextRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "inputToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "commitToSecondRafMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          },
+          "actionWallMs": {
+            "p50Improved": true,
+            "p95Improved": true,
+            "bothImproved": true
+          }
+        }
+      },
+      "selectAndColourNextRafP50AndP95AllImproved": true,
+      "selectAndColourNextAndSecondRafP50AndP95AllImproved": true
+    }
+  },
+  "limitations": [
+    "One Windows device, sequential release batches, synthetic pressure fixtures. No population, scientific algorithm accuracy, worst-case or other-platform claim.",
+    "rAF callback execution is a presentation opportunity, not measured pixel/photon paint, continuous FPS or physical display latency.",
+    "All four operations and all four metrics are retained; this summary makes no blanket assertion that every latency improved.",
+    "Profile diagnostics and earlier v1/video protocols are separate evidence and are not pooled with these formal v2 captures."
+  ]
+}

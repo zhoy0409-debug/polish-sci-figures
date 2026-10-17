@@ -1,0 +1,13 @@
+'use strict';
+// Pure record/state checks: no browser, geometry shims, network or installer.
+const assert=require('node:assert/strict'),core=require('../skills/polish-sci-figures/assets/figure-studio/object-borders.js');
+const svg='<svg xmlns="http://www.w3.org/2000/svg"><rect width="10" height="10"/></svg>',project={panels:[{id:'p',variants:[{svg}]}]},target=key=>({kind:'element',panelId:'p',variant:0,key}),record=(key,width,color)=>({target:target(key),style:{...core.defaults,width,color},sourceStamp:core.stamp(svg)});
+const state={order:['p'],panels:{p:{variant:0,lockedElements:{0:['e4']}}},objectBorders:[record('e1',.5,'#112233'),record('e2',1.5,'#445566'),record('e3',.75,'#778899'),record('e4',2,'#aabbcc')]},selected=['e1','e2','e3','e4'].map(key=>({target:target(key),locked:key==='e4'})),before=JSON.stringify(state);
+const mixed=core.mixedValues(state,selected);assert.equal(mixed.editable,3);assert.equal(mixed.locked,1);assert.equal(mixed.values.width,null);assert.equal(mixed.values.color,null);assert.equal(mixed.values.dash,'solid');
+const next=core.candidate(state,project,selected,{color:'#abcdef'});assert.equal(JSON.stringify(state),before,'a candidate may not mutate any committed record/state');assert.deepEqual(next.objectBorders.find(r=>r.target.key==='e4'),state.objectBorders[3],'locked record remains exact');
+for(const key of ['e1','e2','e3']){const old=state.objectBorders.find(r=>r.target.key===key),after=next.objectBorders.find(r=>r.target.key===key);assert.equal(after.style.color,'#abcdef');assert.equal(after.style.width,old.style.width,'colour-only patch preserves each mixed width');assert.equal(after.style.dash,old.style.dash);assert.equal(after.sourceStamp,old.sourceStamp);}
+assert.throws(()=>core.candidate(state,project,selected,{width:0}));assert.throws(()=>core.candidate(state,project,[selected[3]],{width:1}));
+const none=core.candidate(state,project,selected,{},true);assert.equal(none.objectBorders.length,1);assert.deepEqual(none.objectBorders[0],state.objectBorders[3]);
+const reset=core.candidate(state,project,selected,core.defaults);for(const record of reset.objectBorders.filter(r=>r.target.key!=='e4'))assert.deepEqual(record.style,core.defaults);
+const newTarget={target:target('e5'),locked:false},newStyle={...core.defaults,width:1.25,color:'#dddddd'};assert.deepEqual(core.candidate(state,project,[newTarget],{},false,newStyle).objectBorders.find(r=>r.target.key==='e5').style,newStyle);
+assert.equal(JSON.stringify(state),before);assert.equal(project.panels[0].variants[0].svg,svg);console.log('PASS border draft candidates: source/state immutability, mixed values, property-specific batch edits, locked preservation, invalid settings, no-border/reset and saved-default semantics');

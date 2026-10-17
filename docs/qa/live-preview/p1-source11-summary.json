@@ -1,0 +1,521 @@
+{
+  "schema": "figure-studio-p1-source-acceptance/1",
+  "status": "SOURCE11_CARBON_FULL_MATRIX_PASS_FINAL_ACCEPTANCE_PENDING",
+  "scope": {
+    "runtime": "Frozen source service, not installed Windows acceptance",
+    "browser": "155.0.8059.82",
+    "language": "English",
+    "themesActuallyCompleted": [
+      "Carbon"
+    ],
+    "viewportCss": [
+      1440,
+      900
+    ],
+    "noFormalPerformanceClaim": true,
+    "noImageDetectionAccuracyClaim": true,
+    "actualTraceAndVideo": true
+  },
+  "sourceFreeze": {
+    "localHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+    "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+    "reconstructedExpectedSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "build": {
+    "currentVersion": "0.1.22",
+    "suiteVersion": "1.4.22",
+    "platform": "windows",
+    "architecture": "x86_64",
+    "channel": "stable"
+  },
+  "harnessSha256": "59c794ec9411f59c2dacc2af0567fba9df26d2d6bd2871170208ee84c4690411",
+  "publicFixtureManifestSha256": "a3a95982a2c1262925f0c749de603dc265654f27ada16f7571738f81c09201b8",
+  "runs": [
+    {
+      "label": "p1-carbon-final11-full-25",
+      "theme": "carbon",
+      "startedAt": "2026-10-17T16:08:18.452Z",
+      "finishedAt": "2026-10-17T16:15:00.796Z",
+      "status": "PASS",
+      "caseCount": 37,
+      "cases": [
+        {
+          "id": "P01-hex-colour",
+          "status": "PASS",
+          "features": [
+            "Inspector HEX preview",
+            "Node identity",
+            "Invalid colour/cancel",
+            "Single commit"
+          ]
+        },
+        {
+          "id": "P02-font-size",
+          "status": "PASS",
+          "features": [
+            "fontSize actual-canvas preview",
+            "fontSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P03-stroke-width",
+          "status": "PASS",
+          "features": [
+            "elementStroke actual-canvas preview",
+            "elementStroke cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P04-opacity",
+          "status": "PASS",
+          "features": [
+            "opacity pointer preview",
+            "opacity single release commit"
+          ]
+        },
+        {
+          "id": "P05-label-text",
+          "status": "PASS",
+          "features": [
+            "panelLabel actual-canvas preview",
+            "panelLabel cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P06-label-position",
+          "status": "PASS",
+          "features": [
+            "labelX actual-canvas preview",
+            "labelX cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P07-label-size",
+          "status": "PASS",
+          "features": [
+            "labelSize actual-canvas preview",
+            "labelSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P08-export-width",
+          "status": "PASS",
+          "features": [
+            "exportWidth actual-canvas preview",
+            "exportWidth cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P09-export-height",
+          "status": "PASS",
+          "features": [
+            "exportHeight actual-canvas preview",
+            "exportHeight cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P10-export-dpi",
+          "status": "PASS",
+          "features": [
+            "Export DPI dimensions"
+          ]
+        },
+        {
+          "id": "P11-font-family",
+          "status": "PASS",
+          "features": [
+            "Font replacement actual glyph style"
+          ]
+        },
+        {
+          "id": "P12-bold",
+          "status": "PASS",
+          "features": [
+            "fontWeight actual text"
+          ]
+        },
+        {
+          "id": "P13-italic",
+          "status": "PASS",
+          "features": [
+            "fontStyle actual text"
+          ]
+        },
+        {
+          "id": "P14-superscript",
+          "status": "PASS",
+          "features": [
+            "super selected character"
+          ]
+        },
+        {
+          "id": "P15-subscript",
+          "status": "PASS",
+          "features": [
+            "sub selected character"
+          ]
+        },
+        {
+          "id": "P16-letter-spacing",
+          "status": "PASS",
+          "features": [
+            "para-letter-spacing actual-canvas preview",
+            "para-letter-spacing cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P17-line-height",
+          "status": "PASS",
+          "features": [
+            "para-line-height actual-canvas preview",
+            "para-line-height cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P18-panel-gap",
+          "status": "PASS",
+          "features": [
+            "gapYSlider pointer preview",
+            "gapYSlider single release commit"
+          ]
+        },
+        {
+          "id": "P19-protected-paints",
+          "status": "PASS",
+          "features": [
+            "Hollow fill protection",
+            "Gradient protection",
+            "Original raster protection",
+            "Locked object protection"
+          ]
+        },
+        {
+          "id": "P20-label-colour",
+          "status": "PASS",
+          "features": [
+            "Panel label visible colour"
+          ]
+        },
+        {
+          "id": "P21-roi-scale-guard",
+          "status": "PASS",
+          "features": [
+            "Actual public TEM ROI",
+            "Uncalibrated scale guard"
+          ]
+        },
+        {
+          "id": "P22-palette-hover",
+          "status": "PASS",
+          "features": [
+            "Palette hover/leave restores without history"
+          ]
+        },
+        {
+          "id": "P23-statistics-display",
+          "status": "PASS",
+          "features": [
+            "Existing statistics display",
+            "Error-bar visibility/direction"
+          ]
+        },
+        {
+          "id": "P24-statistical-font",
+          "status": "PASS",
+          "features": [
+            "statisticalFontSize actual-canvas preview",
+            "statisticalFontSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P25-heatmap-font",
+          "status": "PASS",
+          "features": [
+            "heatmapFontSize actual-canvas preview",
+            "heatmapFontSize cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P26-scale-calibration",
+          "status": "PASS",
+          "features": [
+            "scaleCalibration actual-canvas preview",
+            "scaleCalibration cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P27-overlay-stroke",
+          "status": "PASS",
+          "features": [
+            "overlayStroke actual-canvas preview",
+            "overlayStroke cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P28-bar-width",
+          "status": "PASS",
+          "features": [
+            "barWidth visible real-canvas preview",
+            "barWidth cancel and single release commit"
+          ]
+        },
+        {
+          "id": "P29-numeric-panel-gap",
+          "status": "PASS",
+          "features": [
+            "gapY actual-canvas preview",
+            "gapY cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P30-heatmap-decimals",
+          "status": "PASS",
+          "features": [
+            "heatmapDecimals actual-canvas preview",
+            "heatmapDecimals cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P31-grid-rows",
+          "status": "PASS",
+          "features": [
+            "rows actual-canvas preview",
+            "rows cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P32-panel-span",
+          "status": "PASS",
+          "features": [
+            "rowSpan actual-canvas preview",
+            "rowSpan cancel/commit/undo"
+          ]
+        },
+        {
+          "id": "P33-scale-letterbox-geometry",
+          "status": "PASS",
+          "features": [
+            "Real displayed image content and scientific scale length",
+            "Scale preview/commit/export agreement"
+          ]
+        },
+        {
+          "id": "P34-scale-unsupported-clip",
+          "status": "PASS",
+          "features": [
+            "Actual clipped image rejects unverified scale geometry"
+          ]
+        },
+        {
+          "id": "P35-scale-overflow-last-valid",
+          "status": "PASS",
+          "features": [
+            "Overflow cannot shorten a requested scientific scale",
+            "Invalid appearance retains last valid bar and model"
+          ]
+        },
+        {
+          "id": "P36-main-scale-unknown",
+          "status": "PASS",
+          "features": [
+            "Uncalibrated image cannot invent a physical scale"
+          ]
+        },
+        {
+          "id": "P37-per-image-calibration",
+          "status": "PASS",
+          "features": [
+            "Per-image physical calibration isolation",
+            "Selection cannot write model/history",
+            "Undo removing calibration restores unknown"
+          ]
+        }
+      ],
+      "pageErrors": 0,
+      "remoteRequests": 0,
+      "unexpectedDialogs": 0,
+      "chromeTrace": {
+        "sha256": "e418fa1c47a47206858fe7a6f3cb660c590e8e58454f52909dc96663dcdede89",
+        "bytes": 127584442
+      },
+      "videos": [
+        {
+          "sha256": "07292c6a6dc38b0d2e6f61a34bbcf99fff8c88e942f3c55f1a9eec07cc697e85",
+          "bytes": 41262540
+        }
+      ]
+    }
+  ],
+  "scientificChecks": {
+    "drafts": "Exact project/state/history/checkpoints/dataDrafts; invalid retains last valid canvas and raw input; Escape restores visible fields.",
+    "sourceAfterCommit": "Exact source project, including panels/tables/recipe/analysis/variant SVG, checkpoints and drafts.",
+    "P24RawSvgRaster": {
+      "width": 938,
+      "height": 438,
+      "differentPixels": 0,
+      "differentPixelFraction": 0,
+      "maxChannelDifference": 0,
+      "validPixelSha256": "defaa229c952c9589acf3ee2e72b5b0a865c04131b4318a72453bac71e61d797",
+      "invalidPixelSha256": "defaa229c952c9589acf3ee2e72b5b0a865c04131b4318a72453bac71e61d797",
+      "scope": "Actual Chrome SVG decoder and canvas raster, separate documents using unmodified raw SVG snapshots and original unique IDs"
+    },
+    "P28": {
+      "completedAutosaveBaselineEstablished": true,
+      "readOnlyAutosaveProbes": [
+        {
+          "stage": "held-drag-before-release",
+          "focusUnchanged": true,
+          "historyIndex": 1,
+          "stateSha256": "d614536269adb9e8750ae1086ffd51c51267e966471357c0c564842ac73a7c2c"
+        },
+        {
+          "stage": "cancelled-drag-trailing-motion-before-release",
+          "focusUnchanged": true,
+          "historyIndex": 1,
+          "stateSha256": "d614536269adb9e8750ae1086ffd51c51267e966471357c0c564842ac73a7c2c"
+        },
+        {
+          "stage": "held-drag-before-release",
+          "focusUnchanged": true,
+          "historyIndex": 1,
+          "stateSha256": "d614536269adb9e8750ae1086ffd51c51267e966471357c0c564842ac73a7c2c"
+        }
+      ],
+      "cancelledDragTrailingMotion": {
+        "pointerMoves": 6,
+        "value": "1",
+        "canvasSha256": "0fcae910898c8f73cb52d26ad1295eb0ba055adf569c95f6e2e7ca599b756d7e",
+        "mouseStillHeld": true
+      },
+      "cancelRestoresField": true,
+      "barAndUncertaintyVerticalGeometryUnchanged": true,
+      "historyBefore": 1,
+      "historyAfter": 2,
+      "actualInputEvents": 66
+    },
+    "P33": {
+      "previewGeometry": {
+        "imageKey": "e1",
+        "intrinsic": {
+          "widthPx": 1280,
+          "heightPx": 960,
+          "orientation": "display"
+        },
+        "imageViewport": {
+          "width": 600,
+          "height": 340
+        },
+        "content": {
+          "x": 73.33333333333331,
+          "y": 0,
+          "width": 453.33333333333337,
+          "height": 340,
+          "sx": 0.3541666666666667,
+          "sy": 0.3541666666666667,
+          "viewport": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 340
+          },
+          "visible": {
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1
+          }
+        },
+        "barWidth": 90.66666666666669,
+        "expectedBarWidth": 90.66666666666669,
+        "font": "Arial"
+      },
+      "geometry": {
+        "imageKey": "e1",
+        "intrinsic": {
+          "widthPx": 1280,
+          "heightPx": 960,
+          "orientation": "display"
+        },
+        "imageViewport": {
+          "width": 600,
+          "height": 340
+        },
+        "content": {
+          "x": 73.33333333333331,
+          "y": 0,
+          "width": 453.33333333333337,
+          "height": 340,
+          "sx": 0.3541666666666667,
+          "sy": 0.3541666666666667,
+          "viewport": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 340
+          },
+          "visible": {
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1
+          }
+        },
+        "barWidth": 90.66666666666669,
+        "expectedBarWidth": 90.66666666666669,
+        "font": "Arial"
+      },
+      "exportGeometry": {
+        "barWidth": 90.66666666666669
+      },
+      "originalImageBytesUnchanged": true
+    },
+    "P36": {
+      "physicalCalibrationInvented": false,
+      "createdScaleCount": 0
+    },
+    "P37": {
+      "engineeringCalibrations": [
+        {
+          "source": "Public H&E",
+          "wholeWidth": 100,
+          "barLength": 20
+        },
+        {
+          "source": "Public CDC TEM derivative",
+          "wholeWidth": 200,
+          "barLength": 40
+        }
+      ],
+      "calibrationUnits": "micrometres, explicit engineering assumptions; actual specimen dimensions are unknown",
+      "selectionHistoryWrites": 0,
+      "originalImageBytesUnchanged": true
+    }
+  },
+  "retainedFailureSummary": {
+    "href": "p1-acceptance-status.json",
+    "retainedLabels": [
+      "p1-carbon-fresh04-all-07",
+      "p1-carbon-fresh05-scale-geometry-10",
+      "p1-carbon-final09-17",
+      "p1-carbon-final09-range-19",
+      "p1-carbon-final10-trailing-21",
+      "p1-carbon-final10-trailing-22"
+    ],
+    "originalFailedEvidencePreserved": true,
+    "note": "The status file includes all retained attempts and separately distinguishes actual product defects, harness/legacy migration findings and the still-unclassified pre-Escape attempt21."
+  },
+  "limits": [
+    "Carbon37 is a complete stage run. Pearl was explicitly not started after the coordinator reported a separate discovery Apply defect; source11 is not called product-complete.",
+    "The 100/20 and 200/40 micrometre calibration values are explicit engineering assumptions; actual specimen dimensions are unknown.",
+    "Public H&E and officially digitally colourized CDC TEM derivative retain exact original embedded source bytes; computed comparisons and bars are explicitly synthetic renderer fixtures.",
+    "Browser DOM Save probes do not synthesize additional blur; actual focus observations and Save timing are retained. During held range drags, read-only completed IndexedDB snapshots avoid focus changes; the old actual pre-release Save assertion also passed independently in source11 saveprobe-24.",
+    "Wall times under concurrent functional QA are not formal performance results. This run does not establish native Windows DPI behaviour, image-matching accuracy or novice completion rates."
+  ],
+  "pending": [
+    "Complete final-source dual-theme37 matrix after discovery fix.",
+    "Actual installed Windows final candidate acceptance in both themes."
+  ]
+}

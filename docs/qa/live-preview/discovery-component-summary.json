@@ -1,0 +1,63 @@
+{
+  "schema": "figure-studio-discovery-preview-component/1",
+  "status": "PASS_CONTROLLED_COMPONENT_SCOPE",
+  "scope": "JSDOM controller tests with the actual shared research discovery core and actual literature privacy UI; controlled local render/preview/commit callbacks. No real browser rendering, paper retrieval, installed Windows or scientific accuracy claim.",
+  "scripts": [
+    {
+      "file": "scripts/test_studio_discovery_preview_ui.cjs",
+      "exitCode": 0,
+      "groups": 14
+    },
+    {
+      "file": "scripts/test_figure_discovery.cjs",
+      "exitCode": 0,
+      "scope": "Seven scientific data scenarios and browser/CLI shared-core parity"
+    },
+    {
+      "file": "scripts/test_discovery_literature.cjs",
+      "exitCode": 0,
+      "scope": "Controlled provider responses, privacy, evidence grades and no invented figures"
+    }
+  ],
+  "syntax": {
+    "discovery-ui.js": "PASS",
+    "test_studio_discovery_preview_ui.cjs": "PASS"
+  },
+  "checks": [
+    "Nonmodal dock uses show(), never showModal(); raw unit confirmation still rejects eligibility when unknown.",
+    "Explicit canonical-preview host callback receives unchanged source rows and declared units; cached renderer assets remain unmodified.",
+    "Only one current decorated preview asset is retained, with the same object identity reused for commit.",
+    "A valid to B failure retains A visual while disabling B Apply; cancellation restores committed visual.",
+    "A/B asynchronous races, stale callbacks and cancelled pending requests cannot repaint or unlock stale candidates.",
+    "Data/design/context changes cancel old previews and clear stale candidates.",
+    "Language snapshot/restore retains exact rows, fields, roles, goal/filter and completed assets without rediscovery, renderer request or literature request.",
+    "Failed commit remains open; repeated Apply while committing invokes the host once; legacy apply callback remains supported.",
+    "Same filename can be read again after successful upload/current workbench change; private filename remains in the local privacy guard.",
+    "Literature inputs and explicit opt-in gate survive language restoration; table values remain blocked.",
+    "Late renderer completion after invalidation cannot rebuild candidates; unfinished cached views are labelled incomplete.",
+    "Error-state language restore rebuilds actual last-valid A shadow from its cached asset while keeping failed B selected, error visible and Apply blocked; restored A host cancellation still clears the footer."
+  ],
+  "sourceSha256": {
+    "skills/polish-sci-figures/assets/figure-studio/discovery-ui.js": "f78a0a39e86ba74236254887c76181e730aa0cbd15cc7f0acaccab2e879bf0ab",
+    "skills/polish-sci-figures/assets/figure-studio/discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+    "scripts/test_studio_discovery_preview_ui.cjs": "987872ae40b272bbbf88b18e6c15746e4869f9cf0f95379aa7c2200826dd47db"
+  },
+  "pending": [
+    "Frozen full-app real Chrome main-canvas comparison and committed-only Save/SVG/PNG/TIFF export.",
+    "Real same-filename re-selection in the browser.",
+    "Final source and installed Windows dual-theme acceptance."
+  ],
+  "network": "No external request was made; literature response functions were controlled test callbacks.",
+  "retainedFailure": {
+    "case": "A success then B error, language snapshot/restore",
+    "preFixStatus": "FAIL_CONTROLLED_COMPONENT",
+    "actualBeforeFix": "COMMITTED baseline",
+    "expected": "Actual last-valid A controlled visual (compare_strip_median)",
+    "preFixSourceSha256": {
+      "skills/polish-sci-figures/assets/figure-studio/discovery-ui.js": "21a9ebd399348ca41b9fae0a41ee0b9847f23e298587bc8343949bf193309a98",
+      "skills/polish-sci-figures/assets/figure-studio/discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+      "scripts/test_studio_discovery_preview_ui.cjs": "c30c56ea279d04bcd920f39f3df2a3bb731aedc67da9abe93b347edf93a5a8f4"
+    },
+    "fixAndRetest": "Restore cached A using a fresh revision bound separately to B selection/error; all original13 plus new regression PASS, no rediscovery, rendering request or literature search."
+  }
+}

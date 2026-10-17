@@ -41,7 +41,7 @@ const StudioImageInsetsController = (() => {
     function cancelCalibration(){calibrationPending=null;clearPaint();}
     function cancel(){if(cancelling)return;cancelling=true;serial++;clearGesture();calibrationPending=null;cancelPreview();ui?.cancel();cancelling=false;}
     async function begin(mode,source,insetId,factor=2){
-      cancel();host.cancelOtherGestures?.();if(destroyed||current().locked)return false;
+      cancel();host.beforePreview?.();host.cancelOtherGestures?.();if(destroyed||current().locked)return false;
       const token=++serial,owner=context();
       try{
         const image=sourceDOM(source),dimensions=await core.decodeSource(image);
@@ -119,6 +119,7 @@ const StudioImageInsetsController = (() => {
     function factorOf(a){try{const p=core.sourceInfo(a,host.root()).polygon,g=host.geometry(a),edge=p[core.displayPixels(a).swapped?3:1];return Number((a.w*g.width/Math.hypot(edge.x-p[0].x,edge.y-p[0].y)).toFixed(4));}catch{return 2;}}
     function uiSelection(){const s=current(),a=preview&&unchanged(preview)?preview.next.overlays.find(a=>a.id===s.inset?.id):s.inset;return {...s,source:s.source||a?.source,inset:a?{...a,factor:factorOf(a),borderColor:a.color,borderWidth:a.stroke,connectors:a.connector,scaleBar:a.showScale}:undefined};}
     function update(patch,onlyPreview=false){
+      if(onlyPreview&&!preview)host.beforePreview?.();
       const s=current();if(!s.inset||s.locked)return false;const next=copy(host.state()),a=next.overlays.find(a=>a.id===s.inset.id);if(!a||a.locked)return false;
       for(const [key,value]of Object.entries(patch)){const mapped={borderColor:'color',borderWidth:'stroke',connectors:'connector',scaleBar:'showScale',scaleLengthUm:'scaleLengthUm'}[key];if(!mapped)continue;if(key==='scaleLengthUm'&&value===null)delete a.scaleLengthUm;else a[mapped]=value;}
       core.validate(a,host.project(),next);core.scaleInfo(a,{geometry:host.geometry(a),calibration:host.calibration(a.source)});
@@ -142,7 +143,9 @@ const StudioImageInsetsController = (() => {
     function remove(){const s=current();if(!s.inset||s.locked)return false;cancelPreview();const next=copy(host.state());next.overlays=next.overlays.filter(a=>a.id!==s.inset.id||a.locked);return host.commit(next,t('已删除局部放大','Image inset deleted'));}
     function refresh(){
       if(destroyed)return;if(armed&&!unchanged(armed)||drag&&!unchanged(drag)||calibrationPending&&!unchanged(calibrationPending)){cancel();return;}
-      if(preview&&!unchanged(preview)){preview=null;host.repaint();return;}ui?.refresh();
+      // Discard the matching input gesture too: a same-ID inset can belong to
+      // another history state or project, so leaving raw text would reapply it.
+      if(preview&&!unchanged(preview)){cancel();return;}ui?.refresh();
     }
     function exportReady(panelId){try{for(const a of host.state().overlays||[])if(a.type==='inset'&&(!panelId||a.source.panelId===panelId)){core.validate(a,host.project(),host.state());core.sourceInfo(a,host.root());core.quality(a,{geometry:host.geometry(a),outputScale:host.output()?.scale||1});if(a.showScale)core.scaleInfo(a,{geometry:host.geometry(a),calibration:host.calibration(a.source)});const rendered=core.renderContent(a,{root:host.root(),geometry:host.geometry(a),calibration:host.calibration(a.source)});if(rendered.hasAttribute('data-inset-unavailable')||rendered.hasAttribute('data-inset-scale-unavailable'))throw Object.assign(Error(rendered.getAttribute('data-inset-error')||'Image inset is unavailable'),{code:rendered.getAttribute('data-inset-unavailable')||'scale-display'});}return true;}catch(error){report(error);return false;}}
     ui=UI.create({document:doc,detailContainer:host.detailContainer,annotationContainer:host.annotationContainer,language:host.language,activePane:host.activePane,selection:uiSelection,quality,update,setFactor,remove,cancelPreview,calibrate,cancelCalibration,startROI:(...args)=>begin('roi',...args),startCalibration:source=>begin('calibration',source),errorText:textError,onError:report});

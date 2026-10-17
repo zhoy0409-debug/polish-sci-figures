@@ -17,6 +17,7 @@ import subprocess
 import sys
 import threading
 import time
+from datetime import datetime, timezone
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
@@ -24,6 +25,54 @@ RELEASES = 'https://github.com/zhoy0409-debug/polish-sci-figures/releases'
 UNINSTALL_KEY = r'Software\Microsoft\Windows\CurrentVersion\Uninstall\{51D78749-35EE-43BB-BA21-F79D6A1D5094}_is1'
 MAX_BYTES = 2_000_000_000
 CHUNK = 262_144
+AUDIT_MAX_BYTES = 262_144
+AUDIT_EVENTS = frozenset(('job-created', 'state', 'download-body-complete',
+    'verification-started', 'verification-passed', 'installer-recheck-started',
+    'installer-recheck-passed', 'backup-started', 'backup-copied', 'backup-manifest-hashed',
+    'helper-launched', 'helper-ready', 'helper-ready-written', 'helper-backup-verified', 'wait-for-editor',
+    'previous-editor-exited', 'installer-requested', 'installer-exited',
+    'restore-started', 'restore-verified', 'restore-failed', 'result-recorded',
+    'restart-requested', 'restart-dispatched'))
+
+
+def audit_event(job, event, **values):
+    """Best-effort local evidence, independent of update decisions and safety.
+
+    The bounded journal stores only allowlisted numeric/enum/hash fields. It is
+    never read as authorization or progress and contains no paths/project data.
+    """
+    try:
+        if job is None or event not in AUDIT_EVENTS:
+            return
+        record = {'event': event, 'utc': datetime.now(timezone.utc).isoformat(),
+                  'monotonicNs': time.monotonic_ns()}
+        for key, value in values.items():
+            if key in ('received', 'total') and type(value) is int and 0 <= value <= MAX_BYTES:
+                record[key] = value
+            elif key == 'fileCount' and type(value) is int and 0 <= value <= 100000:
+                record[key] = value
+            elif key == 'exitCode' and type(value) is int and -(2**31) <= value < 2**32:
+                record[key] = value
+            elif key == 'sha256' and isinstance(value, str) and re.fullmatch(r'[0-9a-f]{64}', value):
+                record[key] = value
+            elif key == 'version' and isinstance(value, str) and re.fullmatch(r'\d{1,5}\.\d{1,5}\.\d{1,5}', value):
+                record[key] = value
+            elif key == 'status' and value in ('idle', 'checking', 'downloading', 'ready', 'preparing', 'installing', 'cancelled', 'error', 'installed', 'restored', 'rollback-failed'):
+                record[key] = value
+        job = logical_path(job)
+        path = job / 'audit.jsonl'
+        if linked_path(job) or linked_path(path):
+            return
+        line = json.dumps(record, ensure_ascii=True, separators=(',', ':')) + '\n'
+        native = filesystem_path(path)
+        size = native.stat().st_size if native.exists() else 0
+        if size + len(line.encode('utf-8')) > AUDIT_MAX_BYTES:
+            return
+        with native.open('a', encoding='utf-8') as stream:
+            stream.write(line)
+    except Exception:
+        # Audit failures must never change verification, rollback or launch.
+        pass
 
 
 def logical_path(path):
@@ -135,10 +184,16 @@ def file_hash(path):
     return digest.hexdigest()
 
 
-def download_asset(offer, destination, *, opener=open_asset, cancelled=None, progress=lambda n: None, clock=time.monotonic):
+def download_asset(offer, destination, *, opener=open_asset, cancelled=None, progress=lambda n: None, clock=time.monotonic, audit=None):
     target = filesystem_path(destination)
     part = target.with_suffix('.partial')
     started, digest, received = clock(), hashlib.sha256(), 0
+    def note(event):
+        try:
+            if audit:
+                audit(event, received=received, total=offer['assetBytes'])
+        except Exception:
+            pass
     try:
         with opener(offer['downloadUrl']) as response, part.open('xb') as output:
             if response.status != 200:
@@ -158,12 +213,15 @@ def download_asset(offer, destination, *, opener=open_asset, cancelled=None, pro
                 if received > offer['assetBytes']:
                     raise ValueError('Installer size verification failed')
                 output.write(block); digest.update(block); progress(received)
+            note('download-body-complete')
+            note('verification-started')
             output.flush(); os.fsync(output.fileno())
         if received != offer['assetBytes'] or digest.hexdigest() != offer['assetSha256']:
             raise ValueError('Installer SHA256 or size verification failed')
         if cancelled and cancelled.is_set():
             raise InterruptedError('Download cancelled')
         os.replace(part, target)
+        note('verification-passed')
     finally:
         part.unlink(missing_ok=True)
 
@@ -221,6 +279,7 @@ class WindowsUpdater:
         self.on_install, self.opener, self.launch = on_install, opener, launch
         self.lock = threading.Lock(); self.cancelled = threading.Event()
         self.worker = None; self.offer = None; self.job = None
+        self._audit_status = None; self._audit_percent = -1
         self.state = {'status': 'idle', 'supported': self.install_dir is not None, 'received': 0, 'total': 0}
 
     def snapshot(self):
@@ -230,6 +289,12 @@ class WindowsUpdater:
     def _set(self, **values):
         with self.lock:
             self.state.update(values)
+            state = dict(self.state)
+            percent = int(state['received'] * 100 / state['total']) if state['total'] else -1
+            record = state['status'] != self._audit_status or percent != self._audit_percent
+            self._audit_status, self._audit_percent = state['status'], percent
+        if record:
+            audit_event(self.job, 'state', status=state['status'], received=state['received'], total=state['total'])
 
     def request(self, action):
         if action == 'status':
@@ -264,9 +329,12 @@ class WindowsUpdater:
             filesystem_path(self.cache).mkdir(parents=True, exist_ok=True)
             self.job = self.cache / ('update-' + secrets.token_hex(12)); filesystem_path(self.job).mkdir()
             self.offer = offer
+            self._audit_status = None; self._audit_percent = -1
+            audit_event(self.job, 'job-created', version=offer['latestVersion'], sha256=offer['assetSha256'], total=offer['assetBytes'])
             self._set(status='downloading', total=offer['assetBytes'], latestVersion=offer['latestVersion'])
             download_asset(offer, self.job / offer['assetName'], opener=self.opener, cancelled=self.cancelled,
-                           progress=lambda value: self._set(received=value))
+                           progress=lambda value: self._set(received=value),
+                           audit=lambda event, **values: audit_event(self.job, event, **values))
             self._set(status='ready')
         except InterruptedError:
             self._set(status='cancelled')
@@ -277,16 +345,21 @@ class WindowsUpdater:
         stage = 'verify-installer'
         try:
             installer = self.job / self.offer['assetName']
+            audit_event(self.job, 'installer-recheck-started')
             verify_file(installer, self.offer)
+            audit_event(self.job, 'installer-recheck-passed', sha256=self.offer['assetSha256'])
             if self.cache.is_relative_to(self.install_dir) or self.install_dir.is_relative_to(self.cache):
                 raise ValueError('Update cache overlaps program data')
             backup = self.job / 'rollback'
             stage = 'backup-program'
+            audit_event(self.job, 'backup-started')
             files = backup_program(self.install_dir, backup)
+            audit_event(self.job, 'backup-copied', fileCount=len(files))
             stage = 'verify-backup'
             manifest = {'version': 1, 'installDir': str(self.install_dir), 'parentPid': os.getpid(),
                         'offer': self.offer, 'files': files,
                         'fileHashes': {name: file_hash(backup / name) for name in files}}
+            audit_event(self.job, 'backup-manifest-hashed', fileCount=len(files))
             path = self.job / 'handoff.json'
             filesystem_path(path).write_text(json.dumps(manifest), encoding='utf-8')
             helper = backup / 'Figure Studio.exe'
@@ -294,6 +367,7 @@ class WindowsUpdater:
                 raise ValueError('Rollback launcher is missing')
             stage = 'start-helper'
             process = self.launch([str(helper), '--apply-update', str(path)], cwd=str(backup), close_fds=True)
+            audit_event(self.job, 'helper-launched')
             # The helper validates the preserved program before allowing the
             # editor to close. Slow disks still have a finite preparation wait.
             deadline = time.monotonic() + 120
@@ -302,6 +376,7 @@ class WindowsUpdater:
                 if process.poll() is not None or time.monotonic() > deadline:
                     raise RuntimeError('The update helper could not start')
                 time.sleep(.1)
+            audit_event(self.job, 'helper-ready')
             self._set(status='installing')
             self.on_install()
         except Exception as error:
@@ -403,20 +478,30 @@ def apply_handoff(path, *, executable=None, registration=registered_install, wai
         raise ValueError('Rollback files are incomplete')
     if type(value.get('parentPid')) is not int or value['parentPid'] <= 0:
         raise ValueError('Invalid previous process identity')
+    audit_event(path.parent, 'helper-backup-verified', fileCount=len(files))
     filesystem_path(path.parent / 'helper-ready.json').write_text('{"ready":true}', encoding='utf-8')
+    audit_event(path.parent, 'helper-ready-written')
+    audit_event(path.parent, 'wait-for-editor')
     wait(value['parentPid'], original)
+    audit_event(path.parent, 'previous-editor-exited')
     outcome = 'failed'
     try:
+        # This is an invocation attempt, not evidence of a native process start.
+        audit_event(path.parent, 'installer-requested')
         result = run(installer_command(installer, directory), check=False)
+        audit_event(path.parent, 'installer-exited', exitCode=result.returncode)
         if result.returncode == 0:
             outcome = 'installed'
         else:
             raise RuntimeError('Installer was cancelled or failed')
     except Exception:
         try:
+            audit_event(path.parent, 'restore-started')
             restore_program(directory, backup, files, hashes)
+            audit_event(path.parent, 'restore-verified')
             outcome = 'restored'
         except Exception:
+            audit_event(path.parent, 'restore-failed')
             outcome = 'rollback-failed'
     report = {'status': outcome}
     if outcome == 'rollback-failed':
@@ -426,10 +511,13 @@ def apply_handoff(path, *, executable=None, registration=registered_install, wai
     report_error = None
     try:
         filesystem_path(path.parent / 'result.json').write_text(json.dumps(report), encoding='utf-8')
+        audit_event(path.parent, 'result-recorded', status=outcome)
     except OSError as error:
         report_error = error
     restart = backup / 'Figure Studio.exe' if outcome == 'rollback-failed' else original
+    audit_event(path.parent, 'restart-requested')
     launch([str(restart)], cwd=str(restart.parent), close_fds=True)
+    audit_event(path.parent, 'restart-dispatched')
     if report_error:
         raise OSError('The update result could not be written. Preserved program: ' + str(backup)) from report_error
     return outcome

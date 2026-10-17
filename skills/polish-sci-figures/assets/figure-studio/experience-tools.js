@@ -10,6 +10,7 @@ const StudioExperienceTools=(()=>{
       {id:'axes',zh:'统计与坐标轴',en:'Statistics & axes',terms:'坐标 横轴 纵轴 范围 长度 尺寸 刻度 间隔 外观 axis range size ticks scale statistics',run:()=>host.axes()},
       {id:'export',zh:'投稿导出',en:'Publication export',terms:'投稿 导出 svg png tif tiff export print',run:()=>host.export()},
       {id:'text-color',zh:'更改所选文字颜色',en:'Change selected text colour',terms:'改字色 字色 文字颜色 text font color colour',run:()=>host.textColor?host.textColor():host.edit()},
+      {id:'label-color',zh:'图号改色',en:'Change panel label colour',terms:'图号 字体色 改色 label panel letter font color colour',run:()=>host.labelColor?host.labelColor():host.textColor?.()},
       {id:'typography',zh:'统一组图文字规格',en:'Unify figure typography',terms:'一键统一字号 统一字号 字号规范 typography size font uniform',run:()=>host.typography?host.typography():host.edit()},
       {id:'appearance',zh:'界面主题与画布周边',en:'Interface theme and canvas surround',terms:'外观 深色 浅色 主题 carbon pearl jade theme appearance surround',run:()=>host.appearance?.()},
       {id:'border',zh:'给选中对象加边框',en:'Frame selected objects',terms:'边框 透明框 病理图 形状 border frame outline',run:()=>host.borders()},

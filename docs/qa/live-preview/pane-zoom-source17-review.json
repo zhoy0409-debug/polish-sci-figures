@@ -1,0 +1,64 @@
+{
+  "schema": "figure-studio-pane-zoom-review/1",
+  "status": "NO_FUNCTIONAL_DIFFERENCE_REPRODUCED_PRODUCTION_UNCHANGED",
+  "source": "source17",
+  "frozenHtmlSha256": "b659049bad8c3305b6639437fa55e33fdf77a409d2a645bacf6df7552473d1b5",
+  "scope": "Pure Node/JSDOM execution of actual production wheel and dropdown listeners, zoom/fit/cancellation functions, pane functions and the actual render-sizing subsection. Plot replacement and viewport geometry are controlled. This is neither actual Chrome input nor a physical zoom/performance claim.",
+  "hypothesis": "A pending manual zoom frame might leave a new zoom control value paired with the old zoomView after an ordinary tab reuse.",
+  "sourceFinding": [
+    "The sole production queuedZoom assignment is in the modified-wheel listener. That listener does not update the zoom control before its frame.",
+    "The manual dropdown onchange synchronously cancels pending wheel work and calls applyPreviewZoom. There is no production manual-dropdown animation-frame queue.",
+    "Existing fit callbacks check the current zoomView.fit and queuedZoom before applying. A newer synchronous manual choice takes precedence."
+  ],
+  "tests": {
+    "file": "scripts/test_studio_pane_zoom.cjs",
+    "exitCode": 0,
+    "groups": 5,
+    "checks": [
+      "Actual manual dropdown updates zoom synchronously; stable tab reuse preserves zoom, fit, control and exact CSS dimensions.",
+      "An existing pending fit frame cannot overwrite a newer actual manual dropdown after a tab switch.",
+      "A real production WheelEvent queues work without prewriting the control; reuse and original canonical tab switching settle to the same zoom, fit, control, dimensions and pending state.",
+      "An actual manual dropdown supersedes pending wheel work before a tab switch.",
+      "An existing fit frame plus pending wheel work settles identically through reuse and original canonical rendering."
+    ],
+    "sha256": "4a65073f5ba6ec4fe3ff85d4c113e8fd5e37e7c0261583349aa30b1e4ea8436e"
+  },
+  "actualObservations": {
+    "manualBeforeAndAfterTab": {
+      "zoom": 2,
+      "fit": false,
+      "control": "2",
+      "pending": false,
+      "width": "2000px",
+      "height": "1400px"
+    },
+    "queuedWheelBeforeTab": {
+      "zoom": 0.7942857142857143,
+      "fit": true,
+      "control": "fit",
+      "pending": true,
+      "width": "794.2857142857142px",
+      "height": "556px"
+    },
+    "reuseAndCanonicalAfterTab": {
+      "zoom": 0.7942857142857143,
+      "fit": true,
+      "control": "fit",
+      "pending": false,
+      "width": "794.2857142857142px",
+      "height": "556px"
+    }
+  },
+  "retainedInitialPolicyAssertion": {
+    "status": "FAIL",
+    "assertion": "A pending real wheel must take the original canonical fallback",
+    "actualCanonicalCalls": 1,
+    "expectedCanonicalCalls": 2,
+    "interpretation": "This additional routing policy was not an established product requirement. The first three actual-event parity tests had already passed. A routing count difference cannot be reported as a demonstrated zoom desynchronization.",
+    "treatment": "Original failed tool output is retained. The final tests replace this unsupported policy with real event-order and settled-result assertions; no production guard was added merely to satisfy it."
+  },
+  "productionChanged": false,
+  "existing85ComponentTestsChanged": false,
+  "newSource18Created": false,
+  "limit": "The tests counter the specific queued-manual-zoom premise and check the listed event orders. They do not establish absence of every possible browser zoom defect."
+}

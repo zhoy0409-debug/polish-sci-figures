@@ -1,0 +1,272 @@
+{
+  "schema": "figure-studio-live-preview-after-summary/1",
+  "label": "P0-development-pilot-01",
+  "kind": "source-development-runtime",
+  "status": "SCOPED_ACCEPTANCE_PASS",
+  "generatedAt": "2026-10-17T14:33:16.565Z",
+  "scope": "Public or authorized public-domain image bytes and UCI Iris observations, actual Chrome and real local backend redraw. Scope is only the listed conditions and cases. This does not establish global completion, novice-user success, clinical accuracy, independent image ground truth, physical touch or Chinese IME compatibility.",
+  "servedHtmlSha256": "9cec36eb1026579731a552515bedb64ec5990ce16544ce4cd50ac0f2269cec16",
+  "browser": "155.0.8059.82",
+  "conditions": [
+    {
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "browserMode": "headful"
+    }
+  ],
+  "cases": [
+    {
+      "id": "border-draft-isolation",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "cancelExact": true,
+      "thirtyInputsUncommitted": true,
+      "invalidInputRetainsLastValid": true,
+      "saveAndExportCommittedOnly": true,
+      "oneUndoRedo": true,
+      "saveReopen": true,
+      "sourceImageHash": "c16e924653f3f2f3f562280fb927f8263511f11d02357e2df34db471cdba1400",
+      "exportsBefore": {
+        "rawSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "canonicalSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "pngSha256": "652c79480861e7568c0645965f16d047c3d60cf856b1ed25732ec5e301651420",
+        "pixels": {
+          "width": 3000,
+          "height": 1850,
+          "sha256": "3b150822fcddd6e83a1967a976f0d8daa6ed8c405f6126cc03ed7ac7b1edc4cf"
+        }
+      },
+      "exportsDuring": {
+        "rawSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "canonicalSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "pngSha256": "652c79480861e7568c0645965f16d047c3d60cf856b1ed25732ec5e301651420",
+        "pixels": {
+          "width": 3000,
+          "height": 1850,
+          "sha256": "3b150822fcddd6e83a1967a976f0d8daa6ed8c405f6126cc03ed7ac7b1edc4cf"
+        }
+      },
+      "canvasTargetReachability": {
+        "x": 670,
+        "y": 493.3333435058594,
+        "inViewport": true,
+        "artboardHit": true
+      }
+    },
+    {
+      "id": "border-mixed-lock-and-selection-invalidation",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "targets": 4,
+      "locked": 1,
+      "editablePreviewAndCommit": 3,
+      "lockedUnchanged": true,
+      "selectionInvalidates": true,
+      "singleUndoRedo": true
+    },
+    {
+      "id": "border-project-and-undo-invalidation",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "undoCancelsDraftAndUndoesPriorEdit": true,
+      "projectSwitchInvalidates": true,
+      "lateBorderResidue": false
+    },
+    {
+      "id": "quick-font-escape",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "actualEscapeCancelsWithoutBlurCommit": true
+    },
+    {
+      "id": "native-axis-draft-isolation",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "latestRangeDrawnOnActualCanvas": true,
+      "threeDraftEditsZeroHistory": true,
+      "saveSvgPngCommittedOnly": true,
+      "invalidInputBlocked": true,
+      "cancelExact": true,
+      "oneCommitUndoRedo": true,
+      "observationsUnchanged": true
+    },
+    {
+      "id": "image-tools-docking",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "displayCanvasReachability": {
+        "x": 550,
+        "y": 433.3333435058594,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "linksCanvasReachability": {
+        "x": 550,
+        "y": 433.3333435058594,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "displayNonmodal": true,
+      "linksNonmodal": true
+    }
+  ],
+  "attempts": [
+    {
+      "label": "after-pilot-03-border",
+      "status": "PASS",
+      "rawReportSha256": "a9b3fb2c84d7f5b432dfd990fe827c479d558445a8512ba6e3aaf3f2c4028a7c",
+      "videos": [
+        {
+          "file": "page@682277da720c9a234f420fcd5eeafa3a.webm",
+          "bytes": 2040822,
+          "sha256": "45eeaa18635e0b4402f354976ce82f1c3ea33ba39f9796e5d8205fa9814925f8",
+          "edited": false,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "label": "after-pilot-04-core-rest",
+      "status": "PASS",
+      "rawReportSha256": "a573ac3ef4ae197b5547a4d41af387c66d85938b967d7a2321031c89fc3a1cd6",
+      "videos": [
+        {
+          "file": "page@18cbee45de843f9b3f914b32b131e28f.webm",
+          "bytes": 965132,
+          "sha256": "4a4fd2c9a8a2dd79a0485602d741fd0a5418050d187c1202594e2dd546d9b9e6",
+          "edited": false,
+          "complete": true
+        },
+        {
+          "file": "page@38b9b6be5340983bb67441561c599afc.webm",
+          "bytes": 445205,
+          "sha256": "68e6806c5c8047c2464bf3f6d629d723d07b7717fa59148be423fe7137c15d78",
+          "edited": false,
+          "complete": true
+        },
+        {
+          "file": "page@612fa4bbd35a1766b3500c896b28731b.webm",
+          "bytes": 1517264,
+          "sha256": "e021367f205f2a5b92827c2548e54287f620de67f7ee47110027c5e499d0f6b3",
+          "edited": false,
+          "complete": true
+        },
+        {
+          "file": "page@9afa8c4081b53df150c9bfc689822899.webm",
+          "bytes": 1186641,
+          "sha256": "500a9aad844a5832211315e9f31dc914eab6c6581b50e479186304a38760f30a",
+          "edited": false,
+          "complete": true
+        },
+        {
+          "file": "page@ffecfb81ecb5ccab685084a1fa549ff0.webm",
+          "bytes": 1015936,
+          "sha256": "e2e31d8acd6d9f07295d1372c1fc95465e87328be32f8b8bcf21263bb8de583a",
+          "edited": false,
+          "complete": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "These checks use public inputs. No private image, raw project, profile, local endpoint or service token is included.",
+    "DOM Save/export activation without focus change is explicitly identified where used; ordinary pointer activation can blur and commit simple direct-edit fields.",
+    "Network-delay tests delay actual backend responses; an aborted network request is not proof of an uncooperative producer ignoring cancellation.",
+    "A source runtime, frozen executable runtime and installed executable are distinct. The kind is explicit; installation identity requires separate installer and file-manifest verification."
+  ],
+  "retainedFailureNotes": {
+    "scope": "Development pilot of the QA harness; original attempts remain unchanged in ignored local evidence.",
+    "attempts": [
+      {
+        "label": "after-pilot-01-carbon",
+        "status": "INTERRUPTED_HARNESS_RESOURCE_DIAGNOSIS",
+        "completedCases": 0,
+        "finding": "Large PNG byte arrays were expanded into JSON numbers by the QA helper. The test process was stopped after resource growth; no completed video or product pass is claimed.",
+        "resolution": "Lossless base64 transport to the browser replaces numeric-array transport. The original helper and attempt remain retained."
+      },
+      {
+        "label": "after-pilot-02-border",
+        "status": "FAIL_RETAINED",
+        "finding": "The QA helper attempted to fetch a data URL, which the actual application Content Security Policy blocked.",
+        "resolution": "The helper now uses atob, Uint8Array and Blob without network fetch or application policy changes. The actual screenshot, failure and raw video are retained."
+      }
+    ],
+    "interpretation": "Later scoped passes do not replace either earlier attempt. Both failures concern identified test-helper behavior; they are not evidence of a passed product case."
+  }
+}

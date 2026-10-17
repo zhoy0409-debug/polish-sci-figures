@@ -26,7 +26,7 @@ const StudioTextToolsUI = (() => {
     const brushHint=doc.createElement('p');brushHint.className='muted';brushHint.textContent=t('可复制导入文件的原字体；本机缺少该字体时，可选择 Arial 或 Times New Roman。');painterPopover.append(brushHint);
     const popover=doc.createElement('section');popover.className='text-spacing-popover';popover.hidden=true;popover.setAttribute('aria-label',t('文字间距'));container.append(popover);
     const field=(label,name,min,max,step)=>{const wrapper=doc.createElement('label'),caption=doc.createElement('span'),input=doc.createElement('input');caption.textContent=t(label);input.type='number';input.name=name;input.min=String(min);input.max=String(max);input.step=String(step);input.setAttribute('aria-label',t(label));fieldLabels.push({caption,input,label});wrapper.append(caption,input);popover.append(wrapper);return input;};
-    const letter=field('字间距（pt）','letterSpacing',-1000,1000,.1),line=field('行距（倍）','lineHeight',.5,5,.05),hint=doc.createElement('p');hint.className='muted';hint.textContent=t('输入即预览，移开焦点即应用；格式刷只复制文字样式，吸色笔只修改图形颜色。');popover.append(hint);container.append(painterPopover);
+    const letter=field('字间距（pt）','letterSpacing',-1000,1000,.1),line=field('行距（倍）','lineHeight',.5,5,.05),hint=doc.createElement('p'),spacingStatus=doc.createElement('p');hint.className='muted';hint.textContent=t('输入即预览，移开焦点即应用；格式刷只复制文字样式，吸色笔只修改图形颜色。');spacingStatus.className='muted text-spacing-status';spacingStatus.setAttribute('role','status');spacingStatus.setAttribute('aria-live','polite');spacingStatus.hidden=true;popover.append(hint,spacingStatus);container.append(painterPopover);
     function localize(){
       // Keep the existing controls and focus when the host changes language.
       // Only changed strings touch the DOM; ordinary preview frames stay cheap.
@@ -37,6 +37,7 @@ const StudioTextToolsUI = (() => {
       for(const {caption,input,label}of brushLabels){const value=t(label);if(caption.textContent!==value)caption.textContent=value;if(input.getAttribute('aria-label')!==value)input.setAttribute('aria-label',value);}
       for(const {option,label}of brushFontLabels){const value=t(label);if(option.textContent!==value)option.textContent=value;}
       const brushHelp=t('可复制导入文件的原字体；本机缺少该字体时，可选择 Arial 或 Times New Roman。');if(brushHint.textContent!==brushHelp)brushHint.textContent=brushHelp;
+      renderSpacingStatus();
     }
     let preview=null,spacingSession=null,eyeTargets=null,destroyed=false;
     const options=item=>adapter.captureOptions?.(item)||{pointFactor:item.pointFactor||1};
@@ -48,35 +49,72 @@ const StudioTextToolsUI = (() => {
     const notify=()=>{localize();const active=painter.status().active;painterButton.setAttribute('aria-pressed',String(active));eyeButton.setAttribute('aria-pressed',String(!!eyeTargets));container.classList.toggle('text-tool-active',active||!!eyeTargets);adapter.changed?.({painter:active,eyedropper:!!eyeTargets});};
     const brushFields=()=>brushChecks.filter(choice=>choice.input.checked).flatMap(choice=>choice.fields);
     const painter=formatting.createPainter({valid,read:item=>formatting.capture(item.el,{...options(item),fields:brushFields(),skipUnsupported:true,...(brushFont.value==='source'?{}:{fontFamily:brushFont.value})}),write:(items,record)=>adapter.apply(items,items.map(item=>formatting.plan(item.el,record,options(item))),t('已应用文字格式')),changed:notify,error:error=>announce(error.message)});
-    function cancelPreview(){preview?.finish(false);preview=null;spacingSession=null;}
+    function spacingCopy(zh,en){const value=t(zh);return value!==zh?value:String(adapter.language?.()||doc.documentElement.lang||'').startsWith('en')?en:zh;}
+    function renderSpacingStatus(){
+      const session=spacingSession,state=!session?'idle':session.invalid.size?'invalid':session.committing?'committing':session.error?'error':'previewing';container.dataset.previewState=state;spacingStatus.hidden=!session;
+      const message=state==='invalid'?spacingCopy('输入尚未完成或超出范围；保留上次有效预览，修正后可应用。','The value is incomplete or outside the allowed range. The last valid preview is kept; correct the value to apply.'):state==='committing'?spacingCopy('正在应用文字间距。','Applying text spacing.'):state==='error'?session.error:spacingCopy('预览中，尚未应用。Enter 或移开焦点保留，Esc 取消。','Preview only, not applied. Press Enter or leave the field to keep it; Esc cancels.');if(spacingStatus.textContent!==message)spacingStatus.textContent=message;
+    }
+    function dropSpacingPreview(session){session.preview?.finish(false);session.preview=null;if(spacingSession===session)preview=null;}
+    function clearSpacingSession(session){dropSpacingPreview(session);if(spacingSession!==session)return;spacingSession=null;for(const input of [letter,line])input.setAttribute('aria-invalid','false');renderSpacingStatus();}
+    function cancelPreview(reason='cancelled'){
+      const session=spacingSession;if(!session)return false;
+      if(!session.managed?.cancel(reason))clearSpacingSession(session);return true;
+    }
     function sameSelection(items){const now=writableTexts();return now.length===items.length&&now.every((item,i)=>identity(item)===identity(items[i])&&item.el===items[i].el);}
+    function validSpacingSession(session){return spacingSession===session&&sameSelection(session.items)&&session.items.every(item=>valid(item)&&item.el.isConnected!==false);}
+    function spacingPreview(session){
+      if(!session.preview)session.preview=formatting.createPreview(session.items.map(item=>({...item,...options(item)})),{requestFrame:adapter.requestFrame,cancelFrame:adapter.cancelFrame,valid:()=>validSpacingSession(session),drawn:()=>{localize();adapter.previewed?.();}});
+      preview=session.preview;return preview;
+    }
+    function spacingPlans(session,values){return session.items.map(item=>{const props={},opts=options(item),factor=Number(opts.letterPointFactor??opts.pointFactor??1);if(values.letterSpacing!==undefined)props['letter-spacing']=String(values.letterSpacing/factor);if(values.lineHeight!==undefined)props['line-height']=String(values.lineHeight);return {props,children:[]};});}
     function beginSpacing(){
-      const items=writableTexts();if(!items.length)return false;
       if(spacingSession&&!sameSelection(spacingSession.items))cancelPreview();
-      if(!spacingSession){spacingSession={items:items.slice(),values:{}};preview=formatting.createPreview(items.map(item=>({...item,...options(item)})),{requestFrame:adapter.requestFrame,cancelFrame:adapter.cancelFrame,valid:()=>!!spacingSession&&sameSelection(spacingSession.items)&&spacingSession.items.every(item=>valid(item)&&item.el.isConnected!==false),drawn:()=>{localize();adapter.previewed?.();}});}
+      // A preceding module may replace the board while restoring its draft.
+      // Restore it before capturing the actual text nodes for this session.
+      if(!spacingSession)adapter.previewSessions?.cancel('text-spacing-started');
+      const items=writableTexts();if(!items.length)return false;
+      if(!spacingSession){
+        const session=spacingSession={items:items.slice(),values:{},invalid:new Set(),preview:null,managed:null,committing:false,error:''};
+        if(adapter.previewSessions)session.managed=adapter.previewSessions.begin({kind:'text-spacing',originalValue:{},valid:()=>validSpacingSession(session),
+          render:values=>{const draw=spacingPreview(session);if(!draw.update(values)||!draw.flush())throw Error('Text spacing preview is unavailable');},
+          restore:()=>dropSpacingPreview(session),
+          commit:values=>{if(session.invalid.size||!validSpacingSession(session))return false;const plans=spacingPlans(session,values);return Object.keys(plans[0]?.props||{}).length?adapter.apply(session.items,plans,t('已更新文字间距')):false;},
+          onError:message=>{if(spacingSession===session){session.error=message;renderSpacingStatus();}},
+          onFinish:()=>{clearSpacingSession(session);if(!destroyed)sync();}});
+        // The manager's beforeBegin hook can restore an image/inset preview
+        // by replacing board nodes. Capture those final committed nodes.
+        session.items=writableTexts().slice();if(!session.items.length){cancelPreview('context-changed');return false;}
+        renderSpacingStatus();
+      }
       return true;
     }
-    function valueFor(input){const value=input.value.trim();if(!value)return null;const n=Number(value);return Number.isFinite(n)&&n>=Number(input.min)&&n<=Number(input.max)?n:null;}
+    function valueFor(input){const value=input.value.trim();if(!value||input.validity?.badInput)return null;const n=Number(value);return Number.isFinite(n)&&n>=Number(input.min)&&n<=Number(input.max)?n:null;}
     function updateSpacing(input){
-      const value=valueFor(input);input.setAttribute('aria-invalid',String(value===null));if(value===null){cancelPreview();return false;}if(!beginSpacing())return false;
-      spacingSession.values[input.name]=value;return preview.update(spacingSession.values);
+      if(spacingSession?.committing)return false;if(!beginSpacing())return false;const session=spacingSession,value=valueFor(input);input.setAttribute('aria-invalid',String(value===null));
+      if(value===null){session.invalid.add(input.name);if(session.managed){session.managed.flush();session.managed.reject(spacingCopy('输入尚未完成或超出范围。','The value is incomplete or outside the allowed range.'));}renderSpacingStatus();return false;}
+      session.invalid.delete(input.name);session.error='';session.values[input.name]=value;const values={...session.values},ok=session.managed?session.managed.update(values):spacingPreview(session).update(values);
+      if(session.invalid.size&&session.managed){session.managed.flush();session.managed.reject(spacingCopy('输入尚未完成或超出范围。','The value is incomplete or outside the allowed range.'));}renderSpacingStatus();return ok;
     }
     function commitSpacing(){
-      if(!spacingSession)return false;const session=spacingSession;if(!sameSelection(session.items)||!session.items.every(item=>valid(item))){cancelPreview();return false;}
-      preview.flush();const plans=session.items.map(item=>{const values={},opts=options(item),f=Number(opts.letterPointFactor??opts.pointFactor??1);if(session.values.letterSpacing!==undefined)values['letter-spacing']=String(session.values.letterSpacing/f);if(session.values.lineHeight!==undefined)values['line-height']=String(session.values.lineHeight);return {props:values,children:[]};});
-      cancelPreview();if(!Object.keys(plans[0]?.props||{}).length)return false;const result=adapter.apply(session.items,plans,t('已更新文字间距'));sync();return result!==false;
+      if(!spacingSession)return false;const session=spacingSession;if(session.committing)return false;if(!validSpacingSession(session)){cancelPreview('context-changed');return false;}
+      // An unfinished field is a draft, not permission to commit its previous
+      // valid value. Keep both the input and the last successful board preview.
+      if(session.invalid.size){renderSpacingStatus();return false;}
+      if(session.managed){session.committing=true;renderSpacingStatus();session.managed.commit().then(ok=>{if(spacingSession===session){session.committing=false;renderSpacingStatus();if(ok)sync();}}).catch(error=>{if(spacingSession===session){session.committing=false;renderSpacingStatus();announce(error.message);}});return true;}
+      preview?.flush();const plans=spacingPlans(session,session.values);clearSpacingSession(session);if(!Object.keys(plans[0]?.props||{}).length)return false;const result=adapter.apply(session.items,plans,t('已更新文字间距'));sync();return result!==false;
     }
+    function leaveSpacing(){if(!commitSpacing()&&spacingSession&&!spacingSession.committing)cancelPreview('tool-changed');}
     for(const input of [letter,line]){
       input.addEventListener('input',()=>updateSpacing(input));input.addEventListener('change',commitSpacing);input.addEventListener('blur',commitSpacing);
       input.addEventListener('keydown',event=>{event.stopPropagation();if(event.key==='Enter'){event.preventDefault();commitSpacing();input.blur();}else if(event.key==='Escape'){event.preventDefault();cancelPreview();sync();input.blur();}});
     }
-    spacingButton.addEventListener('click',()=>{const show=popover.hidden;if(!show)commitSpacing();painterPopover.hidden=true;painterOptionsButton.setAttribute('aria-expanded','false');popover.hidden=!show;spacingButton.setAttribute('aria-expanded',String(show));if(show){sync();letter.focus();}});
+    spacingButton.addEventListener('click',()=>{const show=popover.hidden;if(!show)leaveSpacing();painterPopover.hidden=true;painterOptionsButton.setAttribute('aria-expanded','false');popover.hidden=!show;spacingButton.setAttribute('aria-expanded',String(show));if(show){sync();letter.focus();}});
     function armPainter(){const items=selected().filter(item=>isText(item)&&valid(item,'source'));if(items.length!==1||!painter.arm(items[0]))return false;announce(brushFields().length===Object.keys(painter.status().record).length?'已复制文字格式，请点击目标文字；Esc 取消。':'已复制可用的文字格式；不支持的样式将保留目标原样。');return true;}
-    painterButton.addEventListener('click',()=>{commitSpacing();eyeTargets=null;painterPopover.hidden=true;painterOptionsButton.setAttribute('aria-expanded','false');if(painter.status().active)painter.cancel();else armPainter();notify();});
-    painterOptionsButton.addEventListener('click',()=>{commitSpacing();const show=painterPopover.hidden;popover.hidden=true;spacingButton.setAttribute('aria-expanded','false');painterPopover.hidden=!show;painterOptionsButton.setAttribute('aria-expanded',String(show));if(show)brushChecks[0].input.focus();});
+    painterButton.addEventListener('click',()=>{leaveSpacing();eyeTargets=null;painterPopover.hidden=true;painterOptionsButton.setAttribute('aria-expanded','false');if(painter.status().active)painter.cancel();else armPainter();notify();});
+    painterOptionsButton.addEventListener('click',()=>{leaveSpacing();const show=painterPopover.hidden;popover.hidden=true;spacingButton.setAttribute('aria-expanded','false');painterPopover.hidden=!show;painterOptionsButton.setAttribute('aria-expanded',String(show));if(show)brushChecks[0].input.focus();});
     function changeBrushOptions(){brushFont.disabled=!brushChecks[0].input.checked;if(painter.status().active){painter.cancel();armPainter();}notify();}
     for(const choice of brushChecks)choice.input.addEventListener('change',changeBrushOptions);brushFont.addEventListener('change',changeBrushOptions);
-    eyeButton.addEventListener('click',()=>{commitSpacing();painter.cancel();eyeTargets=eyeTargets?null:writableShapes().slice();if(!eyeTargets?.length)eyeTargets=null;else announce('请点击图形吸取颜色，应用到已选图形；Esc 取消。');notify();});
+    eyeButton.addEventListener('click',()=>{leaveSpacing();painter.cancel();eyeTargets=eyeTargets?null:writableShapes().slice();if(!eyeTargets?.length)eyeTargets=null;else announce('请点击图形吸取颜色，应用到已选图形；Esc 取消。');notify();});
     function colorOf(item){
       if(!isShape(item))return null;const supplied=adapter.readColor?.(item);if(supplied)return formatting.hex(supplied);
       return formatting.hex(inherited(item.el,'fill',item.el.localName==='line'?'none':'black'))||formatting.hex(inherited(item.el,'stroke','none'));
@@ -93,14 +131,15 @@ const StudioTextToolsUI = (() => {
       const items=eyeTargets.filter(item=>valid(item)),plans=items.map(item=>shapePlan(item,color));if(!items.length||!plans.some(plan=>Object.keys(plan.props).length)){announce('所选图形暂不能应用颜色。');return true;}
       if(adapter.apply(items,plans,t('已应用吸取的图形颜色'))!==false){eyeTargets=null;notify();sync();}return true;
     }
-    function cancel(){cancelPreview();const active=painter.cancel()||!!eyeTargets;eyeTargets=null;notify();sync();return active;}
+    function cancel(){const spacing=cancelPreview();const active=painter.cancel()||!!eyeTargets||spacing;eyeTargets=null;notify();sync();return active;}
     function handleKey(event){if(event.key!=='Escape')return false;const active=!!preview||painter.status().active||!!eyeTargets||!popover.hidden||!painterPopover.hidden;if(!active)return false;event.preventDefault?.();cancel();popover.hidden=true;painterPopover.hidden=true;spacingButton.setAttribute('aria-expanded','false');painterOptionsButton.setAttribute('aria-expanded','false');return true;}
     function sync(){
-      if(destroyed)return;localize();if(spacingSession&&!sameSelection(spacingSession.items))cancelPreview();
+      if(destroyed)return;localize();if(spacingSession&&!spacingSession.committing&&!sameSelection(spacingSession.items))cancelPreview('context-changed');
       const items=writableTexts(),sources=selected().filter(item=>isText(item)&&valid(item,'source'));spacingButton.disabled=!items.length;painterButton.disabled=sources.length!==1&&!painter.status().active;eyeButton.disabled=!writableShapes().length&&!eyeTargets;
       if(!items.length){popover.hidden=true;spacingButton.setAttribute('aria-expanded','false');return;}
+      if(spacingSession)return;
       const values=items.map(item=>{const spacing=formatting.readSpacing(item.el),opts=options(item);return {letterSpacing:spacing.letterSpacing*Number(opts.letterPointFactor??opts.pointFactor??1),lineHeight:spacing.lineHeight};});
-      for(const input of [letter,line]){if(doc.activeElement===input&&spacingSession)continue;const value=values[0][input.name],same=values.every(other=>Math.abs(other[input.name]-value)<1e-7);input.value=same?String(Number(value.toFixed(3))):'';input.placeholder=same?'':t('混合');input.setAttribute('aria-invalid','false');}
+      for(const input of [letter,line]){const value=values[0][input.name],same=values.every(other=>Math.abs(other[input.name]-value)<1e-7);input.value=same?String(Number(value.toFixed(3))):'';input.placeholder=same?'':t('混合');input.setAttribute('aria-invalid','false');}
     }
     sync();
     return {sync,refresh:sync,handlePointer,handleKey,cancel,destroy(){cancel();destroyed=true;container.remove();},get element(){return container;},get active(){return painter.status().active||!!eyeTargets;}};

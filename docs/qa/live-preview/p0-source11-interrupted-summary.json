@@ -1,0 +1,252 @@
+{
+  "schema": "figure-studio-interrupted-functional-matrix-safe/1",
+  "kind": "source-development-runtime",
+  "label": "p0-source-final11",
+  "status": "INTERRUPTED_NOT_FULL_ACCEPTANCE",
+  "reason": "Stopped at the root agent request after a separately confirmed discovery Apply defect; completed P0 cases are preserved and unexecuted conditions are not passes.",
+  "plannedConditions": 8,
+  "plannedCases": 72,
+  "completedConditions": 5,
+  "completedCases": 45,
+  "passedCases": 45,
+  "rawOriginalStatus": "RUNNING",
+  "originalSummarySha256": "c9e054f5b612ccc9e237609059324b881029b94723bf02d19bc601bd19ac6463",
+  "abortRecordSha256": "883a7de551a9b8b1a4176072a03da790aa5bbd54dd924fffba112749e7157fa3",
+  "harnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+  "matrixHarnessSha256": "f8095f56d1c3ba42d6cfa66697750ce3fcb28ee25747b7ef790d43b696a1148d",
+  "sourceFreeze": {
+    "manifestSha256": "6a836da6602abb7467d36418c30d1b490f0bbed7da151e5f1dc1ef612496c76e",
+    "expectedLocalHtmlSha256": "73ab5b038ef289987a27a12fa760da9aff6162bd94a3027efbc71c16ba5aa91d",
+    "declaredAssetHashCount": 78,
+    "declaredBackendHashCount": 27
+  },
+  "conditions": [
+    {
+      "id": "1280x720-en-carbon",
+      "status": "PASS",
+      "rawSha256": "69561e4d76046264a177181a200db3825ff3889f00b29ef78fbe991ad0139c03",
+      "browser": "155.0.8059.82",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "1280x720-en-pearl",
+      "status": "PASS",
+      "rawSha256": "2dfdd69e67cb25bb042880e07c765a4fcd0b2f959f25ffd4c3b6ca8d68f4a0ac",
+      "browser": "155.0.8059.82",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "1280x720-zh-CN-carbon",
+      "status": "PASS",
+      "rawSha256": "8596d7332c2a9160f12cc1cd9f19ef2b0ec52ed374ff6abfaa96c381933a85e8",
+      "browser": "155.0.8059.82",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "1280x720-zh-CN-pearl",
+      "status": "PASS",
+      "rawSha256": "24c0e821f843a07338195472c75a4a405b1225650bfb7f88d17c73bdfdb40cf0",
+      "browser": "155.0.8059.82",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "1920x1080-en-carbon",
+      "status": "PASS",
+      "rawSha256": "c52e58fe3db62c7685f6190c2032f99a1223938674b383046b88a8a3ccd67132",
+      "browser": "155.0.8059.82",
+      "servedHtmlSha256": "21ce9f7cfa6c165522becaad7e38047373876b858215c4316bbad75805a6747a",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ]
+    }
+  ],
+  "originalReportsUnmodified": true,
+  "shutdown": "Only the exact owned matrix process and its identity-matched descendants were stopped. Other applications and QA browsers were not targeted."
+}

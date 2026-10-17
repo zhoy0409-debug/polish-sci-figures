@@ -197,7 +197,7 @@ const StudioLiterature = (() => {
     return {searchExamples,clearCache:()=>cache.clear()};
   }
   const client=createClient();
-  function mount(container,{getContext=()=>({}),onPreview=()=>{},searchExamples=client.searchExamples,validateTopic=()=>true}={}) {
+  function mount(container,{getContext=()=>({}),onPreview=()=>{},searchExamples=client.searchExamples,validateTopic=()=>true,localComparisons=false}={}) {
     const document=container.ownerDocument;let controller=null,serial=0,destroyed=false,currentKey='',context={},lastResult=null;
     const element=(tag,className,text)=>{const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=text;return el;};
     const section=element('details','literature-panel'),heading=element('summary'),intro=element('p','literature-intro'),label=element('label','literature-topic-label'),input=element('input','literature-topic');input.type='text';input.maxLength=120;input.autocomplete='off';
@@ -207,7 +207,8 @@ const StudioLiterature = (() => {
     sampleInput.maxLength=assayInput.maxLength=80;semantics.append(sampleInput,assayInput,modeInput);
     const actions=element('div','literature-actions'),searchButton=element('button'),cancelButton=element('button'),privacy=element('small','literature-privacy'),status=element('p','literature-status'),results=element('div','literature-results'),source=element('small','literature-source');
     searchButton.type=cancelButton.type='button';cancelButton.hidden=true;actions.append(searchButton,cancelButton);status.setAttribute('role','status');status.setAttribute('aria-live','polite');
-    section.append(heading,intro,label,semantics,actions,privacy,status,results,source);container.replaceChildren(section);
+    const local=element('div','literature-local-comparisons');local.hidden=true;
+    section.append(heading,intro,local,label,semantics,actions,privacy,status,results,source);container.replaceChildren(section);
     const language=()=>context.language==='en'?'en':'zh-CN',t=key=>words(key,language());
     const snapshot=()=>{const c=getContext()||{};return {views:Array.isArray(c.views)?c.views.filter(v=>typeof v==='string'):[],goal:typeof c.goal==='string'?c.goal:'',language:c.language==='en'?'en':'zh-CN',contextKey:typeof c.contextKey==='string'?c.contextKey:''};};
     const identity=c=>JSON.stringify([c.contextKey,c.views,c.goal,c.language]);
@@ -254,6 +255,8 @@ const StudioLiterature = (() => {
       context=next;if(changed){stop();lastResult=null;results.replaceChildren();status.textContent=t('changed');}currentKey=key;
       heading.textContent=t('title');intro.textContent=t('idle');labelText.textContent=t('topic');input.placeholder=t('placeholder');searchButton.textContent=t('search');cancelButton.textContent=t('cancel');privacy.textContent=t('privacy');source.textContent=t('source');
       sampleInput.placeholder=language()==='en'?'Public sample-type keywords only':'仅公开样本类型关键词';assayInput.placeholder=language()==='en'?'Public assay keywords only':'仅公开实验方法关键词';sampleInput.setAttribute('aria-label',sampleInput.placeholder);assayInput.setAttribute('aria-label',assayInput.placeholder);modeInput.setAttribute('aria-label',language()==='en'?'Search mode':'检索模式');modeInput.children[0].textContent=language()==='en'?'Chart evidence':'证据参考模式';modeInput.children[1].textContent=language()==='en'?'Explore the topic':'探索发现模式';
+      local.replaceChildren();const localCharts=localComparisons?chartSelection(context.views).slice(0,6):[];local.hidden=!localCharts.length;
+      if(localCharts.length){local.append(element('strong','',language()==='en'?'Local chart comparisons':'本地图型对照'),element('p','literature-caution',language()==='en'?'Displays your current data. This is not paper evidence.':'使用当前数据展示；这里不是论文证据。'));for(const chart of localCharts){const view=chart.views[0],button=element('button','literature-local-preview',language()==='en'?chart.en:chart.zh);button.type='button';button.setAttribute('data-view',view);button.onclick=()=>{if(!destroyed&&identity(snapshot())===key)return onPreview(view);};local.append(button);}}
       if(!chartSelection(context.views).length){searchButton.disabled=true;status.textContent=t('unavailable');}else if(!controller)searchButton.disabled=false;
     }
     searchButton.onclick=run;cancelButton.onclick=()=>stop('cancelled');input.onkeydown=e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();if(!searchButton.disabled)run();}};input.oninput=()=>{stop();lastResult=null;results.replaceChildren();status.textContent=t('idle');refresh();};sampleInput.oninput=assayInput.oninput=modeInput.onchange=input.oninput;refresh();

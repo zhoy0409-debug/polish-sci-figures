@@ -1,8 +1,8 @@
 # Figure Studio appearance and update controls
 
-Figure Studio 0.1.21 adds a dark Carbon Atelier workspace and a light Pearl Pro theme. This guide shows where to change the interface, find tools for the current selection, and turn off the update characters' animation. These preferences do not change scientific figure colours or source image pixels.
+Figure Studio 0.1.22 includes a dark Carbon Atelier workspace and a light Pearl Pro theme. This guide shows where to change the interface, find tools for the current selection, and turn off the update characters' animation. These preferences do not change scientific figure colours or source image pixels.
 
-[English](#choose-your-workspace) · [中文](#中文) · [Release notes](release-notes-v1.4.21.md)
+[English](#choose-your-workspace) · [中文](#中文) · [Release notes](release-notes-v1.4.22.md)
 
 ## Choose your workspace
 
@@ -46,7 +46,7 @@ Checking/downloading updates requires the network. Local editing, plotting and e
 
 ## 中文
 
-Figure Studio 0.1.21 增加默认深色 **Carbon Atelier** 和可选浅色 **Pearl Pro**。本指南说明实际入口、对象相关工具与更新角色动效的关闭方法；界面偏好不会修改科研图配色或原始图片像素。
+Figure Studio 0.1.22 提供默认深色 **Carbon Atelier** 和可选浅色 **Pearl Pro**。本指南说明实际入口、对象相关工具与更新角色动效的关闭方法；界面偏好不会修改科研图配色或原始图片像素。
 
 ### 选择界面与画布周边
 

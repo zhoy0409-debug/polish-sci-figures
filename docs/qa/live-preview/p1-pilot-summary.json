@@ -1,0 +1,193 @@
+{
+  "schema": "live-properties-pilot-summary/1",
+  "status": "PARTIAL_WITH_RECORDED_FAILURES",
+  "atUtc": "2026-10-17T14:36:44.238423+00:00",
+  "runtime": "Frozen local source runtime fresh02; not an installed Windows acceptance",
+  "attempts": [
+    {
+      "label": "p1-carbon-pilot-01",
+      "status": "FAIL",
+      "htmlSha256": null,
+      "caseResults": [],
+      "failure": "apiRequestContext.get: connect EACCES 127.0.0.1:18966"
+    },
+    {
+      "label": "p1-carbon-pilot-02",
+      "status": "FAIL",
+      "htmlSha256": "6f712282f0e46b8d2dbd82f038a3a221a771d72f27ba2eb72717bbeeaaecfa4b",
+      "caseResults": [
+        {
+          "id": "P01-hex-colour",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P02-font-size",
+          "status": "FAIL",
+          "error": "Invalid draft keeps last valid canvas"
+        },
+        {
+          "id": "P03-stroke-width",
+          "status": "FAIL",
+          "error": "Invalid draft keeps last valid canvas"
+        },
+        {
+          "id": "P04-opacity",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P20-label-colour",
+          "status": "FAIL",
+          "error": "locator.click: Timeout 20000ms exceeded."
+        }
+      ],
+      "failure": ""
+    },
+    {
+      "label": "p1-carbon-full-03",
+      "status": "FAIL",
+      "htmlSha256": "6f712282f0e46b8d2dbd82f038a3a221a771d72f27ba2eb72717bbeeaaecfa4b",
+      "caseResults": [
+        {
+          "id": "P01-hex-colour",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P02-font-size",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P03-stroke-width",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P04-opacity",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P05-label-text",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P06-label-position",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P07-label-size",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P08-export-width",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P09-export-height",
+          "status": "FAIL",
+          "error": "Exactly one Undo for a semantic edit"
+        },
+        {
+          "id": "P10-export-dpi",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P11-font-family",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P12-bold",
+          "status": "FAIL",
+          "error": "Expected \"actual\" to be strictly unequal to: '400'"
+        },
+        {
+          "id": "P13-italic",
+          "status": "FAIL",
+          "error": "Expected \"actual\" to be strictly unequal to:"
+        },
+        {
+          "id": "P14-superscript",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P15-subscript",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P16-letter-spacing",
+          "status": "FAIL",
+          "error": "Input must visibly affect the actual canvas"
+        },
+        {
+          "id": "P17-line-height",
+          "status": "FAIL",
+          "error": "Input must visibly affect the actual canvas"
+        },
+        {
+          "id": "P18-panel-gap",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P19-protected-paints",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P20-label-colour",
+          "status": "FAIL",
+          "error": "Uncommitted state must stay exact"
+        },
+        {
+          "id": "P21-roi-scale-guard",
+          "status": "PASS",
+          "error": ""
+        },
+        {
+          "id": "P22-palette-hover",
+          "status": "FAIL",
+          "error": "Expected \"actual\" to be strictly unequal to:"
+        },
+        {
+          "id": "P23-statistics-display",
+          "status": "FAIL",
+          "error": "page.waitForFunction: Timeout 20000ms exceeded."
+        }
+      ],
+      "failure": ""
+    }
+  ],
+  "scope": "Preliminary full-application public-data pilot, pending fresh03 corrections and rerun. No overall acceptance claimed.",
+  "interpretation": {
+    "confirmedProductGaps": [
+      "Export-height late native change can add an extra history item; awaiting fresh03 completed-value fix.",
+      "Legacy paragraph spacing fields lacked input preview; awaiting fresh03 shared-session binding."
+    ],
+    "harnessCorrections": [
+      "Canonicalize generated SVG fNN namespaces for geometric comparisons.",
+      "Create panel label through real auto-number UI before label editing.",
+      "Check formatted glyph tspan runs for bold/italic instead of only parent text.",
+      "Observe a native colour control input event before its change completion; OS picker not tested.",
+      "Select a palette different from the current palette.",
+      "Wrap raw controlled statistics project as a saved payload and verify title/project ID.",
+      "Use a visibly stroked hollow shape for line-width observation; use multi-glyph/two-line text for spacing geometry."
+    ],
+    "notEstablished": [
+      "Final fresh03 full pass",
+      "Installed Windows build",
+      "New-user completion study",
+      "Formal input-latency budgets"
+    ]
+  }
+}

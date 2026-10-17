@@ -1,0 +1,48 @@
+{
+  "schema": "figure-studio-blank-welcome-preview-regression/1",
+  "status": "PASS_CONTROLLED_COMPONENT_SCOPE_REAL_BROWSER_RETEST_PENDING",
+  "realBrowserFailure": {
+    "report": "docs/qa/live-preview/resource-source15-blank-failure.json",
+    "frozenHtmlSha256": "a495489851e6019f1e88b289b80de7ab3d15d24f15fcbbc432044208ab6d2c7f",
+    "scope": "Actual Chrome English Carbon at 1280 by 720. The committed blank welcome occupied the canvas while a real data candidate was previewed.",
+    "minimumVisibleCssPixels": [
+      100,
+      90
+    ],
+    "observedVisibleCssPixels": [
+      46.078,
+      34.547
+    ]
+  },
+  "controlledRegression": {
+    "script": "scripts/test_studio_resource_preview.cjs",
+    "scriptSha256": "72d693f1623681b7928788360b9a9f1981fccf5f00c9d120203478a25bf3b627",
+    "sameScriptUsedBeforeAndAfter": true,
+    "before": {
+      "exitCode": 1,
+      "assertion": "Welcome must not squeeze an actual blank-canvas preview",
+      "actualHidden": false,
+      "expectedHidden": true,
+      "studioJsSha256": "565f780b7304b623297c8cf0c944c0494ff376c9bc71883f53ff16329ab4a16f"
+    },
+    "after": {
+      "exitCode": 0,
+      "groups": 9,
+      "original8GroupsRetained": true,
+      "studioJsSha256": "af6aba59e7805044e57f461439e1c06029ba5894bc69e645c2daa212b1fd915e",
+      "checks": [
+        "A valid resource comparison hides the welcome area temporarily",
+        "A normal UI refresh keeps the active comparison area available",
+        "Cancel restores the welcome for the current committed blank",
+        "A previously dismissed welcome stays dismissed",
+        "Project, state, history and dismissal preference remain exact"
+      ]
+    }
+  },
+  "fix": "The temporary resource-preview box owns a showing flag. Painting hides welcome before measuring fit; restoration clears the flag before fitting the committed canvas.",
+  "limits": [
+    "Controlled DOM lifecycle does not establish actual browser dimensions or scientific drawing accuracy.",
+    "Actual corrected-source and installed Windows retests remain pending."
+  ],
+  "publicationHold": true
+}

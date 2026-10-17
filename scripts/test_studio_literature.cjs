@@ -101,6 +101,10 @@ async function main(){
   assert.equal(all(combinedHost).filter(n=>n.className==='literature-figure').length,2,'both source figure links remain visible');
   combinedActions.forEach(n=>n.onclick());assert.deepEqual(chosen,['compare_box_points','compare_raincloud']);
   combinedLanguage='zh-CN';combinedUI.refresh();await combinedSearch.onclick();assert.deepEqual(all(combinedHost).filter(n=>n.className==='literature-preview').map(n=>n.textContent),['用我的数据预览 · 箱线图','用我的数据预览 · 雨云图']);combinedUI.destroy();
-  console.log('literature lookup: explicit opt-in, private allowlisted requests, safe IDs/XML, verified captions, bounded requests, timeout, cancellation, cache and stale UI passed');
+  const localHost=new Node('div',document),localChosen=[];let localContext={views:['compare_box_points','unsupported_chart','compare_raincloud'],language:'en',contextKey:'local-panel'},localSearches=0;
+  const localUI=api.mount(localHost,{getContext:()=>localContext,localComparisons:true,onPreview:view=>localChosen.push(view),searchExamples:async()=>{localSearches++;throw Error('Local comparisons must not search');}});
+  const localButtons=all(localHost).filter(n=>n.className==='literature-local-preview');assert.deepEqual(localButtons.map(n=>n.attrs['data-view']),['compare_box_points','compare_raincloud']);assert.ok(all(localHost).some(n=>n.textContent==='Displays your current data. This is not paper evidence.'));localButtons[0].onclick();assert.deepEqual(localChosen,['compare_box_points']);assert.equal(localSearches,0);assert.equal(all(localHost).filter(n=>n.className==='literature-card').length,0,'Local alternatives create no paper or figure evidence');
+  localContext={...localContext,contextKey:'other-panel'};localButtons[1].onclick();assert.equal(localChosen.length,1,'A stale local action cannot change another panel');localContext={...localContext,language:'zh-CN'};localUI.refresh();assert.ok(all(localHost).some(n=>n.textContent==='本地图型对照'));assert.equal(localSearches,0);localUI.destroy();
+  console.log('literature lookup: explicit opt-in, private allowlisted requests, safe IDs/XML, verified captions, bounded requests, timeout, cancellation, cache, stale UI and separately labelled no-network local comparisons passed');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});

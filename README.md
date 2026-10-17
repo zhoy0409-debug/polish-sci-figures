@@ -1,5 +1,8 @@
 <div align="center">
 
+本地 0.1.22 为验收候选，按用户要求暂不发布。见[画布实时编辑说明](docs/live-preview-editing.zh-CN.md)和[实际验收状态](docs/live-preview-validation.md)。
+
+
 # polish-sci-figures
 
 **Scientific figures, thoughtfully made.**
@@ -7,7 +10,7 @@
 Turn research data and scientific images into clear, editable figures.<br>
 Explore the right chart, refine every detail, and bring your results together.<br>
 
-[Figure Discovery / 智能选图](docs/figure-discovery.md) · [Appearance / 外观](docs/figure-studio-appearance.md) · [Image tools / 图片工具](docs/figure-studio-image-tools.md) · [Current release / 本版更新](docs/release-notes-v1.4.21.md)
+[Figure Discovery / 智能选图](docs/figure-discovery.md) · [Appearance / 外观](docs/figure-studio-appearance.md) · [Image tools / 图片工具](docs/figure-studio-image-tools.md) · [Current release / 本版更新](docs/release-notes-v1.4.22.md)
 AI skills for plotting, scientific image preparation, and figure refinement, with Figure Studio for hands-on editing.
 
 [English](#polish-sci-figures) · [中文](#中文)
@@ -78,7 +81,7 @@ Play, pause, or scrub through the video to follow each step. [Download the MP4](
 - **Make the details yours.** Draw straight lines and comparison brackets, edit individual characters, and choose distinct palettes. Switch point fills, outlines and error-bar colours, or hide either element with one click. Adjust group spacing and arrange panels with alignment guides; undo and redo keep refinements reversible.
 - **Take the result into your paper.** Export individual panels or the complete layout as editable SVG or high-resolution PNG / TIFF. Save the project to continue editing later.
 
-**Figure Studio 0.1.21** adds Carbon Atelier and Pearl Pro themes, independent canvas surroundings, a selection inspector and a cat-and-dog update scene that follows real progress. Open **Appearance** in the header; figure colours and image pixels stay independent of UI preferences. [Appearance guide](docs/figure-studio-appearance.md) · [Release status and validation](docs/release-notes-v1.4.21.md).
+The local **Figure Studio 0.1.22 candidate** adds reversible canvas drafts and docked border/image tools, with real axis previews separated from application. It retains Carbon Atelier, Pearl Pro and the update companions. [Live editing](docs/live-preview-editing.en.md) · [Executed and pending acceptance](docs/live-preview-validation.md).
 
 The image workflows and professional axes introduced in **0.1.20** remain available: independent object borders, local duplicate review, reference display checks and overview/detail refinement. Supported native numerical axes re-render from data. [Usage and limits](docs/figure-studio-image-tools.md) · [0.1.20 acceptance](docs/figure-studio-experience-round2-validation.md).
 
@@ -105,9 +108,9 @@ Choose the way you prefer to work. Both paths belong to the same polish-sci-figu
 
 ### Open Figure Studio
 
-[Download the Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.21/polish-sci-figures-Studio-0.1.21-Setup-x64.exe), install it, and open the shortcut. Choose a template, replace its example data, then edit and export in your browser. Windows 10/11 x64; the runtime is included, with no separate Python setup, Codex, account, or API key required.
+[Download the Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases), install it, and open the shortcut. Choose a template, replace its example data, then edit and export in your browser. Windows 10/11 x64; the runtime is included, with no separate Python setup, Codex, account, or API key required.
 
-[Quick start](desktop/QUICKSTART.en.md) · [Portable edition](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.21/polish-sci-figures-Studio-0.1.21-Portable-x64.zip)
+[Quick start](desktop/QUICKSTART.en.md) · [Portable edition](https://github.com/zhoy0409-debug/polish-sci-figures/releases)
 
 [Mac / Android development previews and iPhone/iPad status](docs/local-device-trial.md). Windows is the formal desktop release; the other device builds retain their stated preview scope.
 
@@ -125,11 +128,11 @@ For scientific images or existing figures, everyday requests work too:
 
 The suite covers plotting and analysis, calibrated image preparation, and final figure refinement through three cooperating skills. You can continue adjusting the result in Figure Studio without another AI call. Host requirements, installation steps, and actual testing coverage are listed in the platform guide.
 
-[Codex / CLI setup](README.en.md#ai-and-command-line-workflows) · [Claude upload package](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.21/polish-sci-figures-v1.4.21-skill.zip)
+[Codex / CLI setup](README.en.md#ai-and-command-line-workflows) · [Claude upload package](https://github.com/zhoy0409-debug/polish-sci-figures/releases)
 
 ## Guides and project
 
-[Product guide](README.en.md) · [Latest improvements](docs/release-notes-v1.4.21.md) · [Validation record](docs/figure-studio-validation.md) · [Contributing](CONTRIBUTING.md)
+[Product guide](README.en.md) · [Latest improvements](docs/release-notes-v1.4.22.md) · [Validation record](docs/figure-studio-validation.md) · [Contributing](CONTRIBUTING.md)
 
 Official downloads and updates come from [this repository's Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases). The project is available under the [MIT License](LICENSE); citation details are in [CITATION.cff](CITATION.cff).
 
@@ -197,7 +200,7 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 - **把细节调整到位。** 插入水平线和比较括号、修改单个字符，选择差异鲜明的配色。快捷切换样本点填充、描边和误差棒颜色，也可一键隐藏或恢复。调整组间距，借助对齐辅助线编排小图；撤销与重做让精修可以随时回退。
 - **把结果带进论文。** 单个小图和整幅组图均可导出可编辑 SVG 或高清 PNG / TIFF，保存工程后还能继续编辑。
 
-**Figure Studio 0.1.21** 增加 Carbon Atelier 深色／Pearl Pro 浅色主题、独立画布周边、当前选中检查器与跟随真实进度的猫狗更新场景。从顶部**外观**切换界面，作品配色与图片像素保持独立。[外观指南](docs/figure-studio-appearance.md#中文) · [本版验收状态](docs/release-notes-v1.4.21.md#中文)。
+本地 **Figure Studio 0.1.22 候选**增加可取消的真实画布草稿，边框与图片工具停靠侧栏，坐标轴真实预览与应用分开；保留 Carbon Atelier、Pearl Pro 和更新角色。[实时编辑说明](docs/live-preview-editing.zh-CN.md) · [已执行与待验收范围](docs/live-preview-validation.md)。
 
 **0.1.20** 已加入的图片工具与专业坐标轴继续保留：独立对象边框、本地查重、参考颜色检查及原图坐标定位精修，支持的原生数值轴按数据重新生成。[操作说明与限制](docs/figure-studio-image-tools.md) · [0.1.20 验收记录](docs/figure-studio-experience-round2-validation.md)。
 
@@ -207,9 +210,9 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 
 按自己的习惯选择入口，两种方式都属于同一套 polish-sci-figures 产品。
 
-**直接打开 Figure Studio。** [下载 Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.21/polish-sci-figures-Studio-0.1.21-Setup-x64.exe)，安装后打开快捷方式。选模板、换数据，在浏览器中完成编辑和导出。支持 Windows 10/11 x64，运行环境已包含，无需单独配置 Python、打开 Codex、注册账号或填写 API 密钥。
+**直接打开 Figure Studio。** [下载 Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases)，安装后打开快捷方式。选模板、换数据，在浏览器中完成编辑和导出。支持 Windows 10/11 x64，运行环境已包含，无需单独配置 Python、打开 Codex、注册账号或填写 API 密钥。
 
-[快速入门](desktop/QUICKSTART.zh-CN.md) · [便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.21/polish-sci-figures-Studio-0.1.21-Portable-x64.zip)
+[快速入门](desktop/QUICKSTART.zh-CN.md) · [便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases)
 
 [Mac / Android 开发预览与 iPhone/iPad 状态](docs/local-device-trial.md#中文)。Windows 为正式桌面发行版，其他设备按页面说明提供开发预览或模拟器验证。
 
@@ -225,11 +228,11 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 
 三个配套技能分别负责数据作图与分析、带校准的图像处理，以及最终精修和组图。生成后可以直接在 Figure Studio 中继续调整，无需每次修改都重新请求 AI。宿主要求、安装步骤及实际测试范围见平台指南。
 
-[Codex / 命令行安装](README.zh-CN.md#ai-与命令行工作流) · [Claude 上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.21/polish-sci-figures-v1.4.21-skill.zip)
+[Codex / 命令行安装](README.zh-CN.md#ai-与命令行工作流) · [Claude 上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases)
 
 ### 指南与项目
 
-[完整功能指南](README.zh-CN.md) · [本版更新](docs/release-notes-v1.4.21.md#中文) · [验证记录](docs/figure-studio-validation.md) · [参与贡献](CONTRIBUTING.md)
+[完整功能指南](README.zh-CN.md) · [本版更新](docs/release-notes-v1.4.22.md#中文) · [验证记录](docs/figure-studio-validation.md) · [参与贡献](CONTRIBUTING.md)
 
 官方下载与更新统一通过[本仓库的 Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases)提供。项目采用 [MIT 许可](LICENSE)，引用信息见 [CITATION.cff](CITATION.cff)。
 

@@ -7,8 +7,8 @@ const clone=value=>JSON.parse(JSON.stringify(value));
 const scalar=value=>{const b=Buffer.alloc(8);b.writeDoubleBE(value);return b.toString('hex');};
 class Node {
   constructor(id='',key='',fill='none'){this.id=id;this.key=key;this.fill=fill;this.stroke='none';this.localName='path';this.children=[];this.style={setProperty(){}};this.attributes={};this.parentElement=null;}
-  append(...items){this.children.push(...items);}
-  replaceChildren(...items){this.children=[...items];}
+  append(...items){for(const item of items){if(item.fragment){this.children.push(...item.children);item.children=[];}else this.children.push(item);}}
+  replaceChildren(...items){this.children=[];this.append(...items);}
   setAttribute(name,value){this.attributes[name]=String(value);}
   getAttribute(name){return name==='data-key'?this.key:this.attributes[name]??null;}
   querySelectorAll(selector){return selector==='[data-key]'?this.objects||[]:[];}
@@ -38,7 +38,7 @@ const context={SWATCH_SCHEMES,swatchSchemeFor,paletteSchemes,paletteSchemeName,p
   targetObjects:(id,vi,svg)=>elements.scope.value==='element'?[assets[id].objects[0]]:svg.objects,keysToObjects:svg=>svg.objects.filter(node=>node.style.opacity!=='0'),
   hex:value=>/^#[\da-f]{6}$/.test(value)?value:null,paint:(el,prop)=>el?.[prop],chromatic:value=>{const c=value.slice(1).match(/../g).map(v=>parseInt(v,16));return Math.max(...c)-Math.min(...c)>18;},
   setEdit:(next,id,vi,key,prop,value)=>{const p=next.panels[id];p.edits[vi]??={};p.edits[vi][key]??={};p.edits[vi][key][prop]=value;},
-  document:{createElement:()=>new Node()},button:(text,onclick)=>Object.assign(new Node(),{textContent:text,onclick}),T:value=>value,
+  document:{createElement:()=>new Node(),createDocumentFragment:()=>Object.assign(new Node(),{fragment:true})},button:(text,onclick)=>Object.assign(new Node(),{textContent:text,onclick}),T:value=>value,
   preview:svg=>svg,commit:next=>history.commit(next),renderCanvas:()=>renders++,say(){},drawColorSwatches(){},
   setTimeout:run=>{timers.set(++timerId,run);return timerId;},clearTimeout:id=>timers.delete(id)};
 vm.createContext(context);

@@ -1,0 +1,945 @@
+{
+  "schema": "figure-studio-resource-preview-public-summary/1",
+  "status": "PASS",
+  "label": "source16-resource-matrix",
+  "kind": "source-development-runtime",
+  "browser": "155.0.8059.82",
+  "conditions": {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "deviceScaleFactor": 1,
+    "video": false,
+    "browserMode": "headless"
+  },
+  "rawReportSha256": "b335d863e022e9cef05a697218f25731cf934d6a69a019beab69873de4d4e0b9",
+  "harnessSha256": "55bc143a9626e1325ca6beabcfd13ea2ee9664cbe0454b44db9a7990f1f6c050",
+  "scope": "Four actual Chrome conditions. Public Iris (150 observations) and six-row repository CSV engineering fixture. Discovery and local literature comparisons render on the editable main canvas; literature comparisons are explicitly not paper evidence. Actual Save/readonly IndexedDB/SVG/PNG/TIFF use committed state. Real local renderer transport is aborted once to test last-valid handling; no values, responses, citations or figure numbers are fabricated.",
+  "representationPolicy": "Only the three documented own undefined derived-cache keys absent from JSON Save are omitted in IDB comparison. All other scientific values, source SVG, state, history, checkpoints and data drafts remain strict deep equal. Only root CSS fit width/height are excluded from last-valid scientific SVG comparison and reported separately; all content and other root attributes/styles remain exact.",
+  "cases": [
+    {
+      "language": "en",
+      "theme": "carbon",
+      "status": "PASS",
+      "sourceProof": {
+        "localHtmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+        "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "reconstructedExpectedSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "version": "0.1.22",
+      "rejectedNewSource": {
+        "limitBytes": 2000000,
+        "attemptedBytes": 2000001,
+        "previousRowsCleared": true,
+        "oldCardsRemoved": true,
+        "actualFindBlocked": true,
+        "nativeFindDisabled": true,
+        "realPointerAttempt": true,
+        "rendererRequestsWhileRejected": 0,
+        "sameFilenameRereadRecovered": true
+      },
+      "discoveryDockKeyboard": {
+        "focusedTarget": "ordinary Compare on canvas button",
+        "arrowKeydownAndKeyupPassThrough": true,
+        "arrowCommits": 1,
+        "controlZActualUndo": true,
+        "controlShiftZActualRedo": true,
+        "undoExact": true
+      },
+      "discoveryDockEditing": {
+        "inlineF2Started": true,
+        "escapeExact": true,
+        "nudgeCommits": 1,
+        "undoStateExact": true
+      },
+      "discoveryMetadataAndLanguagePreserved": true,
+      "languageBackendRenderCountDelta": 0,
+      "discoverySingleUndoRedoAndSources": true,
+      "literatureViews": [
+        "compare_bar_points",
+        "compare_ecdf"
+      ],
+      "literatureFailureKeptScientificSvg": true,
+      "literatureFailedBDisplay": {
+        "before": {
+          "width": 168.09375,
+          "height": 258
+        },
+        "after": {
+          "width": 127.703125,
+          "height": 196
+        },
+        "fitWidthHeightExcludedOnly": true,
+        "allOtherSvgExact": true
+      },
+      "literatureDockEditing": {
+        "inlineF2Started": true,
+        "escapeExact": true,
+        "nudgeCommits": 1,
+        "undoStateExact": true
+      },
+      "literatureSingleUndoRedoAndRawSources": true,
+      "literatureLockedOwnerProtected": true,
+      "sourceReplacementInvalidates": true,
+      "lockedOwnerProtected": true,
+      "blankWelcomePreviewCancelLifecycle": true,
+      "blankReplacementSingleUndoRedo": true,
+      "statusContrast": {
+        "valid": {
+          "foreground": "rgb(188, 200, 216)",
+          "background": "rgb(32, 42, 55)",
+          "fontSize": "13px",
+          "textVisible": true,
+          "ratio": 8.55907624699749,
+          "scope": "Computed foreground and opaque background of the actual literature dock status only; no claim for the whole page."
+        },
+        "failed": {
+          "foreground": "rgb(188, 200, 216)",
+          "background": "rgb(32, 42, 55)",
+          "fontSize": "13px",
+          "textVisible": true,
+          "ratio": 8.55907624699749,
+          "scope": "Computed foreground and opaque background of the actual literature dock status only; no claim for the whole page."
+        }
+      },
+      "idb": {
+        "baselineIdb": {
+          "projectSha256": "40b4e9dd65f8960b1005934decc93fb5ef0048f728e90419d0838326ee4a98d5",
+          "stateSha256": "ade0b40f5465effea6b67a785255c8e547e7934e51a2216d3267d318204b57e3",
+          "historySha256": "a446b66f6b87743ef3c3a612c5ce17ff9d99e2c1555467657b78e8c93fdca277",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "discoveryDraftIdb": {
+          "projectSha256": "40b4e9dd65f8960b1005934decc93fb5ef0048f728e90419d0838326ee4a98d5",
+          "stateSha256": "ade0b40f5465effea6b67a785255c8e547e7934e51a2216d3267d318204b57e3",
+          "historySha256": "a446b66f6b87743ef3c3a612c5ce17ff9d99e2c1555467657b78e8c93fdca277",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "literatureBaselineIdb": {
+          "projectSha256": "2a7e8ff5b1268945e1f18fa9a798554800ad2fbd30b7b1f75e5fc7269a321237",
+          "stateSha256": "fb97d0704c2dc3105eca8d6f1d5032baa7d8681dca469aedf0e45192453de38c",
+          "historySha256": "ec9d54744120f4779853db9a6955ad6762129546b63c578407900848c38e7e8d",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [
+            "project.layoutRenders",
+            "project.heatmapRenders",
+            "project.statisticalRenders"
+          ],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "literatureDraftIdb": {
+          "projectSha256": "2a7e8ff5b1268945e1f18fa9a798554800ad2fbd30b7b1f75e5fc7269a321237",
+          "stateSha256": "fb97d0704c2dc3105eca8d6f1d5032baa7d8681dca469aedf0e45192453de38c",
+          "historySha256": "ec9d54744120f4779853db9a6955ad6762129546b63c578407900848c38e7e8d",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [
+            "project.layoutRenders",
+            "project.heatmapRenders",
+            "project.statisticalRenders"
+          ],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        }
+      },
+      "exports": {
+        "discoveryDraftExports": {
+          "canonicalSvgSha256": "b76582d84052bfc4f6e5de92050acc8b2fd2f1db4bf609a2949a3af38d43847a",
+          "rawSvgSha256": "08ef7c156ec414910d57cd0fc9fdf99e179a39334978e29607ae26461d780df8",
+          "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+          "tiffSha256": "88fbe78d43c93c047a044f69d957c8f9db6ab22aed63b5b7ef934e0089564f29",
+          "decoded": [
+            {
+              "format": "PNG",
+              "mode": "RGBA",
+              "width": 2880,
+              "height": 2160,
+              "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92",
+              "dpi": [
+                599.9988,
+                599.9988
+              ]
+            },
+            {
+              "format": "TIFF",
+              "mode": "RGB",
+              "width": 2880,
+              "height": 2160,
+              "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92",
+              "dpi": [
+                600,
+                600
+              ]
+            }
+          ],
+          "requestedDpi": 600
+        },
+        "literatureDraftExports": {
+          "canonicalSvgSha256": "683bc1615c42087d456852c0e31dc125e006e80a5a4fd5289088445f89b08b39",
+          "rawSvgSha256": "ebc758fb07846a5778ec4d7e1b4c5cf0df7742ceffdcae5192129bc7c6f05c95",
+          "pngSha256": "8477660234d1f88bec271aa9a0645c43ad2cb4673eac89e15faef5db7cb87833",
+          "tiffSha256": "166fd0c412965043b9a22da17436bcef95e9799e983835dc7439d7fd26977e1b",
+          "decoded": [
+            {
+              "format": "PNG",
+              "mode": "RGBA",
+              "width": 2880,
+              "height": 4420,
+              "rgbaSha256": "49e029659fd4f7a1c35b2f7565ec610c73e0594d74df859a1143f1dadd7cedd9",
+              "dpi": [
+                599.9988,
+                599.9988
+              ]
+            },
+            {
+              "format": "TIFF",
+              "mode": "RGB",
+              "width": 2880,
+              "height": 4420,
+              "rgbaSha256": "49e029659fd4f7a1c35b2f7565ec610c73e0594d74df859a1143f1dadd7cedd9",
+              "dpi": [
+                600,
+                600
+              ]
+            }
+          ],
+          "requestedDpi": 600
+        }
+      },
+      "pageErrors": 0,
+      "externalRequests": 0
+    },
+    {
+      "language": "en",
+      "theme": "pearl",
+      "status": "PASS",
+      "sourceProof": {
+        "localHtmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+        "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "reconstructedExpectedSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "version": "0.1.22",
+      "rejectedNewSource": {
+        "limitBytes": 2000000,
+        "attemptedBytes": 2000001,
+        "previousRowsCleared": true,
+        "oldCardsRemoved": true,
+        "actualFindBlocked": true,
+        "nativeFindDisabled": true,
+        "realPointerAttempt": true,
+        "rendererRequestsWhileRejected": 0,
+        "sameFilenameRereadRecovered": true
+      },
+      "discoveryDockKeyboard": {
+        "focusedTarget": "ordinary Compare on canvas button",
+        "arrowKeydownAndKeyupPassThrough": true,
+        "arrowCommits": 1,
+        "controlZActualUndo": true,
+        "controlShiftZActualRedo": true,
+        "undoExact": true
+      },
+      "discoveryDockEditing": {
+        "inlineF2Started": true,
+        "escapeExact": true,
+        "nudgeCommits": 1,
+        "undoStateExact": true
+      },
+      "discoveryMetadataAndLanguagePreserved": true,
+      "languageBackendRenderCountDelta": 0,
+      "discoverySingleUndoRedoAndSources": true,
+      "literatureViews": [
+        "compare_bar_points",
+        "compare_ecdf"
+      ],
+      "literatureFailureKeptScientificSvg": true,
+      "literatureFailedBDisplay": {
+        "before": {
+          "width": 168.09375,
+          "height": 258
+        },
+        "after": {
+          "width": 127.703125,
+          "height": 196
+        },
+        "fitWidthHeightExcludedOnly": true,
+        "allOtherSvgExact": true
+      },
+      "literatureDockEditing": {
+        "inlineF2Started": true,
+        "escapeExact": true,
+        "nudgeCommits": 1,
+        "undoStateExact": true
+      },
+      "literatureSingleUndoRedoAndRawSources": true,
+      "literatureLockedOwnerProtected": true,
+      "sourceReplacementInvalidates": true,
+      "lockedOwnerProtected": true,
+      "blankWelcomePreviewCancelLifecycle": true,
+      "blankReplacementSingleUndoRedo": true,
+      "statusContrast": {
+        "valid": {
+          "foreground": "rgb(77, 94, 115)",
+          "background": "rgb(244, 247, 251)",
+          "fontSize": "13px",
+          "textVisible": true,
+          "ratio": 6.176582169387394,
+          "scope": "Computed foreground and opaque background of the actual literature dock status only; no claim for the whole page."
+        },
+        "failed": {
+          "foreground": "rgb(77, 94, 115)",
+          "background": "rgb(244, 247, 251)",
+          "fontSize": "13px",
+          "textVisible": true,
+          "ratio": 6.176582169387394,
+          "scope": "Computed foreground and opaque background of the actual literature dock status only; no claim for the whole page."
+        }
+      },
+      "idb": {
+        "baselineIdb": {
+          "projectSha256": "40b4e9dd65f8960b1005934decc93fb5ef0048f728e90419d0838326ee4a98d5",
+          "stateSha256": "ade0b40f5465effea6b67a785255c8e547e7934e51a2216d3267d318204b57e3",
+          "historySha256": "a446b66f6b87743ef3c3a612c5ce17ff9d99e2c1555467657b78e8c93fdca277",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "discoveryDraftIdb": {
+          "projectSha256": "40b4e9dd65f8960b1005934decc93fb5ef0048f728e90419d0838326ee4a98d5",
+          "stateSha256": "ade0b40f5465effea6b67a785255c8e547e7934e51a2216d3267d318204b57e3",
+          "historySha256": "a446b66f6b87743ef3c3a612c5ce17ff9d99e2c1555467657b78e8c93fdca277",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "literatureBaselineIdb": {
+          "projectSha256": "473f9ba1496b9c76b47d9db67be1a05dcce564177f502490446a44a6752783c5",
+          "stateSha256": "fb97d0704c2dc3105eca8d6f1d5032baa7d8681dca469aedf0e45192453de38c",
+          "historySha256": "ec9d54744120f4779853db9a6955ad6762129546b63c578407900848c38e7e8d",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [
+            "project.layoutRenders",
+            "project.heatmapRenders",
+            "project.statisticalRenders"
+          ],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "literatureDraftIdb": {
+          "projectSha256": "473f9ba1496b9c76b47d9db67be1a05dcce564177f502490446a44a6752783c5",
+          "stateSha256": "fb97d0704c2dc3105eca8d6f1d5032baa7d8681dca469aedf0e45192453de38c",
+          "historySha256": "ec9d54744120f4779853db9a6955ad6762129546b63c578407900848c38e7e8d",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [
+            "project.layoutRenders",
+            "project.heatmapRenders",
+            "project.statisticalRenders"
+          ],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        }
+      },
+      "exports": {
+        "discoveryDraftExports": {
+          "canonicalSvgSha256": "b76582d84052bfc4f6e5de92050acc8b2fd2f1db4bf609a2949a3af38d43847a",
+          "rawSvgSha256": "08ef7c156ec414910d57cd0fc9fdf99e179a39334978e29607ae26461d780df8",
+          "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+          "tiffSha256": "88fbe78d43c93c047a044f69d957c8f9db6ab22aed63b5b7ef934e0089564f29",
+          "decoded": [
+            {
+              "format": "PNG",
+              "mode": "RGBA",
+              "width": 2880,
+              "height": 2160,
+              "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92",
+              "dpi": [
+                599.9988,
+                599.9988
+              ]
+            },
+            {
+              "format": "TIFF",
+              "mode": "RGB",
+              "width": 2880,
+              "height": 2160,
+              "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92",
+              "dpi": [
+                600,
+                600
+              ]
+            }
+          ],
+          "requestedDpi": 600
+        },
+        "literatureDraftExports": {
+          "canonicalSvgSha256": "683bc1615c42087d456852c0e31dc125e006e80a5a4fd5289088445f89b08b39",
+          "rawSvgSha256": "ebc758fb07846a5778ec4d7e1b4c5cf0df7742ceffdcae5192129bc7c6f05c95",
+          "pngSha256": "8477660234d1f88bec271aa9a0645c43ad2cb4673eac89e15faef5db7cb87833",
+          "tiffSha256": "166fd0c412965043b9a22da17436bcef95e9799e983835dc7439d7fd26977e1b",
+          "decoded": [
+            {
+              "format": "PNG",
+              "mode": "RGBA",
+              "width": 2880,
+              "height": 4420,
+              "rgbaSha256": "49e029659fd4f7a1c35b2f7565ec610c73e0594d74df859a1143f1dadd7cedd9",
+              "dpi": [
+                599.9988,
+                599.9988
+              ]
+            },
+            {
+              "format": "TIFF",
+              "mode": "RGB",
+              "width": 2880,
+              "height": 4420,
+              "rgbaSha256": "49e029659fd4f7a1c35b2f7565ec610c73e0594d74df859a1143f1dadd7cedd9",
+              "dpi": [
+                600,
+                600
+              ]
+            }
+          ],
+          "requestedDpi": 600
+        }
+      },
+      "pageErrors": 0,
+      "externalRequests": 0
+    },
+    {
+      "language": "zh-CN",
+      "theme": "carbon",
+      "status": "PASS",
+      "sourceProof": {
+        "localHtmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+        "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "reconstructedExpectedSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "version": "0.1.22",
+      "rejectedNewSource": {
+        "limitBytes": 2000000,
+        "attemptedBytes": 2000001,
+        "previousRowsCleared": true,
+        "oldCardsRemoved": true,
+        "actualFindBlocked": true,
+        "nativeFindDisabled": true,
+        "realPointerAttempt": true,
+        "rendererRequestsWhileRejected": 0,
+        "sameFilenameRereadRecovered": true
+      },
+      "discoveryDockKeyboard": {
+        "focusedTarget": "ordinary Compare on canvas button",
+        "arrowKeydownAndKeyupPassThrough": true,
+        "arrowCommits": 1,
+        "controlZActualUndo": true,
+        "controlShiftZActualRedo": true,
+        "undoExact": true
+      },
+      "discoveryDockEditing": {
+        "inlineF2Started": true,
+        "escapeExact": true,
+        "nudgeCommits": 1,
+        "undoStateExact": true
+      },
+      "discoveryMetadataAndLanguagePreserved": true,
+      "languageBackendRenderCountDelta": 0,
+      "discoverySingleUndoRedoAndSources": true,
+      "literatureViews": [
+        "compare_bar_points",
+        "compare_ecdf"
+      ],
+      "literatureFailureKeptScientificSvg": true,
+      "literatureFailedBDisplay": {
+        "before": {
+          "width": 168.09375,
+          "height": 258
+        },
+        "after": {
+          "width": 127.703125,
+          "height": 196
+        },
+        "fitWidthHeightExcludedOnly": true,
+        "allOtherSvgExact": true
+      },
+      "literatureDockEditing": {
+        "inlineF2Started": true,
+        "escapeExact": true,
+        "nudgeCommits": 1,
+        "undoStateExact": true
+      },
+      "literatureSingleUndoRedoAndRawSources": true,
+      "literatureLockedOwnerProtected": true,
+      "sourceReplacementInvalidates": true,
+      "lockedOwnerProtected": true,
+      "blankWelcomePreviewCancelLifecycle": true,
+      "blankReplacementSingleUndoRedo": true,
+      "statusContrast": {
+        "valid": {
+          "foreground": "rgb(188, 200, 216)",
+          "background": "rgb(32, 42, 55)",
+          "fontSize": "13px",
+          "textVisible": true,
+          "ratio": 8.55907624699749,
+          "scope": "Computed foreground and opaque background of the actual literature dock status only; no claim for the whole page."
+        },
+        "failed": {
+          "foreground": "rgb(188, 200, 216)",
+          "background": "rgb(32, 42, 55)",
+          "fontSize": "13px",
+          "textVisible": true,
+          "ratio": 8.55907624699749,
+          "scope": "Computed foreground and opaque background of the actual literature dock status only; no claim for the whole page."
+        }
+      },
+      "idb": {
+        "baselineIdb": {
+          "projectSha256": "40b4e9dd65f8960b1005934decc93fb5ef0048f728e90419d0838326ee4a98d5",
+          "stateSha256": "ade0b40f5465effea6b67a785255c8e547e7934e51a2216d3267d318204b57e3",
+          "historySha256": "a446b66f6b87743ef3c3a612c5ce17ff9d99e2c1555467657b78e8c93fdca277",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "discoveryDraftIdb": {
+          "projectSha256": "40b4e9dd65f8960b1005934decc93fb5ef0048f728e90419d0838326ee4a98d5",
+          "stateSha256": "ade0b40f5465effea6b67a785255c8e547e7934e51a2216d3267d318204b57e3",
+          "historySha256": "a446b66f6b87743ef3c3a612c5ce17ff9d99e2c1555467657b78e8c93fdca277",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "literatureBaselineIdb": {
+          "projectSha256": "80f87f57f4420456ec993b1022cc52c51bbae5c33a57cf7acdc88024e08076ca",
+          "stateSha256": "fb97d0704c2dc3105eca8d6f1d5032baa7d8681dca469aedf0e45192453de38c",
+          "historySha256": "ec9d54744120f4779853db9a6955ad6762129546b63c578407900848c38e7e8d",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [
+            "project.layoutRenders",
+            "project.heatmapRenders",
+            "project.statisticalRenders"
+          ],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "literatureDraftIdb": {
+          "projectSha256": "80f87f57f4420456ec993b1022cc52c51bbae5c33a57cf7acdc88024e08076ca",
+          "stateSha256": "fb97d0704c2dc3105eca8d6f1d5032baa7d8681dca469aedf0e45192453de38c",
+          "historySha256": "ec9d54744120f4779853db9a6955ad6762129546b63c578407900848c38e7e8d",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [
+            "project.layoutRenders",
+            "project.heatmapRenders",
+            "project.statisticalRenders"
+          ],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        }
+      },
+      "exports": {
+        "discoveryDraftExports": {
+          "canonicalSvgSha256": "b76582d84052bfc4f6e5de92050acc8b2fd2f1db4bf609a2949a3af38d43847a",
+          "rawSvgSha256": "ece51f009cdf9e9b325886dfe1e2f129c31fc89387d7d1c826171d08b9f24233",
+          "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+          "tiffSha256": "88fbe78d43c93c047a044f69d957c8f9db6ab22aed63b5b7ef934e0089564f29",
+          "decoded": [
+            {
+              "format": "PNG",
+              "mode": "RGBA",
+              "width": 2880,
+              "height": 2160,
+              "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92",
+              "dpi": [
+                599.9988,
+                599.9988
+              ]
+            },
+            {
+              "format": "TIFF",
+              "mode": "RGB",
+              "width": 2880,
+              "height": 2160,
+              "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92",
+              "dpi": [
+                600,
+                600
+              ]
+            }
+          ],
+          "requestedDpi": 600
+        },
+        "literatureDraftExports": {
+          "canonicalSvgSha256": "683bc1615c42087d456852c0e31dc125e006e80a5a4fd5289088445f89b08b39",
+          "rawSvgSha256": "38e2adef16e56707c26f505c4cb7c920437453a3bf01f4f46ea247ccd91c34ee",
+          "pngSha256": "8477660234d1f88bec271aa9a0645c43ad2cb4673eac89e15faef5db7cb87833",
+          "tiffSha256": "166fd0c412965043b9a22da17436bcef95e9799e983835dc7439d7fd26977e1b",
+          "decoded": [
+            {
+              "format": "PNG",
+              "mode": "RGBA",
+              "width": 2880,
+              "height": 4420,
+              "rgbaSha256": "49e029659fd4f7a1c35b2f7565ec610c73e0594d74df859a1143f1dadd7cedd9",
+              "dpi": [
+                599.9988,
+                599.9988
+              ]
+            },
+            {
+              "format": "TIFF",
+              "mode": "RGB",
+              "width": 2880,
+              "height": 4420,
+              "rgbaSha256": "49e029659fd4f7a1c35b2f7565ec610c73e0594d74df859a1143f1dadd7cedd9",
+              "dpi": [
+                600,
+                600
+              ]
+            }
+          ],
+          "requestedDpi": 600
+        }
+      },
+      "pageErrors": 0,
+      "externalRequests": 0
+    },
+    {
+      "language": "zh-CN",
+      "theme": "pearl",
+      "status": "PASS",
+      "sourceProof": {
+        "localHtmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+        "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "reconstructedExpectedSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "version": "0.1.22",
+      "rejectedNewSource": {
+        "limitBytes": 2000000,
+        "attemptedBytes": 2000001,
+        "previousRowsCleared": true,
+        "oldCardsRemoved": true,
+        "actualFindBlocked": true,
+        "nativeFindDisabled": true,
+        "realPointerAttempt": true,
+        "rendererRequestsWhileRejected": 0,
+        "sameFilenameRereadRecovered": true
+      },
+      "discoveryDockKeyboard": {
+        "focusedTarget": "ordinary Compare on canvas button",
+        "arrowKeydownAndKeyupPassThrough": true,
+        "arrowCommits": 1,
+        "controlZActualUndo": true,
+        "controlShiftZActualRedo": true,
+        "undoExact": true
+      },
+      "discoveryDockEditing": {
+        "inlineF2Started": true,
+        "escapeExact": true,
+        "nudgeCommits": 1,
+        "undoStateExact": true
+      },
+      "discoveryMetadataAndLanguagePreserved": true,
+      "languageBackendRenderCountDelta": 0,
+      "discoverySingleUndoRedoAndSources": true,
+      "literatureViews": [
+        "compare_bar_points",
+        "compare_ecdf"
+      ],
+      "literatureFailureKeptScientificSvg": true,
+      "literatureFailedBDisplay": {
+        "before": {
+          "width": 168.09375,
+          "height": 258
+        },
+        "after": {
+          "width": 127.703125,
+          "height": 196
+        },
+        "fitWidthHeightExcludedOnly": true,
+        "allOtherSvgExact": true
+      },
+      "literatureDockEditing": {
+        "inlineF2Started": true,
+        "escapeExact": true,
+        "nudgeCommits": 1,
+        "undoStateExact": true
+      },
+      "literatureSingleUndoRedoAndRawSources": true,
+      "literatureLockedOwnerProtected": true,
+      "sourceReplacementInvalidates": true,
+      "lockedOwnerProtected": true,
+      "blankWelcomePreviewCancelLifecycle": true,
+      "blankReplacementSingleUndoRedo": true,
+      "statusContrast": {
+        "valid": {
+          "foreground": "rgb(77, 94, 115)",
+          "background": "rgb(244, 247, 251)",
+          "fontSize": "13px",
+          "textVisible": true,
+          "ratio": 6.176582169387394,
+          "scope": "Computed foreground and opaque background of the actual literature dock status only; no claim for the whole page."
+        },
+        "failed": {
+          "foreground": "rgb(77, 94, 115)",
+          "background": "rgb(244, 247, 251)",
+          "fontSize": "13px",
+          "textVisible": true,
+          "ratio": 6.176582169387394,
+          "scope": "Computed foreground and opaque background of the actual literature dock status only; no claim for the whole page."
+        }
+      },
+      "idb": {
+        "baselineIdb": {
+          "projectSha256": "40b4e9dd65f8960b1005934decc93fb5ef0048f728e90419d0838326ee4a98d5",
+          "stateSha256": "ade0b40f5465effea6b67a785255c8e547e7934e51a2216d3267d318204b57e3",
+          "historySha256": "a446b66f6b87743ef3c3a612c5ce17ff9d99e2c1555467657b78e8c93fdca277",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "discoveryDraftIdb": {
+          "projectSha256": "40b4e9dd65f8960b1005934decc93fb5ef0048f728e90419d0838326ee4a98d5",
+          "stateSha256": "ade0b40f5465effea6b67a785255c8e547e7934e51a2216d3267d318204b57e3",
+          "historySha256": "a446b66f6b87743ef3c3a612c5ce17ff9d99e2c1555467657b78e8c93fdca277",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "literatureBaselineIdb": {
+          "projectSha256": "e08db058967f58bcef163daca4d7baeb522bfd3d2393dc3b134a0cea0f3bbc7b",
+          "stateSha256": "fb97d0704c2dc3105eca8d6f1d5032baa7d8681dca469aedf0e45192453de38c",
+          "historySha256": "ec9d54744120f4779853db9a6955ad6762129546b63c578407900848c38e7e8d",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [
+            "project.layoutRenders",
+            "project.heatmapRenders",
+            "project.statisticalRenders"
+          ],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        },
+        "literatureDraftIdb": {
+          "projectSha256": "e08db058967f58bcef163daca4d7baeb522bfd3d2393dc3b134a0cea0f3bbc7b",
+          "stateSha256": "fb97d0704c2dc3105eca8d6f1d5032baa7d8681dca469aedf0e45192453de38c",
+          "historySha256": "ec9d54744120f4779853db9a6955ad6762129546b63c578407900848c38e7e8d",
+          "checkpointsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "dataDraftsSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "readonly": true,
+          "allOtherValuesStrictDeepEqual": true,
+          "representationOmissions": [
+            "project.layoutRenders",
+            "project.heatmapRenders",
+            "project.statisticalRenders"
+          ],
+          "representationPolicy": "Only IDB-own undefined derived-cache keys absent from JSON Save are omitted for comparison; no numeric, scientific data, source, state, history, checkpoint or data-draft normalization."
+        }
+      },
+      "exports": {
+        "discoveryDraftExports": {
+          "canonicalSvgSha256": "b76582d84052bfc4f6e5de92050acc8b2fd2f1db4bf609a2949a3af38d43847a",
+          "rawSvgSha256": "ece51f009cdf9e9b325886dfe1e2f129c31fc89387d7d1c826171d08b9f24233",
+          "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+          "tiffSha256": "88fbe78d43c93c047a044f69d957c8f9db6ab22aed63b5b7ef934e0089564f29",
+          "decoded": [
+            {
+              "format": "PNG",
+              "mode": "RGBA",
+              "width": 2880,
+              "height": 2160,
+              "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92",
+              "dpi": [
+                599.9988,
+                599.9988
+              ]
+            },
+            {
+              "format": "TIFF",
+              "mode": "RGB",
+              "width": 2880,
+              "height": 2160,
+              "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92",
+              "dpi": [
+                600,
+                600
+              ]
+            }
+          ],
+          "requestedDpi": 600
+        },
+        "literatureDraftExports": {
+          "canonicalSvgSha256": "683bc1615c42087d456852c0e31dc125e006e80a5a4fd5289088445f89b08b39",
+          "rawSvgSha256": "38e2adef16e56707c26f505c4cb7c920437453a3bf01f4f46ea247ccd91c34ee",
+          "pngSha256": "8477660234d1f88bec271aa9a0645c43ad2cb4673eac89e15faef5db7cb87833",
+          "tiffSha256": "166fd0c412965043b9a22da17436bcef95e9799e983835dc7439d7fd26977e1b",
+          "decoded": [
+            {
+              "format": "PNG",
+              "mode": "RGBA",
+              "width": 2880,
+              "height": 4420,
+              "rgbaSha256": "49e029659fd4f7a1c35b2f7565ec610c73e0594d74df859a1143f1dadd7cedd9",
+              "dpi": [
+                599.9988,
+                599.9988
+              ]
+            },
+            {
+              "format": "TIFF",
+              "mode": "RGB",
+              "width": 2880,
+              "height": 4420,
+              "rgbaSha256": "49e029659fd4f7a1c35b2f7565ec610c73e0594d74df859a1143f1dadd7cedd9",
+              "dpi": [
+                600,
+                600
+              ]
+            }
+          ],
+          "requestedDpi": 600
+        }
+      },
+      "pageErrors": 0,
+      "externalRequests": 0
+    }
+  ],
+  "images": [
+    {
+      "condition": "en/carbon",
+      "file": "en-carbon/discovery-draft.png",
+      "sha256": "ddbf85875088528515c659b2cadd4df25d9383dbde6da580a57dc9783af53d52"
+    },
+    {
+      "condition": "en/carbon",
+      "file": "en-carbon/literature-A-valid.png",
+      "sha256": "6fa58c771ad6294c703f7734c4e4dce7bb9fd11d46f0800d790a6c1e6e247524"
+    },
+    {
+      "condition": "en/carbon",
+      "file": "en-carbon/literature-B-failed.png",
+      "sha256": "52e51732561c9a7163f712e51dcf46374cd4735539f0654a5c1a98bd456a7b77"
+    },
+    {
+      "condition": "en/carbon",
+      "file": "en-carbon/literature-draft.png",
+      "sha256": "e4446b8e36231fed4e954da2241317715fa4417c4d4f0fb383b7bf9cab481979"
+    },
+    {
+      "condition": "en/pearl",
+      "file": "en-pearl/discovery-draft.png",
+      "sha256": "6c7aec8bb1bdc3d2c2c5d72e7a4e9ce8daa84e63c96346cdd72815939cdb466d"
+    },
+    {
+      "condition": "en/pearl",
+      "file": "en-pearl/literature-A-valid.png",
+      "sha256": "ece0e82256a8d2635739009d94e351e66cbc16b8c9428ecc625afa471a9d0be1"
+    },
+    {
+      "condition": "en/pearl",
+      "file": "en-pearl/literature-B-failed.png",
+      "sha256": "89c4286d7b7f2b05a32cdfefe240809ead9d5824696c88c24e76c1f8a6a946a9"
+    },
+    {
+      "condition": "en/pearl",
+      "file": "en-pearl/literature-draft.png",
+      "sha256": "9f7a652e053bd467643f8488c2de9993d6e48c8a4240adf85ae1876fc9df5c20"
+    },
+    {
+      "condition": "zh-CN/carbon",
+      "file": "zh-CN-carbon/discovery-draft.png",
+      "sha256": "4ba4706d9379723ef7b532af7b78fae9ed1ee8e11d40d7fdca7f57d5d8379d32"
+    },
+    {
+      "condition": "zh-CN/carbon",
+      "file": "zh-CN-carbon/literature-A-valid.png",
+      "sha256": "2ca03d558f3ece402bf5d8886ae3f2d530bfbc8d1284adda3b464969cba4124b"
+    },
+    {
+      "condition": "zh-CN/carbon",
+      "file": "zh-CN-carbon/literature-B-failed.png",
+      "sha256": "17314d73d7d40f63546b2941c186d59d62f4e351563428ed7132527e544b7ba5"
+    },
+    {
+      "condition": "zh-CN/carbon",
+      "file": "zh-CN-carbon/literature-draft.png",
+      "sha256": "6cfbdeca1a5badb04ed6611477317a2b2ab760f65db09d9169772d93d078b08e"
+    },
+    {
+      "condition": "zh-CN/pearl",
+      "file": "zh-CN-pearl/discovery-draft.png",
+      "sha256": "65318fd87f88fafdf1e28fd1b2eb8c15f5fdfeffbe3eb994a7d8f15cfda9d972"
+    },
+    {
+      "condition": "zh-CN/pearl",
+      "file": "zh-CN-pearl/literature-A-valid.png",
+      "sha256": "bea12901df8c4821a01e872fdc777b467bbf62d5c95d14e83fe35da6ad2c54f0"
+    },
+    {
+      "condition": "zh-CN/pearl",
+      "file": "zh-CN-pearl/literature-B-failed.png",
+      "sha256": "4c351cce5782a4081fd877d35f6f24d24252d827921133c79092f67ea5d91f0b"
+    },
+    {
+      "condition": "zh-CN/pearl",
+      "file": "zh-CN-pearl/literature-draft.png",
+      "sha256": "432032d9302e5820f797ed270b7acb4ef1c16072ee0812562bb7e0d0f5d9d778"
+    }
+  ],
+  "limitations": [
+    "Functional checks use a local source runtime unless kind explicitly identifies an installed runtime.",
+    "Fixed DPR 1 and headless actual Windows Chrome; this is not physical touch or a performance benchmark.",
+    "Computed contrast is sampled only for the actual literature status box, not a whole-page accessibility certification."
+  ]
+}

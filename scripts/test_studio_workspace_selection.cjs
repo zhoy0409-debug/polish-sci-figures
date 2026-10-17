@@ -30,9 +30,10 @@ function harness({vector=false}={}){
   const noteBox={left:480,top:280,right:540,bottom:310},note=el('g',{annotation:'note'},noteBox);svg.append(note);
   const selectionLayer=el(),workspaceLayer=el('svg');svg.append(selectionLayer);viewport.append(workspaceLayer);
   const s={order:['p0','p1'],panels:{p0:{variant:0,edits:{},label:{}},p1:{variant:0,edits:{},label:{}}},overlays:[{id:'note',x:.6,y:.5,w:.1,h:.1}]};
+  const project={panels:s.order.map(id=>({id,variants:[{width:300,viewBox:[0,0,300,420]}]}))};
   const initial=copy(s),fields={scope:{value:'panel'},deleteElements:{disabled:true},viewport};let commits=0,renders=0,nativeClears=0,rafId=0;const raf=new Map(),messages=[];
-  const ctx={svg,viewport,selectionLayer,workspaceLayer,NS:'svg',l:{width:600,height:420,positions:[]},marqueeHit,alignmentSnap,Math,copy,previewState:s,imageLinks:null,imageInsets:null,imageColorUI:null,refreshInsetGraphics(){assert.ok(s.overlays.every(a=>a.type!=='inset'),'This fixture contains ordinary annotations only');},renderAlignmentGuideControls(){},
-    state:()=>s,panel:id=>({id,variants:[{width:300,viewBox:[0,0,300,420]}]}),$:id=>fields[id],T:(s,...args)=>s.replace(/\{(\d+)\}/g,(_,i)=>args[i]),isVisibleObject:()=>true,
+  const ctx={svg,viewport,selectionLayer,workspaceLayer,NS:'svg',l:{width:600,height:420,positions:[]},marqueeHit,alignmentSnap,Math,copy,project,history:{current:s},StudioI18n:{language:'en'},previewState:s,imageLinks:null,imageInsets:null,imageColorUI:null,refreshInsetGraphics(){assert.ok(s.overlays.every(a=>a.type!=='inset'),'This fixture contains ordinary annotations only');},renderAlignmentGuideControls(){},
+    state:()=>s,panel:id=>project.panels.find(p=>p.id===id),$:id=>fields[id],T:(s,...args)=>s.replace(/\{(\d+)\}/g,(_,i)=>args[i]),isVisibleObject:()=>true,
     getComputedStyle:()=>({display:'block',visibility:'visible',opacity:'1',fill:'#222',stroke:'none'}),
     document:{createElementNS:(_,tag)=>el(tag),querySelectorAll:()=>[]},window:{getSelection:()=>({removeAllRanges(){nativeClears++;}})},
     requestAnimationFrame(fn){const id=++rafId;raf.set(id,fn);return id;},cancelAnimationFrame:id=>raf.delete(id),cancelQueuedZoom(){},
@@ -45,13 +46,15 @@ function harness({vector=false}={}){
   vm.runInContext(source.slice(source.indexOf('function panelContentDelta('),source.indexOf('function nudgeSelectionState(')),ctx);
   vm.runInContext(source.slice(source.indexOf('  function canvasObjectTarget('),source.indexOf('  function addStatisticalHitAreas(')),ctx);
   const groups=source.slice(source.indexOf('  function selectionGroups('),source.indexOf('  const sizeNames='))+source.slice(source.indexOf('  function refreshOverlaySelection('),source.indexOf('  function renderOverlayProperties('));
+  const identityStart=source.indexOf('  function visualPreviewIdentity('),identityEnd=source.indexOf('  const previewSessions=',identityStart);assert.ok(identityStart>=0&&identityEnd>identityStart);
+  const identity=source.slice(identityStart,identityEnd);
   const local=source.slice(source.indexOf('    const screenRect=el=>'),source.indexOf('    let resizeDrag=null,panelDrag='));
   const behind=source.slice(source.indexOf('    const behindTarget=target=>'),source.indexOf('    svg.onpointerdown=e=>'));
   const handlers=source.slice(source.indexOf('    svg.onpointerdown=e=>'),source.indexOf('  function renderMethods(){'));
-  vm.runInContext(`let selectedPanel='p0',inspectorPanel='p0',selected=[],elementSelections=[],selectionAnchor=null,selectedAnnotations=[],selectedPanelLabel=null,panelSelection=[],selectionAfterMarquee=false,layoutMode=false,original=false,boxSelect=false,activePane='detail',cancelSelectionGesture=null,cancelPanelGesture=null,cancelObjectGesture=null,selectedAlignmentGuide=null;
+  vm.runInContext(`let selectedPanel='p0',inspectorPanel='p0',selected=[],elementSelections=[],selectionAnchor=null,selectedAnnotations=[],selectedPanelLabel=null,panelSelection=[],selectionAfterMarquee=false,layoutMode=false,original=false,boxSelect=false,activePane='detail',cancelSelectionGesture=null,cancelPanelGesture=null,cancelObjectGesture=null,selectedAlignmentGuide=null,contentSelection=null;
     let labelDrag=null,overlayDrag=null,elementDrag=null,guideDrag=null,marquee=null,suppressClick=false,resizeDrag=null,panelDrag=null,dragging=null,pending=null;
     const canvasPoint=e=>({x:(e.clientX-100)/600,y:(e.clientY-80)/420});const clearGhost=()=>{};
-    ${groups}\n${local}\n${behind}\n${handlers.replace(/\n  }\s*$/,'')}
+    ${groups}\n${identity}\n${local}\n${behind}\n${handlers.replace(/\n  }\s*$/,'')}
     globalThis.count=()=>selectionGroups().reduce((n,g)=>n+g.keys.length,0)+selectedAnnotations.length;
     globalThis.details=()=>({groups:selectionGroups(),annotations:selectedAnnotations,post:selectionAfterMarquee,active:!!marquee,suppress:suppressClick});
     globalThis.boxMode=value=>{boxSelect=value;};

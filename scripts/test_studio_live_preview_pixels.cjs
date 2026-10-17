@@ -1,0 +1,3 @@
+'use strict';
+async function pngPixels(page,bytes){return page.evaluate(async encoded=>{const binary=atob(encoded),raw=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)raw[i]=binary.charCodeAt(i);const bitmap=await createImageBitmap(new Blob([raw],{type:'image/png'})),canvas=document.createElement('canvas');canvas.width=bitmap.width;canvas.height=bitmap.height;const context=canvas.getContext('2d');context.drawImage(bitmap,0,0);const digest=await crypto.subtle.digest('SHA-256',context.getImageData(0,0,canvas.width,canvas.height).data);bitmap.close();return{width:canvas.width,height:canvas.height,sha256:Array.from(new Uint8Array(digest),v=>v.toString(16).padStart(2,'0')).join('')};},bytes.toString('base64'));}
+module.exports={pngPixels};

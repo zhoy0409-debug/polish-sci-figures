@@ -1,0 +1,11 @@
+'use strict';
+const assert=require('node:assert/strict'),{isDeepStrictEqual}=require('node:util');
+const {comparableIdbPayload}=require('./test_studio_resource_preview_browser.cjs');
+const base=()=>({project:{id:'engineering-fixture',panels:[{table:{rows:[['unit','value'],['a',0]]},variants:[{svg:'<svg><text>actual source</text></svg>'}]}]},state:{order:['a']},history:{index:0,states:[]},checkpoints:[],dataDrafts:{}});
+const checks=[];function check(name,fn){fn();checks.push(name);}
+check('Only three own undefined derived caches may be absent from JSON Save',()=>{const a=base(),b=base();Object.assign(a.project,{layoutRenders:undefined,heatmapRenders:undefined,statisticalRenders:undefined});const result=comparableIdbPayload(a,b);assert.deepEqual(result.omissions,['project.layoutRenders','project.heatmapRenders','project.statisticalRenders']);assert.deepEqual(result.payload,b);assert.ok(Object.hasOwn(a.project,'layoutRenders'),'Inspection must not mutate actual IDB payload');});
+check('Unknown undefined project keys remain a strict mismatch',()=>{const a=base(),b=base();a.project.unknown=undefined;assert.equal(isDeepStrictEqual(comparableIdbPayload(a,b).payload,b),false);});
+check('Defined cache contents and expected own undefined keys are not removed',()=>{const a=base(),b=base();a.project.layoutRenders={scientific:'content'};assert.equal(isDeepStrictEqual(comparableIdbPayload(a,b).payload,b),false);a.project.layoutRenders=undefined;b.project.layoutRenders=undefined;assert.deepEqual(comparableIdbPayload(a,b).omissions,[]);});
+check('Scientific values retain signed-zero distinctions',()=>{const a=base(),b=base();a.project.panels[0].table.rows[1][1]=-0;assert.equal(isDeepStrictEqual(comparableIdbPayload(a,b).payload,b),false);});
+check('Source SVG, history, checkpoints and data drafts remain strict',()=>{for(const mutate of [a=>a.project.panels[0].variants[0].svg+='<path/>',a=>a.history.index++,a=>a.checkpoints.push({name:'changed'}),a=>a.dataDrafts.a=[['private change']]]){const a=base(),b=base();mutate(a);assert.equal(isDeepStrictEqual(comparableIdbPayload(a,b).payload,b),false);}});
+console.log(JSON.stringify({schema:'figure-studio-qa-contract-tests/1',status:'PASS',checks},null,2));

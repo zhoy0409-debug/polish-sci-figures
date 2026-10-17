@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this scientific figure skill suite, please cite this repository."
 title: "SCI Figure Skills"
-version: "1.4.21"
-date-released: "2026-10-17"
+version: "1.4.22"
+# Local candidate: add date-released only when publication is authorized.
 authors:
   - name: "zhoy0409-debug"
 repository-code: "https://github.com/zhoy0409-debug/polish-sci-figures"

@@ -1,0 +1,251 @@
+{
+  "schema": "figure-studio-final-local-acceptance/1",
+  "status": "SCOPED_ACCEPTANCE_PASS_NOT_PUBLISHED",
+  "suiteVersion": "1.4.22",
+  "studioVersion": "0.1.22",
+  "publicationHold": true,
+  "remoteActionsPerformed": {
+    "push": false,
+    "pullRequestMerge": false,
+    "release": false,
+    "artifactUpload": false
+  },
+  "source": {
+    "baseCommit": "f14c6f3f3a4abafa2dc0a2933df5065e2fe6162e",
+    "freeze": "source17",
+    "manifestSha256": "e6626d30213ae7c4c9115a1ce9af600b7f07f6609ce8a4a29e6acac964a99761",
+    "sourceAcceptanceHtmlSha256": "b659049bad8c3305b6639437fa55e33fdf77a409d2a645bacf6df7552473d1b5",
+    "installedStarterHtmlSha256": "6edf33716e077c4da21cbcd241e9024167ecc85d215fa04aa85c4e05126a9846",
+    "installedServedHtmlSha256": "5e04162eb78e4e4b3d2ca8e6af50cbb4616eb348d99b0995a21689480b81a632",
+    "note": "The source Iris acceptance document and the installed blank starter differ. Each is separately byte-proved against the same frozen resources; exact permitted loopback-engine injection is verified."
+  },
+  "artifacts": [
+    {
+      "name": "polish-sci-figures-Studio-0.1.22-Portable-x64.zip",
+      "sha256": "99225a31f8c3077f80d0a0a0c2eca73e167b240a052efb88b5470c1bd645cc18",
+      "sizeBytes": 146054744
+    },
+    {
+      "name": "polish-sci-figures-Studio-0.1.22-Setup-x64.exe",
+      "sha256": "dfe79e35f01929e3af6d796ee4333bfea1f1833e7ab5a0c0029dadfef40ce8f5",
+      "sizeBytes": 104361481
+    }
+  ],
+  "actualInstalledBrowserScopes": {
+    "p0": {
+      "conditions": 8,
+      "checks": 72
+    },
+    "p1": {
+      "themes": 2,
+      "casesPerTheme": 37,
+      "checks": 74,
+      "language": "English",
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    "resourceComparison": {
+      "conditions": 4
+    },
+    "blankProject": {
+      "checks": 1
+    },
+    "touchSimulation": {
+      "conditions": 8,
+      "viewports": [
+        [
+          390,
+          844
+        ],
+        [
+          1280,
+          720
+        ]
+      ],
+      "physicalTouch": false
+    },
+    "scientificAndEditor": {
+      "cases": 5,
+      "publicIrisObservations": 150
+    },
+    "figureDiscovery": {
+      "checks": 16
+    },
+    "coreRecordings": {
+      "cases": 2,
+      "actualHeadfulVideo": true
+    },
+    "backgroundDuplicateTask": {
+      "syntheticImages": 60,
+      "actualCandidatePairs": 1770,
+      "completion": "Intentionally cancelled after real progress; earlier human review preserved",
+      "cancelConfirmationMs": 630,
+      "accuracyMeasurement": false
+    },
+    "largeImport": {
+      "cases": 2,
+      "pdfAddedNativeRectangles": 10000,
+      "svgElements": 10000,
+      "completion": "Import, draft isolation, last-valid invalid field, exact cancel, one Enter commit, Undo/Redo, real Save/reopen and SVG/PNG export all passed",
+      "scientificDatasetOrFileByteThroughputBenchmark": false
+    }
+  },
+  "nativeLifecycle": {
+    "completedPhases": [
+      "Install",
+      "Start",
+      "Reinstall",
+      "Uninstall"
+    ],
+    "originalAppId": "{51D78749-35EE-43BB-BA21-F79D6A1D5094}",
+    "installAndReinstallFileCount": 2606,
+    "everyFileMatches": true,
+    "selfTestWithoutDevelopmentPython": true,
+    "sameVersionReinstallPreserved": true,
+    "uninstalled": true,
+    "externalDataPreserved": true,
+    "initialRegistryViewsAbsent": 4,
+    "finalRegistryViewsAbsent": 4,
+    "protectedOriginalApplicationCount": 1,
+    "protectedIdentitiesUnchanged": true,
+    "actualSavedIrisPayloadSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+    "irisObservations": 150,
+    "scope": "Actual local Windows x64, original immutable Setup and AppId, isolated install/data/LOCALAPPDATA. Not a clean VM, newer-version update or public release.",
+    "finalReadOnlyQuery": "windows-final17-native-final-state.json",
+    "phasePowerShellProcessExitCodes": {
+      "Reinstall": 0,
+      "Uninstall": 0
+    },
+    "independentNativeExitCodeRecords": {
+      "Reinstall": null,
+      "Uninstall": null
+    },
+    "nativeExitEvidence": "Each passing phase synchronously waits and rejects nonzero native ExitCode. Independent numeric native exit records were not persisted; null is intentional. Reinstall native log explicitly reports successful installation."
+  },
+  "updateCapability": {
+    "isolatedQaExpectedInAppInstall": false,
+    "actualInAppInstall": false,
+    "reason": "Production deliberately disables update installation for explicit --data-dir. Real original-Setup identity is independently proven by executable, listener, version, hash and four registry views. This capability is not a replacement installation identity test."
+  },
+  "performance": {
+    "captureRuntime": "source-development, same frozen source17; not installed-package performance capture",
+    "formalActions": 184,
+    "formalSamples": 160,
+    "warmupActions": 24,
+    "fiveThousandSelectNextRafP95Ms": 94.0,
+    "fiveThousandColourNextRafP95Ms": 91.0,
+    "fourPanelInputSecondRafP95Ms": 43.0,
+    "fourPanelEnterSecondRafP95Ms": 144.1,
+    "allMetricsPass100Ms": false,
+    "opticalPixelLatencyMeasured": false,
+    "continuous60FpsMeasured": false,
+    "note": "All raw samples and earlier regression stages retained; rAF opportunities are not optical first pixels. Small-fixture tails and full eight-card palette generation retain the documented limits."
+  },
+  "retainedQaFailures": {
+    "identityAndEncoding": "Wrong isolated update-capability premise and Windows PowerShell UTF-8 handling retained; original installation checks remain strict.",
+    "duplicateCapture": "Inspector-body cache eviction attempts retained. Final bounded same-CDP-session capture requires actual request identity, status, body and job ID; missing/error data fails. First unidentifiable job termination remains unknown.",
+    "largeImportFocus": "First strict export failure retained. Actual three-round focus/IDB evidence proved the existing header menu commits a valid ordinary field on blur before export. Production unchanged; final cases separately prove true uncommitted exports, explicit Enter and reopen.",
+    "performanceAndEarlierProductFailures": "Earlier source16 regressions, resource/blank/touch failures and their actual later fixes remain separately bound to source hashes."
+  },
+  "evidence": [
+    {
+      "file": "windows-final17-package-source-match.json",
+      "sha256": "605cb8131ebb532d947fb31a1a01a8c847b4bddeedfcdb26178002832f8209bb"
+    },
+    {
+      "file": "windows-final17-install-stage.json",
+      "sha256": "319046ed3462d768856641706ba04ea68884cd8bc9be651e4bd997f1371a810e"
+    },
+    {
+      "file": "windows-final17-own-functional-summary.json",
+      "sha256": "3ecd1f7cf23b20dd0b42283a934f420666fae4a271296776fa6a41c69d2d366b"
+    },
+    {
+      "file": "windows-final17-p0-summary.json",
+      "sha256": "cd97ac9f8b6139955383988dc5a3b58e75fc20f54702fffc5e99175414d57c67"
+    },
+    {
+      "file": "windows-final17-p1-summary.json",
+      "sha256": "1173f3ba51401ac0ac788f17f54c43ca11809ff86f43b4ef0c07875a74b5746f"
+    },
+    {
+      "file": "windows-final17-resource-summary.json",
+      "sha256": "ce1d9fa7161604230e71338b69b8abe255808e099bca3bb182fbe5bce68556a7"
+    },
+    {
+      "file": "windows-final17-blank-summary.json",
+      "sha256": "840209e8514ad6c91e32a5112d0741cae7969d50bbd04ab206c4bd89a681e376"
+    },
+    {
+      "file": "windows-final17-touch-summary.json",
+      "sha256": "6048764eb087effa5be76222308b13399e481fc3762c4f53f8711a102491cd0b"
+    },
+    {
+      "file": "windows-final17-selection-summary.json",
+      "sha256": "86f5c9c60f49e353e9b75e86d10cb0ac253a19b4e9ba3edc2bf20ae33d9c6ebe"
+    },
+    {
+      "file": "windows-final17-discovery-summary.json",
+      "sha256": "a586f6af5696f0d767dccaa8e13068da575883e48d167b3ca2c662dbe129a422"
+    },
+    {
+      "file": "windows-final17-core-demonstration-summary.json",
+      "sha256": "6ba71de5a30113ca008aa177c0821e2eb026f01e1169d3b30db71ea89e9d7b5c"
+    },
+    {
+      "file": "windows-final17-duplicate-summary.json",
+      "sha256": "b367345210c48a673377b63f9a2ece464d6aa16d7fff1bc72b467eaf0b2bfe90"
+    },
+    {
+      "file": "windows-final17-large-import-summary.json",
+      "sha256": "153d5f47c61fd2022c69582c755bb39ae6b0902c97b66736c217f54553ae5ea7"
+    },
+    {
+      "file": "windows-final17-native-readiness-stage.json",
+      "sha256": "bfd20e608c8f8ed95499478fc5c5771e847636d58fe0e40f30d5859d1524b6e4"
+    },
+    {
+      "file": "windows-final17-reinstall-summary.json",
+      "sha256": "3a1352434f8c5c2bb9422599385c81736f47bb467f913ae56df5d2f4bb5ad372"
+    },
+    {
+      "file": "windows-final17-uninstall-summary.json",
+      "sha256": "7e94150a965c92dd6bebd89953603ea1d94556d52a9fd51d28dc4996457ef509"
+    },
+    {
+      "file": "reviewed-before-after-media.json",
+      "sha256": "66194082cd13c6408c229526d207987c3e606ba638b457420d8e67f4a8ec3ab2"
+    },
+    {
+      "file": "source17-component-regressions.json",
+      "sha256": "ad316f7135812ad875a55f8c0c04824534cb81684b7bbe7e34447d899b98ae85"
+    },
+    {
+      "file": "pane-selection-source17-summary.json",
+      "sha256": "5dc94ea80d8296f6f76ca28bca597136cbb77ca4dcbcc32bb5902e14eb9da855"
+    },
+    {
+      "file": "performance-v2-final17-summary.json",
+      "sha256": "845c6ec6922fdf1d22cdc474ca5692fe6053afb8028f8449f89c390f6f188349"
+    },
+    {
+      "file": "four-panel-style-final17-diagnostic.json",
+      "sha256": "423e34eede5e798b2f28985a56636a17ad89d91f8f073766f2303bea0540c272"
+    },
+    {
+      "file": "windows-final17-native-final-state.json",
+      "sha256": "4c5acda020825c0510e680e27b5763f132f6bdf560af3d547a174c1d434290f9"
+    }
+  ],
+  "priorSnapshots": "Earlier readiness and own-suite reports intentionally retain browserAcceptanceComplete=false and their as-of-stage pending text. This later aggregate records completed scopes without changing those original bytes or their hashes. Packaged docs remain the build-time snapshot; latest guides and self-hash acceptance are delivered externally in Source/Public-QA.",
+  "unexecutedOrUnverified": [
+    "Official newer-version download, integrity check, actual install, automatic reopen and same-origin project restoration; publication is on hold.",
+    "Clean Windows VM, physical touch hardware, current native Chinese IME interaction and independent novice completion/time study.",
+    "Independent human-labelled image-detection sensitivity, misses or false-positive rate; local engineering fixtures are not ground truth.",
+    "New Mac, Android or iOS hardware acceptance; this delivery is Windows.",
+    "Optical input-to-pixel latency, continuous 60 fps, continuous process/GPU peak memory and sanitized trace import in DevTools."
+  ],
+  "privacy": "Public evidence contains reviewed aggregate facts, public-source credits and hashes. Private research images, identifiable paths, browser profiles, loopback credentials, raw projects and full unsanitized traces stay local in ignored cache."
+}

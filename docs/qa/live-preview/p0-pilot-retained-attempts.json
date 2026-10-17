@@ -1,0 +1,31 @@
+{
+  "scope": "Development pilot of the QA harness; original attempts remain unchanged in ignored local evidence.",
+  "attempts": [
+    {
+      "label": "after-pilot-01-carbon",
+      "status": "INTERRUPTED_HARNESS_RESOURCE_DIAGNOSIS",
+      "completedCases": 0,
+      "finding": "Large PNG byte arrays were expanded into JSON numbers by the QA helper. The test process was stopped after resource growth; no completed video or product pass is claimed.",
+      "resolution": "Lossless base64 transport to the browser replaces numeric-array transport. The original helper and attempt remain retained."
+    },
+    {
+      "label": "after-pilot-02-border",
+      "status": "FAIL_RETAINED",
+      "finding": "The QA helper attempted to fetch a data URL, which the actual application Content Security Policy blocked.",
+      "resolution": "The helper now uses atob, Uint8Array and Blob without network fetch or application policy changes. The actual screenshot, failure and raw video are retained."
+    },
+    {
+      "label": "after-pilot-05-extended-carbon",
+      "status": "PARTIAL_PASS_WITH_HELPER_ASSERTION_FAILURE_RETAINED",
+      "finding": "Nonrectangular geometry/delete and real delayed-axis response cases passed. The TIFF case stopped at an overbroad QA focus assertion before establishing TIFF isolation.",
+      "resolution": "The assertion treated Save-button focus loss during export as a draft input failure. The attempt and raw video remain retained."
+    },
+    {
+      "label": "after-pilot-06-tiff-carbon",
+      "status": "FAIL_RETAINED",
+      "finding": "Baseline PNG and TIFF export completed, but a later real download changed focus from a border select control. The QA helper rejected focus movement before checking final committed state and export pixels.",
+      "resolution": "DOM activation still synthesizes no pointer, Tab, blur or focus event. Actual application/download focus effects are now observed separately; exact committed state/history/project, source bytes, decoded export pixels and Undo assertions remain mandatory. Attempt 07 passed those checks."
+    }
+  ],
+  "interpretation": "Later scoped passes do not replace either earlier attempt. Both failures concern identified test-helper behavior; they are not evidence of a passed product case."
+}

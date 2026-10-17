@@ -1,0 +1,577 @@
+{
+  "schema": "figure-studio-live-preview-after-summary/1",
+  "label": "P0-development-pilot-02-extended",
+  "kind": "source-development-runtime",
+  "status": "SCOPED_LATEST_ACCEPTANCE_PASS_EARLIER_FAILURES_RETAINED",
+  "generatedAt": "2026-10-17T14:36:53.760Z",
+  "scope": "Public or authorized public-domain image bytes and UCI Iris observations, actual Chrome and real local backend redraw. Scope is only the listed conditions and cases. This does not establish global completion, novice-user success, clinical accuracy, independent image ground truth, physical touch or Chinese IME compatibility.",
+  "servedHtmlSha256": "6f712282f0e46b8d2dbd82f038a3a221a771d72f27ba2eb72717bbeeaaecfa4b",
+  "browser": "155.0.8059.82",
+  "conditions": [
+    {
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "browserMode": "headful"
+    }
+  ],
+  "cases": [
+    {
+      "id": "border-nonrectangular-last-valid-and-delete",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "captureLabel": "after-pilot-05-extended-carbon",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "syntheticGeometryOnAuthorizedHe": true,
+      "nonrectangularVisibleAnchorRejected": true,
+      "lastValidRetained": true,
+      "deleteInvalidatesDraft": true,
+      "deleteIsSingleUndo": true,
+      "sourceProjectUnchanged": true
+    },
+    {
+      "id": "native-axis-real-response-late-and-cancel",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "captureLabel": "after-pilot-05-extended-carbon",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "onlyDelayedRealBackendResponses": true,
+      "realResponses": [
+        {
+          "maximum": 8,
+          "realResponseFetched": true,
+          "released": true,
+          "delivery": "fulfilled",
+          "bodySha256": "717414af2f3cd631518fe32e3fcda7fa9ddd732440d7d3e8602aa94f92b6f001"
+        },
+        {
+          "maximum": 10,
+          "realResponseFetched": true,
+          "released": true,
+          "delivery": "fulfilled",
+          "bodySha256": "60cda7ab2d28b6544eda4214dd534d9524cd4177df1f4c1205fceda877deb4af"
+        },
+        {
+          "maximum": 11,
+          "realResponseFetched": true,
+          "released": true,
+          "delivery": "fulfilled",
+          "bodySha256": "cff6db127a4487d5b43582fcb46ba8e1710013fd8f652ae453ed059f697d8d95"
+        }
+      ],
+      "latestMaximumRemains10": true,
+      "cancelledResponseCannotPaint": true,
+      "noCommitOrObservationChange": true,
+      "limit": "Actual browser network abortion can prevent delivery. This exercise does not independently prove handling of a producer that ignores AbortSignal; that branch is covered separately by controlled producer unit tests."
+    },
+    {
+      "id": "border-svg-png-tiff-committed-export",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "captureLabel": "after-pilot-07-tiff-carbon",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "baseline": {
+        "png": {
+          "format": "PNG",
+          "mode": "RGBA",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            599.9988,
+            599.9988
+          ],
+          "rawSha256": "491e8311681c34e53fd1f1858d8a5c44a8e85f6bc3a257faba571ad68d649ac6",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "tiff": {
+          "format": "TIFF",
+          "mode": "RGB",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            600,
+            600
+          ],
+          "rawSha256": "15c8ab73647c4d173118bd62a7797f59bf7aac033eff4968cd3f1fc28a76fe27",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "requestedDpi": 600
+      },
+      "draft": {
+        "png": {
+          "format": "PNG",
+          "mode": "RGBA",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            599.9988,
+            599.9988
+          ],
+          "rawSha256": "491e8311681c34e53fd1f1858d8a5c44a8e85f6bc3a257faba571ad68d649ac6",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "tiff": {
+          "format": "TIFF",
+          "mode": "RGB",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            600,
+            600
+          ],
+          "rawSha256": "15c8ab73647c4d173118bd62a7797f59bf7aac033eff4968cd3f1fc28a76fe27",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "requestedDpi": 600
+      },
+      "committed": {
+        "png": {
+          "format": "PNG",
+          "mode": "RGBA",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            599.9988,
+            599.9988
+          ],
+          "rawSha256": "f0ab9c1c66471618147110e890fc61ff35495af42e1b947019c64fcff20e40a9",
+          "rgbaSha256": "47d653f4706598a05a0d0e030af75895a5ad6b9834f869e3af471c99d61b4676",
+          "frames": 1
+        },
+        "tiff": {
+          "format": "TIFF",
+          "mode": "RGB",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            600,
+            600
+          ],
+          "rawSha256": "b87b5596ac0714d4d79cef5e3d34a7aba7b7647094064f332712c7c03c144df7",
+          "rgbaSha256": "47d653f4706598a05a0d0e030af75895a5ad6b9834f869e3af471c99d61b4676",
+          "frames": 1
+        },
+        "requestedDpi": 600
+      },
+      "tiffAndPngPixelEquality": true,
+      "tiffDraftExcluded": true,
+      "committedPixelsChanged": true,
+      "sourceImageUnchanged": true,
+      "independentDecoder": "Pillow QA process; input files read only. This is not a dependency of the installed application."
+    }
+  ],
+  "attempts": [
+    {
+      "label": "after-pilot-05-extended-carbon",
+      "status": "FAIL",
+      "rawReportSha256": "1694acde58d48a28a14fe110f5175c1ecacc62d48e1b0e867de9e6beb58183c3",
+      "harnessSha256": "e8af34928f7d9c0a614b431c744eef03a5dd397d067d71930e13b2b8d6ea3fab",
+      "videos": [
+        {
+          "file": "page@665e10b5ba9002116bfdfb1fbe945738.webm",
+          "bytes": 878324,
+          "sha256": "777ffb83b9d6291ca1ef694313d39a4d37d9940b16bee6649c0dc42affff3d6d",
+          "edited": false,
+          "complete": true
+        },
+        {
+          "file": "page@8c3efe0674243bd2affc003808385d58.webm",
+          "bytes": 957205,
+          "sha256": "f72a374fc71b38dbc6185df38d11f8bca976ec80ab13440233ca39e84b5515c9",
+          "edited": false,
+          "complete": true
+        },
+        {
+          "file": "page@8d9713fb89237bee028b3cd866ae4e75.webm",
+          "bytes": 1013251,
+          "sha256": "64053cdb645e17e8cb86115244744bf937a876e27e0760cbb8586fc146ccb1d6",
+          "edited": false,
+          "complete": true
+        }
+      ],
+      "cases": [
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "theme": "carbon",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "theme": "carbon",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "theme": "carbon",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "label": "after-pilot-06-tiff-carbon",
+      "status": "FAIL",
+      "rawReportSha256": "a5ef4b351e3373ec0bb2ecff55f97fdeef91b3a5875580ad7c6866851832dad9",
+      "harnessSha256": "e83f0b9f2250271b187d53981e4308e669b8572085d5b29c8441cc88db44ea9c",
+      "videos": [
+        {
+          "file": "page@86566f1f7281b6c7620fdc8b777e0860.webm",
+          "bytes": 1076579,
+          "sha256": "fa3560f9b603fc248c7705d6f13a93f11dec5726a2dbca71384734a62b7a74b7",
+          "edited": false,
+          "complete": true
+        }
+      ],
+      "cases": [
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "theme": "carbon",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "label": "after-pilot-07-tiff-carbon",
+      "status": "PASS",
+      "rawReportSha256": "87b1d6aaf435deb6c7f95a6333d6d2e65c08789758a43ce5200a8d220c2bdd92",
+      "harnessSha256": "6c5e16fd83b3afd3a4717707728dbf55f62a67acae3aefcb7b3892c02db8d528",
+      "videos": [
+        {
+          "file": "page@867ecb2a03bc00948ec7ff85b651ea15.webm",
+          "bytes": 1610849,
+          "sha256": "dd2c6d1953a8852ba1ebe1bfa38d6cbb20a0ced4e15184c95e1e574b41c333ad",
+          "edited": false,
+          "complete": true
+        }
+      ],
+      "cases": [
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "theme": "carbon",
+          "status": "PASS"
+        }
+      ],
+      "domActivationFocusObservations": [
+        {
+          "case": "border-svg-png-tiff-committed-export-carbon",
+          "button": "png",
+          "focusedEditableBefore": false,
+          "sameNodeAfterDownload": false,
+          "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+        },
+        {
+          "case": "border-svg-png-tiff-committed-export-carbon",
+          "button": "png",
+          "focusedEditableBefore": true,
+          "sameNodeAfterDownload": false,
+          "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+        },
+        {
+          "case": "border-svg-png-tiff-committed-export-carbon",
+          "button": "png",
+          "focusedEditableBefore": false,
+          "sameNodeAfterDownload": false,
+          "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "These checks use public inputs. No private image, raw project, profile, local endpoint or service token is included.",
+    "DOM Save/export activation adds no synthetic pointer or focus event. Actual application/download focus changes are recorded separately; ordinary pointer activation can also blur and commit simple direct-edit fields.",
+    "Network-delay tests delay actual backend responses; an aborted network request is not proof of an uncooperative producer ignoring cancellation.",
+    "A source runtime, frozen executable runtime and installed executable are distinct. The kind is explicit; installation identity requires separate installer and file-manifest verification.",
+    "Raster dimensions and DPI metadata describe the exported grid, not newly recovered source detail. H&E input pixels are preserved; upscaling cannot restore image resolution."
+  ],
+  "retainedCaseAttempts": [
+    {
+      "id": "border-nonrectangular-last-valid-and-delete",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "captureLabel": "after-pilot-05-extended-carbon",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "syntheticGeometryOnAuthorizedHe": true,
+      "nonrectangularVisibleAnchorRejected": true,
+      "lastValidRetained": true,
+      "deleteInvalidatesDraft": true,
+      "deleteIsSingleUndo": true,
+      "sourceProjectUnchanged": true
+    },
+    {
+      "id": "native-axis-real-response-late-and-cancel",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "captureLabel": "after-pilot-05-extended-carbon",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "onlyDelayedRealBackendResponses": true,
+      "realResponses": [
+        {
+          "maximum": 8,
+          "realResponseFetched": true,
+          "released": true,
+          "delivery": "fulfilled",
+          "bodySha256": "717414af2f3cd631518fe32e3fcda7fa9ddd732440d7d3e8602aa94f92b6f001"
+        },
+        {
+          "maximum": 10,
+          "realResponseFetched": true,
+          "released": true,
+          "delivery": "fulfilled",
+          "bodySha256": "60cda7ab2d28b6544eda4214dd534d9524cd4177df1f4c1205fceda877deb4af"
+        },
+        {
+          "maximum": 11,
+          "realResponseFetched": true,
+          "released": true,
+          "delivery": "fulfilled",
+          "bodySha256": "cff6db127a4487d5b43582fcb46ba8e1710013fd8f652ae453ed059f697d8d95"
+        }
+      ],
+      "latestMaximumRemains10": true,
+      "cancelledResponseCannotPaint": true,
+      "noCommitOrObservationChange": true,
+      "limit": "Actual browser network abortion can prevent delivery. This exercise does not independently prove handling of a producer that ignores AbortSignal; that branch is covered separately by controlled producer unit tests."
+    },
+    {
+      "id": "border-svg-png-tiff-committed-export",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "FAIL",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "captureLabel": "after-pilot-05-extended-carbon",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "failure": "Raw failure retained in local acceptance evidence; do not infer PASS for this case."
+    },
+    {
+      "id": "border-svg-png-tiff-committed-export",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "FAIL",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "captureLabel": "after-pilot-06-tiff-carbon",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "failure": "Raw failure retained in local acceptance evidence; do not infer PASS for this case."
+    },
+    {
+      "id": "border-svg-png-tiff-committed-export",
+      "theme": "carbon",
+      "language": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows"
+      },
+      "captureLabel": "after-pilot-07-tiff-carbon",
+      "remoteRequestCount": 0,
+      "pageErrorCount": 0,
+      "baseline": {
+        "png": {
+          "format": "PNG",
+          "mode": "RGBA",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            599.9988,
+            599.9988
+          ],
+          "rawSha256": "491e8311681c34e53fd1f1858d8a5c44a8e85f6bc3a257faba571ad68d649ac6",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "tiff": {
+          "format": "TIFF",
+          "mode": "RGB",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            600,
+            600
+          ],
+          "rawSha256": "15c8ab73647c4d173118bd62a7797f59bf7aac033eff4968cd3f1fc28a76fe27",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "requestedDpi": 600
+      },
+      "draft": {
+        "png": {
+          "format": "PNG",
+          "mode": "RGBA",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            599.9988,
+            599.9988
+          ],
+          "rawSha256": "491e8311681c34e53fd1f1858d8a5c44a8e85f6bc3a257faba571ad68d649ac6",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "tiff": {
+          "format": "TIFF",
+          "mode": "RGB",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            600,
+            600
+          ],
+          "rawSha256": "15c8ab73647c4d173118bd62a7797f59bf7aac033eff4968cd3f1fc28a76fe27",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "requestedDpi": 600
+      },
+      "committed": {
+        "png": {
+          "format": "PNG",
+          "mode": "RGBA",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            599.9988,
+            599.9988
+          ],
+          "rawSha256": "f0ab9c1c66471618147110e890fc61ff35495af42e1b947019c64fcff20e40a9",
+          "rgbaSha256": "47d653f4706598a05a0d0e030af75895a5ad6b9834f869e3af471c99d61b4676",
+          "frames": 1
+        },
+        "tiff": {
+          "format": "TIFF",
+          "mode": "RGB",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            600,
+            600
+          ],
+          "rawSha256": "b87b5596ac0714d4d79cef5e3d34a7aba7b7647094064f332712c7c03c144df7",
+          "rgbaSha256": "47d653f4706598a05a0d0e030af75895a5ad6b9834f869e3af471c99d61b4676",
+          "frames": 1
+        },
+        "requestedDpi": 600
+      },
+      "tiffAndPngPixelEquality": true,
+      "tiffDraftExcluded": true,
+      "committedPixelsChanged": true,
+      "sourceImageUnchanged": true,
+      "independentDecoder": "Pillow QA process; input files read only. This is not a dependency of the installed application."
+    }
+  ],
+  "selectionRule": "Latest chronological explicitly supplied attempt per case/theme/language/viewport. All earlier attempts and failures remain listed with raw report and video hashes; do not merge performance samples or infer unexecuted cases.",
+  "retainedFailureNotes": {
+    "scope": "Development pilot of the QA harness; original attempts remain unchanged in ignored local evidence.",
+    "attempts": [
+      {
+        "label": "after-pilot-01-carbon",
+        "status": "INTERRUPTED_HARNESS_RESOURCE_DIAGNOSIS",
+        "completedCases": 0,
+        "finding": "Large PNG byte arrays were expanded into JSON numbers by the QA helper. The test process was stopped after resource growth; no completed video or product pass is claimed.",
+        "resolution": "Lossless base64 transport to the browser replaces numeric-array transport. The original helper and attempt remain retained."
+      },
+      {
+        "label": "after-pilot-02-border",
+        "status": "FAIL_RETAINED",
+        "finding": "The QA helper attempted to fetch a data URL, which the actual application Content Security Policy blocked.",
+        "resolution": "The helper now uses atob, Uint8Array and Blob without network fetch or application policy changes. The actual screenshot, failure and raw video are retained."
+      },
+      {
+        "label": "after-pilot-05-extended-carbon",
+        "status": "PARTIAL_PASS_WITH_HELPER_ASSERTION_FAILURE_RETAINED",
+        "finding": "Nonrectangular geometry/delete and real delayed-axis response cases passed. The TIFF case stopped at an overbroad QA focus assertion before establishing TIFF isolation.",
+        "resolution": "The assertion treated Save-button focus loss during export as a draft input failure. The attempt and raw video remain retained."
+      },
+      {
+        "label": "after-pilot-06-tiff-carbon",
+        "status": "FAIL_RETAINED",
+        "finding": "Baseline PNG and TIFF export completed, but a later real download changed focus from a border select control. The QA helper rejected focus movement before checking final committed state and export pixels.",
+        "resolution": "DOM activation still synthesizes no pointer, Tab, blur or focus event. Actual application/download focus effects are now observed separately; exact committed state/history/project, source bytes, decoded export pixels and Undo assertions remain mandatory. Attempt 07 passed those checks."
+      }
+    ],
+    "interpretation": "Later scoped passes do not replace either earlier attempt. Both failures concern identified test-helper behavior; they are not evidence of a passed product case."
+  }
+}

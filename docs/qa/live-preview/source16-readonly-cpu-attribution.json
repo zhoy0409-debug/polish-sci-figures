@@ -1,0 +1,3361 @@
+{
+  "schema": "studio-public-source16-cpu-attribution/1",
+  "status": "PASS_BOUNDED_READONLY_DIAGNOSTIC_NOT_FORMAL_CAPTURE",
+  "browser": "155.0.8059.82",
+  "startedAt": "2026-10-17T17:21:36.886Z",
+  "finishedAt": "2026-10-17T17:22:10.759Z",
+  "rawSha256": "07ba546296f190458d0353263d2357d047824cfb41fdb269c125654094a895b0",
+  "harnessSha256": "bfac925702eb878273ba2ac0dd782b02e4bf8eba0241edb07209711d4f47c95d",
+  "protocol": {
+    "profiledActions": 12,
+    "samplesPerOperationPerCondition": 1,
+    "order": [
+      {
+        "stage": "source10",
+        "elements": 120,
+        "preparation": "New explicit synthetic project; import; select text; populate all actual palette cards; return detail; real colour commit; select shape; wait250ms and two frames."
+      },
+      {
+        "stage": "source16",
+        "elements": 120,
+        "preparation": "New explicit synthetic project; import; select text; populate all actual palette cards; return detail; real colour commit; select shape; wait250ms and two frames."
+      },
+      {
+        "stage": "source10",
+        "elements": 5000,
+        "preparation": "New explicit synthetic project; import; select text; populate all actual palette cards; return detail; real colour commit; select shape; wait250ms and two frames."
+      },
+      {
+        "stage": "source16",
+        "elements": 5000,
+        "preparation": "New explicit synthetic project; import; select text; populate all actual palette cards; return detail; real colour commit; select shape; wait250ms and two frames."
+      }
+    ],
+    "operations": [
+      "select-text",
+      "detail-to-palette",
+      "palette-to-detail"
+    ],
+    "headful": true,
+    "video": false,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "conditions": "One sequential diagnostic pass; CPU sampling and timeline stack capture add overhead. No pooling with formal release measurements."
+  },
+  "integrity": {
+    "allFourProjectStateHistoryExact": true,
+    "allCardsRetained": 8,
+    "paletteSvgChildrenAt5000": 40000,
+    "allOriginalHtmlBeforeAfterExact": true,
+    "remoteRequests": 0,
+    "pageErrors": 0,
+    "allChromeClosed": true,
+    "productionChanged": false,
+    "formalRecaptured": false
+  },
+  "cases": [
+    {
+      "stage": "source10",
+      "elements": 120,
+      "htmlSha256": "ed423492de204ddcacf54260aca05e149dc0664d587e8c6b04a37d1feb14329e",
+      "projectStateHistoryExact": true,
+      "geometryBefore": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 960,
+        "artboardKeys": 120
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 960,
+        "artboardKeys": 120
+      }
+    },
+    {
+      "stage": "source16",
+      "elements": 120,
+      "htmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+      "projectStateHistoryExact": true,
+      "geometryBefore": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 960,
+        "artboardKeys": 120
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 960,
+        "artboardKeys": 120
+      }
+    },
+    {
+      "stage": "source10",
+      "elements": 5000,
+      "htmlSha256": "ed423492de204ddcacf54260aca05e149dc0664d587e8c6b04a37d1feb14329e",
+      "projectStateHistoryExact": true,
+      "geometryBefore": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 40000,
+        "artboardKeys": 5000
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 40000,
+        "artboardKeys": 5000
+      }
+    },
+    {
+      "stage": "source16",
+      "elements": 5000,
+      "htmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+      "projectStateHistoryExact": true,
+      "geometryBefore": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 40000,
+        "artboardKeys": 5000
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 40000,
+        "artboardKeys": 5000
+      }
+    }
+  ],
+  "actions": [
+    {
+      "stage": "source10",
+      "elements": 120,
+      "operation": "select-text",
+      "profiledActionOrder": 1,
+      "markedWallMs": 234.429,
+      "cdpMetricDeltas": {
+        "LayoutCount": 14,
+        "RecalcStyleCount": 21,
+        "LayoutDuration": 0.088997,
+        "RecalcStyleDuration": 0.016956,
+        "DevToolsCommandDuration": 0.204022,
+        "ScriptDuration": 0.021448,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.416876,
+        "TaskOtherDuration": 0.085453
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 12132,
+        "jsEventListeners": 1673
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 13365,
+        "jsEventListeners": 1694
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 960,
+        "artboardKeys": 120
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "svg.onpointerdown",
+          "inclusiveMs": 54.24799999999999,
+          "selfMs": 0.07,
+          "combinedHtmlLine": 14918
+        },
+        {
+          "function": "finishSelectionUI",
+          "inclusiveMs": 29.491999999999997,
+          "selfMs": 0,
+          "combinedHtmlLine": 14870
+        },
+        {
+          "function": "svg.onpointerup",
+          "inclusiveMs": 18.784,
+          "selfMs": 0,
+          "combinedHtmlLine": 14934
+        },
+        {
+          "function": "finishSelectionUI",
+          "inclusiveMs": 18.784,
+          "selfMs": 0,
+          "combinedHtmlLine": 14870
+        },
+        {
+          "function": "renderSelectionProperties",
+          "inclusiveMs": 18.549999999999997,
+          "selfMs": 0,
+          "combinedHtmlLine": 14341
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 16.916,
+          "selfMs": 1.133,
+          "combinedHtmlLine": 14226
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 15.498,
+          "selfMs": 15.498,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "renderSelectionProperties",
+          "inclusiveMs": 14.091,
+          "selfMs": 0,
+          "combinedHtmlLine": 14341
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 12.602,
+          "selfMs": 12.602,
+          "combinedHtmlLine": 9940
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 12.546,
+          "selfMs": 0,
+          "combinedHtmlLine": 14226
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 10.947,
+          "selfMs": 10.947,
+          "combinedHtmlLine": 9940
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 9.350999999999999,
+          "selfMs": 9.350999999999999,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 9.188,
+          "selfMs": 0,
+          "combinedHtmlLine": 14226
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 7.609,
+          "selfMs": 7.609,
+          "combinedHtmlLine": 9940
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 13,
+          "totalMs": 1.2550000000000001,
+          "maxMs": 0.153
+        },
+        "V8.BytecodeBudgetInterruptWithStackCheck": {
+          "count": 4,
+          "totalMs": 0.038,
+          "maxMs": 0.016
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 40,
+          "totalMs": 0.20400000000000007,
+          "maxMs": 0.041
+        },
+        "V8.StackGuard": {
+          "count": 9,
+          "totalMs": 0.767,
+          "maxMs": 0.159
+        },
+        "V8.HandleInterrupts": {
+          "count": 9,
+          "totalMs": 0.732,
+          "maxMs": 0.151
+        },
+        "EventDispatch": {
+          "count": 47,
+          "totalMs": 78.66699999999999,
+          "maxMs": 56.633
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.9699999999999999,
+          "maxMs": 0.35
+        },
+        "FunctionCall": {
+          "count": 57,
+          "totalMs": 77.84400000000001,
+          "maxMs": 54.727
+        },
+        "PrePaint": {
+          "count": 20,
+          "totalMs": 9.918000000000001,
+          "maxMs": 3.187
+        },
+        "Layerize": {
+          "count": 8,
+          "totalMs": 5.2170000000000005,
+          "maxMs": 2.35
+        },
+        "HitTest": {
+          "count": 13,
+          "totalMs": 2.3810000000000002,
+          "maxMs": 0.4
+        },
+        "UpdateLayoutTree": {
+          "count": 20,
+          "totalMs": 17.376,
+          "maxMs": 5.842
+        },
+        "Layout": {
+          "count": 14,
+          "totalMs": 88.599,
+          "maxMs": 9.303
+        },
+        "Paint": {
+          "count": 10,
+          "totalMs": 28.355,
+          "maxMs": 4.033
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.008,
+          "maxMs": 0.008
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.076,
+          "maxMs": 0.076
+        }
+      },
+      "profile": {
+        "file": "source10-120-select-text.cpuprofile",
+        "sha256": "d190084ce763b4205454439a297ab8e50ed007a4f2377d01c53bafc29d05aed7"
+      },
+      "timeline": {
+        "file": "source10-120-select-text-timeline.json",
+        "sha256": "3d8553aea71bc8927d6ae498011987ef66afada61447e68418c4d5f4b3ab2776"
+      }
+    },
+    {
+      "stage": "source10",
+      "elements": 120,
+      "operation": "detail-to-palette",
+      "profiledActionOrder": 2,
+      "markedWallMs": 121.772,
+      "cdpMetricDeltas": {
+        "LayoutCount": 8,
+        "RecalcStyleCount": 19,
+        "LayoutDuration": 0.022791,
+        "RecalcStyleDuration": 0.00804,
+        "DevToolsCommandDuration": 0.036371,
+        "ScriptDuration": 0.015571,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.130394,
+        "TaskOtherDuration": 0.047621
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 13365,
+        "jsEventListeners": 1694
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 16298,
+        "jsEventListeners": 1779
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 960,
+        "artboardKeys": 120
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "showPane",
+          "inclusiveMs": 28.239999999999995,
+          "selfMs": 0,
+          "combinedHtmlLine": 11735
+        },
+        {
+          "function": "renderCanvas",
+          "inclusiveMs": 20.370999999999995,
+          "selfMs": 1.565,
+          "combinedHtmlLine": 14716
+        },
+        {
+          "function": "drawPalettes",
+          "inclusiveMs": 7.869000000000001,
+          "selfMs": 1.592,
+          "combinedHtmlLine": 13743
+        },
+        {
+          "function": "previewFitZoom",
+          "inclusiveMs": 6.354999999999999,
+          "selfMs": 6.354999999999999,
+          "combinedHtmlLine": 14645
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 3.2359999999999998,
+          "selfMs": 3.2359999999999998,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 3.149,
+          "selfMs": 0,
+          "combinedHtmlLine": 14226
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 3.149,
+          "selfMs": 0,
+          "combinedHtmlLine": 9940
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 3.1420000000000003,
+          "selfMs": 3.1420000000000003,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "preview",
+          "inclusiveMs": 1.556,
+          "selfMs": 1.556,
+          "combinedHtmlLine": 13655
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 1.095,
+          "selfMs": 1.095,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "composite",
+          "inclusiveMs": 0.981,
+          "selfMs": 0,
+          "combinedHtmlLine": 13017
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 12,
+          "totalMs": 0.6369999999999999,
+          "maxMs": 0.111
+        },
+        "EventDispatch": {
+          "count": 40,
+          "totalMs": 30.951999999999995,
+          "maxMs": 29.952
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.359,
+          "maxMs": 0.136
+        },
+        "FunctionCall": {
+          "count": 34,
+          "totalMs": 30.676,
+          "maxMs": 29.765
+        },
+        "PrePaint": {
+          "count": 23,
+          "totalMs": 4.681,
+          "maxMs": 1.471
+        },
+        "Layerize": {
+          "count": 10,
+          "totalMs": 3.915,
+          "maxMs": 1.201
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 21,
+          "totalMs": 0.06700000000000002,
+          "maxMs": 0.014
+        },
+        "HitTest": {
+          "count": 11,
+          "totalMs": 0.658,
+          "maxMs": 0.202
+        },
+        "UpdateLayoutTree": {
+          "count": 19,
+          "totalMs": 8.319999999999999,
+          "maxMs": 3.275
+        },
+        "V8.BytecodeBudgetInterruptWithStackCheck": {
+          "count": 5,
+          "totalMs": 0.040999999999999995,
+          "maxMs": 0.018
+        },
+        "V8.StackGuard": {
+          "count": 13,
+          "totalMs": 0.43599999999999994,
+          "maxMs": 0.067
+        },
+        "V8.HandleInterrupts": {
+          "count": 12,
+          "totalMs": 0.4079999999999999,
+          "maxMs": 0.065
+        },
+        "Layout": {
+          "count": 8,
+          "totalMs": 22.695,
+          "maxMs": 4.441
+        },
+        "Paint": {
+          "count": 14,
+          "totalMs": 18.253,
+          "maxMs": 2.021
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.007,
+          "maxMs": 0.007
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.06,
+          "maxMs": 0.06
+        }
+      },
+      "profile": {
+        "file": "source10-120-detail-to-palette.cpuprofile",
+        "sha256": "15b465ced8c511d6f3742525e33dfda6ce7640905ddc8b3d95b55e73fd844f18"
+      },
+      "timeline": {
+        "file": "source10-120-detail-to-palette-timeline.json",
+        "sha256": "b2c4cdfb438ae7f87d3edfa92efe43d5444df24887696c061ca945dc7bc66257"
+      }
+    },
+    {
+      "stage": "source10",
+      "elements": 120,
+      "operation": "palette-to-detail",
+      "profiledActionOrder": 3,
+      "markedWallMs": 101.479,
+      "cdpMetricDeltas": {
+        "LayoutCount": 11,
+        "RecalcStyleCount": 21,
+        "LayoutDuration": 0.030694,
+        "RecalcStyleDuration": 0.00759,
+        "DevToolsCommandDuration": 0.033072,
+        "ScriptDuration": 0.00606,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.11514300000000001,
+        "TaskOtherDuration": 0.037727000000000004
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 16298,
+        "jsEventListeners": 1779
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 17468,
+        "jsEventListeners": 1815
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 960,
+        "artboardKeys": 120
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "showPane",
+          "inclusiveMs": 22.109,
+          "selfMs": 0,
+          "combinedHtmlLine": 11735
+        },
+        {
+          "function": "renderCanvas",
+          "inclusiveMs": 22.109,
+          "selfMs": 0,
+          "combinedHtmlLine": 14716
+        },
+        {
+          "function": "previewFitZoom",
+          "inclusiveMs": 7.853999999999999,
+          "selfMs": 7.853999999999999,
+          "combinedHtmlLine": 14645
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 4.891,
+          "selfMs": 0,
+          "combinedHtmlLine": 14226
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 3.2,
+          "selfMs": 0,
+          "combinedHtmlLine": 9940
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 3.168,
+          "selfMs": 3.168,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 3.138,
+          "selfMs": 3.138,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "composite",
+          "inclusiveMs": 1.304,
+          "selfMs": 0,
+          "combinedHtmlLine": 13017
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 1.2610000000000001,
+          "selfMs": 1.2610000000000001,
+          "combinedHtmlLine": 0
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 12,
+          "totalMs": 0.5189999999999999,
+          "maxMs": 0.1
+        },
+        "EventDispatch": {
+          "count": 31,
+          "totalMs": 23.919000000000004,
+          "maxMs": 23.094
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.377,
+          "maxMs": 0.134
+        },
+        "FunctionCall": {
+          "count": 33,
+          "totalMs": 23.783,
+          "maxMs": 22.991
+        },
+        "PrePaint": {
+          "count": 22,
+          "totalMs": 3.4179999999999997,
+          "maxMs": 1.076
+        },
+        "Layerize": {
+          "count": 9,
+          "totalMs": 2.926,
+          "maxMs": 1.106
+        },
+        "HitTest": {
+          "count": 13,
+          "totalMs": 0.654,
+          "maxMs": 0.15
+        },
+        "UpdateLayoutTree": {
+          "count": 21,
+          "totalMs": 7.809999999999999,
+          "maxMs": 4.558
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 15,
+          "totalMs": 0.06100000000000001,
+          "maxMs": 0.014
+        },
+        "V8.StackGuard": {
+          "count": 4,
+          "totalMs": 0.163,
+          "maxMs": 0.065
+        },
+        "V8.HandleInterrupts": {
+          "count": 4,
+          "totalMs": 0.155,
+          "maxMs": 0.063
+        },
+        "Layout": {
+          "count": 11,
+          "totalMs": 30.598999999999997,
+          "maxMs": 3.953
+        },
+        "Paint": {
+          "count": 12,
+          "totalMs": 12.928999999999998,
+          "maxMs": 2.083
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.004,
+          "maxMs": 0.004
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.046,
+          "maxMs": 0.046
+        }
+      },
+      "profile": {
+        "file": "source10-120-palette-to-detail.cpuprofile",
+        "sha256": "f3d815d63fa301daceb5c26cec487505f7314a20a832bdd65e78479d5d200a77"
+      },
+      "timeline": {
+        "file": "source10-120-palette-to-detail-timeline.json",
+        "sha256": "613ab54315133ad5bf9ea15873e1c38b550494781c7ceba1aa841b94b54f80c9"
+      }
+    },
+    {
+      "stage": "source16",
+      "elements": 120,
+      "operation": "select-text",
+      "profiledActionOrder": 4,
+      "markedWallMs": 186.813,
+      "cdpMetricDeltas": {
+        "LayoutCount": 14,
+        "RecalcStyleCount": 22,
+        "LayoutDuration": 0.056203,
+        "RecalcStyleDuration": 0.011057,
+        "DevToolsCommandDuration": 0.147819,
+        "ScriptDuration": 0.013833,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.29368299999999997,
+        "TaskOtherDuration": 0.06477100000000001
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 12133,
+        "jsEventListeners": 1735
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 13366,
+        "jsEventListeners": 1756
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 960,
+        "artboardKeys": 120
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "svg.onpointerdown",
+          "inclusiveMs": 34.165,
+          "selfMs": 0,
+          "combinedHtmlLine": 15037
+        },
+        {
+          "function": "finishSelectionUI",
+          "inclusiveMs": 18.153000000000002,
+          "selfMs": 0,
+          "combinedHtmlLine": 14989
+        },
+        {
+          "function": "renderSelectionProperties",
+          "inclusiveMs": 11.972999999999999,
+          "selfMs": 0,
+          "combinedHtmlLine": 14421
+        },
+        {
+          "function": "svg.onpointerup",
+          "inclusiveMs": 10.448999999999998,
+          "selfMs": 0,
+          "combinedHtmlLine": 15053
+        },
+        {
+          "function": "finishSelectionUI",
+          "inclusiveMs": 10.448999999999998,
+          "selfMs": 0,
+          "combinedHtmlLine": 14989
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 10.311999999999998,
+          "selfMs": 1.578,
+          "combinedHtmlLine": 14306
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 9.262,
+          "selfMs": 9.262,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "renderSelectionProperties",
+          "inclusiveMs": 9.112,
+          "selfMs": 0,
+          "combinedHtmlLine": 14421
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 8.733999999999998,
+          "selfMs": 8.733999999999998,
+          "combinedHtmlLine": 10009
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 7.776,
+          "selfMs": 0,
+          "combinedHtmlLine": 14306
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 6.75,
+          "selfMs": 0,
+          "combinedHtmlLine": 14306
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 6.044,
+          "selfMs": 6.044,
+          "combinedHtmlLine": 10009
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 5.5,
+          "selfMs": 5.5,
+          "combinedHtmlLine": 10009
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 4.488,
+          "selfMs": 4.488,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 1.6920000000000002,
+          "selfMs": 1.6920000000000002,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "cloneNode",
+          "inclusiveMs": 1.661,
+          "selfMs": 1.661,
+          "combinedHtmlLine": 0
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 13,
+          "totalMs": 0.9020000000000001,
+          "maxMs": 0.179
+        },
+        "V8.BytecodeBudgetInterruptWithStackCheck": {
+          "count": 4,
+          "totalMs": 0.024,
+          "maxMs": 0.012
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 40,
+          "totalMs": 0.13300000000000003,
+          "maxMs": 0.018
+        },
+        "EventDispatch": {
+          "count": 47,
+          "totalMs": 50.59800000000002,
+          "maxMs": 36.628
+        },
+        "V8.StackGuard": {
+          "count": 9,
+          "totalMs": 0.5980000000000001,
+          "maxMs": 0.217
+        },
+        "V8.HandleInterrupts": {
+          "count": 9,
+          "totalMs": 0.5740000000000001,
+          "maxMs": 0.21
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.684,
+          "maxMs": 0.277
+        },
+        "FunctionCall": {
+          "count": 97,
+          "totalMs": 49.818000000000076,
+          "maxMs": 35.508
+        },
+        "PrePaint": {
+          "count": 20,
+          "totalMs": 6.507,
+          "maxMs": 1.654
+        },
+        "Layerize": {
+          "count": 8,
+          "totalMs": 3.945,
+          "maxMs": 1.604
+        },
+        "HitTest": {
+          "count": 13,
+          "totalMs": 1.13,
+          "maxMs": 0.292
+        },
+        "UpdateLayoutTree": {
+          "count": 21,
+          "totalMs": 11.198,
+          "maxMs": 4.032
+        },
+        "Layout": {
+          "count": 14,
+          "totalMs": 55.895999999999994,
+          "maxMs": 5.975
+        },
+        "Paint": {
+          "count": 10,
+          "totalMs": 23.586,
+          "maxMs": 3.181
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.007,
+          "maxMs": 0.007
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.049,
+          "maxMs": 0.049
+        }
+      },
+      "profile": {
+        "file": "source16-120-select-text.cpuprofile",
+        "sha256": "4640626977714b9b3da3af0e6e44be3f5ed8a31dc692b17906f39c68db14fd1b"
+      },
+      "timeline": {
+        "file": "source16-120-select-text-timeline.json",
+        "sha256": "983c370f49740c7c9528659c6f0da485a1d45756742a2d4669b1c769515f314e"
+      }
+    },
+    {
+      "stage": "source16",
+      "elements": 120,
+      "operation": "detail-to-palette",
+      "profiledActionOrder": 5,
+      "markedWallMs": 181.769,
+      "cdpMetricDeltas": {
+        "LayoutCount": 8,
+        "RecalcStyleCount": 18,
+        "LayoutDuration": 0.044772,
+        "RecalcStyleDuration": 0.014889,
+        "DevToolsCommandDuration": 0.063846,
+        "ScriptDuration": 0.027006,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.22679300000000002,
+        "TaskOtherDuration": 0.07628
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 13366,
+        "jsEventListeners": 1756
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 16299,
+        "jsEventListeners": 1841
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 960,
+        "artboardKeys": 120
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "showPane",
+          "inclusiveMs": 55.070999999999984,
+          "selfMs": 0,
+          "combinedHtmlLine": 11804
+        },
+        {
+          "function": "renderCanvas",
+          "inclusiveMs": 42.22299999999999,
+          "selfMs": 1.609,
+          "combinedHtmlLine": 14835
+        },
+        {
+          "function": "drawPalettes",
+          "inclusiveMs": 12.847999999999999,
+          "selfMs": 0,
+          "combinedHtmlLine": 13819
+        },
+        {
+          "function": "previewFitZoom",
+          "inclusiveMs": 12.801000000000002,
+          "selfMs": 12.801000000000002,
+          "combinedHtmlLine": 14764
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 10.998000000000001,
+          "selfMs": 0,
+          "combinedHtmlLine": 14306
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 7.5760000000000005,
+          "selfMs": 2.755,
+          "combinedHtmlLine": 10009
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 6.455,
+          "selfMs": 6.455,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 4.7540000000000004,
+          "selfMs": 4.7540000000000004,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "preview",
+          "inclusiveMs": 3.1719999999999997,
+          "selfMs": 3.1719999999999997,
+          "combinedHtmlLine": 13731
+        },
+        {
+          "function": "composite",
+          "inclusiveMs": 2.294,
+          "selfMs": 0,
+          "combinedHtmlLine": 13086
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 2.065,
+          "selfMs": 2.065,
+          "combinedHtmlLine": 0
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 12,
+          "totalMs": 0.9520000000000001,
+          "maxMs": 0.16
+        },
+        "EventDispatch": {
+          "count": 40,
+          "totalMs": 58.74700000000003,
+          "maxMs": 56.886
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.595,
+          "maxMs": 0.214
+        },
+        "FunctionCall": {
+          "count": 54,
+          "totalMs": 58.285,
+          "maxMs": 56.596
+        },
+        "PrePaint": {
+          "count": 19,
+          "totalMs": 7.458000000000001,
+          "maxMs": 2.94
+        },
+        "Layerize": {
+          "count": 6,
+          "totalMs": 4.685,
+          "maxMs": 1.829
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 24,
+          "totalMs": 0.15400000000000005,
+          "maxMs": 0.03
+        },
+        "HitTest": {
+          "count": 11,
+          "totalMs": 1.3319999999999999,
+          "maxMs": 0.33
+        },
+        "UpdateLayoutTree": {
+          "count": 17,
+          "totalMs": 15.349,
+          "maxMs": 6.329
+        },
+        "V8.BytecodeBudgetInterruptWithStackCheck": {
+          "count": 5,
+          "totalMs": 0.064,
+          "maxMs": 0.026
+        },
+        "V8.StackGuard": {
+          "count": 13,
+          "totalMs": 0.7680000000000002,
+          "maxMs": 0.198
+        },
+        "V8.HandleInterrupts": {
+          "count": 13,
+          "totalMs": 0.7240000000000002,
+          "maxMs": 0.191
+        },
+        "Layout": {
+          "count": 8,
+          "totalMs": 44.50599999999999,
+          "maxMs": 7.367
+        },
+        "Paint": {
+          "count": 8,
+          "totalMs": 24.713000000000005,
+          "maxMs": 4.251
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.08,
+          "maxMs": 0.08
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.007,
+          "maxMs": 0.007
+        }
+      },
+      "profile": {
+        "file": "source16-120-detail-to-palette.cpuprofile",
+        "sha256": "0fb195f6a100d248c2aba2a6b3ce180be31b230a518e6c3bae18f8af8d50493a"
+      },
+      "timeline": {
+        "file": "source16-120-detail-to-palette-timeline.json",
+        "sha256": "a11a6ad63dd7725fd924150c444404e5e6fefeaf5bdef627008c023eac92d7f3"
+      }
+    },
+    {
+      "stage": "source16",
+      "elements": 120,
+      "operation": "palette-to-detail",
+      "profiledActionOrder": 6,
+      "markedWallMs": 123.108,
+      "cdpMetricDeltas": {
+        "LayoutCount": 11,
+        "RecalcStyleCount": 23,
+        "LayoutDuration": 0.032985,
+        "RecalcStyleDuration": 0.010243,
+        "DevToolsCommandDuration": 0.037507,
+        "ScriptDuration": 0.007813,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.132943,
+        "TaskOtherDuration": 0.044395
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 16299,
+        "jsEventListeners": 1841
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 17469,
+        "jsEventListeners": 1877
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 960,
+        "artboardKeys": 120
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "showPane",
+          "inclusiveMs": 26.063000000000002,
+          "selfMs": 0,
+          "combinedHtmlLine": 11804
+        },
+        {
+          "function": "renderCanvas",
+          "inclusiveMs": 26.063000000000002,
+          "selfMs": 0,
+          "combinedHtmlLine": 14835
+        },
+        {
+          "function": "previewFitZoom",
+          "inclusiveMs": 11.217999999999998,
+          "selfMs": 11.217999999999998,
+          "combinedHtmlLine": 14764
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 4.7540000000000004,
+          "selfMs": 0,
+          "combinedHtmlLine": 14306
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 3.962,
+          "selfMs": 3.962,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 3.287,
+          "selfMs": 3.287,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 3.176,
+          "selfMs": 0,
+          "combinedHtmlLine": 10009
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 12,
+          "totalMs": 0.683,
+          "maxMs": 0.161
+        },
+        "EventDispatch": {
+          "count": 31,
+          "totalMs": 28.184000000000005,
+          "maxMs": 27.042
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.6869999999999999,
+          "maxMs": 0.383
+        },
+        "FunctionCall": {
+          "count": 53,
+          "totalMs": 28.230999999999998,
+          "maxMs": 26.923
+        },
+        "PrePaint": {
+          "count": 23,
+          "totalMs": 4.03,
+          "maxMs": 1.169
+        },
+        "Layerize": {
+          "count": 10,
+          "totalMs": 3.328,
+          "maxMs": 1.127
+        },
+        "HitTest": {
+          "count": 11,
+          "totalMs": 0.685,
+          "maxMs": 0.225
+        },
+        "UpdateLayoutTree": {
+          "count": 22,
+          "totalMs": 10.439000000000002,
+          "maxMs": 6.269
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 13,
+          "totalMs": 0.081,
+          "maxMs": 0.017
+        },
+        "V8.StackGuard": {
+          "count": 4,
+          "totalMs": 0.215,
+          "maxMs": 0.087
+        },
+        "V8.HandleInterrupts": {
+          "count": 4,
+          "totalMs": 0.20600000000000002,
+          "maxMs": 0.084
+        },
+        "Layout": {
+          "count": 11,
+          "totalMs": 32.852999999999994,
+          "maxMs": 4.389
+        },
+        "Paint": {
+          "count": 14,
+          "totalMs": 15.432,
+          "maxMs": 1.987
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.003,
+          "maxMs": 0.003
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.05,
+          "maxMs": 0.05
+        }
+      },
+      "profile": {
+        "file": "source16-120-palette-to-detail.cpuprofile",
+        "sha256": "451594cca9a1cd3cbb3711992501b3a963575852986e3a3d5dff25041c03b86b"
+      },
+      "timeline": {
+        "file": "source16-120-palette-to-detail-timeline.json",
+        "sha256": "b0a5dac272fe02ef2f4749bd3e0f3185ddc5ca3f2341e950cfef03ba94914bba"
+      }
+    },
+    {
+      "stage": "source10",
+      "elements": 5000,
+      "operation": "select-text",
+      "profiledActionOrder": 7,
+      "markedWallMs": 309.448,
+      "cdpMetricDeltas": {
+        "LayoutCount": 14,
+        "RecalcStyleCount": 25,
+        "LayoutDuration": 0.045937,
+        "RecalcStyleDuration": 0.040681,
+        "DevToolsCommandDuration": 0.135969,
+        "ScriptDuration": 0.061839,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.41950899999999997,
+        "TaskOtherDuration": 0.13508299999999998
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 146879,
+        "jsEventListeners": 1634
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 187152,
+        "jsEventListeners": 1655
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 40000,
+        "artboardKeys": 5000
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "svg.onpointerdown",
+          "inclusiveMs": 67.347,
+          "selfMs": 0,
+          "combinedHtmlLine": 14918
+        },
+        {
+          "function": "svg.onpointerup",
+          "inclusiveMs": 42.90399999999998,
+          "selfMs": 0,
+          "combinedHtmlLine": 14934
+        },
+        {
+          "function": "finishSelectionUI",
+          "inclusiveMs": 42.90399999999998,
+          "selfMs": 0,
+          "combinedHtmlLine": 14870
+        },
+        {
+          "function": "finishSelectionUI",
+          "inclusiveMs": 39.07299999999999,
+          "selfMs": 0,
+          "combinedHtmlLine": 14870
+        },
+        {
+          "function": "renderSelectionProperties",
+          "inclusiveMs": 33.995,
+          "selfMs": 0,
+          "combinedHtmlLine": 14341
+        },
+        {
+          "function": "renderSelectionProperties",
+          "inclusiveMs": 30.03,
+          "selfMs": 0,
+          "combinedHtmlLine": 14341
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 21.958,
+          "selfMs": 21.958,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 10.987,
+          "selfMs": 0,
+          "combinedHtmlLine": 14226
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 10.835999999999999,
+          "selfMs": 10.835999999999999,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 7.845000000000001,
+          "selfMs": 7.845000000000001,
+          "combinedHtmlLine": 9940
+        },
+        {
+          "function": "cloneNode",
+          "inclusiveMs": 7.843,
+          "selfMs": 7.843,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 6.316,
+          "selfMs": 0,
+          "combinedHtmlLine": 14226
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 14,
+          "totalMs": 0.7520000000000001,
+          "maxMs": 0.119
+        },
+        "V8.StackGuard": {
+          "count": 12,
+          "totalMs": 0.8,
+          "maxMs": 0.221
+        },
+        "V8.HandleInterrupts": {
+          "count": 11,
+          "totalMs": 0.7570000000000001,
+          "maxMs": 0.214
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 35,
+          "totalMs": 0.12400000000000004,
+          "maxMs": 0.016
+        },
+        "EventDispatch": {
+          "count": 47,
+          "totalMs": 113.94299999999998,
+          "maxMs": 69.206
+        },
+        "UpdateLayoutTree": {
+          "count": 21,
+          "totalMs": 40.525,
+          "maxMs": 16.862
+        },
+        "PrePaint": {
+          "count": 19,
+          "totalMs": 6.4159999999999995,
+          "maxMs": 2.611
+        },
+        "Paint": {
+          "count": 11,
+          "totalMs": 26.01,
+          "maxMs": 3.479
+        },
+        "Layerize": {
+          "count": 7,
+          "totalMs": 7.984999999999999,
+          "maxMs": 1.855
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.5549999999999999,
+          "maxMs": 0.196
+        },
+        "FunctionCall": {
+          "count": 57,
+          "totalMs": 113.52400000000003,
+          "maxMs": 67.902
+        },
+        "HitTest": {
+          "count": 11,
+          "totalMs": 3.2880000000000007,
+          "maxMs": 0.699
+        },
+        "Layout": {
+          "count": 14,
+          "totalMs": 45.684999999999995,
+          "maxMs": 5.234
+        },
+        "V8.BytecodeBudgetInterruptWithStackCheck": {
+          "count": 3,
+          "totalMs": 0.006,
+          "maxMs": 0.003
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.055,
+          "maxMs": 0.055
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.005,
+          "maxMs": 0.005
+        }
+      },
+      "profile": {
+        "file": "source10-5000-select-text.cpuprofile",
+        "sha256": "a68ee9f4832a6f942acb2df13c144e57f3b376dcd80c906dabb987c7da3af17f"
+      },
+      "timeline": {
+        "file": "source10-5000-select-text-timeline.json",
+        "sha256": "2013b9e5f937b000b1570abeb61931493fe093b69f0c7547a5271059fb22c902"
+      }
+    },
+    {
+      "stage": "source10",
+      "elements": 5000,
+      "operation": "detail-to-palette",
+      "profiledActionOrder": 8,
+      "markedWallMs": 698.991,
+      "cdpMetricDeltas": {
+        "LayoutCount": 8,
+        "RecalcStyleCount": 16,
+        "LayoutDuration": 0.04829,
+        "RecalcStyleDuration": 0.106,
+        "DevToolsCommandDuration": 0.054636000000000004,
+        "ScriptDuration": 0.244254,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.716919,
+        "TaskOtherDuration": 0.263739
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 187152,
+        "jsEventListeners": 1655
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 287685,
+        "jsEventListeners": 1740
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 40000,
+        "artboardKeys": 5000
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "showPane",
+          "inclusiveMs": 283.69499999999994,
+          "selfMs": 0,
+          "combinedHtmlLine": 11735
+        },
+        {
+          "function": "drawPalettes",
+          "inclusiveMs": 182.37900000000005,
+          "selfMs": 0,
+          "combinedHtmlLine": 13743
+        },
+        {
+          "function": "renderCanvas",
+          "inclusiveMs": 101.316,
+          "selfMs": 1.494,
+          "combinedHtmlLine": 14716
+        },
+        {
+          "function": "cloneNode",
+          "inclusiveMs": 45.06899999999999,
+          "selfMs": 45.06899999999999,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "preview",
+          "inclusiveMs": 37.42800000000001,
+          "selfMs": 35.80400000000001,
+          "combinedHtmlLine": 13655
+        },
+        {
+          "function": "composite",
+          "inclusiveMs": 35.087999999999994,
+          "selfMs": 1.498,
+          "combinedHtmlLine": 13017
+        },
+        {
+          "function": "previewFitZoom",
+          "inclusiveMs": 34.26199999999999,
+          "selfMs": 34.26199999999999,
+          "combinedHtmlLine": 14645
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 11.062000000000001,
+          "selfMs": 1.608,
+          "combinedHtmlLine": 14226
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 13,
+          "totalMs": 0.584,
+          "maxMs": 0.101
+        },
+        "EventDispatch": {
+          "count": 40,
+          "totalMs": 286.94299999999976,
+          "maxMs": 286.041
+        },
+        "V8.GC_HEAP_EXTERNAL_PROLOGUE": {
+          "count": 2,
+          "totalMs": 0.009000000000000001,
+          "maxMs": 0.006
+        },
+        "MinorGC": {
+          "count": 2,
+          "totalMs": 2.552,
+          "maxMs": 1.796
+        },
+        "V8.GC_HEAP_PROLOGUE": {
+          "count": 2,
+          "totalMs": 0.003,
+          "maxMs": 0.002
+        },
+        "V8.GC_TIME_TO_SAFEPOINT": {
+          "count": 1,
+          "totalMs": 0.011,
+          "maxMs": 0.011
+        },
+        "V8.GC_SCAVENGER": {
+          "count": 2,
+          "totalMs": 2.439,
+          "maxMs": 1.749
+        },
+        "V8.GC_HEAP_PROLOGUE_SAFEPOINT": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_SCAVENGE": {
+          "count": 2,
+          "totalMs": 2.406,
+          "maxMs": 1.732
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": {
+          "count": 2,
+          "totalMs": 0.569,
+          "maxMs": 0.42
+        },
+        "ComputeWeaknessProcessor start": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 2,
+          "totalMs": 0.45799999999999996,
+          "maxMs": 0.37
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 4,
+          "totalMs": 0.7949999999999999,
+          "maxMs": 0.349
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_COLLECT_OLD_TO_NEW_PAGES": {
+          "count": 2,
+          "totalMs": 0.054,
+          "maxMs": 0.027
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": {
+          "count": 2,
+          "totalMs": 0.6719999999999999,
+          "maxMs": 0.47
+        },
+        "Parallel scavenge started": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_ROOTS": {
+          "count": 2,
+          "totalMs": 0.40900000000000003,
+          "maxMs": 0.258
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+          "count": 25,
+          "totalMs": 1.725,
+          "maxMs": 0.192
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL": {
+          "count": 2,
+          "totalMs": 0.197,
+          "maxMs": 0.18
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": {
+          "count": 2,
+          "totalMs": 0.779,
+          "maxMs": 0.655
+        },
+        "ClearWeaknessProcessor start": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 2,
+          "totalMs": 0.711,
+          "maxMs": 0.615
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 4,
+          "totalMs": 1.396,
+          "maxMs": 0.611
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_FINALIZE": {
+          "count": 2,
+          "totalMs": 0.11399999999999999,
+          "maxMs": 0.074
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_RESTORE_AND_QUARANTINE_PINNED": {
+          "count": 2,
+          "totalMs": 0.025,
+          "maxMs": 0.013
+        },
+        "V8.GC_SCAVENGER_FREE_REMEMBERED_SET": {
+          "count": 2,
+          "totalMs": 0.020999999999999998,
+          "maxMs": 0.018
+        },
+        "V8.GC_SCAVENGER_RESIZE_NEW_SPACE": {
+          "count": 2,
+          "totalMs": 0.002,
+          "maxMs": 0.001
+        },
+        "V8.GC_HEAP_EPILOGUE_SAFEPOINT": {
+          "count": 2,
+          "totalMs": 0.006,
+          "maxMs": 0.003
+        },
+        "V8.GC_HEAP_EPILOGUE": {
+          "count": 2,
+          "totalMs": 0.007,
+          "maxMs": 0.004
+        },
+        "V8.GC_HEAP_EXTERNAL_EPILOGUE": {
+          "count": 2,
+          "totalMs": 0.004,
+          "maxMs": 0.002
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.43300000000000005,
+          "maxMs": 0.155
+        },
+        "FunctionCall": {
+          "count": 34,
+          "totalMs": 286.80000000000007,
+          "maxMs": 285.894
+        },
+        "PrePaint": {
+          "count": 19,
+          "totalMs": 30.543,
+          "maxMs": 17.745
+        },
+        "Layerize": {
+          "count": 6,
+          "totalMs": 22.065,
+          "maxMs": 8.394
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 47,
+          "totalMs": 0.13800000000000004,
+          "maxMs": 0.013
+        },
+        "HitTest": {
+          "count": 11,
+          "totalMs": 0.7060000000000001,
+          "maxMs": 0.178
+        },
+        "UpdateLayoutTree": {
+          "count": 16,
+          "totalMs": 106.264,
+          "maxMs": 74.157
+        },
+        "V8.BytecodeBudgetInterruptWithStackCheck": {
+          "count": 21,
+          "totalMs": 0.10500000000000001,
+          "maxMs": 0.022
+        },
+        "V8.StackGuard": {
+          "count": 31,
+          "totalMs": 2.1149999999999998,
+          "maxMs": 0.284
+        },
+        "V8.HandleInterrupts": {
+          "count": 31,
+          "totalMs": 2.036,
+          "maxMs": 0.279
+        },
+        "Layout": {
+          "count": 8,
+          "totalMs": 48.153,
+          "maxMs": 14.013
+        },
+        "Paint": {
+          "count": 6,
+          "totalMs": 91.994,
+          "maxMs": 23.158
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.055,
+          "maxMs": 0.055
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.006,
+          "maxMs": 0.006
+        }
+      },
+      "profile": {
+        "file": "source10-5000-detail-to-palette.cpuprofile",
+        "sha256": "1b1b2bee78f02168695fa1af8e375b14d6dae551c1f7d3e8bb1238979e906de0"
+      },
+      "timeline": {
+        "file": "source10-5000-detail-to-palette-timeline.json",
+        "sha256": "39e7a3563feef976c934a210f28c9143eb9821f0f850bfaa0131fd1c3f8829f3"
+      }
+    },
+    {
+      "stage": "source10",
+      "elements": 5000,
+      "operation": "palette-to-detail",
+      "profiledActionOrder": 9,
+      "markedWallMs": 328.6,
+      "cdpMetricDeltas": {
+        "LayoutCount": 11,
+        "RecalcStyleCount": 19,
+        "LayoutDuration": 0.041799,
+        "RecalcStyleDuration": 0.060793,
+        "DevToolsCommandDuration": 0.051205999999999995,
+        "ScriptDuration": 0.067772,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.347385,
+        "TaskOtherDuration": 0.125815
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 287685,
+        "jsEventListeners": 1740
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 323015,
+        "jsEventListeners": 1776
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 40000,
+        "artboardKeys": 5000
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "showPane",
+          "inclusiveMs": 132.41800000000003,
+          "selfMs": 0,
+          "combinedHtmlLine": 11735
+        },
+        {
+          "function": "renderCanvas",
+          "inclusiveMs": 132.41800000000003,
+          "selfMs": 4.166,
+          "combinedHtmlLine": 14716
+        },
+        {
+          "function": "previewFitZoom",
+          "inclusiveMs": 63.004,
+          "selfMs": 63.004,
+          "combinedHtmlLine": 14645
+        },
+        {
+          "function": "composite",
+          "inclusiveMs": 31.918000000000006,
+          "selfMs": 12.533999999999999,
+          "combinedHtmlLine": 13017
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 12.963999999999999,
+          "selfMs": 0,
+          "combinedHtmlLine": 14226
+        },
+        {
+          "function": "(garbage collector)",
+          "inclusiveMs": 7.774,
+          "selfMs": 7.774,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 6.314,
+          "selfMs": 0,
+          "combinedHtmlLine": 9940
+        },
+        {
+          "function": "cloneNode",
+          "inclusiveMs": 5.4079999999999995,
+          "selfMs": 5.4079999999999995,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 4.632000000000001,
+          "selfMs": 4.632000000000001,
+          "combinedHtmlLine": 0
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 13,
+          "totalMs": 0.5559999999999999,
+          "maxMs": 0.095
+        },
+        "EventDispatch": {
+          "count": 31,
+          "totalMs": 143.98800000000006,
+          "maxMs": 142.471
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.372,
+          "maxMs": 0.132
+        },
+        "FunctionCall": {
+          "count": 33,
+          "totalMs": 143.944,
+          "maxMs": 142.358
+        },
+        "PrePaint": {
+          "count": 19,
+          "totalMs": 5.621999999999999,
+          "maxMs": 2.316
+        },
+        "Layerize": {
+          "count": 6,
+          "totalMs": 5.337000000000001,
+          "maxMs": 2.2
+        },
+        "HitTest": {
+          "count": 11,
+          "totalMs": 0.5810000000000001,
+          "maxMs": 0.14
+        },
+        "UpdateLayoutTree": {
+          "count": 19,
+          "totalMs": 61.159,
+          "maxMs": 57.024
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 15,
+          "totalMs": 0.09400000000000001,
+          "maxMs": 0.022
+        },
+        "V8.StackGuard": {
+          "count": 6,
+          "totalMs": 0.333,
+          "maxMs": 0.079
+        },
+        "V8.HandleInterrupts": {
+          "count": 6,
+          "totalMs": 0.313,
+          "maxMs": 0.075
+        },
+        "V8.BytecodeBudgetInterruptWithStackCheck": {
+          "count": 1,
+          "totalMs": 0.005,
+          "maxMs": 0.005
+        },
+        "Layout": {
+          "count": 11,
+          "totalMs": 41.649,
+          "maxMs": 5.645
+        },
+        "V8.GC_HEAP_EXTERNAL_PROLOGUE": {
+          "count": 1,
+          "totalMs": 0.007,
+          "maxMs": 0.007
+        },
+        "MinorGC": {
+          "count": 1,
+          "totalMs": 7.724,
+          "maxMs": 7.724
+        },
+        "V8.GC_HEAP_PROLOGUE": {
+          "count": 1,
+          "totalMs": 0.002,
+          "maxMs": 0.002
+        },
+        "V8.GC_SCAVENGER": {
+          "count": 1,
+          "totalMs": 7.669,
+          "maxMs": 7.669
+        },
+        "V8.GC_HEAP_PROLOGUE_SAFEPOINT": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_SCAVENGE": {
+          "count": 1,
+          "totalMs": 7.65,
+          "maxMs": 7.65
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": {
+          "count": 1,
+          "totalMs": 0.634,
+          "maxMs": 0.634
+        },
+        "ComputeWeaknessProcessor start": {
+          "count": 1,
+          "totalMs": 0.002,
+          "maxMs": 0.002
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 1,
+          "totalMs": 0.582,
+          "maxMs": 0.582
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 2,
+          "totalMs": 1.089,
+          "maxMs": 0.545
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_COLLECT_OLD_TO_NEW_PAGES": {
+          "count": 1,
+          "totalMs": 0.031,
+          "maxMs": 0.031
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": {
+          "count": 1,
+          "totalMs": 0.604,
+          "maxMs": 0.604
+        },
+        "Parallel scavenge started": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_ROOTS": {
+          "count": 1,
+          "totalMs": 0.234,
+          "maxMs": 0.234
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+          "count": 8,
+          "totalMs": 2.131,
+          "maxMs": 0.346
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL": {
+          "count": 1,
+          "totalMs": 0.271,
+          "maxMs": 0.271
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": {
+          "count": 1,
+          "totalMs": 6.089,
+          "maxMs": 6.089
+        },
+        "ClearWeaknessProcessor start": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 1,
+          "totalMs": 0.906,
+          "maxMs": 0.906
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 2,
+          "totalMs": 1.8010000000000002,
+          "maxMs": 0.903
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_FINALIZE": {
+          "count": 1,
+          "totalMs": 0.119,
+          "maxMs": 0.119
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_RESTORE_AND_QUARANTINE_PINNED": {
+          "count": 1,
+          "totalMs": 0.016,
+          "maxMs": 0.016
+        },
+        "V8.GC_SCAVENGER_FREE_REMEMBERED_SET": {
+          "count": 1,
+          "totalMs": 0.029,
+          "maxMs": 0.029
+        },
+        "V8.GC_SCAVENGER_RESIZE_NEW_SPACE": {
+          "count": 1,
+          "totalMs": 0.002,
+          "maxMs": 0.002
+        },
+        "V8.GC_HEAP_EPILOGUE_SAFEPOINT": {
+          "count": 1,
+          "totalMs": 0.006,
+          "maxMs": 0.006
+        },
+        "V8.GC_HEAP_EPILOGUE": {
+          "count": 1,
+          "totalMs": 0.005,
+          "maxMs": 0.005
+        },
+        "V8.GC_HEAP_EXTERNAL_EPILOGUE": {
+          "count": 1,
+          "totalMs": 0.003,
+          "maxMs": 0.003
+        },
+        "Paint": {
+          "count": 6,
+          "totalMs": 18.663999999999998,
+          "maxMs": 7.102
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.134,
+          "maxMs": 0.134
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.004,
+          "maxMs": 0.004
+        }
+      },
+      "profile": {
+        "file": "source10-5000-palette-to-detail.cpuprofile",
+        "sha256": "43ec56f27fb744a638b22c970673ee991a4990d6cadcb47aa59e3643f2918f8a"
+      },
+      "timeline": {
+        "file": "source10-5000-palette-to-detail-timeline.json",
+        "sha256": "e9180a54a1c5b3413e8f62d89f7db175619b82a5a0fb94a941662399d3e88f15"
+      }
+    },
+    {
+      "stage": "source16",
+      "elements": 5000,
+      "operation": "select-text",
+      "profiledActionOrder": 10,
+      "markedWallMs": 353.911,
+      "cdpMetricDeltas": {
+        "LayoutCount": 14,
+        "RecalcStyleCount": 22,
+        "LayoutDuration": 0.057276,
+        "RecalcStyleDuration": 0.046718,
+        "DevToolsCommandDuration": 0.15373299999999998,
+        "ScriptDuration": 0.076539,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.4763,
+        "TaskOtherDuration": 0.142034
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 146880,
+        "jsEventListeners": 1696
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 187153,
+        "jsEventListeners": 1717
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 40000,
+        "artboardKeys": 5000
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "svg.onpointerdown",
+          "inclusiveMs": 79.53299999999997,
+          "selfMs": 0,
+          "combinedHtmlLine": 15037
+        },
+        {
+          "function": "svg.onpointerup",
+          "inclusiveMs": 54.215,
+          "selfMs": 0,
+          "combinedHtmlLine": 15053
+        },
+        {
+          "function": "finishSelectionUI",
+          "inclusiveMs": 54.215,
+          "selfMs": 0,
+          "combinedHtmlLine": 14989
+        },
+        {
+          "function": "finishSelectionUI",
+          "inclusiveMs": 47.95400000000001,
+          "selfMs": 0,
+          "combinedHtmlLine": 14989
+        },
+        {
+          "function": "renderSelectionProperties",
+          "inclusiveMs": 39.86300000000001,
+          "selfMs": 0,
+          "combinedHtmlLine": 14421
+        },
+        {
+          "function": "renderSelectionProperties",
+          "inclusiveMs": 39.68800000000001,
+          "selfMs": 1.562,
+          "combinedHtmlLine": 14421
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 22.692,
+          "selfMs": 22.692,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 13.778999999999998,
+          "selfMs": 13.778999999999998,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 10.935,
+          "selfMs": 0,
+          "combinedHtmlLine": 14306
+        },
+        {
+          "function": "cloneNode",
+          "inclusiveMs": 9.643,
+          "selfMs": 9.643,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 9.179,
+          "selfMs": 0,
+          "combinedHtmlLine": 14306
+        },
+        {
+          "function": "cloneNode",
+          "inclusiveMs": 9.14,
+          "selfMs": 9.14,
+          "combinedHtmlLine": 0
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 15,
+          "totalMs": 0.8080000000000003,
+          "maxMs": 0.151
+        },
+        "V8.StackGuard": {
+          "count": 11,
+          "totalMs": 0.876,
+          "maxMs": 0.189
+        },
+        "V8.HandleInterrupts": {
+          "count": 11,
+          "totalMs": 0.771,
+          "maxMs": 0.186
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 37,
+          "totalMs": 0.12600000000000003,
+          "maxMs": 0.018
+        },
+        "EventDispatch": {
+          "count": 47,
+          "totalMs": 138.172,
+          "maxMs": 81.318
+        },
+        "UpdateLayoutTree": {
+          "count": 20,
+          "totalMs": 46.96899999999999,
+          "maxMs": 17.512
+        },
+        "PrePaint": {
+          "count": 19,
+          "totalMs": 6.770999999999999,
+          "maxMs": 2.424
+        },
+        "Paint": {
+          "count": 9,
+          "totalMs": 22.918,
+          "maxMs": 4.296
+        },
+        "Layerize": {
+          "count": 7,
+          "totalMs": 8.292,
+          "maxMs": 2.747
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.576,
+          "maxMs": 0.287
+        },
+        "FunctionCall": {
+          "count": 97,
+          "totalMs": 137.63799999999998,
+          "maxMs": 80.026
+        },
+        "HitTest": {
+          "count": 11,
+          "totalMs": 3.3180000000000005,
+          "maxMs": 0.591
+        },
+        "Layout": {
+          "count": 14,
+          "totalMs": 57,
+          "maxMs": 6.053
+        },
+        "V8.BytecodeBudgetInterruptWithStackCheck": {
+          "count": 3,
+          "totalMs": 0.012,
+          "maxMs": 0.007
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.066,
+          "maxMs": 0.066
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.005,
+          "maxMs": 0.005
+        }
+      },
+      "profile": {
+        "file": "source16-5000-select-text.cpuprofile",
+        "sha256": "729f701f84835ecb3da8238b5cc423ac12666602a8a1cdfb895499f45b46e46d"
+      },
+      "timeline": {
+        "file": "source16-5000-select-text-timeline.json",
+        "sha256": "ec09440f0101e88e7fd13648ed429823c371b26f6f384be677c6be9a566b5028"
+      }
+    },
+    {
+      "stage": "source16",
+      "elements": 5000,
+      "operation": "detail-to-palette",
+      "profiledActionOrder": 11,
+      "markedWallMs": 727.564,
+      "cdpMetricDeltas": {
+        "LayoutCount": 8,
+        "RecalcStyleCount": 16,
+        "LayoutDuration": 0.049389,
+        "RecalcStyleDuration": 0.122979,
+        "DevToolsCommandDuration": 0.061111,
+        "ScriptDuration": 0.258982,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.747131,
+        "TaskOtherDuration": 0.25467
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 187153,
+        "jsEventListeners": 1717
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 287686,
+        "jsEventListeners": 1802
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 40000,
+        "artboardKeys": 5000
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "showPane",
+          "inclusiveMs": 313.03900000000004,
+          "selfMs": 1.681,
+          "combinedHtmlLine": 11804
+        },
+        {
+          "function": "drawPalettes",
+          "inclusiveMs": 188.70400000000004,
+          "selfMs": 1.563,
+          "combinedHtmlLine": 13819
+        },
+        {
+          "function": "renderCanvas",
+          "inclusiveMs": 122.65400000000002,
+          "selfMs": 4.677,
+          "combinedHtmlLine": 14835
+        },
+        {
+          "function": "previewFitZoom",
+          "inclusiveMs": 45.095,
+          "selfMs": 45.095,
+          "combinedHtmlLine": 14764
+        },
+        {
+          "function": "cloneNode",
+          "inclusiveMs": 44.051,
+          "selfMs": 44.051,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "preview",
+          "inclusiveMs": 40.80800000000001,
+          "selfMs": 37.684000000000005,
+          "combinedHtmlLine": 13731
+        },
+        {
+          "function": "composite",
+          "inclusiveMs": 36.142999999999994,
+          "selfMs": 0,
+          "combinedHtmlLine": 13086
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 12.705,
+          "selfMs": 0,
+          "combinedHtmlLine": 14306
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 13,
+          "totalMs": 0.675,
+          "maxMs": 0.113
+        },
+        "EventDispatch": {
+          "count": 40,
+          "totalMs": 316.0019999999998,
+          "maxMs": 314.833
+        },
+        "V8.GC_HEAP_EXTERNAL_PROLOGUE": {
+          "count": 2,
+          "totalMs": 0.009000000000000001,
+          "maxMs": 0.006
+        },
+        "MinorGC": {
+          "count": 2,
+          "totalMs": 2.785,
+          "maxMs": 1.899
+        },
+        "V8.GC_HEAP_PROLOGUE": {
+          "count": 2,
+          "totalMs": 0.003,
+          "maxMs": 0.002
+        },
+        "V8.GC_TIME_TO_SAFEPOINT": {
+          "count": 1,
+          "totalMs": 0.01,
+          "maxMs": 0.01
+        },
+        "V8.GC_SCAVENGER": {
+          "count": 2,
+          "totalMs": 2.668,
+          "maxMs": 1.853
+        },
+        "V8.GC_HEAP_PROLOGUE_SAFEPOINT": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_SCAVENGE": {
+          "count": 2,
+          "totalMs": 2.6340000000000003,
+          "maxMs": 1.836
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": {
+          "count": 2,
+          "totalMs": 0.617,
+          "maxMs": 0.446
+        },
+        "ComputeWeaknessProcessor start": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 2,
+          "totalMs": 0.493,
+          "maxMs": 0.384
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 4,
+          "totalMs": 0.854,
+          "maxMs": 0.368
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_COLLECT_OLD_TO_NEW_PAGES": {
+          "count": 2,
+          "totalMs": 0.066,
+          "maxMs": 0.037
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": {
+          "count": 2,
+          "totalMs": 0.7150000000000001,
+          "maxMs": 0.444
+        },
+        "Parallel scavenge started": {
+          "count": 2,
+          "totalMs": 0.002,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_ROOTS": {
+          "count": 2,
+          "totalMs": 0.29500000000000004,
+          "maxMs": 0.225
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+          "count": 24,
+          "totalMs": 1.7359999999999998,
+          "maxMs": 0.401
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": {
+          "count": 2,
+          "totalMs": 0.879,
+          "maxMs": 0.729
+        },
+        "ClearWeaknessProcessor start": {
+          "count": 2,
+          "totalMs": 0.002,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 2,
+          "totalMs": 0.7979999999999999,
+          "maxMs": 0.696
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 4,
+          "totalMs": 1.5550000000000002,
+          "maxMs": 0.687
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_FINALIZE": {
+          "count": 2,
+          "totalMs": 0.127,
+          "maxMs": 0.064
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_RESTORE_AND_QUARANTINE_PINNED": {
+          "count": 2,
+          "totalMs": 0.017,
+          "maxMs": 0.013
+        },
+        "V8.GC_SCAVENGER_FREE_REMEMBERED_SET": {
+          "count": 2,
+          "totalMs": 0.024,
+          "maxMs": 0.021
+        },
+        "V8.GC_SCAVENGER_RESIZE_NEW_SPACE": {
+          "count": 2,
+          "totalMs": 0.002,
+          "maxMs": 0.001
+        },
+        "V8.GC_HEAP_EPILOGUE_SAFEPOINT": {
+          "count": 2,
+          "totalMs": 0.008,
+          "maxMs": 0.004
+        },
+        "V8.GC_HEAP_EPILOGUE": {
+          "count": 2,
+          "totalMs": 0.008,
+          "maxMs": 0.005
+        },
+        "V8.GC_HEAP_EXTERNAL_EPILOGUE": {
+          "count": 2,
+          "totalMs": 0.004,
+          "maxMs": 0.002
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.39899999999999997,
+          "maxMs": 0.155
+        },
+        "FunctionCall": {
+          "count": 54,
+          "totalMs": 315.693,
+          "maxMs": 314.624
+        },
+        "PrePaint": {
+          "count": 20,
+          "totalMs": 27.216,
+          "maxMs": 14.093
+        },
+        "Layerize": {
+          "count": 7,
+          "totalMs": 22.979999999999997,
+          "maxMs": 7.753
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 49,
+          "totalMs": 0.2010000000000001,
+          "maxMs": 0.041
+        },
+        "HitTest": {
+          "count": 13,
+          "totalMs": 1.3199999999999998,
+          "maxMs": 0.452
+        },
+        "UpdateLayoutTree": {
+          "count": 16,
+          "totalMs": 123.32499999999999,
+          "maxMs": 79.951
+        },
+        "V8.BytecodeBudgetInterruptWithStackCheck": {
+          "count": 22,
+          "totalMs": 0.10500000000000001,
+          "maxMs": 0.024
+        },
+        "V8.StackGuard": {
+          "count": 31,
+          "totalMs": 2.4149999999999996,
+          "maxMs": 0.319
+        },
+        "V8.HandleInterrupts": {
+          "count": 31,
+          "totalMs": 2.336,
+          "maxMs": 0.315
+        },
+        "Layout": {
+          "count": 8,
+          "totalMs": 49.25,
+          "maxMs": 13.825
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL": {
+          "count": 2,
+          "totalMs": 0.126,
+          "maxMs": 0.087
+        },
+        "Paint": {
+          "count": 6,
+          "totalMs": 85.618,
+          "maxMs": 24.334
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.046,
+          "maxMs": 0.046
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.004,
+          "maxMs": 0.004
+        }
+      },
+      "profile": {
+        "file": "source16-5000-detail-to-palette.cpuprofile",
+        "sha256": "50297d3a9a55ffe839d81a2f08d223d515924852254aae9f4c1b3d96f988125a"
+      },
+      "timeline": {
+        "file": "source16-5000-detail-to-palette-timeline.json",
+        "sha256": "0c81fc58e3c1c8131157206934be342853e4dfb43ef4ba8399c115bd6bacbf7e"
+      }
+    },
+    {
+      "stage": "source16",
+      "elements": 5000,
+      "operation": "palette-to-detail",
+      "profiledActionOrder": 12,
+      "markedWallMs": 312.52,
+      "cdpMetricDeltas": {
+        "LayoutCount": 11,
+        "RecalcStyleCount": 20,
+        "LayoutDuration": 0.03824,
+        "RecalcStyleDuration": 0.062627,
+        "DevToolsCommandDuration": 0.052832000000000004,
+        "ScriptDuration": 0.061784,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.335059,
+        "TaskOtherDuration": 0.119576
+      },
+      "domBefore": {
+        "documents": 2,
+        "nodes": 287686,
+        "jsEventListeners": 1802
+      },
+      "domAfter": {
+        "documents": 2,
+        "nodes": 323016,
+        "jsEventListeners": 1838
+      },
+      "geometryAfter": {
+        "viewport": {
+          "width": 888,
+          "height": 544.6666870117188,
+          "x": 226,
+          "y": 313.3333435058594
+        },
+        "artboard": {
+          "width": 480,
+          "height": 296,
+          "x": 430,
+          "y": 345.3333435058594
+        },
+        "quickbar": {
+          "width": 888,
+          "height": 134,
+          "x": 226,
+          "y": 178.6666717529297
+        },
+        "zoom": "fit",
+        "paletteCards": 8,
+        "paletteSvgElements": 40000,
+        "artboardKeys": 5000
+      },
+      "sampledRelevantFunctions": [
+        {
+          "function": "showPane",
+          "inclusiveMs": 128.62099999999998,
+          "selfMs": 0,
+          "combinedHtmlLine": 11804
+        },
+        {
+          "function": "renderCanvas",
+          "inclusiveMs": 128.62099999999998,
+          "selfMs": 2.7750000000000004,
+          "combinedHtmlLine": 14835
+        },
+        {
+          "function": "previewFitZoom",
+          "inclusiveMs": 64.38,
+          "selfMs": 64.38,
+          "combinedHtmlLine": 14764
+        },
+        {
+          "function": "composite",
+          "inclusiveMs": 30.768000000000008,
+          "selfMs": 11.097,
+          "combinedHtmlLine": 13086
+        },
+        {
+          "function": "renderQuickToolbar",
+          "inclusiveMs": 9.845999999999998,
+          "selfMs": 0,
+          "combinedHtmlLine": 14306
+        },
+        {
+          "function": "(garbage collector)",
+          "inclusiveMs": 6.229,
+          "selfMs": 6.229,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "cloneNode",
+          "inclusiveMs": 5.514,
+          "selfMs": 5.514,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "getBoundingClientRect",
+          "inclusiveMs": 4.795,
+          "selfMs": 4.795,
+          "combinedHtmlLine": 0
+        },
+        {
+          "function": "paint",
+          "inclusiveMs": 3.247,
+          "selfMs": 0,
+          "combinedHtmlLine": 10009
+        }
+      ],
+      "traceTotals": {
+        "RunMicrotasks": {
+          "count": 13,
+          "totalMs": 0.5369999999999999,
+          "maxMs": 0.087
+        },
+        "EventDispatch": {
+          "count": 31,
+          "totalMs": 136.91400000000004,
+          "maxMs": 135.536
+        },
+        "FireAnimationFrame": {
+          "count": 4,
+          "totalMs": 0.39,
+          "maxMs": 0.115
+        },
+        "FunctionCall": {
+          "count": 53,
+          "totalMs": 136.814,
+          "maxMs": 135.428
+        },
+        "PrePaint": {
+          "count": 19,
+          "totalMs": 5.367,
+          "maxMs": 2.232
+        },
+        "Layerize": {
+          "count": 6,
+          "totalMs": 5.187,
+          "maxMs": 1.642
+        },
+        "HitTest": {
+          "count": 10,
+          "totalMs": 0.6900000000000001,
+          "maxMs": 0.201
+        },
+        "UpdateLayoutTree": {
+          "count": 20,
+          "totalMs": 63.114,
+          "maxMs": 59.136
+        },
+        "V8.BytecodeBudgetInterrupt": {
+          "count": 14,
+          "totalMs": 0.09000000000000002,
+          "maxMs": 0.021
+        },
+        "V8.StackGuard": {
+          "count": 6,
+          "totalMs": 0.327,
+          "maxMs": 0.083
+        },
+        "V8.HandleInterrupts": {
+          "count": 6,
+          "totalMs": 0.306,
+          "maxMs": 0.079
+        },
+        "V8.BytecodeBudgetInterruptWithStackCheck": {
+          "count": 1,
+          "totalMs": 0.006,
+          "maxMs": 0.006
+        },
+        "Layout": {
+          "count": 11,
+          "totalMs": 38.095000000000006,
+          "maxMs": 5.293
+        },
+        "V8.GC_HEAP_EXTERNAL_PROLOGUE": {
+          "count": 1,
+          "totalMs": 0.005,
+          "maxMs": 0.005
+        },
+        "MinorGC": {
+          "count": 1,
+          "totalMs": 5.866,
+          "maxMs": 5.866
+        },
+        "V8.GC_HEAP_PROLOGUE": {
+          "count": 1,
+          "totalMs": 0.002,
+          "maxMs": 0.002
+        },
+        "V8.GC_SCAVENGER": {
+          "count": 1,
+          "totalMs": 5.808,
+          "maxMs": 5.808
+        },
+        "V8.GC_HEAP_PROLOGUE_SAFEPOINT": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_SCAVENGE": {
+          "count": 1,
+          "totalMs": 5.795,
+          "maxMs": 5.795
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": {
+          "count": 1,
+          "totalMs": 0.602,
+          "maxMs": 0.602
+        },
+        "ComputeWeaknessProcessor start": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 1,
+          "totalMs": 0.569,
+          "maxMs": 0.569
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+          "count": 2,
+          "totalMs": 1.069,
+          "maxMs": 0.535
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_COLLECT_OLD_TO_NEW_PAGES": {
+          "count": 1,
+          "totalMs": 0.029,
+          "maxMs": 0.029
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": {
+          "count": 1,
+          "totalMs": 0.525,
+          "maxMs": 0.525
+        },
+        "Parallel scavenge started": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_ROOTS": {
+          "count": 1,
+          "totalMs": 0.297,
+          "maxMs": 0.297
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+          "count": 18,
+          "totalMs": 1.4129999999999998,
+          "maxMs": 0.262
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_PARALLEL": {
+          "count": 1,
+          "totalMs": 0.154,
+          "maxMs": 0.154
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": {
+          "count": 1,
+          "totalMs": 4.424,
+          "maxMs": 4.424
+        },
+        "ClearWeaknessProcessor start": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 1,
+          "totalMs": 0.855,
+          "maxMs": 0.855
+        },
+        "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+          "count": 2,
+          "totalMs": 1.698,
+          "maxMs": 0.85
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_FINALIZE": {
+          "count": 1,
+          "totalMs": 0.083,
+          "maxMs": 0.083
+        },
+        "V8.GC_SCAVENGER_SCAVENGE_RESTORE_AND_QUARANTINE_PINNED": {
+          "count": 1,
+          "totalMs": 0.013,
+          "maxMs": 0.013
+        },
+        "V8.GC_SCAVENGER_FREE_REMEMBERED_SET": {
+          "count": 1,
+          "totalMs": 0.02,
+          "maxMs": 0.02
+        },
+        "V8.GC_SCAVENGER_RESIZE_NEW_SPACE": {
+          "count": 1,
+          "totalMs": 0.001,
+          "maxMs": 0.001
+        },
+        "V8.GC_HEAP_EPILOGUE_SAFEPOINT": {
+          "count": 1,
+          "totalMs": 0.003,
+          "maxMs": 0.003
+        },
+        "V8.GC_HEAP_EPILOGUE": {
+          "count": 1,
+          "totalMs": 0.015,
+          "maxMs": 0.015
+        },
+        "V8.GC_HEAP_EXTERNAL_EPILOGUE": {
+          "count": 1,
+          "totalMs": 0.007,
+          "maxMs": 0.007
+        },
+        "Paint": {
+          "count": 8,
+          "totalMs": 20.306,
+          "maxMs": 6.945
+        },
+        "TimerFire": {
+          "count": 1,
+          "totalMs": 0.075,
+          "maxMs": 0.075
+        },
+        "Responsiveness.Renderer.UserInteraction": {
+          "count": 1,
+          "totalMs": 0.003,
+          "maxMs": 0.003
+        }
+      },
+      "profile": {
+        "file": "source16-5000-palette-to-detail.cpuprofile",
+        "sha256": "e40a8076136f35a01c20293f0117b5310d7d428051f44f3957aa7d3ffe655ba2"
+      },
+      "timeline": {
+        "file": "source16-5000-palette-to-detail-timeline.json",
+        "sha256": "8fb7864c0360df76a23f3ffb52dc9d9609d9444d37d9fd6d180bd6f9b7760823"
+      }
+    }
+  ],
+  "existingRawAnalysis": {
+    "derivedAnalysisSha256": "8d786347c929534ca035e90385a221fdf332e7ba9a601c8f15a023a6f6a52dd4",
+    "all20MeasuredSamplesRetained": true,
+    "sourceRawSha256": {
+      "candidate9-core": "3b2364d4d40e70543d5697408430d16d47f7338432f3bed4d4d9814103d9982d",
+      "candidate10-core": "d46b51d11f443a5f36dd5eedc3d206449e48010688ac33aa91f0d67dd3b38d6e",
+      "candidate16-core": "07eeb22bc80e4d8644f0659579c2d5fe95ee2e98c86eaf09615d1c5dd84fea25"
+    },
+    "allRecordedGeometryExactAcross09_10_16": true,
+    "observation": "Source16 120-element late iterations become slower across different operations; 5000-element iteration9 contains simultaneous select/colour/palette spikes. This is temporal clustering, not evidence of a specific environmental cause.",
+    "environmentAttribution": "CPU frequency, power policy, temperature and external process occupancy were not recorded; no causal environmental attribution is made."
+  },
+  "attribution": [
+    {
+      "scope": "5000 palette-to-detail",
+      "sharedHotPath": "showPane -> renderCanvas -> previewFitZoom/composite",
+      "source16SampledRenderCanvasInclusiveMs": 128.62099999999998,
+      "source16SampledFitMs": 64.38,
+      "source16SampledCompositeInclusiveMs": 30.768000000000008,
+      "source10SampledRenderCanvasInclusiveMs": 132.4,
+      "source10SampledFitMs": 63.0,
+      "largestSource16UpdateLayoutTreeMs": 59.136,
+      "affectedElements": 5322,
+      "finding": "A tab change rebuilds unchanged main-canvas content and forces style/layout. The same path and cost are present in source10; this does not establish a new source16 regression cause."
+    },
+    {
+      "scope": "5000 detail-to-palette",
+      "sharedHotPath": "showPane -> renderCanvas plus drawPalettes -> eight complete previews",
+      "source16SampledRenderCanvasInclusiveMs": 122.7,
+      "source16SampledDrawPalettesInclusiveMs": 188.7,
+      "source10SampledDrawPalettesInclusiveMs": 182.4,
+      "largestSource16UpdateLayoutTreeMs": 79.951,
+      "affectedElements": 40116,
+      "finding": "Eight real 5000-element previews retain 40000 SVG descendants and incur real clone/style/layout cost. No preview is omitted or replaced with a fake thumbnail."
+    },
+    {
+      "scope": "5000 selection",
+      "sharedHotPath": "pointerdown and pointerup -> finishSelectionUI -> renderSelectionProperties",
+      "source16SampledPropertiesInclusiveMs": [
+        39.7,
+        39.9
+      ],
+      "finding": "Both phases rebuild property controls and repeat full-source clones for rich text, font targets and heatmap inspection. Geometry reads also force layout. These paths are unchanged from source10."
+    }
+  ],
+  "minimumRecommendation": {
+    "candidate": "Guarded reuse of the existing main canvas on ordinary inspector tab changes.",
+    "requiredGuards": [
+      "Exact project/state/source/render context, selection, original/layout mode, zoom and viewport identity.",
+      "No active draft, pending asynchronous resource, temporary canvas paint or hover rendering; otherwise perform the canonical full render.",
+      "Retain all eight real palette previews, scientific colour semantics, full-render fallback and current canvas geometry."
+    ],
+    "scope": "A proposed bounded optimization for an evidenced shared cost. This read-only diagnostic does not implement it or claim its success. Complex selection-cache changes are deferred."
+  },
+  "limitations": [
+    "A single instrumented action per operation/condition supplies stack attribution, not P50/P95 or a new formal release comparison.",
+    "CPU self/inclusive samples and overlapping trace categories must not be summed as independent work; mark timing includes Playwright action preparation.",
+    "The original source16 formal regression evidence and all prior source09/10/candidate6 results remain unchanged. This diagnostic neither dismisses nor replaces those results."
+  ]
+}

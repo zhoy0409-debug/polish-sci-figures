@@ -6,7 +6,7 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 ## Install and open
 
-1. Download the [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.21/polish-sci-figures-Studio-0.1.21-Setup-x64.exe), then run it and follow the installer for your Windows user account.
+1. Choose a published Windows installer from the [official Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases), then follow the installer for your Windows user account. Version 0.1.22 in this guide is a local acceptance candidate; publication is on hold at the user's request.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
 3. Choose **English** or **中文** at the top right. Opening the shortcut again opens the editor already running.
 
@@ -14,16 +14,20 @@ For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-
 
 ## Choose appearance and find tools
 
-In Studio 0.1.21, open **Appearance → Interface theme** for default **Carbon Atelier** or light **Pearl Pro**. **Canvas surround** changes the area around the white figure page to neutral, dark or light. Figure colours, image pixels and exported artwork are independent of these preferences. The current browser remembers your choice; if it cannot save the preference, the menu explains this.
+In Studio 0.1.22, open **Appearance → Interface theme** for default **Carbon Atelier** or light **Pearl Pro**. **Canvas surround** changes the area around the white figure page to neutral, dark or light. Figure colours, image pixels and exported artwork are independent of these preferences. The current browser remembers your choice; if it cannot save the preference, the menu explains this.
 
-The inspector identifies the selected object type and prioritises related controls; expand other headings for more settings. Choose **Find command** or press **Ctrl + K** to search for `theme`, `border`, `duplicates` or `axis`. Search opens the existing tools. See the [appearance and update guide](../docs/figure-studio-appearance.md) for the exact controls, and the [0.1.21 release notes](../docs/release-notes-v1.4.21.md) for this build's validation status.
+The inspector identifies the selected object type and prioritises related controls; expand other headings for more settings. Choose **Find command** or press **Ctrl + K** to search for `theme`, `border`, `duplicates` or `axis`. Search opens the existing tools. See the [appearance and update guide](../docs/figure-studio-appearance.md) for the exact controls, and the [0.1.22 release notes](../docs/release-notes-v1.4.22.md) for this build's validation status.
 
+
+## Adjust directly on the canvas
+
+The local 0.1.22 candidate adds [live canvas editing](../docs/live-preview-editing.en.md). Borders and image display dock beside the canvas; axis preview uses real local data without applying every input. Simple fields preview while typing and keep one edit on Enter or blur; Esc cancels. Drafts with an explicit Apply/Keep button must be kept before saving or exporting. The [acceptance report](../docs/live-preview-validation.md) distinguishes executed checks from pending conditions.
 
 ## Start with Figure Discovery
 
 Open **Figure Discovery** on the start page or **Chart types** tab. Upload CSV, TSV or XLSX (first worksheet, headers in row one), check the column mapping and confirm the design, experimental unit, data level, technical replicates and nesting. Describe your research purpose, sample and assay. Inferred information is marked separately and never establishes independence or pairing.
 
-Generate candidates and compare their reasons, limitations and previews rendered from your own data. Normally 3–6 views are offered; scientific restrictions can yield fewer or none. Apply a view, continue editing, undo/redo, and save a project JSON. Desktop discovery needs no Node.js installation. The template data editor still accepts CSV/TSV; use Discovery for direct XLSX upload.
+Click **Find suitable views** and compare the candidates' reasons, limitations and previews rendered from your own data. Normally 3–6 views are offered; scientific restrictions can yield fewer or none. Choose **Compare on canvas**, then **Apply current view** to keep it or **Cancel canvas preview** to restore the canvas. Continue editing, undo/redo, and save a project JSON. Desktop discovery needs no Node.js installation. The template data editor still accepts CSV/TSV; use Discovery for direct XLSX upload.
 
 Literature lookup is optional and starts only after a click. Enter public topic/sample/assay keywords; never enter patient identifiers, measurements or private project content. Verified figure captions and merely related papers have different evidence labels. Paper images are not downloaded. Local recommendation, plotting and export work offline. See the bundled [discovery guide](../docs/figure-discovery.md).
 
@@ -57,11 +61,11 @@ Application settings, the workspace page and logs are under `%LOCALAPPDATA%\Figu
 
 Closing a browser tab leaves the local service running. To stop it, choose **Quit** in the small Figure Studio launcher window, or close that window. Accepted calculations finish before the service exits.
 
-**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.21 installer. The older update entry only opens a download; it cannot install this upgrade for you.
+**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.22 installer. The older update entry only opens a download; it cannot install this upgrade for you.
 
-**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.21 installer manually. Version 0.1.21 includes the long-path fix introduced in 0.1.10.
+**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.22 installer manually. Version 0.1.22 includes the long-path fix introduced in 0.1.10.
 
-**Future updates from the 0.1.21 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
+**Future updates from the 0.1.22 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
 
 The update window's cat and dog follow the actual download, verification and installation stage. Download 100% still requires integrity verification; wait for **Ready when you are** before confirming installation. Clear **Character animation (respects reduced motion)** to keep them still; progress and controls keep updating. A system reduced-motion preference also stops movement. Once the installer has taken over, an expected service shutdown retains the neutral installation message rather than appearing as a failed update. A connection problem before that handoff has its own **Check progress** action.
 

@@ -1,0 +1,121 @@
+{
+  "schema": "figure-studio-touch-retained-attempts/1",
+  "status": "CONFIRMED_SOURCE06_TOUCH_ENTRY_AND_CANVAS_FAILURE",
+  "attempts": [
+    {
+      "label": "source06-touch",
+      "classification": "HARNESS_ENTRY_PRECONDITION",
+      "scope": "The original QA helper clicked the hidden desktop-sidebar import button in actual coarse-pointer mobile UI. No image/border functional check completed.",
+      "browser": "155.0.8059.82",
+      "conditions": {
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "deviceScaleFactor": 1,
+        "hasTouch": true,
+        "isMobile": false,
+        "reducedMotion": "reduce",
+        "video": false
+      },
+      "htmlSha256": "378b55f7063ac6a5173b1018b7e14785107e999082695882a9351d3e42f65601",
+      "harnessSha256": "3caf684f65230451f15d47d2080380e8ae0fafe722c5868899e9f02ac81aa5bc",
+      "rawReportSha256": "2d911f96bc489626313c10172f8c08688ed48197f3b460a86e1c4bd141cce064",
+      "cases": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL"
+        },
+        {
+          "language": "en",
+          "theme": "pearl",
+          "status": "FAIL"
+        },
+        {
+          "language": "zh-CN",
+          "theme": "carbon",
+          "status": "FAIL"
+        },
+        {
+          "language": "zh-CN",
+          "theme": "pearl",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "label": "source06-touch-mobile-entry-pilot",
+      "classification": "PRODUCT_ENTRY_VISIBILITY_FAILURE",
+      "scope": "The visible top import and mobile Edit controls were used. A real Border tap did not reveal the inspector to the user.",
+      "browser": "155.0.8059.82",
+      "conditions": {
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "deviceScaleFactor": 1,
+        "hasTouch": true,
+        "isMobile": false,
+        "reducedMotion": "reduce",
+        "video": false
+      },
+      "htmlSha256": "378b55f7063ac6a5173b1018b7e14785107e999082695882a9351d3e42f65601",
+      "harnessSha256": "ec6507e392cdbc03707817112a51ddfb1742b37159c08b487b239a2a452c2008",
+      "rawReportSha256": "1be08d7469d583289398cfb7a580436a7b0443eeaa74a11173f34f994c663d7d",
+      "cases": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "label": "source06-touch-manual-drawer-diagnostic",
+      "classification": "PRODUCT_CANVAS_REACHABILITY_FAILURE",
+      "scope": "An actual tap on the existing Adjustments tab exposed the border fields and draft, but the drawer scrim blocked interaction with the visible main-image centre.",
+      "browser": "155.0.8059.82",
+      "conditions": {
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "deviceScaleFactor": 1,
+        "hasTouch": true,
+        "isMobile": false,
+        "reducedMotion": "reduce",
+        "video": false
+      },
+      "htmlSha256": "378b55f7063ac6a5173b1018b7e14785107e999082695882a9351d3e42f65601",
+      "harnessSha256": "fafdd806b068415ecf2fdde99a1f740edaf1edd614d4a796bf7164b863f5652b",
+      "rawReportSha256": "54e1ca30312f54e432e6f044e05c93bda202fb0a77c1f1d6972248d40068d33f",
+      "cases": [
+        {
+          "language": "en",
+          "theme": "carbon",
+          "status": "FAIL",
+          "borderEntry": {
+            "panelHidden": false,
+            "inspectorInert": true,
+            "mobileTab": "canvas",
+            "inspectorAriaHidden": "true"
+          },
+          "explicitExtraNavigation": "Actual tap on the existing bottom Adjustments tab after the border entry",
+          "actualTargetReachable": {
+            "x": 640,
+            "y": 495.796875,
+            "inViewport": true,
+            "artboardHit": false
+          }
+        }
+      ]
+    }
+  ],
+  "screenshot": {
+    "file": "source06-touch-drawer-canvas-blocked.png",
+    "sha256": "6fad2d51ae97e924de49891994d165de51c0d8adc393d5525d4ab1419f086a91",
+    "content": "Unedited actual Chrome screenshot, public H&E source; actual preview after manual Adjustments navigation, dark scrim blocking canvas."
+  },
+  "limits": "One viewport and browser touch emulation; the two product diagnostics are Carbon/English only. Four earlier language/theme attempts failed in a QA import precondition and are not four independent observations of the product defect. No physical touch, native keyboard, IME, or novice test is claimed. A later fix must have its own evidence; these records remain unchanged."
+}

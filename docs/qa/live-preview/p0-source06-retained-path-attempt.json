@@ -1,0 +1,46 @@
+{
+  "schema": "figure-studio-qa-retained-attempt/1",
+  "status": "HARNESS_PRECONDITION_FAILURE_RETAINED",
+  "attempt": "P0 source06 matrix initial attempt",
+  "browser": "155.0.8059.82",
+  "conditionCount": 8,
+  "casePreconditionFailures": 72,
+  "functionalExerciseStages": 0,
+  "cause": "The QA harness defaulted to editor.html, while the frozen directory contains index.html. All failures occurred in source-proof preconditions before page navigation or functional exercise. This is a harness path error, not evidence of a product workflow failure.",
+  "correction": "Next attempt explicitly supplies the actual index.html together with the same freeze manifest; the original attempt is retained.",
+  "rawMatrixSha256": "29ae54c3d1df2b06b8932bf76fcddd617eadd6ba6d4a1da2efed772a820e7321",
+  "rawReports": [
+    {
+      "condition": "1280x720-en-carbon",
+      "rawReportSha256": "30da2a08d17829122d0c1372f893307c6ec2d104a2790ca39236932873cd8e24"
+    },
+    {
+      "condition": "1280x720-en-pearl",
+      "rawReportSha256": "48b2320dfb3df2cdc291273fab1a358793e548621c8ab8e385b4db11fb4d4d5c"
+    },
+    {
+      "condition": "1280x720-zh-CN-carbon",
+      "rawReportSha256": "932f610e1c760477b3a6a8d8959d44f2fa5f452fd0e22b694492b7e2a61f4db8"
+    },
+    {
+      "condition": "1280x720-zh-CN-pearl",
+      "rawReportSha256": "1d713fcd65acdc33f7f6abf394579be95a55eea0484437dc49df2a5c1141d334"
+    },
+    {
+      "condition": "1920x1080-en-carbon",
+      "rawReportSha256": "89d4ed7030b8758786ab2bc1750e606c05f347029d4918308019afd782d0bd39"
+    },
+    {
+      "condition": "1920x1080-en-pearl",
+      "rawReportSha256": "719000eef45e6c566001be15310b4ea771a29ed130ded095ee5d5a05965da8c5"
+    },
+    {
+      "condition": "1920x1080-zh-CN-carbon",
+      "rawReportSha256": "19715a79de87ae24b297b512f3ac3fc9ee8ad9b82dea1578271d05a19bc0d0a5"
+    },
+    {
+      "condition": "1920x1080-zh-CN-pearl",
+      "rawReportSha256": "23148c987e5233ce391998c55eef7375d81419f12cc60292f0d6ceadea20c3ba"
+    }
+  ]
+}

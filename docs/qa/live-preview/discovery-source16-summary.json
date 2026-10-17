@@ -1,0 +1,80 @@
+{
+  "schema": "figure-studio-discovery-browser-safe-summary/1",
+  "label": "source16-discovery-full",
+  "kind": "source-development-runtime",
+  "status": "SCOPED_ACCEPTANCE_PASS",
+  "generatedAt": "2026-10-17T17:13:01.932Z",
+  "rawReportSha256": "8736721e3bb4acd2cb9045a17e840d88f0a77e0de85cec8e3ce002b096bc7032",
+  "harnessSha256": "2968917b47b7a524bea82b6c20edf35ca845f54eb3cd0218efbbde81fe7f143c",
+  "browser": "155.0.8059.82",
+  "servedBuild": {
+    "currentVersion": "0.1.22",
+    "suiteVersion": "1.4.22"
+  },
+  "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+  "localSourceProof": {
+    "localHtmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+    "servedHtmlSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+    "reconstructedExpectedSha256": "983550bec0d64bc6944aa7bc2416e7eebc784347344eafe4f206a69e6af7dacc",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "offlineHtmlSha256": "46f45c68376f359afe2d8695003a5e9908f9f8a06867953528b55f7c4cd0eef8",
+  "offlineApplication": {
+    "dialogClosedAfterAsyncApply": true,
+    "savedPayloadVerified": true,
+    "activeSummaryPanels": 1,
+    "sourceRows": 2,
+    "sourceRowsSha256": "96d55c14098f5940649cffc364a4034eb49f45ab3b043aacd960d4bd2650c2e0",
+    "zeroHttpRequests": true
+  },
+  "checks": [
+    "table upload",
+    "shared core",
+    "unknown unit actively rejects recommendation with zero cards/Apply actions",
+    ">=3 real independent previews",
+    "paired long-table pivot",
+    "Chinese and English",
+    "occupied artwork append preserving original source and edits, one Undo/Redo",
+    "untouched blank replace with declared paired data, one Undo/Redo",
+    "save/reopen",
+    "SVG export",
+    "PNG export",
+    "design invalidation",
+    "zero unauthorized remote requests",
+    "private table value blocked on search click",
+    "explicit public literature click intercepted without external transmission; offline error preserves local previews",
+    "current explicitly supplied standalone offline summary render and apply"
+  ],
+  "applicationBranches": {
+    "occupied": {
+      "previewsLeaveCommittedProjectStateHistoryExact": true,
+      "addedPanels": 1,
+      "originalSourceAndArtworkPreserved": true,
+      "inactiveRedoAssetExcludedFromDomAndExport": true,
+      "oneCommitUndoRedo": true,
+      "saveReopenExact": true
+    },
+    "untouchedBlank": {
+      "previewsLeaveCommittedProjectStateHistoryExact": true,
+      "replacedUntouchedBlankWithoutExtraVisiblePanel": true,
+      "inactiveRedoAssetExcludedFromDomAndExport": true,
+      "pairedSubjects": 3,
+      "longSourceRows": 6,
+      "oneCommitUndoRedo": true
+    }
+  },
+  "privacy": {
+    "unauthorizedExternalRequestCount": 0,
+    "explicitLiteratureSearchAttemptsAborted": 1,
+    "attemptedProviderOrigins": [
+      "https://www.ebi.ac.uk"
+    ],
+    "externalTransmission": "Blocked by the browser harness before transmission. No literature response or citation is fabricated.",
+    "privateTableValueSearchBlocked": true
+  },
+  "scope": "Existing discovery UI and local rules, exercised with the repository independent/paired/summary CSV engineering fixtures. Actual file upload, recommendation, application, history, persistence, SVG/PNG exports and an explicit current standalone-file offline flow. This is not a study of clinical validity or a successful online literature retrieval.",
+  "installation": "Runtime kind is explicit. Installed package/Setup identity requires the independent Windows installer sidecar; source acceptance alone does not prove an installed binary.",
+  "pageErrorCount": 0
+}

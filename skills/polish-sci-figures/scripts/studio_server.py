@@ -101,8 +101,8 @@ def regenerate(recipe,rows,statistics=None,axes=None):
     # return new artwork carrying statistical results from an older table.
     statistics_result=None
     if statistics is not None:
-        from studio_statistics import analyze
-        statistics_result=analyze(recipe,rows,statistics)
+        from studio_render_statistics import analyze_for_render
+        statistics_result=analyze_for_render(recipe,rows,statistics)
     import figure_workbench as wb
     import data_family_workbench as dfw
     import advanced_template_workbench as aw
