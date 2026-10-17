@@ -1,12 +1,13 @@
-param([string]$Version = '0.1.18')
+param([string]$Version = '0.1.19', [string]$PackageRoot = '')
 $ErrorActionPreference = 'Stop'
 $studioRoot = Split-Path -Parent $PSScriptRoot
 $studioCache = [IO.Path]::GetFullPath((Join-Path $studioRoot '.cache'))
 $studioInstall = [IO.Path]::GetFullPath((Join-Path $studioCache 'desktop-installer-qa'))
 $studioData = Join-Path $studioCache 'desktop-installer-data'
 $studioProof = Join-Path $studioCache "desktop-installer-proof-$Version"
-$studioSetup = Join-Path $studioRoot "dist/desktop/polish-sci-figures-Studio-$Version-Setup-x64.exe"
-$studioSource = Join-Path $studioRoot 'dist/desktop/Figure Studio'
+if (-not $PackageRoot) { $PackageRoot = Join-Path $studioRoot 'dist/desktop' }
+$studioSetup = Join-Path $PackageRoot "polish-sci-figures-Studio-$Version-Setup-x64.exe"
+$studioSource = Join-Path $PackageRoot 'Figure Studio'
 if (-not $studioInstall.StartsWith($studioCache + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
     throw 'Installer test must remain inside the build workspace.'
 }

@@ -1,6 +1,6 @@
 # Figure Discovery implementation and validation
 
-This is a source feature on `codex/scientific-figure-discovery`, not a claim that store installers or every supported platform were rebuilt. Test inputs under `scripts/fixtures/discovery` are small synthetic, non-patient fixtures with deliberately explicit designs; they are not clinical validation datasets.
+Figure Discovery ships in the Windows Suite v1.4.19 / Studio 0.1.19 release. The source and installed-package checks are recorded separately below. Test inputs under `scripts/fixtures/discovery` are small synthetic, non-patient fixtures with deliberately explicit designs; they are not clinical validation datasets.
 
 ## Audit and stages
 
@@ -26,7 +26,7 @@ The automated scientific suite covers small independent groups, genuine paired l
 
 The Chromium test exercises upload, multiple real previews, apply, undo, redo, save/reopen, design invalidation, Chinese/English, zero unsolicited remote requests, and actual standalone offline rendering/application. It writes `.cache/discovery-qa/result.json` and screenshots. Regression tests cover gallery contracts, existing beginner flow, state/history, data validation, variant switching, file imports, local web scheduling and loopback rendering. Final executed outcomes and screenshots are recorded below after the run.
 
-No macOS, iOS, Android device, rebuilt Windows installer or store distribution is certified by these tests. Source packaging/resource checks do not substitute for device interaction tests. The scientific gates rely on truthful user declarations; no code can infer genuine biological independence from an ID column.
+The source tests alone do not certify an installer, macOS, iOS, Android device or store distribution. Source packaging/resource checks do not substitute for device interaction tests. The scientific gates rely on truthful user declarations; no code can infer genuine biological independence from an ID column.
 
 ## Executed results · 2026-10-17
 
@@ -59,4 +59,19 @@ The live [API record](qa/figure-discovery/live-literature.json) retains the real
 
 Real browser evidence (synthetic acceptance data, always rendered through the product): [English independent groups](qa/figure-discovery/independent-en.png), [Chinese paired views](qa/figure-discovery/paired-zh.png), [offline editable summary](qa/figure-discovery/offline-editor.png), [machine-readable browser result](qa/figure-discovery/result.json). These images were visually inspected for readable labels, differing data views and retained editor controls.
 
-Before a binary release, rebuild the Windows application, run the same tests inside that packaged application, exercise macOS/iOS/Android and the full WASM runtime on their actual hosts, and review target-specific fonts and memory behavior. These operations have not been performed in this change. No automatic AI service or OpenAlex key/configuration was introduced.
+Windows packaging and installed-app acceptance follow below. macOS/iOS/Android host interaction, clean Windows VM, Windows 10 physical-host and app-store acceptance were not performed for this release. Existing CI checks exercise the browser/WASM runtime but do not replace physical-device testing. No automatic AI service or OpenAlex key/configuration was introduced.
+
+
+## Installed Windows acceptance · Studio 0.1.19
+
+The CPython 3.12 x64 application was fully frozen with PyInstaller and packaged with Inno Setup. The installer was run in an isolated workspace directory. Every installed file was compared with the packaged build; the frozen executable passed Tk, local authorization, analysis, rendering, reflow, PDF import, image screening and crop-localization checks with system Python unavailable. Reinstallation preserved a sentinel project and settings; uninstallation removed application files and retained external test data.
+
+A separate installed-app browser run uploaded an XLSX workbook and paired CSV fixture through the real interface, generated actual-data previews, applied a candidate, undid/redid, saved/reopened a project and downloaded valid SVG and PNG exports. All external browser requests were blocked. The test observed zero unsolicited requests and blocked a known local table value when the search button was clicked. The standalone offline fallback was tested separately. Twenty existing template families also passed the installed engine's HTTP/rendering regression, including edited heatmap data. Synthetic fixture data do not establish clinical or statistical validation for arbitrary studies.
+
+Native interaction verified the ready launcher, its Open editor button, the Figure Discovery dialog in the default Edge browser, repeated launch reusing the service PID/origin, and Quit stopping the process. Browser editing tests used an isolated Chrome test profile; the default browser's pre-existing project was not replaced. Desktop discovery works without Node.js on the application PATH; Node is a development/test and optional CLI requirement only.
+
+Reproduce with `desktop/build_windows.py --outdir .cache/windows-release-0.1.19`, then `desktop/verify_windows.ps1 -PackageRoot <absolute-output-path>`. Launch the installed executable with `--no-open --data-dir <isolated-data-path>`. Point `STUDIO_DISCOVERY_URL` at its loopback URL and run `scripts/test_figure_discovery_browser.cjs`; `STUDIO_DISCOVERY_TABLE` selects the XLSX acceptance file and `STUDIO_DISCOVERY_PROOF` selects the output directory. Run `desktop/test_packaged_catalogue.py --url <loopback-url> --outdir <proof-directory>` for existing templates.
+
+Release attachments `WINDOWS-VALIDATION.json`, `DISCOVERY-ACCEPTANCE.json` and `SHA256SUMS.txt` identify the exact published artifacts and checks. Screenshots below show the installed build with synthetic data. This was a local Windows x64 host, not a clean VM; the executable is unsigned. No new Mac/Android binaries, iOS package or store release accompanies this Windows upgrade.
+
+[Installed independent views](qa/figure-discovery/windows-independent-en.png) · [Installed paired views](qa/figure-discovery/windows-paired-zh.png) · [Installed browser result](qa/figure-discovery/windows-result.json)

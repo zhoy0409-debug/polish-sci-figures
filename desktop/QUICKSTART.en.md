@@ -6,16 +6,25 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 ## Install and open
 
-1. Download the [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.18/polish-sci-figures-Studio-0.1.18-Setup-x64.exe), then run it and follow the installer for your Windows user account.
+1. Download the [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.19/polish-sci-figures-Studio-0.1.19-Setup-x64.exe), then run it and follow the installer for your Windows user account.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
 3. Choose **English** or **中文** at the top right. Opening the shortcut again opens the editor already running.
 
 For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-Portable-x64.zip` before running `Figure Studio.exe`. Keep its adjacent `_internal` folder.
 
+
+## Start with Figure Discovery
+
+Open **Figure Discovery** on the start page or Explore tab. Upload CSV, TSV or XLSX (first worksheet, headers in row one), check the column mapping and confirm the design, experimental unit, data level, technical replicates and nesting. Describe your research purpose, sample and assay. Inferred information is marked separately and never establishes independence or pairing.
+
+Generate candidates and compare their reasons, limitations and previews rendered from your own data. Normally 3–6 views are offered; scientific restrictions can yield fewer or none. Apply a view, continue editing, undo/redo, and save a project JSON. Desktop discovery needs no Node.js installation. The template data editor still accepts CSV/TSV; use Discovery for direct XLSX upload.
+
+Literature lookup is optional and starts only after a click. Enter public topic/sample/assay keywords; never enter patient identifiers, measurements or private project content. Verified figure captions and merely related papers have different evidence labels. Paper images are not downloaded. Local recommendation, plotting and export work offline. See the bundled [discovery guide](../docs/figure-discovery.md).
+
 ## Create your first figure
 
 1. Choose **Start from a template**, browse a category and enlarge the previews. **Start with example** loads example data: replace it with your own before using the figure. You can also import an existing SVG, image, or selected PDF page. Native text and vectors stay editable; image contents remain images. Review font substitutions in imported PDFs before export.
-2. In **Data table**, paste cells (including an Excel range) or import CSV/TSV. Choose **Check data** to locate invalid cells, correct them, then **Update chart**. The first row must contain the template's required column names. **Auto-update** is optional. To import an `.xlsx` file, first export CSV/TSV from your spreadsheet software.
+2. In **Data table**, paste cells (including an Excel range) or import CSV/TSV. Choose **Check data** to locate invalid cells, correct them, then **Update chart**. The first row must contain the template's required column names. **Auto-update** is optional. For direct `.xlsx` import, use Figure Discovery.
 3. For group comparisons, expand **Statistical analysis** and choose **Set up analysis** (**Update analysis** when results exist). Confirm the recognized columns, data type, independent or paired design, and experimental unit. Methods appear in recommendation order; select one to calculate and preview the result, then choose **Apply to figure**. You can also connect existing comparison results. Model-result templates require their corresponding result tables.
 4. Select, drag or draw a selection rectangle around objects to adjust text, colors, annotations and layout. Use **Undo** to go back. Set your publication dimensions, then open **Export** and choose **SVG**, **PNG**, or **TIF**. SVG retains vector artwork; PNG and TIFF use your chosen dimensions and resolution. Enlarging an imported low-resolution image cannot restore missing detail.
 5. Choose **Save** to download a project JSON file. Use **Project → Open project** to continue later. SVG/PNG/TIFF files are figure exports; the project JSON is the backup containing editable state, data and version history.
@@ -42,11 +51,11 @@ Application settings, the workspace page and logs are under `%LOCALAPPDATA%\Figu
 
 Closing a browser tab leaves the local service running. To stop it, choose **Quit** in the small Figure Studio launcher window, or close that window. Accepted calculations finish before the service exits.
 
-**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.18 installer. The older update entry only opens a download; it cannot install this upgrade for you.
+**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.19 installer. The older update entry only opens a download; it cannot install this upgrade for you.
 
-**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.18 installer manually. Version 0.1.18 includes the long-path fix introduced in 0.1.10.
+**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.19 installer manually. Version 0.1.19 includes the long-path fix introduced in 0.1.10.
 
-**Future updates from the 0.1.18 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
+**Future updates from the 0.1.19 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
 
 The update progress shows download, preparation and installation stages with a small moving companion. Once the installer has taken over, an expected service shutdown retains the neutral installation message rather than appearing as a failed update. A connection problem before that handoff has its own retry action.
 

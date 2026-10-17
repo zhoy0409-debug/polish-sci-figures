@@ -22,8 +22,8 @@ WORK = ROOT / '.cache' / 'desktop-build'
 STAGE = WORK / 'suite'
 DIST = ROOT / 'dist' / 'desktop'
 APP = DIST / 'Figure Studio'
-VERSION = '0.1.18'
-SUITE_VERSION = 'v1.4.18'
+VERSION = '0.1.19'
+SUITE_VERSION = 'v1.4.19'
 PACKAGES = ('numpy', 'scipy', 'pandas', 'matplotlib', 'openpyxl', 'Pillow', 'pypdfium2', 'pypdf', 'opencv-python-headless',
             'contourpy', 'cycler', 'fonttools', 'kiwisolver', 'packaging',
             'python-dateutil', 'pytz', 'tzdata', 'six', 'et_xmlfile', 'pyparsing', 'PyYAML',
@@ -199,11 +199,16 @@ def package(compiler):
 
 
 def main():
+    global DIST, APP
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--outdir', type=Path, default=DIST,
+                        help='Output directory for the frozen app and installers')
     parser.add_argument('--iscc', type=Path, default=ROOT / '.cache/build-tools/inno/ISCC.exe')
     parser.add_argument('--skip-freeze', action='store_true')
     parser.add_argument('--stage-only', action='store_true')
     args = parser.parse_args()
+    DIST = args.outdir.resolve()
+    APP = DIST / 'Figure Studio'
     if sys.platform != 'win32' or sys.maxsize <= 2**32:
         raise SystemExit('Build on Windows using 64-bit CPython.')
     WORK.mkdir(parents=True, exist_ok=True)

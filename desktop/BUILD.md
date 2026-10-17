@@ -73,3 +73,5 @@ The current packaging process **does not code-sign** the executable or installer
 Official branding and a fixed repository link are distribution provenance, not copy protection, and do not guarantee that copies or modified distributions cannot be made. Preserve the project license and all third-party license notices; the official-channel designation does not amend their terms.
 
 Include the generated license notices and both [Chinese](QUICKSTART.zh-CN.md) and [English](QUICKSTART.en.md) user guides in each distribution.
+
+Windows builds can use `--outdir .cache/windows-release` when the default `dist` location is unavailable. The directory contains the complete frozen app, installer, portable archive and checksums. Published Mac/Android preview downloads remain at their last separately validated version; changing source version metadata does not publish those packages.

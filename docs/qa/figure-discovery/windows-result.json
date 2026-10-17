@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:18767/",
+  "table": "discovery-independent.xlsx",
+  "checks": [
+    "table upload",
+    "shared core",
+    ">=3 real independent previews",
+    "paired long-table pivot",
+    "Chinese and English",
+    "apply",
+    "undo",
+    "redo",
+    "save/reopen",
+    "SVG export",
+    "PNG export",
+    "design invalidation",
+    "zero unauthorized remote requests",
+    "private table value blocked on search click",
+    "standalone offline summary render and apply"
+  ],
+  "remoteRequests": [],
+  "errors": []
+}

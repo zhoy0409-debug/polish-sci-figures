@@ -60,7 +60,8 @@ def main():
     native_updates = (ROOT / "mobile/android/app/src/main/java/org/polishscifigures/studio/preview/UpdateChecker.java").read_text(encoding="utf-8")
     assert re.search(r'put\("suiteVersion", "([^"]+)"\)', native_updates).group(1) == VERSION.removeprefix("v")
 
-    # Current links identify each newly built package. Historical release notes
+    # Windows links identify the new build. Preview links may retain an older,
+    # separately published build during a Windows-only release. Historical release notes
     # deliberately retain their original version and verification scope.
     notes = f"docs/release-notes-{VERSION}.md"
     documents = ["README.md", "README.en.md", "README.zh-CN.md",
@@ -71,7 +72,8 @@ def main():
         for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-(?:Setup-x64\.exe|Portable-x64\.zip)", text):
             assert (tag, version) == (VERSION, app_version), (name, tag, version)
         for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-(?:macOS-[^/)]+|Android-preview\.apk)", text):
-            assert (tag, version) == ("figure-studio-local-preview-" + preview_version, preview_version), (name, tag, version)
+            assert tag == "figure-studio-local-preview-" + version, (name, tag, version)
+            assert tuple(map(int, version.split("."))) <= tuple(map(int, preview_version.split("."))), (name, tag, version)
     assert "## 中文" in (ROOT / notes).read_text(encoding="utf-8")
 
     # The PE resource is generated, not checked in. Exercise its real generator

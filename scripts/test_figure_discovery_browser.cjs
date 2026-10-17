@@ -2,7 +2,7 @@
  * Run with STUDIO_DISCOVERY_URL pointing to a newly generated local starter. */
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{chromium}=require('playwright');
-const ROOT=path.join(__dirname,'..'),out=path.join(ROOT,'.cache/discovery-qa');fs.mkdirSync(out,{recursive:true});
+const ROOT=path.join(__dirname,'..'),out=process.env.STUDIO_DISCOVERY_PROOF||path.join(ROOT,'.cache/discovery-qa');fs.mkdirSync(out,{recursive:true});
 async function main(){
  const browser=await chromium.launch({headless:true,...(process.env.STUDIO_BROWSER?{executablePath:process.env.STUDIO_BROWSER}:{channel:'chrome'})});
  try{
@@ -11,7 +11,7 @@ async function main(){
  await page.route('**/*',route=>{const url=new URL(route.request().url());if(url.protocol.startsWith('http')&&!['127.0.0.1','localhost'].includes(url.hostname)){remote.push(url.href);route.abort();}else route.continue();});
  await page.goto(process.env.STUDIO_DISCOVERY_URL||'http://127.0.0.1:18941/');
  await page.locator('#language').selectOption('en');await page.locator('#startDiscovery').click();
- await page.locator('#discoveryFile').setInputFiles(path.join(ROOT,'scripts/fixtures/discovery/independent.csv'));
+ await page.locator('#discoveryFile').setInputFiles(process.env.STUDIO_DISCOVERY_TABLE||path.join(ROOT,'scripts/fixtures/discovery/independent.csv'));
  await page.locator('#discoverySummary').getByText(/6 rows/).waitFor();
  for(const [key,value]of Object.entries({data_level:'raw',design:'independent',outcome_type:'continuous',technical_replicates:'no',nesting:'none'}))await page.locator('#discovery-'+key).selectOption(value);
  await page.locator('#discovery-unit_confirmed').check();await page.locator('#discoveryRun').click();
@@ -26,6 +26,11 @@ async function main(){
  await page.locator('#redo').click();const redone=await saved();assert.equal(redone.state.order[0],id);
  await page.locator('#projectFile').setInputFiles({name:'discovery-project.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(redone))});
  const reopened=await saved();assert.equal(reopened.state.order[0],id);assert.deepEqual(reopened.project.panels.find(p=>p.id===id).table.rows,redone.project.panels.find(p=>p.id===id).table.rows);
+ for(const [button,extension]of [['export','svg'],['png','png']]){
+  await page.locator('#exportMenu summary').click();const pending=page.waitForEvent('download');await page.locator('#'+button).click();const download=await pending;const bytes=fs.readFileSync(await download.path());
+  assert.ok(bytes.length>500,'nonempty '+extension+' export');if(extension==='svg')assert.match(bytes.toString(),/<svg[\s>]/);else assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
+  fs.writeFileSync(path.join(out,'actual-data-export.'+extension),bytes);
+ }
  await page.locator('[data-tab="explore"]').click();await page.locator('#openDiscovery').click();await page.locator('#discoveryRun').click();await page.waitForFunction(()=>/Generated/.test(document.getElementById('discoveryStatus').textContent),{},{timeout:90000});
  await page.locator('#discovery-design').selectOption('paired');assert.equal(await page.locator('.discovery-card').count(),0,'design edits invalidate all previews immediately');
  await page.locator('#discoveryRun').click();assert.match(await page.locator('#discoveryStatus').textContent(),/No eligible/);
@@ -44,7 +49,7 @@ async function main(){
  const {pathToFileURL}=require('node:url');await offline.goto(pathToFileURL(path.join(ROOT,'.cache/discovery-starter.html')).href);await offline.locator('#language').selectOption('en');await offline.locator('#startDiscovery').click();
  await offline.locator('#discoveryFile').setInputFiles(path.join(ROOT,'scripts/fixtures/discovery/summary.csv'));await offline.locator('#discoverySummary').getByText(/2 rows/).waitFor();await offline.locator('#discovery-data_level').selectOption('summary');await offline.locator('#discoveryRun').click();await offline.waitForFunction(()=>/Generated 1 actual-data/.test(document.getElementById('discoveryStatus').textContent));
  assert.equal(await offline.locator('.discovery-card svg').count(),1);await offline.locator('.discovery-apply').click();assert.equal(offlineRequests,0);await offline.screenshot({path:path.join(out,'offline-editor.png')});
- fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,checks:['CSV upload','shared core','>=3 real independent previews','paired long-table pivot','Chinese and English','apply','undo','redo','save/reopen','design invalidation','zero unauthorized remote requests','private table value blocked on search click','standalone offline summary render and apply'],remoteRequests:remote,errors},null,2));
+ fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,url:process.env.STUDIO_DISCOVERY_URL,table:process.env.STUDIO_DISCOVERY_TABLE?path.basename(process.env.STUDIO_DISCOVERY_TABLE):'independent.csv',checks:['table upload','shared core','>=3 real independent previews','paired long-table pivot','Chinese and English','apply','undo','redo','save/reopen','SVG export','PNG export','design invalidation','zero unauthorized remote requests','private table value blocked on search click','standalone offline summary render and apply'],remoteRequests:remote,errors},null,2));
  console.log('PASS real Chromium discovery flow, editor history/project roundtrip, Chinese/English, local actual-data rendering, offline fallback and zero unauthorized remote requests');
  }finally{await browser.close();}
 }
