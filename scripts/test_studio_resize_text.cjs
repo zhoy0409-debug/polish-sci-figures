@@ -5,6 +5,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('nod
 const {JSDOM}=require('jsdom');
 const base='../skills/polish-sci-figures/assets/figure-studio/';
 const source=fs.readFileSync(require.resolve(base+'studio.js'),'utf8'),html=fs.readFileSync(require.resolve(base+'studio.html'),'utf8');
+const drawDeclaration=source.match(/^  const DRAW = '[^'\r\n]+';$/m)?.[0];assert.ok(drawDeclaration,'Missing production DRAW declaration');
 const main=require(base+'studio.js'),rich=require(base+'rich-text.js'),geometry=require(base+'image-insets.js'),affine=require(base+'selection-transform.js'),presentation=require(base+'selection-transform-dom.js'),gridResize=require(base+'grid-resize-ui.js');
 const copy=value=>JSON.parse(JSON.stringify(value)),NS='http://www.w3.org/2000/svg';
 const close=(actual,expected,label='')=>assert.ok(Math.abs(actual-expected)<=1e-8*Math.max(1,Math.abs(expected)),`${label}: ${actual} != ${expected}`);
@@ -14,6 +15,8 @@ function chunk(start,end){const a=source.indexOf(start),b=source.indexOf(end,a+s
 const editBlock=chunk('    // Prepare all positioned text before styles change inherited font bases.','    // Work on complete category groups');
 const typographyBlock=chunk('    if(!raw&&s.typography','    if(!raw && s.panels[id].geometry)');
 const helpers=[
+  drawDeclaration,
+  chunk('  function isVisibleObject(el) {','  function keysToObjects(svg)'),
   chunk('  let labelSelections=[];','  const sizeNames='),
   chunk('  function selectionCommandInfo(){','  function renderSelectionCommands(){'),
   chunk('function validPresentationMatrix(','function heatmapCellInfo('),
