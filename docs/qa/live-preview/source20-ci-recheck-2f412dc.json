@@ -1,0 +1,120 @@
+{
+  "schema": "figure-studio-ci-recheck/1",
+  "stage": "source20",
+  "status": "PASS_FOR_COMMIT_2f412dc_ONLY",
+  "generatedUTC": "2026-10-17T21:32:00.368467+00:00",
+  "scope": "Official GitHub CI recheck of the four QA-fixture corrections at this exact commit. Initial failed CI and local red-to-green fixture reports remain unchanged.",
+  "pullRequest": 31,
+  "pullRequestUrl": "https://github.com/zhoy0409-debug/polish-sci-figures/pull/31",
+  "head": "2f412dcf19aa7e673885e3456875e715745e21a1",
+  "run": {
+    "id": 39070875705,
+    "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39070875705",
+    "workflowName": "Skill checks",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success",
+    "createdAt": "2026-10-17T21:25:25Z",
+    "startedAt": "2026-10-17T21:25:25Z",
+    "updatedAt": "2026-10-17T21:30:51Z",
+    "lastJobCompletedAt": "2026-10-17T21:30:50Z",
+    "allEightSuccessObservedUTC": "2026-10-17T21:31:00.875175+00:00"
+  },
+  "completedJobs": 8,
+  "successfulJobs": 8,
+  "failedJobs": 0,
+  "jobs": [
+    {
+      "jobId": 117508037918,
+      "name": "local browser preview (ubuntu, py3.12, Node24)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T21:25:28Z",
+      "completedAt": "2026-10-17T21:28:19Z",
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39070875705/job/117508037918"
+    },
+    {
+      "jobId": 117508038005,
+      "name": "basic (windows-latest, py3.10)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T21:25:29Z",
+      "completedAt": "2026-10-17T21:27:37Z",
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39070875705/job/117508038005"
+    },
+    {
+      "jobId": 117508038031,
+      "name": "basic (ubuntu-latest, py3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T21:25:28Z",
+      "completedAt": "2026-10-17T21:27:01Z",
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39070875705/job/117508038031"
+    },
+    {
+      "jobId": 117508038042,
+      "name": "basic (macos-latest, py3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T21:25:34Z",
+      "completedAt": "2026-10-17T21:30:13Z",
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39070875705/job/117508038042"
+    },
+    {
+      "jobId": 117508038061,
+      "name": "full integration (ubuntu, py3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T21:25:29Z",
+      "completedAt": "2026-10-17T21:30:50Z",
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39070875705/job/117508038061"
+    },
+    {
+      "jobId": 117508038076,
+      "name": "basic (macos-latest, py3.10)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T21:25:35Z",
+      "completedAt": "2026-10-17T21:30:09Z",
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39070875705/job/117508038076"
+    },
+    {
+      "jobId": 117508038082,
+      "name": "basic (ubuntu-latest, py3.10)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T21:25:29Z",
+      "completedAt": "2026-10-17T21:27:07Z",
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39070875705/job/117508038082"
+    },
+    {
+      "jobId": 117508038106,
+      "name": "basic (windows-latest, py3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-17T21:25:29Z",
+      "completedAt": "2026-10-17T21:27:59Z",
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39070875705/job/117508038106"
+    }
+  ],
+  "evidence": {
+    "officialSource": "GitHub Actions run/jobs metadata, read-only API and gh queries",
+    "finalWatchSnapshotSha256": "cd29cb55ba3044eb1c45961ea39d6823870c9aa4894a551fc333c585c3e1df0a",
+    "snapshotOriginalJobsApiResponseSha256": "312c07950bd08ba935983d3d8b55ef7bcd5ff5251110afa140006b515c829ef2",
+    "completedRunMetadataSha256": "1aa54ac34559109e3b854ba44008f74d9f4a13dfbdc0944b82c23bd6725b4b8b",
+    "noRemoteMutation": true
+  },
+  "priorEvidencePreserved": {
+    "initialFailedHead": "9e2aa0acdb5a74d93c8b89c7e0181beabefc53f9",
+    "initialFailedRun": 39068492241,
+    "initialResult": "Six basic jobs passed and two jobs failed; retained without rewriting.",
+    "localFixtureReport": "source20-ci-fixture-regressions.json",
+    "localFixtureReportSha256": "4e7b2064eb947e3f61ff41cd1d1db918e417c617f128c86dc31ca380f143f618"
+  },
+  "boundaries": [
+    "These eight successes apply only to commit 2f412dcf19aa7e673885e3456875e715745e21a1. Any later documentation or release commit needs its own check.",
+    "This CI result does not verify installed package byte identity, Windows native behavior, native IME, or the official 0.1.20-to-0.1.22 updater flow.",
+    "No future CI result, merge approval, publication, installation, or update acceptance is implied.",
+    "Only public IDs, names, timestamps, direct GitHub URLs and hashes are included; no machine paths, tokens or signed log URLs."
+  ]
+}

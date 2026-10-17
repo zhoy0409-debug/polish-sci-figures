@@ -1,0 +1,130 @@
+{
+  "schema": "figure-studio-windows-final-native-state/2",
+  "status": "PASS_ACTUAL_NORMAL_REINSTALL_UNINSTALL_AND_INDEPENDENT_QUERY",
+  "sourceStage": "source20",
+  "applicationVersion": "0.1.22",
+  "setupSha256": "85b0355490eb2615f2cebc1097e6e51da1d89a9f3b5851a60d95831930be3d1a",
+  "packageSourceProofSha256": "6aff7122b3e1c62efa5e4967ca625c430cfa453bfded051b9e18af028a841eef",
+  "completedActualNativePhases": [
+    "Install",
+    "Start",
+    "Reinstall",
+    "Uninstall"
+  ],
+  "normalFinalization": true,
+  "incompleteAttemptCleanup": false,
+  "nativeExecutions": [
+    {
+      "sourceStage": "source20",
+      "phase": "Reinstall",
+      "actualProcessExitCode": 0,
+      "nativeExitCode": null,
+      "nativeExitEvidence": "The synchronous helper checks the native installer exit code but does not separately persist that numeric value.",
+      "browserAcceptanceCompleteAuthorizedByRoot": true,
+      "incompleteAttemptCleanup": false,
+      "privatePlanSha256": "368ce3ded829be6223d51a69391d75b07a4b7538d685ea1638f05eadc7fd7deb",
+      "logSha256": "765372d1d44bc45cf92651df97bf1aeacffec612885207236218df14eedf53e2",
+      "executionReportSha256": "e55f6141a2d5275933e18548626f5c20c924f492d9ab82b7481075af7658fb25"
+    },
+    {
+      "sourceStage": "source20",
+      "phase": "Uninstall",
+      "actualProcessExitCode": 0,
+      "nativeExitCode": null,
+      "nativeExitEvidence": "The synchronous helper checks native uninstaller exit code and executable absence but does not separately persist that numeric exit value.",
+      "browserAcceptanceCompleteAuthorizedByRoot": true,
+      "incompleteAttemptCleanup": false,
+      "logSha256": "43b6f75be2203bed74eee0912288462143ac436b07984d469fff770c9ddfaa51",
+      "executionReportSha256": "4ab91016213517786f9fb734764a9c0debebce683b0b47d972110024c2fff3d3"
+    }
+  ],
+  "unmodifiedSafeReports": [
+    {
+      "phase": "Reinstall",
+      "file": "docs/qa/live-preview/windows-final20-reinstall-summary.json",
+      "sha256": "765372d1d44bc45cf92651df97bf1aeacffec612885207236218df14eedf53e2",
+      "byteExactOriginalSafeReport": true
+    },
+    {
+      "phase": "Uninstall",
+      "file": "docs/qa/live-preview/windows-final20-uninstall-summary.json",
+      "sha256": "43b6f75be2203bed74eee0912288462143ac436b07984d469fff770c9ddfaa51",
+      "byteExactOriginalSafeReport": true
+    }
+  ],
+  "freshIndependentQuerySha256": "f434fe7784e19f35388dc2f963df2a09ed9ea256b0f17de859754116eecf123b",
+  "freshIndependentQuery": {
+    "ownedExecutableAbsent": true,
+    "protectedOriginalIdentityUnchanged": true,
+    "queriedAtUtc": "2026-10-17T21:22:49.8576209Z",
+    "version": "0.1.22",
+    "actualIrisObservationCount": 150,
+    "registryViews": [
+      {
+        "exists": false,
+        "hive": "HKCU",
+        "view": "Registry32"
+      },
+      {
+        "exists": false,
+        "hive": "HKCU",
+        "view": "Registry64"
+      },
+      {
+        "exists": false,
+        "hive": "HKLM",
+        "view": "Registry32"
+      },
+      {
+        "exists": false,
+        "hive": "HKLM",
+        "view": "Registry64"
+      }
+    ],
+    "powerShellVersion": "7.6.5",
+    "preserved": [
+      {
+        "byteExact": true,
+        "afterUninstallSha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509",
+        "role": "externalSentinel",
+        "beforeReinstallSha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509"
+      },
+      {
+        "byteExact": true,
+        "afterUninstallSha256": "6e9433ff6b4d1927e30e2fad1c2f9c49772011492bdb5e6122bc23295e59050c",
+        "role": "settings",
+        "beforeReinstallSha256": "6e9433ff6b4d1927e30e2fad1c2f9c49772011492bdb5e6122bc23295e59050c"
+      },
+      {
+        "byteExact": true,
+        "afterUninstallSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+        "role": "actualSavedPublicIris",
+        "beforeReinstallSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5"
+      }
+    ],
+    "scope": "Read-only CIM, file SHA-256 and all four exact AppId registry view queries after actual normal uninstall. No PID, local path, registry values, token or measurement is disclosed; no process or registry mutation.",
+    "status": "PASS_ACTUAL_READ_ONLY_FINAL_QUERY",
+    "qaProcessStoppedInState": true,
+    "schema": "figure-studio-windows-final-native-query/1",
+    "ownedQaProcessCount": 0,
+    "protectedOriginalCount": 1
+  },
+  "actualReinstallAllPackagedFilesVerified": {
+    "fileCount": 2622,
+    "everyPackagedFileMatches": true,
+    "manifestSha256": "71b8f8c9ec0a5e37f5d27098558fa09b79a767291957841ba5fd4d776233eb71"
+  },
+  "actualSavedIris": {
+    "sha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+    "sizeBytes": 577820,
+    "observationCount": 150,
+    "tableMatchesOriginalExactly": true,
+    "originalSvgVariantCount": 12,
+    "allOriginalSvgVariantsByteExact": true
+  },
+  "actualExternalDataPreserved": true,
+  "protectedOriginalProcessIdentityUnchanged": true,
+  "ownedQaProcessStopped": true,
+  "scope": "Actual original-Setup same-version reinstall and normal uninstall after approved installed-browser, extra-axis and media acceptance. Independent four-view registry, exact protected-process identity, executable absence and external-file SHA checks passed. Only the exact owned QA process was stopped. Source18 human IME evidence remains separate; this record does not claim repeated source20 native IME or an official-version update.",
+  "officialOldVersionUpdateExecutedByThisLifecycle": false
+}

@@ -1,6 +1,6 @@
 # 实时预览验收记录
 
-当前打包源码为 source20：源码组件、轴专项和正式性能已完成，新 Windows 包尚未构建或实际安装验收；真实官方 0.1.20 → 0.1.22 更新待正式目标发布。source19 已被已知轴输入缺陷替代，历史部分安装记录保留；source17 的完整安装、生命周期与成品哈希见[历史汇总](windows-final17-acceptance-summary.json)。所有旧 JSON 保持原始字节，不改写为 source20 结果。
+当前打包源码为 source20：源码组件、轴专项和正式性能已完成，原始 Windows 包已完成本机完整编辑与正常生命周期验收；真实官方 0.1.20 → 0.1.22 更新待正式目标发布。source19 已被已知轴输入缺陷替代，历史部分安装记录保留；source17 的完整安装、生命周期与成品哈希见[历史汇总](windows-final17-acceptance-summary.json)。所有旧 JSON 保持原始字节，不改写为 source20 结果。
 
 | source20 已完成范围 | 当前证据 |
 |---|---|
@@ -10,9 +10,21 @@
 | 唯一正式性能 | [184 动作、全部八行四指标](performance-v2-final20-summary.json)与[17／18／19 对照](performance-v2-final20-vs17-18-19.json)；5000 选择 next／second-rAF P95 78.6／154.7 ms，改色 123.1／195.4 ms，完整八卡第二 rAF P95 610.7 ms。不得用 source19 更快尾部替代 |
 | 独立四面板 | [23 手势完整性与 trace](four-panel-style-final20-diagnostic.json)；输入第二 rAF P50／P95 33.8／37.7 ms、Enter 70.6／82.4 ms，未声称所有指标改善 |
 | 人工 IME 边界 | source18 的 6 项真实检查继续绑定原阶段；[source20 代码范围](source20-ime-change-scope.json)确认相关 host 处理器及文字／inset 两模块未变，轴模块已改，不主张重复原生 IME |
-| Windows 新包 | 尚未构建和验收；[source19 部分安装 108 项](windows-final19-partial-installed-summary.json)及[未完成清理](windows-final19-incomplete-cleanup-summary.json)不算 source20 通过 |
+| Windows 原始包 | 实际安装／启动、Own 108、P1 74、额外轴 10、60 图／1770 对任务取消、10000 图元 PDF／SVG 两项及正常重装／卸载均完成；见[本次汇总](windows-final20-acceptance-summary.json)。官方更高版本更新仍为发布后待实测 |
 
 相对官方 0.1.20／0.1.21，5000 选择第二 rAF P95 358.2／332.9 → 154.7 ms，改色 451.8／520.2 → 195.4 ms；仅这两个核心操作的四指标 P50／P95 均改善。全部负载、内部阶段退步和测量边界见[性能报告](../../stable-performance-validation.md)。
+
+| source20 Windows 实际范围 | 独立证据 |
+|---|---|
+| 原包／完整文件来源 | [原始 Setup／Portable 对照](windows-final20-package-source-match.json)，后补文档是显式快照差异，不改原包 |
+| 八套件 108 项 | [本次 Own 记录](windows-final20-own-summary.json)：P0 72、resource 4、blank 1、touch 8、selection 5、Discovery 16、核心真实录像 2 |
+| 高频两主题 74 项 | [实际 P1](windows-final20-p1-summary.json) |
+| 额外轴两主题 10 项 | [实际本机引擎与普通键盘，合成组合尾事件](windows-final20-axis-composition-browser.json)；[Carbon](windows-final20-axis-carbon.png)／[Pearl](windows-final20-axis-pearl.png) |
+| 60 图／1770 对与大型导入 | [真实后台任务在 68 对时取消](windows-final20-duplicate-summary.json)及 [10000 图元 PDF／SVG 两项](windows-final20-large-import-summary.json)；不作准确率或正式性能测量 |
+| 重装／卸载／最终查询 | [Reinstall](windows-final20-reinstall-summary.json)、[Uninstall](windows-final20-uninstall-summary.json)、[四视图空／自有 0／保护原实例与三文件／Iris 150 行和 12 SVG 精确](windows-final20-native-final-state.json) |
+| 真实本次媒体 | [原 WebM、截图及采样帧查看范围](windows-final20-media-review.json)；不把旧 source17 GIF 改称本次视频，不称全片观看或性能录像 |
+
+安装器附带说明及 bundled audit inventory 保留构建时字节；最新外部报告与第二份严格来源证明分别说明已获准 docs/*.md 快照差异。源码／ROOT 六文件／Quickstart／bundled audit 不改。
 
 | source19 历史范围（已替代） | 阶段证据 |
 |---|---|
@@ -88,7 +100,7 @@ node scripts/test_studio_resource_preview_browser.cjs --url=http://127.0.0.1:POR
 
 实际 IDB 结构化克隆保留 3 个 own `undefined` 派生缓存键，JSON Save 会省略它们；专项比较仅允许这 3 个缺失且 `undefined` 的键（`layoutRenders`、`heatmapRenders`、`statisticalRenders`），其余科学值、源 SVG、state、history、checkpoints、dataDrafts 均严格比较，不做整体 JSON 归一化。`test_studio_resource_preview_harness.cjs` 另检查未知键、已定义缓存、负零、源图与历史改变仍被拒绝。资源公共摘要可用 `summarize_studio_resource_preview_browser.cjs --input=RAW/resource-preview.json --out=NEW-SUMMARY.json` 重跑，要求完整四条件、同一捕获 harness、全部通过及零外部请求；不会把单条件 pilot 汇总为完整通过。
 
-安装版运行需要独立的安装器 SHA、完整安装文件清单和进程路径证明；仅把 `kind` 写成安装版不能证明已安装。安装与清理流程见[隔离验收方案](../../../audit/live-preview-windows-qa-plan.md)。本轮专用 `verify_live_preview_windows.ps1` 要求 PowerShell 7.5 或以上：读取原 JSON 状态使用 `ConvertFrom-Json -DateKind String` 保留进程创建时间的原始 ISO 字符串，并核对 PID、创建时间、路径及 EXE 哈希。Windows PowerShell 5.1 不满足此 QA 脚本前提。每次尝试使用全新的 QaRoot；阶段失败后的正规卸载另记为清理，不能改写成完整验收通过。用户已授权通过剩余验收后发布，当前未发布；本地安装验收不代表创建新版 Release。
+安装版运行需要独立的安装器 SHA、完整安装文件清单和进程路径证明；仅把 `kind` 写成安装版不能证明已安装。安装与清理流程见[隔离验收方案](../../../audit/live-preview-windows-qa-plan.md)。本轮专用 `verify_live_preview_windows.ps1` 要求 PowerShell 7.5 或以上：读取原 JSON 状态使用 `ConvertFrom-Json -DateKind String` 保留进程创建时间的原始 ISO 字符串，并核对 PID、创建时间、路径及 EXE 哈希。Windows PowerShell 5.1 不满足此 QA 脚本前提。每次尝试使用全新的 QaRoot；阶段失败后的正规卸载另记为清理，不能改写成完整验收通过。当前本机验收已完成，尚未发布；本地安装通过不等于已经创建正式 Release，官方更新仍须发布后实测。
 
 ## 结果解释
 
@@ -130,4 +142,4 @@ node scripts/test_studio_duplicate_network_capture.cjs
 node scripts/test_studio_large_import_contracts.cjs
 ```
 
-本机实际分别通过 13／12／6 组；身份脚本的 Windows PowerShell Unicode 往返分支只在 Windows 执行。远端 CI 尚未运行，不将工作流新增命令写成 CI 已通过。
+本机实际分别通过 13／12／6 组；身份脚本的 Windows PowerShell Unicode 往返分支只在 Windows 执行。远端 CI 初轮有 QA fixture 失败，四处 VM fixture 修正已提交；后续检查按实际工作流结果记录，不把本地合同计作 CI 通过。

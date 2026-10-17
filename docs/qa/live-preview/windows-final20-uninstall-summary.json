@@ -1,0 +1,47 @@
+{
+  "schema": "figure-studio-live-preview-windows/1",
+  "checks": [
+    "Four exact AppId hive/view combinations initially absent",
+    "Protected application process identities and binaries unchanged",
+    "All packaged files match actual installed files",
+    "Actually installed x64 PE version matches",
+    "Frozen installed self-test passes with Python removed from PATH and invalid PYTHONHOME",
+    "Exact installed process serves authenticated local health on isolated persisted QA port",
+    "Same-version original Setup reinstall preserves exact settings, external sentinel and actual saved public project bytes",
+    "Actual uninstaller restores all four AppId combinations to absence and preserves external data/protected processes"
+  ],
+  "reinstallPreserved": true,
+  "harnessSha256": "19fadc35c2308c5ab10cfa0a6c661a07df16a9e60510a3fda7c5c7563fc95c29",
+  "servedHtmlSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+  "powerShellVersion": "7.6.5",
+  "initialRegistryViewsAbsent": 4,
+  "environment": "Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.",
+  "version": "0.1.22",
+  "frozen": true,
+  "completedPhases": [
+    "Install",
+    "Start",
+    "Reinstall",
+    "Uninstall"
+  ],
+  "phase": "Uninstall",
+  "uninstalled": true,
+  "selfTestPassed": true,
+  "selfTestReportSha256": "3a3da4b2d763399a05e5ccb009f9d7d50037a6da0189265a4c03080f6f0f2c10",
+  "reinstallPackageVerification": {
+    "fileCount": 2622,
+    "everyPackagedFileMatches": true,
+    "manifestSha256": "71b8f8c9ec0a5e37f5d27098558fa09b79a767291957841ba5fd4d776233eb71"
+  },
+  "protectedProcessIdentitiesUnchanged": true,
+  "externalDataPreserved": true,
+  "packageVerification": {
+    "everyPackagedFileMatches": true,
+    "manifestSha256": "a53de948baae58fabeeaa953db95222cfe48b7f6fedbe9a15856d0d7b2c6e80d",
+    "fileCount": 2622
+  },
+  "workspaceHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+  "setupSha256": "85b0355490eb2615f2cebc1097e6e51da1d89a9f3b5851a60d95831930be3d1a",
+  "incompleteAttemptCleanup": false,
+  "protectedProcessCount": 1
+}

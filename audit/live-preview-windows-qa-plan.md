@@ -1,8 +1,16 @@
 # 实时预览安装版的隔离验收方案
 
-本方案规定如何在不改变用户正在运行的 Figure Studio、原有安装登记和研究数据的条件下，验收 0.1.22 安装包。当前 source20 包待构建与实际安装验收，真实官方 0.1.20 → 0.1.22 更新待目标发布。source17 原 Setup 的完整结果见[历史汇总](../docs/qa/live-preview/windows-final17-acceptance-summary.json)。source19 原包虽通过 8 套件 108 项，因已确认的轴输入缺陷被替代；其[部分记录](../docs/qa/live-preview/windows-final19-partial-installed-summary.json)与[未完成阶段的正规清理](../docs/qa/live-preview/windows-final19-incomplete-cleanup-summary.json)不算最终验收。本文件保留方案，不用计划代替完成证据。
+本方案规定如何在不改变用户正在运行的 Figure Studio、原有安装登记和研究数据的条件下，验收 0.1.22 安装包。source20 原始包现已完成实际 Install／Start、全套指定编辑范围、正常 Reinstall／Uninstall 及独立最终查询；真实官方 0.1.20 → 0.1.22 更新仍为发布后待实测。source17 原 Setup 的完整结果见[历史汇总](../docs/qa/live-preview/windows-final17-acceptance-summary.json)。source19 原包虽通过 8 套件 108 项，因已确认的轴输入缺陷被替代；其[部分记录](../docs/qa/live-preview/windows-final19-partial-installed-summary.json)与[未完成阶段的正规清理](../docs/qa/live-preview/windows-final19-incomplete-cleanup-summary.json)不算最终验收。本文件保留方案，不用计划代替完成证据。
 
 source20 已通过 [95 个组件脚本](../docs/qa/live-preview/source20-component-regressions.json)、[双主题 10 项真实 Iris 轴流程](../docs/qa/live-preview/source20-axis-composition-browser.json)、[25 组轴输入合同和旧回归](../docs/qa/live-preview/source20-axis-composition-fix-regressions.json)，[正式性能四阶段对照](../docs/qa/live-preview/performance-v2-final20-vs17-18-19.json)和[独立四面板](../docs/qa/live-preview/four-panel-style-final20-diagnostic.json)已完成，包含改善及退步。source18 人工微软拼音 6 项、F2／失焦、Undo／Redo、保存重开及 SVG／PNG 保留原证据，原表和源图精确一致，见[实际输入法记录](../docs/windows-native-ime-acceptance.md)。[source20 代码范围](../docs/qa/live-preview/source20-ime-change-scope.json)排除已改的轴模块，不冒称新安装版重复人工 IME；浏览器轴组合事件明确为合成，实际键盘、渲染和文件操作分别核对。
+
+## source20 本次执行结果
+
+[实际安装版汇总](../docs/qa/live-preview/windows-final20-acceptance-summary.json)绑定原始成品和各独立范围：Own 八套件 [108 项](../docs/qa/live-preview/windows-final20-own-summary.json)、P1 [74 项](../docs/qa/live-preview/windows-final20-p1-summary.json)、额外轴 [10 项](../docs/qa/live-preview/windows-final20-axis-composition-browser.json)、[60 图／1770 对真实后台任务取消](../docs/qa/live-preview/windows-final20-duplicate-summary.json)、[10000 图元 PDF／SVG 两项](../docs/qa/live-preview/windows-final20-large-import-summary.json)均完成。轴组合尾事件为合成，普通键盘／Iris 引擎／文件操作为真实浏览器流程，不是重复原生 IME。
+
+正常 [重装](../docs/qa/live-preview/windows-final20-reinstall-summary.json)和[卸载](../docs/qa/live-preview/windows-final20-uninstall-summary.json)外层进程实际退出 0；同步 helper 检查原生返回，但未独立保存原生数值。[只读最终查询](../docs/qa/live-preview/windows-final20-native-final-state.json)证明四登记视图空、自有进程 0、EXE 移除、原 1 实例身份与 3 外部文件精确保留，Iris 150 行／12 原 SVG 不变。它是正常完成后的清理，区别于 source19 未完成阶段卸载。
+
+`audit/live-preview-inventory.md` 是本次安装包内的构建时快照，保持原字节。本外部方案与最新 docs 后补实际结果；只对显式 docs/*.md 生成第二份严格快照差异证明，不更改首份成品证明、原 Setup 或冻结非文档。官方更新未以普通重装替代。
 
 ## 安装前的保护基线
 

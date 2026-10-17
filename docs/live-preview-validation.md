@@ -1,6 +1,6 @@
 # 全局实时预览验收记录
 
-截至 2026-10-18，最终打包源码为 source20：95 个组件脚本（91 Node、4 Chrome）、双主题 10 项真实 Iris 轴流程、唯一正式性能及独立四面板诊断已完成。新增数值轴拒绝输入锁存，尾部事件和再次取消候选不会把既有范围误改为自动；数据与科学渲染不变。新 source20 Windows 包尚未构建或安装验收，当前未发布；真实官方 0.1.20 → 0.1.22 更新待正式目标发布后执行。
+截至 2026-10-18，最终打包源码为 source20：95 个组件脚本（91 Node、4 Chrome）、双主题 10 项真实 Iris 轴流程、唯一正式性能及独立四面板诊断已完成。新增数值轴拒绝输入锁存，尾部事件和再次取消候选不会把既有范围误改为自动；数据与科学渲染不变。source20 原始 Windows Setup 已完成实际安装、启动、完整编辑验收、正常重装及卸载保留数据，当前尚未发布；真实官方 0.1.20 → 0.1.22 更新待正式目标发布后执行。
 
 source18 人工微软拼音已核对画布选词、候选 Esc／Enter 后继续换行并取消、无效 HEX 取消、F2／失焦确认、实际 Undo／Redo、保存／重开及 SVG／PNG 导出；Iris 150 条观测和源 SVG 保持精确一致。[Windows 输入法实际记录](windows-native-ime-acceptance.md)说明真实组合事件、人工确认与自动观察边界；F2 的发起由用户确认。source20 未重复人工 IME；[代码范围核对](qa/live-preview/source20-ime-change-scope.json)确认主编辑器相关处理器及文字间距、局部放大图两模块与 source18 精确一致，但专业轴模块已修改，不能称全部模块连续或新的原生 IME 实测。
 
@@ -15,9 +15,28 @@ source18 人工微软拼音已核对画布选词、候选 Esc／Enter 后继续�
 | 双主题真实轴流程 | Carbon／Pearl 共 10 项：真实 Iris 本机重绘、普通键盘修正和明确清空、Apply 一次 Undo／Redo、Save → 新空白工程 → Open、实际 SVG 导出；原始观测与源图保持。拒绝组合与尾事件为明确合成的 DOM 事件，不是原生 IME | [实际范围和请求](qa/live-preview/source20-axis-composition-browser.json) |
 | 正式性能 | 唯一 184 动作（160 正式、24 预热），原样保留。5000 选择 next／second-rAF P95 为 78.6／154.7 ms，改色为 123.1／195.4 ms；八卡 second-rAF P95 610.7 ms，未全面达标 | [全部八行、四指标](qa/live-preview/performance-v2-final20-summary.json)；[17／18／19 对照](qa/live-preview/performance-v2-final20-vs17-18-19.json) |
 | 独立四面板 | 3 次预热、20 次正式手势；输入第二 rAF P50／P95 为 33.8／37.7 ms，Enter 为 70.6／82.4 ms。全部草稿隔离、一次 Undo／Redo、源工程、零外部请求与页面错误检查通过 | [独立诊断](qa/live-preview/four-panel-style-final20-diagnostic.json) |
-| 新 Windows 包／官方更新 | source20 新包尚未构建或实际安装验收；官方更新需发布真实目标后验证 | 先前安装与 source18 人工结果不替代此项 |
+| Windows 成品／官方更新 | source20 原包的实际安装、全部下列编辑范围、重装及卸载保留数据已完成；官方 0.1.20 → 0.1.22 仍须发布真实目标后实测 | [本次安装版汇总](qa/live-preview/windows-final20-acceptance-summary.json)；不以普通重装代替官方更新 |
 
 与官方 0.1.20／0.1.21 相比，5000 选择第二 rAF P95 从 358.2／332.9 ms 降至 154.7 ms，改色从 451.8／520.2 ms 降至 195.4 ms；仅这两个核心操作的四种指标 P50／P95 均改善。source19 内部阶段的改色尾部 123.7 ms 和四面板 Enter 58.6 ms 更快，source20 不用它们替代自己的结果；120 图元与八卡等完整比较见[性能记录](stable-performance-validation.md)。未测因果不归因于 GC 或环境。
+
+## source20 Windows 成品实际验收
+
+本次使用原始未修改 Setup（SHA-256 `85b0355490eb2615f2cebc1097e6e51da1d89a9f3b5851a60d95831930be3d1a`）及 Portable（`15b721ce052359f540ad88dddc9776ae1279a8494567f58711d0003dbd6fa5e8`）。[原始成品来源证明](qa/live-preview/windows-final20-package-source-match.json)核对 78 个 UI 资产、27 项后端来源及完整 2622 文件；实际安装版起始 HTML 为 `df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0`，与源码 Iris 验收页不同，各自保留精确注入证明。最终阶段和包绑定见[独立汇总](qa/live-preview/windows-final20-acceptance-summary.json)。
+
+| 实际范围 | 结果与边界 | 证据 |
+|---|---|---|
+| 原 Setup 安装／启动 | 实际安装路径、完整文件、x64 0.1.22、冻结自检、服务与受保护原实例身份均核对；不是解压或源码服务 | [本次成品／阶段汇总](qa/live-preview/windows-final20-acceptance-summary.json) |
+| Own 8 套件 | 108 项通过：P0 72、资源 4、空白 1、触控模拟 8、科学／编辑 5、智能选图 16、核心真实录像 2 | [108 项独立记录](qa/live-preview/windows-final20-own-summary.json) |
+| 高频属性 | Carbon／Pearl 各完整 37 项，共 74 项，源数据、草稿、取消、一次 Undo、保存重开及导出均核对 | [本次 P1](qa/live-preview/windows-final20-p1-summary.json) |
+| 额外专业轴 | 双主题 10 项，真实 Iris 引擎／普通键盘／Apply／一次 Undo／Save → 新空白 → Open／SVG；组合尾事件明确合成，不是第二次原生 IME | [本次轴专项](qa/live-preview/windows-final20-axis-composition-browser.json) |
+| 后台查重与编辑 | 60 张合成图／1770 对，真实任务期间编辑、原复核和工程保持；工作进程在 68／1770 对时实际确认取消。它不表示完成全批比对，也不构成检测准确率或正式性能证据 | [实际任务与取消](qa/live-preview/windows-final20-duplicate-summary.json) |
+| 大型导入 | 10000 图元 PDF 和 SVG 两项完整通过，实际导入／草稿隔离／取消／一次 Undo／保存重开／SVG、PNG；PDF 字体替代提示保留 | [两项实际流程](qa/live-preview/windows-final20-large-import-summary.json) |
+| 正常重装／卸载 | 实际 Reinstall、Uninstall 外层进程退出均为 0；同步 helper 检查原生返回，但未单独持久化原生数值，不补造原生退出码 | [重装](qa/live-preview/windows-final20-reinstall-summary.json)／[卸载](qa/live-preview/windows-final20-uninstall-summary.json) |
+| 最终只读核查 | 自有 QA 进程 0、EXE 已移除、四登记视图为空；1 个受保护原实例身份不变，工程／设置／哨兵 3 文件精确保留，Iris 150 行和原始 12 个 SVG 变体字节一致 | [本次最终状态](qa/live-preview/windows-final20-native-final-state.json) |
+
+安装包未签名，SHA-256 与来源证明不等于发布者数字签名。本次是本机隔离安装，触控仍是浏览器模拟；人工微软拼音 6 项继续绑定 source18，source20 未重复人工原生输入。官方更高版本的下载、校验、安装接手与自动恢复仍为**发布后待实测**，普通同版本重装不替代这条链。
+
+安装器附带说明与 `audit/live-preview-inventory.md` 保留构建时快照。此处及外部报告后补实际验收；首份成品来源证明不覆盖，后续严格证明只允许逐个声明的 `docs/*.md` 快照差异，其余 ROOT 文档、Quickstart、bundled audit、源码及资源保持原字节。[本次完整操作录像与媒体边界](live-preview-demonstration.md)区别于历史 source17 GIF。
 
 ## source19 阶段记录（已由 source20 替代）
 
@@ -136,7 +155,7 @@ fresh06 冻结后已运行 54 个 Node 回归脚本，全部退出码为 0；运
 
 ## 仍需完成或组织的验证
 
-- source20 完整八卡 second-rAF P95 为 610.7 ms，5000 改色为 195.4 ms，四面板 Enter 为 82.4 ms；source19 对应的 607.6／123.7／58.6 ms 更快。官方旧版核心选择与改色改善不代表所有指标无回退或所有操作低于 100 ms。source20 新包待构建和安装验收，source17／18／19 原始记录独立保留。
+- source20 完整八卡 second-rAF P95 为 610.7 ms，5000 改色为 195.4 ms，四面板 Enter 为 82.4 ms；source19 对应的 607.6／123.7／58.6 ms 更快。官方旧版核心选择与改色改善不代表所有指标无回退或所有操作低于 100 ms。source20 新包已完成上述本机安装和编辑／生命周期范围；source17／18／19 原始记录独立保留，不合并性能样本。
 - Windows 验收在实际本机的隔离目录执行，未使用全新 Windows 虚拟机；四个原 AppId 登记视图初始为空，原用户应用始终受保护。触控仅为 Chrome 模拟，不能外推为实体设备或所有系统缩放组合已验收。
 - 真实官方 0.1.20 → 0.1.22 下载、校验、安装、重开与恢复待目标发布后执行，不能用历史更新或同版本重装替代。
 - 真实新手任务的独立完成率与时间、实体触控仍未验证；人工中文输入法的源码 6 项检查已完成，新安装版上的实际范围尚待核查，不外推为所有输入控件或设备通过。

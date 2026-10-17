@@ -1,0 +1,228 @@
+{
+  "schema": "figure-studio-final-source20-distribution/1",
+  "status": "PASS_FINAL_ACTUAL_ARCHIVES_AND_DISTRIBUTION_CONTRACTS",
+  "createdAtUtc": "2026-10-17T21:37:17.208870+00:00",
+  "sourceStage": "source20",
+  "suiteVersion": "v1.4.22",
+  "applicationVersion": "0.1.22",
+  "sourceManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+  "exactUiAssetCount": 78,
+  "backendSources": 27,
+  "packagedProductionBackendModules": 23,
+  "originalWindowsProof": {
+    "file": "docs/qa/live-preview/windows-final20-package-source-match.json",
+    "sha256": "6aff7122b3e1c62efa5e4967ca625c430cfa453bfded051b9e18af028a841eef",
+    "unchanged": true
+  },
+  "postDocumentWindowsProof": {
+    "file": "docs/qa/live-preview/windows-final20-release-package-source-match.json",
+    "sha256": "0914d51c7030ab6f5520fd28216aecae26b9d89289fa433dfdf2a3c3e07e05dc",
+    "actualVerifierProcessExitCode": 0,
+    "status": "STAGE20_RUNTIME_AND_PORTABLE_MATCH",
+    "explicitDocumentSnapshotCount": 6,
+    "documentSnapshotDifferences": [
+      {
+        "file": "docs/live-preview-validation.md",
+        "packagedSha256": "85723e70b727976ce88f566a1d30259572ab72822c95b4e095741f52304cf420",
+        "packagedSizeBytes": 30876,
+        "currentCanonicalReleaseSha256": "61f332779174f6f5cbc2c757436f859c3c49cb2ab2b13f1eaafa2f3ba4e2e4fa",
+        "currentCanonicalReleaseSizeBytes": 35715,
+        "status": "DOCUMENT_SNAPSHOT_DIFFERENCE",
+        "reason": "Explicitly allowed build-time documentation snapshot; the current external report was updated after packaging. This is not runtime source parity."
+      },
+      {
+        "file": "docs/qa/live-preview/README.md",
+        "packagedSha256": "b7e3881e1f8d67ca452580efee048590d21616f6c41498bffc1612e670573bee",
+        "packagedSizeBytes": 21717,
+        "currentCanonicalReleaseSha256": "dfcd9d62585ed6f53464a92e3476e61ddd8269c809a09813771aa5fa772982a5",
+        "currentCanonicalReleaseSizeBytes": 24495,
+        "status": "DOCUMENT_SNAPSHOT_DIFFERENCE",
+        "reason": "Explicitly allowed build-time documentation snapshot; the current external report was updated after packaging. This is not runtime source parity."
+      },
+      {
+        "file": "docs/release-notes-v1.4.22.md",
+        "packagedSha256": "8d2056b8aa8e8bde2cbe7b5d2113f8d186d57f0f760318683867f16c6e3f05a2",
+        "packagedSizeBytes": 12944,
+        "currentCanonicalReleaseSha256": "f4c004cdebeef18436a6f6349df8962401004739ec1aedd6c868ef4b4f46c876",
+        "currentCanonicalReleaseSizeBytes": 16147,
+        "status": "DOCUMENT_SNAPSHOT_DIFFERENCE",
+        "reason": "Explicitly allowed build-time documentation snapshot; the current external report was updated after packaging. This is not runtime source parity."
+      },
+      {
+        "file": "docs/stable-performance-validation.md",
+        "packagedSha256": "091f5c30aacef63dd15ee29624f9c0ee4af958406512b7256dcf2980fa776f1d",
+        "packagedSizeBytes": 19895,
+        "currentCanonicalReleaseSha256": "83ef1ecf6ad736efc0f79da17fe8984be94fb342125f1801ecc53015b016567d",
+        "currentCanonicalReleaseSizeBytes": 22790,
+        "status": "DOCUMENT_SNAPSHOT_DIFFERENCE",
+        "reason": "Explicitly allowed build-time documentation snapshot; the current external report was updated after packaging. This is not runtime source parity."
+      },
+      {
+        "file": "docs/windows-native-ime-acceptance.md",
+        "packagedSha256": "418bc69f6bf2fadfa8aff9dcba184dd1f14fb46d3ed921d9094a507f37ea9aed",
+        "packagedSizeBytes": 9477,
+        "currentCanonicalReleaseSha256": "2616d175c2970883ebcb933a8efabda3aee4e57f2de0951924303e0cb97806d2",
+        "currentCanonicalReleaseSizeBytes": 10151,
+        "status": "DOCUMENT_SNAPSHOT_DIFFERENCE",
+        "reason": "Explicitly allowed build-time documentation snapshot; the current external report was updated after packaging. This is not runtime source parity."
+      },
+      {
+        "file": "docs/windows-update-real-acceptance.md",
+        "packagedSha256": "ac98d3ae15329c0958b638672a03e25c8fea9871540695e9c09438960f193407",
+        "packagedSizeBytes": 7279,
+        "currentCanonicalReleaseSha256": "bc2385df3ec9e047c577c301ff97bf3369f11a0588f6e1d51a089d10d2bedc7d",
+        "currentCanonicalReleaseSizeBytes": 7735,
+        "status": "DOCUMENT_SNAPSHOT_DIFFERENCE",
+        "reason": "Explicitly allowed build-time documentation snapshot; the current external report was updated after packaging. This is not runtime source parity."
+      }
+    ],
+    "runtimeUiBackendAndNativeExact": true,
+    "acceptedSetupAndPortableBytesUnchanged": true,
+    "windowsPackageRebuiltForReportEdits": false
+  },
+  "actualFinalArchives": [
+    {
+      "kind": "suite",
+      "name": "sci-figure-suite-v1.4.22.zip",
+      "sha256": "d7e639124add5c9bdaa401786967b96460b1e23a12695732ee3f546a7ab33d67",
+      "sizeBytes": 17930913,
+      "memberCount": 384,
+      "memberSetExact": true,
+      "everyMemberSizeAndContentSha256Exact": true,
+      "memberManifestSha256": "756442efdf6891bfaff46fbdc26ef0ac09b4a3ef5cb5a59471076e24ada07c90",
+      "actualArchiveExtracted": true,
+      "actualExtractedCliHelpPassed": true,
+      "actualExtractedDoctorBlocking": 0,
+      "globalDependenciesInstalledOrModified": false
+    },
+    {
+      "kind": "skill",
+      "name": "polish-sci-figures-v1.4.22-skill.zip",
+      "sha256": "a4d2565876346c72d7ad41c36c5b4a625a89e71fc64232c26332a6f285707813",
+      "sizeBytes": 17953625,
+      "memberCount": 385,
+      "memberSetExact": true,
+      "everyMemberSizeAndContentSha256Exact": true,
+      "memberManifestSha256": "266c53a116d7bd3bb4825c15b71688829f09b9f3db0f4015fe08f0fce4034288",
+      "actualArchiveExtracted": true,
+      "actualExtractedCliHelpPassed": true,
+      "actualExtractedDoctorBlocking": 0,
+      "globalDependenciesInstalledOrModified": false
+    }
+  ],
+  "actualDistributionPhases": [
+    {
+      "phase": "build-suite",
+      "actualProcessExitCode": 0,
+      "logSha256": "3aa84902ec784481e11c01f8fdb00b0d4d7054ba7f73c0e4736fac4cf4b59fec"
+    },
+    {
+      "phase": "build-skill",
+      "actualProcessExitCode": 0,
+      "logSha256": "fb1b51e0e471cc65b97dee45dd59b617d9bda9743fccdd62a1a0dea893785a3d"
+    },
+    {
+      "phase": "test_release_versions",
+      "actualProcessExitCode": 0,
+      "logSha256": "f6ba3598bea03698902ebe8303149cec1895b2b61d618a78ae484c7e768f3d6b"
+    },
+    {
+      "phase": "test_release_bundle",
+      "actualProcessExitCode": 0,
+      "logSha256": "da01df44ff1f658ebc85b0d34b26b75d824ff35a0bd0257773976f72b784faa7"
+    },
+    {
+      "phase": "test_portable_skill",
+      "actualProcessExitCode": 0,
+      "logSha256": "8564fff9cb36a969bb2c0b81197f5ff1e2f2008a84f18d6df8f2d5a9e023b99e"
+    },
+    {
+      "phase": "actual-suite-help",
+      "actualProcessExitCode": 0,
+      "logSha256": "935a1c1af8a0a63d2d3d0c3187c61b6dcbcff48e936dfc42ccaed68025a931d9"
+    },
+    {
+      "phase": "actual-suite-doctor",
+      "actualProcessExitCode": 0,
+      "logSha256": "7d94b6a61e0877bafcd8ef1399d6415deae4ee195480d8229620b1c26316d759"
+    },
+    {
+      "phase": "actual-skill-help",
+      "actualProcessExitCode": 0,
+      "logSha256": "935a1c1af8a0a63d2d3d0c3187c61b6dcbcff48e936dfc42ccaed68025a931d9"
+    },
+    {
+      "phase": "actual-skill-doctor",
+      "actualProcessExitCode": 0,
+      "logSha256": "c2cc72e143724ca585391d54cfadb21af203ef37bcba3fcbe5901ffdd282f92f"
+    }
+  ],
+  "actualReleaseBundleContract": {
+    "templates": 192,
+    "gallery_variants": 17,
+    "legacy_variants": 6,
+    "replacement_and_reflow": true,
+    "grouped_semantic_views": 2,
+    "local_duplicates": true,
+    "local_image_links": true
+  },
+  "actualPortableSkillContract": {
+    "archive": "polish-sci-figures-v1.4.22-skill.zip",
+    "files": 385,
+    "top_folder": "polish-sci-figures",
+    "raw_rows": 16,
+    "candidate_previews": 3,
+    "doctor": "passed",
+    "editable_page": "passed",
+    "source_unchanged": true
+  },
+  "archiveVerification": {
+    "suiteMemberCount": 384,
+    "skillMemberCount": 385,
+    "expectedMemberSetsDerivedFromActualReleaseFiles": true,
+    "everySuiteMemberComparedToArchiveBytes": true,
+    "everySkillMemberComparedToPortableBytesAndPortableName": true,
+    "portableEntrypointBytesExact": true,
+    "exactlyOneRecursiveSkillMd": true,
+    "duplicateOrCaseCollidingMembers": 0,
+    "unsafeOrSymlinkMembers": 0,
+    "actualFinalArchivesSafelyExtracted": true,
+    "actualExtractedSuiteAndSkillHelpPassed": true,
+    "actualExtractedSuiteAndSkillDoctorBlocking": 0,
+    "doctorFont": "DejaVu Sans"
+  },
+  "frozenInputGuard": {
+    "sourceUi78AndBackend27CheckedBeforeAndAfterEachPhase": true,
+    "releaseInputsAndFinalDocsAndHarnessesUnchanged": true,
+    "guardFileCount": 393,
+    "guardManifestSha256": "b7b0c2a55b728c6b26e13ab70afb26e018d867cc79acf19d9ef7d15750e7f822",
+    "supportFiles": 224,
+    "buildReleaseSha256": "00c53f6f63deaac6775e6610e364af4f576953a9635b93ddc36c76cb464f521c",
+    "buildPortableSkillSha256": "4a3364a773fbd3ea4071f4befd15aac9bb75c92fcf93ec75d1d389c11bbc0e48"
+  },
+  "retainedInitialStrictProofFailure": {
+    "actualProcessExitCode": 1,
+    "logSha256": "34cd14563b14a54be57b9934efc2975e32670f3cd43278bdac2b1801f6156024",
+    "mismatchInventorySha256": "f17446a29dd7ea4c33884269f14ddbcf4aa4e49f842439ded5a1f6d52f2319d6",
+    "classification": "MISSING_EXPLICIT_MARKDOWN_SNAPSHOT_ALLOWLIST_ENTRY",
+    "firstApprovedSnapshotCount": 5,
+    "actualAdditionalMarkdown": "docs/release-notes-v1.4.22.md",
+    "rootReviewedExactTextDifferenceAndApprovedSixthEntry": true,
+    "followupAttempt": 2,
+    "followupLogSha256": "35765f551d47f7926eaef754c838d1ea66ab4345dac6194adb09d178f6ad5a70",
+    "runtimeOrScientificFailure": false,
+    "originalFailedEvidencePreserved": true,
+    "verifierOrPackageRelaxedOrModified": false,
+    "scope": "The release notes were already a SUPPORT_FILES entry. The first five-document approval omitted their truthful post-acceptance text update. Only the exact sixth Markdown path was additionally approved; no runtime, package or generalized allowance changed."
+  },
+  "rawExecutionReportSha256": "a3e5ec1e904bc0005214b8513f8e0be8c19544630d8b5fbde915bda153ead308",
+  "startedAtUtc": "2026-10-17T21:35:43.706023+00:00",
+  "finishedAtUtc": "2026-10-17T21:36:27.894593+00:00",
+  "pythonVersion": "3.12.14",
+  "environmentScope": "Actual local Windows existing scientific virtual environment. Test-only temporary copies and final archive extractions remain inside owned cache. No new global dependencies, clean-machine installation or dependency-free execution is claimed.",
+  "sourcePublicQaZipCreatedByThisRun": false,
+  "nativeOrBrowserRunByThisDistributionCheck": false,
+  "gitOrNetworkMutationByThisDistributionCheck": false,
+  "officialUpdateOrPublicationByThisRun": false,
+  "scope": "The final Suite and Skill archive bytes were built once into a new directory, independently verified member-by-member, and actually extracted for CLI help and doctor. The three unchanged distribution contract scripts additionally built their own separate temporary archives and exercised raw-table generation, editable pages and bytecode runtime. No temporary test archive is substituted for the accepted final archives."
+}

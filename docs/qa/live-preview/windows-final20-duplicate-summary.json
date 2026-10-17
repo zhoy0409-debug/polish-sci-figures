@@ -1,0 +1,626 @@
+{
+  "schema": "figure-studio-public-background-screening/1",
+  "status": "PASS_SCOPED_ASYNC_EDITING_REGRESSION",
+  "label": "source20-installed",
+  "environment": "installed-windows",
+  "startedAt": "2026-10-17T21:09:54.314Z",
+  "finishedAt": "2026-10-17T21:10:13.660Z",
+  "rawReportSha256": "4be71e28161405061e450b6e28a5cfef536c48881c49417e4473f2933e4d8ed3",
+  "captureHarnessSha256": "f51a870b1f6cf761db32ad98d8c144bc06c7626f46746c6d7fe9ee8777660c31",
+  "servedHtmlVerifierSha256": "ce054638a5a51212e08b37e03d1bf3f0458a337403305878ebfe854cee5d364d",
+  "summaryHarnessSha256": "0f5cdf9c434b7d22ab0df68d0585bd4f6404c871343144f66ff0d7ae6f54dc05",
+  "browser": "155.0.8059.82",
+  "browserMode": "headful",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "servedBuild": {
+    "currentVersion": "0.1.22",
+    "suiteVersion": "1.4.22",
+    "platform": "windows",
+    "architecture": "x86_64",
+    "inAppInstall": false
+  },
+  "sourceProof": {
+    "localHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+    "servedHtmlSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+    "reconstructedExpectedSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "installedProof": {
+    "listenerExecutableExact": true,
+    "listenerCount": 1,
+    "fileVersion": "0.1.22",
+    "appId": "{51D78749-35EE-43BB-BA21-F79D6A1D5094}",
+    "registryOwned": true,
+    "registryPresentViews": 2,
+    "registryViews": [
+      {
+        "hive": "CurrentUser",
+        "view": "Registry64",
+        "exists": true,
+        "directoryExact": true,
+        "checkedValueNames": [
+          "Inno Setup: App Path",
+          "InstallLocation"
+        ]
+      },
+      {
+        "hive": "CurrentUser",
+        "view": "Registry32",
+        "exists": true,
+        "directoryExact": true,
+        "checkedValueNames": [
+          "Inno Setup: App Path",
+          "InstallLocation"
+        ]
+      },
+      {
+        "hive": "LocalMachine",
+        "view": "Registry64",
+        "exists": false,
+        "directoryExact": null,
+        "checkedValueNames": []
+      },
+      {
+        "hive": "LocalMachine",
+        "view": "Registry32",
+        "exists": false,
+        "directoryExact": null,
+        "checkedValueNames": []
+      }
+    ],
+    "executableSha256": "c2a6497e96300c88414e80b7c8d6c1b0c9d06d4ee41227a730a75d5322b98fa1",
+    "executableSizeBytes": 18306386,
+    "scope": "Read-only explicit executable hash, file version, live loopback listener ownership and original AppId in all four registry views. No process termination, installation or registry mutation. Update installation capability is checked separately."
+  },
+  "fixture": {
+    "kind": "synthetic_engineering_demo",
+    "count": 60,
+    "pairs": 1770,
+    "size": [
+      480,
+      360
+    ],
+    "seeds": [
+      700,
+      759
+    ],
+    "manifestSha256": "845a5a3f034d574d0f3c87d545b359db32ae40c8ddcbda684e3418be8747c965",
+    "generator": "scripts/test_image_duplicates.py:raster()",
+    "files": [
+      {
+        "name": "synthetic-700.png",
+        "sha256": "995e993bcf4d83057b8548b3dc1417325e4d2128c1875c70841f94011c0a5c97",
+        "sizeBytes": 309808
+      },
+      {
+        "name": "synthetic-701.png",
+        "sha256": "0075cdbfe3528816f9bb53db040f2e1e7e9874b38c8691e8d99d284061dd4cb6",
+        "sizeBytes": 308933
+      },
+      {
+        "name": "synthetic-702.png",
+        "sha256": "568ff72dbbb237d1bb7ebb43176ebafab3bb18c6045cf46191585bcfeaf81c96",
+        "sizeBytes": 309793
+      },
+      {
+        "name": "synthetic-703.png",
+        "sha256": "6c682516b95c984ad53818d0ca2ce0dfdadd8028551fdea34d86b86d6d11a17c",
+        "sizeBytes": 309724
+      },
+      {
+        "name": "synthetic-704.png",
+        "sha256": "f25f43f335153b5ff51c67888e7a59b58d7c010d869b865b74a20c3f1faeb220",
+        "sizeBytes": 307991
+      },
+      {
+        "name": "synthetic-705.png",
+        "sha256": "382a6853217a3769850459d2e096f856a89222454980eea135019a106c7c304d",
+        "sizeBytes": 310289
+      },
+      {
+        "name": "synthetic-706.png",
+        "sha256": "f94a909693d1bb0bafe319d40f030960ed340bf3b2661dbad470f6f6df7a6aa0",
+        "sizeBytes": 309488
+      },
+      {
+        "name": "synthetic-707.png",
+        "sha256": "260cea1ca9cccce99cdae214c7790e6a8ed0ed70920591e8da037fc7ba4a9355",
+        "sizeBytes": 310198
+      },
+      {
+        "name": "synthetic-708.png",
+        "sha256": "f67e66ab2e648a46d672439a962937f6857c485da5a00c1a1214556d8b525a7c",
+        "sizeBytes": 308895
+      },
+      {
+        "name": "synthetic-709.png",
+        "sha256": "3d19bfa1cbc4291a809eb3129e60ba6b530cb51cd8691567cdb46b807f6be574",
+        "sizeBytes": 310148
+      },
+      {
+        "name": "synthetic-710.png",
+        "sha256": "e39e1d14bc7b74cb377e6f3a7e89e4e3ec37c2bcd865d5b1c053d7d3e13ad0a5",
+        "sizeBytes": 309031
+      },
+      {
+        "name": "synthetic-711.png",
+        "sha256": "7b9702dda71fae10ad70d9ae2e1845615d8bfc3c0949a24fceaf807d9b771e05",
+        "sizeBytes": 309855
+      },
+      {
+        "name": "synthetic-712.png",
+        "sha256": "7557ef57f73f2ea76747911c0fc20de1aea0878564631e7e24838daeacef1844",
+        "sizeBytes": 309344
+      },
+      {
+        "name": "synthetic-713.png",
+        "sha256": "f0431ad6a8f36d5f48274058054ebfab402e0322f76505b1cc085ce84e204ab0",
+        "sizeBytes": 310468
+      },
+      {
+        "name": "synthetic-714.png",
+        "sha256": "c8da51721dd2211756f52c4a34655e5d82fb2528d4d3575a280e81be062204ba",
+        "sizeBytes": 309710
+      },
+      {
+        "name": "synthetic-715.png",
+        "sha256": "38f51b89c471babe8af782681859d59993f68262f0692f4e3f9eb945baddec81",
+        "sizeBytes": 309677
+      },
+      {
+        "name": "synthetic-716.png",
+        "sha256": "c67b54f19531d057511701e4aff4f723ab69e5ee0c5275981daec01ca55514c2",
+        "sizeBytes": 310519
+      },
+      {
+        "name": "synthetic-717.png",
+        "sha256": "6365ec2eb29a890023c094979c442e84aa3e78a4979e03fe788f84a4fb66e6dd",
+        "sizeBytes": 309009
+      },
+      {
+        "name": "synthetic-718.png",
+        "sha256": "815e6660b6e0a44fba3f0c937418677604a3119cc546574f493d770b2fafce79",
+        "sizeBytes": 308565
+      },
+      {
+        "name": "synthetic-719.png",
+        "sha256": "52e901357bd74394c9db9993a072e0d271aeb313b0cdc39d691a9c2d42130ce6",
+        "sizeBytes": 309927
+      },
+      {
+        "name": "synthetic-720.png",
+        "sha256": "ea88560198e1b7c261656d33fcd811dabc40304f2549ed09ea23139a84a39817",
+        "sizeBytes": 309299
+      },
+      {
+        "name": "synthetic-721.png",
+        "sha256": "485b14827dc1ba4399c06116b57ff8b683e0cef973562f544d803a809bfd8bae",
+        "sizeBytes": 309415
+      },
+      {
+        "name": "synthetic-722.png",
+        "sha256": "d9d7cbfbd7713df1d198fdc014026d13f37f8250dbfd7a91ef554aa4bf6eb789",
+        "sizeBytes": 309963
+      },
+      {
+        "name": "synthetic-723.png",
+        "sha256": "a6c4253dbc6c2708ffe123aeeb93932b4f8dd52d1732b5ebeffc75a930854eb7",
+        "sizeBytes": 309411
+      },
+      {
+        "name": "synthetic-724.png",
+        "sha256": "3e89500c1420e663bf57b1607a30bc09a0a0704a2d25039caae00016c96ffba6",
+        "sizeBytes": 309448
+      },
+      {
+        "name": "synthetic-725.png",
+        "sha256": "fbe26d9a7c081d75ca3151778a4520b5e259cfc1e2d926649ecaa217a5f07839",
+        "sizeBytes": 308845
+      },
+      {
+        "name": "synthetic-726.png",
+        "sha256": "6c066e09a44cc495d174bef585f7245d0edff6eca594bfa110cd0cd4b33f4eee",
+        "sizeBytes": 309717
+      },
+      {
+        "name": "synthetic-727.png",
+        "sha256": "8381c613a05e588d145267b518bfe36aace40c28f928fbbb8542ba4af3c72d0d",
+        "sizeBytes": 310152
+      },
+      {
+        "name": "synthetic-728.png",
+        "sha256": "5b6f073579491be9eb9a024a7f1239c930501b1c85edb9d20475eeb2f1121fea",
+        "sizeBytes": 310297
+      },
+      {
+        "name": "synthetic-729.png",
+        "sha256": "0d7a258df8c6e7d7cd7095f3af740f5cdce52002306d6ec560bd1f76fc8cc043",
+        "sizeBytes": 309422
+      },
+      {
+        "name": "synthetic-730.png",
+        "sha256": "ac88ee1f4cbde10c79d04c4f43b17130850dc79e91e322f34dbd360b666cb2b4",
+        "sizeBytes": 309971
+      },
+      {
+        "name": "synthetic-731.png",
+        "sha256": "951984ae631e7ed08e837686bc7f60b2ae3a90ac92aea78cbe69efe78678f328",
+        "sizeBytes": 309362
+      },
+      {
+        "name": "synthetic-732.png",
+        "sha256": "925f233d3296d3274506928649e16faf7424e97904c8e8edeaf5d7a4be5c375c",
+        "sizeBytes": 309750
+      },
+      {
+        "name": "synthetic-733.png",
+        "sha256": "ee7ae02baf2c25af9046a0362e5c2d10d044f6026ebefec1b4eb8e70daa576d6",
+        "sizeBytes": 308589
+      },
+      {
+        "name": "synthetic-734.png",
+        "sha256": "c6aa3abdb1d06b74012abf8907de89515b5693f3acbb15f80fcbcec55dfd2181",
+        "sizeBytes": 309812
+      },
+      {
+        "name": "synthetic-735.png",
+        "sha256": "41f511d9a15b1a7b395cab381baa390fa79a68be1fae6c84c130357ab53d5921",
+        "sizeBytes": 308451
+      },
+      {
+        "name": "synthetic-736.png",
+        "sha256": "0cc0885e8be4fdf4413bf6e4f259c12f6d67313595979f03f3a7e5a3bd9ad058",
+        "sizeBytes": 308818
+      },
+      {
+        "name": "synthetic-737.png",
+        "sha256": "b0e9fc9ca5c0ca52590207bbb459f687f2ee9dcd0b77265039c3e568d302e383",
+        "sizeBytes": 309393
+      },
+      {
+        "name": "synthetic-738.png",
+        "sha256": "9ccaa188f2f0d4472880e921deb9fdd0ce1160bff7f0c6c3e07613289073bd30",
+        "sizeBytes": 310578
+      },
+      {
+        "name": "synthetic-739.png",
+        "sha256": "93b68d0c29c70a2084f70888537d13875fc715e84e0cecd6610385e1aee47596",
+        "sizeBytes": 310032
+      },
+      {
+        "name": "synthetic-740.png",
+        "sha256": "b9fe66d390b43a618099d37a9945c4cc6086752647c65cb7abd0a32aa362cfa2",
+        "sizeBytes": 308921
+      },
+      {
+        "name": "synthetic-741.png",
+        "sha256": "f67a10260c2e9ff196014b1268da8924ccb86e18d4e91e60a989547da4c5a9c6",
+        "sizeBytes": 309585
+      },
+      {
+        "name": "synthetic-742.png",
+        "sha256": "f8784c4f5ca3b7e84e9a2873e7c6eb5fd92b8169052e001d7df4c33da5abe923",
+        "sizeBytes": 310101
+      },
+      {
+        "name": "synthetic-743.png",
+        "sha256": "8a6f220f0b42896f1632aa22cce9fd321655218b3cddf26f497d76b53ecdfa7a",
+        "sizeBytes": 309152
+      },
+      {
+        "name": "synthetic-744.png",
+        "sha256": "c03b5fb0ce6cacdb1fd5499580b38e24f400dde0c4df1f381772db0dc8766463",
+        "sizeBytes": 310143
+      },
+      {
+        "name": "synthetic-745.png",
+        "sha256": "d20f14d818d52c2fb2009fc22406754a6c281acdc410ce041e29efe052bb6f69",
+        "sizeBytes": 310298
+      },
+      {
+        "name": "synthetic-746.png",
+        "sha256": "5a62376e1cc012699fc183574c9f9c776a7cd567693864d4c43295158f938988",
+        "sizeBytes": 309707
+      },
+      {
+        "name": "synthetic-747.png",
+        "sha256": "a87c68cace019c2d34e2ea87c5c79a6f02044ea8c85423b7d1e3c8f1c6cf0032",
+        "sizeBytes": 310074
+      },
+      {
+        "name": "synthetic-748.png",
+        "sha256": "c74b0b7be7dc802964eec182a1daf4f0ebc35e6fdd40603926bdec15df318ccf",
+        "sizeBytes": 309140
+      },
+      {
+        "name": "synthetic-749.png",
+        "sha256": "62fd36402c1950b5e1fdb78afcbca8843888705aa84df51a88e3ddb8b20a3188",
+        "sizeBytes": 309270
+      },
+      {
+        "name": "synthetic-750.png",
+        "sha256": "7c0e96c6b0637d1d39b6c24ef0726bdd3dcb9b8a356ef1e5a36483333dccdff3",
+        "sizeBytes": 309556
+      },
+      {
+        "name": "synthetic-751.png",
+        "sha256": "3701f9a51492de62fcba9e7f74d861c1e4e8fe55837fad49af0b4845c2844acc",
+        "sizeBytes": 309171
+      },
+      {
+        "name": "synthetic-752.png",
+        "sha256": "3db70ac812b4134fad76a681261b4300eb1694454be4e83b4b0b29fcee271c93",
+        "sizeBytes": 310235
+      },
+      {
+        "name": "synthetic-753.png",
+        "sha256": "1daebb0f2cb2c77278f14a5385a28917c56509f4cf27ca1815d1a89dc89e98f6",
+        "sizeBytes": 309231
+      },
+      {
+        "name": "synthetic-754.png",
+        "sha256": "601d59c492bb1122275818ca834f94410029b16a4b7d2de3c036cc0bc7e91964",
+        "sizeBytes": 309777
+      },
+      {
+        "name": "synthetic-755.png",
+        "sha256": "366679e282ab079269e5a23df185ea0a1d98213600028aaef90cb967a314c417",
+        "sizeBytes": 309466
+      },
+      {
+        "name": "synthetic-756.png",
+        "sha256": "8dff311c828e37f527948d783464cc425635f0aa8abf3d6e2dcc8d6ecd741e23",
+        "sizeBytes": 309131
+      },
+      {
+        "name": "synthetic-757.png",
+        "sha256": "b7de4077a5d5dbb7f886d7ee2b1bec744567d4f253f979fac813d79779cffd0a",
+        "sizeBytes": 310627
+      },
+      {
+        "name": "synthetic-758.png",
+        "sha256": "6e13ba2a972dcd9e5757feafc32c928092c3427c6dbe848400aeffaa39babc8f",
+        "sizeBytes": 309761
+      },
+      {
+        "name": "synthetic-759.png",
+        "sha256": "f847cd2b498a1a523a86f16f2023710821246479390f98b84ac23a97cf98ce49",
+        "sizeBytes": 309741
+      }
+    ]
+  },
+  "accuracyEvidence": false,
+  "integrity": {
+    "borderDraftUncommitted": true,
+    "borderSingleCommit": true,
+    "borderUndoRedoExact": true,
+    "previousCompletedReviewExact": true,
+    "originalProjectExact": true,
+    "finalStateOnlyExpectedBorder": true,
+    "sourceFilesUnchanged": true
+  },
+  "originalCanvasImageSha256": "74527c2d04450214a0dd05b3c447d7f72c5c9e5130930dda6fedb653ffb4312b",
+  "requests": {
+    "start": 2,
+    "full60ImageStart": 1,
+    "cancel": 1,
+    "statusPolls": 15,
+    "remote": 0,
+    "workerFailures": 0,
+    "pageErrors": 0
+  },
+  "observedWorkerProgress": [
+    {
+      "observedAt": "2026-10-17T21:10:01.470Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 0,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:02.171Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 5,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:02.858Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 10,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:03.564Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 15,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:04.264Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 20,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:04.922Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 25,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:05.580Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 31,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:06.244Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 37,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:06.906Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 43,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:07.563Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 49,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:08.226Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "images",
+      "completed": 54,
+      "total": 60
+    },
+    {
+      "observedAt": "2026-10-17T21:10:08.880Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "running",
+      "stage": "pairs",
+      "completed": 8,
+      "total": 1770
+    },
+    {
+      "observedAt": "2026-10-17T21:10:09.566Z",
+      "batch": 2,
+      "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+      "status": "cancelled",
+      "stage": "pairs",
+      "completed": 68,
+      "total": 1770
+    }
+  ],
+  "progressBeforeCancel": "Comparing images 8 / 1770",
+  "interactionBudgetMs": 3000,
+  "operations": [
+    {
+      "name": "open command search and type border",
+      "elapsedMs": 224.1
+    },
+    {
+      "name": "change canvas zoom and return to fit",
+      "elapsedMs": 78.3
+    },
+    {
+      "name": "edit the real selected canvas image border",
+      "elapsedMs": 1340.4
+    },
+    {
+      "name": "undo and redo the canvas edit",
+      "elapsedMs": 806.2
+    }
+  ],
+  "cancellationBudgetMs": 10000,
+  "cancelUserToConfirmationMs": 613,
+  "fullBatchWallTimeUntilCancellationMs": 9597,
+  "animationFrameCallbacks": {
+    "frames": 985,
+    "maximumGapMs": 666.6,
+    "p50GapMs": 8.300000000001091,
+    "p95GapMs": 8.5,
+    "gapsOver100ms": 1
+  },
+  "screenshots": [
+    {
+      "file": "synthetic-background-editing.png",
+      "sha256": "b3263129800636aaea0b0bfbb448780f7c69df4386f4f9b76f0b6bb5a6b6d1f5",
+      "sizeBytes": 294602
+    },
+    {
+      "file": "synthetic-background-60-progress.png",
+      "sha256": "6d7fa7e3f90c0a3bcbe0ac8211cebd8884e88d000cada100d83e780c580bbc3f",
+      "sizeBytes": 112807
+    }
+  ],
+  "scope": "Actual local worker progress and ordinary editor operations while the original 60-image / 1,770-pair synthetic batch runs. Border drafts stay outside saved state/history; explicit keep creates one Undo; Cancel retains the earlier completed human review. This is functional, one-device UI acceptance; the replacement batch is intentionally cancelled before completion.",
+  "limitations": [
+    "Synthetic engineering inputs are not independent detector accuracy, sensitivity, specificity or false-positive evidence.",
+    "Interaction times include QA assertions/downloads and concurrent system load is not controlled. These are not the fixed-protocol release performance baseline.",
+    "Animation-frame callback gaps are not optical latency, continuous rendered FPS, process memory or an algorithm-throughput benchmark.",
+    "Source-runtime and installed-windows are distinct. Installation identity is asserted only when the explicit installed executable hash/file-version/listener checks passed."
+  ],
+  "updateInstallationCapability": {
+    "expectedInAppInstall": false,
+    "actualInAppInstall": false,
+    "scope": "A separately asserted capability. The isolated QA data directory intentionally disables automatic installation; this run is not an official-version update installation/release acceptance."
+  },
+  "networkCapture": {
+    "protocol": "CDP Network.enable + same-session Network.getResponseBody",
+    "parameters": {
+      "maxTotalBufferSize": 100663296,
+      "maxResourceBufferSize": 50331648,
+      "maxPostDataSize": 50331648
+    },
+    "acknowledged": true,
+    "acknowledgmentKeys": [],
+    "scope": "The same CDP session configures bounded buffers and reads native response bodies. No requests are replayed or mocked. This instrumentation adds overhead and is outside the fixed-protocol performance benchmark.",
+    "helperSha256": "2da50619a58f153ed5b598ddfc51b4462f348db5ef98ec9dc7b16e83c698f39c",
+    "startAcknowledgments": [
+      {
+        "images": 4,
+        "httpStatus": 200,
+        "jobIdSha256": "47e0bb23eaba80881d0b7b158101f77c00c6dea575227bf037f60e62569c8205",
+        "requestIdSha256": "54cf6fdc74296f03341fcc97c1f2ec0ba98ac92df41631abee7db674c6976bf1",
+        "batch": 1
+      },
+      {
+        "images": 60,
+        "httpStatus": 200,
+        "jobIdSha256": "f74a4b5d8ad5e62206ca4909477e289a3f7ea74269916e57a04bf9cb2f110828",
+        "requestIdSha256": "f622131e81f23c0145602746ba81eb49c8d18355c904e12b75cce78f670f5729",
+        "batch": 2
+      }
+    ]
+  },
+  "cleanup": {
+    "cancelRequested": false,
+    "cancelledUiConfirmed": false,
+    "browserClosed": true
+  },
+  "nativeWorkerErrors": 0,
+  "captureErrors": 0,
+  "retainedCaptureFailures": []
+}

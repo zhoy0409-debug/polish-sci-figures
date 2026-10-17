@@ -1,6 +1,6 @@
 # v1.4.22 大型工程性能与 Windows 本地候选验收
 
-本报告记录 Suite v1.4.22／Studio 0.1.22 的版本化性能与 Windows 验收。source20 已完成 95 个组件脚本（91 Node、4 Chrome）、双主题 10 项真实 Iris 轴流程、唯一正式 184 动作和独立四面板 23 手势；source20 Windows 包尚未构建或安装验收。真实官方 0.1.20 → 0.1.22 更新待目标发布，旧包结果不计为新包通过。
+本报告记录 Suite v1.4.22／Studio 0.1.22 的版本化性能与 Windows 验收。source20 已完成 95 个组件脚本（91 Node、4 Chrome）、双主题 10 项真实 Iris 轴流程、唯一正式 184 动作和独立四面板 23 手势；source20 原始 Windows 包已完成实际安装、完整编辑范围、正常重装／卸载及独立最终状态核对。真实官方 0.1.20 → 0.1.22 更新待目标发布，旧包结果不计为新包通过。
 
 source18 人工微软拼音已核查画布选词、候选 Esc／Enter、无效 HEX、F2／失焦、Undo／Redo、保存／重开及 SVG／PNG 导出，原表和源 SVG 保持精确一致，见[Windows 输入法实际记录](windows-native-ime-acceptance.md)。source19 的三行选择／控件刷新优化保留；source20 另修数值轴拒绝组合后的输入锁存，未重复人工原生 IME。[范围核对](qa/live-preview/source20-ime-change-scope.json)明确轴模块已变，主编辑器相关处理器及文字间距／局部放大图模块保持 source18 字节；源码人工结果不冒称新安装版实操。这些功能观察不计入正式性能样本。
 
@@ -36,7 +36,7 @@ source18 人工微软拼音已核查画布选词、候选 Esc／Enter、无效 H
 
 Enter 第二 rAF P50／P95 为 70.6／82.4 ms，相比 source17 的 79.9／144.1 ms 改善，但慢于 source19 的 51.3／58.6 ms；输入为 33.8／37.7 ms，亦慢于 source19 的 27.2／32.7 ms。它是本机负载下的结果，不是任意科研工程的延迟保证。[95 组件](qa/live-preview/source20-component-regressions.json)、[双主题 10 项真实轴流程](qa/live-preview/source20-axis-composition-browser.json)与[25 组轴输入合同](qa/live-preview/source20-axis-composition-fix-regressions.json)分别证明其范围；合成组合事件不作为重复原生 IME。
 
-source19 原 Windows 包已完成部分 8 套件／108 项，因随后确认的数值轴缺陷被替代；[原部分结果](qa/live-preview/windows-final19-partial-installed-summary.json)与[正规清理](qa/live-preview/windows-final19-incomplete-cleanup-summary.json)保留。source20 Windows 包及官方更新尚待各自真实验收。
+source19 原 Windows 包已完成部分 8 套件／108 项，因随后确认的数值轴缺陷被替代；[原部分结果](qa/live-preview/windows-final19-partial-installed-summary.json)与[正规清理](qa/live-preview/windows-final19-incomplete-cleanup-summary.json)保留。source20 Windows 原包已另完成实际安装验收，见[本次汇总](qa/live-preview/windows-final20-acceptance-summary.json)；官方 0.1.20 → 0.1.22 仍待发布后实际更新，不用普通重装代替。
 
 ## source19 阶段性能（原样保留）
 
@@ -149,7 +149,15 @@ source18 阶段改色与 Enter 尾延迟改善，但选择、完整色板和部�
 
 可下载[实际事件时序 trace](qa/live-preview/four-panel-source17-timing-trace.json.gz)及其[逐字段保留证明](qa/live-preview/four-panel-source17-timing-trace.json.gz.manifest.json)。它保留原追踪的 102,246 个事件及顺序、名称、阶段、ID、时间戳和时长，移除全部 args 与原 metadata，排除路径、URL 和参数内容；没有补帧或新增事件。解压后为 Chrome trace JSON 结构；本轮未单独验证删参衍生文件的 DevTools 导入。它没有原线程名称、调用参数和 URL，不能代替本机未删减原追踪做源码栈定位。
 
-## source17 科研内容与 Windows 成品
+## source20 Windows 成品与科学内容
+
+[原包来源](qa/live-preview/windows-final20-package-source-match.json)和[最终安装版汇总](qa/live-preview/windows-final20-acceptance-summary.json)分别绑定真实 Setup、Portable、完整文件、已安装起始页及服务身份。Own 八套件 [108 项](qa/live-preview/windows-final20-own-summary.json)、双主题 P1 [74 项](qa/live-preview/windows-final20-p1-summary.json)、额外专业轴 [10 项](qa/live-preview/windows-final20-axis-composition-browser.json)、[60 图／1770 对后台任务及实际取消](qa/live-preview/windows-final20-duplicate-summary.json)和 [10000 图元 PDF／SVG 两项](qa/live-preview/windows-final20-large-import-summary.json)均完成，各自的有录像功能耗时不并入正式 184 动作性能样本。轴组合尾事件是合成触发，真实普通键盘与本地渲染另有断言，不冒称原生 IME 重测。
+
+正常 [Reinstall](qa/live-preview/windows-final20-reinstall-summary.json) 与 [Uninstall](qa/live-preview/windows-final20-uninstall-summary.json) 的外层进程实际退出 0；同步 helper 检查原生返回但未独立保存其数值，不补造原生退出码。[独立最终状态](qa/live-preview/windows-final20-native-final-state.json)核对四登记视图为空、自有进程 0、EXE 已移除、1 个原实例身份未变及工程／设置／哨兵三文件精确保留；Iris 150 行、12 个原 SVG 变体不变。Setup 和原生 EXE 为 NotSigned，校验和不构成数字签名。
+
+本次原始包不因后补报告而重打。附带文档与 bundled audit 是构建时快照，外部 `docs/*.md` 的实际变化须由第二份严格证明逐项列出两组哈希；首份证明及 ROOT／Quickstart／bundled audit／runtime 保持原字节。原 source17 结果在下节原样保留。
+
+## source17 科研内容与 Windows 成品（历史）
 
 源码与实际安装版的功能矩阵、科学源数据、保存／重开、导出及旧失败阶段见[实时预览报告](live-preview-validation.md)。source17 已完成 85 个组件脚本和 14 项定向浏览器流程；最终原始 Setup／Portable 已通过[全部成品来源核对](qa/live-preview/windows-final17-package-source-match.json)，[实际安装及冻结自检](qa/live-preview/windows-final17-install-stage.json)也通过。安装版 P0 72 项、P1 双主题 74 项和主功能矩阵已通过，详情见[主功能记录](qa/live-preview/windows-final17-own-functional-summary.json)及[高频操作记录](qa/live-preview/windows-final17-p1-summary.json)；[60 图后台任务](qa/live-preview/windows-final17-duplicate-summary.json)、[两项大型导入](qa/live-preview/windows-final17-large-import-summary.json)及[重装](qa/live-preview/windows-final17-reinstall-summary.json)／[卸载](qa/live-preview/windows-final17-uninstall-summary.json)保留数据也已实际通过。[最终汇总](qa/live-preview/windows-final17-acceptance-summary.json)分别绑定这些范围；这些带录像功能流程不并入正式性能样本。
 
@@ -157,4 +165,4 @@ source18 阶段改色与 Enter 尾延迟改善，但选择、完整色板和部�
 
 ## 更新与发布状态
 
-source20 新包待构建和实际安装验收；真实官方 0.1.20 → 0.1.22 下载、校验、安装、自动重开与恢复待目标发布后执行。旧 0.1.20 → 0.1.21 证据或 source17 同版本重装不能替代此流程。实际条件见[更新验收说明](windows-update-real-acceptance.md)。本地构建、源码测试和未来下载链接均不构成已发布或已安装通过的证明，实际发行状态以版本发布记录为准。
+source20 原包的本机安装、编辑、重装和卸载验收已完成，尚未正式发布；真实官方 0.1.20 → 0.1.22 下载、校验、安装、自动重开与恢复待目标发布后执行。旧 0.1.20 → 0.1.21 证据或 source17 同版本重装不能替代此流程。实际条件见[更新验收说明](windows-update-real-acceptance.md)。本地构建、源码测试和未来下载链接均不构成已发布或已安装通过的证明，实际发行状态以版本发布记录为准。

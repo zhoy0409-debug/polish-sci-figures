@@ -1,0 +1,326 @@
+{
+  "schema": "figure-studio-public-large-import/1",
+  "status": "PASS_SCOPED_SYNTHETIC_IMPORT_EDIT_ROUNDTRIP",
+  "environment": "installed-windows",
+  "label": "source20-installed",
+  "rawReportSha256": "cb9fe8628895a53b2f9f80dea46a05b8e59e96efadc1d9a0293a34b6a0e99a00",
+  "harnessSha256": "13efceccec17482fca0b82f92e58cff99979956446306730aa3b07a5bdcb5818",
+  "servedHtmlVerifierSha256": "ce054638a5a51212e08b37e03d1bf3f0458a337403305878ebfe854cee5d364d",
+  "installedProofHelperSha256": "f51a870b1f6cf761db32ad98d8c144bc06c7626f46746c6d7fe9ee8777660c31",
+  "sourceProof": {
+    "localHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+    "servedHtmlSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+    "reconstructedExpectedSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "installedProof": {
+    "listenerExecutableExact": true,
+    "listenerCount": 1,
+    "fileVersion": "0.1.22",
+    "appId": "{51D78749-35EE-43BB-BA21-F79D6A1D5094}",
+    "registryOwned": true,
+    "registryPresentViews": 2,
+    "registryViews": [
+      {
+        "hive": "CurrentUser",
+        "view": "Registry64",
+        "exists": true,
+        "directoryExact": true,
+        "checkedValueNames": [
+          "Inno Setup: App Path",
+          "InstallLocation"
+        ]
+      },
+      {
+        "hive": "CurrentUser",
+        "view": "Registry32",
+        "exists": true,
+        "directoryExact": true,
+        "checkedValueNames": [
+          "Inno Setup: App Path",
+          "InstallLocation"
+        ]
+      },
+      {
+        "hive": "LocalMachine",
+        "view": "Registry64",
+        "exists": false,
+        "directoryExact": null,
+        "checkedValueNames": []
+      },
+      {
+        "hive": "LocalMachine",
+        "view": "Registry32",
+        "exists": false,
+        "directoryExact": null,
+        "checkedValueNames": []
+      }
+    ],
+    "executableSha256": "c2a6497e96300c88414e80b7c8d6c1b0c9d06d4ee41227a730a75d5322b98fa1",
+    "executableSizeBytes": 18306386,
+    "scope": "Read-only explicit executable hash, file version, live loopback listener ownership and original AppId in all four registry views. No process termination, installation or registry mutation. Update installation capability is checked separately."
+  },
+  "updateInstallationCapability": {
+    "expectedInAppInstall": false,
+    "actualInAppInstall": false,
+    "scope": "Separately asserted capability; isolated QA --data-dir deliberately disables automatic update installation. This is not an official-version update installation/release acceptance."
+  },
+  "browser": "155.0.8059.82",
+  "browserMode": "headful",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "fixtureManifestSha256": "74ea6ba30cae47e3cf7ca86ac1287c69438ca3b9bd4d10d1b9138301e898e793",
+  "pdfFixture": {
+    "schema": "studio-synthetic-large-pdf-fixture/1",
+    "synthetic": true,
+    "file": "SYNTHETIC-large-pdf-10000-marks.pdf",
+    "sha256": "a97209654ff8cf0e2d49b4a7c0622eef1cca81dcc6b227d7d5f7c990aaec64f6",
+    "sizeBytes": 298401,
+    "baseFile": "SYNTHETIC-base-chart.pdf",
+    "baseSha256": "2ab2b9d4723f94a3798b5583bbfe81b0c5526adbac40cd2eba3ffa2d9dc690cf",
+    "baseSizeBytes": 16963,
+    "pageCount": 1,
+    "addedNativePathMarks": 10000,
+    "uniqueNativeText": "SYNTHETIC PDF 10000 MARKS",
+    "generator": "scripts/prepare_studio_large_pdf_qa.py",
+    "generatorSha256": "5b29ba5cdbe727ef289c9bd3f2eb007a5a5a92c874b03ac359cd8fe4990250ed",
+    "reusedFactory": "scripts/test_studio_pdf.py:chart_pdf",
+    "reusedFactorySourceSha256": "52674eca36a1c839a97e490012e5ae6a0261a74adde18ed46351e07f9d46f38c",
+    "scope": "Existing explicitly synthetic Matplotlib chart plus 10,000 native rectangular PDF marks and one labelled native text object. Object complexity only; not a large-file-byte-size benchmark, real research dataset, or independent scientific validation."
+  },
+  "accuracyEvidence": false,
+  "cases": [
+    {
+      "id": "synthetic-pdf-10000-marks",
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows",
+        "architecture": "x86_64",
+        "inAppInstall": false
+      },
+      "pdfRequests": [
+        {
+          "action": "inspect",
+          "page": 0,
+          "inputPdfSha256": "a97209654ff8cf0e2d49b4a7c0622eef1cca81dcc6b227d7d5f7c990aaec64f6",
+          "httpStatus": 200,
+          "pageCount": 1,
+          "convertedSvgSha256": null
+        },
+        {
+          "action": "page",
+          "page": 0,
+          "inputPdfSha256": "a97209654ff8cf0e2d49b4a7c0622eef1cca81dcc6b227d7d5f7c990aaec64f6",
+          "httpStatus": 200,
+          "pageCount": 1,
+          "editable": {
+            "texts": 14,
+            "paths": 10019,
+            "images": 0
+          },
+          "rasterOnly": false,
+          "rasterizedObjects": 0,
+          "warningCodes": [
+            "font_substitution"
+          ],
+          "convertedSvgSha256": "b371e2c231049a4454705f49337d17032586bf99ba9d1e8fb8fb0ec99acad8f4"
+        }
+      ],
+      "actualPreviewCounts": {
+        "texts": 14,
+        "paths": 10020,
+        "images": 0
+      },
+      "actualImportedObjectCounts": {
+        "texts": 14,
+        "paths": 10019,
+        "images": 0
+      },
+      "pdfWarningCodes": [
+        "font_substitution"
+      ],
+      "importApplyOneUndo": true,
+      "originalPdfBytesExact": true,
+      "draftUncommittedAndExportsCommittedOnly": true,
+      "readOnlyAutosaveProbes": [
+        {
+          "stage": "valid-draft-after-real-Save-download",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "invalid-current-value-retains-last-valid-paint",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "after-real-SVG-and-PNG-downloads",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "Escape-restores-original-artwork-and-state",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        }
+      ],
+      "draftExportContext": "The actual header menu focuses its summary. An invalid current HEX value forbids commit at native blur, retains the last valid preview, and permits strict committed-only SVG/PNG and read-only autosave checks. Valid draft persistence is separately checked before this invalid input; no focus or event is suppressed.",
+      "invalidDraftEscExact": true,
+      "actualChromePaintParserContracts": {
+        "hexAndRgbExact": true,
+        "invalidAndPaintServerRejected": true
+      },
+      "exportedSelectedTextColour": "#9b3f51",
+      "singleCommitUndoRedoExact": true,
+      "saveReopenProjectStateAndExportsExact": true,
+      "sourceProjectSha256": "6e7f4a6836ad988d3afa242b0a08c04ff51ca4991239cc47bec840e9d4ef963a",
+      "baselineExports": {
+        "svgSha256": "7b20ae667d0f46409f67b4bce84e36c03fd800ed79d0f771ad6e77a27eaa05d0",
+        "canonicalSvgSha256": "9814a08c7f63ed821c6ec8f6355cb0593d3210d4d134a3b6dc21fab3c2c39868",
+        "pngSha256": "e53ab6fd05289a3e804247517356db2e6fea0385b17f8c46b03a867850c17e07",
+        "pngPixels": {
+          "width": 2400,
+          "height": 1850,
+          "sha256": "5c16af005436454ddabba1875a1300037f6c1ed84ee90313f05833e913fb4c02"
+        }
+      },
+      "committedExports": {
+        "svg": {
+          "file": "synthetic-pdf-10000-marks-committed.svg",
+          "sha256": "985c203e68ce6f8c54aa5e7726eb415ffdc767e577e389e2ad3cd24055318d2f",
+          "sizeBytes": 1804231
+        },
+        "canonicalSvgSha256": "dbd827a1a171dd0055bdde87aa7ae5d307b32627c630c90c7ba2f42c1b1bc969",
+        "png": {
+          "file": "synthetic-pdf-10000-marks-committed.png",
+          "sha256": "6b50cc232dc5049623b82d314fee04791a8302bf4ed68d03e680cf630dd2b17e",
+          "sizeBytes": 511113
+        },
+        "pngPixels": {
+          "width": 2400,
+          "height": 1850,
+          "sha256": "251b3a4862ac8e0a93a2e179773d3252b1eba93a9ff90f019c7609748d3fd6af"
+        }
+      },
+      "savedProject": {
+        "file": "synthetic-pdf-10000-marks-saved-project.json",
+        "sha256": "58f184099735ef7a819e32778334eb3303b6f1413b728e695a4f862ac582869f",
+        "sizeBytes": 2076706
+      },
+      "remoteRequests": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "synthetic-svg-10000-elements",
+      "status": "PASS",
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "suiteVersion": "1.4.22",
+        "platform": "windows",
+        "architecture": "x86_64",
+        "inAppInstall": false
+      },
+      "pdfRequests": [],
+      "actualImportedElementCount": 10000,
+      "originalSvgSha256": "24f699b7c040d7c0722826b28d54efb70fcaeadc37675220ba1b4f2d857cc714",
+      "originalSvgBytes": 710228,
+      "draftUncommittedAndExportsCommittedOnly": true,
+      "readOnlyAutosaveProbes": [
+        {
+          "stage": "valid-draft-after-real-Save-download",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "invalid-current-value-retains-last-valid-paint",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "after-real-SVG-and-PNG-downloads",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        },
+        {
+          "stage": "Escape-restores-original-artwork-and-state",
+          "historyIndex": 1,
+          "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+          "historySha256": "94a6f0bee9b1968c6c86048066eface6e6c9dfd4deab8de97c276e3ffa74813d",
+          "focusUnchanged": true
+        }
+      ],
+      "draftExportContext": "The actual header menu focuses its summary. An invalid current HEX value forbids commit at native blur, retains the last valid preview, and permits strict committed-only SVG/PNG and read-only autosave checks. Valid draft persistence is separately checked before this invalid input; no focus or event is suppressed.",
+      "invalidDraftEscExact": true,
+      "actualChromePaintParserContracts": {
+        "hexAndRgbExact": true,
+        "invalidAndPaintServerRejected": true
+      },
+      "exportedSelectedTextColour": "#9b3f51",
+      "singleCommitUndoRedoExact": true,
+      "saveReopenProjectStateAndExportsExact": true,
+      "sourceProjectSha256": "51952418404c3e2281753f720966cbc030fcda86d582559f32a547611d272213",
+      "baselineExports": {
+        "svgSha256": "9c818591a585879eb2d704a823ecacec80056ded43b94ef120a7a6aafbd361f9",
+        "canonicalSvgSha256": "9c818591a585879eb2d704a823ecacec80056ded43b94ef120a7a6aafbd361f9",
+        "pngSha256": "ff24d26eef1b807fd220294df9c6340cb4a73668c1ab80a07c628e47cddefb4e",
+        "pngPixels": {
+          "width": 3000,
+          "height": 2880,
+          "sha256": "520ba5c61a08375d8740e3434efa8060d6ccd1cd3f98451518f2adff51b3fe87"
+        }
+      },
+      "committedExports": {
+        "svg": {
+          "file": "synthetic-svg-10000-elements-committed.svg",
+          "sha256": "67549740f06f55983e5c7830d02ee2625a5125ca22b4478eb9f0193ee743cbfb",
+          "sizeBytes": 710456
+        },
+        "canonicalSvgSha256": "67549740f06f55983e5c7830d02ee2625a5125ca22b4478eb9f0193ee743cbfb",
+        "png": {
+          "file": "synthetic-svg-10000-elements-committed.png",
+          "sha256": "87da8e38004fc242800bc8138c6377270304e9edcb7e0e71fa2326374cd1265e",
+          "sizeBytes": 450932
+        },
+        "pngPixels": {
+          "width": 3000,
+          "height": 2880,
+          "sha256": "28882301c63d7b0d40257c912d6f6f25d29ca51daf4e661d5ae9323fbcb52bff"
+        }
+      },
+      "savedProject": {
+        "file": "synthetic-svg-10000-elements-saved-project.json",
+        "sha256": "01edb2268fb3fdfd06d269535eeda37cfa65dfd7fab83a332fc1043029c675cf",
+        "sizeBytes": 1001236
+      },
+      "remoteRequests": 0,
+      "pageErrors": 0
+    }
+  ],
+  "scope": "Explicit synthetic object-complexity UI regression. Actual local PDF conversion and actual imported 10,000-element SVG; no formal latency/FPS, large-file-byte-size or independent research-accuracy claim.",
+  "limitations": [
+    "The PDF is an explicitly synthetic chart plus 10,000 added vector marks; object count does not establish large PDF byte size, arbitrary-document compatibility or real scientific validity.",
+    "The separate 10,000-element SVG is a functional UI smoke, not a formal performance comparison or continuous FPS measurement.",
+    "PNG equality is exact decoded pixels on this Chrome/device; it does not establish cross-platform font or raster equivalence.",
+    "The original PDF bytes and imported project source artwork remain exact; a converted PDF representation is not asserted to be byte-identical to its original PDF or to reconstruct scientific data."
+  ]
+}

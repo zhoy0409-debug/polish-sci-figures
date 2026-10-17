@@ -1,0 +1,528 @@
+{
+  "schema": "figure-studio-windows-scoped-local-acceptance/1",
+  "status": "SCOPED_LOCAL_ACCEPTANCE_PASS_NOT_YET_PUBLISHED",
+  "createdAtUtc": "2026-10-17T21:29:35.495379+00:00",
+  "sourceStage": "source20",
+  "applicationVersion": "0.1.22",
+  "suiteVersion": "v1.4.22",
+  "localAcceptanceComplete": true,
+  "merged": false,
+  "published": false,
+  "sourceAndPackageIdentity": {
+    "sourceFreezeManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+    "sourceIrisHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+    "actualPackagedBlankStarterSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+    "packageSourceProofSha256": "6aff7122b3e1c62efa5e4967ca625c430cfa453bfded051b9e18af028a841eef",
+    "artifacts": [
+      {
+        "name": "polish-sci-figures-Studio-0.1.22-Portable-x64.zip",
+        "sha256": "15b721ce052359f540ad88dddc9776ae1279a8494567f58711d0003dbd6fa5e8",
+        "sizeBytes": 147689532
+      },
+      {
+        "name": "polish-sci-figures-Studio-0.1.22-Setup-x64.exe",
+        "sha256": "85b0355490eb2615f2cebc1097e6e51da1d89a9f3b5851a60d95831930be3d1a",
+        "sizeBytes": 105856481
+      }
+    ],
+    "nativeExecutableSha256": "c2a6497e96300c88414e80b7c8d6c1b0c9d06d4ee41227a730a75d5322b98fa1",
+    "uiAssetCount": 78,
+    "backendSourceCount": 27,
+    "packagedProductionBackendModules": 23,
+    "explicitNotPackagedTestSources": [
+      {
+        "file": "test_check_source_portability.py",
+        "sha256": "f777ff885736f6c3298ba667e93d418232fe5dc346ebdeffcdd7ca8e5ebee422"
+      },
+      {
+        "file": "test_figure_studio.py",
+        "sha256": "d36bebba4375f22b696e8f070f2f29242e6197e4b2d0d4acafa747926763e032"
+      },
+      {
+        "file": "test_figure_text_qa.py",
+        "sha256": "bf023bcafc7de833ca4ec1bc179b8b45ea9503798d8f9fa32925c307900908e4"
+      },
+      {
+        "file": "test_font_policy.py",
+        "sha256": "3b3e91be177db1549f38cd0df993979807d67aa40dff4c68af143531850bdd43"
+      }
+    ],
+    "actualApplicationFileCount": 2622,
+    "allPortableStreamHashesSizesAndFileSetExact": true,
+    "canonicalRelativeApplicationManifestSha256": "3a5990dd8c460a3153e5b220d4589f59304817cef9fcf640b150f0e531279bfa"
+  },
+  "executedInstalledBrowserAcceptance": {
+    "own8": {
+      "scopedChecksPassed": 108,
+      "suites": [
+        {
+          "suite": "p0",
+          "checksPassed": 72,
+          "actualProcessExitCode": 0
+        },
+        {
+          "suite": "resources",
+          "checksPassed": 4,
+          "actualProcessExitCode": 0
+        },
+        {
+          "suite": "blank",
+          "checksPassed": 1,
+          "actualProcessExitCode": 0
+        },
+        {
+          "suite": "touch390",
+          "checksPassed": 4,
+          "actualProcessExitCode": 0
+        },
+        {
+          "suite": "touch1280",
+          "checksPassed": 4,
+          "actualProcessExitCode": 0
+        },
+        {
+          "suite": "selection",
+          "checksPassed": 5,
+          "actualProcessExitCode": 0
+        },
+        {
+          "suite": "discovery",
+          "checksPassed": 16,
+          "actualProcessExitCode": 0
+        },
+        {
+          "suite": "core-demo",
+          "checksPassed": 2,
+          "actualProcessExitCode": 0
+        }
+      ],
+      "evidence": {
+        "file": "docs/qa/live-preview/windows-final20-own-summary.json",
+        "sha256": "f1c74e4cc09a4e5b75f04d8a5a593c0aea92bd2db671ee42bbed799262250869",
+        "sizeBytes": 8714
+      }
+    },
+    "p1BothThemes": {
+      "casesPassed": 74,
+      "themes": 2,
+      "casesPerTheme": 37,
+      "evidence": {
+        "file": "docs/qa/live-preview/windows-final20-p1-summary.json",
+        "sha256": "b6de4712039db6e098d9501d459a56d907e4c29e733c6b0c57106d46f0d51c3c",
+        "sizeBytes": 24186
+      }
+    },
+    "extraAxisBoundary": {
+      "checksPassed": 10,
+      "themes": 2,
+      "checksPerTheme": 5,
+      "compositionEventsSynthetic": true,
+      "nativeImeAcceptance": false,
+      "realLocalRenderingAndOrdinaryEditing": true,
+      "evidence": {
+        "file": "docs/qa/live-preview/windows-final20-axis-composition-browser.json",
+        "sha256": "eded57a8f62310993955a114a9b80067ad52d26d23d3edd9d004c10db74c6670",
+        "sizeBytes": 10087
+      }
+    },
+    "backgroundDuplicate": {
+      "syntheticImages": 60,
+      "plannedPairs": 1770,
+      "actualTerminalStatus": "cancelled",
+      "pairsCompletedAtObservedCancellation": 68,
+      "integrity": {
+        "borderDraftUncommitted": true,
+        "borderSingleCommit": true,
+        "borderUndoRedoExact": true,
+        "previousCompletedReviewExact": true,
+        "originalProjectExact": true,
+        "finalStateOnlyExpectedBorder": true,
+        "sourceFilesUnchanged": true
+      },
+      "remoteRequests": 0,
+      "accuracyEvidence": false,
+      "evidence": {
+        "file": "docs/qa/live-preview/windows-final20-duplicate-summary.json",
+        "sha256": "7782d298fee9babb42e260fdf12be99df22d3fe9057fa52040b15db2c7067b72",
+        "sizeBytes": 21323
+      }
+    },
+    "largeImports": {
+      "casesPassed": 2,
+      "caseIds": [
+        "synthetic-pdf-10000-marks",
+        "synthetic-svg-10000-elements"
+      ],
+      "actualImportEditSaveReopenAndSvgPngExport": true,
+      "syntheticObjectComplexityFixtures": true,
+      "formalPerformanceEvidence": false,
+      "evidence": {
+        "file": "docs/qa/live-preview/windows-final20-large-import-summary.json",
+        "sha256": "4ab429d80973544ab64e15b62b8781e38951be87b8e0ceff226fc3d512f77bbf",
+        "sizeBytes": 14506
+      }
+    },
+    "browserAndProcessIsolation": {
+      "sequentialInstalledBrowserClients": true,
+      "ownedChromeAndEdgeClosedBeforeNativeFinalization": true,
+      "protectedOriginalCount": 1,
+      "protectedIdentityAndExecutableHashUnchanged": true
+    }
+  },
+  "actualNativeLifecycle": {
+    "phasesExecuted": [
+      "Install",
+      "Start",
+      "Reinstall",
+      "Uninstall"
+    ],
+    "outerPowerShellProcessExitCodes": {
+      "Install": 0,
+      "Start": 0,
+      "Reinstall": 0,
+      "Uninstall": 0
+    },
+    "numericNativeProcessExitCodesSeparatelyPersisted": false,
+    "nativeExitCodeValues": {
+      "Install": null,
+      "Reinstall": null,
+      "Uninstall": null
+    },
+    "nativeExitExplanation": "The actual synchronous PowerShell helper checked each native installer/uninstaller exit code and required success; the independently observed outer processes returned 0. Separate numeric native exit records were not persisted and are not invented.",
+    "normalReinstallAndUninstall": true,
+    "incompleteAttemptExceptionUsed": false,
+    "reinstallAllPackagedFilesVerified": {
+      "fileCount": 2622,
+      "everyPackagedFileMatches": true,
+      "manifestSha256": "71b8f8c9ec0a5e37f5d27098558fa09b79a767291957841ba5fd4d776233eb71"
+    },
+    "finalFourRegistryViewsAbsent": true,
+    "ownedQaNativeProcessCount": 0,
+    "ownedExecutableAbsent": true,
+    "preservedExternalFiles": [
+      {
+        "byteExact": true,
+        "afterUninstallSha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509",
+        "role": "externalSentinel",
+        "beforeReinstallSha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509"
+      },
+      {
+        "byteExact": true,
+        "afterUninstallSha256": "6e9433ff6b4d1927e30e2fad1c2f9c49772011492bdb5e6122bc23295e59050c",
+        "role": "settings",
+        "beforeReinstallSha256": "6e9433ff6b4d1927e30e2fad1c2f9c49772011492bdb5e6122bc23295e59050c"
+      },
+      {
+        "byteExact": true,
+        "afterUninstallSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+        "role": "actualSavedPublicIris",
+        "beforeReinstallSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5"
+      }
+    ],
+    "actualSavedIris": {
+      "sha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+      "sizeBytes": 577820,
+      "observationCount": 150,
+      "tableMatchesOriginalExactly": true,
+      "originalSvgVariantCount": 12,
+      "allOriginalSvgVariantsByteExact": true
+    },
+    "protectedOriginalCount": 1,
+    "protectedOriginalIdentityUnchanged": true,
+    "evidence": {
+      "file": "docs/qa/live-preview/windows-final20-native-final-state.json",
+      "sha256": "b6122561955cd8fd793ffdaa8b66ae07c64f48a618e6b9040433a83ba42762b2",
+      "sizeBytes": 5545
+    }
+  },
+  "source20ComponentAndPerformanceEvidence": {
+    "componentScriptsPassed": 95,
+    "nodeScripts": 91,
+    "independentChromeFixtures": 4,
+    "componentEvidence": {
+      "file": "docs/qa/live-preview/source20-component-regressions.json",
+      "sha256": "579b32b80cb92fc034eaed5718ae2cde5bca3e3c51a192b69fb0e6beb400c77c",
+      "sizeBytes": 114455
+    },
+    "formalSourceCapture": {
+      "sourceHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+      "label": "candidate20-core",
+      "startedActions": 184,
+      "measuredActions": 160,
+      "warmupActions": 24,
+      "samplesPerOperation": 20,
+      "warmupsPerOperation": 3,
+      "loads": [
+        120,
+        5000
+      ],
+      "operations": [
+        "select-text",
+        "text-colour",
+        "tab-detail-to-palette",
+        "tab-palette-to-detail"
+      ],
+      "captureRetries": 0,
+      "outliersRemoved": 0,
+      "environment": {
+        "browser": "155.0.8059.82",
+        "browserMode": "headful",
+        "recording": {
+          "enabled": false
+        },
+        "platform": "win32",
+        "architecture": "x64",
+        "logicalCpus": 22,
+        "node": "v24.18.0"
+      },
+      "measurement": "Capture-phase performance.now() to next/second rAF callback execution; presentation opportunities, not actual pixel/photon paint. rAF callback intervals are not continuous rendered FPS. Playwright wall time is reported separately.",
+      "installedFormalPerformanceCapture": false,
+      "mixedResultsRetained": true,
+      "allMetricsAndSlowerResultsRetained": true,
+      "evidence": {
+        "file": "docs/qa/live-preview/performance-v2-final20-vs17-18-19.json",
+        "sha256": "0fa8fb191bf089d114a55a63b1f2fefbb82e345eae9eec90a233a797b5c26f94",
+        "sizeBytes": 73141
+      }
+    },
+    "separateFourPanelDiagnostic": {
+      "sourceHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+      "totalGestures": 23,
+      "measuredGestures": 20,
+      "warmupGestures": 3,
+      "panels": 4,
+      "elementsPerPanel": 120,
+      "allDraftsUncommittedAndSingleCommitUndoRedoExact": true,
+      "installedFormalPerformanceCapture": false,
+      "evidence": {
+        "file": "docs/qa/live-preview/four-panel-style-final20-diagnostic.json",
+        "sha256": "fa2b7214903af19e6e615cf375ca711f8d9a9300a1c9b972a4ee5712378f5805",
+        "sizeBytes": 6332
+      }
+    },
+    "interpretation": "The source20 captures are source-browser measurements and a separate diagnostic, not timings measured from this installed package. Next/second rAF callbacks are presentation opportunities, not pixel/photon latency or continuous FPS. Mixed tail results and all comparisons remain in their exact source20 reports; no blanket improvement claim is made."
+  },
+  "humanImeAndImageEvidenceBoundary": {
+    "humanOperatorStage": "source18",
+    "actualHumanMicrosoftPinyinCases": 6,
+    "humanBrowser": {
+      "name": "Edge",
+      "version": "155.0.4283.45",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    "humanEvidence": {
+      "file": "docs/qa/live-preview/source18-human-ime-summary.json",
+      "sha256": "3ffe2c081f0ec2268ebd2478447e059fd1faa18fc06e9077650f966bed088ad2",
+      "sizeBytes": 24123
+    },
+    "source20NativeImeRepeated": false,
+    "source20AxisCompositionChecksUseSyntheticDomEvents": true,
+    "source20CodeContinuityScopeEvidence": {
+      "file": "docs/qa/live-preview/source20-ime-change-scope.json",
+      "sha256": "9c4e39331b654345c7fe168178737ca76c9804f8185a547e36f6bdf6d89863fe",
+      "sizeBytes": 4763
+    },
+    "independentPrivateImageGroundTruthAccuracy": "NOT_ESTABLISHED",
+    "imageStressAndRoundtripChecksAreEngineeringEvidence": true
+  },
+  "actualMediaReview": {
+    "status": "ACTUAL_CAPTURE_COPIED_BYTE_EXACT_AND_SAMPLED_VISUALLY_REVIEWED",
+    "evidence": {
+      "file": "docs/qa/live-preview/windows-final20-media-review.json",
+      "sha256": "a2f3fd35fee7ca5ccaf7decadd179928bc56cb8a08ab971794736ad415674124",
+      "sizeBytes": 5630
+    },
+    "reviewMethod": "Root viewed six decoded samples from original finalized WebM captures, three core original PNGs, the two extra-axis screenshots and the previously identified P0 samples. This does not claim every frame was watched.",
+    "originalMediaCopiedByteExact": true,
+    "generatedFramesOrProgress": false,
+    "nativeImeOrOpticalFpsEvidence": false
+  },
+  "authenticode": {
+    "nativeExecutable": "NotSigned",
+    "setup": "NotSigned",
+    "signerCertificatePresent": false,
+    "recordedReadOnlySignatureProofSha256": "3cc9af08d3502a1a43ede1327da32c9b786281121d613ee72736370657e7d136"
+  },
+  "repositoryWorkflowSnapshotAsReportedByRoot": {
+    "head": "2f412dcf19aa7e673885e3456875e715745e21a1",
+    "pushed": true,
+    "draftPullRequest": {
+      "number": 31,
+      "created": true,
+      "merged": false
+    },
+    "newExactHeadCi": "Eight jobs in progress at this snapshot; no all-green claim.",
+    "retainedEarlierCi": "Initial 9e2 head: six green, two failed; four extracted-VM QA fixture repairs retained and locally checked. Remote rerun success is not inferred.",
+    "ciFixtureEvidence": {
+      "file": "docs/qa/live-preview/source20-ci-fixture-regressions.json",
+      "sha256": "4e7b2064eb947e3f61ff41cd1d1db918e417c617f128c86dc31ca380f143f618",
+      "sizeBytes": 59034
+    },
+    "releasePublished": false,
+    "userPublicationAuthorizationActive": true,
+    "snapshotScope": "Repository workflow status supplied by the root agent for this immutable pre-publication aggregate; no Git or remote mutation is performed by this generator."
+  },
+  "remainingReleaseWorkflow": [
+    "Exact-head remote CI result",
+    "Merge approved pull request",
+    "Publish the bound release artifacts",
+    "Separately authorized actual official old-version update against the public target"
+  ],
+  "officialOldVersionUpdateExecuted": false,
+  "evidenceInventory": [
+    {
+      "file": "docs/qa/live-preview/four-panel-style-final20-diagnostic.json",
+      "sha256": "fa2b7214903af19e6e615cf375ca711f8d9a9300a1c9b972a4ee5712378f5805",
+      "sizeBytes": 6332
+    },
+    {
+      "file": "docs/qa/live-preview/performance-v2-final20-summary.json",
+      "sha256": "15a841d9b2889e8b890e2f9a42e782d30667e6830a7c970bfe76a45c407bac47",
+      "sizeBytes": 66752
+    },
+    {
+      "file": "docs/qa/live-preview/performance-v2-final20-vs17-18-19.json",
+      "sha256": "0fa8fb191bf089d114a55a63b1f2fefbb82e345eae9eec90a233a797b5c26f94",
+      "sizeBytes": 73141
+    },
+    {
+      "file": "docs/qa/live-preview/source20-axis-carbon.png",
+      "sha256": "c32895e6a8355ff57718f1cb3448eb6c9f0ce3341f1cf0f94cfb15e81b63c475",
+      "sizeBytes": 152798
+    },
+    {
+      "file": "docs/qa/live-preview/source20-axis-composition-browser.json",
+      "sha256": "135e7291e6a7edaeee169faa10b6316381e54b7821db25ad2013eb8030bb2af7",
+      "sizeBytes": 6992
+    },
+    {
+      "file": "docs/qa/live-preview/source20-axis-composition-fix-regressions.json",
+      "sha256": "0373566b12e0478780745927f69f11d980d9991a48255efcd3e48134d247b061",
+      "sizeBytes": 12037
+    },
+    {
+      "file": "docs/qa/live-preview/source20-axis-pearl.png",
+      "sha256": "3cde255862d31817a3bf331f048973d9024eb4596eb8f43859ed85773dfe29bd",
+      "sizeBytes": 153442
+    },
+    {
+      "file": "docs/qa/live-preview/source20-ci-fixture-regressions.json",
+      "sha256": "4e7b2064eb947e3f61ff41cd1d1db918e417c617f128c86dc31ca380f143f618",
+      "sizeBytes": 59034
+    },
+    {
+      "file": "docs/qa/live-preview/source20-component-regressions.json",
+      "sha256": "579b32b80cb92fc034eaed5718ae2cde5bca3e3c51a192b69fb0e6beb400c77c",
+      "sizeBytes": 114455
+    },
+    {
+      "file": "docs/qa/live-preview/source20-distribution-regressions.json",
+      "sha256": "4a90f70a63b23f469871e6570171caa7d9f70363c1d7f722b1338afc829e193c",
+      "sizeBytes": 2711
+    },
+    {
+      "file": "docs/qa/live-preview/source20-ime-change-scope.json",
+      "sha256": "9c4e39331b654345c7fe168178737ca76c9804f8185a547e36f6bdf6d89863fe",
+      "sizeBytes": 4763
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-axis-applied-carbon.png",
+      "sha256": "371711db2527c877db2ad5cb54a74265edf1ea7da70b23fcb1740b3e8dc3674a",
+      "sizeBytes": 134922
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-axis-carbon.png",
+      "sha256": "bc9f6a920591d0c862e292d010600a36b52427ee2ed0ce33b1c9e739a0d0fc61",
+      "sizeBytes": 152830
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-axis-composition-browser.json",
+      "sha256": "eded57a8f62310993955a114a9b80067ad52d26d23d3edd9d004c10db74c6670",
+      "sizeBytes": 10087
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-axis-operation.webm",
+      "sha256": "428ab6639ded589c2d2ce19a819c5dd603987b3386580ea0474d3e0e015186ac",
+      "sizeBytes": 1120815
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-axis-pearl.png",
+      "sha256": "c8156fb7352c54154697ed9d9baa2968918bf00e218910785ba3765ca0e78523",
+      "sizeBytes": 153392
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-border-operation.webm",
+      "sha256": "89c758ad6a2c945ac07bd20dcae9eaf082760decae8f82c78897ac867d5f1a5d",
+      "sizeBytes": 2108808
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-border-preview-carbon.png",
+      "sha256": "2b9d2f10d4386b94faffadaaa302d0d80e075f6e9a533bc1af369af5f359296a",
+      "sizeBytes": 391235
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-duplicate-summary.json",
+      "sha256": "7782d298fee9babb42e260fdf12be99df22d3fe9057fa52040b15db2c7067b72",
+      "sizeBytes": 21323
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-install-summary.json",
+      "sha256": "45a74c75313d0e51e3ec2bc89df1d4c17a217a39e8fe017f1004664db4298643",
+      "sizeBytes": 1589
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-large-import-summary.json",
+      "sha256": "4ab429d80973544ab64e15b62b8781e38951be87b8e0ceff226fc3d512f77bbf",
+      "sizeBytes": 14506
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-media-review.json",
+      "sha256": "a2f3fd35fee7ca5ccaf7decadd179928bc56cb8a08ab971794736ad415674124",
+      "sizeBytes": 5630
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-native-final-state.json",
+      "sha256": "b6122561955cd8fd793ffdaa8b66ae07c64f48a618e6b9040433a83ba42762b2",
+      "sizeBytes": 5545
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-own-summary.json",
+      "sha256": "f1c74e4cc09a4e5b75f04d8a5a593c0aea92bd2db671ee42bbed799262250869",
+      "sizeBytes": 8714
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-p1-summary.json",
+      "sha256": "b6de4712039db6e098d9501d459a56d907e4c29e733c6b0c57106d46f0d51c3c",
+      "sizeBytes": 24186
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-package-source-match.json",
+      "sha256": "6aff7122b3e1c62efa5e4967ca625c430cfa453bfded051b9e18af028a841eef",
+      "sizeBytes": 45179
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-reinstall-summary.json",
+      "sha256": "765372d1d44bc45cf92651df97bf1aeacffec612885207236218df14eedf53e2",
+      "sizeBytes": 2125
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-start-summary.json",
+      "sha256": "79e890878833a576951eb241ac159d42ab01a01182c9d354e214991a3d3d3dc9",
+      "sizeBytes": 1821
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-tem-white-border-carbon.png",
+      "sha256": "8ec9f57305efa3a7ec66c4f2e4387d1ae16c02c4f750c0201b122115c2b196e7",
+      "sizeBytes": 484834
+    },
+    {
+      "file": "docs/qa/live-preview/windows-final20-uninstall-summary.json",
+      "sha256": "43b6f75be2203bed74eee0912288462143ac436b07984d469fff770c9ddfaa51",
+      "sizeBytes": 2264
+    }
+  ],
+  "scope": "Local source20 and actual original-Setup installed20 acceptance only. Earlier source17/19 PASS results are not substituted for the reported installed checks. Historical source18 human IME evidence is explicitly separate. Private original images, paths, raw measurements, process identifiers and credentials are excluded. This immutable snapshot does not claim PR merge, stable publication or official update completion."
+}

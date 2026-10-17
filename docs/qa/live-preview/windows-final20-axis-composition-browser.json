@@ -1,0 +1,244 @@
+{
+  "schema": "figure-studio-source20-public-axis-browser/1",
+  "status": "PASS_EXECUTED_TWO_THEMES_TEN_CHECKS",
+  "sourceStage": "source20",
+  "kind": "installed-windows",
+  "sourceManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+  "sourceIrisHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+  "packageSourceProofSha256": "6aff7122b3e1c62efa5e4967ca625c430cfa453bfded051b9e18af028a841eef",
+  "rawReportSha256": "c2796243c9a5dfc82a71c0f9245ff228c9e6dea7e48aaccf34421b1a85070a2b",
+  "harnessSha256": "f92639dd3a1d63e96462ce57dcb4e1a15756a422b308bce54c1b9fd5f8b07d31",
+  "startedAt": "2026-10-17T21:12:46.545Z",
+  "finishedAt": "2026-10-17T21:13:25.409Z",
+  "browser": "155.0.8059.82",
+  "publicIrisFixtureSha256": "3c2466920841a71e8408d7a93bf76d1dc5efffe5dcc1a1849cd711b65be99185",
+  "actualChecks": 10,
+  "themes": [
+    {
+      "theme": "carbon",
+      "status": "PASS",
+      "checks": [
+        "real-maximum-10-preview-keeps-project-history-and-source-uncommitted",
+        "second-synthetic-cancelled-composition-cannot-clear-the-first-rejection-or-delete-the-last-range",
+        "synthetic-rejected-composition-tail-and-another-field-cannot-delete-maximum-or-start-render-or-commit",
+        "ordinary-keyboard-correction-commits-maximum-11-once-and-real-undo-redo-save-reopen-export-retain-source",
+        "ordinary-deliberate-Backspace-can-request-Automatic-and-Escape-restores-exact-committed-range"
+      ],
+      "localSourceProof": {
+        "localHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+        "servedHtmlSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+        "reconstructedExpectedSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "platform": "windows",
+        "architecture": "x86_64",
+        "inAppInstall": false
+      },
+      "axisRequests": [
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_max": 10
+          }
+        },
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_max": 11,
+            "y_min": 0
+          }
+        },
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_min": 0
+          }
+        }
+      ],
+      "video": {
+        "rawFile": "page@4d52a8b5eb72ef7c89986e12986e045f.webm",
+        "sha256": "3d1a04992922257edd327b02891c282960eb5b0f3abea128c50c17de763da6e2",
+        "sizeBytes": 1611428,
+        "published": false
+      },
+      "screenshot": {
+        "file": "windows-final20-axis-carbon.png",
+        "sha256": "bc9f6a920591d0c862e292d010600a36b52427ee2ed0ce33b1c9e739a0d0fc61",
+        "sizeBytes": 152830,
+        "actuallyViewedByRoot": true
+      },
+      "actualExport": {
+        "format": "SVG",
+        "maximum": 11,
+        "sha256": "e0badd349c0338e23d7a214d1c15c307df776a6b180b73b0ef4ae7adba451bf4",
+        "sizeBytes": 46139
+      }
+    },
+    {
+      "theme": "pearl",
+      "status": "PASS",
+      "checks": [
+        "real-maximum-10-preview-keeps-project-history-and-source-uncommitted",
+        "second-synthetic-cancelled-composition-cannot-clear-the-first-rejection-or-delete-the-last-range",
+        "synthetic-rejected-composition-tail-and-another-field-cannot-delete-maximum-or-start-render-or-commit",
+        "ordinary-keyboard-correction-commits-maximum-11-once-and-real-undo-redo-save-reopen-export-retain-source",
+        "ordinary-deliberate-Backspace-can-request-Automatic-and-Escape-restores-exact-committed-range"
+      ],
+      "localSourceProof": {
+        "localHtmlSha256": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+        "servedHtmlSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+        "reconstructedExpectedSha256": "a79a76a2303b1f0864fb4f82593b2c7a115907ef7af40532dc6cfaa6c53d6927",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "platform": "windows",
+        "architecture": "x86_64",
+        "inAppInstall": false
+      },
+      "axisRequests": [
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_max": 10
+          }
+        },
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_max": 11,
+            "y_min": 0
+          }
+        },
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_min": 0
+          }
+        }
+      ],
+      "video": {
+        "rawFile": "page@6a750f30cf0c2997ab6b79490b40f320.webm",
+        "sha256": "a80edaf2b5bb4c4d9a31455b47f0497d3afebd2e35d374da57dc06eed9927e10",
+        "sizeBytes": 1664050,
+        "published": false
+      },
+      "screenshot": {
+        "file": "windows-final20-axis-pearl.png",
+        "sha256": "c8156fb7352c54154697ed9d9baa2968918bf00e218910785ba3765ca0e78523",
+        "sizeBytes": 153392,
+        "actuallyViewedByRoot": true
+      },
+      "actualExport": {
+        "format": "SVG",
+        "maximum": 11,
+        "sha256": "e0badd349c0338e23d7a214d1c15c307df776a6b180b73b0ef4ae7adba451bf4",
+        "sizeBytes": 46139
+      }
+    }
+  ],
+  "installedBefore": {
+    "listenerExecutableExact": true,
+    "listenerCount": 1,
+    "fileVersion": "0.1.22",
+    "appId": "{51D78749-35EE-43BB-BA21-F79D6A1D5094}",
+    "registryOwned": true,
+    "registryPresentViews": 2,
+    "registryViews": [
+      {
+        "hive": "CurrentUser",
+        "view": "Registry64",
+        "exists": true,
+        "directoryExact": true,
+        "checkedValueNames": [
+          "Inno Setup: App Path",
+          "InstallLocation"
+        ]
+      },
+      {
+        "hive": "CurrentUser",
+        "view": "Registry32",
+        "exists": true,
+        "directoryExact": true,
+        "checkedValueNames": [
+          "Inno Setup: App Path",
+          "InstallLocation"
+        ]
+      },
+      {
+        "hive": "LocalMachine",
+        "view": "Registry64",
+        "exists": false,
+        "directoryExact": null,
+        "checkedValueNames": []
+      },
+      {
+        "hive": "LocalMachine",
+        "view": "Registry32",
+        "exists": false,
+        "directoryExact": null,
+        "checkedValueNames": []
+      }
+    ],
+    "executableSha256": "c2a6497e96300c88414e80b7c8d6c1b0c9d06d4ee41227a730a75d5322b98fa1",
+    "executableSizeBytes": 18306386,
+    "scope": "Read-only explicit executable hash, file version, live loopback listener ownership and original AppId in all four registry views. No process termination, installation or registry mutation. Update installation capability is checked separately."
+  },
+  "installedAfter": {
+    "listenerExecutableExact": true,
+    "listenerCount": 1,
+    "fileVersion": "0.1.22",
+    "appId": "{51D78749-35EE-43BB-BA21-F79D6A1D5094}",
+    "registryOwned": true,
+    "registryPresentViews": 2,
+    "registryViews": [
+      {
+        "hive": "CurrentUser",
+        "view": "Registry64",
+        "exists": true,
+        "directoryExact": true,
+        "checkedValueNames": [
+          "Inno Setup: App Path",
+          "InstallLocation"
+        ]
+      },
+      {
+        "hive": "CurrentUser",
+        "view": "Registry32",
+        "exists": true,
+        "directoryExact": true,
+        "checkedValueNames": [
+          "Inno Setup: App Path",
+          "InstallLocation"
+        ]
+      },
+      {
+        "hive": "LocalMachine",
+        "view": "Registry64",
+        "exists": false,
+        "directoryExact": null,
+        "checkedValueNames": []
+      },
+      {
+        "hive": "LocalMachine",
+        "view": "Registry32",
+        "exists": false,
+        "directoryExact": null,
+        "checkedValueNames": []
+      }
+    ],
+    "executableSha256": "c2a6497e96300c88414e80b7c8d6c1b0c9d06d4ee41227a730a75d5322b98fa1",
+    "executableSizeBytes": 18306386,
+    "scope": "Read-only explicit executable hash, file version, live loopback listener ownership and original AppId in all four registry views. No process termination, installation or registry mutation. Update installation capability is checked separately."
+  },
+  "eventMethod": "Rejected and second-cancelled composition/input/change are deliberately synthetic DOM events. Correction to11, explicit Backspace, Escape, Apply, Undo/Redo, New blank, actual Open, Save and SVG export use ordinary Chrome UI actions and real local rendering. No scientific response or progress is mocked.",
+  "nativeImeAcceptance": false,
+  "scope": "Actual public Iris project, local axis rendering, Save/reopen, Undo/Redo and SVG export in headful Chrome. The rejected composition and its trailing input/change are deliberately dispatched synthetic DOM events. Subsequent correction, deletion and cancel use ordinary browser keyboard actions. This is not native Windows IME acceptance.",
+  "mediaReview": "Root actually viewed both final1440x900 screenshots: Iris points and final axis0..11 are visible with maximum11/major interval1 controls in Carbon and Pearl. Screenshots are not latency or native IME evidence. Original videos remain in ignored cache; no OS candidate popup is claimed."
+}
