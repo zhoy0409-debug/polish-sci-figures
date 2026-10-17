@@ -1,0 +1,24 @@
+{
+  "kind": "preserved_real_upgrade_attempt_preinstaller_failure_audit",
+  "recordedUTC": "2026-10-17T12:15:08.714Z",
+  "from": "0.1.20",
+  "to": "0.1.21",
+  "passed": false,
+  "originalReportSHA256": "53050e5e4d36546218d0e20335e9d002c64386d147cc4bd0ad4e85497b2b033e",
+  "originalReportUnmodified": true,
+  "originalReportedInstallerRuns": 1,
+  "auditedInstallerAttempts": 1,
+  "auditedInstallerLaunches": 0,
+  "reason": "The original harness incremented installerRuns before launching PowerShell. Windows PowerShell failed to resolve Get-FileHash before Start-Process. No Inno installer log or started marker was created; the original count is an attempt count, not proof of an installer launch.",
+  "autosaveEstablishedBeforeStoppingIsolatedApp": true,
+  "automaticRestoreEstablished": false,
+  "scientificPostUpgradeVerificationCompleted": false,
+  "isolatedAppStoppedBeforeFailure": true,
+  "operatorReportedIsolatedOldVersionRestart": true,
+  "fix": "Read-only .NET SHA256; one installerAttempts increment; installerRuns confirmed only from a marker written immediately after successful Start-Process, reread in catch/finally; WaitForExit and Refresh before checking ExitCode.",
+  "limitations": [
+    "This is an audit of a failed acceptance attempt, not a successful upgrade.",
+    "The immutable original failure evidence is retained. No download or installer was started by this audit.",
+    "This final-version acceptance audit is intentionally outside the installer SUPPORT_FILES to avoid self-referential artifact hashes."
+  ]
+}

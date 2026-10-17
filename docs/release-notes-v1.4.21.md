@@ -2,7 +2,7 @@
 
 Figure Studio gains Carbon Atelier and Pearl Pro themes, a clearer selection inspector and a cat-and-dog update scene. Existing Figure Discovery, local scientific analysis, image tools, professional axes and editable exports remain available.
 
-Status checked 2026-10-17: source functionality and the formal performance comparison without video recording are complete. The 5,000-element fixture still shows slower tail latency for selection and colour changes, so the results do not establish a performance-neutral release. Build-specific Windows installation/update and actual Windows display-scaling acceptance remain pending. See the [validation summary](carbon-atelier-validation.md), [current browser record](qa/carbon-atelier/browser-validation.md) and [design-token evidence](qa/carbon-atelier/design-tokens.md).
+Evidence recorded 2026-10-17 covers source checks, an actual Windows 0.1.20→0.1.21 CLI upgrade, portable-runtime checks, a 22-image installed-build matrix and actual Windows 100%/125%/150% scaling. The matrix identified a narrow-header overlap; its source fix passes 48 layout cases. Candidate records identify their own artifact hashes; acceptance of the last repackaged files is defined by the separate build-specific reports in the [validation summary](carbon-atelier-validation.md). The formal comparison without video recording retains slower selection/colour tail latency for 5,000 elements. See also the [browser record](qa/carbon-atelier/browser-validation.md) and [design-token evidence](qa/carbon-atelier/design-tokens.md).
 
 ## What changed
 
@@ -26,7 +26,7 @@ This visual release does not extend statistical applicability, image-detection a
 
 本版增加默认 **Carbon Atelier** 深色工作台与可选 **Pearl Pro** 浅色主题，梳理当前选中内容的检查器，并以原创猫狗协作场景展示真实更新阶段。保留智能选图、本地统计、图片工具、专业坐标轴及可编辑导出。
 
-截至 2026-10-17：源码功能和无录屏正式性能对照已完成；5000 图元下选择／改色的尾部延迟仍有退步，不能据此宣称性能无回退。本版 Windows 安装／升级及实际系统缩放仍待验收。结果见[验收汇总](carbon-atelier-validation.md)、[浏览器记录](qa/carbon-atelier/browser-validation.md)与[设计令牌证据](qa/carbon-atelier/design-tokens.md)。
+2026-10-17 的记录覆盖源码、实际 Windows 0.1.20→0.1.21 CLI 升级、便携运行时、22 图安装版矩阵和实际系统 100%／125%／150% 缩放。矩阵发现的窄标题栏重叠已在源码修复并通过 48 项布局检查。候选记录按各自成品哈希识别，最后重打包文件的验收以[验收汇总](carbon-atelier-validation.md)中的独立成品报告为准。无录屏正式对照保留 5000 图元选择／改色尾部回退。另见[浏览器记录](qa/carbon-atelier/browser-validation.md)与[设计令牌证据](qa/carbon-atelier/design-tokens.md)。
 
 - 顶部**外观**可切换 Carbon（强调色 `#49C3A5`）和 Pearl（`#176B5D`），单独设置中性、深色或浅色的画布周边。图纸保留白色，界面偏好与作品配色、原始像素及撤销记录分开。
 - 右侧显示当前选中的对象类别，常用设置优先，其他分组仍可展开；保留五组工作入口和本地功能搜索，并新增外观命令。检查器标签可换行，避免隐藏操作名称。

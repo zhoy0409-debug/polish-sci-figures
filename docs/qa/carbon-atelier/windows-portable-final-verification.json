@@ -1,0 +1,105 @@
+{
+  "schema": "figure-studio-windows-portable-verification/1",
+  "generatedUTC": "2026-10-17T12:34:42.621296+00:00",
+  "status": "PASS",
+  "scope": "Final rebuilt 0.1.21 portable archive including the narrow-header fix; actual frozen EXE self-test on this Windows x64 host, not a clean VM or full GUI acceptance",
+  "versions": {
+    "studio": "0.1.21",
+    "suite": "1.4.21"
+  },
+  "artifact": {
+    "name": "polish-sci-figures-Studio-0.1.21-Portable-x64.zip",
+    "sha256": "8287b1c196be9c0eef5d374a079e4d3bff195081cffc8d9f585c5462b968505c",
+    "applicationFiles": 2531,
+    "allApplicationHashesMatchBuild": true,
+    "executableSha256": "ff5cb0e82f7e4127bc2dd3306839fb60af4f5ebf574874b5eb5acfe004952248",
+    "peMachine": "0x8664"
+  },
+  "runtime": {
+    "exitCode": 0,
+    "frozen": true,
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "tk": "8.6.12",
+    "tcl": "8.6.12",
+    "pathContainsOnlyWindowsRuntimeDirectories": true,
+    "pythonHomeIntentionallyUnavailable": true,
+    "pythonPathEmpty": true,
+    "pythonNoUserSite": true,
+    "isolatedLocalAppData": true,
+    "explicitDataDirectoryEqualsIsolatedDefault": true,
+    "independentWorkingAndOutputDirectories": true
+  },
+  "checks": [
+    "Tk desktop shell resources",
+    "GET editor",
+    "Local update endpoint and installation version (no release request)",
+    "Host / Origin / token guards",
+    "/api/analyze",
+    "/api/render",
+    "/api/reflow",
+    "/api/import-pdf",
+    "/api/import-pdf",
+    "/api/image-duplicates",
+    "Bundled OpenCV image check and evidence via local HTTP",
+    "/api/image-links",
+    "Bundled SIFT crop localization and original-pixel coordinates via local HTTP"
+  ],
+  "updateEligibility": {
+    "localUpdateInfo": {
+      "currentVersion": "0.1.21",
+      "suiteVersion": "1.4.21",
+      "platform": "windows",
+      "architecture": "x86_64",
+      "channel": "stable",
+      "inAppInstall": false
+    },
+    "registeredInstallationExists": false,
+    "registeredInstallationMatchesPortable": false,
+    "registryAccess": "read-only",
+    "releaseFeedRequested": false,
+    "downloadOrInstallRequested": false,
+    "portableContainsInstallerUninstaller": false
+  },
+  "syntheticFixture": {
+    "dataSha256": "678e786f20cbdccc2359caa49aa155c68ec6cd8e35858ff9d68b28e49c2f2452",
+    "variants": 17,
+    "pdfObjects": {
+      "texts": 11,
+      "paths": 17,
+      "images": 0
+    },
+    "imageLinks": {
+      "passed": true,
+      "synthetic": true,
+      "method": "sift_similarity_bidirectional",
+      "compiledModule": true,
+      "forwardInliers": 167,
+      "reverseInliers": 166,
+      "residualPixels": 0.003
+    }
+  },
+  "isolation": {
+    "freshExtractionOnly": true,
+    "preExistingDirectoryReplacement": false,
+    "existingApplicationProcessesControlled": false,
+    "installerServiceModified": false,
+    "registryWrites": false,
+    "absoluteLocalPathsOmitted": true
+  },
+  "evidence": {
+    "selfTestReportSha256": "a845c9de7d3e2b5008535c484ba885df852827f4f43de2838392db58acf80386",
+    "packageCheckReportSha256": "8cddf124014c4a2321fab4c767ebd935b320c0eb114604f3af298274ce504b2c",
+    "reportCreatedAfterArchiveBuild": true,
+    "notEmbeddedInVerifiedArchive": true,
+    "finalThemeCssSha256": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab",
+    "finalThemeCssMatchesFrozenSource": true,
+    "narrowHeaderFixEmbedded": true
+  },
+  "limitations": [
+    "Local Windows host with isolated process configuration; not a clean VM or broad device compatibility test.",
+    "Frozen runtime and HTTP functional checks do not establish final installed-GUI, upgrade, browser project restoration, OS display scaling, or editing performance acceptance.",
+    "SIFT and duplicate checks here use explicitly synthetic packaging fixtures and do not measure scientific image-detection accuracy."
+  ],
+  "sourceCommit": "c0545dc2b9d7c1665b81e93bf3ac1cb397ed68d2",
+  "candidateReportPreserved": "windows-portable-verification.json"
+}

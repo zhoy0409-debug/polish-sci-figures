@@ -1,0 +1,157 @@
+{
+  "schema": "figure-studio-carbon-release-packages/1",
+  "generatedUTC": "2026-10-17T12:32:44.121225+00:00",
+  "status": "PASS",
+  "sourceCommit": "c0545dc2b9d7c1665b81e93bf3ac1cb397ed68d2",
+  "suiteVersion": "v1.4.21",
+  "studioVersion": "0.1.21",
+  "environment": {
+    "host": "Windows x64",
+    "pythonEnvironment": "repository .venv",
+    "matplotlibBackend": "Agg",
+    "numericThreadLimits": 1,
+    "temporaryDirectories": "separate repository-local cache directories"
+  },
+  "artifacts": [
+    {
+      "kind": "suite",
+      "name": "sci-figure-suite-v1.4.21.zip",
+      "bytes": 14350676,
+      "sha256": "286bb607ba76d35f53cfcae2508f13e486a78c4bf0e141b95cbba9f8e510fc45",
+      "members": 293,
+      "crcCheck": "PASS",
+      "allPayloadsMatchFrozenSourceWithDocumentLinkRewriting": true,
+      "requiredThemeSceneGuideAssetsPresent": [
+        "skills/polish-sci-figures/assets/figure-studio/theme-tokens.css",
+        "skills/polish-sci-figures/assets/figure-studio/theme.css",
+        "skills/polish-sci-figures/assets/figure-studio/theme-controller.js",
+        "skills/polish-sci-figures/assets/figure-studio/update-scene.js",
+        "skills/polish-sci-figures/assets/figure-studio/update-scene.css",
+        "skills/polish-sci-figures/assets/figure-studio/mascot-border-collie.svg",
+        "skills/polish-sci-figures/assets/figure-studio/mascot-maine-coon.svg",
+        "skills/polish-sci-figures/assets/figure-studio/mascot-scene.svg",
+        "docs/figure-studio-appearance.md",
+        "docs/release-notes-v1.4.21.md"
+      ],
+      "skillEntrypoints": 3
+    },
+    {
+      "kind": "portableSkill",
+      "name": "polish-sci-figures-v1.4.21-skill.zip",
+      "bytes": 14368840,
+      "sha256": "fdc03136e871f42f4260c2239aabe8223d5f4ec29521afccc015f3e0ad92eca5",
+      "members": 294,
+      "crcCheck": "PASS",
+      "allPayloadsMatchFrozenSourceWithDocumentLinkRewriting": true,
+      "requiredThemeSceneGuideAssetsPresent": [
+        "skills/polish-sci-figures/assets/figure-studio/theme-tokens.css",
+        "skills/polish-sci-figures/assets/figure-studio/theme.css",
+        "skills/polish-sci-figures/assets/figure-studio/theme-controller.js",
+        "skills/polish-sci-figures/assets/figure-studio/update-scene.js",
+        "skills/polish-sci-figures/assets/figure-studio/update-scene.css",
+        "skills/polish-sci-figures/assets/figure-studio/mascot-border-collie.svg",
+        "skills/polish-sci-figures/assets/figure-studio/mascot-maine-coon.svg",
+        "skills/polish-sci-figures/assets/figure-studio/mascot-scene.svg",
+        "docs/figure-studio-appearance.md",
+        "docs/release-notes-v1.4.21.md"
+      ],
+      "skillEntrypoints": 1
+    }
+  ],
+  "checks": [
+    {
+      "name": "suite-build",
+      "script": "scripts/build_release.py",
+      "arguments": "--version v1.4.21 --outdir .cache/carbon-release-final",
+      "exitCode": 0,
+      "passed": true,
+      "startedUTC": "2026-10-17T12:31:28.6522566Z",
+      "finishedUTC": "2026-10-17T12:31:33.0186016Z",
+      "elapsedSeconds": 4.3534657,
+      "log": "suite-build.log",
+      "logSha256": "ac002ad82cfe56bfba8c6770a810554146d0962c0e5cc36540c7ddd1af38a28e"
+    },
+    {
+      "name": "skill-build",
+      "script": "scripts/build_portable_skill.py",
+      "arguments": "--version v1.4.21 --outdir .cache/carbon-release-final",
+      "exitCode": 0,
+      "passed": true,
+      "startedUTC": "2026-10-17T12:31:28.7802874Z",
+      "finishedUTC": "2026-10-17T12:31:36.5283441Z",
+      "elapsedSeconds": 7.7338434,
+      "log": "skill-build.log",
+      "logSha256": "c85cb208ac838c5bbf0857e52388317e7fae7b594c79f2e3da2d82e499491695"
+    },
+    {
+      "name": "release-versions",
+      "script": "scripts/test_release_versions.py",
+      "arguments": "",
+      "exitCode": 0,
+      "passed": true,
+      "startedUTC": "2026-10-17T12:31:28.8581551Z",
+      "finishedUTC": "2026-10-17T12:31:29.6932935Z",
+      "elapsedSeconds": 0.8242031,
+      "log": "release-versions.log",
+      "logSha256": "124bb4009aef836e21daf66eceaa2f1b8e15c629b7bc3d7ace524d11af04a476"
+    },
+    {
+      "name": "release-bundle",
+      "script": "scripts/test_release_bundle.py",
+      "arguments": "",
+      "exitCode": 0,
+      "passed": true,
+      "startedUTC": "2026-10-17T12:31:29.0078166Z",
+      "finishedUTC": "2026-10-17T12:31:48.9203037Z",
+      "elapsedSeconds": 19.8982881,
+      "log": "release-bundle.log",
+      "logSha256": "b89a565e291e644d41179183a909a30f1a15e7a3aac1c287def2cfbc37857764"
+    },
+    {
+      "name": "portable-skill",
+      "script": "scripts/test_portable_skill.py",
+      "arguments": "",
+      "exitCode": 0,
+      "passed": true,
+      "startedUTC": "2026-10-17T12:31:29.0080566Z",
+      "finishedUTC": "2026-10-17T12:31:54.1329947Z",
+      "elapsedSeconds": 25.1141218,
+      "log": "portable-skill.log",
+      "logSha256": "f68fbf280f92c6269b4e53c686c5ecf3bf5e73fc368ffed8679a01e88f27a8aa"
+    }
+  ],
+  "unpackedCliRuntime": {
+    "scope": "Tests unpacked builder-produced archives from the frozen source; final archives above were then verified member-for-member against the same payload sources",
+    "suite": {
+      "templates": 192,
+      "gallery_variants": 17,
+      "legacy_variants": 6,
+      "replacement_and_reflow": true,
+      "grouped_semantic_views": 2,
+      "local_duplicates": true,
+      "local_image_links": true
+    },
+    "portableSkill": {
+      "archive": "polish-sci-figures-v1.4.21-skill.zip",
+      "files": 294,
+      "top_folder": "polish-sci-figures",
+      "raw_rows": 16,
+      "candidate_previews": 3,
+      "doctor": "passed",
+      "editable_page": "passed",
+      "source_unchanged": true
+    }
+  },
+  "packagingBoundaries": {
+    "scientificDatasetsInWorkflow": "explicitly synthetic raw observations",
+    "privateWorkspacesIncluded": false,
+    "finalWindowsArtifactHashReportsEmbedded": false,
+    "independentValidationSummaryEmbedded": false,
+    "singleUploadSkillEntrypoint": true
+  },
+  "limitations": [
+    "Python CLI packages require a compatible host Python environment and the declared dependencies.",
+    "These extraction and runtime checks do not establish Windows installed-GUI acceptance, scientific-image algorithm accuracy or the absence of known 5000-element performance regressions.",
+    "No frozen source or embedded user document was changed by this packaging check."
+  ]
+}

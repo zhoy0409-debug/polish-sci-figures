@@ -1,0 +1,65 @@
+{
+  "schema": "figure-studio-carbon-windows-cli-upgrade/1",
+  "status": "PASS",
+  "sourceProofSha256": "debbea371051e0a96d7b4327162be6c12455dc23a5b72a46169544935d69b265",
+  "method": "Actual Windows installer invoked by CLI; same browser context and origin",
+  "from": "0.1.20",
+  "to": "0.1.21",
+  "installerSha256": "dcdc5b9e99af5b5e24c41867c9127f433f1347c4fe4ddc08634ef2cc1d90c6cb",
+  "installerAttempts": 1,
+  "installerRuns": 1,
+  "installerExitCode": 0,
+  "before": {
+    "currentVersion": "0.1.20",
+    "suiteVersion": "1.4.20",
+    "platform": "windows"
+  },
+  "after": {
+    "currentVersion": "0.1.21",
+    "suiteVersion": "1.4.21",
+    "platform": "windows"
+  },
+  "registrationPathPreserved": true,
+  "registeredVersionBefore": "0.1.20",
+  "registeredVersionAfter": "0.1.21",
+  "protectedProcessCount": 1,
+  "protectedProcessesUnchanged": true,
+  "autosaveEstablishedBeforeUpgrade": true,
+  "automaticProjectRestore": true,
+  "automaticRestoreProof": "Same browser context and origin, reload and actual Save; no post-upgrade Open",
+  "scientificSourceUnchanged": true,
+  "scientificTableSha256": "ca7d70f935e74618b78234d9e83d3c4893a91a9f8a884777aba237894feae71b",
+  "originalSvgSha256": "b68c3c82e9c1a9e6935d79d09e1402f3eff5c56d349dc9043977563b233c0d82",
+  "settingsPortPreserved": true,
+  "settingsJsonEqual": true,
+  "themeChecks": [
+    {
+      "theme": "carbon",
+      "surround": "neutral",
+      "persistedOnReload": true,
+      "tableRowsExact": true,
+      "originalSVGExact": true,
+      "stateExact": true
+    },
+    {
+      "theme": "pearl",
+      "surround": "dark",
+      "persistedOnReload": true,
+      "tableRowsExact": true,
+      "originalSVGExact": true,
+      "stateExact": true
+    },
+    {
+      "theme": "carbon",
+      "surround": "light",
+      "persistedOnReload": true,
+      "tableRowsExact": true,
+      "originalSVGExact": true,
+      "stateExact": true
+    }
+  ],
+  "limitations": [
+    "This confirms this installer upgrade and retained browser context, not every account or device.",
+    "The CLI path does not demonstrate the in-app download/verification/install presentation."
+  ]
+}

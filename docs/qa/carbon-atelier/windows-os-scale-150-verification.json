@@ -1,0 +1,377 @@
+{
+  "schema": "figure-studio-carbon-windows-os-scale/1",
+  "status": "PASS",
+  "sourceProofSha256": "21fad46866e811c75f87452aa33a69655359da6b851bee75037bd1c50fe98d7b",
+  "generatedUTC": "2026-10-17T12:18:12.608Z",
+  "browser": "155.0.8059.82",
+  "operatorDeclaredWindowsScalePercent": 150,
+  "browserDprEmulation": false,
+  "osSettingChangedByTestScript": false,
+  "viewportConfiguration": null,
+  "windowPolicy": "Native maximized Chrome; measured dimensions are recorded, not assigned to a fixed CSS resolution",
+  "servedBuild": {
+    "currentVersion": "0.1.21",
+    "suiteVersion": "1.4.21",
+    "platform": "windows"
+  },
+  "initialGeometry": {
+    "devicePixelRatio": 1.5,
+    "innerWidth": 1707,
+    "innerHeight": 932,
+    "outerWidth": 1707,
+    "outerHeight": 1019,
+    "screenX": 0,
+    "screenY": 0,
+    "screen": {
+      "width": 1707,
+      "height": 1067,
+      "availWidth": 1707,
+      "availHeight": 1019,
+      "availLeft": 0,
+      "availTop": 0,
+      "colorDepth": 24,
+      "pixelDepth": 24
+    },
+    "document": {
+      "clientWidth": 1707,
+      "clientHeight": 932,
+      "scrollWidth": 1707,
+      "scrollHeight": 932
+    },
+    "visualViewport": {
+      "width": 1707.3333740234375,
+      "height": 932,
+      "scale": 1,
+      "offsetLeft": 0,
+      "offsetTop": 0
+    }
+  },
+  "finalGeometry": {
+    "devicePixelRatio": 1.5,
+    "innerWidth": 1707,
+    "innerHeight": 932,
+    "outerWidth": 1707,
+    "outerHeight": 1019,
+    "screenX": 0,
+    "screenY": 0,
+    "screen": {
+      "width": 1707,
+      "height": 1067,
+      "availWidth": 1707,
+      "availHeight": 1019,
+      "availLeft": 0,
+      "availTop": 0,
+      "colorDepth": 24,
+      "pixelDepth": 24
+    },
+    "document": {
+      "clientWidth": 1707,
+      "clientHeight": 932,
+      "scrollWidth": 1707,
+      "scrollHeight": 932
+    },
+    "visualViewport": {
+      "width": 1707.3333740234375,
+      "height": 932,
+      "scale": 1,
+      "offsetLeft": 0,
+      "offsetTop": 0
+    }
+  },
+  "sources": [
+    {
+      "id": "UCI Iris",
+      "doi": "10.24432/C56C76",
+      "license": "CC BY 4.0",
+      "inputProjectSHA256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5"
+    }
+  ],
+  "themeChecks": [
+    {
+      "theme": "carbon",
+      "surround": "neutral",
+      "persistsAfterReload": true,
+      "tableRowsExact": true,
+      "originalSVGExact": true,
+      "stateExact": true
+    },
+    {
+      "theme": "pearl",
+      "surround": "dark",
+      "persistsAfterReload": true,
+      "tableRowsExact": true,
+      "originalSVGExact": true,
+      "stateExact": true
+    }
+  ],
+  "updateChecks": [
+    {
+      "theme": "carbon",
+      "actualSceneState": "current",
+      "manualMotionOff": true,
+      "noDownloadOrInstall": true,
+      "summary": "You are up to date on this release channel"
+    },
+    {
+      "theme": "pearl",
+      "actualSceneState": "current",
+      "manualMotionOff": true,
+      "noDownloadOrInstall": true,
+      "summary": "You are up to date on this release channel"
+    }
+  ],
+  "visibleControlsChecked": 18,
+  "allControlsInsideViewport": true,
+  "autosaveEstablished": true,
+  "scientificTableSha256": "ca7d70f935e74618b78234d9e83d3c4893a91a9f8a884777aba237894feae71b",
+  "originalSvgSha256": "b68c3c82e9c1a9e6935d79d09e1402f3eff5c56d349dc9043977563b233c0d82",
+  "screenshots": [
+    {
+      "file": "os-150-carbon-workspace.png",
+      "sha256": "687ead05be2b06eb0f41ddd8bffa57117bc84bc4795a2fbb510c78354ac4f51f",
+      "geometry": {
+        "devicePixelRatio": 1.5,
+        "innerWidth": 1707,
+        "innerHeight": 932,
+        "outerWidth": 1707,
+        "outerHeight": 1019,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 1707,
+          "height": 1067,
+          "availWidth": 1707,
+          "availHeight": 1019,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 1707,
+          "clientHeight": 932,
+          "scrollWidth": 1707,
+          "scrollHeight": 932
+        },
+        "visualViewport": {
+          "width": 1707.3333740234375,
+          "height": 932,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2561,
+        "height": 1398
+      }
+    },
+    {
+      "file": "os-150-carbon-actual-current.png",
+      "sha256": "25ed2d4f13db9f4e0927fa351e2ff63408586269e077d2327b53ef3b522c7b08",
+      "geometry": {
+        "devicePixelRatio": 1.5,
+        "innerWidth": 1707,
+        "innerHeight": 932,
+        "outerWidth": 1707,
+        "outerHeight": 1019,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 1707,
+          "height": 1067,
+          "availWidth": 1707,
+          "availHeight": 1019,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 1707,
+          "clientHeight": 932,
+          "scrollWidth": 1707,
+          "scrollHeight": 932
+        },
+        "visualViewport": {
+          "width": 1707.3333740234375,
+          "height": 932,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2561,
+        "height": 1398
+      }
+    },
+    {
+      "file": "os-150-carbon-motion-off.png",
+      "sha256": "e4ac5371eb7da935e1d8a2313f6f9c6e5d5f5bb21e7dff7f00d9ffdfc75c8fef",
+      "geometry": {
+        "devicePixelRatio": 1.5,
+        "innerWidth": 1707,
+        "innerHeight": 932,
+        "outerWidth": 1707,
+        "outerHeight": 1019,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 1707,
+          "height": 1067,
+          "availWidth": 1707,
+          "availHeight": 1019,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 1707,
+          "clientHeight": 932,
+          "scrollWidth": 1707,
+          "scrollHeight": 932
+        },
+        "visualViewport": {
+          "width": 1707.3333740234375,
+          "height": 932,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2561,
+        "height": 1398
+      }
+    },
+    {
+      "file": "os-150-pearl-workspace.png",
+      "sha256": "7dd611e17dd01b313d5611aaab4d1d3e9a3f98fa9705ee16ba59c1672389821e",
+      "geometry": {
+        "devicePixelRatio": 1.5,
+        "innerWidth": 1707,
+        "innerHeight": 932,
+        "outerWidth": 1707,
+        "outerHeight": 1019,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 1707,
+          "height": 1067,
+          "availWidth": 1707,
+          "availHeight": 1019,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 1707,
+          "clientHeight": 932,
+          "scrollWidth": 1707,
+          "scrollHeight": 932
+        },
+        "visualViewport": {
+          "width": 1707.3333740234375,
+          "height": 932,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2561,
+        "height": 1398
+      }
+    },
+    {
+      "file": "os-150-pearl-actual-current.png",
+      "sha256": "5c72f3cfd3a04ef623237db3dc15aab5a27532bc96485e8c84bc4eed9ed1d647",
+      "geometry": {
+        "devicePixelRatio": 1.5,
+        "innerWidth": 1707,
+        "innerHeight": 932,
+        "outerWidth": 1707,
+        "outerHeight": 1019,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 1707,
+          "height": 1067,
+          "availWidth": 1707,
+          "availHeight": 1019,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 1707,
+          "clientHeight": 932,
+          "scrollWidth": 1707,
+          "scrollHeight": 932
+        },
+        "visualViewport": {
+          "width": 1707.3333740234375,
+          "height": 932,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2561,
+        "height": 1398
+      }
+    },
+    {
+      "file": "os-150-pearl-motion-off.png",
+      "sha256": "5c72f3cfd3a04ef623237db3dc15aab5a27532bc96485e8c84bc4eed9ed1d647",
+      "geometry": {
+        "devicePixelRatio": 1.5,
+        "innerWidth": 1707,
+        "innerHeight": 932,
+        "outerWidth": 1707,
+        "outerHeight": 1019,
+        "screenX": 0,
+        "screenY": 0,
+        "screen": {
+          "width": 1707,
+          "height": 1067,
+          "availWidth": 1707,
+          "availHeight": 1019,
+          "availLeft": 0,
+          "availTop": 0,
+          "colorDepth": 24,
+          "pixelDepth": 24
+        },
+        "document": {
+          "clientWidth": 1707,
+          "clientHeight": 932,
+          "scrollWidth": 1707,
+          "scrollHeight": 932
+        },
+        "visualViewport": {
+          "width": 1707.3333740234375,
+          "height": 932,
+          "scale": 1,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      "physicalPNG": {
+        "width": 2561,
+        "height": 1398
+      }
+    }
+  ],
+  "remoteRequestCount": 0,
+  "errorCount": 0,
+  "limitations": [
+    "The operator must pair this report with Windows Display settings evidence. DOM DPR alone does not identify which OS setting produced it.",
+    "Screenshot sizes are actual browser content pixel dimensions; they do not include the Chrome toolbar or the Windows desktop.",
+    "This run does not measure GPU utilization, frame-rate performance or other display configurations."
+  ]
+}

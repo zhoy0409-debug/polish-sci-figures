@@ -10,11 +10,15 @@ const statuses={
 async function main(){
  const browser=await chromium.launch({headless:true,...(process.env.STUDIO_BROWSER?{executablePath:process.env.STUDIO_BROWSER}:{channel:'chrome'})});
  const out=path.resolve(process.env.STUDIO_HEADER_PROOF_DIR||'.cache/carbon-qa/header-layout-final');fs.mkdirSync(out,{recursive:true});
- const report={schema:'figure-studio-header-layout/1',scope:'Actual source editor with controlled bilingual save-status text; layout and keyboard reachability, not induced autosave failures or installed-binary acceptance',generatedUTC:new Date().toISOString(),browser:browser.version(),cases:[],errors:[],remoteRequests:[]};
+ const targetLabel=process.env.STUDIO_HEADER_TARGET_LABEL||'source editor';
+ const report={schema:'figure-studio-header-layout/1',targetLabel,scope:'Actual '+targetLabel+' with controlled bilingual save-status text; layout and keyboard reachability, not induced autosave failures',generatedUTC:new Date().toISOString(),browser:browser.version(),cases:[],errors:[],remoteRequests:[]};
  try{
   for(const [width,height]of [[1280,720],[1440,900],[1920,1080]]){
    const {context,page,remote,errors}=await H.browserPage(browser,{viewport:{width,height}});
    await page.goto(url);await H.dismiss(page);await page.waitForTimeout(250);
+   const servedBuild=await page.evaluate(()=>{const info=JSON.parse(document.getElementById('local-engine').textContent).updateInfo;return {currentVersion:info.currentVersion,suiteVersion:info.suiteVersion,platform:info.platform};});
+   if(process.env.STUDIO_HEADER_EXPECT_VERSION)assert.equal(servedBuild.currentVersion,process.env.STUDIO_HEADER_EXPECT_VERSION);
+   report.servedBuild=servedBuild;
    for(const language of ['en','zh-CN']){
     await page.locator('#language').selectOption(language);await page.waitForTimeout(200);
     for(const theme of ['carbon','pearl']){

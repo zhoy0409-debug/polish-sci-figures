@@ -1,0 +1,7920 @@
+{
+  "schema": "figure-studio-header-layout/1",
+  "targetLabel": "final installed 0.1.21",
+  "scope": "Actual final installed 0.1.21 with controlled bilingual save-status text; layout and keyboard reachability, not induced autosave failures",
+  "generatedUTC": "2026-10-17T12:36:24.839Z",
+  "browser": "155.0.8059.82",
+  "cases": [
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 21.203125,
+        "right": 346.40625,
+        "bottom": 57.796875,
+        "width": 141.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 42.203125,
+        "right": 346.40625,
+        "bottom": 57.796875,
+        "width": 141.515625,
+        "height": 15.59375
+      },
+      "text": "Saved locally",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 272.953125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 358.40625,
+          "top": 21.5,
+          "right": 457.53125,
+          "bottom": 57.5,
+          "width": 99.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 465.53125,
+          "top": 21.5,
+          "right": 553.53125,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 570.53125,
+          "top": 22,
+          "right": 602.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 606.53125,
+          "top": 22,
+          "right": 638.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 642.53125,
+          "top": 21.5,
+          "right": 710.09375,
+          "bottom": 57.5,
+          "width": 67.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 727.09375,
+          "top": 21.5,
+          "right": 829.15625,
+          "bottom": 57.5,
+          "width": 102.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 833.15625,
+          "top": 21.5,
+          "right": 901.421875,
+          "bottom": 57.5,
+          "width": 68.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 908.421875,
+          "top": 21.5,
+          "right": 1007.828125,
+          "bottom": 57.5,
+          "width": 99.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1011.828125,
+          "top": 21.5,
+          "right": 1098.875,
+          "bottom": 57.5,
+          "width": 87.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1106.875,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 157.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "saved",
+      "screenshot": "header-installed-final-carbon-saved-1280.png"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 13.40625,
+        "right": 346.40625,
+        "bottom": 65.59375,
+        "width": 141.515625,
+        "height": 52.1875
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 34.40625,
+        "right": 346.40625,
+        "bottom": 65.59375,
+        "width": 141.515625,
+        "height": 31.1875
+      },
+      "text": "Saving the current project…",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 301.40625,
+          "top": 33.40625,
+          "bottom": 49.40625
+        },
+        {
+          "left": 204.890625,
+          "right": 250.734375,
+          "top": 49,
+          "bottom": 65
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 358.40625,
+          "top": 21.5,
+          "right": 457.53125,
+          "bottom": 57.5,
+          "width": 99.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 465.53125,
+          "top": 21.5,
+          "right": 553.53125,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 570.53125,
+          "top": 22,
+          "right": 602.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 606.53125,
+          "top": 22,
+          "right": 638.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 642.53125,
+          "top": 21.5,
+          "right": 710.09375,
+          "bottom": 57.5,
+          "width": 67.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 727.09375,
+          "top": 21.5,
+          "right": 829.15625,
+          "bottom": 57.5,
+          "width": 102.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 833.15625,
+          "top": 21.5,
+          "right": 901.421875,
+          "bottom": 57.5,
+          "width": 68.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 908.421875,
+          "top": 21.5,
+          "right": 1007.828125,
+          "bottom": 57.5,
+          "width": 99.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1011.828125,
+          "top": 21.5,
+          "right": 1098.875,
+          "bottom": 57.5,
+          "width": 87.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1106.875,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 157.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 12,
+        "right": 346.40625,
+        "bottom": 95.375,
+        "width": 141.515625,
+        "height": 83.375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 33,
+        "right": 346.40625,
+        "bottom": 95.375,
+        "width": 141.515625,
+        "height": 62.375
+      },
+      "text": "Autosave failed · Download the current project backup before closing",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 291.9375,
+          "top": 32,
+          "bottom": 48
+        },
+        {
+          "left": 204.890625,
+          "right": 320.4375,
+          "top": 47.59375,
+          "bottom": 63.59375
+        },
+        {
+          "left": 204.890625,
+          "right": 321.59375,
+          "top": 63.1875,
+          "bottom": 79.1875
+        },
+        {
+          "left": 204.890625,
+          "right": 242.234375,
+          "top": 78.78125,
+          "bottom": 94.78125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 358.40625,
+          "top": 35.6875,
+          "right": 457.53125,
+          "bottom": 71.6875,
+          "width": 99.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 465.53125,
+          "top": 35.6875,
+          "right": 553.53125,
+          "bottom": 71.6875,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 570.53125,
+          "top": 36.1875,
+          "right": 602.53125,
+          "bottom": 71.1875,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 606.53125,
+          "top": 36.1875,
+          "right": 638.53125,
+          "bottom": 71.1875,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 642.53125,
+          "top": 35.6875,
+          "right": 710.09375,
+          "bottom": 71.6875,
+          "width": 67.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 727.09375,
+          "top": 35.6875,
+          "right": 829.15625,
+          "bottom": 71.6875,
+          "width": 102.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 833.15625,
+          "top": 35.6875,
+          "right": 901.421875,
+          "bottom": 71.6875,
+          "width": 68.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 908.421875,
+          "top": 35.6875,
+          "right": 1007.828125,
+          "bottom": 71.6875,
+          "width": 99.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1011.828125,
+          "top": 35.6875,
+          "right": 1098.875,
+          "bottom": 71.6875,
+          "width": 87.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1106.875,
+          "top": 35.6875,
+          "right": 1264,
+          "bottom": 71.6875,
+          "width": 157.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 12,
+        "right": 346.40625,
+        "bottom": 79.78125,
+        "width": 141.515625,
+        "height": 67.78125
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 33,
+        "right": 346.40625,
+        "bottom": 79.78125,
+        "width": 141.515625,
+        "height": 46.78125
+      },
+      "text": "Another window updated this project · Download the current project first",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 339.90625,
+          "top": 32,
+          "bottom": 48
+        },
+        {
+          "left": 204.890625,
+          "right": 327.28125,
+          "top": 47.59375,
+          "bottom": 63.59375
+        },
+        {
+          "left": 204.890625,
+          "right": 326.75,
+          "top": 63.1875,
+          "bottom": 79.1875
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 358.40625,
+          "top": 27.890625,
+          "right": 457.53125,
+          "bottom": 63.890625,
+          "width": 99.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 465.53125,
+          "top": 27.890625,
+          "right": 553.53125,
+          "bottom": 63.890625,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 570.53125,
+          "top": 28.390625,
+          "right": 602.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 606.53125,
+          "top": 28.390625,
+          "right": 638.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 642.53125,
+          "top": 27.890625,
+          "right": 710.09375,
+          "bottom": 63.890625,
+          "width": 67.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 727.09375,
+          "top": 27.890625,
+          "right": 829.15625,
+          "bottom": 63.890625,
+          "width": 102.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 833.15625,
+          "top": 27.890625,
+          "right": 901.421875,
+          "bottom": 63.890625,
+          "width": 68.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 908.421875,
+          "top": 27.890625,
+          "right": 1007.828125,
+          "bottom": 63.890625,
+          "width": 99.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1011.828125,
+          "top": 27.890625,
+          "right": 1098.875,
+          "bottom": 63.890625,
+          "width": 87.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1106.875,
+          "top": 27.890625,
+          "right": 1264,
+          "bottom": 63.890625,
+          "width": 157.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "conflict",
+      "screenshot": "header-installed-final-carbon-conflict-1280.png"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 21.203125,
+        "right": 346.40625,
+        "bottom": 57.796875,
+        "width": 141.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 42.203125,
+        "right": 346.40625,
+        "bottom": 57.796875,
+        "width": 141.515625,
+        "height": 15.59375
+      },
+      "text": "Saved locally",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 272.953125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 358.40625,
+          "top": 21.5,
+          "right": 457.53125,
+          "bottom": 57.5,
+          "width": 99.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 465.53125,
+          "top": 21.5,
+          "right": 553.53125,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 570.53125,
+          "top": 22,
+          "right": 602.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 606.53125,
+          "top": 22,
+          "right": 638.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 642.53125,
+          "top": 21.5,
+          "right": 710.09375,
+          "bottom": 57.5,
+          "width": 67.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 727.09375,
+          "top": 21.5,
+          "right": 829.15625,
+          "bottom": 57.5,
+          "width": 102.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 833.15625,
+          "top": 21.5,
+          "right": 901.421875,
+          "bottom": 57.5,
+          "width": 68.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 908.421875,
+          "top": 21.5,
+          "right": 1007.828125,
+          "bottom": 57.5,
+          "width": 99.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1011.828125,
+          "top": 21.5,
+          "right": 1098.875,
+          "bottom": 57.5,
+          "width": 87.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1106.875,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 157.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "saved",
+      "screenshot": "header-installed-final-pearl-saved-1280.png"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 13.40625,
+        "right": 346.40625,
+        "bottom": 65.59375,
+        "width": 141.515625,
+        "height": 52.1875
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 34.40625,
+        "right": 346.40625,
+        "bottom": 65.59375,
+        "width": 141.515625,
+        "height": 31.1875
+      },
+      "text": "Saving the current project…",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 301.40625,
+          "top": 33.40625,
+          "bottom": 49.40625
+        },
+        {
+          "left": 204.890625,
+          "right": 250.734375,
+          "top": 49,
+          "bottom": 65
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 358.40625,
+          "top": 21.5,
+          "right": 457.53125,
+          "bottom": 57.5,
+          "width": 99.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 465.53125,
+          "top": 21.5,
+          "right": 553.53125,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 570.53125,
+          "top": 22,
+          "right": 602.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 606.53125,
+          "top": 22,
+          "right": 638.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 642.53125,
+          "top": 21.5,
+          "right": 710.09375,
+          "bottom": 57.5,
+          "width": 67.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 727.09375,
+          "top": 21.5,
+          "right": 829.15625,
+          "bottom": 57.5,
+          "width": 102.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 833.15625,
+          "top": 21.5,
+          "right": 901.421875,
+          "bottom": 57.5,
+          "width": 68.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 908.421875,
+          "top": 21.5,
+          "right": 1007.828125,
+          "bottom": 57.5,
+          "width": 99.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1011.828125,
+          "top": 21.5,
+          "right": 1098.875,
+          "bottom": 57.5,
+          "width": 87.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1106.875,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 157.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 12,
+        "right": 346.40625,
+        "bottom": 95.375,
+        "width": 141.515625,
+        "height": 83.375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 33,
+        "right": 346.40625,
+        "bottom": 95.375,
+        "width": 141.515625,
+        "height": 62.375
+      },
+      "text": "Autosave failed · Download the current project backup before closing",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 291.9375,
+          "top": 32,
+          "bottom": 48
+        },
+        {
+          "left": 204.890625,
+          "right": 320.4375,
+          "top": 47.59375,
+          "bottom": 63.59375
+        },
+        {
+          "left": 204.890625,
+          "right": 321.59375,
+          "top": 63.1875,
+          "bottom": 79.1875
+        },
+        {
+          "left": 204.890625,
+          "right": 242.234375,
+          "top": 78.78125,
+          "bottom": 94.78125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 358.40625,
+          "top": 35.6875,
+          "right": 457.53125,
+          "bottom": 71.6875,
+          "width": 99.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 465.53125,
+          "top": 35.6875,
+          "right": 553.53125,
+          "bottom": 71.6875,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 570.53125,
+          "top": 36.1875,
+          "right": 602.53125,
+          "bottom": 71.1875,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 606.53125,
+          "top": 36.1875,
+          "right": 638.53125,
+          "bottom": 71.1875,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 642.53125,
+          "top": 35.6875,
+          "right": 710.09375,
+          "bottom": 71.6875,
+          "width": 67.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 727.09375,
+          "top": 35.6875,
+          "right": 829.15625,
+          "bottom": 71.6875,
+          "width": 102.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 833.15625,
+          "top": 35.6875,
+          "right": 901.421875,
+          "bottom": 71.6875,
+          "width": 68.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 908.421875,
+          "top": 35.6875,
+          "right": 1007.828125,
+          "bottom": 71.6875,
+          "width": 99.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1011.828125,
+          "top": 35.6875,
+          "right": 1098.875,
+          "bottom": 71.6875,
+          "width": 87.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1106.875,
+          "top": 35.6875,
+          "right": 1264,
+          "bottom": 71.6875,
+          "width": 157.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 12,
+        "right": 346.40625,
+        "bottom": 79.78125,
+        "width": 141.515625,
+        "height": 67.78125
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 33,
+        "right": 346.40625,
+        "bottom": 79.78125,
+        "width": 141.515625,
+        "height": 46.78125
+      },
+      "text": "Another window updated this project · Download the current project first",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 339.90625,
+          "top": 32,
+          "bottom": 48
+        },
+        {
+          "left": 204.890625,
+          "right": 327.28125,
+          "top": 47.59375,
+          "bottom": 63.59375
+        },
+        {
+          "left": 204.890625,
+          "right": 326.75,
+          "top": 63.1875,
+          "bottom": 79.1875
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 358.40625,
+          "top": 27.890625,
+          "right": 457.53125,
+          "bottom": 63.890625,
+          "width": 99.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 465.53125,
+          "top": 27.890625,
+          "right": 553.53125,
+          "bottom": 63.890625,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 570.53125,
+          "top": 28.390625,
+          "right": 602.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 606.53125,
+          "top": 28.390625,
+          "right": 638.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 642.53125,
+          "top": 27.890625,
+          "right": 710.09375,
+          "bottom": 63.890625,
+          "width": 67.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 727.09375,
+          "top": 27.890625,
+          "right": 829.15625,
+          "bottom": 63.890625,
+          "width": 102.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 833.15625,
+          "top": 27.890625,
+          "right": 901.421875,
+          "bottom": 63.890625,
+          "width": 68.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 908.421875,
+          "top": 27.890625,
+          "right": 1007.828125,
+          "bottom": 63.890625,
+          "width": 99.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1011.828125,
+          "top": 27.890625,
+          "right": 1098.875,
+          "bottom": 63.890625,
+          "width": 87.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1106.875,
+          "top": 27.890625,
+          "right": 1264,
+          "bottom": 63.890625,
+          "width": 157.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "conflict",
+      "screenshot": "header-installed-final-pearl-conflict-1280.png"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 21.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 42.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 15.59375
+      },
+      "text": "已自动保存 · 含撤销记录",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 334.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 480.140625,
+          "top": 21.5,
+          "right": 540.140625,
+          "bottom": 57.5,
+          "width": 60,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.140625,
+          "top": 21.5,
+          "right": 636.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 653.140625,
+          "top": 22,
+          "right": 685.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 689.140625,
+          "top": 22,
+          "right": 721.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 725.140625,
+          "top": 21.5,
+          "right": 791.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 808.140625,
+          "top": 21.5,
+          "right": 896.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 900.140625,
+          "top": 21.5,
+          "right": 967.140625,
+          "bottom": 57.5,
+          "width": 67,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 974.140625,
+          "top": 21.5,
+          "right": 1062.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1066.140625,
+          "top": 21.5,
+          "right": 1132.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1140.140625,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 123.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "saved"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 21.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 42.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 15.59375
+      },
+      "text": "正在保存当前工程…",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 309.6875,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 480.140625,
+          "top": 21.5,
+          "right": 540.140625,
+          "bottom": 57.5,
+          "width": 60,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.140625,
+          "top": 21.5,
+          "right": 636.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 653.140625,
+          "top": 22,
+          "right": 685.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 689.140625,
+          "top": 22,
+          "right": 721.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 725.140625,
+          "top": 21.5,
+          "right": 791.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 808.140625,
+          "top": 21.5,
+          "right": 896.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 900.140625,
+          "top": 21.5,
+          "right": 967.140625,
+          "bottom": 57.5,
+          "width": 67,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 974.140625,
+          "top": 21.5,
+          "right": 1062.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1066.140625,
+          "top": 21.5,
+          "right": 1132.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1140.140625,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 123.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 21.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 42.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 15.59375
+      },
+      "text": "自动保存失败 · 请下载当前工程备份后再关闭",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 442.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 480.140625,
+          "top": 21.5,
+          "right": 540.140625,
+          "bottom": 57.5,
+          "width": 60,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.140625,
+          "top": 21.5,
+          "right": 636.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 653.140625,
+          "top": 22,
+          "right": 685.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 689.140625,
+          "top": 22,
+          "right": 721.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 725.140625,
+          "top": 21.5,
+          "right": 791.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 808.140625,
+          "top": 21.5,
+          "right": 896.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 900.140625,
+          "top": 21.5,
+          "right": 967.140625,
+          "bottom": 57.5,
+          "width": 67,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 974.140625,
+          "top": 21.5,
+          "right": 1062.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1066.140625,
+          "top": 21.5,
+          "right": 1132.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1140.140625,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 123.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 21.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 42.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 15.59375
+      },
+      "text": "其他窗口已更新此工程 · 请先下载当前工程备份",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 454.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 480.140625,
+          "top": 21.5,
+          "right": 540.140625,
+          "bottom": 57.5,
+          "width": 60,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.140625,
+          "top": 21.5,
+          "right": 636.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 653.140625,
+          "top": 22,
+          "right": 685.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 689.140625,
+          "top": 22,
+          "right": 721.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 725.140625,
+          "top": 21.5,
+          "right": 791.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 808.140625,
+          "top": 21.5,
+          "right": 896.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 900.140625,
+          "top": 21.5,
+          "right": 967.140625,
+          "bottom": 57.5,
+          "width": 67,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 974.140625,
+          "top": 21.5,
+          "right": 1062.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1066.140625,
+          "top": 21.5,
+          "right": 1132.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1140.140625,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 123.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "conflict"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 21.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 42.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 15.59375
+      },
+      "text": "已自动保存 · 含撤销记录",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 334.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 480.140625,
+          "top": 21.5,
+          "right": 540.140625,
+          "bottom": 57.5,
+          "width": 60,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.140625,
+          "top": 21.5,
+          "right": 636.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 653.140625,
+          "top": 22,
+          "right": 685.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 689.140625,
+          "top": 22,
+          "right": 721.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 725.140625,
+          "top": 21.5,
+          "right": 791.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 808.140625,
+          "top": 21.5,
+          "right": 896.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 900.140625,
+          "top": 21.5,
+          "right": 967.140625,
+          "bottom": 57.5,
+          "width": 67,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 974.140625,
+          "top": 21.5,
+          "right": 1062.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1066.140625,
+          "top": 21.5,
+          "right": 1132.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1140.140625,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 123.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "saved"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 21.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 42.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 15.59375
+      },
+      "text": "正在保存当前工程…",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 309.6875,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 480.140625,
+          "top": 21.5,
+          "right": 540.140625,
+          "bottom": 57.5,
+          "width": 60,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.140625,
+          "top": 21.5,
+          "right": 636.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 653.140625,
+          "top": 22,
+          "right": 685.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 689.140625,
+          "top": 22,
+          "right": 721.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 725.140625,
+          "top": 21.5,
+          "right": 791.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 808.140625,
+          "top": 21.5,
+          "right": 896.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 900.140625,
+          "top": 21.5,
+          "right": 967.140625,
+          "bottom": 57.5,
+          "width": 67,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 974.140625,
+          "top": 21.5,
+          "right": 1062.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1066.140625,
+          "top": 21.5,
+          "right": 1132.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1140.140625,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 123.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 21.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 42.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 15.59375
+      },
+      "text": "自动保存失败 · 请下载当前工程备份后再关闭",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 442.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 480.140625,
+          "top": 21.5,
+          "right": 540.140625,
+          "bottom": 57.5,
+          "width": 60,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.140625,
+          "top": 21.5,
+          "right": 636.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 653.140625,
+          "top": 22,
+          "right": 685.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 689.140625,
+          "top": 22,
+          "right": 721.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 725.140625,
+          "top": 21.5,
+          "right": 791.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 808.140625,
+          "top": 21.5,
+          "right": 896.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 900.140625,
+          "top": 21.5,
+          "right": 967.140625,
+          "bottom": 57.5,
+          "width": 67,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 974.140625,
+          "top": 21.5,
+          "right": 1062.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1066.140625,
+          "top": 21.5,
+          "right": 1132.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1140.140625,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 123.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 204.890625,
+        "top": 21.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 204.890625,
+        "top": 42.203125,
+        "right": 468.140625,
+        "bottom": 57.796875,
+        "width": 263.25,
+        "height": 15.59375
+      },
+      "text": "其他窗口已更新此工程 · 请先下载当前工程备份",
+      "textRects": [
+        {
+          "left": 204.890625,
+          "right": 454.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 480.140625,
+          "top": 21.5,
+          "right": 540.140625,
+          "bottom": 57.5,
+          "width": 60,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.140625,
+          "top": 21.5,
+          "right": 636.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 653.140625,
+          "top": 22,
+          "right": 685.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 689.140625,
+          "top": 22,
+          "right": 721.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 725.140625,
+          "top": 21.5,
+          "right": 791.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 808.140625,
+          "top": 21.5,
+          "right": 896.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 900.140625,
+          "top": 21.5,
+          "right": 967.140625,
+          "bottom": 57.5,
+          "width": 67,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 974.140625,
+          "top": 21.5,
+          "right": 1062.140625,
+          "bottom": 57.5,
+          "width": 88,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1066.140625,
+          "top": 21.5,
+          "right": 1132.140625,
+          "bottom": 57.5,
+          "width": 66,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1140.140625,
+          "top": 21.5,
+          "right": 1264,
+          "bottom": 57.5,
+          "width": 123.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1280,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "conflict"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 405.40625,
+        "bottom": 57.796875,
+        "width": 180.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 405.40625,
+        "bottom": 57.796875,
+        "width": 180.515625,
+        "height": 15.59375
+      },
+      "text": "Saved locally",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 292.953125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 429.40625,
+          "top": 21.5,
+          "right": 536.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.53125,
+          "top": 21.5,
+          "right": 641.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 666.53125,
+          "top": 22,
+          "right": 698.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 702.53125,
+          "top": 22,
+          "right": 734.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 738.53125,
+          "top": 21.5,
+          "right": 814.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 839.09375,
+          "top": 21.5,
+          "right": 949.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 953.15625,
+          "top": 21.5,
+          "right": 1029.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1036.421875,
+          "top": 21.5,
+          "right": 1143.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1147.828125,
+          "top": 21.5,
+          "right": 1242.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1254.875,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "saved"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 405.40625,
+        "bottom": 57.796875,
+        "width": 180.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 405.40625,
+        "bottom": 57.796875,
+        "width": 180.515625,
+        "height": 15.59375
+      },
+      "text": "Saving the current project…",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 370.53125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 429.40625,
+          "top": 21.5,
+          "right": 536.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.53125,
+          "top": 21.5,
+          "right": 641.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 666.53125,
+          "top": 22,
+          "right": 698.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 702.53125,
+          "top": 22,
+          "right": 734.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 738.53125,
+          "top": 21.5,
+          "right": 814.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 839.09375,
+          "top": 21.5,
+          "right": 949.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 953.15625,
+          "top": 21.5,
+          "right": 1029.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1036.421875,
+          "top": 21.5,
+          "right": 1143.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1147.828125,
+          "top": 21.5,
+          "right": 1242.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1254.875,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 12,
+        "right": 405.40625,
+        "bottom": 79.78125,
+        "width": 180.515625,
+        "height": 67.78125
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 33,
+        "right": 405.40625,
+        "bottom": 79.78125,
+        "width": 180.515625,
+        "height": 46.78125
+      },
+      "text": "Autosave failed · Download the current project backup before closing",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 389.65625,
+          "top": 32,
+          "bottom": 48
+        },
+        {
+          "left": 224.890625,
+          "right": 382.703125,
+          "top": 47.59375,
+          "bottom": 63.59375
+        },
+        {
+          "left": 224.890625,
+          "right": 262.234375,
+          "top": 63.1875,
+          "bottom": 79.1875
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 429.40625,
+          "top": 27.890625,
+          "right": 536.53125,
+          "bottom": 63.890625,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.53125,
+          "top": 27.890625,
+          "right": 641.53125,
+          "bottom": 63.890625,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 666.53125,
+          "top": 28.390625,
+          "right": 698.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 702.53125,
+          "top": 28.390625,
+          "right": 734.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 738.53125,
+          "top": 27.890625,
+          "right": 814.09375,
+          "bottom": 63.890625,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 839.09375,
+          "top": 27.890625,
+          "right": 949.15625,
+          "bottom": 63.890625,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 953.15625,
+          "top": 27.890625,
+          "right": 1029.421875,
+          "bottom": 63.890625,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1036.421875,
+          "top": 27.890625,
+          "right": 1143.828125,
+          "bottom": 63.890625,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1147.828125,
+          "top": 27.890625,
+          "right": 1242.875,
+          "bottom": 63.890625,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1254.875,
+          "top": 27.890625,
+          "right": 1420,
+          "bottom": 63.890625,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 12,
+        "right": 405.40625,
+        "bottom": 79.78125,
+        "width": 180.515625,
+        "height": 67.78125
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 33,
+        "right": 405.40625,
+        "bottom": 79.78125,
+        "width": 180.515625,
+        "height": 46.78125
+      },
+      "text": "Another window updated this project · Download the current project first",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 382.046875,
+          "top": 32,
+          "bottom": 48
+        },
+        {
+          "left": 224.890625,
+          "right": 386.65625,
+          "top": 47.59375,
+          "bottom": 63.59375
+        },
+        {
+          "left": 224.890625,
+          "right": 285.21875,
+          "top": 63.1875,
+          "bottom": 79.1875
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 429.40625,
+          "top": 27.890625,
+          "right": 536.53125,
+          "bottom": 63.890625,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.53125,
+          "top": 27.890625,
+          "right": 641.53125,
+          "bottom": 63.890625,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 666.53125,
+          "top": 28.390625,
+          "right": 698.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 702.53125,
+          "top": 28.390625,
+          "right": 734.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 738.53125,
+          "top": 27.890625,
+          "right": 814.09375,
+          "bottom": 63.890625,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 839.09375,
+          "top": 27.890625,
+          "right": 949.15625,
+          "bottom": 63.890625,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 953.15625,
+          "top": 27.890625,
+          "right": 1029.421875,
+          "bottom": 63.890625,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1036.421875,
+          "top": 27.890625,
+          "right": 1143.828125,
+          "bottom": 63.890625,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1147.828125,
+          "top": 27.890625,
+          "right": 1242.875,
+          "bottom": 63.890625,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1254.875,
+          "top": 27.890625,
+          "right": 1420,
+          "bottom": 63.890625,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "conflict"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 405.40625,
+        "bottom": 57.796875,
+        "width": 180.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 405.40625,
+        "bottom": 57.796875,
+        "width": 180.515625,
+        "height": 15.59375
+      },
+      "text": "Saved locally",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 292.953125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 429.40625,
+          "top": 21.5,
+          "right": 536.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.53125,
+          "top": 21.5,
+          "right": 641.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 666.53125,
+          "top": 22,
+          "right": 698.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 702.53125,
+          "top": 22,
+          "right": 734.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 738.53125,
+          "top": 21.5,
+          "right": 814.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 839.09375,
+          "top": 21.5,
+          "right": 949.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 953.15625,
+          "top": 21.5,
+          "right": 1029.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1036.421875,
+          "top": 21.5,
+          "right": 1143.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1147.828125,
+          "top": 21.5,
+          "right": 1242.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1254.875,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "saved"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 405.40625,
+        "bottom": 57.796875,
+        "width": 180.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 405.40625,
+        "bottom": 57.796875,
+        "width": 180.515625,
+        "height": 15.59375
+      },
+      "text": "Saving the current project…",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 370.53125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 429.40625,
+          "top": 21.5,
+          "right": 536.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.53125,
+          "top": 21.5,
+          "right": 641.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 666.53125,
+          "top": 22,
+          "right": 698.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 702.53125,
+          "top": 22,
+          "right": 734.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 738.53125,
+          "top": 21.5,
+          "right": 814.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 839.09375,
+          "top": 21.5,
+          "right": 949.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 953.15625,
+          "top": 21.5,
+          "right": 1029.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1036.421875,
+          "top": 21.5,
+          "right": 1143.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1147.828125,
+          "top": 21.5,
+          "right": 1242.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1254.875,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 12,
+        "right": 405.40625,
+        "bottom": 79.78125,
+        "width": 180.515625,
+        "height": 67.78125
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 33,
+        "right": 405.40625,
+        "bottom": 79.78125,
+        "width": 180.515625,
+        "height": 46.78125
+      },
+      "text": "Autosave failed · Download the current project backup before closing",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 389.65625,
+          "top": 32,
+          "bottom": 48
+        },
+        {
+          "left": 224.890625,
+          "right": 382.703125,
+          "top": 47.59375,
+          "bottom": 63.59375
+        },
+        {
+          "left": 224.890625,
+          "right": 262.234375,
+          "top": 63.1875,
+          "bottom": 79.1875
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 429.40625,
+          "top": 27.890625,
+          "right": 536.53125,
+          "bottom": 63.890625,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.53125,
+          "top": 27.890625,
+          "right": 641.53125,
+          "bottom": 63.890625,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 666.53125,
+          "top": 28.390625,
+          "right": 698.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 702.53125,
+          "top": 28.390625,
+          "right": 734.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 738.53125,
+          "top": 27.890625,
+          "right": 814.09375,
+          "bottom": 63.890625,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 839.09375,
+          "top": 27.890625,
+          "right": 949.15625,
+          "bottom": 63.890625,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 953.15625,
+          "top": 27.890625,
+          "right": 1029.421875,
+          "bottom": 63.890625,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1036.421875,
+          "top": 27.890625,
+          "right": 1143.828125,
+          "bottom": 63.890625,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1147.828125,
+          "top": 27.890625,
+          "right": 1242.875,
+          "bottom": 63.890625,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1254.875,
+          "top": 27.890625,
+          "right": 1420,
+          "bottom": 63.890625,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 12,
+        "right": 405.40625,
+        "bottom": 79.78125,
+        "width": 180.515625,
+        "height": 67.78125
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 33,
+        "right": 405.40625,
+        "bottom": 79.78125,
+        "width": 180.515625,
+        "height": 46.78125
+      },
+      "text": "Another window updated this project · Download the current project first",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 382.046875,
+          "top": 32,
+          "bottom": 48
+        },
+        {
+          "left": 224.890625,
+          "right": 386.65625,
+          "top": 47.59375,
+          "bottom": 63.59375
+        },
+        {
+          "left": 224.890625,
+          "right": 285.21875,
+          "top": 63.1875,
+          "bottom": 79.1875
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 429.40625,
+          "top": 27.890625,
+          "right": 536.53125,
+          "bottom": 63.890625,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 548.53125,
+          "top": 27.890625,
+          "right": 641.53125,
+          "bottom": 63.890625,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 666.53125,
+          "top": 28.390625,
+          "right": 698.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 702.53125,
+          "top": 28.390625,
+          "right": 734.53125,
+          "bottom": 63.390625,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 738.53125,
+          "top": 27.890625,
+          "right": 814.09375,
+          "bottom": 63.890625,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 839.09375,
+          "top": 27.890625,
+          "right": 949.15625,
+          "bottom": 63.890625,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 953.15625,
+          "top": 27.890625,
+          "right": 1029.421875,
+          "bottom": 63.890625,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1036.421875,
+          "top": 27.890625,
+          "right": 1143.828125,
+          "bottom": 63.890625,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1147.828125,
+          "top": 27.890625,
+          "right": 1242.875,
+          "bottom": 63.890625,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1254.875,
+          "top": 27.890625,
+          "right": 1420,
+          "bottom": 63.890625,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "conflict"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 15.59375
+      },
+      "text": "已自动保存 · 含撤销记录",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 354.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 551.140625,
+          "top": 21.5,
+          "right": 619.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 631.140625,
+          "top": 21.5,
+          "right": 724.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 749.140625,
+          "top": 22,
+          "right": 781.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 785.140625,
+          "top": 22,
+          "right": 817.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 821.140625,
+          "top": 21.5,
+          "right": 895.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 920.140625,
+          "top": 21.5,
+          "right": 1016.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1020.140625,
+          "top": 21.5,
+          "right": 1095.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1102.140625,
+          "top": 21.5,
+          "right": 1198.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1202.140625,
+          "top": 21.5,
+          "right": 1276.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1288.140625,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "saved"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 15.59375
+      },
+      "text": "正在保存当前工程…",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 329.6875,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 551.140625,
+          "top": 21.5,
+          "right": 619.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 631.140625,
+          "top": 21.5,
+          "right": 724.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 749.140625,
+          "top": 22,
+          "right": 781.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 785.140625,
+          "top": 22,
+          "right": 817.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 821.140625,
+          "top": 21.5,
+          "right": 895.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 920.140625,
+          "top": 21.5,
+          "right": 1016.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1020.140625,
+          "top": 21.5,
+          "right": 1095.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1102.140625,
+          "top": 21.5,
+          "right": 1198.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1202.140625,
+          "top": 21.5,
+          "right": 1276.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1288.140625,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 15.59375
+      },
+      "text": "自动保存失败 · 请下载当前工程备份后再关闭",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 462.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 551.140625,
+          "top": 21.5,
+          "right": 619.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 631.140625,
+          "top": 21.5,
+          "right": 724.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 749.140625,
+          "top": 22,
+          "right": 781.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 785.140625,
+          "top": 22,
+          "right": 817.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 821.140625,
+          "top": 21.5,
+          "right": 895.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 920.140625,
+          "top": 21.5,
+          "right": 1016.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1020.140625,
+          "top": 21.5,
+          "right": 1095.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1102.140625,
+          "top": 21.5,
+          "right": 1198.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1202.140625,
+          "top": 21.5,
+          "right": 1276.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1288.140625,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 15.59375
+      },
+      "text": "其他窗口已更新此工程 · 请先下载当前工程备份",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 474.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 551.140625,
+          "top": 21.5,
+          "right": 619.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 631.140625,
+          "top": 21.5,
+          "right": 724.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 749.140625,
+          "top": 22,
+          "right": 781.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 785.140625,
+          "top": 22,
+          "right": 817.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 821.140625,
+          "top": 21.5,
+          "right": 895.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 920.140625,
+          "top": 21.5,
+          "right": 1016.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1020.140625,
+          "top": 21.5,
+          "right": 1095.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1102.140625,
+          "top": 21.5,
+          "right": 1198.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1202.140625,
+          "top": 21.5,
+          "right": 1276.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1288.140625,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "conflict"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 15.59375
+      },
+      "text": "已自动保存 · 含撤销记录",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 354.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 551.140625,
+          "top": 21.5,
+          "right": 619.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 631.140625,
+          "top": 21.5,
+          "right": 724.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 749.140625,
+          "top": 22,
+          "right": 781.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 785.140625,
+          "top": 22,
+          "right": 817.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 821.140625,
+          "top": 21.5,
+          "right": 895.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 920.140625,
+          "top": 21.5,
+          "right": 1016.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1020.140625,
+          "top": 21.5,
+          "right": 1095.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1102.140625,
+          "top": 21.5,
+          "right": 1198.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1202.140625,
+          "top": 21.5,
+          "right": 1276.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1288.140625,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "saved"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 15.59375
+      },
+      "text": "正在保存当前工程…",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 329.6875,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 551.140625,
+          "top": 21.5,
+          "right": 619.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 631.140625,
+          "top": 21.5,
+          "right": 724.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 749.140625,
+          "top": 22,
+          "right": 781.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 785.140625,
+          "top": 22,
+          "right": 817.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 821.140625,
+          "top": 21.5,
+          "right": 895.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 920.140625,
+          "top": 21.5,
+          "right": 1016.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1020.140625,
+          "top": 21.5,
+          "right": 1095.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1102.140625,
+          "top": 21.5,
+          "right": 1198.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1202.140625,
+          "top": 21.5,
+          "right": 1276.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1288.140625,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 15.59375
+      },
+      "text": "自动保存失败 · 请下载当前工程备份后再关闭",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 462.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 551.140625,
+          "top": 21.5,
+          "right": 619.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 631.140625,
+          "top": 21.5,
+          "right": 724.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 749.140625,
+          "top": 22,
+          "right": 781.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 785.140625,
+          "top": 22,
+          "right": 817.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 821.140625,
+          "top": 21.5,
+          "right": 895.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 920.140625,
+          "top": 21.5,
+          "right": 1016.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1020.140625,
+          "top": 21.5,
+          "right": 1095.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1102.140625,
+          "top": 21.5,
+          "right": 1198.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1202.140625,
+          "top": 21.5,
+          "right": 1276.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1288.140625,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 527.140625,
+        "bottom": 57.796875,
+        "width": 302.25,
+        "height": 15.59375
+      },
+      "text": "其他窗口已更新此工程 · 请先下载当前工程备份",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 474.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 551.140625,
+          "top": 21.5,
+          "right": 619.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 631.140625,
+          "top": 21.5,
+          "right": 724.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 749.140625,
+          "top": 22,
+          "right": 781.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 785.140625,
+          "top": 22,
+          "right": 817.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 821.140625,
+          "top": 21.5,
+          "right": 895.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 920.140625,
+          "top": 21.5,
+          "right": 1016.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1020.140625,
+          "top": 21.5,
+          "right": 1095.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1102.140625,
+          "top": 21.5,
+          "right": 1198.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1202.140625,
+          "top": 21.5,
+          "right": 1276.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1288.140625,
+          "top": 21.5,
+          "right": 1420,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1440,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "conflict"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 15.59375
+      },
+      "text": "Saved locally",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 292.953125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 909.40625,
+          "top": 21.5,
+          "right": 1016.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1028.53125,
+          "top": 21.5,
+          "right": 1121.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1146.53125,
+          "top": 22,
+          "right": 1178.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1182.53125,
+          "top": 22,
+          "right": 1214.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1218.53125,
+          "top": 21.5,
+          "right": 1294.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1319.09375,
+          "top": 21.5,
+          "right": 1429.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1433.15625,
+          "top": 21.5,
+          "right": 1509.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1516.421875,
+          "top": 21.5,
+          "right": 1623.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1627.828125,
+          "top": 21.5,
+          "right": 1722.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1734.875,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "saved"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 15.59375
+      },
+      "text": "Saving the current project…",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 370.53125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 909.40625,
+          "top": 21.5,
+          "right": 1016.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1028.53125,
+          "top": 21.5,
+          "right": 1121.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1146.53125,
+          "top": 22,
+          "right": 1178.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1182.53125,
+          "top": 22,
+          "right": 1214.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1218.53125,
+          "top": 21.5,
+          "right": 1294.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1319.09375,
+          "top": 21.5,
+          "right": 1429.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1433.15625,
+          "top": 21.5,
+          "right": 1509.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1516.421875,
+          "top": 21.5,
+          "right": 1623.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1627.828125,
+          "top": 21.5,
+          "right": 1722.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1734.875,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 15.59375
+      },
+      "text": "Autosave failed · Download the current project backup before closing",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 591.375,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 909.40625,
+          "top": 21.5,
+          "right": 1016.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1028.53125,
+          "top": 21.5,
+          "right": 1121.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1146.53125,
+          "top": 22,
+          "right": 1178.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1182.53125,
+          "top": 22,
+          "right": 1214.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1218.53125,
+          "top": 21.5,
+          "right": 1294.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1319.09375,
+          "top": 21.5,
+          "right": 1429.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1433.15625,
+          "top": 21.5,
+          "right": 1509.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1516.421875,
+          "top": 21.5,
+          "right": 1623.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1627.828125,
+          "top": 21.5,
+          "right": 1722.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1734.875,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 15.59375
+      },
+      "text": "Another window updated this project · Download the current project first",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 610.703125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 909.40625,
+          "top": 21.5,
+          "right": 1016.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1028.53125,
+          "top": 21.5,
+          "right": 1121.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1146.53125,
+          "top": 22,
+          "right": 1178.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1182.53125,
+          "top": 22,
+          "right": 1214.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1218.53125,
+          "top": 21.5,
+          "right": 1294.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1319.09375,
+          "top": 21.5,
+          "right": 1429.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1433.15625,
+          "top": 21.5,
+          "right": 1509.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1516.421875,
+          "top": 21.5,
+          "right": 1623.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1627.828125,
+          "top": 21.5,
+          "right": 1722.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1734.875,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "en",
+      "theme": "carbon",
+      "state": "conflict"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 15.59375
+      },
+      "text": "Saved locally",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 292.953125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 909.40625,
+          "top": 21.5,
+          "right": 1016.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1028.53125,
+          "top": 21.5,
+          "right": 1121.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1146.53125,
+          "top": 22,
+          "right": 1178.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1182.53125,
+          "top": 22,
+          "right": 1214.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1218.53125,
+          "top": 21.5,
+          "right": 1294.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1319.09375,
+          "top": 21.5,
+          "right": 1429.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1433.15625,
+          "top": 21.5,
+          "right": 1509.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1516.421875,
+          "top": 21.5,
+          "right": 1623.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1627.828125,
+          "top": 21.5,
+          "right": 1722.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1734.875,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "saved"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 15.59375
+      },
+      "text": "Saving the current project…",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 370.53125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 909.40625,
+          "top": 21.5,
+          "right": 1016.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1028.53125,
+          "top": 21.5,
+          "right": 1121.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1146.53125,
+          "top": 22,
+          "right": 1178.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1182.53125,
+          "top": 22,
+          "right": 1214.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1218.53125,
+          "top": 21.5,
+          "right": 1294.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1319.09375,
+          "top": 21.5,
+          "right": 1429.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1433.15625,
+          "top": 21.5,
+          "right": 1509.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1516.421875,
+          "top": 21.5,
+          "right": 1623.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1627.828125,
+          "top": 21.5,
+          "right": 1722.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1734.875,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 15.59375
+      },
+      "text": "Autosave failed · Download the current project backup before closing",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 591.375,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 909.40625,
+          "top": 21.5,
+          "right": 1016.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1028.53125,
+          "top": 21.5,
+          "right": 1121.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1146.53125,
+          "top": 22,
+          "right": 1178.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1182.53125,
+          "top": 22,
+          "right": 1214.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1218.53125,
+          "top": 21.5,
+          "right": 1294.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1319.09375,
+          "top": 21.5,
+          "right": 1429.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1433.15625,
+          "top": 21.5,
+          "right": 1509.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1516.421875,
+          "top": 21.5,
+          "right": 1623.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1627.828125,
+          "top": 21.5,
+          "right": 1722.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1734.875,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 885.40625,
+        "bottom": 57.796875,
+        "width": 660.515625,
+        "height": 15.59375
+      },
+      "text": "Another window updated this project · Download the current project first",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 610.703125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 909.40625,
+          "top": 21.5,
+          "right": 1016.53125,
+          "bottom": 57.5,
+          "width": 107.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1028.53125,
+          "top": 21.5,
+          "right": 1121.53125,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1146.53125,
+          "top": 22,
+          "right": 1178.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1182.53125,
+          "top": 22,
+          "right": 1214.53125,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1218.53125,
+          "top": 21.5,
+          "right": 1294.09375,
+          "bottom": 57.5,
+          "width": 75.5625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1319.09375,
+          "top": 21.5,
+          "right": 1429.15625,
+          "bottom": 57.5,
+          "width": 110.0625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1433.15625,
+          "top": 21.5,
+          "right": 1509.421875,
+          "bottom": 57.5,
+          "width": 76.265625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1516.421875,
+          "top": 21.5,
+          "right": 1623.828125,
+          "bottom": 57.5,
+          "width": 107.40625,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1627.828125,
+          "top": 21.5,
+          "right": 1722.875,
+          "bottom": 57.5,
+          "width": 95.046875,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1734.875,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 165.125,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "en",
+      "theme": "pearl",
+      "state": "conflict"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 15.59375
+      },
+      "text": "已自动保存 · 含撤销记录",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 354.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 1031.140625,
+          "top": 21.5,
+          "right": 1099.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1111.140625,
+          "top": 21.5,
+          "right": 1204.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1229.140625,
+          "top": 22,
+          "right": 1261.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1265.140625,
+          "top": 22,
+          "right": 1297.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1301.140625,
+          "top": 21.5,
+          "right": 1375.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1400.140625,
+          "top": 21.5,
+          "right": 1496.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1500.140625,
+          "top": 21.5,
+          "right": 1575.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1582.140625,
+          "top": 21.5,
+          "right": 1678.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1682.140625,
+          "top": 21.5,
+          "right": 1756.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1768.140625,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "saved"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 15.59375
+      },
+      "text": "正在保存当前工程…",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 329.6875,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 1031.140625,
+          "top": 21.5,
+          "right": 1099.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1111.140625,
+          "top": 21.5,
+          "right": 1204.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1229.140625,
+          "top": 22,
+          "right": 1261.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1265.140625,
+          "top": 22,
+          "right": 1297.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1301.140625,
+          "top": 21.5,
+          "right": 1375.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1400.140625,
+          "top": 21.5,
+          "right": 1496.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1500.140625,
+          "top": 21.5,
+          "right": 1575.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1582.140625,
+          "top": 21.5,
+          "right": 1678.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1682.140625,
+          "top": 21.5,
+          "right": 1756.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1768.140625,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 15.59375
+      },
+      "text": "自动保存失败 · 请下载当前工程备份后再关闭",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 462.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 1031.140625,
+          "top": 21.5,
+          "right": 1099.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1111.140625,
+          "top": 21.5,
+          "right": 1204.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1229.140625,
+          "top": 22,
+          "right": 1261.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1265.140625,
+          "top": 22,
+          "right": 1297.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1301.140625,
+          "top": 21.5,
+          "right": 1375.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1400.140625,
+          "top": 21.5,
+          "right": 1496.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1500.140625,
+          "top": 21.5,
+          "right": 1575.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1582.140625,
+          "top": 21.5,
+          "right": 1678.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1682.140625,
+          "top": 21.5,
+          "right": 1756.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1768.140625,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 15.59375
+      },
+      "text": "其他窗口已更新此工程 · 请先下载当前工程备份",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 474.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 1031.140625,
+          "top": 21.5,
+          "right": 1099.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1111.140625,
+          "top": 21.5,
+          "right": 1204.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1229.140625,
+          "top": 22,
+          "right": 1261.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1265.140625,
+          "top": 22,
+          "right": 1297.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1301.140625,
+          "top": 21.5,
+          "right": 1375.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1400.140625,
+          "top": 21.5,
+          "right": 1496.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1500.140625,
+          "top": 21.5,
+          "right": 1575.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1582.140625,
+          "top": 21.5,
+          "right": 1678.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1682.140625,
+          "top": 21.5,
+          "right": 1756.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1768.140625,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "zh-CN",
+      "theme": "carbon",
+      "state": "conflict"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 15.59375
+      },
+      "text": "已自动保存 · 含撤销记录",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 354.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 1031.140625,
+          "top": 21.5,
+          "right": 1099.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1111.140625,
+          "top": 21.5,
+          "right": 1204.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1229.140625,
+          "top": 22,
+          "right": 1261.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1265.140625,
+          "top": 22,
+          "right": 1297.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1301.140625,
+          "top": 21.5,
+          "right": 1375.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1400.140625,
+          "top": 21.5,
+          "right": 1496.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1500.140625,
+          "top": 21.5,
+          "right": 1575.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1582.140625,
+          "top": 21.5,
+          "right": 1678.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1682.140625,
+          "top": 21.5,
+          "right": 1756.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1768.140625,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "saved"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 15.59375
+      },
+      "text": "正在保存当前工程…",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 329.6875,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 1031.140625,
+          "top": 21.5,
+          "right": 1099.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1111.140625,
+          "top": 21.5,
+          "right": 1204.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1229.140625,
+          "top": 22,
+          "right": 1261.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1265.140625,
+          "top": 22,
+          "right": 1297.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1301.140625,
+          "top": 21.5,
+          "right": 1375.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1400.140625,
+          "top": 21.5,
+          "right": 1496.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1500.140625,
+          "top": 21.5,
+          "right": 1575.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1582.140625,
+          "top": 21.5,
+          "right": 1678.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1682.140625,
+          "top": 21.5,
+          "right": 1756.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1768.140625,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "saving"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 15.59375
+      },
+      "text": "自动保存失败 · 请下载当前工程备份后再关闭",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 462.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 1031.140625,
+          "top": 21.5,
+          "right": 1099.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1111.140625,
+          "top": 21.5,
+          "right": 1204.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1229.140625,
+          "top": 22,
+          "right": 1261.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1265.140625,
+          "top": 22,
+          "right": 1297.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1301.140625,
+          "top": 21.5,
+          "right": 1375.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1400.140625,
+          "top": 21.5,
+          "right": 1496.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1500.140625,
+          "top": 21.5,
+          "right": 1575.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1582.140625,
+          "top": 21.5,
+          "right": 1678.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1682.140625,
+          "top": 21.5,
+          "right": 1756.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1768.140625,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "error"
+    },
+    {
+      "identity": {
+        "left": 224.890625,
+        "top": 21.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 36.59375
+      },
+      "status": {
+        "left": 224.890625,
+        "top": 42.203125,
+        "right": 1007.140625,
+        "bottom": 57.796875,
+        "width": 782.25,
+        "height": 15.59375
+      },
+      "text": "其他窗口已更新此工程 · 请先下载当前工程备份",
+      "textRects": [
+        {
+          "left": 224.890625,
+          "right": 474.078125,
+          "top": 41.203125,
+          "bottom": 57.203125
+        }
+      ],
+      "statusStyle": {
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal"
+      },
+      "buttons": [
+        {
+          "selector": "#appearanceMenu>summary",
+          "left": 1031.140625,
+          "top": 21.5,
+          "right": 1099.140625,
+          "bottom": 57.5,
+          "width": 68,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#language",
+          "left": 1111.140625,
+          "top": 21.5,
+          "right": 1204.140625,
+          "bottom": 57.5,
+          "width": 93,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#undo",
+          "left": 1229.140625,
+          "top": 22,
+          "right": 1261.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#redo",
+          "left": 1265.140625,
+          "top": 22,
+          "right": 1297.140625,
+          "bottom": 57,
+          "width": 32,
+          "height": 35,
+          "disabled": true,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#compare",
+          "left": 1301.140625,
+          "top": 21.5,
+          "right": 1375.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#projectMenu>summary",
+          "left": 1400.140625,
+          "top": 21.5,
+          "right": 1496.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#save",
+          "left": 1500.140625,
+          "top": 21.5,
+          "right": 1575.140625,
+          "bottom": 57.5,
+          "width": 75,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#exportMenu>summary",
+          "left": 1582.140625,
+          "top": 21.5,
+          "right": 1678.140625,
+          "bottom": 57.5,
+          "width": 96,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#studioCheckUpdates",
+          "left": 1682.140625,
+          "top": 21.5,
+          "right": 1756.140625,
+          "bottom": 57.5,
+          "width": 74,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        },
+        {
+          "selector": "#commandSearch",
+          "left": 1768.140625,
+          "top": 21.5,
+          "right": 1900,
+          "bottom": 57.5,
+          "width": 131.859375,
+          "height": 36,
+          "disabled": false,
+          "hit": true,
+          "visible": true
+        }
+      ],
+      "documentWidth": 1920,
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "language": "zh-CN",
+      "theme": "pearl",
+      "state": "conflict"
+    }
+  ],
+  "errors": [],
+  "remoteRequests": [],
+  "servedBuild": {
+    "currentVersion": "0.1.21",
+    "suiteVersion": "1.4.21",
+    "platform": "windows"
+  },
+  "status": "PASS",
+  "rawSha256": "6bd274b871d6a23c13d1dc6cb0361bf61f515422680df1c9201d247a25d61f03",
+  "resolvesCandidateReport": "windows-installed-browser-acceptance.json",
+  "priorCandidateFlagPreserved": true
+}

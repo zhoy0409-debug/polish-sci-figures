@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-10-17T11:56:10.259836+00:00",
-  "git_head": "fbe15aa967bc51b9a3a1bf8dfae674a297d9a7a0",
+  "generated_utc": "2026-10-17T12:26:23.760644+00:00",
+  "git_head": "5df62df3f7aa72407082359d0a907aec992d4702",
   "scope": "UI CSS assets and explicitly enumerated component-injected styles; excludes scientific SVG, palettes, data and rendering code",
   "files": [
     {
@@ -85,11 +85,11 @@
     },
     {
       "path": "skills/polish-sci-figures/assets/figure-studio/theme.css",
-      "bytes": 5615,
-      "sha256": "0f0b3b36c46b97f90bbc0373b92c8f990e53b513ea158ef4fb4fa4981df8d49c",
+      "bytes": 6425,
+      "sha256": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab",
       "css_fragments": 1,
       "literal_colors": 1,
-      "token_references": 65
+      "token_references": 71
     },
     {
       "path": "skills/polish-sci-figures/assets/figure-studio/update-scene.css",

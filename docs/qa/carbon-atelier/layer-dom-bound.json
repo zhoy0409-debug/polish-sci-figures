@@ -1,0 +1,35 @@
+{
+  "schema": "figure-studio-carbon-layer-dom-bound/1",
+  "status": "PASS_NO_EXPERIMENT_NEEDED",
+  "browser": "155.0.8059.82",
+  "browserMode": "headless",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "deviceScaleFactor": 1,
+  "scope": "Installed service, actual Chrome and 5000 explicitly synthetic editable SVG elements. Read-only source audit plus disposable UI selection. This is DOM-bound verification, not a performance benchmark.",
+  "initial": {
+    "domRows": 16,
+    "hostClientHeight": 288,
+    "ariaRowCount": "150",
+    "firstRowHeight": 36,
+    "descendantNodes": 291
+  },
+  "afterScroll": {
+    "domRows": 16,
+    "targetKey": "e4985",
+    "targetSelected": true,
+    "accessibleRows": 16,
+    "accessibleNamesPresent": true
+  },
+  "decision": "Existing virtualization bounds the live layer DOM below100 rows; content-visibility experiment was not run. Preserve the stable virtualization.",
+  "remoteRequests": [],
+  "errors": [],
+  "sourceHashes": {
+    "layers-panel.js": "5b25bebe5e6f44879b21781d6b7f58496759cabfcf27643aa58637118ebc41bb"
+  },
+  "editableSvgElements": 5000,
+  "rawSha256": "3b4b23eda178f99b598d76c2d94f424ca27dc52c67334d9686bca364c9642583",
+  "replayScriptSha256": "50d3d9fde5fdf99d47b3396220375248618a52a8e7b001b2cc3db75dac0ae2ba"
+}

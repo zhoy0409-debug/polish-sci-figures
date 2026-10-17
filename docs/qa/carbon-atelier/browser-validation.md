@@ -1,6 +1,6 @@
 # Carbon Atelier 浏览器验收记录
 
-**更新日期：2026-10-17。状态：源码功能矩阵通过，性能退步正在修复，尚未据此批准发布。** 本记录供维护者核对真实 Chrome 操作与测量边界；它不替代 Windows 安装、真实更新及系统缩放验收。
+**记录日期：2026-10-17。范围：源码功能、安装候选矩阵与已知的大图性能尾部退步。** 候选记录按各自成品哈希识别；最后重打包文件的验收以[独立成品报告汇总](../../carbon-atelier-validation.md)为准。本记录供维护者核对真实 Chrome 操作与测量边界，不将不同成品或测量条件的结果合并为一次通过。
 
 基线固定为提交 `2c6d11a0b494c3668a929cc272482e74be58e0fe`。原版资源与生成的编辑器已冻结；[保存记录](baseline-preservation.json)逐文件核对其内容未改变。性能结果使用实际 Windows Google Chrome，隔离临时浏览器上下文，阻止所有非本机 HTTP 请求。
 
@@ -19,7 +19,9 @@
 | 组件文字/边界与实际页面文字对比度 | [组件检查](theme-component-checks.json)、[首次页面失败记录](ui-contrast-initial.json)、[定点修复复核](context-acceptance.json) | 已修复发现的问题；不宣称全页面 AA |
 | 首版 Carbon 与冻结基线的录屏性能对照 | [原始退步汇总](pre-optimization-performance-summary.json)、[前后对照](pre-optimization-performance-comparison.json)、[诊断](profile-diagnostics.json) | 退步证据保留；优化版录屏条件未正式复测 |
 | 优化后无录屏正式对照，各操作 12 次 | [基线](baseline-no-video-performance-summary.json)、[候选](current-no-video-performance-summary.json)、[对照](no-video-performance-comparison.json) | 普通工程改善；5000 图元尾部仍有退步 |
-| Windows 实际系统缩放、安装、真实更新 | 由独立的安装与原生界面流程记录 | 不由本记录宣称完成 |
+| 安装后 0.1.21、两主题、1280 / 1920 CSS 视口 | [22 图安装版记录](windows-installed-browser-acceptance.json) | 功能、源数据和导出通过；1280 页眉视觉跟进单列 |
+| 工作流 Mobile DOM 全部命令及移动字号 | [73 项 DOM 回归](ci-mobile-dom-summary.json)、[Chrome 字号复核](mobile-font-chrome.json) | 72 项首轮通过，唯一旧断言修正后通过；初次本地及 CI 失败保留 |
+| Windows 实际系统缩放、安装、真实更新 | [独立成品报告汇总](../../carbon-atelier-validation.md)；候选 CLI 升级、便携运行时与实际三档缩放分别留证 | 各报告按其成品哈希与实际范围判断 |
 
 原版还保留了 [16.64 秒实际窗口操作录像](baseline-public-workflow.webm)与[录像校验信息](baseline-video.json)。[公共 H&E 查重补充记录](baseline-browser-screening.json)在 headless Chrome 中实际重复导入同一许可素材并获得结果，验证工作流；它不构成检测准确率研究。
 
@@ -42,6 +44,8 @@
 主题隔离比较原始源表、源 SVG、输出 PNG 的逐像素 SHA-256，以及规范化后的 SVG。原有导出器每次调用都会递增 `fNN-` ID 命名空间，同主题连续导出也有不同的原始字节哈希。规范化仅处理已验证的 ID 属性与对应 `href` / `url()` 属性引用，不处理文字、元数据、颜色或科学内容；原始哈希同时保留。规范化工具的回归测试专门检查正文、元数据与 HEX 色值不会被改写。
 
 浏览器 `deviceScaleFactor` 仿真仅覆盖光栅密度，不等同 Windows 系统 125% / 150% 缩放，也不作为后者通过的证据。
+
+安装版矩阵直接连接更新后的本机服务，其元数据为 Studio 0.1.21 / Suite 1.4.21、Windows x86_64。两主题在 1280×720 和 1920×1080、固定浏览器 DPR 1 下共 22 张截图；1280 另测选图及导出，其他状态在两个视口均覆盖。原数据、源 SVG、规范化 SVG、PNG 字节及像素均与源码矩阵一致。可见 UI 文字抽样 1174 项、无失败、最低比值 4.978，仍不等于全页面 AA。矩阵保留人工发现的 1280 英文页眉保存状态与外观入口重叠；随后源码 CSS 修复通过 48 组合边界、兄弟组间隔与键盘可达检查。最后重打包文件的标题栏、真实升级及系统缩放范围以[独立成品报告汇总](../../carbon-atelier-validation.md)为准，不把早期矩阵改写为修复后的成品结果。
 
 ## 首轮发现与修正记录
 
