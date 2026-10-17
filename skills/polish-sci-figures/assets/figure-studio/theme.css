@@ -35,19 +35,28 @@ html[data-canvas-surround="light"] #viewport:not(.is-file-drop) { background: va
 .appearance-feedback { margin: var(--fs-space-3) 0 0; white-space: normal; font-size: var(--fs-font-xs); line-height: 1.5; color: var(--fs-warning); }
 .appearance-feedback[data-state="info"] { color: var(--fs-text-secondary); }
 .appearance-feedback:empty { display: none; }
-.project-identity { min-width: 80px; flex: 1; display: grid; gap: var(--fs-space-1); }
-.project-identity > strong { display: block; max-width: 34vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-font-sm); font-weight: 600; color: var(--fs-text-primary); }
-.project-identity .autosave { text-align: left; font-size: var(--fs-font-xs); }
+.project-identity { min-width: 120px; flex: 1; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--fs-space-1); }
+.project-identity > strong { display: block; min-width: 0; max-width: 34vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-font-sm); font-weight: 600; color: var(--fs-text-primary); }
+.project-identity .autosave { min-width: 0; width: 100%; max-width: 100%; white-space: normal; overflow-wrap: anywhere; text-align: left; font-size: var(--fs-font-xs); }
 .project-identity[data-save-state="error"] .autosave, .project-identity[data-save-state="conflict"] .autosave { color: var(--fs-error); }
 .project-identity[data-save-state="saving"] .autosave { color: var(--fs-warning); }
 .project-identity[data-save-state="saved"] .autosave { color: var(--fs-success); }
+body > header .header-controls { flex: 0 0 auto; }
 .inspector-context { display: grid; gap: var(--fs-space-1); padding: 0 0 var(--fs-space-3); margin: 0 0 var(--fs-space-3); border-bottom: 1px solid var(--fs-stroke-subtle); }
 .inspector-context-label { font-size: var(--fs-font-xs); color: var(--fs-text-muted); }
 .inspector-context strong { font-size: var(--fs-font-md); font-weight: 600; color: var(--fs-text-primary); }
 .inspector-context small { font-size: var(--fs-font-xs); line-height: 1.5; color: var(--fs-text-secondary); overflow-wrap: anywhere; }
 
-@media (max-width: 1100px) { .project-identity > strong { max-width: 19vw; } }
-@media (max-width: 780px) { .project-identity { margin-left: auto; flex: 0 1 45%; } .project-identity > strong { max-width: 40vw; } }
+@media (min-width: 781px) and (max-width: 1439px) {
+  html body > header { gap: var(--fs-space-3); padding-inline: var(--fs-space-4); }
+  html body > header .brand { gap: var(--fs-space-2); }
+  html body > header .toolbar { gap: var(--fs-space-2); }
+  html body > header .header-history { padding-inline: var(--fs-space-2); }
+  html body > header .toolbar button, html body > header .header-menu > summary,
+  html body > header .header-appearance > summary, html body > header .toolbar .language-picker > select { padding-inline: var(--fs-space-2); }
+}
+@media (max-width: 1100px) { .project-identity { min-width: 80px; } .project-identity > strong { max-width: 19vw; } }
+@media (max-width: 780px) { .project-identity { min-width: 0; margin-left: auto; flex: 0 1 45%; } .project-identity > strong { max-width: 40vw; } }
 @media (pointer: coarse) { .header-appearance > summary, .appearance-menu select { min-height: 44px; } }
 @media (prefers-reduced-motion: reduce) { .header-appearance > summary, .appearance-menu { transition: none; animation: none; } }
 @media (forced-colors: active) {

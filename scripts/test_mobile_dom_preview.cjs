@@ -67,6 +67,12 @@ function harness({captureOnViewport=false,deferCaptureLoss=false}={}){
 
 async function run(){
   const h=harness(),{doc,viewport,mobile}=h;
+  // JSDOM retains CSS var() expressions. The production token and the semantic
+  // mobile selector jointly preserve the 16px input size; actual Chrome is
+  // checked separately by test_studio_carbon_mobile_font.cjs.
+  const tokens=fs.readFileSync(require.resolve('../skills/polish-sci-figures/assets/figure-studio/theme-tokens.css'),'utf8');
+  assert.match(tokens,/--fs-font-lg:\s*16px\s*;/,'mobile input font token must remain 16px');
+  const inputFont=el=>assert.equal(h.window.getComputedStyle(el).fontSize,'var(--fs-font-lg)');
   assert.equal(doc.body.classList.contains('studio-mobile'),true);
   assert.equal(mobile.mode,'pan');assert.equal(doc.getElementById('mobilePan').textContent,'Pan');
   assert.equal(h.window.getComputedStyle(doc.getElementById('mobilePan')).minHeight,'44px');
@@ -76,11 +82,11 @@ async function run(){
   assert.equal(doc.querySelector('main').getAttribute('aria-labelledby'),'mobileTab-canvas');
   for(const type of ['text','number']){
     const input=doc.createElement('input');input.type=type;doc.querySelector('.inspector').append(input);
-    assert.equal(h.window.getComputedStyle(input).fontSize,'16px');input.remove();
+    inputFont(input);input.remove();
   }
-  assert.equal(h.window.getComputedStyle(doc.getElementById('property')).fontSize,'16px');
+  inputFont(doc.getElementById('property'));
   const select=doc.createElement('select');doc.querySelector('.navigator').append(select);
-  assert.equal(h.window.getComputedStyle(select).fontSize,'16px');select.remove();
+  inputFont(select);select.remove();
   const modeCancels=h.cancels.length;doc.getElementById('mobilePan').click();
   assert.equal(h.cancels.length,modeCancels+1);assert.equal(h.cancels.at(-1).reason,'mode-change');
 
