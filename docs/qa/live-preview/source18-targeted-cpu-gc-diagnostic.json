@@ -1,0 +1,2933 @@
+{
+  "schema": "figure-studio-public-source18-targeted-cpu-gc/1",
+  "status": "PASS_DIAGNOSTIC_INTEGRITY_NOT_FORMAL_BUDGET_PASS",
+  "rawDiagnosticSha256": "7d6142d89bbde491cb046f0ab57fb6f621c506f15d65f14856a6c384763d9b3c",
+  "offlineAttributionSha256": "b16e17c9a4b2bad801316e93f86813cd9ae2fe0b3f3e0375d33f6801df12924b",
+  "probeSha256": "bf68233083a43d0a3d7c70796071bc25d7a9da1bba9da2879217f71e9ac452b8",
+  "originalTraceAnalysisSha256": "0fd3ef6dd04b4c881d16ded8003a77705c5c2f5a77d61254e33820e3aec29e3e",
+  "protocol": {
+    "stages": [
+      "source17",
+      "source18"
+    ],
+    "elements": 5000,
+    "actionsPerStage": 6,
+    "sequence": [
+      "select-text-first",
+      "palette-first",
+      "detail-return-first",
+      "select-text-after-reset",
+      "palette-after-real-colour-commit",
+      "detail-return-after-colour"
+    ],
+    "samplingIntervalUs": 1000,
+    "scope": "One fixed diagnostic sequence, not a formal performance rerun. CPU sampling, GC/invalidation tracing and integrity downloads add overhead. No retries or rejected samples."
+  },
+  "browser": "155.0.8059.82",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "deviceScaleFactor": 1,
+  "stageHtmlHashes": {
+    "source17": "b659049bad8c3305b6639437fa55e33fdf77a409d2a645bacf6df7552473d1b5",
+    "source18": "b596058ff9fec68257d8bfecc41e56762db2b056f22c8a219520fda343eefca4"
+  },
+  "actions": [
+    {
+      "stage": "source17",
+      "action": "select-text-first",
+      "traceSha256": "f261183ad8b7c76d098de2a17987e39ded2689a74b18e6d84c4cb0c8d1e813b2",
+      "profileSha256": "84a5781fbd4d12b8986dbeb443f11ec00e07ef14f12dba844b1465f2ea0f50a8",
+      "profileSamplesInMarkedInterval": 377,
+      "markedDiagnosticIntervalMs": 262.79,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 19,
+          "totalMs": 41.56800000000001,
+          "maxMs": 16.277
+        },
+        "Layout": {
+          "count": 10,
+          "totalMs": 57.327000000000005,
+          "maxMs": 15.645
+        },
+        "Paint": {
+          "count": 24,
+          "totalMs": 35.619,
+          "maxMs": 3.83
+        }
+      },
+      "selectedGCEventCategories": {
+        "MinorGC": {
+          "count": 1,
+          "totalMs": 2.95,
+          "maxMs": 2.95
+        }
+      },
+      "syncLayoutStacks": [
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 11,
+          "totalMs": 31.756000000000004,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 5,
+          "totalMs": 23.79,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: paint > update > renderEditingPanels > renderQuickToolbar > renderSelectionProperties",
+          "count": 1,
+          "totalMs": 15.645,
+          "lines": {
+            "10011": 1
+          }
+        },
+        {
+          "stack": "Layout :: paint > update > renderEditingPanels > renderQuickToolbar > renderAlignmentGuideControls",
+          "count": 1,
+          "totalMs": 6.396,
+          "lines": {
+            "10011": 1
+          }
+        },
+        {
+          "stack": "Layout :: drawSelection > finishSelectionUI > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 5.668,
+          "lines": {
+            "14911": 1
+          }
+        },
+        {
+          "stack": "Layout :: canvasPoint > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 5.664,
+          "lines": {
+            "14878": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: canvasPoint > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 5.45,
+          "lines": {
+            "14878": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: paint > update > renderEditingPanels > renderQuickToolbar > renderSelectionProperties",
+          "count": 1,
+          "totalMs": 2.857,
+          "lines": {
+            "10011": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: drawSelection > finishSelectionUI > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 0.537,
+          "lines": {
+            "14911": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: destination > hoverGuide",
+          "count": 1,
+          "totalMs": 0.352,
+          "lines": {
+            "14862": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 136.85799999999995
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 32.541000000000004
+        },
+        {
+          "frame": "paint @ :10008",
+          "sampledMs": 25.134
+        },
+        {
+          "frame": "getBoundingClientRect @ (native):-1",
+          "sampledMs": 20.028
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 11.825000000000001
+        },
+        {
+          "frame": "(garbage collector) @ (native):-1",
+          "sampledMs": 4.88
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 3.271
+        },
+        {
+          "frame": "renderQuickToolbar @ :14315",
+          "sampledMs": 3.018
+        },
+        {
+          "frame": "requestAnimationFrame @ (native):-1",
+          "sampledMs": 2.012
+        },
+        {
+          "frame": "add @ (native):-1",
+          "sampledMs": 1.9769999999999999
+        },
+        {
+          "frame": "inspect @ :8491",
+          "sampledMs": 1.653
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 1.627
+        },
+        {
+          "frame": "renderSelectionProperties @ :14430",
+          "sampledMs": 1.623
+        },
+        {
+          "frame": "(anonymous) @ :4474",
+          "sampledMs": 1.586
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 262.78999999999974
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 136.85799999999995
+        },
+        {
+          "frame": "svg.onpointerdown @ :15046",
+          "sampledMs": 97.60399999999997
+        },
+        {
+          "frame": "finishSelectionUI @ :14998",
+          "sampledMs": 75.763
+        },
+        {
+          "frame": "renderSelectionProperties @ :14430",
+          "sampledMs": 63.383
+        },
+        {
+          "frame": "renderQuickToolbar @ :14315",
+          "sampledMs": 36.089999999999996
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 32.541000000000004
+        },
+        {
+          "frame": "renderEditingPanels @ :14400",
+          "sampledMs": 27.756999999999998
+        },
+        {
+          "frame": "paint @ :10008",
+          "sampledMs": 25.134
+        },
+        {
+          "frame": "update @ :10032",
+          "sampledMs": 25.134
+        },
+        {
+          "frame": "editableSource @ :12144",
+          "sampledMs": 24.01
+        },
+        {
+          "frame": "getBoundingClientRect @ (native):-1",
+          "sampledMs": 20.028
+        },
+        {
+          "frame": "drawSelection @ :14909",
+          "sampledMs": 12.38
+        },
+        {
+          "frame": "canvasPoint @ :14877",
+          "sampledMs": 11.857
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 11.825000000000001
+        },
+        {
+          "frame": "renderFontTargets @ :15407",
+          "sampledMs": 10.536
+        },
+        {
+          "frame": "renderAlignmentGuideControls @ :12812",
+          "sampledMs": 9.984
+        },
+        {
+          "frame": "baseSvg @ :12045",
+          "sampledMs": 8.531
+        }
+      ]
+    },
+    {
+      "stage": "source17",
+      "action": "palette-first",
+      "traceSha256": "cb1d8b192c18240f4cc0c5d4d34b179c651c093fe4f76f8781c52fdd9e1e1f4e",
+      "profileSha256": "8b780ee4f4071b14128a5771388bcc15e588a5cde6c971b1acbedf44f8e05fad",
+      "profileSamplesInMarkedInterval": 1248,
+      "markedDiagnosticIntervalMs": 1677.97,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 10,
+          "totalMs": 390.484,
+          "maxMs": 388.207
+        },
+        "Layout": {
+          "count": 3,
+          "totalMs": 340.47700000000003,
+          "maxMs": 165.772
+        },
+        "Paint": {
+          "count": 6,
+          "totalMs": 174.722,
+          "maxMs": 49.204
+        }
+      },
+      "selectedGCEventCategories": {
+        "MinorGC": {
+          "count": 1,
+          "totalMs": 3.609,
+          "maxMs": 3.609
+        }
+      },
+      "syncLayoutStacks": [
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 9,
+          "totalMs": 390.079,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 3,
+          "totalMs": 340.47700000000003,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: expectHitTarget > listener > listener",
+          "count": 1,
+          "totalMs": 0.405,
+          "lines": {
+            "7503": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 1150.8289999999974
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 192.1069999999999
+        },
+        {
+          "frame": "preview @ :13740",
+          "sampledMs": 75.10000000000002
+        },
+        {
+          "frame": "editedSvg @ :12669",
+          "sampledMs": 34.844
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 34.647999999999996
+        },
+        {
+          "frame": "replaceChildren @ (native):-1",
+          "sampledMs": 26.698000000000004
+        },
+        {
+          "frame": "drawPalettes @ :13828",
+          "sampledMs": 26.133
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 20.063000000000002
+        },
+        {
+          "frame": "editNode @ :12699",
+          "sampledMs": 19.029999999999998
+        },
+        {
+          "frame": "getAttribute @ (native):-1",
+          "sampledMs": 13.623000000000003
+        },
+        {
+          "frame": "append @ (native):-1",
+          "sampledMs": 13.579999999999998
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 7.906000000000001
+        },
+        {
+          "frame": "isVisibleObject @ :12222",
+          "sampledMs": 7.856
+        },
+        {
+          "frame": "closest @ (native):-1",
+          "sampledMs": 7.531
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 1677.9700000000005
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 1150.8289999999974
+        },
+        {
+          "frame": "switchEditorPane @ :11817",
+          "sampledMs": 475.3080000000001
+        },
+        {
+          "frame": "el.onclick @ :15345",
+          "sampledMs": 475.3080000000001
+        },
+        {
+          "frame": "showPane @ :11803",
+          "sampledMs": 474.60200000000015
+        },
+        {
+          "frame": "drawPalettes @ :13828",
+          "sampledMs": 467.62600000000015
+        },
+        {
+          "frame": "renderInspectorPreviews @ :14542",
+          "sampledMs": 467.62600000000015
+        },
+        {
+          "frame": "editedSvg @ :12669",
+          "sampledMs": 225.94399999999987
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 192.1069999999999
+        },
+        {
+          "frame": "baseSvg @ :12045",
+          "sampledMs": 192.1069999999999
+        },
+        {
+          "frame": "preview @ :13740",
+          "sampledMs": 77.94500000000005
+        },
+        {
+          "frame": "preparePaletteTargets @ :13680",
+          "sampledMs": 42.41599999999999
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 34.647999999999996
+        },
+        {
+          "frame": "editNode @ :12699",
+          "sampledMs": 30.426
+        },
+        {
+          "frame": "applyElementEdits @ :12700",
+          "sampledMs": 30.426
+        },
+        {
+          "frame": "paletteHeatmapInfo @ :13633",
+          "sampledMs": 28.287000000000003
+        },
+        {
+          "frame": "replaceChildren @ (native):-1",
+          "sampledMs": 26.698000000000004
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 20.063000000000002
+        }
+      ]
+    },
+    {
+      "stage": "source17",
+      "action": "detail-return-first",
+      "traceSha256": "8446e82b74aec127247259a851e456da11c48da1fabaead555d676bb6970a818",
+      "profileSha256": "2347017f88cf80e5f0c5baca0d39ae25cf33ec8d6e1cb1af92e249d3a17226e3",
+      "profileSamplesInMarkedInterval": 316,
+      "markedDiagnosticIntervalMs": 312.74,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 8,
+          "totalMs": 105.643,
+          "maxMs": 104.199
+        },
+        "Layout": {
+          "count": 1,
+          "totalMs": 6.379,
+          "maxMs": 6.379
+        },
+        "Paint": {
+          "count": 6,
+          "totalMs": 21.631,
+          "maxMs": 6.969
+        }
+      },
+      "selectedGCEventCategories": {},
+      "syncLayoutStacks": [
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 7,
+          "totalMs": 105.434,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 1,
+          "totalMs": 6.379,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: expectHitTarget > listener > listener",
+          "count": 1,
+          "totalMs": 0.209,
+          "lines": {
+            "7503": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 263.98699999999997
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 24.153000000000002
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 14.198
+        },
+        {
+          "frame": "requestAnimationFrame @ (native):-1",
+          "sampledMs": 3.356
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 2.801
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 1.48
+        },
+        {
+          "frame": "elementsFromPoint @ (native):-1",
+          "sampledMs": 1.2950000000000002
+        },
+        {
+          "frame": "dispatchEvent @ (native):-1",
+          "sampledMs": 0.986
+        },
+        {
+          "frame": "mark @ (native):-1",
+          "sampledMs": 0.455
+        },
+        {
+          "frame": "setTimeout @ (native):-1",
+          "sampledMs": 0.029
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 312.73999999999995
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 263.98699999999997
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 24.153000000000002
+        },
+        {
+          "frame": "(anonymous) @ (native):0",
+          "sampledMs": 21.852999999999998
+        },
+        {
+          "frame": "evaluate @ (native):304",
+          "sampledMs": 21.816
+        },
+        {
+          "frame": "callMatchedElements @ (native):0",
+          "sampledMs": 19.387999999999998
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "_cached @ (native):5387",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "_queryCSS @ (native):5603",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "_querySimple @ (native):5482",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "(anonymous) @ (native):5425",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "query @ (native):5421",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "query @ (native):5634",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "(anonymous) @ (native):5596",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "_callQuery @ (native):5595",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "_queryEngine @ (native):5583",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "queryAll @ (native):6988",
+          "sampledMs": 18.402
+        },
+        {
+          "frame": "_queryEngineAll @ (native):6967",
+          "sampledMs": 18.402
+        }
+      ]
+    },
+    {
+      "stage": "source17",
+      "action": "select-text-after-reset",
+      "traceSha256": "66a26bd77eba3ecbfb101c970f8830176715eb8447d1db392520b437548d9a94",
+      "profileSha256": "88ff0b3a8b7f5ed333693a8b097a429234e6598adb52b47b52129983cb687cc6",
+      "profileSamplesInMarkedInterval": 374,
+      "markedDiagnosticIntervalMs": 303.956,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 14,
+          "totalMs": 54.876,
+          "maxMs": 19.1
+        },
+        "Layout": {
+          "count": 10,
+          "totalMs": 42.472,
+          "maxMs": 6.409
+        },
+        "Paint": {
+          "count": 8,
+          "totalMs": 15.339,
+          "maxMs": 4.57
+        }
+      },
+      "selectedGCEventCategories": {},
+      "syncLayoutStacks": [
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 8,
+          "totalMs": 32.342999999999996,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 5,
+          "totalMs": 20.654,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: canvasPoint > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 19.1,
+          "lines": {
+            "14878": 1
+          }
+        },
+        {
+          "stack": "Layout :: paint > update > renderEditingPanels > renderQuickToolbar > renderSelectionProperties",
+          "count": 1,
+          "totalMs": 6.409,
+          "lines": {
+            "10011": 1
+          }
+        },
+        {
+          "stack": "Layout :: canvasPoint > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 5.696,
+          "lines": {
+            "14878": 1
+          }
+        },
+        {
+          "stack": "Layout :: paint > update > renderEditingPanels > renderQuickToolbar > renderAlignmentGuideControls",
+          "count": 1,
+          "totalMs": 5.423,
+          "lines": {
+            "10011": 1
+          }
+        },
+        {
+          "stack": "Layout :: drawSelection > finishSelectionUI > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 4.178,
+          "lines": {
+            "14911": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: paint > update > renderEditingPanels > renderQuickToolbar > renderSelectionProperties",
+          "count": 1,
+          "totalMs": 2.606,
+          "lines": {
+            "10011": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: drawSelection > finishSelectionUI > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 0.385,
+          "lines": {
+            "14911": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: paint > update > renderEditingPanels > renderQuickToolbar > renderAlignmentGuideControls",
+          "count": 1,
+          "totalMs": 0.223,
+          "lines": {
+            "10011": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 177.87299999999996
+        },
+        {
+          "frame": "getBoundingClientRect @ (native):-1",
+          "sampledMs": 29.593
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 24.269000000000002
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 19.0
+        },
+        {
+          "frame": "get scrollTop @ (native):-1",
+          "sampledMs": 15.022
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 13.804
+        },
+        {
+          "frame": "set disabled @ (native):-1",
+          "sampledMs": 4.542
+        },
+        {
+          "frame": "requestAnimationFrame @ (native):-1",
+          "sampledMs": 2.7670000000000003
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 2.708
+        },
+        {
+          "frame": "(anonymous) @ (native):0",
+          "sampledMs": 1.659
+        },
+        {
+          "frame": "(anonymous) @ :16101",
+          "sampledMs": 1.639
+        },
+        {
+          "frame": "set value @ (native):-1",
+          "sampledMs": 1.633
+        },
+        {
+          "frame": "selectionAlignmentPlan.availability @ :11183",
+          "sampledMs": 1.557
+        },
+        {
+          "frame": "set textContent @ (native):-1",
+          "sampledMs": 1.546
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 303.9559999999996
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 177.87299999999996
+        },
+        {
+          "frame": "svg.onpointerdown @ :15046",
+          "sampledMs": 84.96699999999998
+        },
+        {
+          "frame": "finishSelectionUI @ :14998",
+          "sampledMs": 49.653999999999996
+        },
+        {
+          "frame": "renderSelectionProperties @ :14430",
+          "sampledMs": 42.40999999999999
+        },
+        {
+          "frame": "getBoundingClientRect @ (native):-1",
+          "sampledMs": 29.593
+        },
+        {
+          "frame": "renderQuickToolbar @ :14315",
+          "sampledMs": 26.027999999999995
+        },
+        {
+          "frame": "canvasPoint @ :14877",
+          "sampledMs": 24.502
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 24.269000000000002
+        },
+        {
+          "frame": "(anonymous) @ (native):0",
+          "sampledMs": 20.704
+        },
+        {
+          "frame": "renderEditingPanels @ :14400",
+          "sampledMs": 19.926
+        },
+        {
+          "frame": "evaluate @ (native):304",
+          "sampledMs": 19.013
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 19.0
+        },
+        {
+          "frame": "editableSource @ :12144",
+          "sampledMs": 17.909
+        },
+        {
+          "frame": "callMatchedElements @ (native):0",
+          "sampledMs": 16.206
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 15.325999999999999
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 15.325999999999999
+        },
+        {
+          "frame": "_cached @ (native):5387",
+          "sampledMs": 15.325999999999999
+        }
+      ]
+    },
+    {
+      "stage": "source17",
+      "action": "palette-after-real-colour-commit",
+      "traceSha256": "9a0014c858e4944fdfce16594f0c5bfc48065124677da1e92933d17ecf673b25",
+      "profileSha256": "9c236b67cfad1409c9e8db7457c435a4590047676266934bac879a87152637d8",
+      "profileSamplesInMarkedInterval": 1054,
+      "markedDiagnosticIntervalMs": 1419.992,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 9,
+          "totalMs": 163.829,
+          "maxMs": 161.805
+        },
+        "Layout": {
+          "count": 3,
+          "totalMs": 402.86600000000004,
+          "maxMs": 161.217
+        },
+        "Paint": {
+          "count": 6,
+          "totalMs": 159.434,
+          "maxMs": 36.613
+        }
+      },
+      "selectedGCEventCategories": {
+        "MinorGC": {
+          "count": 1,
+          "totalMs": 2.232,
+          "maxMs": 2.232
+        }
+      },
+      "syncLayoutStacks": [
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 3,
+          "totalMs": 402.86600000000004,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 8,
+          "totalMs": 163.621,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: expectHitTarget > listener > listener",
+          "count": 1,
+          "totalMs": 0.208,
+          "lines": {
+            "7503": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 1117.5129999999997
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 87.75499999999998
+        },
+        {
+          "frame": "preview @ :13740",
+          "sampledMs": 44.87
+        },
+        {
+          "frame": "replaceChildren @ (native):-1",
+          "sampledMs": 32.153999999999996
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 28.233
+        },
+        {
+          "frame": "getAttribute @ (native):-1",
+          "sampledMs": 17.075
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 17.057
+        },
+        {
+          "frame": "append @ (native):-1",
+          "sampledMs": 12.119
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 11.257
+        },
+        {
+          "frame": "editedSvg @ :12669",
+          "sampledMs": 7.928000000000001
+        },
+        {
+          "frame": "drawPalettes @ :13828",
+          "sampledMs": 6.406999999999999
+        },
+        {
+          "frame": "isVisibleObject @ :12222",
+          "sampledMs": 4.7219999999999995
+        },
+        {
+          "frame": "editNode @ :12699",
+          "sampledMs": 4.665
+        },
+        {
+          "frame": "hasAttribute @ (native):-1",
+          "sampledMs": 3.2009999999999996
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 1419.9920000000018
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 1117.5129999999997
+        },
+        {
+          "frame": "showPane @ :11803",
+          "sampledMs": 252.05600000000007
+        },
+        {
+          "frame": "switchEditorPane @ :11817",
+          "sampledMs": 252.05600000000007
+        },
+        {
+          "frame": "el.onclick @ :15345",
+          "sampledMs": 252.05600000000007
+        },
+        {
+          "frame": "drawPalettes @ :13828",
+          "sampledMs": 247.6970000000001
+        },
+        {
+          "frame": "renderInspectorPreviews @ :14542",
+          "sampledMs": 247.6970000000001
+        },
+        {
+          "frame": "editedSvg @ :12669",
+          "sampledMs": 102.28199999999998
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 87.75499999999998
+        },
+        {
+          "frame": "baseSvg @ :12045",
+          "sampledMs": 87.75499999999998
+        },
+        {
+          "frame": "preview @ :13740",
+          "sampledMs": 46.84900000000001
+        },
+        {
+          "frame": "replaceChildren @ (native):-1",
+          "sampledMs": 32.153999999999996
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 28.233
+        },
+        {
+          "frame": "preparePaletteTargets @ :13680",
+          "sampledMs": 22.718000000000004
+        },
+        {
+          "frame": "(anonymous) @ (native):0",
+          "sampledMs": 20.911
+        },
+        {
+          "frame": "evaluate @ (native):304",
+          "sampledMs": 20.845000000000002
+        },
+        {
+          "frame": "callMatchedElements @ (native):0",
+          "sampledMs": 18.935
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 18.642
+        }
+      ]
+    },
+    {
+      "stage": "source17",
+      "action": "detail-return-after-colour",
+      "traceSha256": "c73a5d4314fb3c9b7102397f90bee771143e35021102e3993c1b8b65544e65dd",
+      "profileSha256": "7bf350bb1d5b0cc8bc8bd4b0c9cdb3e14bd640c578e06ccffdb52ad18978b868",
+      "profileSamplesInMarkedInterval": 300,
+      "markedDiagnosticIntervalMs": 279.824,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 10,
+          "totalMs": 90.33800000000001,
+          "maxMs": 88.504
+        },
+        "Layout": {
+          "count": 1,
+          "totalMs": 5.001,
+          "maxMs": 5.001
+        },
+        "Paint": {
+          "count": 10,
+          "totalMs": 23.084,
+          "maxMs": 6.718
+        }
+      },
+      "selectedGCEventCategories": {},
+      "syncLayoutStacks": [
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 9,
+          "totalMs": 90.08000000000001,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 1,
+          "totalMs": 5.001,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: expectHitTarget > listener > listener",
+          "count": 1,
+          "totalMs": 0.258,
+          "lines": {
+            "7503": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 225.22699999999983
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 29.561
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 16.95
+        },
+        {
+          "frame": "requestAnimationFrame @ (native):-1",
+          "sampledMs": 3.039
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 1.602
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 1.592
+        },
+        {
+          "frame": "switchEditorPane @ :11817",
+          "sampledMs": 0.573
+        },
+        {
+          "frame": "mark @ (native):-1",
+          "sampledMs": 0.552
+        },
+        {
+          "frame": "dispatchEvent @ (native):-1",
+          "sampledMs": 0.47400000000000003
+        },
+        {
+          "frame": "elementsFromPoint @ (native):-1",
+          "sampledMs": 0.22399999999999998
+        },
+        {
+          "frame": "setTimeout @ (native):-1",
+          "sampledMs": 0.03
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 279.82400000000007
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 225.22699999999983
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 29.561
+        },
+        {
+          "frame": "(anonymous) @ (native):0",
+          "sampledMs": 23.467
+        },
+        {
+          "frame": "evaluate @ (native):304",
+          "sampledMs": 23.442
+        },
+        {
+          "frame": "callMatchedElements @ (native):0",
+          "sampledMs": 20.618
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "_cached @ (native):5387",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "_queryCSS @ (native):5603",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "_querySimple @ (native):5482",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "(anonymous) @ (native):5425",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "query @ (native):5421",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "query @ (native):5634",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "(anonymous) @ (native):5596",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "_callQuery @ (native):5595",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "_queryEngine @ (native):5583",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "queryAll @ (native):6988",
+          "sampledMs": 20.144
+        },
+        {
+          "frame": "_queryEngineAll @ (native):6967",
+          "sampledMs": 20.144
+        }
+      ]
+    },
+    {
+      "stage": "source18",
+      "action": "select-text-first",
+      "traceSha256": "3e08fb7facb0c3ec774379d9dcdc7961ad5977369c1597254154c6196da7ae88",
+      "profileSha256": "beb38ccef5e87b403386ec99751e23d52b3a47c411847e18b395a42bbc7234cf",
+      "profileSamplesInMarkedInterval": 375,
+      "markedDiagnosticIntervalMs": 270.12,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 18,
+          "totalMs": 42.065999999999995,
+          "maxMs": 15.748
+        },
+        "Layout": {
+          "count": 10,
+          "totalMs": 62.63,
+          "maxMs": 18.081
+        },
+        "Paint": {
+          "count": 20,
+          "totalMs": 35.256,
+          "maxMs": 4.233
+        }
+      },
+      "selectedGCEventCategories": {
+        "V8.GCIncrementalMarkingStart": {
+          "count": 1,
+          "totalMs": 0.378,
+          "maxMs": 0.378
+        },
+        "V8.GCIncrementalMarking": {
+          "count": 26,
+          "totalMs": 5.442,
+          "maxMs": 1.274
+        }
+      },
+      "syncLayoutStacks": [
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 10,
+          "totalMs": 32.754,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 5,
+          "totalMs": 25.436,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: paint > update > renderEditingPanels > renderQuickToolbar > renderSelectionProperties",
+          "count": 1,
+          "totalMs": 18.081,
+          "lines": {
+            "10029": 1
+          }
+        },
+        {
+          "stack": "Layout :: paint > update > renderEditingPanels > renderQuickToolbar > renderAlignmentGuideControls",
+          "count": 1,
+          "totalMs": 7.821,
+          "lines": {
+            "10029": 1
+          }
+        },
+        {
+          "stack": "Layout :: drawSelection > finishSelectionUI > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 5.623,
+          "lines": {
+            "14965": 1
+          }
+        },
+        {
+          "stack": "Layout :: canvasPoint > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 5.508,
+          "lines": {
+            "14932": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: canvasPoint > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 5.22,
+          "lines": {
+            "14932": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: paint > update > renderEditingPanels > renderQuickToolbar > renderSelectionProperties",
+          "count": 1,
+          "totalMs": 2.354,
+          "lines": {
+            "10029": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: drawSelection > finishSelectionUI > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 0.588,
+          "lines": {
+            "14965": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: destination > hoverGuide",
+          "count": 1,
+          "totalMs": 0.479,
+          "lines": {
+            "14916": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 138.40200000000002
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 37.098000000000006
+        },
+        {
+          "frame": "paint @ :10026",
+          "sampledMs": 28.838
+        },
+        {
+          "frame": "getBoundingClientRect @ (native):-1",
+          "sampledMs": 18.410999999999998
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 7.316000000000001
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 4.868
+        },
+        {
+          "frame": "requestAnimationFrame @ (native):-1",
+          "sampledMs": 3.668
+        },
+        {
+          "frame": "(anonymous) @ :9020",
+          "sampledMs": 2.931
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 2.818
+        },
+        {
+          "frame": "getAttribute @ (native):-1",
+          "sampledMs": 2.7720000000000002
+        },
+        {
+          "frame": "add @ (native):-1",
+          "sampledMs": 2.263
+        },
+        {
+          "frame": "renderQuickToolbar @ :14365",
+          "sampledMs": 1.66
+        },
+        {
+          "frame": "layout @ :12897",
+          "sampledMs": 1.598
+        },
+        {
+          "frame": "(anonymous) @ (native):324",
+          "sampledMs": 1.578
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 270.11999999999966
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 138.40200000000002
+        },
+        {
+          "frame": "svg.onpointerdown @ :15100",
+          "sampledMs": 107.30399999999999
+        },
+        {
+          "frame": "finishSelectionUI @ :15052",
+          "sampledMs": 84.43899999999998
+        },
+        {
+          "frame": "renderSelectionProperties @ :14480",
+          "sampledMs": 71.157
+        },
+        {
+          "frame": "renderQuickToolbar @ :14365",
+          "sampledMs": 41.597
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 37.098000000000006
+        },
+        {
+          "frame": "renderEditingPanels @ :14450",
+          "sampledMs": 33.669000000000004
+        },
+        {
+          "frame": "paint @ :10026",
+          "sampledMs": 28.838
+        },
+        {
+          "frame": "update @ :10050",
+          "sampledMs": 28.838
+        },
+        {
+          "frame": "editableSource @ :12174",
+          "sampledMs": 23.487999999999996
+        },
+        {
+          "frame": "getBoundingClientRect @ (native):-1",
+          "sampledMs": 18.410999999999998
+        },
+        {
+          "frame": "baseSvg @ :12075",
+          "sampledMs": 13.609999999999998
+        },
+        {
+          "frame": "renderHeatmapControls @ :12504",
+          "sampledMs": 13.609999999999998
+        },
+        {
+          "frame": "(anonymous) @ (native):0",
+          "sampledMs": 12.712000000000002
+        },
+        {
+          "frame": "evaluate @ (native):304",
+          "sampledMs": 12.675
+        },
+        {
+          "frame": "renderAlignmentGuideControls @ :12842",
+          "sampledMs": 12.258999999999999
+        },
+        {
+          "frame": "drawSelection @ :14963",
+          "sampledMs": 11.895
+        }
+      ]
+    },
+    {
+      "stage": "source18",
+      "action": "palette-first",
+      "traceSha256": "10a39654679096206e6aed7ed1b95089d6a4ab4c461250ee0fb10a4cf6efa091",
+      "profileSha256": "2fd5924ba264618c49ac00a4ad64d90a80495e99447158dd482f2578f60f111b",
+      "profileSamplesInMarkedInterval": 765,
+      "markedDiagnosticIntervalMs": 960.615,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 10,
+          "totalMs": 161.31800000000004,
+          "maxMs": 160.098
+        },
+        "Layout": {
+          "count": 3,
+          "totalMs": 240.76800000000003,
+          "maxMs": 90.854
+        },
+        "Paint": {
+          "count": 6,
+          "totalMs": 100.33800000000001,
+          "maxMs": 24.474
+        }
+      },
+      "selectedGCEventCategories": {
+        "MinorGC": {
+          "count": 1,
+          "totalMs": 1.812,
+          "maxMs": 1.812
+        }
+      },
+      "syncLayoutStacks": [
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 3,
+          "totalMs": 240.76800000000003,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 9,
+          "totalMs": 161.15900000000002,
+          "lines": {
+            "14871": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: expectHitTarget > listener > listener",
+          "count": 1,
+          "totalMs": 0.159,
+          "lines": {
+            "7503": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 720.9209999999999
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 76.775
+        },
+        {
+          "frame": "preview @ :13786",
+          "sampledMs": 38.212999999999994
+        },
+        {
+          "frame": "editedSvg @ :12699",
+          "sampledMs": 18.697
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 13.040000000000001
+        },
+        {
+          "frame": "replaceChildren @ (native):-1",
+          "sampledMs": 12.676
+        },
+        {
+          "frame": "append @ (native):-1",
+          "sampledMs": 12.074
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 7.758
+        },
+        {
+          "frame": "getAttribute @ (native):-1",
+          "sampledMs": 7.341
+        },
+        {
+          "frame": "editNode @ :12729",
+          "sampledMs": 7.225
+        },
+        {
+          "frame": "drawPalettes @ :13874",
+          "sampledMs": 6.622999999999999
+        },
+        {
+          "frame": "getPropertyValue @ (native):-1",
+          "sampledMs": 4.715
+        },
+        {
+          "frame": "(garbage collector) @ (native):-1",
+          "sampledMs": 3.2649999999999997
+        },
+        {
+          "frame": "hasAttribute @ (native):-1",
+          "sampledMs": 3.214
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 960.6150000000001
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 720.9209999999999
+        },
+        {
+          "frame": "showPane @ :11830",
+          "sampledMs": 215.80700000000002
+        },
+        {
+          "frame": "switchEditorPane @ :11844",
+          "sampledMs": 215.80700000000002
+        },
+        {
+          "frame": "el.onclick @ :15399",
+          "sampledMs": 215.80700000000002
+        },
+        {
+          "frame": "drawPalettes @ :13874",
+          "sampledMs": 211.93800000000002
+        },
+        {
+          "frame": "renderInspectorPreviews @ :14592",
+          "sampledMs": 211.93800000000002
+        },
+        {
+          "frame": "editedSvg @ :12699",
+          "sampledMs": 100.85700000000006
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 76.775
+        },
+        {
+          "frame": "baseSvg @ :12075",
+          "sampledMs": 76.775
+        },
+        {
+          "frame": "preview @ :13786",
+          "sampledMs": 38.647
+        },
+        {
+          "frame": "preparePaletteTargets @ :13722",
+          "sampledMs": 20.451
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 13.040000000000001
+        },
+        {
+          "frame": "editNode @ :12729",
+          "sampledMs": 12.977
+        },
+        {
+          "frame": "applyElementEdits @ :12730",
+          "sampledMs": 12.977
+        },
+        {
+          "frame": "replaceChildren @ (native):-1",
+          "sampledMs": 12.676
+        },
+        {
+          "frame": "append @ (native):-1",
+          "sampledMs": 12.074
+        },
+        {
+          "frame": "paletteHeatmapInfo @ :13675",
+          "sampledMs": 10.399
+        }
+      ]
+    },
+    {
+      "stage": "source18",
+      "action": "detail-return-first",
+      "traceSha256": "f3f7077593ba7f3647d0b92581cdf96f32a1c237858dc3b1149b14364c468949",
+      "profileSha256": "bc58012b9226367fa437cf39654953c5db2765715e9390f362cf627c649aa9e2",
+      "profileSamplesInMarkedInterval": 417,
+      "markedDiagnosticIntervalMs": 479.691,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 6,
+          "totalMs": 163.107,
+          "maxMs": 161.593
+        },
+        "Layout": {
+          "count": 1,
+          "totalMs": 10.905,
+          "maxMs": 10.905
+        },
+        "Paint": {
+          "count": 4,
+          "totalMs": 25.202999999999996,
+          "maxMs": 10.956
+        }
+      },
+      "selectedGCEventCategories": {},
+      "syncLayoutStacks": [
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 5,
+          "totalMs": 162.748,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 1,
+          "totalMs": 10.905,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: expectHitTarget > listener > listener",
+          "count": 1,
+          "totalMs": 0.359,
+          "lines": {
+            "7503": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 393.5789999999999
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 48.634
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 26.497
+        },
+        {
+          "frame": "requestAnimationFrame @ (native):-1",
+          "sampledMs": 2.95
+        },
+        {
+          "frame": "set hidden @ (native):-1",
+          "sampledMs": 2.2359999999999998
+        },
+        {
+          "frame": "elementsFromPoint @ (native):-1",
+          "sampledMs": 2.114
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 1.646
+        },
+        {
+          "frame": "dispatchEvent @ (native):-1",
+          "sampledMs": 1.3039999999999998
+        },
+        {
+          "frame": "mark @ (native):-1",
+          "sampledMs": 0.35200000000000004
+        },
+        {
+          "frame": "(anonymous) @ (native):-1",
+          "sampledMs": 0.312
+        },
+        {
+          "frame": "setTimeout @ (native):-1",
+          "sampledMs": 0.038
+        },
+        {
+          "frame": "listener @ (native):7590",
+          "sampledMs": 0.029
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 479.6909999999999
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 393.5789999999999
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 48.634
+        },
+        {
+          "frame": "(anonymous) @ (native):0",
+          "sampledMs": 32.042
+        },
+        {
+          "frame": "evaluate @ (native):304",
+          "sampledMs": 31.994
+        },
+        {
+          "frame": "callMatchedElements @ (native):0",
+          "sampledMs": 29.447
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "_cached @ (native):5387",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "_queryCSS @ (native):5603",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "_querySimple @ (native):5482",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "(anonymous) @ (native):5425",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "query @ (native):5421",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "query @ (native):5634",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "(anonymous) @ (native):5596",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "_callQuery @ (native):5595",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "_queryEngine @ (native):5583",
+          "sampledMs": 28.142999999999997
+        },
+        {
+          "frame": "queryAll @ (native):6988",
+          "sampledMs": 28.142999999999997
+        }
+      ]
+    },
+    {
+      "stage": "source18",
+      "action": "select-text-after-reset",
+      "traceSha256": "f84c51427a9d7256af55869094c677666eedae00317211775730379d612e66b1",
+      "profileSha256": "d9b22a0fd15c485fff7de0acfc7ab691e1b7d7dad403aea81d5bafde830f538c",
+      "profileSamplesInMarkedInterval": 379,
+      "markedDiagnosticIntervalMs": 320.361,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 15,
+          "totalMs": 49.365,
+          "maxMs": 17.31
+        },
+        "Layout": {
+          "count": 10,
+          "totalMs": 51.53399999999999,
+          "maxMs": 9.786
+        },
+        "Paint": {
+          "count": 10,
+          "totalMs": 14.113000000000003,
+          "maxMs": 3.604
+        }
+      },
+      "selectedGCEventCategories": {},
+      "syncLayoutStacks": [
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 9,
+          "totalMs": 26.479000000000003,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 5,
+          "totalMs": 22.684,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: canvasPoint > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 17.31,
+          "lines": {
+            "14932": 1
+          }
+        },
+        {
+          "stack": "Layout :: paint > update > renderEditingPanels > renderQuickToolbar > renderAlignmentGuideControls",
+          "count": 1,
+          "totalMs": 9.786,
+          "lines": {
+            "10029": 1
+          }
+        },
+        {
+          "stack": "Layout :: drawSelection > finishSelectionUI > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 7.52,
+          "lines": {
+            "14965": 1
+          }
+        },
+        {
+          "stack": "Layout :: paint > update > renderEditingPanels > renderQuickToolbar > renderSelectionProperties",
+          "count": 1,
+          "totalMs": 6.728,
+          "lines": {
+            "10029": 1
+          }
+        },
+        {
+          "stack": "Layout :: canvasPoint > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 4.572,
+          "lines": {
+            "14932": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: paint > update > renderEditingPanels > renderQuickToolbar > renderSelectionProperties",
+          "count": 1,
+          "totalMs": 4.176,
+          "lines": {
+            "10029": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: drawSelection > finishSelectionUI > svg.onpointerdown",
+          "count": 1,
+          "totalMs": 0.632,
+          "lines": {
+            "14965": 1
+          }
+        },
+        {
+          "stack": "UpdateLayoutTree :: destination > ",
+          "count": 1,
+          "totalMs": 0.32,
+          "lines": {
+            "14916": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 150.18699999999993
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 42.48500000000001
+        },
+        {
+          "frame": "getBoundingClientRect @ (native):-1",
+          "sampledMs": 30.52
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 24.611000000000004
+        },
+        {
+          "frame": "get scrollTop @ (native):-1",
+          "sampledMs": 19.244
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 15.691
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 7.9239999999999995
+        },
+        {
+          "frame": "paint @ :10026",
+          "sampledMs": 3.354
+        },
+        {
+          "frame": "set title @ (native):-1",
+          "sampledMs": 2.963
+        },
+        {
+          "frame": "requestAnimationFrame @ (native):-1",
+          "sampledMs": 2.095
+        },
+        {
+          "frame": "renderSelectionProperties @ :14480",
+          "sampledMs": 1.723
+        },
+        {
+          "frame": "elementsFromPoint @ (native):-1",
+          "sampledMs": 1.679
+        },
+        {
+          "frame": "renderFontTargets @ :15461",
+          "sampledMs": 1.656
+        },
+        {
+          "frame": "set min @ (native):-1",
+          "sampledMs": 1.651
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 320.3609999999999
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 150.18699999999993
+        },
+        {
+          "frame": "svg.onpointerdown @ :15100",
+          "sampledMs": 116.92800000000003
+        },
+        {
+          "frame": "finishSelectionUI @ :15052",
+          "sampledMs": 77.708
+        },
+        {
+          "frame": "renderSelectionProperties @ :14480",
+          "sampledMs": 65.01299999999999
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 42.48500000000001
+        },
+        {
+          "frame": "(anonymous) @ (native):0",
+          "sampledMs": 35.76800000000001
+        },
+        {
+          "frame": "evaluate @ (native):304",
+          "sampledMs": 35.73700000000001
+        },
+        {
+          "frame": "renderQuickToolbar @ :14365",
+          "sampledMs": 34.733000000000004
+        },
+        {
+          "frame": "editableSource @ :12174",
+          "sampledMs": 32.642
+        },
+        {
+          "frame": "callMatchedElements @ (native):0",
+          "sampledMs": 31.616000000000003
+        },
+        {
+          "frame": "_cached @ (native):5387",
+          "sampledMs": 31.352
+        },
+        {
+          "frame": "(anonymous) @ (native):5425",
+          "sampledMs": 31.352
+        },
+        {
+          "frame": "query @ (native):5421",
+          "sampledMs": 31.352
+        },
+        {
+          "frame": "query @ (native):5634",
+          "sampledMs": 31.352
+        },
+        {
+          "frame": "(anonymous) @ (native):5596",
+          "sampledMs": 31.352
+        },
+        {
+          "frame": "_callQuery @ (native):5595",
+          "sampledMs": 31.352
+        },
+        {
+          "frame": "_queryEngine @ (native):5583",
+          "sampledMs": 31.352
+        }
+      ]
+    },
+    {
+      "stage": "source18",
+      "action": "palette-after-real-colour-commit",
+      "traceSha256": "4e656af63ce61c1e1adc2e63ae4c9d6fdb859983301bd05fb9fc2fc24f1ebd8a",
+      "profileSha256": "41eca43d04fd4122b4965e67d4096c5dfea7fa942a99ab0f9b2a05dc2701db3d",
+      "profileSamplesInMarkedInterval": 1207,
+      "markedDiagnosticIntervalMs": 1657.282,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 9,
+          "totalMs": 366.70399999999995,
+          "maxMs": 364.839
+        },
+        "Layout": {
+          "count": 3,
+          "totalMs": 344.264,
+          "maxMs": 166.335
+        },
+        "Paint": {
+          "count": 6,
+          "totalMs": 138.197,
+          "maxMs": 47.517
+        }
+      },
+      "selectedGCEventCategories": {
+        "MinorGC": {
+          "count": 1,
+          "totalMs": 1.983,
+          "maxMs": 1.983
+        }
+      },
+      "syncLayoutStacks": [
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 8,
+          "totalMs": 366.36199999999997,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 3,
+          "totalMs": 344.264,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: expectHitTarget > listener > listener",
+          "count": 1,
+          "totalMs": 0.342,
+          "lines": {
+            "7503": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 1165.2930000000017
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 159.60999999999996
+        },
+        {
+          "frame": "preview @ :13786",
+          "sampledMs": 67.316
+        },
+        {
+          "frame": "replaceChildren @ (native):-1",
+          "sampledMs": 52.276999999999994
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 28.107999999999997
+        },
+        {
+          "frame": "append @ (native):-1",
+          "sampledMs": 25.906
+        },
+        {
+          "frame": "editedSvg @ :12699",
+          "sampledMs": 23.389
+        },
+        {
+          "frame": "getAttribute @ (native):-1",
+          "sampledMs": 22.74
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 21.621
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 17.555999999999997
+        },
+        {
+          "frame": "applyElementEdits @ :12730",
+          "sampledMs": 17.155
+        },
+        {
+          "frame": "hasAttribute @ (native):-1",
+          "sampledMs": 7.897
+        },
+        {
+          "frame": "querySelector @ (native):-1",
+          "sampledMs": 6.790000000000001
+        },
+        {
+          "frame": "isVisibleObject @ :12252",
+          "sampledMs": 6.522
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 1657.2820000000002
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 1165.2930000000017
+        },
+        {
+          "frame": "switchEditorPane @ :11844",
+          "sampledMs": 438.1750000000002
+        },
+        {
+          "frame": "el.onclick @ :15399",
+          "sampledMs": 438.1750000000002
+        },
+        {
+          "frame": "showPane @ :11830",
+          "sampledMs": 437.4090000000002
+        },
+        {
+          "frame": "drawPalettes @ :13874",
+          "sampledMs": 431.9450000000003
+        },
+        {
+          "frame": "renderInspectorPreviews @ :14592",
+          "sampledMs": 431.9450000000003
+        },
+        {
+          "frame": "editedSvg @ :12699",
+          "sampledMs": 197.228
+        },
+        {
+          "frame": "cloneNode @ (native):-1",
+          "sampledMs": 159.60999999999996
+        },
+        {
+          "frame": "baseSvg @ :12075",
+          "sampledMs": 159.60999999999996
+        },
+        {
+          "frame": "preview @ :13786",
+          "sampledMs": 68.76899999999999
+        },
+        {
+          "frame": "replaceChildren @ (native):-1",
+          "sampledMs": 52.276999999999994
+        },
+        {
+          "frame": "preparePaletteTargets @ :13722",
+          "sampledMs": 45.604000000000006
+        },
+        {
+          "frame": "(anonymous) @ (native):0",
+          "sampledMs": 34.485
+        },
+        {
+          "frame": "evaluate @ (native):304",
+          "sampledMs": 34.467999999999996
+        },
+        {
+          "frame": "callMatchedElements @ (native):0",
+          "sampledMs": 30.980999999999998
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 29.699999999999996
+        },
+        {
+          "frame": "_cached @ (native):5387",
+          "sampledMs": 29.699999999999996
+        }
+      ]
+    },
+    {
+      "stage": "source18",
+      "action": "detail-return-after-colour",
+      "traceSha256": "298cefc4d336aab3b839020e3f8811becb60045767d8a93a84ecff108331c7aa",
+      "profileSha256": "5c63b6c5203041b2e06db9a8c1d9b066d326970bb006a0f0044065878e944aa9",
+      "profileSamplesInMarkedInterval": 423,
+      "markedDiagnosticIntervalMs": 486.141,
+      "canvasElements": 5000,
+      "paletteCardElementCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "sourceExact": true,
+      "historyExact": true,
+      "layoutAndStyleEvents": {
+        "UpdateLayoutTree": {
+          "count": 7,
+          "totalMs": 164.57200000000003,
+          "maxMs": 162.727
+        },
+        "Layout": {
+          "count": 1,
+          "totalMs": 11.226,
+          "maxMs": 11.226
+        },
+        "Paint": {
+          "count": 4,
+          "totalMs": 23.830000000000002,
+          "maxMs": 9.739
+        }
+      },
+      "selectedGCEventCategories": {},
+      "syncLayoutStacks": [
+        {
+          "stack": "UpdateLayoutTree :: (no JS stack retained)",
+          "count": 6,
+          "totalMs": 164.13100000000003,
+          "lines": {}
+        },
+        {
+          "stack": "Layout :: (no JS stack retained)",
+          "count": 1,
+          "totalMs": 11.226,
+          "lines": {}
+        },
+        {
+          "stack": "UpdateLayoutTree :: expectHitTarget > listener > listener",
+          "count": 1,
+          "totalMs": 0.441,
+          "lines": {
+            "7503": 1
+          }
+        }
+      ],
+      "cpuSampledSelfMs": [
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 400.8919999999995
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 39.068
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 30.054000000000006
+        },
+        {
+          "frame": "(anonymous) @ (native):-1",
+          "sampledMs": 3.375
+        },
+        {
+          "frame": "set hidden @ (native):-1",
+          "sampledMs": 3.1879999999999997
+        },
+        {
+          "frame": "elementsFromPoint @ (native):-1",
+          "sampledMs": 2.553
+        },
+        {
+          "frame": "querySelectorAll @ (native):-1",
+          "sampledMs": 1.606
+        },
+        {
+          "frame": "dispatchEvent @ (native):-1",
+          "sampledMs": 1.4469999999999998
+        },
+        {
+          "frame": "enclosingShadowRootOrDocument @ (native):2932",
+          "sampledMs": 1.335
+        },
+        {
+          "frame": "mark @ (native):-1",
+          "sampledMs": 1.1549999999999998
+        },
+        {
+          "frame": "requestAnimationFrame @ (native):-1",
+          "sampledMs": 0.935
+        },
+        {
+          "frame": "querySelector @ (native):-1",
+          "sampledMs": 0.366
+        },
+        {
+          "frame": "oneLine @ (native):8144",
+          "sampledMs": 0.142
+        },
+        {
+          "frame": "setTimeout @ (native):-1",
+          "sampledMs": 0.051
+        }
+      ],
+      "cpuSampledInclusiveMs": [
+        {
+          "frame": "(root) @ (native):-1",
+          "sampledMs": 486.1669999999994
+        },
+        {
+          "frame": "(program) @ (native):-1",
+          "sampledMs": 400.8919999999995
+        },
+        {
+          "frame": "(idle) @ (native):-1",
+          "sampledMs": 39.068
+        },
+        {
+          "frame": "(anonymous) @ (native):0",
+          "sampledMs": 36.49000000000001
+        },
+        {
+          "frame": "evaluate @ (native):304",
+          "sampledMs": 36.44900000000001
+        },
+        {
+          "frame": "callMatchedElements @ (native):0",
+          "sampledMs": 33.24900000000001
+        },
+        {
+          "frame": "query @ (native):5606",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "(anonymous) @ (native):5604",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "_cached @ (native):5387",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "_queryCSS @ (native):5603",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "_querySimple @ (native):5482",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "(anonymous) @ (native):5425",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "query @ (native):5421",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "query @ (native):5634",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "(anonymous) @ (native):5596",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "_callQuery @ (native):5595",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "_queryEngine @ (native):5583",
+          "sampledMs": 31.66
+        },
+        {
+          "frame": "queryAll @ (native):6988",
+          "sampledMs": 31.66
+        }
+      ]
+    }
+  ],
+  "scope": "All12 actions retained in their original order. One diagnostic only, without production/function replacement or changes to formal benchmark harnesses. All8 scientific palette SVGs contain the complete5000-element fixture. Synthetic software engineering evidence, not scientific algorithm accuracy or biological validation.",
+  "originalFourPanelEvidence": [
+    {
+      "stage": "source17",
+      "rawSha256": "199b23559b305115e6ef2222f7ad95efd11beed85918962d30b1d43437591206",
+      "traceSha256": "02372354f70f691da699f5709f589adb5b247e2dc487442bdb415cef6b77ea51",
+      "phases": {
+        "preview": {
+          "totals": {
+            "FunctionCall": {
+              "count": 113,
+              "totalMs": 21.182999999999993,
+              "maxMs": 0.899
+            },
+            "UpdateLayoutTree": {
+              "count": 57,
+              "totalMs": 5.732000000000001,
+              "maxMs": 0.158
+            },
+            "Layout": {
+              "count": 120,
+              "totalMs": 481.8680000000002,
+              "maxMs": 7.413
+            },
+            "Paint": {
+              "count": 60,
+              "totalMs": 83.68700000000003,
+              "maxMs": 2.614
+            },
+            "EventDispatch": {
+              "count": 29,
+              "totalMs": 8.215999999999998,
+              "maxMs": 1.067
+            }
+          },
+          "topLayoutStacks": [
+            {
+              "stack": "(no JS stack retained)",
+              "count": 120,
+              "totalMs": 481.8680000000002
+            }
+          ],
+          "slowest": [
+            {
+              "iteration": 21,
+              "nextRafMs": 7.0,
+              "secondRafMs": 43.5,
+              "eventTotals": {
+                "EventDispatch": 0.87,
+                "FunctionCall": 1.125,
+                "UpdateLayoutTree": 0.33899999999999997,
+                "Layout": 29.206999999999997,
+                "Paint": 5.446
+              }
+            },
+            {
+              "iteration": 17,
+              "nextRafMs": 7.199999988079071,
+              "secondRafMs": 43.0,
+              "eventTotals": {
+                "FunctionCall": 0.931,
+                "UpdateLayoutTree": 0.34299999999999997,
+                "Layout": 29.165999999999997,
+                "Paint": 5.588,
+                "EventDispatch": 0.011
+              }
+            },
+            {
+              "iteration": 15,
+              "nextRafMs": 8.199999988079071,
+              "secondRafMs": 42.29999998211861,
+              "eventTotals": {
+                "FunctionCall": 1.12,
+                "UpdateLayoutTree": 0.214,
+                "Layout": 28.272,
+                "Paint": 4.592,
+                "EventDispatch": 0.014
+              }
+            }
+          ]
+        },
+        "enter": {
+          "totals": {
+            "FunctionCall": {
+              "count": 377,
+              "totalMs": 476.69599999999946,
+              "maxMs": 49.392
+            },
+            "UpdateLayoutTree": {
+              "count": 138,
+              "totalMs": 62.26800000000002,
+              "maxMs": 1.883
+            },
+            "Layout": {
+              "count": 195,
+              "totalMs": 938.8909999999997,
+              "maxMs": 11.114
+            },
+            "EventDispatch": {
+              "count": 207,
+              "totalMs": 1.7699999999999945,
+              "maxMs": 0.076
+            },
+            "Paint": {
+              "count": 61,
+              "totalMs": 117.282,
+              "maxMs": 4.746
+            }
+          },
+          "topLayoutStacks": [
+            {
+              "stack": "(no JS stack retained)",
+              "count": 115,
+              "totalMs": 614.5670000000001
+            },
+            {
+              "stack": "syncColorControls > renderSelectionProperties > commitPaintState > keep",
+              "count": 20,
+              "totalMs": 116.13700000000001
+            },
+            {
+              "stack": "drawSelection > zoomView.refreshSelection > commitPaintState > keep",
+              "count": 20,
+              "totalMs": 103.608
+            },
+            {
+              "stack": "paint > update > renderEditingPanels > renderQuickToolbar",
+              "count": 20,
+              "totalMs": 102.45799999999998
+            },
+            {
+              "stack": "screenBox >  > bounds > refresh",
+              "count": 20,
+              "totalMs": 2.1210000000000004
+            }
+          ],
+          "slowest": [
+            {
+              "iteration": 3,
+              "nextRafMs": 57.900000005960464,
+              "secondRafMs": 149.40000000596046,
+              "eventTotals": {
+                "FunctionCall": 44.269999999999996,
+                "UpdateLayoutTree": 4.804,
+                "Layout": 82.46899999999998,
+                "EventDispatch": 0.131,
+                "Paint": 8.657
+              }
+            },
+            {
+              "iteration": 14,
+              "nextRafMs": 60.099999994039536,
+              "secondRafMs": 144.09999999403954,
+              "eventTotals": {
+                "FunctionCall": 46.43000000000001,
+                "UpdateLayoutTree": 5.264,
+                "Layout": 75.81099999999999,
+                "EventDispatch": 0.15500000000000003,
+                "Paint": 10.036
+              }
+            },
+            {
+              "iteration": 21,
+              "nextRafMs": 66.09999999403954,
+              "secondRafMs": 106.59999999403954,
+              "eventTotals": {
+                "FunctionCall": 49.792000000000016,
+                "UpdateLayoutTree": 5.875,
+                "Layout": 43.068999999999996,
+                "EventDispatch": 0.10800000000000001,
+                "Paint": 9.802
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "stage": "source18",
+      "rawSha256": "c16729a10ed52acb179ea2ec401a8341480a20284e0c3050094009eb8196ed4d",
+      "traceSha256": "76bb05a2114b05d2e32db73b04a2b26a3c460a6e5798baa2769c22b9fed447bd",
+      "phases": {
+        "preview": {
+          "totals": {
+            "FunctionCall": {
+              "count": 112,
+              "totalMs": 24.77600000000001,
+              "maxMs": 1.113
+            },
+            "UpdateLayoutTree": {
+              "count": 57,
+              "totalMs": 6.740000000000002,
+              "maxMs": 0.179
+            },
+            "Layout": {
+              "count": 120,
+              "totalMs": 623.0050000000001,
+              "maxMs": 8.079
+            },
+            "Paint": {
+              "count": 60,
+              "totalMs": 115.561,
+              "maxMs": 3.577
+            },
+            "EventDispatch": {
+              "count": 25,
+              "totalMs": 4.898,
+              "maxMs": 1.022
+            }
+          },
+          "topLayoutStacks": [
+            {
+              "stack": "(no JS stack retained)",
+              "count": 120,
+              "totalMs": 623.0050000000001
+            }
+          ],
+          "slowest": [
+            {
+              "iteration": 13,
+              "nextRafMs": 11.599999994039536,
+              "secondRafMs": 60.80000001192093,
+              "eventTotals": {
+                "FunctionCall": 1.589,
+                "UpdateLayoutTree": 0.469,
+                "Layout": 40.931999999999995,
+                "Paint": 7.889,
+                "EventDispatch": 0.029
+              }
+            },
+            {
+              "iteration": 21,
+              "nextRafMs": 10.899999976158142,
+              "secondRafMs": 54.89999997615814,
+              "eventTotals": {
+                "FunctionCall": 1.267,
+                "UpdateLayoutTree": 0.382,
+                "Layout": 36.089,
+                "Paint": 7.019,
+                "EventDispatch": 0.016
+              }
+            },
+            {
+              "iteration": 10,
+              "nextRafMs": 9.599999994039536,
+              "secondRafMs": 54.099999994039536,
+              "eventTotals": {
+                "EventDispatch": 1.037,
+                "FunctionCall": 1.2810000000000001,
+                "UpdateLayoutTree": 0.369,
+                "Layout": 36.141999999999996,
+                "Paint": 7.2379999999999995
+              }
+            }
+          ]
+        },
+        "enter": {
+          "totals": {
+            "FunctionCall": {
+              "count": 367,
+              "totalMs": 499.0799999999994,
+              "maxMs": 29.563
+            },
+            "UpdateLayoutTree": {
+              "count": 98,
+              "totalMs": 68.474,
+              "maxMs": 2.04
+            },
+            "Layout": {
+              "count": 155,
+              "totalMs": 1001.9940000000004,
+              "maxMs": 9.0
+            },
+            "EventDispatch": {
+              "count": 217,
+              "totalMs": 2.26299999999999,
+              "maxMs": 0.175
+            },
+            "Paint": {
+              "count": 60,
+              "totalMs": 147.52100000000002,
+              "maxMs": 4.25
+            }
+          },
+          "topLayoutStacks": [
+            {
+              "stack": "(no JS stack retained)",
+              "count": 115,
+              "totalMs": 716.9070000000002
+            },
+            {
+              "stack": "syncColorControls > renderSelectionProperties > commitPaintState > keep",
+              "count": 20,
+              "totalMs": 151.805
+            },
+            {
+              "stack": "paint > update > renderEditingPanels > renderQuickToolbar",
+              "count": 20,
+              "totalMs": 133.28199999999998
+            }
+          ],
+          "slowest": [
+            {
+              "iteration": 7,
+              "nextRafMs": 44.69999998807907,
+              "secondRafMs": 111.40000000596046,
+              "eventTotals": {
+                "FunctionCall": 30.100999999999996,
+                "UpdateLayoutTree": 3.9619999999999997,
+                "Layout": 59.771,
+                "EventDispatch": 0.15200000000000002,
+                "Paint": 8.833
+              }
+            },
+            {
+              "iteration": 15,
+              "nextRafMs": 39.5,
+              "secondRafMs": 110.2999999821186,
+              "eventTotals": {
+                "FunctionCall": 25.350000000000005,
+                "UpdateLayoutTree": 3.29,
+                "Layout": 57.265,
+                "EventDispatch": 0.139,
+                "Paint": 8.977
+              }
+            },
+            {
+              "iteration": 22,
+              "nextRafMs": 40.80000001192093,
+              "secondRafMs": 109.5,
+              "eventTotals": {
+                "FunctionCall": 28.371,
+                "UpdateLayoutTree": 4.0040000000000004,
+                "Layout": 59.739,
+                "EventDispatch": 0.11599999999999999,
+                "Paint": 7.105
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "findings": [
+    {
+      "certainty": "Confirmed code and trace",
+      "finding": "An ordinary pointerdown refreshes the old selection via renderAlignmentGuideControls\u2192renderQuickToolbar, then refreshes the new selection via finishSelectionUI\u2192renderSelectionProperties\u2192renderQuickToolbar. Both routes synchronously read layer-host scrollTop after UI writes.",
+      "minimumProposal": "Only reset/redraw guide UI on ordinary pointerdown when a guide was actually selected. Keep the genuine guide-selection branch and the final canonical new-selection update."
+    },
+    {
+      "certainty": "Confirmed exact original trace frame and bundled source line",
+      "finding": "syncColorControls forced Layout is at colorHex.value assignment. hex parsing itself is string-only; no dummy DOM or getComputedStyle colour probe exists.",
+      "minimumProposal": "Avoid redundant semantic-equal HEX writes and unchanged swatch aria updates, preserving invalid/raw/composing input and context semantics."
+    },
+    {
+      "certainty": "Confirmed sampled CPU and style/layout events in this diagnostic; no formal causal magnitude claim",
+      "finding": "Palette return is dominated by browser style work over the retained complete card SVG DOM. Palette rebuild also clones and edits all8 full SVGs. The immutable cache is not observed repeatedly invoking application rendering on ordinary return.",
+      "minimumProposal": "Do not introduce approximate thumbnails or remove cards. Consider a separately proved UI-only layout-isolation experiment; its benefit is unverified and no production change was made."
+    }
+  ],
+  "limitations": [
+    "CPU sampling and disabled invalidation/GC tracing substantially affect the diagnostic. Marked interval and trace collection wall times are not formal latency or comparable to the fixed20-sample protocol.",
+    "Timeline event categories may nest and overlap. GC subcategories/background tasks must not be summed as a main-thread pause. Absence of an original unrequested GC category is not proof of no GC.",
+    "This trace identifies remaining old duplicate work and rendering cost. It does not prove the cause of source18 formal P95 differences or establish machine thermal/scheduling equivalence.",
+    "No runtime, frozen source, original formal data, pre-existing capture harness, threshold or sample was modified. Proposed fixes remain unimplemented at this report time."
+  ]
+}

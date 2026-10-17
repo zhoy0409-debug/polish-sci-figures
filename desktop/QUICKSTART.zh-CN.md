@@ -6,7 +6,7 @@ Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库
 
 ## 安装与打开
 
-1. 从[官方 Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases)选择已发布的 Windows 安装包，运行后按提示安装到当前 Windows 用户。本文中的 0.1.22 目前是本地验收候选，按用户要求尚未发布。
+1. 从 [v1.4.22 官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22)下载 [polish-sci-figures-Studio-0.1.22-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe)，运行后按提示安装到当前 Windows 用户。
 2. 双击桌面或开始菜单中的 **polish-sci-figures Studio**。启动小窗口显示“编辑器已就绪”后，默认浏览器会打开编辑器；也可点击小窗口里的 **打开编辑器**。
 3. 页面右上角可切换中文和 English。再次点击快捷方式会打开已运行的编辑器。
 
@@ -20,7 +20,7 @@ Studio 0.1.22 顶部**外观 → 界面主题**可选择默认深色 **Carbon At
 
 ## 留在画布中调整
 
-本地 0.1.22 候选新增[画布实时编辑](../docs/live-preview-editing.zh-CN.md)：边框和图片显示停靠在侧栏，坐标轴真实预览与应用分开；普通属性输入时可看效果，Enter／移开焦点保留，Esc 取消。带明确“保留／应用”按钮的草稿须先保留，才进入工程和导出。[本轮验收报告](../docs/live-preview-validation.md)区分已经执行与待验证的条件。
+0.1.22 支持[画布实时编辑](../docs/live-preview-editing.zh-CN.md)：边框和图片显示停靠在侧栏，坐标轴真实预览与应用分开；普通属性输入时可看效果，Enter／移开焦点保留，Esc 取消。带明确“保留／应用”按钮的草稿须先保留，才进入工程和导出。确认时保留真实草稿渲染，最终校验不变，配色页保留完整八卡预览。中文输入法选词时的 Enter／Esc 不结束整次编辑；完成选词后再确认或取消。实际范围见[验收报告](../docs/live-preview-validation.md)和[Windows 输入法记录](../docs/windows-native-ime-acceptance.md)。
 
 ## 不知道选哪种图：从智能选图开始
 
@@ -64,7 +64,9 @@ Studio 0.1.22 顶部**外观 → 界面主题**可选择默认深色 **Carbon At
 
 **从 0.1.8 或更早版本升级：** 保存工程 JSON，关闭 Figure Studio，再运行 0.1.22 安装程序。旧版更新入口只能打开下载链接，不能替你安装这次升级。
 
-**已经安装 0.1.9 或更新版本？** 可使用应用内更新流程；若 0.1.9 因路径过长而在准备阶段失败，请保存工程、关闭 Figure Studio，再手动运行上方的 0.1.22 安装程序。0.1.22 已包含 0.1.10 加入的长路径修复。
+**已经使用本地 0.1.22 候选版？** 请保存工程、关闭 Figure Studio，再手动运行上方正式 0.1.22 安装包覆盖。更新器按版本号判断，不会自动提供另一个同版本构建。
+
+**已经安装 0.1.9–0.1.21？** 可使用应用内更新流程；若 0.1.9 因路径过长而在准备阶段失败，请保存工程、关闭 Figure Studio，再手动运行上方的 0.1.22 安装程序。0.1.22 已包含 0.1.10 加入的长路径修复。
 
 **安装 0.1.22 后获取后续更新：** 打开**更新**，选择**下载并准备更新**，等待下载和完整性校验。保存工程，勾选已保存、可以关闭编辑器的确认项，再选择**安装并重新打开**。安装程序沿用当前应用位置，成功后重新打开 Figure Studio。便携版仍需手动替换文件。未经确认不会启动安装，也不会绕过 Windows 安全提示。
 

@@ -38,4 +38,5 @@ async function main(){let count=0;
  }
  console.log(`PASS ${count} production legacy-axis preview groups: debounce/latest/Abort, raw-pt round-trip, zero input history, slider/reference colour single commit, invalid/Escape/context cleanup.`);
 }
-main().catch(error=>{console.error(error);process.exitCode=1;});
+if(require.main===module)main().catch(error=>{console.error(error);process.exitCode=1;});
+module.exports={fixture};

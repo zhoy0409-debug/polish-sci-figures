@@ -6,7 +6,7 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 ## Install and open
 
-1. Choose a published Windows installer from the [official Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases), then follow the installer for your Windows user account. Version 0.1.22 in this guide is a local acceptance candidate; publication is on hold at the user's request.
+1. Download [polish-sci-figures-Studio-0.1.22-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe) from the [official v1.4.22 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22), then follow the installer for your Windows user account.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
 3. Choose **English** or **中文** at the top right. Opening the shortcut again opens the editor already running.
 
@@ -21,7 +21,7 @@ The inspector identifies the selected object type and prioritises related contro
 
 ## Adjust directly on the canvas
 
-The local 0.1.22 candidate adds [live canvas editing](../docs/live-preview-editing.en.md). Borders and image display dock beside the canvas; axis preview uses real local data without applying every input. Simple fields preview while typing and keep one edit on Enter or blur; Esc cancels. Drafts with an explicit Apply/Keep button must be kept before saving or exporting. The [acceptance report](../docs/live-preview-validation.md) distinguishes executed checks from pending conditions.
+Version 0.1.22 supports [live canvas editing](../docs/live-preview-editing.en.md). Borders and image display dock beside the canvas; axis preview uses real local data without applying every input. Simple fields preview while typing and keep one edit on Enter or blur; Esc cancels. Drafts with an explicit Apply/Keep button must be kept before saving or exporting. Confirmation retains the real draft rendering and final validation; the palette pane keeps all eight complete previews. Candidate Enter/Esc during input-method composition does not end the whole edit; finish selecting the text before committing or cancelling. See the [acceptance report](../docs/live-preview-validation.md) and [Windows IME record](../docs/windows-native-ime-acceptance.md) for the actual scope.
 
 ## Start with Figure Discovery
 
@@ -63,7 +63,9 @@ Closing a browser tab leaves the local service running. To stop it, choose **Qui
 
 **Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.22 installer. The older update entry only opens a download; it cannot install this upgrade for you.
 
-**Already using installed 0.1.9 or later?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.22 installer manually. Version 0.1.22 includes the long-path fix introduced in 0.1.10.
+**Already on a local 0.1.22 candidate?** Save your project, close Figure Studio and run the official 0.1.22 Setup linked above to replace it. The updater compares version numbers and will not offer another build with the same version.
+
+**Already using installed 0.1.9–0.1.21?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.22 installer manually. Version 0.1.22 includes the long-path fix introduced in 0.1.10.
 
 **Future updates from the 0.1.22 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the same application location and reopens Figure Studio on success. The portable edition still uses manual replacement. Installation is never started without confirmation, and Windows security prompts are not bypassed.
 

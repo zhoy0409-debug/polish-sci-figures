@@ -26,16 +26,51 @@ const StudioAxisSettingsUI=(()=>{
     const actions=element('div','axis-settings-actions'),apply=element('button','primary','应用'),reset=element('button',null,'复位'),cancel=element('button',null,'取消');apply.type=reset.type=cancel.type='button';
     const live=element('input');live.type='checkbox';live.checked=true;const liveLabel=element('label','axis-settings-live','实时预览');liveLabel.prepend(live);actions.append(liveLabel,reset,cancel,apply);root.append(actions);host.append(root);
     const section=(title,open=false)=>{const d=element('details');d.open=open;d.append(element('summary',null,title));const body=element('div','axis-settings-grid');d.append(body);content.append(d);return body;};
-    const fields=new Map();
+    const fields=new Map(),composing=new Set(),compositionStarts=new WeakMap(),rejectedCompositions=new Map();
+    const inComposition=event=>!!event?.isComposing||event?.keyCode===229||composing.has(event?.target);
+    function clearRejectedCompositions(){for(const input of rejectedCompositions.keys())input.removeAttribute('aria-invalid');rejectedCompositions.clear();}
+    function acceptCompositionEdit(input){
+      const rejected=rejectedCompositions.get(input),value=input.value;
+      // A rejected number may expose '' throughout composition cleanup. Only
+      // an explicit deletion requests Automatic; a new finite value also lets
+      // paste/assistive input recover without requiring a preceding keydown.
+      if(rejected&&!input.validity.badInput&&(value===''?rejected.allowEmpty:Number.isFinite(+value)&&(value!==rejected.value||rejected.edited))){rejectedCompositions.delete(input);input.removeAttribute('aria-invalid');}
+      if(!rejectedCompositions.size)return true;
+      invalid(Error(t('请输入有效的有限数值。')));updateDisabled();return false;
+    }
     function add(body,key,label,{type='number',values,min,max,step='any',hint}={}){
       const wrapper=element('label',null,label),input=element(values?'select':'input');input.dataset.axisField=key;input.dataset.axisLabel=label;
       if(values)for(const [value,text]of values){const option=element('option',null,text);option.value=value;input.append(option);}
       else {input.type=type;if(type==='number'){input.step=step;if(min!==undefined)input.min=min;if(max!==undefined)input.max=max;input.placeholder=t('自动');}}
       input.setAttribute('aria-label',t(label));wrapper.append(input);if(hint)wrapper.append(element('small',null,hint));body.append(wrapper);fields.set(key,input);
-      input.oninput=input.onchange=()=>edit();input.onkeydown=event=>{if(event.key==='Enter'&&!event.isComposing){event.preventDefault();commitDraft();}};return input;
+      input.oninput=input.onchange=event=>{if(inComposition(event)||!acceptCompositionEdit(input))return;input.removeAttribute('aria-invalid');edit();};
+      input.addEventListener('compositionstart',()=>{if(!opened||committing)return;begin();const rejected=rejectedCompositions.get(input);if(rejected){rejected.edited=false;rejected.allowEmpty=false;}composing.add(input);compositionStarts.set(input,{epoch,value:input.value});abort();updateDisabled();});
+      input.addEventListener('compositionend',event=>{const owned=composing.delete(input),start=compositionStarts.get(input);compositionStarts.delete(input);if(!owned||destroyed||!opened||start?.epoch!==epoch||fields.get(key)!==input)return;
+        // A number input may expose an empty value after rejecting composed
+        // text. That is not an intentional request for an Automatic range.
+        if(input.type==='number'&&(input.value===''&&(event.data||start.value!=='')||event.data&&/[^\d.eE+\-\s]/.test(event.data))){dirty=true;rejectedCompositions.set(input,{value:input.value,edited:false,allowEmpty:false});input.setAttribute('aria-invalid','true');invalid(Error(t('请输入有效的有限数值。')));updateDisabled();return;}
+        // Cancelling another candidate must retain the earlier rejection.
+        // A completed finite composition is a new edit, including the same
+        // numeric value that the browser retained after rejecting text.
+        const rejected=rejectedCompositions.get(input),data=String(event.data??'').trim();if(rejected&&data!==''&&Number.isFinite(+data)&&input.value!==''&&!input.validity.badInput&&Number.isFinite(+input.value))rejected.edited=true;
+        input.oninput?.(event);updateDisabled();});
+      input.addEventListener('pointerdown',()=>{const rejected=rejectedCompositions.get(input);if(rejected)rejected.edited=true;});
+      input.addEventListener('cut',()=>{const rejected=rejectedCompositions.get(input);if(rejected&&!composing.has(input)){rejected.edited=true;rejected.allowEmpty=true;}});
+      input.onkeydown=event=>{
+        if(inComposition(event))return;const rejected=rejectedCompositions.get(input);
+        if(rejected&&!event.ctrlKey&&!event.metaKey&&!event.altKey){
+          if(['Backspace','Delete'].includes(event.key)){
+            rejected.edited=true;rejected.allowEmpty=true;
+            // An already empty, clean number field may emit no input event.
+            // The explicit deletion itself requests Automatic in this case.
+            if(input.value===''&&!input.validity.badInput&&acceptCompositionEdit(input))edit();
+          }else if(event.key.length===1||['ArrowUp','ArrowDown'].includes(event.key))rejected.edited=true;
+        }
+        if(event.key==='Enter'){event.preventDefault();commitDraft();}
+      };return input;
     }
     function build(){
-      const disclosure=new Map([...content.querySelectorAll('details')].map((node,index)=>[index,node.open])),aspectLocked=fields.get('aspect_lock')?.checked||false;content.replaceChildren();fields.clear();const ranges=section('范围',true);
+      const disclosure=new Map([...content.querySelectorAll('details')].map((node,index)=>[index,node.open])),aspectLocked=fields.get('aspect_lock')?.checked||false;composing.clear();clearRejectedCompositions();content.replaceChildren();fields.clear();const ranges=section('范围',true);
       add(ranges,'min','下限');add(ranges,'max','上限');add(ranges,'scale','尺度',{values:[['','自动'],['linear','线性'],['log','log10']]});
       const ticks=section('刻度');add(ticks,'major_step','主刻度间隔',{min:1e-12});add(ticks,'major_count','主刻度数量',{min:2,max:40,step:1});add(ticks,'minor_count','次刻度数',{min:0,max:9,step:1});
       add(ticks,'tick_format','标签格式',{values:[['','自动'],['auto','自动'],['decimal','小数'],['scientific','科学记数'],['percent','百分比']]});add(ticks,'decimals','小数位',{min:0,max:8,step:1});
@@ -47,7 +82,8 @@ const StudioAxisSettingsUI=(()=>{
       for(const [key,label,min,max]of [['tick_length_pt','刻度长度',0,24],['tick_label_size_pt','刻度字号',4,48],['axis_width_pt','轴线宽',.1,8],['title_size_pt','轴标题字号',4,64],['title_pad_pt','轴标题距离',0,48],['label_pad_pt','标签距离',0,36]])add(appearance,key,label,{min,max,step:.1});
       for(const [key,label]of [['axis_color','轴线颜色'],['tick_color','刻度与标题颜色']])add(appearance,key,label,{type:'color'});
       add(appearance,'axis_box','轴框',{values:[['','自动'],['left_bottom','仅左/下'],['full','完整方框'],['none','无']]});add(appearance,'axis_visible','显示轴线',{values:[['','自动'],['true','显示轴线'],['false','隐藏']]});
-      for(const key of ['plot_width_pt','plot_height_pt'])fields.get(key).oninput=()=>{
+      for(const key of ['plot_width_pt','plot_height_pt'])fields.get(key).oninput=event=>{
+        if(inComposition(event)||!acceptCompositionEdit(fields.get(key)))return;fields.get(key).removeAttribute('aria-invalid');
         if(lock.checked){const geometry=context.controls?.geometry||{},width=draft.plot_width_pt??geometry.plot_width_pt,height=draft.plot_height_pt??geometry.plot_height_pt,ratio=width/height,value=+fields.get(key).value;if(Number.isFinite(ratio)&&ratio>0&&Number.isFinite(value)&&value>0)fields.get(key==='plot_width_pt'?'plot_height_pt':'plot_width_pt').value=+(key==='plot_width_pt'?value/ratio:value*ratio).toFixed(3);}edit();
       };
       [...content.querySelectorAll('details')].forEach((node,index)=>{if(disclosure.has(index))node.open=disclosure.get(index);});builtAxis=active;builtLanguage=language();
@@ -55,6 +91,7 @@ const StudioAxisSettingsUI=(()=>{
     const scopedStyles=['tick_direction','tick_length_pt','tick_label_size_pt','tick_color','axis_width_pt','axis_color','axis_visible','title_size_pt','title_pad_pt','label_pad_pt'];
     function keyFor(key){return ['min','max','scale','major_step','major_count','minor_count','tick_format','decimals','tick_side','labels_visible'].includes(key)||target.value==='axis'&&scopedStyles.includes(key)?active+'_'+key:key;}
     function syncDraft(){
+      if(rejectedCompositions.size)throw Error(t('请输入有效的有限数值。'));
       for(const [key,input]of fields){if(key==='aspect_lock'||input.disabled)continue;const name=keyFor(key);if(input.type==='color'){if(input.dataset.changed==='true')draft[name]=input.value;continue;}if(input.value===''){delete draft[name];continue;}draft[name]=['labels_visible','axis_visible'].includes(key)?input.value==='true':input.type==='number'?Number(input.value):input.value;}
     }
     function validate(){
@@ -76,19 +113,19 @@ const StudioAxisSettingsUI=(()=>{
       sessionId='axis-preview-'+(++sessionSerial);const meta=metadata();options.onBegin?.({...meta,isCurrent:meta.isSessionCurrent});
     }
     function updateDisabled(){
-      apply.disabled=committing||blocked()||!dirty||!!validationError;reset.disabled=committing||blocked();axis.disabled=committing||!context.native;target.disabled=committing||!context.native;
+      apply.disabled=committing||composing.size>0||rejectedCompositions.size>0||blocked()||!dirty||!!validationError;reset.disabled=committing||composing.size>0||blocked();axis.disabled=committing||composing.size>0||rejectedCompositions.size>0||!context.native;target.disabled=committing||composing.size>0||!context.native;
       for(const [key,input]of fields)input.disabled=committing||blocked()||(!context.native&&!['min','max','axis_width_pt','axis_color','axis_visible'].includes(key))||context.native&&key==='scale'&&!context.controls?.log_scale||context.native&&['min','max','scale','major_step','major_count','minor_count','tick_format','decimals'].includes(key)&&!context.controls?.[active+'_range'];
     }
     function invalid(error){validationError=error.message||String(error);status.textContent=validationError;try{options.onInvalid?.(validationError,metadata());}catch{}}
     function edit(){
-      if(destroyed||!opened||committing||blocked())return;abort();revision++;dirty=true;validationError=null;
+      if(destroyed||!opened||committing||composing.size||blocked())return;abort();revision++;dirty=true;validationError=null;
       try{begin();syncDraft();validate();status.textContent=t(live.checked&&options.onPreview?'正在预览，尚未应用…':'草稿尚未应用。');if(live.checked&&options.onPreview)schedule();}
       catch(error){invalid(error);}
       updateDisabled();
     }
     function schedule(){clearTimeout(timer);timer=setTimeout(()=>previewDraft(),Math.max(0,options.previewDelayMs??250));}
     async function previewDraft(){
-      clearTimeout(timer);timer=null;if(destroyed||!opened||committing||blocked()||!dirty||!options.onPreview)return;
+      clearTimeout(timer);timer=null;if(destroyed||!opened||committing||composing.size||blocked()||!dirty||!options.onPreview)return;
       try{syncDraft();validate();begin();}catch(error){invalid(error);updateDisabled();return;}
       controller?.abort();controller=new AbortController();const current=controller,request=++sequence,meta=metadata(current.signal,request),settings=clone(draft);pending=true;status.textContent=t('正在预览，尚未应用…');
       try{const result=await options.onPreview(settings,meta);if(!meta.isCurrent())return;if(result===false||result?.ok===false)throw Error(result?.error||t('预览失败；保留上一个有效结果。'));validationError=null;status.textContent=t('预览中，尚未应用。');}
@@ -96,7 +133,7 @@ const StudioAxisSettingsUI=(()=>{
       finally{if(request===sequence&&!destroyed){pending=false;updateDisabled();}}
     }
     async function commitDraft(){
-      if(destroyed||!opened||committing||blocked()||!dirty||validationError)return false;
+      if(destroyed||!opened||committing||composing.size||blocked()||!dirty||validationError)return false;
       try{syncDraft();validate();begin();}catch(error){validationError=error.message;status.textContent=error.message;updateDisabled();return false;}
       abort();controller=new AbortController();const request=++sequence,meta=metadata(controller.signal,request),token=epoch,id=sessionId,settings=clone(draft);committing=true;status.textContent=t('正在应用坐标轴设置…');updateDisabled();
       try{
@@ -114,7 +151,7 @@ const StudioAxisSettingsUI=(()=>{
       finally{if(token===epoch&&!destroyed){committing=false;updateDisabled();}}
     }
     function cancelSession(reason='cancel',resetFields=true){
-      const meta={...metadata(controller?.signal),reason};abort();epoch++;revision=0;committing=false;dirty=false;validationError=null;resetAxis=null;const hadSession=!!sessionId;sessionId=null;
+      const meta={...metadata(controller?.signal),reason};abort();composing.clear();clearRejectedCompositions();epoch++;revision=0;committing=false;dirty=false;validationError=null;resetAxis=null;const hadSession=!!sessionId;sessionId=null;
       if(hadSession){try{const result=options.onCancel?.(meta);Promise.resolve(result).catch(()=>{});}catch{}}
       if(resetFields&&!destroyed){context=options.getContext()||{};draft=clone(context.settings);paintFields();status.textContent=t('已取消预览，原图保持不变。');}return hadSession;
     }
@@ -124,7 +161,7 @@ const StudioAxisSettingsUI=(()=>{
       const incoming=options.getContext()||{},changed=contextIdentity(incoming)!==contextIdentity(context)||contextVersion(incoming)!==contextVersion(context)||!!incoming.locked!==!!context.locked||!!incoming.native!==!!context.native||!!incoming.engine!==!!context.engine||incoming.imported?.supported!==context.imported?.supported||['supported','x_range','y_range','log_scale'].some(key=>incoming.controls?.[key]!==context.controls?.[key]);
       if(changed&&sessionId&&!committing)cancelSession('context-changed',false);
       if(committing)return context;
-      if(!changed&&sessionId&&dirty){if(builtLanguage!==language())api.relocalize();return context;}
+      if(!changed&&sessionId&&(dirty||composing.size)){if(builtLanguage!==language())api.relocalize();return context;}
       context=incoming;if(!context.native&&context.imported?.supported)active=context.imported.axis;draft=clone(context.settings);paintFields();return context;
     }
     function paintFields(){
@@ -147,8 +184,8 @@ const StudioAxisSettingsUI=(()=>{
     axis.onchange=()=>{syncDraft();abort();active=axis.value;paintFields();if(dirty){revision++;if(live.checked&&options.onPreview)schedule();}};
     target.onchange=()=>{const scope=target.value;cancelSession('scope-changed');target.value=scope;paintFields();if(opened)begin();status.textContent=t('范围已更换；先前预览已取消。');};
     live.onchange=()=>{abort();if(live.checked&&dirty&&!validationError&&options.onPreview)schedule();};
-    apply.onclick=commitDraft;cancel.onclick=()=>api.cancel();reset.onclick=()=>{if(committing||blocked())return;abort();begin();resetAxis=target.value==='panel'?'panel':active;if(resetAxis==='panel')draft={};else for(const key of Object.keys(draft))if(key.startsWith(active+'_'))delete draft[key];revision++;dirty=true;validationError=null;paintFields();status.textContent=t('草稿尚未应用。');if(live.checked&&options.onPreview)schedule();};
-    root.addEventListener('keydown',event=>{if(event.key==='Escape'&&!event.isComposing){event.preventDefault();event.stopPropagation();api.cancel();}});
+    apply.onclick=commitDraft;cancel.onclick=()=>api.cancel();reset.onclick=()=>{if(committing||blocked())return;abort();clearRejectedCompositions();begin();resetAxis=target.value==='panel'?'panel':active;if(resetAxis==='panel')draft={};else for(const key of Object.keys(draft))if(key.startsWith(active+'_'))delete draft[key];revision++;dirty=true;validationError=null;paintFields();status.textContent=t('草稿尚未应用。');if(live.checked&&options.onPreview)schedule();};
+    root.addEventListener('keydown',event=>{if(event.key==='Escape'&&!inComposition(event)){event.preventDefault();event.stopPropagation();api.cancel();}});
     const api={refresh,preview:previewDraft,commit:commitDraft,cancel(reason='cancel'){cancelSession(reason);},invalidate(reason='invalidated'){cancelSession(reason);},relocalize:localize,
       open(selection={}){if(['x','y'].includes(selection.axis))active=selection.axis;opened=true;root.hidden=false;refresh(true);begin();root.scrollIntoView?.({block:'nearest'});},
       close(){cancelSession('close');root.hidden=true;opened=false;},destroy(){cancelSession('destroy',false);destroyed=true;root.remove();},get isOpen(){return opened;},get element(){return root;},

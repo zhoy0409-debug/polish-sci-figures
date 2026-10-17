@@ -1,0 +1,60 @@
+{
+  "schema": "figure-studio-source20-distribution-regressions/1",
+  "status": "PASS_ACTUAL_NEW_SOURCE20_RUNS",
+  "sourceStage": "source20",
+  "sourceManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+  "releaseBuilderSha256": "00c53f6f63deaac6775e6610e364af4f576953a9635b93ddc36c76cb464f521c",
+  "startedAtUtc": "2026-10-17T20:42:41.462259+00:00",
+  "finishedAtUtc": "2026-10-17T20:43:12.297609+00:00",
+  "executionSha256": "1abed75f9aa2473eb416fa90d82942eb0ced5bd08a253685524b61ced53a364a",
+  "actualRuns": [
+    {
+      "script": "scripts/test_release_bundle.py",
+      "actualExitCode": 0,
+      "startedAtUtc": "2026-10-17T20:42:41.462259+00:00",
+      "finishedAtUtc": "2026-10-17T20:42:55.394686+00:00",
+      "rawLog": {
+        "file": "test_release_bundle.log",
+        "sizeBytes": 262,
+        "sha256": "da01df44ff1f658ebc85b0d34b26b75d824ff35a0bd0257773976f72b784faa7"
+      },
+      "checks": {
+        "templates": 192,
+        "galleryVariants": 17,
+        "legacyVariants": 6,
+        "extractedCli": true,
+        "bytecodeOnlyRuntime": true,
+        "replacementAndReflow": true,
+        "groupedSemanticViews": 2,
+        "localDuplicates": true,
+        "localImageLinks": true
+      }
+    },
+    {
+      "script": "scripts/test_portable_skill.py",
+      "actualExitCode": 0,
+      "startedAtUtc": "2026-10-17T20:42:55.440872+00:00",
+      "finishedAtUtc": "2026-10-17T20:43:12.254663+00:00",
+      "rawLog": {
+        "file": "test_portable_skill.log",
+        "sizeBytes": 274,
+        "sha256": "8564fff9cb36a969bb2c0b81197f5ff1e2f2008a84f18d6df8f2d5a9e023b99e"
+      },
+      "checks": {
+        "extractedFiles": 385,
+        "confirmedIndependentSyntheticRawRows": 16,
+        "actualCandidatePreviews": 3,
+        "doctor": true,
+        "editablePage": true,
+        "sourceUnchanged": true,
+        "extractedMarkdownLocalLinks": true
+      }
+    }
+  ],
+  "sourceGuard": {
+    "allRuntimeAndHarnessBeforeAfterExact": true,
+    "guardedFiles": 109
+  },
+  "scope": "Two new actual extracted Suite/Skill test runs on frozen source20. Prior tests were used only to define expected checks, not as execution evidence. Same deterministic text logs can have identical hashes across stages; source hashes and execution timestamps bind these new runs. No native installation, native IME, detector accuracy or official update claim. Final downloadable archive hashes are separate.",
+  "historicalFailure": "Source19 retained the original extracted CHANGELOG Markdown-link failure and its minimal builder correction; see source19-distribution-regressions.json. No prior failure is overwritten."
+}

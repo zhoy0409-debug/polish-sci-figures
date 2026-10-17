@@ -1,0 +1,90 @@
+{
+  "schema": "figure-studio-source20-ime-evidence-scope/1",
+  "status": "SOURCE20_TEXT_INPUT_CODE_CONTINUITY_AND_CHANGED_AXIS_CONTRACT_NOT_A_NATIVE_IME_REPEAT",
+  "sourceStage": "source20",
+  "sourceManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+  "sourceHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+  "humanEvidence": {
+    "stage": "source18",
+    "file": "source18-human-ime-summary.json",
+    "sha256": "3ffe2c081f0ec2268ebd2478447e059fd1faa18fc06e9077650f966bed088ad2",
+    "reviewedChecks": 6,
+    "nativeMethod": "Human-operated Windows Microsoft Pinyin in actual Edge155.0.4283.45"
+  },
+  "source19ContinuityReport": {
+    "file": "source19-ime-code-continuity.json",
+    "sha256": "0f3b88d4b6f1907bdeb21c985a917137eb8ca2f2c33f108210ad45e2b7847c52"
+  },
+  "source20StudioSha256": "fd1b600b233a045cbacc0ce144969c5e9b7af5f5761e8d68e9f620e20702d69d",
+  "exactCodeRegions": [
+    {
+      "name": "global-composition-tracking",
+      "startLine": 1005,
+      "endLine": 1040,
+      "sha256": "828096c4dc0cb96202060378c072dcdac2cdf80179fb4bdbab182c728df00546",
+      "byteExact": true,
+      "byteExactIncludingLineEndings": true,
+      "unchangedFromHumanEvidenceStage18": true
+    },
+    {
+      "name": "field-live-preview-and-composition",
+      "startLine": 2670,
+      "endLine": 2785,
+      "sha256": "4254a687e42afe4f6c97557dab3f588ed0ccffcaeadf6bbf9b418e949879a2b6",
+      "byteExact": true,
+      "byteExactIncludingLineEndings": true,
+      "unchangedFromHumanEvidenceStage18": true
+    },
+    {
+      "name": "legacy-axis-field-composition",
+      "startLine": 3110,
+      "endLine": 3205,
+      "sha256": "7c2c1e553d3c9b8c4246e5a38c2e8e2aebec722a5bcbdb5e5326872f9dcae408",
+      "byteExact": true,
+      "byteExactIncludingLineEndings": true,
+      "unchangedFromHumanEvidenceStage18": true
+    },
+    {
+      "name": "quick-toolbar-composition",
+      "startLine": 3540,
+      "endLine": 3620,
+      "sha256": "15af6f8fb3a6a78ff33c1b7891e050890b91a0cac85b7db1ffb3efb1523f20dc",
+      "byteExact": true,
+      "byteExactIncludingLineEndings": true,
+      "unchangedFromHumanEvidenceStage18": true
+    },
+    {
+      "name": "inline-editor-F2-and-global-composition",
+      "startLine": 4658,
+      "endLine": 4740,
+      "sha256": "8954479c81dce3a489ff07bfbc42948d486361b83700ad34d81d317b93ef43b0",
+      "byteExact": true,
+      "byteExactIncludingLineEndings": true,
+      "unchangedFromHumanEvidenceStage18": true
+    }
+  ],
+  "exactWholeModules": [
+    {
+      "file": "text-tools-ui.js",
+      "sha256": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e",
+      "byteExact": true,
+      "unchangedFromHumanEvidenceStage18": true
+    },
+    {
+      "file": "image-insets-ui.js",
+      "sha256": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035",
+      "byteExact": true,
+      "unchangedFromHumanEvidenceStage18": true
+    }
+  ],
+  "changedAxisModule": {
+    "file": "axis-settings-ui.js",
+    "beforeSha256": "caeefa92f053e1afd1ab0f1d7c0df3fa4804ecb25422b5f484bf08346d20e7c5",
+    "afterSha256": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9",
+    "scope": "Numeric-axis fields retain rejected composition state through trailing input/change and a second cancelled composition. A different finite value or deliberate deletion can recover. Scope changes, cancellation and reset clear session ownership; data/renderer/statistical rules are unchanged.",
+    "evidenceType": "Controlled synthetic DOM contracts. Real local renderer/browser editing requires a separate executed report and is pending at creation of this scope record. No actual native Windows IME operation on these changed axis handlers is claimed."
+  },
+  "confirmed": "The six actual Microsoft Pinyin checks remain bound to source18 and its Windows Edge session. The main composition, inline/F2/blur, general field/HEX and spacing/inset code regions listed here are byte-identical, including original line endings. The source20 professional-axis handler is changed and is explicitly excluded from whole-module continuity.",
+  "inference": "Unchanged handlers support continuity for the previously operated text/HEX workflows. A source comparison and synthetic composition contracts do not establish a second native IME test or coverage of every input control.",
+  "finalInstalledScope": "Source20 installer/source matching and actual ordinary editing/data/Save/export/lifecycle acceptance require their own executed reports and are pending at creation of this scope record. No candidate popup video or second human-assisted native IME session is fabricated."
+}

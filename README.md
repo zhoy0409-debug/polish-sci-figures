@@ -1,6 +1,6 @@
 <div align="center">
 
-本地 0.1.22 为验收候选，按用户要求暂不发布。见[画布实时编辑说明](docs/live-preview-editing.zh-CN.md)和[实际验收状态](docs/live-preview-validation.md)。
+Figure Studio 0.1.22 支持可取消的画布实时编辑；无效的坐标轴输入保留上一有效范围。[下载 Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe) · [画布编辑说明](docs/live-preview-editing.zh-CN.md) · [实际验收范围](docs/live-preview-validation.md)。
 
 
 # polish-sci-figures
@@ -19,7 +19,7 @@ AI skills for plotting, scientific image preparation, and figure refinement, wit
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-c95770.svg)](LICENSE)
 
-**[Download Figure Studio](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest)** · **[Use the AI skills](docs/platform-installation.en.md)** · **[Explore the guide](README.en.md)**
+**[Download Figure Studio](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe)** · **[Use the AI skills](docs/platform-installation.en.md)** · **[Explore the guide](README.en.md)**
 
 </div>
 
@@ -81,7 +81,7 @@ Play, pause, or scrub through the video to follow each step. [Download the MP4](
 - **Make the details yours.** Draw straight lines and comparison brackets, edit individual characters, and choose distinct palettes. Switch point fills, outlines and error-bar colours, or hide either element with one click. Adjust group spacing and arrange panels with alignment guides; undo and redo keep refinements reversible.
 - **Take the result into your paper.** Export individual panels or the complete layout as editable SVG or high-resolution PNG / TIFF. Save the project to continue editing later.
 
-The local **Figure Studio 0.1.22 candidate** adds reversible canvas drafts and docked border/image tools, with real axis previews separated from application. It retains Carbon Atelier, Pearl Pro and the update companions. [Live editing](docs/live-preview-editing.en.md) · [Executed and pending acceptance](docs/live-preview-validation.md).
+**Figure Studio 0.1.22** adds reversible canvas drafts and docked border/image tools, with real axis previews separated from application. It retains Carbon Atelier, Pearl Pro and the update companions. Confirmation keeps the real draft rendering and canonical final validation; all eight complete palette previews remain available. Input-method composition keeps candidate selection separate from committing or cancelling an edit. [Live editing](docs/live-preview-editing.en.md) · [Validation scope](docs/live-preview-validation.md) · [Windows IME observations](docs/windows-native-ime-acceptance.md).
 
 The image workflows and professional axes introduced in **0.1.20** remain available: independent object borders, local duplicate review, reference display checks and overview/detail refinement. Supported native numerical axes re-render from data. [Usage and limits](docs/figure-studio-image-tools.md) · [0.1.20 acceptance](docs/figure-studio-experience-round2-validation.md).
 
@@ -108,7 +108,7 @@ Choose the way you prefer to work. Both paths belong to the same polish-sci-figu
 
 ### Open Figure Studio
 
-[Download the Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases), install it, and open the shortcut. Choose a template, replace its example data, then edit and export in your browser. Windows 10/11 x64; the runtime is included, with no separate Python setup, Codex, account, or API key required.
+[Download the Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe), install it, and open the shortcut. Choose a template, replace its example data, then edit and export in your browser. Windows 10/11 x64; the runtime is included, with no separate Python setup, Codex, account, or API key required.
 
 [Quick start](desktop/QUICKSTART.en.md) · [Portable edition](https://github.com/zhoy0409-debug/polish-sci-figures/releases)
 
@@ -200,7 +200,7 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 - **把细节调整到位。** 插入水平线和比较括号、修改单个字符，选择差异鲜明的配色。快捷切换样本点填充、描边和误差棒颜色，也可一键隐藏或恢复。调整组间距，借助对齐辅助线编排小图；撤销与重做让精修可以随时回退。
 - **把结果带进论文。** 单个小图和整幅组图均可导出可编辑 SVG 或高清 PNG / TIFF，保存工程后还能继续编辑。
 
-本地 **Figure Studio 0.1.22 候选**增加可取消的真实画布草稿，边框与图片工具停靠侧栏，坐标轴真实预览与应用分开；保留 Carbon Atelier、Pearl Pro 和更新角色。[实时编辑说明](docs/live-preview-editing.zh-CN.md) · [已执行与待验收范围](docs/live-preview-validation.md)。
+**Figure Studio 0.1.22** 增加可取消的真实画布草稿，边框与图片工具停靠侧栏，坐标轴真实预览与应用分开；保留 Carbon Atelier、Pearl Pro 和更新角色。确认时保留真实草稿渲染，最终仍执行规范校验，保留完整八卡色板；输入法选词与编辑的确认、取消分别处理。[实时编辑说明](docs/live-preview-editing.zh-CN.md) · [实际验收范围](docs/live-preview-validation.md) · [Windows 输入法观察](docs/windows-native-ime-acceptance.md)。
 
 **0.1.20** 已加入的图片工具与专业坐标轴继续保留：独立对象边框、本地查重、参考颜色检查及原图坐标定位精修，支持的原生数值轴按数据重新生成。[操作说明与限制](docs/figure-studio-image-tools.md) · [0.1.20 验收记录](docs/figure-studio-experience-round2-validation.md)。
 

@@ -1,11 +1,11 @@
 # polish-sci-figures · 产品指南
 
-本地 0.1.22 为验收候选，按用户要求暂不发布。见[画布实时编辑说明](docs/live-preview-editing.zh-CN.md)和[实际验收状态](docs/live-preview-validation.md)。
+Figure Studio 0.1.22 支持可取消的画布实时编辑。[Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe) · [画布实时编辑说明](docs/live-preview-editing.zh-CN.md) · [实际验收范围](docs/live-preview-validation.md)。
 
 
 [首页](README.md) · [English](README.en.md) · [中文](README.zh-CN.md)
 
-1.4.22 减少大型 SVG 中少量选区的全图扫描，并增加有大小上限的本机更新审计。保留 Carbon Atelier、Pearl Pro、[图片工具](docs/figure-studio-image-tools.md)、[专业坐标轴](docs/figure-studio-axes-round2.md)及[智能选图](docs/figure-discovery.md)。本版验证范围见[发行说明](docs/release-notes-v1.4.22.md#中文)。
+1.4.22 减少大型 SVG 中少量选区的全图扫描和重复的选择刷新；确认时保留真实草稿渲染，最终仍执行规范校验，保留完整八卡色板。输入法选词与编辑的确认、取消分别处理；坐标轴无效数值保留上一有效范围，直至修正、明确清空或取消。保留 Carbon Atelier、Pearl Pro、[图片工具](docs/figure-studio-image-tools.md)、[专业坐标轴](docs/figure-studio-axes-round2.md)及[智能选图](docs/figure-discovery.md)。本版范围见[发行说明](docs/release-notes-v1.4.22.md#中文)、[验收记录](docs/live-preview-validation.md)和[Windows 输入法观察](docs/windows-native-ime-acceptance.md)。
 
 **从数据到组图：可编辑模板、明确的统计分析、可逆的精细排版。**
 
@@ -16,7 +16,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 **套件 v1.4.22 · Figure Studio 0.1.22（Windows 桌面版）**
 
-[官方下载 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版更新](docs/release-notes-v1.4.22.md#中文)
+[v1.4.22 官方下载 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版更新](docs/release-notes-v1.4.22.md#中文)
 
 ## 选择入口 / Choose your workflow
 
@@ -24,7 +24,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 | --- | --- | --- |
 | 直接预览、换数据、编辑和排版 | Figure Studio Windows 安装包 | Windows 10/11 x64；无需 Codex、Python、账号或 API 密钥 |
 | Claude 中直接上传技能 | [自包含技能上传包](https://github.com/zhoy0409-debug/polish-sci-figures/releases) | 宿主支持技能与代码执行；参见 [平台安装](docs/platform-installation.md) |
-| 让 AI 分析数据、生成候选图、完成质控 | 本地源码 ZIP 内的三项技能 | 支持技能的 AI 环境，以及套件 Python 依赖 |
+| 让 AI 分析数据、生成候选图、完成质控 | 源码 ZIP 内的三项技能 | 支持技能的 AI 环境，以及套件 Python 依赖 |
 | 已有 SVG，希望手动精修 | AI/CLI 生成自包含 Studio 页面 | 页面可离线编辑；重新计算数据需本机引擎 |
 
 - [安装即用](#安装即用)
@@ -40,7 +40,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 ## 安装即用
 
-1. 使用本轮本地交付的 `polish-sci-figures-Studio-0.1.22-Setup-x64.exe`。该候选尚未发布；[GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases)提供此前已经发布的版本。
+1. 从 [v1.4.22 官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22)下载 [polish-sci-figures-Studio-0.1.22-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe)。
 2. 安装后打开 **polish-sci-figures Studio** 快捷方式。启动窗口会打开默认浏览器中的编辑器。
 3. 选择 **从模板开始**，浏览真实预览，再将示例数据替换为自己的数据；也可导入现有图片、SVG 或选定的 PDF 页面。受支持的原生文字与矢量路径保留编辑能力；PDF 特效可能需要局部图片图层或整页外观图像。详见[转换边界](docs/release-v1.4.3.md#本版更新)，导出前请检查字体替代效果。
 4. 编辑完成后导出 SVG / PNG / TIFF，并用 **保存** 下载可继续编辑的 JSON 备份。
@@ -175,7 +175,7 @@ python sci_figures.py duplicates image-a.png image-b.tif figure.svg --out image-
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | 显微 / 病理图像规范化、统一显示设置、权威校准比例尺与处理审计 |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | 精修与组图、Figure Studio、文字与几何检查、最终尺寸质控 |
 
-本候选尚未发布，请解压本轮本地交付的 `polish-sci-figures-v1.4.22-Source.zip`，进入其中的 `polish-sci-figures-source` 目录；三项技能都在源码内。[官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases)仍提供此前已经发布的套件。AI/CLI 路径需要自行安装依赖；Windows 桌面包已包含运行环境。
+从 [v1.4.22 官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22)下载 `polish-sci-figures-v1.4.22-Source.zip`，解压后进入其中的 `polish-sci-figures-source` 目录；三项技能都在源码内。AI/CLI 路径需要自行安装依赖；Windows 桌面包已包含运行环境。
 
 ```powershell
 python -m pip install -r requirements.txt

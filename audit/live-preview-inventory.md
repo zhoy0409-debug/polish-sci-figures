@@ -4,13 +4,17 @@ source16 已通过 Carbon／Pearl × 中英文共 4 个完整资源流程：智�
 
 同一 source16 冻结版还完成了[72／72 项 P0](../docs/qa/live-preview/p0-source16-matrix-summary.json)、[两主题各 37 项高频功能](../docs/qa/live-preview/p1-source16-summary.json)、[8 条件触控模拟](../docs/qa/live-preview/touch-source16-summary.json)、[完整 5 项科学／编辑回归](../docs/qa/live-preview/selection-source16-summary.json)及[智能选图完整流程](../docs/qa/live-preview/discovery-source16-summary.json)。科学回归保留 Iris 150 原始观测、源 SVG／分析／配方及同设备 v1.4.21 导出参考；standalone 已实际保存并核对离线应用后的源行。后续 source17 完成 85 组件及 14 项定向真实流程，减少普通页签重建与同次选择的重复读取；[唯一正式性能](../docs/stable-performance-validation.md)中，5000 图元全部操作指标改善，部分小工程尾指标与确认后延迟仍有优化空间。最终原 Windows Setup 已通过实际安装、自检、P0／P1、资源对照、智能选图、60 图后台任务、10,000 图元 PDF／SVG，以及重装／卸载保留真实工程与设置；各独立范围和成品哈希见[最终安装版汇总](../docs/qa/live-preview/windows-final17-acceptance-summary.json)及[主验收记录](../docs/live-preview-validation.md)。
 
-下表保留升级前的 21 类入口、行为与验收路径。基线是 `f14c6f3`／0.1.21 冻结 Windows runtime，在隔离数据目录采集 17 个操作流程、16 类功能；[原始行为与录像哈希](../docs/qa/live-preview/before-workflow-summary.json)包含初始选择器失败及可见入口补采。它不是本轮新安装验收。用户要求继续开发、暂停发布，目前未创建新版发行或上传安装包。
+下表保留升级前的 21 类入口、行为与验收路径。基线是 `f14c6f3`／0.1.21 冻结 Windows runtime，在隔离数据目录采集 17 个操作流程、16 类功能；[原始行为与录像哈希](../docs/qa/live-preview/before-workflow-summary.json)包含初始选择器失败及可见入口补采。它不是本轮新安装验收。
+
+当前打包源码 source20 完成 [95 个组件脚本](../docs/qa/live-preview/source20-component-regressions.json)、[双主题 10 项真实 Iris 轴流程](../docs/qa/live-preview/source20-axis-composition-browser.json)、[唯一正式性能](../docs/qa/live-preview/performance-v2-final20-summary.json)和[独立四面板](../docs/qa/live-preview/four-panel-style-final20-diagnostic.json)。[数值轴红绿回归](../docs/qa/live-preview/source20-axis-composition-fix-regressions.json)保留尾事件／再次取消候选的真实失败及最终 25 组通过。5000 选择 second-rAF P95 为 154.7 ms、改色 195.4 ms、完整八卡 610.7 ms，全部行和阶段退步见[四阶段对照](../docs/qa/live-preview/performance-v2-final20-vs17-18-19.json)。新 Windows 包待构建和实际安装，官方 0.1.20 → 0.1.22 更新待目标发布。
+
+source18 阶段保留真实草稿渲染、规范最终校验、完整八卡和组合态保护。[94 个组件脚本](../docs/qa/live-preview/source18-component-regressions.json)（90 Node、4 Chrome）及[6 项人工微软拼音检查](../docs/qa/live-preview/source18-human-ime-summary.json)通过，最终 F2／失焦、Undo／Redo、保存重开和 SVG／PNG 已核对，原表与源 SVG 精确一致，见[Windows 输入法记录](../docs/windows-native-ime-acceptance.md)。当时混合性能的[完整比较](../docs/qa/live-preview/performance-v2-final18-vs17.json)与[独立四面板](../docs/qa/live-preview/four-panel-style-final18-diagnostic.json)分别保留。source19、source20 未再次人工 IME；[source20 范围](../docs/qa/live-preview/source20-ime-change-scope.json)明确轴模块已修改，不能以其余处理器未变冒称全部连续或新安装版原生通过。source19 [95 组件](../docs/qa/live-preview/source19-component-regressions.json)、[双主题 14 项](../docs/qa/live-preview/source19-selection-refresh-browser.json)、[原正式性能](../docs/qa/live-preview/performance-v2-final19-summary.json)与[四面板](../docs/qa/live-preview/four-panel-style-final19-diagnostic.json)保持阶段事实；[部分安装 108 项](../docs/qa/live-preview/windows-final19-partial-installed-summary.json)随后因轴缺陷弃用并[正规清理](../docs/qa/live-preview/windows-final19-incomplete-cleanup-summary.json)，不称最终通过。以上 source17 数字和下表 BEFORE 观察也不改写为新阶段结果。
 
 ## 已确认的关键行为
 
 实际 Chrome 中，原生 Iris 图的坐标轴开启“实时预览”后，连续改变上限三次，保存工程的历史索引依次为 1、2、3。这是三次真实提交，不能称为可取消草稿。色板悬停后移出则没有新增历史，可复用其临时渲染和明确提交边界。
 
-快捷字号输入后按 Esc 的 BEFORE 观察新增了一条历史；fresh01 修复后精确取消检查通过。两个阶段的画面和原始记录同时保留。普通用户首次使用的完成率、中文输入法和实体触控设备尚未组织测试。
+快捷字号输入后按 Esc 的 BEFORE 观察新增了一条历史；fresh01 修复后精确取消检查通过。两个阶段的画面和原始记录同时保留。普通用户首次使用的完成率和实体触控设备尚未组织测试；中文输入法的源码 6 项人工检查不代替未覆盖的输入路径与新安装版验收。
 
 ## 功能清单与新版验收路径
 
@@ -59,4 +63,4 @@ source16 已通过 Carbon／Pearl × 中英文共 4 个完整资源流程：智�
 
 每一项最终记录包含：基线与新版入口和操作步骤、主画布更新证据、模态／遮挡采样、输入焦点、真实历史索引、取消后的状态及像素／SVG 哈希、完成后的单次 Undo／Redo、异步请求顺序、保存重开和导出结果。保存和导出应只使用已提交状态；测试中为了读状态而触发失焦的步骤须明确记录，不能用其证明草稿隔离。
 
-安全汇总只引用匿名案例、公开素材来源及统计结果。私有示例的文件、路径、像素、工程和可识别研究内容不进入仓库。Windows 安装版结果以对应独立报告为准，本表保留 BEFORE 审计，不替代最终验收。真实新手测试、实体触控、中文输入法和官方新版本完整更新仍未验证。
+安全汇总只引用匿名案例、公开素材来源及统计结果。私有示例的文件、路径、像素、工程和可识别研究内容不进入仓库。Windows 安装版结果以对应独立报告为准，本表保留 BEFORE 审计，不替代最终验收。真实新手测试、实体触控和官方新版本完整更新仍未验证；中文输入法的已执行与待完成范围见上述独立记录。

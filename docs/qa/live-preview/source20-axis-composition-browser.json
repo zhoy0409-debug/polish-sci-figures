@@ -1,0 +1,150 @@
+{
+  "schema": "figure-studio-source20-public-axis-browser/1",
+  "status": "PASS_EXECUTED_TWO_THEMES_TEN_CHECKS",
+  "sourceStage": "source20",
+  "kind": "source-runtime",
+  "sourceManifestSha256": "6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd",
+  "sourceIrisHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+  "packageSourceProofSha256": null,
+  "rawReportSha256": "77c692fe24cf8d608fea79b45857029ec76efcb1b14c24dd17cc0b8085485cdd",
+  "harnessSha256": "f92639dd3a1d63e96462ce57dcb4e1a15756a422b308bce54c1b9fd5f8b07d31",
+  "startedAt": "2026-10-17T20:27:53.597Z",
+  "finishedAt": "2026-10-17T20:28:31.358Z",
+  "browser": "155.0.8059.82",
+  "publicIrisFixtureSha256": "3c2466920841a71e8408d7a93bf76d1dc5efffe5dcc1a1849cd711b65be99185",
+  "actualChecks": 10,
+  "themes": [
+    {
+      "theme": "carbon",
+      "status": "PASS",
+      "checks": [
+        "real-maximum-10-preview-keeps-project-history-and-source-uncommitted",
+        "second-synthetic-cancelled-composition-cannot-clear-the-first-rejection-or-delete-the-last-range",
+        "synthetic-rejected-composition-tail-and-another-field-cannot-delete-maximum-or-start-render-or-commit",
+        "ordinary-keyboard-correction-commits-maximum-11-once-and-real-undo-redo-save-reopen-export-retain-source",
+        "ordinary-deliberate-Backspace-can-request-Automatic-and-Escape-restores-exact-committed-range"
+      ],
+      "localSourceProof": {
+        "localHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+        "servedHtmlSha256": "79c44fc832a235f1e0c7f8b81f033ad9802a7ae233842c0a4612800eb756033c",
+        "reconstructedExpectedSha256": "79c44fc832a235f1e0c7f8b81f033ad9802a7ae233842c0a4612800eb756033c",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "platform": "windows",
+        "architecture": "x86_64"
+      },
+      "axisRequests": [
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_max": 10
+          }
+        },
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_max": 11,
+            "y_min": 0
+          }
+        },
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_min": 0
+          }
+        }
+      ],
+      "video": {
+        "rawFile": "page@0f7e526edf5ff9b86f147d8d2a940ad1.webm",
+        "sha256": "20b573275b141d054d517f3bdff35373a0e5824b1a7220f3ae9f8d7d532c5eb6",
+        "sizeBytes": 1965099,
+        "published": false
+      },
+      "screenshot": {
+        "file": "source20-axis-carbon.png",
+        "sha256": "c32895e6a8355ff57718f1cb3448eb6c9f0ce3341f1cf0f94cfb15e81b63c475",
+        "sizeBytes": 152798,
+        "actuallyViewedByRoot": true
+      },
+      "actualExport": {
+        "format": "SVG",
+        "maximum": 11,
+        "sha256": "687b393430ba489454e1bae8116a4c56337db4dec85bb643751f7fefe460e84a",
+        "sizeBytes": 46139
+      }
+    },
+    {
+      "theme": "pearl",
+      "status": "PASS",
+      "checks": [
+        "real-maximum-10-preview-keeps-project-history-and-source-uncommitted",
+        "second-synthetic-cancelled-composition-cannot-clear-the-first-rejection-or-delete-the-last-range",
+        "synthetic-rejected-composition-tail-and-another-field-cannot-delete-maximum-or-start-render-or-commit",
+        "ordinary-keyboard-correction-commits-maximum-11-once-and-real-undo-redo-save-reopen-export-retain-source",
+        "ordinary-deliberate-Backspace-can-request-Automatic-and-Escape-restores-exact-committed-range"
+      ],
+      "localSourceProof": {
+        "localHtmlSha256": "8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d",
+        "servedHtmlSha256": "79c44fc832a235f1e0c7f8b81f033ad9802a7ae233842c0a4612800eb756033c",
+        "reconstructedExpectedSha256": "79c44fc832a235f1e0c7f8b81f033ad9802a7ae233842c0a4612800eb756033c",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.22",
+        "platform": "windows",
+        "architecture": "x86_64"
+      },
+      "axisRequests": [
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_max": 10
+          }
+        },
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_max": 11,
+            "y_min": 0
+          }
+        },
+        {
+          "axes": {
+            "y_major_step": 1,
+            "y_min": 0
+          }
+        }
+      ],
+      "video": {
+        "rawFile": "page@99902bea615b057974ecd6a78ae5aa9f.webm",
+        "sha256": "717b2e1e04d330fc686346d0030031e0003d081463ae7fdabca6dad5f88114f0",
+        "sizeBytes": 1821065,
+        "published": false
+      },
+      "screenshot": {
+        "file": "source20-axis-pearl.png",
+        "sha256": "3cde255862d31817a3bf331f048973d9024eb4596eb8f43859ed85773dfe29bd",
+        "sizeBytes": 153442,
+        "actuallyViewedByRoot": true
+      },
+      "actualExport": {
+        "format": "SVG",
+        "maximum": 11,
+        "sha256": "687b393430ba489454e1bae8116a4c56337db4dec85bb643751f7fefe460e84a",
+        "sizeBytes": 46139
+      }
+    }
+  ],
+  "installedBefore": null,
+  "installedAfter": null,
+  "eventMethod": "Rejected and second-cancelled composition/input/change are deliberately synthetic DOM events. Correction to11, explicit Backspace, Escape, Apply, Undo/Redo, New blank, actual Open, Save and SVG export use ordinary Chrome UI actions and real local rendering. No scientific response or progress is mocked.",
+  "nativeImeAcceptance": false,
+  "scope": "Actual public Iris project, local axis rendering, Save/reopen, Undo/Redo and SVG export in headful Chrome. The rejected composition and its trailing input/change are deliberately dispatched synthetic DOM events. Subsequent correction, deletion and cancel use ordinary browser keyboard actions. This is not native Windows IME acceptance.",
+  "mediaReview": "Root actually viewed both final1440x900 screenshots: Iris points and final axis0..11 are visible with maximum11/major interval1 controls in Carbon and Pearl. Screenshots are not latency or native IME evidence. Original videos remain in ignored cache; no OS candidate popup is claimed."
+}

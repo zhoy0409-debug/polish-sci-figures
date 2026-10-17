@@ -1,0 +1,167 @@
+{
+  "schema": "figure-studio-superseded-installed-stage/1",
+  "status": "RETAINED_SCOPED_STAGE_NOT_RELEASE_ACCEPTANCE",
+  "createdAt": "2026-10-17T20:20:07.199663+00:00",
+  "sourceStage": "source19",
+  "version": "0.1.22",
+  "setupSha256": "d72d01598c19a11bb84b470bff9dcdfd90cf426cda67627986ceb08d1f9f045e",
+  "packageSourceProofSha256": "46ca3b4332ca328aeda520e52fc719102997ad345b57f1e6e8851540151c8007",
+  "sourceFreezeManifestSha256": "bf5299072f654e7ec01115b787cb2db9e6582566327afd086153532da98cc178",
+  "sourceFreezeHtmlSha256": "4091e5b2f75e3a3b6e332736ae789da60e88a888559ee839402b06697730fba5",
+  "actualInstalledHtmlSha256": "4f59b385df11bca83f413755b3762699446bd3125384df8bf9370e0326398582",
+  "actualRunnerStatus": "PASS_ALL_RUNNER_OWN_SUITES",
+  "actualRunnerProcessExitCode": 0,
+  "rawRunnerSha256": "2f0cebd0fdaddb9c51e53335d9e7d5fe0a1beae918b8cc74cd98d39adceab5cf",
+  "suites": [
+    {
+      "suite": "p0",
+      "startedAt": "2026-10-17T20:06:09.322Z",
+      "finishedAt": "2026-10-17T20:13:26.171Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 72,
+      "harnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+      "rawReportSha256": "889080362410e22ac8a2d5abeb4ef7c94ebd734a95a7b8751b0c076117cb4cb8"
+    },
+    {
+      "suite": "resources",
+      "startedAt": "2026-10-17T20:13:28.141Z",
+      "finishedAt": "2026-10-17T20:15:41.414Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 4,
+      "harnessSha256": "55bc143a9626e1325ca6beabcfd13ea2ee9664cbe0454b44db9a7990f1f6c050",
+      "rawReportSha256": "e34ce057c1ed9cfce105b2e024c04cd7f95a2f2b82fc3075b14fbc00512d453b"
+    },
+    {
+      "suite": "blank",
+      "startedAt": "2026-10-17T20:15:43.184Z",
+      "finishedAt": "2026-10-17T20:15:49.133Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 1,
+      "harnessSha256": "b68101d5e3abb118da1d520fc5d0a6f4ac2ff1d8606f99847d7c420b986f0da6",
+      "rawReportSha256": "d059bbe461323eabe364b5064554b3606d519aea5b0026f109e0562cc68f57f1"
+    },
+    {
+      "suite": "touch390",
+      "startedAt": "2026-10-17T20:15:51.020Z",
+      "finishedAt": "2026-10-17T20:16:07.486Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 4,
+      "harnessSha256": "eaf9c6b4bb33f9d37019debb93d1386f59f906e42bf36a8a7c0cf4bf6cded2cf",
+      "rawReportSha256": "f11918c1bfe89731e6cb49938c5dabf03bb60201139c1f071e6416cd2aa99b8c"
+    },
+    {
+      "suite": "touch1280",
+      "startedAt": "2026-10-17T20:16:09.371Z",
+      "finishedAt": "2026-10-17T20:16:25.972Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 4,
+      "harnessSha256": "eaf9c6b4bb33f9d37019debb93d1386f59f906e42bf36a8a7c0cf4bf6cded2cf",
+      "rawReportSha256": "1b6d72de2678619d563f34e914d4405db6a06bf67c4d24064853f257ac50af2f"
+    },
+    {
+      "suite": "selection",
+      "startedAt": "2026-10-17T20:16:27.857Z",
+      "finishedAt": "2026-10-17T20:16:54.340Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 5,
+      "harnessSha256": "f57c704af5dca0606eb44ffb59872aa02ad4b18b7511da68844249404ab07dbb",
+      "rawReportSha256": "b1512a143f0172e185293ce83c96c8cbb33ee93795bcbff282a0531e82e147fd"
+    },
+    {
+      "suite": "discovery",
+      "startedAt": "2026-10-17T20:16:56.180Z",
+      "finishedAt": "2026-10-17T20:17:11.513Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 16,
+      "harnessSha256": "2968917b47b7a524bea82b6c20edf35ca845f54eb3cd0218efbbde81fe7f143c",
+      "rawReportSha256": "73c28fd4f0bc861b9ff5e18355c8588aba894c0e44a8e49f708d17c24559f90f"
+    },
+    {
+      "suite": "core-demo",
+      "startedAt": "2026-10-17T20:17:13.463Z",
+      "finishedAt": "2026-10-17T20:17:47.362Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 2,
+      "harnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+      "rawReportSha256": "6db3c923d18ca0ad6048a9938172c365e68595279a36788e60d91856ead8bbab"
+    }
+  ],
+  "externalP1DuplicateLargeNotStarted": true,
+  "knownSupersedingDefect": "Source19 axis composition-tail validation requires the independently reviewed source20 fix; these earlier passing scoped workflows do not resolve that defect.",
+  "freshIdentity": {
+    "currentRegistrationOwned": true,
+    "scope": "Read-only CIM, file hashes and exact AppId registry queries. No process, registry or installed file is modified.",
+    "initialRegistryViewsAbsent": 4,
+    "protectedProcessCount": 1,
+    "powerShellVersion": "7.6.5",
+    "installedExecutableMatchesPackage": true,
+    "status": "PASS_READ_ONLY_IDENTITY",
+    "protectedIdentitiesUnchanged": true,
+    "registeredViewCount": 2,
+    "qaProcessExact": true,
+    "version": "0.1.22"
+  },
+  "freshIdentityProofSha256": "4bef0968b1d04ebd05d0236c47eafa6d011abc0df6d8c756ab8d67b30885065b",
+  "ownedBrowserClosure": {
+    "schema": "figure-studio-owned-browser-closure/1",
+    "sourceStage": "source19",
+    "observedAt": "2026-10-17T20:20:01.7774849Z",
+    "ownershipMatch": "Exact installed-own8 TEMP root in Chrome command line",
+    "ownedChromeProcessesRemaining": 0,
+    "allOwnSuiteProcessesExited": true,
+    "actualRunnerProcessExitCode": 0,
+    "processesStoppedByThisCheck": 0
+  },
+  "installedPayload": {
+    "manifestSha256": "18f7facdea9f4ae02a74f14d47fed717f752b83384a1073ff12ab5978be1fc5d",
+    "applicationFilesVerified": 2622,
+    "allSourceAndInstalledFileBytesAndSizesExact": true,
+    "packageCanonicalRelativeManifestSha256": "7889b8a49cf61d11101c9d5b4de2fc9b80fcd5958ebe574972691f4255366c78",
+    "onlyAdditionalInstallerFiles": [
+      {
+        "file": "unins000.dat",
+        "sha256": "06e300c56d82d6110b6dff2bfaac016bcdcd043d904e94cc2256381793c4839e"
+      },
+      {
+        "file": "unins000.exe",
+        "sha256": "0b4913a350d37da7a8cc8f2e675020b349dee8ca2c1516cd1ddd0c6ccd0ba66e"
+      }
+    ],
+    "currentRepositoryUiNotUsedForHistoricalParity": true
+  },
+  "preservationBeforeAuthorizedCleanup": [
+    {
+      "role": "externalSentinel",
+      "sha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509",
+      "sizeBytes": 48
+    },
+    {
+      "role": "settings",
+      "sha256": "f4d74f8a1913024038b1d106e0a6e24c2889eb4fdb6b258337b896a75776a468",
+      "sizeBytes": 59
+    },
+    {
+      "role": "actualSavedPublicIris",
+      "sha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+      "sizeBytes": 577820
+    }
+  ],
+  "privatePreservationManifestSha256": "5328f7098164549463ebf09e629188df889c3c3858b288516fe334f254760307",
+  "publicIris": {
+    "observations": 150,
+    "tableAndSourceVariantsExactImmutableFixture": true,
+    "fixtureSha256": "a5b98945557035183ccb8cb420a8338f3016f864f9eab15312a322a480dbae92"
+  },
+  "cleanupExecuted": false,
+  "reinstallExecuted": false,
+  "browserAcceptanceCompleteDeclared": false,
+  "scope": "Read-only actual superseded candidate evidence before a separately authorized normal incomplete-attempt uninstall. This does not establish full acceptance, final source20 results or native IME compatibility."
+}

@@ -173,6 +173,16 @@ SUPPORT_FILES = (
     "docs/qa/live-preview/resource-source16-summary.json",
     "docs/qa/live-preview/source16-component-regressions.json",
     "docs/qa/live-preview/source17-component-regressions.json",
+    "docs/qa/live-preview/source18-component-regressions.json",
+    "docs/qa/live-preview/source19-component-regressions.json",
+    "docs/qa/live-preview/source18-targeted-cpu-gc-diagnostic.json",
+    "docs/qa/live-preview/source19-selection-refresh-browser.json",
+    "docs/windows-native-ime-acceptance.md",
+    "docs/qa/live-preview/source18-human-ime-summary.json",
+    "docs/qa/live-preview/source18-human-ime-events.json",
+    "docs/qa/live-preview/source18-human-ime-media.json",
+    "docs/qa/live-preview/source18-native-ime-blur.gif",
+    "docs/qa/live-preview/source18-native-ime-final.png",
     "docs/qa/live-preview/p0-source16-matrix-summary.json",
     "docs/qa/live-preview/touch-source16-summary.json",
     "docs/qa/live-preview/selection-source16-summary.json",
@@ -196,8 +206,14 @@ SUPPORT_FILES = (
     "docs/qa/live-preview/performance-v2-final10-summary.json",
     "docs/qa/live-preview/performance-v2-final16-summary.json",
     "docs/qa/live-preview/performance-v2-final17-summary.json",
+    "docs/qa/live-preview/performance-v2-final18-summary.json",
+    "docs/qa/live-preview/performance-v2-final18-vs17.json",
+    "docs/qa/live-preview/performance-v2-final19-summary.json",
+    "docs/qa/live-preview/performance-v2-final19-vs17-18.json",
     "docs/qa/live-preview/four-panel-style-final16-diagnostic.json",
     "docs/qa/live-preview/four-panel-style-final17-diagnostic.json",
+    "docs/qa/live-preview/four-panel-style-final18-diagnostic.json",
+    "docs/qa/live-preview/four-panel-style-final19-diagnostic.json",
     "docs/qa/live-preview/source16-readonly-cpu-attribution.json",
     "docs/qa/live-preview/pane-selection-source17-summary.json",
     "docs/qa/live-preview/pane-zoom-source17-review.json",
@@ -255,7 +271,7 @@ def release_files():
 def archive_bytes(path: Path, included: set[str], version: str) -> bytes:
     """Keep runtime sources exact; link omitted maintainer files to this release."""
     relative = path.relative_to(ROOT).as_posix()
-    if path.suffix != ".md" or not (relative == "README.md" or relative in SUPPORT_FILES):
+    if path.suffix != ".md" or not (relative in ROOT_FILES or relative in SUPPORT_FILES):
         return path.read_bytes()
     content = path.read_text(encoding="utf-8")
     def resolve_link(match):

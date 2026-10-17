@@ -1,11 +1,11 @@
 # polish-sci-figures · Product guide
 
-Local 0.1.22 candidate; publication is on hold. [Live canvas editing](docs/live-preview-editing.en.md) and [acceptance status](docs/live-preview-validation.md).
+Figure Studio 0.1.22 supports reversible editing directly on the canvas. [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe) · [Live canvas editing](docs/live-preview-editing.en.md) · [Validation scope](docs/live-preview-validation.md).
 
 
 [Home](README.md) · [English](README.en.md) · [中文](README.zh-CN.md)
 
-Version 1.4.22 reduces unnecessary whole-figure scans for small selections in large SVGs and adds bounded local updater audit records. Carbon Atelier, Pearl Pro, [image tools](docs/figure-studio-image-tools.md), [professional axes](docs/figure-studio-axes-round2.md), and [Figure Discovery](docs/figure-discovery.md) remain available. See the [release notes and validation status](docs/release-notes-v1.4.22.md).
+Version 1.4.22 reduces unnecessary whole-figure scans and repeated selection refreshes. Confirmation keeps the real draft rendering and canonical final validation; all eight complete palette previews remain available. Input-method composition keeps candidate selection separate from committing or cancelling an edit. Rejected numeric axis input retains the previous valid limit until corrected, deliberately cleared or cancelled. Carbon Atelier, Pearl Pro, [image tools](docs/figure-studio-image-tools.md), [professional axes](docs/figure-studio-axes-round2.md), and [Figure Discovery](docs/figure-discovery.md) remain available. See the [release notes](docs/release-notes-v1.4.22.md), [validation scope](docs/live-preview-validation.md) and [Windows IME observations](docs/windows-native-ime-acceptance.md).
 
 **From data to assembled figures: editable templates, explicit statistical analysis, and reversible, precise layout.**
 
@@ -16,7 +16,7 @@ polish-sci-figures brings scientific plotting, image standardization, and figure
 
 **Suite v1.4.22 · Figure Studio 0.1.22 (Windows desktop edition)**
 
-[Official downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-notes-v1.4.22.md)
+[Official v1.4.22 downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-notes-v1.4.22.md)
 
 ## Choose your workflow
 
@@ -24,7 +24,7 @@ polish-sci-figures brings scientific plotting, image standardization, and figure
 | --- | --- | --- |
 | Preview, replace data, edit, and assemble figures directly | Figure Studio Windows installer | Windows 10/11 x64; no Codex, separate Python installation, account, or API key |
 | Upload a skill to Claude | [Self-contained skill upload](https://github.com/zhoy0409-debug/polish-sci-figures/releases) | A host with skills and code execution; see [platform installation](docs/platform-installation.en.md) |
-| Ask AI to analyze data, suggest plots, and check the output | Three skills in the locally delivered source ZIP | A compatible AI environment and the suite's Python dependencies |
+| Ask AI to analyze data, suggest plots, and check the output | Three skills in the source ZIP | A compatible AI environment and the suite's Python dependencies |
 | Refine an existing SVG manually | Generate a self-contained Studio page with AI or the CLI | Layout and appearance editing work offline; data recomputation requires the local engine |
 
 Figure Studio is the official visual editor for polish-sci-figures. The original AI/CLI workflow remains available through the three-skill suite. Model-result templates display supplied analysis outputs; they do not fit unspecified models.
@@ -42,7 +42,7 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 
 ## Install and start
 
-1. Use `polish-sci-figures-Studio-0.1.22-Setup-x64.exe` from the current local delivery. This candidate is not published; [GitHub Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) contains previously published versions.
+1. Download [polish-sci-figures-Studio-0.1.22-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe) from the [official v1.4.22 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22).
 2. Install it and open the **polish-sci-figures Studio** shortcut. The launcher opens the editor in your default browser.
 3. Choose **Start from a template**, inspect the preview, and replace the example data with your own. You can also import an existing image, SVG, or selected PDF page. Supported native text and vector paths remain editable; PDF effects may require a local image layer or a whole-page appearance image. See the [conversion limits](docs/release-v1.4.3.en.md#what-changed), and review substituted fonts before export.
 4. Export SVG / PNG / TIFF and use **Save** to download an editable JSON backup.
@@ -177,7 +177,7 @@ The three skills retain their existing roles. Figure Studio is the visual entry 
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | Microscopy / pathology image standardization, consistent display settings, authoritatively calibrated scale bars, and processing audits |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | Refinement and assembly, Figure Studio, text and geometry checks, and quality checks at final dimensions |
 
-For this unpublished candidate, extract `polish-sci-figures-v1.4.22-Source.zip` from the local delivery and work inside its `polish-sci-figures-source` directory. It contains all three skills. The [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases) retain previously published suite packages. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
+Download `polish-sci-figures-v1.4.22-Source.zip` from the [official v1.4.22 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22), extract it and work inside its `polish-sci-figures-source` directory. It contains all three skills. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
 
 ```powershell
 python -m pip install -r requirements.txt

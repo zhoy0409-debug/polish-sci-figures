@@ -1,0 +1,659 @@
+{
+  "schema": "figure-studio-human-ime-reviewed-summary/1",
+  "status": "PASS_EXECUTED_SOURCE18_SCOPE_ONLY",
+  "sourceStage": "source18",
+  "sourceManifestSha256": "ec2966258cbacbea79c03b5539140527e1e1f8aed9e0a41d52d71a335f6cf01b",
+  "sourceHtmlSha256": "b596058ff9fec68257d8bfecc41e56762db2b056f22c8a219520fda343eefca4",
+  "sourceProof": {
+    "localHtmlSha256": "b596058ff9fec68257d8bfecc41e56762db2b056f22c8a219520fda343eefca4",
+    "servedHtmlSha256": "e873e857708da6f54e848f1f57b02eb1bdb3c8e83f7337b541c9f8b86409073a",
+    "reconstructedExpectedSha256": "e873e857708da6f54e848f1f57b02eb1bdb3c8e83f7337b541c9f8b86409073a",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "browser": {
+    "name": "Edge",
+    "version": "155.0.4283.45",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    }
+  },
+  "environment": {
+    "schema": "studio-native-ime-environment/1",
+    "queriedAtUtc": "2026-10-17T19:18:21.1240165Z",
+    "caption": "Microsoft Windows 11 家庭版 中文版",
+    "version": "10.0.26200",
+    "buildNumber": "26200",
+    "architecture": "64 位",
+    "installedImeFileVersion": "10.0.26100.9278 (WinBuild.160101.0800)",
+    "installedImeDescription": "Microsoft IME",
+    "activeImeEvidence": "User confirms Microsoft Pinyin; installed-file version alone does not identify the active input method."
+  },
+  "method": "Human manually operates actual Windows Microsoft Pinyin. Runner prepares ordinary local controls and passively observes composition/input/keys/UI/IDB; no native injection. F2 initiation is user-attested: observer records input controls, not document-level F2.",
+  "rawReportSha256": "a6ff2cc8d79d9ad65c6f9ebaadfecf8bf726749cd18d870540489d1778728bf7",
+  "runnerSha256": "4fd1bd99c0056b368ad2b90d490384bd74fd51cd2671f491516d932e9677b95d",
+  "publicEvents": {
+    "file": "source18-human-ime-events.json",
+    "sha256": "cf7eae29ae4df4d25675f21187ff9d872056131c2533ce5a09868137bbe306b0",
+    "count": 823
+  },
+  "sourceDataset": {
+    "doi": "10.24432/C56C76",
+    "license": "CC BY 4.0",
+    "observations": 150,
+    "tableSha256": "1091eb5086f995f5ec368701e4dac27b4ef5cd6ef29e406d93eb356c69591ce6",
+    "sourceVariantSvgSha256": [
+      "6818f7ac1be6e5c446c222b6538dfd1268315efb5d6f6818917f626ebd585af4",
+      "64f42f46bb824ba66e1a75e522d747c5a38e9753f1ef42b10722e3b6c2ce080a",
+      "056f2c55cdf1fda7da8505c4753b37d2a31ebec3664ddd416477e1f7b11e33c9",
+      "9366f43ca8da8d82d017b59620cd5d543d2422f837a2ebd819b03336f6a36089",
+      "94cc547fe838040f314d443b7d32247477f70285bdf59453e188b0e039c2db89",
+      "2a1888d8c596532bb34f467e7f003c454514c0443cf2257a3eb6dd02e3b88771",
+      "244ed3d3d735ef831cee97ca31e31fac3f93e90c21dcbe4a6ace156ee5ee4610",
+      "945a7aebdbe4fff21ff921e4aabca7e39b6b5765686297c5a850594847175c02",
+      "a4c74e3f63e58fb0f607d3a905975bd37b06fac9493d5cb401c33423b29f4e6c",
+      "6931cebdba5a0fc072c3be978a5e0fa415636c661bf6b2caffd57a03482d9b70",
+      "4b9ccf9824b5132af58f58c6cdb28e33626e59d2591f8a5efa97eae955084de7",
+      "a0f36f88ebb344d44e9ae6e5b2b1b6d6626df0e57e45921bda7c3aacb12239de"
+    ]
+  },
+  "cases": [
+    {
+      "name": "canvas-native-select-and-confirm",
+      "at": "2026-10-17T19:10:54.951Z",
+      "historyIndex": 1,
+      "historyDelta": 1,
+      "stateSha256": "9796edb4403a3486ea74b20f0e652259d5b14ca5518b723c04040283562f6e1d",
+      "historySha256": "c6d2ec75875a14111351bb94e3aaafdc1666fa2d4bb643528921a12f8ed7ef28",
+      "projectSha256": "fdc30dd5201dfaf4145ba4c963fb66e4f945b255886daebab037803313f814d0",
+      "ui": {
+        "editorCount": 0,
+        "editorValue": null,
+        "focused": null,
+        "selectedText": "实验组",
+        "fieldValues": {
+          "panelLabel": "",
+          "colorHex": "#25344A",
+          "quickFontSize": "9",
+          "fontSize": "9"
+        }
+      },
+      "eventRange": [
+        0,
+        72
+      ],
+      "events": {
+        "events": 72,
+        "types": {
+          "focus": 1,
+          "keydown": 10,
+          "beforeinput": 11,
+          "input": 11,
+          "keyup": 10,
+          "compositionstart": 1,
+          "compositionupdate": 10,
+          "passive-post-event": 15,
+          "compositionend": 1,
+          "change": 1,
+          "blur": 1
+        },
+        "trustedCompositionStarts": 1,
+        "trustedComposingInputs": 10,
+        "process229Keys": 8
+      },
+      "assertions": {
+        "historyDelta": true,
+        "editorCount": true,
+        "selectedText": true,
+        "nativeComposition": true
+      },
+      "status": "PASS_REQUESTED_ASSERTIONS"
+    },
+    {
+      "name": "native-candidate-escape-linebreak-and-cancel",
+      "at": "2026-10-17T19:16:51.158Z",
+      "historyIndex": 1,
+      "historyDelta": 0,
+      "stateSha256": "9796edb4403a3486ea74b20f0e652259d5b14ca5518b723c04040283562f6e1d",
+      "historySha256": "c6d2ec75875a14111351bb94e3aaafdc1666fa2d4bb643528921a12f8ed7ef28",
+      "projectSha256": "fdc30dd5201dfaf4145ba4c963fb66e4f945b255886daebab037803313f814d0",
+      "ui": {
+        "editorCount": 0,
+        "editorValue": null,
+        "focused": null,
+        "selectedText": "实验组",
+        "fieldValues": {
+          "panelLabel": "",
+          "colorHex": "#25344A",
+          "quickFontSize": "9",
+          "fontSize": "9"
+        }
+      },
+      "eventRange": [
+        361,
+        460
+      ],
+      "events": {
+        "events": 99,
+        "types": {
+          "focus": 1,
+          "keydown": 21,
+          "beforeinput": 19,
+          "input": 13,
+          "keyup": 14,
+          "compositionstart": 1,
+          "compositionupdate": 9,
+          "passive-post-event": 18,
+          "compositionend": 1,
+          "change": 1,
+          "blur": 1
+        },
+        "trustedCompositionStarts": 1,
+        "trustedComposingInputs": 9,
+        "process229Keys": 9
+      },
+      "assertions": {
+        "historyDelta": true,
+        "editorCount": true,
+        "selectedText": true,
+        "cancelExact": true,
+        "nativeComposition": true
+      },
+      "status": "PASS_REQUESTED_ASSERTIONS"
+    },
+    {
+      "name": "native-candidate-enter-linebreak-and-cancel",
+      "at": "2026-10-17T19:21:27.798Z",
+      "historyIndex": 1,
+      "historyDelta": 0,
+      "stateSha256": "9796edb4403a3486ea74b20f0e652259d5b14ca5518b723c04040283562f6e1d",
+      "historySha256": "c6d2ec75875a14111351bb94e3aaafdc1666fa2d4bb643528921a12f8ed7ef28",
+      "projectSha256": "fdc30dd5201dfaf4145ba4c963fb66e4f945b255886daebab037803313f814d0",
+      "ui": {
+        "editorCount": 0,
+        "editorValue": null,
+        "focused": null,
+        "selectedText": "实验组",
+        "fieldValues": {
+          "panelLabel": "",
+          "colorHex": "#25344A",
+          "quickFontSize": "9",
+          "fontSize": "9"
+        }
+      },
+      "eventRange": [
+        478,
+        585
+      ],
+      "events": {
+        "events": 107,
+        "types": {
+          "focus": 1,
+          "keydown": 19,
+          "keyup": 18,
+          "compositionstart": 1,
+          "compositionupdate": 15,
+          "beforeinput": 16,
+          "input": 16,
+          "passive-post-event": 18,
+          "compositionend": 1,
+          "change": 1,
+          "blur": 1
+        },
+        "trustedCompositionStarts": 1,
+        "trustedComposingInputs": 15,
+        "process229Keys": 14
+      },
+      "assertions": {
+        "historyDelta": true,
+        "editorCount": true,
+        "selectedText": true,
+        "cancelExact": true,
+        "nativeComposition": true
+      },
+      "status": "PASS_REQUESTED_ASSERTIONS"
+    },
+    {
+      "name": "native-invalid-hex-cancel",
+      "at": "2026-10-17T19:22:51.523Z",
+      "historyIndex": 1,
+      "historyDelta": 0,
+      "stateSha256": "9796edb4403a3486ea74b20f0e652259d5b14ca5518b723c04040283562f6e1d",
+      "historySha256": "c6d2ec75875a14111351bb94e3aaafdc1666fa2d4bb643528921a12f8ed7ef28",
+      "projectSha256": "fdc30dd5201dfaf4145ba4c963fb66e4f945b255886daebab037803313f814d0",
+      "ui": {
+        "editorCount": 0,
+        "editorValue": null,
+        "focused": null,
+        "selectedText": "实验组",
+        "fieldValues": {
+          "panelLabel": "",
+          "colorHex": "#25344A",
+          "quickFontSize": "",
+          "fontSize": "9"
+        }
+      },
+      "eventRange": [
+        585,
+        751
+      ],
+      "events": {
+        "events": 166,
+        "types": {
+          "focus": 1,
+          "keydown": 74,
+          "keyup": 20,
+          "compositionstart": 2,
+          "compositionupdate": 14,
+          "beforeinput": 15,
+          "input": 15,
+          "passive-post-event": 21,
+          "compositionend": 2,
+          "change": 1,
+          "blur": 1
+        },
+        "trustedCompositionStarts": 2,
+        "trustedComposingInputs": 14,
+        "process229Keys": 12
+      },
+      "assertions": {
+        "historyDelta": true,
+        "editorCount": true,
+        "selectedText": true,
+        "cancelExact": true,
+        "nativeComposition": true
+      },
+      "status": "PASS_REQUESTED_ASSERTIONS"
+    },
+    {
+      "name": "native-f2-select-and-blur-confirm",
+      "at": "2026-10-17T19:24:13.259Z",
+      "historyIndex": 2,
+      "historyDelta": 1,
+      "stateSha256": "58cb13b9c113833bca20cbe26de01734ae2d980ff312742e164896f01b691821",
+      "historySha256": "2a2a581b207dcecec754890e020b2115397a1504b811b86db01b77c98e33c44e",
+      "projectSha256": "fdc30dd5201dfaf4145ba4c963fb66e4f945b255886daebab037803313f814d0",
+      "ui": {
+        "editorCount": 0,
+        "editorValue": null,
+        "focused": "viewport",
+        "selectedText": "对照组",
+        "fieldValues": {
+          "panelLabel": "",
+          "colorHex": "#FFFFFF",
+          "quickFontSize": "",
+          "fontSize": "9"
+        }
+      },
+      "eventRange": [
+        751,
+        823
+      ],
+      "events": {
+        "events": 72,
+        "types": {
+          "focus": 1,
+          "keyup": 14,
+          "keydown": 11,
+          "compositionstart": 1,
+          "compositionupdate": 10,
+          "beforeinput": 10,
+          "input": 10,
+          "passive-post-event": 12,
+          "compositionend": 1,
+          "change": 1,
+          "blur": 1
+        },
+        "trustedCompositionStarts": 1,
+        "trustedComposingInputs": 10,
+        "process229Keys": 9
+      },
+      "assertions": {
+        "historyDelta": true,
+        "editorCount": true,
+        "selectedText": true,
+        "nativeComposition": true
+      },
+      "status": "PASS_REQUESTED_ASSERTIONS"
+    },
+    {
+      "name": "final-save-reopen-export",
+      "at": "2026-10-17T19:24:42.554Z",
+      "historyIndex": 2,
+      "historyDelta": 1,
+      "stateSha256": "58cb13b9c113833bca20cbe26de01734ae2d980ff312742e164896f01b691821",
+      "historySha256": "2a2a581b207dcecec754890e020b2115397a1504b811b86db01b77c98e33c44e",
+      "projectSha256": "fdc30dd5201dfaf4145ba4c963fb66e4f945b255886daebab037803313f814d0",
+      "ui": {
+        "editorCount": 0,
+        "editorValue": null,
+        "focused": null,
+        "selectedText": "对照组",
+        "fieldValues": {
+          "panelLabel": "",
+          "colorHex": "#FFFFFF",
+          "quickFontSize": "",
+          "fontSize": "9"
+        }
+      },
+      "eventRange": [
+        823,
+        823
+      ],
+      "events": {
+        "events": 0,
+        "types": {},
+        "trustedCompositionStarts": 0,
+        "trustedComposingInputs": 0,
+        "process229Keys": 0
+      },
+      "assertions": {
+        "historyDelta": true,
+        "editorCount": true,
+        "selectedText": true
+      },
+      "status": "PASS_REQUESTED_ASSERTIONS"
+    }
+  ],
+  "retainedObservations": [
+    {
+      "name": "canvas-escape-user-reported-anomaly",
+      "at": "2026-10-17T19:13:08.507Z",
+      "historyIndex": 1,
+      "historyDelta": 0,
+      "stateSha256": "9796edb4403a3486ea74b20f0e652259d5b14ca5518b723c04040283562f6e1d",
+      "historySha256": "c6d2ec75875a14111351bb94e3aaafdc1666fa2d4bb643528921a12f8ed7ef28",
+      "projectSha256": "fdc30dd5201dfaf4145ba4c963fb66e4f945b255886daebab037803313f814d0",
+      "ui": {
+        "editorCount": 0,
+        "editorValue": null,
+        "focused": null,
+        "selectedText": "实验组",
+        "fieldValues": {
+          "panelLabel": "",
+          "colorHex": "#25344A",
+          "quickFontSize": "9",
+          "fontSize": "9"
+        }
+      },
+      "eventRange": [
+        72,
+        199
+      ],
+      "events": {
+        "events": 127,
+        "types": {
+          "focus": 2,
+          "keydown": 28,
+          "beforeinput": 25,
+          "input": 24,
+          "keyup": 26,
+          "change": 2,
+          "blur": 2,
+          "passive-post-event": 18
+        },
+        "trustedCompositionStarts": 0,
+        "trustedComposingInputs": 0,
+        "process229Keys": 0
+      },
+      "assertions": {},
+      "status": "PASS_REQUESTED_ASSERTIONS",
+      "classification": "OBSERVATION_ONLY_NOT_ACCEPTANCE"
+    },
+    {
+      "name": "ordinary-latin-escape-cancel-exact",
+      "at": "2026-10-17T19:13:48.584Z",
+      "historyIndex": 1,
+      "historyDelta": 0,
+      "stateSha256": "9796edb4403a3486ea74b20f0e652259d5b14ca5518b723c04040283562f6e1d",
+      "historySha256": "c6d2ec75875a14111351bb94e3aaafdc1666fa2d4bb643528921a12f8ed7ef28",
+      "projectSha256": "fdc30dd5201dfaf4145ba4c963fb66e4f945b255886daebab037803313f814d0",
+      "ui": {
+        "editorCount": 0,
+        "editorValue": null,
+        "focused": null,
+        "selectedText": "实验组",
+        "fieldValues": {
+          "panelLabel": "",
+          "colorHex": "#25344A",
+          "quickFontSize": "9",
+          "fontSize": "9"
+        }
+      },
+      "eventRange": [
+        199,
+        199
+      ],
+      "events": {
+        "events": 0,
+        "types": {},
+        "trustedCompositionStarts": 0,
+        "trustedComposingInputs": 0,
+        "process229Keys": 0
+      },
+      "assertions": {
+        "historyDelta": true,
+        "editorCount": true,
+        "selectedText": true,
+        "cancelExact": true
+      },
+      "status": "PASS_REQUESTED_ASSERTIONS",
+      "classification": "ORDINARY_LATIN_CANCEL_NOT_NATIVE_CANDIDATE"
+    },
+    {
+      "name": "candidate-escape-attempt-2-user-anomaly",
+      "at": "2026-10-17T19:14:56.660Z",
+      "historyIndex": 1,
+      "historyDelta": 0,
+      "stateSha256": "9796edb4403a3486ea74b20f0e652259d5b14ca5518b723c04040283562f6e1d",
+      "historySha256": "c6d2ec75875a14111351bb94e3aaafdc1666fa2d4bb643528921a12f8ed7ef28",
+      "projectSha256": "fdc30dd5201dfaf4145ba4c963fb66e4f945b255886daebab037803313f814d0",
+      "ui": {
+        "editorCount": 0,
+        "editorValue": null,
+        "focused": "viewport",
+        "selectedText": "实验组",
+        "fieldValues": {
+          "panelLabel": "",
+          "colorHex": "#25344A",
+          "quickFontSize": "",
+          "fontSize": "9"
+        }
+      },
+      "eventRange": [
+        199,
+        361
+      ],
+      "events": {
+        "events": 162,
+        "types": {
+          "focus": 1,
+          "keydown": 37,
+          "beforeinput": 37,
+          "input": 32,
+          "keyup": 25,
+          "compositionstart": 1,
+          "compositionupdate": 11,
+          "passive-post-event": 15,
+          "compositionend": 1,
+          "change": 1,
+          "blur": 1
+        },
+        "trustedCompositionStarts": 1,
+        "trustedComposingInputs": 11,
+        "process229Keys": 9
+      },
+      "assertions": {},
+      "status": "PASS_REQUESTED_ASSERTIONS",
+      "classification": "OBSERVATION_ONLY_NOT_ACCEPTANCE"
+    },
+    {
+      "name": "candidate-enter-user-anomaly",
+      "at": "2026-10-17T19:18:49.262Z",
+      "historyIndex": 1,
+      "historyDelta": 0,
+      "stateSha256": "9796edb4403a3486ea74b20f0e652259d5b14ca5518b723c04040283562f6e1d",
+      "historySha256": "c6d2ec75875a14111351bb94e3aaafdc1666fa2d4bb643528921a12f8ed7ef28",
+      "projectSha256": "fdc30dd5201dfaf4145ba4c963fb66e4f945b255886daebab037803313f814d0",
+      "ui": {
+        "editorCount": 0,
+        "editorValue": null,
+        "focused": null,
+        "selectedText": "实验组",
+        "fieldValues": {
+          "panelLabel": "",
+          "colorHex": "#25344A",
+          "quickFontSize": "9",
+          "fontSize": "9"
+        }
+      },
+      "eventRange": [
+        460,
+        478
+      ],
+      "events": {
+        "events": 18,
+        "types": {
+          "focus": 2,
+          "keydown": 2,
+          "blur": 2,
+          "passive-post-event": 12
+        },
+        "trustedCompositionStarts": 0,
+        "trustedComposingInputs": 0,
+        "process229Keys": 0
+      },
+      "assertions": {},
+      "status": "PASS_REQUESTED_ASSERTIONS",
+      "classification": "OBSERVATION_ONLY_NOT_ACCEPTANCE"
+    }
+  ],
+  "humanAttestations": [
+    {
+      "case": "canvas-native-select-and-confirm",
+      "answer": "已完成：实验组，使用微软拼音",
+      "source": "Direct user reply to first manual instruction",
+      "recordedAtUtc": "2026-10-17T19:12:21.380502+00:00"
+    },
+    {
+      "case": "canvas-candidate-escape-attempt-1",
+      "answer": "第一次就退出编辑，或有其他异常",
+      "classification": "Retained user-reported anomaly. Actual page events contain ordinary Latin key/input only, no compositionstart or Process229. Plain-Escape cancel restores exact committed state. Native-candidate case requires a new actual composition attempt, no product fix inferred.",
+      "recordedAtUtc": "2026-10-17T19:13:50.522253+00:00"
+    },
+    {
+      "case": "candidate-escape-attempt-2",
+      "answer": "候选已出现，但第一次 Esc 就退出或另有异常",
+      "classification": "Retained discrepancy. Real composition is present. After compositionend, UI snapshots at 0/600ms retain editor1/history1; later standalone Escape removes editor with exact cancel. The IME-consumed key is not directly visible as DOM keydown. Single-Escape plus Shift+Enter follow-up requested; no product defect or pass inferred from final state alone.",
+      "recordedAtUtc": "2026-10-17T19:15:40.093616+00:00"
+    },
+    {
+      "case": "native-candidate-escape-linebreak-and-cancel",
+      "answer": "看到了换行／变高，最后已取消",
+      "verification": "Actual trusted composition, 600ms post-composition editor1/history1/saved UI, trusted insertLineBreak newline, final state/history exact baseline.",
+      "recordedAtUtc": "2026-10-17T19:17:12.973312+00:00"
+    },
+    {
+      "case": "candidate-enter-attempt-1",
+      "answer": "第一次 Enter 就完成编辑，或有其他异常",
+      "classification": "Retained user-reported anomaly. Event range 460–478 contains only ordinary Enter on unchanged 实验组, no pinyin input, composition or Process229. Native-candidate Enter condition not exercised; no product defect or pass inferred. New self-contained actual-input instruction requested.",
+      "recordedAtUtc": "2026-10-17T19:20:37Z"
+    },
+    {
+      "case": "native-candidate-enter-linebreak-and-cancel",
+      "answer": "看到了换行／变高，最后已取消",
+      "verification": "Trusted compositionstart and composing input; Process229 Enter ends composition; post-end 0/150/600ms editor1/history1; trusted insertLineBreak about7.6s later; Esc restores exact baseline state/history/source. compositionend itself isTrusted=false is retained, not relabeled.",
+      "recordedAtUtc": "2026-10-17T19:21:27Z"
+    },
+    {
+      "case": "native-invalid-hex-cancel",
+      "answer": "图中文字颜色保持原样，Esc 后 HEX 已恢复",
+      "verification": "Actual colorHex composition including 颜色; Esc then exact committed state/history/source and #25344A field restored. No invalid colour committed.",
+      "recordedAtUtc": "2026-10-17T19:22:51Z"
+    },
+    {
+      "case": "native-f2-select-and-blur-confirm",
+      "answer": "正常显示“对照组”，点击空白处后文字框关闭",
+      "verification": "User attests F2 (observer logs input controls only, not document F2). Real composition/input+Process229; compositionend600ms editor1/history1; actual blur4.4s later; editor0/history2 exactly one added commit, source exact.",
+      "recordedAtUtc": "2026-10-17T19:24:13Z"
+    }
+  ],
+  "actualActions": {
+    "undoRedo": 2,
+    "save": true,
+    "reopen": true,
+    "svgPngExport": true,
+    "oneFinalBlurCommit": true,
+    "baselineHistoryStates": 3,
+    "originalProjectTableAndSvgExact": true,
+    "historyChangeScope": "First text edit adds e190; final edit changes only e190 text and rich-text from 实验组 to 对照组. All other state unchanged."
+  },
+  "downloads": [
+    {
+      "file": "saved-21.json",
+      "bytes": 578313,
+      "sha256": "2f944e3217870e6616cf03608b0cd08fab9d02f4db717c5baa79832640d1201d"
+    },
+    {
+      "file": "committed.svg",
+      "bytes": 39751,
+      "sha256": "137d4cff648a8ef7411261ee8ac7b8ff03a227573bc2f910c8c24b39e6bca21e"
+    },
+    {
+      "file": "committed.png",
+      "bytes": 312405,
+      "sha256": "83a014f657a7498152a95829ffa24b584e57abd7065906da6ba659109c5121b0"
+    }
+  ],
+  "videos": [
+    {
+      "file": "page@0399fda4f4ab9f3fbecd9ba5331c2492.webm",
+      "bytes": 390749,
+      "sha256": "aea89be396dd60f45e0861b0677568bf9a11639416c5e9ab77bbb93b980f69af"
+    },
+    {
+      "file": "page@09b7a81c872a0f46a729e03bc7f950d8.webm",
+      "bytes": 364547,
+      "sha256": "c7e26a9e776bab9a85344ab6b680efe0b477723c273aaecc7add063345edc066"
+    },
+    {
+      "file": "page@531d31efb7fc6659232b5c8f80767759.webm",
+      "bytes": 335686,
+      "sha256": "ebc5636d2891d8280448a3d755d53893639cafe84f395f006b5847681c8706e2"
+    },
+    {
+      "file": "page@624b02cd4636095bbf957a4793637ac8.webm",
+      "bytes": 230449,
+      "sha256": "bf40f4852fcbe458a9e198f93f10eaa010111f6b2ca41a8f564c27b141d1b02a"
+    },
+    {
+      "file": "page@662a603514004e16a0ca5ce1f2575132.webm",
+      "bytes": 1313865,
+      "sha256": "d0614493151495d87d83622aa2300eb9d6ce254366eaa9b1b16b65c89fec6e1d"
+    },
+    {
+      "file": "page@f571382801b9bb5086a18c9ed4b0ed53.webm",
+      "bytes": 51559122,
+      "sha256": "0a13b9d050ee65b2cc2f2e0afbec9ea30b2a94c043276dd9af56a2bc37a9145a"
+    }
+  ],
+  "limits": [
+    "Source-development window only; newly built installed package still requires its own acceptance.",
+    "Single local Windows/Edge/Microsoft Pinyin combination, not all IMEs or systems.",
+    "Browser video excludes separate OS candidate popup; candidate observations are human-attested.",
+    "isTrusted alone is not proof of human input; commands and event chain are jointly reviewed.",
+    "Initial reported anomalies and setup failures retained, not overwritten by later passes.",
+    "No performance timing, private-data disclosure, independent novice study or image-accuracy claim."
+  ],
+  "review": {
+    "exportPngVisuallyReviewed": true,
+    "expectedChineseTextPresentInSvgAndPng": true,
+    "scientificDataAndOriginalSvgPreserved": true,
+    "uiOrStorageErrors": 0,
+    "remoteRequests": 0,
+    "sessionExitCode": 0
+  },
+  "attestationTimePolicy": "recordedAtUtc is the operator recording/review time; precise chat receipt time was not independently captured. Actual browser event timestamps remain in the event evidence."
+}

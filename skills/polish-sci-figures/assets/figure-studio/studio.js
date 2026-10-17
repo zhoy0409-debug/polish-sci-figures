@@ -1017,6 +1017,9 @@ if (typeof document !== 'undefined') (async () => {
   }
   const state = () => history.current;
   let previewCommitDepth=0,previewPaintDepth=0;
+  const activeInputCompositions=new WeakSet();
+  document.addEventListener('compositionstart',event=>activeInputCompositions.add(event.target),true);
+  document.addEventListener('compositionend',event=>activeInputCompositions.delete(event.target),true);
   function visualPreviewIdentity(){
     if(!history)return [project,null];
     const token=JSON.stringify({panel:selectedPanel,elements:selectionGroups(),panels:panelSelection,annotations:selectedAnnotations,labels:selectedLabelIds(),content:contentSelection,original});
@@ -1034,7 +1037,7 @@ if (typeof document !== 'undefined') (async () => {
   }
   function refreshLivePreviews(){previewSessions?.sync();objectBordersUI?.refresh();syncScaleControls();const status=$('scaleStatus');if(status){const warning=$('artboard').querySelector(`svg[data-panel="${selectedPanel}"][data-scale-warning]`);status.hidden=!warning;status.textContent=warning?T('比例尺已保留在工程中，但当前无法可靠绘制；请检查标定与裁剪。'):'';}}
   document.addEventListener('keydown',event=>{
-    if(event.key!=='Escape'||event.isComposing||!previewSessions?.active)return;
+    if(event.key!=='Escape'||event.isComposing||event.keyCode===229||typeof activeInputCompositions!=='undefined'&&(activeInputCompositions.has(event.target)||activeInputCompositions.has(document.activeElement))||!previewSessions?.active)return;
     event.preventDefault();event.stopImmediatePropagation();
     if(previewSessions.active.kind==='object-borders')objectBordersUI?.cancel('escape');
     else if(previewSessions.active.kind==='axes')professionalAxesUI?.cancel('escape');
@@ -2703,19 +2706,28 @@ if (typeof document !== 'undefined') (async () => {
     }
     if(!changes.length)return false;patch.paint(changes);return true;
   }
-  function commitPaintState(next,label,paint,draw){
+  function commitPaintState(next,label,paint,draw,selectionGeometryStable=false){
     if(!commitPreviewState(next,label,false))return false;
     // Paint-only changes cannot alter geometry, statistics, layout or sources.
     // Retain the actual canvas nodes on completion as well as during input.
     // Unsupported/specialized output always falls back to the canonical render.
-    try{if(draw()){paint.keep();renderSelectionProperties();zoomView?.refreshSelection?.();return true;}}catch{paint.restore();}
+    try{if(draw()){paint.keep();renderSelectionProperties();if(!selectionGeometryStable)zoomView?.refreshSelection?.();return true;}}catch{paint.restore();}
     render();return true;
   }
   // Shared host binding for simple visual fields. A draft owns only an
   // ephemeral state and paint; the existing model validator owns the commit.
-  function bindStateDraft({fields,kind,build,finalize,message,paintOnly=false,refresh,context}){
-    if(!previewSessions)return;const inputs=fields.map($).filter(Boolean),cancelled=new WeakSet(),completed=new WeakMap(),composing=new WeakSet();let session=null,values=null,base=null,paint=null,rendered=false,capturedContext,finishing=false,focusedValues=null,originalFields=null,pointerFocus=null,rangePointer=null,cancelledRange=null;
+  function bindStateDraft({fields,kind,build,finalize,message,paintOnly=false,paintGeometryStable=false,reuseValidatedDraft=false,refresh,context}){
+    if(!previewSessions)return;const inputs=fields.map($).filter(Boolean),cancelled=new WeakSet(),completed=new WeakMap(),composing=new WeakSet(),compositionBlurred=new WeakSet(),compositionEnded=new WeakSet(),compositionOwners=new WeakMap();let session=null,values=null,base=null,paint=null,rendered=false,capturedContext,finishing=false,focusedValues=null,originalFields=null,pointerFocus=null,rangePointer=null,cancelledRange=null;
+    let validatedDraft=null;
     const readFields=()=>Object.fromEntries(inputs.map(input=>[input.id,input.type==='checkbox'?input.checked:input.value]));
+    const compositionIdentity=()=>[typeof project==='undefined'?null:project,state(),context?.(),...(typeof visualPreviewIdentity==='function'?visualPreviewIdentity():[])];
+    const compositionBlocked=event=>event?.isComposing||event?.keyCode===229||inputs.some(input=>composing.has(input));
+    // Only an inspector finalizer may reuse a rendered, validated input. It
+    // still rebuilds its final canonical plan before commit. A derived SVG,
+    // source replacement, font epoch or language change invalidates this small
+    // reference stamp without serializing or cloning the figure again.
+    const buildIdentity=()=>{const owner=typeof project==='undefined'?null:project,stamp=[owner,state(),capturedContext,typeof StudioI18n==='undefined'?null:StudioI18n.language,typeof compactFontEpoch==='number'?compactFontEpoch:0];for(const source of owner?.panels||[]){stamp.push(source,source.analysis,source.recipe,source.table);for(const v of source.variants||[])stamp.push(v,v.svg,v.width,v.height,...(v.viewBox||[]));}for(const name of ['layoutRenders','heatmapRenders','statisticalRenders'])for(const [key,v]of Object.entries(owner?.[name]||{}))stamp.push(name,key,v,v?.svg,v?.width,v?.height);return stamp;};
+    const reusableDraft=event=>{if(!reuseValidatedDraft||!finalize||!validatedDraft||session?.error||session?.pending||session?.status!=='previewing'||session.value!==validatedDraft.next||state()!==base||event?.isComposing||event?.keyCode===229||inputs.some(input=>composing.has(input)))return false;const raw=readFields(),stamp=buildIdentity();return inputs.every(input=>raw[input.id]===validatedDraft.raw[input.id])&&stamp.length===validatedDraft.identity.length&&stamp.every((value,i)=>Object.is(value,validatedDraft.identity[i]));};
     // Escape does not release a native slider's pointer capture. Blink may
     // keep sending trusted input/change events until that same drag ends.
     // Restore the current owner's control and ignore that cancelled gesture;
@@ -2724,38 +2736,41 @@ if (typeof document !== 'undefined') (async () => {
     const restoreFields=()=>{if(values)for(const input of inputs)if(input.type==='checkbox')input.checked=values[input.id];else input.value=values[input.id];};
     const captureCaret=()=>{const input=document.activeElement;if(!inputs.includes(input)||composing.has(input))return null;try{return Number.isInteger(input.selectionStart)?{input,start:input.selectionStart,end:input.selectionEnd,direction:input.selectionDirection}:null;}catch{return null;}};
     const restoreCaret=caret=>{if(caret&&document.activeElement===caret.input&&caret.input.isConnected)try{caret.input.setSelectionRange(caret.start,caret.end,caret.direction||'none');}catch{}};
-    function begin(){if(session?.isCurrent())return;session=null;base=state();capturedContext=context?.();originalFields={...(focusedValues||readFields())};rendered=false;paint=typeof StudioStylePreview==='undefined'?null:StudioStylePreview.create();
+    function begin(){if(session?.isCurrent())return;session=null;base=state();capturedContext=context?.();originalFields={...(focusedValues||readFields())};rendered=false;validatedDraft=null;paint=typeof StudioStylePreview==='undefined'?null:StudioStylePreview.create();
       session=previewSessions.begin({kind,originalValue:base,valid:()=>!context||capturedContext===context(),
         render:next=>{const caret=captureCaret();if(paintOnly&&paint&&paintStateColours(base,next,paint)){restoreFields();restoreCaret(caret);return;}paint?.restore();rendered=true;previewPaintDepth++;try{renderCanvas(next);}finally{previewPaintDepth--;restoreFields();restoreCaret(caret);}},
         restore:reason=>{paint?.restore();if(reason==='preview-error')return;const sameOwner=session?.isCurrent();session=null;
           if(reason!=='commit'){if(rangePointer)cancelledRange=rangePointer.input;for(const input of inputs){cancelled.add(input);input.removeAttribute('aria-invalid');if(document.activeElement===input)input.blur();}}
-          if(rendered){previewPaintDepth++;try{renderCanvas();}finally{previewPaintDepth--;}}
+          // A successful final commit immediately runs the canonical renderer.
+          // Rebuilding the original figure here would draw the entire project
+          // twice on Enter. Cancellation/error restoration keeps its old path.
+          if(rendered&&reason!=='commit'){previewPaintDepth++;try{renderCanvas();}finally{previewPaintDepth--;}}
           if(reason!=='commit'){values=null;refresh?.();if(sameOwner&&originalFields)for(const input of inputs)if(input.type==='checkbox')input.checked=originalFields[input.id];else input.value=originalFields[input.id];focusedValues=readFields();}},
-        commit:next=>{const keep=(result,label)=>paintOnly&&paint&&!rendered?commitPaintState(result,label,paint,()=>paintStateColours(base,result,paint)):commitPreviewState(result,label);return finalize?finalize(values,next,keep):keep(next,message);},equal:(a,b)=>JSON.stringify(a)===JSON.stringify(b),onError:error=>say(error)
+        commit:next=>{const keep=(result,label)=>paintOnly&&paint&&!rendered?commitPaintState(result,label,paint,()=>paintStateColours(base,result,paint),paintGeometryStable):commitPreviewState(result,label);const finish=result=>{if(result!==false&&rendered&&state()===base){previewPaintDepth++;try{renderCanvas();}finally{previewPaintDepth--;}}return result;},result=finalize?finalize(values,next,keep):keep(next,message);return result&&typeof result.then==='function'?result.then(finish):finish(result);},equal:(a,b)=>JSON.stringify(a)===JSON.stringify(b),onError:error=>say(error)
       });
     }
-    function update(event){if(suppressCancelledRange(event)||finishing||original||event?.isComposing)return false;for(const input of inputs){cancelled.delete(input);if(event?.type==='input'||event?.type==='compositionend')completed.delete(input);}const draftValues=readFields();begin();values=draftValues;
-      try{const next=build(values,base,event?.target?.id);if(!next)throw Error(T('请输入完整有效的参数；Esc 取消'));for(const input of inputs)input.removeAttribute('aria-invalid');session.update(next);say(T('实时预览 · Enter 或移开焦点保留，Esc 取消'));return true;}
+    function update(event){if(suppressCancelledRange(event)||finishing||original||compositionBlocked(event))return false;for(const input of inputs){cancelled.delete(input);if(event?.type==='input'||event?.type==='compositionend')completed.delete(input);}const draftValues=readFields();begin();values=draftValues;
+      try{const next=build(values,base,event?.target?.id);if(!next)throw Error(T('请输入完整有效的参数；Esc 取消'));for(const input of inputs)input.removeAttribute('aria-invalid');const accepted=session.update(next);validatedDraft=accepted?{next,raw:{...values},identity:buildIdentity()}:null;say(T('实时预览 · Enter 或移开焦点保留，Esc 取消'));return accepted;}
       catch(error){event?.target?.setAttribute('aria-invalid','true');session?.reject(error.message);return false;}
     }
-    function finish(event){if(finishing||event&&cancelled.has(event.target))return;if(!session)return;if(!session.isCurrent()){session.invalidate('context-changed');return;}if(update(event)){const current=session;finishing=true;return current.commit().finally(()=>{finishing=false;focusedValues=readFields();for(const input of inputs)completed.set(input,input.type==='checkbox'?input.checked:input.value);});}}
+    function finish(event){if(finishing||compositionBlocked(event)||event&&cancelled.has(event.target))return;if(!session)return;if(!session.isCurrent()){session.invalidate('context-changed');return;}if(reusableDraft(event)||update(event)){const current=session;finishing=true;return current.commit().finally(()=>{finishing=false;focusedValues=readFields();for(const input of inputs)completed.set(input,input.type==='checkbox'?input.checked:input.value);});}}
     for(const input of inputs){
       // Native ranges can move their value before dispatching focus. Capture
       // the pre-drag controls before that default action, and do not replace
       // the snapshot with the first moved slider position at focus.
-      input.addEventListener('pointerdown',event=>{cancelledRange=null;rangePointer=input.type==='range'?{input,id:event.pointerId}:null;if(!session&&!finishing){focusedValues=readFields();pointerFocus=input;}},true);
+      input.addEventListener('pointerdown',event=>{compositionEnded.delete(input);cancelledRange=null;rangePointer=input.type==='range'?{input,id:event.pointerId}:null;if(!session&&!finishing){focusedValues=readFields();pointerFocus=input;}},true);
       input.addEventListener('focus',()=>{if(!session&&!finishing&&pointerFocus!==input)focusedValues=readFields();pointerFocus=null;});
       for(const type of ['pointerup','pointercancel','blur'])input.addEventListener(type,()=>{if(pointerFocus===input)pointerFocus=null;},true);
     }
     const endRangePointer=event=>{if(rangePointer&&(event.pointerId===undefined||rangePointer.id===undefined||event.pointerId===rangePointer.id))rangePointer=null;};
     for(const type of ['pointerup','pointercancel','lostpointercapture'])document.addEventListener(type,endRangePointer,true);
-    for(const input of inputs){input.oninput=update;input.onchange=event=>{if(suppressCancelledRange(event)||finishing||completed.has(input)&&completed.get(input)===(input.type==='checkbox'?input.checked:input.value))return;if(!cancelled.has(input)&&!session)update(event);return finish(event);};input.onblur=event=>{if(session)finish(event);};input.onkeydown=event=>{if(event.isComposing)return;if(input===cancelledRange&&['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Home','End','PageUp','PageDown'].includes(event.key)){if(rangePointer){event.preventDefault();return;}cancelledRange=null;cancelled.delete(input);}if(event.key==='Enter'){event.preventDefault();finish(event);}else if(event.key==='Escape'){event.preventDefault();session?.cancel('escape');}else if(input.dataset.decimalPreview&&['ArrowUp','ArrowDown'].includes(event.key)&&Number.isFinite(Number(input.value))){event.preventDefault();const step=(Number(input.getAttribute('step'))||.1)*(event.shiftKey?.1:1),min=Number(input.getAttribute('min')??-Infinity),max=Number(input.getAttribute('max')??Infinity),value=Math.max(min,Math.min(max,Number(input.value)+(event.key==='ArrowUp'?step:-step)));input.value=String(Number(value.toFixed(12)));input.dispatchEvent(new Event('input',{bubbles:true}));}};input.addEventListener('compositionstart',()=>composing.add(input));input.addEventListener('compositionend',event=>{composing.delete(input);update(event);});}
+    for(const input of inputs){input.oninput=update;input.onchange=event=>{if(compositionBlocked(event)||compositionEnded.has(input)&&document.activeElement===input||suppressCancelledRange(event)||finishing||completed.has(input)&&completed.get(input)===(input.type==='checkbox'?input.checked:input.value))return;if(!cancelled.has(input)&&!session)update(event);return finish(event);};input.onblur=event=>{if(compositionBlocked(event)){compositionBlurred.add(input);return;}compositionEnded.delete(input);if(session)finish(event);};input.onkeydown=event=>{if(compositionBlocked(event))return;compositionEnded.delete(input);if(input===cancelledRange&&['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Home','End','PageUp','PageDown'].includes(event.key)){if(rangePointer){event.preventDefault();return;}cancelledRange=null;cancelled.delete(input);}if(event.key==='Enter'){event.preventDefault();finish(event);}else if(event.key==='Escape'){event.preventDefault();session?.cancel('escape');}else if(input.dataset.decimalPreview&&['ArrowUp','ArrowDown'].includes(event.key)&&Number.isFinite(Number(input.value))){event.preventDefault();const step=(Number(input.getAttribute('step'))||.1)*(event.shiftKey?.1:1),min=Number(input.getAttribute('min')??-Infinity),max=Number(input.getAttribute('max')??Infinity),value=Math.max(min,Math.min(max,Number(input.value)+(event.key==='ArrowUp'?step:-step)));input.value=String(Number(value.toFixed(12)));input.dispatchEvent(new Event('input',{bubbles:true}));}};input.addEventListener('compositionstart',()=>{composing.add(input);compositionEnded.delete(input);compositionBlurred.delete(input);compositionOwners.set(input,compositionIdentity());});input.addEventListener('compositionend',event=>{composing.delete(input);compositionEnded.add(input);const owner=compositionOwners.get(input),current=compositionIdentity(),blurred=compositionBlurred.has(input);compositionOwners.delete(input);compositionBlurred.delete(input);if(owner&&(owner.length!==current.length||owner.some((value,i)=>!Object.is(value,current[i])))){refresh?.();return;}update(event);if(blurred&&document.activeElement!==input)finish(event);});}
     return {commit:()=>finish(),get active(){return !!session;}};
   }
   function bindInspectorStyle(id,property,kind='all',parse=value=>value){
     const control=$(id);if(!control)return;
     const read=values=>{const value=parse(values[id]);if(value===null||value===undefined||value===''||property!=='color'&&!validValue(property,String(value)))throw Error(T('请输入完整有效的参数；Esc 取消'));return String(value);};
-    return bindStateDraft({fields:[id],kind:'inspector-style',paintOnly:['color','opacity'].includes(property),context:()=>[$('scope').value,$('channel').value,$('textRole').value].join('/'),
+    return bindStateDraft({fields:[id],kind:'inspector-style',paintOnly:['color','opacity'].includes(property),paintGeometryStable:property==='color',reuseValidatedDraft:true,context:()=>[$('scope').value,$('channel').value,$('textRole').value].join('/'),
       build:values=>{const value=read(values),plan=updateStyle(property,value,kind,{},'draft-plan',true);if(!plan?.changed)throw Error(T('当前范围没有适用元素。黑白坐标与连续色标不参与整图改色。'));return plan.next;},
       finalize:(values,next,keep)=>{const value=read(values),plan=updateStyle(property,value,kind,{},false,true),ok=plan?.changed?keep(plan.next,T('已更新 {0} 个属性',plan.changed)):true;if(ok&&property==='color')rememberColor(value);return ok;},refresh:()=>{if(property==='color')syncColorControls();renderSelectionProperties();}
     });
@@ -2873,18 +2888,20 @@ if (typeof document !== 'undefined') (async () => {
     const saved=state(),scope=$('scope').value,elementScope=['element','sameColor'].includes(scope),entries=[];
     for(const id of scope==='all'?saved.order:[selectedPanel])for(let vi=0;vi<panel(id).variants.length;vi++){
       const p=saved.panels[id];if(p.locked||elementScope&&vi!==p.variant)continue;
-      const base=baseSvg(id,vi),meta=base.querySelector('[id*="studio-heat-value-"]');
+      const base=baseSvg(id,vi),meta=base.querySelector('[id*="studio-heat-value-"]'),baseKeys=new Map();
+      // Match querySelector's first-object semantics without one tree scan per artist.
+      for(const el of base.querySelectorAll('[data-key]')){const key=el.getAttribute('data-key');if(!baseKeys.has(key))baseKeys.set(key,el);}
       if(!elementScope&&meta){
         const info=heatmapCellInfo(meta.id);if(!Number.isFinite(info?.normalized))continue;
         const locked=new Set(p.lockedElements?.[vi]||[]),resetKeys=[],retained=[];
-        let svg=null;
+        let currentKeys=null;
         // Only user-edited/locked objects need inspecting. Most heatmaps need no
         // complete editedSvg render to prepare a different continuous scale.
         for(const key of new Set([...Object.keys(p.edits[vi]||{}),...locked])){
-          const el=base.querySelector(`[data-key="${key}"]`);let node=el,continuous=false;
+          const el=baseKeys.get(key);let node=el,continuous=false;
           while(node&&node!==base){if(/studio-heat-(?:source|box|scale)-/.test(node.id||'')){continuous=true;break;}node=node.parentElement;}
           if(!continuous)continue;
-          if(locked.has(key)){svg??=editedSvg(id,vi);const current=svg.querySelector(`[data-key="${key}"]`);for(const prop of ['fill','stroke']){const value=paint(current,prop);if(value&&value!=='none')retained.push({key,prop,value});}}
+          if(locked.has(key)){if(!currentKeys){currentKeys=new Map();for(const el of editedSvg(id,vi).querySelectorAll('[data-key]')){const k=el.getAttribute('data-key');if(!currentKeys.has(k))currentKeys.set(k,el);}}const current=currentKeys.get(key);for(const prop of ['fill','stroke']){const value=paint(current,prop);if(value&&value!=='none')retained.push({key,prop,value});}}
           else resetKeys.push(key);
         }
         entries.push({id,vi,info,resetKeys,retained});continue;
@@ -2893,7 +2910,7 @@ if (typeof document !== 'undefined') (async () => {
       const targets=targetObjects(id,vi,svg,'all');
       const targetKeys=new Set(targets.map(el=>el.getAttribute('data-key')));
       const allColors=paletteSourceColors(base,elementScope?[...base.querySelectorAll('[data-key]')].filter(el=>targetKeys.has(el.getAttribute('data-key'))):keysToObjects(base),elementScope);
-      const channels=[];for(const el of targets){if(el.localName==='image')continue;const key=el.getAttribute('data-key'),originalEl=base.querySelector(`[data-key="${key}"]`);if(!originalEl||!elementScope&&paletteFixedDecoration(originalEl,base))continue;for(const prop of ['fill','stroke']){const index=allColors.indexOf(hex(paint(originalEl,prop)));if(index>=0)channels.push({key,prop,index});}}
+      const channels=[];for(const el of targets){if(el.localName==='image')continue;const key=el.getAttribute('data-key'),originalEl=baseKeys.get(key);if(!originalEl||!elementScope&&paletteFixedDecoration(originalEl,base))continue;for(const prop of ['fill','stroke']){const index=allColors.indexOf(hex(paint(originalEl,prop)));if(index>=0)channels.push({key,prop,index});}}
       entries.push({id,vi,allColors,channels});
     }
     return {saved,scope,panelId:selectedPanel,entries};
@@ -2922,8 +2939,10 @@ if (typeof document !== 'undefined') (async () => {
     const cancel=()=>{if(timer!==null){clearTimeout(timer);timer=null;}if(paletteHoverCancel===leave)paletteHoverCancel=null;};
     const leave=()=>{const active=timer!==null||previewed;inside=false;cancel();previewed=false;return active;};
     card.onmouseenter=()=>{
-      inside=true;cancel();if(JSON.stringify(next)===JSON.stringify(state()))return;
-      paletteHoverCancel=leave;timer=setTimeout(()=>{timer=null;if(!inside||activePane!=='palette'||card.isConnected===false||state()!==baseState)return;previewed=true;renderCanvas(next);say(T('预览 ')+T(scheme.name)+T(' · 点击应用，移开还原'));},100);
+      inside=true;cancel();const owner=state(),identity=typeof visualPreviewIdentity==='function'?visualPreviewIdentity():null,scope=$('scope')?.value;
+      // Cards may retain their SVG after an appearance-neutral change such as DPI.
+      // Build hover state from the current committed owner, never the card's old closure.
+      paletteHoverCancel=leave;timer=setTimeout(()=>{timer=null;const now=identity?visualPreviewIdentity():null;if(!inside||activePane!=='palette'||card.isConnected===false||state()!==owner||$('scope')?.value!==scope||identity&&identity.some((value,i)=>value!==now[i]))return;const candidate=paletteState(scheme.colors,scheme);if(JSON.stringify(candidate)===JSON.stringify(owner)){cancel();return;}previewed=true;renderCanvas(candidate);say(T('预览 ')+T(scheme.name)+T(' · 点击应用，移开还原'));},100);
     };
     card.onpointerdown=event=>{if(!event.button)cancel();};
     card.onmouseleave=()=>{const restore=previewed;leave();if(restore){renderCanvas();say(T('已返回当前编辑版'));}};
@@ -3069,7 +3088,7 @@ if (typeof document !== 'undefined') (async () => {
   let axisPending=null,axisRequest=0,axisBusy=false,axisTimer=null;
   let professionalAxesUI=null,professionalAxisSelection=null,professionalAxesLanguage='',professionalAxisDraft=null;
   let legacyAxisDraft=null,legacyAxisSerial=0;
-  const legacyAxisCancelled=new WeakSet(),legacyAxisCompleted=new WeakMap();
+  const legacyAxisCancelled=new WeakSet(),legacyAxisCompleted=new WeakMap(),legacyAxisComposing=new WeakSet(),legacyAxisCompositionEnded=new WeakSet(),legacyAxisCompositionBlurred=new WeakSet();
   function axisControlsInfo(source=panel(selectedPanel)){
     if(source.axis_controls)return source.axis_controls;
     const view=source.recipe?.family==='gallery'?source.recipe.parameters?.view:'',category=categoricalAxisViews.has(view),numeric=numericAxisViews.has(view),xOnly=['compare_cleveland','compare_ridgeline'].includes(view),supported=category||numeric||xOnly;
@@ -3145,7 +3164,7 @@ if (typeof document !== 'undefined') (async () => {
     }});}catch(error){legacyAxisDraft=null;throw error;}return draft;
   }
   function updateLegacyAxisDraft(read=axisSettingsFromControls,input=null,immediate=false){
-    if(original||input?.isConnected===false||legacyAxisDraft?.committing)return false;
+    if(original||input?.isConnected===false||legacyAxisDraft?.committing||legacyAxisInputs().some(node=>legacyAxisComposing.has(node)))return false;
     if(legacyAxisDraft&&!legacyAxisDraft.current()){legacyAxisDraft.box.session.invalidate('context-changed');return false;}
     let settings,error;try{settings=read();}catch(e){error=e;}const snapshot=legacyAxisInputs().map(node=>[node,node.value]);
     let draft;try{draft=beginLegacyAxisDraft();}catch(e){$('axisControlStatus').textContent=e.message;return false;}
@@ -3157,16 +3176,20 @@ if (typeof document !== 'undefined') (async () => {
     if(immediate)draft.run();else draft.timer=setTimeout(draft.run,250);return true;
   }
   function finishLegacyAxisDraft(input=null,read=axisSettingsFromControls){
+    if(legacyAxisInputs().some(node=>legacyAxisComposing.has(node)))return Promise.resolve(false);
     if(input&&(legacyAxisCancelled.has(input)||legacyAxisCompleted.has(input)&&legacyAxisCompleted.get(input)===input.value))return Promise.resolve(false);
     if(legacyAxisDraft?.committing)return legacyAxisDraft.commitPromise;
     if(!updateLegacyAxisDraft(read,input,true))return Promise.resolve(false);const draft=legacyAxisDraft;draft.committing=true;for(const node of draft.inputs)node.disabled=true;
     draft.commitPromise=(async()=>{try{if(draft.pending&&!await draft.pending)return false;if(!draft.current()||draft.invalid)return false;const ok=await draft.box.session.commit();if(ok)$('axisControlStatus').textContent=professionalAxisText('坐标轴设置已应用。','Axis settings applied.');return ok;}catch(error){if(legacyAxisDraft===draft)$('axisControlStatus').textContent=error.message;return false;}finally{if(legacyAxisDraft===draft){draft.committing=false;for(const node of draft.inputs)if(node.isConnected)node.disabled=false;}}})();return draft.commitPromise;
   }
   function bindLegacyAxisInput(input,read=axisSettingsFromControls){
-    input.oninput=event=>{if(event.isComposing)return;for(const node of legacyAxisInputs()){legacyAxisCancelled.delete(node);legacyAxisCompleted.delete(node);}updateLegacyAxisDraft(read,input);};
-    input.onchange=()=>finishLegacyAxisDraft(input,read);input.onblur=()=>{if(legacyAxisDraft)finishLegacyAxisDraft(input,read);};
-    input.onkeydown=event=>{if(event.isComposing)return;if(event.key==='Enter'){event.preventDefault();finishLegacyAxisDraft(input,read);}else if(event.key==='Escape'){event.preventDefault();legacyAxisDraft?.box.session.cancel('escape');}};
-    input.addEventListener('compositionend',input.oninput);
+    let owner=null;const identity=()=>[project,state(),selectedPanel,panel(selectedPanel),dataSerial],blocked=event=>event?.isComposing||event?.keyCode===229||legacyAxisComposing.has(input);
+    input.oninput=event=>{if(blocked(event))return;for(const node of legacyAxisInputs()){legacyAxisCancelled.delete(node);legacyAxisCompleted.delete(node);}updateLegacyAxisDraft(read,input);};
+    input.onchange=event=>{if(blocked(event)||legacyAxisCompositionEnded.has(input)&&document.activeElement===input)return;return finishLegacyAxisDraft(input,read);};input.onblur=event=>{if(blocked(event)){legacyAxisCompositionBlurred.add(input);return;}legacyAxisCompositionEnded.delete(input);if(legacyAxisDraft)finishLegacyAxisDraft(input,read);};
+    input.onpointerdown=()=>legacyAxisCompositionEnded.delete(input);
+    input.onkeydown=event=>{if(blocked(event))return;legacyAxisCompositionEnded.delete(input);if(event.key==='Enter'){event.preventDefault();finishLegacyAxisDraft(input,read);}else if(event.key==='Escape'){event.preventDefault();legacyAxisDraft?.box.session.cancel('escape');}};
+    input.addEventListener('compositionstart',()=>{owner=identity();legacyAxisComposing.add(input);legacyAxisCompositionEnded.delete(input);legacyAxisCompositionBlurred.delete(input);});
+    input.addEventListener('compositionend',event=>{legacyAxisComposing.delete(input);legacyAxisCompositionEnded.add(input);const current=identity(),blurred=legacyAxisCompositionBlurred.has(input);legacyAxisCompositionBlurred.delete(input);if(owner&&(owner.length!==current.length||owner.some((value,i)=>!Object.is(value,current[i]))))return;input.oninput(event);if(blurred&&document.activeElement!==input)finishLegacyAxisDraft(input,read);});
   }
   for(const id of Object.keys(axisInputMap)){const input=$(id);input.type='text';input.inputMode='decimal';bindLegacyAxisInput(input);}
   bindLegacyAxisInput($('firstGroupGapSlider'),()=>{$('firstGroupGap').value=$('firstGroupGapSlider').value;return axisSettingsFromControls();});
@@ -3425,7 +3448,7 @@ if (typeof document !== 'undefined') (async () => {
           if(reason!=='commit'){const input=$(preview.property==='color'?'quickColor':'quickFontSize');quickCancelledInputs.add(input);input.removeAttribute('aria-invalid');if(document.activeElement===input)input.blur();}
           if(preview.fullRendered&&preview.restoreCanvas){previewPaintDepth++;try{renderCanvas();}finally{previewPaintDepth--;}}
           if(reason!=='commit')renderQuickToolbar();},
-        commit:next=>{const label=T(property==='color'?'已更新所选对象颜色':'已更新所选文字字号'),ok=property==='color'&&preview.paint&&!preview.fullRendered?commitPaintState(next,label,preview.paint,()=>paintQuickColour(preview,next)):commitPreviewState(next,label);if(ok&&property==='color')rememberColor(preview.value);return ok;},
+        commit:next=>{const label=T(property==='color'?'已更新所选对象颜色':'已更新所选文字字号'),ok=property==='color'&&preview.paint&&!preview.fullRendered?commitPaintState(next,label,preview.paint,()=>paintQuickColour(preview,next),true):commitPreviewState(next,label);if(ok&&property==='color')rememberColor(preview.value);return ok;},
         equal:(a,b)=>JSON.stringify(a)===JSON.stringify(b)
       });
       // Replacing another tool restores the committed canvas and may replace
@@ -3584,7 +3607,7 @@ if (typeof document !== 'undefined') (async () => {
     $('quickAlignAction').onchange=()=>{const mode=$('quickAlignAction').value;$('quickAlignAction').value='';alignSelectedObjects(mode);};
     if(typeof StudioAlignmentIcons!=='undefined')alignmentIcons=StudioAlignmentIcons.create({document,t:T});
     for(const [id,action]of [['quickBold','bold'],['quickItalic','italic'],['quickSuperscript','super'],['quickSubscript','sub']]){$(id).onpointerdown=captureQuickCharacters;$(id).onclick=()=>formatQuickCharacters(action);}
-    for(const [id,property]of [['quickFontSize','font-size'],['quickColor','color']]){const input=$(id);input.oninput=()=>{quickCancelledInputs.delete(input);previewQuickStyle(property,input.value);};input.onchange=()=>{if(!quickCancelledInputs.has(input))commitQuickStyle(property,input.value);};input.onblur=()=>{if(!quickCancelledInputs.has(input)&&quickPreview?.property===property){if(quickPreview.base===state())commitQuickStyle(property,input.value);else cancelQuickPreview(false);}};input.onkeydown=event=>{if(event.key==='Enter'){event.preventDefault();commitQuickStyle(property,input.value);}else if(event.key==='Escape'){event.preventDefault();quickCancelledInputs.add(input);cancelQuickPreview();renderQuickToolbar();input.blur();}};}
+    const quickComposing=new WeakSet(),quickCompositionEnded=new WeakSet(),quickCompositionBlurred=new WeakSet();for(const [id,property]of [['quickFontSize','font-size'],['quickColor','color']]){const input=$(id);let owner=null;const identity=()=>typeof visualPreviewIdentity==='function'?visualPreviewIdentity():[project,state(),...quickSelectedObjects().flatMap(item=>[item.kind,item.id,item.vi,item.key])],blocked=event=>event?.isComposing||event?.keyCode===229||quickComposing.has(input);input.oninput=event=>{if(blocked(event))return;quickCancelledInputs.delete(input);previewQuickStyle(property,input.value);};input.onchange=event=>{if(blocked(event)||quickCompositionEnded.has(input)&&document.activeElement===input)return;if(!quickCancelledInputs.has(input))commitQuickStyle(property,input.value);};input.onblur=event=>{if(blocked(event)){quickCompositionBlurred.add(input);return;}quickCompositionEnded.delete(input);if(!quickCancelledInputs.has(input)&&quickPreview?.property===property){if(quickPreview.base===state())commitQuickStyle(property,input.value);else cancelQuickPreview(false);}};input.onpointerdown=()=>quickCompositionEnded.delete(input);input.onkeydown=event=>{if(blocked(event))return;quickCompositionEnded.delete(input);if(event.key==='Enter'){event.preventDefault();commitQuickStyle(property,input.value);}else if(event.key==='Escape'){event.preventDefault();quickCancelledInputs.add(input);cancelQuickPreview();renderQuickToolbar();input.blur();}};input.addEventListener('compositionstart',()=>{owner=identity();quickComposing.add(input);quickCompositionEnded.delete(input);quickCompositionBlurred.delete(input);});input.addEventListener('compositionend',event=>{quickComposing.delete(input);quickCompositionEnded.add(input);const current=identity(),blurred=quickCompositionBlurred.has(input);quickCompositionBlurred.delete(input);if(owner&&(owner.length!==current.length||owner.some((value,i)=>!Object.is(value,current[i]))))return;quickCancelledInputs.delete(input);const valid=previewQuickStyle(property,input.value);if(blurred&&document.activeElement!==input&&valid)commitQuickStyle(property,input.value);});}
     $('quickDelete').onclick=()=>{cancelQuickPreview();if(selectedAlignmentGuide)deleteAlignmentGuide();else deleteSelectedObjects();};
   }
   // Layer UI uses the same selection and lock commands as the canvas.
@@ -3733,10 +3756,14 @@ if (typeof document !== 'undefined') (async () => {
   }
   function renderInspectorPreviews() {
     if(!['explore','palette'].includes(activePane))return;
-    const s=state(),source=panel(selectedPanel),upgrade=project.statisticalRenders?.[selectedPanel+'/'+s.panels[selectedPanel].variant],signature=JSON.stringify([selectedPanel,StudioI18n.language,$('scope').value,$('chartGoal').value,$('topCount').value,selectionGroups(),selectedAnnotations,selectedPanelLabel,s.panels[selectedPanel],s.typography,s.columns,s.grid?.rows,s.grid?.places?.[selectedPanel],source.analysis,project.heatmapRenders?.[selectedPanel+'/'+s.panels[selectedPanel].variant]?.sha256]),cached=inspectorPreviewCache[activePane];
-    if(cached?.project===project&&cached.signature===signature&&cached.variants===source.variants&&cached.upgrade===upgrade)return;
+    const s=state(),source=panel(selectedPanel),key=selectedPanel+'/'+s.panels[selectedPanel].variant,upgrade=project.statisticalRenders?.[key],heatmap=project.heatmapRenders?.[key],layoutRender=project.layoutRenders?.[key],context=JSON.stringify([selectedPanel,StudioI18n.language,$('scope').value,$('chartGoal').value,$('topCount').value,selectionGroups(),selectedAnnotations,selectedPanelLabel]),cached=inspectorPreviewCache[activePane],variant=source.variants[s.panels[selectedPanel].variant],refs=[source,source.variants,source.analysis,variant?.svg,upgrade,upgrade?.svg,heatmap,heatmap?.svg,heatmap?.sha256,layoutRender,layoutRender?.svg,typeof compactFontEpoch==='number'?compactFontEpoch:0],sameResources=cached?.refs?.every((value,i)=>value===refs[i]);
+    // Committed states are immutable. Repeated property refreshes need not serialize
+    // thousands of unchanged artist edits merely to discover the same cache entry.
+    if(cached?.project===project&&cached.state===s&&cached.context===context&&sameResources)return;
+    const signature=JSON.stringify([context,s.panels[selectedPanel],s.typography,s.columns,s.grid?.rows,s.grid?.places?.[selectedPanel],source.analysis,heatmap?.sha256]);
+    if(cached?.project===project&&cached.signature===signature&&sameResources){cached.state=s;cached.context=context;return;}
     if(activePane==='explore')renderChartChoices();else drawPalettes();
-    inspectorPreviewCache[activePane]={state:s,project,signature,variants:source.variants,upgrade};
+    inspectorPreviewCache[activePane]={state:s,project,signature,context,refs};
   }
   let categorySpacingGesture=null,categorySpacingFrame=0,categorySpacingCache=null;
   function categorySpacingFactor(p,info){return info?.barGeometry?p?.geometry?.groupGap??1:p?.groupSpacing?.factor??1;}
@@ -4235,7 +4262,7 @@ if (typeof document !== 'undefined') (async () => {
       else{const id=node.closest('[data-panel]').dataset.panel,p=state().panels[id],keys=p.elementGroups?.[p.variant]?.find(group=>group.includes(node.dataset.key))||[node.dataset.key];setElementSelection([{id,vi:p.variant,keys}]);$('scope').value='element';activePane='detail';}
       e.preventDefault();e.stopImmediatePropagation();suppressClick=true;finishSelectionUI();say(T('已轮选遮挡元素；继续 Ctrl / Command + 点击可切换'));return true;
     };
-    svg.onpointerdown=e=>{cancelQueuedZoom();if(e.button!==0||original)return;e.preventDefault();window.getSelection()?.removeAllRanges();if(chooseBehind(e))return;const guideTarget=e.target.closest('[data-alignment-guide]');if(guideTarget){selectedAlignmentGuide=guideTarget.dataset.alignmentGuide;selected=[];elementSelections=[];selectedAnnotations=[];selectedPanelLabel=null;const guide=state().alignmentGuides.find(item=>item.id===selectedAlignmentGuide);guideDrag={id:guide.id,axis:guide.axis,position:guide.position,screen:{x:e.clientX,y:e.clientY},moved:false,next:copy(state())};drawAlignmentGuides();renderAlignmentGuideControls();drawSelection([]);svg.setPointerCapture(e.pointerId);return;}selectedAlignmentGuide=null;drawAlignmentGuides();renderAlignmentGuideControls();const moveHandle=e.target.closest('[data-panel-move]'),mark=e.target.closest('[data-annotation]');if(mark&&!layoutMode&&(!boxSelect||selectedAnnotations.includes(mark.dataset.annotation))&&(!e.shiftKey||selectedAnnotations.includes(mark.dataset.annotation)||e.target.closest('[data-overlay-resize]'))){const id=mark.dataset.annotation;if(!selectedAnnotations.includes(id)){selectedAnnotations=[id];selected=[];elementSelections=[];selectedPanelLabel=null;}activePane='annotation';renderOverlayProperties();document.querySelectorAll('[data-pane]').forEach(el=>el.hidden=el.getAttribute('data-pane')!=='annotation'&&!['statisticalAnnotations','conditionMatrixControls'].includes(el.id));(mark.querySelector('[data-inset-content]')?svg:e.target.closest('text')||svg).setPointerCapture(e.pointerId);const a=state().overlays.find(a=>a.id===id);if(!a.locked){overlayDrag={screen:{x:e.clientX,y:e.clientY},moved:false,clearOnTap:selectionAfterMarquee&&!e.shiftKey,point:canvasPoint(e),resize:!!e.target.closest('[data-overlay-resize]'),endpoint:+(e.target.closest('[data-overlay-resize]')?.dataset.overlayEndpoint||0),id,base:state(),next:null};if(!overlayDrag.resize){overlayDrag.nodes=selectedDragItems(false);overlayDrag.overlayIds=selectedAnnotations.filter(id=>!state().overlays.find(a=>a.id===id)?.locked);svg.classList.add('is-dragging-object');}}return;}const target=e.target.closest('[data-panel-label]');if(target&&!layoutMode&&(!boxSelect||selectedLabelIds().includes(target.getAttribute('data-panel-label')))&&(!e.shiftKey||selectedLabelIds().includes(target.getAttribute('data-panel-label')))){const id=target.getAttribute('data-panel-label');if(state().panels[id].locked)return say(T('小图已锁定'));if(state().panels[id].label?.locked)return say(T('元素已锁定'));if(selectedLabelIds().includes(id)&&(selectionGroups().length||selectedAnnotations.length||selectedLabelIds().length>1)){elementDrag={moved:false,newSelection:false,appendOnTap:true,point:canvasPoint(e),id:selectedPanel,vi:state().panels[selectedPanel].variant,base:state(),next:null,nodes:selectedDragItems(false),overlayIds:[...selectedAnnotations],screen:{x:e.clientX,y:e.clientY}};svg.classList.add('is-dragging-object');target.setPointerCapture(e.pointerId);return;}selectedPanel=id;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];panelSelection=[id];setLabelSelection([id]);labelDrag={id,point:{x:e.clientX,y:e.clientY},start:{...state().panels[id].label},preview:captureLabelMotion(target),alignment:alignmentContext([target]),moved:false,clearOnTap:selectionAfterMarquee&&!e.shiftKey};svg.classList.add('is-dragging-object');target.setPointerCapture(e.pointerId);return;}if(!layoutMode&&!moveHandle){const el=canvasObjectTarget(e.target),pan=e.target.closest('[data-panel]');let newSelection=false;if(!boxSelect&&!e.shiftKey&&!selectionAfterMarquee&&el&&isVisibleObject(el)&&el.localName!=='tspan'&&pan&&!state().panels[pan.dataset.panel].locked&&!state().panels[pan.dataset.panel].lockedElements?.[state().panels[pan.dataset.panel].variant]?.includes(el.dataset.key)&&!selectionGroups().some(group=>group.id===pan.dataset.panel&&group.keys.includes(el.dataset.key))){setElementSelection([{id:pan.dataset.panel,vi:state().panels[pan.dataset.panel].variant,keys:state().panels[pan.dataset.panel].elementGroups?.[state().panels[pan.dataset.panel].variant]?.find(group=>group.includes(el.dataset.key))||[el.dataset.key]}]);selectedAnnotations=[];selectedPanelLabel=null;activePane='detail';$('scope').value='element';newSelection=true;finishSelectionUI();}if((!e.shiftKey||!boxSelect)&&el&&pan&&selectionGroups().some(group=>group.id===pan.dataset.panel&&group.keys.includes(el.dataset.key))){
+    svg.onpointerdown=e=>{cancelQueuedZoom();if(e.button!==0||original)return;e.preventDefault();window.getSelection()?.removeAllRanges();if(chooseBehind(e))return;const guideTarget=e.target.closest('[data-alignment-guide]');if(guideTarget){selectedAlignmentGuide=guideTarget.dataset.alignmentGuide;selected=[];elementSelections=[];selectedAnnotations=[];selectedPanelLabel=null;const guide=state().alignmentGuides.find(item=>item.id===selectedAlignmentGuide);guideDrag={id:guide.id,axis:guide.axis,position:guide.position,screen:{x:e.clientX,y:e.clientY},moved:false,next:copy(state())};drawAlignmentGuides();renderAlignmentGuideControls();drawSelection([]);svg.setPointerCapture(e.pointerId);return;}if(selectedAlignmentGuide!==null){selectedAlignmentGuide=null;drawAlignmentGuides();renderAlignmentGuideControls();}const moveHandle=e.target.closest('[data-panel-move]'),mark=e.target.closest('[data-annotation]');if(mark&&!layoutMode&&(!boxSelect||selectedAnnotations.includes(mark.dataset.annotation))&&(!e.shiftKey||selectedAnnotations.includes(mark.dataset.annotation)||e.target.closest('[data-overlay-resize]'))){const id=mark.dataset.annotation;if(!selectedAnnotations.includes(id)){selectedAnnotations=[id];selected=[];elementSelections=[];selectedPanelLabel=null;}activePane='annotation';renderOverlayProperties();document.querySelectorAll('[data-pane]').forEach(el=>el.hidden=el.getAttribute('data-pane')!=='annotation'&&!['statisticalAnnotations','conditionMatrixControls'].includes(el.id));(mark.querySelector('[data-inset-content]')?svg:e.target.closest('text')||svg).setPointerCapture(e.pointerId);const a=state().overlays.find(a=>a.id===id);if(!a.locked){overlayDrag={screen:{x:e.clientX,y:e.clientY},moved:false,clearOnTap:selectionAfterMarquee&&!e.shiftKey,point:canvasPoint(e),resize:!!e.target.closest('[data-overlay-resize]'),endpoint:+(e.target.closest('[data-overlay-resize]')?.dataset.overlayEndpoint||0),id,base:state(),next:null};if(!overlayDrag.resize){overlayDrag.nodes=selectedDragItems(false);overlayDrag.overlayIds=selectedAnnotations.filter(id=>!state().overlays.find(a=>a.id===id)?.locked);svg.classList.add('is-dragging-object');}}return;}const target=e.target.closest('[data-panel-label]');if(target&&!layoutMode&&(!boxSelect||selectedLabelIds().includes(target.getAttribute('data-panel-label')))&&(!e.shiftKey||selectedLabelIds().includes(target.getAttribute('data-panel-label')))){const id=target.getAttribute('data-panel-label');if(state().panels[id].locked)return say(T('小图已锁定'));if(state().panels[id].label?.locked)return say(T('元素已锁定'));if(selectedLabelIds().includes(id)&&(selectionGroups().length||selectedAnnotations.length||selectedLabelIds().length>1)){elementDrag={moved:false,newSelection:false,appendOnTap:true,point:canvasPoint(e),id:selectedPanel,vi:state().panels[selectedPanel].variant,base:state(),next:null,nodes:selectedDragItems(false),overlayIds:[...selectedAnnotations],screen:{x:e.clientX,y:e.clientY}};svg.classList.add('is-dragging-object');target.setPointerCapture(e.pointerId);return;}selectedPanel=id;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];panelSelection=[id];setLabelSelection([id]);labelDrag={id,point:{x:e.clientX,y:e.clientY},start:{...state().panels[id].label},preview:captureLabelMotion(target),alignment:alignmentContext([target]),moved:false,clearOnTap:selectionAfterMarquee&&!e.shiftKey};svg.classList.add('is-dragging-object');target.setPointerCapture(e.pointerId);return;}if(!layoutMode&&!moveHandle){const el=canvasObjectTarget(e.target),pan=e.target.closest('[data-panel]');let newSelection=false;if(!boxSelect&&!e.shiftKey&&!selectionAfterMarquee&&el&&isVisibleObject(el)&&el.localName!=='tspan'&&pan&&!state().panels[pan.dataset.panel].locked&&!state().panels[pan.dataset.panel].lockedElements?.[state().panels[pan.dataset.panel].variant]?.includes(el.dataset.key)&&!selectionGroups().some(group=>group.id===pan.dataset.panel&&group.keys.includes(el.dataset.key))){setElementSelection([{id:pan.dataset.panel,vi:state().panels[pan.dataset.panel].variant,keys:state().panels[pan.dataset.panel].elementGroups?.[state().panels[pan.dataset.panel].variant]?.find(group=>group.includes(el.dataset.key))||[el.dataset.key]}]);selectedAnnotations=[];selectedPanelLabel=null;activePane='detail';$('scope').value='element';newSelection=true;finishSelectionUI();}if((!e.shiftKey||!boxSelect)&&el&&pan&&selectionGroups().some(group=>group.id===pan.dataset.panel&&group.keys.includes(el.dataset.key))){
         const p=state().panels[pan.dataset.panel];if(p.locked)return say(T('小图已锁定'));const nodes=selectedDragItems(false);if(!nodes.length)return say(T('元素已锁定'));const overlayIds=selectedAnnotations.filter(id=>!state().overlays.find(a=>a.id===id)?.locked);
         elementDrag={moved:false,newSelection,paintedSelection:newSelection?[...visualPreviewIdentity(),StudioI18n.language]:null,appendOnTap:e.shiftKey,point:canvasPoint(e),id:selectedPanel,vi:p.variant,keys:nodes.map(item=>item.key),base:state(),next:null,nodes,overlayIds,screen:{x:e.clientX,y:e.clientY}};svg.classList.add('is-dragging-object');(e.target.closest('text')||svg).setPointerCapture(e.pointerId);e.preventDefault();return;
       }beginMarquee(e,e.target.closest('text')||svg);return;}e.preventDefault();const handle=e.target.closest('[data-resize]');const id=moveHandle?.dataset.panelMove||handle?.getAttribute('data-resize-panel')||e.target.closest('[data-panel]')?.dataset.panel||at(destination(e));if(id&&state().panels[id].locked){say(T('小图已锁定'));return;}if(id&&e.shiftKey){panelSelection=panelSelection.includes(id)?panelSelection.filter(x=>x!==id):[...panelSelection,id];selectedPanel=id;render();return;}if(id){selectedPanel=id;selected=[];elementSelections=[];selectedAnnotations=[];selectedPanelLabel=null;panelSelection=[id];$('scope').value='panel';svg.setPointerCapture(e.pointerId);if(handle){resizeDrag={id,edge:handle.getAttribute('data-resize'),place:copy(gridFor(state()).places[id])};}else{dragging=id;panelDrag={x:e.clientX,y:e.clientY,moved:false};}}};
@@ -4541,8 +4568,8 @@ if (typeof document !== 'undefined') (async () => {
   bindStatisticalLineControls();bindComponentStyle();
   bindCompactWhitespaceControls();
   function syncColorControls(){
-    const value=$('color').value.toUpperCase();$('colorHex').value=value;
-    for(const b of document.querySelectorAll('.color-swatches button'))b.setAttribute('aria-pressed',String(b.title===value));
+    const value=$('color').value.toUpperCase(),input=$('colorHex');if(input.value!==value)input.value=value;
+    for(const b of document.querySelectorAll('.color-swatches button')){const pressed=String(b.title===value);if(b.getAttribute('aria-pressed')!==pressed)b.setAttribute('aria-pressed',pressed);}
   }
   function rememberColor(value){
     let recent=[];try{recent=JSON.parse(localStorage.getItem('figure-studio:recent-colors')||'[]');}catch{}

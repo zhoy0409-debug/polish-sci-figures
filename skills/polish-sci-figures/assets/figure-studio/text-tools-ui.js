@@ -40,6 +40,8 @@ const StudioTextToolsUI = (() => {
       renderSpacingStatus();
     }
     let preview=null,spacingSession=null,eyeTargets=null,destroyed=false;
+    const composing=new Map(),compositionEnded=new WeakSet();
+    const inComposition=event=>!!event?.isComposing||event?.keyCode===229||composing.has(event?.target);
     const options=item=>adapter.captureOptions?.(item)||{pointFactor:item.pointFactor||1};
     const valid=(item,role='target')=>!!item&&!(role==='target'&&item.locked)&&!item.disabled&&!item.original&&adapter.valid?.(item,role)!==false;
     const selected=()=>adapter.selected?.()||[];
@@ -55,7 +57,7 @@ const StudioTextToolsUI = (() => {
       const message=state==='invalid'?spacingCopy('输入尚未完成或超出范围；保留上次有效预览，修正后可应用。','The value is incomplete or outside the allowed range. The last valid preview is kept; correct the value to apply.'):state==='committing'?spacingCopy('正在应用文字间距。','Applying text spacing.'):state==='error'?session.error:spacingCopy('预览中，尚未应用。Enter 或移开焦点保留，Esc 取消。','Preview only, not applied. Press Enter or leave the field to keep it; Esc cancels.');if(spacingStatus.textContent!==message)spacingStatus.textContent=message;
     }
     function dropSpacingPreview(session){session.preview?.finish(false);session.preview=null;if(spacingSession===session)preview=null;}
-    function clearSpacingSession(session){dropSpacingPreview(session);if(spacingSession!==session)return;spacingSession=null;for(const input of [letter,line])input.setAttribute('aria-invalid','false');renderSpacingStatus();}
+    function clearSpacingSession(session){dropSpacingPreview(session);if(spacingSession!==session)return;spacingSession=null;composing.clear();for(const input of [letter,line]){compositionEnded.delete(input);input.setAttribute('aria-invalid','false');}renderSpacingStatus();}
     function cancelPreview(reason='cancelled'){
       const session=spacingSession;if(!session)return false;
       if(!session.managed?.cancel(reason))clearSpacingSession(session);return true;
@@ -96,7 +98,7 @@ const StudioTextToolsUI = (() => {
       if(session.invalid.size&&session.managed){session.managed.flush();session.managed.reject(spacingCopy('输入尚未完成或超出范围。','The value is incomplete or outside the allowed range.'));}renderSpacingStatus();return ok;
     }
     function commitSpacing(){
-      if(!spacingSession)return false;const session=spacingSession;if(session.committing)return false;if(!validSpacingSession(session)){cancelPreview('context-changed');return false;}
+      if(!spacingSession||composing.size)return false;const session=spacingSession;if(session.committing)return false;if(!validSpacingSession(session)){cancelPreview('context-changed');return false;}
       // An unfinished field is a draft, not permission to commit its previous
       // valid value. Keep both the input and the last successful board preview.
       if(session.invalid.size){renderSpacingStatus();return false;}
@@ -105,8 +107,13 @@ const StudioTextToolsUI = (() => {
     }
     function leaveSpacing(){if(!commitSpacing()&&spacingSession&&!spacingSession.committing)cancelPreview('tool-changed');}
     for(const input of [letter,line]){
-      input.addEventListener('input',()=>updateSpacing(input));input.addEventListener('change',commitSpacing);input.addEventListener('blur',commitSpacing);
-      input.addEventListener('keydown',event=>{event.stopPropagation();if(event.key==='Enter'){event.preventDefault();commitSpacing();input.blur();}else if(event.key==='Escape'){event.preventDefault();cancelPreview();sync();input.blur();}});
+      input.addEventListener('compositionstart',()=>{if(beginSpacing())composing.set(input,{session:spacingSession,blurred:false});});
+      input.addEventListener('compositionend',()=>{const pending=composing.get(input);composing.delete(input);if(!pending||destroyed||spacingSession!==pending.session||!validSpacingSession(pending.session))return;updateSpacing(input);compositionEnded.add(input);if(pending.blurred){compositionEnded.delete(input);commitSpacing();}});
+      input.addEventListener('input',event=>{if(!inComposition(event))updateSpacing(input);});
+      input.addEventListener('change',event=>{if(!inComposition(event)&&!(compositionEnded.has(input)&&doc.activeElement===input))commitSpacing();});
+      input.addEventListener('blur',()=>{const pending=composing.get(input);if(pending){pending.blurred=true;return;}compositionEnded.delete(input);commitSpacing();});
+      input.addEventListener('pointerdown',()=>compositionEnded.delete(input));
+      input.addEventListener('keydown',event=>{event.stopPropagation();if(inComposition(event))return;compositionEnded.delete(input);if(event.key==='Enter'){event.preventDefault();commitSpacing();input.blur();}else if(event.key==='Escape'){event.preventDefault();cancelPreview();sync();input.blur();}});
     }
     spacingButton.addEventListener('click',()=>{const show=popover.hidden;if(!show)leaveSpacing();painterPopover.hidden=true;painterOptionsButton.setAttribute('aria-expanded','false');popover.hidden=!show;spacingButton.setAttribute('aria-expanded',String(show));if(show){sync();letter.focus();}});
     function armPainter(){const items=selected().filter(item=>isText(item)&&valid(item,'source'));if(items.length!==1||!painter.arm(items[0]))return false;announce(brushFields().length===Object.keys(painter.status().record).length?'已复制文字格式，请点击目标文字；Esc 取消。':'已复制可用的文字格式；不支持的样式将保留目标原样。');return true;}
@@ -132,7 +139,7 @@ const StudioTextToolsUI = (() => {
       if(adapter.apply(items,plans,t('已应用吸取的图形颜色'))!==false){eyeTargets=null;notify();sync();}return true;
     }
     function cancel(){const spacing=cancelPreview();const active=painter.cancel()||!!eyeTargets||spacing;eyeTargets=null;notify();sync();return active;}
-    function handleKey(event){if(event.key!=='Escape')return false;const active=!!preview||painter.status().active||!!eyeTargets||!popover.hidden||!painterPopover.hidden;if(!active)return false;event.preventDefault?.();cancel();popover.hidden=true;painterPopover.hidden=true;spacingButton.setAttribute('aria-expanded','false');painterOptionsButton.setAttribute('aria-expanded','false');return true;}
+    function handleKey(event){if(event.key!=='Escape'||inComposition(event))return false;const active=!!preview||painter.status().active||!!eyeTargets||!popover.hidden||!painterPopover.hidden;if(!active)return false;event.preventDefault?.();cancel();popover.hidden=true;painterPopover.hidden=true;spacingButton.setAttribute('aria-expanded','false');painterOptionsButton.setAttribute('aria-expanded','false');return true;}
     function sync(){
       if(destroyed)return;localize();if(spacingSession&&!spacingSession.committing&&!sameSelection(spacingSession.items))cancelPreview('context-changed');
       const items=writableTexts(),sources=selected().filter(item=>isText(item)&&valid(item,'source'));spacingButton.disabled=!items.length;painterButton.disabled=sources.length!==1&&!painter.status().active;eyeButton.disabled=!writableShapes().length&&!eyeTargets;

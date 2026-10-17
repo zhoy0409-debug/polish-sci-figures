@@ -59,6 +59,29 @@ def source_stage_identity(source_stage):
     return source_stage.replace('source', 'STAGE', 1) + '_RUNTIME_AND_PORTABLE_MATCH'
 
 
+def approved_ui_freeze(freeze_bytes, expected_freeze_sha256, expected_ui_assets):
+    """Bind a possibly expanded UI set to an explicitly approved exact freeze."""
+    require(isinstance(expected_freeze_sha256, str) and re.fullmatch(r'[0-9a-f]{64}', expected_freeze_sha256),
+            'An explicitly approved freeze SHA-256 is required')
+    require(digest(freeze_bytes) == expected_freeze_sha256, 'Freeze bytes differ from the explicitly approved SHA-256')
+    require(type(expected_ui_assets) is int and 1 <= expected_ui_assets <= 512,
+            'An explicitly approved bounded UI asset count is required')
+    freeze = json.loads(freeze_bytes.decode('utf-8'))
+    require(isinstance(freeze.get('assets'), dict) and len(freeze['assets']) == expected_ui_assets,
+            'UI asset count differs from the explicitly approved exact count')
+    names = set()
+    for relative, sha in freeze['assets'].items():
+        require(isinstance(relative, str), 'Invalid frozen UI asset name')
+        name = PurePosixPath(relative)
+        require(not name.is_absolute() and '..' not in name.parts and ':' not in relative and '\\' not in relative
+                and '\0' not in relative and str(name) == relative and relative,
+                'Invalid frozen UI asset relative path')
+        require(relative.casefold() not in names, 'Duplicate case-insensitive frozen UI asset path')
+        require(isinstance(sha, str) and re.fullmatch(r'[0-9a-f]{64}', sha), 'Invalid frozen UI asset SHA-256')
+        names.add(relative.casefold())
+    return freeze
+
+
 def backend_package_boundary(frozen_backend, compiled_by_source, release_included):
     """Distinguish the 27-source freeze from the 23-module release boundary."""
     require(len(frozen_backend) == 27, 'The source freeze must contain 27 backend sources')
@@ -86,13 +109,15 @@ def backend_package_boundary(frozen_backend, compiled_by_source, release_include
             'files': files}
 
 
-def verify(package, freeze_path, preflight_path, expected_doc_snapshots=(), *, source_stage='source09'):
+def verify(package, freeze_path, preflight_path, expected_doc_snapshots=(), *, source_stage='source09',
+           expected_freeze_sha256=None, expected_ui_assets=None):
+    status = source_stage_identity(source_stage)
+    freeze_bytes = freeze_path.read_bytes()
+    freeze = approved_ui_freeze(freeze_bytes, expected_freeze_sha256, expected_ui_assets)
     from PyInstaller.archive.readers import CArchiveReader
 
-    status = source_stage_identity(source_stage)
     app = package / 'Figure Studio'
     suite = app / '_internal' / 'suite'
-    freeze = json.loads(freeze_path.read_text(encoding='utf-8'))
     frozen_backend = freeze['backend']
     require(len(frozen_backend) == 27, 'The source freeze must contain 27 backend modules')
     backend_root = ROOT / 'skills/polish-sci-figures/scripts'
@@ -117,7 +142,6 @@ def verify(package, freeze_path, preflight_path, expected_doc_snapshots=(), *, s
 
     assets = []
     asset_root = suite / 'skills/polish-sci-figures/assets/figure-studio'
-    require(len(freeze['assets']) == 78, 'The final freeze must contain 78 UI assets')
     for relative, sha in sorted(freeze['assets'].items()):
         name = PurePosixPath(relative)
         require(not name.is_absolute() and '..' not in name.parts, 'Invalid asset relative path')
@@ -231,13 +255,15 @@ def verify(package, freeze_path, preflight_path, expected_doc_snapshots=(), *, s
         'verification': 'Read-only offline artifact verification. No install, extraction, app execution, registry changes or browser.',
         'artifacts': artifacts, 'checksumsFileSha256': digest(sums_path.read_bytes()),
         'sourceFreezeManifestSha256': digest(freeze_path.read_bytes()), 'sourceFreezeHtmlSha256': freeze['htmlSha256'],
+        'freezeApproval': {'approvedManifestSha256': expected_freeze_sha256, 'approvedUiAssetCount': expected_ui_assets,
+                           'freezeBytesExact': True, 'assetCountExact': True},
         'sourceBackend': source_backend,
         'uiAssets': {'status': 'PASS', 'count': len(assets), 'fileSetExact': True, 'files': assets},
         'suiteCodeObjects': {'status': 'PASS', 'mappedModules': len(compiled), 'unmappedThirdPartyLicenseBytecode': third_party, 'newRenderStatisticsModuleVerified': True, 'comparison': 'marshal.loads(actual PYC payload) == compile(current source bytes, actual.co_filename, exec, dont_inherit=True, optimize=0); never marshal.dumps byte equality', 'files': compiled},
         'suiteData': {'status': 'MATCH_EXCEPT_EXPLICIT_DOCUMENT_SNAPSHOT' if document_snapshots else 'PASS', 'releaseDataFilesMatched': data_count, 'documentSnapshotDifferences': document_snapshots, 'desktopResourcesMatched': 2, 'rootQuickstartsMatched': 2, 'unexpectedNonThirdPartyFiles': 0, 'allowlist': 'Current build_release.release_files plus desktop starter/icon, root quickstart copies and generated build metadata/notices; dependency notices remain under THIRD-PARTY-LICENSES.'},
         'nativeExecutable': {**executable_record, 'status': 'PASS', 'preflightExecutableExact': True, 'preflightEvidenceSha256': digest(preflight_path.read_bytes()), 'modules': natives},
         'portableTree': {'status': 'PASS', 'applicationFiles': len(tree), 'streamedZipFiles': len(zip_records), 'fileSetExact': True, 'allSizesExact': True, 'allStreamSha256Exact': True, 'canonicalRelativeManifestSha256': manifest_hash(tree), 'unsafePaths': 0, 'symlinks': 0, 'developmentCachePaths': 0},
-        'scope': 'Setup/Portable hash and size, all 78 frozen UI assets, all mapped suite code objects, canonical release-data allowlist, two actual native executable modules and every portable file. This does not substitute for installation, frozen self-test, update transport, or real editor acceptance.',
+        'scope': 'Setup/Portable hash and size, the explicitly approved exact frozen UI asset set, all mapped suite code objects, canonical release-data allowlist, two actual native executable modules and every portable file. This does not substitute for installation, frozen self-test, update transport, or real editor acceptance.',
     }
 
 
@@ -245,13 +271,16 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--package', type=Path, required=True)
     parser.add_argument('--freeze', type=Path, required=True)
+    parser.add_argument('--expected-freeze-sha256', required=True, help='Explicitly approved SHA-256 of the complete source freeze manifest bytes.')
+    parser.add_argument('--expected-ui-assets', type=int, required=True, help='Explicitly approved exact UI asset count; never a minimum or inferred historical count.')
     parser.add_argument('--preflight', type=Path, required=True)
     parser.add_argument('--source-stage', default='source09', help='Explicit bounded evidence label, e.g. source16; does not imply installation acceptance.')
     parser.add_argument('--expected-doc-snapshot', action='append', default=[], help='Explicit relative docs/*.md build-time snapshot permitted to differ; both hashes are reported.')
     parser.add_argument('--out', type=Path, required=True)
     args = parser.parse_args()
     require(not args.out.exists(), 'Refusing to overwrite a verification report')
-    result = verify(args.package, args.freeze, args.preflight, args.expected_doc_snapshot, source_stage=args.source_stage)
+    result = verify(args.package, args.freeze, args.preflight, args.expected_doc_snapshot, source_stage=args.source_stage,
+                    expected_freeze_sha256=args.expected_freeze_sha256, expected_ui_assets=args.expected_ui_assets)
     # Whitelist output above intentionally omits local source/packaging paths.
     text = json.dumps(result, ensure_ascii=False, indent=2) + '\n'
     require('C:\\' not in text and 'C:/' not in text and '\\Users\\' not in text, 'Unsafe machine path in public output')

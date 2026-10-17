@@ -265,14 +265,21 @@ jobs:
           node scripts/test_studio_selection_lookup.cjs
           node scripts/test_studio_preview_sessions.cjs
           node scripts/test_studio_field_preview.cjs
+          node scripts/test_studio_host_ime.cjs
+          node scripts/test_studio_component_ime.cjs
+          node scripts/test_studio_commit_preview_efficiency.cjs
+          node scripts/test_studio_palette_cache.cjs
+          node scripts/test_studio_human_ime_contract.cjs
           node scripts/test_studio_discovery_install.cjs
           node scripts/test_studio_resource_preview.cjs
           node scripts/test_studio_resource_preview_harness.cjs
           node scripts/test_verify_studio_served_html.cjs
           node scripts/test_studio_pane_reuse.cjs
           node scripts/test_studio_selection_click_reuse.cjs
+          node scripts/test_studio_selection_refresh_efficiency.cjs
           node scripts/test_studio_pane_zoom.cjs
           node scripts/test_studio_installed_acceptance_contract.cjs
+          node scripts/test_studio_installed_manifest_contract.cjs
           node scripts/test_studio_installed_browser_identity.cjs
           node scripts/test_studio_duplicate_network_capture.cjs
           node scripts/test_studio_large_import_contracts.cjs

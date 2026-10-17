@@ -1,6 +1,8 @@
 # 实时预览安装版的隔离验收方案
 
-本方案规定如何在不改变用户正在运行的 Figure Studio、原有安装登记和研究数据的条件下，验收本地 0.1.22 安装包。source17 已实际冻结、完成正式性能测量，原 Setup／Portable 已构建，原 Setup 已安装并完成实际浏览器功能验收。最终生命周期结果见[汇总](../docs/qa/live-preview/windows-final17-acceptance-summary.json)；本文件保留执行方案，不用计划代替完成证据。09 阶段曾完成安装工程检查并正规卸载，该结果不计为最终安装验收。用户已要求暂停发布；安装测试使用本地候选，不需要也不创建 GitHub Release。
+本方案规定如何在不改变用户正在运行的 Figure Studio、原有安装登记和研究数据的条件下，验收 0.1.22 安装包。当前 source20 包待构建与实际安装验收，真实官方 0.1.20 → 0.1.22 更新待目标发布。source17 原 Setup 的完整结果见[历史汇总](../docs/qa/live-preview/windows-final17-acceptance-summary.json)。source19 原包虽通过 8 套件 108 项，因已确认的轴输入缺陷被替代；其[部分记录](../docs/qa/live-preview/windows-final19-partial-installed-summary.json)与[未完成阶段的正规清理](../docs/qa/live-preview/windows-final19-incomplete-cleanup-summary.json)不算最终验收。本文件保留方案，不用计划代替完成证据。
+
+source20 已通过 [95 个组件脚本](../docs/qa/live-preview/source20-component-regressions.json)、[双主题 10 项真实 Iris 轴流程](../docs/qa/live-preview/source20-axis-composition-browser.json)、[25 组轴输入合同和旧回归](../docs/qa/live-preview/source20-axis-composition-fix-regressions.json)，[正式性能四阶段对照](../docs/qa/live-preview/performance-v2-final20-vs17-18-19.json)和[独立四面板](../docs/qa/live-preview/four-panel-style-final20-diagnostic.json)已完成，包含改善及退步。source18 人工微软拼音 6 项、F2／失焦、Undo／Redo、保存重开及 SVG／PNG 保留原证据，原表和源图精确一致，见[实际输入法记录](../docs/windows-native-ime-acceptance.md)。[source20 代码范围](../docs/qa/live-preview/source20-ime-change-scope.json)排除已改的轴模块，不冒称新安装版重复人工 IME；浏览器轴组合事件明确为合成，实际键盘、渲染和文件操作分别核对。
 
 ## 安装前的保护基线
 

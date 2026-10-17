@@ -6,11 +6,12 @@ They do not substitute for actual artifact code-object comparisons.
 from pathlib import Path
 import copy
 import hashlib
+import json
 import unittest
 
 from verify_studio_windows_package_source import (
     BACKEND_PREFIX, NOT_PACKAGED_BACKEND_TESTS, backend_package_boundary,
-    source_stage_identity,
+    source_stage_identity, approved_ui_freeze,
 )
 
 
@@ -88,6 +89,46 @@ class BackendPackageBoundaryTests(unittest.TestCase):
         for invalid in (None, 'source17/../../private', 'source17 final', 'source1000', 'https://token'):
             with self.subTest(value=invalid), self.assertRaises(ValueError):
                 source_stage_identity(invalid)
+
+
+class ApprovedUiFreezeTests(unittest.TestCase):
+    def manifest(self, count):
+        value = {'assets': {f'asset-{i}.js': hashlib.sha256(str(i).encode()).hexdigest() for i in range(count)}}
+        raw = json.dumps(value).encode()
+        return value, raw, hashlib.sha256(raw).hexdigest()
+
+    def test_old_and_expanded_ui_counts_need_their_own_exact_approval(self):
+        for count in (78, 79, 82):
+            with self.subTest(count=count):
+                value, raw, sha = self.manifest(count)
+                self.assertEqual(approved_ui_freeze(raw, sha, count), value)
+
+    def test_asset_count_is_exact_not_a_minimum(self):
+        _, raw, sha = self.manifest(79)
+        for count in (78, 80):
+            with self.subTest(count=count), self.assertRaisesRegex(ValueError, 'exact count'):
+                approved_ui_freeze(raw, sha, count)
+
+    def test_missing_wrong_or_changed_manifest_hash_is_rejected(self):
+        _, raw, sha = self.manifest(78)
+        for wrong in (None, '0' * 64, 'not-a-hash'):
+            with self.subTest(sha=wrong), self.assertRaises(ValueError):
+                approved_ui_freeze(raw, wrong, 78)
+        with self.assertRaisesRegex(ValueError, 'Freeze bytes differ'):
+            approved_ui_freeze(raw + b'\n', sha, 78)
+
+    def test_no_implicit_or_boolean_count_approval(self):
+        _, raw, sha = self.manifest(78)
+        for wrong in (None, True, '78', 0, 513):
+            with self.subTest(count=wrong), self.assertRaises(ValueError):
+                approved_ui_freeze(raw, sha, wrong)
+
+    def test_invalid_or_case_duplicate_relative_names_are_rejected(self):
+        for keys in ({'../private.js': '0' * 64}, {'C:/private.js': '0' * 64},
+                     {'nested\\bad.js': '0' * 64}, {'A.js': '0' * 64, 'a.js': '0' * 64}):
+            raw = json.dumps({'assets': keys}).encode()
+            with self.subTest(keys=list(keys)), self.assertRaises(ValueError):
+                approved_ui_freeze(raw, hashlib.sha256(raw).hexdigest(), len(keys))
 
 
 if __name__ == '__main__':

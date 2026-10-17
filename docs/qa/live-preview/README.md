@@ -1,6 +1,38 @@
 # 实时预览验收记录
 
-本轮实际安装版各独立流程、原 Setup 生命周期、成品哈希及尚未验证范围见[最终本地汇总](windows-final17-acceptance-summary.json)。当前候选按用户要求暂不发布；早期阶段文件保持原始字节和当时状态。
+当前打包源码为 source20：源码组件、轴专项和正式性能已完成，新 Windows 包尚未构建或实际安装验收；真实官方 0.1.20 → 0.1.22 更新待正式目标发布。source19 已被已知轴输入缺陷替代，历史部分安装记录保留；source17 的完整安装、生命周期与成品哈希见[历史汇总](windows-final17-acceptance-summary.json)。所有旧 JSON 保持原始字节，不改写为 source20 结果。
+
+| source20 已完成范围 | 当前证据 |
+|---|---|
+| 95／95 组件 | [91 Node 与 4 Chrome、来源和日志](source20-component-regressions.json) |
+| 轴输入红绿合同 | [最终 25／25 与 9 项旧回归](source20-axis-composition-fix-regressions.json)；原版实际 23 组 13 过／10 败，中间版增加 2 组后 23 过／2 败，保留原失败 |
+| 双主题真实 Iris 轴 | [10 项实际重绘／普通键盘／Apply／一次 Undo／新空白后 Open／SVG](source20-axis-composition-browser.json)；组合及尾事件为 synthetic DOM，不是原生 IME；实际截图 [Carbon](source20-axis-carbon.png)／[Pearl](source20-axis-pearl.png) |
+| 唯一正式性能 | [184 动作、全部八行四指标](performance-v2-final20-summary.json)与[17／18／19 对照](performance-v2-final20-vs17-18-19.json)；5000 选择 next／second-rAF P95 78.6／154.7 ms，改色 123.1／195.4 ms，完整八卡第二 rAF P95 610.7 ms。不得用 source19 更快尾部替代 |
+| 独立四面板 | [23 手势完整性与 trace](four-panel-style-final20-diagnostic.json)；输入第二 rAF P50／P95 33.8／37.7 ms、Enter 70.6／82.4 ms，未声称所有指标改善 |
+| 人工 IME 边界 | source18 的 6 项真实检查继续绑定原阶段；[source20 代码范围](source20-ime-change-scope.json)确认相关 host 处理器及文字／inset 两模块未变，轴模块已改，不主张重复原生 IME |
+| Windows 新包 | 尚未构建和验收；[source19 部分安装 108 项](windows-final19-partial-installed-summary.json)及[未完成清理](windows-final19-incomplete-cleanup-summary.json)不算 source20 通过 |
+
+相对官方 0.1.20／0.1.21，5000 选择第二 rAF P95 358.2／332.9 → 154.7 ms，改色 451.8／520.2 → 195.4 ms；仅这两个核心操作的四指标 P50／P95 均改善。全部负载、内部阶段退步和测量边界见[性能报告](../../stable-performance-validation.md)。
+
+| source19 历史范围（已替代） | 阶段证据 |
+|---|---|
+| 95／95 组件脚本 | [91 Node 与 4 Chrome、全部来源及日志哈希](source19-component-regressions.json) |
+| 双主题 14 项真实流程 | [选择、参考线、锁定、HEX、Undo 和完整八卡](source19-selection-refresh-browser.json)；功能流程不代替正式性能 |
+| 唯一正式性能 | [全部 184 动作及四种指标](performance-v2-final19-summary.json)、[source17／18／19 全部八行对照](performance-v2-final19-vs17-18.json)；5000 选择 next／second-rAF P95 为 81.9／157.6 ms，完整八卡第二 rAF P95 607.6 ms 仍慢 |
+| 独立四面板 | [3 次预热与 20 次正式手势](four-panel-style-final19-diagnostic.json)；输入第二 rAF P50／P95 为 27.2／32.7 ms，Enter 为 51.3／58.6 ms |
+| 人工 IME 来源 | 沿用下述 source18 的 6 项真实人工证据；source19 不冒称重复人工或新安装版原生操作 |
+| 静态界面复核 | [Carbon](source19-selection-carbon.png)、[Pearl](source19-selection-pearl.png)与[来源审查](source19-selection-screens-review.json)；5000 图元为合成负载截图，不是性能录像 |
+
+以下保留 source18 的阶段事实：真实草稿渲染、规范最终校验、完整八卡和组合态保护；94 个组件脚本（90 Node、4 Chrome）与人工微软拼音 6 项检查通过。正式性能及四面板诊断的改善与退步同时保留，随后据定向诊断形成 source19 三行优化，未改写旧批次。
+
+| source18 历史范围 | 阶段证据 |
+|---|---|
+| 94／94 组件脚本 | [脚本、来源与日志哈希](source18-component-regressions.json)；纯 Node 和 Chrome 组件结果分开计数 |
+| 人工微软拼音 6 项 | [实际检查](source18-human-ime-summary.json)、[823 条事件和操作](source18-human-ime-events.json)、[媒体来源](source18-human-ime-media.json)及[说明](../../windows-native-ime-acceptance.md)；包含最终 F2／失焦、Undo／Redo、保存重开和真实 SVG／PNG，原表与源 SVG 精确一致 |
+| 唯一正式性能批次 | [全部 184 动作](performance-v2-final18-summary.json)与[source17 对照](performance-v2-final18-vs17.json)；5000 改色第二 rAF P95 198.7 → 121.9 ms，但选择 169.3 → 226.4 ms、细节到色板 611.1 → 632.9 ms |
+| 独立四面板 | [原样保留的诊断](four-panel-style-final18-diagnostic.json)；Enter 第二 rAF P95 144.1 → 110.3 ms，但 P50 79.9 → 99.8 ms，不称全面达标 |
+
+这些新文件各自绑定 source18 与真实运行哈希。source17 JSON、trace 与媒体保持原样，不改写为新测量；人工源码操作不代表新安装版验收。原始事件中的异常及未覆盖的原生输入范围见独立人工报告，不因后续检查通过而删除。
 
 本目录按冻结版本和实际测试条件分别保存证据。`before-workflow-summary.json` 是 0.1.21 冻结可执行 runtime 的原始行为观察；它不是新安装测试。`p0-dev-pilot-01-summary.json` 是首轮开发版 6 项通过；`p0-dev-pilot-02-extended-summary.json` 是第二轮开发版新增 3 项的最新结果，同时列出先前失败。不同 HTML 哈希的结果不合并为一次完整验收。
 
@@ -56,7 +88,7 @@ node scripts/test_studio_resource_preview_browser.cjs --url=http://127.0.0.1:POR
 
 实际 IDB 结构化克隆保留 3 个 own `undefined` 派生缓存键，JSON Save 会省略它们；专项比较仅允许这 3 个缺失且 `undefined` 的键（`layoutRenders`、`heatmapRenders`、`statisticalRenders`），其余科学值、源 SVG、state、history、checkpoints、dataDrafts 均严格比较，不做整体 JSON 归一化。`test_studio_resource_preview_harness.cjs` 另检查未知键、已定义缓存、负零、源图与历史改变仍被拒绝。资源公共摘要可用 `summarize_studio_resource_preview_browser.cjs --input=RAW/resource-preview.json --out=NEW-SUMMARY.json` 重跑，要求完整四条件、同一捕获 harness、全部通过及零外部请求；不会把单条件 pilot 汇总为完整通过。
 
-安装版运行需要独立的安装器 SHA、完整安装文件清单和进程路径证明；仅把 `kind` 写成安装版不能证明已安装。安装与清理流程见 `audit/live-preview-windows-qa-plan.md`。本轮专用 `verify_live_preview_windows.ps1` 要求 PowerShell 7.5 或以上：读取原 JSON 状态使用 `ConvertFrom-Json -DateKind String` 保留进程创建时间的原始 ISO 字符串，并核对 PID、创建时间、路径及 EXE 哈希。Windows PowerShell 5.1 不满足此 QA 脚本前提。每次尝试使用全新的 QaRoot；阶段失败后的正规卸载另记为清理，不能改写成完整验收通过。用户当前要求暂停发布，本地安装验收不代表创建新版 Release。
+安装版运行需要独立的安装器 SHA、完整安装文件清单和进程路径证明；仅把 `kind` 写成安装版不能证明已安装。安装与清理流程见[隔离验收方案](../../../audit/live-preview-windows-qa-plan.md)。本轮专用 `verify_live_preview_windows.ps1` 要求 PowerShell 7.5 或以上：读取原 JSON 状态使用 `ConvertFrom-Json -DateKind String` 保留进程创建时间的原始 ISO 字符串，并核对 PID、创建时间、路径及 EXE 哈希。Windows PowerShell 5.1 不满足此 QA 脚本前提。每次尝试使用全新的 QaRoot；阶段失败后的正规卸载另记为清理，不能改写成完整验收通过。用户已授权通过剩余验收后发布，当前未发布；本地安装验收不代表创建新版 Release。
 
 ## 结果解释
 
@@ -64,7 +96,7 @@ node scripts/test_studio_resource_preview_browser.cjs --url=http://127.0.0.1:POR
 
 Save／导出草稿测试使用真实 DOM 按钮激活，测试端不额外合成 pointer、Tab、blur 或 focus。真实下载仍可能自然改变焦点，因此另记焦点观察，以实际历史、工程和导出断言判断隔离；不能只凭一次保存下载推断后续完全未提交。一般控件的真实失焦提交仍按原交互合同验证。导出菜单主动转移焦点，因此有效普通 HEX 会在导出回调前保留；不想保留时先按 Esc。带明确 Apply 的工具草稿不会因此自动应用。
 
-真实异步测试只延迟本机后端已有响应，不伪造图形。浏览器可能已中止旧网络请求，因此它与“producer 忽略 AbortSignal”单元分支分别说明。视口与固定 DPR 不等于 Windows 真实系统缩放；真实触控、中文输入法及无辅助新用户完成率须另行实测。性能基准由独立无录屏脚本负责，功能验收耗时不能代替输入到可见像素的延迟指标。
+真实异步测试只延迟本机后端已有响应，不伪造图形。浏览器可能已中止旧网络请求，因此它与“producer 忽略 AbortSignal”单元分支分别说明。视口与固定 DPR 不等于 Windows 真实系统缩放；真实触控及无辅助新用户完成率须另行实测。中文输入法按上述人工记录限定范围，合成 composition 事件和纯 Node 合同不计为原生通过。性能基准由独立无录屏脚本负责，功能验收耗时不能代替输入到可见像素的延迟指标。
 
 最终 Setup／Portable 构建后保持字节不变。包内文档为构建时快照；后续真实安装验收和两处按钮名说明补正随单独的 Public-QA 与源码包交付，本目录及外部最新指南为验收结论依据。外部报告包含安装包本身的哈希，不反向嵌入该安装包造成自引用。
 

@@ -1,0 +1,102 @@
+{
+  "schema": "figure-studio-public-source19-selection-refresh/1",
+  "status": "PASS_FUNCTIONAL_NOT_PERFORMANCE",
+  "rawSha256": "3c4736de8872dfc6f2a2924f5cbcfefec995d24f8a459a34a220c973826a1c76",
+  "harnessSha256": "7b040abbba7fcb6407f9ef58874d6a931350cf63220a00cd7c6320221389f663",
+  "htmlSha256": "4091e5b2f75e3a3b6e332736ae789da60e88a888559ee839402b06697730fba5",
+  "browser": "155.0.8059.82",
+  "checksTotal": 14,
+  "runCount": 1,
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "deviceScaleFactor": 1,
+  "themes": [
+    {
+      "theme": "carbon",
+      "status": "PASS",
+      "checks": [
+        "ordinary-object-selection-without-guide-keeps-source-state-history",
+        "selected-guide-to-object-clears-editor-selection-and-preserves-guide-geometry",
+        "genuine-guide-mouse-selection-and-subsequent-object-selection-work",
+        "locked-object-cannot-write-selection-history-and-one-undo-redo-retains-source",
+        "valid-HEX-preview-is-uncommitted-and-Escape-restores-exact-original",
+        "uppercase-and-lowercase-HEX-Enter-keep-one-undo-redo-and-correct-swatch-state",
+        "all-eight-complete-cards-export-guide-isolation-and-final-source-exact"
+      ],
+      "fixtureSha256": "4d9b950601b3b95092251649c9d5d00f65a79f31a93b1fc9743d551d55928bd1",
+      "sourceProjectSha256": "12d5cd4e9e96ee8d5ff5b7895e68bde27d9ddefec3c81e24c43de2d2630fff39",
+      "paletteCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "paletteCountsAfterColour": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "exportSvgSha256": "2825ec0511e3725be64476edc10aa5c05b6d7f043be36d3916142ef545e744de",
+      "screenshotSha256": "c3abfcf6ac06eaed9078c258fbf63aa7a2460a2e47a7f1ea1ca69974ced644c0",
+      "remoteRequests": 0,
+      "pageErrors": 0
+    },
+    {
+      "theme": "pearl",
+      "status": "PASS",
+      "checks": [
+        "ordinary-object-selection-without-guide-keeps-source-state-history",
+        "selected-guide-to-object-clears-editor-selection-and-preserves-guide-geometry",
+        "genuine-guide-mouse-selection-and-subsequent-object-selection-work",
+        "locked-object-cannot-write-selection-history-and-one-undo-redo-retains-source",
+        "valid-HEX-preview-is-uncommitted-and-Escape-restores-exact-original",
+        "uppercase-and-lowercase-HEX-Enter-keep-one-undo-redo-and-correct-swatch-state",
+        "all-eight-complete-cards-export-guide-isolation-and-final-source-exact"
+      ],
+      "fixtureSha256": "4d9b950601b3b95092251649c9d5d00f65a79f31a93b1fc9743d551d55928bd1",
+      "sourceProjectSha256": "90c7da9fa2974dc8ac03b5cbfddd5e2c090e59c89b47fc1487ab5a69750bb7ac",
+      "paletteCounts": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "paletteCountsAfterColour": [
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
+      ],
+      "exportSvgSha256": "2825ec0511e3725be64476edc10aa5c05b6d7f043be36d3916142ef545e744de",
+      "screenshotSha256": "569d897e572918babd05c3126d30ab4757394de40d61c7aa9cfd73174541f0f4",
+      "remoteRequests": 0,
+      "pageErrors": 0
+    }
+  ],
+  "scope": "Two themes, actual Chrome inputs and mouse actions, one complete5000-object synthetic engineering fixture per theme. No native IME simulation, algorithm-accuracy or performance-budget claim.",
+  "startedAt": "2026-10-17T19:47:15.789Z",
+  "finishedAt": "2026-10-17T19:48:01.465Z",
+  "limitations": [
+    "Source-stage actual Chrome functional acceptance, separate from95 component scripts, native human IME and formal184-action performance capture.",
+    "Synthetic5000-object vector fixture; not biological independence, scientific algorithm accuracy or arbitrary-file coverage."
+  ]
+}

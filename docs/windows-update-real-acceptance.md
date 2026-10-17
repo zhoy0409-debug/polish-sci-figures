@@ -1,6 +1,6 @@
 # Real Windows update acceptance
 
-Studio 0.1.22 status: the new official-version update flow has not been executed. Publication is on hold at the user's request, so there is no published target for this acceptance. Local original-Setup installation, reinstall and uninstall are recorded separately; neither those checks nor historical 0.1.20 → 0.1.21 evidence counts as the new official update. No release offer, package progress or install result is fabricated.
+Studio 0.1.22 status: the new official-version update flow has not been executed. The user has authorized stable publication after the remaining IME, performance and regression acceptance; no new stable target is published yet. Local original-Setup installation, reinstall and uninstall are recorded separately; neither those checks nor historical 0.1.20 → 0.1.21 evidence counts as the new official update. The official update will be tested against the actual published target, without fabricated offers, progress or installation results.
 
 This operator workflow verifies an actual installed client's official download, package validation, backup, installer handoff and same-origin project restoration. It does not replace the user's normal installation. Use a disposable Windows account or the explicitly registered repository `.cache` QA installation and a separate child `LOCALAPPDATA` profile prepared by the operator.
 

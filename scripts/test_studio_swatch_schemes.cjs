@@ -52,7 +52,7 @@ const categorical=[{key:'e1',fill:'#3f6da3',stroke:'none'},{key:'e2',fill:'#c957
 const continuous=Array.from({length:8},(_,i)=>({key:'e'+(i+10),fill:'#'+(0x254f90+i*0x070501).toString(16),stroke:'none'}));
 const assets={A:categorical,B:continuous};
 const chart={order:['A','B'],panels:{A:{variant:0,edits:{}},B:{variant:0,edits:{}}}};
-const svg=id=>({objects:assets[id],querySelector:selector=>selector.includes('studio-heat-value-')?null:selector.includes('studio-series-colors')?(assets[id].seriesColors?{textContent:JSON.stringify(assets[id].seriesColors)}:null):assets[id].find(el=>el.key===selector.match(/"([^"]+)"/)[1])});
+const svg=id=>({objects:assets[id],querySelectorAll:selector=>selector==='[data-key]'?assets[id]:[],querySelector:selector=>selector.includes('studio-heat-value-')?null:selector.includes('studio-series-colors')?(assets[id].seriesColors?{textContent:JSON.stringify(assets[id].seriesColors)}:null):assets[id].find(el=>el.key===selector.match(/"([^"]+)"/)[1])});
 for(const item of [...categorical,...continuous])item.getAttribute=key=>key==='data-key'?item.key:null;
 const reducer={paletteDeclaredColors,$:()=>({value:'all'}),copy:x=>JSON.parse(JSON.stringify(x)),state:()=>chart,selectedPanel:'A',panel:()=>({variants:[{}]}),
   editedSvg:id=>svg(id),baseSvg:id=>svg(id),targetObjects:(id,vi,root)=>root.objects,keysToObjects:root=>root.objects,

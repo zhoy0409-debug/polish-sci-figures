@@ -1,7 +1,7 @@
 # Changelog
 
 
-## v1.4.22 — local candidate; publication on hold
+## v1.4.22 · Figure Studio 0.1.22
 
 - Add reversible real-canvas drafts, explicit commit/cancel and shared async invalidation. Dock object borders, image display and linked-detail tools beside the canvas; retain their existing geometry, filters, calibration and matching engines.
 - Separate native/imported axis preview from durable application. Reuse canonical asset migration and rendering in isolated shadow resources; preserve source observations and reject unsupported scientific settings.
@@ -19,14 +19,17 @@
 - Narrow small-selection lookups before visibility/lock checks; retain full enumeration for whole-panel and same-colour actions. Use reversible paint patches for eligible plain colours and canonical fallback for semantic charts.
 - Preserve all eight real palette previews while avoiding unnecessary ID rewriting and layout work during sidebar switches.
 - Reuse the existing canvas for ordinary tab switches when no draft or gesture is active; preserve canonical fallback for temporary previews and cancel stale palette hovers. Avoid reading the inspector twice for one unchanged selection click.
+- Retain the real draft rendering during confirmation and avoid eligible duplicate work while keeping canonical final validation. Preserve all eight complete palette previews and protect input-method composition from accidental commit or cancellation.
+- Preserve the last valid numeric axis limit after rejected input-method text, trailing input/change events and a second cancelled candidate. Reject cross-field application until corrected; deliberate clearing still requests Automatic, and reset/cancel/context changes clear the input session. Keep aspect-lock geometry and scientific rendering unchanged.
+- Avoid redundant alignment-guide toolbar refreshes for ordinary object selection and repeated assignments of unchanged HEX and swatch state; retain real guide selection, locks and one-edit undo behaviour.
 - Keep the touch canvas interactive beside or above Adjustments. Reveal borders directly and reserve usable preview space on narrow screens with compact action rows and scrollable workflow navigation.
 - Add bounded local update-event audit with no project, path or credential fields; audit failures do not alter verification, backup or rollback decisions.
 - Strengthen real updater acceptance: original tables/SVG/state, committed autosave, actual downloaded package hashes, complete backup hashes, helper result and automatic restoration.
 - Use a separate v2 performance protocol with real tab directions and validated drag/Undo/Redo; preserve earlier measurements and their limitations.
 - Provide reviewed original-recording excerpts and a privacy-filtered timing trace with exact event order/timestamps; keep measured results and unperformed checks separate. See [actual demonstrations](docs/live-preview-demonstration.md).
-- Complete original-Setup local acceptance: P0 72, dual-theme P1 74, resource/discovery/scientific workflows, real 60-image worker cancellation, 10,000-object PDF/SVG round trips, same-version reinstall and uninstall with saved Iris data preserved. Keep earlier QA failures and official-update/physical-device limits in [the final record](docs/qa/live-preview/windows-final17-acceptance-summary.json). Publication remains on hold.
-- Target Suite v1.4.22 / Windows Studio 0.1.22; final artifact and publication status are recorded in [the acceptance report](docs/stable-performance-validation.md).
-- 本轮为本地候选，用户要求暂不发布。边框、坐标轴、图片显示与关联工具支持停留画布调整，复用稳定预览；科学计算保留真实异步结果。操作与验收边界见[使用说明](docs/live-preview-editing.zh-CN.md)和[实时预览报告](docs/live-preview-validation.md)。
+- Keep source and installed-package acceptance separate in the [validation record](docs/live-preview-validation.md), with original scientific data, versioned performance samples and retained failures. The [Windows IME record](docs/windows-native-ime-acceptance.md) documents manual candidate selection, F2/blur, Undo/Redo, save/reopen and real exports.
+- Suite v1.4.22 / Windows Studio 0.1.22 downloads: the [version-specific official release page](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22); package-specific evidence is recorded in [the acceptance report](docs/stable-performance-validation.md).
+- 0.1.22 的边框、坐标轴、图片显示与关联工具支持停留画布调整，复用稳定预览；科学计算保留真实异步结果。确认时保留真实草稿渲染，最终校验不变，并保留完整八卡色板、保护输入法组合态。操作与验收范围见[使用说明](docs/live-preview-editing.zh-CN.md)、[实时预览报告](docs/live-preview-validation.md)和[Windows 输入法记录](docs/windows-native-ime-acceptance.md)。
 
 ## v1.4.21 · Figure Studio 0.1.21 · Carbon Atelier and update companions
 

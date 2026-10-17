@@ -39,4 +39,5 @@ async function main(){
   console.log(`${failed?'FAIL':'PASS'} ${passed} visual field preview groups; ${failed} failed.`);process.exitCode=failed?1:0;
 }
 function docActive(f){return f.doc.activeElement;}
-main().catch(error=>{console.error(error);process.exitCode=1;});
+if(require.main===module)main().catch(error=>{console.error(error);process.exitCode=1;});
+module.exports={fixture};

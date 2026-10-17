@@ -1,8 +1,49 @@
 # 全局实时预览验收记录
 
-当前 source17 在 source16 的完整功能验收后，进一步减少普通侧栏切换的整图重建和一次新选择的重复属性读取；85 个组件脚本、双主题 14 项定向浏览器流程与唯一正式性能批次已完成。5000 图元选择／改色 next-rAF P95 为 94／91 ms，四项操作的全部指标均改善；小工程少量尾指标、八卡生成与确认后延迟仍有明确限制。原始 Setup 的 P0 72 项、双主题高频操作 74 项及主功能矩阵均通过；60 图后台任务期间编辑与取消、10,000 图元 PDF／SVG 导入、重装及卸载保留数据也已完成。[最终安装版汇总](qa/live-preview/windows-final17-acceptance-summary.json)绑定实际成品与各独立报告。下表严格区分各冻结版与安装版，不将不同阶段混称一次通过。用户已要求暂不发布；本轮未创建新版发行、合并远端分支或上传安装包。
+截至 2026-10-18，最终打包源码为 source20：95 个组件脚本（91 Node、4 Chrome）、双主题 10 项真实 Iris 轴流程、唯一正式性能及独立四面板诊断已完成。新增数值轴拒绝输入锁存，尾部事件和再次取消候选不会把既有范围误改为自动；数据与科学渲染不变。新 source20 Windows 包尚未构建或安装验收，当前未发布；真实官方 0.1.20 → 0.1.22 更新待正式目标发布后执行。
 
-## 当前已完成的实际范围
+source18 人工微软拼音已核对画布选词、候选 Esc／Enter 后继续换行并取消、无效 HEX 取消、F2／失焦确认、实际 Undo／Redo、保存／重开及 SVG／PNG 导出；Iris 150 条观测和源 SVG 保持精确一致。[Windows 输入法实际记录](windows-native-ime-acceptance.md)说明真实组合事件、人工确认与自动观察边界；F2 的发起由用户确认。source20 未重复人工 IME；[代码范围核对](qa/live-preview/source20-ime-change-scope.json)确认主编辑器相关处理器及文字间距、局部放大图两模块与 source18 精确一致，但专业轴模块已修改，不能称全部模块连续或新的原生 IME 实测。
+
+## source20 最终源码范围
+
+冻结清单 SHA-256 为 `6f63351be947e5415aff2b31515e34b24b3b4ec12c3e1e245ad82783f6c414fd`，HTML SHA-256 为 `8e8c76b6a84fa11502e4bfd4cd01538a5edb6994b6ecbc0f8efeb451da69999d`。以下均绑定 source20，不与此前阶段拼接为一次运行。
+
+| 范围 | 实际结果 | 证据 |
+|---|---|---|
+| 组件回归 | 95／95：91 Node、4 个独立真实 Chrome 组件脚本；所有来源与 harness 前后核对一致 | [完整组件记录](qa/live-preview/source20-component-regressions.json) |
+| 轴输入红绿回归 | 冻结 source19 实际 23 组为 13 过／10 败；最终 25 组在中间版为 23 过／2 败，补齐二次候选取消后 25／25，通过 9 项旧回归与 2 项语法检查；不虚构未执行的旧版 25 组结果 | [原失败、最终哈希及回归](qa/live-preview/source20-axis-composition-fix-regressions.json) |
+| 双主题真实轴流程 | Carbon／Pearl 共 10 项：真实 Iris 本机重绘、普通键盘修正和明确清空、Apply 一次 Undo／Redo、Save → 新空白工程 → Open、实际 SVG 导出；原始观测与源图保持。拒绝组合与尾事件为明确合成的 DOM 事件，不是原生 IME | [实际范围和请求](qa/live-preview/source20-axis-composition-browser.json) |
+| 正式性能 | 唯一 184 动作（160 正式、24 预热），原样保留。5000 选择 next／second-rAF P95 为 78.6／154.7 ms，改色为 123.1／195.4 ms；八卡 second-rAF P95 610.7 ms，未全面达标 | [全部八行、四指标](qa/live-preview/performance-v2-final20-summary.json)；[17／18／19 对照](qa/live-preview/performance-v2-final20-vs17-18-19.json) |
+| 独立四面板 | 3 次预热、20 次正式手势；输入第二 rAF P50／P95 为 33.8／37.7 ms，Enter 为 70.6／82.4 ms。全部草稿隔离、一次 Undo／Redo、源工程、零外部请求与页面错误检查通过 | [独立诊断](qa/live-preview/four-panel-style-final20-diagnostic.json) |
+| 新 Windows 包／官方更新 | source20 新包尚未构建或实际安装验收；官方更新需发布真实目标后验证 | 先前安装与 source18 人工结果不替代此项 |
+
+与官方 0.1.20／0.1.21 相比，5000 选择第二 rAF P95 从 358.2／332.9 ms 降至 154.7 ms，改色从 451.8／520.2 ms 降至 195.4 ms；仅这两个核心操作的四种指标 P50／P95 均改善。source19 内部阶段的改色尾部 123.7 ms 和四面板 Enter 58.6 ms 更快，source20 不用它们替代自己的结果；120 图元与八卡等完整比较见[性能记录](stable-performance-validation.md)。未测因果不归因于 GC 或环境。
+
+## source19 阶段记录（已由 source20 替代）
+
+冻结清单 SHA-256 为 `bf5299072f654e7ec01115b787cb2db9e6582566327afd086153532da98cc178`，HTML SHA-256 为 `4091e5b2f75e3a3b6e332736ae789da60e88a888559ee839402b06697730fba5`。以下范围不与 source17／18 拼接为一次运行。
+
+| 范围 | 实际结果 | 证据 |
+|---|---|---|
+| 组件回归 | 95／95：91 个纯 Node 与 4 个独立真实 Chrome 组件脚本；源码与 harness 前后哈希一致 | [完整记录](qa/live-preview/source19-component-regressions.json) |
+| 双主题定向浏览器 | Carbon／Pearl 共 14 项通过；普通选择、真实参考线、锁定、HEX 草稿／取消／一次 Undo 和完整八卡，源工程保持 | [实际 14 项](qa/live-preview/source19-selection-refresh-browser.json) |
+| 正式性能 | 唯一 184 动作：160 正式、24 预热。5000 选择 next／second-rAF P95 为 81.9／157.6 ms，改色为 68.2／123.7 ms；完整八卡 second-rAF P95 607.6 ms 仍有等待 | [全部行与指标](qa/live-preview/performance-v2-final19-summary.json)；[source17／18／19 对照](qa/live-preview/performance-v2-final19-vs17-18.json) |
+| 四面板 | 3 次预热、20 次正式手势；输入第二 rAF P50／P95 为 27.2／32.7 ms，Enter 为 51.3／58.6 ms；全部草稿、一次 Undo 和源工程断言通过 | [独立诊断](qa/live-preview/four-panel-style-final19-diagnostic.json) |
+| source19 安装阶段（已替代） | 实际原包 own 8 套件共 108 项通过，外部 P1／查重／大型导入未执行；独立发现轴输入缺陷后弃用，不能称最终验收通过。随后正规清理退出 0，自有进程 0、四登记视图空、1 个受保护原进程及 3 个外部文件保持 | [部分安装记录](qa/live-preview/windows-final19-partial-installed-summary.json)；[未完成阶段清理](qa/live-preview/windows-final19-incomplete-cleanup-summary.json) |
+
+## source18 已完成的阶段范围
+
+| 范围 | 实际结果 | 证据 |
+|---|---|---|
+| 组件回归 | 94／94：90 个纯 Node 脚本与 4 个独立真实 Chrome 组件脚本；源文件与 harness 前后哈希一致 | [完整组件记录](qa/live-preview/source18-component-regressions.json) |
+| 人工 Windows IME | 6／6 检查通过；823 条实际事件与操作清单、保留异常、保存重开与导出分别核对；页面错误与外部请求为 0。仅为源码 Edge 窗口的实际范围 | [6 项检查](qa/live-preview/source18-human-ime-summary.json)；[823 条事件](qa/live-preview/source18-human-ime-events.json)；[实际媒体](qa/live-preview/source18-human-ime-media.json) |
+| 正式性能 | 唯一 184 动作，含 160 正式样本与 24 次预热，全部保留；5000 改色 second-rAF P95 从 source17 的 198.7 ms 降至 121.9 ms，但选择从 169.3 ms 增至 226.4 ms，细节到色板从 611.1 ms 增至 632.9 ms | [完整批次](qa/live-preview/performance-v2-final18-summary.json)；[source17 对照](qa/live-preview/performance-v2-final18-vs17.json) |
+| 独立四面板 | 3 次预热与 20 次正式手势；Enter 第二 rAF P95 从 144.1 ms 降至 110.3 ms，但中位数从 79.9 ms 增至 99.8 ms，仍未全面达标 | [四面板诊断](qa/live-preview/four-panel-style-final18-diagnostic.json) |
+| 新 Windows 成品 | 尚未构建、安装或发布；不能将下述 source17 成品与功能结论改称 source18 通过 | 新成品须另绑定自己的实际来源与哈希 |
+
+以下为 source17 及更早冻结阶段的已完成记录。source17 在 source16 的完整功能验收后，进一步减少普通侧栏切换的整图重建和一次新选择的重复属性读取；85 个组件脚本、双主题 14 项定向浏览器流程与唯一正式性能批次已完成。5000 图元选择／改色 next-rAF P95 为 94／91 ms，四项操作的全部指标均改善；小工程少量尾指标、八卡生成与确认后延迟仍有明确限制。source17 原始 Setup 的 P0 72 项、双主题高频操作 74 项及主功能矩阵均通过；60 图后台任务期间编辑与取消、10,000 图元 PDF／SVG 导入、重装及卸载保留数据也已完成。[历史安装版汇总](qa/live-preview/windows-final17-acceptance-summary.json)绑定实际成品与各独立报告。下表严格区分各冻结版与安装版，不将 source17 的结果计为 source18 通过。
+
+## source17 及更早阶段已完成的实际范围
 
 | 冻结版本／范围 | 实际结果 | 证据 |
 |---|---|---|
@@ -95,9 +136,9 @@ fresh06 冻结后已运行 54 个 Node 回归脚本，全部退出码为 0；运
 
 ## 仍需完成或组织的验证
 
-- source17 的小工程少量尾指标、四面板确认后延迟及大图完整色板生成仍有优化空间，完整性能范围见独立报告。
+- source20 完整八卡 second-rAF P95 为 610.7 ms，5000 改色为 195.4 ms，四面板 Enter 为 82.4 ms；source19 对应的 607.6／123.7／58.6 ms 更快。官方旧版核心选择与改色改善不代表所有指标无回退或所有操作低于 100 ms。source20 新包待构建和安装验收，source17／18／19 原始记录独立保留。
 - Windows 验收在实际本机的隔离目录执行，未使用全新 Windows 虚拟机；四个原 AppId 登记视图初始为空，原用户应用始终受保护。触控仅为 Chrome 模拟，不能外推为实体设备或所有系统缩放组合已验收。
-- 新候选真实更新下载、校验、安装、重开与恢复。发布暂停期间不能假定存在一个尚未发布的官方目标版本。
-- 真实新手任务的独立完成率与时间、实体触控及本轮中文输入法操作；没有组织的测试明确保留待验证。
+- 真实官方 0.1.20 → 0.1.22 下载、校验、安装、重开与恢复待目标发布后执行，不能用历史更新或同版本重装替代。
+- 真实新手任务的独立完成率与时间、实体触控仍未验证；人工中文输入法的源码 6 项检查已完成，新安装版上的实际范围尚待核查，不外推为所有输入控件或设备通过。
 
 本报告随实际结果更新，最终交付以对应源码和安装包哈希为准。

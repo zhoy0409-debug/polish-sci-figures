@@ -1,0 +1,60 @@
+{
+  "schema": "figure-studio-source19-distribution-regressions/1",
+  "status": "PASS_AFTER_RETAINED_MARKDOWN_LINK_FAILURE",
+  "sourceStage": "source19",
+  "sourceManifestSha256": "bf5299072f654e7ec01115b787cb2db9e6582566327afd086153532da98cc178",
+  "releaseBuilderSha256": "00c53f6f63deaac6775e6610e364af4f576953a9635b93ddc36c76cb464f521c",
+  "firstAttempt": {
+    "script": "scripts/test_portable_skill.py",
+    "actualExitCode": 1,
+    "reason": "The extracted Skill CHANGELOG linked an omitted maintainer demonstration document. ROOT_FILES Markdown had not received the same canonical release-link conversion as README and SUPPORT_FILES.",
+    "rawLog": {
+      "file": ".cache/windows-next22-prep/source19-portable-skill-test.log",
+      "sha256": "a67b476ce2362086ce149136e775c0fb040534afdc4f86c787e2d2bbc0fc974a",
+      "sizeBytes": 1451
+    },
+    "retainedPackage": "The first Windows build was retained without installation or final acceptance. The second build includes the corrected canonical Markdown links."
+  },
+  "minimalCorrection": "Apply the existing omitted-local-link conversion to all shipped ROOT_FILES Markdown, preserving existing runtime and data bytes.",
+  "actualReruns": [
+    {
+      "script": "scripts/test_release_bundle.py",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/windows-next22-prep/source19-release-bundle-test-r2.log",
+        "sha256": "da01df44ff1f658ebc85b0d34b26b75d824ff35a0bd0257773976f72b784faa7",
+        "sizeBytes": 262
+      },
+      "checks": {
+        "templates": 192,
+        "galleryVariants": 17,
+        "legacyVariants": 6,
+        "extractedCli": true,
+        "bytecodeOnlyRuntime": true,
+        "replacementAndReflow": true,
+        "groupedSemanticViews": 2,
+        "localDuplicates": true,
+        "localImageLinks": true
+      }
+    },
+    {
+      "script": "scripts/test_portable_skill.py",
+      "actualExitCode": 0,
+      "rawLog": {
+        "file": ".cache/windows-next22-prep/source19-portable-skill-test-r2.log",
+        "sha256": "8564fff9cb36a969bb2c0b81197f5ff1e2f2008a84f18d6df8f2d5a9e023b99e",
+        "sizeBytes": 274
+      },
+      "checks": {
+        "extractedFiles": 385,
+        "confirmedIndependentSyntheticRawRows": 16,
+        "actualCandidatePreviews": 3,
+        "doctor": true,
+        "editablePage": true,
+        "sourceUnchanged": true,
+        "extractedMarkdownLocalLinks": true
+      }
+    }
+  ],
+  "scope": "These are actual extracted Suite/Skill regression runs. They do not establish native Windows installation, native IME acceptance, scientific-image accuracy, or official update acceptance. The final release archives have separate final byte hashes."
+}
