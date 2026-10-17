@@ -3223,8 +3223,6 @@ if (typeof document !== 'undefined') (async () => {
     });
     figureDiscovery.open();
   }
-  if($('startDiscovery'))$('startDiscovery').onclick=guard(openFigureDiscovery);
-  if($('openDiscovery')){document.querySelector('section[data-pane="explore"]')?.prepend($('openDiscovery'));$('openDiscovery').onclick=guard(openFigureDiscovery);}
   let literatureBrowser=null,literaturePreview=null;
   function previewLiteratureChart(view){
     const source=panel(selectedPanel),current=variant(selectedPanel),index=source.variants.findIndex(v=>v.name===view&&(v.size||'original')===(current.size||'original'));
@@ -5026,6 +5024,8 @@ if (typeof document !== 'undefined') (async () => {
   if($('confirmNewProject'))$('confirmNewProject').onclick=guard(createNewProject);
   if($('cancelNewProject'))$('cancelNewProject').onclick=()=>$('newProjectDialog').close();
   if($('backupBeforeNew'))$('backupBeforeNew').onclick=()=>$('save').click();
+  if($('startDiscovery'))$('startDiscovery').onclick=guard(openFigureDiscovery);
+  if($('openDiscovery')){document.querySelector('section[data-pane="explore"]')?.prepend($('openDiscovery'));$('openDiscovery').onclick=guard(openFigureDiscovery);}
   if($('startTemplates'))$('startTemplates').onclick=openStartTemplates;
   if($('startImportImage'))$('startImportImage').onclick=()=>chooseImage(null,null);
   if($('startOpenProject'))$('startOpenProject').onclick=()=>$('load').click();

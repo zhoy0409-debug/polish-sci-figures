@@ -52,6 +52,7 @@ All commands below completed successfully on the Windows source checkout with Py
 | `python scripts/test_portable_skill.py` | Portable Skill extraction, links and raw-data workflow passed |
 | `python scripts/test_local_web_build.py` | Four local browser build/resource checks passed |
 | `python skills/polish-sci-figures/scripts/test_figure_studio.py` | Ten packaging/provenance tests passed; the new knowledge script is validated as inert JSON, retaining exactly one executable runtime |
+| Text/PDF regressions (`test_studio_pdf_text_editing.cjs`, `test_studio_text_formatting.cjs`, `test_studio_rich_text_regression.cjs`, `test_studio_text_geometry.cjs`) | Production DOM integrations, physical font sizes, character formatting and editor initialization passed after keeping discovery bindings in the existing startup section |
 
 The live [API record](qa/figure-discovery/live-literature.json) retains the real IDs and source links. It identified an estimation chart term in **Fig. 5** of the returned article; other returned papers remain unverified at figure level. This smoke test confirms access/record handling, not applicability of that article’s methods to arbitrary data.
 
