@@ -12,6 +12,7 @@ class DuplicateJobs:
         self.scanner = scanner
         self.lock = threading.RLock()
         self.jobs = {}
+        self.cache = None
 
     def request(self, payload):
         if not isinstance(payload, dict):
@@ -70,11 +71,12 @@ class DuplicateJobs:
         job = self.jobs[job_id]
         try:
             if self.scanner is None:
-                from studio_duplicates import scan_images
-                scanner = scan_images
+                from studio_duplicates import ScreeningCache, scan_images
+                if self.cache is None:
+                    self.cache = ScreeningCache()
+                result = scan_images(images, progress=progress, cancelled=job['cancel'].is_set, cache=self.cache)
             else:
-                scanner = self.scanner
-            result = scanner(images, progress=progress, cancelled=job['cancel'].is_set)
+                result = self.scanner(images, progress=progress, cancelled=job['cancel'].is_set)
             with self.lock:
                 if job['cancel'].is_set():
                     job['status'] = 'cancelled'

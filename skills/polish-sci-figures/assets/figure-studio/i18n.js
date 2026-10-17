@@ -867,6 +867,8 @@ const StudioI18n = (() => {
   function setLanguage(value){language=value==='en'?'en':'zh-CN';return language;}
   Object.assign(en,fontReplacementEnglish,{'请至少选择三个独立对象或组合。':'Select at least three separate objects or groups.'});
   Object.assign(en,{'当前小图在母版边界之外；请选择可见格子或先扩大母版。':'This panel is outside the paper. Select a visible cell or expand the paper first.','文字过长，请分段粘贴。':'This text is too long. Paste it in smaller sections.','请选中完整组合后对齐，或先取消组合。':'Select the complete group to align, or ungroup it first.','请至少选择两个独立对象或组合。':'Select at least two separate objects or groups.'});
+  Object.assign(en,{'请先选中原图。':'Select a source image first.'});
+  Object.assign(en,{'对象边框':'Object borders','图片工具':'Image tools','数据重绘保留可匹配的文字和统一样式；自由元素位移、局部图形改动与轴延伸可能重置。整步可撤销。':'Data re-rendering retains matching text and shared styles; free object movements, local artwork edits and axis extensions may reset. Undo restores the whole step.','专业坐标轴设置':'Professional axis settings','范围、刻度、绘图区尺寸和外观；也可双击识别轴。':'Range, ticks, plot dimensions and appearance; double-click a recognized axis to open.','当前为手动网格；请先恢复自动网格尺寸，再设置真实绘图区尺寸。':'The grid is manual. Restore automatic grid dimensions before setting the true plot size.','已恢复原始坐标轴':'Original axis settings restored','坐标轴设置':'Axis settings','检查已选图片':'Screen selected images','图片颜色与显示':'Image colour and display','关联总览与放大图':'Link overview and detail'});
   function t(text,...values){let result=language==='en'?(en[text]??text):text;return result.replace(/\{(\d+)\}/g,(_,n)=>String(values[+n]??''));}
   return {t,choose,setLanguage,panelName,projectTitle,validateDisplayNames,preserveDisplayNames,restoreDisplayNames,get language(){return language;},en};
 })();

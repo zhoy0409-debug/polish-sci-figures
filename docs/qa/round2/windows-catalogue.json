@@ -1,0 +1,1590 @@
+{
+  "passed": true,
+  "complete": true,
+  "url": "http://127.0.0.1:18953/",
+  "started_at_utc": "2026-10-17T07:58:12Z",
+  "scope": "Representative packaged HTTP rendering; not visual layout or statistical-method validation",
+  "cases": [
+    {
+      "key": "compare_raincloud",
+      "module": "gallery_compare",
+      "purpose": "Raw observations / raincloud",
+      "passed": true,
+      "input_sha256": "bc0f5cbf31d424d5e2be1af02dbe7db7d8067a59295e5d730f4ca78741b1fa76",
+      "returned_sha256": "bc0f5cbf31d424d5e2be1af02dbe7db7d8067a59295e5d730f4ca78741b1fa76",
+      "input_rows": 72,
+      "selected_view": "compare_raincloud",
+      "variant_count": 24,
+      "variants": [
+        {
+          "name": "compare_bar_points",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_bar_sd",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_box",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_box_points",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_cleveland",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_density",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_ecdf",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_hist_facets",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_log_points",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_mean_ci",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_mean_sd",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_notched_box",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_raincloud",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_ridgeline",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_strip_median",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_swarm",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_violin",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_violin_box",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_raincloud",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "compare_raincloud",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_raincloud",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_raincloud",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_raincloud",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "compare_raincloud",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "491c4057b3563c91df041a886bea2e362e011599fd6b87ff3392cdfa142a7612",
+      "family": "gallery",
+      "server_seconds": 4.69,
+      "svg": "compare_raincloud.svg",
+      "elapsed_seconds": 4.703
+    },
+    {
+      "key": "compare_facet_boxes",
+      "module": "gallery_compare",
+      "purpose": "Faceted group comparisons",
+      "passed": true,
+      "input_sha256": "c65b1d652ac728b8cd61991013135340a7367d178ce5a1330a8b4ea69a2cba6a",
+      "returned_sha256": "c65b1d652ac728b8cd61991013135340a7367d178ce5a1330a8b4ea69a2cba6a",
+      "input_rows": 216,
+      "selected_view": "compare_facet_boxes",
+      "variant_count": 9,
+      "variants": [
+        {
+          "name": "compare_facet_boxes",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_interaction",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "grouped_observations",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_facet_boxes",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "compare_facet_boxes",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_facet_boxes",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_facet_boxes",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "compare_facet_boxes",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "compare_facet_boxes",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "075bfd03ca1dd1556b129d0d1f2075521402912f40a7a089c8228c000b957b99",
+      "family": "gallery",
+      "server_seconds": 3.59,
+      "svg": "compare_facet_boxes.svg",
+      "elapsed_seconds": 3.625
+    },
+    {
+      "key": "clustered_matrix",
+      "module": "gallery_omics_special",
+      "purpose": "Clustered heatmap",
+      "passed": true,
+      "input_sha256": "25b7983b6da7ef49b6e62ed93c018bd4789cb673ece1ea9b34a034fe2484a035",
+      "returned_sha256": "25b7983b6da7ef49b6e62ed93c018bd4789cb673ece1ea9b34a034fe2484a035",
+      "input_rows": 56,
+      "selected_view": "clustered_matrix",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "clustered_matrix",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "clustered_matrix",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "clustered_matrix",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "clustered_matrix",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "clustered_matrix",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "clustered_matrix",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "clustered_matrix",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "eb8337cf0fec4cd12c2e6b71f9b202a0ee0adee9d0c4ffa262ed26e09456268d",
+      "family": "gallery",
+      "server_seconds": 3.42,
+      "svg": "clustered_matrix.svg",
+      "elapsed_seconds": 3.453
+    },
+    {
+      "key": "roc_pointwise_band",
+      "module": "roc",
+      "purpose": "ROC and pointwise uncertainty",
+      "passed": true,
+      "input_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3",
+      "returned_sha256": "eff18bdd4b6ffd631b607a1438f0a700a5262b8aa4b11418bc0aa2b0b0d4cca3",
+      "input_rows": 192,
+      "selected_view": "roc_pointwise_band",
+      "variant_count": 26,
+      "variants": [
+        {
+          "name": "precision_recall",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_auc_fill",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_auc_intervals",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_bootstrap_curves",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_confusion",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_convex",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_direct_labels",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_facets",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_log_fpr",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_low_fpr",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_pointwise_band",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_probit",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_score_distribution",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_threshold_color",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_threshold_labels",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_threshold_points",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_two_graph",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_with_auc_forest",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_youden",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_pointwise_band",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "roc_pointwise_band",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_pointwise_band",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_pointwise_band",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_pointwise_band",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "roc_pointwise_band",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "de1180e53c99e03c4e9f0b6038a0ba7d69833cf459f32de523eec50287042e7e",
+      "family": "roc",
+      "server_seconds": 2.88,
+      "svg": "roc_pointwise_band.svg",
+      "elapsed_seconds": 2.938
+    },
+    {
+      "key": "roc_smooth",
+      "module": "roc_results",
+      "purpose": "Supplied smoothed ROC results",
+      "passed": true,
+      "input_sha256": "0c1b5d08ea60e56ba7c67e35efbb5801817e0e6dd9097d5cbc9e87e57b09ce8d",
+      "returned_sha256": "0c1b5d08ea60e56ba7c67e35efbb5801817e0e6dd9097d5cbc9e87e57b09ce8d",
+      "input_rows": 341,
+      "selected_view": "roc_smooth",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "roc_smooth",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_smooth",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "roc_smooth",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_smooth",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_smooth",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "roc_smooth",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "roc_smooth",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "31815b2d252e9d6d5def5f015c382f1dc7bab73ce41dadbb426a5c136a38ec81",
+      "family": "roc_results",
+      "server_seconds": 0.27,
+      "svg": "roc_smooth.svg",
+      "elapsed_seconds": 0.265
+    },
+    {
+      "key": "pca_loadings",
+      "module": "gallery_workbench",
+      "purpose": "PCA scores and supplied loadings",
+      "passed": true,
+      "input_sha256": "e165c20cb88dfeffc860dd01e1051f2732742356bb6a0fa7e9217f4715ad7904",
+      "returned_sha256": "e165c20cb88dfeffc860dd01e1051f2732742356bb6a0fa7e9217f4715ad7904",
+      "input_rows": 94,
+      "selected_view": "pca_loadings",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "pca_loadings",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "pca_loadings",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "pca_loadings",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "pca_loadings",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "pca_loadings",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "pca_loadings",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "pca_loadings",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "937ac7096670a7d9c6158242f931d80f720184e927bf61f5e80515f1ea27aaa0",
+      "family": "gallery",
+      "server_seconds": 1.89,
+      "svg": "pca_loadings.svg",
+      "elapsed_seconds": 1.906
+    },
+    {
+      "key": "volcano_labels",
+      "module": "gallery_omics_special",
+      "purpose": "Supplied differential-analysis results",
+      "passed": true,
+      "input_sha256": "b7cdef8e2eeca6f739f4ea3e895304bf6614ab2e69a28ec3e09434d28b2235f1",
+      "returned_sha256": "b7cdef8e2eeca6f739f4ea3e895304bf6614ab2e69a28ec3e09434d28b2235f1",
+      "input_rows": 180,
+      "selected_view": "volcano_labels",
+      "variant_count": 8,
+      "variants": [
+        {
+          "name": "volcano_labels",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "volcano_plain",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "volcano_labels",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "volcano_labels",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "volcano_labels",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "volcano_labels",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "volcano_labels",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "volcano_labels",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "60e9707c8d46e113d24373bbbb2f5293d960a6862605b7d1465b2c2c9e2be135",
+      "family": "gallery",
+      "server_seconds": 2.02,
+      "svg": "volcano_labels.svg",
+      "elapsed_seconds": 2.031
+    },
+    {
+      "key": "meta_forest",
+      "module": "gallery_clinical",
+      "purpose": "Supplied meta-analysis estimates",
+      "passed": true,
+      "input_sha256": "4d482f3be46e0827242d6768e6593cb04c28c122adfc083cedbbe1b4ce52c2ef",
+      "returned_sha256": "4d482f3be46e0827242d6768e6593cb04c28c122adfc083cedbbe1b4ce52c2ef",
+      "input_rows": 7,
+      "selected_view": "meta_forest",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "meta_forest",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "meta_forest",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "meta_forest",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "meta_forest",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "meta_forest",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "meta_forest",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "meta_forest",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "8849a282365e9ce4c82e29a76ea974b69438659b458506520879e7cea861f19a",
+      "family": "gallery",
+      "server_seconds": 0.99,
+      "svg": "meta_forest.svg",
+      "elapsed_seconds": 0.985
+    },
+    {
+      "key": "dose_response_result",
+      "module": "gallery_omics_special",
+      "purpose": "Supplied dose-response fit",
+      "passed": true,
+      "input_sha256": "2870debd021728f29d5f2195977a9ede7d76596f5ff3e066e2a434bb27868a22",
+      "returned_sha256": "2870debd021728f29d5f2195977a9ede7d76596f5ff3e066e2a434bb27868a22",
+      "input_rows": 158,
+      "selected_view": "dose_response_result",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "dose_response_result",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "dose_response_result",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "dose_response_result",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "dose_response_result",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "dose_response_result",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "dose_response_result",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "dose_response_result",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "cfbcf92d927bd26b7c9036cb953b2b0fdb27737c58c039eb31c8ef95dc746404",
+      "family": "gallery",
+      "server_seconds": 1.31,
+      "svg": "dose_response_result.svg",
+      "elapsed_seconds": 1.328
+    },
+    {
+      "key": "time_mean_band",
+      "module": "gallery_time_composition",
+      "purpose": "Repeated-unit time course",
+      "passed": true,
+      "input_sha256": "9863a4bbd60a84731c6493ba4b0d0b6c29a5263b7585df76376cde20d752759d",
+      "returned_sha256": "9863a4bbd60a84731c6493ba4b0d0b6c29a5263b7585df76376cde20d752759d",
+      "input_rows": 60,
+      "selected_view": "time_mean_band",
+      "variant_count": 13,
+      "variants": [
+        {
+          "name": "time_auc_summary",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_baseline_change",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_individual_paths",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_mean_band",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_mean_replicates",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_mean_sd",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_small_multiples",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_mean_band",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "time_mean_band",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_mean_band",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_mean_band",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_mean_band",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "time_mean_band",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "8355160933af1a787d0932b57f0a0db5a01a33dba14b58b24bcccb27b7cf72c5",
+      "family": "gallery",
+      "server_seconds": 1.09,
+      "svg": "time_mean_band.svg",
+      "elapsed_seconds": 1.109
+    },
+    {
+      "key": "upset_intersections",
+      "module": "gallery_workbench",
+      "purpose": "Set intersections",
+      "passed": true,
+      "input_sha256": "ed0847c4d5fe9341e44139c35b10ed00f010e323c2caf9732cb0ceccdf543239",
+      "returned_sha256": "ed0847c4d5fe9341e44139c35b10ed00f010e323c2caf9732cb0ceccdf543239",
+      "input_rows": 168,
+      "selected_view": "upset_intersections",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "upset_intersections",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "upset_intersections",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "upset_intersections",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "upset_intersections",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "upset_intersections",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "upset_intersections",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "upset_intersections",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "6113db89375b189696745131565305295541d6c68684c7f2f073f4f120cf738d",
+      "family": "gallery",
+      "server_seconds": 1.34,
+      "svg": "upset_intersections.svg",
+      "elapsed_seconds": 1.391
+    },
+    {
+      "key": "flow_alluvial",
+      "module": "gallery_omics_special",
+      "purpose": "Alluvial / Sankey flow",
+      "passed": true,
+      "input_sha256": "288d493b5e1c66629a646f6a4b0a0f463be4670aae8d54c037d2387e6fa941bc",
+      "returned_sha256": "288d493b5e1c66629a646f6a4b0a0f463be4670aae8d54c037d2387e6fa941bc",
+      "input_rows": 7,
+      "selected_view": "flow_alluvial",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "flow_alluvial",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "flow_alluvial",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "flow_alluvial",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "flow_alluvial",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "flow_alluvial",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "flow_alluvial",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "flow_alluvial",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "13b6b1532830f2442a725c36ffef1f2a329f38264332a418753a0ec700718fc6",
+      "family": "gallery",
+      "server_seconds": 0.73,
+      "svg": "flow_alluvial.svg",
+      "elapsed_seconds": 0.75
+    },
+    {
+      "key": "survival_risk_counts",
+      "module": "gallery_clinical",
+      "purpose": "Survival curve and risk counts",
+      "passed": true,
+      "input_sha256": "28eecc12b4bf3ac479fde241047e25bb8f70f36d78dac0d0e5a05c13cc3c25fe",
+      "returned_sha256": "28eecc12b4bf3ac479fde241047e25bb8f70f36d78dac0d0e5a05c13cc3c25fe",
+      "input_rows": 70,
+      "selected_view": "survival_risk_counts",
+      "variant_count": 13,
+      "variants": [
+        {
+          "name": "survival_events",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "survival_hazard",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "survival_intervals",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "survival_loglog",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "survival_median",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "survival_risk_counts",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "survival_steps",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "survival_risk_counts",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "survival_risk_counts",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "survival_risk_counts",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "survival_risk_counts",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "survival_risk_counts",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "survival_risk_counts",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "6c4fec57c42d96dada33be2f0aae9551474b1e8c138bd07a8a6e55195ff96fdb",
+      "family": "gallery",
+      "server_seconds": 1.5,
+      "svg": "survival_risk_counts.svg",
+      "elapsed_seconds": 1.515
+    },
+    {
+      "key": "gsea_tracks",
+      "module": "gallery_workbench",
+      "purpose": "Supplied enrichment scores and ranked track",
+      "passed": true,
+      "input_sha256": "4883d455f3885180685d616dc7cadaa5bed85b8a829cd45a96a8204ac9db4471",
+      "returned_sha256": "4883d455f3885180685d616dc7cadaa5bed85b8a829cd45a96a8204ac9db4471",
+      "input_rows": 300,
+      "selected_view": "gsea_tracks",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "gsea_tracks",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "gsea_tracks",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "gsea_tracks",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "gsea_tracks",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "gsea_tracks",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "gsea_tracks",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "gsea_tracks",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "aee70409e4d38cac4ba44cfdad7557339cb3e7a0268802c6c08d14b8d97e2adb",
+      "family": "gallery",
+      "server_seconds": 0.92,
+      "svg": "gsea_tracks.svg",
+      "elapsed_seconds": 0.938
+    },
+    {
+      "key": "model_shap_summary",
+      "module": "gallery_model_extras",
+      "purpose": "Supplied model explanations",
+      "passed": true,
+      "input_sha256": "dff279a76994767148357a5b8924626600f7a9cf2171c476a5e63565f2ecf322",
+      "returned_sha256": "dff279a76994767148357a5b8924626600f7a9cf2171c476a5e63565f2ecf322",
+      "input_rows": 375,
+      "selected_view": "model_shap_summary",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "model_shap_summary",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "model_shap_summary",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "model_shap_summary",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "model_shap_summary",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "model_shap_summary",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "model_shap_summary",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "model_shap_summary",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "d397085f7422bc72e10d1d95ecca2daccd1e5eb29ae4885272861131439dd73d",
+      "family": "gallery",
+      "server_seconds": 1.3,
+      "svg": "model_shap_summary.svg",
+      "elapsed_seconds": 1.359
+    },
+    {
+      "key": "time_stl_components",
+      "module": "gallery_temporal_extras",
+      "purpose": "Supplied additive STL components",
+      "passed": true,
+      "input_sha256": "939f12558ef7cb72017178a026b6d354822881873e4197f5b2f8590ced223749",
+      "returned_sha256": "939f12558ef7cb72017178a026b6d354822881873e4197f5b2f8590ced223749",
+      "input_rows": 48,
+      "selected_view": "time_stl_components",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "time_stl_components",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_stl_components",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "time_stl_components",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_stl_components",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_stl_components",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "time_stl_components",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "time_stl_components",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "bff5222b35105e7e0318984087de30d3a26b8796ea4fbe3166fbffed23ec5d57",
+      "family": "gallery",
+      "server_seconds": 2.7,
+      "svg": "time_stl_components.svg",
+      "elapsed_seconds": 2.719
+    },
+    {
+      "key": "mediation_paths_result",
+      "module": "gallery_structure_extras",
+      "purpose": "Supplied mediation path coefficients",
+      "passed": true,
+      "input_sha256": "59813c5f94777892513de61cede36145a397d5b20edd8c9003cab39d3d5c806a",
+      "returned_sha256": "59813c5f94777892513de61cede36145a397d5b20edd8c9003cab39d3d5c806a",
+      "input_rows": 3,
+      "selected_view": "mediation_paths_result",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "mediation_paths_result",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "mediation_paths_result",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "mediation_paths_result",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "mediation_paths_result",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "mediation_paths_result",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "mediation_paths_result",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "mediation_paths_result",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "781de2a71275a0dba71e77fca67175b358a547020bbda7f95b1395b3a0a2c72c",
+      "family": "gallery",
+      "server_seconds": 1.47,
+      "svg": "mediation_paths_result.svg",
+      "elapsed_seconds": 1.468
+    },
+    {
+      "key": "genome_manhattan",
+      "module": "gallery_workbench",
+      "purpose": "Genome-wide supplied P values",
+      "passed": true,
+      "input_sha256": "9eb0a9a8cc3be0c3a358be63300f54d8c692b8ad59830d104d3892c4f203e548",
+      "returned_sha256": "9eb0a9a8cc3be0c3a358be63300f54d8c692b8ad59830d104d3892c4f203e548",
+      "input_rows": 1440,
+      "selected_view": "genome_manhattan",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "genome_manhattan",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "genome_manhattan",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "genome_manhattan",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "genome_manhattan",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "genome_manhattan",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "genome_manhattan",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "genome_manhattan",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "6b1722767bf8b62fafb6c10d41a5fb689190146be04cfbd21cd4558a68a3ea63",
+      "family": "gallery",
+      "server_seconds": 1.84,
+      "svg": "genome_manhattan.svg",
+      "elapsed_seconds": 1.938
+    },
+    {
+      "key": "distribution_sina",
+      "module": "gallery_misc",
+      "purpose": "Density-constrained observations",
+      "passed": true,
+      "input_sha256": "ad5a4729c7c6e93a6d20f752e4f0b7a7ca74bd7bb9995c43e4e4c3d07be7a4f4",
+      "returned_sha256": "ad5a4729c7c6e93a6d20f752e4f0b7a7ca74bd7bb9995c43e4e4c3d07be7a4f4",
+      "input_rows": 75,
+      "selected_view": "distribution_sina",
+      "variant_count": 8,
+      "variants": [
+        {
+          "name": "compare_uncertainty",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "distribution_sina",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "distribution_sina",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "distribution_sina",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "distribution_sina",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "distribution_sina",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "distribution_sina",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "distribution_sina",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "4814ec7521c5d817c3971109210eae9aafb7bb98dffd57c686e9967d9beb751f",
+      "family": "gallery",
+      "server_seconds": 0.61,
+      "svg": "distribution_sina.svg",
+      "elapsed_seconds": 0.625
+    },
+    {
+      "key": "synergy_surface_result",
+      "module": "gallery_structure_extras",
+      "purpose": "Supplied interaction surface",
+      "passed": true,
+      "input_sha256": "1eb42474dc9b6884c0dce75f619b7f82d96ee8a3b439816334527265010dceee",
+      "returned_sha256": "1eb42474dc9b6884c0dce75f619b7f82d96ee8a3b439816334527265010dceee",
+      "input_rows": 144,
+      "selected_view": "synergy_surface_result",
+      "variant_count": 7,
+      "variants": [
+        {
+          "name": "synergy_surface_result",
+          "size": "original",
+          "width_pt": 345.6,
+          "height_pt": 259.2
+        },
+        {
+          "name": "synergy_surface_result",
+          "size": "portrait",
+          "width_pt": 259.2,
+          "height_pt": 345.6
+        },
+        {
+          "name": "synergy_surface_result",
+          "size": "wide",
+          "width_pt": 518.4,
+          "height_pt": 259.2
+        },
+        {
+          "name": "synergy_surface_result",
+          "size": "spanWide",
+          "width_pt": 703.2024,
+          "height_pt": 259.2
+        },
+        {
+          "name": "synergy_surface_result",
+          "size": "spanThree",
+          "width_pt": 1060.7976,
+          "height_pt": 259.2
+        },
+        {
+          "name": "synergy_surface_result",
+          "size": "spanTall",
+          "width_pt": 345.6,
+          "height_pt": 530.4024
+        },
+        {
+          "name": "synergy_surface_result",
+          "size": "large",
+          "width_pt": 703.2024,
+          "height_pt": 530.4024
+        }
+      ],
+      "artwork_sha256": "616c290acd0e83bde99d95fac2acb5e53c4a6b4c9e2323c3d96422f01b7b678f",
+      "family": "gallery",
+      "server_seconds": 0.97,
+      "svg": "synergy_surface_result.svg",
+      "elapsed_seconds": 1.0
+    }
+  ],
+  "edited_heatmap": {
+    "key": "clustered_matrix",
+    "passed": true,
+    "input_sha256": "9f3dc35865e68d8837d9ce59bfb8c207d65493536bc11841e9cd6d9086de27ea",
+    "returned_sha256": "9f3dc35865e68d8837d9ce59bfb8c207d65493536bc11841e9cd6d9086de27ea",
+    "input_rows": 56,
+    "selected_view": "clustered_matrix",
+    "variant_count": 7,
+    "variants": [
+      {
+        "name": "clustered_matrix",
+        "size": "original",
+        "width_pt": 345.6,
+        "height_pt": 259.2
+      },
+      {
+        "name": "clustered_matrix",
+        "size": "portrait",
+        "width_pt": 259.2,
+        "height_pt": 345.6
+      },
+      {
+        "name": "clustered_matrix",
+        "size": "wide",
+        "width_pt": 518.4,
+        "height_pt": 259.2
+      },
+      {
+        "name": "clustered_matrix",
+        "size": "spanWide",
+        "width_pt": 703.2024,
+        "height_pt": 259.2
+      },
+      {
+        "name": "clustered_matrix",
+        "size": "spanThree",
+        "width_pt": 1060.7976,
+        "height_pt": 259.2
+      },
+      {
+        "name": "clustered_matrix",
+        "size": "spanTall",
+        "width_pt": 345.6,
+        "height_pt": 530.4024
+      },
+      {
+        "name": "clustered_matrix",
+        "size": "large",
+        "width_pt": 703.2024,
+        "height_pt": 530.4024
+      }
+    ],
+    "artwork_sha256": "d7dba81759697e88318089c6c463ea58fc4779daa1b2043f6249cf057acc9f88",
+    "changed_cell": {
+      "data_row": 1,
+      "column": "value",
+      "before": "-0.07147886364901593",
+      "after": "0.30352113635098407"
+    },
+    "svg": "clustered_matrix-edited.svg"
+  },
+  "starter_count": 218,
+  "available_families": [
+    "gallery",
+    "roc",
+    "roc_results"
+  ],
+  "uncovered_families": [],
+  "finished_at_utc": "2026-10-17T07:58:51Z"
+}

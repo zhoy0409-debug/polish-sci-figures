@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.4.20 · Figure Studio 0.1.20 · Image workflows and professional axes
+
+- Add five workflow entries, bilingual local command search and contextual image actions without replacing the existing editor.
+- Add separate decorative object-border records, final print pt, batch style, locks, hidden-source handling, source validation and reversible project/export support.
+- Make local duplicate preflight, built-in example, progress and preserved reviews easier to find; add bounded expiring feature/pair reuse without lowering thresholds.
+- Add original/adjusted histograms, detail zoom and clipping checks; require shared-source confirmation for separate-file localization and support original-pixel manual ROI refinement before Apply.
+- Re-render native axes from actual data for range, ticks, print dimensions and appearance; retain safe recognized-axis editing for imported vectors.
+- Add public real-source regression, private local engineering checks, same-device cold/warm benchmarks, actual browser operation and build-specific Windows acceptance. Independent human-labelled blind validation remains pending; heavy crops and Western blot strips retain documented misses.
+- 新增五组工作入口、功能搜索及图片上下文操作；完善独立边框、本地查重、颜色对比、定位精修及专业坐标轴，保留智能选图与现有编辑能力。真实来源工程结果、漏检、性能与成品验收分别记录，不以构造测试冒充独立盲测。
+
+[Release notes / 本版更新](docs/release-notes-v1.4.20.md)
+
 ## v1.4.19 · Figure Studio 0.1.19 · Scientific Figure Discovery & Recommendation
 
 - Add a versioned local Chart Knowledge Registry and one deterministic profile/recommendation engine shared by Figure Studio, `sci_figures.py discover` and the make-data Skill.

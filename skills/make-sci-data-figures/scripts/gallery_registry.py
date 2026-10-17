@@ -14,7 +14,7 @@ from gallery_fonts import apply_font_fallback
 from gallery_layout import apply_layout
 from gallery_heatmap import tag_heatmap_colorbars
 from gallery_marks import prepare_marks, embed_marks
-from gallery_axes import apply_axes, validate_settings, compatible_settings, controls_from_svg
+from gallery_axes import apply_axes, validate_settings, compatible_settings, controls_from_svg, geometry_dimensions, GEOMETRY_FIELDS
 
 MODULES = [importlib.import_module(name) for name in (
     'gallery_workbench', 'gallery_compare', 'gallery_time_composition',
@@ -96,7 +96,7 @@ def generate(input_path,outdir,view,palette='zhoy_muted',colors_text=None,font='
     destination=Path(outdir);destination.mkdir(parents=True,exist_ok=True)
     active_controls=None
     for key in keys:
-        raw=svg_at_size(data,key,colors,font,SIZES['original'],axes=axes)
+        raw=svg_at_size(data,key,colors,font,geometry_dimensions(axes,SIZES['original']),axes=axes)
         (destination/(key+'.svg')).write_bytes(raw)
         if key==view:active_controls=controls_from_svg(raw)
     recipe={'family':'gallery','input':_relative_input(Path(input_path),Path(outdir)),
@@ -112,6 +112,9 @@ def generate(input_path,outdir,view,palette='zhoy_muted',colors_text=None,font='
 
 def render_sizes(data,view,colors=None,font='Arial',axes=None):
     style(font)
+    # A user-specified physical plotting frame has one exact geometry. Generic
+    # responsive variants must not silently override it or stretch its typography.
+    if axes and any(key in axes for key in GEOMETRY_FIELDS):return
     # Other chart types are switched at their original size; only the active view
     # needs all responsive geometries. This keeps data edits responsive.
     for size,dimensions in SIZES.items():

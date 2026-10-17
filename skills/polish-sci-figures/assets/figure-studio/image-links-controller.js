@@ -93,7 +93,7 @@ const StudioImageLinksController=(()=>{
             const raw=pair.parentCorners.map(a=>({x:(a[0]-p.roi.x)/p.roi.w,y:(a[1]-p.roi.y)/p.roi.h}));
             if(raw.every(a=>Number.isFinite(a.x)&&Number.isFinite(a.y)&&a.x>=-EPS&&a.y>=-EPS&&a.x<=1+EPS&&a.y<=1+EPS))polygon=raw.map(a=>core.rawToDisplay({x:Math.max(0,Math.min(1,a.x)),y:Math.max(0,Math.min(1,a.y))},p.orientation));
           }
-          result.push({parent:refs[i],child:refs[i+1],polygon,anchors:{parent:anchor(p),child:anchor(c)},evidence:{source:'feature-match',verified:!!polygon,reason:pair?.reason||'unavailable'}});
+          result.push({parent:refs[i],child:refs[i+1],polygon,anchors:{parent:anchor(p),child:anchor(c)},evidence:{source:'feature-match',verified:!!polygon,reason:pair?.reason||'unavailable',...(Number.isFinite(pair?.score)?{score:pair.score}:{})}});
         }
       }
       return result;

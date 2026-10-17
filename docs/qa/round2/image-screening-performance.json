@@ -1,0 +1,1107 @@
+{
+  "schema": "screening-performance/1",
+  "date": "2026-10-17T07:46:51.437894+00:00",
+  "baseline": "v1.4.19",
+  "currentCommit": "9fca6457be7e000dc23ff18d1a5b2f54a2919b4f",
+  "baselineEngineSha256": "5d70e72466c4549c857cf28b3c038e99961dfce6e733a7b6b69a3922c47d596b",
+  "currentEngineSha256": "cabc1b8c64674b757efb799b16c0f2dd19c519912eb8a6e471d9e2db9867f3a2",
+  "currentWorkingTree": "includes uncommitted cache implementation",
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.14",
+    "cpu": "process CPU seconds / wall time, 100% = one logical core",
+    "logicalCpus": 22,
+    "cleanVm": false,
+    "lowEndHardware": false,
+    "memory": "Windows process lifetime peak working set includes warmup; separate private committed bytes",
+    "percentile": "linear interpolation across measured runs; five runs do not characterize production tails"
+  },
+  "fixture": "Deterministic synthetic microscopy-like images, seeds 700 onward; speed comparison only",
+  "results": {
+    "5/baseline": {
+      "runs": [
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.8153994000167586,
+          "cpuSeconds": 0.921875,
+          "cpuOneCorePercent": 113.05809152926199,
+          "memoryBefore": {
+            "workingSetBytes": 52301824,
+            "peakWorkingSetBytes": 60108800,
+            "privateCommittedBytes": 743075840
+          },
+          "memoryAfter": {
+            "workingSetBytes": 60518400,
+            "peakWorkingSetBytes": 111071232,
+            "privateCommittedBytes": 751005696
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.8912386999872979,
+          "cpuSeconds": 1.109375,
+          "cpuOneCorePercent": 124.47563150206685,
+          "memoryBefore": {
+            "workingSetBytes": 53559296,
+            "peakWorkingSetBytes": 61386752,
+            "privateCommittedBytes": 744529920
+          },
+          "memoryAfter": {
+            "workingSetBytes": 60342272,
+            "peakWorkingSetBytes": 111271936,
+            "privateCommittedBytes": 750833664
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.8024212000018451,
+          "cpuSeconds": 0.953125,
+          "cpuOneCorePercent": 118.78113389798379,
+          "memoryBefore": {
+            "workingSetBytes": 52338688,
+            "peakWorkingSetBytes": 60706816,
+            "privateCommittedBytes": 743354368
+          },
+          "memoryAfter": {
+            "workingSetBytes": 59822080,
+            "peakWorkingSetBytes": 111308800,
+            "privateCommittedBytes": 748208128
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.8157580000115559,
+          "cpuSeconds": 0.96875,
+          "cpuOneCorePercent": 118.75458162669283,
+          "memoryBefore": {
+            "workingSetBytes": 52445184,
+            "peakWorkingSetBytes": 60809216,
+            "privateCommittedBytes": 743272448
+          },
+          "memoryAfter": {
+            "workingSetBytes": 59961344,
+            "peakWorkingSetBytes": 110993408,
+            "privateCommittedBytes": 748761088
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.7908323000010569,
+          "cpuSeconds": 0.984375,
+          "cpuOneCorePercent": 124.47329225155377,
+          "memoryBefore": {
+            "workingSetBytes": 53796864,
+            "peakWorkingSetBytes": 60755968,
+            "privateCommittedBytes": 745127936
+          },
+          "memoryAfter": {
+            "workingSetBytes": 60563456,
+            "peakWorkingSetBytes": 111345664,
+            "privateCommittedBytes": 749490176
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        }
+      ],
+      "p50Seconds": 0.8153994000167586,
+      "p95Seconds": 0.8761425599921495,
+      "maxPeakWorkingSetBytes": 111345664
+    },
+    "5/currentCold": {
+      "runs": [
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.9299723000149243,
+          "cpuSeconds": 1.1875,
+          "cpuOneCorePercent": 127.69197533958193,
+          "memoryBefore": {
+            "workingSetBytes": 52432896,
+            "peakWorkingSetBytes": 60239872,
+            "privateCommittedBytes": 743342080
+          },
+          "memoryAfter": {
+            "workingSetBytes": 63631360,
+            "peakWorkingSetBytes": 113344512,
+            "privateCommittedBytes": 753152000
+          },
+          "cacheBytes": 2586200,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.7463884000026155,
+          "cpuSeconds": 0.890625,
+          "cpuOneCorePercent": 119.32460365097837,
+          "memoryBefore": {
+            "workingSetBytes": 53579776,
+            "peakWorkingSetBytes": 60231680,
+            "privateCommittedBytes": 744660992
+          },
+          "memoryAfter": {
+            "workingSetBytes": 63946752,
+            "peakWorkingSetBytes": 113491968,
+            "privateCommittedBytes": 753651712
+          },
+          "cacheBytes": 2586200,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.8545526999805588,
+          "cpuSeconds": 1.015625,
+          "cpuOneCorePercent": 118.84872635977928,
+          "memoryBefore": {
+            "workingSetBytes": 52391936,
+            "peakWorkingSetBytes": 60194816,
+            "privateCommittedBytes": 743374848
+          },
+          "memoryAfter": {
+            "workingSetBytes": 63721472,
+            "peakWorkingSetBytes": 113782784,
+            "privateCommittedBytes": 752549888
+          },
+          "cacheBytes": 2586200,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.7665712000161875,
+          "cpuSeconds": 0.890625,
+          "cpuOneCorePercent": 116.182945560855,
+          "memoryBefore": {
+            "workingSetBytes": 52596736,
+            "peakWorkingSetBytes": 60596224,
+            "privateCommittedBytes": 743522304
+          },
+          "memoryAfter": {
+            "workingSetBytes": 62443520,
+            "peakWorkingSetBytes": 113405952,
+            "privateCommittedBytes": 751042560
+          },
+          "cacheBytes": 2586200,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.7246302999847103,
+          "cpuSeconds": 0.875,
+          "cpuOneCorePercent": 120.75122997457635,
+          "memoryBefore": {
+            "workingSetBytes": 53538816,
+            "peakWorkingSetBytes": 60899328,
+            "privateCommittedBytes": 744820736
+          },
+          "memoryAfter": {
+            "workingSetBytes": 63717376,
+            "peakWorkingSetBytes": 113549312,
+            "privateCommittedBytes": 752451584
+          },
+          "cacheBytes": 2586200,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        }
+      ],
+      "p50Seconds": 0.7665712000161875,
+      "p95Seconds": 0.9148883800080512,
+      "maxPeakWorkingSetBytes": 113782784
+    },
+    "5/currentWarm": {
+      "runs": [
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.20444790000328794,
+          "cpuSeconds": 0.21875,
+          "cpuOneCorePercent": 106.9954741508629,
+          "memoryBefore": {
+            "workingSetBytes": 60207104,
+            "peakWorkingSetBytes": 113586176,
+            "privateCommittedBytes": 748728320
+          },
+          "memoryAfter": {
+            "workingSetBytes": 63193088,
+            "peakWorkingSetBytes": 113586176,
+            "privateCommittedBytes": 751661056
+          },
+          "cacheBytes": 2586200,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.2902503999939654,
+          "cpuSeconds": 0.28125,
+          "cpuOneCorePercent": 96.89909126941684,
+          "memoryBefore": {
+            "workingSetBytes": 60567552,
+            "peakWorkingSetBytes": 113573888,
+            "privateCommittedBytes": 749527040
+          },
+          "memoryAfter": {
+            "workingSetBytes": 63713280,
+            "peakWorkingSetBytes": 113573888,
+            "privateCommittedBytes": 753225728
+          },
+          "cacheBytes": 2586200,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.216075100004673,
+          "cpuSeconds": 0.21875,
+          "cpuOneCorePercent": 101.2379492108388,
+          "memoryBefore": {
+            "workingSetBytes": 60203008,
+            "peakWorkingSetBytes": 113348608,
+            "privateCommittedBytes": 748544000
+          },
+          "memoryAfter": {
+            "workingSetBytes": 63426560,
+            "peakWorkingSetBytes": 113348608,
+            "privateCommittedBytes": 752762880
+          },
+          "cacheBytes": 2586200,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.2273914999968838,
+          "cpuSeconds": 0.234375,
+          "cpuOneCorePercent": 103.07113502624853,
+          "memoryBefore": {
+            "workingSetBytes": 60289024,
+            "peakWorkingSetBytes": 113401856,
+            "privateCommittedBytes": 749236224
+          },
+          "memoryAfter": {
+            "workingSetBytes": 63893504,
+            "peakWorkingSetBytes": 113401856,
+            "privateCommittedBytes": 754028544
+          },
+          "cacheBytes": 2586200,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 10,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.1836667000025045,
+          "cpuSeconds": 0.171875,
+          "cpuOneCorePercent": 93.57983782452469,
+          "memoryBefore": {
+            "workingSetBytes": 60104704,
+            "peakWorkingSetBytes": 113278976,
+            "privateCommittedBytes": 749158400
+          },
+          "memoryAfter": {
+            "workingSetBytes": 63152128,
+            "peakWorkingSetBytes": 113278976,
+            "privateCommittedBytes": 753471488
+          },
+          "cacheBytes": 2586200,
+          "encodedBytes": 2061786,
+          "opencv": "4.11.0"
+        }
+      ],
+      "p50Seconds": 0.216075100004673,
+      "p95Seconds": 0.27767861999454907,
+      "maxPeakWorkingSetBytes": 113586176
+    },
+    "20/baseline": {
+      "runs": [
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 4.245993399992585,
+          "cpuSeconds": 4.71875,
+          "cpuOneCorePercent": 111.1341812261941,
+          "memoryBefore": {
+            "workingSetBytes": 58904576,
+            "peakWorkingSetBytes": 66719744,
+            "privateCommittedBytes": 749760512
+          },
+          "memoryAfter": {
+            "workingSetBytes": 75988992,
+            "peakWorkingSetBytes": 163602432,
+            "privateCommittedBytes": 767410176
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 4.68557190001593,
+          "cpuSeconds": 5.21875,
+          "cpuOneCorePercent": 111.37914669460643,
+          "memoryBefore": {
+            "workingSetBytes": 59609088,
+            "peakWorkingSetBytes": 67424256,
+            "privateCommittedBytes": 750530560
+          },
+          "memoryAfter": {
+            "workingSetBytes": 76161024,
+            "peakWorkingSetBytes": 163876864,
+            "privateCommittedBytes": 767553536
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 4.567600299982587,
+          "cpuSeconds": 5.21875,
+          "cpuOneCorePercent": 114.25583801673486,
+          "memoryBefore": {
+            "workingSetBytes": 59617280,
+            "peakWorkingSetBytes": 67432448,
+            "privateCommittedBytes": 750649344
+          },
+          "memoryAfter": {
+            "workingSetBytes": 75104256,
+            "peakWorkingSetBytes": 163864576,
+            "privateCommittedBytes": 764907520
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 7.30737210001098,
+          "cpuSeconds": 8.0625,
+          "cpuOneCorePercent": 110.33378196229921,
+          "memoryBefore": {
+            "workingSetBytes": 61165568,
+            "peakWorkingSetBytes": 69021696,
+            "privateCommittedBytes": 752496640
+          },
+          "memoryAfter": {
+            "workingSetBytes": 76038144,
+            "peakWorkingSetBytes": 163766272,
+            "privateCommittedBytes": 766443520
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 5.0124785999942105,
+          "cpuSeconds": 5.5625,
+          "cpuOneCorePercent": 110.97304235885267,
+          "memoryBefore": {
+            "workingSetBytes": 59736064,
+            "peakWorkingSetBytes": 67547136,
+            "privateCommittedBytes": 750796800
+          },
+          "memoryAfter": {
+            "workingSetBytes": 76013568,
+            "peakWorkingSetBytes": 164212736,
+            "privateCommittedBytes": 766332928
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        }
+      ],
+      "p50Seconds": 4.68557190001593,
+      "p95Seconds": 6.848393400007626,
+      "maxPeakWorkingSetBytes": 164212736
+    },
+    "20/currentCold": {
+      "runs": [
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 5.303998799994588,
+          "cpuSeconds": 5.734375,
+          "cpuOneCorePercent": 108.11418358552139,
+          "memoryBefore": {
+            "workingSetBytes": 58945536,
+            "peakWorkingSetBytes": 66760704,
+            "privateCommittedBytes": 749797376
+          },
+          "memoryAfter": {
+            "workingSetBytes": 86073344,
+            "peakWorkingSetBytes": 173465600,
+            "privateCommittedBytes": 777338880
+          },
+          "cacheBytes": 10945120,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 6.445216599997366,
+          "cpuSeconds": 6.890625,
+          "cpuOneCorePercent": 106.9106816364064,
+          "memoryBefore": {
+            "workingSetBytes": 59654144,
+            "peakWorkingSetBytes": 67055616,
+            "privateCommittedBytes": 750473216
+          },
+          "memoryAfter": {
+            "workingSetBytes": 85585920,
+            "peakWorkingSetBytes": 173670400,
+            "privateCommittedBytes": 777355264
+          },
+          "cacheBytes": 10945120,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 4.919710900023347,
+          "cpuSeconds": 5.59375,
+          "cpuOneCorePercent": 113.70078676723574,
+          "memoryBefore": {
+            "workingSetBytes": 60620800,
+            "peakWorkingSetBytes": 67297280,
+            "privateCommittedBytes": 751427584
+          },
+          "memoryAfter": {
+            "workingSetBytes": 86159360,
+            "peakWorkingSetBytes": 173387776,
+            "privateCommittedBytes": 776605696
+          },
+          "cacheBytes": 10945120,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 4.661981799989007,
+          "cpuSeconds": 5.0625,
+          "cpuOneCorePercent": 108.59115752043341,
+          "memoryBefore": {
+            "workingSetBytes": 59908096,
+            "peakWorkingSetBytes": 67321856,
+            "privateCommittedBytes": 750751744
+          },
+          "memoryAfter": {
+            "workingSetBytes": 86786048,
+            "peakWorkingSetBytes": 174858240,
+            "privateCommittedBytes": 778129408
+          },
+          "cacheBytes": 10945120,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 5.8355431999953,
+          "cpuSeconds": 6.328125,
+          "cpuOneCorePercent": 108.44106166509223,
+          "memoryBefore": {
+            "workingSetBytes": 60198912,
+            "peakWorkingSetBytes": 68014080,
+            "privateCommittedBytes": 751075328
+          },
+          "memoryAfter": {
+            "workingSetBytes": 86224896,
+            "peakWorkingSetBytes": 173359104,
+            "privateCommittedBytes": 776323072
+          },
+          "cacheBytes": 10945120,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        }
+      ],
+      "p50Seconds": 5.303998799994588,
+      "p95Seconds": 6.323281919996953,
+      "maxPeakWorkingSetBytes": 174858240
+    },
+    "20/currentWarm": {
+      "runs": [
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.9198539999779314,
+          "cpuSeconds": 0.890625,
+          "cpuOneCorePercent": 96.82243051847004,
+          "memoryBefore": {
+            "workingSetBytes": 74670080,
+            "peakWorkingSetBytes": 173297664,
+            "privateCommittedBytes": 764026880
+          },
+          "memoryAfter": {
+            "workingSetBytes": 86036480,
+            "peakWorkingSetBytes": 173297664,
+            "privateCommittedBytes": 777052160
+          },
+          "cacheBytes": 10945120,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 1.1181658999994397,
+          "cpuSeconds": 1.109375,
+          "cpuOneCorePercent": 99.21381075925817,
+          "memoryBefore": {
+            "workingSetBytes": 74452992,
+            "peakWorkingSetBytes": 172941312,
+            "privateCommittedBytes": 763817984
+          },
+          "memoryAfter": {
+            "workingSetBytes": 86290432,
+            "peakWorkingSetBytes": 172941312,
+            "privateCommittedBytes": 776216576
+          },
+          "cacheBytes": 10945120,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.9270058000111021,
+          "cpuSeconds": 0.921875,
+          "cpuOneCorePercent": 99.44651910365171,
+          "memoryBefore": {
+            "workingSetBytes": 74539008,
+            "peakWorkingSetBytes": 173686784,
+            "privateCommittedBytes": 764137472
+          },
+          "memoryAfter": {
+            "workingSetBytes": 86781952,
+            "peakWorkingSetBytes": 173686784,
+            "privateCommittedBytes": 776712192
+          },
+          "cacheBytes": 10945120,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.7544981999963056,
+          "cpuSeconds": 0.734375,
+          "cpuOneCorePercent": 97.33290284901884,
+          "memoryBefore": {
+            "workingSetBytes": 75423744,
+            "peakWorkingSetBytes": 173285376,
+            "privateCommittedBytes": 765386752
+          },
+          "memoryAfter": {
+            "workingSetBytes": 85495808,
+            "peakWorkingSetBytes": 173285376,
+            "privateCommittedBytes": 776597504
+          },
+          "cacheBytes": 10945120,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 190,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 0.906339700013632,
+          "cpuSeconds": 0.890625,
+          "cpuOneCorePercent": 98.26613575314029,
+          "memoryBefore": {
+            "workingSetBytes": 74579968,
+            "peakWorkingSetBytes": 173510656,
+            "privateCommittedBytes": 763965440
+          },
+          "memoryAfter": {
+            "workingSetBytes": 86564864,
+            "peakWorkingSetBytes": 173510656,
+            "privateCommittedBytes": 777789440
+          },
+          "cacheBytes": 10945120,
+          "encodedBytes": 8255632,
+          "opencv": "4.11.0"
+        }
+      ],
+      "p50Seconds": 0.9198539999779314,
+      "p95Seconds": 1.0799338800017722,
+      "maxPeakWorkingSetBytes": 173686784
+    },
+    "60/baseline": {
+      "runs": [
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 36.104660400014836,
+          "cpuSeconds": 37.75,
+          "cpuOneCorePercent": 104.55713911100653,
+          "memoryBefore": {
+            "workingSetBytes": 79622144,
+            "peakWorkingSetBytes": 87302144,
+            "privateCommittedBytes": 770523136
+          },
+          "memoryAfter": {
+            "workingSetBytes": 104505344,
+            "peakWorkingSetBytes": 297435136,
+            "privateCommittedBytes": 797421568
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 30.979304699983913,
+          "cpuSeconds": 32.859375,
+          "cpuOneCorePercent": 106.0687943716731,
+          "memoryBefore": {
+            "workingSetBytes": 78262272,
+            "peakWorkingSetBytes": 85409792,
+            "privateCommittedBytes": 769470464
+          },
+          "memoryAfter": {
+            "workingSetBytes": 101613568,
+            "peakWorkingSetBytes": 295727104,
+            "privateCommittedBytes": 792449024
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 32.85325330001069,
+          "cpuSeconds": 35.390625,
+          "cpuOneCorePercent": 107.72334988202974,
+          "memoryBefore": {
+            "workingSetBytes": 76476416,
+            "peakWorkingSetBytes": 84291584,
+            "privateCommittedBytes": 767397888
+          },
+          "memoryAfter": {
+            "workingSetBytes": 102969344,
+            "peakWorkingSetBytes": 295563264,
+            "privateCommittedBytes": 797003776
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 33.348659699986456,
+          "cpuSeconds": 35.765625,
+          "cpuOneCorePercent": 107.247563535558,
+          "memoryBefore": {
+            "workingSetBytes": 76533760,
+            "peakWorkingSetBytes": 84348928,
+            "privateCommittedBytes": 767488000
+          },
+          "memoryAfter": {
+            "workingSetBytes": 103624704,
+            "peakWorkingSetBytes": 295882752,
+            "privateCommittedBytes": 795136000
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 32.601141099992674,
+          "cpuSeconds": 34.21875,
+          "cpuOneCorePercent": 104.96181681201242,
+          "memoryBefore": {
+            "workingSetBytes": 76472320,
+            "peakWorkingSetBytes": 84287488,
+            "privateCommittedBytes": 767406080
+          },
+          "memoryAfter": {
+            "workingSetBytes": 103227392,
+            "peakWorkingSetBytes": 296202240,
+            "privateCommittedBytes": 799424512
+          },
+          "cacheBytes": 0,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        }
+      ],
+      "p50Seconds": 32.85325330001069,
+      "p95Seconds": 35.55346026000916,
+      "maxPeakWorkingSetBytes": 297435136
+    },
+    "60/currentCold": {
+      "runs": [
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 34.10835780002526,
+          "cpuSeconds": 36.015625,
+          "cpuOneCorePercent": 105.59178841490085,
+          "memoryBefore": {
+            "workingSetBytes": 77492224,
+            "peakWorkingSetBytes": 86261760,
+            "privateCommittedBytes": 768643072
+          },
+          "memoryAfter": {
+            "workingSetBytes": 120500224,
+            "peakWorkingSetBytes": 313925632,
+            "privateCommittedBytes": 809902080
+          },
+          "cacheBytes": 22810328,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 33.45826980000129,
+          "cpuSeconds": 35.34375,
+          "cpuOneCorePercent": 105.63531889505727,
+          "memoryBefore": {
+            "workingSetBytes": 76300288,
+            "peakWorkingSetBytes": 84119552,
+            "privateCommittedBytes": 767295488
+          },
+          "memoryAfter": {
+            "workingSetBytes": 124317696,
+            "peakWorkingSetBytes": 313856000,
+            "privateCommittedBytes": 816087040
+          },
+          "cacheBytes": 22810328,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 31.897003099991707,
+          "cpuSeconds": 33.40625,
+          "cpuOneCorePercent": 104.7316260254202,
+          "memoryBefore": {
+            "workingSetBytes": 76365824,
+            "peakWorkingSetBytes": 84185088,
+            "privateCommittedBytes": 767258624
+          },
+          "memoryAfter": {
+            "workingSetBytes": 121319424,
+            "peakWorkingSetBytes": 315441152,
+            "privateCommittedBytes": 812101632
+          },
+          "cacheBytes": 22810328,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 32.077864599996246,
+          "cpuSeconds": 33.640625,
+          "cpuOneCorePercent": 104.87177191964311,
+          "memoryBefore": {
+            "workingSetBytes": 77193216,
+            "peakWorkingSetBytes": 84959232,
+            "privateCommittedBytes": 768348160
+          },
+          "memoryAfter": {
+            "workingSetBytes": 122392576,
+            "peakWorkingSetBytes": 315658240,
+            "privateCommittedBytes": 814931968
+          },
+          "cacheBytes": 22810328,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 28.893450899980962,
+          "cpuSeconds": 30.65625,
+          "cpuOneCorePercent": 106.10103343529727,
+          "memoryBefore": {
+            "workingSetBytes": 76345344,
+            "peakWorkingSetBytes": 84164608,
+            "privateCommittedBytes": 767250432
+          },
+          "memoryAfter": {
+            "workingSetBytes": 122228736,
+            "peakWorkingSetBytes": 315756544,
+            "privateCommittedBytes": 814419968
+          },
+          "cacheBytes": 22810328,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        }
+      ],
+      "p50Seconds": 32.077864599996246,
+      "p95Seconds": 33.97834020002047,
+      "maxPeakWorkingSetBytes": 315756544
+    },
+    "60/currentWarm": {
+      "runs": [
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 6.997115999984089,
+          "cpuSeconds": 8.609375,
+          "cpuOneCorePercent": 123.04176463588108,
+          "memoryBefore": {
+            "workingSetBytes": 102305792,
+            "peakWorkingSetBytes": 318218240,
+            "privateCommittedBytes": 792281088
+          },
+          "memoryAfter": {
+            "workingSetBytes": 125100032,
+            "peakWorkingSetBytes": 319987712,
+            "privateCommittedBytes": 818315264
+          },
+          "cacheBytes": 22810328,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 7.3610189000028186,
+          "cpuSeconds": 9.171875,
+          "cpuOneCorePercent": 124.60061744980017,
+          "memoryBefore": {
+            "workingSetBytes": 101486592,
+            "peakWorkingSetBytes": 313962496,
+            "privateCommittedBytes": 790982656
+          },
+          "memoryAfter": {
+            "workingSetBytes": 124645376,
+            "peakWorkingSetBytes": 320217088,
+            "privateCommittedBytes": 819568640
+          },
+          "cacheBytes": 22810328,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 8.532182700000703,
+          "cpuSeconds": 10.796875,
+          "cpuOneCorePercent": 126.54294193675798,
+          "memoryBefore": {
+            "workingSetBytes": 100798464,
+            "peakWorkingSetBytes": 314957824,
+            "privateCommittedBytes": 790372352
+          },
+          "memoryAfter": {
+            "workingSetBytes": 120745984,
+            "peakWorkingSetBytes": 317923328,
+            "privateCommittedBytes": 810123264
+          },
+          "cacheBytes": 22810328,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 8.539526000007754,
+          "cpuSeconds": 10.828125,
+          "cpuOneCorePercent": 126.80007063612392,
+          "memoryBefore": {
+            "workingSetBytes": 102125568,
+            "peakWorkingSetBytes": 315588608,
+            "privateCommittedBytes": 792281088
+          },
+          "memoryAfter": {
+            "workingSetBytes": 121344000,
+            "peakWorkingSetBytes": 318099456,
+            "privateCommittedBytes": 810471424
+          },
+          "cacheBytes": 22810328,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        },
+        {
+          "pairCount": 1770,
+          "matchCount": 0,
+          "status": "complete",
+          "elapsedSeconds": 8.061943799984874,
+          "cpuSeconds": 10.375,
+          "cpuOneCorePercent": 128.69104842952967,
+          "memoryBefore": {
+            "workingSetBytes": 101699584,
+            "peakWorkingSetBytes": 314822656,
+            "privateCommittedBytes": 791818240
+          },
+          "memoryAfter": {
+            "workingSetBytes": 124510208,
+            "peakWorkingSetBytes": 318468096,
+            "privateCommittedBytes": 818106368
+          },
+          "cacheBytes": 22810328,
+          "encodedBytes": 24768300,
+          "opencv": "4.11.0"
+        }
+      ],
+      "p50Seconds": 8.061943799984874,
+      "p95Seconds": 8.538057340006343,
+      "maxPeakWorkingSetBytes": 320217088
+    }
+  },
+  "cancellation": {
+    "baseline": {
+      "status": "cancelled",
+      "latencyMilliseconds": 0.11470000026747584,
+      "lastProgress": {
+        "stage": "pairs",
+        "completed": 1,
+        "total": 1770
+      },
+      "elapsedSeconds": 7.206822100008139,
+      "cpuSeconds": 9.15625,
+      "cpuOneCorePercent": 127.04975747895399,
+      "memoryBefore": {
+        "workingSetBytes": 76578816,
+        "peakWorkingSetBytes": 84393984,
+        "privateCommittedBytes": 767516672
+      },
+      "memoryAfter": {
+        "workingSetBytes": 83472384,
+        "peakWorkingSetBytes": 297213952,
+        "privateCommittedBytes": 775319552
+      },
+      "cacheBytes": 0,
+      "encodedBytes": 24768300,
+      "opencv": "4.11.0"
+    },
+    "currentCold": {
+      "status": "cancelled",
+      "latencyMilliseconds": 3.049999999348074,
+      "lastProgress": {
+        "stage": "pairs",
+        "completed": 0,
+        "total": 1770
+      },
+      "elapsedSeconds": 7.562299200013513,
+      "cpuSeconds": 9.671875,
+      "cpuOneCorePercent": 127.89595788517225,
+      "memoryBefore": {
+        "workingSetBytes": 76570624,
+        "peakWorkingSetBytes": 84385792,
+        "privateCommittedBytes": 767524864
+      },
+      "memoryAfter": {
+        "workingSetBytes": 100737024,
+        "peakWorkingSetBytes": 315969536,
+        "privateCommittedBytes": 791552000
+      },
+      "cacheBytes": 17910968,
+      "encodedBytes": 24768300,
+      "opencv": "4.11.0"
+    },
+    "currentWarm": {
+      "status": "cancelled",
+      "latencyMilliseconds": 0.15999999595806003,
+      "lastProgress": {
+        "stage": "pairs",
+        "completed": 92,
+        "total": 1770
+      },
+      "elapsedSeconds": 7.872314399981406,
+      "cpuSeconds": 10.1875,
+      "cpuOneCorePercent": 129.4092116039479,
+      "memoryBefore": {
+        "workingSetBytes": 101298176,
+        "peakWorkingSetBytes": 314658816,
+        "privateCommittedBytes": 791584768
+      },
+      "memoryAfter": {
+        "workingSetBytes": 101572608,
+        "peakWorkingSetBytes": 318881792,
+        "privateCommittedBytes": 791117824
+      },
+      "cacheBytes": 22810328,
+      "encodedBytes": 24768300,
+      "opencv": "4.11.0"
+    }
+  }
+}

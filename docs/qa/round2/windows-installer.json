@@ -1,0 +1,111 @@
+{
+  "version": "0.1.20",
+  "passed": true,
+  "checks": [
+    "Installer installs x64 executable without admin requirement",
+    "Every installed application file matches the packaged build",
+    "Installed EXE completes Tk, HTTP analysis, rendering and reflow with no Python on PATH",
+    "Reinstall / upgrade preserves external project data and settings",
+    "Uninstall removes application and keeps external project data"
+  ],
+  "environment": "local Windows x64; isolated PATH, PYTHONHOME and working directory; not a clean VM",
+  "selfTest": {
+    "passed": true,
+    "checks": [
+      "Tk desktop shell resources",
+      "GET editor",
+      "Local update endpoint and installation version (no release request)",
+      "Host / Origin / token guards",
+      "/api/analyze",
+      "/api/render",
+      "/api/reflow",
+      "/api/import-pdf",
+      "/api/import-pdf",
+      "/api/image-duplicates",
+      "Bundled OpenCV image check and evidence via local HTTP",
+      "/api/image-links",
+      "Bundled SIFT crop localization and original-pixel coordinates via local HTTP"
+    ],
+    "data_sha256": "678e786f20cbdccc2359caa49aa155c68ec6cd8e35858ff9d68b28e49c2f2452",
+    "variants": 17,
+    "url": "http://127.0.0.1:18768/",
+    "frozen": true,
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "tk": "8.6.12",
+    "tcl": "8.6.12",
+    "pdfObjects": {
+      "texts": 11,
+      "paths": 17,
+      "images": 0
+    },
+    "imageLinks": {
+      "passed": true,
+      "synthetic": true,
+      "method": "sift_similarity_bidirectional",
+      "parentCorners": [
+        [
+          0.20001048726102383,
+          0.20000029436045824
+        ],
+        [
+          0.7999996260432992,
+          0.20000786593531886
+        ],
+        [
+          0.7999953670324402,
+          0.7999970047175943
+        ],
+        [
+          0.20000622825016476,
+          0.7999894331427337
+        ]
+      ],
+      "quality": {
+        "forwardInliers": 167,
+        "reverseInliers": 166,
+        "childCoverage": 0.7217,
+        "parentCoverage": 0.2598,
+        "contentAgreement": 1.0,
+        "residualPixels": 0.003,
+        "childDistribution": [
+          {
+            "occupiedCells": 9,
+            "quadrants": 4,
+            "spanX": 0.97358,
+            "spanY": 0.90459
+          },
+          {
+            "occupiedCells": 9,
+            "quadrants": 4,
+            "spanX": 0.97358,
+            "spanY": 0.90459
+          }
+        ],
+        "wholeChildAgreement": 1.0,
+        "orientation": "normal",
+        "orientationErrorDegrees": 0.00054,
+        "mirrored": false,
+        "cycleErrorPixels": 6e-05,
+        "cycleErrorFraction": 1e-07,
+        "parentAreaFraction": 0.359987
+      },
+      "compiledModule": true
+    },
+    "localUpdateInfo": {
+      "currentVersion": "0.1.20",
+      "suiteVersion": "1.4.20",
+      "platform": "windows",
+      "architecture": "x86_64",
+      "channel": "stable",
+      "inAppInstall": false
+    }
+  },
+  "nativeWindow": {
+    "launcherReady": true,
+    "openEditorButtonClicked": true,
+    "defaultBrowserAddressVerified": false,
+    "reason": "Windows Computer Use could not verify the current browser URL with sufficient confidence; further native UI automation was stopped. Actual installed Chrome workflows are verified separately.",
+    "shutdownButton": "not independently reverified for this build; scripted lifecycle self-test passed"
+  },
+  "scope": "Local Windows 11 x64; isolated installation/data and PATH; not a clean VM or Windows 10 certification"
+}

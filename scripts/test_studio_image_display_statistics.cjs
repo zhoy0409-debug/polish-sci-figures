@@ -1,0 +1,15 @@
+'use strict';
+const assert=require('node:assert/strict');
+const core=require('../skills/polish-sci-figures/assets/figure-studio/image-color.js');
+const data=Uint8ClampedArray.from([0,0,0,255,200,200,200,255,255,255,255,255]);
+const sample=core.sample({width:3,height:1,data});
+const original=core.displayStatistics(sample,core.defaults),adjusted=core.displayStatistics(sample,{...core.defaults,exposureEv:1});
+assert.equal(original.pixels,3);assert.equal(original.before.reduce((a,b)=>a+b),9);
+assert.deepEqual(original.before,original.after,'identity preserves every sampled RGB histogram bin');
+assert.equal(original.originalLowFraction,1/3);assert.equal(original.originalHighFraction,1/3);
+assert.equal(adjusted.lowFraction,1/3);assert.equal(adjusted.highFraction,2/3);
+assert.equal(adjusted.additionalClippedFraction,1/3,'already saturated source endpoints are not counted as newly clipped');
+assert.equal(adjusted.after[255],6);assert.equal(adjusted.after.reduce((a,b)=>a+b),9);
+assert.equal(sample.hist[0][200],1,'display statistics never change original sample values');
+assert.throws(()=>core.displayStatistics({...sample,count:4}),/采样/);
+console.log('Image display statistics: original/adjusted RGB bins, endpoint occupancy, additional clipping and unchanged sample passed.');

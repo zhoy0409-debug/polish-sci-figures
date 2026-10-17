@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "source": "two labelled synthetic views plus a private local real-source case; original files not distributed",
+  "checks": [
+    {
+      "scope": "1280x720",
+      "passed": true,
+      "dimensions": [
+        3000,
+        1850
+      ],
+      "tiffDpi": [
+        600.0,
+        600.0
+      ],
+      "pngTiffPixelsIdentical": true
+    },
+    {
+      "scope": "1920",
+      "passed": true,
+      "dimensions": [
+        3000,
+        1850
+      ],
+      "tiffDpi": [
+        600.0,
+        600.0
+      ],
+      "pngTiffPixelsIdentical": true
+    },
+    {
+      "scope": "local private real-source workflow",
+      "passed": true,
+      "dimensions": "retained locally",
+      "tiffDpi": [
+        600.0,
+        600.0
+      ],
+      "pngTiffPixelsIdentical": true
+    }
+  ]
+}

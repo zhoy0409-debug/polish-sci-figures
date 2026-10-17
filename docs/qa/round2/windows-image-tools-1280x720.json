@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "source": "explicitly labelled deterministic synthetic example",
+  "notReliabilityEvidence": true,
+  "url": "http://127.0.0.1:18953/",
+  "servedBuild": {
+    "currentVersion": "0.1.20",
+    "suiteVersion": "1.4.20",
+    "platform": "windows",
+    "architecture": "x86_64"
+  },
+  "checks": [
+    "image tools workflow opens selected image display in two clicks",
+    "color display: original/adjusted histogram and detail zoom, one Apply, undo/redo",
+    "image tools workflow exposes overview/detail separately from color",
+    "overview/detail: source confirmation, real automatic localization, original pixel ROI, explicit manual refinement",
+    "save/reopen retains explicit manual evidence and original image bytes",
+    "SVG export contains editable color filters and ROI; all original hrefs unchanged",
+    "full editor: selected-image border apply, undo/redo, save/reopen, SVG/PNG/TIFF export and source-byte preservation",
+    "synthetic screening: real four-image/six-pair engine call, evidence and persisted human review"
+  ],
+  "locationMetrics": {
+    "expectedOriginalPixels": [
+      48,
+      64,
+      192,
+      192
+    ],
+    "predictedOriginalPixels": [
+      48.01,
+      64,
+      191.99,
+      191.99
+    ],
+    "absolutePixelErrors": [
+      0.00999999999999801,
+      0,
+      0.009999999999990905,
+      0.009999999999990905
+    ]
+  },
+  "remoteRequests": [],
+  "errors": [],
+  "localRequests": 4,
+  "status": "PASS",
+  "testedBuild": "Suite v1.4.20 / Figure Studio 0.1.20",
+  "resourceRevision": "Final reinstalled resource build including quick-context refresh",
+  "viewport": "1280x720",
+  "installerTest": true,
+  "runtime": "Actual Chrome against isolated installed Windows desktop local service",
+  "artworkLicense": "Original deterministic synthetic test artwork; no private image data"
+}

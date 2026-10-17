@@ -1,0 +1,133 @@
+{
+  "schema": "private-raster-api-validation/1",
+  "status": "PASS",
+  "unauthorizedRequestRejected": true,
+  "network": "authenticated 127.0.0.1 only",
+  "independentBlindStudy": false,
+  "cases": [
+    {
+      "id": "wb-native-tiff-png",
+      "status": "PASS",
+      "expected": "exact",
+      "observed": "exact",
+      "detail": {
+        "matches": 1,
+        "highDepthPreviewCount": 0
+      }
+    },
+    {
+      "id": "wb-refused-localization",
+      "status": "PASS",
+      "expected": "unresolved",
+      "observed": "unresolved",
+      "detail": {
+        "reason": "insufficient_spatial_support",
+        "quality": {
+          "forwardInliers": 84,
+          "reverseInliers": 83,
+          "childCoverage": 0.2402,
+          "parentCoverage": 0.1013,
+          "contentAgreement": 0.9979,
+          "residualPixels": 0.134,
+          "childDistribution": [
+            {
+              "occupiedCells": 4,
+              "quadrants": 2,
+              "spanX": 0.44296,
+              "spanY": 0.62049
+            },
+            {
+              "occupiedCells": 4,
+              "quadrants": 2,
+              "spanX": 0.42884,
+              "spanY": 0.62049
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "tem-uint16-png-tiff",
+      "status": "PASS",
+      "expected": "exact",
+      "observed": "exact",
+      "detail": {
+        "matches": 1,
+        "highDepthPreviewCount": 2
+      }
+    },
+    {
+      "id": "tem-native-roi-localization",
+      "status": "PASS",
+      "expected": "matched",
+      "observed": "matched",
+      "detail": {
+        "quality": {
+          "forwardInliers": 385,
+          "reverseInliers": 386,
+          "childCoverage": 0.8565,
+          "parentCoverage": 0.3615,
+          "contentAgreement": 0.9992,
+          "residualPixels": 0.116,
+          "childDistribution": [
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.95337,
+              "spanY": 0.95734
+            },
+            {
+              "occupiedCells": 9,
+              "quadrants": 4,
+              "spanX": 0.95337,
+              "spanY": 0.95734
+            }
+          ],
+          "wholeChildAgreement": 0.99923,
+          "orientation": "normal",
+          "orientationErrorDegrees": 0.00344,
+          "mirrored": false,
+          "cycleErrorPixels": 0.02201,
+          "cycleErrorFraction": 1.91e-05,
+          "parentAreaFraction": 0.4222252
+        },
+        "parentCorners": [
+          [
+            0.1801723564494189,
+            0.17017135666562846
+          ],
+          [
+            0.819998468882825,
+            0.17012199886298673
+          ],
+          [
+            0.8200293524255513,
+            0.8300282460660574
+          ],
+          [
+            0.1802032399921452,
+            0.8300776038686992
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tem-full-native-png-over-bound",
+      "status": "PASS",
+      "expected": "error",
+      "observed": "error",
+      "detail": {
+        "reason": "\u5355\u5f20\u56fe\u7247\u4e0d\u5e94\u8d85\u8fc7 12 MB\u3002 / Each image must be at most 12 MB."
+      }
+    },
+    {
+      "id": "tem-full-original-tiff-over-bound",
+      "status": "PASS",
+      "expected": "error",
+      "observed": "error",
+      "detail": {
+        "reason": "\u5355\u5f20\u56fe\u7247\u4e0d\u5e94\u8d85\u8fc7 12 MB\u3002 / Each image must be at most 12 MB."
+      }
+    }
+  ]
+}

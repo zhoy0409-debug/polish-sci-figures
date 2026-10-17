@@ -17,15 +17,21 @@ First run the candidate with `-c "import sys; print(sys.executable); print(sys.v
 
 If no candidate passes, identify the specific missing runtime/package and propose a task-local environment or the installed Figure Studio option. Do not modify PATH, install into the global interpreter, or ask a novice to guess executable paths. Runtime checks are the agent's work; the user's ordinary-language request is sufficient.
 
-## Product entry points (suite v1.4.10)
+## Product entry points (suite v1.4.20)
 
-This skill and Figure Studio are two entry points to the same product. The original AI/CLI workflow remains available; manual editing is optional. Figure Studio 0.1.10 is the official Windows companion editor, not a fourth independently installed skill. Direct users who want an installed editor to the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases): its Windows x64 installer bundles the renderer and local analysis engine, needs no separate Python/Codex installation, account or activation, and works offline. Do not ask those users to set up an agent runtime.
+This skill and Figure Studio are two entry points to the same product. The original AI/CLI workflow remains available; manual editing is optional. Figure Studio 0.1.20 is the official Windows companion editor, not a fourth independently installed skill. Direct users who want an installed editor to the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases): its Windows x64 installer bundles the renderer and local analysis engine, needs no separate Python/Codex installation, account or activation, and works offline. Do not ask those users to set up an agent runtime.
 
 For an AI handoff, generate a self-contained page from reviewed candidate bundles or SVGs using this skill's builder. Offline HTML supports direct layout and appearance editing; current-data regeneration and analysis require the local service. The installed desktop application starts this service automatically. Read [Figure Studio](references/figure_studio.md) for the actual contracts and [human/AI handoff principles](references/human_ai_figure_workflow.md) before returning to a saved project.
 
 The editor must open on the final approved chart. For a candidate directory, pass `--view` with the chosen SVG filename stem, preserve its data and analysis records, and inspect the initial HTML alongside the final image. For an individually edited final SVG, package that exact SVG or update its bundle candidate first. One panel defaults to one column; extra blank cells require an intentional layout. Never substitute the default candidate for the user's final choice.
 
 The suite retains MIT licensing and third-party notices. Official branding identifies the maintained distribution; it is not copy protection. Never add account gates, activation or an online authenticity check as part of ordinary figure delivery.
+
+## Local image tools and professional axes
+
+Figure Studio exposes the existing editing pipeline through five workflow entries and local command search (Ctrl/Command + K). Use **Image tools** for independent decorative borders, explicit local duplicate screening, original/adjusted display histograms and overview/detail source-coordinate refinement. Native axes re-render from real data; imported numerical axes retain only scientifically supported presentation changes. Do not invent a numerical mapping for flattened images or infer common image provenance from appearance alone.
+
+Duplicate detection and localization are engineering aids, not misconduct judgments. Heavy crops and low-information Western blot strips remain documented misses/refusals. Independent human-labelled blind accuracy is still unverified; keep private images and source paths local. A synthetic pass or transformed real-source regression cannot establish real-case sensitivity. Original pixels remain available, manual ROI confirmation is labelled explicitly, and reference display matching is not stain normalization or quantitative fluorescence correction. Use the bundled image-tool, axis and evaluation guides for limits and reproducible checks.
 
 ## Use the bundled resources
 

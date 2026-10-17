@@ -52,6 +52,8 @@ jobs:
         run: |
           python scripts/test_image_duplicates.py
           python scripts/test_duplicate_integration.py
+          python scripts/test_image_screening_cache.py
+          python scripts/test_scientific_image_evaluation.py
       - name: Release QA gates
         run: |
           python skills/polish-sci-figures/scripts/test_figure_text_qa.py
@@ -191,6 +193,8 @@ jobs:
           python scripts/test_studio_pdf_endpoint.py
           python scripts/test_studio_reflow.py
           python scripts/test_studio_axes_regression.py
+          python scripts/test_studio_axis_settings.py
+          python scripts/test_studio_axis_formatters.py
       - name: Whitespace check
         run: git diff --check
 
@@ -261,6 +265,10 @@ jobs:
           node scripts/test_studio_font_replacement.cjs
           node scripts/test_studio_vector_interaction.cjs --dom
           node scripts/test_studio_axis_editing.cjs --dom --real
+          node scripts/test_studio_axis_settings_ui.cjs
+          node scripts/test_studio_axis_settings_async.cjs
+          node scripts/test_studio_border_replacement.cjs
+          node scripts/test_studio_experience_tools.cjs
           node scripts/test_studio_component_style.cjs --dom --real
           node scripts/test_studio_component_controls.cjs --dom
           node scripts/test_studio_grid_resize.cjs --dom
@@ -293,6 +301,7 @@ jobs:
           node scripts/test_studio_image_color.cjs --dom
           node scripts/test_studio_image_color_ui.cjs
           node scripts/test_studio_image_color_roundtrip.cjs
+          node scripts/test_studio_image_display_statistics.cjs
           node scripts/test_studio_image_links.cjs --dom
           node scripts/test_studio_image_links_ui.cjs
           node scripts/test_studio_image_links_controller.cjs
