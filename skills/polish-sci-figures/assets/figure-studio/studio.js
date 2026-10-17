@@ -5024,8 +5024,10 @@ if (typeof document !== 'undefined') (async () => {
   if($('confirmNewProject'))$('confirmNewProject').onclick=guard(createNewProject);
   if($('cancelNewProject'))$('cancelNewProject').onclick=()=>$('newProjectDialog').close();
   if($('backupBeforeNew'))$('backupBeforeNew').onclick=()=>$('save').click();
-  if($('startDiscovery'))$('startDiscovery').onclick=guard(openFigureDiscovery);
-  if($('openDiscovery')){document.querySelector('section[data-pane="explore"]')?.prepend($('openDiscovery'));$('openDiscovery').onclick=guard(openFigureDiscovery);}
+  if(typeof FigureDiscoveryUI!=='undefined'){
+    if($('startDiscovery'))$('startDiscovery').onclick=guard(openFigureDiscovery);
+    if($('openDiscovery')){document.querySelector('section[data-pane="explore"]')?.prepend($('openDiscovery'));$('openDiscovery').onclick=guard(openFigureDiscovery);}
+  }
   if($('startTemplates'))$('startTemplates').onclick=openStartTemplates;
   if($('startImportImage'))$('startImportImage').onclick=()=>chooseImage(null,null);
   if($('startOpenProject'))$('startOpenProject').onclick=()=>$('load').click();
