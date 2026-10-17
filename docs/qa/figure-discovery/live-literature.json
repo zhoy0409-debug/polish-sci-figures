@@ -1,0 +1,113 @@
+{
+  "checkedAt": "2026-10-17T05:35:32.578Z",
+  "query": "(\"box plot\" OR \"boxplot\" OR \"empirical cumulative distribution\" OR \"ECDF\" OR \"estimation plot\" OR \"Gardner Altman\" OR \"Cumming plot\") AND OPEN_ACCESS:Y AND TITLE_ABS:\"cell viability\"",
+  "requests": [
+    "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22box+plot%22+OR+%22boxplot%22+OR+%22empirical+cumulative+distribution%22+OR+%22ECDF%22+OR+%22estimation+plot%22+OR+%22Gardner+Altman%22+OR+%22Cumming+plot%22%29+AND+OPEN_ACCESS%3AY+AND+TITLE_ABS%3A%22cell+viability%22&format=json&pageSize=5&resultType=core",
+    "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22box+plot%22+OR+%22boxplot%22+OR+%22empirical+cumulative+distribution%22+OR+%22ECDF%22+OR+%22estimation+plot%22+OR+%22Gardner+Altman%22+OR+%22Cumming+plot%22%29+AND+OPEN_ACCESS%3AY+AND+TITLE_ABS%3A%22cell+viability%22&format=json&pageSize=5&resultType=core&cursorMark=AoIIQHBtBCg1NjUwMjE3MA%3D%3D",
+    "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13593774/fullTextXML",
+    "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13127207/fullTextXML",
+    "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13583459/fullTextXML"
+  ],
+  "papers": [
+    {
+      "title": "Novel fenoterol derivatives as suppressors of ERK1/2 phosphorylation in melanoma.",
+      "pmid": "42322356",
+      "pmcid": "PMC13593774",
+      "doi": "10.1007/s00210-026-05564-7",
+      "url": "https://europepmc.org/articles/PMC13593774",
+      "evidence_level": "figure_verified",
+      "figures": [
+        {
+          "label": "Fig. 5",
+          "url": "https://europepmc.org/articles/PMC13593774#Fig5",
+          "evidence": "figure_verified",
+          "chartTypes": [
+            "estimation"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Fat harvesting protocol for enhanced stem cell viability - pilot study.",
+      "pmid": "42030687",
+      "pmcid": "PMC13127207",
+      "doi": "10.1016/j.clinsp.2026.100945",
+      "url": "https://europepmc.org/articles/PMC13127207",
+      "evidence_level": "paper_relevant",
+      "figures": []
+    },
+    {
+      "title": "Phenotyping of Human Pulp Cells After Cryopreservation.",
+      "pmid": "42750357",
+      "pmcid": "PMC13583459",
+      "doi": "10.1111/jcmm.71362",
+      "url": "https://europepmc.org/articles/PMC13583459",
+      "evidence_level": "paper_relevant",
+      "figures": []
+    },
+    {
+      "title": "Combination treatment with intravesical interferon-alpha gene therapy and an oral pan-ErbB receptor family blocker improves survival in mice with bladder cancer.",
+      "pmid": "42638663",
+      "pmcid": "PMC13500216",
+      "doi": "10.3389/fmolb.2026.1804161",
+      "url": "https://europepmc.org/articles/PMC13500216",
+      "evidence_level": "paper_relevant",
+      "figures": []
+    },
+    {
+      "title": "TANGO6 coordinates transcription and translation through nucleocytoplasmic partitioning.",
+      "pmid": "42789729",
+      "pmcid": "PMC13614399",
+      "doi": "10.1126/sciadv.aef0902",
+      "url": "https://europepmc.org/articles/PMC13614399",
+      "evidence_level": "paper_relevant",
+      "figures": []
+    },
+    {
+      "title": "Bioinformatics identification of adenosylhomocysteinase (AHCY) as a regulator of ferroptosis in nasopharyngeal carcinoma cells via the Hippo-Yes-associated protein (Hippo-YAP) pathway.",
+      "pmid": "41815160",
+      "pmcid": "PMC12971592",
+      "doi": "10.21037/tcr-2025-1844",
+      "url": "https://europepmc.org/articles/PMC12971592",
+      "evidence_level": "paper_relevant",
+      "figures": []
+    },
+    {
+      "title": "Tumor Suppressive Role of Hsa-miR-328-3p in Colon Cancer by Regulating &lt;i&gt;EN2&lt;/i&gt;.",
+      "pmid": "42674825",
+      "pmcid": "PMC13531123",
+      "doi": "10.21873/cgp.20610",
+      "url": "https://europepmc.org/articles/PMC13531123",
+      "evidence_level": "paper_relevant",
+      "figures": []
+    },
+    {
+      "title": "Targeting RAC1 in glioblastoma: prognostic value, immune landscape, and small molecule therapeutic potential.",
+      "pmid": "42394691",
+      "pmcid": "PMC13322918",
+      "doi": "10.3389/fonc.2026.1801747",
+      "url": "https://europepmc.org/articles/PMC13322918",
+      "evidence_level": "paper_relevant",
+      "figures": []
+    },
+    {
+      "title": "Theoretical analysis of MOFs for pharmaceutical applications by using machine learning models to predict loading capacity and cell viability.",
+      "pmid": "40804468",
+      "pmcid": "PMC12350912",
+      "doi": "10.1038/s41598-025-15879-9",
+      "url": "https://europepmc.org/articles/PMC12350912",
+      "evidence_level": "paper_relevant",
+      "figures": []
+    },
+    {
+      "title": "Actions of Midostaurin as Cation Channel and Tyrosine Kinase Inhibitor in Diffuse Intrinsic Pontine Glioma Cell Lines.",
+      "pmid": "41976289",
+      "pmcid": "PMC13072310",
+      "doi": "10.3390/cancers18071066",
+      "url": "https://europepmc.org/articles/PMC13072310",
+      "evidence_level": "paper_relevant",
+      "figures": []
+    }
+  ],
+  "partial": false
+}

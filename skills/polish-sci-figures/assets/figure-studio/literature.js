@@ -31,7 +31,7 @@ const StudioLiterature = (() => {
   const TEXT = {
     title:['文献作图实例','Examples in papers'], topic:['研究主题（可选）','Research topic (optional)'],
     placeholder:['例如：细胞活性','e.g. cell viability'], search:['查找文献实例','Find examples'],
-    privacy:['仅发送图型检索词及您填写的主题；数据留在本机。','Only chart search terms and your topic are sent. Your data stay on this device.'],
+    privacy:['点击查找将向 Europe PMC 发送图型词及您在此填写的公开主题、样本类型和实验方法关键词；请先核对，勿填姓名或私有信息。数据留在本机。','Searching sends chart terms and the public topic, sample-type and assay keywords entered here to Europe PMC. Review them first; exclude names and private information. Data stay on this device.'],
     idle:['看看类似图型在论文中如何使用，再用自己的数据预览。','See how papers use these chart types, then preview with your own data.'],
     busy:['正在查找，并核对开放全文的图注…','Finding papers and checking open-access figure captions…'],
     cancel:['取消','Cancel'], cancelled:['已取消，当前图形保持不变。','Search cancelled. Your figure is unchanged.'],
@@ -58,6 +58,7 @@ const StudioLiterature = (() => {
   function cleanTopic(value='') {
     if(typeof value!=='string'||value.length>120||/[\u0000-\u001f\u007f<>:"@/\\?={}\[\]]|\b(?:www\.|https?\b|doi\b)|\b\d{1,3}(?:\.\d{1,3}){3}\b/i.test(value))throw new LiteratureError('invalid_topic');
     const topic=value.trim();
+    if(/\b(?:patient|subject|participant|mrn|ssn|hospital|private|project|file|name|address|dob)[ _-]*(?:id|number|no|secret|\d)|患者|住院号|病历号|身份证|姓名|手机号|私有|项目名|\d{3,}|\d[.,]\d/i.test(topic))throw new LiteratureError('invalid_topic');
     if(topic&&!/^[\p{L}\p{M}\p{N}\s()'’.,–—-]+$/u.test(topic))throw new LiteratureError('invalid_topic');
     // The topic is one quoted literal. No field names or user query operators execute.
     return topic.replace(/[()'’.,–—-]+/g,' ').replace(/\s+/g,' ').trim();
@@ -69,12 +70,13 @@ const StudioLiterature = (() => {
     return CHARTS.map(chart=>({...chart,views:requested.filter(v=>chart.views.includes(v))}))
       .filter(chart=>chart.views.length).sort((a,b)=>requested.indexOf(a.views[0])-requested.indexOf(b.views[0]));
   }
-  function buildSearch({views=[],topic=''}={}) {
+  function buildSearch({views=[],topic='',sampleType='',assay='',mode='evidence'}={}) {
     const charts=chartSelection(views),clean=cleanTopic(topic);
     if(!charts.length)throw new LiteratureError('no_views');
     const supported=new Set(charts.flatMap(c=>c.views)),leading=[...new Set(views.filter(v=>supported.has(v)))].slice(0,3);
     const terms=[...new Set(chartSelection(leading).flatMap(c=>c.terms))];
-    return {charts,topic:clean,query:`(${terms.map(t=>'"'+t+'"').join(' OR ')}) AND OPEN_ACCESS:Y${clean?' AND TITLE_ABS:"'+clean+'"':''}`};
+    const publicTerms=[clean,cleanTopic(sampleType),cleanTopic(assay)].filter(Boolean),semantic=publicTerms.map(v=>'TITLE_ABS:"'+v+'"').join(' AND ');
+    return {charts,topic:clean,query:mode==='explore'&&semantic?`OPEN_ACCESS:Y AND ${semantic}`:`(${terms.map(t=>'"'+t+'"').join(' OR ')}) AND OPEN_ACCESS:Y${semantic?' AND '+semantic:''}`};
   }
   function verifiedId(value, type) { const s=typeof value==='number'?String(value):typeof value==='string'?value:'';return (type==='pmcid'?/^PMC[1-9]\d{0,11}$/:/^[1-9]\d{0,11}$/).test(s)?s:''; }
   function doiValue(value) {
@@ -89,9 +91,9 @@ const StudioLiterature = (() => {
     const title=plain(record.title,600);if(!title)return null;
     return {source:'Europe PMC',id:pmid||pmcid,pmid,pmcid,doi:doiValue(record.doi),title,
       year:/^(19|20)\d{2}$/.test(String(record.pubYear||''))?String(record.pubYear):'',
-      journal:plain(record.journalTitle||record.journalInfo?.journal?.title,180),
+      journal:plain(record.journalTitle||record.journalInfo?.journal?.title,180),authors:plain(record.authorString,500),abstract:plain(record.abstractText,3000),
       articleUrl:pmcid?'https://europepmc.org/articles/'+pmcid:'https://europepmc.org/article/MED/'+pmid,
-      openAccess:record.isOpenAccess==='Y',verified:false,figures:[],compatibleViews:[]};
+      openAccess:record.isOpenAccess==='Y',license:null,imageReuseAllowed:false,evidence_level:'paper_relevant',verified:false,figures:[],compatibleViews:[]};
   }
   function prepareXML(xml) {
     if(typeof xml!=='string'||xml.length>3000000||/<!ENTITY\b/i.test(xml))throw new LiteratureError('invalid_response');
@@ -104,10 +106,13 @@ const StudioLiterature = (() => {
     return cleaned;
   }
   function parseFigures(xml, charts, pmcid, Parser=globalThis.DOMParser) {
+    if(!verifiedId(pmcid,'pmcid'))throw new LiteratureError('invalid_response');
     const source=prepareXML(xml);
     if(!Parser)return [];
     const doc=new Parser().parseFromString(source,'application/xml');
     if(doc.getElementsByTagName('parsererror').length||doc.documentElement?.localName!=='article')throw new LiteratureError('invalid_response');
+    const sourceIds=Array.from(doc.getElementsByTagName('article-id')).filter(n=>['pmc','pmcid'].includes(n.getAttribute('pub-id-type'))).map(n=>'PMC'+String(n.textContent).trim().replace(/^PMC/,''));
+    if(sourceIds.length&&!sourceIds.includes(pmcid))throw new LiteratureError('invalid_response');
     const child=(node,name)=>Array.from(node.children||[]).find(n=>n.localName===name);
     const figures=[];
     for(const fig of Array.from(doc.getElementsByTagName('fig')).slice(0,100)) {
@@ -116,7 +121,7 @@ const StudioLiterature = (() => {
       const matches=charts.filter(c=>c.pattern.test(caption));
       if(!matches.length)continue;
       figures.push({id,label,chartTypes:matches.map(c=>({id:c.id,en:c.en,zh:c.zh})),compatibleViews:[...new Set(matches.flatMap(c=>c.views))],
-        url:'https://europepmc.org/articles/'+pmcid+'#'+encodeURIComponent(id),evidence:'caption',verified:true});
+        url:'https://europepmc.org/articles/'+pmcid+'#'+encodeURIComponent(id),caption,evidence:'caption',evidence_level:'figure_verified',verified:true});
       if(figures.length===3)break;
     }
     return figures;
@@ -143,17 +148,22 @@ const StudioLiterature = (() => {
       }
       const text=await abortable(response.text(),signal);if(text.length>max)throw new LiteratureError('invalid_response');return text;
     }
-    async function request(url,signal,max) {
+    async function request(url,signal,max,retried=false) {
       check(signal);let response;
       try{response=await abortable(fetcher(url,{method:'GET',mode:'cors',credentials:'omit',referrerPolicy:'no-referrer',redirect:'error',signal}),signal);}
       catch(error){check(signal);throw error instanceof LiteratureError?error:new LiteratureError('offline');}
       check(signal);
+      if(response.status===429&&!retried){
+        const after=Number(response.headers?.get?.('retry-after')),delay=Math.min(1000,Math.max(250,Number.isFinite(after)?after*1000:250));
+        await abortable(new Promise(resolve=>globalThis.setTimeout(resolve,delay)),signal);
+        return request(url,signal,max,true);
+      }
       if(!response.ok)throw new LiteratureError(response.status===429?'rate_limit':'offline');
       return read(response,signal,max);
     }
-    async function searchExamples({views=[],goal='',topic='',signal,language='en'}={}) {
+    async function searchExamples({views=[],goal='',topic='',sampleType='',assay='',mode='evidence',signal,language='en'}={}) {
       // Do not add panel, table or project parameters here. The allowlisted query is the entire request.
-      const search=buildSearch({views,topic}),key=JSON.stringify([search.query,search.charts.map(c=>c.views)]),hit=cache.get(key);
+      const search=buildSearch({views,topic,sampleType,assay,mode}),key=JSON.stringify([search.query,search.charts.map(c=>c.views)]),hit=cache.get(key);
       if(signal?.aborted)throw new LiteratureError('aborted');
       if(hit&&now()-hit.time<600000)return {...JSON.parse(JSON.stringify(hit.result)),fromCache:true};
       const controller=new AbortController(),abort=()=>controller.abort(new LiteratureError('aborted'));
@@ -163,14 +173,21 @@ const StudioLiterature = (() => {
         const url=new URL(BASE+'search');url.searchParams.set('query',search.query);url.searchParams.set('format','json');url.searchParams.set('pageSize','5');url.searchParams.set('resultType','core');
         const raw=await request(url.href,controller.signal,600000);let data;try{data=JSON.parse(raw);}catch{throw new LiteratureError('invalid_response');}
         if(!Array.isArray(data?.resultList?.result))throw new LiteratureError('invalid_response');
-        const seen=new Set(),papers=data.resultList.result.map(safeArticle).filter(p=>p&&!seen.has(p.pmcid||p.pmid)&&seen.add(p.pmcid||p.pmid)).slice(0,5);
+        const records=data.resultList.result.slice(0,5);let pagingPartial=false;
+        // At most one extra page, always the same allowlisted public query.
+        if(typeof data.nextCursorMark==='string'&&/^[A-Za-z0-9+/=_-]{1,1000}$/.test(data.nextCursorMark)&&records.length===5){
+          try{const next=new URL(url);next.searchParams.set('cursorMark',data.nextCursorMark);const page=JSON.parse(await request(next.href,controller.signal,600000));if(!Array.isArray(page?.resultList?.result))throw new LiteratureError('invalid_response');records.push(...page.resultList.result.slice(0,5));}
+          catch(error){if(signal?.aborted)throw new LiteratureError('aborted');pagingPartial=true;}
+        }
+        const seen=new Set(),papers=records.map(safeArticle).filter(p=>{if(!p)return false;const ids=[p.doi&&'doi:'+p.doi.toLowerCase(),p.pmid&&'pmid:'+p.pmid,p.pmcid&&'pmcid:'+p.pmcid].filter(Boolean),duplicate=ids.some(id=>seen.has(id));ids.forEach(id=>seen.add(id));return !duplicate;}).slice(0,10);
         if(data.resultList.result.length&&!papers.length)throw new LiteratureError('invalid_response');
-        let partial=false;
+        let partial=pagingPartial;
         await Promise.all(papers.filter(p=>p.pmcid&&p.openAccess).slice(0,3).map(async paper=>{
           try{const xml=await request(BASE+paper.pmcid+'/fullTextXML',controller.signal,3000000);paper.figures=parseFigures(xml,search.charts,paper.pmcid,Parser);paper.verified=paper.figures.length>0;paper.compatibleViews=[...new Set(paper.figures.flatMap(f=>f.compatibleViews))];paper.verification=paper.verified?'caption':'no_caption_match';}
           catch(error){if(signal?.aborted)throw new LiteratureError('aborted');partial=true;paper.verification=error.code||'unavailable';}
         }));
         if(signal?.aborted)throw new LiteratureError('aborted');
+        for(const paper of papers){paper.checkedAt=new Date(now()).toISOString();paper.evidence_level=paper.verified?'figure_verified':search.charts.some(c=>c.pattern.test(paper.abstract))?'design_inferred':'paper_relevant';paper.relevance=paper.verified?'Chart term explicitly matched in the linked caption':paper.evidence_level==='design_inferred'?'Chart term in abstract only; figure and design applicability unverified':'Search-topic match only; figure unverified';for(const fig of paper.figures)fig.checkedAt=paper.checkedAt;}
         const result={source:'Europe PMC',query:search.query,papers:papers.sort((a,b)=>Number(b.verified)-Number(a.verified)),partial,fetchedAt:new Date(now()).toISOString(),fromCache:false};
         // Partial/error results are not cached: retry should actually recheck the service.
         if(!partial){cache.set(key,{time:now(),result:JSON.parse(JSON.stringify(result))});while(cache.size>12)cache.delete(cache.keys().next().value);}
@@ -180,14 +197,17 @@ const StudioLiterature = (() => {
     return {searchExamples,clearCache:()=>cache.clear()};
   }
   const client=createClient();
-  function mount(container,{getContext=()=>({}),onPreview=()=>{},searchExamples=client.searchExamples}={}) {
+  function mount(container,{getContext=()=>({}),onPreview=()=>{},searchExamples=client.searchExamples,validateTopic=()=>true}={}) {
     const document=container.ownerDocument;let controller=null,serial=0,destroyed=false,currentKey='',context={},lastResult=null;
     const element=(tag,className,text)=>{const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=text;return el;};
     const section=element('details','literature-panel'),heading=element('summary'),intro=element('p','literature-intro'),label=element('label','literature-topic-label'),input=element('input','literature-topic');input.type='text';input.maxLength=120;input.autocomplete='off';
     const labelText=element('span');label.append(labelText,input);
+    const semantics=element('div','literature-semantics'),sampleInput=element('input'),assayInput=element('input'),modeInput=element('select');
+    for(const [v,zh,en]of [['evidence','证据参考模式','Chart evidence'],['explore','探索发现模式','Explore the topic']]){const o=element('option');o.value=v;o.textContent=en;modeInput.append(o);}
+    sampleInput.maxLength=assayInput.maxLength=80;semantics.append(sampleInput,assayInput,modeInput);
     const actions=element('div','literature-actions'),searchButton=element('button'),cancelButton=element('button'),privacy=element('small','literature-privacy'),status=element('p','literature-status'),results=element('div','literature-results'),source=element('small','literature-source');
     searchButton.type=cancelButton.type='button';cancelButton.hidden=true;actions.append(searchButton,cancelButton);status.setAttribute('role','status');status.setAttribute('aria-live','polite');
-    section.append(heading,intro,label,actions,privacy,status,results,source);container.replaceChildren(section);
+    section.append(heading,intro,label,semantics,actions,privacy,status,results,source);container.replaceChildren(section);
     const language=()=>context.language==='en'?'en':'zh-CN',t=key=>words(key,language());
     const snapshot=()=>{const c=getContext()||{};return {views:Array.isArray(c.views)?c.views.filter(v=>typeof v==='string'):[],goal:typeof c.goal==='string'?c.goal:'',language:c.language==='en'?'en':'zh-CN',contextKey:typeof c.contextKey==='string'?c.contextKey:''};};
     const identity=c=>JSON.stringify([c.contextKey,c.views,c.goal,c.language]);
@@ -200,6 +220,8 @@ const StudioLiterature = (() => {
       for(const paper of result.papers) {
         const card=element('article','literature-card'),title=element('h4'),meta=element('p','literature-meta',[paper.journal,paper.year].filter(Boolean).join(' · '));title.append(link(paper.title,paper.articleUrl));card.append(title,meta);
         const badge=element('span','literature-badge'+(paper.verified?' is-verified':''),t(paper.verified?'verified':'unverified'));card.append(badge);
+        card.append(element('small','literature-evidence',paper.evidence_level|| (paper.verified?'figure_verified':'paper_relevant')));
+        if(paper.authors)card.append(element('p','literature-meta',paper.authors));
         const previews=new Map();
         for(const fig of paper.figures) {
           const row=element('div','literature-figure'),names=fig.chartTypes.map(c=>language()==='en'?c.en:c.zh).join(' / ');row.append(link(fig.label+' · '+names,fig.url));
@@ -209,6 +231,7 @@ const StudioLiterature = (() => {
             if(view)previews.set(chart.id,{view,name:language()==='en'?chart.en:chart.zh});
           }
           card.append(row);
+          if(fig.caption)card.append(element('p','literature-caption',fig.caption.slice(0,800)));
         }
         for(const {view,name}of previews.values()){const preview=element('button','literature-preview',t('preview')+(previews.size>1?' · '+name:''));preview.type='button';preview.onclick=()=>{if(destroyed||serial!==resultSerial||identity(snapshot())!==key){refresh();return;}onPreview(view);};card.append(preview);}
         if(!paper.verified)card.append(link(t('article'),paper.articleUrl));
@@ -222,7 +245,7 @@ const StudioLiterature = (() => {
     async function run() {
       refresh();stop();const ticket=++serial,key=currentKey;controller=new AbortController();const own=controller;
       lastResult=null;results.replaceChildren();status.textContent=t('busy');searchButton.disabled=true;cancelButton.hidden=false;section.setAttribute('aria-busy','true');
-      try{const result=await searchExamples({views:context.views,goal:context.goal,topic:input.value,signal:own.signal,language:context.language});if(destroyed||ticket!==serial||own.signal.aborted)return;if(identity(snapshot())!==key){refresh();return;}lastResult=result;showResult(result,key);}
+      try{if(!validateTopic([input.value,sampleInput.value,assayInput.value].join(' ')))throw new LiteratureError('invalid_topic');const result=await searchExamples({views:context.views,goal:context.goal,topic:input.value,sampleType:sampleInput.value,assay:assayInput.value,mode:modeInput.value,signal:own.signal,language:context.language});if(destroyed||ticket!==serial||own.signal.aborted)return;if(identity(snapshot())!==key){refresh();return;}lastResult=result;showResult(result,key);}
       catch(error){if(!destroyed&&ticket===serial)status.textContent=t(error.code==='no_views'?'unavailable':error.code==='aborted'?'cancelled':error.code||'offline');}
       finally{if(ticket===serial&&!destroyed){controller=null;searchButton.disabled=false;cancelButton.hidden=true;section.removeAttribute('aria-busy');}}
     }
@@ -230,11 +253,13 @@ const StudioLiterature = (() => {
       if(destroyed)return;const next=snapshot(),key=identity(next),changed=currentKey&&key!==currentKey;
       context=next;if(changed){stop();lastResult=null;results.replaceChildren();status.textContent=t('changed');}currentKey=key;
       heading.textContent=t('title');intro.textContent=t('idle');labelText.textContent=t('topic');input.placeholder=t('placeholder');searchButton.textContent=t('search');cancelButton.textContent=t('cancel');privacy.textContent=t('privacy');source.textContent=t('source');
+      sampleInput.placeholder=language()==='en'?'Public sample-type keywords only':'仅公开样本类型关键词';assayInput.placeholder=language()==='en'?'Public assay keywords only':'仅公开实验方法关键词';sampleInput.setAttribute('aria-label',sampleInput.placeholder);assayInput.setAttribute('aria-label',assayInput.placeholder);modeInput.setAttribute('aria-label',language()==='en'?'Search mode':'检索模式');modeInput.children[0].textContent=language()==='en'?'Chart evidence':'证据参考模式';modeInput.children[1].textContent=language()==='en'?'Explore the topic':'探索发现模式';
       if(!chartSelection(context.views).length){searchButton.disabled=true;status.textContent=t('unavailable');}else if(!controller)searchButton.disabled=false;
     }
-    searchButton.onclick=run;cancelButton.onclick=()=>stop('cancelled');input.onkeydown=e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();if(!searchButton.disabled)run();}};input.oninput=()=>{stop();lastResult=null;results.replaceChildren();status.textContent=t('idle');refresh();};refresh();
+    searchButton.onclick=run;cancelButton.onclick=()=>stop('cancelled');input.onkeydown=e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();if(!searchButton.disabled)run();}};input.oninput=()=>{stop();lastResult=null;results.replaceChildren();status.textContent=t('idle');refresh();};sampleInput.oninput=assayInput.oninput=modeInput.onchange=input.oninput;refresh();
     return {refresh,destroy(){if(destroyed)return;stop();destroyed=true;container.replaceChildren();}};
   }
-  return {searchExamples:client.searchExamples,clearCache:client.clearCache,mount,createClient,buildSearch,parseFigures,prepareXML,safeArticle,words};
+  const providers=Object.freeze({europepmc:Object.freeze({id:'europepmc',searchExamples:client.searchExamples,capabilities:['search','oa-fulltext-captions']}),openalex:Object.freeze({id:'openalex',enabled:false,capabilities:[]})});
+  return {providers,searchExamples:client.searchExamples,clearCache:client.clearCache,mount,createClient,buildSearch,parseFigures,prepareXML,safeArticle,words};
 })();
 if(typeof module!=='undefined')module.exports=StudioLiterature;

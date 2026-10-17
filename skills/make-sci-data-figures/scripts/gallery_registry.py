@@ -19,7 +19,7 @@ from gallery_axes import apply_axes, validate_settings, compatible_settings, con
 MODULES = [importlib.import_module(name) for name in (
     'gallery_workbench', 'gallery_compare', 'gallery_time_composition',
     'gallery_clinical', 'gallery_omics_special', 'gallery_misc',
-    'gallery_model_extras','gallery_temporal_extras','gallery_structure_extras')]
+    'gallery_model_extras','gallery_temporal_extras','gallery_structure_extras','gallery_discovery_summary')]
 OWNERS = {key: module for module in MODULES for key in module.CONTRACTS}
 CONTRACTS = {key: module.CONTRACTS[key] for key,module in OWNERS.items()}
 NOTES = {key: module.NOTES[key] for key,module in OWNERS.items()}

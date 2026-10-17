@@ -2,6 +2,8 @@
 
 [Home](README.md) · [English](README.en.md) · [中文](README.zh-CN.md)
 
+New in source: [Figure Discovery](docs/figure-discovery.md) profiles local data, checks declared study design and compares actual-data views before applying to the existing editor. CLI and Skill use the same scientific rules; optional Europe PMC searches require an explicit user action. See [validation and platform scope](docs/figure-discovery-validation.md). Existing installers have not been republished for this change.
+
 **From data to assembled figures: editable templates, explicit statistical analysis, and reversible, precise layout.**
 
 polish-sci-figures brings scientific plotting, image standardization, and figure quality checks into one workflow. Install **Figure Studio** to edit directly in your browser, or use the three companion AI skills to move from data analysis to final delivery. Both use the same local plotting and analysis code.

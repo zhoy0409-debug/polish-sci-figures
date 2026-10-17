@@ -17,6 +17,14 @@ EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    'scripts/discover_figures.cjs',
+    'docs/figure-discovery.md',
+    'docs/figure-discovery-validation.md',
+    'docs/qa/figure-discovery/independent-en.png',
+    'docs/qa/figure-discovery/paired-zh.png',
+    'docs/qa/figure-discovery/offline-editor.png',
+    'docs/qa/figure-discovery/result.json',
+    'docs/qa/figure-discovery/live-literature.json',
     "docs/release-notes-v1.4.18.md",
     "docs/release-notes-v1.4.17.md",
     "docs/release-notes-v1.4.16.md",

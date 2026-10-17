@@ -44,14 +44,22 @@ def parse_sheet(value: str | int) -> str | int:
     value = value.strip()
     return int(value) if re.fullmatch(r"[+-]?\d+", value) else value
 
-def read_table(path: Path, sheet: str | int = 0):
+def read_table(path: Path, sheet: str | int = 0, *, preserve_text: bool = False):
     import pandas as pd
     if not path.is_file(): raise ValueError(f"Input file does not exist: {path}")
     suffix = path.suffix.lower()
+    options = {'header':None,'dtype':str,'keep_default_na':False} if preserve_text else {}
+    def prepared(frame):
+        if preserve_text:
+            if len(frame)<2:raise ValueError('Expected column headers and observations')
+            header=frame.iloc[0].tolist()
+            if any(not isinstance(v,str) or not v.strip() for v in header) or len(set(header))!=len(header):raise ValueError('Column names must be nonempty and unique')
+            frame=frame.iloc[1:].copy();frame.columns=header
+        return frame
     try:
-        if suffix == ".csv": return pd.read_csv(path)
-        if suffix in {".tsv", ".txt"}: return pd.read_csv(path, sep="\t")
-        if suffix == ".xlsx": return pd.read_excel(path, sheet_name=parse_sheet(sheet))
+        if suffix == ".csv": return prepared(pd.read_csv(path,**options))
+        if suffix in {".tsv", ".txt"}: return prepared(pd.read_csv(path, sep="\t",**options))
+        if suffix == ".xlsx": return prepared(pd.read_excel(path, sheet_name=parse_sheet(sheet),**options))
         if suffix == ".xls": raise ValueError("Legacy .xls is not a tested v1.3.3 input. Convert it to .xlsx, CSV, or TSV.")
         raise ValueError(f"Unsupported input type {suffix!r}. Use CSV, TSV, or XLSX.")
     except ValueError as exc:
@@ -431,6 +439,13 @@ def qa(args):
 
 def parser():
     root=argparse.ArgumentParser(description=__doc__); sub=root.add_subparsers(dest="command",required=True)
+    p=sub.add_parser('discover',help='Discover scientifically suitable figures using shared local rules')
+    p.add_argument('input');p.add_argument('--sheet',default=0);p.add_argument('--context',help='Local JSON declarations and column-role mappings');p.add_argument('--goal',default='auto',choices=['auto','overview','distribution','effect','uncertainty']);p.add_argument('--out',help='New output directory with real-data editable previews');p.add_argument('--json',action='store_true')
+    def discover_command(args):
+        sys.path.insert(0,str(MAKE/'scripts'))
+        from figure_discovery import command
+        return command(args)
+    p.set_defaults(func=discover_command)
     p=sub.add_parser("doctor"); p.add_argument("--font",default="Arial"); p.add_argument("--json",action="store_true"); p.set_defaults(func=doctor)
     p=sub.add_parser("inspect"); p.add_argument("input"); p.add_argument("--sheet",default=0); p.add_argument("--json",action="store_true"); p.set_defaults(func=inspect_data)
     p=sub.add_parser("route"); p.add_argument("input"); p.add_argument("--sheet",default=0); p.add_argument("--json",action="store_true"); p.add_argument("--structure",choices=list(REQUIRED)); p.add_argument("--design",choices=["independent","paired","repeated","nested","technical-replicate"])

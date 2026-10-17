@@ -2,6 +2,8 @@
 
 [首页](README.md) · [English](README.en.md) · [中文](README.zh-CN.md)
 
+源码新增[智能选图](docs/figure-discovery.md)：上传数据并确认实验设计，比较真实数据候选图，再应用到现有编辑器。CLI 与 Skill 共用同一科学规则；可选 Europe PMC 检索由用户主动触发。见[测试与未验证范围](docs/figure-discovery-validation.md)。现有安装包尚未因此重新发布。
+
 **从数据到组图：可编辑模板、明确的统计分析、可逆的精细排版。**
 
 polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一工作流中。普通用户可直接安装 **Figure Studio**，在浏览器中编辑；AI 用户继续使用三个配套技能，从数据分析到最终交付。两种入口使用同一套本地图形与分析代码。

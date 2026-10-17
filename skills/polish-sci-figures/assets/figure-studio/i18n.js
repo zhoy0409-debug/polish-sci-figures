@@ -862,6 +862,7 @@ const StudioI18n = (() => {
     '已恢复所选连接线的自动位置与样式':'Restored the selected line’s automatic position and style',
     '应用新分析后，手动改写的统计文字和位置将更新为新结果；可撤销。':'Applying a new analysis resets custom statistical text and positions to the new results. You can undo this.'
   });
+  Object.assign(en,{'智能选图':'Figure Discovery','智能选图已应用；可撤销':'Discovery view applied; undo is available'});
   function choose(saved,preferred='en'){return ['zh-CN','en'].includes(saved)?saved:/^zh\b/i.test(preferred)?'zh-CN':'en';}
   function setLanguage(value){language=value==='en'?'en':'zh-CN';return language;}
   Object.assign(en,fontReplacementEnglish,{'请至少选择三个独立对象或组合。':'Select at least three separate objects or groups.'});

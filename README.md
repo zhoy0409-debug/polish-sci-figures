@@ -6,6 +6,8 @@
 
 Turn research data and scientific images into clear, editable figures.<br>
 Explore the right chart, refine every detail, and bring your results together.<br>
+
+[Figure Discovery / 智能选图 — new in source](docs/figure-discovery.md) · [Validation and current limits](docs/figure-discovery-validation.md)
 AI skills for plotting, scientific image preparation, and figure refinement, with Figure Studio for hands-on editing.
 
 [English](#polish-sci-figures) · [中文](#中文)

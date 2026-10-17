@@ -1,0 +1,4 @@
+feature,log2fc,adjusted_p
+G1,1.5,.01
+G2,-.4,.2
+G3,-2.1,.001

@@ -9,6 +9,21 @@ Start from the biological question and experimental unit, not from a preferred c
 
 An ordinary request such as “帮我把这张表画成适合论文的图” is enough to begin. Read the table before asking questions; when design is unresolved, ask concretely whether records describe the same objects before/after or different objects. Offer a small useful shortlist and explain what each reveals instead of requiring statistical jargon or an elaborate prompt.
 
+## Shared Figure Discovery
+
+When a user says “不知道这些数据该怎么画”, call the same deterministic engine used by Figure Studio, from the suite root:
+
+```bash
+python sci_figures.py discover data.csv --json
+python sci_figures.py discover data.xlsx --sheet 0 --context research-context.json --out discovery-results --json
+```
+
+Read [the discovery contract and context examples](../../docs/figure-discovery.md). The CLI adapter requires Node.js 18+ in addition to the verified Python environment. CSV/TSV/XLSX are read locally. The `ResearchDiscovery` browser module is the sole scientific recommendation implementation; do not invent a second rule list in the prompt. Inspect `profile.confirmation_needed` and `excluded` before asking the few relevant design questions. Record only actual user declarations: column-name matches remain `inferred_unverified`. Never infer independence, pairing, biological replication, nesting or completed differential analysis from a keyword. Counts are observations or distinct IDs until experimental units are confirmed.
+
+Use a local JSON context to declare column roles, raw/summary/results level, design, outcome type, technical replicates and nesting. Paired long tables require an explicit `pair_order`. ROC requires observed labels/scores and a positive class; volcano requires supplied adjusted P values and explicitly confirmed display thresholds. `--out` runs the existing workbenches, validates each real-data candidate and produces an editable Studio HTML plus a trace JSON. Check `renderer_status`: rule eligibility does not itself certify successful rendering. Existing specialist workbenches and the full manual template library remain available outside the initial curated discovery subset.
+
+Discovery never searches online automatically. In Studio, literature searches are explicitly started with separately reviewed public keywords; research-context text and tables must never be copied into a literature query. Papers can support a locally eligible view, never override its data contract. Do not claim a specific figure unless its caption and figure label were actually checked.
+
 ## Verify the agent's Python runtime first
 
 Before profiling or generating, select an existing interpreter yourself: prefer the current project's `.venv/Scripts/python.exe` (Windows) or `.venv/bin/python`, then a runtime exposed by the host's dependency tools, then registered Python launchers or `python3`. Do not assume bare `python` is compatible or that the host runtime contains SciPy. Run the candidate with `-c "import sys; print(sys.executable); print(sys.version); sys.exit(0 if (3,10) <= sys.version_info[:2] <= (3,12) else 2)"`, then actually import `numpy`, `pandas`, `scipy`, `matplotlib`, `openpyxl` and `PIL`. Try the next existing candidate if either check fails.

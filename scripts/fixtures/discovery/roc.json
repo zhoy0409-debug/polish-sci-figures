@@ -1,0 +1,9 @@
+{
+  "design": "independent",
+  "data_level": "raw",
+  "outcome_type": "binary",
+  "unit_confirmed": true,
+  "technical_replicates": "no",
+  "nesting": "none",
+  "positive_class": "1"
+}

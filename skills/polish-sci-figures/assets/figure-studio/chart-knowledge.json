@@ -1,0 +1,1258 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "charts": [
+    {
+      "chart_id": "compare_strip_median",
+      "names": {
+        "zh-CN": "条带散点与中位数",
+        "en": "Strip plot with median"
+      },
+      "synonyms": [
+        "Strip plot with median"
+      ],
+      "kind": "independent",
+      "category": "distribution",
+      "semantic_view": "observations",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "independent"
+      ],
+      "required": [
+        "group",
+        "unit",
+        "value"
+      ],
+      "numeric": [
+        "value"
+      ],
+      "unique": [],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "保留每一个观测值；中位数短线便于小样本组间比较。",
+        "en": "Show every observation; a median marker supports small-sample comparisons."
+      },
+      "limitation": {
+        "zh-CN": "不显示组间效应量或其置信区间。",
+        "en": "Does not display a between-group effect or its confidence interval."
+      },
+      "estimand": {
+        "zh-CN": "条带散点与中位数",
+        "en": "Strip plot with median"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 100,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "compare_strip_median"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "保留每一个观测值；中位数短线便于小样本组间比较。",
+        "en": "Show every observation; a median marker supports small-sample comparisons."
+      },
+      "information_loss": {
+        "zh-CN": "不显示组间效应量或其置信区间。",
+        "en": "Does not display a between-group effect or its confidence interval."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "estimation_graphic",
+      "names": {
+        "zh-CN": "组间差值与不确定性",
+        "en": "Group difference and uncertainty"
+      },
+      "synonyms": [
+        "Strip plot with median"
+      ],
+      "kind": "independent",
+      "category": "distribution",
+      "semantic_view": "effect_difference",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "independent"
+      ],
+      "required": [
+        "group",
+        "unit",
+        "value"
+      ],
+      "numeric": [
+        "value"
+      ],
+      "unique": [],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "同时展示独立样本观测和组间均值差及 Bootstrap 95% CI。",
+        "en": "Show independent observations and the mean difference with a bootstrap 95% CI."
+      },
+      "limitation": {
+        "zh-CN": "调用已有独立组工作台；分析记录包含探索性检验，不自动添加显著性标注。",
+        "en": "Uses the existing independent-group workbench; exploratory tests are recorded without automatic significance labels."
+      },
+      "estimand": {
+        "zh-CN": "条带散点与中位数",
+        "en": "Strip plot with median"
+      },
+      "goals": [
+        "effect",
+        "uncertainty"
+      ],
+      "priority": 98,
+      "renderer": {
+        "family": "group-comparison",
+        "recipe": {
+          "design": "independent",
+          "group": "group",
+          "value": "value",
+          "subject": "unit",
+          "scope": "exploratory",
+          "show_p_value": false
+        }
+      },
+      "supported_views": [
+        "compare_strip_median"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "同时展示独立样本观测和组间均值差及 Bootstrap 95% CI。",
+        "en": "Show independent observations and the mean difference with a bootstrap 95% CI."
+      },
+      "information_loss": {
+        "zh-CN": "调用已有独立组工作台；分析记录包含探索性检验，不自动添加显著性标注。",
+        "en": "Uses the existing independent-group workbench; exploratory tests are recorded without automatic significance labels."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "existing-local-workbench"
+    },
+    {
+      "chart_id": "compare_mean_ci",
+      "names": {
+        "zh-CN": "均值与 95% 置信区间",
+        "en": "Mean with 95% confidence intervals"
+      },
+      "synonyms": [
+        "Mean with 95% confidence intervals"
+      ],
+      "kind": "independent",
+      "category": "distribution",
+      "semantic_view": "mean_uncertainty",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "independent"
+      ],
+      "required": [
+        "group",
+        "unit",
+        "value"
+      ],
+      "numeric": [
+        "value"
+      ],
+      "unique": [],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "比较组均值及其估计不确定性。",
+        "en": "Compare group means and estimation uncertainty."
+      },
+      "limitation": {
+        "zh-CN": "t 分布 95% CI；小样本时应同时查看原始观测。",
+        "en": "t-based 95% CIs; inspect individual observations alongside them, especially for small samples."
+      },
+      "estimand": {
+        "zh-CN": "均值与 95% 置信区间",
+        "en": "Mean with 95% confidence intervals"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 95,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "compare_mean_ci"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "比较组均值及其估计不确定性。",
+        "en": "Compare group means and estimation uncertainty."
+      },
+      "information_loss": {
+        "zh-CN": "t 分布 95% CI；小样本时应同时查看原始观测。",
+        "en": "t-based 95% CIs; inspect individual observations alongside them, especially for small samples."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "compare_box_points",
+      "names": {
+        "zh-CN": "箱线图与原始点",
+        "en": "Box plot with observations"
+      },
+      "synonyms": [
+        "Box plot with observations"
+      ],
+      "kind": "independent",
+      "category": "distribution",
+      "semantic_view": "quartiles",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "independent"
+      ],
+      "required": [
+        "group",
+        "unit",
+        "value"
+      ],
+      "numeric": [
+        "value"
+      ],
+      "unique": [],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "原始点与四分位数同时呈现，便于比较分布位置和离散程度。",
+        "en": "Show observations with quartiles to compare location and spread."
+      },
+      "limitation": {
+        "zh-CN": "样本少时四分位数不稳定；箱体不是均值置信区间。",
+        "en": "Quartiles are unstable in small samples; boxes are not confidence intervals for means."
+      },
+      "estimand": {
+        "zh-CN": "箱线图与原始点",
+        "en": "Box plot with observations"
+      },
+      "goals": [
+        "distribution"
+      ],
+      "priority": 90,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "compare_box_points"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "原始点与四分位数同时呈现，便于比较分布位置和离散程度。",
+        "en": "Show observations with quartiles to compare location and spread."
+      },
+      "information_loss": {
+        "zh-CN": "样本少时四分位数不稳定；箱体不是均值置信区间。",
+        "en": "Quartiles are unstable in small samples; boxes are not confidence intervals for means."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "compare_ecdf",
+      "names": {
+        "zh-CN": "分组经验累积分布",
+        "en": "Group empirical cumulative distributions"
+      },
+      "synonyms": [
+        "Group empirical cumulative distributions"
+      ],
+      "kind": "independent",
+      "category": "distribution",
+      "semantic_view": "ecdf",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "independent"
+      ],
+      "required": [
+        "group",
+        "unit",
+        "value"
+      ],
+      "numeric": [
+        "value"
+      ],
+      "unique": [],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "直接比较低于任一阈值的观察比例，无需分箱或平滑。",
+        "en": "Compare the observed proportion below any threshold without bins or smoothing."
+      },
+      "limitation": {
+        "zh-CN": "小样本的阶梯较粗；不表示连续密度或生存概率。",
+        "en": "Small samples produce coarse steps; this is neither a smooth density nor survival analysis."
+      },
+      "estimand": {
+        "zh-CN": "分组经验累积分布",
+        "en": "Group empirical cumulative distributions"
+      },
+      "goals": [
+        "distribution"
+      ],
+      "priority": 85,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "compare_ecdf"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "直接比较低于任一阈值的观察比例，无需分箱或平滑。",
+        "en": "Compare the observed proportion below any threshold without bins or smoothing."
+      },
+      "information_loss": {
+        "zh-CN": "小样本的阶梯较粗；不表示连续密度或生存概率。",
+        "en": "Small samples produce coarse steps; this is neither a smooth density nor survival analysis."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "compare_raincloud",
+      "names": {
+        "zh-CN": "半小提琴、箱线与原始点",
+        "en": "Raincloud with box and observations"
+      },
+      "synonyms": [
+        "Raincloud with box and observations"
+      ],
+      "kind": "independent",
+      "category": "distribution",
+      "semantic_view": "density",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "independent"
+      ],
+      "required": [
+        "group",
+        "unit",
+        "value"
+      ],
+      "numeric": [
+        "value"
+      ],
+      "unique": [],
+      "minimum_n": 8,
+      "density": true,
+      "question": {
+        "zh-CN": "同时比较观测、四分位摘要与估计的分布形态。",
+        "en": "Compare observations, quartile summaries and estimated distribution shape."
+      },
+      "limitation": {
+        "zh-CN": "每组至少 8 个观测且有足够变化；平滑受带宽影响。",
+        "en": "Requires at least eight sufficiently varying observations per group; smoothing depends on bandwidth."
+      },
+      "estimand": {
+        "zh-CN": "半小提琴、箱线与原始点",
+        "en": "Raincloud with box and observations"
+      },
+      "goals": [
+        "distribution"
+      ],
+      "priority": 80,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "compare_raincloud"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "同时比较观测、四分位摘要与估计的分布形态。",
+        "en": "Compare observations, quartile summaries and estimated distribution shape."
+      },
+      "information_loss": {
+        "zh-CN": "每组至少 8 个观测且有足够变化；平滑受带宽影响。",
+        "en": "Requires at least eight sufficiently varying observations per group; smoothing depends on bandwidth."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "compare_paired_lines",
+      "names": {
+        "zh-CN": "配对前后连线",
+        "en": "Paired before-after trajectories"
+      },
+      "synonyms": [
+        "Paired before-after trajectories"
+      ],
+      "kind": "paired",
+      "category": "paired",
+      "semantic_view": "paired_levels",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "paired"
+      ],
+      "required": [
+        "unit",
+        "before",
+        "after"
+      ],
+      "numeric": [
+        "before",
+        "after"
+      ],
+      "unique": [
+        "unit"
+      ],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "连接同一对象的前后测量，保留变化方向与基线。",
+        "en": "Connect each unit’s before/after measurements, retaining baseline and direction."
+      },
+      "limitation": {
+        "zh-CN": "不完整或重复配对被阻止；线条交叉不是显著性证据。",
+        "en": "Incomplete or duplicate pairs are blocked; crossed lines do not establish significance."
+      },
+      "estimand": {
+        "zh-CN": "配对前后连线",
+        "en": "Paired before-after trajectories"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 100,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "compare_paired_lines"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "连接同一对象的前后测量，保留变化方向与基线。",
+        "en": "Connect each unit’s before/after measurements, retaining baseline and direction."
+      },
+      "information_loss": {
+        "zh-CN": "不完整或重复配对被阻止；线条交叉不是显著性证据。",
+        "en": "Incomplete or duplicate pairs are blocked; crossed lines do not establish significance."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "compare_paired_change",
+      "names": {
+        "zh-CN": "配对连线与个体差值",
+        "en": "Paired trajectories and individual changes"
+      },
+      "synonyms": [
+        "Paired trajectories and individual changes"
+      ],
+      "kind": "paired",
+      "category": "paired",
+      "semantic_view": "paired_changes",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "paired"
+      ],
+      "required": [
+        "unit",
+        "before",
+        "after"
+      ],
+      "numeric": [
+        "before",
+        "after"
+      ],
+      "unique": [
+        "unit"
+      ],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "同时查看配对水平和每个对象的变化量。",
+        "en": "Inspect paired levels and each unit’s change."
+      },
+      "limitation": {
+        "zh-CN": "需确认同单位前后值及比较顺序；不自动检验差异。",
+        "en": "Confirm comparable measurement units and contrast order; no difference test is automatically performed."
+      },
+      "estimand": {
+        "zh-CN": "配对连线与个体差值",
+        "en": "Paired trajectories and individual changes"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 95,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "compare_paired_change"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "同时查看配对水平和每个对象的变化量。",
+        "en": "Inspect paired levels and each unit’s change."
+      },
+      "information_loss": {
+        "zh-CN": "需确认同单位前后值及比较顺序；不自动检验差异。",
+        "en": "Confirm comparable measurement units and contrast order; no difference test is automatically performed."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "paired_dumbbell",
+      "names": {
+        "zh-CN": "两时点哑铃图",
+        "en": "Paired dumbbell"
+      },
+      "synonyms": [
+        "Paired dumbbell"
+      ],
+      "kind": "paired",
+      "category": "paired",
+      "semantic_view": "paired_levels",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "paired"
+      ],
+      "required": [
+        "unit",
+        "before",
+        "after"
+      ],
+      "numeric": [
+        "before",
+        "after"
+      ],
+      "unique": [
+        "unit"
+      ],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "对象标识与前后两次同单位测量；保持配对关系。",
+        "en": "Subject ID and before/after measurements in the same units; preserves pairing."
+      },
+      "limitation": {
+        "zh-CN": "对象标识与前后两次同单位测量；保持配对关系。",
+        "en": "Subject ID and before/after measurements in the same units; preserves pairing."
+      },
+      "estimand": {
+        "zh-CN": "两时点哑铃图",
+        "en": "Paired dumbbell"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 90,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "paired_dumbbell"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_workbench.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "对象标识与前后两次同单位测量；保持配对关系。",
+        "en": "Subject ID and before/after measurements in the same units; preserves pairing."
+      },
+      "information_loss": {
+        "zh-CN": "对象标识与前后两次同单位测量；保持配对关系。",
+        "en": "Subject ID and before/after measurements in the same units; preserves pairing."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "superplot",
+      "names": {
+        "zh-CN": "独立实验分层散点",
+        "en": "Independent-experiment SuperPlot"
+      },
+      "synonyms": [
+        "Independent-experiment SuperPlot"
+      ],
+      "kind": "technical",
+      "category": "distribution",
+      "semantic_view": "technical",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "technical"
+      ],
+      "required": [
+        "group",
+        "experiment",
+        "value"
+      ],
+      "numeric": [
+        "value"
+      ],
+      "unique": [],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "分开显示实验内测量与独立实验均值，保留真实重复层级。",
+        "en": "Separate within-experiment measurements from experiment means, retaining replication levels."
+      },
+      "limitation": {
+        "zh-CN": "技术重复不计作独立样本；该视图仅作描述，不拟合层级模型。",
+        "en": "Technical replicates are not independent samples; this descriptive view does not fit a hierarchical model."
+      },
+      "estimand": {
+        "zh-CN": "独立实验分层散点",
+        "en": "Independent-experiment SuperPlot"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 100,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "superplot"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_workbench.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "分开显示实验内测量与独立实验均值，保留真实重复层级。",
+        "en": "Separate within-experiment measurements from experiment means, retaining replication levels."
+      },
+      "information_loss": {
+        "zh-CN": "技术重复不计作独立样本；该视图仅作描述，不拟合层级模型。",
+        "en": "Technical replicates are not independent samples; this descriptive view does not fit a hierarchical model."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "time_individual_paths",
+      "names": {
+        "zh-CN": "个体时间轨迹",
+        "en": "Individual trajectories"
+      },
+      "synonyms": [
+        "Individual trajectories"
+      ],
+      "kind": "longitudinal",
+      "category": "longitudinal",
+      "semantic_view": "trajectories",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "repeated"
+      ],
+      "required": [
+        "unit",
+        "group",
+        "time",
+        "value"
+      ],
+      "numeric": [
+        "time",
+        "value"
+      ],
+      "unique": [
+        "unit",
+        "time"
+      ],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "按真实时间顺序连接同一对象，观察个体轨迹。",
+        "en": "Connect the same units in numeric time order to inspect individual trajectories."
+      },
+      "limitation": {
+        "zh-CN": "同一对象不能跨组或在同一时点重复记录；不做混合模型检验。",
+        "en": "Units cannot change groups or duplicate a time point; no mixed-model inference is performed."
+      },
+      "estimand": {
+        "zh-CN": "个体时间轨迹",
+        "en": "Individual trajectories"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 100,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "time_individual_paths"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_time_composition.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "按真实时间顺序连接同一对象，观察个体轨迹。",
+        "en": "Connect the same units in numeric time order to inspect individual trajectories."
+      },
+      "information_loss": {
+        "zh-CN": "同一对象不能跨组或在同一时点重复记录；不做混合模型检验。",
+        "en": "Units cannot change groups or duplicate a time point; no mixed-model inference is performed."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "time_baseline_change",
+      "names": {
+        "zh-CN": "相对基线变化轨迹",
+        "en": "Change from baseline"
+      },
+      "synonyms": [
+        "Change from baseline"
+      ],
+      "kind": "longitudinal",
+      "category": "longitudinal",
+      "semantic_view": "baseline_changes",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "repeated"
+      ],
+      "required": [
+        "unit",
+        "group",
+        "time",
+        "value"
+      ],
+      "numeric": [
+        "time",
+        "value"
+      ],
+      "unique": [
+        "unit",
+        "time"
+      ],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "比较每个对象相对共同基线时间的变化。",
+        "en": "Compare each unit’s change from a common baseline time."
+      },
+      "limitation": {
+        "zh-CN": "不显示绝对基线差异；每个对象必须具有共同基线。",
+        "en": "Hides absolute baseline differences; every unit must have the common baseline."
+      },
+      "estimand": {
+        "zh-CN": "相对基线变化轨迹",
+        "en": "Change from baseline"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 95,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "time_baseline_change"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_time_composition.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "比较每个对象相对共同基线时间的变化。",
+        "en": "Compare each unit’s change from a common baseline time."
+      },
+      "information_loss": {
+        "zh-CN": "不显示绝对基线差异；每个对象必须具有共同基线。",
+        "en": "Hides absolute baseline differences; every unit must have the common baseline."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "time_mean_replicates",
+      "names": {
+        "zh-CN": "均值线与全部重复",
+        "en": "Mean and replicate trajectories"
+      },
+      "synonyms": [
+        "Mean and replicate trajectories"
+      ],
+      "kind": "longitudinal",
+      "category": "longitudinal",
+      "semantic_view": "group_time_means",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "repeated"
+      ],
+      "required": [
+        "unit",
+        "group",
+        "time",
+        "value"
+      ],
+      "numeric": [
+        "time",
+        "value"
+      ],
+      "unique": [
+        "unit",
+        "time"
+      ],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "同时保留每条个体轨迹和逐时点组均值。",
+        "en": "Retain individual trajectories alongside group means at each time."
+      },
+      "limitation": {
+        "zh-CN": "均值不能替代重复测量模型；不完整随访会改变逐时点组成。",
+        "en": "Means do not replace a repeated-measures model; incomplete follow-up changes the composition at each time."
+      },
+      "estimand": {
+        "zh-CN": "均值线与全部重复",
+        "en": "Mean and replicate trajectories"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 90,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "time_mean_replicates"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_time_composition.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "同时保留每条个体轨迹和逐时点组均值。",
+        "en": "Retain individual trajectories alongside group means at each time."
+      },
+      "information_loss": {
+        "zh-CN": "均值不能替代重复测量模型；不完整随访会改变逐时点组成。",
+        "en": "Means do not replace a repeated-measures model; incomplete follow-up changes the composition at each time."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "relation_scatter",
+      "names": {
+        "zh-CN": "双变量散点",
+        "en": "Bivariate scatter"
+      },
+      "synonyms": [
+        "Bivariate scatter"
+      ],
+      "kind": "relationship",
+      "category": "relationship",
+      "semantic_view": "association",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "independent"
+      ],
+      "required": [
+        "unit",
+        "x",
+        "y"
+      ],
+      "numeric": [
+        "x",
+        "y"
+      ],
+      "unique": [
+        "unit"
+      ],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "每个独立对象一对连续测量；恒等线仅适用于相同单位。",
+        "en": "One pair of continuous measurements per independent subject; an identity line requires the same units."
+      },
+      "limitation": {
+        "zh-CN": "每个独立对象一对连续测量；恒等线仅适用于相同单位。",
+        "en": "One pair of continuous measurements per independent subject; an identity line requires the same units."
+      },
+      "estimand": {
+        "zh-CN": "双变量散点",
+        "en": "Bivariate scatter"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 100,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "relation_scatter"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "每个独立对象一对连续测量；恒等线仅适用于相同单位。",
+        "en": "One pair of continuous measurements per independent subject; an identity line requires the same units."
+      },
+      "information_loss": {
+        "zh-CN": "每个独立对象一对连续测量；恒等线仅适用于相同单位。",
+        "en": "One pair of continuous measurements per independent subject; an identity line requires the same units."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "relation_marginal_hist",
+      "names": {
+        "zh-CN": "散点与边际直方分布",
+        "en": "Scatter with marginal histograms"
+      },
+      "synonyms": [
+        "Scatter with marginal histograms"
+      ],
+      "kind": "relationship",
+      "category": "relationship",
+      "semantic_view": "joint_distribution",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "independent"
+      ],
+      "required": [
+        "unit",
+        "x",
+        "y"
+      ],
+      "numeric": [
+        "x",
+        "y"
+      ],
+      "unique": [
+        "unit"
+      ],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "每个独立对象一对连续测量；恒等线仅适用于相同单位。",
+        "en": "One pair of continuous measurements per independent subject; an identity line requires the same units."
+      },
+      "limitation": {
+        "zh-CN": "每个独立对象一对连续测量；恒等线仅适用于相同单位。",
+        "en": "One pair of continuous measurements per independent subject; an identity line requires the same units."
+      },
+      "estimand": {
+        "zh-CN": "散点与边际直方分布",
+        "en": "Scatter with marginal histograms"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 95,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "relation_marginal_hist"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "每个独立对象一对连续测量；恒等线仅适用于相同单位。",
+        "en": "One pair of continuous measurements per independent subject; an identity line requires the same units."
+      },
+      "information_loss": {
+        "zh-CN": "每个独立对象一对连续测量；恒等线仅适用于相同单位。",
+        "en": "One pair of continuous measurements per independent subject; an identity line requires the same units."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "relation_regression_ci",
+      "names": {
+        "zh-CN": "线性回归与均值置信带",
+        "en": "OLS regression and mean confidence band"
+      },
+      "synonyms": [
+        "OLS regression and mean confidence band"
+      ],
+      "kind": "relationship",
+      "category": "relationship",
+      "semantic_view": "linear_estimate",
+      "data_level": "raw",
+      "outcome_type": "continuous",
+      "designs": [
+        "independent"
+      ],
+      "required": [
+        "unit",
+        "x",
+        "y"
+      ],
+      "numeric": [
+        "x",
+        "y"
+      ],
+      "unique": [
+        "unit"
+      ],
+      "minimum_n": 3,
+      "density": false,
+      "question": {
+        "zh-CN": "普通最小二乘直线及均值的 t 分布 95% CI；需确认独立性、线性与残差方差假设。",
+        "en": "Ordinary least squares with a t-based mean 95% CI; assess independence, linearity and residual variance assumptions."
+      },
+      "limitation": {
+        "zh-CN": "普通最小二乘直线及均值的 t 分布 95% CI；需确认独立性、线性与残差方差假设。",
+        "en": "Ordinary least squares with a t-based mean 95% CI; assess independence, linearity and residual variance assumptions."
+      },
+      "estimand": {
+        "zh-CN": "线性回归与均值置信带",
+        "en": "OLS regression and mean confidence band"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 90,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "relation_regression_ci"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "普通最小二乘直线及均值的 t 分布 95% CI；需确认独立性、线性与残差方差假设。",
+        "en": "Ordinary least squares with a t-based mean 95% CI; assess independence, linearity and residual variance assumptions."
+      },
+      "information_loss": {
+        "zh-CN": "普通最小二乘直线及均值的 t 分布 95% CI；需确认独立性、线性与残差方差假设。",
+        "en": "Ordinary least squares with a t-based mean 95% CI; assess independence, linearity and residual variance assumptions."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "volcano",
+      "names": {
+        "zh-CN": "火山图",
+        "en": "Volcano plot"
+      },
+      "synonyms": [
+        "Volcano plot"
+      ],
+      "kind": "omics",
+      "category": "omics",
+      "semantic_view": "omics",
+      "data_level": "results",
+      "outcome_type": "continuous",
+      "designs": [],
+      "required": [
+        "feature",
+        "log2fc",
+        "adjusted_p"
+      ],
+      "numeric": [
+        "log2fc",
+        "adjusted_p"
+      ],
+      "unique": [
+        "feature"
+      ],
+      "minimum_n": 2,
+      "question": {
+        "zh-CN": "仅呈现已提供的 log₂ 倍数变化及校正 P 值；阈值须明确确认。",
+        "en": "Displays supplied log₂ fold changes and adjusted P values; confirm thresholds."
+      },
+      "limitation": {
+        "zh-CN": "仅呈现已提供的 log₂ 倍数变化及校正 P 值；阈值须明确确认。",
+        "en": "Displays supplied log₂ fold changes and adjusted P values; confirm thresholds."
+      },
+      "estimand": {
+        "zh-CN": "火山图",
+        "en": "Volcano plot"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 105,
+      "renderer": {
+        "family": "volcano",
+        "parameters": {
+          "feature": "feature",
+          "effect": "log2fc",
+          "adjusted_p": "adjusted_p"
+        }
+      },
+      "supported_views": [
+        "volcano"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/advanced_template_workbench.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "仅呈现已提供的 log₂ 倍数变化及校正 P 值；阈值须明确确认。",
+        "en": "Displays supplied log₂ fold changes and adjusted P values; confirm thresholds."
+      },
+      "information_loss": {
+        "zh-CN": "仅呈现已提供的 log₂ 倍数变化及校正 P 值；阈值须明确确认。",
+        "en": "Displays supplied log₂ fold changes and adjusted P values; confirm thresholds."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    },
+    {
+      "chart_id": "roc",
+      "names": {
+        "zh-CN": "ROC 曲线",
+        "en": "ROC curve"
+      },
+      "synonyms": [
+        "ROC curve"
+      ],
+      "kind": "roc",
+      "category": "roc",
+      "semantic_view": "roc",
+      "data_level": "raw",
+      "outcome_type": "binary",
+      "designs": [
+        "independent"
+      ],
+      "required": [
+        "unit",
+        "outcome",
+        "score"
+      ],
+      "numeric": [
+        "score"
+      ],
+      "unique": [
+        "unit"
+      ],
+      "minimum_n": 2,
+      "question": {
+        "zh-CN": "需要真实标签、预测分数、阳性类别及每对象一条预测。",
+        "en": "Requires observed labels, scores, positive class and one prediction per unit."
+      },
+      "limitation": {
+        "zh-CN": "需要真实标签、预测分数、阳性类别及每对象一条预测。",
+        "en": "Requires observed labels, scores, positive class and one prediction per unit."
+      },
+      "estimand": {
+        "zh-CN": "ROC 曲线",
+        "en": "ROC curve"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 105,
+      "renderer": {
+        "family": "roc",
+        "parameters": {
+          "unit": "unit",
+          "outcome": "outcome",
+          "score": "score"
+        }
+      },
+      "supported_views": [
+        "roc"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/advanced_template_workbench.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "需要真实标签、预测分数、阳性类别及每对象一条预测。",
+        "en": "Requires observed labels, scores, positive class and one prediction per unit."
+      },
+      "information_loss": {
+        "zh-CN": "需要真实标签、预测分数、阳性类别及每对象一条预测。",
+        "en": "Requires observed labels, scores, positive class and one prediction per unit."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "existing-local-workbench"
+    },
+    {
+      "chart_id": "summary_mean_sd",
+      "names": {
+        "zh-CN": "均值与标准差",
+        "en": "Supplied mean and SD"
+      },
+      "synonyms": [
+        "Supplied mean and SD"
+      ],
+      "kind": "summary",
+      "category": "summary",
+      "semantic_view": "summary",
+      "data_level": "summary",
+      "outcome_type": "continuous",
+      "designs": [],
+      "required": [
+        "group",
+        "mean",
+        "sd",
+        "n"
+      ],
+      "numeric": [
+        "mean",
+        "sd",
+        "n"
+      ],
+      "unique": [
+        "group"
+      ],
+      "minimum_n": 2,
+      "question": {
+        "zh-CN": "显示已提供的均值 ± SD 和 n；不是置信区间，不生成原始点。",
+        "en": "Supplied means ± SD and n; not confidence intervals. No raw observations are generated."
+      },
+      "limitation": {
+        "zh-CN": "显示已提供的均值 ± SD 和 n；不是置信区间，不生成原始点。",
+        "en": "Supplied means ± SD and n; not confidence intervals. No raw observations are generated."
+      },
+      "estimand": {
+        "zh-CN": "均值与标准差",
+        "en": "Supplied mean and SD"
+      },
+      "goals": [
+        "overview"
+      ],
+      "priority": 105,
+      "renderer": {
+        "family": "gallery"
+      },
+      "supported_views": [
+        "summary_mean_sd"
+      ],
+      "source_contract": "skills/make-sci-data-figures/scripts/gallery_discovery_summary.py",
+      "last_review_version": "1.0.0",
+      "advantages": {
+        "zh-CN": "显示已提供的均值 ± SD 和 n；不是置信区间，不生成原始点。",
+        "en": "Supplied means ± SD and n; not confidence intervals. No raw observations are generated."
+      },
+      "information_loss": {
+        "zh-CN": "显示已提供的均值 ± SD 和 n；不是置信区间，不生成原始点。",
+        "en": "Supplied means ± SD and n; not confidence intervals. No raw observations are generated."
+      },
+      "extension_namespace": "core",
+      "statistics_source": "supplied-results-or-descriptive"
+    }
+  ]
+}
