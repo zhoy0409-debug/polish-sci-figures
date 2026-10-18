@@ -1,0 +1,113 @@
+{
+  "applicationVersion": "0.1.25",
+  "coverage": {
+    "candidate5000": {
+      "evidence": [
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/performance-summary.json",
+          "sha256": "131857600354702ac994ff4fe0e5a79602e6f82dd49970d6118984ffccd510e5"
+        },
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/performance-identity-before.json",
+          "sha256": "81dc68a76a39fb260a7a7f5ee37aeae1d75f3a8e19d27f5ee312d28e1f4e30a6"
+        },
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/performance-identity-after.json",
+          "sha256": "0a62a742a0b39c15c73d74047572bffe5a2180f5e6e131455e4597ebbca32638"
+        }
+      ],
+      "passed": true
+    },
+    "matched24To25Performance": {
+      "evidence": [
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/matched-performance/summary.json",
+          "sha256": "318044d860305e0708db3e26ca88a0360189b57b198ca82c0c21e6264f6a3a89"
+        }
+      ],
+      "passed": true
+    },
+    "normalUninstallPreservation": {
+      "evidence": [
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/native-uninstall.json",
+          "sha256": "214ee8d5ac0206323345044dc34d595276dae6ed4dfda391513e96a5a2dbcacb"
+        },
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/native-final-query.json",
+          "sha256": "fab33b37095536c2953331bd06762e7d502ec0acdba4c8953e41fd36af818083"
+        }
+      ],
+      "passed": true
+    },
+    "officialAppDrivenUpgrade": {
+      "evidence": [
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/official-update/summary.json",
+          "sha256": "08c4984cdb1fd3472332f02338077795cc93899be1a6cbc672628c680244e99f"
+        }
+      ],
+      "passed": true
+    },
+    "reinstallPreservation": {
+      "evidence": [
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/native-reinstall.json",
+          "sha256": "d8561ecb6e84ec8a1574b04506e488dc1d3fd15075c020e7e6da08f54fdce8e6"
+        }
+      ],
+      "passed": true
+    },
+    "scientificAndEditingRegression": {
+      "evidence": [
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/scientific-source-summary.json",
+          "sha256": "d98fe3b1e4cd978088eed451e1ed9836a909835ef85589a1d0dc28befb841ea3"
+        },
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/final-source-byte-comparison.json",
+          "sha256": "543b1dab457c67cb73e8e941389c4d9e81eb33b7e0354251dca4be3efb199c53"
+        },
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/functional-summary.json",
+          "sha256": "0f45f05dd7be70ceeda005d41fb163e2143fb52873ee09992a1b432b5ba0f09d"
+        },
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/installed-editor-summary.json",
+          "sha256": "6bfad8f1c1d8e999750c1f5ab7c1b3bc3d9c641ab4d004c9ea42c058a077c2b8"
+        }
+      ],
+      "passed": true
+    },
+    "windowsInstallAndStart": {
+      "evidence": [
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/native-install.json",
+          "sha256": "ebdb4875774b872a225061b07821918fd6a96cc7cb1b305d15cad5aa6ae58449"
+        },
+        {
+          "file": "docs/qa/jade-hearts/windows-0.1.25/native-start.json",
+          "sha256": "11362617b8c8556d38b2b757d1fadb8bc373f8cf0ba5ece1d807e23bbb6a100d"
+        }
+      ],
+      "passed": true
+    }
+  },
+  "finalAcceptance": true,
+  "officialPlanSha256": "dff3c098a27178d3963929a135df60ae218d6bd29521887aa77a6bcbf4e289c3",
+  "pairedPlanSha256": "4b2bcd450500448d222e968f414ffe123aa2861803c2a42eb772d06e630611ed",
+  "postreleaseCleanup": {
+    "evidence": [
+      {
+        "file": "docs/qa/jade-hearts/windows-0.1.25/official-update/cleanup.json",
+        "sha256": "65b97f21171bf79f217a555378c679f87814cfe327633e725702fced59a27bca"
+      }
+    ],
+    "passed": true
+  },
+  "schema": "figure-studio-stable-acceptance/1",
+  "scope": "Actual candidate lifecycle/scientific/editor checks plus real official24-to25, post-reopen25 current UI, accepted matched pair and normal cleanup. Immutable candidate snapshot remains finalAcceptance:false.",
+  "setupSha256": "7abfdd5580cb8aa6685ef3a50496b7bfcef7ef28435578c085ad8ffa6eb23705",
+  "sourceFreezeSha256": "c7110e91afcea2632e701d55ab504a2c05b0c507fdace968d378559ce59be859",
+  "suiteVersion": "v1.4.25"
+}

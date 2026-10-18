@@ -1,0 +1,10 @@
+{
+  "allInputsActuallyPassed": true,
+  "executionPlanSha256": "219bea42f50ad60e114402077b537d268a7b156778c1711820c4321d19aec509",
+  "nativeBrowserNetworkGitOrBuildActions": false,
+  "originalEightHttpReadbackSha256": "1757b2e488d3366be8f7f96ed02cc6fec59d80f93e83e3dfee36b77f5b684f40",
+  "originalEightMetadataSha256": "fbc5786ba8f5a437a94565268fbe36a3a9cec98c29d8d217a926af414ed95575",
+  "reviewSha256": "600fecb4af1de4855536ab4ce6e0fbb0e9db66f2752266f955f7b8b8be4ff344",
+  "schema": "official25-public-curation/1",
+  "scriptSha256": "be4b9ca7bbe0ab26ee3a68be61214880b83f54035a09a2240af60c1c8011a5e7"
+}

@@ -1,0 +1,51 @@
+{
+  "officialInAppFlow": true,
+  "phases": [
+    {
+      "passed": true,
+      "phase": "Install24",
+      "rawEvidence": {
+        "bytes": 524574,
+        "role": "actual-native-install24",
+        "sha256": "c6a06cdcddd0d891a66ba5d5b443775c91cbab675a593b2885df06578713d484"
+      }
+    },
+    {
+      "passed": true,
+      "phase": "Start24",
+      "rawEvidence": {
+        "bytes": 1852,
+        "role": "actual-native-start24",
+        "sha256": "ab63dae9cfb6f8505139dd0ccc89bb4d77ea42a781be97318985eaa8f148387b"
+      }
+    },
+    {
+      "passed": true,
+      "phase": "RunStrict",
+      "rawEvidence": {
+        "bytes": 1742,
+        "role": "actual-native-runstrict",
+        "sha256": "4f054bcb9e4e9a47f60e77fe81f42f61a7b08de2abaeca90619f0320ea421d52"
+      }
+    },
+    {
+      "passed": true,
+      "phase": "Verify25",
+      "rawEvidence": {
+        "bytes": 523718,
+        "role": "actual-native-verify25",
+        "sha256": "441470acc48d34603a37d85e2beb2967d9e770e3bd647c99ab20666f3c58a62b"
+      }
+    },
+    {
+      "passed": true,
+      "phase": "NormalCleanup",
+      "rawEvidence": {
+        "bytes": 1522,
+        "role": "actual-native-normalcleanup",
+        "sha256": "29cf3272e8352cec82dfbde22a4e48c3cd0946305deffe0c83a895e2d9d021e6"
+      }
+    }
+  ],
+  "schema": "official-safe-native-phases/1"
+}

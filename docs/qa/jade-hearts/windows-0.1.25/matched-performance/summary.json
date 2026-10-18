@@ -1,0 +1,245 @@
+{
+  "completeInstalledUiAssetCount": 80,
+  "matchedObservedBrowserFixtureGeometryAndSettings": true,
+  "measuredOperationsPerVersion": 40,
+  "measurementRuntimeAssetCount": 77,
+  "passed": true,
+  "performanceAcceptedByRoot": true,
+  "protocol": {
+    "colourRule": "Actual quickColor control fill + Tab; input/change/blur recorded. Native colour-picker window latency excluded.",
+    "dragRule": "First motion jumps12 CSSpx (above production3px threshold); primary event must move≥8px; live preview, committed pose, singleUndo, Redo and restoration checked.",
+    "operationOrder": [
+      "select-text",
+      "text-colour"
+    ],
+    "quantile": "Nearest rank ceil(n*p). At20 samples P95 is second largest; fixed sample count and no removal of outliers.",
+    "samplesPerOperation": 20,
+    "settleMinimumMs": 250,
+    "settleRule": "Minimum pause, autosave no longer saving, and two rAF callbacks before each action; actions/assertions outside the timed operation are excluded.",
+    "tabRule": "Actual detail→palette and palette→detail, separate operations with explicit aria-pressed preconditions.",
+    "warmupIterations": 3
+  },
+  "retainedWarmupsPerVersion": 6,
+  "reviewEvidence": {
+    "bytes": 12925,
+    "role": "root-hash-bound-pair-interpretation",
+    "sha256": "600fecb4af1de4855536ab4ce6e0fbb0e9db66f2752266f955f7b8b8be4ff344"
+  },
+  "rootInterpretation": "Root accepts this actual same-device/default-profile original-protocol pair: selection second-rAF P50/P95 89/116.1 to62.7/89.3ms; colour82.4/91.7 to57.9/77.6ms. Both input and commit P95 improve. All46 original records per version retained, exact observed browser/node/protocol/fixture/geometry/settings guards passed; no trimming, repeat-to-replace or statistics recomputation. This is a single synthetic5000 Tab/rAF-opportunity pair, not optical latency, Enter, FPS, every workload/device or statistical superiority. Together with the separately retained candidate evidence, this closes the measured regression for this release; no further micro-optimization is planned.",
+  "schema": "official24-to25-curated-matched-performance/1",
+  "scope": "Actual same-device/default-profile pair using synthetic5000 and Tab/rAF opportunities; absolute samples retained. Not optical paint, Enter, FPS, native picker latency, statistical or universal acceleration.",
+  "versions": [
+    {
+      "operations": {
+        "select-text": {
+          "actionWallMs": {
+            "p50": 140.80000001192093,
+            "p95": 173.9000000357628
+          },
+          "commitToSecondRafMs": {
+            "p50": 40.80000001192093,
+            "p95": 50.69999998807907
+          },
+          "frames": {
+            "count": 158,
+            "max": 106.09999996423721,
+            "over50ms": 20,
+            "p50": 8.300000011920929,
+            "p95": 72.80000001192093
+          },
+          "inputToNextRafMs": {
+            "p50": 63.5,
+            "p95": 85.90000003576279
+          },
+          "inputToSecondRafMs": {
+            "p50": 89,
+            "p95": 116.10000002384186
+          },
+          "longTasks": {
+            "count": 20,
+            "maxMs": 100,
+            "totalMs": 1360
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "actionWallMs": {
+            "p50": 115.20000004768372,
+            "p95": 123.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 81.90000003576279,
+            "p95": 91.20000004768372
+          },
+          "frames": {
+            "count": 105,
+            "max": 71.69999998807907,
+            "over50ms": 5,
+            "p50": 7.800000011920929,
+            "p95": 24.19999998807907
+          },
+          "inputToNextRafMs": {
+            "p50": 62.40000003576279,
+            "p95": 69.90000003576279
+          },
+          "inputToSecondRafMs": {
+            "p50": 82.40000003576279,
+            "p95": 91.70000004768372
+          },
+          "longTasks": {
+            "count": 20,
+            "maxMs": 68,
+            "totalMs": 1203
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        }
+      },
+      "rawEvidence": [
+        {
+          "bytes": 227632,
+          "role": "original-full46-operation-ledger",
+          "sha256": "e916acfe15ccc7e5ab482a2f0b71ea5922c58d82e164987b582c55f89a7b9d1a"
+        },
+        {
+          "bytes": 19881,
+          "role": "original-benchmark-summary",
+          "sha256": "6e96f99e2cb7e4e750fb1d34ad6703a2f7c9c35d48f1a0670891c2883a35a36c"
+        },
+        {
+          "bytes": 8724,
+          "role": "complete-before-after-guard-result",
+          "sha256": "2e6d33dfd117ffad8ad1b40d97a3b65799fa1a9d3a4d771763ca6402112df478"
+        },
+        {
+          "bytes": 1857,
+          "role": "actual-before-identities",
+          "sha256": "c8f394a6279bb362c780786865b5f50aafabf1629dce2ae4eee43c55f7802ca1"
+        },
+        {
+          "bytes": 1857,
+          "role": "actual-after-identities",
+          "sha256": "ed9272b1c1c4575d9be1253e450bf0cd45b3513c973fef37f18892c528136754"
+        },
+        {
+          "bytes": 545,
+          "role": "actual-package-before",
+          "sha256": "b69de45ae9ebc341b06eb3070d4b82aae0a89e8df814777f0433f697d709658f"
+        },
+        {
+          "bytes": 545,
+          "role": "actual-package-after",
+          "sha256": "b69de45ae9ebc341b06eb3070d4b82aae0a89e8df814777f0433f697d709658f"
+        }
+      ],
+      "version": "0.1.24"
+    },
+    {
+      "operations": {
+        "select-text": {
+          "actionWallMs": {
+            "p50": 107.39999997615814,
+            "p95": 148.70000004768372
+          },
+          "commitToSecondRafMs": {
+            "p50": 34.5,
+            "p95": 47.80000001192093
+          },
+          "frames": {
+            "count": 153,
+            "max": 70.69999998807907,
+            "over50ms": 3,
+            "p50": 8.300000011920929,
+            "p95": 46.799999952316284
+          },
+          "inputToNextRafMs": {
+            "p50": 39.89999997615814,
+            "p95": 56.80000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 62.69999998807907,
+            "p95": 89.30000001192093
+          },
+          "longTasks": {
+            "count": 3,
+            "maxMs": 64,
+            "totalMs": 175
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "actionWallMs": {
+            "p50": 90.30000001192093,
+            "p95": 130.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 57.60000002384186,
+            "p95": 77
+          },
+          "frames": {
+            "count": 116,
+            "max": 56,
+            "over50ms": 2,
+            "p50": 7.800000011920929,
+            "p95": 23.5
+          },
+          "inputToNextRafMs": {
+            "p50": 39.59999996423721,
+            "p95": 52.10000002384186
+          },
+          "inputToSecondRafMs": {
+            "p50": 57.89999997615814,
+            "p95": 77.60000002384186
+          },
+          "longTasks": {
+            "count": 1,
+            "maxMs": 59,
+            "totalMs": 59
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        }
+      },
+      "rawEvidence": [
+        {
+          "bytes": 221065,
+          "role": "original-full46-operation-ledger",
+          "sha256": "9b78ce7463f86cce8f105d36afcbb1da8fc92eddcece8d009659ead4069efd1d"
+        },
+        {
+          "bytes": 19845,
+          "role": "original-benchmark-summary",
+          "sha256": "b809eb16b1d6e3f800bfb1f840d2bc16c26e07febfa6a60a62c9ef6e1208688d"
+        },
+        {
+          "bytes": 8728,
+          "role": "complete-before-after-guard-result",
+          "sha256": "a60f3bac4a236b5e22dd1ae922fb830a4f281e64a857b81d0b5457d099575f12"
+        },
+        {
+          "bytes": 1847,
+          "role": "actual-before-identities",
+          "sha256": "f519fa42ea2bedfe506af50a862ca10b06f5d4adb9460855c144dc55f4a7e0bc"
+        },
+        {
+          "bytes": 1847,
+          "role": "actual-after-identities",
+          "sha256": "698676bfa282bb9f2f436a596aa6471009b5716c73fa10fa028b19dcb3bac457"
+        },
+        {
+          "bytes": 545,
+          "role": "actual-package-before",
+          "sha256": "908425ffd89132564ab77f4aea69331e22bc62470c11dceb9969fa12a5fb7bd8"
+        },
+        {
+          "bytes": 545,
+          "role": "actual-package-after",
+          "sha256": "908425ffd89132564ab77f4aea69331e22bc62470c11dceb9969fa12a5fb7bd8"
+        }
+      ],
+      "version": "0.1.25"
+    }
+  ]
+}

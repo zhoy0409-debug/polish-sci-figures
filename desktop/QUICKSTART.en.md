@@ -2,6 +2,8 @@
 
 The update window keeps the simple companions and shows downloaded bytes with an outline heart and jade water. Download completion is followed by integrity verification; save and confirm before installation. Animation preferences and reduced motion retain readable progress. See the [release notes](../docs/release-notes-v1.4.25.md) and separate [historical 0.1.23 acceptance](../docs/release-notes-v1.4.23.md) for each version's scope.
 
+0.1.25 is published. The genuine 0.1.24 → 0.1.25 in-editor upgrade restored the complete project and settings; matched 5000-element samples were accepted for this observed pair. [Upgrade record](../docs/qa/jade-hearts/windows-0.1.25/official-update/README.md) · [Matched samples](../docs/qa/jade-hearts/windows-0.1.25/matched-performance/README.md) · [Final acceptance](../docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json). Normal uninstall and external-profile preservation passed. Freeze this round at 0.1.25; batch and validate later requested changes before a maintenance release.
+
 Figure Studio creates, edits and arranges scientific figures. The Windows desktop edition supports Windows 10/11, 64-bit. Once installed, it works offline without Codex, a separate Python installation or an API key.
 
 Figure Studio is the **official companion editor for polish-sci-figures**. The [zhoy0409-debug/polish-sci-figures repository](https://github.com/zhoy0409-debug/polish-sci-figures) is the project's sole official maintenance and release channel. Download installers from its **Releases** page. The launcher's **Official project** button opens that repository only when clicked. No account, activation or online verification is required.
@@ -69,9 +71,9 @@ Closing a browser tab leaves the local service running. To stop it, choose **Qui
 
 **Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.25 installer. The older update entry only opens a download; it cannot install this upgrade for you.
 
-**Already on a local 0.1.25 candidate?** After the official 0.1.25 release is published, save your project, close Figure Studio and run its Setup linked above to replace the candidate. The updater compares version numbers and will not offer another build with the same version.
+**Already on a local 0.1.25 candidate?** The official 0.1.25 release is published; save your project, close Figure Studio and run its Setup linked above to replace the candidate. The updater compares version numbers and will not offer another build with the same version.
 
-**Already using installed 0.1.9–0.1.24?** You can use its in-app update flow after the new stable release is published. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.25 installer manually after publication. Version 0.1.25 retains the long-path fix introduced in 0.1.10.
+**Already using installed 0.1.9–0.1.24?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.25 installer manually. Version 0.1.25 retains the long-path fix introduced in 0.1.10.
 
 **Future updates from the 0.1.25 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the supported application location and reopens Figure Studio on success; you do not need to extract or replace files. Installation is never started without confirmation, and Windows security prompts are not bypassed.
 

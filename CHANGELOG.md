@@ -1,13 +1,14 @@
 # Changelog
 
-## v1.4.25 · Figure Studio 0.1.25 — in preparation
+## v1.4.25 · Figure Studio 0.1.25 — published
 
-Status on 2026-10-18: not published. Actual candidate performance, exact-head CI, Windows scientific/editing acceptance and the genuine official 0.1.24 → 0.1.25 upgrade remain pending. See the [proposed 0.1.25 scope](docs/release-notes-v1.4.25.md).
+Published on 2026-10-18. Revised candidate scientific/editing and Windows checks passed. The genuine official 0.1.24 → 0.1.25 download/install, complete-project/settings restoration and read-only verification passed; the actual same-profile 5000-element pair was accepted. Selection/colour second-rAF P95 was 116.1/91.7 ms before and 89.3/77.6 ms after, with all 46 operations per version retained. After the genuine upgrade, default-profile 0.1.25 focused checks passed: F2/one-step undo/save-reopen, theme SVG/RGBA, the complete scientific payload, companion pointer responses and reduced motion. Normal uninstall and external-profile preservation passed. See the [0.1.25 scope](docs/release-notes-v1.4.25.md), [official upgrade](docs/qa/jade-hearts/windows-0.1.25/official-update/README.md), [matched samples](docs/qa/jade-hearts/windows-0.1.25/matched-performance/README.md) and [final acceptance](docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json).
 
 - Reuse the existing canonical SVG snapshot for four reviewed read-only inspector consumers while retaining cloned edit consumers and all existing cache invalidation rules.
 - Mount heart resources only when needed; preserve the simple cat/dog, jade hearts, genuine received/total byte semantics, reduced motion and update safety gates.
-- Align current/latest version labels and values in shared grid rows; replace the absolutely positioned text arrow with a decorative jade vector arrow. Check both themes, translated labels and narrow layouts on the revised candidate.
-- Keep the rejected 0.1.24 performance samples and published assets intact. Controlled CPU/CDDC diagnostics do not certify a new installed release.
+- Align current/latest version labels and values in shared grid rows; replace the absolutely positioned text arrow with a decorative jade vector arrow. The revised candidate passed 24 controlled language/theme/viewport/DPR layout cases and fresh installed checks.
+- Keep the rejected 0.1.24 performance samples and published assets intact; controlled CPU/CDDC and the separately retained candidate captures remain distinct from the actual official pair. Initial 0.1.25 assets and tag stay immutable; the Source ZIP Git modes were corrected and verified before publication. This documentation/evidence update leaves application source and native bytes unchanged.
+- Freeze this round at 0.1.25; batch and validate later requested changes before a maintenance release.
 
 ## v1.4.24 · Figure Studio 0.1.24 — published; performance gate pending
 
