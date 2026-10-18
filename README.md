@@ -2,6 +2,8 @@
 
 Figure Studio 0.1.25 保留简约小猫小狗，用透明空心心与翡翠水面呈现下载字节进度，并遵循降动效设置。首次运行 Setup 安装，以后从编辑器内更新。[Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.25/polish-sci-figures-Studio-0.1.25-Setup-x64.exe) · [本版说明](docs/release-notes-v1.4.25.md#中文) · [使用入门](desktop/QUICKSTART.zh-CN.md) · [0.1.23 历史验收](docs/release-notes-v1.4.23.md#中文)。
 
+0.1.25 已公开；官方 0.1.24 → 0.1.25 编辑器内下载、安装及完整工程／设置自动恢复已实测，5000 图元同配置对照已获接受。[升级记录](docs/qa/jade-hearts/windows-0.1.25/official-update/README.md) · [配对样本](docs/qa/jade-hearts/windows-0.1.25/matched-performance/README.md) · [最终验收](docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json)。正常卸载及外部配置保留验证通过。 本轮在 0.1.25 收尾并冻结；后续仅按新增需求汇总验证、集中更新。
+
 [2026-10-18 发布后更新验收](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)：原官方 0.1.20／0.1.21 → 0.1.22 更新、工程自动恢复和正常清理均已实测通过。
 
 

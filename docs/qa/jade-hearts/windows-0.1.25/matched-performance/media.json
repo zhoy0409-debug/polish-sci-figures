@@ -1,0 +1,33 @@
+{
+  "files": [
+    {
+      "byteExactOriginal": true,
+      "bytes": 210138,
+      "file": "matched-performance/matched-24-5000.png",
+      "group": "matched-performance24",
+      "reviewedSampleSeconds": [],
+      "sha256": "446351729668d7c2342cef5820025ff4b35c7dffee4f64001a3c87d623814e7d"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 210038,
+      "file": "matched-performance/matched-25-5000.png",
+      "group": "matched-performance25",
+      "reviewedSampleSeconds": [],
+      "sha256": "e5f0033a0b0a58540445f7615dccf45e600afca34d8d68ef47040fb40ba5ea06"
+    }
+  ],
+  "reviewEvidence": {
+    "bytes": 12925,
+    "role": "root-still-sampled-frame-media-review",
+    "sha256": "600fecb4af1de4855536ab4ce6e0fbb0e9db66f2752266f955f7b8b8be4ff344"
+  },
+  "reviewScope": {
+    "controlledPublicFixtureContext": true,
+    "fullVideoManuallyReviewed": false,
+    "stillImagesReviewed": true,
+    "wholeMovieOrOcrPrivacyCertificationClaimed": false
+  },
+  "schema": "official-original-media-reviewed-index/1",
+  "strictVideoHashScope": "Original strict result supplies a video filename; present original bytes are newly hashed and Root-attested, not a fabricated creation-time hash."
+}

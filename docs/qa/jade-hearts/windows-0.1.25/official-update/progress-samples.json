@@ -1,0 +1,4723 @@
+{
+  "officialInAppFlow": true,
+  "omittedNonProgressKinds": {
+    "open-project-confirmation": 1,
+    "operator-project-opened": 1,
+    "project-saved": 8
+  },
+  "rawEvidence": {
+    "bytes": 76618,
+    "role": "original-full-timed-ledger",
+    "sha256": "60958180584526e0eeed08157c56a87e90b2f24f8e8a6292ad7430ead9fe69e8"
+  },
+  "samples": [
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:47.942Z",
+      "elapsedMs": 9855.8548,
+      "kind": "updater-request",
+      "sourceLine": 7
+    },
+    {
+      "atUTC": "2026-10-18T09:55:48.072Z",
+      "elapsedMs": 9985.8743,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 0,
+      "sourceLine": 8,
+      "status": "idle",
+      "total": 0
+    },
+    {
+      "action": "download",
+      "atUTC": "2026-10-18T09:55:49.148Z",
+      "elapsedMs": 11062.1596,
+      "kind": "updater-request",
+      "sourceLine": 9
+    },
+    {
+      "atUTC": "2026-10-18T09:55:49.202Z",
+      "elapsedMs": 11115.8537,
+      "kind": "passive-authenticated-status",
+      "received": 0,
+      "sourceLine": 10,
+      "status": "checking",
+      "total": 0
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:49.208Z",
+      "caption": "Checking official releases…",
+      "elapsedMs": 11122.2067,
+      "indeterminate": "true",
+      "kind": "ui",
+      "motion": "working",
+      "percent": null,
+      "ratio": "0",
+      "received": null,
+      "scene": "checking",
+      "sourceLine": 11,
+      "summary": "Checking official releases…",
+      "total": null
+    },
+    {
+      "atUTC": "2026-10-18T09:55:49.210Z",
+      "elapsedMs": 11123.403,
+      "kind": "user-started-real-download",
+      "sourceLine": 12
+    },
+    {
+      "atUTC": "2026-10-18T09:55:49.218Z",
+      "elapsedMs": 11131.4471,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 0,
+      "sourceLine": 13,
+      "status": "checking",
+      "total": 0
+    },
+    {
+      "atUTC": "2026-10-18T09:55:49.593Z",
+      "elapsedMs": 11507.0708,
+      "kind": "passive-authenticated-status",
+      "received": 0,
+      "sourceLine": 14,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:50.182Z",
+      "elapsedMs": 12096.0477,
+      "kind": "updater-request",
+      "sourceLine": 15
+    },
+    {
+      "atUTC": "2026-10-18T09:55:50.220Z",
+      "elapsedMs": 12133.984,
+      "kind": "passive-authenticated-status",
+      "received": 262144,
+      "sourceLine": 16,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:50.231Z",
+      "caption": "Downloading: 0.0 / 105.87 MB",
+      "elapsedMs": 12144.9173,
+      "indeterminate": "false",
+      "kind": "ui",
+      "motion": "working",
+      "percent": "0%",
+      "ratio": "0",
+      "received": 0,
+      "scene": "downloading",
+      "sourceLine": 17,
+      "summary": "Downloading your update",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:50.233Z",
+      "elapsedMs": 12147.2105,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 0,
+      "sourceLine": 18,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:50.321Z",
+      "elapsedMs": 12234.8154,
+      "kind": "passive-authenticated-status",
+      "received": 1310720,
+      "sourceLine": 19,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:50.427Z",
+      "elapsedMs": 12340.69,
+      "kind": "passive-authenticated-status",
+      "received": 2883584,
+      "sourceLine": 20,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:50.528Z",
+      "elapsedMs": 12442.0983,
+      "kind": "passive-authenticated-status",
+      "received": 4194304,
+      "sourceLine": 21,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:50.628Z",
+      "elapsedMs": 12541.7514,
+      "kind": "passive-authenticated-status",
+      "received": 5505024,
+      "sourceLine": 22,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:50.729Z",
+      "elapsedMs": 12642.4346,
+      "kind": "passive-authenticated-status",
+      "received": 7077888,
+      "sourceLine": 23,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:50.829Z",
+      "elapsedMs": 12742.9268,
+      "kind": "passive-authenticated-status",
+      "received": 8388608,
+      "sourceLine": 24,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:50.931Z",
+      "elapsedMs": 12844.6896,
+      "kind": "passive-authenticated-status",
+      "received": 9961472,
+      "sourceLine": 25,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.032Z",
+      "elapsedMs": 12945.9826,
+      "kind": "passive-authenticated-status",
+      "received": 11272192,
+      "sourceLine": 26,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.139Z",
+      "elapsedMs": 13053.0254,
+      "kind": "passive-authenticated-status",
+      "received": 12058624,
+      "sourceLine": 27,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:51.210Z",
+      "elapsedMs": 13124.3057,
+      "kind": "updater-request",
+      "sourceLine": 28
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.245Z",
+      "elapsedMs": 13159.2996,
+      "kind": "passive-authenticated-status",
+      "received": 12845056,
+      "sourceLine": 29,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.253Z",
+      "elapsedMs": 13166.7502,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 12582912,
+      "sourceLine": 30,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:51.275Z",
+      "caption": "Downloading: 12.58 / 105.87 MB",
+      "elapsedMs": 13188.8858,
+      "indeterminate": "false",
+      "kind": "ui",
+      "motion": "working",
+      "percent": "11%",
+      "ratio": "0.11885624935567522",
+      "received": 12582912,
+      "scene": "downloading",
+      "sourceLine": 31,
+      "summary": "Downloading your update",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.351Z",
+      "elapsedMs": 13265.3298,
+      "kind": "passive-authenticated-status",
+      "received": 13893632,
+      "sourceLine": 32,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.451Z",
+      "elapsedMs": 13365.2276,
+      "kind": "passive-authenticated-status",
+      "received": 14680064,
+      "sourceLine": 33,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.557Z",
+      "elapsedMs": 13470.6728,
+      "kind": "passive-authenticated-status",
+      "received": 15466496,
+      "sourceLine": 34,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.656Z",
+      "elapsedMs": 13570.1397,
+      "kind": "passive-authenticated-status",
+      "received": 16252928,
+      "sourceLine": 35,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.758Z",
+      "elapsedMs": 13671.7996,
+      "kind": "passive-authenticated-status",
+      "received": 17039360,
+      "sourceLine": 36,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.861Z",
+      "elapsedMs": 13774.4309,
+      "kind": "passive-authenticated-status",
+      "received": 17825792,
+      "sourceLine": 37,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:51.960Z",
+      "elapsedMs": 13874.012,
+      "kind": "passive-authenticated-status",
+      "received": 18612224,
+      "sourceLine": 38,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.060Z",
+      "elapsedMs": 13974.2662,
+      "kind": "passive-authenticated-status",
+      "received": 19398656,
+      "sourceLine": 39,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.166Z",
+      "elapsedMs": 14079.6222,
+      "kind": "passive-authenticated-status",
+      "received": 20447232,
+      "sourceLine": 40,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:52.251Z",
+      "elapsedMs": 14164.7059,
+      "kind": "updater-request",
+      "sourceLine": 41
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.268Z",
+      "elapsedMs": 14181.7218,
+      "kind": "passive-authenticated-status",
+      "received": 21233664,
+      "sourceLine": 42,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:52.297Z",
+      "caption": "Downloading: 20.97 / 105.87 MB",
+      "elapsedMs": 14211.0304,
+      "indeterminate": "false",
+      "kind": "ui",
+      "motion": "working",
+      "percent": "19%",
+      "ratio": "0.19809374892612538",
+      "received": 20971520,
+      "scene": "downloading",
+      "sourceLine": 43,
+      "summary": "Downloading your update",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.299Z",
+      "elapsedMs": 14212.5462,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 20971520,
+      "sourceLine": 44,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.372Z",
+      "elapsedMs": 14286.0806,
+      "kind": "passive-authenticated-status",
+      "received": 22020096,
+      "sourceLine": 45,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.480Z",
+      "elapsedMs": 14394.1631,
+      "kind": "passive-authenticated-status",
+      "received": 23068672,
+      "sourceLine": 46,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.582Z",
+      "elapsedMs": 14496.103,
+      "kind": "passive-authenticated-status",
+      "received": 23855104,
+      "sourceLine": 47,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.684Z",
+      "elapsedMs": 14597.8256,
+      "kind": "passive-authenticated-status",
+      "received": 24641536,
+      "sourceLine": 48,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.794Z",
+      "elapsedMs": 14708.1299,
+      "kind": "passive-authenticated-status",
+      "received": 25690112,
+      "sourceLine": 49,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.896Z",
+      "elapsedMs": 14809.8933,
+      "kind": "passive-authenticated-status",
+      "received": 26738688,
+      "sourceLine": 50,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:52.999Z",
+      "elapsedMs": 14913.3398,
+      "kind": "passive-authenticated-status",
+      "received": 27787264,
+      "sourceLine": 51,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:53.097Z",
+      "elapsedMs": 15010.9174,
+      "kind": "passive-authenticated-status",
+      "received": 28049408,
+      "sourceLine": 52,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:53.203Z",
+      "elapsedMs": 15116.5352,
+      "kind": "passive-authenticated-status",
+      "received": 30146560,
+      "sourceLine": 53,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:53.295Z",
+      "elapsedMs": 15209.0613,
+      "kind": "updater-request",
+      "sourceLine": 54
+    },
+    {
+      "atUTC": "2026-10-18T09:55:53.306Z",
+      "elapsedMs": 15220.3424,
+      "kind": "passive-authenticated-status",
+      "received": 31457280,
+      "sourceLine": 55,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:53.356Z",
+      "elapsedMs": 15269.9626,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 31195136,
+      "sourceLine": 56,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:53.404Z",
+      "elapsedMs": 15317.6608,
+      "kind": "passive-authenticated-status",
+      "received": 32768000,
+      "sourceLine": 57,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:53.411Z",
+      "caption": "Downloading: 31.2 / 105.87 MB",
+      "elapsedMs": 15324.5561,
+      "indeterminate": "false",
+      "kind": "ui",
+      "motion": "working",
+      "percent": "29%",
+      "ratio": "0.2946644515276115",
+      "received": 31195136,
+      "scene": "downloading",
+      "sourceLine": 58,
+      "summary": "Downloading your update",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:53.504Z",
+      "elapsedMs": 15418.2708,
+      "kind": "passive-authenticated-status",
+      "received": 34340864,
+      "sourceLine": 59,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:53.606Z",
+      "elapsedMs": 15519.5488,
+      "kind": "passive-authenticated-status",
+      "received": 34603008,
+      "sourceLine": 60,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:53.707Z",
+      "elapsedMs": 15620.5606,
+      "kind": "passive-authenticated-status",
+      "received": 36962304,
+      "sourceLine": 61,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:53.807Z",
+      "elapsedMs": 15720.5977,
+      "kind": "passive-authenticated-status",
+      "received": 38535168,
+      "sourceLine": 62,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:53.910Z",
+      "elapsedMs": 15823.589,
+      "kind": "passive-authenticated-status",
+      "received": 39845888,
+      "sourceLine": 63,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.013Z",
+      "elapsedMs": 15926.4446,
+      "kind": "passive-authenticated-status",
+      "received": 41418752,
+      "sourceLine": 64,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.114Z",
+      "elapsedMs": 16028.3179,
+      "kind": "passive-authenticated-status",
+      "received": 42729472,
+      "sourceLine": 65,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.213Z",
+      "elapsedMs": 16126.7939,
+      "kind": "passive-authenticated-status",
+      "received": 44302336,
+      "sourceLine": 66,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.317Z",
+      "elapsedMs": 16231.1229,
+      "kind": "passive-authenticated-status",
+      "received": 45613056,
+      "sourceLine": 67,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:54.346Z",
+      "elapsedMs": 16259.5374,
+      "kind": "updater-request",
+      "sourceLine": 68
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.409Z",
+      "elapsedMs": 16322.8035,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 45875200,
+      "sourceLine": 69,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.416Z",
+      "elapsedMs": 16330.3745,
+      "kind": "passive-authenticated-status",
+      "received": 47185920,
+      "sourceLine": 70,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:54.448Z",
+      "caption": "Downloading: 45.88 / 105.87 MB",
+      "elapsedMs": 16362.2157,
+      "indeterminate": "false",
+      "kind": "ui",
+      "motion": "working",
+      "percent": "43%",
+      "ratio": "0.43333007577589927",
+      "received": 45875200,
+      "scene": "downloading",
+      "sourceLine": 71,
+      "summary": "Downloading your update",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.519Z",
+      "elapsedMs": 16433.0046,
+      "kind": "passive-authenticated-status",
+      "received": 48496640,
+      "sourceLine": 72,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.622Z",
+      "elapsedMs": 16535.4723,
+      "kind": "passive-authenticated-status",
+      "received": 49807360,
+      "sourceLine": 73,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.728Z",
+      "elapsedMs": 16641.5021,
+      "kind": "passive-authenticated-status",
+      "received": 51380224,
+      "sourceLine": 74,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.831Z",
+      "elapsedMs": 16744.4948,
+      "kind": "passive-authenticated-status",
+      "received": 52690944,
+      "sourceLine": 75,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:54.938Z",
+      "elapsedMs": 16851.6585,
+      "kind": "passive-authenticated-status",
+      "received": 53739520,
+      "sourceLine": 76,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.039Z",
+      "elapsedMs": 16952.5342,
+      "kind": "passive-authenticated-status",
+      "received": 55574528,
+      "sourceLine": 77,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.146Z",
+      "elapsedMs": 17060.3735,
+      "kind": "passive-authenticated-status",
+      "received": 56885248,
+      "sourceLine": 78,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.249Z",
+      "elapsedMs": 17162.9078,
+      "kind": "passive-authenticated-status",
+      "received": 58458112,
+      "sourceLine": 79,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.351Z",
+      "elapsedMs": 17265.12,
+      "kind": "passive-authenticated-status",
+      "received": 60030976,
+      "sourceLine": 80,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:55.387Z",
+      "elapsedMs": 17300.5909,
+      "kind": "updater-request",
+      "sourceLine": 81
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.455Z",
+      "elapsedMs": 17369.2065,
+      "kind": "passive-authenticated-status",
+      "received": 61341696,
+      "sourceLine": 82,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.459Z",
+      "elapsedMs": 17372.6718,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 60555264,
+      "sourceLine": 83,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:55.481Z",
+      "caption": "Downloading: 60.56 / 105.87 MB",
+      "elapsedMs": 17394.9007,
+      "indeterminate": "false",
+      "kind": "ui",
+      "motion": "working",
+      "percent": "57%",
+      "ratio": "0.571995700024187",
+      "received": 60555264,
+      "scene": "downloading",
+      "sourceLine": 84,
+      "summary": "Downloading your update",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.558Z",
+      "elapsedMs": 17472.3216,
+      "kind": "passive-authenticated-status",
+      "received": 62652416,
+      "sourceLine": 85,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.663Z",
+      "elapsedMs": 17576.5376,
+      "kind": "passive-authenticated-status",
+      "received": 64225280,
+      "sourceLine": 86,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.764Z",
+      "elapsedMs": 17678.286,
+      "kind": "passive-authenticated-status",
+      "received": 65798144,
+      "sourceLine": 87,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.865Z",
+      "elapsedMs": 17778.5441,
+      "kind": "passive-authenticated-status",
+      "received": 67108864,
+      "sourceLine": 88,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:55.967Z",
+      "elapsedMs": 17880.8911,
+      "kind": "passive-authenticated-status",
+      "received": 68681728,
+      "sourceLine": 89,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.073Z",
+      "elapsedMs": 17986.4271,
+      "kind": "passive-authenticated-status",
+      "received": 69992448,
+      "sourceLine": 90,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.173Z",
+      "elapsedMs": 18086.7404,
+      "kind": "passive-authenticated-status",
+      "received": 71565312,
+      "sourceLine": 91,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.274Z",
+      "elapsedMs": 18188.1831,
+      "kind": "passive-authenticated-status",
+      "received": 72876032,
+      "sourceLine": 92,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.382Z",
+      "elapsedMs": 18295.8255,
+      "kind": "passive-authenticated-status",
+      "received": 74448896,
+      "sourceLine": 93,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:56.434Z",
+      "elapsedMs": 18348.256,
+      "kind": "updater-request",
+      "sourceLine": 94
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.484Z",
+      "elapsedMs": 18397.981,
+      "kind": "passive-authenticated-status",
+      "received": 75759616,
+      "sourceLine": 95,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:56.508Z",
+      "caption": "Downloading: 75.24 / 105.87 MB",
+      "elapsedMs": 18422.3006,
+      "indeterminate": "false",
+      "kind": "ui",
+      "motion": "working",
+      "percent": "71%",
+      "ratio": "0.7106613242724747",
+      "received": 75235328,
+      "scene": "downloading",
+      "sourceLine": 96,
+      "summary": "Downloading your update",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.510Z",
+      "elapsedMs": 18423.8055,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 75235328,
+      "sourceLine": 97,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.585Z",
+      "elapsedMs": 18498.7424,
+      "kind": "passive-authenticated-status",
+      "received": 77332480,
+      "sourceLine": 98,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.685Z",
+      "elapsedMs": 18598.4237,
+      "kind": "passive-authenticated-status",
+      "received": 78643200,
+      "sourceLine": 99,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.789Z",
+      "elapsedMs": 18703.204,
+      "kind": "passive-authenticated-status",
+      "received": 80216064,
+      "sourceLine": 100,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.891Z",
+      "elapsedMs": 18804.8411,
+      "kind": "passive-authenticated-status",
+      "received": 81526784,
+      "sourceLine": 101,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:56.995Z",
+      "elapsedMs": 18908.8819,
+      "kind": "passive-authenticated-status",
+      "received": 83099648,
+      "sourceLine": 102,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:57.095Z",
+      "elapsedMs": 19009.009,
+      "kind": "passive-authenticated-status",
+      "received": 84410368,
+      "sourceLine": 103,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:57.204Z",
+      "elapsedMs": 19117.3979,
+      "kind": "passive-authenticated-status",
+      "received": 85983232,
+      "sourceLine": 104,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:57.307Z",
+      "elapsedMs": 19220.6188,
+      "kind": "passive-authenticated-status",
+      "received": 87556096,
+      "sourceLine": 105,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:57.405Z",
+      "elapsedMs": 19319.019,
+      "kind": "passive-authenticated-status",
+      "received": 88866816,
+      "sourceLine": 106,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:57.478Z",
+      "elapsedMs": 19391.4429,
+      "kind": "updater-request",
+      "sourceLine": 107
+    },
+    {
+      "atUTC": "2026-10-18T09:55:57.512Z",
+      "elapsedMs": 19425.4298,
+      "kind": "passive-authenticated-status",
+      "received": 90439680,
+      "sourceLine": 108,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:57.550Z",
+      "elapsedMs": 19464.0081,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 89915392,
+      "sourceLine": 109,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:57.610Z",
+      "elapsedMs": 19523.7498,
+      "kind": "passive-authenticated-status",
+      "received": 90701824,
+      "sourceLine": 110,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:57.614Z",
+      "caption": "Downloading: 89.92 / 105.87 MB",
+      "elapsedMs": 19528.2271,
+      "indeterminate": "false",
+      "kind": "ui",
+      "motion": "working",
+      "percent": "84%",
+      "ratio": "0.8493269485207625",
+      "received": 89915392,
+      "scene": "downloading",
+      "sourceLine": 111,
+      "summary": "Downloading your update",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:57.714Z",
+      "elapsedMs": 19627.6103,
+      "kind": "passive-authenticated-status",
+      "received": 91226112,
+      "sourceLine": 112,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:57.814Z",
+      "elapsedMs": 19728.3053,
+      "kind": "passive-authenticated-status",
+      "received": 92274688,
+      "sourceLine": 113,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:57.918Z",
+      "elapsedMs": 19831.9576,
+      "kind": "passive-authenticated-status",
+      "received": 93847552,
+      "sourceLine": 114,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:58.015Z",
+      "elapsedMs": 19929.119,
+      "kind": "passive-authenticated-status",
+      "received": 95158272,
+      "sourceLine": 115,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:58.116Z",
+      "elapsedMs": 20029.9408,
+      "kind": "passive-authenticated-status",
+      "received": 96468992,
+      "sourceLine": 116,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:58.216Z",
+      "elapsedMs": 20129.8881,
+      "kind": "passive-authenticated-status",
+      "received": 98041856,
+      "sourceLine": 117,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:58.323Z",
+      "elapsedMs": 20236.4894,
+      "kind": "passive-authenticated-status",
+      "received": 99352576,
+      "sourceLine": 118,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:58.420Z",
+      "elapsedMs": 20333.7687,
+      "kind": "passive-authenticated-status",
+      "received": 100663296,
+      "sourceLine": 119,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:58.521Z",
+      "elapsedMs": 20434.6352,
+      "kind": "passive-authenticated-status",
+      "received": 102236160,
+      "sourceLine": 120,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:58.526Z",
+      "elapsedMs": 20440.3487,
+      "kind": "updater-request",
+      "sourceLine": 121
+    },
+    {
+      "atUTC": "2026-10-18T09:55:58.607Z",
+      "elapsedMs": 20520.4178,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 102236160,
+      "sourceLine": 122,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:58.621Z",
+      "elapsedMs": 20535.3053,
+      "kind": "passive-authenticated-status",
+      "received": 103546880,
+      "sourceLine": 123,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:58.649Z",
+      "caption": "Downloading: 102.24 / 105.87 MB",
+      "elapsedMs": 20563.0173,
+      "indeterminate": "false",
+      "kind": "ui",
+      "motion": "working",
+      "percent": "96%",
+      "ratio": "0.9657070260148612",
+      "received": 102236160,
+      "scene": "downloading",
+      "sourceLine": 124,
+      "summary": "Downloading your update",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:58.725Z",
+      "elapsedMs": 20639.0419,
+      "kind": "passive-authenticated-status",
+      "received": 105119744,
+      "sourceLine": 125,
+      "status": "downloading",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:55:58.844Z",
+      "elapsedMs": 20758.1995,
+      "kind": "passive-authenticated-status",
+      "received": 105866642,
+      "sourceLine": 126,
+      "status": "ready",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:55:59.578Z",
+      "elapsedMs": 21492.0526,
+      "kind": "updater-request",
+      "sourceLine": 127
+    },
+    {
+      "atUTC": "2026-10-18T09:55:59.624Z",
+      "elapsedMs": 21538.2545,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 128,
+      "status": "ready",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:55:59.681Z",
+      "caption": "Update verified. Ready to install.",
+      "elapsedMs": 21594.9276,
+      "indeterminate": "false",
+      "kind": "ui",
+      "motion": "still",
+      "percent": "100%",
+      "ratio": "1",
+      "received": 1,
+      "scene": "ready",
+      "sourceLine": 129,
+      "summary": "Ready when you are",
+      "total": 1
+    },
+    {
+      "action": "install",
+      "atUTC": "2026-10-18T09:56:10.758Z",
+      "elapsedMs": 32671.6159,
+      "kind": "updater-request",
+      "sourceLine": 130
+    },
+    {
+      "atUTC": "2026-10-18T09:56:10.794Z",
+      "elapsedMs": 32708.1687,
+      "kind": "passive-authenticated-status",
+      "received": 105866642,
+      "sourceLine": 131,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:56:10.797Z",
+      "caption": "Preserving the previous version…",
+      "elapsedMs": 32710.9022,
+      "indeterminate": "true",
+      "kind": "ui",
+      "motion": "working",
+      "percent": null,
+      "ratio": "0",
+      "received": null,
+      "scene": "preparing",
+      "sourceLine": 132,
+      "summary": "Preparing to install",
+      "total": null
+    },
+    {
+      "atUTC": "2026-10-18T09:56:10.798Z",
+      "elapsedMs": 32711.7264,
+      "kind": "user-confirmed-install-once",
+      "sourceLine": 133
+    },
+    {
+      "atUTC": "2026-10-18T09:56:10.819Z",
+      "elapsedMs": 32732.9341,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 134,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:10.898Z",
+      "elapsedMs": 32811.6855,
+      "kind": "updater-request",
+      "sourceLine": 135
+    },
+    {
+      "atUTC": "2026-10-18T09:56:11.096Z",
+      "elapsedMs": 33009.4825,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 136,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:11.162Z",
+      "elapsedMs": 33075.9109,
+      "kind": "updater-request",
+      "sourceLine": 137
+    },
+    {
+      "atUTC": "2026-10-18T09:56:11.219Z",
+      "elapsedMs": 33132.9175,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 138,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:11.338Z",
+      "elapsedMs": 33252.0694,
+      "kind": "updater-request",
+      "sourceLine": 139
+    },
+    {
+      "atUTC": "2026-10-18T09:56:11.389Z",
+      "elapsedMs": 33302.8477,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 140,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:11.494Z",
+      "elapsedMs": 33407.8917,
+      "kind": "updater-request",
+      "sourceLine": 141
+    },
+    {
+      "atUTC": "2026-10-18T09:56:11.534Z",
+      "elapsedMs": 33447.9705,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 142,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:11.601Z",
+      "elapsedMs": 33514.4476,
+      "kind": "updater-request",
+      "sourceLine": 143
+    },
+    {
+      "atUTC": "2026-10-18T09:56:11.646Z",
+      "elapsedMs": 33559.619,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 144,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:11.711Z",
+      "elapsedMs": 33624.9793,
+      "kind": "updater-request",
+      "sourceLine": 145
+    },
+    {
+      "atUTC": "2026-10-18T09:56:11.753Z",
+      "elapsedMs": 33666.8366,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 146,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:11.824Z",
+      "elapsedMs": 33737.785,
+      "kind": "updater-request",
+      "sourceLine": 147
+    },
+    {
+      "atUTC": "2026-10-18T09:56:11.861Z",
+      "elapsedMs": 33774.7489,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 148,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:11.932Z",
+      "elapsedMs": 33846.0616,
+      "kind": "updater-request",
+      "sourceLine": 149
+    },
+    {
+      "atUTC": "2026-10-18T09:56:11.971Z",
+      "elapsedMs": 33885.356,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 150,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:12.042Z",
+      "elapsedMs": 33956.1027,
+      "kind": "updater-request",
+      "sourceLine": 151
+    },
+    {
+      "atUTC": "2026-10-18T09:56:12.088Z",
+      "elapsedMs": 34002.2469,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 152,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:12.182Z",
+      "elapsedMs": 34095.786,
+      "kind": "updater-request",
+      "sourceLine": 153
+    },
+    {
+      "atUTC": "2026-10-18T09:56:12.403Z",
+      "elapsedMs": 34317.165,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 154,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:12.432Z",
+      "elapsedMs": 34346.2506,
+      "kind": "updater-request",
+      "sourceLine": 155
+    },
+    {
+      "atUTC": "2026-10-18T09:56:12.481Z",
+      "elapsedMs": 34395.3203,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 156,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:12.567Z",
+      "elapsedMs": 34480.3838,
+      "kind": "updater-request",
+      "sourceLine": 157
+    },
+    {
+      "atUTC": "2026-10-18T09:56:12.618Z",
+      "elapsedMs": 34531.8472,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 158,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:12.711Z",
+      "elapsedMs": 34625.0276,
+      "kind": "updater-request",
+      "sourceLine": 159
+    },
+    {
+      "atUTC": "2026-10-18T09:56:12.753Z",
+      "elapsedMs": 34666.7984,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 160,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:12.850Z",
+      "elapsedMs": 34764.2307,
+      "kind": "updater-request",
+      "sourceLine": 161
+    },
+    {
+      "atUTC": "2026-10-18T09:56:12.887Z",
+      "elapsedMs": 34800.6069,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 162,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:12.967Z",
+      "elapsedMs": 34880.5674,
+      "kind": "updater-request",
+      "sourceLine": 163
+    },
+    {
+      "atUTC": "2026-10-18T09:56:13.040Z",
+      "elapsedMs": 34953.8811,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 164,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:13.115Z",
+      "elapsedMs": 35028.7455,
+      "kind": "updater-request",
+      "sourceLine": 165
+    },
+    {
+      "atUTC": "2026-10-18T09:56:13.167Z",
+      "elapsedMs": 35081.2119,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 166,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:13.255Z",
+      "elapsedMs": 35169.0093,
+      "kind": "updater-request",
+      "sourceLine": 167
+    },
+    {
+      "atUTC": "2026-10-18T09:56:13.319Z",
+      "elapsedMs": 35232.7325,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 168,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:13.402Z",
+      "elapsedMs": 35315.7309,
+      "kind": "updater-request",
+      "sourceLine": 169
+    },
+    {
+      "atUTC": "2026-10-18T09:56:13.480Z",
+      "elapsedMs": 35394.1757,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 170,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:13.554Z",
+      "elapsedMs": 35467.5403,
+      "kind": "updater-request",
+      "sourceLine": 171
+    },
+    {
+      "atUTC": "2026-10-18T09:56:13.740Z",
+      "elapsedMs": 35653.8052,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 172,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:13.784Z",
+      "elapsedMs": 35697.9339,
+      "kind": "updater-request",
+      "sourceLine": 173
+    },
+    {
+      "atUTC": "2026-10-18T09:56:13.840Z",
+      "elapsedMs": 35754.0716,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 174,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:13.933Z",
+      "elapsedMs": 35847.1564,
+      "kind": "updater-request",
+      "sourceLine": 175
+    },
+    {
+      "atUTC": "2026-10-18T09:56:13.966Z",
+      "elapsedMs": 35880.0446,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 176,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:14.041Z",
+      "elapsedMs": 35954.8719,
+      "kind": "updater-request",
+      "sourceLine": 177
+    },
+    {
+      "atUTC": "2026-10-18T09:56:14.073Z",
+      "elapsedMs": 35987.014,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 178,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:14.149Z",
+      "elapsedMs": 36063.1026,
+      "kind": "updater-request",
+      "sourceLine": 179
+    },
+    {
+      "atUTC": "2026-10-18T09:56:14.204Z",
+      "elapsedMs": 36117.9682,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 180,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:14.290Z",
+      "elapsedMs": 36203.9451,
+      "kind": "updater-request",
+      "sourceLine": 181
+    },
+    {
+      "atUTC": "2026-10-18T09:56:14.323Z",
+      "elapsedMs": 36237.084,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 182,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:14.399Z",
+      "elapsedMs": 36312.6387,
+      "kind": "updater-request",
+      "sourceLine": 183
+    },
+    {
+      "atUTC": "2026-10-18T09:56:14.429Z",
+      "elapsedMs": 36343.0687,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 184,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:14.509Z",
+      "elapsedMs": 36422.6911,
+      "kind": "updater-request",
+      "sourceLine": 185
+    },
+    {
+      "atUTC": "2026-10-18T09:56:14.541Z",
+      "elapsedMs": 36455.2442,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 186,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:14.622Z",
+      "elapsedMs": 36536.2868,
+      "kind": "updater-request",
+      "sourceLine": 187
+    },
+    {
+      "atUTC": "2026-10-18T09:56:14.673Z",
+      "elapsedMs": 36586.6494,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 188,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:14.758Z",
+      "elapsedMs": 36671.9373,
+      "kind": "updater-request",
+      "sourceLine": 189
+    },
+    {
+      "atUTC": "2026-10-18T09:56:15.065Z",
+      "elapsedMs": 36978.5086,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 190,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:15.107Z",
+      "elapsedMs": 37020.7959,
+      "kind": "updater-request",
+      "sourceLine": 191
+    },
+    {
+      "atUTC": "2026-10-18T09:56:15.162Z",
+      "elapsedMs": 37076.0298,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 192,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:15.242Z",
+      "elapsedMs": 37155.8668,
+      "kind": "updater-request",
+      "sourceLine": 193
+    },
+    {
+      "atUTC": "2026-10-18T09:56:15.307Z",
+      "elapsedMs": 37220.4551,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 194,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:15.391Z",
+      "elapsedMs": 37304.5083,
+      "kind": "updater-request",
+      "sourceLine": 195
+    },
+    {
+      "atUTC": "2026-10-18T09:56:15.427Z",
+      "elapsedMs": 37341.3397,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 196,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:15.504Z",
+      "elapsedMs": 37417.755,
+      "kind": "updater-request",
+      "sourceLine": 197
+    },
+    {
+      "atUTC": "2026-10-18T09:56:15.549Z",
+      "elapsedMs": 37463.0249,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 198,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:15.647Z",
+      "elapsedMs": 37560.9412,
+      "kind": "updater-request",
+      "sourceLine": 199
+    },
+    {
+      "atUTC": "2026-10-18T09:56:15.714Z",
+      "elapsedMs": 37628.1556,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 200,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:15.796Z",
+      "elapsedMs": 37709.577,
+      "kind": "updater-request",
+      "sourceLine": 201
+    },
+    {
+      "atUTC": "2026-10-18T09:56:15.855Z",
+      "elapsedMs": 37768.7984,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 202,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:15.938Z",
+      "elapsedMs": 37851.9578,
+      "kind": "updater-request",
+      "sourceLine": 203
+    },
+    {
+      "atUTC": "2026-10-18T09:56:15.995Z",
+      "elapsedMs": 37908.8252,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 204,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:16.055Z",
+      "elapsedMs": 37968.4423,
+      "kind": "updater-request",
+      "sourceLine": 205
+    },
+    {
+      "atUTC": "2026-10-18T09:56:16.137Z",
+      "elapsedMs": 38050.6436,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 206,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:16.210Z",
+      "elapsedMs": 38123.3838,
+      "kind": "updater-request",
+      "sourceLine": 207
+    },
+    {
+      "atUTC": "2026-10-18T09:56:16.525Z",
+      "elapsedMs": 38438.7919,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 208,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:16.531Z",
+      "elapsedMs": 38444.7773,
+      "kind": "updater-request",
+      "sourceLine": 209
+    },
+    {
+      "atUTC": "2026-10-18T09:56:16.595Z",
+      "elapsedMs": 38508.4339,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 210,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:16.676Z",
+      "elapsedMs": 38590.0572,
+      "kind": "updater-request",
+      "sourceLine": 211
+    },
+    {
+      "atUTC": "2026-10-18T09:56:16.734Z",
+      "elapsedMs": 38647.4511,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 212,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:16.821Z",
+      "elapsedMs": 38734.7035,
+      "kind": "updater-request",
+      "sourceLine": 213
+    },
+    {
+      "atUTC": "2026-10-18T09:56:16.892Z",
+      "elapsedMs": 38806.2126,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 214,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:16.969Z",
+      "elapsedMs": 38882.7012,
+      "kind": "updater-request",
+      "sourceLine": 215
+    },
+    {
+      "atUTC": "2026-10-18T09:56:17.017Z",
+      "elapsedMs": 38931.1092,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 216,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:17.080Z",
+      "elapsedMs": 38993.7787,
+      "kind": "updater-request",
+      "sourceLine": 217
+    },
+    {
+      "atUTC": "2026-10-18T09:56:17.126Z",
+      "elapsedMs": 39039.3929,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 218,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:17.198Z",
+      "elapsedMs": 39111.9007,
+      "kind": "updater-request",
+      "sourceLine": 219
+    },
+    {
+      "atUTC": "2026-10-18T09:56:17.252Z",
+      "elapsedMs": 39165.9368,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 220,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:17.309Z",
+      "elapsedMs": 39222.7244,
+      "kind": "updater-request",
+      "sourceLine": 221
+    },
+    {
+      "atUTC": "2026-10-18T09:56:17.371Z",
+      "elapsedMs": 39285.3266,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 222,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:17.458Z",
+      "elapsedMs": 39371.7504,
+      "kind": "updater-request",
+      "sourceLine": 223
+    },
+    {
+      "atUTC": "2026-10-18T09:56:17.529Z",
+      "elapsedMs": 39443.1357,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 224,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:17.618Z",
+      "elapsedMs": 39531.7862,
+      "kind": "updater-request",
+      "sourceLine": 225
+    },
+    {
+      "atUTC": "2026-10-18T09:56:17.927Z",
+      "elapsedMs": 39840.8691,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 226,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:17.950Z",
+      "elapsedMs": 39863.4127,
+      "kind": "updater-request",
+      "sourceLine": 227
+    },
+    {
+      "atUTC": "2026-10-18T09:56:17.975Z",
+      "elapsedMs": 39889.3268,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 228,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:18.079Z",
+      "elapsedMs": 39992.6545,
+      "kind": "updater-request",
+      "sourceLine": 229
+    },
+    {
+      "atUTC": "2026-10-18T09:56:18.144Z",
+      "elapsedMs": 40058.378,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 230,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:18.227Z",
+      "elapsedMs": 40141.2722,
+      "kind": "updater-request",
+      "sourceLine": 231
+    },
+    {
+      "atUTC": "2026-10-18T09:56:18.282Z",
+      "elapsedMs": 40195.9364,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 232,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:18.337Z",
+      "elapsedMs": 40251.3303,
+      "kind": "updater-request",
+      "sourceLine": 233
+    },
+    {
+      "atUTC": "2026-10-18T09:56:18.401Z",
+      "elapsedMs": 40314.4813,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 234,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:18.481Z",
+      "elapsedMs": 40395.2714,
+      "kind": "updater-request",
+      "sourceLine": 235
+    },
+    {
+      "atUTC": "2026-10-18T09:56:18.549Z",
+      "elapsedMs": 40462.9691,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 236,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:18.622Z",
+      "elapsedMs": 40535.499,
+      "kind": "updater-request",
+      "sourceLine": 237
+    },
+    {
+      "atUTC": "2026-10-18T09:56:18.700Z",
+      "elapsedMs": 40614.1853,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 238,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:18.775Z",
+      "elapsedMs": 40689.1027,
+      "kind": "updater-request",
+      "sourceLine": 239
+    },
+    {
+      "atUTC": "2026-10-18T09:56:18.852Z",
+      "elapsedMs": 40766.2917,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 240,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:18.930Z",
+      "elapsedMs": 40843.8195,
+      "kind": "updater-request",
+      "sourceLine": 241
+    },
+    {
+      "atUTC": "2026-10-18T09:56:18.991Z",
+      "elapsedMs": 40904.8244,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 242,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:19.064Z",
+      "elapsedMs": 40978.3251,
+      "kind": "updater-request",
+      "sourceLine": 243
+    },
+    {
+      "atUTC": "2026-10-18T09:56:19.395Z",
+      "elapsedMs": 41308.6106,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 244,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:19.409Z",
+      "elapsedMs": 41322.4822,
+      "kind": "updater-request",
+      "sourceLine": 245
+    },
+    {
+      "atUTC": "2026-10-18T09:56:19.464Z",
+      "elapsedMs": 41377.4059,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 246,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:19.543Z",
+      "elapsedMs": 41457.2681,
+      "kind": "updater-request",
+      "sourceLine": 247
+    },
+    {
+      "atUTC": "2026-10-18T09:56:19.603Z",
+      "elapsedMs": 41517.352,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 248,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:19.687Z",
+      "elapsedMs": 41601.0473,
+      "kind": "updater-request",
+      "sourceLine": 249
+    },
+    {
+      "atUTC": "2026-10-18T09:56:19.758Z",
+      "elapsedMs": 41671.5641,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 250,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:19.833Z",
+      "elapsedMs": 41747.1024,
+      "kind": "updater-request",
+      "sourceLine": 251
+    },
+    {
+      "atUTC": "2026-10-18T09:56:19.895Z",
+      "elapsedMs": 41808.9316,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 252,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:19.975Z",
+      "elapsedMs": 41888.6751,
+      "kind": "updater-request",
+      "sourceLine": 253
+    },
+    {
+      "atUTC": "2026-10-18T09:56:20.008Z",
+      "elapsedMs": 41921.6468,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 254,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:20.083Z",
+      "elapsedMs": 41996.9727,
+      "kind": "updater-request",
+      "sourceLine": 255
+    },
+    {
+      "atUTC": "2026-10-18T09:56:20.112Z",
+      "elapsedMs": 42025.7968,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 256,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:20.200Z",
+      "elapsedMs": 42113.773,
+      "kind": "updater-request",
+      "sourceLine": 257
+    },
+    {
+      "atUTC": "2026-10-18T09:56:20.272Z",
+      "elapsedMs": 42185.4098,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 258,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:20.332Z",
+      "elapsedMs": 42245.8348,
+      "kind": "updater-request",
+      "sourceLine": 259
+    },
+    {
+      "atUTC": "2026-10-18T09:56:20.338Z",
+      "elapsedMs": 42251.6676,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 260,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:20.446Z",
+      "elapsedMs": 42360.2885,
+      "kind": "updater-request",
+      "sourceLine": 261
+    },
+    {
+      "atUTC": "2026-10-18T09:56:20.744Z",
+      "elapsedMs": 42657.629,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 262,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:20.769Z",
+      "elapsedMs": 42682.8145,
+      "kind": "updater-request",
+      "sourceLine": 263
+    },
+    {
+      "atUTC": "2026-10-18T09:56:20.817Z",
+      "elapsedMs": 42730.6251,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 264,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:20.899Z",
+      "elapsedMs": 42812.9636,
+      "kind": "updater-request",
+      "sourceLine": 265
+    },
+    {
+      "atUTC": "2026-10-18T09:56:20.951Z",
+      "elapsedMs": 42865.2565,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 266,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:21.009Z",
+      "elapsedMs": 42923.1783,
+      "kind": "updater-request",
+      "sourceLine": 267
+    },
+    {
+      "atUTC": "2026-10-18T09:56:21.075Z",
+      "elapsedMs": 42989.3263,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 268,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:21.151Z",
+      "elapsedMs": 43065.2536,
+      "kind": "updater-request",
+      "sourceLine": 269
+    },
+    {
+      "atUTC": "2026-10-18T09:56:21.218Z",
+      "elapsedMs": 43131.6592,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 270,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:21.300Z",
+      "elapsedMs": 43213.4935,
+      "kind": "updater-request",
+      "sourceLine": 271
+    },
+    {
+      "atUTC": "2026-10-18T09:56:21.361Z",
+      "elapsedMs": 43275.358,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 272,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:21.442Z",
+      "elapsedMs": 43355.4737,
+      "kind": "updater-request",
+      "sourceLine": 273
+    },
+    {
+      "atUTC": "2026-10-18T09:56:21.497Z",
+      "elapsedMs": 43411.1911,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 274,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:21.584Z",
+      "elapsedMs": 43498.2383,
+      "kind": "updater-request",
+      "sourceLine": 275
+    },
+    {
+      "atUTC": "2026-10-18T09:56:21.662Z",
+      "elapsedMs": 43576.1915,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 276,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:21.727Z",
+      "elapsedMs": 43640.7738,
+      "kind": "updater-request",
+      "sourceLine": 277
+    },
+    {
+      "atUTC": "2026-10-18T09:56:21.775Z",
+      "elapsedMs": 43689.2674,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 278,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:21.845Z",
+      "elapsedMs": 43758.9825,
+      "kind": "updater-request",
+      "sourceLine": 279
+    },
+    {
+      "atUTC": "2026-10-18T09:56:22.021Z",
+      "elapsedMs": 43934.8879,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 280,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:22.224Z",
+      "elapsedMs": 44137.5501,
+      "kind": "updater-request",
+      "sourceLine": 281
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:22.239Z",
+      "elapsedMs": 44153.3324,
+      "kind": "updater-request",
+      "sourceLine": 282
+    },
+    {
+      "atUTC": "2026-10-18T09:56:22.241Z",
+      "elapsedMs": 44154.3978,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 283,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:56:22.303Z",
+      "elapsedMs": 44216.4562,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 284,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:22.384Z",
+      "elapsedMs": 44298.0965,
+      "kind": "updater-request",
+      "sourceLine": 285
+    },
+    {
+      "atUTC": "2026-10-18T09:56:22.435Z",
+      "elapsedMs": 44348.3968,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 286,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:22.532Z",
+      "elapsedMs": 44445.4216,
+      "kind": "updater-request",
+      "sourceLine": 287
+    },
+    {
+      "atUTC": "2026-10-18T09:56:22.630Z",
+      "elapsedMs": 44543.8025,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 288,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:22.676Z",
+      "elapsedMs": 44589.4752,
+      "kind": "updater-request",
+      "sourceLine": 289
+    },
+    {
+      "atUTC": "2026-10-18T09:56:22.747Z",
+      "elapsedMs": 44660.4516,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 290,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:22.825Z",
+      "elapsedMs": 44738.6091,
+      "kind": "updater-request",
+      "sourceLine": 291
+    },
+    {
+      "atUTC": "2026-10-18T09:56:22.873Z",
+      "elapsedMs": 44787.2508,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 292,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:22.965Z",
+      "elapsedMs": 44878.8968,
+      "kind": "updater-request",
+      "sourceLine": 293
+    },
+    {
+      "atUTC": "2026-10-18T09:56:23.007Z",
+      "elapsedMs": 44920.4263,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 294,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:23.075Z",
+      "elapsedMs": 44988.678,
+      "kind": "updater-request",
+      "sourceLine": 295
+    },
+    {
+      "atUTC": "2026-10-18T09:56:23.108Z",
+      "elapsedMs": 45021.7694,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 296,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:23.183Z",
+      "elapsedMs": 45096.6636,
+      "kind": "updater-request",
+      "sourceLine": 297
+    },
+    {
+      "atUTC": "2026-10-18T09:56:23.226Z",
+      "elapsedMs": 45139.4743,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 298,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:23.324Z",
+      "elapsedMs": 45237.5286,
+      "kind": "updater-request",
+      "sourceLine": 299
+    },
+    {
+      "atUTC": "2026-10-18T09:56:23.622Z",
+      "elapsedMs": 45536.0409,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 300,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:23.643Z",
+      "elapsedMs": 45557.0092,
+      "kind": "updater-request",
+      "sourceLine": 301
+    },
+    {
+      "atUTC": "2026-10-18T09:56:23.714Z",
+      "elapsedMs": 45627.5433,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 302,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:23.780Z",
+      "elapsedMs": 45694.0519,
+      "kind": "updater-request",
+      "sourceLine": 303
+    },
+    {
+      "atUTC": "2026-10-18T09:56:23.834Z",
+      "elapsedMs": 45748.0081,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 304,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:23.915Z",
+      "elapsedMs": 45829.3643,
+      "kind": "updater-request",
+      "sourceLine": 305
+    },
+    {
+      "atUTC": "2026-10-18T09:56:23.991Z",
+      "elapsedMs": 45905.1818,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 306,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:24.057Z",
+      "elapsedMs": 45971.154,
+      "kind": "updater-request",
+      "sourceLine": 307
+    },
+    {
+      "atUTC": "2026-10-18T09:56:24.103Z",
+      "elapsedMs": 46016.6926,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 308,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:24.191Z",
+      "elapsedMs": 46104.7149,
+      "kind": "updater-request",
+      "sourceLine": 309
+    },
+    {
+      "atUTC": "2026-10-18T09:56:24.235Z",
+      "elapsedMs": 46148.5803,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 310,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:24.299Z",
+      "elapsedMs": 46213.0769,
+      "kind": "updater-request",
+      "sourceLine": 311
+    },
+    {
+      "atUTC": "2026-10-18T09:56:24.327Z",
+      "elapsedMs": 46241.062,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 312,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:24.408Z",
+      "elapsedMs": 46321.8557,
+      "kind": "updater-request",
+      "sourceLine": 313
+    },
+    {
+      "atUTC": "2026-10-18T09:56:24.441Z",
+      "elapsedMs": 46355.0811,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 314,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:24.517Z",
+      "elapsedMs": 46431.1882,
+      "kind": "updater-request",
+      "sourceLine": 315
+    },
+    {
+      "atUTC": "2026-10-18T09:56:24.602Z",
+      "elapsedMs": 46515.6238,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 316,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:24.649Z",
+      "elapsedMs": 46562.8692,
+      "kind": "updater-request",
+      "sourceLine": 317
+    },
+    {
+      "atUTC": "2026-10-18T09:56:25.004Z",
+      "elapsedMs": 46917.4196,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 318,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:25.031Z",
+      "elapsedMs": 46944.669,
+      "kind": "updater-request",
+      "sourceLine": 319
+    },
+    {
+      "atUTC": "2026-10-18T09:56:25.071Z",
+      "elapsedMs": 46984.5544,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 320,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:25.158Z",
+      "elapsedMs": 47071.9673,
+      "kind": "updater-request",
+      "sourceLine": 321
+    },
+    {
+      "atUTC": "2026-10-18T09:56:25.194Z",
+      "elapsedMs": 47107.9725,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 322,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:25.274Z",
+      "elapsedMs": 47187.7475,
+      "kind": "updater-request",
+      "sourceLine": 323
+    },
+    {
+      "atUTC": "2026-10-18T09:56:25.310Z",
+      "elapsedMs": 47223.7871,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 324,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:25.393Z",
+      "elapsedMs": 47306.484,
+      "kind": "updater-request",
+      "sourceLine": 325
+    },
+    {
+      "atUTC": "2026-10-18T09:56:25.442Z",
+      "elapsedMs": 47355.7968,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 326,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:25.502Z",
+      "elapsedMs": 47416.0138,
+      "kind": "updater-request",
+      "sourceLine": 327
+    },
+    {
+      "atUTC": "2026-10-18T09:56:25.558Z",
+      "elapsedMs": 47471.7181,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 328,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:25.641Z",
+      "elapsedMs": 47554.9358,
+      "kind": "updater-request",
+      "sourceLine": 329
+    },
+    {
+      "atUTC": "2026-10-18T09:56:25.683Z",
+      "elapsedMs": 47597.1285,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 330,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:25.751Z",
+      "elapsedMs": 47664.4876,
+      "kind": "updater-request",
+      "sourceLine": 331
+    },
+    {
+      "atUTC": "2026-10-18T09:56:25.805Z",
+      "elapsedMs": 47719.3548,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 332,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:25.891Z",
+      "elapsedMs": 47804.5138,
+      "kind": "updater-request",
+      "sourceLine": 333
+    },
+    {
+      "atUTC": "2026-10-18T09:56:25.939Z",
+      "elapsedMs": 47853.3647,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 334,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:26.027Z",
+      "elapsedMs": 47940.874,
+      "kind": "updater-request",
+      "sourceLine": 335
+    },
+    {
+      "atUTC": "2026-10-18T09:56:26.368Z",
+      "elapsedMs": 48281.9494,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 336,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:26.401Z",
+      "elapsedMs": 48315.0351,
+      "kind": "updater-request",
+      "sourceLine": 337
+    },
+    {
+      "atUTC": "2026-10-18T09:56:26.459Z",
+      "elapsedMs": 48372.7898,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 338,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:26.542Z",
+      "elapsedMs": 48455.4758,
+      "kind": "updater-request",
+      "sourceLine": 339
+    },
+    {
+      "atUTC": "2026-10-18T09:56:26.583Z",
+      "elapsedMs": 48496.4567,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 340,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:26.665Z",
+      "elapsedMs": 48578.6978,
+      "kind": "updater-request",
+      "sourceLine": 341
+    },
+    {
+      "atUTC": "2026-10-18T09:56:26.710Z",
+      "elapsedMs": 48623.6923,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 342,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:26.766Z",
+      "elapsedMs": 48680.2836,
+      "kind": "updater-request",
+      "sourceLine": 343
+    },
+    {
+      "atUTC": "2026-10-18T09:56:26.824Z",
+      "elapsedMs": 48737.8627,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 344,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:26.883Z",
+      "elapsedMs": 48797.0655,
+      "kind": "updater-request",
+      "sourceLine": 345
+    },
+    {
+      "atUTC": "2026-10-18T09:56:26.949Z",
+      "elapsedMs": 48863.1693,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 346,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:27.032Z",
+      "elapsedMs": 48946.2329,
+      "kind": "updater-request",
+      "sourceLine": 347
+    },
+    {
+      "atUTC": "2026-10-18T09:56:27.081Z",
+      "elapsedMs": 48994.4664,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 348,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:27.154Z",
+      "elapsedMs": 49067.4697,
+      "kind": "updater-request",
+      "sourceLine": 349
+    },
+    {
+      "atUTC": "2026-10-18T09:56:27.219Z",
+      "elapsedMs": 49132.7437,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 350,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:27.300Z",
+      "elapsedMs": 49213.7571,
+      "kind": "updater-request",
+      "sourceLine": 351
+    },
+    {
+      "atUTC": "2026-10-18T09:56:27.337Z",
+      "elapsedMs": 49251.2605,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 352,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:27.414Z",
+      "elapsedMs": 49327.5145,
+      "kind": "updater-request",
+      "sourceLine": 353
+    },
+    {
+      "atUTC": "2026-10-18T09:56:27.725Z",
+      "elapsedMs": 49638.9719,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 354,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:27.759Z",
+      "elapsedMs": 49673.2299,
+      "kind": "updater-request",
+      "sourceLine": 355
+    },
+    {
+      "atUTC": "2026-10-18T09:56:27.796Z",
+      "elapsedMs": 49710.1642,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 356,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:27.880Z",
+      "elapsedMs": 49793.4761,
+      "kind": "updater-request",
+      "sourceLine": 357
+    },
+    {
+      "atUTC": "2026-10-18T09:56:27.944Z",
+      "elapsedMs": 49858.2607,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 358,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:28.028Z",
+      "elapsedMs": 49941.5644,
+      "kind": "updater-request",
+      "sourceLine": 359
+    },
+    {
+      "atUTC": "2026-10-18T09:56:28.084Z",
+      "elapsedMs": 49997.4863,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 360,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:28.166Z",
+      "elapsedMs": 50079.4517,
+      "kind": "updater-request",
+      "sourceLine": 361
+    },
+    {
+      "atUTC": "2026-10-18T09:56:28.202Z",
+      "elapsedMs": 50116.336,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 362,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:28.275Z",
+      "elapsedMs": 50189.1225,
+      "kind": "updater-request",
+      "sourceLine": 363
+    },
+    {
+      "atUTC": "2026-10-18T09:56:28.362Z",
+      "elapsedMs": 50276.1959,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 364,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:28.435Z",
+      "elapsedMs": 50349.0515,
+      "kind": "updater-request",
+      "sourceLine": 365
+    },
+    {
+      "atUTC": "2026-10-18T09:56:28.509Z",
+      "elapsedMs": 50423.3369,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 366,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:28.583Z",
+      "elapsedMs": 50496.5703,
+      "kind": "updater-request",
+      "sourceLine": 367
+    },
+    {
+      "atUTC": "2026-10-18T09:56:28.670Z",
+      "elapsedMs": 50584.3675,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 368,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:28.728Z",
+      "elapsedMs": 50642.3635,
+      "kind": "updater-request",
+      "sourceLine": 369
+    },
+    {
+      "atUTC": "2026-10-18T09:56:28.785Z",
+      "elapsedMs": 50698.748,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 370,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:28.867Z",
+      "elapsedMs": 50781.2089,
+      "kind": "updater-request",
+      "sourceLine": 371
+    },
+    {
+      "atUTC": "2026-10-18T09:56:29.200Z",
+      "elapsedMs": 51114.182,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 372,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:29.202Z",
+      "elapsedMs": 51116.0604,
+      "kind": "updater-request",
+      "sourceLine": 373
+    },
+    {
+      "atUTC": "2026-10-18T09:56:29.244Z",
+      "elapsedMs": 51157.7441,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 374,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:29.324Z",
+      "elapsedMs": 51238.148,
+      "kind": "updater-request",
+      "sourceLine": 375
+    },
+    {
+      "atUTC": "2026-10-18T09:56:29.371Z",
+      "elapsedMs": 51285.1392,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 376,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:29.446Z",
+      "elapsedMs": 51359.7346,
+      "kind": "updater-request",
+      "sourceLine": 377
+    },
+    {
+      "atUTC": "2026-10-18T09:56:29.504Z",
+      "elapsedMs": 51417.9773,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 378,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:29.581Z",
+      "elapsedMs": 51495.3,
+      "kind": "updater-request",
+      "sourceLine": 379
+    },
+    {
+      "atUTC": "2026-10-18T09:56:29.641Z",
+      "elapsedMs": 51555.3598,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 380,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:29.727Z",
+      "elapsedMs": 51641.1429,
+      "kind": "updater-request",
+      "sourceLine": 381
+    },
+    {
+      "atUTC": "2026-10-18T09:56:29.784Z",
+      "elapsedMs": 51697.9139,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 382,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:29.866Z",
+      "elapsedMs": 51780.0223,
+      "kind": "updater-request",
+      "sourceLine": 383
+    },
+    {
+      "atUTC": "2026-10-18T09:56:29.903Z",
+      "elapsedMs": 51816.4334,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 384,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:29.976Z",
+      "elapsedMs": 51889.5516,
+      "kind": "updater-request",
+      "sourceLine": 385
+    },
+    {
+      "atUTC": "2026-10-18T09:56:30.054Z",
+      "elapsedMs": 51967.9405,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 386,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:30.117Z",
+      "elapsedMs": 52031.2116,
+      "kind": "updater-request",
+      "sourceLine": 387
+    },
+    {
+      "atUTC": "2026-10-18T09:56:30.171Z",
+      "elapsedMs": 52084.8989,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 388,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:30.233Z",
+      "elapsedMs": 52147.3476,
+      "kind": "updater-request",
+      "sourceLine": 389
+    },
+    {
+      "atUTC": "2026-10-18T09:56:30.582Z",
+      "elapsedMs": 52496.3744,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 390,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:30.593Z",
+      "elapsedMs": 52506.6377,
+      "kind": "updater-request",
+      "sourceLine": 391
+    },
+    {
+      "atUTC": "2026-10-18T09:56:30.654Z",
+      "elapsedMs": 52567.6295,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 392,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:30.734Z",
+      "elapsedMs": 52647.7522,
+      "kind": "updater-request",
+      "sourceLine": 393
+    },
+    {
+      "atUTC": "2026-10-18T09:56:30.774Z",
+      "elapsedMs": 52687.5445,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 394,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:30.841Z",
+      "elapsedMs": 52754.9773,
+      "kind": "updater-request",
+      "sourceLine": 395
+    },
+    {
+      "atUTC": "2026-10-18T09:56:30.926Z",
+      "elapsedMs": 52839.5222,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 396,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:30.992Z",
+      "elapsedMs": 52905.4457,
+      "kind": "updater-request",
+      "sourceLine": 397
+    },
+    {
+      "atUTC": "2026-10-18T09:56:31.042Z",
+      "elapsedMs": 52955.764,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 398,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:31.133Z",
+      "elapsedMs": 53047.209,
+      "kind": "updater-request",
+      "sourceLine": 399
+    },
+    {
+      "atUTC": "2026-10-18T09:56:31.188Z",
+      "elapsedMs": 53101.8217,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 400,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:31.244Z",
+      "elapsedMs": 53158.0928,
+      "kind": "updater-request",
+      "sourceLine": 401
+    },
+    {
+      "atUTC": "2026-10-18T09:56:31.281Z",
+      "elapsedMs": 53195.159,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 402,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:31.352Z",
+      "elapsedMs": 53266.1326,
+      "kind": "updater-request",
+      "sourceLine": 403
+    },
+    {
+      "atUTC": "2026-10-18T09:56:31.415Z",
+      "elapsedMs": 53329.1641,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 404,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:31.493Z",
+      "elapsedMs": 53407.2216,
+      "kind": "updater-request",
+      "sourceLine": 405
+    },
+    {
+      "atUTC": "2026-10-18T09:56:31.549Z",
+      "elapsedMs": 53462.8705,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 406,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:31.635Z",
+      "elapsedMs": 53549.0407,
+      "kind": "updater-request",
+      "sourceLine": 407
+    },
+    {
+      "atUTC": "2026-10-18T09:56:31.995Z",
+      "elapsedMs": 53909.087,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 408,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:32.025Z",
+      "elapsedMs": 53938.9945,
+      "kind": "updater-request",
+      "sourceLine": 409
+    },
+    {
+      "atUTC": "2026-10-18T09:56:32.108Z",
+      "elapsedMs": 54022.2072,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 410,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:32.181Z",
+      "elapsedMs": 54094.8793,
+      "kind": "updater-request",
+      "sourceLine": 411
+    },
+    {
+      "atUTC": "2026-10-18T09:56:32.245Z",
+      "elapsedMs": 54158.4997,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 412,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:32.351Z",
+      "elapsedMs": 54264.716,
+      "kind": "updater-request",
+      "sourceLine": 413
+    },
+    {
+      "atUTC": "2026-10-18T09:56:32.435Z",
+      "elapsedMs": 54348.7506,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 414,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:32.485Z",
+      "elapsedMs": 54399.3265,
+      "kind": "updater-request",
+      "sourceLine": 415
+    },
+    {
+      "atUTC": "2026-10-18T09:56:32.556Z",
+      "elapsedMs": 54469.8867,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 416,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:32.638Z",
+      "elapsedMs": 54552.0562,
+      "kind": "updater-request",
+      "sourceLine": 417
+    },
+    {
+      "atUTC": "2026-10-18T09:56:32.693Z",
+      "elapsedMs": 54606.6395,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 418,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:32.755Z",
+      "elapsedMs": 54668.5378,
+      "kind": "updater-request",
+      "sourceLine": 419
+    },
+    {
+      "atUTC": "2026-10-18T09:56:32.795Z",
+      "elapsedMs": 54709.2135,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 420,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:32.871Z",
+      "elapsedMs": 54785.342,
+      "kind": "updater-request",
+      "sourceLine": 421
+    },
+    {
+      "atUTC": "2026-10-18T09:56:32.948Z",
+      "elapsedMs": 54861.6496,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 422,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:33.051Z",
+      "elapsedMs": 54965.2317,
+      "kind": "updater-request",
+      "sourceLine": 423
+    },
+    {
+      "atUTC": "2026-10-18T09:56:33.392Z",
+      "elapsedMs": 55305.6436,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 424,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:33.415Z",
+      "elapsedMs": 55328.5297,
+      "kind": "updater-request",
+      "sourceLine": 425
+    },
+    {
+      "atUTC": "2026-10-18T09:56:33.487Z",
+      "elapsedMs": 55401.2896,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 426,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:33.563Z",
+      "elapsedMs": 55476.6918,
+      "kind": "updater-request",
+      "sourceLine": 427
+    },
+    {
+      "atUTC": "2026-10-18T09:56:33.626Z",
+      "elapsedMs": 55540.054,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 428,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:33.710Z",
+      "elapsedMs": 55623.7698,
+      "kind": "updater-request",
+      "sourceLine": 429
+    },
+    {
+      "atUTC": "2026-10-18T09:56:33.750Z",
+      "elapsedMs": 55663.6656,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 430,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:33.825Z",
+      "elapsedMs": 55738.6766,
+      "kind": "updater-request",
+      "sourceLine": 431
+    },
+    {
+      "atUTC": "2026-10-18T09:56:33.869Z",
+      "elapsedMs": 55782.6256,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 432,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:33.938Z",
+      "elapsedMs": 55851.9946,
+      "kind": "updater-request",
+      "sourceLine": 433
+    },
+    {
+      "atUTC": "2026-10-18T09:56:34.042Z",
+      "elapsedMs": 55956.3444,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 434,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:34.108Z",
+      "elapsedMs": 56022.1371,
+      "kind": "updater-request",
+      "sourceLine": 435
+    },
+    {
+      "atUTC": "2026-10-18T09:56:34.160Z",
+      "elapsedMs": 56073.443,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 436,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:34.233Z",
+      "elapsedMs": 56147.1136,
+      "kind": "updater-request",
+      "sourceLine": 437
+    },
+    {
+      "atUTC": "2026-10-18T09:56:34.249Z",
+      "elapsedMs": 56162.9462,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 438,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:34.351Z",
+      "elapsedMs": 56264.6007,
+      "kind": "updater-request",
+      "sourceLine": 439
+    },
+    {
+      "atUTC": "2026-10-18T09:56:34.416Z",
+      "elapsedMs": 56329.6517,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 440,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:34.491Z",
+      "elapsedMs": 56405.2778,
+      "kind": "updater-request",
+      "sourceLine": 441
+    },
+    {
+      "atUTC": "2026-10-18T09:56:34.790Z",
+      "elapsedMs": 56704.0663,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 442,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:34.807Z",
+      "elapsedMs": 56720.923,
+      "kind": "updater-request",
+      "sourceLine": 443
+    },
+    {
+      "atUTC": "2026-10-18T09:56:34.865Z",
+      "elapsedMs": 56778.9231,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 444,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:34.946Z",
+      "elapsedMs": 56859.4198,
+      "kind": "updater-request",
+      "sourceLine": 445
+    },
+    {
+      "atUTC": "2026-10-18T09:56:35.045Z",
+      "elapsedMs": 56959.0389,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 446,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:35.113Z",
+      "elapsedMs": 57026.8709,
+      "kind": "updater-request",
+      "sourceLine": 447
+    },
+    {
+      "atUTC": "2026-10-18T09:56:35.185Z",
+      "elapsedMs": 57098.7226,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 448,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:35.253Z",
+      "elapsedMs": 57166.8648,
+      "kind": "updater-request",
+      "sourceLine": 449
+    },
+    {
+      "atUTC": "2026-10-18T09:56:35.320Z",
+      "elapsedMs": 57233.6105,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 450,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:35.374Z",
+      "elapsedMs": 57288.2051,
+      "kind": "updater-request",
+      "sourceLine": 451
+    },
+    {
+      "atUTC": "2026-10-18T09:56:35.439Z",
+      "elapsedMs": 57352.5368,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 452,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:35.518Z",
+      "elapsedMs": 57431.3955,
+      "kind": "updater-request",
+      "sourceLine": 453
+    },
+    {
+      "atUTC": "2026-10-18T09:56:35.570Z",
+      "elapsedMs": 57484.3019,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 454,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:35.655Z",
+      "elapsedMs": 57569.3734,
+      "kind": "updater-request",
+      "sourceLine": 455
+    },
+    {
+      "atUTC": "2026-10-18T09:56:35.711Z",
+      "elapsedMs": 57625.0029,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 456,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:35.794Z",
+      "elapsedMs": 57708.1736,
+      "kind": "updater-request",
+      "sourceLine": 457
+    },
+    {
+      "atUTC": "2026-10-18T09:56:35.836Z",
+      "elapsedMs": 57749.4662,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 458,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:35.920Z",
+      "elapsedMs": 57833.9408,
+      "kind": "updater-request",
+      "sourceLine": 459
+    },
+    {
+      "atUTC": "2026-10-18T09:56:36.167Z",
+      "elapsedMs": 58080.8191,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 460,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:36.169Z",
+      "elapsedMs": 58082.495,
+      "kind": "updater-request",
+      "sourceLine": 461
+    },
+    {
+      "atUTC": "2026-10-18T09:56:36.213Z",
+      "elapsedMs": 58126.8981,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 462,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:36.291Z",
+      "elapsedMs": 58204.4287,
+      "kind": "updater-request",
+      "sourceLine": 463
+    },
+    {
+      "atUTC": "2026-10-18T09:56:36.346Z",
+      "elapsedMs": 58259.8992,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 464,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:36.412Z",
+      "elapsedMs": 58325.669,
+      "kind": "updater-request",
+      "sourceLine": 465
+    },
+    {
+      "atUTC": "2026-10-18T09:56:36.459Z",
+      "elapsedMs": 58372.757,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 466,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:36.558Z",
+      "elapsedMs": 58471.9019,
+      "kind": "updater-request",
+      "sourceLine": 467
+    },
+    {
+      "atUTC": "2026-10-18T09:56:36.614Z",
+      "elapsedMs": 58528.3193,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 468,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:36.692Z",
+      "elapsedMs": 58606.2131,
+      "kind": "updater-request",
+      "sourceLine": 469
+    },
+    {
+      "atUTC": "2026-10-18T09:56:36.752Z",
+      "elapsedMs": 58666.0907,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 470,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:36.833Z",
+      "elapsedMs": 58746.6066,
+      "kind": "updater-request",
+      "sourceLine": 471
+    },
+    {
+      "atUTC": "2026-10-18T09:56:36.887Z",
+      "elapsedMs": 58800.644,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 472,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:36.984Z",
+      "elapsedMs": 58897.4263,
+      "kind": "updater-request",
+      "sourceLine": 473
+    },
+    {
+      "atUTC": "2026-10-18T09:56:37.041Z",
+      "elapsedMs": 58954.6693,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 474,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:37.120Z",
+      "elapsedMs": 59033.3941,
+      "kind": "updater-request",
+      "sourceLine": 475
+    },
+    {
+      "atUTC": "2026-10-18T09:56:37.178Z",
+      "elapsedMs": 59091.4544,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 476,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:37.259Z",
+      "elapsedMs": 59172.596,
+      "kind": "updater-request",
+      "sourceLine": 477
+    },
+    {
+      "atUTC": "2026-10-18T09:56:37.478Z",
+      "elapsedMs": 59391.6459,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 478,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:37.508Z",
+      "elapsedMs": 59421.6995,
+      "kind": "updater-request",
+      "sourceLine": 479
+    },
+    {
+      "atUTC": "2026-10-18T09:56:37.549Z",
+      "elapsedMs": 59462.6361,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 480,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:37.617Z",
+      "elapsedMs": 59530.3763,
+      "kind": "updater-request",
+      "sourceLine": 481
+    },
+    {
+      "atUTC": "2026-10-18T09:56:37.652Z",
+      "elapsedMs": 59566.0147,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 482,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:37.725Z",
+      "elapsedMs": 59639.178,
+      "kind": "updater-request",
+      "sourceLine": 483
+    },
+    {
+      "atUTC": "2026-10-18T09:56:37.783Z",
+      "elapsedMs": 59696.3907,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 484,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:37.871Z",
+      "elapsedMs": 59785.1378,
+      "kind": "updater-request",
+      "sourceLine": 485
+    },
+    {
+      "atUTC": "2026-10-18T09:56:37.903Z",
+      "elapsedMs": 59816.3852,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 486,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:37.974Z",
+      "elapsedMs": 59887.7746,
+      "kind": "updater-request",
+      "sourceLine": 487
+    },
+    {
+      "atUTC": "2026-10-18T09:56:38.009Z",
+      "elapsedMs": 59923.265,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 488,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:38.084Z",
+      "elapsedMs": 59997.8202,
+      "kind": "updater-request",
+      "sourceLine": 489
+    },
+    {
+      "atUTC": "2026-10-18T09:56:38.139Z",
+      "elapsedMs": 60052.7531,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 490,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:38.225Z",
+      "elapsedMs": 60138.4957,
+      "kind": "updater-request",
+      "sourceLine": 491
+    },
+    {
+      "atUTC": "2026-10-18T09:56:38.271Z",
+      "elapsedMs": 60184.8009,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 492,
+      "status": "preparing",
+      "total": 105866642
+    },
+    {
+      "action": "status",
+      "atUTC": "2026-10-18T09:56:38.366Z",
+      "elapsedMs": 60279.8615,
+      "kind": "updater-request",
+      "sourceLine": 493
+    },
+    {
+      "atUTC": "2026-10-18T09:56:38.404Z",
+      "elapsedMs": 60317.4449,
+      "error": null,
+      "errorStage": null,
+      "httpStatus": 200,
+      "kind": "updater-response",
+      "received": 105866642,
+      "sourceLine": 494,
+      "status": "installing",
+      "total": 105866642
+    },
+    {
+      "atUTC": "2026-10-18T09:56:38.419Z",
+      "elapsedMs": 60332.6794,
+      "kind": "passive-authenticated-status",
+      "received": 105866642,
+      "sourceLine": 495,
+      "status": "installing",
+      "total": 105866642
+    },
+    {
+      "animation": "on",
+      "atUTC": "2026-10-18T09:56:38.421Z",
+      "caption": "Closing the previous version and installing. The editor will reopen afterwards.",
+      "elapsedMs": 60334.4504,
+      "indeterminate": "true",
+      "kind": "ui",
+      "motion": "working",
+      "percent": null,
+      "ratio": "0",
+      "received": null,
+      "scene": "installing",
+      "sourceLine": 496,
+      "summary": "Installing. Back in a moment.",
+      "total": null
+    },
+    {
+      "atUTC": "2026-10-18T09:56:38.472Z",
+      "elapsedMs": 60385.8293,
+      "installingObserved": true,
+      "kind": "old-origin-unreachable",
+      "sourceLine": 497
+    },
+    {
+      "atUTC": "2026-10-18T09:57:50.744Z",
+      "automaticProjectRestore": true,
+      "elapsedMs": 132658.2572,
+      "kind": "real-browser-acceptance-complete",
+      "sourceLine": 502,
+      "version": "0.1.25"
+    }
+  ],
+  "sampling": {
+    "drivesUI": false,
+    "intervalMs": 100,
+    "readOnlyAuthenticatedAction": "status"
+  },
+  "schema": "actual-official-update-progress-samples/1",
+  "scope": "Actual UI/backend samples in original order; no interpolation, invented progress, inserted state or reconstructed success frames."
+}

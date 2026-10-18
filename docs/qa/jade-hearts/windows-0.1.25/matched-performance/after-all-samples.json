@@ -1,0 +1,7406 @@
+{
+  "elements": 5000,
+  "geometry": [
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 0,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": true,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 1,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": true,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 2,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": true,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 3,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 4,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 5,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 6,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 7,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 8,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 9,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 10,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 11,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 12,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 13,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 14,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 15,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 16,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 17,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 18,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 19,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 20,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 21,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    },
+    {
+      "artboard": {
+        "height": 296,
+        "width": 480
+      },
+      "iteration": 22,
+      "navigatorWidth": "220px",
+      "quickbarHeight": 134,
+      "viewport": {
+        "height": 544,
+        "width": 888
+      },
+      "warmup": false,
+      "zoom": "fit"
+    }
+  ],
+  "measurementRuntimeAssetSha256": {
+    "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
+    "axis-editing.js": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115",
+    "axis-settings-ui.css": "7d50d0bbc47253a0e6f673b294bf2d26ae413525eaf7d4f4729141ff7d2ca7c2",
+    "axis-settings-ui.js": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9",
+    "canvas-clipboard.js": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be",
+    "catalogue.js": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35",
+    "compact-whitespace.js": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb",
+    "component-style.js": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234",
+    "discovery-offline.js": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38",
+    "discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+    "discovery-ui.js": "cf1decd45eea8adcb2c7e3215780a3ee31ded139fc967931c40362cbbe9b5871",
+    "discovery.js": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43",
+    "duplicate-check.css": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e",
+    "duplicate-check.js": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1",
+    "duplicate-review.js": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf",
+    "duplicate-viewer.css": "b64a440392b3822afe5bcb1d0be97903bfafe5d37c36b90be1d6b4bdef0999cf",
+    "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
+    "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
+    "experience-tools.css": "41ae415b30e3e71b7a7c265d8a426416a8713804c21fce33d5add71ee2c4fa81",
+    "experience-tools.js": "546d1232bef1dc0d868cdef099056ffa75980bb3842e1879ed025fb8e997f1be",
+    "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
+    "grid-resize-ui.js": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed",
+    "group-spacing.js": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8",
+    "i18n.js": "fdf2bb3e6a89037858c1bcbfb9b555bb27468076b71cbd7a1d7435529c351b5d",
+    "image-color-ui.js": "b8334f01cb21b70be040a818a9d4d6b8d11b1000e2be6bcf57aa64624ec2a5f3",
+    "image-color.js": "dacfda2f9b8a8ba4a69b11aa34e6ecc2bdc03485d052dd1e0b63964a5d9b8698",
+    "image-insets-controller.js": "2ceb66b2eb1736e7dd6a78bae701090588a4d49cdafb2fba3d051ad1225f65ff",
+    "image-insets-ui.js": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035",
+    "image-insets.js": "df43d58d908de2bab4ea14432dae10a9c7b0ae2950272688cb771e2694210a0c",
+    "image-links-controller.js": "82c9e72262b734455973550d822e32a0d37d2b8268d767fdff5fca0efeb59151",
+    "image-links-ui.js": "cd89e8606765cef22e76095d27e1e351ed37a9fee7e3507419a5072400bbf837",
+    "image-links.js": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886",
+    "layers-panel.js": "5b25bebe5e6f44879b21781d6b7f58496759cabfcf27643aa58637118ebc41bb",
+    "layout-lock.js": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242",
+    "legacy-stat-cleanup.js": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92",
+    "library.js": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51",
+    "literature.css": "f696eccd3cfba3c0ea3fac45cbd5a74c6adb55728e59abf4ce1c5547f06e49f0",
+    "literature.js": "66b6852716cc59c622620504bac9c87ab6d2547a36c8d7b7fd3aa23574fa194b",
+    "mark-style.js": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419",
+    "mascot-border-collie.svg": "bc17f3211a96529966fc744fd1e28df518ad43a2f79c3d199ba383079996472d",
+    "mascot-maine-coon.svg": "87a2ac6f885101abba85c45f013fdc8f303d5398c0756419bdb38d08509103f3",
+    "mascot-minimal-cat.svg": "abee4441d83d8e127526e8656363b0117e01a0bc3e99ec27882f8d4d43975d83",
+    "mascot-minimal-dog.svg": "3ac69072935713d1f2af3c5849052d731710eea38aead5d4f7b5b9976072d9ee",
+    "mascot-scene.svg": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b",
+    "master-frame.js": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9",
+    "memory.js": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c",
+    "mobile-ui.css": "101335ce269683a514ceb526b46b15634019b57405144615b29debd897bfb14b",
+    "mobile-ui.js": "f9c1ad0e5db4794b9a79726fe5d19b458839ee1305ece35585b669f55b6c14c4",
+    "object-borders.js": "5ba4ed9c9d2971d3372ee14b8d04cf540753c879f40b165e1a37d758d542404a",
+    "panel-commands.js": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd",
+    "preview-sessions.js": "218ce572c39a858f5ff519531ea5d7c7424d293db5d9184672688a5423182a88",
+    "research-discovery.js": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f",
+    "rich-text.css": "1deadd7d55d7edee1f120d2f80062e034fca198d3b74da8acb62022fa41c43e3",
+    "rich-text.js": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4",
+    "scale-geometry.js": "cbf84b487787292009917c5e3f1e0ad0a677c5bf32e5ed1faaf726258677b73f",
+    "selection-resize-controller.js": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61",
+    "selection-transform-dom.js": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3",
+    "selection-transform.js": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719",
+    "statistical-line-geometry.js": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8",
+    "statistical-metadata.js": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747",
+    "studio.css": "951eea56f81bb985e412ea09c3f6bd59949ee39c9053da3e6d05db84a73b685c",
+    "studio.html": "951f7b0b900f5d58654e63db0f217b3c3917a885bf61c3c9a3b18344b46e5fae",
+    "studio.js": "9aaddfef9b1c153906d1fae8ab73fd27bdded4ba11210432d590ba7d7bb933b8",
+    "style-preview.js": "c0da41e0c15c37545f199525ec1f6db04086d68a146736b28ed7275f37fe767f",
+    "text-formatting.js": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1",
+    "text-tools-ui.js": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e",
+    "theme-controller.js": "e8c4266aa056f411f4bd14a823f7fda4b3564214854384e64eeb7d24d8234cdc",
+    "theme-tokens.css": "a36192cf3ce610e3ce7a1fb4413cc54efc58fc91c998a1570e27c8e2d4a4d5d6",
+    "theme.css": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab",
+    "third-party-notices.js": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682",
+    "tiff-export.js": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f",
+    "update-check.js": "977df4939713cedc0d340b58958a9b2000c3c7de5c79cf411483300a894c1d5f",
+    "update-scene.css": "eced7b3291d70b0a8afd06a434d6c3aa4a8cee1a048a468a6e7f3948a136c7db",
+    "update-scene.js": "444cc790b4c5948ee785e1772c145453cb13dde3e7e5b840edae5f56d305daa7",
+    "vector-interaction.js": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4",
+    "workspace-layout.css": "0a271a9e0d53de091efd2a8fc6cda1f11caed3a5f5147e000f99a449974e74ea",
+    "workspace-layout.js": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+  },
+  "operations": [
+    {
+      "end": 4033,
+      "eventTiming": [
+        {
+          "duration": 72,
+          "name": "pointerout",
+          "start": 3919.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "pointerleave",
+          "start": 3919.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "pointerover",
+          "start": 3919.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "pointerenter",
+          "start": 3919.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "mouseout",
+          "start": 3919.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "mouseover",
+          "start": 3919.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "pointerdown",
+          "start": 3919.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "gotpointercapture",
+          "start": 3919.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "pointerup",
+          "start": 3919.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "lostpointercapture",
+          "start": 3919.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "click",
+          "start": 3919.699999988079,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 3916.300000011921,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 3976.699999988079,
+          "duration": 60.39999997615814
+        },
+        {
+          "at": 4001.399999976158,
+          "duration": 24.69999998807907
+        },
+        {
+          "at": 4001.699999988079,
+          "duration": 0.30000001192092896
+        },
+        {
+          "at": 4009.800000011921,
+          "duration": 8.100000023841858
+        },
+        {
+          "at": 4016.5,
+          "duration": 6.699999988079071
+        },
+        {
+          "at": 4024.699999988079,
+          "duration": 8.199999988079071
+        },
+        {
+          "at": 4033,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 3920,
+          "eventTimestamp": 3919.399999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 3976.899999976158,
+          "secondRaf": 4001.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 3921,
+          "eventTimestamp": 3919.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 3976.899999976158,
+          "secondRaf": 4001.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 3965.300000011921,
+          "eventTimestamp": 3919.699999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 3976.899999976158,
+          "secondRaf": 4001.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 3976.399999976158,
+          "eventTimestamp": 3919.699999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 3976.899999976158,
+          "secondRaf": 4001.5,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 0,
+      "longTasks": [
+        {
+          "duration": 56,
+          "name": "self",
+          "start": 3920.300000011921,
+          "type": "longtask"
+        }
+      ],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 3901.199999988079,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": true
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 4450.199999988079,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 4416.800000011921,
+          "duration": 16.600000023841858
+        },
+        {
+          "at": 4419.399999976158,
+          "duration": 2.599999964237213
+        },
+        {
+          "at": 4426.599999964237,
+          "duration": 7.199999988079071
+        },
+        {
+          "at": 4433,
+          "duration": 6.400000035762787
+        },
+        {
+          "at": 4441.300000011921,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 4450.199999988079,
+          "duration": 8.899999976158142
+        }
+      ],
+      "inputs": [
+        {
+          "at": 4349.5,
+          "eventTimestamp": 4349.5,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 4400.300000011921,
+          "secondRaf": 4416.800000011921,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 4349.599999964237,
+          "eventTimestamp": 4349.599999964237,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 4400.300000011921,
+          "secondRaf": 4416.800000011921,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 4349.899999976158,
+          "eventTimestamp": 4349.899999976158,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 4400.300000011921,
+          "secondRaf": 4416.800000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 4351.399999976158,
+          "eventTimestamp": 4351.399999976158,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 4400.300000011921,
+          "secondRaf": 4416.800000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 4424.5,
+          "eventTimestamp": 4423.300000011921,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 4426.599999964237,
+          "secondRaf": 4433.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 4425.300000011921,
+          "eventTimestamp": 4425.300000011921,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 4426.599999964237,
+          "secondRaf": 4433.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 4425.300000011921,
+          "eventTimestamp": 4425.300000011921,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 4426.599999964237,
+          "secondRaf": 4433.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 0,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 4343,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": true
+    },
+    {
+      "end": 5241.300000011921,
+      "eventTiming": [
+        {
+          "duration": 64,
+          "name": "pointerout",
+          "start": 5144.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerleave",
+          "start": 5144.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerover",
+          "start": 5144.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerenter",
+          "start": 5144.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseout",
+          "start": 5144.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseover",
+          "start": 5144.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerdown",
+          "start": 5144.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "gotpointercapture",
+          "start": 5144.800000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerup",
+          "start": 5144.800000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "lostpointercapture",
+          "start": 5144.800000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "click",
+          "start": 5144.800000011921,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 5141.300000011921,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 5188.699999988079,
+          "duration": 47.39999997615814
+        },
+        {
+          "at": 5212,
+          "duration": 23.30000001192093
+        },
+        {
+          "at": 5212.099999964237,
+          "duration": 0.09999996423721313
+        },
+        {
+          "at": 5219.199999988079,
+          "duration": 7.100000023841858
+        },
+        {
+          "at": 5224.699999988079,
+          "duration": 5.5
+        },
+        {
+          "at": 5233,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 5241.300000011921,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 5145.099999964237,
+          "eventTimestamp": 5144.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 5188.699999988079,
+          "secondRaf": 5212,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 5146.199999988079,
+          "eventTimestamp": 5144.699999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 5188.800000011921,
+          "secondRaf": 5212,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 5177.899999976158,
+          "eventTimestamp": 5144.800000011921,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 5188.800000011921,
+          "secondRaf": 5212,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 5188.399999976158,
+          "eventTimestamp": 5144.800000011921,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 5188.800000011921,
+          "secondRaf": 5212,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 1,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 5125.899999976158,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": true
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 5641.399999976158,
+      "eventTiming": [
+        {
+          "duration": 16,
+          "name": "keydown",
+          "start": 5624.899999976158,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 5616.399999976158,
+          "duration": 17.599999964237213
+        },
+        {
+          "at": 5619.599999964237,
+          "duration": 3.199999988079071
+        },
+        {
+          "at": 5624.599999964237,
+          "duration": 5
+        },
+        {
+          "at": 5633.599999964237,
+          "duration": 9
+        },
+        {
+          "at": 5641.300000011921,
+          "duration": 7.700000047683716
+        }
+      ],
+      "inputs": [
+        {
+          "at": 5549.300000011921,
+          "eventTimestamp": 5549.300000011921,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 5598.899999976158,
+          "secondRaf": 5616.399999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 5549.300000011921,
+          "eventTimestamp": 5549.300000011921,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 5598.899999976158,
+          "secondRaf": 5616.399999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 5549.899999976158,
+          "eventTimestamp": 5549.899999976158,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 5598.899999976158,
+          "secondRaf": 5616.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 5550.300000011921,
+          "eventTimestamp": 5550.300000011921,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 5598.899999976158,
+          "secondRaf": 5616.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 5628.399999976158,
+          "eventTimestamp": 5624.899999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 5633.599999964237,
+          "secondRaf": 5641.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 5628.5,
+          "eventTimestamp": 5628.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 5633.599999964237,
+          "secondRaf": 5641.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 5628.5,
+          "eventTimestamp": 5628.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 5633.599999964237,
+          "secondRaf": 5641.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 1,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 5542.899999976158,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": true
+    },
+    {
+      "end": 6441.399999976158,
+      "eventTiming": [
+        {
+          "duration": 64,
+          "name": "pointerout",
+          "start": 6344.300000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerleave",
+          "start": 6344.300000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerover",
+          "start": 6344.300000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerenter",
+          "start": 6344.300000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseout",
+          "start": 6344.300000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseover",
+          "start": 6344.300000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerdown",
+          "start": 6344.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "gotpointercapture",
+          "start": 6344.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerup",
+          "start": 6344.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "lostpointercapture",
+          "start": 6344.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "click",
+          "start": 6344.399999976158,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 6341.199999988079,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 6388.599999964237,
+          "duration": 47.39999997615814
+        },
+        {
+          "at": 6412.800000011921,
+          "duration": 24.200000047683716
+        },
+        {
+          "at": 6413,
+          "duration": 0.19999998807907104
+        },
+        {
+          "at": 6416.399999976158,
+          "duration": 3.399999976158142
+        },
+        {
+          "at": 6425.5,
+          "duration": 9.100000023841858
+        },
+        {
+          "at": 6433,
+          "duration": 7.5
+        },
+        {
+          "at": 6441.399999976158,
+          "duration": 8.399999976158142
+        }
+      ],
+      "inputs": [
+        {
+          "at": 6344.800000011921,
+          "eventTimestamp": 6344.300000011921,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 6388.599999964237,
+          "secondRaf": 6412.800000011921,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 6346.099999964237,
+          "eventTimestamp": 6344.399999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 6388.599999964237,
+          "secondRaf": 6412.800000011921,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 6377.199999988079,
+          "eventTimestamp": 6344.399999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 6388.599999964237,
+          "secondRaf": 6412.800000011921,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 6388.300000011921,
+          "eventTimestamp": 6344.399999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 6388.599999964237,
+          "secondRaf": 6412.800000011921,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 2,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 6325.899999976158,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": true
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 6849.599999964237,
+      "eventTiming": [
+        {
+          "duration": 16,
+          "name": "keydown",
+          "start": 6837.399999976158,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 6829.800000011921,
+          "duration": 17.100000023841858
+        },
+        {
+          "at": 6832.800000011921,
+          "duration": 3
+        },
+        {
+          "at": 6842.099999964237,
+          "duration": 9.299999952316284
+        },
+        {
+          "at": 6849.599999964237,
+          "duration": 7.5
+        }
+      ],
+      "inputs": [
+        {
+          "at": 6765.300000011921,
+          "eventTimestamp": 6765.300000011921,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 6812.699999988079,
+          "secondRaf": 6829.800000011921,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 6765.399999976158,
+          "eventTimestamp": 6765.399999976158,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 6812.699999988079,
+          "secondRaf": 6829.800000011921,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 6765.899999976158,
+          "eventTimestamp": 6765.800000011921,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 6812.699999988079,
+          "secondRaf": 6829.800000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 6766.300000011921,
+          "eventTimestamp": 6766.300000011921,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 6812.699999988079,
+          "secondRaf": 6829.800000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 6838.099999964237,
+          "eventTimestamp": 6837.399999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 6842.099999964237,
+          "secondRaf": 6849.599999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 6838.300000011921,
+          "eventTimestamp": 6838.300000011921,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 6842.099999964237,
+          "secondRaf": 6849.599999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 6838.300000011921,
+          "eventTimestamp": 6838.300000011921,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 6842.099999964237,
+          "secondRaf": 6849.599999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 2,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 6759.599999964237,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": true
+    },
+    {
+      "end": 7633.099999964237,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 7544.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 7544.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 7544.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 7544.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 7544.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 7544.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 7544.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 7544.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 7544.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 7544.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 7544.699999988079,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 7541.199999988079,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 7585.899999976158,
+          "duration": 44.69999998807907
+        },
+        {
+          "at": 7609.399999976158,
+          "duration": 23.5
+        },
+        {
+          "at": 7609.599999964237,
+          "duration": 0.19999998807907104
+        },
+        {
+          "at": 7617.699999988079,
+          "duration": 8.100000023841858
+        },
+        {
+          "at": 7624.599999964237,
+          "duration": 6.899999976158142
+        },
+        {
+          "at": 7633,
+          "duration": 8.400000035762787
+        }
+      ],
+      "inputs": [
+        {
+          "at": 7545.099999964237,
+          "eventTimestamp": 7544.5,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 7585.899999976158,
+          "secondRaf": 7609.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 7546.199999988079,
+          "eventTimestamp": 7544.699999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 7585.899999976158,
+          "secondRaf": 7609.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 7574.899999976158,
+          "eventTimestamp": 7544.699999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 7585.899999976158,
+          "secondRaf": 7609.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 7585.599999964237,
+          "eventTimestamp": 7544.699999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 7585.899999976158,
+          "secondRaf": 7609.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 3,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 7525.899999976158,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 8041.300000011921,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 8015.099999964237,
+          "duration": 17.899999976158142
+        },
+        {
+          "at": 8018.800000011921,
+          "duration": 3.700000047683716
+        },
+        {
+          "at": 8025.399999976158,
+          "duration": 6.599999964237213
+        },
+        {
+          "at": 8032.899999976158,
+          "duration": 7.5
+        },
+        {
+          "at": 8041.199999988079,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 7949.099999964237,
+          "eventTimestamp": 7949,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 7997.300000011921,
+          "secondRaf": 8015.199999988079,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 7949.099999964237,
+          "eventTimestamp": 7949.099999964237,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 7997.300000011921,
+          "secondRaf": 8015.199999988079,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 7949.5,
+          "eventTimestamp": 7949.5,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 7997.300000011921,
+          "secondRaf": 8015.199999988079,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 7950,
+          "eventTimestamp": 7950,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 7997.300000011921,
+          "secondRaf": 8015.199999988079,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 8023.800000011921,
+          "eventTimestamp": 8023.099999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 8025.5,
+          "secondRaf": 8033,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 8023.899999976158,
+          "eventTimestamp": 8023.899999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 8025.5,
+          "secondRaf": 8033,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 8023.899999976158,
+          "eventTimestamp": 8023.899999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 8025.5,
+          "secondRaf": 8033,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 3,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 7942.899999976158,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 8924.800000011921,
+      "eventTiming": [
+        {
+          "duration": 80,
+          "name": "pointerout",
+          "start": 8804.199999988079,
+          "type": "event"
+        },
+        {
+          "duration": 80,
+          "name": "pointerleave",
+          "start": 8804.199999988079,
+          "type": "event"
+        },
+        {
+          "duration": 80,
+          "name": "pointerover",
+          "start": 8804.199999988079,
+          "type": "event"
+        },
+        {
+          "duration": 80,
+          "name": "pointerenter",
+          "start": 8804.199999988079,
+          "type": "event"
+        },
+        {
+          "duration": 80,
+          "name": "mouseout",
+          "start": 8804.199999988079,
+          "type": "event"
+        },
+        {
+          "duration": 80,
+          "name": "mouseover",
+          "start": 8804.199999988079,
+          "type": "event"
+        },
+        {
+          "duration": 80,
+          "name": "pointerdown",
+          "start": 8804.199999988079,
+          "type": "event"
+        },
+        {
+          "duration": 80,
+          "name": "gotpointercapture",
+          "start": 8804.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 80,
+          "name": "pointerup",
+          "start": 8804.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 80,
+          "name": "lostpointercapture",
+          "start": 8804.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 80,
+          "name": "click",
+          "start": 8804.399999976158,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 8791.399999976158,
+          "duration": 8.399999976158142
+        },
+        {
+          "at": 8799.699999988079,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 8862.800000011921,
+          "duration": 63.10000002384186
+        },
+        {
+          "at": 8895.399999976158,
+          "duration": 32.59999996423721
+        },
+        {
+          "at": 8895.699999988079,
+          "duration": 0.30000001192092896
+        },
+        {
+          "at": 8900.099999964237,
+          "duration": 4.399999976158142
+        },
+        {
+          "at": 8909,
+          "duration": 8.900000035762787
+        },
+        {
+          "at": 8916.399999976158,
+          "duration": 7.399999976158142
+        },
+        {
+          "at": 8924.699999988079,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 8804.800000011921,
+          "eventTimestamp": 8804.199999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 8862.899999976158,
+          "secondRaf": 8895.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 8806.099999964237,
+          "eventTimestamp": 8804.199999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 8862.899999976158,
+          "secondRaf": 8895.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 8847.599999964237,
+          "eventTimestamp": 8804.399999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 8862.899999976158,
+          "secondRaf": 8895.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 8862.300000011921,
+          "eventTimestamp": 8804.399999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 8862.899999976158,
+          "secondRaf": 8895.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 4,
+      "longTasks": [
+        {
+          "duration": 57,
+          "name": "self",
+          "start": 8805,
+          "type": "longtask"
+        }
+      ],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 8776.099999964237,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 9383,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 9343.800000011921,
+          "duration": 23.5
+        },
+        {
+          "at": 9347.099999964237,
+          "duration": 3.299999952316284
+        },
+        {
+          "at": 9350.699999988079,
+          "duration": 3.600000023841858
+        },
+        {
+          "at": 9359.899999976158,
+          "duration": 9.199999988079071
+        },
+        {
+          "at": 9366.300000011921,
+          "duration": 6.400000035762787
+        },
+        {
+          "at": 9374.599999964237,
+          "duration": 8.299999952316284
+        },
+        {
+          "at": 9383,
+          "duration": 8.400000035762787
+        }
+      ],
+      "inputs": [
+        {
+          "at": 9257.5,
+          "eventTimestamp": 9257.5,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 9320.300000011921,
+          "secondRaf": 9343.899999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 9257.5,
+          "eventTimestamp": 9257.5,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 9320.300000011921,
+          "secondRaf": 9343.899999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 9258.099999964237,
+          "eventTimestamp": 9258.099999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 9320.300000011921,
+          "secondRaf": 9343.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 9258.599999964237,
+          "eventTimestamp": 9258.599999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 9320.300000011921,
+          "secondRaf": 9343.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 9358.399999976158,
+          "eventTimestamp": 9357.599999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 9359.899999976158,
+          "secondRaf": 9366.300000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 9358.5,
+          "eventTimestamp": 9358.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 9359.899999976158,
+          "secondRaf": 9366.300000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 9358.599999964237,
+          "eventTimestamp": 9358.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 9359.899999976158,
+          "secondRaf": 9366.300000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 4,
+      "longTasks": [
+        {
+          "duration": 59,
+          "name": "self",
+          "start": 9257.199999988079,
+          "type": "longtask"
+        }
+      ],
+      "name": "text-colour",
+      "start": 9250.800000011921,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 10199.599999964237,
+      "eventTiming": [
+        {
+          "duration": 64,
+          "name": "pointerout",
+          "start": 10103.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerleave",
+          "start": 10103.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerover",
+          "start": 10103.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerenter",
+          "start": 10103.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseout",
+          "start": 10103.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseover",
+          "start": 10103.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerdown",
+          "start": 10103.199999988079,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "gotpointercapture",
+          "start": 10103.300000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerup",
+          "start": 10103.300000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "lostpointercapture",
+          "start": 10103.300000011921,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "click",
+          "start": 10103.300000011921,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 10099.599999964237,
+          "duration": 8.299999952316284
+        },
+        {
+          "at": 10147.5,
+          "duration": 47.90000003576279
+        },
+        {
+          "at": 10172.899999976158,
+          "duration": 25.399999976158142
+        },
+        {
+          "at": 10173.300000011921,
+          "duration": 0.40000003576278687
+        },
+        {
+          "at": 10183.800000011921,
+          "duration": 10.5
+        },
+        {
+          "at": 10191.199999988079,
+          "duration": 7.399999976158142
+        },
+        {
+          "at": 10199.599999964237,
+          "duration": 8.399999976158142
+        }
+      ],
+      "inputs": [
+        {
+          "at": 10103.599999964237,
+          "eventTimestamp": 10103.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 10147.5,
+          "secondRaf": 10172.899999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 10104.699999988079,
+          "eventTimestamp": 10103.199999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 10147.5,
+          "secondRaf": 10172.899999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 10135.699999988079,
+          "eventTimestamp": 10103.300000011921,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 10147.5,
+          "secondRaf": 10172.899999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 10147.199999988079,
+          "eventTimestamp": 10103.300000011921,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 10147.5,
+          "secondRaf": 10172.899999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 5,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 10084.599999964237,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 10599.599999964237,
+      "eventTiming": [
+        {
+          "duration": 16,
+          "name": "keydown",
+          "start": 10586.599999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 10575.399999976158,
+          "duration": 16.69999998807907
+        },
+        {
+          "at": 10578.199999988079,
+          "duration": 2.800000011920929
+        },
+        {
+          "at": 10582.899999976158,
+          "duration": 4.699999988079071
+        },
+        {
+          "at": 10591.800000011921,
+          "duration": 8.900000035762787
+        },
+        {
+          "at": 10599.5,
+          "duration": 7.699999988079071
+        }
+      ],
+      "inputs": [
+        {
+          "at": 10506.899999976158,
+          "eventTimestamp": 10506.800000011921,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 10558.699999988079,
+          "secondRaf": 10575.5,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 10506.899999976158,
+          "eventTimestamp": 10506.899999976158,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 10558.699999988079,
+          "secondRaf": 10575.5,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 10507.300000011921,
+          "eventTimestamp": 10507.199999988079,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 10558.699999988079,
+          "secondRaf": 10575.5,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 10507.699999988079,
+          "eventTimestamp": 10507.699999988079,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 10558.699999988079,
+          "secondRaf": 10575.5,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 10587.099999964237,
+          "eventTimestamp": 10586.599999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 10591.800000011921,
+          "secondRaf": 10599.599999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 10587.300000011921,
+          "eventTimestamp": 10587.300000011921,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 10591.800000011921,
+          "secondRaf": 10599.599999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 10587.300000011921,
+          "eventTimestamp": 10587.300000011921,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 10591.800000011921,
+          "secondRaf": 10599.599999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 5,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 10500.5,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 11407.899999976158,
+      "eventTiming": [
+        {
+          "duration": 64,
+          "name": "pointerout",
+          "start": 11310.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerleave",
+          "start": 11310.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerover",
+          "start": 11310.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerenter",
+          "start": 11310.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseout",
+          "start": 11310.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseover",
+          "start": 11310.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerdown",
+          "start": 11310.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "gotpointercapture",
+          "start": 11310.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerup",
+          "start": 11310.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "lostpointercapture",
+          "start": 11310.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "click",
+          "start": 11310.599999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 11307.899999976158,
+          "duration": 8.399999976158142
+        },
+        {
+          "at": 11355.300000011921,
+          "duration": 47.40000003576279
+        },
+        {
+          "at": 11377.599999964237,
+          "duration": 22.299999952316284
+        },
+        {
+          "at": 11378,
+          "duration": 0.40000003576278687
+        },
+        {
+          "at": 11385.199999988079,
+          "duration": 7.199999988079071
+        },
+        {
+          "at": 11391.199999988079,
+          "duration": 6
+        },
+        {
+          "at": 11399.599999964237,
+          "duration": 8.399999976158142
+        },
+        {
+          "at": 11407.899999976158,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 11310.899999976158,
+          "eventTimestamp": 11310.399999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 11355.300000011921,
+          "secondRaf": 11377.699999988079,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 11311.899999976158,
+          "eventTimestamp": 11310.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 11355.300000011921,
+          "secondRaf": 11377.699999988079,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 11344.399999976158,
+          "eventTimestamp": 11310.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 11355.300000011921,
+          "secondRaf": 11377.699999988079,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 11355,
+          "eventTimestamp": 11310.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 11355.300000011921,
+          "secondRaf": 11377.699999988079,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 6,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 11292.099999964237,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 11816.300000011921,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 11786,
+          "duration": 16.5
+        },
+        {
+          "at": 11788.800000011921,
+          "duration": 2.800000011920929
+        },
+        {
+          "at": 11791.699999988079,
+          "duration": 2.899999976158142
+        },
+        {
+          "at": 11800.099999964237,
+          "duration": 8.399999976158142
+        },
+        {
+          "at": 11807.899999976158,
+          "duration": 7.800000011920929
+        },
+        {
+          "at": 11816.199999988079,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 11724.099999964237,
+          "eventTimestamp": 11724,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 11769.5,
+          "secondRaf": 11786,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 11724.099999964237,
+          "eventTimestamp": 11724.099999964237,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 11769.599999964237,
+          "secondRaf": 11786,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 11724.699999988079,
+          "eventTimestamp": 11724.699999988079,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 11769.599999964237,
+          "secondRaf": 11786,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 11725.399999976158,
+          "eventTimestamp": 11725.399999976158,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 11769.599999964237,
+          "secondRaf": 11786,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 11797.899999976158,
+          "eventTimestamp": 11797.399999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 11800.099999964237,
+          "secondRaf": 11807.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 11798.099999964237,
+          "eventTimestamp": 11798.099999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 11800.099999964237,
+          "secondRaf": 11807.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 11798.099999964237,
+          "eventTimestamp": 11798.099999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 11800.099999964237,
+          "secondRaf": 11807.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 6,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 11717.300000011921,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 12657.899999976158,
+      "eventTiming": [
+        {
+          "duration": 64,
+          "name": "pointerout",
+          "start": 12560.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerleave",
+          "start": 12560.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerover",
+          "start": 12560.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerenter",
+          "start": 12560.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseout",
+          "start": 12560.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseover",
+          "start": 12560.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerdown",
+          "start": 12561,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "gotpointercapture",
+          "start": 12561.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerup",
+          "start": 12561.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "lostpointercapture",
+          "start": 12561.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "click",
+          "start": 12561.099999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 12557.800000011921,
+          "duration": 8.100000023841858
+        },
+        {
+          "at": 12605.199999988079,
+          "duration": 47.39999997615814
+        },
+        {
+          "at": 12628.5,
+          "duration": 23.30000001192093
+        },
+        {
+          "at": 12628.800000011921,
+          "duration": 0.30000001192092896
+        },
+        {
+          "at": 12636.899999976158,
+          "duration": 8.099999964237213
+        },
+        {
+          "at": 12641.199999988079,
+          "duration": 4.300000011920929
+        },
+        {
+          "at": 12649.599999964237,
+          "duration": 8.399999976158142
+        },
+        {
+          "at": 12657.899999976158,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 12563.099999964237,
+          "eventTimestamp": 12560.899999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 12605.199999988079,
+          "secondRaf": 12628.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 12564.300000011921,
+          "eventTimestamp": 12561,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 12605.199999988079,
+          "secondRaf": 12628.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 12593.099999964237,
+          "eventTimestamp": 12561.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 12605.199999988079,
+          "secondRaf": 12628.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 12604.899999976158,
+          "eventTimestamp": 12561.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 12605.199999988079,
+          "secondRaf": 12628.5,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 7,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 12542.399999976158,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 13066.199999988079,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 13040.199999988079,
+          "duration": 18.30000001192093
+        },
+        {
+          "at": 13043.599999964237,
+          "duration": 3.399999976158142
+        },
+        {
+          "at": 13050.5,
+          "duration": 6.900000035762787
+        },
+        {
+          "at": 13057.800000011921,
+          "duration": 7.300000011920929
+        },
+        {
+          "at": 13066.199999988079,
+          "duration": 8.399999976158142
+        }
+      ],
+      "inputs": [
+        {
+          "at": 12981.800000011921,
+          "eventTimestamp": 12981.800000011921,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 13021.899999976158,
+          "secondRaf": 13040.199999988079,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 12981.800000011921,
+          "eventTimestamp": 12981.800000011921,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 13021.899999976158,
+          "secondRaf": 13040.199999988079,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 12982.300000011921,
+          "eventTimestamp": 12982.300000011921,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 13021.899999976158,
+          "secondRaf": 13040.199999988079,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 12982.699999988079,
+          "eventTimestamp": 12982.699999988079,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 13021.899999976158,
+          "secondRaf": 13040.300000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 13048.199999988079,
+          "eventTimestamp": 13047.599999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 13050.5,
+          "secondRaf": 13057.800000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 13048.300000011921,
+          "eventTimestamp": 13048.300000011921,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 13050.5,
+          "secondRaf": 13057.800000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 13048.300000011921,
+          "eventTimestamp": 13048.300000011921,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 13050.5,
+          "secondRaf": 13057.800000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 7,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 12975.899999976158,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 13849.5,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 13760.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 13760.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 13760.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 13760.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 13760.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 13760.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 13761,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 13761.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 13761.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 13761.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 13761.099999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 13757.899999976158,
+          "duration": 8.5
+        },
+        {
+          "at": 13802.399999976158,
+          "duration": 44.5
+        },
+        {
+          "at": 13825,
+          "duration": 22.600000023841858
+        },
+        {
+          "at": 13825.300000011921,
+          "duration": 0.30000001192092896
+        },
+        {
+          "at": 13834.5,
+          "duration": 9.199999988079071
+        },
+        {
+          "at": 13841.199999988079,
+          "duration": 6.699999988079071
+        },
+        {
+          "at": 13849.5,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 13761.5,
+          "eventTimestamp": 13760.899999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 13802.399999976158,
+          "secondRaf": 13825,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 13762.5,
+          "eventTimestamp": 13761,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 13802.399999976158,
+          "secondRaf": 13825,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 13790.599999964237,
+          "eventTimestamp": 13761.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 13802.399999976158,
+          "secondRaf": 13825,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 13802.099999964237,
+          "eventTimestamp": 13761.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 13802.399999976158,
+          "secondRaf": 13825,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 8,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 13742.399999976158,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 14232.899999976158,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 14211.5,
+          "duration": 16.30000001192093
+        },
+        {
+          "at": 14214.099999964237,
+          "duration": 2.599999964237213
+        },
+        {
+          "at": 14216.399999976158,
+          "duration": 2.300000011920929
+        },
+        {
+          "at": 14225.199999988079,
+          "duration": 8.800000011920929
+        },
+        {
+          "at": 14232.800000011921,
+          "duration": 7.600000023841858
+        }
+      ],
+      "inputs": [
+        {
+          "at": 14156.699999988079,
+          "eventTimestamp": 14156.699999988079,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 14195.199999988079,
+          "secondRaf": 14211.5,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 14156.699999988079,
+          "eventTimestamp": 14156.699999988079,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 14195.199999988079,
+          "secondRaf": 14211.5,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 14157,
+          "eventTimestamp": 14157,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 14195.199999988079,
+          "secondRaf": 14211.5,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 14157.5,
+          "eventTimestamp": 14157.5,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 14195.199999988079,
+          "secondRaf": 14211.5,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 14221.399999976158,
+          "eventTimestamp": 14220.899999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 14225.199999988079,
+          "secondRaf": 14232.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 14221.5,
+          "eventTimestamp": 14221.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 14225.199999988079,
+          "secondRaf": 14232.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 14221.599999964237,
+          "eventTimestamp": 14221.599999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 14225.199999988079,
+          "secondRaf": 14232.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 8,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 14151,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 15007.899999976158,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 14919.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 14919.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 14919.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 14919.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 14919.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 14919.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 14919.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 14919.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 14919.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 14919.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 14919.599999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 14916.199999988079,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 14961.199999988079,
+          "duration": 45
+        },
+        {
+          "at": 14984,
+          "duration": 22.80000001192093
+        },
+        {
+          "at": 14984.199999988079,
+          "duration": 0.19999998807907104
+        },
+        {
+          "at": 14992.699999988079,
+          "duration": 8.5
+        },
+        {
+          "at": 14999.5,
+          "duration": 6.800000011920929
+        },
+        {
+          "at": 15007.899999976158,
+          "duration": 8.399999976158142
+        }
+      ],
+      "inputs": [
+        {
+          "at": 14920.099999964237,
+          "eventTimestamp": 14919.5,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 14961.199999988079,
+          "secondRaf": 14984,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 14921.300000011921,
+          "eventTimestamp": 14919.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 14961.199999988079,
+          "secondRaf": 14984,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 14949.099999964237,
+          "eventTimestamp": 14919.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 14961.199999988079,
+          "secondRaf": 14984,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 14960.899999976158,
+          "eventTimestamp": 14919.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 14961.199999988079,
+          "secondRaf": 14984,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 9,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 14900.5,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 15407.800000011921,
+      "eventTiming": [
+        {
+          "duration": 16,
+          "name": "keydown",
+          "start": 15390.300000011921,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 15378.699999988079,
+          "duration": 16
+        },
+        {
+          "at": 15381.5,
+          "duration": 2.800000011920929
+        },
+        {
+          "at": 15384,
+          "duration": 2.5
+        },
+        {
+          "at": 15392.199999988079,
+          "duration": 8.199999988079071
+        },
+        {
+          "at": 15400.300000011921,
+          "duration": 8.100000023841858
+        },
+        {
+          "at": 15407.800000011921,
+          "duration": 7.5
+        }
+      ],
+      "inputs": [
+        {
+          "at": 15322.800000011921,
+          "eventTimestamp": 15322.800000011921,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 15362.699999988079,
+          "secondRaf": 15378.699999988079,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 15322.899999976158,
+          "eventTimestamp": 15322.899999976158,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 15362.699999988079,
+          "secondRaf": 15378.699999988079,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 15323.300000011921,
+          "eventTimestamp": 15323.300000011921,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 15362.699999988079,
+          "secondRaf": 15378.699999988079,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 15323.699999988079,
+          "eventTimestamp": 15323.699999988079,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 15362.699999988079,
+          "secondRaf": 15378.699999988079,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 15390.800000011921,
+          "eventTimestamp": 15390.300000011921,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 15392.199999988079,
+          "secondRaf": 15400.300000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 15391,
+          "eventTimestamp": 15391,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 15392.199999988079,
+          "secondRaf": 15400.300000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 15391,
+          "eventTimestamp": 15391,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 15392.199999988079,
+          "secondRaf": 15400.300000011921,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 9,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 15317.199999988079,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 16199.5,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 16110.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 16110.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 16110.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 16110.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 16110.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 16110.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 16110.699999988079,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 16110.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 16110.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 16110.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 16110.899999976158,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 16107.800000011921,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 16151.699999988079,
+          "duration": 43.89999997615814
+        },
+        {
+          "at": 16173.699999988079,
+          "duration": 22
+        },
+        {
+          "at": 16178.099999964237,
+          "duration": 4.399999976158142
+        },
+        {
+          "at": 16182.899999976158,
+          "duration": 4.800000011920929
+        },
+        {
+          "at": 16191.199999988079,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 16199.5,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 16111,
+          "eventTimestamp": 16110.699999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 16151.699999988079,
+          "secondRaf": 16173.699999988079,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 16112,
+          "eventTimestamp": 16110.699999988079,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 16151.699999988079,
+          "secondRaf": 16173.699999988079,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 16139.5,
+          "eventTimestamp": 16110.899999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 16151.699999988079,
+          "secondRaf": 16173.699999988079,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 16151.300000011921,
+          "eventTimestamp": 16110.899999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 16151.699999988079,
+          "secondRaf": 16173.699999988079,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 10,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 16092.599999964237,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 16591.19999998808,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 16569.80000001192,
+          "duration": 16.200000047683716
+        },
+        {
+          "at": 16572.80000001192,
+          "duration": 3
+        },
+        {
+          "at": 16575.80000001192,
+          "duration": 3
+        },
+        {
+          "at": 16583.30000001192,
+          "duration": 7.5
+        },
+        {
+          "at": 16591.099999964237,
+          "duration": 7.799999952316284
+        }
+      ],
+      "inputs": [
+        {
+          "at": 16514.599999964237,
+          "eventTimestamp": 16514.599999964237,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 16553.599999964237,
+          "secondRaf": 16569.80000001192,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 16514.69999998808,
+          "eventTimestamp": 16514.69999998808,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 16553.599999964237,
+          "secondRaf": 16569.80000001192,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 16515,
+          "eventTimestamp": 16515,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 16553.599999964237,
+          "secondRaf": 16569.80000001192,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 16515.399999976158,
+          "eventTimestamp": 16515.399999976158,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 16553.599999964237,
+          "secondRaf": 16569.80000001192,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 16579.899999976158,
+          "eventTimestamp": 16579.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 16583.30000001192,
+          "secondRaf": 16591.19999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 16580,
+          "eventTimestamp": 16580,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 16583.30000001192,
+          "secondRaf": 16591.19999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 16580,
+          "eventTimestamp": 16580,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 16583.30000001192,
+          "secondRaf": 16591.19999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 10,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 16509,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 17407.80000001192,
+      "eventTiming": [
+        {
+          "duration": 72,
+          "name": "pointerout",
+          "start": 17302.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "pointerleave",
+          "start": 17302.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "pointerover",
+          "start": 17302.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "pointerenter",
+          "start": 17302.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "mouseout",
+          "start": 17302.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "mouseover",
+          "start": 17302.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "pointerdown",
+          "start": 17303.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "gotpointercapture",
+          "start": 17303.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "pointerup",
+          "start": 17303.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "lostpointercapture",
+          "start": 17303.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 72,
+          "name": "click",
+          "start": 17303.099999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 17291.099999964237,
+          "duration": 8.299999952316284
+        },
+        {
+          "at": 17299.5,
+          "duration": 8.400000035762787
+        },
+        {
+          "at": 17358.80000001192,
+          "duration": 59.30000001192093
+        },
+        {
+          "at": 17382.5,
+          "duration": 23.69999998807907
+        },
+        {
+          "at": 17386.80000001192,
+          "duration": 4.300000011920929
+        },
+        {
+          "at": 17391.30000001192,
+          "duration": 4.5
+        },
+        {
+          "at": 17399.5,
+          "duration": 8.199999988079071
+        },
+        {
+          "at": 17407.80000001192,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 17303.599999964237,
+          "eventTimestamp": 17302.899999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 17358.80000001192,
+          "secondRaf": 17382.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 17304.899999976158,
+          "eventTimestamp": 17303.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 17358.80000001192,
+          "secondRaf": 17382.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 17343.19999998808,
+          "eventTimestamp": 17303.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 17358.80000001192,
+          "secondRaf": 17382.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 17358.399999976158,
+          "eventTimestamp": 17303.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 17358.80000001192,
+          "secondRaf": 17382.5,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 11,
+      "longTasks": [
+        {
+          "duration": 54,
+          "name": "self",
+          "start": 17303.80000001192,
+          "type": "longtask"
+        }
+      ],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 17276,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 17857.899999976158,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 17789.19999998808,
+          "duration": 56
+        },
+        {
+          "at": 17814.69999998808,
+          "duration": 25.5
+        },
+        {
+          "at": 17819.19999998808,
+          "duration": 4.5
+        },
+        {
+          "at": 17824.899999976158,
+          "duration": 5.699999988079071
+        },
+        {
+          "at": 17833.69999998808,
+          "duration": 8.800000011920929
+        },
+        {
+          "at": 17841.19999998808,
+          "duration": 7.5
+        },
+        {
+          "at": 17849.5,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 17857.899999976158,
+          "duration": 8.399999976158142
+        }
+      ],
+      "inputs": [
+        {
+          "at": 17736.30000001192,
+          "eventTimestamp": 17736.19999998808,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 17789.19999998808,
+          "secondRaf": 17814.69999998808,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 17736.30000001192,
+          "eventTimestamp": 17736.30000001192,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 17789.19999998808,
+          "secondRaf": 17814.69999998808,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 17737.099999964237,
+          "eventTimestamp": 17737.099999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 17789.19999998808,
+          "secondRaf": 17814.69999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 17737.69999998808,
+          "eventTimestamp": 17737.599999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 17789.19999998808,
+          "secondRaf": 17814.69999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 17831.30000001192,
+          "eventTimestamp": 17830.599999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 17833.80000001192,
+          "secondRaf": 17841.19999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 17831.5,
+          "eventTimestamp": 17831.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 17833.80000001192,
+          "secondRaf": 17841.19999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 17831.5,
+          "eventTimestamp": 17831.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 17833.80000001192,
+          "secondRaf": 17841.19999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 11,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 17727.099999964237,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 18707.80000001192,
+      "eventTiming": [
+        {
+          "duration": 64,
+          "name": "pointerout",
+          "start": 18611,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerleave",
+          "start": 18611,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerover",
+          "start": 18611,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerenter",
+          "start": 18611,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseout",
+          "start": 18611,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseover",
+          "start": 18611,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerdown",
+          "start": 18611.19999998808,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "gotpointercapture",
+          "start": 18611.19999998808,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerup",
+          "start": 18611.19999998808,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "lostpointercapture",
+          "start": 18611.19999998808,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "click",
+          "start": 18611.19999998808,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 18607.80000001192,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 18655.19999998808,
+          "duration": 47.39999997615814
+        },
+        {
+          "at": 18680.599999964237,
+          "duration": 25.399999976158142
+        },
+        {
+          "at": 18680.80000001192,
+          "duration": 0.20000004768371582
+        },
+        {
+          "at": 18684,
+          "duration": 3.199999988079071
+        },
+        {
+          "at": 18691.899999976158,
+          "duration": 7.899999976158142
+        },
+        {
+          "at": 18699.5,
+          "duration": 7.600000023841858
+        },
+        {
+          "at": 18707.80000001192,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 18611.80000001192,
+          "eventTimestamp": 18611,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 18655.19999998808,
+          "secondRaf": 18680.599999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 18613.30000001192,
+          "eventTimestamp": 18611.19999998808,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 18655.19999998808,
+          "secondRaf": 18680.599999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 18643.399999976158,
+          "eventTimestamp": 18611.19999998808,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 18655.19999998808,
+          "secondRaf": 18680.599999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 18654.80000001192,
+          "eventTimestamp": 18611.19999998808,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 18655.19999998808,
+          "secondRaf": 18680.599999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 12,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 18592.399999976158,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 19099.5,
+      "eventTiming": [
+        {
+          "duration": 16,
+          "name": "keydown",
+          "start": 19086.19999998808,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 19076.599999964237,
+          "duration": 15.199999988079071
+        },
+        {
+          "at": 19079.399999976158,
+          "duration": 2.800000011920929
+        },
+        {
+          "at": 19082.80000001192,
+          "duration": 3.400000035762787
+        },
+        {
+          "at": 19091.599999964237,
+          "duration": 8.799999952316284
+        },
+        {
+          "at": 19099.5,
+          "duration": 7.900000035762787
+        }
+      ],
+      "inputs": [
+        {
+          "at": 19023.5,
+          "eventTimestamp": 19023.5,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 19061.399999976158,
+          "secondRaf": 19076.69999998808,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 19023.599999964237,
+          "eventTimestamp": 19023.599999964237,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 19061.399999976158,
+          "secondRaf": 19076.69999998808,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 19023.899999976158,
+          "eventTimestamp": 19023.899999976158,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 19061.399999976158,
+          "secondRaf": 19076.69999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 19024.30000001192,
+          "eventTimestamp": 19024.30000001192,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 19061.399999976158,
+          "secondRaf": 19076.69999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 19086.80000001192,
+          "eventTimestamp": 19086.19999998808,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 19091.599999964237,
+          "secondRaf": 19099.5,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 19086.899999976158,
+          "eventTimestamp": 19086.899999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 19091.599999964237,
+          "secondRaf": 19099.5,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 19086.899999976158,
+          "eventTimestamp": 19086.899999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 19091.599999964237,
+          "secondRaf": 19099.5,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 12,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 19017.69999998808,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 19882.80000001192,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 19794.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 19794.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 19794.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 19794.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 19794.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 19794.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 19794.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 19794.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 19794.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 19794.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 19794.599999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 19791.19999998808,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 19833,
+          "duration": 41.80000001192093
+        },
+        {
+          "at": 19855.099999964237,
+          "duration": 22.099999964237213
+        },
+        {
+          "at": 19855.30000001192,
+          "duration": 0.20000004768371582
+        },
+        {
+          "at": 19858.599999964237,
+          "duration": 3.299999952316284
+        },
+        {
+          "at": 19867.099999964237,
+          "duration": 8.5
+        },
+        {
+          "at": 19874.5,
+          "duration": 7.400000035762787
+        },
+        {
+          "at": 19882.69999998808,
+          "duration": 8.199999988079071
+        }
+      ],
+      "inputs": [
+        {
+          "at": 19795.099999964237,
+          "eventTimestamp": 19794.5,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 19833,
+          "secondRaf": 19855.099999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 19796.19999998808,
+          "eventTimestamp": 19794.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 19833,
+          "secondRaf": 19855.099999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 19822.30000001192,
+          "eventTimestamp": 19794.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 19833,
+          "secondRaf": 19855.099999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 19832.80000001192,
+          "eventTimestamp": 19794.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 19833,
+          "secondRaf": 19855.099999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 13,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 19775.399999976158,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 20266.099999964237,
+      "eventTiming": [
+        {
+          "duration": 16,
+          "name": "keydown",
+          "start": 20249.30000001192,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 20241.899999976158,
+          "duration": 15.399999976158142
+        },
+        {
+          "at": 20244.69999998808,
+          "duration": 2.800000011920929
+        },
+        {
+          "at": 20249.399999976158,
+          "duration": 4.699999988079071
+        },
+        {
+          "at": 20258.30000001192,
+          "duration": 8.900000035762787
+        },
+        {
+          "at": 20266.099999964237,
+          "duration": 7.799999952316284
+        }
+      ],
+      "inputs": [
+        {
+          "at": 20189.399999976158,
+          "eventTimestamp": 20189.399999976158,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 20226.5,
+          "secondRaf": 20241.899999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 20189.399999976158,
+          "eventTimestamp": 20189.399999976158,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 20226.5,
+          "secondRaf": 20241.899999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 20189.80000001192,
+          "eventTimestamp": 20189.80000001192,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 20226.5,
+          "secondRaf": 20241.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 20190.099999964237,
+          "eventTimestamp": 20190.099999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 20226.5,
+          "secondRaf": 20241.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 20253.30000001192,
+          "eventTimestamp": 20249.30000001192,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 20258.30000001192,
+          "secondRaf": 20266.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 20253.5,
+          "eventTimestamp": 20253.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 20258.30000001192,
+          "secondRaf": 20266.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 20253.5,
+          "eventTimestamp": 20253.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 20258.30000001192,
+          "secondRaf": 20266.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 13,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 20183.69999998808,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 21041.099999964237,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 20952.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 20952.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 20952.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 20952.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 20952.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 20952.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 20952.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 20952.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 20952.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 20952.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 20952.599999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 20949.30000001192,
+          "duration": 8.100000023841858
+        },
+        {
+          "at": 20993.30000001192,
+          "duration": 44
+        },
+        {
+          "at": 21016,
+          "duration": 22.69999998807907
+        },
+        {
+          "at": 21016.399999976158,
+          "duration": 0.3999999761581421
+        },
+        {
+          "at": 21025.19999998808,
+          "duration": 8.800000011920929
+        },
+        {
+          "at": 21032.80000001192,
+          "duration": 7.600000023841858
+        },
+        {
+          "at": 21041.099999964237,
+          "duration": 8.299999952316284
+        }
+      ],
+      "inputs": [
+        {
+          "at": 20952.80000001192,
+          "eventTimestamp": 20952.399999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 20993.30000001192,
+          "secondRaf": 21016.099999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 20953.80000001192,
+          "eventTimestamp": 20952.5,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 20993.30000001192,
+          "secondRaf": 21016.099999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 20981.599999964237,
+          "eventTimestamp": 20952.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 20993.30000001192,
+          "secondRaf": 21016.099999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 20992.899999976158,
+          "eventTimestamp": 20952.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 20993.30000001192,
+          "secondRaf": 21016.099999964237,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 14,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 20934,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 21432.69999998808,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 21413.19999998808,
+          "duration": 16
+        },
+        {
+          "at": 21416.30000001192,
+          "duration": 3.100000023841858
+        },
+        {
+          "at": 21425.19999998808,
+          "duration": 8.899999976158142
+        },
+        {
+          "at": 21432.69999998808,
+          "duration": 7.5
+        }
+      ],
+      "inputs": [
+        {
+          "at": 21356.19999998808,
+          "eventTimestamp": 21356.19999998808,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 21397.19999998808,
+          "secondRaf": 21413.19999998808,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 21356.19999998808,
+          "eventTimestamp": 21356.19999998808,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 21397.30000001192,
+          "secondRaf": 21413.19999998808,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 21356.69999998808,
+          "eventTimestamp": 21356.599999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 21397.30000001192,
+          "secondRaf": 21413.19999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 21357.099999964237,
+          "eventTimestamp": 21357.099999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 21397.30000001192,
+          "secondRaf": 21413.19999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 21421.5,
+          "eventTimestamp": 21420.80000001192,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 21425.19999998808,
+          "secondRaf": 21432.69999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 21421.599999964237,
+          "eventTimestamp": 21421.599999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 21425.19999998808,
+          "secondRaf": 21432.69999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 21421.599999964237,
+          "eventTimestamp": 21421.599999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 21425.19999998808,
+          "secondRaf": 21432.69999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 14,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 21350.599999964237,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 22207.80000001192,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 22119.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 22119.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 22119.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 22119.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 22119.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 22119.399999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 22119.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 22119.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 22119.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 22119.5,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 22119.5,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 22116.099999964237,
+          "duration": 8.399999976158142
+        },
+        {
+          "at": 22158.30000001192,
+          "duration": 42.200000047683716
+        },
+        {
+          "at": 22181,
+          "duration": 22.69999998807907
+        },
+        {
+          "at": 22181.19999998808,
+          "duration": 0.19999998807907104
+        },
+        {
+          "at": 22192.099999964237,
+          "duration": 10.899999976158142
+        },
+        {
+          "at": 22199.399999976158,
+          "duration": 7.300000011920929
+        },
+        {
+          "at": 22207.80000001192,
+          "duration": 8.400000035762787
+        }
+      ],
+      "inputs": [
+        {
+          "at": 22119.899999976158,
+          "eventTimestamp": 22119.399999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 22158.30000001192,
+          "secondRaf": 22181,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 22121,
+          "eventTimestamp": 22119.5,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 22158.30000001192,
+          "secondRaf": 22181,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 22147.69999998808,
+          "eventTimestamp": 22119.5,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 22158.30000001192,
+          "secondRaf": 22181,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 22158,
+          "eventTimestamp": 22119.5,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 22158.30000001192,
+          "secondRaf": 22181,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 15,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 22100.80000001192,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 22641.30000001192,
+      "eventTiming": [
+        {
+          "duration": 16,
+          "name": "keydown",
+          "start": 22610.099999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 22592.19999998808,
+          "duration": 16.30000001192093
+        },
+        {
+          "at": 22595.5,
+          "duration": 3.300000011920929
+        },
+        {
+          "at": 22609.69999998808,
+          "duration": 14.199999988079071
+        },
+        {
+          "at": 22616.80000001192,
+          "duration": 7.100000023841858
+        },
+        {
+          "at": 22620.69999998808,
+          "duration": 3.899999976158142
+        },
+        {
+          "at": 22624.399999976158,
+          "duration": 3.699999988079071
+        },
+        {
+          "at": 22632.80000001192,
+          "duration": 8.400000035762787
+        },
+        {
+          "at": 22641.30000001192,
+          "duration": 8.5
+        }
+      ],
+      "inputs": [
+        {
+          "at": 22531.19999998808,
+          "eventTimestamp": 22531.19999998808,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 22575.899999976158,
+          "secondRaf": 22592.19999998808,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 22531.19999998808,
+          "eventTimestamp": 22531.19999998808,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 22575.899999976158,
+          "secondRaf": 22592.19999998808,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 22531.599999964237,
+          "eventTimestamp": 22531.599999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 22575.899999976158,
+          "secondRaf": 22592.19999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 22532,
+          "eventTimestamp": 22532,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 22575.899999976158,
+          "secondRaf": 22592.19999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 22615.30000001192,
+          "eventTimestamp": 22610.099999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 22616.80000001192,
+          "secondRaf": 22620.80000001192,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 22615.5,
+          "eventTimestamp": 22615.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 22616.80000001192,
+          "secondRaf": 22620.80000001192,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 22615.5,
+          "eventTimestamp": 22615.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 22616.80000001192,
+          "secondRaf": 22620.80000001192,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 15,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 22525.399999976158,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 23466.099999964237,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 23377,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 23377,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 23377,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 23377,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 23377,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 23377,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 23377.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 23377.19999998808,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 23377.19999998808,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 23377.19999998808,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 23377.19999998808,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 23374.19999998808,
+          "duration": 8.199999988079071
+        },
+        {
+          "at": 23415.80000001192,
+          "duration": 41.60000002384186
+        },
+        {
+          "at": 23437.899999976158,
+          "duration": 22.099999964237213
+        },
+        {
+          "at": 23438.099999964237,
+          "duration": 0.19999998807907104
+        },
+        {
+          "at": 23444.69999998808,
+          "duration": 6.600000023841858
+        },
+        {
+          "at": 23449.399999976158,
+          "duration": 4.699999988079071
+        },
+        {
+          "at": 23457.69999998808,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 23466.099999964237,
+          "duration": 8.399999976158142
+        }
+      ],
+      "inputs": [
+        {
+          "at": 23377.5,
+          "eventTimestamp": 23377,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 23415.80000001192,
+          "secondRaf": 23437.899999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 23378.599999964237,
+          "eventTimestamp": 23377.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 23415.80000001192,
+          "secondRaf": 23437.899999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 23405.099999964237,
+          "eventTimestamp": 23377.19999998808,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 23415.80000001192,
+          "secondRaf": 23437.899999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 23415.5,
+          "eventTimestamp": 23377.19999998808,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 23415.80000001192,
+          "secondRaf": 23437.899999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 16,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 23359.399999976158,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 23849.399999976158,
+      "eventTiming": [
+        {
+          "duration": 16,
+          "name": "keydown",
+          "start": 23836.899999976158,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 23827.899999976158,
+          "duration": 15.800000011920929
+        },
+        {
+          "at": 23830.69999998808,
+          "duration": 2.800000011920929
+        },
+        {
+          "at": 23833.69999998808,
+          "duration": 3
+        },
+        {
+          "at": 23841.69999998808,
+          "duration": 8
+        },
+        {
+          "at": 23849.30000001192,
+          "duration": 7.600000023841858
+        }
+      ],
+      "inputs": [
+        {
+          "at": 23772.399999976158,
+          "eventTimestamp": 23772.399999976158,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 23812.099999964237,
+          "secondRaf": 23827.899999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 23772.5,
+          "eventTimestamp": 23772.5,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 23812.099999964237,
+          "secondRaf": 23827.899999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 23772.899999976158,
+          "eventTimestamp": 23772.899999976158,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 23812.099999964237,
+          "secondRaf": 23827.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 23773.30000001192,
+          "eventTimestamp": 23773.30000001192,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 23812.099999964237,
+          "secondRaf": 23827.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 23837.30000001192,
+          "eventTimestamp": 23836.899999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 23841.69999998808,
+          "secondRaf": 23849.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 23837.5,
+          "eventTimestamp": 23837.399999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 23841.69999998808,
+          "secondRaf": 23849.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 23837.5,
+          "eventTimestamp": 23837.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 23841.69999998808,
+          "secondRaf": 23849.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 16,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 23767,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 24641.099999964237,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 24552.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 24552.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 24552.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 24552.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 24552.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 24552.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 24552.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 24552.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 24552.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 24552.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 24552.69999998808,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 24549.399999976158,
+          "duration": 7.599999964237213
+        },
+        {
+          "at": 24591.19999998808,
+          "duration": 41.80000001192093
+        },
+        {
+          "at": 24613.5,
+          "duration": 22.30000001192093
+        },
+        {
+          "at": 24613.69999998808,
+          "duration": 0.19999998807907104
+        },
+        {
+          "at": 24616.69999998808,
+          "duration": 3
+        },
+        {
+          "at": 24625.30000001192,
+          "duration": 8.600000023841858
+        },
+        {
+          "at": 24632.69999998808,
+          "duration": 7.399999976158142
+        },
+        {
+          "at": 24641.099999964237,
+          "duration": 8.399999976158142
+        }
+      ],
+      "inputs": [
+        {
+          "at": 24553,
+          "eventTimestamp": 24552.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 24591.19999998808,
+          "secondRaf": 24613.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 24554,
+          "eventTimestamp": 24552.69999998808,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 24591.19999998808,
+          "secondRaf": 24613.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 24580.599999964237,
+          "eventTimestamp": 24552.69999998808,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 24591.19999998808,
+          "secondRaf": 24613.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 24590.80000001192,
+          "eventTimestamp": 24552.69999998808,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 24591.19999998808,
+          "secondRaf": 24613.5,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 17,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 24534.19999998808,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 25049.399999976158,
+      "eventTiming": [
+        {
+          "duration": 16,
+          "name": "keydown",
+          "start": 25032.80000001192,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 25002.099999964237,
+          "duration": 44.299999952316284
+        },
+        {
+          "at": 25022.899999976158,
+          "duration": 20.80000001192093
+        },
+        {
+          "at": 25027.599999964237,
+          "duration": 4.699999988079071
+        },
+        {
+          "at": 25032.69999998808,
+          "duration": 5.100000023841858
+        },
+        {
+          "at": 25041.599999964237,
+          "duration": 8.899999976158142
+        },
+        {
+          "at": 25049.399999976158,
+          "duration": 7.800000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 24958.19999998808,
+          "eventTimestamp": 24958.19999998808,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 25002.099999964237,
+          "secondRaf": 25022.899999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 24958.19999998808,
+          "eventTimestamp": 24958.19999998808,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 25002.099999964237,
+          "secondRaf": 25022.899999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 24958.69999998808,
+          "eventTimestamp": 24958.69999998808,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 25002.099999964237,
+          "secondRaf": 25022.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 24959.099999964237,
+          "eventTimestamp": 24959.099999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 25002.099999964237,
+          "secondRaf": 25022.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 25036.5,
+          "eventTimestamp": 25032.80000001192,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 25041.599999964237,
+          "secondRaf": 25049.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 25036.599999964237,
+          "eventTimestamp": 25036.599999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 25041.599999964237,
+          "secondRaf": 25049.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 25036.69999998808,
+          "eventTimestamp": 25036.599999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 25041.599999964237,
+          "secondRaf": 25049.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 17,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 24951.099999964237,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 25874.399999976158,
+      "eventTiming": [
+        {
+          "duration": 64,
+          "name": "pointerout",
+          "start": 25777.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerleave",
+          "start": 25777.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerover",
+          "start": 25777.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerenter",
+          "start": 25777.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseout",
+          "start": 25777.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseover",
+          "start": 25777.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerdown",
+          "start": 25777.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "gotpointercapture",
+          "start": 25777.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerup",
+          "start": 25777.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "lostpointercapture",
+          "start": 25777.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "click",
+          "start": 25777.899999976158,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 25774.30000001192,
+          "duration": 8.200000047683716
+        },
+        {
+          "at": 25821.099999964237,
+          "duration": 46.799999952316284
+        },
+        {
+          "at": 25846.399999976158,
+          "duration": 25.30000001192093
+        },
+        {
+          "at": 25846.69999998808,
+          "duration": 0.30000001192092896
+        },
+        {
+          "at": 25854.69999998808,
+          "duration": 8
+        },
+        {
+          "at": 25857.899999976158,
+          "duration": 3.199999988079071
+        },
+        {
+          "at": 25866.099999964237,
+          "duration": 8.199999988079071
+        },
+        {
+          "at": 25874.399999976158,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 25778.19999998808,
+          "eventTimestamp": 25777.69999998808,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 25821.099999964237,
+          "secondRaf": 25846.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 25779.399999976158,
+          "eventTimestamp": 25777.899999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 25821.099999964237,
+          "secondRaf": 25846.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 25809.19999998808,
+          "eventTimestamp": 25777.899999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 25821.099999964237,
+          "secondRaf": 25846.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 25820.80000001192,
+          "eventTimestamp": 25777.899999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 25821.099999964237,
+          "secondRaf": 25846.399999976158,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 18,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 25759.099999964237,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 26282.69999998808,
+      "eventTiming": [
+        {
+          "duration": 16,
+          "name": "keydown",
+          "start": 26270.099999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 26258,
+          "duration": 19.900000035762787
+        },
+        {
+          "at": 26262.19999998808,
+          "duration": 4.199999988079071
+        },
+        {
+          "at": 26266.19999998808,
+          "duration": 4
+        },
+        {
+          "at": 26274.899999976158,
+          "duration": 8.699999988079071
+        },
+        {
+          "at": 26282.69999998808,
+          "duration": 7.800000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 26198.69999998808,
+          "eventTimestamp": 26198.599999964237,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 26238.099999964237,
+          "secondRaf": 26258,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 26198.69999998808,
+          "eventTimestamp": 26198.69999998808,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 26238.099999964237,
+          "secondRaf": 26258,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 26199.30000001192,
+          "eventTimestamp": 26199.30000001192,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 26238.099999964237,
+          "secondRaf": 26258,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 26199.69999998808,
+          "eventTimestamp": 26199.69999998808,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 26238.099999964237,
+          "secondRaf": 26258,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 26270.599999964237,
+          "eventTimestamp": 26270.099999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 26274.899999976158,
+          "secondRaf": 26282.69999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 26270.80000001192,
+          "eventTimestamp": 26270.69999998808,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 26274.899999976158,
+          "secondRaf": 26282.69999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 26270.80000001192,
+          "eventTimestamp": 26270.80000001192,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 26275,
+          "secondRaf": 26282.69999998808,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 18,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 26192.5,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 27082.69999998808,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 26993.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 26993.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 26993.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 26993.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 26993.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 26993.899999976158,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 26994,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 26994,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 26994,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 26994,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 26994,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 26991,
+          "duration": 8.300000011920929
+        },
+        {
+          "at": 27035.5,
+          "duration": 44.5
+        },
+        {
+          "at": 27057.69999998808,
+          "duration": 22.19999998807907
+        },
+        {
+          "at": 27058.19999998808,
+          "duration": 0.5
+        },
+        {
+          "at": 27066.899999976158,
+          "duration": 8.699999988079071
+        },
+        {
+          "at": 27074.399999976158,
+          "duration": 7.5
+        },
+        {
+          "at": 27082.69999998808,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 26994.5,
+          "eventTimestamp": 26993.899999976158,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 27035.5,
+          "secondRaf": 27057.69999998808,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 26995.599999964237,
+          "eventTimestamp": 26994,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 27035.5,
+          "secondRaf": 27057.69999998808,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 27024.69999998808,
+          "eventTimestamp": 26994,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 27035.5,
+          "secondRaf": 27057.69999998808,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 27035.19999998808,
+          "eventTimestamp": 26994,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 27035.5,
+          "secondRaf": 27057.69999998808,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 19,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 26975.30000001192,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 27474.30000001192,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 27445.30000001192,
+          "duration": 16.600000023841858
+        },
+        {
+          "at": 27448.19999998808,
+          "duration": 2.899999976158142
+        },
+        {
+          "at": 27451,
+          "duration": 2.800000011920929
+        },
+        {
+          "at": 27458.399999976158,
+          "duration": 7.399999976158142
+        },
+        {
+          "at": 27465.899999976158,
+          "duration": 7.5
+        },
+        {
+          "at": 27474.30000001192,
+          "duration": 8.400000035762787
+        }
+      ],
+      "inputs": [
+        {
+          "at": 27390,
+          "eventTimestamp": 27390,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 27428.69999998808,
+          "secondRaf": 27445.30000001192,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 27390,
+          "eventTimestamp": 27390,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 27428.69999998808,
+          "secondRaf": 27445.30000001192,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 27390.399999976158,
+          "eventTimestamp": 27390.399999976158,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 27428.69999998808,
+          "secondRaf": 27445.30000001192,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 27390.80000001192,
+          "eventTimestamp": 27390.80000001192,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 27428.69999998808,
+          "secondRaf": 27445.30000001192,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 27455.5,
+          "eventTimestamp": 27454.5,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 27458.399999976158,
+          "secondRaf": 27465.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 27455.69999998808,
+          "eventTimestamp": 27455.69999998808,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 27458.399999976158,
+          "secondRaf": 27465.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 27455.69999998808,
+          "eventTimestamp": 27455.69999998808,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 27458.399999976158,
+          "secondRaf": 27465.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 19,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 27384.19999998808,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 28257.69999998808,
+      "eventTiming": [
+        {
+          "duration": 56,
+          "name": "pointerout",
+          "start": 28168.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerleave",
+          "start": 28168.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerover",
+          "start": 28168.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerenter",
+          "start": 28168.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseout",
+          "start": 28168.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "mouseover",
+          "start": 28168.599999964237,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerdown",
+          "start": 28168.69999998808,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "gotpointercapture",
+          "start": 28168.80000001192,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "pointerup",
+          "start": 28168.80000001192,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "lostpointercapture",
+          "start": 28168.80000001192,
+          "type": "event"
+        },
+        {
+          "duration": 56,
+          "name": "click",
+          "start": 28168.80000001192,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 28165.899999976158,
+          "duration": 8.199999988079071
+        },
+        {
+          "at": 28207,
+          "duration": 41.10000002384186
+        },
+        {
+          "at": 28230.80000001192,
+          "duration": 23.80000001192093
+        },
+        {
+          "at": 28231,
+          "duration": 0.19999998807907104
+        },
+        {
+          "at": 28241.80000001192,
+          "duration": 10.800000011920929
+        },
+        {
+          "at": 28249.399999976158,
+          "duration": 7.599999964237213
+        },
+        {
+          "at": 28257.69999998808,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 28169.099999964237,
+          "eventTimestamp": 28168.599999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 28207.099999964237,
+          "secondRaf": 28230.80000001192,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 28170.099999964237,
+          "eventTimestamp": 28168.69999998808,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 28207.099999964237,
+          "secondRaf": 28230.80000001192,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 28196.599999964237,
+          "eventTimestamp": 28168.80000001192,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 28207.099999964237,
+          "secondRaf": 28230.80000001192,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 28206.80000001192,
+          "eventTimestamp": 28168.80000001192,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 28207.099999964237,
+          "secondRaf": 28230.80000001192,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 20,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 28150.80000001192,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 28682.899999976158,
+      "eventTiming": [
+        {
+          "duration": 24,
+          "name": "keydown",
+          "start": 28653.099999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 28618.30000001192,
+          "duration": 44
+        },
+        {
+          "at": 28638.399999976158,
+          "duration": 20.099999964237213
+        },
+        {
+          "at": 28642.30000001192,
+          "duration": 3.900000035762787
+        },
+        {
+          "at": 28650.599999964237,
+          "duration": 8.299999952316284
+        },
+        {
+          "at": 28660.30000001192,
+          "duration": 9.700000047683716
+        },
+        {
+          "at": 28666,
+          "duration": 5.699999988079071
+        },
+        {
+          "at": 28680.399999976158,
+          "duration": 14.399999976158142
+        },
+        {
+          "at": 28682.899999976158,
+          "duration": 2.5
+        }
+      ],
+      "inputs": [
+        {
+          "at": 28575,
+          "eventTimestamp": 28574.899999976158,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 28618.30000001192,
+          "secondRaf": 28638.399999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 28575,
+          "eventTimestamp": 28575,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 28618.30000001192,
+          "secondRaf": 28638.399999976158,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 28575.599999964237,
+          "eventTimestamp": 28575.5,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 28618.30000001192,
+          "secondRaf": 28638.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 28576,
+          "eventTimestamp": 28576,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 28618.30000001192,
+          "secondRaf": 28638.399999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 28658.69999998808,
+          "eventTimestamp": 28653.099999964237,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 28660.30000001192,
+          "secondRaf": 28666.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 28658.899999976158,
+          "eventTimestamp": 28658.899999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 28660.30000001192,
+          "secondRaf": 28666.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 28658.899999976158,
+          "eventTimestamp": 28658.899999976158,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 28660.30000001192,
+          "secondRaf": 28666.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 20,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 28567.899999976158,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 29632.80000001192,
+      "eventTiming": [
+        {
+          "duration": 88,
+          "name": "pointerout",
+          "start": 29495.80000001192,
+          "type": "event"
+        },
+        {
+          "duration": 88,
+          "name": "pointerleave",
+          "start": 29495.80000001192,
+          "type": "event"
+        },
+        {
+          "duration": 88,
+          "name": "pointerover",
+          "start": 29495.80000001192,
+          "type": "event"
+        },
+        {
+          "duration": 88,
+          "name": "pointerenter",
+          "start": 29495.80000001192,
+          "type": "event"
+        },
+        {
+          "duration": 88,
+          "name": "mouseout",
+          "start": 29495.80000001192,
+          "type": "event"
+        },
+        {
+          "duration": 88,
+          "name": "mouseover",
+          "start": 29495.80000001192,
+          "type": "event"
+        },
+        {
+          "duration": 88,
+          "name": "pointerdown",
+          "start": 29496.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 88,
+          "name": "gotpointercapture",
+          "start": 29496.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 88,
+          "name": "pointerup",
+          "start": 29496.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 88,
+          "name": "lostpointercapture",
+          "start": 29496.099999964237,
+          "type": "event"
+        },
+        {
+          "duration": 88,
+          "name": "click",
+          "start": 29496.099999964237,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 29482.599999964237,
+          "duration": 8
+        },
+        {
+          "at": 29491,
+          "duration": 8.400000035762787
+        },
+        {
+          "at": 29561.69999998808,
+          "duration": 70.69999998807907
+        },
+        {
+          "at": 29597.80000001192,
+          "duration": 36.10000002384186
+        },
+        {
+          "at": 29604.5,
+          "duration": 6.699999988079071
+        },
+        {
+          "at": 29609,
+          "duration": 4.5
+        },
+        {
+          "at": 29616.099999964237,
+          "duration": 7.099999964237213
+        },
+        {
+          "at": 29624.5,
+          "duration": 8.400000035762787
+        },
+        {
+          "at": 29632.80000001192,
+          "duration": 8.300000011920929
+        }
+      ],
+      "inputs": [
+        {
+          "at": 29496.80000001192,
+          "eventTimestamp": 29495.80000001192,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 29561.69999998808,
+          "secondRaf": 29597.80000001192,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 29498.69999998808,
+          "eventTimestamp": 29496.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 29561.69999998808,
+          "secondRaf": 29597.80000001192,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 29542.30000001192,
+          "eventTimestamp": 29496.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 29561.69999998808,
+          "secondRaf": 29597.80000001192,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 29561.30000001192,
+          "eventTimestamp": 29496.099999964237,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 29561.69999998808,
+          "secondRaf": 29597.80000001192,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 21,
+      "longTasks": [
+        {
+          "duration": 64,
+          "name": "self",
+          "start": 29497,
+          "type": "longtask"
+        }
+      ],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 29468.5,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(36, 51, 73)",
+      "beforeColour": "rgb(155, 63, 81)",
+      "end": 30082.80000001192,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 30025.69999998808,
+          "duration": 51.30000001192093
+        },
+        {
+          "at": 30046,
+          "duration": 20.30000001192093
+        },
+        {
+          "at": 30049.69999998808,
+          "duration": 3.699999988079071
+        },
+        {
+          "at": 30058.69999998808,
+          "duration": 9
+        },
+        {
+          "at": 30066.099999964237,
+          "duration": 7.399999976158142
+        },
+        {
+          "at": 30074.30000001192,
+          "duration": 8.200000047683716
+        },
+        {
+          "at": 30082.69999998808,
+          "duration": 8.399999976158142
+        }
+      ],
+      "inputs": [
+        {
+          "at": 29975,
+          "eventTimestamp": 29975,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 30025.69999998808,
+          "secondRaf": 30046,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 29975.099999964237,
+          "eventTimestamp": 29975.099999964237,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 30025.80000001192,
+          "secondRaf": 30046,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 29975.599999964237,
+          "eventTimestamp": 29975.599999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 30025.80000001192,
+          "secondRaf": 30046,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 29976.19999998808,
+          "eventTimestamp": 29976.19999998808,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 30025.80000001192,
+          "secondRaf": 30046,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 30056.80000001192,
+          "eventTimestamp": 30056,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 30058.80000001192,
+          "secondRaf": 30066.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 30057,
+          "eventTimestamp": 30057,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 30058.80000001192,
+          "secondRaf": 30066.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 30057,
+          "eventTimestamp": 30057,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 30058.80000001192,
+          "secondRaf": 30066.099999964237,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 21,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 29967.5,
+      "targetColour": "#243349",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "end": 30899.30000001192,
+      "eventTiming": [
+        {
+          "duration": 64,
+          "name": "pointerout",
+          "start": 30802.30000001192,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerleave",
+          "start": 30802.30000001192,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerover",
+          "start": 30802.30000001192,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerenter",
+          "start": 30802.30000001192,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseout",
+          "start": 30802.30000001192,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "mouseover",
+          "start": 30802.30000001192,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerdown",
+          "start": 30802.5,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "gotpointercapture",
+          "start": 30802.5,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "pointerup",
+          "start": 30802.5,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "lostpointercapture",
+          "start": 30802.5,
+          "type": "event"
+        },
+        {
+          "duration": 64,
+          "name": "click",
+          "start": 30802.5,
+          "type": "event"
+        }
+      ],
+      "frames": [
+        {
+          "at": 30799.30000001192,
+          "duration": 8.400000035762787
+        },
+        {
+          "at": 30846,
+          "duration": 46.69999998807907
+        },
+        {
+          "at": 30869.5,
+          "duration": 23.5
+        },
+        {
+          "at": 30869.599999964237,
+          "duration": 0.09999996423721313
+        },
+        {
+          "at": 30878.599999964237,
+          "duration": 9
+        },
+        {
+          "at": 30882.69999998808,
+          "duration": 4.100000023841858
+        },
+        {
+          "at": 30890.899999976158,
+          "duration": 8.199999988079071
+        },
+        {
+          "at": 30899.30000001192,
+          "duration": 8.400000035762787
+        }
+      ],
+      "inputs": [
+        {
+          "at": 30802.80000001192,
+          "eventTimestamp": 30802.30000001192,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 30846,
+          "secondRaf": 30869.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointermove",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 30803.80000001192,
+          "eventTimestamp": 30802.5,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 30846,
+          "secondRaf": 30869.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerdown",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 30834.80000001192,
+          "eventTimestamp": 30802.5,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 30846,
+          "secondRaf": 30869.5,
+          "tab": null,
+          "tag": "text",
+          "type": "pointerup",
+          "x": 556.9000244140625,
+          "y": 382.3900146484375
+        },
+        {
+          "at": 30845.69999998808,
+          "eventTimestamp": 30802.5,
+          "id": null,
+          "isTrusted": true,
+          "key": "e1",
+          "nextRaf": 30846,
+          "secondRaf": 30869.5,
+          "tab": null,
+          "tag": "text",
+          "type": "click",
+          "x": 556,
+          "y": 382
+        }
+      ],
+      "iteration": 22,
+      "longTasks": [],
+      "name": "select-text",
+      "selectedKey": "e1",
+      "start": 30783.599999964237,
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    },
+    {
+      "afterColour": "rgb(155, 63, 81)",
+      "beforeColour": "rgb(36, 51, 73)",
+      "end": 31290.899999976158,
+      "eventTiming": [],
+      "frames": [
+        {
+          "at": 31269.5,
+          "duration": 16.400000035762787
+        },
+        {
+          "at": 31272.399999976158,
+          "duration": 2.899999976158142
+        },
+        {
+          "at": 31275.399999976158,
+          "duration": 3
+        },
+        {
+          "at": 31283.19999998808,
+          "duration": 7.800000011920929
+        },
+        {
+          "at": 31290.899999976158,
+          "duration": 7.699999988079071
+        }
+      ],
+      "inputs": [
+        {
+          "at": 31214.80000001192,
+          "eventTimestamp": 31214.80000001192,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 31253.099999964237,
+          "secondRaf": 31269.5,
+          "tab": null,
+          "tag": "div",
+          "type": "blur"
+        },
+        {
+          "at": 31214.80000001192,
+          "eventTimestamp": 31214.80000001192,
+          "id": "viewport",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 31253.099999964237,
+          "secondRaf": 31269.5,
+          "tab": null,
+          "tag": "div",
+          "type": "focusout"
+        },
+        {
+          "at": 31215.30000001192,
+          "eventTimestamp": 31215.19999998808,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 31253.099999964237,
+          "secondRaf": 31269.5,
+          "tab": null,
+          "tag": "input",
+          "type": "input"
+        },
+        {
+          "at": 31215.69999998808,
+          "eventTimestamp": 31215.599999964237,
+          "id": "quickColor",
+          "isTrusted": false,
+          "key": null,
+          "nextRaf": 31253.099999964237,
+          "secondRaf": 31269.5,
+          "tab": null,
+          "tag": "input",
+          "type": "change"
+        },
+        {
+          "at": 31280.19999998808,
+          "eventTimestamp": 31279.19999998808,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 31283.19999998808,
+          "secondRaf": 31290.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "keydown"
+        },
+        {
+          "at": 31280.19999998808,
+          "eventTimestamp": 31280.19999998808,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 31283.19999998808,
+          "secondRaf": 31290.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "blur"
+        },
+        {
+          "at": 31280.19999998808,
+          "eventTimestamp": 31280.19999998808,
+          "id": "quickColor",
+          "isTrusted": true,
+          "key": null,
+          "nextRaf": 31283.19999998808,
+          "secondRaf": 31290.899999976158,
+          "tab": null,
+          "tag": "input",
+          "type": "focusout"
+        }
+      ],
+      "iteration": 22,
+      "longTasks": [],
+      "name": "text-colour",
+      "start": 31209.19999998808,
+      "targetColour": "#9b3f51",
+      "targetKey": "e1",
+      "verified": true,
+      "warmup": false
+    }
+  ],
+  "protocol": {
+    "colourRule": "Actual quickColor control fill + Tab; input/change/blur recorded. Native colour-picker window latency excluded.",
+    "dragRule": "First motion jumps12 CSSpx (above production3px threshold); primary event must move≥8px; live preview, committed pose, singleUndo, Redo and restoration checked.",
+    "operationOrder": [
+      "select-text",
+      "text-colour"
+    ],
+    "quantile": "Nearest rank ceil(n*p). At20 samples P95 is second largest; fixed sample count and no removal of outliers.",
+    "samplesPerOperation": 20,
+    "settleMinimumMs": 250,
+    "settleRule": "Minimum pause, autosave no longer saving, and two rAF callbacks before each action; actions/assertions outside the timed operation are excluded.",
+    "tabRule": "Actual detail→palette and palette→detail, separate operations with explicit aria-pressed preconditions.",
+    "warmupIterations": 3
+  },
+  "rawEvidence": {
+    "bytes": 221065,
+    "role": "complete-original46-operation-ledger",
+    "sha256": "9b78ce7463f86cce8f105d36afcbb1da8fc92eddcece8d009659ead4069efd1d"
+  },
+  "schema": "official24-to25-full-operation-projection/1",
+  "scope": "All original46 operation records including6 warmups and40 measured actions, original order and existing summary unchanged; no outliers removed or statistics recomputed.",
+  "summary": {
+    "select-text": {
+      "actionWallMs": {
+        "p50": 107.39999997615814,
+        "p95": 148.70000004768372
+      },
+      "commitToSecondRafMs": {
+        "p50": 34.5,
+        "p95": 47.80000001192093
+      },
+      "frames": {
+        "count": 153,
+        "max": 70.69999998807907,
+        "over50ms": 3,
+        "p50": 8.300000011920929,
+        "p95": 46.799999952316284
+      },
+      "inputToNextRafMs": {
+        "p50": 39.89999997615814,
+        "p95": 56.80000001192093
+      },
+      "inputToSecondRafMs": {
+        "p50": 62.69999998807907,
+        "p95": 89.30000001192093
+      },
+      "longTasks": {
+        "count": 3,
+        "maxMs": 64,
+        "totalMs": 175
+      },
+      "samples": 20,
+      "verifiedOperations": 20
+    },
+    "text-colour": {
+      "actionWallMs": {
+        "p50": 90.30000001192093,
+        "p95": 130.80000001192093
+      },
+      "commitToSecondRafMs": {
+        "p50": 57.60000002384186,
+        "p95": 77
+      },
+      "frames": {
+        "count": 116,
+        "max": 56,
+        "over50ms": 2,
+        "p50": 7.800000011920929,
+        "p95": 23.5
+      },
+      "inputToNextRafMs": {
+        "p50": 39.59999996423721,
+        "p95": 52.10000002384186
+      },
+      "inputToSecondRafMs": {
+        "p50": 57.89999997615814,
+        "p95": 77.60000002384186
+      },
+      "longTasks": {
+        "count": 1,
+        "maxMs": 59,
+        "totalMs": 59
+      },
+      "samples": 20,
+      "verifiedOperations": 20
+    }
+  },
+  "version": "0.1.25"
+}

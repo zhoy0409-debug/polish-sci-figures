@@ -1,0 +1,105 @@
+{
+  "files": [
+    {
+      "byteExactOriginal": true,
+      "bytes": 149525,
+      "file": "official-update/upgrade-before-download.png",
+      "group": "official-update",
+      "reviewedSampleSeconds": [],
+      "sha256": "8d8e6569a8c317de1c5f546e09ee68277f1f46b07b224791f9383635479018ee"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 153535,
+      "file": "official-update/upgrade-verified-ready.png",
+      "group": "official-update",
+      "reviewedSampleSeconds": [],
+      "sha256": "3433e61563c6b66814f60791460f73c2c18c57fd3cac952367ce241bfc426f9c"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 145244,
+      "file": "official-update/upgrade-restored-editor.png",
+      "group": "official-update",
+      "reviewedSampleSeconds": [],
+      "sha256": "d9fb5ce57417a43842efbfc0bde6cdb6a9c080596e7d701ea928029bc607eb03"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 10042735,
+      "file": "official-update/upgrade-original.webm",
+      "group": "official-update",
+      "reviewedSampleSeconds": [
+        2,
+        66.1,
+        131.2
+      ],
+      "sha256": "807aa67849059760d1a36f2e4d20037cee14c053545c9e062b73c9a75710980c"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 156111,
+      "file": "official-update/post-upgrade-carbon.png",
+      "group": "heart-after-reopen",
+      "reviewedSampleSeconds": [],
+      "sha256": "5bc25d1790016ad7890b8c4e7230bca79e07d96bfbe8e45d02504bd60e90076e"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 154350,
+      "file": "official-update/post-upgrade-motion-off.png",
+      "group": "heart-after-reopen",
+      "reviewedSampleSeconds": [],
+      "sha256": "081b45d4495b6de897f4665f465ef247439f9b6d7fc7413f42c40ded120829a1"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 153395,
+      "file": "official-update/post-upgrade-carbon-theme.png",
+      "group": "heart-after-reopen",
+      "reviewedSampleSeconds": [],
+      "sha256": "51698ae0321749fa3925498429942a4cb026663e0839ee5ea7ee5e19d31b682a"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 153451,
+      "file": "official-update/post-upgrade-pearl-theme.png",
+      "group": "heart-after-reopen",
+      "reviewedSampleSeconds": [],
+      "sha256": "fd839d9e5f7e8a8e5e49c823da01483b19b2e40bfb7bc6a9c2ee0578742b4e4b"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 148004,
+      "file": "official-update/post-upgrade-restored-iris.png",
+      "group": "heart-after-reopen",
+      "reviewedSampleSeconds": [],
+      "sha256": "0387518445981b287432b5e4f94b2fd9ed91d07399d55793d2db647a39f41720"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 2100977,
+      "file": "official-update/post-upgrade-editor-original.webm",
+      "group": "heart-after-reopen",
+      "reviewedSampleSeconds": [
+        2,
+        10.38,
+        19.76
+      ],
+      "sha256": "225924bb2640889eaff017505e66ab472ef3582d56d37c5209ff59f66540a830"
+    }
+  ],
+  "reviewEvidence": {
+    "bytes": 12925,
+    "role": "root-still-sampled-frame-media-review",
+    "sha256": "600fecb4af1de4855536ab4ce6e0fbb0e9db66f2752266f955f7b8b8be4ff344"
+  },
+  "reviewScope": {
+    "controlledPublicFixtureContext": true,
+    "fullVideoManuallyReviewed": false,
+    "stillImagesReviewed": true,
+    "wholeMovieOrOcrPrivacyCertificationClaimed": false
+  },
+  "schema": "official-original-media-reviewed-index/1",
+  "strictVideoHashScope": "Original strict result supplies a video filename; present original bytes are newly hashed and Root-attested, not a fabricated creation-time hash."
+}

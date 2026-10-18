@@ -1,0 +1,43 @@
+{
+  "actualInAppInstallCapability": true,
+  "actualPrivateHtmlSha256": "5922323f45155bd88e0c91dfcbfa4ae5b3c6a3965bb25d5d4c42c5005d847790",
+  "completeFiveCoreContainersPreserved": true,
+  "counts": {
+    "checkpoints": 0,
+    "dataDraftCount": 0,
+    "historyIndex": 0,
+    "historyStates": 1,
+    "observations": 150,
+    "svgSources": 12
+  },
+  "displayedUpdateScene": "current",
+  "f2AndUndoPassed": true,
+  "heartUi": {
+    "decorative": true,
+    "hearts": 10,
+    "levels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mode": "inactive"
+  },
+  "nativeVersion": "0.1.25",
+  "newerThan25Downloaded": false,
+  "newerThan25Installed": false,
+  "passed": true,
+  "rawEvidence": {
+    "bytes": 7779,
+    "role": "actual-default-profile25-focus",
+    "sha256": "c12adc8cbc8301fc4aa35598245a45597d259cac1f47d58a7a44afc0b892fe89"
+  },
+  "schema": "post-official-reopen-heart-acceptance/1",
+  "scientificSvgAndRgbaExactAcrossThemes": true
+}

@@ -2,6 +2,8 @@
 
 Figure Studio 0.1.25 keeps the simple cat and dog and uses a transparent outline heart with jade water to show downloaded bytes, including reduced motion. Install Setup once, then use Updates in the editor for supported upgrades. [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.25/polish-sci-figures-Studio-0.1.25-Setup-x64.exe) · [Release notes](docs/release-notes-v1.4.25.md) · [Getting started](desktop/QUICKSTART.en.md) · [Historical 0.1.23 acceptance](docs/release-notes-v1.4.23.md).
 
+0.1.25 is published. The genuine 0.1.24 → 0.1.25 in-editor upgrade restored the complete project and settings; matched 5000-element samples were accepted for this observed pair. [Upgrade record](docs/qa/jade-hearts/windows-0.1.25/official-update/README.md) · [Matched samples](docs/qa/jade-hearts/windows-0.1.25/matched-performance/README.md) · [Final acceptance](docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json). Normal uninstall and external-profile preservation passed. Freeze this round at 0.1.25; batch and validate later requested changes before a maintenance release.
+
 [Post-release update verification, 2026-10-18](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md): official 0.1.20 and 0.1.21 → 0.1.22 updates, automatic project recovery and normal cleanup passed.
 
 

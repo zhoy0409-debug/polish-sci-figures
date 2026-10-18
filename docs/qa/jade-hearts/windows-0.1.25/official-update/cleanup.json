@@ -1,0 +1,14 @@
+{
+  "allFourRegistryViewsAbsent": true,
+  "confirmedFreshProtectionBaselinePreserved": true,
+  "normalUninstallExitCode": 0,
+  "ownedExecutableAbsent": true,
+  "passed": true,
+  "rawEvidence": {
+    "bytes": 1522,
+    "role": "actual-normal-cleanup",
+    "sha256": "29cf3272e8352cec82dfbde22a4e48c3cd0946305deffe0c83a895e2d9d021e6"
+  },
+  "schema": "official24-to25-curated-cleanup/1",
+  "wholeExternalProfileAndFinalizedProofPreserved": true
+}

@@ -2,6 +2,8 @@
 
 Figure Studio 0.1.25 keeps the simple companions, with an outline heart and jade water level for download progress and reduced motion. Install the Windows Setup once, then use Updates in the supported editor. The [release notes](release-notes-v1.4.25.md) describe this version's scope; [historical 0.1.23 acceptance](release-notes-v1.4.23.md) remains separate.
 
+0.1.25 is published. The genuine 0.1.24 → 0.1.25 in-editor upgrade restored the complete project and settings; matched 5000-element samples were accepted for this observed pair. [Upgrade record](qa/jade-hearts/windows-0.1.25/official-update/README.md) · [Matched samples](qa/jade-hearts/windows-0.1.25/matched-performance/README.md) · [Final acceptance](qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json). Normal uninstall and external-profile preservation passed. Freeze this round at 0.1.25; batch and validate later requested changes before a maintenance release.
+
 English · [中文](#中文)
 
 Figure Studio is the visual editor for **polish-sci-figures**. The app includes its calculation runtime: you do not need Python, Codex, Claude, an account or an API key. Analysis and image checks run on your device.
@@ -42,6 +44,8 @@ Try a small non-sensitive example first. Tell us your device/model and OS versio
 ## 中文
 
 Figure Studio 0.1.25 保留简约猫狗，以透明空心心／翡翠水面呈现下载进度，并遵循降动效设置。Windows 首次运行 Setup 安装，以后从受支持的编辑器内更新。[本版说明](release-notes-v1.4.25.md#中文)与[0.1.23 历史验收](release-notes-v1.4.23.md#中文)分别记录范围；旧 Mac／Android 下载保持不变。
+
+0.1.25 已公开；官方 0.1.24 → 0.1.25 编辑器内下载、安装及完整工程／设置自动恢复已实测，5000 图元同配置对照已获接受。[升级记录](qa/jade-hearts/windows-0.1.25/official-update/README.md) · [配对样本](qa/jade-hearts/windows-0.1.25/matched-performance/README.md) · [最终验收](qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json)。正常卸载及外部配置保留验证通过。 本轮在 0.1.25 收尾并冻结；后续仅按新增需求汇总验证、集中更新。
 
 ### 在自己的设备上试用 Figure Studio
 

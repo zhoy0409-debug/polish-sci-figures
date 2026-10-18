@@ -1,0 +1,92 @@
+{
+  "actualBackupFileCount": 2628,
+  "actualLimitations": [
+    "Stages not observed in the UI are not reconstructed or inserted into the recording. Passive HTTP status and optional audit events are separate evidence."
+  ],
+  "afterAutomaticallyRestoredSha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+  "allOriginalBackupFilesExact": true,
+  "appearancePreferencePreserved": true,
+  "automaticProjectRestore": true,
+  "backendObservedStages": [
+    "idle",
+    "checking",
+    "downloading",
+    "ready",
+    "preparing",
+    "installing"
+  ],
+  "backupInventorySha256": "ca23c2d65317da58c4202d78b69f5c7ada16c1b62e41d04483a5f9f8cc8c28c4",
+  "beforeSavedSha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+  "completedAutosaveBeforeUpdate": true,
+  "counts": {
+    "checkpoints": 1,
+    "dataDraftCount": 1,
+    "historyStates": 3,
+    "observations": 150,
+    "originalSvgSources": 12
+  },
+  "downloadCommands": 1,
+  "fiveCoreContainersExact": true,
+  "fresh25UiAssetCount": 80,
+  "fromVersion": "0.1.24",
+  "helperNaturalExitGuardPassed": true,
+  "inputSha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+  "installCommands": 1,
+  "normalCleanupPassed": true,
+  "officialInAppFlow": true,
+  "passed": true,
+  "publicRelease": {
+    "assetBytes": 105866642,
+    "assetName": "polish-sci-figures-Studio-0.1.25-Setup-x64.exe",
+    "assetSha256": "7abfdd5580cb8aa6685ef3a50496b7bfcef7ef28435578c085ad8ffa6eb23705",
+    "commit": "3dff0095a4b36b021e553a0152cb35af4ac78232",
+    "draft": false,
+    "latestVerified": true,
+    "prerelease": false,
+    "publishedAt": "2026-10-18T09:48:00Z",
+    "releaseId": 416365088,
+    "tag": "v1.4.25"
+  },
+  "rawEvidence": [
+    {
+      "bytes": 31432,
+      "role": "unchanged-original-strict-result",
+      "sha256": "6efe3177d51a2131b3e2c4aa3061ab5e17ff30dacf09dceb731bec756a07a38f"
+    },
+    {
+      "bytes": 5944,
+      "role": "actual-independent-verification",
+      "sha256": "283fa4c2df7702601035750af3ee255c03494767cc5aaa622a45dee9a0bda8f6"
+    },
+    {
+      "bytes": 476314,
+      "role": "actual-private-handoff",
+      "sha256": "9d6c5dba00056e7eb96f2f3dcfd22b40bc32ff47d95fdbfad41d469c21810ab1"
+    },
+    {
+      "bytes": 582496,
+      "role": "actual-original-save",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975"
+    },
+    {
+      "bytes": 582496,
+      "role": "actual-automatic-restore-save",
+      "sha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975"
+    }
+  ],
+  "schema": "official24-to25-curated-acceptance/1",
+  "scope": "Original24 frontend draws the real24-to25 download. New25 lazy heart/version row is verified after reopening/current state; no live25-to-newer download, new IME, detector accuracy, clean VM or all-workflows claim.",
+  "settingsSha256": "0cf07afffd7d4ca53e3bbf4d386df809bb527c028b38b237e8433a4bded4ee53",
+  "toVersion": "0.1.25",
+  "uiObservedStages": [
+    "checking",
+    "downloading",
+    "ready",
+    "preparing",
+    "installing"
+  ],
+  "uiUnobservedStages": [
+    "verifying"
+  ],
+  "wholeSettingsBytesExact": true
+}
