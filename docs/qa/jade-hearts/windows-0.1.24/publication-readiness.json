@@ -1,0 +1,37 @@
+{
+  "actualCandidateNativeLifecyclePassed": true,
+  "finalAcceptance": false,
+  "nativeEvidence": [
+    {
+      "bytes": 1615,
+      "role": "actual-native-install",
+      "sha256": "5544a050e807616913b0bce655c22db65d84034dbf7240dd6c663dac7b8d1644"
+    },
+    {
+      "bytes": 1847,
+      "role": "actual-native-start",
+      "sha256": "742f1af3cb4d899d7bfccb60f7cff6d4aadc46a3d679dde59bed425379457c27"
+    },
+    {
+      "bytes": 2151,
+      "role": "actual-native-reinstall",
+      "sha256": "5217d01b0be46899745714aea0f3511fbb1d4cc1c2cd9bce7d55daa86833e285"
+    },
+    {
+      "bytes": 2290,
+      "role": "actual-native-uninstall",
+      "sha256": "606152d84057a7016f6d661b868dc496d8a566acb6130b237d8b5b2180c51f81"
+    },
+    {
+      "bytes": 1893,
+      "role": "independent-final-native-query",
+      "sha256": "ff73a61c194f86f7c5e53622103311119a86119ae5108b1459e3d80ccf3d0223"
+    }
+  ],
+  "official23To24Upgrade": "awaiting_public_stable",
+  "realOfficialUpgradePassed": false,
+  "schema": "figure-studio-jade-heart-candidate-readiness/1",
+  "scope": "Candidate lifecycle/source/editor/component/performance gates only. Original23 draws its own23-to24 download; new24 heart current/controlled states do not establish a live24-to-newer download. No new native IME, detector accuracy, clean VM or all-workflows claim.",
+  "selectedScientificAndEditorChecksPassed": true,
+  "version": "0.1.24"
+}

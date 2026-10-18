@@ -1,0 +1,114 @@
+{
+  "browserStateCount": 22,
+  "lifecycleCycles": [
+    {
+      "concurrentScenes": 2,
+      "destroyRemovedDefinitionsAndAnimations": true,
+      "enabledReducedHiddenClosedAndIntersectionGates": true,
+      "generatedIds": 140,
+      "localReferences": true,
+      "sceneLifecycleCycle": 1
+    },
+    {
+      "concurrentScenes": 2,
+      "destroyRemovedDefinitionsAndAnimations": true,
+      "enabledReducedHiddenClosedAndIntersectionGates": true,
+      "generatedIds": 140,
+      "localReferences": true,
+      "sceneLifecycleCycle": 2
+    },
+    {
+      "concurrentScenes": 2,
+      "destroyRemovedDefinitionsAndAnimations": true,
+      "enabledReducedHiddenClosedAndIntersectionGates": true,
+      "generatedIds": 140,
+      "localReferences": true,
+      "sceneLifecycleCycle": 3
+    }
+  ],
+  "narrowCases": [
+    {
+      "completePaintedPetsAndTailsSeparate": true,
+      "emulatedDpr": 1,
+      "minimumPaintedVerticalGapCssPx": 17.035999511909495,
+      "rowInside": true,
+      "theme": "carbon",
+      "viewportCssPx": 420
+    },
+    {
+      "completePaintedPetsAndTailsSeparate": true,
+      "emulatedDpr": 1.25,
+      "minimumPaintedVerticalGapCssPx": 14.525399734751431,
+      "rowInside": true,
+      "theme": "carbon",
+      "viewportCssPx": 336
+    },
+    {
+      "completePaintedPetsAndTailsSeparate": true,
+      "emulatedDpr": 1.5,
+      "minimumPaintedVerticalGapCssPx": 4.766787443033877,
+      "rowInside": true,
+      "theme": "carbon",
+      "viewportCssPx": 280
+    },
+    {
+      "completePaintedPetsAndTailsSeparate": true,
+      "emulatedDpr": 1,
+      "minimumPaintedVerticalGapCssPx": 11.737224794260726,
+      "rowInside": true,
+      "theme": "carbon",
+      "viewportCssPx": 320
+    },
+    {
+      "completePaintedPetsAndTailsSeparate": true,
+      "emulatedDpr": 1,
+      "minimumPaintedVerticalGapCssPx": 11.737224794260726,
+      "rowInside": true,
+      "theme": "pearl",
+      "viewportCssPx": 320
+    },
+    {
+      "completePaintedPetsAndTailsSeparate": true,
+      "emulatedDpr": 1.5,
+      "minimumPaintedVerticalGapCssPx": 4.766787443033877,
+      "rowInside": true,
+      "theme": "pearl",
+      "viewportCssPx": 280
+    }
+  ],
+  "passed": true,
+  "pureContractCount": 11,
+  "ratiosChecked": 1001,
+  "rawEvidence": [
+    {
+      "bytes": 5859,
+      "role": "component-final-r3",
+      "sha256": "a4bc733458ab5cf11527772a3853ec0cc40b037283a434bf1f2297d966b92938"
+    },
+    {
+      "bytes": 33713,
+      "role": "controlled-browser-r3",
+      "sha256": "b503dc7514b72154b558d18cd5d645ad9b57d9543b9b6e624af82d0aca8dc042"
+    }
+  ],
+  "realDownload": false,
+  "realInstaller": false,
+  "retainedEarlierAttempts": [
+    {
+      "acceptedAsFinal": false,
+      "observedOutcome": "Failed new assertion due to mismatched geometry: transparent heart viewBox padding versus actual pet outline. Corrected both sides to real SVG getBBox/getScreenCTM/stroke without tolerance.",
+      "sha256": "7c954758eccb79047988dec0f2fb1cfaecc8cc7def9a43b95ec608b5920c30fd"
+    },
+    {
+      "acceptedAsFinal": false,
+      "observedOutcome": "Passed then-declared >=320 scope but actually measured280 row overflow and painted overlap. Rejected as final acceptance; the280 requirement was restored and the product received the minimal responsive repair.",
+      "sha256": "2aad8721c99d367b16206905e4f43d9150613101e3b91c4404ceb6fa3ec1e176"
+    },
+    {
+      "acceptedAsFinal": false,
+      "observedOutcome": "Actual cached responsive CSS probe passed10cases:280px two themes at0/52/99/100/ready, before production CSS repair.",
+      "sha256": "9d5a164d666bfc16a59ca371e185e2c04e79742dfcb813d810f46c7639408fb4"
+    }
+  ],
+  "scope": "Controlled real-browser component/byte-ratio states; not an actual updater download or installed-app progress trace."
+}

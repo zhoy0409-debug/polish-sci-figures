@@ -1,0 +1,56 @@
+{
+  "ownedExecutableAbsent": true,
+  "scope": "Read-only CIM, file SHA-256 and all four exact AppId registry view queries after actual normal uninstall. No PID, local path, registry values, token or measurement is disclosed; no process or registry mutation.",
+  "protectedOriginalCount": 0,
+  "protectedOriginalIdentityUnchanged": true,
+  "status": "PASS_ACTUAL_READ_ONLY_FINAL_QUERY",
+  "schema": "figure-studio-windows-final-native-query/1",
+  "ownedQaProcessCount": 0,
+  "preserved": [
+    {
+      "beforeReinstallSha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509",
+      "afterUninstallSha256": "6c1a0b4da51887196f418a12b6fbe8dfd9d6667a8bef03605c01a408a5dce509",
+      "byteExact": true,
+      "role": "externalSentinel"
+    },
+    {
+      "beforeReinstallSha256": "6d5b4672e6f8cf684ff767836887214be725f7f0fa7ee12f8f7842bb5848cc40",
+      "afterUninstallSha256": "6d5b4672e6f8cf684ff767836887214be725f7f0fa7ee12f8f7842bb5848cc40",
+      "byteExact": true,
+      "role": "settings"
+    },
+    {
+      "beforeReinstallSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+      "afterUninstallSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+      "byteExact": true,
+      "role": "actualSavedPublicIris"
+    }
+  ],
+  "queriedAtUtc": "2026-10-18T07:31:10.3554840Z",
+  "qaProcessStoppedInState": true,
+  "powerShellVersion": "7.6.5",
+  "registryViews": [
+    {
+      "view": "Registry32",
+      "hive": "HKCU",
+      "exists": false
+    },
+    {
+      "view": "Registry64",
+      "hive": "HKCU",
+      "exists": false
+    },
+    {
+      "view": "Registry32",
+      "hive": "HKLM",
+      "exists": false
+    },
+    {
+      "view": "Registry64",
+      "hive": "HKLM",
+      "exists": false
+    }
+  ],
+  "actualIrisObservationCount": 150,
+  "version": "0.1.24"
+}

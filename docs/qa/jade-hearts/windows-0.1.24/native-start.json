@@ -1,0 +1,40 @@
+{
+  "evidenceAttempt": "",
+  "servedHtmlSha256": "2f76469b1069d0ca63024e2832066b1c3bbb3e12ec00c7a5fe64d8ba48d50213",
+  "incompleteAttemptCleanup": false,
+  "reinstallPreserved": false,
+  "workspaceHtmlSha256": "f1548b2e9fa61e07d260e8401690a074edc76cbe0b6d88724a405a2443e33d17",
+  "externalDataPreserved": false,
+  "schema": "figure-studio-live-preview-windows/1",
+  "completedPhases": [
+    "Install",
+    "Start"
+  ],
+  "protectedProcessIdentitiesUnchanged": true,
+  "reinstallPackageVerification": null,
+  "checks": [
+    "Four exact AppId hive/view combinations initially absent",
+    "Protected application process identities and binaries unchanged",
+    "All packaged files match actual installed files",
+    "Actually installed x64 PE version matches",
+    "Frozen installed self-test passes with Python removed from PATH and invalid PYTHONHOME",
+    "Exact installed process serves authenticated local health on isolated persisted QA port"
+  ],
+  "selfTestReportSha256": "dc890b27c54856daa1e6a7acce4cc0ce5e5021aed2ea0aa6da1bb00c78859943",
+  "uninstalled": false,
+  "environment": "Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.",
+  "initialRegistryViewsAbsent": 4,
+  "phase": "Start",
+  "frozen": true,
+  "setupSha256": "f7574c2eb08d52ff1b4601819517663de651095697f5ae0479c113db51fb6244",
+  "version": "0.1.24",
+  "harnessSha256": "2a99d7930c39b6aea0019481481cf5cff1a9bf8a8152baa2594a58a7738f2893",
+  "protectedProcessCount": 0,
+  "packageVerification": {
+    "manifestSha256": "7462657fba1672970a9fbfe9ccacfc077ea860f236c58fc2121b8fa05c5f7867",
+    "fileCount": 2626,
+    "everyPackagedFileMatches": true
+  },
+  "selfTestPassed": true,
+  "powerShellVersion": "7.6.5"
+}

@@ -1,0 +1,139 @@
+{
+  "files": [
+    {
+      "byteExactOriginal": true,
+      "bytes": 30801,
+      "file": "before-flat-37.png",
+      "group": "controlled-before",
+      "reviewedSampleSeconds": [],
+      "sha256": "7c4fa25624cba9c370da64e17198a3bef7002cfdf4f8b51c066fe140388fe693"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 33076,
+      "file": "jade-carbon-37.png",
+      "group": "controlled-preview",
+      "reviewedSampleSeconds": [],
+      "sha256": "be41e5787ab75d24006ddf82025672ab5eb3b31ad0423e6165e563f956b0687b"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 33509,
+      "file": "jade-carbon-52.png",
+      "group": "controlled-preview",
+      "reviewedSampleSeconds": [],
+      "sha256": "1e8a0eac0c019c94a094d4de872876e24b104320fbda36214b020b9094836741"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 33290,
+      "file": "jade-pearl-52.png",
+      "group": "controlled-preview",
+      "reviewedSampleSeconds": [],
+      "sha256": "71323a68c40d009418c910e9daef3094ce0c2da40aef7bc2e75a7dc9777a1d52"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 649207,
+      "file": "controlled-material-original.webm",
+      "group": "controlled-preview",
+      "reviewedSampleSeconds": [
+        1,
+        4,
+        8
+      ],
+      "sha256": "05129b89100e9cb89a280de8f989529655607d40b635e692ee37a609187fbdcf"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 52968,
+      "file": "narrow-280-pearl.png",
+      "group": "controlled-component",
+      "reviewedSampleSeconds": [],
+      "sha256": "10d3c00919ead9bcddecdff89a12a27280cb6c0a67f6e936f4eefb45772f66b8"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 1729565,
+      "file": "controlled-component-original.webm",
+      "group": "controlled-component",
+      "reviewedSampleSeconds": [
+        2,
+        13.94,
+        26.88
+      ],
+      "sha256": "4d36f6d05ea1cc6195004fa640e8cc5b4e6e2f8faa398d2312783f21d9e96ed6"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 162243,
+      "file": "installed-carbon-update.png",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [],
+      "sha256": "e3eca3b745dc014390d3aea755fb916a8fbf4c6a80a3743dd81ec472cfd8c2f2"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 160678,
+      "file": "installed-motion-off.png",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [],
+      "sha256": "8e99cf509aa6442e558dbb38e4c39763c08845cd7af10400202289de3cb2c482"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 157759,
+      "file": "installed-carbon-theme-update.png",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [],
+      "sha256": "4023cf0c79740e6503e61f72ae747c8e39c0aefdbe2e7e670c93f84b2153bec6"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 156480,
+      "file": "installed-pearl-theme-update.png",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [],
+      "sha256": "6aeb4adc6c59eb043fa48e4beb6742047683fde17bee54b73b07e2a4447af9d6"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 148004,
+      "file": "installed-restored-public-iris.png",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [],
+      "sha256": "0387518445981b287432b5e4f94b2fd9ed91d07399d55793d2db647a39f41720"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 2236921,
+      "file": "installed-editor-original.webm",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [
+        2,
+        12.54,
+        24.08
+      ],
+      "sha256": "2c3a0af093c3df9b03f958afa58b81fa056bc708eaa94690b0f5e3334adfad53"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 210038,
+      "file": "verified-5000.png",
+      "group": "candidate-performance",
+      "reviewedSampleSeconds": [],
+      "sha256": "e5f0033a0b0a58540445f7615dccf45e600afca34d8d68ef47040fb40ba5ea06"
+    }
+  ],
+  "review": {
+    "bytes": 6070,
+    "role": "root-hash-bound-still-sample-review",
+    "sha256": "60bce98e021645bcbfdcb9a75e89b1beedbc1a462f02952c4fc0b4de3f330a3f"
+  },
+  "reviewScope": {
+    "controlledPublicFixtureContext": true,
+    "fullVideoManuallyReviewed": false,
+    "stillImagesReviewed": true,
+    "wholeMovieOrOcrPrivacyCertificationClaimed": false
+  }
+}

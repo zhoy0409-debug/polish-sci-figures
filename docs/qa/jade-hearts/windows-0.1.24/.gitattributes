@@ -1,0 +1,4 @@
+# Preserve original evidence bytes across checkout platforms.
+*.json -text whitespace=cr-at-eol
+*.png -text
+*.webm -text
