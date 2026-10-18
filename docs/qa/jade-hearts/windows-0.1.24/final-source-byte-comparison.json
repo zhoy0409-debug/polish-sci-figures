@@ -1,0 +1,32 @@
+{
+  "schema": "final-scientific-source-byte-comparison/1",
+  "passed": true,
+  "queriedAtUTC": "2026-10-18T07:18:37.930423+00:00",
+  "baselineActual23FreezeSha256": "cddcc96746a8733fa2866cfee39ca725af365cf5960c28dfc512e499b727128a",
+  "finalActual24FreezeSha256": "0a16412184c287a3f24bf8cd34b520155619b665ac51c5bd69653c4a2c868611",
+  "allCurrentFilesMatchFinal24Freeze": true,
+  "uiFileCount": 80,
+  "backendModuleCount": 27,
+  "changedUiFiles": [
+    {
+      "file": "update-scene.css",
+      "beforeSha256": "0d9306b2b4ae4894dbab52c295f9d3056218a0edf18a0dbe9305a6274fc66f24",
+      "finalSha256": "4dbc87403696e5fb2d0eb5661e7ba323b764b5d23fb2814ef81dc61ae173ff69"
+    },
+    {
+      "file": "update-scene.js",
+      "beforeSha256": "19000de5cec4f52fdaa04bc2a13bff4eeb897d12dfc68cbf949f9d539bcdcede",
+      "finalSha256": "10f8592e69154717c4f9151397f7b3df4b94e4270908dfe055ce77673e6b1351"
+    }
+  ],
+  "changedBackendModules": [
+    "studio_updates.py"
+  ],
+  "updaterOnlyTwoVersionConstantsChanged": true,
+  "otherUiFilesByteExact": 78,
+  "otherBackendModulesByteExact": 26,
+  "priorStaticSnapshotSha256": "4daadff76b563d998e17f0ddbaef14912b6fbbbc0e0ba8f54126f430fa92a719",
+  "priorStaticSnapshotScope": "Earlier snapshot before the final narrow-layout CSS change; not used as final CSS identity.",
+  "sourceRegressionSummarySha256": "69e37cbf353a377ccade4ef711639a5205c9fd10bf4ade55363e2f71a1279c77",
+  "scope": "Read-only final80/27 byte rehash against approved24-r2 and immutable23 freezes; no Git/main fetch, native/build/network action or rerun of source tests."
+}

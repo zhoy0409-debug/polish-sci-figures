@@ -1,0 +1,47 @@
+{
+  "actualInAppInstallCapability": false,
+  "beforeCounts": {
+    "checkpoints": 0,
+    "dataDraftCount": 0,
+    "historyIndex": 0,
+    "historyStates": 1,
+    "observations": 150,
+    "svgSources": 12
+  },
+  "canonicalSvgAndRgbaExactAcrossThemes": true,
+  "completeFiveCoreContainersPreserved": true,
+  "f2AndUndoPassed": true,
+  "finalCounts": {
+    "checkpoints": 0,
+    "dataDraftCount": 0,
+    "historyIndex": 0,
+    "historyStates": 2,
+    "observations": 150,
+    "svgSources": 12
+  },
+  "heartUi": {
+    "decorative": true,
+    "hearts": 10,
+    "levels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mode": "inactive"
+  },
+  "officialInAppFlow": false,
+  "passed": true,
+  "rawEvidence": {
+    "bytes": 7728,
+    "role": "actual-installed-editor",
+    "sha256": "e26dfffe47480d9e171d2c978acfe7f4ffb061514c6bbec6b2c7bc725c63cf89"
+  },
+  "scope": "Actual local Windows service with owned headless Chrome; custom data-dir means in-app install capability false. Not a live download."
+}

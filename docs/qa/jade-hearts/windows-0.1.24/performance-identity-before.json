@@ -1,0 +1,13 @@
+{
+  "initialRegistryViewsAbsent": 4,
+  "qaProcessExact": true,
+  "version": "0.1.24",
+  "registeredViewCount": 2,
+  "protectedProcessCount": 0,
+  "powerShellVersion": "7.6.5",
+  "scope": "Read-only CIM, file hashes and exact AppId registry queries. No process, registry or installed file is modified.",
+  "status": "PASS_READ_ONLY_IDENTITY",
+  "installedExecutableMatchesPackage": true,
+  "protectedIdentitiesUnchanged": true,
+  "currentRegistrationOwned": true
+}
