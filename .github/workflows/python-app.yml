@@ -223,7 +223,7 @@ jobs:
       - name: Install Python build dependencies
         run: python -m pip install -r requirements.txt
       - name: Install pinned public runtime and DOM test dependencies
-        run: npm install --prefix .cache/mobile-local-spike --cache .cache/mobile-local-spike/npm-cache --ignore-scripts --no-audit --no-fund --save-exact pyodide@0.29.3 jsdom@26.1.0
+        run: npm install --prefix .cache/mobile-local-spike --cache .cache/mobile-local-spike/npm-cache --ignore-scripts --no-audit --no-fund --save-exact pyodide@0.29.3 jsdom@26.1.0 playwright@1.62.1
       - name: Cache official scientific wheels
         uses: actions/cache@v4
         with:
@@ -356,6 +356,14 @@ jobs:
           node scripts/test_studio_theme_controller.cjs
           node scripts/test_studio_theme_tokens.cjs --static
           node scripts/test_studio_compact_whitespace.cjs --dom
+      - name: Prepare pinned Chromium for controlled update UI checks
+        run: node .cache/mobile-local-spike/node_modules/playwright/cli.js install --with-deps chromium
+      - name: Update scene real browser rendering and lifecycle (controlled states)
+        env:
+          NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
+          STUDIO_SCENE_BROWSER: chromium
+          STUDIO_SCENE_PROOF: .cache/update-scene-ci
+        run: node scripts/test_studio_update_scene_browser.cjs
       - name: Retain synthetic calculation evidence and public-file checksums
         if: always()
         uses: actions/upload-artifact@v4
@@ -366,3 +374,4 @@ jobs:
           path: |
             .cache/local-web-qa/wasm-dispatcher.json
             .cache/local-web-preview/SHA256SUMS.txt
+            .cache/update-scene-ci/

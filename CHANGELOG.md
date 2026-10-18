@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.4.24 · Figure Studio 0.1.24 — in development
+
+Status on 2026-10-18: not published; source, browser, Windows installation and real-update acceptance are pending. See the [0.1.24 change scope](docs/release-notes-v1.4.24.md).
+
+- Keep the existing simple cat and dog; prepare a transparent outline heart with a jade water level driven by actual received/total download bytes.
+- Retain animation preference, reduced motion, separate verification/install states and the saved-project confirmation gate. No timer-generated percentage or completed-install claim is planned.
+- Update candidate version metadata and current guides while retaining the published 0.1.23 assets and acceptance history.
+
 ## v1.4.23 · Figure Studio 0.1.23
 
 Actual build, source and installation checks are recorded in the [release verification scope](docs/release-notes-v1.4.23.md).

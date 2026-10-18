@@ -93,6 +93,37 @@
 @keyframes fs-update-lens{0%,100%{translate:0 0}50%{translate:1px -1px}}
 @keyframes fs-update-carry{0%,100%{transform:translateX(-2px) rotate(-2deg)}50%{transform:translateX(2px) rotate(2deg)}}
 @keyframes fs-update-greet{0%,100%{transform:translateY(0)}45%{transform:translateY(-7px) rotate(-3deg)}}
+
+/* Quiet glass rims and translucent Mineral Jade liquid follow confirmed bytes. */
+.studio-update-dialog .mascot-track{display:none}
+.studio-update-dialog .update-heart-row{position:absolute;left:50%;bottom:7px;display:flex;align-items:center;gap:7px;translate:-50% 0;pointer-events:none}
+.studio-update-dialog .update-heart{display:block;flex:none;width:22px;height:22px;overflow:visible;transform-origin:50% 56%}
+.studio-update-dialog .update-heart-outline{stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
+.studio-update-dialog .update-heart-inner-rim{stroke-linejoin:round}
+/* Transparent vessel: the empty centre stays open; restrained rim highlights. */
+.studio-update-dialog .update-heart-glass{opacity:.13}
+.studio-update-dialog .update-heart-depth{opacity:.34}
+.studio-update-dialog .update-heart-sheen{opacity:.24}
+.studio-update-dialog .update-heart-highlight{opacity:.4}
+.studio-update-dialog .update-heart-inner-rim{opacity:.56}
+.studio-update-dialog .update-heart[data-fill="empty"] .update-heart-glass{opacity:0}
+.studio-update-dialog .update-heart[data-fill="empty"] .update-heart-depth{opacity:0}
+.studio-update-dialog .update-heart[data-fill="empty"] .update-heart-sheen{opacity:0}
+.studio-update-dialog .update-heart[data-fill="empty"] .update-heart-outline{stroke:#8aa79c;stroke-opacity:.9}
+.studio-update-dialog .update-heart[data-fill="empty"] .update-heart-highlight{opacity:.19}
+.studio-update-dialog .update-heart[data-fill="empty"] .update-heart-ground{opacity:.45}
+.studio-update-dialog .update-heart-reflection{opacity:.2}
+.studio-update-dialog .update-heart-liquid{transform:translateY(var(--heart-offset,24px));transition:transform .56s cubic-bezier(.2,.8,.2,1)}
+.studio-update-dialog .update-heart[data-fill="empty"] .update-heart-liquid{opacity:0}
+.studio-update-dialog .update-heart:not([data-fill="partial"]) .update-heart-waterline{visibility:hidden}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-heart-progress="known"] .update-heart[data-fill="partial"] .update-heart-waterline{animation:fs-update-heart-water 3.4s ease-in-out infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-heart-progress="known"] .update-heart[data-fill="partial"] .update-heart-reflection{animation:fs-update-heart-reflection 4.2s ease-in-out infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-heart-progress="unknown"][data-indeterminate="true"][data-motion="working"] .update-heart{animation:fs-update-heartbeat 3.2s ease-in-out infinite;animation-delay:calc(var(--heart-index)*-.08s)}
+@keyframes fs-update-heart-water{0%,100%{transform:translateX(-2px)}50%{transform:translateX(2px)}}
+@keyframes fs-update-heart-reflection{0%,100%{transform:translateX(-.8px);opacity:.16}50%{transform:translateX(1.2px);opacity:.27}}
+@keyframes fs-update-heartbeat{0%,48%,74%,100%{transform:scale(1);opacity:.78}55%,65%{transform:scale(1.035);opacity:1}60%{transform:scale(1.008);opacity:.92}}
+@media(max-width:420px){.studio-update-dialog .update-heart-row{gap:5px;bottom:7px}.studio-update-dialog .update-heart{width:18px;height:18px}}
 @media(prefers-reduced-motion:reduce){.studio-update-dialog .update-progress-scene *{animation:none!important;transition:none!important}}
 @media(pointer:coarse){.studio-update-button,.studio-update-dialog button,.studio-update-dialog a.update-download{min-height:44px}.studio-update-dialog .update-close{flex-basis:44px;width:44px;min-height:44px}.studio-update-dialog .update-recheck{flex-basis:44px;width:44px}}
 @media(max-width:420px){.studio-update-dialog{padding:18px}.studio-update-dialog .update-summary{font-size:21px}.studio-update-dialog .update-versions{gap:26px}.studio-update-dialog .update-version{min-width:70px}.studio-update-dialog .update-progress-scene{aspect-ratio:500/180}.studio-update-dialog .update-companion{height:calc(100% - 22px);margin-top:22px}.studio-update-dialog .update-progress-percent{top:7px;right:12px;font-size:14px}.studio-update-dialog .update-steps{gap:6px;font-size:10px}.studio-update-dialog a.update-download,.studio-update-dialog #studioInstallUpdate{min-width:114px}}
+@media(max-width:360px){.studio-update-dialog .update-progress-scene{aspect-ratio:500/210}.studio-update-dialog .update-heart-row{gap:4px}.studio-update-dialog .update-heart{width:16px;height:16px}}

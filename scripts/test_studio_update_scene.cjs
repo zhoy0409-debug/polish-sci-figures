@@ -14,6 +14,31 @@ test('0, 13, 52, 99 and 100 percent are byte ratios; unknown total cannot manufa
   for(const received of [0,13,52,99,100]){const value=Scene.presentation({installation:{status:'downloading',received,total:100}});assert.equal(value.ratio,received/100);assert.equal(value.state,received===100?'verifying':'downloading');assert.equal(value.ready,false);}
   const unknown=Scene.presentation({installation:{status:'downloading',received:52,total:0}});assert.equal(unknown.determinate,false);assert.equal(unknown.indeterminate,true);assert.equal(unknown.ratio,0);
 });
+test('1001 confirmed byte ratios conserve ten-heart progress with at most one partial vessel',()=>{
+  for(let received=0;received<=1000;received++){
+    const view=Scene.presentation({installation:{status:'downloading',received,total:1000}}),hearts=Scene.heartProgress(view);
+    assert.equal(hearts.mode,'known');assert.equal(hearts.levels.length,10);
+    assert.ok(hearts.levels.every(level=>Number.isFinite(level)&&level>=0&&level<=1));
+    assert.ok(Math.abs(hearts.levels.reduce((sum,level)=>sum+level,0)-received/100)<1e-10,'confirmed bytes determine total vessel heights');
+    assert.ok(hearts.levels.every((level,index)=>index===0||hearts.levels[index-1]>=level),'fill order stays left to right');
+    assert.ok(hearts.levels.filter(level=>level>0&&level<1).length<=1);
+    assert.equal(hearts.levels.filter(level=>level===1).length,Math.floor(received/100));
+    assert.equal(view.ready,false,'even all downloaded bytes cannot grant installation permission');
+  }
+  assert.deepEqual(Scene.heartProgress(Scene.presentation({installation:{status:'downloading',received:370,total:1000}})).levels.map(value=>Math.round(value*10)),[10,10,10,7,0,0,0,0,0,0]);
+  assert.deepEqual(Scene.heartProgress(Scene.presentation({installation:{status:'ready'}})).levels,Array(10).fill(1));
+});
+test('unknown, disconnected, invalid and unrelated stages never invent filled hearts',()=>{
+  for(const status of ['checking','downloading']){
+    const view=Scene.presentation({installation:{status,received:520,total:0}}),hearts=Scene.heartProgress(view);
+    assert.equal(hearts.mode,'unknown');assert.deepEqual(hearts.levels,Array(10).fill(0));
+  }
+  for(const status of ['idle','preparing','installing','error','cancelled','unsupported'])assert.deepEqual(Scene.heartProgress(Scene.presentation({installation:{status,received:100,total:100}})),{mode:'inactive',levels:Array(10).fill(0)});
+  const paused=Scene.presentation({installation:{status:'downloading',received:52,total:100},confirmedInstallation:{status:'downloading',received:52,total:100},connectionLost:true});
+  assert.equal(paused.ratio,.52);assert.deepEqual(Scene.heartProgress(paused),{mode:'inactive',levels:Array(10).fill(0)});
+  for(const ratio of [NaN,Infinity,-Infinity,-.01,1.01,'0.5',null,undefined])assert.deepEqual(Scene.heartProgress({state:'downloading',determinate:true,ratio}),{mode:'inactive',levels:Array(10).fill(0)});
+  assert.deepEqual(Scene.heartProgress({state:'downloading',determinate:true,ratio:.5,invalid:true}),{mode:'inactive',levels:Array(10).fill(0)});
+});
 test('each explicit download has its own monotonic epoch; regressions do not become fictional max values',()=>{
   let sample=null;for(const received of [0,13,52,99,100])sample=Scene.acceptProgress(sample,{status:'downloading',received,total:100});
   assert.throws(()=>Scene.acceptProgress(sample,{status:'downloading',received:52,total:100}),/backwards/);
@@ -52,10 +77,29 @@ test('the original small ink cat geometry is preserved and its dog companion sta
   assert.equal(dog.querySelectorAll('.mascot-dog-ear').length,2);assert.ok(dog.querySelector('.mascot-dog-muzzle'));
   assert.equal(dog.querySelectorAll('.mascot-dog-eyes ellipse,ellipse.mascot-dog-eyes').length,2);
   assert.ok(dog.querySelectorAll('path').length>=4&&dog.querySelectorAll('path').length<=14,'a compact local vector dog, without the old layered fur anatomy');
-  assert.equal(container.querySelectorAll('image,script,foreignObject,animate,linearGradient,radialGradient,filter,.mascot-paw-work,.mascot-paw-greet').length,0);
-  assert.ok(container.querySelectorAll('path').length<=35,'the whole composition remains a small flat illustration');
+  const artwork=container.querySelector('.update-companion');
+  assert.equal(artwork.querySelectorAll('image,script,foreignObject,animate,linearGradient,radialGradient,filter,.mascot-paw-work,.mascot-paw-greet').length,0);
+  assert.ok(artwork.querySelectorAll('path').length<=35,'the original cat/dog composition remains a small flat illustration');
   for(const node of container.querySelectorAll('[id]'))assert.match(node.id,/^fs-update-/);
   assert.equal(container.getAttribute('aria-hidden'),'true');ui.destroy();f.dom.window.close();
+});
+test('repeated and concurrent scenes keep local SVG definitions unique and remove them on destruction',()=>{
+  const f=fixture(),seen=new Set(),instances=[];
+  try{
+    for(let index=0;index<4;index++){
+      const container=f.doc.createElement('div');f.doc.body.append(container);const ui=Scene.create({document:f.doc,container});instances.push({container,ui});
+      ui.refresh(Scene.presentation({installation:{status:'downloading',received:52,total:100}}));
+      const ids=[...container.querySelectorAll('.update-heart-row [id]')];assert.ok(ids.length>0);
+      for(const node of ids){assert.ok(!seen.has(node.id));seen.add(node.id);assert.equal(f.doc.getElementById(node.id),node);}
+      assert.equal(container.querySelectorAll('.update-heart').length,10);assert.equal(container.querySelector('.update-heart-row').getAttribute('aria-hidden'),'true');
+      for(const node of container.querySelectorAll('.update-heart [fill],.update-heart [stroke],.update-heart [clip-path]'))for(const name of ['fill','stroke','clip-path']){
+        const value=node.getAttribute(name)||'';if(!value.startsWith('url('))continue;
+        assert.match(value,/^url\(#[A-Za-z0-9-]+\)$/);assert.ok(node.closest('svg').querySelector('[id="'+value.slice(5,-1)+'"]'),'every definition belongs to its own heart SVG');
+      }
+      if(index===1){const first=instances[0];first.ui.destroy();assert.equal(first.container.children.length,0);first.ui.refresh(Scene.presentation({installation:{status:'ready'}}));assert.equal(first.container.children.length,0,'destroyed scenes cannot recreate hearts');}
+    }
+    const ids=[...f.doc.querySelectorAll('.update-heart-row [id]')].map(node=>node.id);assert.equal(new Set(ids).size,ids.length);
+  }finally{for(const {ui,container} of instances){ui.destroy();container.remove();}assert.equal(f.doc.querySelectorAll('.update-heart-row').length,0);f.dom.window.close();}
 });
 test('hidden, closed, reduced motion and explicit motion off all pause; no timer drives the scene',()=>{
   assert.doesNotMatch(fs.readFileSync(path.join(base,'update-scene.js'),'utf8'),/\b(?:setTimeout|setInterval)\s*\(/,'decorative feedback uses CSS and lifecycle events, never a synthetic progress timer');
