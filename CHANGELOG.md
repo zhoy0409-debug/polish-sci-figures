@@ -1,10 +1,12 @@
 # Changelog
 
-## Unreleased
+## v1.4.23 · Figure Studio 0.1.23
+
+Actual build, source and installation checks are recorded in the [release verification scope](docs/release-notes-v1.4.23.md).
 
 - Restore the original small ink cat and add a matching monochrome dog, with compact byte-linked movement, staggered hops and subtle hover/press feedback. See the [scene design and source/browser verification scope](docs/update-scene-design.md).
-- Retain the existing real updater states, verification and saved-project installation gate, animation preference and reduced-motion handling. This artwork revision has not rebuilt or replaced the published Windows installers.
-- Explain the one-time Windows Setup installation and later in-editor download, verification and confirmed installation. Direct portable or unregistered copies to the official installed workflow without bypassing safety checks or claiming new Windows acceptance.
+- Retain the existing real updater states, verification and saved-project installation gate, animation preference and reduced-motion handling.
+- Explain the one-time Windows Setup installation and later in-editor download, verification and confirmed installation. Offer portable or unregistered Windows copies an explicit official Setup link, including at the same version, while retaining native capability checks.
 
 ## v1.4.22 · Figure Studio 0.1.22
 

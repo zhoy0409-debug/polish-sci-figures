@@ -11,7 +11,7 @@ import unittest
 
 from verify_studio_windows_package_source import (
     BACKEND_PREFIX, NOT_PACKAGED_BACKEND_TESTS, backend_package_boundary,
-    source_stage_identity, approved_ui_freeze,
+    source_stage_identity, approved_ui_freeze, application_build_identity,
 )
 
 
@@ -98,7 +98,7 @@ class ApprovedUiFreezeTests(unittest.TestCase):
         return value, raw, hashlib.sha256(raw).hexdigest()
 
     def test_old_and_expanded_ui_counts_need_their_own_exact_approval(self):
-        for count in (78, 79, 82):
+        for count in (78, 79, 80, 82):
             with self.subTest(count=count):
                 value, raw, sha = self.manifest(count)
                 self.assertEqual(approved_ui_freeze(raw, sha, count), value)
@@ -129,6 +129,26 @@ class ApprovedUiFreezeTests(unittest.TestCase):
             raw = json.dumps({'assets': keys}).encode()
             with self.subTest(keys=list(keys)), self.assertRaises(ValueError):
                 approved_ui_freeze(raw, hashlib.sha256(raw).hexdigest(), len(keys))
+
+
+class ApplicationBuildIdentityTests(unittest.TestCase):
+    def test_current_version_is_required_without_retaining_an_old_release_constant(self):
+        application_build_identity({'version': '0.1.23', 'platform': 'windows-x86_64'}, '0.1.23')
+        with self.assertRaisesRegex(ValueError, 'build identity'):
+            application_build_identity({'version': '0.1.22', 'platform': 'windows-x86_64'}, '0.1.23')
+        # The version input follows the actual build module; a future bump must
+        # still reject the previous app, rather than disable the identity check.
+        with self.assertRaisesRegex(ValueError, 'build identity'):
+            application_build_identity({'version': '0.1.23', 'platform': 'windows-x86_64'}, '0.1.24')
+
+    def test_wrong_platform_missing_identity_or_invalid_expected_version_is_rejected(self):
+        for build in ({'version': '0.1.23', 'platform': 'macos-arm64'},
+                      {'version': '0.1.23'}, {}, None):
+            with self.subTest(build=build), self.assertRaisesRegex(ValueError, 'build identity'):
+                application_build_identity(build, '0.1.23')
+        for version in (None, '', 'v0.1.23', '0.1.23/../private'):
+            with self.subTest(version=version), self.assertRaisesRegex(ValueError, 'current Windows build version'):
+                application_build_identity({'version': '0.1.23', 'platform': 'windows-x86_64'}, version)
 
 
 if __name__ == '__main__':

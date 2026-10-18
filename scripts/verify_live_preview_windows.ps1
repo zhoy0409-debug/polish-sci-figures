@@ -1,7 +1,7 @@
 #Requires -Version 7.5
 param(
     [Parameter(Mandatory=$true)][ValidateSet('Install','Start','Reinstall','Uninstall')][string]$Phase,
-    [string]$Version='0.1.22',
+    [string]$Version='0.1.23',
     [string]$QaRoot='',
     [string]$PackageRoot='',
     [string]$ExpectedSetupSha256='',
