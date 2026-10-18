@@ -1,6 +1,6 @@
 # polish-sci-figures · Product guide
 
-Figure Studio 0.1.22 supports reversible editing directly on the canvas. [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe) · [Live canvas editing](docs/live-preview-editing.en.md) · [Validation scope](docs/live-preview-validation.md).
+Figure Studio 0.1.23 restores the original small ink cat with a matching dog. Install Setup once, then use Updates in the editor for supported upgrades. [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.23/polish-sci-figures-Studio-0.1.23-Setup-x64.exe) · [Release verification scope](docs/release-notes-v1.4.23.md) · [Getting started](desktop/QUICKSTART.en.md).
 
 [Post-release update verification, 2026-10-18](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md): official 0.1.20 and 0.1.21 → 0.1.22 updates, automatic project recovery and normal cleanup passed.
 
@@ -16,9 +16,9 @@ polish-sci-figures brings scientific plotting, image standardization, and figure
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Suite v1.4.22 · Figure Studio 0.1.22 (Windows desktop edition)**
+**Suite v1.4.23 · Figure Studio 0.1.23 (Windows desktop edition)**
 
-[Official v1.4.22 downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-notes-v1.4.22.md)
+[Official v1.4.23 downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.23) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-notes-v1.4.23.md)
 
 ## Choose your workflow
 
@@ -44,12 +44,14 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 
 ## Install and start
 
-1. Download [polish-sci-figures-Studio-0.1.22-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.22/polish-sci-figures-Studio-0.1.22-Setup-x64.exe) from the [official v1.4.22 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22).
-2. Install it and open the **polish-sci-figures Studio** shortcut. The launcher opens the editor in your default browser.
+1. **Choose the Setup installer for first use:** download [polish-sci-figures-Studio-0.1.23-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.23/polish-sci-figures-Studio-0.1.23-Setup-x64.exe) from the [official v1.4.23 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.23) and run it. No extraction is needed.
+2. Open the installed **polish-sci-figures Studio** shortcut from the desktop or Start menu. The launcher opens the editor in your default browser.
 3. Choose **Start from a template**, inspect the preview, and replace the example data with your own. You can also import an existing image, SVG, or selected PDF page. Supported native text and vector paths remain editable; PDF effects may require a local image layer or a whole-page appearance image. See the [conversion limits](docs/release-v1.4.3.en.md#what-changed), and review substituted fonts before export.
 4. Export SVG / PNG / TIFF and use **Save** to download an editable JSON backup.
 
-The portable edition is `polish-sci-figures-Studio-0.1.22-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. Use Figure Discovery to import an XLSX workbook locally (first worksheet), or export a sheet as CSV/TSV for the data editor.
+**Stay in the editor for later upgrades: Updates → Download and prepare update → save your project and tick the confirmation → Install and reopen.** The supported installer edition needs no repeated manual package downloads, extraction or folder replacement.
+
+The portable edition is `polish-sci-figures-Studio-0.1.23-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. Use Figure Discovery to import an XLSX workbook locally (first worksheet), or export a sheet as CSV/TSV for the data editor.
 
 Closing the browser does not stop the local service; close the launcher when you finish. Autosaves live in the browser's local storage. Clearing site data, switching browsers, or using a private window can lose those records. **Download JSON backups of important projects.** See the [English quick start](desktop/QUICKSTART.en.md).
 
@@ -61,7 +63,9 @@ Choose **Appearance → Interface theme** for Carbon Atelier or Pearl Pro, then 
 
 Select a raster image, choose **Magnify region**, and draw a box over the detail you want to show. Move or resize the resulting inset, choose 2× / 3× / 4×, and adjust its border and connecting lines. To add an accurate scale bar, trace a known scale on the original image and enter its real length in µm. Automatic scale bars use familiar 1 / 2 / 5 values with a line length calculated from that calibration. SVG keeps the embedded original pixels and editable inset elements; TIFF export uses the chosen output resolution.
 
-The header **Updates** entry checks official GitHub versions without sending images, tables or projects. In the Windows installer edition, choose **Download and prepare update**, save a project backup, then confirm **Install and reopen**. The installer uses the current location and reopens the application after a successful update. Installation needs your confirmation; offline work remains available. **Users on 0.1.8 or earlier must install 0.1.22 manually once.** Installed 0.1.9 supports in-app updates; if preparation fails on a long file path, close the app and run the current installer manually. Version 0.1.22 retains the long-path fix introduced in 0.1.10. Portable Windows and Mac/Android development previews retain manual installation. [Release notes and platform scope](docs/release-notes-v1.4.22.md).
+The header **Updates** entry checks official GitHub versions without sending images, tables or projects. In the Windows installer edition, choose **Download and prepare update**, wait for integrity verification, save a project backup and tick the confirmation, then choose **Install and reopen**. The installer uses the supported current location and reopens the application after a successful update; you do not need to extract or replace files. Installation needs your confirmation; offline work remains available. **Users on 0.1.8 or earlier must install 0.1.23 manually once.** Installed 0.1.9 supports in-app updates; if preparation fails on a long file path, close the app and run the current installer manually. Version 0.1.23 retains the long-path fix introduced in 0.1.10. [Release notes and platform scope](docs/release-notes-v1.4.23.md).
+
+Portable, source-run and unrecognized custom copies are not forcibly overwritten. For future in-editor updates, save a project JSON, quit the old copy, run the official Setup once using its default location, then launch the installed desktop or Start-menu shortcut and open your backup. If it still reports an unsupported setup, follow the specific message; security and installation-location checks remain in force. Mac/Android development previews retain their platform-specific manual installation steps.
 
 **Import, then edit directly.** Drag saved project JSON, PDF, SVG or image files from a folder into the editor, including the canvas, header or sidebar. A highlighted cell shows the next image destination; occupied cells retain their current image. One project file opens the whole workspace after confirmation, and accompanying figures are then added to it. Multiple figures run through a queue with a page preview for each PDF. CSV/TSV drops enter the data workflow; Excel workbooks must first be exported as CSV/TSV. Double-click native text to edit it and click outside to finish; select text to enable its formatting controls. Use **Ungroup** for groups created in the editor. Imported SVG groups retain their transforms and clipping while their supported text and shapes remain directly selectable. Bitmap content and outlined letters cannot be edited as native text.
 
@@ -179,7 +183,7 @@ The three skills retain their existing roles. Figure Studio is the visual entry 
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | Microscopy / pathology image standardization, consistent display settings, authoritatively calibrated scale bars, and processing audits |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | Refinement and assembly, Figure Studio, text and geometry checks, and quality checks at final dimensions |
 
-Download `polish-sci-figures-v1.4.22-Source.zip` from the [official v1.4.22 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22), extract it and work inside its `polish-sci-figures-source` directory. It contains all three skills. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
+Download `polish-sci-figures-v1.4.23-Source.zip` from the [official v1.4.23 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.23), extract it and work inside its `polish-sci-figures-source` directory. It contains all three skills. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -223,7 +227,7 @@ Each candidate directory becomes one panel. The generated HTML supports offline 
 
 ## Verification scope and current limits
 
-Existing validation records cover input contracts, actual redraws, data replacement, SVG text and dimensions, statistical bindings, undo, and the local service. Recorded browser scenarios include object editing, heatmap values and palettes, statistical recomputation, facet splitting, axis settings, character formatting, and export. See the [validation record](docs/figure-studio-validation.md) and the [build guide](desktop/BUILD.md). For 1.4.22 themes and update presentation, consult the [current release evidence and recorded scope](docs/release-notes-v1.4.22.md#use-and-compatibility).
+Existing validation records cover input contracts, actual redraws, data replacement, SVG text and dimensions, statistical bindings, undo, and the local service. Recorded browser scenarios include object editing, heatmap values and palettes, statistical recomputation, facet splitting, axis settings, character formatting, and export. See the [validation record](docs/figure-studio-validation.md) and the [build guide](desktop/BUILD.md). For historical 1.4.22 performance and input-method evidence, consult its [release notes and recorded scope](docs/release-notes-v1.4.22.md).
 
 These records do not mean every template, dataset, label length, imported SVG, or browser has received visual approval. Automated bounds checks do not replace inspection of readability, legend meaning, overlap, and journal requirements at the intended output size. A common exact plotting frame applies only to explicitly supported templates. Other assets keep their existing canvas or geometry to avoid unequal stretching.
 

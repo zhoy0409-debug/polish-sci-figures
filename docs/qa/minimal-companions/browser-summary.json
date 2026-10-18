@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-18",
+  "kind": "minimal_companions_controlled_browser_summary",
+  "passed": true,
+  "scope": {
+    "browser": "Chrome",
+    "browserVersion": "155.0.8059.82",
+    "headless": true,
+    "controlledTransport": true,
+    "realDownload": false,
+    "realInstaller": false,
+    "newWindowsInstallerTested": false,
+    "newReleasePublishedByTheseChecks": false
+  },
+  "results": {
+    "controlledStateSnapshots": 22,
+    "actualPointerCases": 6,
+    "componentAssertionsPassed": 8,
+    "remotePageRequests": 0,
+    "browserErrors": [],
+    "originalSmallCatGeometryPreserved": true,
+    "matchingFlatDogHasTwoDroopingEarsAndWhiteMuzzle": true,
+    "noGradientExternalImageOrDetailedPawPlaceholders": true,
+    "pointerFeedbackDoesNotChangeUpdaterStateBytesOrCalls": true,
+    "motionOffAndReducedMotionSuppressPointerFeedback": true,
+    "controlledHiddenEventStopsAnimations": true,
+    "actualIntersectionObserverOutOfViewStopsAnimations": true,
+    "closingPausesAnimations": true,
+    "byteRatioAndReadySavedConfirmationGatePreserved": true
+  },
+  "states": [
+    {
+      "name": "rest-main",
+      "state": "idle",
+      "animation": "on",
+      "caption": ""
+    },
+    {
+      "name": "pointer-pressed-cat",
+      "state": "idle",
+      "animation": "on",
+      "caption": ""
+    },
+    {
+      "name": "pointer-pressed-dog",
+      "state": "idle",
+      "animation": "on",
+      "caption": ""
+    },
+    {
+      "name": "pointer-manual-off-cat",
+      "state": "idle",
+      "animation": "off",
+      "caption": ""
+    },
+    {
+      "name": "pointer-manual-off-dog",
+      "state": "idle",
+      "animation": "off",
+      "caption": ""
+    },
+    {
+      "name": "pointer-reduced-motion-cat",
+      "state": "idle",
+      "animation": "off",
+      "caption": ""
+    },
+    {
+      "name": "pointer-reduced-motion-dog",
+      "state": "idle",
+      "animation": "off",
+      "caption": ""
+    },
+    {
+      "name": "rest-pearl",
+      "state": "idle",
+      "animation": "on",
+      "caption": ""
+    },
+    {
+      "name": "download-0",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.0 / 1.0 MB"
+    },
+    {
+      "name": "download-13",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.13 / 1.0 MB"
+    },
+    {
+      "name": "download-52",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.52 / 1.0 MB"
+    },
+    {
+      "name": "download-99",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.99 / 1.0 MB"
+    },
+    {
+      "name": "download-100",
+      "state": "verifying",
+      "animation": "on",
+      "caption": "Download complete. Verifying the update…"
+    },
+    {
+      "name": "verified-ready",
+      "state": "ready",
+      "animation": "on",
+      "caption": "Update verified. Ready to install."
+    },
+    {
+      "name": "backup-preparing",
+      "state": "preparing",
+      "animation": "on",
+      "caption": "Preserving the previous version…"
+    },
+    {
+      "name": "connection-lost",
+      "state": "paused",
+      "animation": "on",
+      "caption": "Waiting for the updater. Reconnecting… Last confirmed stage: Preparing to install."
+    },
+    {
+      "name": "backend-error",
+      "state": "error",
+      "animation": "on",
+      "caption": ""
+    },
+    {
+      "name": "unknown-total",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.52 MB received"
+    },
+    {
+      "name": "manual-motion-off",
+      "state": "downloading",
+      "animation": "off",
+      "caption": "Downloading: 0.52 MB received"
+    },
+    {
+      "name": "reduced-motion-live-progress",
+      "state": "downloading",
+      "animation": "off",
+      "caption": "Downloading: 0.99 / 1.0 MB"
+    },
+    {
+      "name": "first-desktop-install",
+      "state": "current",
+      "animation": "on",
+      "caption": ""
+    },
+    {
+      "name": "in-editor-upgrade",
+      "state": "downloading",
+      "animation": "on",
+      "caption": "Downloading: 0.0 / 0.0 MB"
+    }
+  ],
+  "pointerCases": [
+    {
+      "case": "pressed",
+      "animal": "cat",
+      "feedbackEnabled": true,
+      "released": true,
+      "progressAndTransportUnchanged": true
+    },
+    {
+      "case": "pressed",
+      "animal": "dog",
+      "feedbackEnabled": true,
+      "released": true,
+      "progressAndTransportUnchanged": true
+    },
+    {
+      "case": "manual-off",
+      "animal": "cat",
+      "feedbackEnabled": false,
+      "released": true,
+      "progressAndTransportUnchanged": true
+    },
+    {
+      "case": "manual-off",
+      "animal": "dog",
+      "feedbackEnabled": false,
+      "released": true,
+      "progressAndTransportUnchanged": true
+    },
+    {
+      "case": "reduced-motion",
+      "animal": "cat",
+      "feedbackEnabled": false,
+      "released": true,
+      "progressAndTransportUnchanged": true
+    },
+    {
+      "case": "reduced-motion",
+      "animal": "dog",
+      "feedbackEnabled": false,
+      "released": true,
+      "progressAndTransportUnchanged": true
+    }
+  ],
+  "emulatedDprChecks": [
+    {
+      "emulatedScale": 1,
+      "geometry": {
+        "sceneWidth": 350,
+        "dialogLeft": 16,
+        "dialogRight": 404,
+        "dialogTop": 163.5,
+        "dialogBottom": 736.5,
+        "viewport": 420,
+        "viewportHeight": 900,
+        "dpr": 1
+      },
+      "bottomActionReachable": true
+    },
+    {
+      "emulatedScale": 1.25,
+      "geometry": {
+        "sceneWidth": 266,
+        "dialogLeft": 16,
+        "dialogRight": 320,
+        "dialogTop": 55.921875,
+        "dialogBottom": 664.078125,
+        "viewport": 336,
+        "viewportHeight": 720,
+        "dpr": 1.25
+      },
+      "bottomActionReachable": true
+    },
+    {
+      "emulatedScale": 1.5,
+      "geometry": {
+        "sceneWidth": 210,
+        "dialogLeft": 16,
+        "dialogRight": 264,
+        "dialogTop": 14,
+        "dialogBottom": 586,
+        "viewport": 280,
+        "viewportHeight": 600,
+        "dpr": 1.5
+      },
+      "bottomActionReachable": true
+    }
+  ],
+  "componentTiming": [
+    {
+      "animationEnabled": true,
+      "elapsedMs": 2500.000000005959,
+      "frames": 301,
+      "p50Ms": 8.30000000000291,
+      "p95Ms": 8.799999999999272,
+      "maxMs": 9.099999999998545,
+      "longTasks": [],
+      "cdpTaskDurationSeconds": 0.594888,
+      "cdpScriptDurationSeconds": 0.014003
+    },
+    {
+      "animationEnabled": false,
+      "elapsedMs": 2504.100000017883,
+      "frames": 302,
+      "p50Ms": 8.299999999999272,
+      "p95Ms": 8.400000000001455,
+      "maxMs": 8.900000000001455,
+      "longTasks": [],
+      "cdpTaskDurationSeconds": 0.07205499999999998,
+      "cdpScriptDurationSeconds": 0.008704
+    }
+  ],
+  "componentTimingScope": {
+    "measurement": "CDP Performance.getMetrics deltas over two 2.5-second windows, with character animation on and off",
+    "cpuMeaning": "Chrome main-thread task/script duration proxy; not operating-system CPU utilization",
+    "osCPUUtilizationMeasured": false,
+    "gpuUtilizationMeasured": false,
+    "instrumentation": "Both windows include the same requestAnimationFrame and long-task observer measurement overhead"
+  },
+  "singleDoubleRafVisibleOpportunityMs": 118.59999999403954,
+  "testedAssetBytes": {
+    "update-scene.js": 4847,
+    "update-scene.css": 14920,
+    "mascot-scene.svg": 3570
+  },
+  "testedAssetSha256": {
+    "update-scene.js": "19000de5cec4f52fdaa04bc2a13bff4eeb897d12dfc68cbf949f9d539bcdcede",
+    "update-check.js": "977df4939713cedc0d340b58958a9b2000c3c7de5c79cf411483300a894c1d5f",
+    "update-scene.css": "0d9306b2b4ae4894dbab52c295f9d3056218a0edf18a0dbe9305a6274fc66f24",
+    "mascot-scene.svg": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b",
+    "mascot-minimal-cat.svg": "abee4441d83d8e127526e8656363b0117e01a0bc3e99ec27882f8d4d43975d83",
+    "mascot-minimal-dog.svg": "3ac69072935713d1f2af3c5849052d731710eea38aead5d4f7b5b9976072d9ee"
+  },
+  "originalEvidence": [
+    {
+      "label": "Unmodified component browser r4 report",
+      "bytes": 13230,
+      "sha256": "48518ee7bab7ea0412dd2b20a34cb7fb59f946198b9f9fc9d76a6c3485651d47"
+    },
+    {
+      "label": "Captured final local component/protocol test summary",
+      "bytes": 1880,
+      "sha256": "409ca5be0d4ebbc16962509a468307391263ac12834818512bdf2bb515df764a"
+    },
+    {
+      "label": "Final component 8-of-8 stdout",
+      "bytes": 999,
+      "sha256": "26a1294641e645cc894865b928b22a89dcfda5c8080b657e60f52e823ce7d516"
+    },
+    {
+      "label": "Actual r4 screenshot visual review",
+      "bytes": 2863,
+      "sha256": "dda9635cc2465f9446ce6b2f7bfcd39cdcb7744c6008186dc2126bc3f31aae0a"
+    }
+  ],
+  "uneditedRecording": {
+    "bytes": 1180310,
+    "sha256": "4020888bb8dd09fadae9ee295481397f1be88c84aa1342b0241cbc3eb3d75263",
+    "retainedLocally": true,
+    "copiedIntoThisSummaryFolder": false,
+    "scope": "Unedited Playwright main-context recording of this controlled component browser run. Narrow screenshots use separate contexts and are not in this recording."
+  },
+  "visualReview": {
+    "currentActualScreenshotCount": 9,
+    "currentOriginalVideoViewed": false,
+    "fullVideoRealtimeViewingClaimed": false,
+    "firstInstallAndUpgradeScreenshotsActuallyInspected": true
+  },
+  "previews": [
+    {
+      "label": "carbon-preview.png",
+      "bytes": 6018,
+      "sha256": "6f071340481833e774f3ff1347a4a9c1e5f997925a4aba8bd79ee29a5dbba49b",
+      "dimensions": [
+        494,
+        129
+      ],
+      "copiedWithoutReencoding": true
+    },
+    {
+      "label": "pearl-preview.png",
+      "bytes": 5935,
+      "sha256": "ad81ee28c1b1ae68b1e08ea8d8f6beac8122a04c470bfe72508fbccc258a046c",
+      "dimensions": [
+        494,
+        129
+      ],
+      "copiedWithoutReencoding": true
+    },
+    {
+      "label": "first-desktop-install.png",
+      "bytes": 52876,
+      "sha256": "3c008f378079f830f0fd78e68783602eccfc1529103c3f0a6242e07885c47aa2",
+      "dimensions": [
+        960,
+        900
+      ],
+      "copiedWithoutReencoding": true
+    },
+    {
+      "label": "in-editor-upgrade.png",
+      "bytes": 48091,
+      "sha256": "d355700f9d7d5d1eb724c3e180747bbdfcce84eca353f3b60a8633ac03b3850f",
+      "dimensions": [
+        960,
+        900
+      ],
+      "copiedWithoutReencoding": true
+    }
+  ],
+  "retainedEarlierAttempt": {
+    "passed": false,
+    "originalReport": {
+      "label": "Initial browser attempt report",
+      "bytes": 1507,
+      "sha256": "feeae3a55b79f2d3104a5b8a618d9e4ab04751f8f379f9faadc7c6e8f74deafa"
+    },
+    "reason": "The first test pointed at the middle of the stage, hit the cat only, and incorrectly expected both individual hover targets to respond. The test was corrected to hit and press each animal separately. The failed report and original recording were retained; runtime code was not changed to satisfy that mistaken assertion."
+  },
+  "limitations": [
+    "State responses are controlled component fixtures, not an actual installer run.",
+    "125% and 150% use an effective CSS viewport plus emulated device pixel ratio, not Windows system display scaling.",
+    "Hidden-document handling is exercised with an explicitly controlled visibilityState event; no user browser or Windows desktop is operated.",
+    "Component timing is a short run on this host. CDP task/script duration is a Chrome main-thread CPU proxy, not OS CPU utilization. OS CPU and GPU utilization were not measured. It does not demonstrate full-editor or sustained frame rate on other machines.",
+    "The current original recording is retained locally but was not inspected as a full video by this summary author. Current visual review covers nine actual screenshots.",
+    "The installation/upgrade screenshots verify controlled UI routing and link guidance; they do not verify a rebuilt Windows installer or new actual update.",
+    "The 8 scene assertions and five captured protocol scripts are component/evidence fixtures, not a full-editor performance benchmark."
+  ],
+  "revision": "r4 with first-install and in-editor-upgrade guidance",
+  "firstInstallAndUpgrade": {
+    "firstSetupOpensOfficialLinkOnly": true,
+    "sameVersionSetupAvailable": true,
+    "registeredUpgradeExternalRequests": 0,
+    "registeredUpgradeAction": "download",
+    "actualInstallerExecuted": false
+  },
+  "firstInstallAndUpgradeScope": "Controlled link/action routing only. First Setup called the official-link hook; registered upgrade called the local download action without requesting an external page. No actual installer was executed.",
+  "priorParentReportedProtocolExecution": {
+    "passingScriptCount": 4,
+    "provenance": "Parent agent reported actual command output in the task tool transcript. No independent standalone stdout artifact was retained for this aggregate execution.",
+    "independentlyCapturedHere": "The scene component test has its own retained console artifact and 8-of-8 result.",
+    "postverify": {
+      "script": "scripts/test_studio_update_postverify.cjs",
+      "exitCode": 1,
+      "result": "Prerequisite not supplied; not passed",
+      "reason": "STUDIO_POST_UPDATE_PRIOR was missing, so the script exited before any browser or update continuation operation."
+    },
+    "allFiveScriptsPassed": false
+  },
+  "latestCapturedProtocolExecution": {
+    "passed": true,
+    "passingScriptCount": 5,
+    "tests": [
+      {
+        "script": "scripts/test_studio_update_scene.cjs",
+        "args": [],
+        "exitCode": 0,
+        "scriptSha256": "2a6038d18c5310115032bfed42bc7a687292a794c470e1241e977ba9080bdc3c",
+        "stdoutArtifactSha256": "26a1294641e645cc894865b928b22a89dcfda5c8080b657e60f52e823ce7d516",
+        "stdoutArtifactBytes": 999
+      },
+      {
+        "script": "scripts/test_studio_update_check.cjs",
+        "args": [
+          "--dom"
+        ],
+        "exitCode": 0,
+        "scriptSha256": "4da8e2dc146e3fb8c303fa7442a92bcec13f24544c4683737e3fc461a3cd12f6",
+        "stdoutArtifactSha256": "a8ad77a703300c8dfd6ed12c0f3efacef0838ab9ce802989bd9ace9bdcbc1033",
+        "stdoutArtifactBytes": 407
+      },
+      {
+        "script": "scripts/test_studio_update_install.cjs",
+        "args": [
+          "--dom"
+        ],
+        "exitCode": 0,
+        "scriptSha256": "d43167d9b6c3dce839a1ceb8247ae6a6f86847cef02bd4bef8029813cbf2e1da",
+        "stdoutArtifactSha256": "4f2b490db6caa76fe6fbf665c8ccab38cc0d09011c57e5d420630ff18a171ccd",
+        "stdoutArtifactBytes": 255
+      },
+      {
+        "script": "scripts/test_studio_update_transport.cjs",
+        "args": [],
+        "exitCode": 0,
+        "scriptSha256": "7ce31c17d2e824da45e80ad62ccd15d9d809401afbe750f4f2970286c336dce7",
+        "stdoutArtifactSha256": "ac63db61e66ce2bb1a7cd88f12467c7d8359fbec21943fe289e057eb04c8aa54",
+        "stdoutArtifactBytes": 156
+      },
+      {
+        "script": "scripts/test_studio_update_real_evidence.cjs",
+        "args": [],
+        "exitCode": 0,
+        "scriptSha256": "1755d393d3f5b9159c3fd7fa078d5745f9ca32b7df9082a756e982d5a4d3cc8b",
+        "stdoutArtifactSha256": "cf6f62a5f76f9f4f19f36734abb6bb7071aba68607bae4e9decd445695128914",
+        "stdoutArtifactBytes": 334
+      }
+    ],
+    "allScriptAndLogHashesVerified": true,
+    "realDownload": false,
+    "realInstaller": false,
+    "scope": "Scene, update-check DOM, update-install DOM, transport component tests, and existing real-evidence verifier. This is not a new actual update run.",
+    "postverifyContinuationIsIncluded": false,
+    "priorPostverifyMissingPrerequisiteRemainsNotPassed": true
+  },
+  "priorSuccessfulEvidence": [
+    {
+      "label": "Previous public summary of component r2",
+      "bytes": 11691,
+      "sha256": "5375e9ca67bcb2d2e634dba960b6ddcdd51fae77bf4d5bdba0ba930eaecf2018"
+    },
+    {
+      "label": "Component browser r2 original report",
+      "bytes": 12508,
+      "sha256": "df83e232625493409e1df65b25b4291f60f148f688f9c2a0d6fad47a9e4b4d98"
+    },
+    {
+      "label": "Component browser r3 after cleanup hardening",
+      "bytes": 12532,
+      "sha256": "0c553bd53004366ba9f7cf3ebd6d8bc4ab5d82ce4d24e819a4db018ab827c195"
+    }
+  ],
+  "priorSuccessfulEvidenceScope": "Earlier successful reports are historical hashes; their source controller differs from the r4 install-guidance controller and is not substituted for the current result."
+}

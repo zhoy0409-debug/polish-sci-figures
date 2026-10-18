@@ -1,0 +1,37 @@
+{
+  "checks": [
+    "Four exact AppId hive/view combinations initially absent",
+    "Protected application process identities and binaries unchanged",
+    "All packaged files match actual installed files",
+    "Actually installed x64 PE version matches",
+    "Frozen installed self-test passes with Python removed from PATH and invalid PYTHONHOME"
+  ],
+  "uninstalled": false,
+  "protectedProcessCount": 1,
+  "servedHtmlSha256": null,
+  "setupSha256": "224d8398be4be73d988892a10c54bc80a70af0a3f6b104dfb849d10726dad764",
+  "externalDataPreserved": false,
+  "selfTestReportSha256": "f5219c5e4a6e99ddf06fd6f331e045fb27761d64dcd7cbaba0f1ea82505bf737",
+  "powerShellVersion": "7.6.5",
+  "frozen": true,
+  "schema": "figure-studio-live-preview-windows/1",
+  "initialRegistryViewsAbsent": 4,
+  "completedPhases": [
+    "Install"
+  ],
+  "protectedProcessIdentitiesUnchanged": true,
+  "environment": "Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.",
+  "incompleteAttemptCleanup": false,
+  "version": "0.1.23",
+  "harnessSha256": "045dbdc40685b304ca87cf10b119d39f655f651cb03150b68f087f7a7e7694b5",
+  "reinstallPreserved": false,
+  "workspaceHtmlSha256": null,
+  "selfTestPassed": true,
+  "packageVerification": {
+    "everyPackagedFileMatches": true,
+    "manifestSha256": "b88f4c5f559f5703cca79eccd6b3987caf0b2f40e6acbeed7280c37823523013",
+    "fileCount": 2625
+  },
+  "phase": "Install",
+  "reinstallPackageVerification": null
+}

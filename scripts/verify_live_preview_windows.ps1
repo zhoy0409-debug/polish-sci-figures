@@ -1,16 +1,18 @@
 #Requires -Version 7.5
 param(
     [Parameter(Mandatory=$true)][ValidateSet('Install','Start','Reinstall','Uninstall')][string]$Phase,
-    [string]$Version='0.1.22',
+    [string]$Version='0.1.23',
     [string]$QaRoot='',
     [string]$PackageRoot='',
     [string]$ExpectedSetupSha256='',
     [int]$Port=18788,
     [string]$ProjectPayload='',
+    [string]$EvidenceAttempt='',
     [switch]$BrowserAcceptanceComplete,
     [switch]$CleanupIncompleteAttempt
 )
 $ErrorActionPreference='Stop'
+if($EvidenceAttempt -and $EvidenceAttempt -cnotmatch '^[a-z0-9][a-z0-9-]{0,39}$'){throw 'Evidence attempt must be a short explicit lowercase identifier.'}
 $rootPath=[IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
 $cachePath=[IO.Path]::GetFullPath((Join-Path $rootPath '.cache'))
 if(-not $QaRoot){$QaRoot=Join-Path $cachePath "live-preview-windows-qa-$Version"}
@@ -96,7 +98,9 @@ function Invoke-Installer([string]$Label){
     Assert-Protected
     if($Label -eq 'install'){if(@((Registry-Snapshot)|Where-Object {$_.exists}).Count){throw 'An exact AppId registration appeared since preflight; abort before Setup.'}}else{$null=Assert-OwnedRegistration}
     if((Hash-File $script:state.setup) -ne $script:state.setupSha256){throw 'Setup does not match the explicitly approved hash.'}
-    $log=Join-Path $proofPath ($Label+'.log')
+    $suffix=if($EvidenceAttempt){'-'+$EvidenceAttempt}else{''}
+    $log=Join-Path $proofPath ($Label+$suffix+'.log')
+    if(Test-Path -LiteralPath $log){throw 'Retain the previous installer log; supply a new EvidenceAttempt for a separately reviewed retry.'}
     $arguments='/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /NOCLOSEAPPLICATIONS /STUDIOUPDATE=1 /NOICONS /TASKS="" /DIR="'+$installPath+'" /LOG="'+$log+'"'
     $process=Start-Process -FilePath $script:state.setup -ArgumentList $arguments -WindowStyle Hidden -PassThru -Wait
     if($process.ExitCode -ne 0){throw "Installer phase failed with exit code $($process.ExitCode)."}
@@ -105,6 +109,12 @@ function Invoke-Installer([string]$Label){
 function Stop-OwnedProcess {
     if(-not $script:state.qaProcess){return}
     $saved=$script:state.qaProcess
+    if($script:state.qaProcessStopped){
+        if(Get-Process -Id ([int]$saved.pid) -ErrorAction SilentlyContinue){throw 'A recorded stopped PID is present again; no process action is authorized.'}
+        $remaining=@(Get-CimInstance Win32_Process -Filter "Name='Figure Studio.exe'"|Where-Object {$_.ExecutablePath -and [IO.Path]::GetFullPath($_.ExecutablePath) -eq $exePath})
+        if($remaining.Count){throw 'Another process is using the owned install; no process action is authorized.'}
+        return
+    }
     $current=Process-Identity ([int]$saved.pid)
     foreach($key in @('pid','created','path','sha256')){if($current[$key] -ne $saved[$key]){throw 'QA PID was reused or its identity changed; do not terminate it.'}}
     if($current.path -ne $exePath -or $current.commandLine -notlike ('*'+$dataPath+'*')){throw 'Process does not match the exact owned executable and data command line.'}
@@ -112,6 +122,7 @@ function Stop-OwnedProcess {
     Wait-Process -Id ([int]$saved.pid) -Timeout 15 -ErrorAction SilentlyContinue
     if(Get-Process -Id ([int]$saved.pid) -ErrorAction SilentlyContinue){throw 'The owned QA process did not exit.'}
     $script:state.qaProcessStopped=$true
+    Save-State
 }
 function Preservation-Snapshot {
     $files=@((Join-Path $dataPath 'external-sentinel.bin'),(Join-Path $dataPath 'settings.json'))
@@ -218,6 +229,6 @@ if($Phase -eq 'Install'){
 Assert-Protected
 $script:state.phases+=@{phase=$Phase;completedAt=[DateTime]::UtcNow.ToString('o')}
 Save-State
-$safe=@{schema=$script:state.schema;version=$Version;setupSha256=$script:state.setupSha256;phase=$Phase;completedPhases=@($script:state.phases|ForEach-Object {$_.phase});harnessSha256=(Hash-File $PSCommandPath);powerShellVersion=$PSVersionTable.PSVersion.ToString();initialRegistryViewsAbsent=@($script:state.initialRegistry|Where-Object {-not $_.exists}).Count;protectedProcessCount=@($script:state.protectedProcesses).Count;protectedProcessIdentitiesUnchanged=$true;packageVerification=$script:state.packageVerification;reinstallPackageVerification=$script:state.reinstallPackageVerification;selfTestPassed=$script:state.selfTestPassed;frozen=$script:state.frozen;selfTestReportSha256=$script:state.selfTestReportSha256;servedHtmlSha256=$script:state.servedHtmlSha256;workspaceHtmlSha256=$script:state.workspaceHtmlSha256;checks=$script:state.checks;reinstallPreserved=[bool]$script:state.reinstallPreserved;uninstalled=[bool]$script:state.uninstalled;incompleteAttemptCleanup=[bool]$script:state.cleanedIncompleteAttempt;externalDataPreserved=[bool]$script:state.externalDataPreserved;environment='Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.'}
+$safe=@{schema=$script:state.schema;version=$Version;setupSha256=$script:state.setupSha256;phase=$Phase;evidenceAttempt=$EvidenceAttempt;completedPhases=@($script:state.phases|ForEach-Object {$_.phase});harnessSha256=(Hash-File $PSCommandPath);powerShellVersion=$PSVersionTable.PSVersion.ToString();initialRegistryViewsAbsent=@($script:state.initialRegistry|Where-Object {-not $_.exists}).Count;protectedProcessCount=@($script:state.protectedProcesses).Count;protectedProcessIdentitiesUnchanged=$true;packageVerification=$script:state.packageVerification;reinstallPackageVerification=$script:state.reinstallPackageVerification;selfTestPassed=$script:state.selfTestPassed;frozen=$script:state.frozen;selfTestReportSha256=$script:state.selfTestReportSha256;servedHtmlSha256=$script:state.servedHtmlSha256;workspaceHtmlSha256=$script:state.workspaceHtmlSha256;checks=$script:state.checks;reinstallPreserved=[bool]$script:state.reinstallPreserved;uninstalled=[bool]$script:state.uninstalled;incompleteAttemptCleanup=[bool]$script:state.cleanedIncompleteAttempt;externalDataPreserved=[bool]$script:state.externalDataPreserved;environment='Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.'}
 $safe|ConvertTo-Json -Depth 12|Set-Content -LiteralPath (Join-Path $proofPath ('safe-'+$Phase.ToLowerInvariant()+'.json')) -Encoding UTF8
 $safe|ConvertTo-Json -Depth 12

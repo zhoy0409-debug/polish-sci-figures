@@ -59,6 +59,14 @@ def source_stage_identity(source_stage):
     return source_stage.replace('source', 'STAGE', 1) + '_RUNTIME_AND_PORTABLE_MATCH'
 
 
+def application_build_identity(build, expected_version):
+    """Reject a stale or foreign app even when its resource tree is complete."""
+    require(isinstance(expected_version, str) and re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+', expected_version),
+            'Expected the explicit current Windows build version')
+    require(isinstance(build, dict) and build.get('version') == expected_version
+            and build.get('platform') == 'windows-x86_64', 'Unexpected application build identity')
+
+
 def approved_ui_freeze(freeze_bytes, expected_freeze_sha256, expected_ui_assets):
     """Bind a possibly expanded UI set to an explicitly approved exact freeze."""
     require(isinstance(expected_freeze_sha256, str) and re.fullmatch(r'[0-9a-f]{64}', expected_freeze_sha256),
@@ -245,7 +253,9 @@ def verify(package, freeze_path, preflight_path, expected_doc_snapshots=(), *, s
             zip_records[relative] = {'sha256': sha, 'sizeBytes': size}
     require(zip_records == tree, 'ZIP/application tree file-set or streamed-content mismatch')
     build = json.loads((app / 'build-info.json').read_text(encoding='utf-8'))
-    require(build['version'] == '0.1.22' and build['platform'] == 'windows-x86_64', 'Unexpected application build identity')
+    sys.path.insert(0, str(ROOT / 'desktop'))
+    import build_windows
+    application_build_identity(build, build_windows.VERSION)
 
     return {
         'schema': 'figure-studio-windows-package-source-match/1', 'status': status,

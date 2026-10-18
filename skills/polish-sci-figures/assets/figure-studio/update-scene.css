@@ -1,4 +1,4 @@
-/* Update chrome consumes application tokens. Original mascot art keeps its own material palette. */
+/* Carbon/Pearl chrome, with the original tiny ink cat and a matching dog. */
 .studio-update-button{position:relative;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .studio-update-button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
 .studio-update-badge{position:absolute;right:5px;top:5px;width:7px;height:7px;border:1px solid var(--fs-header-bg,#1c2430);border-radius:50%;background:var(--fs-accent,#49c3a5)}
@@ -18,44 +18,47 @@
 .studio-update-dialog dd{margin:0;font-size:16px;font-weight:600;letter-spacing:.01em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 .studio-update-dialog .update-channel{margin:0;padding:4px 8px;border:1px solid var(--fs-stroke-default,#405064);border-radius:6px;white-space:nowrap;color:var(--fs-text-secondary,#bcc8d8);font-size:11px;line-height:1.4}
 .studio-update-dialog .update-muted{color:var(--fs-text-secondary,#bcc8d8);font-size:12px}
-.studio-update-dialog .update-progress-scene{position:relative;isolation:isolate;aspect-ratio:500/210;overflow:hidden;border:1px solid #c8cfc5;border-radius:12px;background:#f1f1e9}
+.studio-update-dialog .update-progress-scene{position:relative;isolation:isolate;aspect-ratio:500/128;overflow:hidden;border:1px solid #e5e5e7;border-radius:12px;background:#f2f2f4}
 .studio-update-dialog .update-companion,.studio-update-dialog .update-mascot-art{display:block;width:100%;height:100%}
 .studio-update-dialog .update-mascot-art{overflow:visible}
-.studio-update-dialog .update-progress-percent{position:absolute;right:16px;top:12px;color:#46574c;font-size:17px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
-.studio-update-dialog .mascot-paw-work,.studio-update-dialog .mascot-paw-greet,.studio-update-dialog .mascot-inspect,.studio-update-dialog .mascot-verified{display:none}
-.studio-update-dialog .mascot-door{opacity:.35}
-.studio-update-dialog .mascot-version-mark{opacity:.8}
-.studio-update-dialog .mascot-cat-head,.studio-update-dialog .mascot-dog-head,.studio-update-dialog .mascot-cat-tail,.studio-update-dialog .mascot-dog-tail,.studio-update-dialog .mascot-cat-eyes,.studio-update-dialog .mascot-dog-eyes,.studio-update-dialog .mascot-cat-paw,.studio-update-dialog .mascot-dog-paw{transform-box:fill-box}
-.studio-update-dialog .mascot-cat-head,.studio-update-dialog .mascot-dog-head{transform-origin:50% 90%}
-.studio-update-dialog .mascot-cat-tail{transform-origin:90% 90%}
-.studio-update-dialog .mascot-dog-tail{transform-origin:10% 85%}
-.studio-update-dialog .mascot-cat-eyes,.studio-update-dialog .mascot-dog-eyes{transform-origin:center}
-.studio-update-dialog .mascot-cat-paw{transform-origin:10% 70%}
-.studio-update-dialog .mascot-dog-paw{transform-origin:90% 70%}
-.studio-update-dialog .update-progress-scene[data-state="downloading"] .mascot-paw-work,.studio-update-dialog .update-progress-scene[data-state="preparing"] .mascot-paw-work,.studio-update-dialog .update-progress-scene[data-state="installing"] .mascot-paw-work,.studio-update-dialog .update-progress-scene[data-state="verifying"] .mascot-cat .mascot-paw-work{display:inline}
-.studio-update-dialog .update-progress-scene:is([data-state="downloading"],[data-state="preparing"],[data-state="installing"],[data-state="ready"],[data-state="current"]) :is(.mascot-cat-rest-arm,.mascot-dog-rest-arm),.studio-update-dialog .update-progress-scene[data-state="verifying"] .mascot-cat-rest-arm{display:none}
-.studio-update-dialog .update-progress-scene:is([data-state="downloading"],[data-state="paused"]) .mascot-parcel{translate:calc(var(--update-progress,0) * 8px - 4px) 0}
+.studio-update-dialog .update-progress-percent{position:absolute;right:16px;top:12px;color:#5a5a5f;font-size:17px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.studio-update-dialog .mascot-inspect,.studio-update-dialog .mascot-verified,.studio-update-dialog .mascot-parcel{display:none}
+.studio-update-dialog :is(.mascot-cat-head,.mascot-dog-head,.mascot-cat-hop,.mascot-dog-hop,.mascot-cat-tail,.mascot-dog-tail,.mascot-cat-eyes,.mascot-dog-eyes,.mascot-cat-shadow,.mascot-dog-shadow){transform-box:fill-box;transform-origin:50% 90%}
+.studio-update-dialog :is(.mascot-cat-eyes,.mascot-dog-eyes,.mascot-cat-shadow,.mascot-dog-shadow){transform-origin:center}
+.studio-update-dialog :is(.mascot-cat-tail,.mascot-dog-tail){transform-origin:0 80%}
+.studio-update-dialog .mascot-route{translate:0 0;transition:translate .65s cubic-bezier(.2,.8,.2,1)}
+.studio-update-dialog .mascot-track-fill{transform-box:fill-box;transform-origin:0 50%;transform:scaleX(var(--update-progress,0));transition:transform .65s cubic-bezier(.2,.8,.2,1)}
+.studio-update-dialog .update-progress-scene:is([data-state="downloading"],[data-state="verifying"],[data-state="ready"],[data-state="paused"]) .mascot-route{translate:calc(var(--update-progress,0) * 270px - 135px) 0}
+.studio-update-dialog .update-progress-scene[data-indeterminate="true"] .mascot-route{translate:0 0}
+.studio-update-dialog .update-progress-scene[data-indeterminate="true"] .mascot-track-fill{transform:scaleX(1);opacity:.18}
 .studio-update-dialog .update-progress-scene[data-state="verifying"] .mascot-inspect{display:inline}
-.studio-update-dialog .update-progress-scene[data-state="verifying"] .mascot-cat-head{transform:rotate(5deg)}
-.studio-update-dialog .update-progress-scene[data-state="ready"] .mascot-paw-greet,.studio-update-dialog .update-progress-scene[data-state="current"] .mascot-paw-greet,.studio-update-dialog .update-progress-scene[data-state="ready"] .mascot-verified,.studio-update-dialog .update-progress-scene[data-state="current"] .mascot-verified{display:inline}
-.studio-update-dialog .update-progress-scene[data-state="installing"] .mascot-door{opacity:1}
-.studio-update-dialog .update-progress-scene[data-state="error"] .mascot-cat-head,.studio-update-dialog .update-progress-scene[data-state="paused"] .mascot-cat-head{transform:rotate(-4deg)}
-.studio-update-dialog .update-progress-scene[data-state="error"] .mascot-dog-head,.studio-update-dialog .update-progress-scene[data-state="cancelled"] .mascot-dog-head{transform:rotate(4deg)}
-.studio-update-dialog .update-progress-scene[data-animation="on"] .mascot-cat-eyes{animation:fs-update-blink 6.1s ease-in-out infinite}
-.studio-update-dialog .update-progress-scene[data-animation="on"] .mascot-dog-eyes{animation:fs-update-blink 7.3s .6s ease-in-out infinite}
-.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="checking"] .mascot-cat-head{animation:fs-update-look 3.4s ease-in-out infinite}
-.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="checking"] .mascot-dog-tail,.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="downloading"] .mascot-dog-tail{animation:fs-update-tail 2.2s ease-in-out infinite}
-.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="downloading"] .mascot-paw-work{animation:fs-update-pass 1.8s ease-in-out infinite}
-.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="downloading"] .mascot-cat .mascot-paw-work{animation-delay:-.9s}
-.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="verifying"] .mascot-cat-head{animation:fs-update-inspect 2.8s ease-in-out infinite}
-.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="verifying"] .mascot-inspect{animation:fs-update-lens 2.8s ease-in-out infinite}
-.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="preparing"] .mascot-paw-work,.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="installing"] .mascot-paw-work{animation:fs-update-lift 3s ease-in-out infinite}
-.studio-update-dialog .update-progress-scene[data-animation="on"][data-celebrate="true"] .mascot-paw-greet{animation:fs-update-greet .9s cubic-bezier(.2,.8,.2,1) 1}
+.studio-update-dialog .update-progress-scene:is([data-state="preparing"],[data-state="installing"]) .mascot-parcel{display:inline}
+.studio-update-dialog .update-progress-scene:is([data-state="ready"],[data-state="current"]) .mascot-verified{display:inline}
+.studio-update-dialog .update-progress-scene:is([data-state="error"],[data-state="paused"]) .mascot-cat-head{transform:rotate(-4deg)}
+.studio-update-dialog .update-progress-scene:is([data-state="error"],[data-state="cancelled"]) .mascot-dog-head{transform:rotate(4deg)}
+.studio-update-dialog .update-progress-scene[data-animation="on"] .mascot-cat-eyes{animation:fs-update-blink 5.2s ease-in-out infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"] .mascot-dog-eyes{animation:fs-update-blink 6.3s .4s ease-in-out infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-motion="working"]:not([data-state="verifying"]) :is(.mascot-cat-hop,.mascot-dog-hop){animation:fs-update-hop 1.5s cubic-bezier(.37,0,.63,1) infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-motion="working"] :is(.mascot-cat-shadow,.mascot-dog-shadow){animation:fs-update-shadow 1.5s ease-in-out infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-motion="working"] :is(.mascot-dog-hop,.mascot-dog-shadow){animation-delay:-.3s}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-motion="working"] :is(.mascot-cat-tail,.mascot-dog-tail){animation:fs-update-tail 1.5s ease-in-out infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="verifying"] :is(.mascot-cat-head,.mascot-dog-head){animation:fs-update-inspect 2.4s ease-in-out infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="verifying"] .mascot-dog-head{animation-delay:-1.2s}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-state="verifying"] .mascot-inspect{animation:fs-update-lens 2.4s ease-in-out infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"]:is([data-state="preparing"],[data-state="installing"]) :is(.mascot-cat-hop,.mascot-dog-hop){animation:fs-update-carry 1.8s ease-in-out infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"]:is([data-state="preparing"],[data-state="installing"]) .mascot-dog-hop{animation-delay:-.2s}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-celebrate="true"] :is(.mascot-cat-hop,.mascot-dog-hop){animation:fs-update-greet .65s cubic-bezier(.2,.8,.2,1) 1}
+.studio-update-dialog .update-progress-scene[data-animation="on"][data-celebrate="true"] .mascot-dog-hop{animation-delay:.12s}
+.studio-update-dialog .update-progress-scene[data-animation="on"] .mascot-cat:hover .mascot-cat-eyes{translate:1.5px 0}
+.studio-update-dialog .update-progress-scene[data-animation="on"] .mascot-dog:hover .mascot-dog-eyes{translate:-1.5px 0}
+.studio-update-dialog .update-progress-scene[data-animation="on"] .mascot-dog:hover .mascot-dog-tail{animation:fs-update-tail .48s ease-in-out infinite}
+.studio-update-dialog .update-progress-scene[data-animation="on"] :is(.mascot-cat,.mascot-dog):active :is(.mascot-cat-hop,.mascot-dog-hop){translate:0 -3px}
+.studio-update-dialog :is(.mascot-cat-eyes,.mascot-dog-eyes,.mascot-cat-hop,.mascot-dog-hop){transition:translate .16s ease-out}
 .studio-update-dialog .update-progress-scene[data-animation="off"] *{animation:none!important;transition:none!important}
 .studio-update-dialog .update-motion-setting{display:flex;align-items:center;gap:7px;margin:8px 0 12px;color:var(--fs-text-secondary,#bcc8d8);font-size:11px;cursor:pointer}
 .studio-update-dialog .update-motion-setting input,.studio-update-dialog .update-confirmation input{width:16px;min-width:16px;height:16px;margin:1px 0;accent-color:var(--fs-accent,#49c3a5)}
 .studio-update-dialog .update-install-area{margin-top:12px}
-.studio-update-dialog .update-progress-native{display:block;width:100%;height:7px;accent-color:var(--fs-accent,#49c3a5);border:0;border-radius:9px;overflow:hidden;background:var(--fs-stroke-default,#405064)}
+.studio-update-dialog .update-progress-native{position:absolute;width:1px;height:1px;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .studio-update-dialog .update-progress-native::-webkit-progress-bar{background:var(--fs-stroke-default,#405064)}
 .studio-update-dialog .update-progress-native::-webkit-progress-value{background:var(--fs-accent,#49c3a5)}
 .studio-update-dialog .update-progress-caption{min-height:20px;margin:9px 0 0;color:var(--fs-text-secondary,#bcc8d8);font-size:12px;font-variant-numeric:tabular-nums}
@@ -83,13 +86,13 @@
 .studio-update-dialog .update-error{padding:10px 12px;border:1px solid var(--fs-error,#f28f9b);border-radius:8px;background:var(--fs-surface-1,#202a37);color:var(--fs-error,#f28f9b);font-size:12px}
 .studio-update-dialog [hidden],.studio-update-badge[hidden]{display:none!important}
 @keyframes fs-update-blink{0%,88%,94%,100%{transform:scaleY(1)}90%,91%{transform:scaleY(.15)}}
-@keyframes fs-update-tail{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(5deg)}}
-@keyframes fs-update-look{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(-7deg)}}
-@keyframes fs-update-pass{0%,100%{transform:translateX(0) rotate(0)}45%{transform:translateX(2px) rotate(-2deg)}}
-@keyframes fs-update-inspect{0%,100%{transform:rotate(3deg)}50%{transform:rotate(6deg)}}
-@keyframes fs-update-lens{0%,100%{translate:0 0}50%{translate:2px -1px}}
-@keyframes fs-update-lift{0%,100%{translate:0 0}50%{translate:0 -2px}}
-@keyframes fs-update-greet{0%{transform:rotate(-8deg)}45%{transform:rotate(7deg)}100%{transform:rotate(0)}}
+@keyframes fs-update-tail{0%,100%{transform:rotate(0)}45%{transform:rotate(-13deg)}78%{transform:rotate(9deg)}}
+@keyframes fs-update-hop{0%,100%{transform:translateY(0) scale(1.04,.95)}15%{transform:translateY(0) scale(1.1,.88)}48%{transform:translateY(-13px) scale(.96,1.04)}78%{transform:translateY(0) scale(1.08,.9)}88%{transform:translateY(-2px) scale(1,1)}}
+@keyframes fs-update-shadow{0%,100%{transform:scaleX(.9);opacity:1}48%{transform:scaleX(.56);opacity:.45}78%{transform:scaleX(1);opacity:1}}
+@keyframes fs-update-inspect{0%,100%{transform:rotate(0)}35%{transform:rotate(-5deg) translateY(-1px)}68%{transform:rotate(4deg)}}
+@keyframes fs-update-lens{0%,100%{translate:0 0}50%{translate:1px -1px}}
+@keyframes fs-update-carry{0%,100%{transform:translateX(-2px) rotate(-2deg)}50%{transform:translateX(2px) rotate(2deg)}}
+@keyframes fs-update-greet{0%,100%{transform:translateY(0)}45%{transform:translateY(-7px) rotate(-3deg)}}
 @media(prefers-reduced-motion:reduce){.studio-update-dialog .update-progress-scene *{animation:none!important;transition:none!important}}
 @media(pointer:coarse){.studio-update-button,.studio-update-dialog button,.studio-update-dialog a.update-download{min-height:44px}.studio-update-dialog .update-close{flex-basis:44px;width:44px;min-height:44px}.studio-update-dialog .update-recheck{flex-basis:44px;width:44px}}
-@media(max-width:420px){.studio-update-dialog{padding:18px}.studio-update-dialog .update-summary{font-size:21px}.studio-update-dialog .update-versions{gap:26px}.studio-update-dialog .update-version{min-width:70px}.studio-update-dialog .update-progress-scene{aspect-ratio:500/254}.studio-update-dialog .update-companion{height:calc(100% - 22px);margin-top:22px}.studio-update-dialog .update-progress-percent{top:7px;right:12px;font-size:14px}.studio-update-dialog .update-steps{gap:6px;font-size:10px}.studio-update-dialog a.update-download,.studio-update-dialog #studioInstallUpdate{min-width:114px}}
+@media(max-width:420px){.studio-update-dialog{padding:18px}.studio-update-dialog .update-summary{font-size:21px}.studio-update-dialog .update-versions{gap:26px}.studio-update-dialog .update-version{min-width:70px}.studio-update-dialog .update-progress-scene{aspect-ratio:500/180}.studio-update-dialog .update-companion{height:calc(100% - 22px);margin-top:22px}.studio-update-dialog .update-progress-percent{top:7px;right:12px;font-size:14px}.studio-update-dialog .update-steps{gap:6px;font-size:10px}.studio-update-dialog a.update-download,.studio-update-dialog #studioInstallUpdate{min-width:114px}}

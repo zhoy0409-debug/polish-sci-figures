@@ -1,0 +1,748 @@
+{
+  "schema": "figure-studio-live-preview-after/2",
+  "label": "source23-installed-p0-1280x720-zh-CN-carbon",
+  "kind": "installed-candidate",
+  "status": "PASS",
+  "browser": "155.0.8059.82",
+  "platform": "win32",
+  "browserMode": "headless",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "deviceScaleFactor": 1,
+  "language": "zh-CN",
+  "startedAt": "2026-10-18T04:52:25.615Z",
+  "cases": [
+    {
+      "id": "border-draft-isolation",
+      "theme": "carbon",
+      "language": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "startedAt": "2026-10-18T04:52:25.620Z",
+      "stages": [
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "navigate",
+          "at": "2026-10-18T04:52:25.869Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "exercise",
+          "at": "2026-10-18T04:52:27.802Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "baseline-state",
+          "at": "2026-10-18T04:52:29.894Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "export-svg",
+          "at": "2026-10-18T04:52:30.145Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "export-png",
+          "at": "2026-10-18T04:52:30.577Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "decode-png-pixels",
+          "at": "2026-10-18T04:52:31.518Z"
+        },
+        {
+          "case": "border-draft-isolation-carbon",
+          "stage": "border-input",
+          "at": "2026-10-18T04:52:32.365Z"
+        }
+      ],
+      "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "localSourceProof": {
+        "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+        "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.23",
+        "suiteVersion": "1.4.23",
+        "platform": "windows"
+      },
+      "realSavedProject": {
+        "file": "border-draft-isolation-carbon.json",
+        "sha256": "cccc0547587a23e29690ab80b0ecea832224402e555f3fffe68ebb6b999aa7b2",
+        "origin": "Actual application Save download payload; not a hand-constructed project schema. Public inputs only."
+      },
+      "autosaveStatusTransitionsDuringInput": [],
+      "canvasTargetReachability": {
+        "x": 589.9921875,
+        "y": 509.5,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "thirtyInputsUncommitted": true,
+      "invalidInputRetainsLastValid": true,
+      "saveAndExportCommittedOnly": true,
+      "draftPersistenceActivation": "real DOM Save/export buttons without synthesized pointer/focus events; actual download focus is separately observed",
+      "cancelExact": true,
+      "oneUndoRedo": true,
+      "saveReopen": true,
+      "sourceImageHash": "c16e924653f3f2f3f562280fb927f8263511f11d02357e2df34db471cdba1400",
+      "exportsBefore": {
+        "rawSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "canonicalSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "pngSha256": "652c79480861e7568c0645965f16d047c3d60cf856b1ed25732ec5e301651420",
+        "pixels": {
+          "width": 3000,
+          "height": 1850,
+          "sha256": "3b150822fcddd6e83a1967a976f0d8daa6ed8c405f6126cc03ed7ac7b1edc4cf"
+        }
+      },
+      "exportsDuring": {
+        "rawSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "canonicalSvgSha256": "404cd206dc95252a28d6bb53078ecdf41a4e6f481ed3c3dfc039d4a29bd402ba",
+        "pngSha256": "652c79480861e7568c0645965f16d047c3d60cf856b1ed25732ec5e301651420",
+        "pixels": {
+          "width": 3000,
+          "height": 1850,
+          "sha256": "3b150822fcddd6e83a1967a976f0d8daa6ed8c405f6126cc03ed7ac7b1edc4cf"
+        }
+      },
+      "realTemSavedProject": {
+        "file": "border-draft-isolation-carbon-tem.json",
+        "sha256": "533739856e7d05fa3ff1276c09dedd80ae1d40782c70745043e052f22cd04eb0",
+        "origin": "Actual application Save download payload; not a hand-constructed project schema. Public inputs only."
+      },
+      "publicTemWhite1ptBorder": {
+        "cancelExact": true,
+        "oneUndoRedo": true,
+        "originalHrefSha256": "0a31321a129e3aa685fa554f65b025856a9fd6511ec859a23340db7305e9f9a5",
+        "source": "CDC PHIL 23354 public-domain colourized TEM derivative, not acquisition raw or independent diagnostic ground truth."
+      },
+      "screenshot": "border-draft-isolation-carbon.png",
+      "remoteRequests": [],
+      "pageErrors": [],
+      "finishedAt": "2026-10-18T04:52:42.701Z"
+    },
+    {
+      "id": "border-mixed-lock-and-selection-invalidation",
+      "theme": "carbon",
+      "language": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "startedAt": "2026-10-18T04:52:42.703Z",
+      "stages": [
+        {
+          "case": "border-mixed-lock-and-selection-invalidation-carbon",
+          "stage": "navigate",
+          "at": "2026-10-18T04:52:42.984Z"
+        },
+        {
+          "case": "border-mixed-lock-and-selection-invalidation-carbon",
+          "stage": "exercise",
+          "at": "2026-10-18T04:52:44.799Z"
+        }
+      ],
+      "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "localSourceProof": {
+        "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+        "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.23",
+        "suiteVersion": "1.4.23",
+        "platform": "windows"
+      },
+      "targets": 4,
+      "locked": 1,
+      "editablePreviewAndCommit": 3,
+      "lockedUnchanged": true,
+      "selectionInvalidates": true,
+      "singleUndoRedo": true,
+      "ordinarySvgPathBorder": {
+        "cancelExact": true,
+        "oneUndoRedo": true,
+        "sourceProjectUnchanged": true,
+        "geometry": "Synthetic ordinary SVG path; editor engineering validation only."
+      },
+      "screenshot": "border-mixed-lock-and-selection-invalidation-carbon.png",
+      "remoteRequests": [],
+      "pageErrors": [],
+      "finishedAt": "2026-10-18T04:52:54.237Z"
+    },
+    {
+      "id": "border-project-and-undo-invalidation",
+      "theme": "carbon",
+      "language": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "startedAt": "2026-10-18T04:52:54.241Z",
+      "stages": [
+        {
+          "case": "border-project-and-undo-invalidation-carbon",
+          "stage": "navigate",
+          "at": "2026-10-18T04:52:54.532Z"
+        },
+        {
+          "case": "border-project-and-undo-invalidation-carbon",
+          "stage": "exercise",
+          "at": "2026-10-18T04:52:56.284Z"
+        }
+      ],
+      "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "localSourceProof": {
+        "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+        "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.23",
+        "suiteVersion": "1.4.23",
+        "platform": "windows"
+      },
+      "undoCancelsDraftAndUndoesPriorEdit": true,
+      "projectSwitchInvalidates": true,
+      "lateBorderResidue": false,
+      "screenshot": "border-project-and-undo-invalidation-carbon.png",
+      "remoteRequests": [],
+      "pageErrors": [],
+      "finishedAt": "2026-10-18T04:53:00.445Z"
+    },
+    {
+      "id": "quick-font-escape",
+      "theme": "carbon",
+      "language": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "startedAt": "2026-10-18T04:53:00.447Z",
+      "stages": [
+        {
+          "case": "quick-font-escape-carbon",
+          "stage": "navigate",
+          "at": "2026-10-18T04:53:00.699Z"
+        },
+        {
+          "case": "quick-font-escape-carbon",
+          "stage": "exercise",
+          "at": "2026-10-18T04:53:02.249Z"
+        }
+      ],
+      "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "localSourceProof": {
+        "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+        "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.23",
+        "suiteVersion": "1.4.23",
+        "platform": "windows"
+      },
+      "realSavedProject": {
+        "file": "quick-font-escape-carbon.json",
+        "sha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+        "origin": "Actual application Save download payload; not a hand-constructed project schema. Public inputs only."
+      },
+      "actualEscapeCancelsWithoutBlurCommit": true,
+      "screenshot": "quick-font-escape-carbon.png",
+      "remoteRequests": [],
+      "pageErrors": [],
+      "finishedAt": "2026-10-18T04:53:03.949Z"
+    },
+    {
+      "id": "native-axis-draft-isolation",
+      "theme": "carbon",
+      "language": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "startedAt": "2026-10-18T04:53:03.950Z",
+      "stages": [
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "stage": "navigate",
+          "at": "2026-10-18T04:53:04.223Z"
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "stage": "exercise",
+          "at": "2026-10-18T04:53:05.957Z"
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "stage": "export-svg",
+          "at": "2026-10-18T04:53:07.198Z"
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "stage": "export-png",
+          "at": "2026-10-18T04:53:07.688Z"
+        },
+        {
+          "case": "native-axis-draft-isolation-carbon",
+          "stage": "decode-png-pixels",
+          "at": "2026-10-18T04:53:08.353Z"
+        }
+      ],
+      "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "localSourceProof": {
+        "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+        "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.23",
+        "suiteVersion": "1.4.23",
+        "platform": "windows"
+      },
+      "latestRangeDrawnOnActualCanvas": true,
+      "threeDraftEditsZeroHistory": true,
+      "saveSvgPngCommittedOnly": true,
+      "invalidInputBlocked": true,
+      "invalidKeepsLastValidAxisCanvas": true,
+      "cancelExact": true,
+      "oneCommitUndoRedo": true,
+      "observationsUnchanged": true,
+      "screenshot": "native-axis-draft-isolation-carbon.png",
+      "remoteRequests": [],
+      "pageErrors": [],
+      "finishedAt": "2026-10-18T04:53:18.152Z"
+    },
+    {
+      "id": "image-tools-docking",
+      "theme": "carbon",
+      "language": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "startedAt": "2026-10-18T04:53:18.153Z",
+      "stages": [
+        {
+          "case": "image-tools-docking-carbon",
+          "stage": "navigate",
+          "at": "2026-10-18T04:53:18.434Z"
+        },
+        {
+          "case": "image-tools-docking-carbon",
+          "stage": "exercise",
+          "at": "2026-10-18T04:53:20.073Z"
+        }
+      ],
+      "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "localSourceProof": {
+        "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+        "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.23",
+        "suiteVersion": "1.4.23",
+        "platform": "windows"
+      },
+      "displayCanvasReachability": {
+        "x": 502.046875,
+        "y": 452.5010528564453,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "linksCanvasReachability": {
+        "x": 502.046875,
+        "y": 452.5010528564453,
+        "inViewport": true,
+        "artboardHit": true
+      },
+      "displayNonmodal": true,
+      "linksNonmodal": true,
+      "screenshot": "image-tools-docking-carbon.png",
+      "remoteRequests": [],
+      "pageErrors": [],
+      "finishedAt": "2026-10-18T04:53:22.368Z"
+    },
+    {
+      "id": "border-nonrectangular-last-valid-and-delete",
+      "theme": "carbon",
+      "language": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "startedAt": "2026-10-18T04:53:22.369Z",
+      "stages": [
+        {
+          "case": "border-nonrectangular-last-valid-and-delete-carbon",
+          "stage": "navigate",
+          "at": "2026-10-18T04:53:22.626Z"
+        },
+        {
+          "case": "border-nonrectangular-last-valid-and-delete-carbon",
+          "stage": "exercise",
+          "at": "2026-10-18T04:53:24.140Z"
+        }
+      ],
+      "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "localSourceProof": {
+        "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+        "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.23",
+        "suiteVersion": "1.4.23",
+        "platform": "windows"
+      },
+      "syntheticGeometryOnAuthorizedHe": true,
+      "nonrectangularVisibleAnchorRejected": true,
+      "lastValidRetained": true,
+      "deleteInvalidatesDraft": true,
+      "deleteIsSingleUndo": true,
+      "sourceProjectUnchanged": true,
+      "screenshot": "border-nonrectangular-last-valid-and-delete-carbon.png",
+      "remoteRequests": [],
+      "pageErrors": [],
+      "finishedAt": "2026-10-18T04:53:27.416Z"
+    },
+    {
+      "id": "native-axis-real-response-late-and-cancel",
+      "theme": "carbon",
+      "language": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "startedAt": "2026-10-18T04:53:27.418Z",
+      "stages": [
+        {
+          "case": "native-axis-real-response-late-and-cancel-carbon",
+          "stage": "navigate",
+          "at": "2026-10-18T04:53:27.681Z"
+        },
+        {
+          "case": "native-axis-real-response-late-and-cancel-carbon",
+          "stage": "exercise",
+          "at": "2026-10-18T04:53:29.338Z"
+        }
+      ],
+      "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "localSourceProof": {
+        "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+        "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.23",
+        "suiteVersion": "1.4.23",
+        "platform": "windows"
+      },
+      "onlyDelayedRealBackendResponses": true,
+      "realResponses": [
+        {
+          "maximum": 8,
+          "realResponseFetched": true,
+          "released": true,
+          "delivery": "fulfilled",
+          "bodySha256": "b59920ddffdfc07aa37724aec35107c8fb1621835eea0d0a577a8077eaaabf4e"
+        },
+        {
+          "maximum": 10,
+          "realResponseFetched": true,
+          "released": true,
+          "delivery": "fulfilled",
+          "bodySha256": "4a0c571754597d52c05d96e34b3dda660cf05d4df7ee949201852d440555acb2"
+        },
+        {
+          "maximum": 11,
+          "realResponseFetched": true,
+          "released": true,
+          "delivery": "fulfilled",
+          "bodySha256": "198842ce4dbf4c60db479071edada4014ddd832982ba0b3c893c846f2b4b1b99"
+        }
+      ],
+      "latestMaximumRemains10": true,
+      "cancelledResponseCannotPaint": true,
+      "noCommitOrObservationChange": true,
+      "limit": "Actual browser network abortion can prevent delivery. This exercise does not independently prove handling of a producer that ignores AbortSignal; that branch is covered separately by controlled producer unit tests.",
+      "screenshot": "native-axis-real-response-late-and-cancel-carbon.png",
+      "remoteRequests": [],
+      "pageErrors": [],
+      "finishedAt": "2026-10-18T04:53:33.684Z"
+    },
+    {
+      "id": "border-svg-png-tiff-committed-export",
+      "theme": "carbon",
+      "language": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "startedAt": "2026-10-18T04:53:33.685Z",
+      "stages": [
+        {
+          "case": "border-svg-png-tiff-committed-export-carbon",
+          "stage": "navigate",
+          "at": "2026-10-18T04:53:33.924Z"
+        },
+        {
+          "case": "border-svg-png-tiff-committed-export-carbon",
+          "stage": "exercise",
+          "at": "2026-10-18T04:53:35.412Z"
+        }
+      ],
+      "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "localSourceProof": {
+        "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+        "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+        "byteExactOutsideDocumentedInjection": true,
+        "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+        "credentialsExcluded": true
+      },
+      "servedBuild": {
+        "currentVersion": "0.1.23",
+        "suiteVersion": "1.4.23",
+        "platform": "windows"
+      },
+      "realSavedProject": {
+        "file": "border-svg-png-tiff-committed-export-carbon.json",
+        "sha256": "0e2d9dfddfbf0bb07b51e4b86d12efacce9794fd88be58e5361898ff12cff2cd",
+        "origin": "Actual application Save download payload; not a hand-constructed project schema. Public inputs only."
+      },
+      "exportedBorderPhysicalPt": {
+        "strokeInViewBoxUnits": 2,
+        "finalPrintPt": 2
+      },
+      "baseline": {
+        "png": {
+          "format": "PNG",
+          "mode": "RGBA",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            599.9988,
+            599.9988
+          ],
+          "rawSha256": "491e8311681c34e53fd1f1858d8a5c44a8e85f6bc3a257faba571ad68d649ac6",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "tiff": {
+          "format": "TIFF",
+          "mode": "RGB",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            600,
+            600
+          ],
+          "rawSha256": "15c8ab73647c4d173118bd62a7797f59bf7aac033eff4968cd3f1fc28a76fe27",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "requestedDpi": 600
+      },
+      "draft": {
+        "png": {
+          "format": "PNG",
+          "mode": "RGBA",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            599.9988,
+            599.9988
+          ],
+          "rawSha256": "491e8311681c34e53fd1f1858d8a5c44a8e85f6bc3a257faba571ad68d649ac6",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "tiff": {
+          "format": "TIFF",
+          "mode": "RGB",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            600,
+            600
+          ],
+          "rawSha256": "15c8ab73647c4d173118bd62a7797f59bf7aac033eff4968cd3f1fc28a76fe27",
+          "rgbaSha256": "be08842ba59246764b754c3dc25c1e48748118b908dda7d206d86723951fade1",
+          "frames": 1
+        },
+        "requestedDpi": 600
+      },
+      "committed": {
+        "png": {
+          "format": "PNG",
+          "mode": "RGBA",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            599.9988,
+            599.9988
+          ],
+          "rawSha256": "f0ab9c1c66471618147110e890fc61ff35495af42e1b947019c64fcff20e40a9",
+          "rgbaSha256": "47d653f4706598a05a0d0e030af75895a5ad6b9834f869e3af471c99d61b4676",
+          "frames": 1
+        },
+        "tiff": {
+          "format": "TIFF",
+          "mode": "RGB",
+          "width": 3000,
+          "height": 2250,
+          "dpi": [
+            600,
+            600
+          ],
+          "rawSha256": "b87b5596ac0714d4d79cef5e3d34a7aba7b7647094064f332712c7c03c144df7",
+          "rgbaSha256": "47d653f4706598a05a0d0e030af75895a5ad6b9834f869e3af471c99d61b4676",
+          "frames": 1
+        },
+        "requestedDpi": 600
+      },
+      "tiffAndPngPixelEquality": true,
+      "tiffDraftExcluded": true,
+      "committedPixelsChanged": true,
+      "sourceImageUnchanged": true,
+      "independentDecoder": "Pillow QA process; input files read only. This is not a dependency of the installed application.",
+      "screenshot": "border-svg-png-tiff-committed-export-carbon.png",
+      "remoteRequests": [],
+      "pageErrors": [],
+      "finishedAt": "2026-10-18T04:53:44.366Z"
+    }
+  ],
+  "scope": "Actual application UI, real local Iris/native-axis redraw and authorized public image bytes. Synthetic vectors only exercise editor edge cases. Browser emulation is not physical touch or Windows scaling; no novice-user study or independent image accuracy claim. Explicit draft persistence checks activate real Save/export DOM buttons without a synthesized pointer or focus change; actual application/download focus effects are recorded separately from pointer activation.",
+  "fixtureManifestSha256": "fe7fe1b11c36e185f6f482a7099deb4d51b357c4a0e8502ff37e63a5d05a3cae",
+  "harnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+  "pixelHelperSha256": "c120cd721c12e00fae5cbd0adc037c885a1db59c9f517a9ebd337149e49a93fb",
+  "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+  "domActivationFocusObservations": [
+    {
+      "case": "border-draft-isolation-carbon",
+      "button": "save",
+      "focusedEditableBefore": true,
+      "sameNodeAfterDownload": true,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "border-draft-isolation-carbon",
+      "button": "export",
+      "focusedEditableBefore": true,
+      "sameNodeAfterDownload": false,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "border-draft-isolation-carbon",
+      "button": "png",
+      "focusedEditableBefore": false,
+      "sameNodeAfterDownload": true,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "native-axis-draft-isolation-carbon",
+      "button": "save",
+      "focusedEditableBefore": true,
+      "sameNodeAfterDownload": true,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "native-axis-draft-isolation-carbon",
+      "button": "export",
+      "focusedEditableBefore": true,
+      "sameNodeAfterDownload": false,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "native-axis-draft-isolation-carbon",
+      "button": "png",
+      "focusedEditableBefore": false,
+      "sameNodeAfterDownload": true,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "border-nonrectangular-last-valid-and-delete-carbon",
+      "button": "save",
+      "focusedEditableBefore": true,
+      "sameNodeAfterDownload": true,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "native-axis-real-response-late-and-cancel-carbon",
+      "button": "save",
+      "focusedEditableBefore": true,
+      "sameNodeAfterDownload": true,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "border-svg-png-tiff-committed-export-carbon",
+      "button": "png",
+      "focusedEditableBefore": false,
+      "sameNodeAfterDownload": false,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "border-svg-png-tiff-committed-export-carbon",
+      "button": "png",
+      "focusedEditableBefore": true,
+      "sameNodeAfterDownload": false,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "border-svg-png-tiff-committed-export-carbon",
+      "button": "png",
+      "focusedEditableBefore": false,
+      "sameNodeAfterDownload": false,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    },
+    {
+      "case": "border-svg-png-tiff-committed-export-carbon",
+      "button": "export",
+      "focusedEditableBefore": false,
+      "sameNodeAfterDownload": true,
+      "activation": "DOM click; no synthesized pointer, Tab, blur or focus event. Actual application/download focus effects are observed; committed model/export assertions determine isolation."
+    }
+  ],
+  "finishedAt": "2026-10-18T04:53:44.369Z"
+}

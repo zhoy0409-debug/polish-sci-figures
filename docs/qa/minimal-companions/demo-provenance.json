@@ -1,0 +1,68 @@
+{
+  "kind": "controlled_visual_demo",
+  "realDownload": false,
+  "realInstaller": false,
+  "events": [
+    {
+      "elapsedMs": 0,
+      "action": "Preview loaded, fixed illustrative42-percent byte sample"
+    },
+    {
+      "elapsedMs": 1538,
+      "action": "Actual pointer hover cat"
+    },
+    {
+      "elapsedMs": 2369,
+      "action": "Actual cat press/release"
+    },
+    {
+      "elapsedMs": 2968,
+      "action": "Actual pointer hover dog"
+    },
+    {
+      "elapsedMs": 3801,
+      "action": "Actual dog press/release"
+    },
+    {
+      "elapsedMs": 4406,
+      "action": "Explicit demo state: verifying, not success"
+    },
+    {
+      "elapsedMs": 6258,
+      "action": "Explicit demo state: verified package, one acknowledgement"
+    },
+    {
+      "elapsedMs": 7640,
+      "action": "Explicit demo state reset:42-percent example"
+    }
+  ],
+  "passed": true,
+  "errors": [],
+  "remoteRequests": [],
+  "originalVideo": {
+    "file": "interaction-demo.webm",
+    "bytes": 581812,
+    "sha256": "df07f0cefeaf11c7191aa8dc14fc2aab3a93b1eb4138d8e8e273aee76d568412"
+  },
+  "derivedGif": {
+    "file": "interaction-demo.gif",
+    "sha256": "dccd733a84270e07fcbaa78042d5fc2bf8f138339b53757c3120f18d9b6b8f9b",
+    "bytes": 1594078,
+    "conversion": "Full recording, 12 fps, width 640 px, aspect preserved; palette conversion only. No frame reordering or retiming."
+  },
+  "review": {
+    "checkedStillSeconds": [
+      3.4
+    ],
+    "description": "Actual recorded preview and pointer sequence; labels identify controlled demonstration states. Not an actual update."
+  },
+  "priorAttempt": {
+    "passed": false,
+    "reason": "Playwright locator.hover waited for animated geometry to become stable and timed out before hover. Original failed recording retained in local cache. Retry moved the real pointer to the actual head bounding-box centre and asserted :hover."
+  },
+  "visualAssetSha256": {
+    "update-scene.js": "19000de5cec4f52fdaa04bc2a13bff4eeb897d12dfc68cbf949f9d539bcdcede",
+    "update-scene.css": "0d9306b2b4ae4894dbab52c295f9d3056218a0edf18a0dbe9305a6274fc66f24",
+    "mascot-scene.svg": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b"
+  }
+}

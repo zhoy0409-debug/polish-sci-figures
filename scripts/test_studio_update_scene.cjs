@@ -36,15 +36,29 @@ function fixture(){
   const memory=new Map(),storage={getItem:key=>memory.get(key)??null,setItem:(key,value)=>memory.set(key,value)};
   return {dom,doc,storage,visibility(value){visibility=value;doc.dispatchEvent(new dom.window.Event('visibilitychange'));},reduce(value){reduce=value;onMediaChange?.();},intersection(value){onIntersection?.([{target:observed,isIntersecting:value}]);},mediaConnected:()=>!!onMediaChange};
 }
-test('original layered cat and dog are local vectors with distinct rest, work and greeting poses',()=>{
+test('the original small ink cat geometry is preserved and its dog companion stays equally simple',()=>{
   const f=fixture(),container=f.doc.createElement('div'),ui=Scene.create({document:f.doc,container});f.doc.body.append(container);
-  assert.ok(container.querySelector('.mascot-cat .mascot-cat-head'));assert.ok(container.querySelector('.mascot-dog .mascot-dog-head'));
-  assert.ok(container.querySelector('.mascot-cat .mascot-paw-work'));assert.ok(container.querySelector('.mascot-dog .mascot-paw-greet'));
-  assert.equal(container.querySelectorAll('image,script,foreignObject,animate').length,0);
+  const cat=container.querySelector('.mascot-cat'),dog=container.querySelector('.mascot-dog');
+  assert.ok(cat.querySelector('.mascot-cat-head'));assert.ok(dog.querySelector('.mascot-dog-head'));
+  assert.ok(cat.querySelector('.mascot-cat-hop'));assert.ok(dog.querySelector('.mascot-dog-hop'));
+  // These are the actual ef27dbe small-cat coordinates. Reclassifying its
+  // groups for scoped animation must not redesign the familiar silhouette.
+  const originalPaths=['M75 48C88 55 93 47 89 40','M22 25 20 9Q20 3 26 8L37 17Q48 13 59 17L72 8Q78 3 77 12L75 29Q86 40 79 52Q74 61 48 61Q22 61 17 52Q10 39 22 25Z','m25 12 2 12 8-5Zm47 0-9 8 9 4Z','m45 44 2 2 2-2M47 46v3'];
+  const catPaths=[...cat.querySelectorAll('path')].map(node=>node.getAttribute('d'));
+  for(const value of originalPaths)assert.ok(catPaths.includes(value),'retained original cat path: '+value);
+  assert.deepEqual([...cat.querySelectorAll('.mascot-cat-eyes ellipse,ellipse.mascot-cat-eyes')].map(node=>['cx','cy','rx','ry'].map(name=>node.getAttribute(name))),[['36','36','2.8','4.2'],['57','36','2.8','4.2']]);
+  assert.notEqual(dog.querySelector('.mascot-dog-head').innerHTML,cat.querySelector('.mascot-cat-head').innerHTML,'the dog must have a distinct ear/muzzle silhouette');
+  assert.ok(dog.querySelector('.mascot-dog-tail'));assert.ok(dog.querySelector('.mascot-dog-eyes'));
+  assert.equal(dog.querySelectorAll('.mascot-dog-ear').length,2);assert.ok(dog.querySelector('.mascot-dog-muzzle'));
+  assert.equal(dog.querySelectorAll('.mascot-dog-eyes ellipse,ellipse.mascot-dog-eyes').length,2);
+  assert.ok(dog.querySelectorAll('path').length>=4&&dog.querySelectorAll('path').length<=14,'a compact local vector dog, without the old layered fur anatomy');
+  assert.equal(container.querySelectorAll('image,script,foreignObject,animate,linearGradient,radialGradient,filter,.mascot-paw-work,.mascot-paw-greet').length,0);
+  assert.ok(container.querySelectorAll('path').length<=35,'the whole composition remains a small flat illustration');
   for(const node of container.querySelectorAll('[id]'))assert.match(node.id,/^fs-update-/);
   assert.equal(container.getAttribute('aria-hidden'),'true');ui.destroy();f.dom.window.close();
 });
 test('hidden, closed, reduced motion and explicit motion off all pause; no timer drives the scene',()=>{
+  assert.doesNotMatch(fs.readFileSync(path.join(base,'update-scene.js'),'utf8'),/\b(?:setTimeout|setInterval)\s*\(/,'decorative feedback uses CSS and lifecycle events, never a synthetic progress timer');
   const f=fixture(),container=f.doc.createElement('div'),ui=Scene.create({document:f.doc,container});f.doc.body.append(container);
   assert.equal(container.dataset.animation,'off');ui.setActive(true);ui.refresh(Scene.presentation({installation:{status:'downloading',received:13,total:100}}));assert.equal(container.dataset.animation,'on');
   f.reduce(true);assert.equal(container.dataset.animation,'off');ui.refresh(Scene.presentation({installation:{status:'downloading',received:52,total:100}}));assert.equal(container.style.getPropertyValue('--update-progress'),'0.52');

@@ -1,0 +1,190 @@
+{
+  "schema": "matched-two-operation-observations/1",
+  "status": "BOTH_ACTUAL_CAPTURES_PASSED",
+  "conclusion": "Observed matched numbers only; no automatic improvement or no-regression conclusion.",
+  "protocol": {
+    "elements": 5000,
+    "samplesPerOperation": 20,
+    "warmupPerOperation": 3,
+    "operations": [
+      "select-text",
+      "text-colour"
+    ],
+    "settleMs": 250,
+    "headless": true,
+    "video": false,
+    "zoom": "fit"
+  },
+  "versions": [
+    "0.1.22",
+    "0.1.23"
+  ],
+  "browser": "155.0.8059.82",
+  "sameFixedOriginPort": 19326,
+  "sameDefaultChildProfile": true,
+  "sameCompleteSettingsBytes": true,
+  "sameFixtureSvgSha256": "4d9b950601b3b95092251649c9d5d00f65a79f31a93b1fc9743d551d55928bd1",
+  "sameViewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "deviceScaleFactor": 1,
+  "geometryArraysEqual": true,
+  "sourceAndNativeIntegrityBeforeAndAfterBothPassed": true,
+  "nearestRankQuantilesIndependentlyRecomputed": true,
+  "all46OperationsPerVersionPublished": true,
+  "allMeasuredSamplesRetained": true,
+  "backgroundUserActivityControlled": false,
+  "priorAttempt": {
+    "attempt": "performance22-r1",
+    "overallPassed": false,
+    "status": "FAIL_POST_CONTROL_GUARD",
+    "benchmarkExitCode": 0,
+    "benchmarkCaptureStatus": "PASS_VERIFIED_CAPTURE",
+    "originalRunSummarySha256": "f2e33a8fb15602ccfce6ae96d257ae87e38a2df9d2e9a4298883e0566adb7f97",
+    "originalRawSha256": "71492a077757d4b09097d4e90b69bec49b3558452299627bf4ce186b114e705f",
+    "originalSummarySha256": "1cbde2e0738da715ffa2411488635289d388e539238c744e9c3a4df26299698c",
+    "retainedPrivately": true,
+    "includedInMatchedNumbers": false,
+    "reason": "The original protected native window ended during capture; the post-control guard failed. The human then confirmed closing the old window. Root explicitly reconciled the new zero-foreign-native/one-browser control baseline before a fresh22-r2 capture. No unchanged-original-window claim is made.",
+    "explicitCheckedControlTransitionReceiptSha256": "3dbacf7f2b9f99720ab4b787c9bf02d6d43e02229a280deab154ff09a61d3271"
+  },
+  "controlScope": {
+    "humanConfirmedOldWindowClosed": true,
+    "confirmedCurrentForeignNativeCount": 0,
+    "protectedBrowserRootCount": 1,
+    "originalWindowUnchangedClaim": false,
+    "controlTransitionReceiptSha256": "3dbacf7f2b9f99720ab4b787c9bf02d6d43e02229a280deab154ff09a61d3271"
+  },
+  "rows": [
+    {
+      "operation": "select-text",
+      "metric": "inputToNextRafMs",
+      "0.1.22": {
+        "p50": 75.2000000178814,
+        "p95": 121.5
+      },
+      "0.1.23": {
+        "p50": 69.59999999403954,
+        "p95": 83.5
+      },
+      "observedDifferenceMs": {
+        "p50": -5.600000023841858,
+        "p95": -38.0
+      }
+    },
+    {
+      "operation": "select-text",
+      "metric": "inputToSecondRafMs",
+      "0.1.22": {
+        "p50": 105.40000000596046,
+        "p95": 172.90000000596046
+      },
+      "0.1.23": {
+        "p50": 96,
+        "p95": 115.2000000178814
+      },
+      "observedDifferenceMs": {
+        "p50": -9.400000005960464,
+        "p95": -57.69999998807907
+      }
+    },
+    {
+      "operation": "select-text",
+      "metric": "commitToSecondRafMs",
+      "0.1.22": {
+        "p50": 45.099999994039536,
+        "p95": 81
+      },
+      "0.1.23": {
+        "p50": 40,
+        "p95": 45.900000005960464
+      },
+      "observedDifferenceMs": {
+        "p50": -5.0999999940395355,
+        "p95": -35.099999994039536
+      }
+    },
+    {
+      "operation": "select-text",
+      "metric": "actionWallMs",
+      "0.1.22": {
+        "p50": 164.69999998807907,
+        "p95": 263.90000000596046
+      },
+      "0.1.23": {
+        "p50": 148.7999999821186,
+        "p95": 173.60000002384186
+      },
+      "observedDifferenceMs": {
+        "p50": -15.900000005960464,
+        "p95": -90.2999999821186
+      }
+    },
+    {
+      "operation": "text-colour",
+      "metric": "inputToNextRafMs",
+      "0.1.22": {
+        "p50": 75.10000002384186,
+        "p95": 124.69999998807907
+      },
+      "0.1.23": {
+        "p50": 74.5,
+        "p95": 105.90000000596046
+      },
+      "observedDifferenceMs": {
+        "p50": -0.6000000238418579,
+        "p95": -18.799999982118607
+      }
+    },
+    {
+      "operation": "text-colour",
+      "metric": "inputToSecondRafMs",
+      "0.1.22": {
+        "p50": 103.19999998807907,
+        "p95": 154.60000002384186
+      },
+      "0.1.23": {
+        "p50": 93.40000000596046,
+        "p95": 135.10000002384186
+      },
+      "observedDifferenceMs": {
+        "p50": -9.799999982118607,
+        "p95": -19.5
+      }
+    },
+    {
+      "operation": "text-colour",
+      "metric": "commitToSecondRafMs",
+      "0.1.22": {
+        "p50": 102.69999998807907,
+        "p95": 153.80000001192093
+      },
+      "0.1.23": {
+        "p50": 92.90000000596046,
+        "p95": 134.40000000596046
+      },
+      "observedDifferenceMs": {
+        "p50": -9.799999982118607,
+        "p95": -19.400000005960464
+      }
+    },
+    {
+      "operation": "text-colour",
+      "metric": "actionWallMs",
+      "0.1.22": {
+        "p50": 148.19999998807907,
+        "p95": 215.2999999821186
+      },
+      "0.1.23": {
+        "p50": 124.09999999403954,
+        "p95": 188.90000000596046
+      },
+      "observedDifferenceMs": {
+        "p50": -24.099999994039536,
+        "p95": -26.399999976158142
+      }
+    }
+  ],
+  "scope": "Sequential synthetic5000 two-operation captures on one Windows device, real installed same-origin/default child-profile 22 before manual Setup and 23 afterward. Both contexts are owned headless Chrome. Tab confirmation and callback opportunities, not Enter, optical paint or FPS. Earlier explicit-data-dir candidate capture is not pooled."
+}

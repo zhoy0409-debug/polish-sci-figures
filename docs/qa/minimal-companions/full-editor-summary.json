@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-18",
+  "kind": "minimal_companions_generated_editor_summary",
+  "passed": true,
+  "scope": {
+    "actualGeneratedEditor": true,
+    "browser": "Chrome",
+    "headless": true,
+    "controlledUpdateBridgeResponse": "up-to-date",
+    "realDownload": false,
+    "realNativeInstaller": false,
+    "newWindowsInstallerTested": false,
+    "newReleasePublishedByThisCheck": false,
+    "htmlDelivery": "Fresh production-generated HTML fulfilled by a Playwright route while retaining the real local editor URL.",
+    "bridgeClarification": "The desktop-looking update bridge reports controlled up-to-date; it does not assert an installed native edition."
+  },
+  "results": {
+    "existingUpdateButtonOpenedNewScene": true,
+    "sceneViewBox": "0 0 500 128",
+    "dogDroopingEarCount": 2,
+    "publicIrisObservationCount": 150,
+    "originalSvgSourceCount": 12,
+    "fullSavedParsedProjectPayloadDeepEqualBeforeAfter": true,
+    "rawDownloadedJsonBytesCompared": false,
+    "carbonAndPearlScientificSvgExportsCanonicalEquivalent": true,
+    "canonicalizationScope": "Only generated export ID/reference prefixes are normalized by the existing canonicalSvg helper before comparison.",
+    "rawSvgBytesClaimedIdentical": false,
+    "mascotOrUpdateStyleAbsentFromScientificExport": true,
+    "externalPageRequests": 0,
+    "pageErrors": [],
+    "interactiveLocalPreviewStateThemeMotionControlsPassed": true,
+    "firstInstallGuidanceVisibleInExistingDialog": true
+  },
+  "actualChecks": [
+    "Actual generated editor embeds new minimal SVG and opens it through the existing update button",
+    "150 observations and12 SVG sources preserved with deep-equal parsed JSON payload before/after update-dialog interaction",
+    "Carbon/Pearl scientific SVG exports canonical-exact; no decorative mascot/style leakage",
+    "Update bridge explicitly controlled up-to-date only; no installation or download",
+    "No external requests or page errors",
+    "User-operable local animation preview: state buttons, theme and motion controls work"
+  ],
+  "originalEvidence": [
+    {
+      "label": "Unmodified generated-editor r4 report",
+      "bytes": 828,
+      "sha256": "1d249c3f519da7df55ab272e1f33d0b3f6be622fdd36a5b9867effa7b772f7db"
+    },
+    {
+      "label": "Executed generated-editor test script with optional fresh HTML route",
+      "bytes": 4690,
+      "sha256": "e7db2a8694db19fb59ef447acf27bcb01d051ebc859f5403b00d9188463a082e"
+    },
+    {
+      "label": "Fresh production-generated editor HTML actually used in r4",
+      "bytes": 12141440,
+      "sha256": "eaf0cad08eb1647f21a4e3a6a8ce253a92bc3f0b8b03fbf2d7d754ed6dfabce3"
+    },
+    {
+      "label": "Existing save/export and public-data helper",
+      "bytes": 5779,
+      "sha256": "d3e04bfc8f6f565a953e38da329d81d1caae57a7cc340cb42291c080eb3d863a"
+    }
+  ],
+  "publicDataset": {
+    "name": "UCI Iris",
+    "doi": "10.24432/C56C76",
+    "measurementValuesCopiedIntoThisReport": false
+  },
+  "preview": {
+    "label": "editor-preview.png",
+    "bytes": 158047,
+    "sha256": "3a5077336dda4d63b15c6fc94c753783631124b27ce661cea84b111f9edb42b2",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "copiedWithoutReencoding": true
+  },
+  "retainedEarlierAttempts": [
+    {
+      "passed": false,
+      "originalReport": {
+        "label": "Earlier generated-editor attempt",
+        "bytes": 398,
+        "sha256": "2c1291c88407892946a3ec297ac4e3f4a34cb6d2699a97f4f47bc90688445703"
+      },
+      "failureCategory": "ERR_NETWORK_ACCESS_DENIED",
+      "scope": "Local preview navigation failed before any scientific or editor assertions ran. Retained as an environment/network failure, not counted as a passing test."
+    },
+    {
+      "passed": false,
+      "originalReport": {
+        "label": "Earlier generated-editor attempt",
+        "bytes": 397,
+        "sha256": "48bb255c42b2f8ef9fae4a33e27735fdbd4aa20f04edf5e36d51d99e36f90ec5"
+      },
+      "failureCategory": "ERR_CONNECTION_TIMED_OUT",
+      "scope": "Local preview navigation failed before any scientific or editor assertions ran. Retained as an environment/network failure, not counted as a passing test."
+    }
+  ],
+  "limitations": [
+    "This is a generated source editor browser check, not a rebuilt Windows installer or native Windows update-flow acceptance.",
+    "The saved payload was compared with deep equality after JSON parsing; literal downloaded JSON bytes were not compared.",
+    "Scientific SVG equality is canonical equality after existing generated ID-prefix normalization, not a claim that raw bytes are identical.",
+    "This bounded regression covers one public Iris project with 150 observations and 12 SVG sources, not every scientific workflow or full-editor performance.",
+    "The two preceding attempts failed during local navigation and are retained; they did not reach scientific/editor assertions.",
+    "The route served the fresh generated editor document; the UI bridge itself remained controlled up-to-date and did not call a native installer.",
+    "Only screenshot inspection was performed when refreshing this public summary."
+  ],
+  "revision": "generated-editor-r4 using fresh production HTML through a browser route",
+  "priorSuccessfulEvidence": [
+    {
+      "label": "Previous public summary of generated-editor r3",
+      "bytes": 4611,
+      "sha256": "c5af2df41f18725a2f20601ed4437398d46a0299d4c9c81441458bec435e5997"
+    },
+    {
+      "label": "Generated-editor r3 original report",
+      "bytes": 826,
+      "sha256": "61699d0125b93ff64c264c125c05ffbeac90475b227f6cf2841a5f639ded9db5"
+    }
+  ]
+}

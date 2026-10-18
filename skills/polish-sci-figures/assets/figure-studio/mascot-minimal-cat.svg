@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 72" fill="none" color="#353538">
+  <title>Original small ink cat</title>
+  <desc>The original Figure Studio cat geometry from ef27dbe, with separate motion groups. The animal has not been redrawn.</desc>
+  <path class="mascot-cat-tail" d="M75 48C88 55 93 47 89 40" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+  <g class="mascot-cat-head">
+    <path d="M22 25 20 9Q20 3 26 8L37 17Q48 13 59 17L72 8Q78 3 77 12L75 29Q86 40 79 52Q74 61 48 61Q22 61 17 52Q10 39 22 25Z" fill="currentColor"/>
+    <path d="m25 12 2 12 8-5Zm47 0-9 8 9 4Z" fill="#f2f2f4"/>
+    <g class="mascot-cat-eyes">
+      <ellipse class="update-cat-eye" cx="36" cy="36" rx="2.8" ry="4.2" fill="#fff"/>
+      <ellipse class="update-cat-eye" cx="57" cy="36" rx="2.8" ry="4.2" fill="#fff"/>
+    </g>
+    <path d="m45 44 2 2 2-2M47 46v3" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g class="mascot-verified"><circle cx="77" cy="15" r="10" fill="#fff" stroke="currentColor" stroke-width="1.6"/><path d="m73 15 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="mascot-parcel"><rect x="59" y="43" width="22" height="18" rx="3" fill="#b6b6bd" stroke="#f2f2f4" stroke-width="1.3"/><path d="M70 44v6m-3-3 3 3 3-3" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

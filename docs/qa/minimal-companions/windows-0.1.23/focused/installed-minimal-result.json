@@ -1,0 +1,215 @@
+{
+  "schema": "figure-studio-installed-minimal-companions/1",
+  "kind": "actual_installed_loopback_service",
+  "passed": true,
+  "startedAt": "2026-10-18T04:53:42.552Z",
+  "harnessSha256": "573c2de75fb1ccfda1a980824eff376248a7beff24d5cc356efa8901928038d9",
+  "checks": [
+    "Actual registered installed service, exact served HTML and version; real update entry; cat/dog pointer and motion-off; full saved payload unchanged.",
+    "Carbon/Pearl canonical scientific SVG and exact PNG pixel equality; source project, state, history, checkpoints and drafts retained.",
+    "Actual F2 text edit, one undo commit, complete state restoration and saved-project Open/Save round trip."
+  ],
+  "screens": [
+    {
+      "file": "installed-carbon-update.png",
+      "bytes": 161563,
+      "sha256": "5ecad89891af86272fd506094b40c4dc76ca29dd011e805b326902a9fe8e9bbe"
+    },
+    {
+      "file": "installed-motion-off.png",
+      "bytes": 159732,
+      "sha256": "63de8fe6c91779dbd6dd1f161cc2a213c28faf2b13462858966945a9f1af63f6"
+    },
+    {
+      "file": "installed-carbon-theme-update.png",
+      "bytes": 156835,
+      "sha256": "b6b32f40257ef9c5c9628dca77cdddfd0524adf645cc82cefb35f731d8ec07ae"
+    },
+    {
+      "file": "installed-pearl-theme-update.png",
+      "bytes": 155490,
+      "sha256": "3103222eece99570829f29c5bcce0746cfa466a9e9a22b7cb00254476200d66d"
+    },
+    {
+      "file": "installed-restored-public-iris.png",
+      "bytes": 148004,
+      "sha256": "0387518445981b287432b5e4f94b2fd9ed91d07399d55793d2db647a39f41720"
+    }
+  ],
+  "network": {
+    "externalRequests": [],
+    "forbiddenUpdateActions": [],
+    "observedUpdateActions": []
+  },
+  "pageErrors": [],
+  "unexpectedDialogs": [],
+  "realUpdateDownload": false,
+  "realUpdateInstallation": false,
+  "htmlFulfillmentUsed": false,
+  "bridgeInjected": false,
+  "limitations": [
+    "Chrome uses an isolated headless context against an already installed local service; this harness does not install or start the native application.",
+    "Update metadata and status use the actual local service. Its server may contact the official metadata service; browser HTTP requests remain local.",
+    "No newer-than-0.1.23 update is downloaded or installed. This is installed UI/data acceptance, not an actual update handoff.",
+    "The public Iris project is one real-data regression fixture. No native IME, image-detector accuracy, full-editor performance or all-workflows claim."
+  ],
+  "htmlIdentity": {
+    "expectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+    "localCaptureSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+    "directInstalledResponseSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+    "bytes": 11525706,
+    "loopbackOrigin": "http://127.0.0.1:19323",
+    "browserNavigationSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+    "browserNavigationEvidence": {
+      "method": "Independent CDP Network.getResponseBody for the exact main-frame Document request",
+      "requestId": "BADFEAAD9AA63EA30704BE675378B426",
+      "bytes": 11525706,
+      "base64Encoded": false,
+      "maxResourceBufferSize": 31440020,
+      "maxTotalBufferSize": 62880040
+    }
+  },
+  "browserVersion": "155.0.8059.82",
+  "installedServiceIdentity": {
+    "currentVersion": "0.1.23",
+    "suiteVersion": "1.4.23",
+    "platform": "windows",
+    "architecture": "x86_64",
+    "inAppInstall": false
+  },
+  "publicFixture": {
+    "name": "UCI Iris",
+    "doi": "10.24432/C56C76",
+    "inputPayloadSha256": "a5b98945557035183ccb8cb420a8338f3016f864f9eab15312a322a480dbae92"
+  },
+  "importMigrationEvidence": {
+    "sourceProjectSha256": "d0f035705ec774607eb8bf98755c96a22adad5491f42685d8adb13a4a7a93dd6",
+    "expectedCanonicalProjectSha256": "40b4e9dd65f8960b1005934decc93fb5ef0048f728e90419d0838326ee4a98d5",
+    "sourceStateSha256": "d05264c9a98da8acef6a2d6d491aa091bdd48fc038e2e380210e0f80bac5800b",
+    "expectedCanonicalStateSha256": "ade0b40f5465effea6b67a785255c8e547e7934e51a2216d3267d318204b57e3",
+    "definedDefaults": [
+      {
+        "path": "project.initialState.labelNumbering",
+        "from": "absent",
+        "to": "upper"
+      },
+      {
+        "path": "state.labelNumbering",
+        "from": "absent",
+        "to": "upper"
+      }
+    ],
+    "contract": {
+      "source": "skills/polish-sci-figures/assets/figure-studio/studio.js",
+      "sha256": "fd1b600b233a045cbacc0ce144969c5e9b7af5f5761e8d68e9f620e20702d69d",
+      "functions": [
+        "openProjectFile",
+        "migrateLabelHistory",
+        "migratePanelLabels",
+        "panelNumberStyle"
+      ]
+    },
+    "derivedFromActualSave": false,
+    "scientificPanelChangesAllowed": false,
+    "completeProjectAndStateMatchIndependentExpected": true,
+    "allOriginalTablesVariantsRecipesAnalysesExact": true
+  },
+  "beforeCounts": {
+    "observations": 150,
+    "svgSources": 12,
+    "historyStates": 1,
+    "historyIndex": 0,
+    "checkpoints": 0,
+    "dataDrafts": 0
+  },
+  "actualUpdateUi": {
+    "summary": "You are up to date on this release channel",
+    "state": "current",
+    "caption": ""
+  },
+  "pointerCases": [
+    {
+      "animal": "cat",
+      "motionEnabled": true,
+      "hover": true,
+      "press": true,
+      "release": true
+    },
+    {
+      "animal": "dog",
+      "motionEnabled": true,
+      "hover": true,
+      "press": true,
+      "release": true
+    },
+    {
+      "animal": "cat",
+      "motionEnabled": false,
+      "hover": true,
+      "press": true,
+      "release": true
+    },
+    {
+      "animal": "dog",
+      "motionEnabled": false,
+      "hover": true,
+      "press": true,
+      "release": true
+    }
+  ],
+  "exports": [
+    {
+      "theme": "carbon",
+      "svgSha256": "435584fe43760b818e475e3a28db5a450e12737b58c8d2e1e4818b62a3546316",
+      "canonicalSvgSha256": "b76582d84052bfc4f6e5de92050acc8b2fd2f1db4bf609a2949a3af38d43847a",
+      "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+      "pixels": {
+        "width": 2880,
+        "height": 2160,
+        "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      }
+    },
+    {
+      "theme": "pearl",
+      "svgSha256": "471d8de9023763dddb71aaabb65caefe16e7b2e3d33265818ea5513e7ab2cd84",
+      "canonicalSvgSha256": "b76582d84052bfc4f6e5de92050acc8b2fd2f1db4bf609a2949a3af38d43847a",
+      "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+      "pixels": {
+        "width": 2880,
+        "height": 2160,
+        "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      }
+    }
+  ],
+  "textEdit": {
+    "actualCanvasF2": true,
+    "oneHistoryCommit": true,
+    "undoRestoredCompleteState": true,
+    "originalProjectUnchanged": true,
+    "historyAfterUndoRetainsLegitimateRedoTail": true,
+    "undoCounts": {
+      "observations": 150,
+      "svgSources": 12,
+      "historyStates": 2,
+      "historyIndex": 0,
+      "checkpoints": 0,
+      "dataDrafts": 0
+    }
+  },
+  "finalCounts": {
+    "observations": 150,
+    "svgSources": 12,
+    "historyStates": 2,
+    "historyIndex": 0,
+    "checkpoints": 0,
+    "dataDrafts": 0
+  },
+  "completeScientificAndEditablePayloadPreserved": true,
+  "originalRecording": {
+    "file": "video/page@a139ba48e4a447e14d2d32bd4c908b9b.webm",
+    "bytes": 2512358,
+    "sha256": "02f643634134f685708c2ca3a114da72985dc329fcb478296cf591d784db4eb9",
+    "unedited": true
+  },
+  "finishedAt": "2026-10-18T04:54:09.513Z"
+}

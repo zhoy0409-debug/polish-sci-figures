@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:19323/",
+  "browser": "155.0.8059.82",
+  "servedBuild": {
+    "currentVersion": "0.1.23",
+    "suiteVersion": "1.4.23"
+  },
+  "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+  "localSourceProof": {
+    "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+    "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+    "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "offlineHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+  "offlineApplication": {
+    "dialogClosedAfterAsyncApply": true,
+    "savedPayloadVerified": true,
+    "activeSummaryPanels": 1,
+    "sourceRows": 2,
+    "sourceRowsSha256": "96d55c14098f5940649cffc364a4034eb49f45ab3b043aacd960d4bd2650c2e0",
+    "zeroHttpRequests": true
+  },
+  "harnessSha256": "2968917b47b7a524bea82b6c20edf35ca845f54eb3cd0218efbbde81fe7f143c",
+  "table": "independent.csv",
+  "applicationBranches": {
+    "occupied": {
+      "previewsLeaveCommittedProjectStateHistoryExact": true,
+      "addedPanels": 1,
+      "originalSourceAndArtworkPreserved": true,
+      "inactiveRedoAssetExcludedFromDomAndExport": true,
+      "oneCommitUndoRedo": true,
+      "saveReopenExact": true
+    },
+    "untouchedBlank": {
+      "previewsLeaveCommittedProjectStateHistoryExact": true,
+      "replacedUntouchedBlankWithoutExtraVisiblePanel": true,
+      "inactiveRedoAssetExcludedFromDomAndExport": true,
+      "pairedSubjects": 3,
+      "longSourceRows": 6,
+      "oneCommitUndoRedo": true
+    }
+  },
+  "checks": [
+    "table upload",
+    "shared core",
+    "unknown unit actively rejects recommendation with zero cards/Apply actions",
+    ">=3 real independent previews",
+    "paired long-table pivot",
+    "Chinese and English",
+    "occupied artwork append preserving original source and edits, one Undo/Redo",
+    "untouched blank replace with declared paired data, one Undo/Redo",
+    "save/reopen",
+    "SVG export",
+    "PNG export",
+    "design invalidation",
+    "zero unauthorized remote requests",
+    "private table value blocked on search click",
+    "explicit public literature click intercepted without external transmission; offline error preserves local previews",
+    "current explicitly supplied standalone offline summary render and apply"
+  ],
+  "remoteRequests": [
+    "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22estimation+plot%22+OR+%22Gardner+Altman%22+OR+%22Cumming+plot%22+OR+%22box+plot%22+OR+%22boxplot%22+OR+%22empirical+cumulative+distribution%22+OR+%22ECDF%22%29+AND+OPEN_ACCESS%3AY+AND+TITLE_ABS%3A%22fluorescence+microscopy%22&format=json&pageSize=5&resultType=core"
+  ],
+  "externalTransmission": "All external browser requests aborted by the harness; no literature response is invented.",
+  "errors": []
+}

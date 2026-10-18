@@ -1,0 +1,432 @@
+{
+  "schema": "figure-studio-live-preview-matrix/1",
+  "label": "source23-installed-p0",
+  "kind": "installed-candidate",
+  "status": "PASS",
+  "startedAt": "2026-10-18T04:49:41.205Z",
+  "harnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+  "matrixHarnessSha256": "f8095f56d1c3ba42d6cfa66697750ce3fcb28ee25747b7ef790d43b696a1148d",
+  "expectedCaseIds": [
+    "border-draft-isolation",
+    "border-mixed-lock-and-selection-invalidation",
+    "border-project-and-undo-invalidation",
+    "quick-font-escape",
+    "native-axis-draft-isolation",
+    "image-tools-docking",
+    "border-nonrectangular-last-valid-and-delete",
+    "native-axis-real-response-late-and-cancel",
+    "border-svg-png-tiff-committed-export"
+  ],
+  "conditions": [
+    {
+      "id": "1280x720-en-carbon",
+      "viewport": "1280x720",
+      "language": "en",
+      "theme": "carbon",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "f56a16dea15818b9eddfafac31403fdf8307fbe085e2c99fc54d777c20d7cf8b",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1280x720-en-pearl",
+      "viewport": "1280x720",
+      "language": "en",
+      "theme": "pearl",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "7d1837e351ec58604728f3b23ffed9fdf36234e5464ca38375374774cd1a053c",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1280x720-zh-CN-carbon",
+      "viewport": "1280x720",
+      "language": "zh-CN",
+      "theme": "carbon",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "d05b9764010a8a4bae7f3d1b3679a784fccba5391190f34dc46c5720f1477742",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1280x720-zh-CN-pearl",
+      "viewport": "1280x720",
+      "language": "zh-CN",
+      "theme": "pearl",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "889312cecd343e32a5fc8b4cb6baa506c13b1beb9b473e3814edd4261469a2b3",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1920x1080-en-carbon",
+      "viewport": "1920x1080",
+      "language": "en",
+      "theme": "carbon",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "f832a2e42d59be4029db3b3e69ada3fd668b0eee8afab8c1cfce954707b749bb",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1920x1080-en-pearl",
+      "viewport": "1920x1080",
+      "language": "en",
+      "theme": "pearl",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "d9d6810ab33689b71173c8d07803b239bfe087ef0ed10ecc2ec2cd7ede721a24",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1920x1080-zh-CN-carbon",
+      "viewport": "1920x1080",
+      "language": "zh-CN",
+      "theme": "carbon",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "55387594bc724beff55e1c33fbb116abca4ccab19fb85cc4b26e75b01c02df33",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1920x1080-zh-CN-pearl",
+      "viewport": "1920x1080",
+      "language": "zh-CN",
+      "theme": "pearl",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "87fdface571208f33b34ab6ff9e3398977f75f896aeb563eb4454d46824a2e58",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    }
+  ],
+  "scope": "Sequential actual Chrome. Fixed browser viewport and DPR 1 are not physical display resolution, Windows system scaling, real touch, IME composition, or novice-user testing. An installed-runtime label requires separate installer/path/manifest proof; this harness alone does not establish installation identity.",
+  "sourceFreeze": {
+    "manifestSha256": "b866e6acc5ffbe2bc9d23185f93083c3b7036cb20bca3c1e9586cdc984fa8a34",
+    "expectedLocalHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+    "declaredAssetHashCount": 80,
+    "declaredBackendHashCount": 27
+  },
+  "browser": "155.0.8059.82",
+  "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+  "finishedAt": "2026-10-18T04:59:47.056Z"
+}
