@@ -24,7 +24,7 @@ function fixture(){
  localEngine:null,templateCache:new Map(),dataDrafts:{},dataSerial:0,dataTimer:null,setTimeout,clearTimeout,templateStarters:{},StudioGalleryContracts:{},button(text,fn){const b=d.createElement('button');b.textContent=text;b.onclick=fn;return b;},
  };
  ctx.editsFor=(id,vi,s=ctx.state())=>s.panels[id].edits[vi]||{};ctx.textPointSize=rich.pointSize;ctx.textPointFactor=(node,id,vi)=>rich.localFontScale(node,node.ownerSVGElement||node.closest('svg'));
- ctx.editableSource=(id,vi)=>ctx.editedSvg(id,vi);ctx.currentOutput=()=>helpers.exportGeometry(ctx.layout().width,ctx.layout().height,ctx.state().exportSettings);
+ ctx.editableSource=(id,vi)=>ctx.editedSvg(id,vi);ctx.editableSourceSnapshot=ctx.editableSource;ctx.currentOutput=()=>helpers.exportGeometry(ctx.layout().width,ctx.layout().height,ctx.state().exportSettings);
  vm.createContext(ctx);
  vm.runInContext(source.slice(source.indexOf('function elementInsertionsAPI(){'),source.indexOf('function imageInsetsAPI(){')),ctx);
  vm.runInContext(source.split('\n').filter(line=>/^  const (TAGS|ATTRS|STYLES) = new Set/.test(line)||/^  const DRAW =/.test(line)).join('\n')+source.slice(source.indexOf('  function safeValue('),source.indexOf('  function validateProject('))+section('  function isVisibleObject(','  // Editor-only hit areas'),ctx);
@@ -76,7 +76,7 @@ await test('first Copy or Cut click commits inline PDF text and serializes the f
     if(props['rich-text'])c.StudioRichText.apply(el,props['rich-text']);
     if(props.hidden==='true')el.style.display='none';
    }
-   current.replaceWith(fresh);c.editableSource=()=>fresh;
+   current.replaceWith(fresh);c.editableSource=()=>fresh;c.editableSourceSnapshot=c.editableSource;
   };
   const section=(a,b)=>source.slice(source.indexOf(a),source.indexOf(b,source.indexOf(a)+1));
   vm.runInContext(section('  let pointerEditCommit=','  function migrateLabelHistory(')+section('  function setEdit(','  let statisticalLineGesture=')+section('  function richTextTarget(){','  function renderRichTextControls(){')+section('  function startInlineTextEdit(','  $(\'addOverlay\').onclick=')+'\nsetupDirectTextEditing();',c);

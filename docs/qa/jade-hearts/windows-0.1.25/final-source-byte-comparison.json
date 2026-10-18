@@ -1,0 +1,32 @@
+{
+  "schema": "source24-to25-scoped-byte-comparison/1",
+  "baselineCommit": "990388d078e2d12c2bb00e6cd9797227d4aaa841",
+  "beforeFreezeSha256": "0a16412184c287a3f24bf8cd34b520155619b665ac51c5bd69653c4a2c868611",
+  "afterFreezeSha256": "c7110e91afcea2632e701d55ab504a2c05b0c507fdace968d378559ce59be859",
+  "uiAssets": 80,
+  "unchangedUiAssets": 77,
+  "changedUiAssets": [
+    "studio.js",
+    "update-scene.css",
+    "update-scene.js"
+  ],
+  "backendSources": 27,
+  "unchangedBackendSources": 26,
+  "changedBackendSources": [
+    "studio_updates.py"
+  ],
+  "backendAstEqualAfterOnlyTwoVersionConstantsRemoved": true,
+  "actualVersionConstants": [
+    {
+      "STUDIO_VERSION": "0.1.24",
+      "SUITE_VERSION": "1.4.24"
+    },
+    {
+      "STUDIO_VERSION": "0.1.25",
+      "SUITE_VERSION": "1.4.25"
+    }
+  ],
+  "originalPublicScientificInputSha256": "1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975",
+  "scientificProjectSha256Unchanged": true,
+  "scope": "Actual source26/app25 inventory identity after version-row CSS correction; not a replacement for current revised-package installed/scientific/editing/performance checks."
+}

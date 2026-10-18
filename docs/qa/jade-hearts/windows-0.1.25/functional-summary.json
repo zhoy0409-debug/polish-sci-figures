@@ -1,0 +1,45 @@
+{
+  "rawEvidence": {
+    "bytes": 6465,
+    "role": "actual-functional-runner",
+    "sha256": "bf81ad34ec39a958990f499a97d5ec232155a595bb859b3622a5f75a30bc7aeb"
+  },
+  "scope": "Five selected installed headless-browser suites, not all workflows.",
+  "suites": [
+    {
+      "checks": 72,
+      "processExitCode": 0,
+      "rawReportSha256": "ac9dd434a14e458ce3a08ff8af853f73d0c4bab03dd1772275564e76212244d9",
+      "status": "PASS",
+      "suite": "p0"
+    },
+    {
+      "checks": 4,
+      "processExitCode": 0,
+      "rawReportSha256": "24667cf75b64a01533e718adfeff3ee91a9f1c1061b52d6fc077d3b05e01dd8f",
+      "status": "PASS",
+      "suite": "resources"
+    },
+    {
+      "checks": 1,
+      "processExitCode": 0,
+      "rawReportSha256": "b35dd725f0f40b4c29468f7f336d4dd9337bc553511e0dfcaa7f8fc7a3b80dc5",
+      "status": "PASS",
+      "suite": "blank"
+    },
+    {
+      "checks": 5,
+      "processExitCode": 0,
+      "rawReportSha256": "db7133b856238747c9281860759928b5ef6766faf61f39b3729ed4395c9e8fd7",
+      "status": "PASS",
+      "suite": "selection"
+    },
+    {
+      "checks": 16,
+      "processExitCode": 0,
+      "rawReportSha256": "e94c709e104c9e1bbe8421e251ad4ef07f244deea45af6fa4fc2c5347c670fc5",
+      "status": "PASS",
+      "suite": "discovery"
+    }
+  ]
+}

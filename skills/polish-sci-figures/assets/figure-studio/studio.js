@@ -1336,17 +1336,17 @@ if (typeof document !== 'undefined') (async () => {
   }
   function fittedVariant(pos,s){const spec=reflowSpec(pos,s),v=spec&&project.layoutRenders?.[spec.key];return v&&currentHeatmapMetadata(v)?normalizeLegacyDerivedVariant(v):null;}
   let editableSourceCache=null;
-  function editableSource(id,vi,s=state()){
-    // Property panels ask for the same edited artwork several times per click.
-    // Build annotations/layout once per immutable state and derived-asset set;
-    // callers receive detached clones so a consumer cannot poison the cache.
+  function editableSourceSnapshot(id,vi,s=state()){
+    // Read-only inspector consumers share this detached immutable-state snapshot.
+    // Mutating consumers must use editableSource(), which returns their own clone.
     const assets=[...Object.values(project.layoutRenders||{}),...Object.values(project.heatmapRenders||{}),...Object.values(project.statisticalRenders||{})],language=StudioI18n.language,epoch=typeof compactFontEpoch==='number'?compactFontEpoch:0;
     if(!editableSourceCache||editableSourceCache.owner!==project||editableSourceCache.state!==s||editableSourceCache.language!==language||editableSourceCache.epoch!==epoch||assets.length!==editableSourceCache.assets.length||assets.some((a,i)=>a!==editableSourceCache.assets[i]))editableSourceCache={owner:project,state:s,language,epoch,assets,entries:new Map()};
     const key=id+'/'+vi,source=panel(id),v=source.variants[vi],cached=editableSourceCache.entries.get(key);
-    if(cached&&cached.source===source&&cached.variant===v&&cached.template===templateCache.get(key))return cached.svg.cloneNode(true);
+    if(cached&&cached.source===source&&cached.variant===v&&cached.template===templateCache.get(key))return cached.svg;
     const pos=s.panels[id].variant===vi?layout(s).positions.find(p=>p.id===id):null;
-    const svg=editedSvg(id,vi,s,false,pos?fittedVariant(pos,s):null);svg.setAttribute('data-editable-source','true');editableSourceCache.entries.set(key,{source,variant:v,template:templateCache.get(key),svg:svg.cloneNode(true)});return svg;
+    const svg=editedSvg(id,vi,s,false,pos?fittedVariant(pos,s):null);svg.setAttribute('data-editable-source','true');editableSourceCache.entries.set(key,{source,variant:v,template:templateCache.get(key),svg});return svg;
   }
+  function editableSource(id,vi,s=state()){return editableSourceSnapshot(id,vi,s).cloneNode(true);}
   function textPointSize(el){
     if(typeof StudioRichText!=='undefined')return StudioRichText.pointSize(el);
     const own=parseFloat(el.style.fontSize||el.getAttribute('font-size'));
@@ -2589,7 +2589,7 @@ if (typeof document !== 'undefined') (async () => {
     if(selectedPanelLabel){if(selectedLabelIds().length!==1||selectionGroups().length||selectedAnnotations.length)return null;const id=selectedPanelLabel,label=displayedPanelLabel(state(),id);if(!label)return null;const el=document.createElementNS(NS,'text');el.textContent=label.text;el.style.fontWeight=label.bold?'700':'400';return {identity:'label/'+id,kind:'label',id,text:label.text,record:label.richText,el,locked:!!(state().panels[id].locked||label.locked),projectId:project.id};}
     if(selectedAnnotations.length===1){const a=state().overlays?.find(a=>a.id===selectedAnnotations[0]);if(a?.type==='text'){const el=overlayNode(a,layout(),false).querySelector('text');return {identity:'overlay/'+a.id,kind:'overlay',id:a.id,text:a.text,record:a.richText,el,locked:a.locked,projectId:project.id};}}
     const groups=selectionGroups();if(groups.length!==1||groups[0].keys.length!==1)return null;
-    const {id,vi,keys}=groups[0],svg=editableSource(id,vi),node=svg.querySelector(`[data-key="${keys[0]}"]`),el=node?.closest('text')||node;if(!el?.matches('text'))return null;
+    const {id,vi,keys}=groups[0],svg=editableSourceSnapshot(id,vi),node=svg.querySelector(`[data-key="${keys[0]}"]`),el=node?.closest('text')||node;if(!el?.matches('text'))return null;
     const key=el.getAttribute('data-key'),props=editsFor(id,vi)[key]||{},locked=state().panels[id].locked||[el,...el.querySelectorAll('[data-key]')].some(n=>(state().panels[id].lockedElements?.[vi]||[]).includes(n.getAttribute('data-key'))),statistical=el.hasAttribute('data-stat-result')||el.hasAttribute('data-stat-top');
     return {identity:`element/${id}/${vi}/${key}`,kind:'element',id,vi,key,text:el.textContent,record:props['rich-text'],el,locked,statistical,manual:statistical&&Object.hasOwn(props,'text'),projectId:project.id,asset:panel(id)};
   }
@@ -3649,14 +3649,14 @@ if (typeof document !== 'undefined') (async () => {
     $('deleteElements').disabled=original||(!count&&!selectedAnnotations.length&&!selectedPanelLabel);
     $('selectionTitle').textContent=selectedPanelLabel&&!count&&!selectedAnnotations.length&&selectedLabelIds().length===1?T('当前图号 · {0}',displayedPanelLabel(state(),selectedPanelLabel)?.text||''):count?T('已选 {0} 个元素',count):T('当前小图 · ')+StudioI18n.panelName(pan);
     $('textContent').value='';$('textContent').disabled=true;$('applyText').disabled=true;
-    if(selected.length===1){const svg=editableSource(selectedPanel,vi),el=svg.querySelector(`[data-key="${selected[0]}"]`);if(el){
+    if(selected.length===1){const svg=editableSourceSnapshot(selectedPanel,vi),el=svg.querySelector(`[data-key="${selected[0]}"]`);if(el){
       $('fillMode').value=paint(el,'fill')==='none'?'none':'solid';$('elementStroke').value=(parseFloat(el.style.strokeWidth||el.getAttribute('stroke-width')||'1')*pan.variants[vi].width/pan.variants[vi].viewBox[2]*currentOutput().scale).toFixed(2);$('textAlign').value=el.style.textAnchor||el.getAttribute('text-anchor')||'start';const fill=hex(paint(el,'fill')),stroke=hex(paint(el,'stroke'));
       const h=(fill&&chromatic(fill)?fill:null)||(stroke&&chromatic(stroke)?stroke:null)||fill||stroke;if(h)$('color').value=h;
       if(el.matches('text,tspan')){const size=textOutputSize(el,selectedPanel,vi);if(Number.isFinite(size))$('fontSize').value=+size.toFixed(3);}
       const alpha=parseFloat(el.style.opacity||el.getAttribute('opacity')||'1');$('opacity').value=String(alpha*100);$('opacityValue').value=Math.round(alpha*100)+'%';
       if(el.matches('text,tspan')&&!el.children.length){$('textContent').value=el.textContent;$('textContent').disabled=false;$('applyText').disabled=false;}
     }}
-    if(count>1){const scale=currentOutput().scale,sizes=selectionGroups().flatMap(g=>{const svg=editableSource(g.id,g.vi),indexed=new Map([...svg.querySelectorAll('text[data-key],tspan[data-key]')].map(el=>[el.getAttribute('data-key'),el]));return g.keys.map(k=>indexed.get(k)).filter(Boolean).map(el=>textOutputSize(el,g.id,g.vi,scale));}).filter(Number.isFinite);if(sizes.length){const same=sizes.every(n=>Math.abs(n-sizes[0])<.01);$('fontSize').value=same?+sizes[0].toFixed(3):'';$('fontSize').placeholder=same?'':T('混合');}}
+    if(count>1){const scale=currentOutput().scale,sizes=selectionGroups().flatMap(g=>{const svg=editableSourceSnapshot(g.id,g.vi),indexed=new Map([...svg.querySelectorAll('text[data-key],tspan[data-key]')].map(el=>[el.getAttribute('data-key'),el]));return g.keys.map(k=>indexed.get(k)).filter(Boolean).map(el=>textOutputSize(el,g.id,g.vi,scale));}).filter(Number.isFinite);if(sizes.length){const same=sizes.every(n=>Math.abs(n-sizes[0])<.01);$('fontSize').value=same?+sizes[0].toFixed(3):'';$('fontSize').placeholder=same?'':T('混合');}}
     syncColorControls();renderFontTargets();renderHeatmapControls();renderRichTextControls();renderStatisticalLineControls();renderComponentStyle();renderQuickToolbar();
   }
   let figureDiscovery=null,figureDiscoveryLanguage='',resourcePreviewDraft=null;
@@ -4625,7 +4625,7 @@ if (typeof document !== 'undefined') (async () => {
   $('opacity').onchange=()=>updateStyle('opacity',String(+$('opacity').value/100));
   function renderFontTargets(){
     if(!project||!history)return;let count=0;const families=[];
-    for(const id of $('scope').value==='all'?state().order:$('scope').value==='element'?selectionGroups().map(g=>g.id):[selectedPanel]){const vi=state().panels[id].variant,targets=targetObjects(id,vi,editableSource(id,vi),'text');count+=targets.length;for(const el of targets){let family='';for(let node=el;node&&!family;node=node.parentElement)family=node.style?.fontFamily||node.getAttribute?.('font-family')||'';if(family)families.push(family);}}
+    for(const id of $('scope').value==='all'?state().order:$('scope').value==='element'?selectionGroups().map(g=>g.id):[selectedPanel]){const vi=state().panels[id].variant,targets=targetObjects(id,vi,editableSourceSnapshot(id,vi),'text');count+=targets.length;for(const el of targets){let family='';for(let node=el;node&&!family;node=node.parentElement)family=node.style?.fontFamily||node.getAttribute?.('font-family')||'';if(family)families.push(family);}}
     if(typeof StudioTextFormatting!=='undefined'&&StudioTextFormatting.syncFontChoice)StudioTextFormatting.syncFontChoice($('font'),families,T);
     $('fontTargetInfo').textContent=count?T('将修改 {0} 个文字对象；输入后回车或移开即可应用。',count):T('当前未选中文字。请点选文字，或将范围改为当前小图。');
     for(const id of ['font','fontSize','applyFont','bold'])$(id).disabled=!count;

@@ -1,0 +1,1761 @@
+{
+  "reports": [
+    {
+      "actions": [
+        {
+          "name": "select-text-1",
+          "namedFunctionFrames": [
+            {
+              "functionName": "(program)",
+              "selfSamples": 280,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "(idle)",
+              "selfSamples": 48,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "paint",
+              "selfSamples": 25,
+              "studioDeclarationLineCandidates": [
+                1441
+              ]
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 17,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 17,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 17,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 17,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 12,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "details",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "renderSelectionProperties",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": [
+                3644
+              ]
+            },
+            {
+              "functionName": "measure",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "canvasClipboardSelection",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": [
+                5313
+              ]
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "eval",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "requestAnimationFrame",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementsFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementsFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "destination",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "inspect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "renderFontTargets",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                4626
+              ]
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "sync",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "closest",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "renderEditingPanels",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3615
+              ]
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "relativeMatrix",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "compact",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "paintComparison",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "translate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            }
+          ],
+          "profileBytes": 43023,
+          "profileSha256": "10e58d0ba1d233ddd60143b05faf6f8b470e2a92533bceb73c1c7490c0b2984d",
+          "verified": true
+        },
+        {
+          "name": "text-colour-1",
+          "namedFunctionFrames": [
+            {
+              "functionName": "(program)",
+              "selfSamples": 122,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "(garbage collector)",
+              "selfSamples": 53,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 26,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 20,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 20,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 20,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "(idle)",
+              "selfSamples": 19,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 19,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 17,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 16,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "query",
+              "selfSamples": 8,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "paint",
+              "selfSamples": 6,
+              "studioDeclarationLineCandidates": [
+                1441
+              ]
+            },
+            {
+              "functionName": "editedSvg",
+              "selfSamples": 5,
+              "studioDeclarationLineCandidates": [
+                1864
+              ]
+            },
+            {
+              "functionName": "dispatchEvent",
+              "selfSamples": 4,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "editNode",
+              "selfSamples": 4,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "focus",
+              "selfSamples": 3,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "applyElementEdits",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "componentStyleTargets",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": [
+                2504
+              ]
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "input.oninput",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "previewQuickStyle",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3438
+              ]
+            },
+            {
+              "functionName": "paint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                1441
+              ]
+            },
+            {
+              "functionName": "paintQuickColour",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3425
+              ]
+            },
+            {
+              "functionName": "validateState",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                172
+              ]
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "hasAttribute",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "editableSource",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                1339
+              ]
+            },
+            {
+              "functionName": "textOutputSize",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                1391
+              ]
+            },
+            {
+              "functionName": "getElementById",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "sync",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "renderSelectionCommands",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3518
+              ]
+            },
+            {
+              "functionName": "getElementById",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            }
+          ],
+          "profileBytes": 57118,
+          "profileSha256": "3a5736274b24486504533030b1082b46ac0160a1ac4ee2f599871331e2d2e7ad",
+          "verified": true
+        },
+        {
+          "name": "select-text-2",
+          "namedFunctionFrames": [
+            {
+              "functionName": "(program)",
+              "selfSamples": 252,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "(idle)",
+              "selfSamples": 53,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 15,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 15,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 13,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 12,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 9,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "paint",
+              "selfSamples": 5,
+              "studioDeclarationLineCandidates": [
+                1441
+              ]
+            },
+            {
+              "functionName": "append",
+              "selfSamples": 4,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "createTextMatcher",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "previewNode",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "_promiseAwareJsonValueNoThrow",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "parseEvaluationResultValue",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getComputedStyle",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementsFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementsFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "focus",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "append",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "details",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "inspect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "setAttribute",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "renderSelectionProperties",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3644
+              ]
+            },
+            {
+              "functionName": "getElementById",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "currentOutput",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                5656
+              ]
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "renderQuickToolbar",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3530
+              ]
+            },
+            {
+              "functionName": "textPointFactor",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                1357
+              ]
+            },
+            {
+              "functionName": "canvasClipboardSelection",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                5313
+              ]
+            }
+          ],
+          "profileBytes": 50274,
+          "profileSha256": "ff8cc29d492cf5764033c3fbde9660c225bfb99d26a0b9419353aaa3b918c34f",
+          "verified": true
+        },
+        {
+          "name": "text-colour-2",
+          "namedFunctionFrames": [
+            {
+              "functionName": "(program)",
+              "selfSamples": 181,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "(idle)",
+              "selfSamples": 47,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 36,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 35,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 35,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 33,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 29,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 28,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 26,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "query",
+              "selfSamples": 13,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "query",
+              "selfSamples": 13,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "editedSvg",
+              "selfSamples": 10,
+              "studioDeclarationLineCandidates": [
+                1864
+              ]
+            },
+            {
+              "functionName": "editNode",
+              "selfSamples": 7,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "paint",
+              "selfSamples": 6,
+              "studioDeclarationLineCandidates": [
+                1441
+              ]
+            },
+            {
+              "functionName": "dispatchEvent",
+              "selfSamples": 4,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 4,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "componentStyleTargets",
+              "selfSamples": 4,
+              "studioDeclarationLineCandidates": [
+                2504
+              ]
+            },
+            {
+              "functionName": "hasAttribute",
+              "selfSamples": 3,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "canvasClipboardSelection",
+              "selfSamples": 3,
+              "studioDeclarationLineCandidates": [
+                5313
+              ]
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 3,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "focus",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "drawColorSwatches",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": [
+                4581
+              ]
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "isError",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "parseEvaluationResultValue",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "INPUT",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "refresh",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "copy",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "copy",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "copy",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "refreshLivePreviews",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                1038
+              ]
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            }
+          ],
+          "profileBytes": 70555,
+          "profileSha256": "aca30e6d4f5a7830c6ef8a02f3870bc21b56b565983ca5900e6ab6f5cf64ff65",
+          "verified": true
+        }
+      ],
+      "rawEvidence": {
+        "bytes": 60564,
+        "role": "CPU-C-actual-report",
+        "sha256": "2b18776c394764f5125eaac87f0adbd9f94d1c18f3df95a99b661a7edc7a80c8"
+      },
+      "samplingIntervalMicroseconds": 100,
+      "variant": "C"
+    },
+    {
+      "actions": [
+        {
+          "name": "select-text-1",
+          "namedFunctionFrames": [
+            {
+              "functionName": "(program)",
+              "selfSamples": 286,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "(idle)",
+              "selfSamples": 39,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "paint",
+              "selfSamples": 26,
+              "studioDeclarationLineCandidates": [
+                1441
+              ]
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 19,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 13,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "canvasClipboardSelection",
+              "selfSamples": 3,
+              "studioDeclarationLineCandidates": [
+                5313
+              ]
+            },
+            {
+              "functionName": "details",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "measure",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "closest",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementSafeTagName",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementsFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementsFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "remove",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "drawSelection",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "renderSelectionProperties",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3644
+              ]
+            },
+            {
+              "functionName": "syncColorControls",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                4570
+              ]
+            },
+            {
+              "functionName": "renderRichTextControls",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                2618
+              ]
+            },
+            {
+              "functionName": "renderSelectionCommands",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3518
+              ]
+            },
+            {
+              "functionName": "renderEditingPanels",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3615
+              ]
+            },
+            {
+              "functionName": "sum",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "textPointFactor",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                1357
+              ]
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "parse",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "refresh",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "translate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            }
+          ],
+          "profileBytes": 38172,
+          "profileSha256": "efeca8a54f054911d1052ca7c186c002909b6bc7093d7c49a00fa0e416be055f",
+          "verified": true
+        },
+        {
+          "name": "text-colour-1",
+          "namedFunctionFrames": [
+            {
+              "functionName": "(program)",
+              "selfSamples": 106,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "(idle)",
+              "selfSamples": 38,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 23,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 19,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 19,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 17,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "query",
+              "selfSamples": 6,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "editedSvg",
+              "selfSamples": 5,
+              "studioDeclarationLineCandidates": [
+                1864
+              ]
+            },
+            {
+              "functionName": "(garbage collector)",
+              "selfSamples": 5,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "dispatchEvent",
+              "selfSamples": 4,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "paint",
+              "selfSamples": 4,
+              "studioDeclarationLineCandidates": [
+                1441
+              ]
+            },
+            {
+              "functionName": "canvasClipboardSelection",
+              "selfSamples": 3,
+              "studioDeclarationLineCandidates": [
+                5313
+              ]
+            },
+            {
+              "functionName": "focus",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "editNode",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "eval",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "input.oninput",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "visualPreviewIdentity",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                1023
+              ]
+            },
+            {
+              "functionName": "previewQuickStyle",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3438
+              ]
+            },
+            {
+              "functionName": "previewQuickStyle",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3438
+              ]
+            },
+            {
+              "functionName": "render",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                4404
+              ]
+            },
+            {
+              "functionName": "performCommit",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "commitPaintState",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                2709
+              ]
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "applyElementEdits",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "componentStyleTargets",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                2504
+              ]
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "rich",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "measure",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "sync",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "append",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "eval",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            }
+          ],
+          "profileBytes": 47285,
+          "profileSha256": "196d1b3f4247b748bb347f348091184df5108ecd367a4b64ee7f1807a45c3117",
+          "verified": true
+        },
+        {
+          "name": "select-text-2",
+          "namedFunctionFrames": [
+            {
+              "functionName": "(program)",
+              "selfSamples": 229,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "(idle)",
+              "selfSamples": 60,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 19,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 7,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "query",
+              "selfSamples": 5,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "paint",
+              "selfSamples": 5,
+              "studioDeclarationLineCandidates": [
+                1441
+              ]
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "eval",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementsFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "elementsFromPoint",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "focus",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getBoundingClientRect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "affine",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "details",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "inspect",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "relativeMatrix",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "syncFontChoice",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "canvasClipboardSelection",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                5313
+              ]
+            },
+            {
+              "functionName": "renderQuickToolbar",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3530
+              ]
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "translate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "end",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            }
+          ],
+          "profileBytes": 37823,
+          "profileSha256": "60056e87e35009a902a0e86554aea05b943c9ac29466a6621f05c8a79a25b07a",
+          "verified": true
+        },
+        {
+          "name": "text-colour-2",
+          "namedFunctionFrames": [
+            {
+              "functionName": "(program)",
+              "selfSamples": 100,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "(idle)",
+              "selfSamples": 42,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 17,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 16,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 16,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "cloneNode",
+              "selfSamples": 15,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "query",
+              "selfSamples": 6,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "query",
+              "selfSamples": 5,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "editedSvg",
+              "selfSamples": 5,
+              "studioDeclarationLineCandidates": [
+                1864
+              ]
+            },
+            {
+              "functionName": "dispatchEvent",
+              "selfSamples": 4,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "paint",
+              "selfSamples": 4,
+              "studioDeclarationLineCandidates": [
+                1441
+              ]
+            },
+            {
+              "functionName": "applyElementEdits",
+              "selfSamples": 3,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "componentStyleTargets",
+              "selfSamples": 3,
+              "studioDeclarationLineCandidates": [
+                2504
+              ]
+            },
+            {
+              "functionName": "canvasClipboardSelection",
+              "selfSamples": 3,
+              "studioDeclarationLineCandidates": [
+                5313
+              ]
+            },
+            {
+              "functionName": "focus",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getAttribute",
+              "selfSamples": 2,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "previewNode",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "evaluate",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "fill",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "current",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "requestAnimationFrame",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "getElementById",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "renderRichTextControls",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                2618
+              ]
+            },
+            {
+              "functionName": "sync",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "validTextToolItem",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3562
+              ]
+            },
+            {
+              "functionName": "renderEditingPanels",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                3615
+              ]
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "replaceChildren",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelectorAll",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "dispatchEvent",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "drainAutosaves",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": [
+                2350
+              ]
+            },
+            {
+              "functionName": "put",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "serialize",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            },
+            {
+              "functionName": "querySelector",
+              "selfSamples": 1,
+              "studioDeclarationLineCandidates": []
+            }
+          ],
+          "profileBytes": 47919,
+          "profileSha256": "a9201f0366ef85a7e6bf9bbd9d81eb7fc4c1de0b91887f237ccc7c6495fcb1ed",
+          "verified": true
+        }
+      ],
+      "rawEvidence": {
+        "bytes": 56300,
+        "role": "CPU-D-actual-report",
+        "sha256": "ed1f9ecb21cce8f36cdef9201d3bb2a205d1bf5a83d7a291e32a19c3ab9417d7"
+      },
+      "samplingIntervalMicroseconds": 100,
+      "variant": "D"
+    }
+  ],
+  "scope": "CPU-specific two-text synthetic5000 fixture, four actions each; named function self-sample counts only. Not original one-text latency benchmark, P95, OS CPU percentage or native acceptance. No local URLs, trace, script IDs, HTML or project bytes published. Full original cpuprofile SHA references retained."
+}

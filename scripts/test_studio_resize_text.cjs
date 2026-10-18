@@ -52,7 +52,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1'],edits={},cont
     commit(next){main.validateState(next,project);history.commit(next);current=copy(next);render();return true;},renderCanvas:next=>render(next||current)
   };
   vm.createContext(ctx);vm.runInContext(helpers,ctx);
-  ctx.editableSource=(id,vi,s=current)=>{const svg=ctx.editedSvg(id,vi,s);svg.setAttribute('data-editable-source','true');return svg;};
+  ctx.editableSource=(id,vi,s=current)=>{const svg=ctx.editedSvg(id,vi,s);svg.setAttribute('data-editable-source','true');return svg;};ctx.editableSourceSnapshot=ctx.editableSource;
   function render(s=current){const root=ctx.composite(false,false,s);$('artboard').replaceChildren(root);return root;}
   $('scope').value='element';render();
   const node=key=>$('artboard').querySelector(`[data-key="${key||ctx.selected[0]}"]`);

@@ -1,0 +1,135 @@
+{
+  "files": [
+    {
+      "byteExactOriginal": true,
+      "bytes": 54775,
+      "file": "controlled-download-52.png",
+      "group": "controlled-component",
+      "reviewedSampleSeconds": [],
+      "sha256": "a724531b03cf7d5f68251b53a08ed5f27c101a96637fd796ce4a83bac7988c8b"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 49837,
+      "file": "controlled-rest-pearl.png",
+      "group": "controlled-component",
+      "reviewedSampleSeconds": [],
+      "sha256": "c97ba50e7d848949cd44965ead732d2ade7776b3b2118ba46242eaf44cd6c017"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 53732,
+      "file": "controlled-narrow-pearl-dpr150.png",
+      "group": "controlled-component",
+      "reviewedSampleSeconds": [],
+      "sha256": "4ae9ba9212b2a85ce760a5afdd47b3ffa84c3b1a953508819af72e4b4bfb5726"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 46507,
+      "file": "version-row-before-carbon.png",
+      "group": "version-row-controlled-layout",
+      "reviewedSampleSeconds": [],
+      "sha256": "49e9db6b5310dc51757ea87c68d43259aefd565ec234e8bd2bf834705b150f03"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 47445,
+      "file": "version-row-after-carbon.png",
+      "group": "version-row-controlled-layout",
+      "reviewedSampleSeconds": [],
+      "sha256": "98f3b2a9a8f3795905316fc79284c1a2f9edae5add438d49241059fd5e6a953d"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 70658,
+      "file": "version-row-after-narrow-pearl.png",
+      "group": "version-row-controlled-layout",
+      "reviewedSampleSeconds": [],
+      "sha256": "f064aa988b1bc674d5a1a70d656930d548957f061cebde0cb4ecdeecdce7dc2d"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 84573,
+      "file": "version-row-long-version-carbon.png",
+      "group": "version-row-controlled-layout",
+      "reviewedSampleSeconds": [],
+      "sha256": "57e14f7aa684b0c4b76148ef0a064377a4860eafea9da4f61a7982aaac898f24"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 1769865,
+      "file": "controlled-scene-original.webm",
+      "group": "controlled-component",
+      "reviewedSampleSeconds": [
+        2,
+        14.5,
+        28.0
+      ],
+      "sha256": "9937a0475d0efffb0cc488245cf067cf5b401194dd738ebd7ae9e0c129e85cd5"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 163594,
+      "file": "installed-carbon-update.png",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [],
+      "sha256": "5bf1af198ffcee5a133d99ce0fb99bf7727a0e02e73d12c375870f8b3d7d3cd5"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 161927,
+      "file": "installed-motion-off.png",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [],
+      "sha256": "f9d28f8a31a9937b2cdc24ebe54d8c7d8c6c0246d32da6cb62598a35690e0ab5"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 159023,
+      "file": "installed-carbon-theme-update.png",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [],
+      "sha256": "a4c321a7bf0d5f77f51fac1632e3df8ba52a83639839674141cc8063be5c7554"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 157635,
+      "file": "installed-pearl-theme-update.png",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [],
+      "sha256": "028da1c5e81a6686529c91fad48e90d8f0c67333c7362dd06040ddd399ba2f3d"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 148004,
+      "file": "installed-restored-public-iris.png",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [],
+      "sha256": "0387518445981b287432b5e4f94b2fd9ed91d07399d55793d2db647a39f41720"
+    },
+    {
+      "byteExactOriginal": true,
+      "bytes": 2313662,
+      "file": "installed-editor-original.webm",
+      "group": "installed-editor",
+      "reviewedSampleSeconds": [
+        2,
+        10.42,
+        19.84
+      ],
+      "sha256": "31f0bd5bf99e7434f0e62313c09b668d0b0c7474c9584984b9fe73a3759f8ef4"
+    }
+  ],
+  "review": {
+    "bytes": 6689,
+    "role": "root-hash-bound-still-sample-review",
+    "sha256": "2eea2a2853ed2973525dbae307546b6f014ffdc0138b9cea5c7a16a031bc715f"
+  },
+  "reviewScope": {
+    "controlledPublicFixtureContext": true,
+    "fullVideoManuallyReviewed": false,
+    "stillImagesReviewed": true,
+    "wholeMovieOrOcrPrivacyCertificationClaimed": false
+  }
+}

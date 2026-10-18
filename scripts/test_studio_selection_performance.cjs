@@ -9,12 +9,25 @@ let passed=0;
 function test(name,fn){fn();passed++;console.log('PASS '+name);}
 const section=(start,end)=>{const a=source.indexOf(start),b=source.indexOf(end,a);assert.ok(a>=0&&b>a);return source.slice(a,b);};
 test('repeated selection readers build annotations/layout once and cannot poison the source cache',()=>{
-  let current={panels:{p:{variant:0}}},builds=0,layouts=0;
-  const asset={variants:[{svg:'original',width:100,viewBox:[0,0,100,100]}]},ctx={project:{panels:[asset]},StudioI18n:{language:'en'},compactFontEpoch:0,templateCache:new Map(),panel:()=>asset,state:()=>current,layout(){layouts++;return {positions:[{id:'p'}]};},fittedVariant:()=>null,editedSvg(id,vi){builds++;ctx.templateCache.set(id+'/'+vi,asset.variants[vi]);const svg=doc.createElementNS(NS,'svg');svg.innerHTML='<text data-key="e1">Original</text>';return svg;}};
+  let current={panels:{p:{variant:0}}},builds=0,layouts=0,clones=0;
+  const asset={variants:[{svg:'original',width:100,viewBox:[0,0,100,100]}]},ctx={project:{panels:[asset]},StudioI18n:{language:'en'},compactFontEpoch:0,templateCache:new Map(),panel:()=>asset,state:()=>current,layout(){layouts++;return {positions:[{id:'p'}]};},fittedVariant:()=>null,editedSvg(id,vi){builds++;ctx.templateCache.set(id+'/'+vi,asset.variants[vi]);const svg=doc.createElementNS(NS,'svg');svg.innerHTML='<text data-key="e1">Original</text>';const clone=svg.cloneNode.bind(svg);svg.cloneNode=deep=>{clones++;return clone(deep);};return svg;}};
   vm.createContext(ctx);vm.runInContext(section('  let editableSourceCache=null;','  function textPointSize('),ctx);
+  const canonical=ctx.editableSourceSnapshot('p',0),canonicalBytes=canonical.outerHTML;
+  assert.equal(clones,0,'a first canonical snapshot does not clone its edited SVG for storage');
+  for(let i=0;i<30;i++)assert.equal(ctx.editableSourceSnapshot('p',0),canonical,'readers share the same immutable-state SVG');
+  assert.equal(clones,0,'thirty read-only snapshot hits do zero deep clones');
   const first=ctx.editableSource('p',0);first.querySelector('text').textContent='Uncommitted consumer mutation';
   for(let i=0;i<30;i++){const copy=ctx.editableSource('p',0);assert.equal(copy.querySelector('text').textContent,'Original');assert.equal(copy.getAttribute('data-editable-source'),'true');assert.notEqual(copy,first);}
   assert.equal(builds,1);assert.equal(layouts,1);
+  assert.equal(clones,31,'each original mutable API call still gets its own clone');
+  const mutableA=ctx.editableSource('p',0),mutableB=ctx.editableSource('p',0);
+  assert.notEqual(mutableA,mutableB);assert.notEqual(mutableA.querySelector('text'),mutableB.querySelector('text'));
+  mutableA.querySelector('text').style.fill='#ff0000';mutableA.append(doc.createElementNS(NS,'path'));mutableA.querySelector('text').remove();
+  assert.equal(mutableB.outerHTML,canonicalBytes,'descendant attribute, insertion and removal cannot cross mutable copies');
+  assert.equal(ctx.editableSourceSnapshot('p',0).outerHTML,canonicalBytes,'mutable descendants cannot poison the canonical source');
+  const rich=require('../skills/polish-sci-figures/assets/figure-studio/rich-text.js');rich.nativeStyles(canonical.querySelector('text'));rich.pointSize(canonical.querySelector('text'));
+  assert.equal(canonical.outerHTML,canonicalBytes,'actual rich-text readers never mutate the shared source');
+
   current={panels:{p:{variant:0}}};ctx.editableSource('p',0);assert.equal(builds,2,'new undo/history state invalidates');
   ctx.project.statisticalRenders={newlyAvailable:{svg:'fresh metadata'}};ctx.editableSource('p',0);assert.equal(builds,3,'asynchronous metadata render invalidates without a history change');
   ctx.project.statisticalRenders.newlyAvailable={svg:'replacement'};ctx.editableSource('p',0);assert.equal(builds,4,'same-sized resource maps still detect a replaced value');
@@ -23,7 +36,21 @@ test('repeated selection readers build annotations/layout once and cannot poison
   ctx.compactFontEpoch++;ctx.editableSource('p',0);assert.equal(builds,7);
   asset.variants[0]={...asset.variants[0],svg:'new variant'};ctx.editableSource('p',0);assert.equal(builds,8);
   ctx.project={panels:[asset]};ctx.editableSource('p',0);assert.equal(builds,9,'a different project cannot reuse artwork');
+  const stateA=current,snapshotA=ctx.editableSourceSnapshot('p',0),stateB={panels:{p:{variant:0}}};
+  current=stateB;const snapshotB=ctx.editableSourceSnapshot('p',0);assert.equal(builds,10);assert.notEqual(snapshotB,snapshotA);
+  current=stateA;const undoA=ctx.editableSourceSnapshot('p',0);assert.equal(builds,11);assert.notEqual(undoA,snapshotB);assert.equal(undoA.outerHTML,snapshotA.outerHTML);
+  current=stateB;assert.equal(ctx.editableSourceSnapshot('p',0).outerHTML,snapshotB.outerHTML);assert.equal(builds,12,'redo rebuilds from its exact state rather than retaining undo artwork');
+  const replacement={...asset};ctx.panel=()=>replacement;ctx.editableSourceSnapshot('p',0);assert.equal(builds,13,'same variant in a new panel source invalidates');
+  for(const name of ['layoutRenders','heatmapRenders','statisticalRenders'])for(const value of [{one:{svg:'add'}},{one:{svg:'replace'}},{}]){const before=builds;ctx.project[name]=value;ctx.editableSourceSnapshot('p',0);assert.equal(builds,before+1,name+' add/replace/remove invalidates');}
+
 });
+
+test('only the four reviewed inspector reads borrow the canonical source; axis/component consumers retain clones',()=>{
+  const rich=section('  function richTextTarget(){','  function validRichTextTarget('),properties=section('  function renderSelectionProperties() {','  let figureDiscovery='),fonts=section('  function renderFontTargets(){',"  $('unifyTypography').onclick="),component=section('  function componentStyleTargets(){','  function renderComponentStyle(){');
+  assert.equal((rich.match(/editableSourceSnapshot\(/g)||[]).length,1);assert.equal((properties.match(/editableSourceSnapshot\(/g)||[]).length,2);assert.equal((fonts.match(/editableSourceSnapshot\(/g)||[]).length,1);
+  assert.match(component,/source=editableSource\(id,vi\)/);assert.match(component,/StudioAxisEditing\.apply\(source/);assert.match(component,/applyAxisGeneratedEdits\(source/);assert.equal(component.includes('editableSourceSnapshot('),false);
+});
+
 test('many selected objects use one per-panel key index and deduplicate rich-text children',()=>{
   const board=doc.querySelector('#artboard'),svg=doc.createElementNS(NS,'svg');svg.dataset.panel='p';board.append(svg);
   svg.innerHTML=Array.from({length:600},(_,i)=>`<text data-key="e${i}"><tspan data-key="s${i}">${i}</tspan></text>`).join('');
@@ -36,7 +63,7 @@ test('many selected objects use one per-panel key index and deduplicate rich-tex
 test('multi-text size summary computes output geometry once rather than once per label',()=>{
   const count=40,svg=doc.createElementNS(NS,'svg');svg.innerHTML=Array.from({length:count},(_,i)=>`<text data-key="e${i}" font-size="8">${i}</text>`).join('');
   const fields={},$=id=>fields[id]||=(id==='font'?{options:[]}:{value:'',style:{}});let outputs=0,sizes=0;
-  const ctx={selectedPanel:'p',selected:[],selectedAnnotations:[],selectedPanelLabel:null,original:false,$,panel:()=>({variants:[{}]}),state:()=>({panels:{p:{variant:0}}}),selectionGroups:()=>[{id:'p',vi:0,keys:Array.from({length:count},(_,i)=>'e'+i)}],StudioI18n:{panelName:()=>''},T:s=>s,currentOutput(){outputs++;return {scale:2};},editableSource:()=>svg,textOutputSize(el,id,vi,scale){assert.equal(scale,2);sizes++;return 16;},syncColorControls(){},renderFontTargets(){},renderHeatmapControls(){},renderRichTextControls(){},renderStatisticalLineControls(){},renderComponentStyle(){},renderQuickToolbar(){}};
+  const ctx={selectedPanel:'p',selected:[],selectedAnnotations:[],selectedPanelLabel:null,original:false,$,panel:()=>({variants:[{}]}),state:()=>({panels:{p:{variant:0}}}),selectionGroups:()=>[{id:'p',vi:0,keys:Array.from({length:count},(_,i)=>'e'+i)}],StudioI18n:{panelName:()=>''},T:s=>s,currentOutput(){outputs++;return {scale:2};},editableSource:()=>svg,editableSourceSnapshot:()=>svg,textOutputSize(el,id,vi,scale){assert.equal(scale,2);sizes++;return 16;},syncColorControls(){},renderFontTargets(){},renderHeatmapControls(){},renderRichTextControls(){},renderStatisticalLineControls(){},renderComponentStyle(){},renderQuickToolbar(){}};
   vm.createContext(ctx);vm.runInContext(section('  function renderSelectionProperties() {','  let literatureBrowser='),ctx);ctx.renderSelectionProperties();assert.equal(outputs,1);assert.equal(sizes,count);assert.equal($('fontSize').value,16);
 });
 

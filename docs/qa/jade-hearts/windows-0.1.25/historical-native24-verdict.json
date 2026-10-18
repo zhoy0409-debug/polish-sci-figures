@@ -1,0 +1,42 @@
+{
+  "originalVerdict": {
+    "passedCaptureGuards": true,
+    "performanceAcceptedByRoot": false,
+    "reason": "Both observed P95 values rose. No causal/no-regression or universal-acceleration claim from first sequential pair.",
+    "status": "diagnosis_required",
+    "versions": [
+      {
+        "all46OperationsVerified": true,
+        "p50": {
+          "select-text": 100.69999998807907,
+          "text-colour": 89
+        },
+        "p95": {
+          "select-text": 120,
+          "text-colour": 97.5
+        },
+        "rawSha256": "0ac9d185c7aa7d6a81a9831dde96901bc20ba7cb26910be0c9fa7a1a323604e0",
+        "version": "0.1.23"
+      },
+      {
+        "all46OperationsVerified": true,
+        "p50": {
+          "select-text": 104.89999997615814,
+          "text-colour": 105.69999998807907
+        },
+        "p95": {
+          "select-text": 146.30000001192093,
+          "text-colour": 145.5
+        },
+        "rawSha256": "70ba754473d195bd95989e2a7703cd4e5cdeb1a995cc18332e44be2c3f7794f4",
+        "version": "0.1.24"
+      }
+    ]
+  },
+  "rawEvidence": {
+    "bytes": 964,
+    "role": "unaccepted-native24-first-pair",
+    "sha256": "635cfc961f71c8b7308d812d7d7bf3c9f4046d4f9cdf40ec41ff68a77afe67fc"
+  },
+  "scope": "Historical native23/24 capture only; later browser CDDC improvement does not change this verdict."
+}

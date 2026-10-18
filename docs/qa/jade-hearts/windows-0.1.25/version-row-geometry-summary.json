@@ -1,0 +1,4715 @@
+{
+  "browserVersion": "155.0.8059.82",
+  "caseCount": 24,
+  "cases": [
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-zh-CN-960-dpr1",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 433.5,
+          "y": 317.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 411.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 51,
+          "x": 676,
+          "y": 385.6875
+        },
+        "dialog": {
+          "bottom": 808.203125,
+          "height": 656.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 151.78125
+        },
+        "dl": {
+          "bottom": 411.078125,
+          "height": 114.296875,
+          "right": 660,
+          "width": 427,
+          "x": 233,
+          "y": 296.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 411.078125,
+            "height": 114.296875,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 296.78125
+          },
+          {
+            "bottom": 411.078125,
+            "height": 114.296875,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 296.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 311.078125,
+            "height": 14.296875,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 296.78125
+          },
+          {
+            "bottom": 311.078125,
+            "height": 14.296875,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 296.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 411.078125,
+            "height": 96,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 315.078125
+          },
+          {
+            "bottom": 411.078125,
+            "height": 96,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 315.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 290.4531,
+          "y": 353.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 375.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 51,
+          "x": 676,
+          "y": 349.6875
+        },
+        "dialog": {
+          "bottom": 772.203125,
+          "height": 584.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 187.78125
+        },
+        "dl": {
+          "bottom": 375.078125,
+          "height": 42.296875,
+          "right": 373.90625,
+          "width": 140.90625,
+          "x": 233,
+          "y": 332.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 332.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 332.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 351.078125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 351.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1,
+        "width": 960
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-en-960-dpr1",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 414.844,
+          "y": 312.234425
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 430.234375,
+          "height": 25.390625,
+          "right": 727,
+          "width": 88.328125,
+          "x": 638.671875,
+          "y": 404.84375
+        },
+        "dialog": {
+          "bottom": 827.359375,
+          "height": 694.71875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 132.640625
+        },
+        "dl": {
+          "bottom": 430.234375,
+          "height": 152.59375,
+          "right": 622.671875,
+          "width": 389.671875,
+          "x": 233,
+          "y": 277.640625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 430.234375,
+            "height": 152.59375,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 277.640625
+          },
+          {
+            "bottom": 430.234375,
+            "height": 152.59375,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 277.640625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 306.234375,
+            "height": 28.59375,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 277.640625
+          },
+          {
+            "bottom": 306.234375,
+            "height": 28.59375,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 277.640625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 430.234375,
+            "height": 120,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 310.234375
+          },
+          {
+            "bottom": 406.234375,
+            "height": 96,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 310.234375
+          }
+        ],
+        "viewport": 960
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 324.5,
+          "y": 353.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 375.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 88.328125,
+          "x": 638.671875,
+          "y": 349.6875
+        },
+        "dialog": {
+          "bottom": 772.203125,
+          "height": 584.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 187.78125
+        },
+        "dl": {
+          "bottom": 375.078125,
+          "height": 42.296875,
+          "right": 430.984375,
+          "width": 197.984375,
+          "x": 233,
+          "y": 332.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 332.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 332.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 351.078125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 351.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1,
+        "width": 960
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-zh-CN-960-dpr1",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 433.5,
+          "y": 317.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 411.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 51,
+          "x": 676,
+          "y": 385.6875
+        },
+        "dialog": {
+          "bottom": 808.203125,
+          "height": 656.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 151.78125
+        },
+        "dl": {
+          "bottom": 411.078125,
+          "height": 114.296875,
+          "right": 660,
+          "width": 427,
+          "x": 233,
+          "y": 296.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 411.078125,
+            "height": 114.296875,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 296.78125
+          },
+          {
+            "bottom": 411.078125,
+            "height": 114.296875,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 296.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 311.078125,
+            "height": 14.296875,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 296.78125
+          },
+          {
+            "bottom": 311.078125,
+            "height": 14.296875,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 296.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 411.078125,
+            "height": 96,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 315.078125
+          },
+          {
+            "bottom": 411.078125,
+            "height": 96,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 315.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 290.4531,
+          "y": 353.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 375.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 51,
+          "x": 676,
+          "y": 349.6875
+        },
+        "dialog": {
+          "bottom": 772.203125,
+          "height": 584.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 187.78125
+        },
+        "dl": {
+          "bottom": 375.078125,
+          "height": 42.296875,
+          "right": 373.90625,
+          "width": 140.90625,
+          "x": 233,
+          "y": 332.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 332.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 332.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 351.078125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 351.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1,
+        "width": 960
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-en-960-dpr1",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 414.844,
+          "y": 312.234425
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 430.234375,
+          "height": 25.390625,
+          "right": 727,
+          "width": 88.328125,
+          "x": 638.671875,
+          "y": 404.84375
+        },
+        "dialog": {
+          "bottom": 827.359375,
+          "height": 694.71875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 132.640625
+        },
+        "dl": {
+          "bottom": 430.234375,
+          "height": 152.59375,
+          "right": 622.671875,
+          "width": 389.671875,
+          "x": 233,
+          "y": 277.640625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 430.234375,
+            "height": 152.59375,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 277.640625
+          },
+          {
+            "bottom": 430.234375,
+            "height": 152.59375,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 277.640625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 306.234375,
+            "height": 28.59375,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 277.640625
+          },
+          {
+            "bottom": 306.234375,
+            "height": 28.59375,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 277.640625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 430.234375,
+            "height": 120,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 310.234375
+          },
+          {
+            "bottom": 406.234375,
+            "height": 96,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 310.234375
+          }
+        ],
+        "viewport": 960
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 324.5,
+          "y": 353.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 375.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 88.328125,
+          "x": 638.671875,
+          "y": 349.6875
+        },
+        "dialog": {
+          "bottom": 772.203125,
+          "height": 584.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 187.78125
+        },
+        "dl": {
+          "bottom": 375.078125,
+          "height": 42.296875,
+          "right": 430.984375,
+          "width": 197.984375,
+          "x": 233,
+          "y": 332.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 332.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 332.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 351.078125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 351.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1,
+        "width": 960
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-zh-CN-960-dpr1.5",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 433.5,
+          "y": 317.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 411.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 51,
+          "x": 676,
+          "y": 385.6875
+        },
+        "dialog": {
+          "bottom": 808.203125,
+          "height": 656.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 151.78125
+        },
+        "dl": {
+          "bottom": 411.078125,
+          "height": 114.296875,
+          "right": 660,
+          "width": 427,
+          "x": 233,
+          "y": 296.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 411.078125,
+            "height": 114.296875,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 296.78125
+          },
+          {
+            "bottom": 411.078125,
+            "height": 114.296875,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 296.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 311.078125,
+            "height": 14.296875,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 296.78125
+          },
+          {
+            "bottom": 311.078125,
+            "height": 14.296875,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 296.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 411.078125,
+            "height": 96,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 315.078125
+          },
+          {
+            "bottom": 411.078125,
+            "height": 96,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 315.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 290.4531,
+          "y": 353.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 375.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 51,
+          "x": 676,
+          "y": 349.6875
+        },
+        "dialog": {
+          "bottom": 772.203125,
+          "height": 584.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 187.78125
+        },
+        "dl": {
+          "bottom": 375.078125,
+          "height": 42.296875,
+          "right": 373.90625,
+          "width": 140.90625,
+          "x": 233,
+          "y": 332.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 332.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 332.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 351.078125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 351.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 960
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-en-960-dpr1.5",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 414.844,
+          "y": 312.234425
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 430.234375,
+          "height": 25.390625,
+          "right": 727,
+          "width": 88.328125,
+          "x": 638.671875,
+          "y": 404.84375
+        },
+        "dialog": {
+          "bottom": 827.359375,
+          "height": 694.71875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 132.640625
+        },
+        "dl": {
+          "bottom": 430.234375,
+          "height": 152.59375,
+          "right": 622.671875,
+          "width": 389.671875,
+          "x": 233,
+          "y": 277.640625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 430.234375,
+            "height": 152.59375,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 277.640625
+          },
+          {
+            "bottom": 430.234375,
+            "height": 152.59375,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 277.640625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 306.234375,
+            "height": 28.59375,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 277.640625
+          },
+          {
+            "bottom": 306.234375,
+            "height": 28.59375,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 277.640625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 430.234375,
+            "height": 120,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 310.234375
+          },
+          {
+            "bottom": 406.234375,
+            "height": 96,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 310.234375
+          }
+        ],
+        "viewport": 960
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 324.5,
+          "y": 353.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 375.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 88.328125,
+          "x": 638.671875,
+          "y": 349.6875
+        },
+        "dialog": {
+          "bottom": 772.203125,
+          "height": 584.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 187.78125
+        },
+        "dl": {
+          "bottom": 375.078125,
+          "height": 42.296875,
+          "right": 430.984375,
+          "width": 197.984375,
+          "x": 233,
+          "y": 332.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 332.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 332.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 351.078125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 351.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 960
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-zh-CN-960-dpr1.5",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 433.5,
+          "y": 317.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 411.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 51,
+          "x": 676,
+          "y": 385.6875
+        },
+        "dialog": {
+          "bottom": 808.203125,
+          "height": 656.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 151.78125
+        },
+        "dl": {
+          "bottom": 411.078125,
+          "height": 114.296875,
+          "right": 660,
+          "width": 427,
+          "x": 233,
+          "y": 296.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 411.078125,
+            "height": 114.296875,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 296.78125
+          },
+          {
+            "bottom": 411.078125,
+            "height": 114.296875,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 296.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 311.078125,
+            "height": 14.296875,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 296.78125
+          },
+          {
+            "bottom": 311.078125,
+            "height": 14.296875,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 296.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 411.078125,
+            "height": 96,
+            "right": 421.5,
+            "width": 188.5,
+            "x": 233,
+            "y": 315.078125
+          },
+          {
+            "bottom": 411.078125,
+            "height": 96,
+            "right": 660,
+            "width": 188.5,
+            "x": 471.5,
+            "y": 315.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 290.4531,
+          "y": 353.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 375.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 51,
+          "x": 676,
+          "y": 349.6875
+        },
+        "dialog": {
+          "bottom": 772.203125,
+          "height": 584.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 187.78125
+        },
+        "dl": {
+          "bottom": 375.078125,
+          "height": 42.296875,
+          "right": 373.90625,
+          "width": 140.90625,
+          "x": 233,
+          "y": 332.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 332.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 332.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 278.453125,
+            "width": 45.453125,
+            "x": 233,
+            "y": 351.078125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 373.90625,
+            "width": 45.453125,
+            "x": 328.453125,
+            "y": 351.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 960
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-en-960-dpr1.5",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 414.844,
+          "y": 312.234425
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 430.234375,
+          "height": 25.390625,
+          "right": 727,
+          "width": 88.328125,
+          "x": 638.671875,
+          "y": 404.84375
+        },
+        "dialog": {
+          "bottom": 827.359375,
+          "height": 694.71875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 132.640625
+        },
+        "dl": {
+          "bottom": 430.234375,
+          "height": 152.59375,
+          "right": 622.671875,
+          "width": 389.671875,
+          "x": 233,
+          "y": 277.640625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 430.234375,
+            "height": 152.59375,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 277.640625
+          },
+          {
+            "bottom": 430.234375,
+            "height": 152.59375,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 277.640625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 306.234375,
+            "height": 28.59375,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 277.640625
+          },
+          {
+            "bottom": 306.234375,
+            "height": 28.59375,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 277.640625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 430.234375,
+            "height": 120,
+            "right": 402.84375,
+            "width": 169.84375,
+            "x": 233,
+            "y": 310.234375
+          },
+          {
+            "bottom": 406.234375,
+            "height": 96,
+            "right": 622.671875,
+            "width": 169.828125,
+            "x": 452.84375,
+            "y": 310.234375
+          }
+        ],
+        "viewport": 960
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 324.5,
+          "y": 353.07815
+        },
+        "bodyWidth": 960,
+        "catCount": 1,
+        "channel": {
+          "bottom": 375.078125,
+          "height": 25.390625,
+          "right": 727,
+          "width": 88.328125,
+          "x": 638.671875,
+          "y": 349.6875
+        },
+        "dialog": {
+          "bottom": 772.203125,
+          "height": 584.421875,
+          "right": 752,
+          "width": 544,
+          "x": 208,
+          "y": 187.78125
+        },
+        "dl": {
+          "bottom": 375.078125,
+          "height": 42.296875,
+          "right": 430.984375,
+          "width": 197.984375,
+          "x": 233,
+          "y": 332.78125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 42.296875,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 332.78125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 332.78125
+          },
+          {
+            "bottom": 347.078125,
+            "height": 14.296875,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 332.78125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 312.5,
+            "width": 79.5,
+            "x": 233,
+            "y": 351.078125
+          },
+          {
+            "bottom": 375.078125,
+            "height": 24,
+            "right": 430.984375,
+            "width": 68.484375,
+            "x": 362.5,
+            "y": 351.078125
+          }
+        ],
+        "viewport": 960
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 960
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-zh-CN-360-dpr1",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 167,
+          "y": 282.1563
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 461.546875,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 436.15625
+        },
+        "dialog": {
+          "bottom": 847.6875,
+          "height": 735.375,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 112.3125
+        },
+        "dl": {
+          "bottom": 424.15625,
+          "height": 176.59375,
+          "right": 325,
+          "width": 290,
+          "x": 35,
+          "y": 247.5625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 424.15625,
+            "height": 176.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 247.5625
+          },
+          {
+            "bottom": 424.15625,
+            "height": 176.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 247.5625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 276.15625,
+            "height": 28.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 247.5625
+          },
+          {
+            "bottom": 276.15625,
+            "height": 28.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 247.5625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 424.15625,
+            "height": 144,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 280.15625
+          },
+          {
+            "bottom": 400.15625,
+            "height": 120,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 280.15625
+          }
+        ],
+        "viewport": 360
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 90.4531,
+          "y": 335.000025
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 394.390625,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 369
+        },
+        "dialog": {
+          "bottom": 780.53125,
+          "height": 601.078125,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 179.453125
+        },
+        "dl": {
+          "bottom": 357,
+          "height": 42.296875,
+          "right": 171.90625,
+          "width": 136.90625,
+          "x": 35,
+          "y": 314.703125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 357,
+            "height": 42.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 314.703125
+          },
+          {
+            "bottom": 357,
+            "height": 42.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 314.703125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 329,
+            "height": 14.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 314.703125
+          },
+          {
+            "bottom": 329,
+            "height": 14.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 314.703125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 357,
+            "height": 24,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 333
+          },
+          {
+            "bottom": 357,
+            "height": 24,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 333
+          }
+        ],
+        "viewport": 360
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1,
+        "width": 360
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-en-360-dpr1",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 167,
+          "y": 277.1563
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 456.546875,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 431.15625
+        },
+        "dialog": {
+          "bottom": 852.6875,
+          "height": 745.375,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 107.3125
+        },
+        "dl": {
+          "bottom": 419.15625,
+          "height": 176.59375,
+          "right": 325,
+          "width": 290,
+          "x": 35,
+          "y": 242.5625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 419.15625,
+            "height": 176.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 242.5625
+          },
+          {
+            "bottom": 419.15625,
+            "height": 176.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 242.5625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 271.15625,
+            "height": 28.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 242.5625
+          },
+          {
+            "bottom": 271.15625,
+            "height": 28.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 242.5625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 419.15625,
+            "height": 144,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 275.15625
+          },
+          {
+            "bottom": 395.15625,
+            "height": 120,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 275.15625
+          }
+        ],
+        "viewport": 360
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 124.5,
+          "y": 330.000025
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 389.390625,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 364
+        },
+        "dialog": {
+          "bottom": 785.53125,
+          "height": 611.078125,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 174.453125
+        },
+        "dl": {
+          "bottom": 352,
+          "height": 42.296875,
+          "right": 228.984375,
+          "width": 193.984375,
+          "x": 35,
+          "y": 309.703125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 352,
+            "height": 42.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 309.703125
+          },
+          {
+            "bottom": 352,
+            "height": 42.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 309.703125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 324,
+            "height": 14.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 309.703125
+          },
+          {
+            "bottom": 324,
+            "height": 14.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 309.703125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 352,
+            "height": 24,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 328
+          },
+          {
+            "bottom": 352,
+            "height": 24,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 328
+          }
+        ],
+        "viewport": 360
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1,
+        "width": 360
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-zh-CN-360-dpr1",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 167,
+          "y": 282.1563
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 461.546875,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 436.15625
+        },
+        "dialog": {
+          "bottom": 847.6875,
+          "height": 735.375,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 112.3125
+        },
+        "dl": {
+          "bottom": 424.15625,
+          "height": 176.59375,
+          "right": 325,
+          "width": 290,
+          "x": 35,
+          "y": 247.5625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 424.15625,
+            "height": 176.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 247.5625
+          },
+          {
+            "bottom": 424.15625,
+            "height": 176.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 247.5625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 276.15625,
+            "height": 28.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 247.5625
+          },
+          {
+            "bottom": 276.15625,
+            "height": 28.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 247.5625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 424.15625,
+            "height": 144,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 280.15625
+          },
+          {
+            "bottom": 400.15625,
+            "height": 120,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 280.15625
+          }
+        ],
+        "viewport": 360
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 90.4531,
+          "y": 335.000025
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 394.390625,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 369
+        },
+        "dialog": {
+          "bottom": 780.53125,
+          "height": 601.078125,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 179.453125
+        },
+        "dl": {
+          "bottom": 357,
+          "height": 42.296875,
+          "right": 171.90625,
+          "width": 136.90625,
+          "x": 35,
+          "y": 314.703125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 357,
+            "height": 42.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 314.703125
+          },
+          {
+            "bottom": 357,
+            "height": 42.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 314.703125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 329,
+            "height": 14.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 314.703125
+          },
+          {
+            "bottom": 329,
+            "height": 14.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 314.703125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 357,
+            "height": 24,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 333
+          },
+          {
+            "bottom": 357,
+            "height": 24,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 333
+          }
+        ],
+        "viewport": 360
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1,
+        "width": 360
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-en-360-dpr1",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 167,
+          "y": 277.1563
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 456.546875,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 431.15625
+        },
+        "dialog": {
+          "bottom": 852.6875,
+          "height": 745.375,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 107.3125
+        },
+        "dl": {
+          "bottom": 419.15625,
+          "height": 176.59375,
+          "right": 325,
+          "width": 290,
+          "x": 35,
+          "y": 242.5625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 419.15625,
+            "height": 176.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 242.5625
+          },
+          {
+            "bottom": 419.15625,
+            "height": 176.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 242.5625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 271.15625,
+            "height": 28.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 242.5625
+          },
+          {
+            "bottom": 271.15625,
+            "height": 28.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 242.5625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 419.15625,
+            "height": 144,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 275.15625
+          },
+          {
+            "bottom": 395.15625,
+            "height": 120,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 275.15625
+          }
+        ],
+        "viewport": 360
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 124.5,
+          "y": 330.000025
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 389.390625,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 364
+        },
+        "dialog": {
+          "bottom": 785.53125,
+          "height": 611.078125,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 174.453125
+        },
+        "dl": {
+          "bottom": 352,
+          "height": 42.296875,
+          "right": 228.984375,
+          "width": 193.984375,
+          "x": 35,
+          "y": 309.703125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 352,
+            "height": 42.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 309.703125
+          },
+          {
+            "bottom": 352,
+            "height": 42.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 309.703125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 324,
+            "height": 14.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 309.703125
+          },
+          {
+            "bottom": 324,
+            "height": 14.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 309.703125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 352,
+            "height": 24,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 328
+          },
+          {
+            "bottom": 352,
+            "height": 24,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 328
+          }
+        ],
+        "viewport": 360
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1,
+        "width": 360
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-zh-CN-360-dpr1.5",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 167,
+          "y": 282.1563
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 461.546875,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 436.15625
+        },
+        "dialog": {
+          "bottom": 847.6875,
+          "height": 735.375,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 112.3125
+        },
+        "dl": {
+          "bottom": 424.15625,
+          "height": 176.59375,
+          "right": 325,
+          "width": 290,
+          "x": 35,
+          "y": 247.5625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 424.15625,
+            "height": 176.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 247.5625
+          },
+          {
+            "bottom": 424.15625,
+            "height": 176.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 247.5625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 276.15625,
+            "height": 28.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 247.5625
+          },
+          {
+            "bottom": 276.15625,
+            "height": 28.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 247.5625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 424.15625,
+            "height": 144,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 280.15625
+          },
+          {
+            "bottom": 400.15625,
+            "height": 120,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 280.15625
+          }
+        ],
+        "viewport": 360
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 90.4531,
+          "y": 335.000025
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 394.390625,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 369
+        },
+        "dialog": {
+          "bottom": 780.53125,
+          "height": 601.078125,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 179.453125
+        },
+        "dl": {
+          "bottom": 357,
+          "height": 42.296875,
+          "right": 171.90625,
+          "width": 136.90625,
+          "x": 35,
+          "y": 314.703125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 357,
+            "height": 42.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 314.703125
+          },
+          {
+            "bottom": 357,
+            "height": 42.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 314.703125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 329,
+            "height": 14.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 314.703125
+          },
+          {
+            "bottom": 329,
+            "height": 14.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 314.703125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 357,
+            "height": 24,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 333
+          },
+          {
+            "bottom": 357,
+            "height": 24,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 333
+          }
+        ],
+        "viewport": 360
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 360
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-en-360-dpr1.5",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 167,
+          "y": 277.1563
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 456.546875,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 431.15625
+        },
+        "dialog": {
+          "bottom": 852.6875,
+          "height": 745.375,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 107.3125
+        },
+        "dl": {
+          "bottom": 419.15625,
+          "height": 176.59375,
+          "right": 325,
+          "width": 290,
+          "x": 35,
+          "y": 242.5625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 419.15625,
+            "height": 176.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 242.5625
+          },
+          {
+            "bottom": 419.15625,
+            "height": 176.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 242.5625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 271.15625,
+            "height": 28.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 242.5625
+          },
+          {
+            "bottom": 271.15625,
+            "height": 28.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 242.5625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 419.15625,
+            "height": 144,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 275.15625
+          },
+          {
+            "bottom": 395.15625,
+            "height": 120,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 275.15625
+          }
+        ],
+        "viewport": 360
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 124.5,
+          "y": 330.000025
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 389.390625,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 364
+        },
+        "dialog": {
+          "bottom": 785.53125,
+          "height": 611.078125,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 174.453125
+        },
+        "dl": {
+          "bottom": 352,
+          "height": 42.296875,
+          "right": 228.984375,
+          "width": 193.984375,
+          "x": 35,
+          "y": 309.703125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 352,
+            "height": 42.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 309.703125
+          },
+          {
+            "bottom": 352,
+            "height": 42.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 309.703125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 324,
+            "height": 14.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 309.703125
+          },
+          {
+            "bottom": 324,
+            "height": 14.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 309.703125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 352,
+            "height": 24,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 328
+          },
+          {
+            "bottom": 352,
+            "height": 24,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 328
+          }
+        ],
+        "viewport": 360
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 360
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-zh-CN-360-dpr1.5",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 167,
+          "y": 282.1563
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 461.546875,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 436.15625
+        },
+        "dialog": {
+          "bottom": 847.6875,
+          "height": 735.375,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 112.3125
+        },
+        "dl": {
+          "bottom": 424.15625,
+          "height": 176.59375,
+          "right": 325,
+          "width": 290,
+          "x": 35,
+          "y": 247.5625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 424.15625,
+            "height": 176.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 247.5625
+          },
+          {
+            "bottom": 424.15625,
+            "height": 176.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 247.5625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 276.15625,
+            "height": 28.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 247.5625
+          },
+          {
+            "bottom": 276.15625,
+            "height": 28.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 247.5625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 424.15625,
+            "height": 144,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 280.15625
+          },
+          {
+            "bottom": 400.15625,
+            "height": 120,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 280.15625
+          }
+        ],
+        "viewport": 360
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 90.4531,
+          "y": 335.000025
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 394.390625,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 369
+        },
+        "dialog": {
+          "bottom": 780.53125,
+          "height": 601.078125,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 179.453125
+        },
+        "dl": {
+          "bottom": 357,
+          "height": 42.296875,
+          "right": 171.90625,
+          "width": 136.90625,
+          "x": 35,
+          "y": 314.703125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 357,
+            "height": 42.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 314.703125
+          },
+          {
+            "bottom": 357,
+            "height": 42.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 314.703125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 329,
+            "height": 14.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 314.703125
+          },
+          {
+            "bottom": 329,
+            "height": 14.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 314.703125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 357,
+            "height": 24,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 333
+          },
+          {
+            "bottom": 357,
+            "height": 24,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 333
+          }
+        ],
+        "viewport": 360
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 360
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-en-360-dpr1.5",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 167,
+          "y": 277.1563
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 456.546875,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 431.15625
+        },
+        "dialog": {
+          "bottom": 852.6875,
+          "height": 745.375,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 107.3125
+        },
+        "dl": {
+          "bottom": 419.15625,
+          "height": 176.59375,
+          "right": 325,
+          "width": 290,
+          "x": 35,
+          "y": 242.5625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 419.15625,
+            "height": 176.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 242.5625
+          },
+          {
+            "bottom": 419.15625,
+            "height": 176.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 242.5625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 271.15625,
+            "height": 28.59375,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 242.5625
+          },
+          {
+            "bottom": 271.15625,
+            "height": 28.59375,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 242.5625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 419.15625,
+            "height": 144,
+            "right": 157,
+            "width": 122,
+            "x": 35,
+            "y": 275.15625
+          },
+          {
+            "bottom": 395.15625,
+            "height": 120,
+            "right": 325,
+            "width": 122,
+            "x": 203,
+            "y": 275.15625
+          }
+        ],
+        "viewport": 360
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 124.5,
+          "y": 330.000025
+        },
+        "bodyWidth": 360,
+        "catCount": 1,
+        "channel": {
+          "bottom": 389.390625,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 364
+        },
+        "dialog": {
+          "bottom": 785.53125,
+          "height": 611.078125,
+          "right": 344,
+          "width": 328,
+          "x": 16,
+          "y": 174.453125
+        },
+        "dl": {
+          "bottom": 352,
+          "height": 42.296875,
+          "right": 228.984375,
+          "width": 193.984375,
+          "x": 35,
+          "y": 309.703125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 352,
+            "height": 42.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 309.703125
+          },
+          {
+            "bottom": 352,
+            "height": 42.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 309.703125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 324,
+            "height": 14.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 309.703125
+          },
+          {
+            "bottom": 324,
+            "height": 14.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 309.703125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 352,
+            "height": 24,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 328
+          },
+          {
+            "bottom": 352,
+            "height": 24,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 328
+          }
+        ],
+        "viewport": 360
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 360
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-zh-CN-420-dpr1",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 197,
+          "y": 292.00005
+        },
+        "bodyWidth": 420,
+        "catCount": 1,
+        "channel": {
+          "bottom": 447.390625,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 422
+        },
+        "dialog": {
+          "bottom": 837.84375,
+          "height": 715.6875,
+          "right": 404,
+          "width": 388,
+          "x": 16,
+          "y": 122.15625
+        },
+        "dl": {
+          "bottom": 410,
+          "height": 152.59375,
+          "right": 385,
+          "width": 350,
+          "x": 35,
+          "y": 257.40625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 410,
+            "height": 152.59375,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 257.40625
+          },
+          {
+            "bottom": 410,
+            "height": 152.59375,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 257.40625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 286,
+            "height": 14.296875,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 271.703125
+          },
+          {
+            "bottom": 286,
+            "height": 28.59375,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 257.40625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 410,
+            "height": 120,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 290
+          },
+          {
+            "bottom": 386,
+            "height": 96,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 290
+          }
+        ],
+        "viewport": 420
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 90.4531,
+          "y": 332.843775
+        },
+        "bodyWidth": 420,
+        "catCount": 1,
+        "channel": {
+          "bottom": 392.234375,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 366.84375
+        },
+        "dialog": {
+          "bottom": 782.6875,
+          "height": 605.390625,
+          "right": 404,
+          "width": 388,
+          "x": 16,
+          "y": 177.296875
+        },
+        "dl": {
+          "bottom": 354.84375,
+          "height": 42.296875,
+          "right": 171.90625,
+          "width": 136.90625,
+          "x": 35,
+          "y": 312.546875
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 354.84375,
+            "height": 42.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 312.546875
+          },
+          {
+            "bottom": 354.84375,
+            "height": 42.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 312.546875
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 326.84375,
+            "height": 14.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 312.546875
+          },
+          {
+            "bottom": 326.84375,
+            "height": 14.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 312.546875
+          }
+        ],
+        "values": [
+          {
+            "bottom": 354.84375,
+            "height": 24,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 330.84375
+          },
+          {
+            "bottom": 354.84375,
+            "height": 24,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 330.84375
+          }
+        ],
+        "viewport": 420
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1,
+        "width": 420
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-en-420-dpr1",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 197,
+          "y": 287.00005
+        },
+        "bodyWidth": 420,
+        "catCount": 1,
+        "channel": {
+          "bottom": 442.390625,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 417
+        },
+        "dialog": {
+          "bottom": 842.84375,
+          "height": 725.6875,
+          "right": 404,
+          "width": 388,
+          "x": 16,
+          "y": 117.15625
+        },
+        "dl": {
+          "bottom": 405,
+          "height": 152.59375,
+          "right": 385,
+          "width": 350,
+          "x": 35,
+          "y": 252.40625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 405,
+            "height": 152.59375,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 252.40625
+          },
+          {
+            "bottom": 405,
+            "height": 152.59375,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 252.40625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 281,
+            "height": 28.59375,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 252.40625
+          },
+          {
+            "bottom": 281,
+            "height": 28.59375,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 252.40625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 405,
+            "height": 120,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 285
+          },
+          {
+            "bottom": 381,
+            "height": 96,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 285
+          }
+        ],
+        "viewport": 420
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 124.5,
+          "y": 327.843775
+        },
+        "bodyWidth": 420,
+        "catCount": 1,
+        "channel": {
+          "bottom": 387.234375,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 361.84375
+        },
+        "dialog": {
+          "bottom": 787.6875,
+          "height": 615.390625,
+          "right": 404,
+          "width": 388,
+          "x": 16,
+          "y": 172.296875
+        },
+        "dl": {
+          "bottom": 349.84375,
+          "height": 42.296875,
+          "right": 228.984375,
+          "width": 193.984375,
+          "x": 35,
+          "y": 307.546875
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 349.84375,
+            "height": 42.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 307.546875
+          },
+          {
+            "bottom": 349.84375,
+            "height": 42.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 307.546875
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 321.84375,
+            "height": 14.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 307.546875
+          },
+          {
+            "bottom": 321.84375,
+            "height": 14.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 307.546875
+          }
+        ],
+        "values": [
+          {
+            "bottom": 349.84375,
+            "height": 24,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 325.84375
+          },
+          {
+            "bottom": 349.84375,
+            "height": 24,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 325.84375
+          }
+        ],
+        "viewport": 420
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1,
+        "width": 420
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-zh-CN-420-dpr1",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 197,
+          "y": 292.00005
+        },
+        "bodyWidth": 420,
+        "catCount": 1,
+        "channel": {
+          "bottom": 447.390625,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 422
+        },
+        "dialog": {
+          "bottom": 837.84375,
+          "height": 715.6875,
+          "right": 404,
+          "width": 388,
+          "x": 16,
+          "y": 122.15625
+        },
+        "dl": {
+          "bottom": 410,
+          "height": 152.59375,
+          "right": 385,
+          "width": 350,
+          "x": 35,
+          "y": 257.40625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 410,
+            "height": 152.59375,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 257.40625
+          },
+          {
+            "bottom": 410,
+            "height": 152.59375,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 257.40625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 286,
+            "height": 14.296875,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 271.703125
+          },
+          {
+            "bottom": 286,
+            "height": 28.59375,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 257.40625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 410,
+            "height": 120,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 290
+          },
+          {
+            "bottom": 386,
+            "height": 96,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 290
+          }
+        ],
+        "viewport": 420
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 90.4531,
+          "y": 332.843775
+        },
+        "bodyWidth": 420,
+        "catCount": 1,
+        "channel": {
+          "bottom": 392.234375,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 366.84375
+        },
+        "dialog": {
+          "bottom": 782.6875,
+          "height": 605.390625,
+          "right": 404,
+          "width": 388,
+          "x": 16,
+          "y": 177.296875
+        },
+        "dl": {
+          "bottom": 354.84375,
+          "height": 42.296875,
+          "right": 171.90625,
+          "width": 136.90625,
+          "x": 35,
+          "y": 312.546875
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 354.84375,
+            "height": 42.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 312.546875
+          },
+          {
+            "bottom": 354.84375,
+            "height": 42.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 312.546875
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 326.84375,
+            "height": 14.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 312.546875
+          },
+          {
+            "bottom": 326.84375,
+            "height": 14.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 312.546875
+          }
+        ],
+        "values": [
+          {
+            "bottom": 354.84375,
+            "height": 24,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 330.84375
+          },
+          {
+            "bottom": 354.84375,
+            "height": 24,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 330.84375
+          }
+        ],
+        "viewport": 420
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1,
+        "width": 420
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-en-420-dpr1",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 197,
+          "y": 287.00005
+        },
+        "bodyWidth": 420,
+        "catCount": 1,
+        "channel": {
+          "bottom": 442.390625,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 417
+        },
+        "dialog": {
+          "bottom": 842.84375,
+          "height": 725.6875,
+          "right": 404,
+          "width": 388,
+          "x": 16,
+          "y": 117.15625
+        },
+        "dl": {
+          "bottom": 405,
+          "height": 152.59375,
+          "right": 385,
+          "width": 350,
+          "x": 35,
+          "y": 252.40625
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 405,
+            "height": 152.59375,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 252.40625
+          },
+          {
+            "bottom": 405,
+            "height": 152.59375,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 252.40625
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 281,
+            "height": 28.59375,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 252.40625
+          },
+          {
+            "bottom": 281,
+            "height": 28.59375,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 252.40625
+          }
+        ],
+        "values": [
+          {
+            "bottom": 405,
+            "height": 120,
+            "right": 187,
+            "width": 152,
+            "x": 35,
+            "y": 285
+          },
+          {
+            "bottom": 381,
+            "height": 96,
+            "right": 385,
+            "width": 152,
+            "x": 233,
+            "y": 285
+          }
+        ],
+        "viewport": 420
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 124.5,
+          "y": 327.843775
+        },
+        "bodyWidth": 420,
+        "catCount": 1,
+        "channel": {
+          "bottom": 387.234375,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 361.84375
+        },
+        "dialog": {
+          "bottom": 787.6875,
+          "height": 615.390625,
+          "right": 404,
+          "width": 388,
+          "x": 16,
+          "y": 172.296875
+        },
+        "dl": {
+          "bottom": 349.84375,
+          "height": 42.296875,
+          "right": 228.984375,
+          "width": 193.984375,
+          "x": 35,
+          "y": 307.546875
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 349.84375,
+            "height": 42.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 307.546875
+          },
+          {
+            "bottom": 349.84375,
+            "height": 42.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 307.546875
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 321.84375,
+            "height": 14.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 307.546875
+          },
+          {
+            "bottom": 321.84375,
+            "height": 14.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 307.546875
+          }
+        ],
+        "values": [
+          {
+            "bottom": 349.84375,
+            "height": 24,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 325.84375
+          },
+          {
+            "bottom": 349.84375,
+            "height": 24,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 325.84375
+          }
+        ],
+        "viewport": 420
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1,
+        "width": 420
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-zh-CN-280-dpr1.5",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 127,
+          "y": 265.093725
+        },
+        "bodyWidth": 280,
+        "catCount": 1,
+        "channel": {
+          "bottom": 516.484375,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 491.09375
+        },
+        "dialog": {
+          "bottom": 879.03125,
+          "height": 798.078125,
+          "right": 264,
+          "width": 248,
+          "x": 16,
+          "y": 80.953125
+        },
+        "dl": {
+          "bottom": 479.09375,
+          "height": 262.890625,
+          "right": 245,
+          "width": 210,
+          "x": 35,
+          "y": 216.203125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 479.09375,
+            "height": 262.890625,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 216.203125
+          },
+          {
+            "bottom": 479.09375,
+            "height": 262.890625,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 216.203125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 259.09375,
+            "height": 28.59375,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 230.5
+          },
+          {
+            "bottom": 259.09375,
+            "height": 42.890625,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 216.203125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 479.09375,
+            "height": 216,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 263.09375
+          },
+          {
+            "bottom": 431.09375,
+            "height": 168,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 263.09375
+          }
+        ],
+        "viewport": 280
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 90.4531,
+          "y": 346.7969
+        },
+        "bodyWidth": 280,
+        "catCount": 1,
+        "channel": {
+          "bottom": 406.1875,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 380.796875
+        },
+        "dialog": {
+          "bottom": 768.734375,
+          "height": 577.484375,
+          "right": 264,
+          "width": 248,
+          "x": 16,
+          "y": 191.25
+        },
+        "dl": {
+          "bottom": 368.796875,
+          "height": 42.296875,
+          "right": 171.90625,
+          "width": 136.90625,
+          "x": 35,
+          "y": 326.5
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 368.796875,
+            "height": 42.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 326.5
+          },
+          {
+            "bottom": 368.796875,
+            "height": 42.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 326.5
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 340.796875,
+            "height": 14.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 326.5
+          },
+          {
+            "bottom": 340.796875,
+            "height": 14.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 326.5
+          }
+        ],
+        "values": [
+          {
+            "bottom": 368.796875,
+            "height": 24,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 344.796875
+          },
+          {
+            "bottom": 368.796875,
+            "height": 24,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 344.796875
+          }
+        ],
+        "viewport": 280
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 280
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "carbon-en-280-dpr1.5",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 127,
+          "y": 232.124975
+        },
+        "bodyWidth": 280,
+        "catCount": 1,
+        "channel": {
+          "bottom": 483.515625,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 458.125
+        },
+        "dialog": {
+          "bottom": 938.25,
+          "height": 916.515625,
+          "right": 264,
+          "width": 248,
+          "x": 16,
+          "y": 21.734375
+        },
+        "dl": {
+          "bottom": 446.125,
+          "height": 262.890625,
+          "right": 245,
+          "width": 210,
+          "x": 35,
+          "y": 183.234375
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 446.125,
+            "height": 262.890625,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 183.234375
+          },
+          {
+            "bottom": 446.125,
+            "height": 262.890625,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 183.234375
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 226.125,
+            "height": 42.890625,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 183.234375
+          },
+          {
+            "bottom": 226.125,
+            "height": 42.890625,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 183.234375
+          }
+        ],
+        "values": [
+          {
+            "bottom": 446.125,
+            "height": 216,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 230.125
+          },
+          {
+            "bottom": 398.125,
+            "height": 168,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 230.125
+          }
+        ],
+        "viewport": 280
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 124.5,
+          "y": 313.82815
+        },
+        "bodyWidth": 280,
+        "catCount": 1,
+        "channel": {
+          "bottom": 373.21875,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 347.828125
+        },
+        "dialog": {
+          "bottom": 827.953125,
+          "height": 695.921875,
+          "right": 264,
+          "width": 248,
+          "x": 16,
+          "y": 132.03125
+        },
+        "dl": {
+          "bottom": 335.828125,
+          "height": 42.296875,
+          "right": 228.984375,
+          "width": 193.984375,
+          "x": 35,
+          "y": 293.53125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 335.828125,
+            "height": 42.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 293.53125
+          },
+          {
+            "bottom": 335.828125,
+            "height": 42.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 293.53125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 307.828125,
+            "height": 14.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 293.53125
+          },
+          {
+            "bottom": 307.828125,
+            "height": 14.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 293.53125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 335.828125,
+            "height": 24,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 311.828125
+          },
+          {
+            "bottom": 335.828125,
+            "height": 24,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 311.828125
+          }
+        ],
+        "viewport": 280
+      },
+      "theme": "carbon",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 280
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-zh-CN-280-dpr1.5",
+      "language": "zh-CN",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 127,
+          "y": 265.093725
+        },
+        "bodyWidth": 280,
+        "catCount": 1,
+        "channel": {
+          "bottom": 516.484375,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 491.09375
+        },
+        "dialog": {
+          "bottom": 879.03125,
+          "height": 798.078125,
+          "right": 264,
+          "width": 248,
+          "x": 16,
+          "y": 80.953125
+        },
+        "dl": {
+          "bottom": 479.09375,
+          "height": 262.890625,
+          "right": 245,
+          "width": 210,
+          "x": 35,
+          "y": 216.203125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 479.09375,
+            "height": 262.890625,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 216.203125
+          },
+          {
+            "bottom": 479.09375,
+            "height": 262.890625,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 216.203125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 259.09375,
+            "height": 28.59375,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 230.5
+          },
+          {
+            "bottom": 259.09375,
+            "height": 42.890625,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 216.203125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 479.09375,
+            "height": 216,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 263.09375
+          },
+          {
+            "bottom": 431.09375,
+            "height": 168,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 263.09375
+          }
+        ],
+        "viewport": 280
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 90.4531,
+          "y": 346.7969
+        },
+        "bodyWidth": 280,
+        "catCount": 1,
+        "channel": {
+          "bottom": 406.1875,
+          "height": 25.390625,
+          "right": 86,
+          "width": 51,
+          "x": 35,
+          "y": 380.796875
+        },
+        "dialog": {
+          "bottom": 768.734375,
+          "height": 577.484375,
+          "right": 264,
+          "width": 248,
+          "x": 16,
+          "y": 191.25
+        },
+        "dl": {
+          "bottom": 368.796875,
+          "height": 42.296875,
+          "right": 171.90625,
+          "width": 136.90625,
+          "x": 35,
+          "y": 326.5
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 368.796875,
+            "height": 42.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 326.5
+          },
+          {
+            "bottom": 368.796875,
+            "height": 42.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 326.5
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 340.796875,
+            "height": 14.296875,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 326.5
+          },
+          {
+            "bottom": 340.796875,
+            "height": 14.296875,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 326.5
+          }
+        ],
+        "values": [
+          {
+            "bottom": 368.796875,
+            "height": 24,
+            "right": 80.453125,
+            "width": 45.453125,
+            "x": 35,
+            "y": 344.796875
+          },
+          {
+            "bottom": 368.796875,
+            "height": 24,
+            "right": 171.90625,
+            "width": 45.453125,
+            "x": 126.453125,
+            "y": 344.796875
+          }
+        ],
+        "viewport": 280
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 280
+      }
+    },
+    {
+      "existingHarnessAssertionsPassed": true,
+      "key": "pearl-en-280-dpr1.5",
+      "language": "en",
+      "latestHiddenArrowAbsent": true,
+      "long": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 127,
+          "y": 232.124975
+        },
+        "bodyWidth": 280,
+        "catCount": 1,
+        "channel": {
+          "bottom": 483.515625,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 458.125
+        },
+        "dialog": {
+          "bottom": 938.25,
+          "height": 916.515625,
+          "right": 264,
+          "width": 248,
+          "x": 16,
+          "y": 21.734375
+        },
+        "dl": {
+          "bottom": 446.125,
+          "height": 262.890625,
+          "right": 245,
+          "width": 210,
+          "x": 35,
+          "y": 183.234375
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 446.125,
+            "height": 262.890625,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 183.234375
+          },
+          {
+            "bottom": 446.125,
+            "height": 262.890625,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 183.234375
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 226.125,
+            "height": 42.890625,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 183.234375
+          },
+          {
+            "bottom": 226.125,
+            "height": 42.890625,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 183.234375
+          }
+        ],
+        "values": [
+          {
+            "bottom": 446.125,
+            "height": 216,
+            "right": 117,
+            "width": 82,
+            "x": 35,
+            "y": 230.125
+          },
+          {
+            "bottom": 398.125,
+            "height": 168,
+            "right": 245,
+            "width": 82,
+            "x": 163,
+            "y": 230.125
+          }
+        ],
+        "viewport": 280
+      },
+      "normal": {
+        "arrow": {
+          "borderWidth": 0,
+          "height": 20,
+          "width": 26,
+          "x": 124.5,
+          "y": 313.82815
+        },
+        "bodyWidth": 280,
+        "catCount": 1,
+        "channel": {
+          "bottom": 373.21875,
+          "height": 25.390625,
+          "right": 123.328125,
+          "width": 88.328125,
+          "x": 35,
+          "y": 347.828125
+        },
+        "dialog": {
+          "bottom": 827.953125,
+          "height": 695.921875,
+          "right": 264,
+          "width": 248,
+          "x": 16,
+          "y": 132.03125
+        },
+        "dl": {
+          "bottom": 335.828125,
+          "height": 42.296875,
+          "right": 228.984375,
+          "width": 193.984375,
+          "x": 35,
+          "y": 293.53125
+        },
+        "dogCount": 1,
+        "groups": [
+          {
+            "bottom": 335.828125,
+            "height": 42.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 293.53125
+          },
+          {
+            "bottom": 335.828125,
+            "height": 42.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 293.53125
+          }
+        ],
+        "hearts": 10,
+        "labels": [
+          {
+            "bottom": 307.828125,
+            "height": 14.296875,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 293.53125
+          },
+          {
+            "bottom": 307.828125,
+            "height": 14.296875,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 293.53125
+          }
+        ],
+        "values": [
+          {
+            "bottom": 335.828125,
+            "height": 24,
+            "right": 114.5,
+            "width": 79.5,
+            "x": 35,
+            "y": 311.828125
+          },
+          {
+            "bottom": 335.828125,
+            "height": 24,
+            "right": 228.984375,
+            "width": 68.484375,
+            "x": 160.5,
+            "y": 311.828125
+          }
+        ],
+        "viewport": 280
+      },
+      "theme": "pearl",
+      "viewport": {
+        "dpr": 1.5,
+        "width": 280
+      }
+    }
+  ],
+  "css": {
+    "afterSha256": "eced7b3291d70b0a8afd06a434d6c3aa4a8cee1a048a468a6e7f3948a136c7db",
+    "beforeSha256": "4dbc87403696e5fb2d0eb5661e7ba323b764b5d23fb2814ef81dc61ae173ff69"
+  },
+  "nativeService": false,
+  "originalScreenshotCount": 72,
+  "passed": true,
+  "rawEvidence": [
+    {
+      "bytes": 145633,
+      "role": "actual-controlled-version-row-matrix",
+      "sha256": "ef74121cc1d58e0fa391bfb5599acbe02c5bb910dcc556188aa2a61c42a0843c"
+    },
+    {
+      "bytes": 8445,
+      "role": "actual-existing-geometry-harness",
+      "sha256": "dc19a6120dbb3279386bbd61a24cb6c7fc45ceb08b330727daa8bf4dddac3f7b"
+    }
+  ],
+  "realDownload": false,
+  "realInstaller": false,
+  "schema": "version-row-public-controlled-geometry/1",
+  "scope": "Actual controlled Chrome component geometry only. All24 original case results and numeric rectangles retained; existing harness assertion results referenced without inventing a new layout/timing algorithm. Raw CSS image/mask/data URI, URLs and private paths omitted. No real download, installer or native-service acceptance.",
+  "selectedOriginalScreens": [
+    "carbon-zh-CN-960-dpr1-before.png",
+    "carbon-zh-CN-960-dpr1-after.png",
+    "pearl-en-360-dpr1.5-after.png",
+    "carbon-zh-CN-280-dpr1.5-long.png"
+  ]
+}

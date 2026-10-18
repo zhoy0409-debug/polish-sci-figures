@@ -1,0 +1,90 @@
+{
+  "completeInstalledUiAssetCount": 80,
+  "measuredOperations": 40,
+  "measurementRuntimeAssetCount": 77,
+  "operations": {
+    "select-text": {
+      "actionWallMs": {
+        "p50": 115.39999997615814,
+        "p95": 140.39999997615814
+      },
+      "commitToSecondRafMs": {
+        "p50": 35.69999998807907,
+        "p95": 44.799999952316284
+      },
+      "frames": {
+        "count": 156,
+        "max": 88.80000001192093,
+        "over50ms": 7,
+        "p50": 8.300000011920929,
+        "p95": 48.30000001192093
+      },
+      "inputToNextRafMs": {
+        "p50": 40.69999998807907,
+        "p95": 52.30000001192093
+      },
+      "inputToSecondRafMs": {
+        "p50": 64,
+        "p95": 79
+      },
+      "longTasks": {
+        "count": 4,
+        "maxMs": 79,
+        "totalMs": 232
+      },
+      "samples": 20,
+      "verifiedOperations": 20
+    },
+    "text-colour": {
+      "actionWallMs": {
+        "p50": 90.39999997615814,
+        "p95": 128.19999998807907
+      },
+      "commitToSecondRafMs": {
+        "p50": 59.59999996423721,
+        "p95": 70.69999998807907
+      },
+      "frames": {
+        "count": 108,
+        "max": 71.59999996423721,
+        "over50ms": 1,
+        "p50": 7.699999988079071,
+        "p95": 23.19999998807907
+      },
+      "inputToNextRafMs": {
+        "p50": 42.5,
+        "p95": 49.80000001192093
+      },
+      "inputToSecondRafMs": {
+        "p50": 59.89999997615814,
+        "p95": 71.19999998807907
+      },
+      "longTasks": {
+        "count": 1,
+        "maxMs": 63,
+        "totalMs": 63
+      },
+      "samples": 20,
+      "verifiedOperations": 20
+    }
+  },
+  "rawEvidence": [
+    {
+      "bytes": 221285,
+      "role": "actual-original-performance-ledger",
+      "sha256": "604aa77e90ffb97404fd2d07e76d60520c9a8fb143378397deb70bef7e03d1f5"
+    },
+    {
+      "bytes": 19861,
+      "role": "actual-original-performance-summary",
+      "sha256": "28e118414137817a4bc9835cfadb8ec762d2e2d1a6020ea3e2106215b99b9f3c"
+    },
+    {
+      "bytes": 3335,
+      "role": "reviewed-candidate-plan",
+      "sha256": "6771a805e6d0cce62506ca40d40369b5c0bf04fa47313192f0d6234590bbd0f8"
+    }
+  ],
+  "retainedWarmups": 6,
+  "scope": "One candidate capture; synthetic5000, Tab confirmation and rAF opportunities, not matched23/24, Enter/optical/FPS or universal acceleration."
+}

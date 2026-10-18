@@ -121,8 +121,10 @@ const browserChannel=process.env.STUDIO_SCENE_BROWSER||'chrome';assert.ok(['chro
       report.componentTiming.push({animationEnabled:enabled,...frames,cdpTaskDurationSeconds:metric(after,'TaskDuration')-metric(before,'TaskDuration'),cdpScriptDurationSeconds:metric(after,'ScriptDuration')-metric(before,'ScriptDuration')});
     }
     report.limitations.push('Component timing is a short run on this host. CDP task/script duration is a Chrome main-thread CPU proxy, not OS CPU utilization. OS CPU and GPU utilization were not measured. It does not demonstrate full-editor or sustained frame rate on other machines.');
-    await page.evaluate(()=>{window.fixtureUI.close();});assert.equal(await page.locator('.update-progress-scene').getAttribute('data-animation'),'off');report.checks.push('closing pauses; scoped scene IDs unique; no image/network dependencies; narrow 100/125/150% emulated DPI geometry');
     const generatedIds=new Set(await page.locator('.update-heart-row [id]').evaluateAll(nodes=>nodes.map(node=>node.id)));
+    assert.equal(generatedIds.size,70,'record all existing IDs while the UI is open before testing close');
+    await page.evaluate(()=>{window.fixtureUI.close();});assert.equal(await page.locator('.update-progress-scene').getAttribute('data-animation'),'off');report.checks.push('closing pauses; scoped scene IDs unique; no image/network dependencies; narrow 100/125/150% emulated DPI geometry');
+    assert.equal(await page.locator('.update-heart-row,defs [id^="fs-update-heart-"]').count(),0,'close detaches every decorative heart resource');
     for(let cycle=0;cycle<3;cycle++){
       const created=await page.evaluate(()=>{
         const host=document.createElement('div');host.className='studio-update-dialog';host.style.cssText='position:fixed;top:20px;left:20px;width:520px;max-height:none';document.body.append(host);

@@ -1,0 +1,9 @@
+{
+  "actualPlanSha256": "b6cd0b4721a1ca9cca71d36a364e52c79fbc353d2bc36e53406763610e85eb14",
+  "curatedAtUTC": "2026-10-18T09:33:23.005815+00:00",
+  "finalAcceptance": false,
+  "nativeBrowserProcessNetworkGitOrBuildActions": false,
+  "officialInAppFlow": false,
+  "schema": "jade-heart-candidate-public-curation/1",
+  "scriptSha256": "deb476148ff1456f2cf4b340f2b424b67c38e56f226ab4ee4de9609ed514f4d6"
+}

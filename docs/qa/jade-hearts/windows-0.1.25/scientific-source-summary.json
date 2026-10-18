@@ -1,0 +1,69 @@
+{
+  "schema": "selected-scientific-source-regression/1",
+  "passed": true,
+  "finishedAtUTC": "2026-10-18T09:07:00.031125+00:00",
+  "suites": [
+    {
+      "suite": "axes-engine",
+      "command": [
+        ".venv/Scripts/python.exe",
+        "scripts/test_studio_axes_regression.py",
+        "--engine"
+      ],
+      "startedAtUTC": "2026-10-18T09:06:14.255153+00:00",
+      "finishedAtUTC": "2026-10-18T09:06:30.270760+00:00",
+      "wallSeconds": 16.01,
+      "exitCode": 0,
+      "unittestMethodsRun": null,
+      "sourceSha256Before": "412b2c71cedeff410959719d5cb796e16c8720894ebb5825f5cdab8ee08f4ebd",
+      "sourceSha256After": "412b2c71cedeff410959719d5cb796e16c8720894ebb5825f5cdab8ee08f4ebd",
+      "sourceUnchanged": true,
+      "stdoutSha256": "c59db892577c4a282e36936f80cc5f6320398ad9a9236ac4ee77c899eb4a8c05",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true,
+      "actualAxisCaseCount": 22,
+      "actualAxisReportSha256": "1445ee9489229492043a9646fded5d464ce54f2d598b60296ef22e7d22d46bf9"
+    },
+    {
+      "suite": "discovery",
+      "command": [
+        ".venv/Scripts/python.exe",
+        "scripts/test_figure_discovery.py",
+        "-v"
+      ],
+      "startedAtUTC": "2026-10-18T09:06:14.255153+00:00",
+      "finishedAtUTC": "2026-10-18T09:07:00.029204+00:00",
+      "wallSeconds": 45.768,
+      "exitCode": 0,
+      "unittestMethodsRun": 5,
+      "sourceSha256Before": "76ac8c6ce0f78b3eb78ff5ad15823329ca2af210504fb1e91dbda0a58a2050f0",
+      "sourceSha256After": "76ac8c6ce0f78b3eb78ff5ad15823329ca2af210504fb1e91dbda0a58a2050f0",
+      "sourceUnchanged": true,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "0ade6d0cc99556c2cfa515cf37d61faf99d4305c9bdc0f38f3e412ef5439ba43",
+      "passed": true
+    },
+    {
+      "suite": "studio",
+      "command": [
+        ".venv/Scripts/python.exe",
+        "skills/polish-sci-figures/scripts/test_figure_studio.py",
+        "-v"
+      ],
+      "startedAtUTC": "2026-10-18T09:06:14.255153+00:00",
+      "finishedAtUTC": "2026-10-18T09:06:37.490463+00:00",
+      "wallSeconds": 23.229,
+      "exitCode": 0,
+      "unittestMethodsRun": 10,
+      "sourceSha256Before": "d36bebba4375f22b696e8f070f2f29242e6197e4b2d0d4acafa747926763e032",
+      "sourceSha256After": "d36bebba4375f22b696e8f070f2f29242e6197e4b2d0d4acafa747926763e032",
+      "sourceUnchanged": true,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "8b205e0484c1956a4585c1bbdc2fdeb855b5fe4e6309e34748ab1dbde3576e5c",
+      "passed": true
+    }
+  ],
+  "scope": "Exactly three existing source entry points; Matplotlib/renderers, numeric/axis engine and provenance contracts. Not browser/native/IME/performance/clinical accuracy or all-workflows acceptance.",
+  "externalServiceCallsInvokedByRunner": false,
+  "gitBuildNativeOrBrowserActions": false
+}
