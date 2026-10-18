@@ -1,0 +1,18 @@
+{
+  "schema": "native-code-preflight/1",
+  "kind": "read_only_actual_frozen_module_comparison",
+  "frozenExecutableSha256": "552faad6d75262aad052bb6f4e3129408fe3a590b9cb0863db41bede6463bb1d",
+  "checks": [
+    {
+      "module": "windows_updater",
+      "currentSourceSha256": "90279742f589a6161d2ec1c59b5cf7413355f191825d52e88819e61fb4a70b20",
+      "compiledCodeEqual": true
+    },
+    {
+      "module": "figure_studio_app",
+      "currentSourceSha256": "a23c28f8ca3cc821bb1e47a5b69e2ad9589414bf128670eebe3a918242e6a19c",
+      "compiledCodeEqual": true
+    }
+  ],
+  "actualExeExecuted": false
+}

@@ -1,0 +1,108 @@
+{
+  "schema": "public-paired-installed-performance-inventory/1",
+  "versions": [
+    "0.1.22",
+    "0.1.23"
+  ],
+  "status": "BOTH_ACTUAL_CAPTURES_PASSED",
+  "pairedPlanSha256": "c185d26e6dc247def6f79560f652af4f9e1d31ae352ae4deed9b14569c5d5be8",
+  "manualPlanSha256": "9ceb86d5b7f7afb5bdba96ba54b23a42c584d34567ab44ea5d57c116689975c0",
+  "benchmarkSha256": "5f56d9c7189ea133b340d0b2a4a40c5f7be46eb4b4bb355eade077053dc2c009",
+  "sourceRunSummarySha256": {
+    "0.1.22": "7f78da0a94e14cc4984aba35bc09eb08aef7e6cb2a8461ccb61e31d82470fd66",
+    "0.1.23": "80277f149f0ea936ed4936c264b29bc6e5030be876eac516e81291556794dd51"
+  },
+  "actualAttempts": {
+    "0.1.22": "performance22-r2",
+    "0.1.23": "performance23-r1"
+  },
+  "priorAttempt": {
+    "attempt": "performance22-r1",
+    "overallPassed": false,
+    "status": "FAIL_POST_CONTROL_GUARD",
+    "benchmarkExitCode": 0,
+    "benchmarkCaptureStatus": "PASS_VERIFIED_CAPTURE",
+    "originalRunSummarySha256": "f2e33a8fb15602ccfce6ae96d257ae87e38a2df9d2e9a4298883e0566adb7f97",
+    "originalRawSha256": "71492a077757d4b09097d4e90b69bec49b3558452299627bf4ce186b114e705f",
+    "originalSummarySha256": "1cbde2e0738da715ffa2411488635289d388e539238c744e9c3a4df26299698c",
+    "retainedPrivately": true,
+    "includedInMatchedNumbers": false,
+    "reason": "The original protected native window ended during capture; the post-control guard failed. The human then confirmed closing the old window. Root explicitly reconciled the new zero-foreign-native/one-browser control baseline before a fresh22-r2 capture. No unchanged-original-window claim is made.",
+    "explicitCheckedControlTransitionReceiptSha256": "3dbacf7f2b9f99720ab4b787c9bf02d6d43e02229a280deab154ff09a61d3271"
+  },
+  "sourceSetupSha256": {
+    "0.1.22": "85b0355490eb2615f2cebc1097e6e51da1d89a9f3b5851a60d95831930be3d1a",
+    "0.1.23": "224d8398be4be73d988892a10c54bc80a70af0a3f6b104dfb849d10726dad764"
+  },
+  "sourceNativeExecutableSha256": {
+    "0.1.22": "c2a6497e96300c88414e80b7c8d6c1b0c9d06d4ee41227a730a75d5322b98fa1",
+    "0.1.23": "552faad6d75262aad052bb6f4e3129408fe3a590b9cb0863db41bede6463bb1d"
+  },
+  "sourceStarterHtmlSha256": {
+    "0.1.22": "df8f5d3fa9ac60ec10fe69d6ae668373c6692bee01d97e0ce998bf21c06afae0",
+    "0.1.23": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8"
+  },
+  "artifacts": [
+    {
+      "file": "0.1.22/performance-v2.json",
+      "sha256": "c6730b771eef0243ad25b8a51db013a29a233b10e8d7ef138e01680fbf44b55f",
+      "bytes": 235846,
+      "exactOriginalCopy": true
+    },
+    {
+      "file": "0.1.22/summary-v2.json",
+      "sha256": "c89d2818d77821730964f691c0380c8c09f542ddcbcb1b726bc3e3741f685f15",
+      "bytes": 19692,
+      "exactOriginalCopy": true
+    },
+    {
+      "file": "0.1.22/run.safe-summary.json",
+      "sha256": "0068244b88ec3a5e7693072eeb524d77775c20775c4d88662a0cdaae587aaf0d",
+      "bytes": 7321,
+      "exactOriginalCopy": false,
+      "originalSha256": "7f78da0a94e14cc4984aba35bc09eb08aef7e6cb2a8461ccb61e31d82470fd66"
+    },
+    {
+      "file": "0.1.22/verified-5000.png",
+      "sha256": "e5f0033a0b0a58540445f7615dccf45e600afca34d8d68ef47040fb40ba5ea06",
+      "bytes": 210038,
+      "exactOriginalCopy": true,
+      "rootActualVisualReview": true
+    },
+    {
+      "file": "0.1.23/performance-v2.json",
+      "sha256": "53d9ed18469385e4c60d1779cb7096087b87e2a616573ef5d8812fb7e9a5fdaa",
+      "bytes": 229290,
+      "exactOriginalCopy": true
+    },
+    {
+      "file": "0.1.23/summary-v2.json",
+      "sha256": "a5eb7852007050a6de43d8d86df093652d918d5cc1de34363828759ca7ff94c7",
+      "bytes": 19855,
+      "exactOriginalCopy": true
+    },
+    {
+      "file": "0.1.23/run.safe-summary.json",
+      "sha256": "3dbcad3b8b5cbdb1f8c21b9d5bee393dcaf68733784de80a3bf2e6abfdc20516",
+      "bytes": 7288,
+      "exactOriginalCopy": false,
+      "originalSha256": "80277f149f0ea936ed4936c264b29bc6e5030be876eac516e81291556794dd51"
+    },
+    {
+      "file": "0.1.23/verified-5000.png",
+      "sha256": "e5f0033a0b0a58540445f7615dccf45e600afca34d8d68ef47040fb40ba5ea06",
+      "bytes": 210038,
+      "exactOriginalCopy": true,
+      "rootActualVisualReview": true
+    }
+  ],
+  "originalPrivateReportsRetained": true,
+  "omittedByDesign": [
+    "Private full native identity/registration tuples and logs",
+    "Actual served HTML and its local token",
+    "Project and data payloads",
+    "Earlier isolated explicit-data-dir candidate performance"
+  ],
+  "visualReviewManifestSha256": "ad503181cc27b636ffb32aef8fbaa8c4a1c3def12178fd02c984a73c3b586335",
+  "conclusionNotAutomated": true
+}

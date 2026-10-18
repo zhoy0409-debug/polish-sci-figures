@@ -1,0 +1,95 @@
+{
+  "schema": "figure-studio-windows-build-summary/1",
+  "date": "2026-10-18",
+  "applicationVersion": "0.1.23",
+  "suiteVersion": "v1.4.23",
+  "status": "BUILD_AND_PACKAGE_SOURCE_MATCH_ONLY",
+  "finalAcceptance": false,
+  "sourceVersionCommit": "a362947cf30fec4e3c70b1ec9e18e454608752b8",
+  "build": {
+    "fullFreeze": true,
+    "skipFreeze": false,
+    "exitCode": 0,
+    "completedAtUTC": "2026-10-18T04:41:21.6267177Z",
+    "originalBuildExecutionSha256": "f474f87402782115a86b92d55bd44ab7d2a14d21a58f429ab51b5edee2b8b5fb"
+  },
+  "packageChecks": {
+    "uiAssets": 80,
+    "allUiFilesExact": true,
+    "backendSources": 27,
+    "packagedProductionBackendModules": 23,
+    "nonpackagedBackendTests": 4,
+    "mappedSuiteCodeObjects": 58,
+    "nativeCodeModules": 2,
+    "portableFiles": 2625,
+    "portableTreeExact": true,
+    "allPortableSizesAndStreamHashesExact": true,
+    "artifactsRehashedForThisPublicSummary": true,
+    "applicationExeExecutedByCodePreflight": false
+  },
+  "artifacts": [
+    {
+      "name": "polish-sci-figures-Studio-0.1.23-Portable-x64.zip",
+      "sha256": "cd3d2cb353e6a4dc78df0776c5aaa7b208dc8ac05f94a3c3ffef5d96a72521a7",
+      "sizeBytes": 147699955
+    },
+    {
+      "name": "polish-sci-figures-Studio-0.1.23-Setup-x64.exe",
+      "sha256": "224d8398be4be73d988892a10c54bc80a70af0a3f6b104dfb849d10726dad764",
+      "sizeBytes": 105868443
+    }
+  ],
+  "copiedOriginalEvidence": [
+    {
+      "file": "package-source-match.json",
+      "bytes": 45475,
+      "sha256": "057cec76315e1c5889673863384368aaee221c107ff3a11a9f6e9859c574aca4",
+      "copiedByteForByte": true
+    },
+    {
+      "file": "native-code-preflight.json",
+      "bytes": 615,
+      "sha256": "1520e2d799c3ce904b86374124a2be8622af274fb7c12cb40b125c9ac726b31a",
+      "copiedByteForByte": true
+    },
+    {
+      "file": "source-freeze.json",
+      "bytes": 10957,
+      "sha256": "cddcc96746a8733fa2866cfee39ca725af365cf5960c28dfc512e499b727128a",
+      "copiedByteForByte": true
+    }
+  ],
+  "versionTests": {
+    "releaseVersionExitCode": 0,
+    "packageVerifierExitCode": 0,
+    "packageVerifierTests": 17,
+    "originalSummarySha256": "e98090d15995b378841b2440df289577627be6dc09653a1c2f63d0f0011420aa",
+    "verifierIsReadOnlyBuildQaTool": true
+  },
+  "ciSnapshot": {
+    "observedBy": "Operator snapshot supplied for this evidence record; no fresh API check performed by this summary",
+    "versionHead": "a362947cf30fec4e3c70b1ec9e18e454608752b8",
+    "runId": 39097929901,
+    "statusAtSuppliedSnapshot": "pending",
+    "historicalInitialHead": "c1120ac11e0ceea9d4e1a0ac63bce9121a5232ea",
+    "historicalRunId": 39097481216,
+    "historicalInitialChecksPassed": 8,
+    "historicalSuccessDoesNotVerifyVersionHead": true
+  },
+  "notPerformedAtThisSnapshot": [
+    "Actual Windows install and startup",
+    "Installed-editor scientific/data/editing/export regression",
+    "Actual reinstall and normal uninstall",
+    "Manual original0.1.22-to0.1.23 Setup upgrade",
+    "Official app-driven download/verification/install upgrade",
+    "Final-head CI completion, PR merge and stable publication"
+  ],
+  "privacy": {
+    "copiedJsonAndOriginalBuildVersionRecordsScannedBeforeCopy": true,
+    "absoluteMachinePathsFound": 0,
+    "knownPrivateExperimentIdentifiersFound": 0,
+    "credentialLiteralsFound": 0,
+    "noPatientIdentifiersOrMeasurementValuesCopied": true
+  },
+  "scope": "The exact original freeze and code-preflight JSON retain their creation-time scope wording. This build record proves new package creation and read-only package/source matching only; it does not convert historical controlled browser tests or older Windows acceptance into new installer success."
+}

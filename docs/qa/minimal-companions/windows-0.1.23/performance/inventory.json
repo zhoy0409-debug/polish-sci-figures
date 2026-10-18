@@ -1,0 +1,139 @@
+{
+  "schema": "figure-studio-public-targeted-performance/1",
+  "date": "2026-10-18",
+  "version": "0.1.23",
+  "status": "PASS_TARGETED_CAPTURE_ONLY",
+  "source23ServedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+  "protocol": {
+    "samplesPerOperation": 20,
+    "warmupIterations": 3,
+    "operationOrder": [
+      "select-text",
+      "text-colour"
+    ],
+    "settleMinimumMs": 250,
+    "settleRule": "Minimum pause, autosave no longer saving, and two rAF callbacks before each action; actions/assertions outside the timed operation are excluded.",
+    "tabRule": "Actual detail\u2192palette and palette\u2192detail, separate operations with explicit aria-pressed preconditions.",
+    "dragRule": "First motion jumps12 CSSpx (above production3px threshold); primary event must move\u22658px; live preview, committed pose, singleUndo, Redo and restoration checked.",
+    "colourRule": "Actual quickColor control fill + Tab; input/change/blur recorded. Native colour-picker window latency excluded.",
+    "quantile": "Nearest rank ceil(n*p). At20 samples P95 is second largest; fixed sample count and no removal of outliers."
+  },
+  "measurement": "Capture-phase performance.now() to next/second rAF callback execution; presentation opportunities, not actual pixel/photon paint. rAF callback intervals are not continuous rendered FPS. Playwright wall time is reported separately.",
+  "elements": 5000,
+  "operationSamplesRetained": 46,
+  "measuredOperations": 40,
+  "warmupOperations": 6,
+  "measuredSamplesPerOperation": 20,
+  "outliersRemoved": 0,
+  "operationSummaries": {
+    "select-text": {
+      "samples": 20,
+      "inputToNextRafMs": {
+        "p50": 67.10000002384186,
+        "p95": 74.7999999821186
+      },
+      "inputToSecondRafMs": {
+        "p50": 93.90000000596046,
+        "p95": 104.09999999403954
+      },
+      "commitToSecondRafMs": {
+        "p50": 41,
+        "p95": 46.900000005960464
+      },
+      "actionWallMs": {
+        "p50": 148.40000000596046,
+        "p95": 165.09999999403954
+      },
+      "frames": {
+        "count": 166,
+        "p50": 8.300000011920929,
+        "p95": 73.7999999821186,
+        "max": 84.5,
+        "over50ms": 20
+      },
+      "longTasks": {
+        "count": 20,
+        "totalMs": 1318,
+        "maxMs": 78
+      },
+      "verifiedOperations": 20
+    },
+    "text-colour": {
+      "samples": 20,
+      "inputToNextRafMs": {
+        "p50": 66,
+        "p95": 73.40000000596046
+      },
+      "inputToSecondRafMs": {
+        "p50": 84.7000000178814,
+        "p95": 94.19999998807907
+      },
+      "commitToSecondRafMs": {
+        "p50": 84.09999999403954,
+        "p95": 93.80000001192093
+      },
+      "actionWallMs": {
+        "p50": 115.59999999403954,
+        "p95": 139.80000001192093
+      },
+      "frames": {
+        "count": 116,
+        "p50": 8.099999994039536,
+        "p95": 67.59999999403954,
+        "max": 76,
+        "over50ms": 8
+      },
+      "longTasks": {
+        "count": 20,
+        "totalMs": 1263,
+        "maxMs": 71
+      },
+      "verifiedOperations": 20
+    }
+  },
+  "allOperationsVerified": true,
+  "sourceAssetsUnchanged": true,
+  "beforeAndAfterOwnedIdentityPassed": true,
+  "all46OperationsInExactRawReport": true,
+  "files": [
+    {
+      "file": "performance-v2.json",
+      "bytes": 229064,
+      "sha256": "af31b2d9e684004213e5c62ae99acb0983f670f004a708b15339d06e56707051",
+      "exactRawCopy": true
+    },
+    {
+      "file": "summary-v2.json",
+      "bytes": 19851,
+      "sha256": "5c51bb05ca4c45263125722ecba4afe2aca1f233fe2a8fc6c3a62ea2e196f49a",
+      "exactRawCopy": true
+    },
+    {
+      "file": "verified-5000.png",
+      "bytes": 210038,
+      "sha256": "e5f0033a0b0a58540445f7615dccf45e600afca34d8d68ef47040fb40ba5ea06",
+      "exactRawCopy": true
+    },
+    {
+      "file": "identity-before.json",
+      "bytes": 477,
+      "sha256": "6387c7acf3cd025d2e1497ad861f5b010beab0091c123a4f8a07b6e06eacc23d",
+      "exactRawCopy": true
+    },
+    {
+      "file": "identity-after.json",
+      "bytes": 477,
+      "sha256": "ddf788c86318cbf81006aa58a1f1138e54ea3c2e26346aa36f22ae339632e121",
+      "exactRawCopy": true
+    }
+  ],
+  "notClaimed": [
+    "Improvement over earlier releases",
+    "Matched 0.1.22/0.1.23 comparison",
+    "Enter-key commit latency",
+    "Optical display latency or continuous FPS",
+    "Scientific data algorithm accuracy",
+    "OS/GPU utilization or full-editor performance"
+  ],
+  "scope": "One independent targeted synthetic-pressure run against the isolated installed0.1.23 service after the functional browser runner ended. Actual default-profile pairing is separate evidence."
+}

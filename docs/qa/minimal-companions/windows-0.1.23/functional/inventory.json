@@ -1,0 +1,631 @@
+{
+  "schema": "figure-studio-public-installed-functional/1",
+  "version": "0.1.23",
+  "status": "PASS_SELECTED_FIVE_SUITES",
+  "date": "2026-10-18",
+  "actualRunnerStatus": "PASS_SELECTED_SUITES_ONLY",
+  "sourceRunnerSummarySha256": "0d17a1b44bec96a6a275cbc7c418821f7515ee9287ed67302b75cdb5ae1679d2",
+  "sourceFreezeManifestSha256": "cddcc96746a8733fa2866cfee39ca725af365cf5960c28dfc512e499b727128a",
+  "actualInstalledHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+  "actualServedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+  "setupSha256": "224d8398be4be73d988892a10c54bc80a70af0a3f6b104dfb849d10726dad764",
+  "conditions": [
+    {
+      "id": "1280x720-en-carbon",
+      "viewport": "1280x720",
+      "language": "en",
+      "theme": "carbon",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "f56a16dea15818b9eddfafac31403fdf8307fbe085e2c99fc54d777c20d7cf8b",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1280x720-en-pearl",
+      "viewport": "1280x720",
+      "language": "en",
+      "theme": "pearl",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "7d1837e351ec58604728f3b23ffed9fdf36234e5464ca38375374774cd1a053c",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1280x720-zh-CN-carbon",
+      "viewport": "1280x720",
+      "language": "zh-CN",
+      "theme": "carbon",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "d05b9764010a8a4bae7f3d1b3679a784fccba5391190f34dc46c5720f1477742",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1280x720-zh-CN-pearl",
+      "viewport": "1280x720",
+      "language": "zh-CN",
+      "theme": "pearl",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "889312cecd343e32a5fc8b4cb6baa506c13b1beb9b473e3814edd4261469a2b3",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1920x1080-en-carbon",
+      "viewport": "1920x1080",
+      "language": "en",
+      "theme": "carbon",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "f832a2e42d59be4029db3b3e69ada3fd668b0eee8afab8c1cfce954707b749bb",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1920x1080-en-pearl",
+      "viewport": "1920x1080",
+      "language": "en",
+      "theme": "pearl",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "d9d6810ab33689b71173c8d07803b239bfe087ef0ed10ecc2ec2cd7ede721a24",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1920x1080-zh-CN-carbon",
+      "viewport": "1920x1080",
+      "language": "zh-CN",
+      "theme": "carbon",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "55387594bc724beff55e1c33fbb116abca4ccab19fb85cc4b26e75b01c02df33",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    },
+    {
+      "id": "1920x1080-zh-CN-pearl",
+      "viewport": "1920x1080",
+      "language": "zh-CN",
+      "theme": "pearl",
+      "processExitCode": 0,
+      "status": "PASS",
+      "rawSha256": "87fdface571208f33b34ab6ff9e3398977f75f896aeb563eb4454d46824a2e58",
+      "browser": "155.0.8059.82",
+      "htmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+      "cases": [
+        {
+          "id": "border-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-mixed-lock-and-selection-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "border-project-and-undo-invalidation",
+          "status": "PASS"
+        },
+        {
+          "id": "quick-font-escape",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-draft-isolation",
+          "status": "PASS"
+        },
+        {
+          "id": "image-tools-docking",
+          "status": "PASS"
+        },
+        {
+          "id": "border-nonrectangular-last-valid-and-delete",
+          "status": "PASS"
+        },
+        {
+          "id": "native-axis-real-response-late-and-cancel",
+          "status": "PASS"
+        },
+        {
+          "id": "border-svg-png-tiff-committed-export",
+          "status": "PASS"
+        }
+      ],
+      "injectionAwareManifestVerified": true
+    }
+  ],
+  "suites": [
+    {
+      "suite": "p0",
+      "startedAt": "2026-10-18T04:49:41.097Z",
+      "finishedAt": "2026-10-18T04:59:47.073Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 72,
+      "harnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+      "rawReportSha256": "d78bde8b7584b1074dc66a231aae2e3cf7e205a95599edc2e3e22f3a1c7e2e07"
+    },
+    {
+      "suite": "resources",
+      "startedAt": "2026-10-18T04:59:50.646Z",
+      "finishedAt": "2026-10-18T05:04:06.626Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 4,
+      "harnessSha256": "55bc143a9626e1325ca6beabcfd13ea2ee9664cbe0454b44db9a7990f1f6c050",
+      "rawReportSha256": "bf1dd473ffbe2d9472f12b6b77b0a9a6e3cdb41dbf92c3b300fc2b6e1d56e392"
+    },
+    {
+      "suite": "blank",
+      "startedAt": "2026-10-18T05:04:10.489Z",
+      "finishedAt": "2026-10-18T05:04:19.080Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 1,
+      "harnessSha256": "b68101d5e3abb118da1d520fc5d0a6f4ac2ff1d8606f99847d7c420b986f0da6",
+      "rawReportSha256": "5ec833825219cdd3aaf12c3a220d464dc137ff3e559715d2054c04b5de959871"
+    },
+    {
+      "suite": "selection",
+      "startedAt": "2026-10-18T05:04:22.185Z",
+      "finishedAt": "2026-10-18T05:04:58.583Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 5,
+      "harnessSha256": "f57c704af5dca0606eb44ffb59872aa02ad4b18b7511da68844249404ab07dbb",
+      "rawReportSha256": "8142b1a1fc8eed7997c5148fd1b1abc7ceeba3e7a98176f07c10a5e01e478d4c"
+    },
+    {
+      "suite": "discovery",
+      "startedAt": "2026-10-18T05:05:01.748Z",
+      "finishedAt": "2026-10-18T05:05:21.993Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 16,
+      "harnessSha256": "2968917b47b7a524bea82b6c20edf35ca845f54eb3cd0218efbbde81fe7f143c",
+      "rawReportSha256": "6831d7bcfa27467897c60cf43abc62c2a9254f81b37cdb8b6c8233f7a618d865"
+    }
+  ],
+  "p0Arithmetic": {
+    "casesPerCondition": 9,
+    "conditions": 8,
+    "totalChecks": 72
+  },
+  "identityBeforeAndAfterPassed": true,
+  "selectionScope": "Actual 8/9-object multi-selection, colour channels, locks/visibility/rich text, and public Iris source/export semantics. This suite does not contain a 5000-element fixture or performance measurement.",
+  "privacyScope": "Repository synthetic tables and public Iris only. An explicit search click using a local table value is rejected before any external request. A separate public-keyword literature request is intercepted and aborted, without inventing a literature response. No real patient data are used.",
+  "offlineScope": "The explicit packaged HTML standalone branch renders/applies declared summary data and verifies the actual saved payload with zero HTTP requests.",
+  "notClaimed": [
+    "A real update/download/install handoff",
+    "Reinstall/Uninstall completion from these five browser suites",
+    "All editor/scientific workflows",
+    "Native IME operation",
+    "Physical display scaling, touch hardware or novice usability",
+    "5000-element performance or optical latency"
+  ],
+  "artifacts": [
+    {
+      "file": "safe-runner-summary.json",
+      "bytes": 6465,
+      "sha256": "0d17a1b44bec96a6a275cbc7c418821f7515ee9287ed67302b75cdb5ae1679d2",
+      "originalFile": "safe-runner-summary.json",
+      "originalBytes": 6465,
+      "originalSha256": "0d17a1b44bec96a6a275cbc7c418821f7515ee9287ed67302b75cdb5ae1679d2",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "p0/matrix-summary.json",
+      "bytes": 12392,
+      "sha256": "d78bde8b7584b1074dc66a231aae2e3cf7e205a95599edc2e3e22f3a1c7e2e07",
+      "originalFile": "p0/matrix-summary.json",
+      "originalBytes": 12392,
+      "originalSha256": "d78bde8b7584b1074dc66a231aae2e3cf7e205a95599edc2e3e22f3a1c7e2e07",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "p0/1280x720-en-carbon/live-preview-after.json",
+      "bytes": 30874,
+      "sha256": "f56a16dea15818b9eddfafac31403fdf8307fbe085e2c99fc54d777c20d7cf8b",
+      "originalFile": "p0/1280x720-en-carbon/live-preview-after.json",
+      "originalBytes": 30874,
+      "originalSha256": "f56a16dea15818b9eddfafac31403fdf8307fbe085e2c99fc54d777c20d7cf8b",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "p0/1280x720-en-pearl/live-preview-after.json",
+      "bytes": 30813,
+      "sha256": "7d1837e351ec58604728f3b23ffed9fdf36234e5464ca38375374774cd1a053c",
+      "originalFile": "p0/1280x720-en-pearl/live-preview-after.json",
+      "originalBytes": 30813,
+      "originalSha256": "7d1837e351ec58604728f3b23ffed9fdf36234e5464ca38375374774cd1a053c",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "p0/1280x720-zh-CN-carbon/live-preview-after.json",
+      "bytes": 30907,
+      "sha256": "d05b9764010a8a4bae7f3d1b3679a784fccba5391190f34dc46c5720f1477742",
+      "originalFile": "p0/1280x720-zh-CN-carbon/live-preview-after.json",
+      "originalBytes": 30907,
+      "originalSha256": "d05b9764010a8a4bae7f3d1b3679a784fccba5391190f34dc46c5720f1477742",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "p0/1280x720-zh-CN-pearl/live-preview-after.json",
+      "bytes": 30846,
+      "sha256": "889312cecd343e32a5fc8b4cb6baa506c13b1beb9b473e3814edd4261469a2b3",
+      "originalFile": "p0/1280x720-zh-CN-pearl/live-preview-after.json",
+      "originalBytes": 30846,
+      "originalSha256": "889312cecd343e32a5fc8b4cb6baa506c13b1beb9b473e3814edd4261469a2b3",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "p0/1920x1080-en-carbon/live-preview-after.json",
+      "bytes": 30833,
+      "sha256": "f832a2e42d59be4029db3b3e69ada3fd668b0eee8afab8c1cfce954707b749bb",
+      "originalFile": "p0/1920x1080-en-carbon/live-preview-after.json",
+      "originalBytes": 30833,
+      "originalSha256": "f832a2e42d59be4029db3b3e69ada3fd668b0eee8afab8c1cfce954707b749bb",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "p0/1920x1080-en-pearl/live-preview-after.json",
+      "bytes": 30772,
+      "sha256": "d9d6810ab33689b71173c8d07803b239bfe087ef0ed10ecc2ec2cd7ede721a24",
+      "originalFile": "p0/1920x1080-en-pearl/live-preview-after.json",
+      "originalBytes": 30772,
+      "originalSha256": "d9d6810ab33689b71173c8d07803b239bfe087ef0ed10ecc2ec2cd7ede721a24",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "p0/1920x1080-zh-CN-carbon/live-preview-after.json",
+      "bytes": 30866,
+      "sha256": "55387594bc724beff55e1c33fbb116abca4ccab19fb85cc4b26e75b01c02df33",
+      "originalFile": "p0/1920x1080-zh-CN-carbon/live-preview-after.json",
+      "originalBytes": 30866,
+      "originalSha256": "55387594bc724beff55e1c33fbb116abca4ccab19fb85cc4b26e75b01c02df33",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "p0/1920x1080-zh-CN-pearl/live-preview-after.json",
+      "bytes": 30805,
+      "sha256": "87fdface571208f33b34ab6ff9e3398977f75f896aeb563eb4454d46824a2e58",
+      "originalFile": "p0/1920x1080-zh-CN-pearl/live-preview-after.json",
+      "originalBytes": 30805,
+      "originalSha256": "87fdface571208f33b34ab6ff9e3398977f75f896aeb563eb4454d46824a2e58",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "resources/resource-preview.json",
+      "bytes": 71536,
+      "sha256": "bf1dd473ffbe2d9472f12b6b77b0a9a6e3cdb41dbf92c3b300fc2b6e1d56e392",
+      "originalFile": "resources/resource-preview.json",
+      "originalBytes": 71536,
+      "originalSha256": "bf1dd473ffbe2d9472f12b6b77b0a9a6e3cdb41dbf92c3b300fc2b6e1d56e392",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "blank/result.json",
+      "bytes": 3172,
+      "sha256": "5ec833825219cdd3aaf12c3a220d464dc137ff3e559715d2054c04b5de959871",
+      "originalFile": "blank/result.json",
+      "originalBytes": 3172,
+      "originalSha256": "5ec833825219cdd3aaf12c3a220d464dc137ff3e559715d2054c04b5de959871",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "selection/selection-browser.json",
+      "bytes": 9857,
+      "sha256": "8142b1a1fc8eed7997c5148fd1b1abc7ceeba3e7a98176f07c10a5e01e478d4c",
+      "originalFile": "selection/selection-browser.json",
+      "originalBytes": 9857,
+      "originalSha256": "8142b1a1fc8eed7997c5148fd1b1abc7ceeba3e7a98176f07c10a5e01e478d4c",
+      "exactRawCopy": true,
+      "omissions": []
+    },
+    {
+      "file": "discovery/result.json",
+      "bytes": 3291,
+      "sha256": "6831d7bcfa27467897c60cf43abc62c2a9254f81b37cdb8b6c8233f7a618d865",
+      "originalFile": "discovery/result.json",
+      "originalBytes": 3291,
+      "originalSha256": "6831d7bcfa27467897c60cf43abc62c2a9254f81b37cdb8b6c8233f7a618d865",
+      "exactRawCopy": true,
+      "omissions": []
+    }
+  ],
+  "omittedByDesign": [
+    "Raw scientific project/save downloads and embedded artwork",
+    "Private runner plans, complete process identities, authorization material and private logs",
+    "Unselected suite outputs, traces, screenshots and videos"
+  ],
+  "scope": "Read-only public curation of final completed actual-installed functional reports. Unsafe originals are retained locally and explicitly represented by bounded derivatives rather than silently sanitized raw copies."
+}

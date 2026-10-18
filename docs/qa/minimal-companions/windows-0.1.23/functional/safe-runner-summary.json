@@ -1,0 +1,132 @@
+{
+  "schema": "figure-studio-installed-functional-runner/1",
+  "status": "PASS_SELECTED_SUITES_ONLY",
+  "sourceStage": "source23",
+  "version": "0.1.23",
+  "setupSha256": "224d8398be4be73d988892a10c54bc80a70af0a3f6b104dfb849d10726dad764",
+  "sourceFreezeManifestSha256": "cddcc96746a8733fa2866cfee39ca725af365cf5960c28dfc512e499b727128a",
+  "sourceFreezeHtmlSha256": "eaf0cad08eb1647f21a4e3a6a8ce253a92bc3f0b8b03fbf2d7d754ed6dfabce3",
+  "installedHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+  "packageHtmlProof": {
+    "sourceFreezeManifestSha256": "cddcc96746a8733fa2866cfee39ca725af365cf5960c28dfc512e499b727128a",
+    "sourceFreezeHtmlSha256": "eaf0cad08eb1647f21a4e3a6a8ce253a92bc3f0b8b03fbf2d7d754ed6dfabce3",
+    "actualPackagedStarterFile": "_internal/suite/desktop/resources/starter.html",
+    "actualPackagedStarterSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+    "installedWorkspaceHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+    "installedFileManifestSha256": "b88f4c5f559f5703cca79eccd6b3987caf0b2f40e6acbeed7280c37823523013",
+    "installedFileCount": 2625,
+    "assetHashCount": 80,
+    "backendHashCount": 27,
+    "compiledBackendModuleCount": 23,
+    "notPackagedTestSources": [
+      "test_check_source_portability.py",
+      "test_figure_studio.py",
+      "test_figure_text_qa.py",
+      "test_font_policy.py"
+    ],
+    "starterBytesMatchOriginalPackageInstalledCopyAndWorkspace": true,
+    "scope": "The source freeze can contain Iris while the desktop starter is blank. Only the UI and production backend are tied to the freeze; non-distributed test-source hashes remain parent manifest references."
+  },
+  "packageSourceProofSha256": "057cec76315e1c5889673863384368aaee221c107ff3a11a9f6e9859c574aca4",
+  "runnerSha256": "7d2abc6d09cb1b8ece230a117e4fe475c5937974f295882fcc8e2a70c274d485",
+  "startedAt": "2026-10-18T04:49:38.230Z",
+  "suites": [
+    {
+      "suite": "p0",
+      "startedAt": "2026-10-18T04:49:41.097Z",
+      "finishedAt": "2026-10-18T04:59:47.073Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 72,
+      "harnessSha256": "c995b09e9ff529dd8e5c32250ad77bcb9537da4984468fed78e7979637073dbe",
+      "rawReportSha256": "d78bde8b7584b1074dc66a231aae2e3cf7e205a95599edc2e3e22f3a1c7e2e07"
+    },
+    {
+      "suite": "resources",
+      "startedAt": "2026-10-18T04:59:50.646Z",
+      "finishedAt": "2026-10-18T05:04:06.626Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 4,
+      "harnessSha256": "55bc143a9626e1325ca6beabcfd13ea2ee9664cbe0454b44db9a7990f1f6c050",
+      "rawReportSha256": "bf1dd473ffbe2d9472f12b6b77b0a9a6e3cdb41dbf92c3b300fc2b6e1d56e392"
+    },
+    {
+      "suite": "blank",
+      "startedAt": "2026-10-18T05:04:10.489Z",
+      "finishedAt": "2026-10-18T05:04:19.080Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 1,
+      "harnessSha256": "b68101d5e3abb118da1d520fc5d0a6f4ac2ff1d8606f99847d7c420b986f0da6",
+      "rawReportSha256": "5ec833825219cdd3aaf12c3a220d464dc137ff3e559715d2054c04b5de959871"
+    },
+    {
+      "suite": "selection",
+      "startedAt": "2026-10-18T05:04:22.185Z",
+      "finishedAt": "2026-10-18T05:04:58.583Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 5,
+      "harnessSha256": "f57c704af5dca0606eb44ffb59872aa02ad4b18b7511da68844249404ab07dbb",
+      "rawReportSha256": "8142b1a1fc8eed7997c5148fd1b1abc7ceeba3e7a98176f07c10a5e01e478d4c"
+    },
+    {
+      "suite": "discovery",
+      "startedAt": "2026-10-18T05:05:01.748Z",
+      "finishedAt": "2026-10-18T05:05:21.993Z",
+      "processExitCode": 0,
+      "status": "PASS",
+      "checks": 16,
+      "harnessSha256": "2968917b47b7a524bea82b6c20edf35ca845f54eb3cd0218efbbde81fe7f143c",
+      "rawReportSha256": "6831d7bcfa27467897c60cf43abc62c2a9254f81b37cdb8b6c8233f7a618d865"
+    }
+  ],
+  "scope": "Actual original-Setup installed engine with exact process/registry/file-manifest proof. Functional checks only; not a performance measurement, official release, novice study or physical-touch test.",
+  "identityBefore": {
+    "powerShellVersion": "7.6.5",
+    "protectedProcessCount": 1,
+    "scope": "Read-only CIM, file hashes and exact AppId registry queries. No process, registry or installed file is modified.",
+    "status": "PASS_READ_ONLY_IDENTITY",
+    "protectedIdentitiesUnchanged": true,
+    "installedExecutableMatchesPackage": true,
+    "currentRegistrationOwned": true,
+    "initialRegistryViewsAbsent": 4,
+    "registeredViewCount": 2,
+    "version": "0.1.23",
+    "qaProcessExact": true
+  },
+  "servedSourceProof": {
+    "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+    "servedHtmlSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+    "reconstructedExpectedSha256": "ac520ce5852480c1778798bc89af0465687e4ae97786d83b73e1a11a486f1a67",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "installedRunManifestSha256": "b866e6acc5ffbe2bc9d23185f93083c3b7036cb20bca3c1e9586cdc984fa8a34",
+  "actualSavedIrisPreservationPayloadSha256": "2171b3ec6e83d3726f236bf954e7820d923e9580b4f4676d3f7b09bdcd8a97e5",
+  "identityAfter": {
+    "status": "PASS_READ_ONLY_IDENTITY",
+    "initialRegistryViewsAbsent": 4,
+    "currentRegistrationOwned": true,
+    "installedExecutableMatchesPackage": true,
+    "version": "0.1.23",
+    "protectedProcessCount": 1,
+    "protectedIdentitiesUnchanged": true,
+    "powerShellVersion": "7.6.5",
+    "registeredViewCount": 2,
+    "scope": "Read-only CIM, file hashes and exact AppId registry queries. No process, registry or installed file is modified.",
+    "qaProcessExact": true
+  },
+  "allOwnSuitesComplete": false,
+  "delegatedP1Required": true,
+  "additionalRequiredEvidence": [
+    "Install/Start identity sidecars",
+    "P1 dual-theme if delegated",
+    "Duplicate/background/native-launcher checks assigned by the main task",
+    "Manual review of final headful demonstrations",
+    "Actual Reinstall/Uninstall preservation and registry/protected-process proof"
+  ],
+  "finishedAt": "2026-10-18T05:05:27.328Z"
+}

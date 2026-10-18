@@ -1,0 +1,209 @@
+{
+  "schema": "bounded-public-paired-performance-run/1",
+  "version": "0.1.23",
+  "passed": true,
+  "originalRunSummarySha256": "80277f149f0ea936ed4936c264b29bc6e5030be876eac516e81291556794dd51",
+  "originalRunSummaryBytes": 10034,
+  "originalRetainedPrivately": true,
+  "originalPublished": false,
+  "omissions": [
+    "Absolute paths, PID/creation/command-line tuples and private HTTP HTML/token are retained locally.",
+    "Raw project payloads and private operator logs are not published."
+  ],
+  "startedAt": "2026-10-18T05:51:12.920Z",
+  "finishedAt": "2026-10-18T05:52:27.415Z",
+  "controlTransition": {
+    "id": "user-closed-old-window-20261018-r1",
+    "receiptSha256": "3dbacf7f2b9f99720ab4b787c9bf02d6d43e02229a280deab154ff09a61d3271",
+    "newPreflightSha256": "c304bb73b2d6dbe42d4cf7922432368534637256d53f3f5df59ce6abd673a6ba",
+    "stateControlTransitionSha256": "d02f2470af5177864e4fd9bb4d98c1111bb79695d6220cd5fcf2bc493e610b18",
+    "stateAfterTransitionSha256": "fd82375f2ffeaca2ba671e8f2258a71a8a3e4df725a7b5091688fc5da1773507",
+    "stateAtEntrySha256": "7fec7f7bc058a84f2bec2f81bf754fe1d9d798a4169571b3025798f640b0173d",
+    "humanConfirmedOldWindowClosed": true,
+    "confirmedCurrentForeignNativeCount": 0,
+    "protectedBrowserRootCount": 1,
+    "priorOriginalWindowUnchangedClaim": false,
+    "priorFailed22RunSummarySha256": "f2e33a8fb15602ccfce6ae96d257ae87e38a2df9d2e9a4298883e0566adb7f97"
+  },
+  "preparedWrapperSha256": "458ac01f2229e9da333f929cf2140705992d55ea4af4117bfc1b76d8f58462e5",
+  "planSha256": "c185d26e6dc247def6f79560f652af4f9e1d31ae352ae4deed9b14569c5d5be8",
+  "manualPlanSha256": "9ceb86d5b7f7afb5bdba96ba54b23a42c584d34567ab44ea5d57c116689975c0",
+  "reviewedServedHtmlSha256": "abad194685a3a5eeea3e3062cbbd8a89ed80a740acd3b2ca245f45f83bd44866",
+  "rawSha256": "53d9ed18469385e4c60d1779cb7096087b87e2a616573ef5d8812fb7e9a5fdaa",
+  "summarySha256": "a5eb7852007050a6de43d8d86df093652d918d5cc1de34363828759ca7ff94c7",
+  "protocol": {
+    "elements": 5000,
+    "samplesPerOperation": 20,
+    "warmupPerOperation": 3,
+    "operations": [
+      "select-text",
+      "text-colour"
+    ],
+    "settleMs": 250,
+    "headless": true,
+    "video": false,
+    "zoom": "fit"
+  },
+  "servedInfo": {
+    "currentVersion": "0.1.23",
+    "platform": "windows",
+    "inAppInstall": true
+  },
+  "servedSourceProof": {
+    "localHtmlSha256": "1cb575695e661f769797153086ea8232bc89a4b1545d9ba55b5b64524725ddd8",
+    "servedHtmlSha256": "abad194685a3a5eeea3e3062cbbd8a89ed80a740acd3b2ca245f45f83bd44866",
+    "reconstructedExpectedSha256": "abad194685a3a5eeea3e3062cbbd8a89ed80a740acd3b2ca245f45f83bd44866",
+    "byteExactOutsideDocumentedInjection": true,
+    "injection": "UTF-8 universal-newline read; exactly the two literal Handler connect-src substitutions; exactly one validated local-engine application/json block before the first closing head. No other script, scientific content or stylesheet is removed or normalized.",
+    "credentialsExcluded": true
+  },
+  "settingsBefore": {
+    "sha256": "01a530b9e465618e74d30a0f31fcbbc09b1569f0abd407c7ea75c85678ac3303",
+    "bytes": 59
+  },
+  "settingsAfter": {
+    "jsonEqual": true,
+    "bytesEqual": true,
+    "bytes": 59,
+    "sha256": "01a530b9e465618e74d30a0f31fcbbc09b1569f0abd407c7ea75c85678ac3303"
+  },
+  "programSnapshotBeforeAndAfter": {
+    "expectedFiles": 2625,
+    "actualFiles": 2627,
+    "allExpectedFilesExact": true,
+    "onlyGeneratedUninstallerExtras": true,
+    "expectedInventorySha256": "2581d63ee0b4aebe216b3ccf09a9e287614ba6b0857b542322aac13f2f8f0a33",
+    "actualInventorySha256": "7a07c8cec97e29a6791ce5181e4087457b88c67cf152094355cacbc136aaaab7",
+    "extras": [
+      {
+        "file": "unins000.dat",
+        "sha256": "197b1c3a2cf7696d409c9338b33b611a8558705f5c883af6e764ace9ff31314c"
+      },
+      {
+        "file": "unins000.exe",
+        "sha256": "1666f489f689908d769c5b5563025cfb11ded2527d4ca008e1c5e76b76d6f968"
+      }
+    ]
+  },
+  "preciseNativeGuard": {
+    "passedBeforeAndAfter": true,
+    "version": "0.1.23",
+    "port": 19326,
+    "nativeProductVersion": "0.1.23",
+    "nativeExecutableSha256": "552faad6d75262aad052bb6f4e3129408fe3a590b9cb0863db41bede6463bb1d",
+    "ownedIdentityUnchanged": true,
+    "protectedNativeIdentitiesUnchanged": true,
+    "protectedNativeCount": 0,
+    "protectedBrowserRootCount": 1,
+    "protectedBrowserIdentitiesUnchanged": true,
+    "confirmedCurrentForeignNativeCount": 0,
+    "matchesExplicitNewBoundControlSet": true,
+    "humanConfirmedOldWindowClosed": true,
+    "priorOriginalWindowUnchangedClaim": false,
+    "registryViewCount": 4,
+    "registryBeforeAndAfter": [
+      {
+        "hive": "CurrentUser",
+        "exists": true,
+        "version": "0.1.23",
+        "view": "Registry32"
+      },
+      {
+        "hive": "CurrentUser",
+        "exists": true,
+        "version": "0.1.23",
+        "view": "Registry64"
+      },
+      {
+        "hive": "LocalMachine",
+        "exists": false,
+        "view": "Registry32"
+      },
+      {
+        "hive": "LocalMachine",
+        "exists": false,
+        "view": "Registry64"
+      }
+    ],
+    "noProcessOrRegistryMutation": true
+  },
+  "registrationVerifiedByIndependentEvidenceGuardBeforeAndAfter": true,
+  "privateIdentityOriginalSha256": {
+    "before": "19676c36788924b53493a176783406b57b086d4761e19eaa24e4c94eb096b6fc",
+    "after": "2112a23ddd821bc75a40bff6fbb9ea64c748362fa4d1eb1220a3874a173861b5"
+  },
+  "packageSnapshotOriginalSha256": {
+    "before": "1c74e095e3c2c65029a490955ea16be6dc59d8d4282a018e666e6a6864921507",
+    "after": "1c74e095e3c2c65029a490955ea16be6dc59d8d4282a018e666e6a6864921507"
+  },
+  "all46OperationsVerified": true,
+  "measuredOperations": 40,
+  "warmupOperationsRetained": 6,
+  "operationSummary": {
+    "select-text": {
+      "samples": 20,
+      "inputToNextRafMs": {
+        "p50": 69.59999999403954,
+        "p95": 83.5
+      },
+      "inputToSecondRafMs": {
+        "p50": 96,
+        "p95": 115.2000000178814
+      },
+      "commitToSecondRafMs": {
+        "p50": 40,
+        "p95": 45.900000005960464
+      },
+      "actionWallMs": {
+        "p50": 148.7999999821186,
+        "p95": 173.60000002384186
+      },
+      "frames": {
+        "count": 163,
+        "p50": 8.300000011920929,
+        "p95": 78.10000002384186,
+        "max": 91.80000001192093,
+        "over50ms": 20
+      },
+      "longTasks": {
+        "count": 20,
+        "totalMs": 1409,
+        "maxMs": 85
+      },
+      "verifiedOperations": 20
+    },
+    "text-colour": {
+      "samples": 20,
+      "inputToNextRafMs": {
+        "p50": 74.5,
+        "p95": 105.90000000596046
+      },
+      "inputToSecondRafMs": {
+        "p50": 93.40000000596046,
+        "p95": 135.10000002384186
+      },
+      "commitToSecondRafMs": {
+        "p50": 92.90000000596046,
+        "p95": 134.40000000596046
+      },
+      "actionWallMs": {
+        "p50": 124.09999999403954,
+        "p95": 188.90000000596046
+      },
+      "frames": {
+        "count": 117,
+        "p50": 8.099999994039536,
+        "p95": 43.599999994039536,
+        "max": 161.09999999403954,
+        "over50ms": 5
+      },
+      "longTasks": {
+        "count": 20,
+        "totalMs": 1538,
+        "maxMs": 156
+      },
+      "verifiedOperations": 20
+    }
+  },
+  "realDownloadOrInstallationByThisHarness": false
+}

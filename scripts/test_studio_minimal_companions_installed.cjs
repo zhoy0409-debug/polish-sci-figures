@@ -28,7 +28,7 @@ function sameCore(actual,expected,{history=true,state=true}={}){
 async function main(){
   const {args,out}=argumentsForRun(),reportFile=path.join(out,'installed-minimal-result.json');
   const report={schema:'figure-studio-installed-minimal-companions/1',kind:'actual_installed_loopback_service',passed:false,startedAt:new Date().toISOString(),harnessSha256:H.sha(fs.readFileSync(__filename)),checks:[],screens:[],network:{externalRequests:[],forbiddenUpdateActions:[],observedUpdateActions:[]},pageErrors:[],unexpectedDialogs:[],realUpdateDownload:false,realUpdateInstallation:false,htmlFulfillmentUsed:false,bridgeInjected:false,limitations:['Chrome uses an isolated headless context against an already installed local service; this harness does not install or start the native application.','Update metadata and status use the actual local service. Its server may contact the official metadata service; browser HTTP requests remain local.','No newer-than-0.1.23 update is downloaded or installed. This is installed UI/data acceptance, not an actual update handoff.','The public Iris project is one real-data regression fixture. No native IME, image-detector accuracy, full-editor performance or all-workflows claim.']};
-  let browser,context,page,video,runError,openingProject=false;
+  let browser,context,page,video,cdp,onDocumentResponse,runError,openingProject=false;
   try{
     const address=localAddress(args.url);assert.equal(args['expected-version'],'0.1.23','This release acceptance is bound to Studio 0.1.23.');
     assert.match(args['expected-html-sha'],/^[a-fA-F0-9]{64}$/);const expectedSha=args['expected-html-sha'].toLowerCase();
@@ -57,18 +57,54 @@ async function main(){
       if(openingProject&&dialog.type()==='confirm'&&openMessages.has(dialog.message()))await dialog.accept();
       else{report.unexpectedDialogs.push({type:dialog.type(),messageSha256:H.sha(dialog.message())});await dialog.dismiss();}
     });
-    const navigation=await page.goto(address.href,{waitUntil:'load',timeout:60000});assert.ok(navigation);assert.equal(navigation.status(),200);assert.equal(navigation.url(),address.href);assert.equal(H.sha(await navigation.body()),expectedSha,'Browser must render the exact installed-server HTML, without fulfillment.');
-    report.htmlIdentity.browserNavigationSha256=H.sha(await navigation.body());
+    // The production editor embeds scientific assets and exceeds Chrome's
+    // default per-resource inspector cache. Pin this actual main-document
+    // request in an independent CDP session with explicit, bounded buffers.
+    const mib=1024*1024,resourceBuffer=htmlBytes.length*2+8*mib;
+    assert.ok(Number.isSafeInteger(resourceBuffer)&&resourceBuffer<=128*mib,'Reviewed HTML exceeds the bounded 128 MiB per-resource evidence buffer.');
+    const totalBuffer=Math.min(256*mib,resourceBuffer*2);
+    cdp=await context.newCDPSession(page);
+    await cdp.send('Network.enable',{maxTotalBufferSize:totalBuffer,maxResourceBufferSize:resourceBuffer});
+    const mainFrameId=(await cdp.send('Page.getFrameTree')).frameTree.frame.id,documentResponses=[];
+    onDocumentResponse=event=>{if(event.type==='Document'&&event.response.url===address.href&&event.frameId===mainFrameId)documentResponses.push({requestId:event.requestId,status:event.response.status,url:event.response.url,frameId:event.frameId});};
+    cdp.on('Network.responseReceived',onDocumentResponse);
+    const navigation=await page.goto(address.href,{waitUntil:'load',timeout:60000});assert.ok(navigation);assert.equal(navigation.status(),200);assert.equal(navigation.url(),address.href);
+    assert.equal(documentResponses.length,1,'Exactly one real main-document response must match the reviewed installed URL.');
+    const documentResponse=documentResponses[0];assert.equal(documentResponse.status,200);
+    const browserBody=await cdp.send('Network.getResponseBody',{requestId:documentResponse.requestId});
+    const browserBytes=Buffer.from(browserBody.body,browserBody.base64Encoded?'base64':'utf8');
+    assert.equal(H.sha(browserBytes),expectedSha,'Browser must render the exact installed-server HTML, without fulfillment or a substitute fetch.');
+    report.htmlIdentity.browserNavigationSha256=H.sha(browserBytes);
+    report.htmlIdentity.browserNavigationEvidence={method:'Independent CDP Network.getResponseBody for the exact main-frame Document request',requestId:documentResponse.requestId,bytes:browserBytes.length,base64Encoded:browserBody.base64Encoded,maxResourceBufferSize:resourceBuffer,maxTotalBufferSize:totalBuffer};
     const servedInfo=await page.locator('#local-engine').evaluate(node=>{const info=JSON.parse(node.textContent).updateInfo;return {currentVersion:info.currentVersion,suiteVersion:info.suiteVersion,platform:info.platform,architecture:info.architecture,inAppInstall:info.inAppInstall};});
     assert.equal(servedInfo.currentVersion,args['expected-version']);assert.equal(servedInfo.platform,'windows');assert.equal(servedInfo.inAppInstall,args['expected-in-app-install']==='true','Installed updater capability must match the explicitly reviewed service identity.');report.installedServiceIdentity=servedInfo;
     await page.locator('#language').selectOption('en');await H.dismiss(page);
     const fixture=H.publicIris();report.publicFixture={name:'UCI Iris',doi:'10.24432/C56C76',inputPayloadSha256:H.sha(JSON.stringify(fixture))};
+    // Independent expectation for this bound legacy fixture, established from
+    // the input and the documented import contract, never from an actual Save.
+    // openProjectFile -> migrateLabelHistory migrates missing labelNumbering;
+    // panelNumberStyle returns upper when the original states have no labels.
+    for(const legacy of [fixture.project.initialState,fixture.state]){
+      assert.equal(Object.hasOwn(legacy,'labelNumbering'),false,'The bound legacy Iris input must lack the numbering field.');
+      assert.ok(legacy.order.every(id=>!legacy.panels[id].label),'This narrow migration expectation requires the original no-label Iris states.');
+    }
+    const expectedProject=JSON.parse(JSON.stringify(fixture.project)),expectedState=JSON.parse(JSON.stringify(fixture.state));
+    expectedProject.initialState.labelNumbering='upper';expectedState.labelNumbering='upper';
+    report.importMigrationEvidence={
+      sourceProjectSha256:H.sha(JSON.stringify(fixture.project)),expectedCanonicalProjectSha256:H.sha(JSON.stringify(expectedProject)),
+      sourceStateSha256:H.sha(JSON.stringify(fixture.state)),expectedCanonicalStateSha256:H.sha(JSON.stringify(expectedState)),
+      definedDefaults:[{path:'project.initialState.labelNumbering',from:'absent',to:'upper'},{path:'state.labelNumbering',from:'absent',to:'upper'}],
+      contract:{source:'skills/polish-sci-figures/assets/figure-studio/studio.js',sha256:H.sha(fs.readFileSync(path.join(H.ROOT,'skills/polish-sci-figures/assets/figure-studio/studio.js'))),functions:['openProjectFile','migrateLabelHistory','migratePanelLabels','panelNumberStyle']},
+      derivedFromActualSave:false,scientificPanelChangesAllowed:false
+    };
     async function load(payload,name){openingProject=true;try{await H.loadProject(page,payload,name);}finally{openingProject=false;}}
     async function save(name){const payload=await H.save(page);fs.writeFileSync(path.join(out,name),JSON.stringify(payload));return payload;}
     async function shot(name){await page.screenshot({path:path.join(out,name)});const bytes=fs.readFileSync(path.join(out,name));report.screens.push({file:name,bytes:bytes.length,sha256:H.sha(bytes)});}
     async function theme(value){await page.locator('#appearanceMenu summary').click();await page.locator('#studioTheme').selectOption(value);await page.locator('#appearanceMenu summary').click();assert.equal(await page.locator('html').getAttribute('data-theme'),value);}
     await load(fixture,'PUBLIC-Iris-installed-0.1.23.json');await page.waitForFunction(()=>document.getElementById('projectTitle').textContent.includes('Iris'));
-    const before=await save('project-before-update-dialog.json');assert.equal(counts(before).observations,150);assert.equal(counts(before).svgSources,12);assert.deepEqual(before.project,fixture.project,'Every original observation, source SVG, recipe and analysis must survive project Open.');report.beforeCounts=counts(before);
+    const before=await save('project-before-update-dialog.json');assert.equal(counts(before).observations,150);assert.equal(counts(before).svgSources,12);assert.deepEqual(before.project,expectedProject,'Complete project must equal the independently canonicalized input, including every original observation, source SVG, recipe and analysis.');assert.deepEqual(before.state,expectedState,'Only the defined missing numbering default may migrate the original current state.');
+    for(let i=0;i<fixture.project.panels.length;i++)for(const key of ['table','variants','recipe','analysis'])assert.deepEqual(before.project.panels[i][key],fixture.project.panels[i][key],'Original scientific panel '+i+' '+key+' must remain completely exact.');
+    report.beforeCounts=counts(before);report.importMigrationEvidence.completeProjectAndStateMatchIndependentExpected=true;report.importMigrationEvidence.allOriginalTablesVariantsRecipesAnalysesExact=true;
     await theme('carbon');await page.locator('#studioCheckUpdates').click();await page.locator('.mascot-dog').waitFor({state:'visible'});await page.waitForFunction(()=>!document.getElementById('studioRetryUpdateCheck').disabled,{},{timeout:45000});
     assert.equal(await page.locator('.update-mascot-art').getAttribute('viewBox'),'0 0 500 128');assert.equal(await page.locator('.mascot-cat').count(),1);assert.equal(await page.locator('.mascot-dog').count(),1);assert.equal(await page.locator('.mascot-dog-ear').count(),2);
     assert.equal(await page.locator('.update-mascot-art image,.update-mascot-art linearGradient,.update-mascot-art radialGradient,.mascot-paw-work,.mascot-paw-greet').count(),0);
@@ -113,6 +149,7 @@ async function main(){
   }catch(error){runError=error;report.passed=false;report.failure={name:error.name,message:error.message,stack:error.stack};
   }finally{
     const cleanupErrors=[];let contextClosed=false,browserClosed=false;
+    try{if(cdp){if(onDocumentResponse)cdp.off('Network.responseReceived',onDocumentResponse);await cdp.detach();}}catch(error){cleanupErrors.push({resource:'cdp',message:error.message});}
     try{if(context){await context.close();contextClosed=true;}}catch(error){cleanupErrors.push({resource:'context',message:error.message});}
     try{if(browser){await browser.close();browserClosed=true;}}catch(error){cleanupErrors.push({resource:'browser',message:error.message});}
     try{if(video){if(!contextClosed&&!browserClosed)throw Error('Video cannot finalize while both context and browser failed to close.');const file=await video.path(),bytes=fs.readFileSync(file);report.originalRecording={file:path.relative(out,file).replaceAll('\\','/'),bytes:bytes.length,sha256:H.sha(bytes),unedited:true};}}catch(error){cleanupErrors.push({resource:'recording',message:error.message});}
