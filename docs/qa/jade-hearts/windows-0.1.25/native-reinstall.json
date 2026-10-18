@@ -1,0 +1,46 @@
+{
+  "uninstalled": false,
+  "environment": "Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.",
+  "harnessSha256": "2a99d7930c39b6aea0019481481cf5cff1a9bf8a8152baa2594a58a7738f2893",
+  "powerShellVersion": "7.6.5",
+  "protectedProcessCount": 0,
+  "reinstallPreserved": true,
+  "externalDataPreserved": false,
+  "packageVerification": {
+    "everyPackagedFileMatches": true,
+    "fileCount": 2627,
+    "manifestSha256": "87f9a0aa5e6b6ad7c837cfbf4efba67f07d0cf8360f63010e2f161bcfbe6c996"
+  },
+  "servedHtmlSha256": "582f68270283076c83274d969ce0c438c7f9b757aa911b3704bc6fb37aaf76b8",
+  "checks": [
+    "Four exact AppId hive/view combinations initially absent",
+    "Protected application process identities and binaries unchanged",
+    "All packaged files match actual installed files",
+    "Actually installed x64 PE version matches",
+    "Frozen installed self-test passes with Python removed from PATH and invalid PYTHONHOME",
+    "Exact installed process serves authenticated local health on isolated persisted QA port",
+    "Same-version original Setup reinstall preserves exact settings, external sentinel and actual saved public project bytes"
+  ],
+  "version": "0.1.25",
+  "phase": "Reinstall",
+  "workspaceHtmlSha256": "4687f6dc9f2edaf0bf13697e4c071d23acaf2d04cc0311e996c07c397850d640",
+  "incompleteAttemptCleanup": false,
+  "completedPhases": [
+    "Install",
+    "Start",
+    "Reinstall"
+  ],
+  "evidenceAttempt": "",
+  "schema": "figure-studio-live-preview-windows/1",
+  "reinstallPackageVerification": {
+    "everyPackagedFileMatches": true,
+    "fileCount": 2627,
+    "manifestSha256": "b42038cbe9d98b286e4ab8b63b1c409669ee60b47c044c06f7d788b08ebe29ba"
+  },
+  "selfTestReportSha256": "81041e9f287430b200283faeea912a48f81c73143b2ea8e6e1f40419d9bc3bf9",
+  "protectedProcessIdentitiesUnchanged": true,
+  "initialRegistryViewsAbsent": 4,
+  "frozen": true,
+  "setupSha256": "7abfdd5580cb8aa6685ef3a50496b7bfcef7ef28435578c085ad8ffa6eb23705",
+  "selfTestPassed": true
+}

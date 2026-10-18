@@ -47,7 +47,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1']}={}){
     renderCanvas:next=>render(next||current)
   };
   vm.createContext(ctx);vm.runInContext(helpers,ctx);
-  ctx.editableSource=(id,vi,s=current)=>ctx.applyStoredEdits(parse(),id,vi,s);
+  ctx.editableSource=(id,vi,s=current)=>ctx.applyStoredEdits(parse(),id,vi,s);ctx.editableSourceSnapshot=ctx.editableSource;
   function render(s=current){const root=ctx.editableSource('p0',0,s);root.setAttribute('data-panel','p0');root.setAttribute('width',String(width));$('artboard').replaceChildren(root);return root;}
   $('scope').value='element';render();
   const node=key=>$('artboard').querySelector(`[data-key="${key||ctx.selected[0]}"]`);

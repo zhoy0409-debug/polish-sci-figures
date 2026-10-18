@@ -1,0 +1,36 @@
+{
+  "browserStateCount": 22,
+  "browserVersion": "155.0.8059.82",
+  "lifecycleCycles": 3,
+  "narrowCases": 6,
+  "passed": true,
+  "rawEvidence": [
+    {
+      "bytes": 33708,
+      "role": "formal25-controlled-browser",
+      "sha256": "77d2f772eb09a5686e49b4cdde81a7149bb7c8d75102ce1af959464a34549f1f"
+    },
+    {
+      "bytes": 1843,
+      "role": "formal25-functional-visual-aggregate",
+      "sha256": "0fc480f2b44154123fdadbd42018e38a73542ce0b59fb7dce7107143580346b1"
+    },
+    {
+      "bytes": 5639,
+      "role": "formal25-original-file-manifest",
+      "sha256": "4a0d77c716d80e054524d74d804eb1588ed5ade54be9f8ff223d86bda1efc836"
+    }
+  ],
+  "realDownload": false,
+  "realInstaller": false,
+  "runtimeAssetSha256": {
+    "mascot-minimal-cat.svg": "abee4441d83d8e127526e8656363b0117e01a0bc3e99ec27882f8d4d43975d83",
+    "mascot-minimal-dog.svg": "3ac69072935713d1f2af3c5849052d731710eea38aead5d4f7b5b9976072d9ee",
+    "mascot-scene.svg": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b",
+    "update-check.js": "977df4939713cedc0d340b58958a9b2000c3c7de5c79cf411483300a894c1d5f",
+    "update-scene.css": "eced7b3291d70b0a8afd06a434d6c3aa4a8cee1a048a468a6e7f3948a136c7db",
+    "update-scene.js": "444cc790b4c5948ee785e1772c145453cb13dde3e7e5b840edae5f56d305daa7"
+  },
+  "scope": "Actual headless Chrome of formal production component assets and controlled transport responses; complete80 source assets verified unchanged before/after. The full source26 editor HTML is not loaded by this component fixture. Not native download/install or latency acceptance.",
+  "timingsScope": "All raw first-open/rAF/CDP component timings retained as exploratory run data only; not controlled latency/no-regression acceptance; new native build ran concurrently."
+}

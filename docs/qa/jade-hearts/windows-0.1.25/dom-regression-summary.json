@@ -1,0 +1,322 @@
+{
+  "allPassed": true,
+  "failedSuites": 0,
+  "passedSuites": 30,
+  "rawEvidence": {
+    "bytes": 23172,
+    "role": "actual-dom-r2",
+    "sha256": "40501c7e0ae1c770c384d279f642e7a09b604bd4d1922045dc373123f9da69a0"
+  },
+  "retainedEnvironmentFailureSummarySha256": "c7fd58bdbed15fdfd17568745ff57d1fab2d9febf859ad73faee1674d9d58333",
+  "schema": "figure-studio-node-dom-regression/1",
+  "scope": "Existing Node/JSDOM/state/operation-count suites against actual 0.1.25 source. No real browser/native/installer/update download, latency benchmark, or new scientific render execution.",
+  "sourceAssetHashesUnchanged": true,
+  "tests": [
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_selection_performance.cjs",
+      "passed": true,
+      "scriptSha256": "cccbaddd40006d28aa0e2af8904720a4477c7be67771a96184b3271f3c52fc92",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "908b83ef13d88319247c8ac7ee3f6a397de2d42e4557e4a6445a8b20418925ef",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_selection_lookup.cjs",
+      "passed": true,
+      "scriptSha256": "d2c420d67204d2d1b898b3c1269a170ae607dd8dcd07527499e20e1994dab9a6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "0b7cddc1ef53a703ac23cf592acf48a315c5ccdbd89999abfeedf5f1cd9dd2f5",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_selection_click_reuse.cjs",
+      "passed": true,
+      "scriptSha256": "7c0732271c0d911b07c79c00da0298fbf473ee44b36895aa92835cd921ba7e6d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "4e27bbbb3a2d2b4f9b30ce3af6c3253c89af77af254fdf28e592ea8a96920fef",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_selection_refresh_efficiency.cjs",
+      "passed": true,
+      "scriptSha256": "9e56da01036964936f6ce12fe840226df132e5fb0e8eb16146505a742b77833f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "4e87405ed80d42b218cc95dcb92f6e5d006d6fb9fe72dbb661389afb0a653b2a",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_selection_resize_integration.cjs",
+      "passed": true,
+      "scriptSha256": "81e8733c2ba12bc5b703639398e48478bd6afbc08a1c36f7bfd3d4eca7f6f7d4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "d4ed3bc67717d6222b59a575cdad28876badbb3eaa8570664a732f08dad7aaed",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_canvas_clipboard_integration.cjs",
+      "passed": true,
+      "scriptSha256": "60ff6367bd7ea294f465a121f2cee078ca09baf9de3c12f2296c096d23c460c6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "6a5c8adbbb90ab6f1bfdc9857f559039292e7f99256c960df4cd75a188074e28",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_canvas_clipboard_append.cjs",
+      "passed": true,
+      "scriptSha256": "636f30c795f3472987b1712926761197188421dced928bab93701a282ad55a68",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "98cf55039a2ef6339b6bf27c3ec2d7a06e4b71a39b5ce80f36e4634360236c7a",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_direct_text_editing.cjs",
+      "passed": true,
+      "scriptSha256": "c72778a04d33cfc0b25fcb028483c6845f81dcc61be0c0b1fae57b68d5dbac01",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "e7b1d6be8c43055d29fddfb4493b0032e1a48d7629dbac144120f58594f99897",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_pdf_text_editing.cjs",
+      "passed": true,
+      "scriptSha256": "a1d424be5cec76afd1e3de3c3e08143d344c213e1c62d8c79835d4572e599ca9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "f15b83c9eadede669d112d38cb0b87f18ae99c56314f35193f9fa2477e9156bd",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_resize_text.cjs",
+      "passed": true,
+      "scriptSha256": "91f0ed24b148be7ecfddbaa22faf320e4c43a6144b7042ea90b233487a4e425f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "53c56549e97786e26ef2c016d50b27df2448061efb88a2e64c36528e0f4370e3",
+      "timedOut": false
+    },
+    {
+      "arguments": [
+        "--dom"
+      ],
+      "exitCode": 0,
+      "file": "scripts/test_studio_component_controls.cjs",
+      "passed": true,
+      "scriptSha256": "c2f8236b12e52aaaafd4b8c8a4f87afd2494ea4e97f5988832dd9022cb6e5e70",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "05f7fd8439754ee54e534ce7c523d4309078b225187bdc9d36c78519ef2578c2",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_rich_text_regression.cjs",
+      "passed": true,
+      "scriptSha256": "f1233cfc7b3de935ece20a6e62a644aa1361435bb64cec1d0b966681ca1cee5b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "6840adeccbcc8d30f7cd8c84794a3a39f29f423fa7e27534ec5c058c70c62b39",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_positioned_text.cjs",
+      "passed": true,
+      "scriptSha256": "37316b14c793d4586cfabc170b02d8a4a47b700b96b13ea464008bb39dfffdc1",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "9437d49b063ac45718a5a8ff0152bcd4f3018754f2cc41ae3b3d263dd53d1151",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_text_geometry.cjs",
+      "passed": true,
+      "scriptSha256": "a23c54010d024ce45c14a5904a2505ae4175f611b9780805182600c43e2c43db",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "f065cecc25754bbc13f9264dbdb7ef79b40f91274eb2f58bdf8092e6f22a3d93",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_inserted_text_font_scale.cjs",
+      "passed": true,
+      "scriptSha256": "11b82430bbc1bc91a85affecc0bf763ebff2e1311b3d7a983ee03679d015f186",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "5a137ad1b075e4428223dd52e2d12bb925255286511094eae96dc3ee0a6908ba",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_variant_styles.cjs",
+      "passed": true,
+      "scriptSha256": "7d24124527e9b065cc1f75f135ee75e52b3cb1a392dd43967063bf9769553e9c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "32d4e59ba46be592c067619f58c3b3a43e5d2675a129e29742bb89572ebd16d2",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_text_tools_integration.cjs",
+      "passed": true,
+      "scriptSha256": "1448b5b279c5fc539129bcfc269fce68b05fd80722f6dd9b28db4fd60a0c6924",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "0e37faeda8aa8a4c9ce28514899cf09710519fe72680a2fe5472a06098d7ae49",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_text_spacing_preview.cjs",
+      "passed": true,
+      "scriptSha256": "26aadec12759e03186750d0444fe40f973b893ef33637251e9f97adea6a22696",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "5d91adb0f5dcf0d9211a9a4f6d74b6dd26e5cd3b82e86befd9c74b2d936bc57d",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_font_replacement.cjs",
+      "passed": true,
+      "scriptSha256": "a71cda49622b5bd571d903b3789869e6b1857bd6e6b1b03917599d730539b099",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "4178050c0ac5a9b14cd70e77374202891ccf4209849dea438e416bbd14f1f55f",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_layout_lock_integration.cjs",
+      "passed": true,
+      "scriptSha256": "b4c98ab809d4d498900d4ff0f3ce73b5d1c43bf61499cb9c54391857370288f8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "1434b6f8b849bdbbaa2f034dd0025778e41aa2b6300ddcf662fb17ebd5643305",
+      "timedOut": false
+    },
+    {
+      "arguments": [
+        "--dom"
+      ],
+      "exitCode": 0,
+      "file": "scripts/test_studio_axis_editing.cjs",
+      "passed": true,
+      "scriptSha256": "5be0de29e04f94c649a30f934f6d4207c96be1a4ccdcdeb07600d8d7ce891547",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "e3ca56a158bc83fe437bf1fbb351a44ae2e122752d77822d4e91afbe01afe144",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_axis_preview_isolation.cjs",
+      "passed": true,
+      "scriptSha256": "30232da82c80aa2f8c9196a0e2de1587b34752c37ca1193d49945b9a00d11c20",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "daa49cf216741a8b752280a1c6c08130309fb5c2c3cac61ceefab298edcbe06b",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_axis_asset_draft.cjs",
+      "passed": true,
+      "scriptSha256": "a364a67238fcac27681e715705fd972cafbd84f03b403782c47ba6ec55b3bcef",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "b37ae656e4fcad2a35c92e29c4f23500561a84ebe5d4323be48fb2204899753b",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_axis_settings_async.cjs",
+      "passed": true,
+      "scriptSha256": "be3e04ab51c522135fe6b5be39a82e98ea743c356fb1430c43a329ffb097f022",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "6c880dd558181a567a664b4c78eb3e25df90cf024405441a20fd7071cb788181",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_commit_preview_efficiency.cjs",
+      "passed": true,
+      "scriptSha256": "f48a0e8818806d0f7264bad4ade0a4879c7d7f1f6fac2e8d73ec4627bf35e89d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "305e7aef76162e73cc7da6b211b651f4f3a98d3b942b2cb1016932caf87646e5",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_preview_sessions.cjs",
+      "passed": true,
+      "scriptSha256": "e69e4d51608b781500c4d022e0873bf4284ef668d85711f2a677f6f4e4c5be3b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "0ea0adf7687a2df76a0dd58db26abf31096067c89cb75d1972492025e6226fb7",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_quick_paint_preview.cjs",
+      "passed": true,
+      "scriptSha256": "976e892225155690ed68b170f1d6467434eb6f5ea988188fe8cfbd68d828f2dc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "fcf56eb852156ea4151461dd8b65d9fac041267c46ba421d2f6a7df70b7a6062",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_autosave_coalescing.cjs",
+      "passed": true,
+      "scriptSha256": "43e3782b53e4c22e9470e4f87456bfdad75b3d28719fc3fd4b960ce11a166a22",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "19139666fcb4099b7cbd892f12c4389f8fd842212871816eca3546671f3f20f4",
+      "timedOut": false
+    },
+    {
+      "arguments": [],
+      "exitCode": 0,
+      "file": "scripts/test_studio_update_scene.cjs",
+      "passed": true,
+      "scriptSha256": "07ce10e133c9a53f073ace46c3c9d1272bfd64926f4723d93918ebdbf3d32e64",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "e6a3dd3d34da7f6a78e778e2dcf913eb8a402436f202a266fd25734a28fe90a1",
+      "timedOut": false
+    },
+    {
+      "arguments": [
+        "--dom"
+      ],
+      "exitCode": 0,
+      "file": "scripts/test_studio_update_check.cjs",
+      "passed": true,
+      "scriptSha256": "4da8e2dc146e3fb8c303fa7442a92bcec13f24544c4683737e3fc461a3cd12f6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSha256": "a8ad77a703300c8dfd6ed12c0f3efacef0838ab9ce802989bd9ace9bdcbc1033",
+      "timedOut": false
+    }
+  ]
+}

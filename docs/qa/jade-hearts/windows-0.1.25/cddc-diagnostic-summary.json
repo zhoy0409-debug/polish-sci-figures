@@ -1,0 +1,311 @@
+{
+  "captureGuardsPassed": true,
+  "nativePerformanceAccepted": false,
+  "order": [
+    "C",
+    "D",
+    "D",
+    "C"
+  ],
+  "originalInterpretation": "Functional/source/protocol capture guards passed only. All samples retained; no outlier removal, no native timing or release verdict inferred.",
+  "rawEvidence": {
+    "bytes": 48841,
+    "role": "CDDC-original-run",
+    "sha256": "b20c031c76ef87ff72f7426d8f71978f696b009420ce31bcf56821a8ac657986"
+  },
+  "rounds": [
+    {
+      "allSamples": "cddc-1-c-all-samples.json",
+      "rawSha256": "4d4bfbc1482a144b4ed51fd14e3bfadf44cc17cdccb180bca53849d37e76c52e",
+      "round": 1,
+      "summary": {
+        "select-text": {
+          "actionWallMs": {
+            "p50": 148.5,
+            "p95": 173.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 41.30000001192093,
+            "p95": 51.89999997615814
+          },
+          "frames": {
+            "count": 167,
+            "max": 108.5,
+            "over50ms": 20,
+            "p50": 8.300000011920929,
+            "p95": 75
+          },
+          "inputToNextRafMs": {
+            "p50": 65.39999997615814,
+            "p95": 80.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 93.19999998807907,
+            "p95": 113.79999995231628
+          },
+          "longTasks": {
+            "count": 19,
+            "maxMs": 102,
+            "totalMs": 1293
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "actionWallMs": {
+            "p50": 123.60000002384186,
+            "p95": 148.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 83.89999997615814,
+            "p95": 101.19999998807907
+          },
+          "frames": {
+            "count": 120,
+            "max": 82,
+            "over50ms": 5,
+            "p50": 7.899999976158142,
+            "p95": 25
+          },
+          "inputToNextRafMs": {
+            "p50": 65.10000002384186,
+            "p95": 79.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 84.39999997615814,
+            "p95": 101.69999998807907
+          },
+          "longTasks": {
+            "count": 20,
+            "maxMs": 78,
+            "totalMs": 1236
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        }
+      },
+      "summarySha256": "a370319e31e481460ef44ee68df8362a81baedd8c3a03ccdf10d148d71942e98",
+      "variant": "C"
+    },
+    {
+      "allSamples": "cddc-2-d-all-samples.json",
+      "rawSha256": "16d3ceffb5439241b2a338fb5b463755a010282e16da4d72f21c0de26cd0381f",
+      "round": 2,
+      "summary": {
+        "select-text": {
+          "actionWallMs": {
+            "p50": 107.80000001192093,
+            "p95": 124.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 35,
+            "p95": 39.89999997615814
+          },
+          "frames": {
+            "count": 153,
+            "max": 58.19999998807907,
+            "over50ms": 2,
+            "p50": 8.300000011920929,
+            "p95": 43.5
+          },
+          "inputToNextRafMs": {
+            "p50": 37.5,
+            "p95": 48.09999996423721
+          },
+          "inputToSecondRafMs": {
+            "p50": 62,
+            "p95": 75.79999995231628
+          },
+          "longTasks": {
+            "count": 1,
+            "maxMs": 51,
+            "totalMs": 51
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "actionWallMs": {
+            "p50": 90.90000003576279,
+            "p95": 114.79999995231628
+          },
+          "commitToSecondRafMs": {
+            "p50": 55.5,
+            "p95": 73.09999996423721
+          },
+          "frames": {
+            "count": 112,
+            "max": 52.39999997615814,
+            "over50ms": 2,
+            "p50": 7.800000011920929,
+            "p95": 20
+          },
+          "inputToNextRafMs": {
+            "p50": 38.30000001192093,
+            "p95": 50.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 55.89999997615814,
+            "p95": 73.5
+          },
+          "longTasks": {
+            "count": 1,
+            "maxMs": 61,
+            "totalMs": 61
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        }
+      },
+      "summarySha256": "70adc90b092155335f750ac44fa1717fd5306e921097cd2c8b9efa1578e30f38",
+      "variant": "D"
+    },
+    {
+      "allSamples": "cddc-3-d-all-samples.json",
+      "rawSha256": "be0c31a59335bd4608bac2dd1f651b1bfc592dee834b07116420c154548238cf",
+      "round": 3,
+      "summary": {
+        "select-text": {
+          "actionWallMs": {
+            "p50": 107.70000004768372,
+            "p95": 140.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 34.39999997615814,
+            "p95": 44.90000003576279
+          },
+          "frames": {
+            "count": 159,
+            "max": 68.10000002384186,
+            "over50ms": 6,
+            "p50": 8.300000011920929,
+            "p95": 45.09999996423721
+          },
+          "inputToNextRafMs": {
+            "p50": 37.5,
+            "p95": 54.89999997615814
+          },
+          "inputToSecondRafMs": {
+            "p50": 60.90000003576279,
+            "p95": 81.90000003576279
+          },
+          "longTasks": {
+            "count": 5,
+            "maxMs": 62,
+            "totalMs": 272
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "actionWallMs": {
+            "p50": 90.5,
+            "p95": 131.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 55.60000002384186,
+            "p95": 86.09999996423721
+          },
+          "frames": {
+            "count": 107,
+            "max": 65,
+            "over50ms": 3,
+            "p50": 7.899999976158142,
+            "p95": 24.099999964237213
+          },
+          "inputToNextRafMs": {
+            "p50": 38.60000002384186,
+            "p95": 52.200000047683716
+          },
+          "inputToSecondRafMs": {
+            "p50": 56,
+            "p95": 86.59999996423721
+          },
+          "longTasks": {
+            "count": 1,
+            "maxMs": 59,
+            "totalMs": 59
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        }
+      },
+      "summarySha256": "54fa8b496b60ceb47fde2d2daac794c0987ab29e2fdeff13a3886844c83be99d",
+      "variant": "D"
+    },
+    {
+      "allSamples": "cddc-4-c-all-samples.json",
+      "rawSha256": "b58e748527b49962171b93d899e484b1b02df13c14ffa04b11522a51a2b7da47",
+      "round": 4,
+      "summary": {
+        "select-text": {
+          "actionWallMs": {
+            "p50": 132.69999998807907,
+            "p95": 149.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 37.80000001192093,
+            "p95": 46.19999998807907
+          },
+          "frames": {
+            "count": 157,
+            "max": 129,
+            "over50ms": 20,
+            "p50": 8.300000011920929,
+            "p95": 66.80000001192093
+          },
+          "inputToNextRafMs": {
+            "p50": 60.10000002384186,
+            "p95": 69.90000003576279
+          },
+          "inputToSecondRafMs": {
+            "p50": 84.90000003576279,
+            "p95": 98.40000003576279
+          },
+          "longTasks": {
+            "count": 20,
+            "maxMs": 122,
+            "totalMs": 1257
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "actionWallMs": {
+            "p50": 107.40000003576279,
+            "p95": 132.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 74.19999998807907,
+            "p95": 97.10000002384186
+          },
+          "frames": {
+            "count": 103,
+            "max": 65.60000002384186,
+            "over50ms": 2,
+            "p50": 7.699999988079071,
+            "p95": 19.599999964237213
+          },
+          "inputToNextRafMs": {
+            "p50": 57.89999997615814,
+            "p95": 77.29999995231628
+          },
+          "inputToSecondRafMs": {
+            "p50": 74.69999998807907,
+            "p95": 97.69999998807907
+          },
+          "longTasks": {
+            "count": 20,
+            "maxMs": 79,
+            "totalMs": 1166
+          },
+          "samples": 20,
+          "verifiedOperations": 20
+        }
+      },
+      "summarySha256": "850ddd02ebf41c69e24b1d4c4eef182785c5d5bf4631e5d01935bc4c6cb2b2b9",
+      "variant": "C"
+    }
+  ],
+  "scope": "Controlled browser-only single-factor diagnostic, not native, official update or general acceleration acceptance. All four original rounds retained."
+}

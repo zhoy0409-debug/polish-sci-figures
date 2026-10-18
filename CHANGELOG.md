@@ -1,12 +1,21 @@
 # Changelog
 
-## v1.4.24 · Figure Studio 0.1.24 — in development
+## v1.4.25 · Figure Studio 0.1.25 — in preparation
 
-Status on 2026-10-18: not published; source, browser, Windows installation and real-update acceptance are pending. See the [0.1.24 change scope](docs/release-notes-v1.4.24.md).
+Status on 2026-10-18: not published. Actual candidate performance, exact-head CI, Windows scientific/editing acceptance and the genuine official 0.1.24 → 0.1.25 upgrade remain pending. See the [proposed 0.1.25 scope](docs/release-notes-v1.4.25.md).
 
-- Keep the existing simple cat and dog; prepare a transparent outline heart with a jade water level driven by actual received/total download bytes.
-- Retain animation preference, reduced motion, separate verification/install states and the saved-project confirmation gate. No timer-generated percentage or completed-install claim is planned.
-- Update candidate version metadata and current guides while retaining the published 0.1.23 assets and acceptance history.
+- Reuse the existing canonical SVG snapshot for four reviewed read-only inspector consumers while retaining cloned edit consumers and all existing cache invalidation rules.
+- Mount heart resources only when needed; preserve the simple cat/dog, jade hearts, genuine received/total byte semantics, reduced motion and update safety gates.
+- Align current/latest version labels and values in shared grid rows; replace the absolutely positioned text arrow with a decorative jade vector arrow. Check both themes, translated labels and narrow layouts on the revised candidate.
+- Keep the rejected 0.1.24 performance samples and published assets intact. Controlled CPU/CDDC diagnostics do not certify a new installed release.
+
+## v1.4.24 · Figure Studio 0.1.24 — published; performance gate pending
+
+Published on 2026-10-18. Initial Windows/scientific/editing checks and the genuine official 0.1.23 → 0.1.24 upgrade/restoration/normal cleanup passed; matched 5000-element performance was rejected. Final acceptance and three postrelease supplements remain suspended. See the [actual 0.1.24 status and native-pair/ABBA scope](docs/release-notes-v1.4.24.md).
+
+- Keep the original simple cat and dog and add transparent outline hearts with jade water driven by actual received/total download bytes.
+- Retain animation preferences, reduced motion, separate verification/install states and saved-project confirmation. Unknown totals never acquire a timer-generated percentage.
+- Preserve the original tag and eight initial assets. The initial evidence stays an initial snapshot; it is not rewritten as final acceptance or future 0.1.24-rendered upgrade evidence.
 
 ## v1.4.23 · Figure Studio 0.1.23
 

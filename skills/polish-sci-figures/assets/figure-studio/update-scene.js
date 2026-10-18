@@ -42,9 +42,12 @@ const StudioUpdateScene=(()=>{
     const ns='http://www.w3.org/2000/svg',heartShape='M12 20.3C9.4 18 3 13.6 3 8.5C3 4.6 7.9 3 10.5 5.4L12 6.8 13.5 5.4C16.1 3 21 4.6 21 8.5C21 13.6 14.6 18 12 20.3Z';
     // Fixed path vertical bounds: actual SVG getBBox y=4.269051075, bottom=20.3.
     const heartTop=4.269051075,heartBottom=20.3;
-    const heartRow=doc.createElement('div');heartRow.className='update-heart-row';heartRow.setAttribute('aria-hidden','true');
+    let heartRow=null,hearts=null;
+    function mountHearts(){
+      if(!heartRow){
+    heartRow=doc.createElement('div');heartRow.className='update-heart-row';heartRow.setAttribute('aria-hidden','true');
     const id=++heartSequence,svgNode=(name,attributes={})=>{const node=doc.createElementNS(ns,name);for(const [key,value] of Object.entries(attributes))node.setAttribute(key,String(value));return node;};
-    const hearts=Array.from({length:10},(_,index)=>{
+    hearts=Array.from({length:10},(_,index)=>{
       const heart=svgNode('svg',{viewBox:'0 0 24 24',class:'update-heart',focusable:'false','aria-hidden':'true'}),prefix='fs-update-heart-'+id+'-'+index,clipId=prefix+'-clip';
       const defs=svgNode('defs'),clip=svgNode('clipPath',{id:clipId}),clipped=svgNode('g',{'clip-path':'url(#'+clipId+')'}),liquid=svgNode('g',{class:'update-heart-liquid'});
       const gradient=(kind,name,attributes,stops)=>{const node=svgNode(kind,{id:prefix+'-'+name,...attributes});for(const [offset,color,opacity] of stops)node.append(svgNode('stop',{offset,'stop-color':color,'stop-opacity':opacity}));defs.append(node);return 'url(#'+prefix+'-'+name+')';};
@@ -62,7 +65,10 @@ const StudioUpdateScene=(()=>{
       clipped.append(liquid,svgNode('path',{d:heartShape,fill:depth,class:'update-heart-depth'}),svgNode('path',{d:'M4 5C8 3.8 10.2 6.8 9 11L6.6 17.5Q4 15 4 5Z',fill:sheen,class:'update-heart-sheen'}));
       heart.append(clipped,svgNode('path',{d:heartShape,fill:'none',stroke:rim,class:'update-heart-outline'}),svgNode('path',{d:heartShape,fill:'none',stroke:'#f4fff8','stroke-opacity':.63,'stroke-width':.55,transform:'translate(.85 .85) scale(.9292)',class:'update-heart-inner-rim'}),svgNode('path',{d:'M5.3 8.5C5 6.3 7.7 5 9.3 6.4M15.1 6.2C16.6 5.3 18.7 6.2 18.9 7.7',fill:'none',stroke:'#fff','stroke-opacity':.8,'stroke-width':.92,'stroke-linecap':'round',class:'update-heart-highlight'}));
       heart.style.setProperty('--heart-index',String(index));heartRow.append(heart);return {heart,liquid};
-    });container.append(heartRow);
+    });
+      }
+      if(heartRow.parentNode!==container)container.append(heartRow);
+    }
     let active=false,enabled=true,intersecting=true,lastState='',disposed=false;
     const media=doc.defaultView?.matchMedia?.('(prefers-reduced-motion: reduce)');
     const motion=()=>{if(disposed)return;container.dataset.animation=active&&enabled&&intersecting&&!media?.matches&&doc.visibilityState!=='hidden'?'on':'off';};
@@ -75,13 +81,15 @@ const StudioUpdateScene=(()=>{
       if(disposed)return;const changed=value.state!==lastState;lastState=value.state;
       container.dataset.state=value.state;container.dataset.motion=value.motion;container.dataset.indeterminate=String(value.indeterminate);
       container.style.setProperty('--update-progress',String(value.ratio));
+      if(active&&hearts){
       const progress=heartProgress(value);container.dataset.heartProgress=progress.mode;
       hearts.forEach(({heart,liquid},index)=>{const level=progress.levels[index];heart.dataset.fill=level===0?'empty':level===1?'full':'partial';heart.dataset.level=String(level);liquid.style.setProperty('--heart-offset',String(heartBottom-(heartBottom-heartTop)*level)+'px');});
+      }
       if(changed)container.dataset.celebrate=String(['ready','current'].includes(value.state)&&active&&enabled&&!media?.matches);
       motion();
-    },setActive(value){active=value===true;if(!active)container.dataset.celebrate='false';motion();},
+    },setActive(value){if(disposed)return;active=value===true;if(active)mountHearts();else{heartRow?.remove();container.dataset.celebrate='false';}motion();},
     setEnabled(value){enabled=value===true;if(!enabled)container.dataset.celebrate='false';motion();},
-    destroy(){disposed=true;doc.removeEventListener('visibilitychange',visibility);media?.removeEventListener?.('change',motion);observer?.disconnect();companion.remove();heartRow.remove();}};
+    destroy(){disposed=true;doc.removeEventListener('visibilitychange',visibility);media?.removeEventListener?.('change',motion);observer?.disconnect();companion.remove();heartRow?.remove();hearts=null;heartRow=null;}};
   }
   return {create,presentation,acceptProgress,heartProgress};
 })();

@@ -88,7 +88,7 @@ test('repeated and concurrent scenes keep local SVG definitions unique and remov
   try{
     for(let index=0;index<4;index++){
       const container=f.doc.createElement('div');f.doc.body.append(container);const ui=Scene.create({document:f.doc,container});instances.push({container,ui});
-      ui.refresh(Scene.presentation({installation:{status:'downloading',received:52,total:100}}));
+      ui.setActive(true);ui.refresh(Scene.presentation({installation:{status:'downloading',received:52,total:100}}));
       const ids=[...container.querySelectorAll('.update-heart-row [id]')];assert.ok(ids.length>0);
       for(const node of ids){assert.ok(!seen.has(node.id));seen.add(node.id);assert.equal(f.doc.getElementById(node.id),node);}
       assert.equal(container.querySelectorAll('.update-heart').length,10);assert.equal(container.querySelector('.update-heart-row').getAttribute('aria-hidden'),'true');
@@ -111,6 +111,19 @@ test('hidden, closed, reduced motion and explicit motion off all pause; no timer
   ui.refresh(Scene.presentation({installation:{status:'ready'}}));assert.equal(container.dataset.celebrate,'true');ui.setActive(false);assert.equal(container.dataset.celebrate,'false');assert.equal(container.dataset.animation,'off');ui.setActive(true);ui.refresh(Scene.presentation({installation:{status:'ready'}}));assert.equal(container.dataset.celebrate,'false','reopening cannot endlessly celebrate');
   ui.destroy();assert.equal(f.mediaConnected(),false);f.dom.window.close();
 });
+test('first closed scene constructs no heart SVG and destruction cannot recreate it',()=>{
+  const f=fixture(),container=f.doc.createElement('div'),create=f.doc.createElementNS.bind(f.doc);let created=0;f.doc.createElementNS=(...args)=>{created++;return create(...args);};f.doc.body.append(container);
+  const ui=Scene.create({document:f.doc,container});try{const companion=container.querySelector('.update-companion').innerHTML;for(let index=0;index<50;index++)ui.refresh(Scene.presentation({installation:{status:'downloading',received:index,total:100}}));assert.equal(created,0);assert.equal(container.querySelectorAll('.update-heart-row,.update-heart,defs [id]').length,0);assert.equal(container.querySelector('.update-companion').innerHTML,companion);ui.destroy();ui.setActive(true);assert.equal(created,0);assert.equal(container.children.length,0);}finally{ui.destroy();container.remove();f.dom.window.close();}
+});
+test('closed refresh never writes cached heart nodes; eight reopenings reuse IDs and show the latest view',()=>{
+  const f=fixture(),container=f.doc.createElement('div');f.doc.body.append(container);const ui=Scene.create({document:f.doc,container});
+  const cases=[[{status:'downloading',received:0,total:0},Array(10).fill(0)],[{status:'downloading',received:37,total:100},[1,1,1,.7,0,0,0,0,0,0]],[{status:'downloading',received:99,total:100},[1,1,1,1,1,1,1,1,1,.9]],[{status:'ready'},Array(10).fill(1)]];
+  try{ui.setActive(true);ui.refresh(Scene.presentation({installation:cases[0][0]}));const row=container.querySelector('.update-heart-row'),ids=[...row.querySelectorAll('[id]')].map(n=>n.id),observer=new f.dom.window.MutationObserver(()=>{});assert.equal(ids.length,70);const companion=container.querySelector('.update-companion').innerHTML;
+    for(let index=0;index<8;index++){const[input,expected]=cases[index%4];ui.setActive(false);assert.equal(container.querySelectorAll('.update-heart-row,defs [id]').length,0);for(const id of ids)assert.equal(f.doc.getElementById(id),null);observer.observe(row,{subtree:true,attributes:true,childList:true});ui.refresh(Scene.presentation({installation:input}));assert.equal(observer.takeRecords().length,0,'closed refresh must not write even detached heart attributes');observer.disconnect();ui.setActive(true);ui.refresh(Scene.presentation({installation:input}));assert.equal(container.querySelector('.update-heart-row'),row);assert.deepEqual([...row.querySelectorAll('[id]')].map(n=>n.id),ids);assert.equal(new Set(ids).size,70);[...row.querySelectorAll('.update-heart')].forEach((n,i)=>assert.ok(Math.abs(Number(n.dataset.level)-expected[i])<1e-12));assert.equal(container.querySelector('.update-companion').innerHTML,companion);}
+    ui.destroy();assert.equal(f.doc.querySelectorAll('.update-heart-row,.update-companion').length,0);ui.setActive(true);assert.equal(container.children.length,0);
+  }finally{ui.destroy();container.remove();f.dom.window.close();}
+});
+
 (async()=>{
   const f=fixture(),tick=()=>new Promise(resolve=>setTimeout(resolve,0));let next={status:'downloading',supported:true,received:0,total:100},calls=[];
   const host={document:f.doc,container:f.doc.querySelector('header'),storage:f.storage,language:()=> 'en',info,check:async()=>available,installPollMs:100000,installUpdate:async action=>{calls.push(action);return next;}};
@@ -145,5 +158,16 @@ test('hidden, closed, reduced motion and explicit motion off all pause; no timer
     assert.equal(node('.update-progress-scene').dataset.state,'paused');assert.equal(node('.update-progress-scene').style.getPropertyValue('--update-progress'),'0');assert.doesNotMatch(node('.update-progress-caption').textContent,/Last confirmed stage|Confirmed download|100\.0/,'a new failed download cannot reuse the old job snapshot');assert.equal(node('#studioInstallUpdate').hidden,true);
     console.log('PASS disconnected preparation fixture: server-confirmed phase/bytes retained, installation remains unknown, optimistic phase excluded, new download resets snapshot');passed++;
   }finally{controls.destroy();disconnected.dom.window.close();}
+  const closing=fixture();let current={status:'checking',supported:true},pending=false,resolveStatus;
+  const live=Updates.create({document:closing.doc,container:closing.doc.querySelector('header'),storage:closing.storage,language:()=> 'en',info,check:async()=>available,installPollMs:100000,installUpdate:async()=>pending?new Promise(resolve=>{resolveStatus=resolve;}):current}),find=selector=>live.dialog.querySelector(selector);
+  try{
+    live.open();await live.check();await tick();const row=find('.update-heart-row'),ids=[...row.querySelectorAll('[id]')].map(n=>n.id);
+    for(const [input,expected]of[[{status:'downloading',supported:true,received:0,total:0},Array(10).fill(0)],[{status:'downloading',supported:true,received:37,total:100},[1,1,1,.7,0,0,0,0,0,0]],[{status:'downloading',supported:true,received:99,total:100},[1,1,1,1,1,1,1,1,1,.9]],[{status:'ready',supported:true},Array(10).fill(1)]]){
+      pending=true;live.open();await tick();assert.equal(typeof resolveStatus,'function');live.close();assert.equal(find('.update-heart-row'),null);const observer=new closing.dom.window.MutationObserver(()=>{});observer.observe(row,{subtree:true,attributes:true,childList:true});current=input;pending=false;resolveStatus(input);resolveStatus=null;await tick();assert.equal(find('.update-heart-row'),null);assert.equal(observer.takeRecords().length,0);observer.disconnect();
+      live.open();assert.equal(find('.update-heart-row'),row,'real update-check open reattaches the cached row');assert.deepEqual([...row.querySelectorAll('[id]')].map(n=>n.id),ids);[...row.querySelectorAll('.update-heart')].forEach((n,i)=>assert.ok(Math.abs(Number(n.dataset.level)-expected[i])<1e-12,'latest confirmed closed response must be displayed synchronously on reopen'));await tick();
+    }
+    console.log('PASS actual update-check lifecycle fixture: status resolves while closed, detached nodes untouched, reopen synchronously shows latest unknown/37/99/ready view');passed++;
+  }finally{live.destroy();closing.dom.window.close();}
+
   console.log(`${passed} update scene checks passed (controlled fixture, no real download or installation)`);
 })().catch(error=>{console.error(error);process.exitCode=1;});
