@@ -14,6 +14,8 @@ const StudioUpdateCheck = (() => {
     stale:['当前无法联网；以下为上次成功检查的信息，可能已有变化。','Currently offline. These are the last successfully checked release details and may have changed.'],
     download:['下载更新','Download update'],releases:['官方发布页','Official releases'],later:['稍后','Later'],close:['关闭','Close'],retry:['重新检查','Check again'],
     save:['安装更新前，请先保存工程。','Save your project before installing the update.'],
+    inAppHint:['后续更新直接在编辑器内下载、校验并安装，无需手动解压或替换文件。安装前请先保存工程。','Download, verify and install future updates here in the editor. No manual extraction or file replacement is needed. Save your project before installing.'],
+    firstSetup:['安装 Windows 桌面版','Install Windows desktop edition'],
     downloadHere:['下载并准备更新','Download and prepare update'],downloadProgress:['正在下载：{0} / {1} MB','Downloading: {0} / {1} MB'],downloadUnknown:['正在下载：已下载 {0} MB','Downloading: {0} MB received'],
     details:['更新说明','Update details'],verifying:['下载完成，正在校验更新包…','Download complete. Verifying the update…'],
     downloadingTitle:['正在下载更新','Downloading your update'],verifyingTitle:['正在校验更新包','Verifying your update'],readyTitle:['准备好了，可以安装','Ready when you are'],preparingTitle:['正在准备安装','Preparing to install'],installingTitle:['正在安装，即将回来','Installing. Back in a moment.'],
@@ -29,7 +31,7 @@ const StudioUpdateCheck = (() => {
     verifyInstaller:['检查安装包','verify installer'],backupProgram:['备份程序','back up program'],verifyBackup:['核对备份','verify backup'],startHelper:['启动更新助手','start updater helper'],waitHelper:['等待更新助手确认','wait for helper confirmation'],
     stepDownload:['下载与校验','Download & verify'],stepPrepare:['保留旧版本','Keep previous version'],stepInstall:['安装并打开','Install & reopen'],
     cancelled:['下载已取消，可继续编辑。','Download cancelled. You can keep editing.'],installFailed:['更新未启动或未通过校验，当前版本仍可继续使用。请重试或从官方页下载。','The update could not start or pass verification. The current version remains available. Retry or download from the official release page.'],
-    portable:['此程序是便携版或未识别为注册安装版。请下载新版本；不会自动覆盖此目录。','This is a portable or unregistered copy. Download the new version; this directory will not be replaced automatically.'],
+    portable:['此副本未启用应用内更新。请先安装官方 Windows 桌面版，再从桌面或开始菜单快捷方式打开；之后可直接在编辑器内升级，无需反复下载、解压或替换文件。','In-app updates are unavailable for this copy, for example a portable or unregistered copy. Install the official Windows desktop edition, then open its desktop or Start menu shortcut. Future updates run inside the editor, without manual downloads, extraction or file replacement.'],
     mac:['Mac 开发预览需手动替换应用，并按系统提示允许打开未公证的应用。','The Mac development preview requires manual app replacement and the system approval for an unnotarized app.'],
     android:['开发预览可能无法覆盖旧安装。请先保存并确认工程文件，再更换安装包。','A development preview may not replace an older installation. Save and verify your project files before switching packages.'],
     newLabel:['发现 Figure Studio {0}，点击查看','Figure Studio {0} is available; open update details'],
@@ -104,7 +106,8 @@ const StudioUpdateCheck = (() => {
       summary.textContent=busy?t('checking'):t(result?.status==='update-available'?'ready':result?.status==='up-to-date'?(result.stale?'uptodateStale':'uptodate'):result?.status==='offline'?'offline':result?'unavailable':'check');
       hint.textContent=current.platform==='ios'?t('ios'):result?.status==='offline'?t('offlineHint'):result?.status==='update-available'?(current.platform==='android'&&current.channel==='preview'?t('android'):t('save')):result?.status==='unavailable'?t('unsupported'):'';hint.hidden=!hint.textContent;
       stale.textContent=t('stale');stale.hidden=!result?.stale;
-      checkButton.textContent=result?t('retry'):t('check');checkButton.title=checkButton.textContent;checkButton.setAttribute('aria-label',checkButton.textContent);checkButton.disabled=busy;download.textContent=t('download');download.hidden=busy||result?.status!=='update-available'||!current.downloadUrl;
+      const firstSetup=current.platform==='windows'&&info().inAppInstall===false&&['update-available','up-to-date'].includes(result?.status)&&/-Setup-x64\.exe$/.test(current.downloadUrl||'');
+      checkButton.textContent=result?t('retry'):t('check');checkButton.title=checkButton.textContent;checkButton.setAttribute('aria-label',checkButton.textContent);checkButton.disabled=busy;download.textContent=t(firstSetup?'firstSetup':'download');download.hidden=busy||result?.status!=='update-available'&&!firstSetup||!current.downloadUrl;
       if(!download.hidden)download.href=current.downloadUrl;else download.removeAttribute('href');later.textContent=result?.status==='update-available'?t('later'):t('close');
       error.textContent=temporaryError?t('openFailed'):'';error.hidden=!temporaryError;
       const view=Scene.presentation({installation,confirmedInstallation,busy,result,connectionLost,invalid:installError}),{working,ready,determinate,ratio,verifying}=view,stage=installation?.status;
@@ -123,8 +126,8 @@ const StudioUpdateCheck = (() => {
       confirmation.hidden=!ready;progress.setAttribute('aria-label',t('downloadHere'));savedText.textContent=t('savedConfirm');installButton.textContent=t('install');installButton.hidden=!canInstall()||!ready;installButton.disabled=installBusy||!savedBox.checked;
       cancelButton.textContent=t('cancelDownload');cancelButton.hidden=!canInstall()||!['checking','downloading'].includes(stage)||connectionLost;cancelButton.disabled=installBusy;
       retryStatusButton.textContent=t('checkProgress');retryStatusButton.hidden=!canInstall()||!connectionLost;retryStatusButton.disabled=installBusy;
-      if(canInstall()){download.textContent=t('downloadHere');if(working||ready||connectionLost)download.hidden=true;checkButton.disabled=busy||working||installBusy;if(ready||stage==='preparing'||stage==='installing'){hint.textContent=t('installHint');hint.hidden=false;}}
-      else if(result?.status==='update-available'&&current.platform==='windows'&&info().inAppInstall===false){hint.textContent=t('portable');hint.hidden=false;}
+      if(canInstall()){download.textContent=t('downloadHere');if(working||ready||connectionLost)download.hidden=true;checkButton.disabled=busy||working||installBusy;if(!working&&!ready&&!connectionLost&&['update-available','up-to-date'].includes(result?.status)){hint.textContent=t('inAppHint');hint.hidden=false;}if(ready||stage==='preparing'||stage==='installing'){hint.textContent=t('installHint');hint.hidden=false;}}
+      else if(['update-available','up-to-date'].includes(result?.status)&&current.platform==='windows'&&info().inAppInstall===false){hint.textContent=t('portable');hint.hidden=false;}
       else if(result?.status==='update-available'&&current.platform==='macos'){hint.textContent=t('mac');hint.hidden=false;}
       if(installError||stage==='error'){
         const failureStage={'verify-installer':'verifyInstaller','backup-program':'backupProgram','verify-backup':'verifyBackup','start-helper':'startHelper','wait-helper':'waitHelper'}[installation?.errorStage];
