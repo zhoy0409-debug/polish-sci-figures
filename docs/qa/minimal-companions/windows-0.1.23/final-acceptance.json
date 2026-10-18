@@ -1,0 +1,272 @@
+{
+  "schema": "figure-studio-stable-acceptance/1",
+  "status": "ACTUAL_SIX_CASE_ACCEPTANCE_WITH_NORMAL_POSTRELEASE_CLEANUP",
+  "finalAcceptance": true,
+  "applicationVersion": "0.1.23",
+  "suiteVersion": "v1.4.23",
+  "setupSha256": "224d8398be4be73d988892a10c54bc80a70af0a3f6b104dfb849d10726dad764",
+  "sourceFreezeSha256": "cddcc96746a8733fa2866cfee39ca725af365cf5960c28dfc512e499b727128a",
+  "coverage": {
+    "windowsInstallAndStart": {
+      "passed": true,
+      "scope": "Actual isolated original-Setup Windows install/start and frozen self-test; not a clean VM.",
+      "evidence": [
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/native/safe-install.json",
+          "sha256": "6c91e03427dbccb26e3acc2f225ae718fa01820914789c21567fb274b891e776"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/native/safe-start.json",
+          "sha256": "110ec43976ef5bd3476d8a5f5e67406fbe9e7486ebd85d28d2ed50b3a0ab2c64"
+        }
+      ]
+    },
+    "scientificAndEditingRegression": {
+      "passed": true,
+      "scope": "Selected installed headless Chrome tests, complete public Iris 150/12 scientific payload, core Save/Open/Undo and export checks; not all workflows.",
+      "evidence": [
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/focused/installed-minimal-result.json",
+          "sha256": "2f0414c318150f00f2e6757353fed0fb87597e00c216fb016df9de5959c6fff4"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/functional/safe-runner-summary.json",
+          "sha256": "0d17a1b44bec96a6a275cbc7c418821f7515ee9287ed67302b75cdb5ae1679d2"
+        }
+      ]
+    },
+    "reinstallPreservation": {
+      "passed": true,
+      "scope": "Actual successful r2 after retained file-lock failure; exact saved public project/settings/sentinel preserved.",
+      "evidence": [
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/native/safe-reinstall.json",
+          "sha256": "5cf6ca77b489eb2c8fb37b79f4ad1345fb9912f34c248caa4affa4f14452c848"
+        }
+      ]
+    },
+    "normalUninstallPreservation": {
+      "passed": true,
+      "scope": "Actual normal uninstall plus independent final query; all four registration views absent and external data exact.",
+      "evidence": [
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/native/safe-uninstall.json",
+          "sha256": "f07cf0d833df60b72429ed8d64babf130c9fcdb1f5f9c99bcc1f89ee5c59939b"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/native/safe-final-query.json",
+          "sha256": "d3257ddbfb11d59e2ed5876312d13d087266de0be72b15fc5e722eccd5ac5121"
+        }
+      ]
+    },
+    "manual22To23Upgrade": {
+      "status": "passed",
+      "passed": true,
+      "evidence": [
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/manual-upgrade/summary.json",
+          "sha256": "ea4b45002085a09ad493e0030fbefc16c47167995d80978f67b0e30ed4007733"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/manual-upgrade/phases.json",
+          "sha256": "94f3808a196247cc00ebfee976eafe7eca58f23690eb43bec51d173d26823ba9"
+        }
+      ]
+    },
+    "officialAppDrivenUpgrade": {
+      "status": "passed",
+      "passed": true,
+      "scope": "Actual original official22 client and installed native23; one real public download/install, full automatic recovery, natural helper exit, normal cleanup and separate reopened23 controls.",
+      "evidence": [
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/summary.json",
+          "sha256": "84ec4322f9e1edb13b7a2e565e9dfac83377d2e766325491dad72bd553574da6"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/phases.json",
+          "sha256": "4c71c71e861c3ac05d388985c7bbcd3886cf29a8bd02358c7645bcf948e02087"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/progress-samples.json",
+          "sha256": "090755f67decbfb740c3a5db2e3c46dc30c9019923de0b783033b9bfb2a4fc3a"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/audit.json",
+          "sha256": "bcb4ad77f721ce747c1d6cf1d225fa514fed795e502c8eca1805a023551e4ef1"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/post-reopen-companions.json",
+          "sha256": "164dc95d61015c171ae04a9bdf15b2f1907716b3e83dea1535774a0a96cfe166"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/media.json",
+          "sha256": "d125ea1b4edb44de097213cd6c21ee3efea416d5b4fb9f5bda556e782644f709"
+        }
+      ]
+    }
+  },
+  "performance": {
+    "independentInstalled5000": {
+      "status": "observed_single_candidate_capture",
+      "selectionInputToSecondRafP95Ms": 104.1,
+      "recolourInputToSecondRafP95Ms": 94.2,
+      "measuredSamplesPerOperation": 20,
+      "warmupsPerOperation": 3,
+      "evidence": [
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/performance/summary-v2.json",
+          "sha256": "5c51bb05ca4c45263125722ecba4afe2aca1f233fe2a8fc6c3a62ea2e196f49a"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/performance/performance-v2.json",
+          "sha256": "af31b2d9e684004213e5c62ae99acb0983f670f004a708b15339d06e56707051"
+        }
+      ]
+    },
+    "matched22To23": {
+      "status": "completed",
+      "evidence": [
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/paired-performance/0.1.22/summary-v2.json",
+          "sha256": "c89d2818d77821730964f691c0380c8c09f542ddcbcb1b726bc3e3741f685f15"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/paired-performance/0.1.22/run.safe-summary.json",
+          "sha256": "0068244b88ec3a5e7693072eeb524d77775c20775c4d88662a0cdaae587aaf0d"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/paired-performance/0.1.23/summary-v2.json",
+          "sha256": "a5eb7852007050a6de43d8d86df093652d918d5cc1de34363828759ca7ff94c7"
+        },
+        {
+          "file": "docs/qa/minimal-companions/windows-0.1.23/paired-performance/0.1.23/run.safe-summary.json",
+          "sha256": "3dbcad3b8b5cbdb1f8c21b9d5bee393dcaf68733784de80a3bf2e6abfdc20516"
+        }
+      ],
+      "conclusion": "The separate default-profile 0.1.22/0.1.23 pair matched Chrome 155, the 5000-element SVG, 1440×900 viewport, DPR 1, canvas geometry and complete settings. All 46 operations per version are retained (40 measured + 6 warmups), with before/after native/source/settings guards passing. Selection input-to-second-rAF P95 was 172.9 → 115.2 ms; recolour was 154.6 → 135.1 ms; recolour Tab change/blur commit-to-second-rAF P95 was 153.8 → 134.4 ms. These two actions showed no higher observed P95 in this pair. One-device sequential runs with uncontrolled background activity cannot establish general acceleration, statistical improvement, Enter latency or absence of every editor regression; these samples are not pooled with the standalone candidate capture."
+    }
+  },
+  "boundaries": [
+    "Actual installed Windows native lifecycle and isolated Chrome headless editor tests; not all native interactions.",
+    "No new manual native IME, detector-accuracy, novice-user or Mac/mobile hardware result.",
+    "Final product acceptance does not assert later documentation CI, supplementary upload or remote readback; root performs those separately. Original eight assets/tag and initial pending readiness remain immutable historical snapshots."
+  ],
+  "postreleaseCleanup": {
+    "passed": true,
+    "scope": "Actual normal generated uninstaller after natural-helper completion; four AppId views absent; whole external profile and finalized proof files preserved.",
+    "evidence": [
+      {
+        "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/summary.json",
+        "sha256": "84ec4322f9e1edb13b7a2e565e9dfac83377d2e766325491dad72bd553574da6"
+      },
+      {
+        "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/phases.json",
+        "sha256": "4c71c71e861c3ac05d388985c7bbcd3886cf29a8bd02358c7645bcf948e02087"
+      }
+    ]
+  },
+  "initialPublicationReadiness": {
+    "file": "docs/qa/minimal-companions/windows-0.1.23/publication-readiness.json",
+    "sha256": "9704e24269a9727985de2c0233946c8cad0180a3cf3376f670d1b8a57e069c54",
+    "retainedFinalAcceptance": false
+  },
+  "officialEvidenceCuration": {
+    "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/curation.json",
+    "sha256": "be322c8beb38f6fd855ceb46a814b142bea36bfc026060c71f1d6ce852468af3"
+  },
+  "originalRelease": {
+    "releaseId": 416272893,
+    "commit": "d65fb862050295525272d62ab2cd28117d4378d1",
+    "tree": "8d36d6399ee4f9048f3c6d8b118963db08d359b9"
+  },
+  "actualOfficialMedia": [
+    {
+      "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/before-real-download.png",
+      "sha256": "4daeb69d79309ee65951f570c2b60a9db9c22e75ffd30a400135e21a4b837553",
+      "bytes": 177096,
+      "group": "official-update",
+      "kind": "screenshot",
+      "reviewedSampleSeconds": []
+    },
+    {
+      "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/real-package-verified-ready.png",
+      "sha256": "1d96157d928927029d3ea250a90e818d9e12ce6e08c050c8f139fde40f243d24",
+      "bytes": 184349,
+      "group": "official-update",
+      "kind": "screenshot",
+      "reviewedSampleSeconds": []
+    },
+    {
+      "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/real-updated-editor.png",
+      "sha256": "d9fb5ce57417a43842efbfc0bde6cdb6a9c080596e7d701ea928029bc607eb03",
+      "bytes": 145244,
+      "group": "official-update",
+      "kind": "screenshot",
+      "reviewedSampleSeconds": []
+    },
+    {
+      "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/original-official-update.webm",
+      "sha256": "8025febebe6474edd3ecf06aa9f947fe767b2cb61521d60192d71b66b323045d",
+      "bytes": 8910400,
+      "group": "official-update",
+      "kind": "original-recording",
+      "reviewedSampleSeconds": [
+        4,
+        40,
+        138.6
+      ]
+    },
+    {
+      "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/installed-carbon-update.png",
+      "sha256": "0eabdb2f37d76b0f2be53ed3862be06060e230664997ed3388c7a6f68539e3eb",
+      "bytes": 154532,
+      "group": "companion-after-reopen",
+      "kind": "screenshot",
+      "reviewedSampleSeconds": []
+    },
+    {
+      "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/installed-motion-off.png",
+      "sha256": "469ef6c9fdf7ee73140d0a405417d90ef576fface8b392fff7a819d3e5323616",
+      "bytes": 152729,
+      "group": "companion-after-reopen",
+      "kind": "screenshot",
+      "reviewedSampleSeconds": []
+    },
+    {
+      "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/installed-carbon-theme-update.png",
+      "sha256": "258d6c76b7ac31b13dfe31c9465239c79b8f528a60595450f74330bf2abd7ca4",
+      "bytes": 151823,
+      "group": "companion-after-reopen",
+      "kind": "screenshot",
+      "reviewedSampleSeconds": []
+    },
+    {
+      "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/installed-pearl-theme-update.png",
+      "sha256": "fc8907d87f02bc64408a166a4d581b6fa60e040af4c504b5fe222cba008f4151",
+      "bytes": 151515,
+      "group": "companion-after-reopen",
+      "kind": "screenshot",
+      "reviewedSampleSeconds": []
+    },
+    {
+      "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/installed-restored-public-iris.png",
+      "sha256": "0387518445981b287432b5e4f94b2fd9ed91d07399d55793d2db647a39f41720",
+      "bytes": 148004,
+      "group": "companion-after-reopen",
+      "kind": "screenshot",
+      "reviewedSampleSeconds": []
+    },
+    {
+      "file": "docs/qa/minimal-companions/windows-0.1.23/official-update/original-post-reopen-companions.webm",
+      "sha256": "61cd45988c354b6b184c276b88ba71ece8bcff8c9f570ab3c8eeb2ef24f6a60a",
+      "bytes": 2027606,
+      "group": "companion-after-reopen",
+      "kind": "original-recording",
+      "reviewedSampleSeconds": [
+        4,
+        13,
+        19.0
+      ]
+    }
+  ]
+}

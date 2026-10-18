@@ -2,7 +2,7 @@
 
 ## 中文
 
-**预发布实际检查记录（2026-10-18）：** 安装、选定科研／编辑回归、重装、卸载及手动升级的五项检查已有真实证据；官方稳定版应用内升级须首次发布后执行，当前尚未最终全部验收。
+**实际验收记录（发布后）：** 五项发布前检查及原官方 0.1.22 → 0.1.23 应用内升级、自动恢复和正常清理均已有独立证据；本页更新为六项实际验收结果，仍保留各自测试范围。
 
 本版恢复 `ef27dbe` 原来圆润、单色的小猫，只增加同画风的小狗。小幅错相跳跃、摇尾、校验观察和悬停／按压反馈沿用 Carbon Atelier、Mineral Jade 和 Pearl Pro。动画服从真实更新状态；未知下载总量不显示虚构百分比，关闭窗口、降动效或关闭角色动画时停止动效。
 
@@ -29,7 +29,7 @@
 
 ## 证据范围与更新顺序
 
-这是实际本机 Windows 安装与冻结程序自检，加上安装服务上的隔离 **Chrome headless** 操作；不是干净虚拟机、物理触屏、持续性能或普通用户可用性研究。选定科研数据与编辑回归通过，不把它扩大为所有功能、所有设备均无回归。安装版测试使用显式隔离数据目录，其更新能力为 false；正常默认配置的应用内升级必须另验。
+这是实际本机 Windows 安装与冻结程序自检，加上安装服务上的隔离 **Chrome headless** 操作；不是干净虚拟机、物理触屏、持续性能或普通用户可用性研究。选定科研数据与编辑回归通过，不把它扩大为所有功能、所有设备均无回归。安装版测试使用显式隔离数据目录，其更新能力为 false；该显式隔离测试不替代此次另行完成的默认配置官方升级。
 
 手动升级截图中的黄色重连提示来自该验收主动终止 `/api/updates` 元数据请求，现有 `engineFetch` 因此设置离线提示；真实原生 health、来源校验及默认配置更新能力检查仍通过。这组证据用于工程自动恢复、完整保存与升级保留，不据此新增本地科学计算或绘图渲染成功结论；相关绘图由前述独立 functional 套件覆盖。
 
@@ -37,7 +37,7 @@
 
 本轮没有重新完成 Windows 中文输入法人工测试。历史 0.1.22／source18 微软拼音人工记录与 source20 合成轴尾事件继续按[原验收范围](live-preview-validation.md)保留；本版不新增图像检测准确率、科学分析方法、Mac／移动硬件验收或性能普遍改善结论。
 
-**官方 0.1.22 → 0.1.23 应用内真实下载、校验、安装与自动恢复：等待 0.1.23 首次公开稳定发布后立即验证，当前 `awaiting_public_stable`、`finalAcceptance: false`。** 历史 [0.1.20／0.1.21 → 0.1.22](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)不替代这次验收。发布后结果进入另名补充报告与三个附加资产，保留首次发布八资产及其校验和原字节。
+原官方 0.1.22 客户端已通过编辑器完成一次真实下载、校验、保存确认、安装及重新打开；同源自动恢复无需再次打开工程。完整保存文件前后均为 582496 字节，SHA256 同为 `1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975`；五个核心容器及完整设置字节保持一致，含 150 条公开 Iris 观测、12 份原 SVG、3 个历史状态、1 个检查点和 1 份表格草稿。完整旧版本回滚备份实际核对 2624 个文件，新版 80 个界面资源与原包匹配。更新助手自然退出后，正常卸载返回 0、四个 AppId 视图缺失，完整外部配置及已完成浏览器证据保留。重启后的 0.1.23 默认配置简约猫狗、指针／降动效和双主题科学导出另行通过。 [官方原始证据与实测范围](qa/minimal-companions/windows-0.1.23/official-update/README.md)。初次公开的八资产、标签及[初始 readiness](qa/minimal-companions/windows-0.1.23/publication-readiness.json)保留发布前实际快照；其 `finalAcceptance: false` 不被改写。本次六项结果见[新增 final acceptance](qa/minimal-companions/windows-0.1.23/final-acceptance.json)。后补文件和三个附加资产不覆盖原件。
 
 安装包内本说明保留构建时的候选快照；本页是构建后的外部证据更新，不能据此推定安装包被重新构建或改变。Mac／移动端只同步源码元数据，原发布链接和移动构建编号不变。SHA256 用于文件完整性核对，不代表发布者数字签名。
 
@@ -51,6 +51,6 @@ Actual original official 0.1.22 → 0.1.23 manual Setup overwrite, same-profile/
 
 The independent 5000-element capture measured selection/recolour input-to-second-rAF P95 at **104.1/94.2 ms**, using 20 measured samples plus 3 retained warmups per operation. It uses a synthetic pressure fixture, Tab colour confirmation, and presentation opportunities rather than optical latency or sustained FPS. The separate default-profile 0.1.22/0.1.23 pair matched Chrome 155, the 5000-element SVG, 1440×900 viewport, DPR 1, canvas geometry and complete settings. All 46 operations per version are retained (40 measured + 6 warmups), with before/after native/source/settings guards passing. Selection input-to-second-rAF P95 was 172.9 → 115.2 ms; recolour was 154.6 → 135.1 ms; recolour Tab change/blur commit-to-second-rAF P95 was 153.8 → 134.4 ms. These two actions showed no higher observed P95 in this pair. One-device sequential runs with uncontrolled background activity cannot establish general acceleration, statistical improvement, Enter latency or absence of every editor regression; these samples are not pooled with the standalone candidate capture.
 
-Official app-driven 0.1.22 → 0.1.23 remains **awaiting_public_stable**, with **finalAcceptance false**, until the actual stable release is available. New native IME, detector-accuracy and Mac/mobile hardware acceptance are not claimed. The packaged notes retain their build-time snapshot; subsequent evidence is additive and the original eight assets/tag remain immutable.
+The original official 0.1.22 client completed one actual in-editor download, verification, saved-project confirmation, installation and reopen. Same-origin automatic recovery required no explicit project Open. Both full saves are 582496 bytes with SHA256 `1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975`; all five core containers and complete settings bytes are exact (150 public Iris observations, 12 original SVGs, 3 history states, 1 checkpoint and 1 table draft). All 2624 actual original backup files and 80 new UI resources matched. The helper exited naturally before normal uninstall exit 0; four AppId views were absent and the full external profile/finalized browser evidence remained preserved. Separate restarted23 default-profile checks passed the simple companions, pointer/motion controls and both scientific export themes. New native IME, detector accuracy and Mac/mobile hardware validation remain outside this round. The original eight assets/tag and initial pending readiness retain their original bytes; these postrelease results are additive.
 
 The yellow reconnect notice in manual-upgrade screenshots is caused by deliberately aborting `/api/updates`; the existing engine fetch handler marks that request offline. Actual native health, source and default-profile capability checks passed. This manual-upgrade evidence verifies recovery/save preservation; scientific computation/rendering is covered separately by the functional suite.

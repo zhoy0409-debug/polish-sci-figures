@@ -1,6 +1,6 @@
 # Windows 0.1.23 · package and actual acceptance
 
-**预发布实际检查记录（2026-10-18）：** 安装、选定科研／编辑回归、重装、卸载及手动升级的五项检查已有真实证据；官方稳定版应用内升级须首次发布后执行，当前尚未最终全部验收。
+**实际验收记录（发布后）：** 五项发布前检查及原官方 0.1.22 → 0.1.23 应用内升级、自动恢复和正常清理均已有独立证据；本页更新为六项实际验收结果，仍保留各自测试范围。
 
 本页汇总本轮新 Windows 原包的构建、实际安装及有边界的科研／编辑验收。安装包保留构建时的文档快照；本页后补验收不改写原包字节。
 
@@ -40,9 +40,9 @@
 
 本轮无新增原生微软拼音人工验收、真实图像检测准确率、触屏、Mac／移动硬件或普通新用户研究。历史输入法及 0.1.22 官方升级证据继续绑定历史版本。用户自行关闭旧窗口后的匹配／手动升级采用新的明确保护基线，不能宣称同一旧窗口始终存在。公开原录屏只表示未剪辑，不代表逐帧人工隐私／视觉审阅。
 
-## 官方应用内升级仍待首次发布
+## 官方应用内升级实际完成
 
-`officialAppDrivenUpgrade: awaiting_public_stable`，`passed: false`，`finalAcceptance: false`。正式 v1.4.23 公开后立即执行原官方 0.1.22 → 0.1.23 的真实下载、校验、安装、自动恢复和正常清理；[历史 20／21 → 22](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)不代替本次。首次八资产与标签保持原字节；后续官方升级结果使用另名补充文件和附加校验清单。具体安装路径与兼容边界见[中文入门](../../../../desktop/QUICKSTART.zh-CN.md#保存退出与升级)，版本范围见[release notes](../../../release-notes-v1.4.23.md)。
+原官方 0.1.22 客户端已通过编辑器完成一次真实下载、校验、保存确认、安装及重新打开；同源自动恢复无需再次打开工程。完整保存文件前后均为 582496 字节，SHA256 同为 `1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975`；五个核心容器及完整设置字节保持一致，含 150 条公开 Iris 观测、12 份原 SVG、3 个历史状态、1 个检查点和 1 份表格草稿。完整旧版本回滚备份实际核对 2624 个文件，新版 80 个界面资源与原包匹配。更新助手自然退出后，正常卸载返回 0、四个 AppId 视图缺失，完整外部配置及已完成浏览器证据保留。重启后的 0.1.23 默认配置简约猫狗、指针／降动效和双主题科学导出另行通过。 [官方原始证据、进度采样及录屏范围](official-update/README.md) · [新增六项 final acceptance](final-acceptance.json)。首次八资产与标签不变，[初始 readiness](publication-readiness.json)的 pending/false 保留其发布时真实快照。后续补充文件采用另名资产及独立校验清单。
 
 ## English
 
@@ -52,6 +52,6 @@ Actual original official 0.1.22 → 0.1.23 manual Setup overwrite, same-profile/
 
 The separate default-profile 0.1.22/0.1.23 pair matched Chrome 155, the 5000-element SVG, 1440×900 viewport, DPR 1, canvas geometry and complete settings. All 46 operations per version are retained (40 measured + 6 warmups), with before/after native/source/settings guards passing. Selection input-to-second-rAF P95 was 172.9 → 115.2 ms; recolour was 154.6 → 135.1 ms; recolour Tab change/blur commit-to-second-rAF P95 was 153.8 → 134.4 ms. These two actions showed no higher observed P95 in this pair. One-device sequential runs with uncontrolled background activity cannot establish general acceleration, statistical improvement, Enter latency or absence of every editor regression; these samples are not pooled with the standalone candidate capture.
 
-These are scoped actual-installed tests, not every scientific workflow, optical latency, a new native IME session or detector-accuracy validation. The official 22 → 23 in-app upgrade remains **awaiting_public_stable**, with **finalAcceptance false**. Later proof is additive; the original Setup, initial eight assets and tag are never rewritten.
+These remain scoped actual-installed tests, not every scientific workflow, optical latency, a new native IME session or detector-accuracy validation. The original official 0.1.22 client completed one actual in-editor download, verification, saved-project confirmation, installation and reopen. Same-origin automatic recovery required no explicit project Open. Both full saves are 582496 bytes with SHA256 `1974a7b03b462aa46fde5bae5d7a39902305b1751d8dfd6965df24b155f9a975`; all five core containers and complete settings bytes are exact (150 public Iris observations, 12 original SVGs, 3 history states, 1 checkpoint and 1 table draft). All 2624 actual original backup files and 80 new UI resources matched. The helper exited naturally before normal uninstall exit 0; four AppId views were absent and the full external profile/finalized browser evidence remained preserved. Separate restarted23 default-profile checks passed the simple companions, pointer/motion controls and both scientific export themes. Later evidence is additive; the original Setup, initial eight assets/tag and original pending readiness are never rewritten.
 
 The manual-upgrade yellow notice reflects the deliberate `/api/updates` abort and existing offline UI handling, while native health/source/capability guards passed. That run establishes project recovery/save preservation; separate functional tests cover scientific computation/rendering.
