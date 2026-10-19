@@ -81,6 +81,34 @@ const StudioImageColor=(()=>{
     const gain=(ratios[0]*ratios[1]*ratios[2])**(1/3),adjustment=validate({mode:'brightfield',exposureEv:Math.log2(gain),whiteBalance:ratios.map(v=>v/gain)});
     return {adjustment,warnings:[warning('estimated-background','建议仅匹配参考图的近白背景色与亮度，并非采集校准；请比较原图后确认。'),...estimateClipping(target,adjustment).warnings]};
   }
+  // An explicit photo/brightfield display suggestion, never a detector of image
+  // modality. Neutralization uses only the existing spatial near-white gate;
+  // otherwise all channels receive the same conservative global adjustment.
+  function suggestAuto(summary,{mode}={}){
+    const s=validSample(summary);if(mode!=='brightfield')fail('auto-mode','请明确选择拍摄照片／明场展示用途；荧光图不提供单图自动校色。');
+    const quantile=q=>{let n=0;const target=Math.max(1,Math.ceil(s.count*3*q));for(let value=0;value<256;value++){n+=s.hist[0][value]+s.hist[1][value]+s.hist[2][value];if(n>=target)return value/255;}return 1;};
+    const low=quantile(.01),median=quantile(.5),high=quantile(.99),range=high-low;
+    if(range<2/255)fail('auto-flat','有效显示变化不足，未自动增强；请使用手动预览。');
+    const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),background=s.background;
+    const backgroundEligible=background?.eligible===true&&Array.isArray(background.rgb)&&background.rgb.length===3&&background.rgb.every(v=>finite(v)&&v>=.8&&v<=251/255);
+    let whiteBalance=[1,1,1],whiteBalanceApplied=false;
+    if(backgroundEligible&&Math.max(...background.rgb)-Math.min(...background.rgb)>3/255){
+      const linear=background.rgb.map(toLinear),neutral=(linear[0]*linear[1]*linear[2])**(1/3);
+      whiteBalance=linear.map(v=>clamp(neutral/v,.94,1.06));whiteBalanceApplied=whiteBalance.some(v=>Math.abs(v-1)>1e-12);
+    }
+    const exposureEv=high>0&&high<.9&&median<.65?clamp(.2*Math.log2(toLinear(.9)/toLinear(high)),0,.12):0;
+    const contrast=1+clamp((.85-range)*.12,0,.1);
+    let adjustment,clipping;
+    // The permitted small display proposal is reduced as a whole rather than
+    // clipping each channel independently or hiding the added endpoint counts.
+    for(const strength of [1,.75,.5,.25,.125,.0625,.03125,.015625]){
+      adjustment=validate({mode,strength,exposureEv,contrast,whiteBalance});clipping=estimateClipping(s,adjustment);
+      if(clipping.additionalClippedFraction<=.001)break;
+    }
+    if(clipping.additionalClippedFraction>.001)fail('auto-clipping','自动建议可能增加显示截断，未套用；请降低曝光或手动调整。');
+    const evidence={version:1,method:'bounded-global-photo-display-v1',samplePixels:s.count,lowQuantile:low,medianQuantile:median,highQuantile:high,backgroundEligible,whiteBalanceApplied,strengthReduced:adjustment.strength<1,newlyClippedChannelFraction:clipping.additionalClippedFraction,maximumNewlyClippedChannelFraction:.001,modeDeclared:mode,localOnly:true,calibrated:false};
+    return {adjustment,method:evidence.method,evidence,warnings:[warning('auto-display-only','仅为拍摄照片的保守全局显示建议，不是色度校准、染色标准化或定量信号校正。'),warning(whiteBalanceApplied?'auto-background':'auto-no-white-balance',whiteBalanceApplied?'依据符合门槛的近白边界背景估计轻微中性色偏。':'未自动调整白平衡；仅建议共同的全局亮度与对比度。'),...clipping.warnings]};
+  }
   function aborted(signal){if(signal?.aborted){const e=new Error('已取消图像分析。');e.name='AbortError';throw e;}}
   function analyze(href,{signal,maxSide=MAX_SIDE}={}){
     if(!Number.isInteger(maxSide)||maxSide<32||maxSide>MAX_SIDE)return Promise.reject(new Error('图像采样尺寸无效。'));
@@ -149,6 +177,6 @@ const StudioImageColor=(()=>{
     for(let i=0;i<3;i++)transfer.append(make(doc,['feFuncR','feFuncG','feFuncB'][i],{type:'linear',slope:coeff.slopes[i],intercept:coeff.intercept}));transfer.append(make(doc,'feFuncA',{type:'identity'}));f.append(transfer);
     let defs=[...root.children].find(n=>n.localName==='defs'&&n.namespaceURI===NS);if(!defs){defs=make(doc,'defs');root.insertBefore(defs,root.firstChild);}defs.append(f);image.style?.removeProperty('filter');attr(image,'filter','url(#'+key+')');attr(image,MARK,meta);return f;
   }
-  return {validate,coefficients,transform,sample,analyze,suggest,estimateClipping,displayStatistics,inspect,apply,clear,defaults:{...defaults,whiteBalance:[1,1,1]},limits:{maxSide:MAX_SIDE,maxPending:MAX_PENDING}};
+  return {validate,coefficients,transform,sample,analyze,suggest,suggestAuto,estimateClipping,displayStatistics,inspect,apply,clear,defaults:{...defaults,whiteBalance:[1,1,1]},limits:{maxSide:MAX_SIDE,maxPending:MAX_PENDING}};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=StudioImageColor;

@@ -11,13 +11,14 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "v1.4.25"
+VERSION = "v1.4.26"
 SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
     'docs/release-notes-v1.4.25.md',
+    'docs/release-notes-v1.4.26.md',
     'docs/release-notes-v1.4.24.md',
     'docs/release-notes-v1.4.23.md',
     'docs/release-notes-v1.4.22.md',
@@ -40,6 +41,28 @@ SUPPORT_FILES = (
     'docs/qa/carbon-atelier/update-scene-controlled-narrow-emulated-dpr-150.png',
     'scripts/build_update_mascot_scene.py',
     'docs/figure-studio-image-tools.md',
+    'docs/figure-studio-photo-correction.md',
+    'docs/figure-studio-photo-correction-validation.md',
+    'docs/qa/photo-correction-20261019.json',
+    'docs/qa/photo-correction-20261019-source29.json',
+    'docs/qa/photo-correction-performance-20261019/README.md',
+    'docs/qa/photo-correction-performance-20261019/manifest.json',
+    'docs/qa/photo-correction-performance-20261019/privacy-review.json',
+    'docs/qa/photo-correction-performance-20261019/summary.json',
+    'docs/qa/photo-correction-performance-20261019/pair-25-raw.json',
+    'docs/qa/photo-correction-performance-20261019/pair-25-summary.json',
+    'docs/qa/photo-correction-performance-20261019/pair-26-raw.json',
+    'docs/qa/photo-correction-performance-20261019/pair-26-summary.json',
+    'docs/qa/photo-correction-performance-20261019/abba-a1-raw.json',
+    'docs/qa/photo-correction-performance-20261019/abba-a1-summary.json',
+    'docs/qa/photo-correction-performance-20261019/abba-b1-raw.json',
+    'docs/qa/photo-correction-performance-20261019/abba-b1-summary.json',
+    'docs/qa/photo-correction-performance-20261019/abba-b2-raw.json',
+    'docs/qa/photo-correction-performance-20261019/abba-b2-summary.json',
+    'docs/qa/photo-correction-performance-20261019/abba-a2-raw.json',
+    'docs/qa/photo-correction-performance-20261019/abba-a2-summary.json',
+    'docs/qa/photo-correction-performance-20261019/cpu-25-windows.json',
+    'docs/qa/photo-correction-performance-20261019/cpu-26-windows.json',
     'docs/figure-studio-axes-round2.md',
     'docs/figure-studio-experience-round2-validation.md',
     'docs/scientific-image-evaluation-round2.md',

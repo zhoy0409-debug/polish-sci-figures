@@ -1,0 +1,135 @@
+{
+  "schema": "figure-studio-public-performance-manifest/1",
+  "draft": false,
+  "rootPublicationReviewPending": false,
+  "selfHashExcluded": true,
+  "files": [
+    {
+      "file": "abba-a1-raw.json",
+      "bytes": 224278,
+      "sha256": "51a955422680a92e055af8d3e4c2b9815e3506418a6a954121665f1f71e9c9e7",
+      "role": "Complete original46-operation v2 raw, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "abba-a1-summary.json",
+      "bytes": 19836,
+      "sha256": "06d571b460cd7e893d9938aebe4958580ae2d0d1654e432b70e1ee9fa35e6b38",
+      "role": "Complete original summary including callback/commit/wall/frame/long-task metrics, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "abba-a2-raw.json",
+      "bytes": 220712,
+      "sha256": "dde3f7647cf57fef203859d576fda53a64fdb5695714b935c8f3db7756ec790a",
+      "role": "Complete original46-operation v2 raw, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "abba-a2-summary.json",
+      "bytes": 19848,
+      "sha256": "f0d638ebaefeb6bc7a38baa9319f178e4ebc61d54bf91e6ad264e3832a818c3f",
+      "role": "Complete original summary including callback/commit/wall/frame/long-task metrics, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "abba-b1-raw.json",
+      "bytes": 225946,
+      "sha256": "8134c8598cf3283bf21efb0b308e3e59affd45df8ef0f1d0849140591463fcd7",
+      "role": "Complete original46-operation v2 raw, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "abba-b1-summary.json",
+      "bytes": 20330,
+      "sha256": "868c1c371e66bb3964ad0e4c9b01a93a8a55358997ed6102503c3d10edf33ea6",
+      "role": "Complete original summary including callback/commit/wall/frame/long-task metrics, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "abba-b2-raw.json",
+      "bytes": 220312,
+      "sha256": "9f2960ae7f5ce4e0f357f185b415fbe275f7fb19f9ca8cdcadfa206696669e93",
+      "role": "Complete original46-operation v2 raw, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "abba-b2-summary.json",
+      "bytes": 20296,
+      "sha256": "3793ccf6ee5eeabca52eda65de323fcc1cc58c20d8c01ab5d55ddfe29b1036bf",
+      "role": "Complete original summary including callback/commit/wall/frame/long-task metrics, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "cpu-25-windows.json",
+      "bytes": 501045,
+      "sha256": "e84593b5280d8d60ccaa3555bb33046c0fb8f556070c870dbaed5e768265aac6",
+      "role": "Full46-window sampled self/inclusive attribution; source identifiers exclude local URLs/paths"
+    },
+    {
+      "file": "cpu-26-windows.json",
+      "bytes": 493231,
+      "sha256": "c09cddf1db6e749785e8243bdb59c3fac664464018d2710d3fc43077e0cebccc",
+      "role": "Full46-window sampled self/inclusive attribution; source identifiers exclude local URLs/paths"
+    },
+    {
+      "file": "pair-25-raw.json",
+      "bytes": 220430,
+      "sha256": "b09b40a382c9a7107e91ccdcdc31923cc69bb5b3f40967f2598c4fdfdec8b069",
+      "role": "Complete original46-operation v2 raw, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "pair-25-summary.json",
+      "bytes": 19883,
+      "sha256": "e490203a6395688745936ba79e479611ed94beb27203274c0b3cf03d3ade9329",
+      "role": "Complete original summary including callback/commit/wall/frame/long-task metrics, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "pair-26-raw.json",
+      "bytes": 222459,
+      "sha256": "6e94592d9efbf0f9e1e63676508f309321cbdd0e6b93c436d832b1f29c236652",
+      "role": "Complete original46-operation v2 raw, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "pair-26-summary.json",
+      "bytes": 20346,
+      "sha256": "5b5a6437b2a521cca0549f1d731a90d09faa50e5d27bab28366b506d258e6aef",
+      "role": "Complete original summary including callback/commit/wall/frame/long-task metrics, unmodified bytes",
+      "originalBytesExact": true
+    },
+    {
+      "file": "privacy-review.json",
+      "bytes": 1100,
+      "sha256": "6062c797d25db3efac8b7c8819bb77d3f998022046998072d1ae7833d8f5f54f",
+      "role": "Structured privacy/scope review of this proposed public file set"
+    },
+    {
+      "file": "README.md",
+      "bytes": 3121,
+      "sha256": "ecbe723aa43a24f0d121aed6e73306723a6e9484ac7ce6daadfff556a7e008ff",
+      "role": "Readable scope,all batch metrics and interpretation"
+    },
+    {
+      "file": "summary.json",
+      "bytes": 82775,
+      "sha256": "54858bbebe757989e073032b272f4290e04c2169b4c5a09400a397024b8c7bc8",
+      "role": "Full six-batch metrics and bounded CPU/source provenance summary"
+    }
+  ],
+  "originalProtocolSha256": "5f56d9c7189ea133b340d0b2a4a40c5f7be46eb4b4bb355eade077053dc2c009",
+  "originalFixtureSha256": "4d9b950601b3b95092251649c9d5d00f65a79f31a93b1fc9743d551d55928bd1",
+  "totalOriginalBenchmarkBatches": 6,
+  "totalOriginalBenchmarkActions": 276,
+  "totalDiagnosticCpuVersions": 2,
+  "totalDiagnosticCpuActions": 92,
+  "scope": "Explicit files only. No raw profiles,source HTML,private photo suite or archive. Root must review before tracked/public copying.",
+  "rootReview": {
+    "reviewed": true,
+    "reviewedBy": "Root",
+    "scope": "Root reviewed the explicit18-file manifest,README and privacy scope and authorized this evidence directory. This records performance cases only; it does not assert publication or whole-product acceptance.",
+    "preparationPrivacyScanSnapshotRetainedUnchanged": true
+  }
+}

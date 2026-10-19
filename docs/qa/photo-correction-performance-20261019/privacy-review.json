@@ -1,0 +1,26 @@
+{
+  "schema": "figure-studio-public-performance-privacy-review/1",
+  "draft": true,
+  "rootReviewPending": true,
+  "scanPassed": true,
+  "originalFixturesVerifiedAgainstGeneratedPublicSvg": true,
+  "fullSixRawFilesUnmodified": true,
+  "originalProfilesNotBundled": true,
+  "privatePhotoSuiteNotReadOrBundled": true,
+  "htmlAndNativeConfigurationNotBundled": true,
+  "reviewedSourceDocumentAliases": [
+    "studio-0.1.25-package",
+    "studio-0.1.26-package",
+    "native-or-unlabeled-runtime",
+    "automation-evaluation"
+  ],
+  "scanRules": [
+    "Reject absolute/local paths and loopback addresses in proposed public strings",
+    "Reject SVG/HTML/data-URI/long encoded payloads and sensitive project/table/credential keys",
+    "Reject known private image fingerprint",
+    "Verify all six source SVG fingerprints equal the unchanged generated5000-vector fixture",
+    "Whitelist CPU source URI categories then remove URI text; retain exact profile SHA/source positions",
+    "Original raw/summary bytes copied only after whole parsed-string/key review"
+  ],
+  "filesReviewedBeforeManifest": 16
+}

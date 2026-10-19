@@ -17,6 +17,7 @@ class Node{
   getAttribute(key){return this.attrs[key]??null;}setAttribute(key,v){this.attrs[key]=String(v);}hasAttribute(key){return key in this.attrs;}
   removeAttribute(key){delete this.attrs[key];if(key==='style')this.style.cssText='';}removeAttributeNode(attr){this.removeAttribute(attr.name);}
   getAttributeNS(_,key){return this.getAttribute(key);}
+  cloneNode(deep=false){const node=new Node(this.localName,this.attrs,deep?this.children.map(child=>child.cloneNode(true)):[],this.own);node.style.values=new Map([...this.style.values].map(([key,value])=>[key,{...value}]));return node;}
   matches(selector){if(selector==='*')return true;const attr=selector.match(/^([a-z]+)?\[([^=\]]+)(?:="([^"]+)")?\]$/);if(attr)return (!attr[1]||attr[1]===this.localName)&&this.hasAttribute(attr[2])&&(attr[3]===undefined||this.getAttribute(attr[2])===attr[3]);if(selector==='path[data-stat-bracket][data-key]')return this.localName==='path'&&this.hasAttribute('data-stat-bracket')&&this.hasAttribute('data-key');if(selector[0]==='#')return this.id===selector.slice(1);if(selector[0]==='.')return (this.attrs.class||'').split(/\s+/).includes(selector.slice(1));return this.localName===selector;}
   querySelectorAll(selector){const all=this.children.flatMap(child=>[child,...child.querySelectorAll('*')]);return all.filter(child=>child.matches(selector));}
   querySelector(selector){return this.querySelectorAll(selector)[0]||null;}closest(selector){return this.matches(selector)?this:this.parentElement?.closest(selector)||null;}
@@ -74,8 +75,8 @@ console.log('PASS SVG content: actual raster/mixed/native-text/vector classifica
   await check(faithful);
   // Exercise the actual sanitizer, not just allowlist membership, so both
   // presentation attributes and inline values must survive the saved SVG.
-  vm.runInContext(source.split('\n').filter(line=>line.includes('const TAGS = new Set')||line.includes('const ATTRS = new Set')).join('\n')+source.slice(source.indexOf('  function sanitize('),source.indexOf('  function validateProject(')),context);context.document.importNode=node=>node;
-  trees.set('faithful-import',faithful);const clean=context.sanitize('faithful-import'),gradient=clean.querySelector('#focused');for(const [prop,value]of Object.entries({fx:'30%',fy:'65%',fr:'8%','color-interpolation':'linearRGB'}))assert.equal(gradient.getAttribute(prop),value);
+  vm.runInContext(source.split('\n').filter(line=>line.includes('const TAGS = new Set')||line.includes('const ATTRS = new Set')).join('\n')+source.slice(source.indexOf('  function sanitize('),source.indexOf('  function validateProject(')),context);context.document.importNode=(node,deep)=>node.cloneNode(deep);
+  trees.set('faithful-import',faithful);const clean=context.sanitize('faithful-import'),gradient=clean.querySelector('#focused');assert.notEqual(clean,faithful,'sanitizer callers receive independent DOM ownership');for(const [prop,value]of Object.entries({fx:'30%',fy:'65%',fr:'8%','color-interpolation':'linearRGB'}))assert.equal(gradient.getAttribute(prop),value);
   for(const [prop,value]of Object.entries({'letter-spacing':'1.2','word-spacing':'2.4','stroke-miterlimit':'7'}))assert.equal(lettering.getAttribute(prop),value);
   for(const [prop,value]of Object.entries({'letter-spacing':'1.5px','word-spacing':'3px','stroke-miterlimit':'6',opacity:'0.45','fill-opacity':'0.3','stroke-opacity':'0.7'}))assert.equal(lettering.style.getPropertyValue(prop),value);
   const branch=source.slice(source.indexOf("if(file.name.toLowerCase().endsWith('.svg'))"),source.indexOf("else{if(!['image/png'",source.indexOf("if(file.name.toLowerCase().endsWith('.svg'))")));

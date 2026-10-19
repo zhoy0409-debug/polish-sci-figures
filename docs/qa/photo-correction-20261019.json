@@ -1,0 +1,144 @@
+{
+  "schema": "figure-studio-photo-correction-public-acceptance/1",
+  "date": "2026-10-19",
+  "status": "local browser functionality passed; performance limits remain; unreleased",
+  "baseCommit": "f2f042e1a38e9bcf609148bc4344a35a50937f62",
+  "branch": "codex/image-global-correction",
+  "applicationHtmlSha256": "37fa23fcde53b6d9c0f977044bfa980040dab65aa843978122dc599f5d1623b1",
+  "harnessSha256": "9a12e6d718a014d48ddbbdcda836e9671c260e11764623d57a689638deecf7fa",
+  "browser": "155.0.8059.82",
+  "headless": true,
+  "viewport": {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1
+  },
+  "realPhotoCount": 1,
+  "sourceDimensions": [
+    5712,
+    4284
+  ],
+  "sourceBytes": 8877458,
+  "rawImagesProjectsScreenshotsDistributed": false,
+  "cases": [
+    {
+      "name": "ordinary-file-import",
+      "status": "PASS"
+    },
+    {
+      "name": "actual-auto-geometry-candidates-and-cancel",
+      "status": "PASS"
+    },
+    {
+      "name": "preview-invalid-and-cancel",
+      "status": "PASS"
+    },
+    {
+      "name": "same-task-preview-undo-stale-fence",
+      "status": "PASS"
+    },
+    {
+      "name": "keep-one-undo-and-save-reopen",
+      "status": "PASS"
+    },
+    {
+      "name": "damaged-saved-project-rejected-before-replacement",
+      "status": "PASS"
+    },
+    {
+      "name": "corrected-old-exports-and-themes",
+      "status": "PASS"
+    },
+    {
+      "name": "visible-original-version-and-no-double-warp",
+      "status": "PASS"
+    },
+    {
+      "name": "colour-after-correction",
+      "status": "PASS"
+    },
+    {
+      "name": "actual-auto-colour-cancel-apply-and-one-undo",
+      "status": "PASS"
+    },
+    {
+      "name": "actual-ruler-drag-global-rotation-cancel-keep-and-reopen",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": 0,
+  "externalRequests": 0,
+  "sourcePayloadLeak": false,
+  "originalSourceUnchanged": true,
+  "automaticGeometry": {
+    "candidateCount": 5,
+    "reliableInternalGelSegmentation": false,
+    "independentAccuracyMeasured": false,
+    "rankingIsProbability": false
+  },
+  "ruler": {
+    "realMouseGesture": true,
+    "rotationDegrees": 0.8573984089764641,
+    "outputDimensions": [
+      3315,
+      1741
+    ],
+    "uniformScale": true,
+    "outsideFill": false,
+    "existingDisplayParametersPreserved": true,
+    "rawVariantUnadjustedAndByteExact": true,
+    "savedProjectReopenedByteExact": true
+  },
+  "singlePhotoTiming": {
+    "scope": "Single observed actions after ordinary import and baseline exports, with instrumentation and potentially warm decode/sample caches. Not cold start, optical latency, FPS, percentiles or population/no-regression performance.",
+    "firstGeometry": {
+      "inputToReadyMs": 2959.1,
+      "inputToSecondAnimationFrameMs": 2985.4,
+      "longTasksMs": [
+        294,
+        50,
+        879,
+        117,
+        617
+      ]
+    },
+    "repeatGeometry": {
+      "inputToReadyMs": 1895.7,
+      "inputToSecondAnimationFrameMs": 1920.1,
+      "longTasksMs": [
+        551,
+        137,
+        519
+      ]
+    },
+    "postKeepAutoColor": {
+      "inputToReadyMs": 120.7,
+      "inputToSecondAnimationFrameMs": 127.9,
+      "longTasksMs": []
+    },
+    "sampledDockAutoColor": {
+      "inputToReadyMs": 13.4,
+      "inputToSecondAnimationFrameMs": 31.4,
+      "longTasksMs": []
+    },
+    "repeatSampledDockAutoColor": {
+      "inputToReadyMs": 15.2,
+      "inputToSecondAnimationFrameMs": 36.7,
+      "longTasksMs": []
+    }
+  },
+  "fullyNonblockingWorkflowVerified": false,
+  "windowsInstallerTested": false,
+  "nativeImeTested": false,
+  "videoRecorded": false,
+  "localStepAnimation": "actual screenshot sequence, not continuous video",
+  "publishedInstallerChanged": false,
+  "remoteCiRun": false,
+  "retainedFailures": [
+    "recorded setup failures before page/image use",
+    "final-r1 hidden-card navigation timeout; only test navigation corrected before full fresh final-r2"
+  ],
+  "privateEvidencePolicy": "Originals, derivatives, full reports and editable example remain in local ignored cache. Only this redacted summary is distributed."
+}

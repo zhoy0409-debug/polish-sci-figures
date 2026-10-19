@@ -8,7 +8,7 @@ for(const id of ['statisticalAnnotations','conditionMatrixControls']){
  assert.equal([...html.matchAll(new RegExp(`\\bid="${id}"`,'g'))].length,1,'no duplicated controls or element IDs');
 }
 const nodes=sections.map(section=>({...section,hidden:false,getAttribute:key=>key==='data-pane'?section.pane:null})),tabs=['explore','detail','color','data','annotation'].map(pane=>({pane,attrs:{},getAttribute:key=>key==='data-tab'?pane:null,setAttribute(k,v){this.attrs[k]=v;}})),textRole={parentElement:{}},calls=[];
-const ctx={imageLinks:null,imageInsets:null,imageColorUI:null,document:{querySelectorAll:selector=>selector==='[data-pane]'?nodes:tabs},$:()=>textRole,renderInspectorPreviews:()=>calls.push('previews'),renderCanvas:()=>calls.push('canvas'),mobileWorkspace:null};
+const ctx={imageLinks:null,imageInsets:null,imageColorUI:null,imageRectifyUI:null,document:{querySelectorAll:selector=>selector==='[data-pane]'?nodes:tabs},$:()=>textRole,renderInspectorPreviews:()=>calls.push('previews'),renderCanvas:()=>calls.push('canvas'),mobileWorkspace:null};
 const start=source.indexOf('  function showPane('),end=source.indexOf('  const state =',start);assert.ok(start>0&&end>start);vm.createContext(ctx);vm.runInContext(source.slice(start,end),ctx);
 for(const pane of ['detail','explore','data','color','annotation','detail','annotation']){
  ctx.showPane(pane,false);
