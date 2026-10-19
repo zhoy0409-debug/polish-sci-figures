@@ -9,7 +9,7 @@ const StudioImageRectifyDetect = (() => {
   for(let t=0;t<180;t++){cos[t]=Math.cos(t*PI/180);sin[t]=Math.sin(t*PI/180);}
   let pending=0,queue=Promise.resolve();
   const now=()=>globalThis.performance?.now?.()??Date.now(),yieldTask=()=>new Promise(resolve=>setTimeout(resolve,0));
-  function error(code){const messages={ABORTED:'已取消边缘建议。 / Edge suggestions cancelled.',INVALID_INPUT:'图像像素或尺寸无效。 / Invalid image pixels or dimensions.',UNSUPPORTED_SOURCE:'仅支持嵌入的静态 PNG、JPEG 或 WebP。 / Use an embedded static PNG, JPEG or WebP.',SOURCE_LIMIT:'原图超过 3200 万像素或分析边长超过 640。 / Source exceeds 32 megapixels or analysis exceeds 640 pixels per side.',DECODE_FAILED:'无法可靠读取原图或展示方向。 / Cannot read the source pixels or display orientation.',UNAVAILABLE:'当前浏览器无法执行本地边缘建议。 / Local edge suggestions are unavailable in this browser.',BUSY:'正在分析另一张图片，请稍后再试。 / Another image is being analyzed; try again shortly.'};const e=new Error(messages[code]||messages.INVALID_INPUT);e.code=code;if(code==='ABORTED')e.name='AbortError';return e;}
+  function error(code){const messages={ABORTED:'已取消边缘建议。 / Edge suggestions cancelled.',INVALID_INPUT:'图像像素或尺寸无效。 / Invalid image pixels or dimensions.',UNSUPPORTED_SOURCE:'仅支持嵌入的静态 PNG、JPEG 或 WebP。 / Use an embedded static PNG, JPEG or WebP.',SOURCE_LIMIT:'原图超过 3200 万像素或分析边长超过 640。 / Source exceeds 32 megapixels or analysis exceeds 640 pixels per side.',DECODE_FAILED:'无法可靠读取原图或展示方向。 / Cannot read the source pixels or display orientation.',WORKER_FAILED:'本地后台采样失败，请手动选择四角。 / Local background sampling failed; select the four corners manually.',WORKER_TIMEOUT:'本地后台采样超时，请手动选择四角。 / Local background sampling timed out; select the four corners manually.',UNAVAILABLE:'当前浏览器无法执行本地边缘建议。 / Local edge suggestions are unavailable in this browser.',BUSY:'正在分析另一张图片，请稍后再试。 / Another image is being analyzed; try again shortly.'};const e=new Error(messages[code]||messages.INVALID_INPUT);e.code=code;if(code==='ABORTED')e.name='AbortError';return e;}
   function check(signal){if(signal?.aborted)throw error('ABORTED');}
   function progress(fn,stage,completed,total){if(typeof fn==='function')fn({stage,completed,total,fraction:total?completed/total:0});}
   const cross=(a,b,c)=>(b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x);
@@ -173,6 +173,61 @@ const StudioImageRectifyDetect = (() => {
     return done(candidates,candidates.length?'edge-supported-candidates-require-manual-review':'no-four-sided-region-with-sufficient-edge-support',{edgeCount:tail,votingEdgeCount:indices.length,lineCount:lines.length,evaluatedQuads:evaluated,generatedQuads:shapes.length,highThreshold:high,lowThreshold:low,minimumMeanSideSupport:.68,minimumIndividualSideSupport:.4,minimumHeuristicRank:MIN_RANK,ambiguousTopCandidates:candidates.length>1&&candidates[0].score-candidates[1].score<.03,topRankGap:candidates.length>1?candidates[0].score-candidates[1].score:null});
   }
   function insets(){if(typeof StudioImageInsets!=='undefined')return StudioImageInsets;return globalThis.StudioImageInsets;}
+  // Only this trusted, self-contained function becomes worker source. The
+  // embedded image is a message payload, never JavaScript or a fetched URL.
+  function samplingWorker(){
+    self.onmessage=async event=>{
+      let original=null,resized=null;
+      try{
+        const input=event.data,href=input?.href,sw=input?.sourceWidth,sh=input?.sourceHeight,w=input?.width,h=input?.height;
+        if(typeof href!=='string'||href.length>28000000||!/^data:image\/(png|jpeg|webp);base64,[a-z\d+/=\s]+$/i.test(href))throw {code:'UNSUPPORTED_SOURCE'};
+        if(!Number.isInteger(sw)||!Number.isInteger(sh)||sw<1||sh<1||sw>32767||sh>32767||sw*sh>32000000||!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1||w>640||h>640||w>sw||h>sh)throw {code:'SOURCE_LIMIT'};
+        const comma=href.indexOf(','),binary=atob(href.slice(comma+1)),bytes=new Uint8Array(binary.length);
+        for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
+        const mime=href.slice(5,href.indexOf(';')).toLowerCase();
+        original=await createImageBitmap(new Blob([bytes],{type:mime}));
+        // Both decoders use the encoded display orientation. Refuse a decoder
+        // disagreement rather than map the candidate back to the wrong axes.
+        if(original.width!==sw||original.height!==sh)throw {code:'DECODE_FAILED'};
+        resized=await createImageBitmap(original,{resizeWidth:w,resizeHeight:h,resizeQuality:'high'});
+        original.close();original=null;
+        if(resized.width!==w||resized.height!==h)throw {code:'DECODE_FAILED'};
+        const canvas=new OffscreenCanvas(w,h),context=canvas.getContext('2d',{willReadFrequently:true});
+        if(!context)throw {code:'WORKER_FAILED'};
+        context.drawImage(resized,0,0);resized.close();resized=null;
+        const pixels=context.getImageData(0,0,w,h);canvas.width=canvas.height=1;
+        if(!(pixels.data instanceof Uint8ClampedArray)||pixels.data.byteLength!==w*h*4)throw {code:'WORKER_FAILED'};
+        const buffer=pixels.data.buffer;
+        self.postMessage({ok:true,sourceWidth:sw,sourceHeight:sh,width:w,height:h,buffer},[buffer]);
+      }catch(e){self.postMessage({ok:false,code:['UNSUPPORTED_SOURCE','SOURCE_LIMIT','DECODE_FAILED'].includes(e?.code)?e.code:'WORKER_FAILED'});}
+      finally{original?.close();resized?.close();}
+    };
+  }
+  function canSampleInWorker(){return typeof Worker==='function'&&typeof OffscreenCanvas==='function'&&typeof createImageBitmap==='function'&&typeof Blob==='function'&&typeof URL?.createObjectURL==='function'&&typeof URL?.revokeObjectURL==='function';}
+  function sampleInWorker(href,size,w,h,signal){return new Promise((resolve,reject)=>{
+    check(signal);let worker=null,url=null,timer=null,settled=false;
+    const finish=(failure,pixels)=>{
+      if(settled)return;settled=true;clearTimeout(timer);signal?.removeEventListener('abort',cancel);
+      if(worker){worker.onmessage=worker.onerror=worker.onmessageerror=null;worker.terminate();}
+      if(url!==null)URL.revokeObjectURL(url);
+      if(failure)reject(failure);else resolve(pixels);
+    };
+    const cancel=()=>finish(error('ABORTED'));
+    try{
+      url=URL.createObjectURL(new Blob(['('+samplingWorker.toString()+')();'],{type:'application/javascript'}));
+      worker=new Worker(url);timer=setTimeout(()=>finish(error('WORKER_TIMEOUT')),15000);
+      worker.onerror=event=>{event?.preventDefault?.();finish(error('WORKER_FAILED'));};
+      worker.onmessageerror=()=>finish(error('WORKER_FAILED'));
+      worker.onmessage=event=>{
+        const value=event.data;
+        if(value?.ok===false){finish(error(['UNSUPPORTED_SOURCE','SOURCE_LIMIT','DECODE_FAILED'].includes(value.code)?value.code:'WORKER_FAILED'));return;}
+        if(value?.ok!==true||value.sourceWidth!==size.widthPx||value.sourceHeight!==size.heightPx||value.width!==w||value.height!==h||!(value.buffer instanceof ArrayBuffer)||value.buffer.byteLength!==w*h*4){finish(error('WORKER_FAILED'));return;}
+        finish(null,{width:w,height:h,data:new Uint8ClampedArray(value.buffer)});
+      };
+      signal?.addEventListener('abort',cancel,{once:true});check(signal);
+      worker.postMessage({href,sourceWidth:size.widthPx,sourceHeight:size.heightPx,width:w,height:h});
+    }catch(e){finish(e?.code==='ABORTED'?e:error('WORKER_FAILED'));}
+  });}
   function decode(href,size,signal){return new Promise((resolve,reject)=>{
     check(signal);if(typeof Image!=='function'){reject(error('UNAVAILABLE'));return;}const image=new Image();image.decoding='async';let settled=false;
     const finish=e=>{if(settled)return;settled=true;clearTimeout(timer);signal?.removeEventListener('abort',cancel);image.onload=image.onerror=null;if(e){image.src='';reject(e);}else resolve(image);};
@@ -190,12 +245,18 @@ const StudioImageRectifyDetect = (() => {
   async function work(href,{signal,onProgress,maxSide=MAX_SIDE}={}){
     check(signal);if(typeof href!=='string'||href.length>MAX_URL||!/^data:image\/(png|jpeg|webp);base64,[a-z\d+/=\s]+$/i.test(href)||!insets()?.dimensionsFromHref)throw error('UNSUPPORTED_SOURCE');
     if(!Number.isInteger(maxSide)||maxSide<32||maxSide>MAX_SIDE)throw error('SOURCE_LIMIT');let size;try{size=insets().dimensionsFromHref(href);}catch{throw error('UNSUPPORTED_SOURCE');}
-    if(size.widthPx*size.heightPx>MAX_SOURCE_PIXELS)throw error('SOURCE_LIMIT');
+    if(!Number.isInteger(size?.widthPx)||!Number.isInteger(size?.heightPx)||size.widthPx<1||size.heightPx<1||size.widthPx>32767||size.heightPx>32767||size.widthPx*size.heightPx>MAX_SOURCE_PIXELS)throw error('SOURCE_LIMIT');
     const scale=Math.min(1,maxSide/Math.max(size.widthPx,size.heightPx)),w=Math.max(1,Math.round(size.widthPx*scale)),h=Math.max(1,Math.round(size.heightPx*scale));
     let image=null,target=null;try{
-      progress(onProgress,'decode',0,1);image=await decode(href,size,signal);check(signal);if(!globalThis.document?.createElement)throw error('UNAVAILABLE');
-      target=document.createElement('canvas');target.width=w;target.height=h;const context=target.getContext('2d',{willReadFrequently:true});if(!context)throw error('UNAVAILABLE');context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';context.drawImage(image,0,0,w,h);const pixels=context.getImageData(0,0,w,h);target.width=target.height=1;target=null;image.src='';image=null;check(signal);progress(onProgress,'decode',1,1);
-      return await analyze(pixels,{signal,onProgress,sourceWidth:size.widthPx,sourceHeight:size.heightPx});
+      const background=canSampleInWorker();let pixels;progress(onProgress,'decode',0,1);
+      if(background)pixels=await sampleInWorker(href,size,w,h,signal);
+      else{
+        image=await decode(href,size,signal);check(signal);if(!globalThis.document?.createElement)throw error('UNAVAILABLE');
+        target=document.createElement('canvas');target.width=w;target.height=h;const context=target.getContext('2d',{willReadFrequently:true});if(!context)throw error('UNAVAILABLE');context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';context.drawImage(image,0,0,w,h);pixels=context.getImageData(0,0,w,h);target.width=target.height=1;target=null;image.src='';image=null;
+      }
+      check(signal);progress(onProgress,'decode',1,1);
+      const result=await analyze(pixels,{signal,onProgress,sourceWidth:size.widthPx,sourceHeight:size.heightPx});
+      result.audit.sampling={route:background?'local-worker-offscreen':'main-thread-capability-fallback',maxAnalysisSide:MAX_SIDE,resampling:background?'createImageBitmap resizeQuality high':'canvas imageSmoothingQuality high',sourcePixelsModified:false,thumbnailPixelsMayDifferBetweenBrowserSamplers:true};return result;
     }finally{if(image)image.src='';if(target)target.width=target.height=1;}
   }
   function detect(href,options={}){

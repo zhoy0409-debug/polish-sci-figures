@@ -66,3 +66,47 @@ test('abort or decoder failure while awaiting decode cannot read pixels or retai
   const f=browserFixture({withDecode:true}),controller=new AbortController(),pending=f.api.detect(f.href,{signal:controller.signal}),checked=assert.rejects(pending,e=>e.code==='ABORTED');for(let i=0;i<50&&!f.decodeTasks.length;i++)await tick();controller.abort();await checked;f.decodeTasks[0].resolve();await tick();assert.equal(f.draws.length,0);assert.equal(f.live.count,0);
   const g=browserFixture({withDecode:true}),failed=g.api.detect(g.href),failureCheck=assert.rejects(failed,e=>e.code==='DECODE_FAILED');for(let i=0;i<50&&!g.decodeTasks.length;i++)await tick();g.decodeTasks[0].reject(Error('decode fixture failure'));await failureCheck;assert.equal(g.draws.length,0);assert.equal(g.live.count,0);
 });
+function workerFixture({constructError=false,postError=false}={}){
+  const href='data:image/png;base64,aW1hZ2UtZml4dHVyZQ==',workers=[],urls=[],revoked=[],timers=new Map(),cleared=[],blobs=[];
+  class FakeBlob{constructor(parts,options){this.parts=parts;this.type=options.type;blobs.push(this);}}
+  class FakeWorker{constructor(url){if(constructError)throw Error('CSP blocked private URL');this.url=url;this.terminated=0;workers.push(this);}postMessage(value){if(postError)throw Error('private post failure');this.input=value;}terminate(){this.terminated++;}}
+  const context={Uint8Array,Uint8ClampedArray,ArrayBuffer,performance,Worker:FakeWorker,OffscreenCanvas:class{},createImageBitmap(){throw Error('main decoder must not run');},Blob:FakeBlob,URL:{createObjectURL(blob){assert.equal(blob.type,'application/javascript');const url='blob:local-test-'+urls.length;urls.push(url);return url;},revokeObjectURL(url){revoked.push(url);}},Image:class{constructor(){throw Error('worker failures must not use main fallback');}},StudioImageInsets:{dimensionsFromHref(){return {widthPx:5712,heightPx:4284};}},setTimeout(fn,ms){if(ms===15000){const key={ms};timers.set(key,fn);return key;}return setTimeout(fn,ms);},clearTimeout(key){if(timers.has(key)){cleared.push(key);timers.delete(key);}else clearTimeout(key);}};
+  vm.createContext(context);vm.runInContext(fs.readFileSync(require.resolve(modulePath),'utf8')+'\nglobalThis.api=StudioImageRectifyDetect;',context);
+  return {api:context.api,href,workers,urls,revoked,timers,cleared,blobs,async ready(){for(let i=0;i<50&&!workers.length;i++)await tick();return workers.at(-1);},reply(worker,overrides={}){worker.onmessage?.({data:{ok:true,sourceWidth:5712,sourceHeight:4284,width:640,height:480,buffer:full(640,480).data.buffer,...overrides}});}};
+}
+test('worker sampling transfers bounded analysis pixels and disposes its worker, URL and deadline',async()=>{
+  const f=workerFixture(),pending=f.api.detect(f.href),worker=await f.ready();assert.equal(worker.input.href,f.href);assert.equal(worker.input.width,640);assert.equal(worker.input.height,480);assert.equal(f.timers.size,1);assert.equal([...f.timers.keys()][0].ms,15000);
+  assert.match(f.blobs[0].parts[0],/function samplingWorker/);assert.doesNotMatch(f.blobs[0].parts[0],/fetch\s*\(/);f.reply(worker);const result=await pending;
+  assert.equal(result.audit.sampling.route,'local-worker-offscreen');assert.equal(result.audit.sampling.thumbnailPixelsMayDifferBetweenBrowserSamplers,true);assert.equal(result.audit.sampling.sourcePixelsModified,false);assert.equal(worker.terminated,1);assert.deepEqual(f.revoked,f.urls);assert.equal(f.timers.size,0);assert.equal(worker.onmessage,null);
+});
+test('worker messages require exact source dimensions, analysis dimensions and transferred buffer length',async()=>{
+  for(const overrides of [{sourceWidth:4284},{sourceHeight:5712},{width:639},{height:479},{buffer:new ArrayBuffer(4)},{buffer:new Uint8Array(640*480*4)},{ok:'true'},{}]){
+    const f=workerFixture(),pending=f.api.detect(f.href),checked=assert.rejects(pending,e=>e.code==='WORKER_FAILED'&&!e.message.includes(f.href)),worker=await f.ready();
+    if(Object.keys(overrides).length)f.reply(worker,overrides);else worker.onmessage({data:null});await checked;assert.equal(worker.terminated,1);assert.deepEqual(f.revoked,f.urls);assert.equal(f.timers.size,0);
+  }
+});
+test('CSP/construction, worker errors and message errors reject without a blocking main-thread retry',async()=>{
+  for(const options of [{constructError:true},{postError:true},{}]){
+    const f=workerFixture(options),pending=f.api.detect(f.href),checked=assert.rejects(pending,e=>e.code==='WORKER_FAILED');if(!options.constructError&&!options.postError){const worker=await f.ready();worker.onerror({preventDefault(){}});}await checked;assert.deepEqual(f.revoked,f.urls);assert.equal(f.timers.size,0);assert.ok(f.workers.every(w=>w.terminated===1));
+  }
+  const f=workerFixture(),pending=f.api.detect(f.href),checked=assert.rejects(pending,e=>e.code==='WORKER_FAILED'),worker=await f.ready();worker.onmessageerror({});await checked;assert.equal(worker.terminated,1);
+  const g=workerFixture(),failed=g.api.detect(g.href),failure=assert.rejects(failed,e=>e.code==='DECODE_FAILED'),decoder=await g.ready();decoder.onmessage({data:{ok:false,code:'DECODE_FAILED'}});await failure;assert.equal(decoder.terminated,1);
+});
+test('worker deadline and Abort terminate, revoke and ignore late delivery; queue remains serial',async()=>{
+  const f=workerFixture(),controller=new AbortController(),pending=f.api.detect(f.href,{signal:controller.signal}),checked=assert.rejects(pending,e=>e.code==='ABORTED'),worker=await f.ready(),late=worker.onmessage;controller.abort();await checked;late({data:{ok:true}});assert.equal(worker.terminated,1);assert.equal(f.timers.size,0);assert.deepEqual(f.revoked,f.urls);
+  const g=workerFixture(),timeout=g.api.detect(g.href),timeoutCheck=assert.rejects(timeout,e=>e.code==='WORKER_TIMEOUT'),timed=await g.ready();[...g.timers.values()][0]();await timeoutCheck;assert.equal(timed.terminated,1);assert.deepEqual(g.revoked,g.urls);assert.equal(g.timers.size,0);
+  const h=workerFixture(),a=new AbortController(),b=new AbortController(),one=h.api.detect(h.href,{signal:a.signal}),two=h.api.detect(h.href,{signal:b.signal}),oneCheck=assert.rejects(one,e=>e.code==='ABORTED'),twoCheck=assert.rejects(two,e=>e.code==='ABORTED');await h.ready();await assert.rejects(h.api.detect(h.href),e=>e.code==='BUSY');b.abort();a.abort();await Promise.all([oneCheck,twoCheck]);assert.equal(h.workers.length,1);assert.equal(h.workers[0].terminated,1);
+});
+async function runWorkerBody({input={},mismatch=false,resizeFailure=false,pixelFailure=false}={}){
+  const f=workerFixture(),controller=new AbortController(),pending=f.api.detect(f.href,{signal:controller.signal}),checked=assert.rejects(pending,e=>e.code==='ABORTED');await f.ready();const source=f.blobs[0].parts[0];controller.abort();await checked;
+  const messages=[],bitmaps=[],calls=[],request={href:f.href,sourceWidth:5712,sourceHeight:4284,width:640,height:480,...input};
+  const worker={self:{postMessage(value,transfer){messages.push({value,transfer});}},Uint8Array,Uint8ClampedArray,Blob,atob,createImageBitmap:async(value,options)=>{calls.push({value,options});if(options&&resizeFailure)throw Error('controlled resize failure');const bitmap={width:options?options.resizeWidth:(mismatch?4284:5712),height:options?options.resizeHeight:4284,closed:0,close(){this.closed++;}};bitmaps.push(bitmap);return bitmap;},OffscreenCanvas:class{constructor(w,h){assert.ok(w<=640&&h<=640);}getContext(){return {drawImage(bitmap){assert.equal(bitmap.closed,0);},getImageData(x,y,w,h){if(pixelFailure)throw Error('controlled pixel failure');return full(w,h);}};}}};
+  vm.createContext(worker);vm.runInContext(source,worker);await worker.self.onmessage({data:request});return {messages,bitmaps,calls};
+}
+test('actual static worker body decodes only embedded bytes, verifies orientation, resizes high quality and closes bitmaps',async()=>{
+  const result=await runWorkerBody();assert.equal(result.messages.length,1);const {value,transfer}=result.messages[0];assert.equal(value.ok,true);assert.equal(value.width,640);assert.equal(value.height,480);assert.equal(value.sourceWidth,5712);assert.equal(value.buffer.byteLength,640*480*4);assert.equal(transfer[0],value.buffer);assert.equal(result.calls.length,2);assert.equal(result.calls[0].value.type,'image/png');assert.deepEqual({...result.calls[1].options},{resizeWidth:640,resizeHeight:480,resizeQuality:'high'});assert.ok(result.bitmaps.every(b=>b.closed===1));
+  for(const options of [{mismatch:true},{resizeFailure:true},{pixelFailure:true}]){const failed=await runWorkerBody(options);assert.equal(failed.messages[0].value.ok,false);assert.ok(failed.bitmaps.every(b=>b.closed===1));if(options.mismatch)assert.equal(failed.calls.length,1);}
+});
+test('static worker repeats the URL and 32MP/640 bounds before decoding and never echoes source bytes in errors',async()=>{
+  for(const input of [{href:'https://example.invalid/private.jpg'},{href:'data:image/svg+xml;base64,PHN2Zy8+'},{href:'data:image/png;base64,'+'A'.repeat(28000001)},{sourceWidth:8000,sourceHeight:5000},{sourceWidth:NaN},{width:641},{height:0},{width:6000}]){const result=await runWorkerBody({input});assert.equal(result.calls.length,0);assert.equal(result.messages.length,1);assert.equal(result.messages[0].value.ok,false);assert.deepEqual(Object.keys(result.messages[0].value).sort(),['code','ok']);}
+});

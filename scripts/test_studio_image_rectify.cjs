@@ -74,7 +74,7 @@ test('invalid dimensions, high-depth arrays, malformed buffers and pre-aborted c
 
 // Browser boundary fixtures exercise actual core control flow with deterministic
 // decoded pixels. They are not a browser accuracy or private-photo acceptance.
-function browserFixture({width=8,height=6,delayDecode=false}={}){
+function browserFixture({width=8,height=6,delayDecode=false,workerOptions=null}={}){
   const raw=image(width,height,(x,y)=>[x*20,y*20,x+y,255]),sourceBytes=Buffer.from('original encoded source bytes'),pngBytes=Buffer.from('encoded PNG output fixture');
   const href='data:image/png;base64,'+sourceBytes.toString('base64'),tasks=[],draws=[],canvases=[],encodedPixels=[],reads=[],live={count:0,peak:0,released:0,decoded:0};
   class FakeImage{
@@ -85,8 +85,17 @@ function browserFixture({width=8,height=6,delayDecode=false}={}){
   class FakeImageData{constructor(data,w,h){this.data=data;this.width=w;this.height=h;}}
   class FakeReader{readAsDataURL(){setTimeout(()=>{this.result='data:image/png;base64,'+pngBytes.toString('base64');this.onload?.();},0);}abort(){this.onabort?.();}}
   const context={Uint8Array,Uint8ClampedArray,Image:FakeImage,ImageData:FakeImageData,FileReader:FakeReader,atob:v=>Buffer.from(v,'base64').toString('binary'),crypto:crypto.webcrypto,performance,setTimeout,clearTimeout,console,StudioImageInsets:{dimensionsFromHref(value){assert.equal(value,href);return {widthPx:width,heightPx:height};}},document:{createElement(tag){assert.equal(tag,'canvas');const target={width:0,height:0,toBlob(callback,mime){assert.equal(mime,'image/png');setTimeout(()=>callback(new Blob([pngBytes],{type:mime})),0);},getContext(){return {drawImage(...args){draws.push(args.slice(1));target.cropX=-args[1];target.cropY=-args[2];},getImageData(x,y,w,h){assert.equal(live.decoded,1,'Decode must finish before the first source pixel read');reads.push({x,y,w,h});return image(w,h,(xx,yy)=>{const at=((yy+y+target.cropY)*width+xx+x+target.cropX)*4;return Array.from(raw.data.slice(at,at+4));});},putImageData(data){encodedPixels.push(data);}};}};canvases.push(target);return target;}}};
+  const background={workers:[],urls:[],revoked:[],programs:[],timers:new Map()};
+  if(workerOptions){
+    context.ArrayBuffer=ArrayBuffer;context.OffscreenCanvas=class{};context.createImageBitmap=()=>{throw Error('main bitmap must not decode');};
+    context.Blob=class{constructor(parts){background.programs.push(parts.join(''));}};
+    context.URL={createObjectURL(){const url='blob:controlled-core-'+background.urls.length;background.urls.push(url);return url;},revokeObjectURL(url){background.revoked.push(url);}};
+    context.Worker=class{constructor(url){if(workerOptions.constructError)throw Error('controlled CSP rejection');this.url=url;this.terminated=0;background.workers.push(this);}postMessage(value){if(workerOptions.postError)throw Error('controlled message rejection');this.input=value;}terminate(){this.terminated++;}};
+    context.setTimeout=(fn,ms)=>{if(ms===15000){const key={ms};background.timers.set(key,fn);return key;}return setTimeout(fn,ms);};
+    context.clearTimeout=key=>{if(background.timers.has(key))background.timers.delete(key);else clearTimeout(key);};
+  }
   vm.createContext(context);vm.runInContext(fs.readFileSync(require.resolve(path),'utf8')+'\nglobalThis.api=StudioImageRectify;',context);
-  return {api:context.api,href,sourceBytes,pngBytes,tasks,draws,canvases,encodedPixels,reads,live};
+  return {api:context.api,href,raw,sourceBytes,pngBytes,tasks,draws,canvases,encodedPixels,reads,live,background};
 }
 const tick=()=>new Promise(resolve=>setTimeout(resolve,5));
 test('strip reads keep exact pixel registration across boundaries and allow cancellation before sampling',async()=>{
@@ -165,4 +174,40 @@ test('saved provenance rejects malformed geometry, wrong original pointers and a
     await assert.rejects(rectify.verifyRecord({...r,sourceSha256:'0'.repeat(64)},hrefs),e=>e.code==='INVALID_RECORD');
     await assert.rejects(rectify.verifyRecord(r,{...hrefs,sourceHref:hrefs.outputHref}),e=>e.code==='INVALID_RECORD');
   }finally{globalThis.StudioImageInsets=old;}
+});
+async function readyWorker(f){for(let i=0;i<100&&!f.background.workers.length;i++)await tick();assert.equal(f.background.workers.length,1);return f.background.workers[0];}
+function replyPixels(f,worker,changes={}){const q=worker.input,pixels=image(q.width,q.height,(x,y)=>Array.from(f.raw.data.slice(((y+q.top)*f.raw.width+x+q.left)*4,((y+q.top)*f.raw.width+x+q.left)*4+4)));worker.onmessage?.({data:{ok:true,sourceWidth:f.raw.width,sourceHeight:f.raw.height,left:q.left,top:q.top,width:q.width,height:q.height,buffer:pixels.data.buffer,...changes}});}
+test('worker ROI retains original integer neighbours, crop offsets, pixel registration, hashes and numerical sampler',async()=>{
+  const f=browserFixture({width:30,height:20,workerOptions:{}}),p=[{x:10,y:7},{x:14,y:7},{x:14,y:10},{x:10,y:10}],pending=f.api.rectify(f.href,{corners:p,width:4,height:3}),worker=await readyWorker(f);
+  assert.deepEqual({...worker.input},{href:f.href,sourceWidth:30,sourceHeight:20,left:9,top:6,width:6,height:5});replyPixels(f,worker);const result=await pending;
+  assert.deepEqual(Array.from(f.encodedPixels[0].data),Array.from(image(4,3,(x,y)=>[(x+10)*20,(y+7)*20,x+y+17,255]).data));assert.equal(result.audit.sourceSha256,crypto.createHash('sha256').update(f.sourceBytes).digest('hex'));assert.equal(result.audit.outputSha256,crypto.createHash('sha256').update(f.pngBytes).digest('hex'));
+  assert.deepEqual({...result.audit.sourcePixelRead},{route:'local-worker-offscreen-unit-scale',left:9,top:6,width:6,height:5,scale:1});assert.equal(result.audit.interpolation,'bilinear-premultiplied-alpha');assert.equal(result.audit.quantitativeUse,false);assert.equal(f.draws.length,0);assert.equal(f.live.peak,0);assert.equal(f.reads.length,0);assert.equal(worker.terminated,1);assert.deepEqual(f.background.revoked,f.background.urls);assert.equal(f.background.timers.size,0);
+});
+test('core worker validates every source/ROI dimension, offset, buffer type and exact byte length',async()=>{
+  for(const changes of [{sourceWidth:9},{sourceHeight:7},{left:1},{top:1},{width:7},{height:5},{buffer:new ArrayBuffer(4)},{buffer:new Uint8Array(8*6*4)},{ok:1}]){
+    const f=browserFixture({workerOptions:{}}),pending=f.api.rectify(f.href,{corners:full(8,6),width:8,height:6}),checked=assert.rejects(pending,e=>e.code==='WORKER_FAILED'),worker=await readyWorker(f);replyPixels(f,worker,changes);await checked;assert.equal(worker.terminated,1);assert.equal(f.live.peak,0);assert.equal(f.encodedPixels.length,0);assert.equal(f.background.timers.size,0);assert.deepEqual(f.background.revoked,f.background.urls);
+  }
+});
+test('core worker CSP, error, messageerror and decode rejection never retry on the main thread',async()=>{
+  for(const options of [{constructError:true},{postError:true},{}]){const f=browserFixture({workerOptions:options}),pending=f.api.rectify(f.href,{corners:full(8,6),width:8,height:6}),checked=assert.rejects(pending,e=>e.code==='WORKER_FAILED'&&!e.message.includes(f.href));if(!options.constructError&&!options.postError)(await readyWorker(f)).onerror({preventDefault(){}});await checked;assert.equal(f.live.peak,0);assert.equal(f.encodedPixels.length,0);assert.deepEqual(f.background.revoked,f.background.urls);assert.ok(f.background.workers.every(w=>w.terminated===1));}
+  const f=browserFixture({workerOptions:{}}),pending=f.api.rectify(f.href,{corners:full(8,6),width:8,height:6}),checked=assert.rejects(pending,e=>e.code==='WORKER_FAILED');(await readyWorker(f)).onmessageerror({});await checked;
+  const g=browserFixture({workerOptions:{}}),failed=g.api.rectify(g.href,{corners:full(8,6),width:8,height:6}),failure=assert.rejects(failed,e=>e.code==='DECODE_FAILED');(await readyWorker(g)).onmessage({data:{ok:false,code:'DECODE_FAILED'}});await failure;assert.equal(g.live.peak,0);
+});
+test('core worker Abort, 15s deadline and serial queue release all resources and discard late results',async()=>{
+  const f=browserFixture({workerOptions:{}}),a=new AbortController(),b=new AbortController(),one=f.api.rectify(f.href,{corners:full(8,6),width:8,height:6,signal:a.signal}),two=f.api.rectify(f.href,{corners:full(8,6),width:8,height:6,signal:b.signal}),oneCheck=assert.rejects(one,e=>e.code==='ABORTED'),twoCheck=assert.rejects(two,e=>e.code==='ABORTED'),worker=await readyWorker(f),late=worker.onmessage;
+  assert.equal([...f.background.timers.keys()][0].ms,15000);await assert.rejects(f.api.rectify(f.href,{corners:full(8,6),width:8,height:6}),e=>e.code==='BUSY');b.abort();a.abort();await Promise.all([oneCheck,twoCheck]);late({data:{ok:true}});assert.equal(f.background.workers.length,1);assert.equal(worker.terminated,1);assert.equal(f.background.timers.size,0);assert.equal(f.encodedPixels.length,0);assert.deepEqual(f.background.revoked,f.background.urls);
+  const g=browserFixture({workerOptions:{}}),timed=g.api.rectify(g.href,{corners:full(8,6),width:8,height:6}),timeout=assert.rejects(timed,e=>e.code==='WORKER_TIMEOUT'),timedWorker=await readyWorker(g);[...g.background.timers.values()][0]();await timeout;assert.equal(timedWorker.terminated,1);assert.equal(g.background.timers.size,0);assert.equal(g.encodedPixels.length,0);assert.deepEqual(g.background.revoked,g.background.urls);
+});
+async function sourceWorkerBody({changes={},wrongDimensions=false,pixelFailure=false}={}){
+  const f=browserFixture({width:30,height:20,workerOptions:{}}),controller=new AbortController(),pending=f.api.rectify(f.href,{corners:full(30,20),width:30,height:20,signal:controller.signal}),checked=assert.rejects(pending,e=>e.code==='ABORTED');await readyWorker(f);controller.abort();await checked;
+  const messages=[],calls=[],bitmaps=[],targets=[],request={href:f.href,sourceWidth:30,sourceHeight:20,left:9,top:6,width:6,height:5,...changes};
+  const context={self:{postMessage(value,transfer){messages.push({value,transfer});}},Uint8Array,Uint8ClampedArray,Blob,atob,createImageBitmap:async(...args)=>{calls.push(args);const bitmap={width:wrongDimensions?20:30,height:20,closed:0,close(){this.closed++;}};bitmaps.push(bitmap);return bitmap;},OffscreenCanvas:class{constructor(w,h){this.width=w;this.height=h;targets.push(this);}getContext(){return {drawImage(...args){calls.push(args);assert.equal(args.length,3,'No resize or destination scaling arguments');assert.equal(args[1],-9);assert.equal(args[2],-6);},getImageData(x,y,w,h){if(pixelFailure)throw Error('controlled read failure');assert.deepEqual([x,y,w,h],[0,0,6,5]);return image(w,h);}};}}};
+  vm.createContext(context);vm.runInContext(f.background.programs[0],context);await context.self.onmessage({data:request});return {messages,calls,bitmaps,targets};
+}
+test('actual worker body uses one original bitmap and exact unit-scale translation without resize; closes bitmap and canvas on error',async()=>{
+  const result=await sourceWorkerBody();assert.equal(result.messages[0].value.ok,true);assert.equal(result.calls[0].length,1,'createImageBitmap receives no resize options');assert.equal(result.calls.length,2);assert.equal(result.messages[0].value.buffer.byteLength,6*5*4);assert.equal(result.messages[0].transfer[0],result.messages[0].value.buffer);assert.ok(result.bitmaps.every(b=>b.closed===1));assert.ok(result.targets.every(c=>c.width===1&&c.height===1));
+  for(const options of [{wrongDimensions:true},{pixelFailure:true}]){const failed=await sourceWorkerBody(options);assert.equal(failed.messages[0].value.ok,false);assert.ok(failed.bitmaps.every(b=>b.closed===1));assert.ok(failed.targets.every(c=>c.width===1&&c.height===1));if(options.wrongDimensions)assert.equal(failed.calls.length,1);}
+});
+test('ROI worker repeats embedded-only, source32MP and integer crop bounds before any bitmap decode',async()=>{
+  for(const changes of [{href:'https://example.invalid/private.jpg'},{href:'data:image/svg+xml;base64,PHN2Zy8+'},{href:'data:image/png;base64,'+'A'.repeat(28000001)},{sourceWidth:8000,sourceHeight:5000},{sourceHeight:NaN},{left:-1},{top:.5},{width:0},{left:29,width:2},{top:19,height:2}]){const result=await sourceWorkerBody({changes});assert.equal(result.calls.length,0);assert.equal(result.messages[0].value.ok,false);assert.deepEqual(Object.keys(result.messages[0].value).sort(),['code','ok']);}
 });

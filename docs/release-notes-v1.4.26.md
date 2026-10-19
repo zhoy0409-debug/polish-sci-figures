@@ -24,6 +24,8 @@ Prepared on 2026-10-19. This candidate combines local, non-generative photo corr
 
 全部分析与处理在本机执行。自动边界使用最多 640 px 边长的分析图，不能判断目标的生物学含义；完整输出使用原图区域的双线性重采样，不补画缺失内容。输出比例和采样后的条带强度不能替代原仪器文件的定量分析。容量及操作步骤见[照片指南](figure-studio-photo-correction.md)。
 
+支持的浏览器在本机 Worker 中解码并读取检测缩略图和原图 ROI，保留取消、超时及源尺寸检查。完整输出不使用检测缩略图。已校验的 SVG 模板按内容与处理策略缓存，每个调用者仍获得独立 DOM；开始新检测时不重复绘制同一个旧候选。
+
 本轮正在核对 Windows 安装包、保存重开、原图／审计／导出一致性、科研编辑回归及大图性能。尚无本轮成品、原生输入法或独立盲测检测准确率的通过结论；不得用旧 0.1.25 的数字替代本轮结果。当前实测范围以[专项报告](figure-studio-photo-correction-validation.md)为准，旧版[最终验收](qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json)保持不变。
 
 首次使用运行 [0.1.26 Windows Setup](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe)；[便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Portable-x64.zip)需完整解压。附件在[对应发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)提供；本说明准备时发行尚未完成。旧版安装用户的更新流程仍为 **更新 → 下载并准备更新 → 保存并确认 → 安装并重新打开**；真正的官方 0.1.25 → 0.1.26 更新要在目标公开后单独实测，不以本地覆盖安装替代。桌面包是否签名以本轮实际产物记录为准。

@@ -8,6 +8,8 @@ Prepared on 2026-10-19. This candidate combines the local photo workflow with th
 - Add a two-point ruler reference for whole-image straightening: drag a horizontal/vertical reference, preview the measured rotation and refine it. Crop within the original range; retain the line/angle audit and distinguish later four-corner edits.
 - Add a one-click conservative photo/brightfield display suggestion to the existing colour panel; retain editable global controls, source pixels, clipping review and one-step Apply/Cancel. Fluorescence keeps its existing common-display rules.
 - Reuse canonical canvas composition, preview transactions, project history and SVG/PNG/TIFF export. Keep private image evidence local and distinguish browser checks from installed Windows and independently labelled detection evaluation.
+- Reuse bounded, content- and policy-validated SVG templates, avoid repainting an unchanged photo candidate, and read decoded original pixels in cancellable strips. Prefer a well-supported inner boundary over a comparable enclosing frame while retaining alternatives for review.
+- Move detection-thumbnail and original-ROI decoding/readback into cancellable local workers where supported. Keep the original unit-scale ROI, interpolation and encoded-byte verification independent of the detection thumbnail; preserve a capability fallback for older browsers.
 
 ## v1.4.25 · Figure Studio 0.1.25 — published
 

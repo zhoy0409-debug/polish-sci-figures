@@ -16,6 +16,8 @@ const StudioImageRectify = (() => {
     UNSUPPORTED_SOURCE:['仅支持工程中嵌入的静态 PNG、JPEG 或 WebP 原图。','Use an embedded static PNG, JPEG or WebP source.'],
     SOURCE_LIMIT:['原图超过本地校正上限：3200 万像素或数据地址 2800 万字符。','The source exceeds the local limit of 32 megapixels or 28 million data URL characters.'],
     DECODE_FAILED:['无法可靠读取原图像素或方向。','The source pixels or orientation could not be read reliably.'],
+    WORKER_FAILED:['本地后台读取原图失败，请稍后重试。','Local background source-pixel reading failed; try again later.'],
+    WORKER_TIMEOUT:['本地后台读取原图超时，请减小选区或稍后重试。','Local background source-pixel reading timed out; use a smaller region or try later.'],
     SINGULAR_HOMOGRAPHY:['四角变换不稳定或穿过投影无穷远，请重新选择。','The projective mapping is unstable or crosses a projective pole.'],
     BUSY:['正在校正其他图片，请稍后重试。','Another image is being rectified; try again shortly.'],
     UNAVAILABLE:['当前浏览器不支持本地图片校正。','This browser does not support local image rectification.'],
@@ -161,6 +163,57 @@ const StudioImageRectify = (() => {
   function canvas(width,height){
     if(!globalThis.document?.createElement)fail('UNAVAILABLE');const result=document.createElement('canvas');result.width=width;result.height=height;return result;
   }
+  // This trusted function is the entire BlobWorker program. Source data is a
+  // message, never executable code or a network URL. It reads original pixels
+  // at UNIT scale; the numerical sampler remains on the existing main path.
+  function sourcePixelWorker(){
+    self.onmessage=async event=>{
+      let bitmap=null,target=null;
+      try{
+        const input=event.data,href=input?.href,sw=input?.sourceWidth,sh=input?.sourceHeight,left=input?.left,top=input?.top,w=input?.width,h=input?.height;
+        if(typeof href!=='string'||href.length>28000000||!/^data:image\/(png|jpeg|webp);base64,[A-Za-z\d+/=\s]+$/.test(href))throw {code:'UNSUPPORTED_SOURCE'};
+        if(!Number.isInteger(sw)||!Number.isInteger(sh)||sw<1||sh<1||sw>32767||sh>32767||sw*sh>32000000||!Number.isInteger(left)||!Number.isInteger(top)||!Number.isInteger(w)||!Number.isInteger(h)||left<0||top<0||w<1||h<1||left+w>sw||top+h>sh)throw {code:'SOURCE_LIMIT'};
+        const binary=atob(href.slice(href.indexOf(',')+1)),bytes=new Uint8Array(binary.length);
+        for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
+        bitmap=await createImageBitmap(new Blob([bytes],{type:href.slice(5,href.indexOf(';'))}));
+        if(bitmap.width!==sw||bitmap.height!==sh)throw {code:'DECODE_FAILED'};
+        target=new OffscreenCanvas(w,h);const context=target.getContext('2d',{willReadFrequently:true});
+        if(!context)throw {code:'WORKER_FAILED'};
+        // Exactly the old crop translation: no resize, smoothing, thumbnail,
+        // colour adjustment, projective transform or invented outside pixels.
+        context.drawImage(bitmap,-left,-top);bitmap.close();bitmap=null;
+        const pixels=context.getImageData(0,0,w,h);
+        if(!(pixels.data instanceof Uint8ClampedArray)||pixels.data.byteLength!==w*h*4)throw {code:'WORKER_FAILED'};
+        const buffer=pixels.data.buffer;target.width=target.height=1;target=null;
+        self.postMessage({ok:true,sourceWidth:sw,sourceHeight:sh,left,top,width:w,height:h,buffer},[buffer]);
+      }catch(e){self.postMessage({ok:false,code:['UNSUPPORTED_SOURCE','SOURCE_LIMIT','DECODE_FAILED'].includes(e?.code)?e.code:'WORKER_FAILED'});}
+      finally{bitmap?.close();if(target)target.width=target.height=1;}
+    };
+  }
+  function canReadInWorker(){return typeof Worker==='function'&&typeof OffscreenCanvas==='function'&&typeof createImageBitmap==='function'&&typeof Blob==='function'&&typeof globalThis.URL?.createObjectURL==='function'&&typeof globalThis.URL?.revokeObjectURL==='function';}
+  function readInWorker(href,dimensions,bounds,signal){return new Promise((resolve,reject)=>{
+    aborted(signal);let worker=null,url=null,timer=null,settled=false;
+    const finish=(failure,pixels)=>{
+      if(settled)return;settled=true;clearTimeout(timer);signal?.removeEventListener('abort',cancel);
+      if(worker){worker.onmessage=worker.onerror=worker.onmessageerror=null;worker.terminate();}
+      if(url!==null)URL.revokeObjectURL(url);
+      if(failure)reject(failure);else resolve(pixels);
+    },cancel=()=>finish(error('ABORTED'));
+    try{
+      url=URL.createObjectURL(new Blob(['('+sourcePixelWorker.toString()+')();'],{type:'application/javascript'}));
+      worker=new Worker(url);timer=setTimeout(()=>finish(error('WORKER_TIMEOUT')),15000);
+      worker.onerror=event=>{event?.preventDefault?.();finish(error('WORKER_FAILED'));};
+      worker.onmessageerror=()=>finish(error('WORKER_FAILED'));
+      worker.onmessage=event=>{
+        const value=event.data;
+        if(value?.ok===false){finish(error(['UNSUPPORTED_SOURCE','SOURCE_LIMIT','DECODE_FAILED'].includes(value.code)?value.code:'WORKER_FAILED'));return;}
+        if(value?.ok!==true||value.sourceWidth!==dimensions.width||value.sourceHeight!==dimensions.height||value.left!==bounds.left||value.top!==bounds.top||value.width!==bounds.width||value.height!==bounds.height||!(value.buffer instanceof ArrayBuffer)||value.buffer.byteLength!==bounds.width*bounds.height*4){finish(error('WORKER_FAILED'));return;}
+        finish(null,{width:bounds.width,height:bounds.height,data:new Uint8ClampedArray(value.buffer)});
+      };
+      signal?.addEventListener('abort',cancel,{once:true});aborted(signal);
+      worker.postMessage({href,sourceWidth:dimensions.width,sourceHeight:dimensions.height,...bounds});
+    }catch(e){finish(e?.code==='ABORTED'?e:error('WORKER_FAILED'));}
+  });}
   async function encode(output,signal){
     aborted(signal);
     const target=canvas(output.width,output.height);
@@ -194,16 +247,19 @@ const StudioImageRectify = (() => {
     if(!sourceSha256){sourceSha256=await hashSource(dimensions.base64,signal);rememberHash(href,sourceSha256);}delete dimensions.base64;
     let image=null,input=null,inputCanvas=null;
     try{
-      image=await decode(href,dimensions,signal);aborted(signal);
       // Include the one-pixel interpolation neighbourhood. Crop in original
       // coordinates without a resize, so a small ROI needs no full RGBA copy.
       const left=Math.max(0,Math.floor(Math.min(...p.map(v=>v.x))-.5)),top=Math.max(0,Math.floor(Math.min(...p.map(v=>v.y))-.5));
       const right=Math.min(dimensions.width,Math.ceil(Math.max(...p.map(v=>v.x))+.5)),bottom=Math.min(dimensions.height,Math.ceil(Math.max(...p.map(v=>v.y))+.5));
+      const iw=right-left,ih=bottom-top,background=canReadInWorker();
+      if(background)input=await readInWorker(href,dimensions,{left,top,width:iw,height:ih},signal);
+      else{
+      image=await decode(href,dimensions,signal);aborted(signal);
       inputCanvas=canvas(right-left,bottom-top);const context=inputCanvas.getContext('2d',{willReadFrequently:true});if(!context)fail('UNAVAILABLE');
       // The full original is drawn at unit scale with only a translation. No
       // thumbnail or analysis raster is substituted for the source.
       context.drawImage(image,-left,-top);
-      const iw=right-left,ih=bottom-top;input={width:iw,height:ih,data:new Uint8ClampedArray(iw*ih*4)};
+      input={width:iw,height:ih,data:new Uint8ClampedArray(iw*ih*4)};
       // Read the same unit-scale pixels in bounded strips. Decoder work has
       // completed above; yield between reads so Escape and new drafts can run.
       let readRow=0;
@@ -212,14 +268,16 @@ const StudioImageRectify = (() => {
         do{const rows=Math.min(32,ih-readRow),strip=context.getImageData(0,readRow,iw,rows);input.data.set(strip.data,readRow*iw*4);readRow+=rows;}while(readRow<ih&&now()-start<CHUNK_MS);
         progress(onProgress,'decode',readRow,ih);if(readRow<ih)await yieldTask();
       }
-      inputCanvas.width=inputCanvas.height=1;inputCanvas=null;image.src='';image=null;aborted(signal);progress(onProgress,'decode',1,1);
+      inputCanvas.width=inputCanvas.height=1;inputCanvas=null;image.src='';image=null;
+      }
+      aborted(signal);progress(onProgress,'decode',1,1);
       const job=sampler(input,p,{width,height},{x:left,y:top},dimensions);let row=0;
       while(row<height){
         aborted(signal);const start=now();do{job.rows(row,row+1);row++;}while(row<height&&now()-start<CHUNK_MS);
         progress(onProgress,'warp',row,height);if(row<height)await yieldTask();
       }
       input=null;aborted(signal);progress(onProgress,'encode',0,1);await yieldTask();const encoded=await encode(job.out,signal);aborted(signal);progress(onProgress,'encode',1,1);
-      return {href:encoded.href,width,height,sourceWidth:dimensions.width,sourceHeight:dimensions.height,audit:{schema:'figure-studio-image-rectification/1',sourceSha256,outputSha256:encoded.outputSha256,sourceMime:dimensions.mime,sourceWidth:dimensions.width,sourceHeight:dimensions.height,corners:p,H:job.H,outputWidth:width,outputHeight:height,requestedOutputWidth,requestedOutputHeight,preview:width!==requestedOutputWidth||height!==requestedOutputHeight,interpolation:'bilinear-premultiplied-alpha',antialiasing:'bilinear only; no area low-pass or reconstruction',boundaryConvention:'original/destination pixel boundaries 0..width and 0..height; sample destination centres x+0.5,y+0.5',sampleFormat:'browser-decoded uint8 RGBA display pixels',colorHandling:'browser default decode; no intensity or local adjustments',displayOnly:true,quantitativeUse:false,nonGenerative:true}};
+      return {href:encoded.href,width,height,sourceWidth:dimensions.width,sourceHeight:dimensions.height,audit:{schema:'figure-studio-image-rectification/1',sourceSha256,outputSha256:encoded.outputSha256,sourceMime:dimensions.mime,sourceWidth:dimensions.width,sourceHeight:dimensions.height,corners:p,H:job.H,outputWidth:width,outputHeight:height,requestedOutputWidth,requestedOutputHeight,preview:width!==requestedOutputWidth||height!==requestedOutputHeight,interpolation:'bilinear-premultiplied-alpha',antialiasing:'bilinear only; no area low-pass or reconstruction',boundaryConvention:'original/destination pixel boundaries 0..width and 0..height; sample destination centres x+0.5,y+0.5',sampleFormat:'browser-decoded uint8 RGBA display pixels',sourcePixelRead:{route:background?'local-worker-offscreen-unit-scale':'main-thread-capability-fallback',left,top,width:iw,height:ih,scale:1},colorHandling:'browser default decode; no intensity or local adjustments',displayOnly:true,quantitativeUse:false,nonGenerative:true}};
     }catch(e){if(e?.code||e?.name==='AbortError')throw e;throw error('DECODE_FAILED');}
     finally{if(image)image.src='';if(inputCanvas)inputCanvas.width=inputCanvas.height=1;input=null;}
   }
