@@ -40,6 +40,15 @@ function exportSvg(){const result=ctx.composite(false,true);for(const image of r
 async function importSvg(text){await ctx.validateSvgImportFeatures(text);const clean=ctx.sanitize(text);project.panels[0].variants[0].svg=serialize(clean);templateCache.clear();state={...state,panels:{'panel-1':{variant:0,edits:{}}}};return clean;}
 let count=0;function pass(label){console.log('PASS '+label);count++;}
 (async()=>{
+ let parses=0;ctx.DOMParser=class{parseFromString(...args){parses++;return new dom.window.DOMParser().parseFromString(...args);}};
+ const first=ctx.sanitize(source);first.querySelector('image').setAttribute('href','https://example.invalid/private');first.setAttribute('onclick','unsafe()');
+ const cached=ctx.sanitize(source);assert.equal(parses,1);assert.equal(imageOf(cached).getAttribute('href'),href);assert.equal(cached.hasAttribute('onclick'),false);
+ const changed=source.replace('width="100"','width="99"');assert.equal(imageOf(ctx.sanitize(changed)).getAttribute('width'),'99');assert.equal(parses,2,'Any actual source change revalidates');
+ assert.throws(()=>ctx.sanitize('<!ENTITY unsafe "x">'+source));
+ const unsafe=source.replace('href="'+href+'"','href="https://example.invalid/private"');assert.equal(imageOf(ctx.sanitize(unsafe)).hasAttribute('href'),false);assert.equal(imageOf(ctx.sanitize(unsafe)).hasAttribute('href'),false);
+ for(let i=0;i<5;i++)ctx.sanitize(source.replace('width="100"','width="'+(90+i)+'"'));
+ assert.ok(ctx.sanitize.cache.entries.size<=4);assert.ok(ctx.sanitize.cache.characters<=32000000);const beforeEvicted=parses;ctx.sanitize(source);assert.equal(parses,beforeEvicted+1,'Evicted input is fully revalidated');
+ pass('sanitized source cache preserves independent DOM ownership, exact-content invalidation, security checks and bounded eviction');
  const adjustment=color.validate({strength:.7,exposureEv:.25,temperature:-.2,tint:.3,contrast:1.12,whiteBalance:[1.02,1,.98],reference:'Original reference url(#sample)'});
  ctx.commitImageColors([{source:ref(),adjustment}],'adjust');assert.equal(commits,1);const exported=exportSvg();
  assert.deepEqual(record(exported),adjustment);assert.equal(exported.querySelectorAll(`[${MARK}]`).length,2);

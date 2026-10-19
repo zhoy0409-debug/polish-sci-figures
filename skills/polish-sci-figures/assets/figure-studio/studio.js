@@ -1176,6 +1176,14 @@ if (typeof document !== 'undefined') (async () => {
   }
   function sanitize(text) {
     if (typeof text !== 'string' || text.length > 20000000 || /<!ENTITY/i.test(text)) throw Error(T('SVG 无效或超过大小限制'));
+    // Immutable source strings recur during draft validation and composition.
+    // Cache only successfully sanitized templates; every caller receives its
+    // own DOM. Content changes (including provenance/filter edits) are misses.
+    const policy=[DOMParser,typeof StudioLegacyStatCleanup==='undefined'?null:StudioLegacyStatCleanup,typeof StudioImageColor==='undefined'?null:StudioImageColor,typeof StudioMarkStyle==='undefined'?null:StudioMarkStyle,typeof StudioGroupSpacing==='undefined'?null:StudioGroupSpacing];
+    if(!sanitize.cache||policy.some((value,i)=>sanitize.cache.policy[i]!==value))sanitize.cache={entries:new Map(),characters:0,policy};
+    const cache=sanitize.cache;
+    const clone=svg=>{const result=svg.cloneNode(true);if(svg.studioLegacyStatCleaned)result.studioLegacyStatCleaned=true;return result;};
+    if(cache.entries.has(text)){const cached=cache.entries.get(text);cache.entries.delete(text);cache.entries.set(text,cached);return clone(cached);}
     const xml = new DOMParser().parseFromString(text, 'image/svg+xml');
     if (xml.querySelector('parsererror') || xml.documentElement.localName !== 'svg') throw Error(T('无法解析 SVG'));
     const root = xml.documentElement;
@@ -1217,7 +1225,10 @@ if (typeof document !== 'undefined') (async () => {
       const role = ids.some(x=>/^legend/.test(x)) ? 'legend' : ids.some(x=>/^[xy]tick/.test(x)) ? 'ticks' : ids.some(x=>/^matplotlib.axis/.test(x)) ? 'axis' : 'other';
       el.setAttribute('data-role', role);
     }
-    const safe=document.importNode(root,true);if(cleanup?.changed)safe.studioLegacyStatCleaned=true;return safe;
+    const safe=document.importNode(root,true);if(cleanup?.changed)safe.studioLegacyStatCleaned=true;
+    cache.entries.set(text,safe);cache.characters+=text.length;
+    while(cache.entries.size>4||cache.characters>32000000){const first=cache.entries.keys().next().value;cache.characters-=first.length;cache.entries.delete(first);}
+    return clone(safe);
   }
   function validateProject(p) {
     if (p?.schema !== 'figure-studio/1' || !/^[a-f0-9]{20}$/.test(p.id) || typeof p.title !== 'string' || !Array.isArray(p.panels) || !p.panels.length || p.panels.length > 512) throw Error(T('不是受支持的 Figure Studio 工程'));
@@ -2230,7 +2241,7 @@ if (typeof document !== 'undefined') (async () => {
   function rectifyImageResolve(ref){
     if(!ref||state().panels[ref.panelId]?.variant!==ref.variant)return null;
     const asset=panel(ref.panelId),record=asset.analysis?.imageRectification;
-    if(record&&ref.variant===record.outputVariant){const raw=asset.variants[record.originalVariant];if(!raw)return null;const svg=sanitize(raw.svg),images=[...svg.querySelectorAll('image')];return images.length===1?images[0]:null;}
+    if(record&&ref.variant===record.outputVariant){const raw=asset.variants[record.originalVariant];if(!raw)return null;const svg=baseSvg(ref.panelId,record.originalVariant,state(),false),images=[...svg.querySelectorAll('image')];return images.length===1?images[0]:null;}
     return imageColorResolve(ref,rectifySourceCanvas());
   }
   function rectifyImageSettings(ref){
@@ -2278,13 +2289,14 @@ if (typeof document !== 'undefined') (async () => {
   }
   function showImageRectifyPreview(result,meta){
     const source=assertRectifyTarget(meta);
+    if(imageRectifyPreview?.previewResult===result&&$('artboard').querySelector(':scope > svg')===imageRectifyPreview.previewCanvas)return true;
     if(!imageRectifyPreview)imageRectifyPreview={kind:'image-rectify',id:'image-rectify',owner:project,base:state(),source:panel(source.panelId),panelId:source.panelId,originalCanvas:$('artboard').querySelector(':scope > svg'),originalView:zoomView};
     const box=imageRectifyPreview,asset=rectifiedImageAsset(result,meta),prepared=installAsset(asset,source.panelId,null,professionalAxisText('图片透视校正','Image perspective correction'),false,false,false,rectifyImageDisplayState(meta),{prepareOnly:true}),value=professionalAxisShadowVisual(prepared);
     assertRectifyTarget(meta);
     const svg=value.svg,fit=$('zoom').value==='fit',zoom=fit?previewFitZoom(value.width,value.height):clampPreviewZoom(+$('zoom').value);
     svg.dataset.previewSession=box.id;svg.dataset.previewKind='image-rectify';svg.setAttribute('aria-label',professionalAxisText('透视校正预览尚未应用；可在侧栏保留或取消。','Perspective preview is not applied. Keep or cancel it in the inspector.'));svg.style.width=value.width*zoom+'px';svg.style.height=value.height*zoom+'px';
     svg.addEventListener('pointerdown',event=>{event.preventDefault();event.stopImmediatePropagation();imageRectifyUI?.cancel();},true);
-    $('artboard').replaceChildren(svg);zoomView={svg,width:value.width,height:value.height,zoom,fit,refreshSelection(){}};syncZoomControl(zoom,fit);return true;
+    $('artboard').replaceChildren(svg);box.previewResult=result;box.previewCanvas=svg;zoomView={svg,width:value.width,height:value.height,zoom,fit,refreshSelection(){}};syncZoomControl(zoom,fit);return true;
   }
   function clearImageRectifyPreview(){
     const box=imageRectifyPreview;if(!box)return;imageRectifyPreview=null;

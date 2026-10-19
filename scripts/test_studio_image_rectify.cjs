@@ -76,18 +76,28 @@ test('invalid dimensions, high-depth arrays, malformed buffers and pre-aborted c
 // decoded pixels. They are not a browser accuracy or private-photo acceptance.
 function browserFixture({width=8,height=6,delayDecode=false}={}){
   const raw=image(width,height,(x,y)=>[x*20,y*20,x+y,255]),sourceBytes=Buffer.from('original encoded source bytes'),pngBytes=Buffer.from('encoded PNG output fixture');
-  const href='data:image/png;base64,'+sourceBytes.toString('base64'),tasks=[],draws=[],canvases=[],encodedPixels=[],live={count:0,peak:0,released:0};
+  const href='data:image/png;base64,'+sourceBytes.toString('base64'),tasks=[],draws=[],canvases=[],encodedPixels=[],reads=[],live={count:0,peak:0,released:0,decoded:0};
   class FakeImage{
     constructor(){this.naturalWidth=width;this.naturalHeight=height;this.active=false;}
+    async decode(){live.decoded++;}
     set src(value){if(!value){if(this.active){this.active=false;live.count--;live.released++;}return;}this.active=true;live.count++;live.peak=Math.max(live.peak,live.count);const finish=()=>this.onload?.();if(delayDecode)tasks.push(finish);else setTimeout(finish,0);}
   }
   class FakeImageData{constructor(data,w,h){this.data=data;this.width=w;this.height=h;}}
   class FakeReader{readAsDataURL(){setTimeout(()=>{this.result='data:image/png;base64,'+pngBytes.toString('base64');this.onload?.();},0);}abort(){this.onabort?.();}}
-  const context={Uint8Array,Uint8ClampedArray,Image:FakeImage,ImageData:FakeImageData,FileReader:FakeReader,atob:v=>Buffer.from(v,'base64').toString('binary'),crypto:crypto.webcrypto,performance,setTimeout,clearTimeout,console,StudioImageInsets:{dimensionsFromHref(value){assert.equal(value,href);return {widthPx:width,heightPx:height};}},document:{createElement(tag){assert.equal(tag,'canvas');const target={width:0,height:0,toBlob(callback,mime){assert.equal(mime,'image/png');setTimeout(()=>callback(new Blob([pngBytes],{type:mime})),0);},getContext(){return {drawImage(...args){draws.push(args.slice(1));target.cropX=-args[1];target.cropY=-args[2];},getImageData(x,y,w,h){return image(w,h,(xx,yy)=>{const at=((yy+target.cropY)*width+xx+target.cropX)*4;return Array.from(raw.data.slice(at,at+4));});},putImageData(data){encodedPixels.push(data);}};}};canvases.push(target);return target;}}};
+  const context={Uint8Array,Uint8ClampedArray,Image:FakeImage,ImageData:FakeImageData,FileReader:FakeReader,atob:v=>Buffer.from(v,'base64').toString('binary'),crypto:crypto.webcrypto,performance,setTimeout,clearTimeout,console,StudioImageInsets:{dimensionsFromHref(value){assert.equal(value,href);return {widthPx:width,heightPx:height};}},document:{createElement(tag){assert.equal(tag,'canvas');const target={width:0,height:0,toBlob(callback,mime){assert.equal(mime,'image/png');setTimeout(()=>callback(new Blob([pngBytes],{type:mime})),0);},getContext(){return {drawImage(...args){draws.push(args.slice(1));target.cropX=-args[1];target.cropY=-args[2];},getImageData(x,y,w,h){assert.equal(live.decoded,1,'Decode must finish before the first source pixel read');reads.push({x,y,w,h});return image(w,h,(xx,yy)=>{const at=((yy+y+target.cropY)*width+xx+x+target.cropX)*4;return Array.from(raw.data.slice(at,at+4));});},putImageData(data){encodedPixels.push(data);}};}};canvases.push(target);return target;}}};
   vm.createContext(context);vm.runInContext(fs.readFileSync(require.resolve(path),'utf8')+'\nglobalThis.api=StudioImageRectify;',context);
-  return {api:context.api,href,sourceBytes,pngBytes,tasks,draws,canvases,encodedPixels,live};
+  return {api:context.api,href,sourceBytes,pngBytes,tasks,draws,canvases,encodedPixels,reads,live};
 }
 const tick=()=>new Promise(resolve=>setTimeout(resolve,5));
+test('strip reads keep exact pixel registration across boundaries and allow cancellation before sampling',async()=>{
+  const f=browserFixture({width:12,height:97});
+  await f.api.rectify(f.href,{corners:full(12,97),width:12,height:97});
+  assert.equal(f.reads.length,4);assert.deepEqual(f.reads.map(r=>r.y),[0,32,64,96]);assert.ok(f.reads.every(r=>r.h<=32));
+  assert.deepEqual(Array.from(f.encodedPixels[0].data),Array.from(image(12,97,(x,y)=>[x*20,y*20,x+y,255]).data));
+  const g=browserFixture({width:12,height:97}),controller=new AbortController();
+  await assert.rejects(g.api.rectify(g.href,{corners:full(12,97),width:12,height:97,signal:controller.signal,onProgress(e){if(e.stage==='decode'&&e.completed>0)controller.abort();}}),e=>e.code==='ABORTED');
+  assert.equal(g.encodedPixels.length,0);assert.equal(g.live.count,0);assert.ok(g.canvases.every(c=>c.width===1&&c.height===1));
+});
 test('async core hashes original encoded bytes and actual PNG bytes, preserves provenance and reports actual preview size',async()=>{
   const f=browserFixture(),events=[],result=await f.api.rectify(f.href,{corners:full(8,6),width:8,height:6,previewMaxSide:4,onProgress:e=>events.push(e)});
   assert.equal(result.width,4);assert.equal(result.height,3);assert.equal(result.sourceWidth,8);assert.equal(result.sourceHeight,6);assert.equal(result.audit.schema,'figure-studio-image-rectification/1');

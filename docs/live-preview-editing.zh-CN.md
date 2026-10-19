@@ -1,6 +1,8 @@
 # 在画布中直接调整 Figure Studio
 
-本说明介绍 Suite v1.4.22 / Windows Studio 0.1.22 的画布实时编辑。安装包与其他下载见 [v1.4.22 官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22)，实际验收范围见文末报告。
+本说明介绍 Suite v1.4.26 / Windows Studio 0.1.26 的画布实时编辑。下载见[对应发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)；旧编辑验收仍保留历史范围，本轮照片功能、成品与性能状态见[照片校正报告](figure-studio-photo-correction-validation.md)。
+
+拍摄照片使用相同的显式草稿边界：**图片工具 → 一键矫正与微调**提供自动边界、标尺拉正及四角调整。预览和取消均不保留；**保留校正**才生成新版本并增加一次撤销。原图可切回，一键校色仍是可微调的全局显示参数。详见[照片操作](figure-studio-photo-correction.md)。
 
 连续调整时保留真实草稿渲染，确认后仍执行规范校验；配色页提供完整八卡预览。使用中文输入法时，候选选词的 Enter／Esc 不等同于确认或取消整次编辑。普通文字输入结束选词后，再按普通 Enter 或移开焦点完成，按 Esc 放弃当前草稿；带明确应用按钮的工具仍须点击应用。原始表格和源图不因文字或显示调整而改写，具体操作证据见[Windows 输入法记录](windows-native-ime-acceptance.md)。
 

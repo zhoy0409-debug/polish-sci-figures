@@ -151,10 +151,10 @@ const StudioImageRectify = (() => {
   function decode(href,dimensions,signal){
     return new Promise((resolve,reject)=>{
       aborted(signal);if(typeof Image!=='function'){reject(error('UNAVAILABLE'));return;}
-      const image=new Image();let settled=false;
+      const image=new Image();image.decoding='async';let settled=false;
       const finish=(e)=>{if(settled)return;settled=true;clearTimeout(timer);signal?.removeEventListener('abort',cancel);image.onload=image.onerror=null;if(e){image.src='';reject(e);}else resolve(image);};
       const cancel=()=>finish(error('ABORTED')),timer=setTimeout(()=>finish(error('DECODE_FAILED')),15000);
-      image.onload=()=>{if(image.naturalWidth!==dimensions.width||image.naturalHeight!==dimensions.height)finish(error('DECODE_FAILED'));else finish();};
+      image.onload=async()=>{if(image.naturalWidth!==dimensions.width||image.naturalHeight!==dimensions.height)return finish(error('DECODE_FAILED'));try{if(typeof image.decode==='function')await image.decode();aborted(signal);finish();}catch(e){finish(e?.code?e:error('DECODE_FAILED'));}};
       image.onerror=()=>finish(error('DECODE_FAILED'));signal?.addEventListener('abort',cancel,{once:true});image.src=href;
     });
   }
@@ -202,7 +202,16 @@ const StudioImageRectify = (() => {
       inputCanvas=canvas(right-left,bottom-top);const context=inputCanvas.getContext('2d',{willReadFrequently:true});if(!context)fail('UNAVAILABLE');
       // The full original is drawn at unit scale with only a translation. No
       // thumbnail or analysis raster is substituted for the source.
-      context.drawImage(image,-left,-top);input=context.getImageData(0,0,right-left,bottom-top);
+      context.drawImage(image,-left,-top);
+      const iw=right-left,ih=bottom-top;input={width:iw,height:ih,data:new Uint8ClampedArray(iw*ih*4)};
+      // Read the same unit-scale pixels in bounded strips. Decoder work has
+      // completed above; yield between reads so Escape and new drafts can run.
+      let readRow=0;
+      while(readRow<ih){
+        aborted(signal);const start=now();
+        do{const rows=Math.min(32,ih-readRow),strip=context.getImageData(0,readRow,iw,rows);input.data.set(strip.data,readRow*iw*4);readRow+=rows;}while(readRow<ih&&now()-start<CHUNK_MS);
+        progress(onProgress,'decode',readRow,ih);if(readRow<ih)await yieldTask();
+      }
       inputCanvas.width=inputCanvas.height=1;inputCanvas=null;image.src='';image=null;aborted(signal);progress(onProgress,'decode',1,1);
       const job=sampler(input,p,{width,height},{x:left,y:top},dimensions);let row=0;
       while(row<height){

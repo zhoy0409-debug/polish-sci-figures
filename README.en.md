@@ -1,8 +1,8 @@
 # polish-sci-figures · Product guide
 
-Figure Studio 0.1.25 keeps the simple cat and dog and uses a transparent outline heart with jade water to show downloaded bytes, including reduced motion. Install Setup once, then use Updates in the editor for supported upgrades. [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.25/polish-sci-figures-Studio-0.1.25-Setup-x64.exe) · [Release notes](docs/release-notes-v1.4.25.md) · [Getting started](desktop/QUICKSTART.en.md) · [Historical 0.1.23 acceptance](docs/release-notes-v1.4.23.md).
+Figure Studio 0.1.26 adds local photo outline correction, ruler straightening and one-click colour suggestions. Preview on the canvas, refine or cancel, and retain the original with one-step undo. Install Setup once, then use supported in-editor updates. [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe) · [Release notes](docs/release-notes-v1.4.26.md) · [Getting started](desktop/QUICKSTART.en.md) · [Photo workflow](docs/figure-studio-photo-correction.md#english-quick-reference).
 
-0.1.25 is published. The genuine 0.1.24 → 0.1.25 in-editor upgrade restored the complete project and settings; matched 5000-element samples were accepted for this observed pair. [Upgrade record](docs/qa/jade-hearts/windows-0.1.25/official-update/README.md) · [Matched samples](docs/qa/jade-hearts/windows-0.1.25/matched-performance/README.md) · [Final acceptance](docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json). Normal uninstall and external-profile preservation passed. Freeze this round at 0.1.25; batch and validate later requested changes before a maintenance release.
+Windows package, scientific-regression and large-figure performance acceptance for 0.1.26 is in progress. No new installed-package or official-upgrade pass is claimed. See the [photo-correction acceptance scope](docs/figure-studio-photo-correction-validation.md); the previous stable 0.1.25 [final acceptance](docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json) remains a separate historical record.
 
 [Post-release update verification, 2026-10-18](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md): official 0.1.20 and 0.1.21 → 0.1.22 updates, automatic project recovery and normal cleanup passed.
 
@@ -18,9 +18,9 @@ polish-sci-figures brings scientific plotting, image standardization, and figure
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Suite v1.4.25 · Figure Studio 0.1.25 (Windows desktop edition)**
+**Suite v1.4.26 · Figure Studio 0.1.26 (Windows desktop edition)**
 
-[Official v1.4.25 downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.25) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-notes-v1.4.25.md)
+[Official v1.4.26 downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26) · [English quick start](desktop/QUICKSTART.en.md) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [Release notes](docs/release-notes-v1.4.26.md)
 
 ## Choose your workflow
 
@@ -46,14 +46,14 @@ Figure Studio is the official visual editor for polish-sci-figures. The original
 
 ## Install and start
 
-1. **Choose the Setup installer for first use:** download [polish-sci-figures-Studio-0.1.25-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.25/polish-sci-figures-Studio-0.1.25-Setup-x64.exe) from the [official v1.4.25 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.25) and run it. No extraction is needed.
+1. **Choose the Setup installer for first use:** download [polish-sci-figures-Studio-0.1.26-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe) from the [official v1.4.26 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26) and run it. No extraction is needed.
 2. Open the installed **polish-sci-figures Studio** shortcut from the desktop or Start menu. The launcher opens the editor in your default browser.
 3. Choose **Start from a template**, inspect the preview, and replace the example data with your own. You can also import an existing image, SVG, or selected PDF page. Supported native text and vector paths remain editable; PDF effects may require a local image layer or a whole-page appearance image. See the [conversion limits](docs/release-v1.4.3.en.md#what-changed), and review substituted fonts before export.
 4. Export SVG / PNG / TIFF and use **Save** to download an editable JSON backup.
 
 **Stay in the editor for later upgrades: Updates → Download and prepare update → save your project and tick the confirmation → Install and reopen.** The supported installer edition needs no repeated manual package downloads, extraction or folder replacement.
 
-The portable edition is `polish-sci-figures-Studio-0.1.25-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. Use Figure Discovery to import an XLSX workbook locally (first worksheet), or export a sheet as CSV/TSV for the data editor.
+The portable edition is `polish-sci-figures-Studio-0.1.26-Portable-x64.zip`. Extract the entire archive, run `Figure Studio.exe`, and keep the adjacent `_internal` folder. The desktop package includes its plotting and statistical runtime and works offline. The data editor accepts cell edits, pasted Excel ranges, and CSV/TSV imports. Use Figure Discovery to import an XLSX workbook locally (first worksheet), or export a sheet as CSV/TSV for the data editor.
 
 Closing the browser does not stop the local service; close the launcher when you finish. Autosaves live in the browser's local storage. Clearing site data, switching browsers, or using a private window can lose those records. **Download JSON backups of important projects.** See the [English quick start](desktop/QUICKSTART.en.md).
 
@@ -65,7 +65,7 @@ Choose **Appearance → Interface theme** for Carbon Atelier or Pearl Pro, then 
 
 Select a raster image, choose **Magnify region**, and draw a box over the detail you want to show. Move or resize the resulting inset, choose 2× / 3× / 4×, and adjust its border and connecting lines. To add an accurate scale bar, trace a known scale on the original image and enter its real length in µm. Automatic scale bars use familiar 1 / 2 / 5 values with a line length calculated from that calibration. SVG keeps the embedded original pixels and editable inset elements; TIFF export uses the chosen output resolution.
 
-The header **Updates** entry checks official GitHub versions without sending images, tables or projects. In the Windows installer edition, choose **Download and prepare update**, wait for integrity verification, save a project backup and tick the confirmation, then choose **Install and reopen**. The installer uses the supported current location and reopens the application after a successful update; you do not need to extract or replace files. Installation needs your confirmation; offline work remains available. **Users on 0.1.8 or earlier must install 0.1.25 manually once.** Installed 0.1.9 supports in-app updates; if preparation fails on a long file path, close the app and run the current installer manually. Version 0.1.25 retains the long-path fix introduced in 0.1.10. [Release notes and platform scope](docs/release-notes-v1.4.25.md).
+The header **Updates** entry checks official GitHub versions without sending images, tables or projects. In the Windows installer edition, choose **Download and prepare update**, wait for integrity verification, save a project backup and tick the confirmation, then choose **Install and reopen**. The installer uses the supported current location and reopens the application after a successful update; you do not need to extract or replace files. Installation needs your confirmation; offline work remains available. **Users on 0.1.8 or earlier must install 0.1.26 manually once.** Installed 0.1.9 supports in-app updates; if preparation fails on a long file path, close the app and run the current installer manually. Version 0.1.26 retains the long-path fix introduced in 0.1.10. [Release notes and platform scope](docs/release-notes-v1.4.26.md).
 
 Portable, source-run and unrecognized custom copies are not forcibly overwritten. For future in-editor updates, save a project JSON, quit the old copy, run the official Setup once using its default location, then launch the installed desktop or Start-menu shortcut and open your backup. If it still reports an unsupported setup, follow the specific message; security and installation-location checks remain in force. Mac/Android development previews retain their platform-specific manual installation steps.
 
@@ -185,7 +185,7 @@ The three skills retain their existing roles. Figure Studio is the visual entry 
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | Microscopy / pathology image standardization, consistent display settings, authoritatively calibrated scale bars, and processing audits |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | Refinement and assembly, Figure Studio, text and geometry checks, and quality checks at final dimensions |
 
-Download `polish-sci-figures-v1.4.25-Source.zip` from the [official v1.4.25 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.25), extract it and work inside its `polish-sci-figures-source` directory. It contains all three skills. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
+Download `polish-sci-figures-v1.4.26-Source.zip` from the [official v1.4.26 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26), extract it and work inside its `polish-sci-figures-source` directory. It contains all three skills. The AI/CLI route requires installation of its dependencies; the Windows desktop package already contains its runtime.
 
 ```powershell
 python -m pip install -r requirements.txt

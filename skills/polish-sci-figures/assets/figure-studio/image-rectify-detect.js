@@ -4,7 +4,7 @@
 'use strict';
 const StudioImageRectifyDetect = (() => {
   const MAX_SIDE=640, MAX_PIXELS=MAX_SIDE*MAX_SIDE, MAX_SOURCE_PIXELS=32000000, MAX_URL=28000000;
-  const MAX_EDGES=25000, MAX_LINES=32, MAX_QUADS=2400, MAX_CANDIDATES=5, CHUNK_MS=8, MIN_RANK=.82;
+  const MAX_EDGES=25000, MAX_LINES=32, MAX_QUADS=2400, MAX_CANDIDATES=5, MAX_REGION_POOL=32, CHUNK_MS=8, MIN_RANK=.82;
   const PI=Math.PI,cos=new Float64Array(180),sin=new Float64Array(180);
   for(let t=0;t<180;t++){cos[t]=Math.cos(t*PI/180);sin[t]=Math.sin(t*PI/180);}
   let pending=0,queue=Promise.resolve();
@@ -31,11 +31,29 @@ const StudioImageRectifyDetect = (() => {
     }
     const common=Math.abs(area(subject));return common/(area(a)+area(b)-common);
   }
+  function containsRegion(outer,inner){return inner.every(p=>outer.every((a,i)=>cross(a,outer[(i+1)%4],p)>=-1e-6));}
+  function rankRegions(supported){
+    supported.sort((a,b)=>b.score-a.score);const distinct=[];
+    for(const candidate of supported){if(distinct.some(kept=>overlap(kept.corners,candidate.corners)>.88))continue;distinct.push({...candidate,baseScore:candidate.score,outerBoundaryPenalty:0,nestedComparableRegion:false});if(distinct.length===MAX_REGION_POOL)break;}
+    // A photographed application/window often encloses the actual bounded
+    // image. Prefer the tighter boundary ONLY when its independent four-side
+    // and contrast evidence is already comparable. No colour, location, gel,
+    // physical ratio or fixed expected screen coordinates are used here.
+    for(const parent of distinct)for(const inner of distinct){
+      if(parent===inner||Math.abs(parent.baseScore-inner.baseScore)>.025)continue;
+      const fraction=inner.areaFraction/parent.areaFraction;
+      if(fraction<.25||fraction>.85||Math.min(...inner.edgeSupport)<.8||inner.boundaryContrastEvidence<.65||!containsRegion(parent.corners,inner.corners))continue;
+      const strength=Math.min(inner.edgeSupport.reduce((a,b)=>a+b,0)/4,inner.boundaryContrastEvidence,parent.boundaryContrastEvidence);
+      parent.outerBoundaryPenalty=Math.max(parent.outerBoundaryPenalty,.04*(1-fraction)*strength);inner.nestedComparableRegion=true;
+    }
+    for(const candidate of distinct)candidate.score=candidate.baseScore-candidate.outerBoundaryPenalty;
+    distinct.sort((a,b)=>b.score-a.score||b.baseScore-a.baseScore);return distinct.slice(0,MAX_CANDIDATES);
+  }
   async function analyze(image,{signal,onProgress,sourceWidth=image?.width,sourceHeight=image?.height}={}){
     check(signal);const w=image?.width,h=image?.height,data=image?.data;
     if(!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1||!(data instanceof Uint8Array||data instanceof Uint8ClampedArray)||data.length!==w*h*4)throw error('INVALID_INPUT');
     if(w>MAX_SIDE||h>MAX_SIDE||w*h>MAX_PIXELS||!Number.isInteger(sourceWidth)||!Number.isInteger(sourceHeight)||sourceWidth<1||sourceHeight<1||sourceWidth>32767||sourceHeight>32767||sourceWidth*sourceHeight>MAX_SOURCE_PIXELS)throw error('SOURCE_LIMIT');
-    const audit={schema:'figure-studio-rectification-suggestions/1',method:'Sobel / non-maximum suppression / hysteresis / orientation-constrained Hough / four-side support and contrast consistency',scoreMeaning:'Heuristic edge/contrast ranking, not a probability or accuracy estimate.',analysisWidth:w,analysisHeight:h,downsampled:w!==sourceWidth||h!==sourceHeight,physicalRatioInferred:false,manualConfirmationRequired:true,semanticContentIdentified:false,edgeCoordinateConvention:'analysis pixel centres x+0.5,y+0.5 mapped to original pixel boundaries',limits:{maxAnalysisSide:MAX_SIDE,maxVotingEdges:MAX_EDGES,maxLines:MAX_LINES,maxEvaluatedQuads:MAX_QUADS,maxCandidates:MAX_CANDIDATES},limitations:['Edges may identify an outer monitor frame, page, or another rectangular region.','No semantic gel recognition, physical ratio recovery, detail reconstruction, or independent accuracy claim.']};
+    const audit={schema:'figure-studio-rectification-suggestions/1',method:'Sobel / non-maximum suppression / hysteresis / orientation-constrained Hough / four-side support and contrast consistency',scoreMeaning:'Heuristic edge/contrast ranking, not a probability or accuracy estimate.',rankingPolicy:'Prefer a contained boundary over its outer frame only when four-side evidence is comparable; preserve alternative regions for manual review.',analysisWidth:w,analysisHeight:h,downsampled:w!==sourceWidth||h!==sourceHeight,physicalRatioInferred:false,manualConfirmationRequired:true,semanticContentIdentified:false,edgeCoordinateConvention:'analysis pixel centres x+0.5,y+0.5 mapped to original pixel boundaries',limits:{maxAnalysisSide:MAX_SIDE,maxVotingEdges:MAX_EDGES,maxLines:MAX_LINES,maxEvaluatedQuads:MAX_QUADS,maxCandidates:MAX_CANDIDATES,maxDistinctRegionPool:MAX_REGION_POOL},limitations:['Edges may identify an outer monitor frame, page, or another rectangular region.','No semantic gel recognition, physical ratio recovery, detail reconstruction, or independent accuracy claim.']};
     const done=(candidates,reason,extra={})=>{check(signal);return {sourceWidth,sourceHeight,candidates,audit:{...audit,...extra,reason}};};
     if(w<32||h<32)return done([],'image-too-small-for-four-edge-support');
     const total=w*h,gray=new Float32Array(total),gx=new Float32Array(total),gy=new Float32Array(total),magnitude=new Float32Array(total),opaque=new Uint8Array(total),hist=new Uint32Array(362);
@@ -149,17 +167,25 @@ const StudioImageRectifyDetect = (() => {
       }
       if(now()-clock>=CHUNK_MS){progress(onProgress,'candidates',evaluated,Math.min(MAX_QUADS,shapes.length));await yieldTask();clock=now();}
     }
-    supported.sort((a,b)=>b.score-a.score);const selected=[];
-    for(const candidate of supported){if(selected.some(kept=>overlap(kept.corners,candidate.corners)>.88))continue;selected.push(candidate);if(selected.length===MAX_CANDIDATES)break;}
-    const candidates=selected.map((c,i)=>({id:'edge-region-'+(i+1),corners:c.corners.map(p=>({x:p.x*sourceWidth/w,y:p.y*sourceHeight/h})),score:c.score,edgeSupport:c.edgeSupport,boundaryContrastEvidence:c.boundaryContrastEvidence,contrastConsistency:c.contrastConsistency,compactness:c.compactness,areaFraction:c.areaFraction,manualConfirmationRequired:true,label:'Edge-supported region '+(i+1)}));
+    const selected=rankRegions(supported);
+    const candidates=selected.map((c,i)=>({id:'edge-region-'+(i+1),corners:c.corners.map(p=>({x:p.x*sourceWidth/w,y:p.y*sourceHeight/h})),score:c.score,baseScore:c.baseScore,outerBoundaryPenalty:c.outerBoundaryPenalty,nestedComparableRegion:c.nestedComparableRegion,edgeSupport:c.edgeSupport,boundaryContrastEvidence:c.boundaryContrastEvidence,contrastConsistency:c.contrastConsistency,compactness:c.compactness,areaFraction:c.areaFraction,manualConfirmationRequired:true,label:'Edge-supported region '+(i+1)}));
     progress(onProgress,'candidates',1,1);
     return done(candidates,candidates.length?'edge-supported-candidates-require-manual-review':'no-four-sided-region-with-sufficient-edge-support',{edgeCount:tail,votingEdgeCount:indices.length,lineCount:lines.length,evaluatedQuads:evaluated,generatedQuads:shapes.length,highThreshold:high,lowThreshold:low,minimumMeanSideSupport:.68,minimumIndividualSideSupport:.4,minimumHeuristicRank:MIN_RANK,ambiguousTopCandidates:candidates.length>1&&candidates[0].score-candidates[1].score<.03,topRankGap:candidates.length>1?candidates[0].score-candidates[1].score:null});
   }
   function insets(){if(typeof StudioImageInsets!=='undefined')return StudioImageInsets;return globalThis.StudioImageInsets;}
   function decode(href,size,signal){return new Promise((resolve,reject)=>{
-    check(signal);if(typeof Image!=='function'){reject(error('UNAVAILABLE'));return;}const image=new Image();let settled=false;
+    check(signal);if(typeof Image!=='function'){reject(error('UNAVAILABLE'));return;}const image=new Image();image.decoding='async';let settled=false;
     const finish=e=>{if(settled)return;settled=true;clearTimeout(timer);signal?.removeEventListener('abort',cancel);image.onload=image.onerror=null;if(e){image.src='';reject(e);}else resolve(image);};
-    const cancel=()=>finish(error('ABORTED')),timer=setTimeout(()=>finish(error('DECODE_FAILED')),15000);image.onload=()=>image.naturalWidth===size.widthPx&&image.naturalHeight===size.heightPx?finish():finish(error('DECODE_FAILED'));image.onerror=()=>finish(error('DECODE_FAILED'));signal?.addEventListener('abort',cancel,{once:true});image.src=href;
+    const cancel=()=>finish(error('ABORTED')),timer=setTimeout(()=>finish(error('DECODE_FAILED')),15000);
+    image.onload=async()=>{
+      if(image.naturalWidth!==size.widthPx||image.naturalHeight!==size.heightPx){finish(error('DECODE_FAILED'));return;}
+      // onload can precede raster decode. Await the browser decoder so the
+      // subsequent small-canvas read does not synchronously decode a 24MP file.
+      try{if(typeof image.decode==='function')await image.decode();}catch{finish(error('DECODE_FAILED'));return;}
+      if(settled)return;if(signal?.aborted){finish(error('ABORTED'));return;}
+      finish();
+    };
+    image.onerror=()=>finish(error('DECODE_FAILED'));signal?.addEventListener('abort',cancel,{once:true});image.src=href;
   });}
   async function work(href,{signal,onProgress,maxSide=MAX_SIDE}={}){
     check(signal);if(typeof href!=='string'||href.length>MAX_URL||!/^data:image\/(png|jpeg|webp);base64,[a-z\d+/=\s]+$/i.test(href)||!insets()?.dimensionsFromHref)throw error('UNSUPPORTED_SOURCE');

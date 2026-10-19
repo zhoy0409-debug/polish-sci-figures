@@ -1,6 +1,8 @@
 # Editing directly on the Figure Studio canvas
 
-This guide explains canvas editing in Suite v1.4.22 / Windows Studio 0.1.22. Downloads are on the [official v1.4.22 release page](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.22); the reports below describe the validation scope.
+This guide covers live canvas editing in Suite v1.4.26 / Windows Studio 0.1.26. Downloads are on the [version-specific release page](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26). Earlier editing evidence remains historical; the [photo-correction report](figure-studio-photo-correction-validation.md) records this round’s package and performance status.
+
+Photographed images use the same explicit draft boundary: **Image tools → Auto straighten & refine** provides automatic outlines, ruler straightening and editable corners. Preview and Cancel are temporary; **Keep correction** creates one version and one Undo step. The retained original remains available, and optional photo colour suggestions stay global and editable. See the [photo workflow](figure-studio-photo-correction.md#english-quick-reference).
 
 Adjustments retain the real draft rendering and canonical final validation; the palette pane provides all eight complete previews. While an input method is composing text, candidate Enter/Esc does not commit or cancel the whole edit. For ordinary text editing, finish selecting the text, then press ordinary Enter or leave the field to keep it, or press Esc to discard the draft. Tools with an explicit Apply button still require that action. Text and display edits preserve original tables and source artwork. See the [Windows IME record](windows-native-ime-acceptance.md) for the actual operation evidence.
 

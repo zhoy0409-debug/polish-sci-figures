@@ -1,8 +1,8 @@
 # Changelog
 
-## Unreleased · Local photo correction
+## v1.4.26 · Figure Studio 0.1.26 — release candidate
 
-Development work as of 2026-10-19; the published 0.1.25 installer is unchanged. See the [photo workflow](docs/figure-studio-photo-correction.md) and [acceptance scope](docs/figure-studio-photo-correction-validation.md).
+Prepared on 2026-10-19. This candidate combines the local photo workflow with the current large-figure editing work. Windows packaging, installed regression, matched performance and the real official 0.1.25 → 0.1.26 update require this round’s actual evidence; no new pass or publication is claimed here. See the [photo workflow](docs/figure-studio-photo-correction.md), [release scope](docs/release-notes-v1.4.26.md) and [acceptance record](docs/figure-studio-photo-correction-validation.md).
 
 - Add local edge-based outline suggestions, editable four-corner crop/perspective previews, output aspect/size controls and retained original/corrected versions. Full output uses the original raster and records geometry, interpolation and encoded-byte hashes.
 - Add a two-point ruler reference for whole-image straightening: drag a horizontal/vertical reference, preview the measured rotation and refine it. Crop within the original range; retain the line/angle audit and distinguish later four-corner edits.

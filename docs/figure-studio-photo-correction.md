@@ -1,6 +1,6 @@
 # 拍摄照片：一键矫正、校色与微调
 
-本说明面向导入拍歪照片、屏幕翻拍或明场图片的 Figure Studio 用户。新功能在开发分支中验收，尚未进入已发布的 0.1.25 安装包（2026-10-19）；不需要外部 AI、账户或上传图片。
+本说明面向导入拍歪照片、屏幕翻拍或明场图片的 Figure Studio 0.1.26 用户。所有处理在本机进行，不需要外部 AI、账户或上传图片；本轮 Windows 成品及性能状态见[验收报告](figure-studio-photo-correction-validation.md)，不沿用旧安装包的验收结果。
 
 ## 先自动，再按需要微调
 
@@ -10,7 +10,7 @@
 2. 检查要保留的区域。拖动四角，或输入原图像素坐标；方向键微调 1 px，Shift + 方向键微调 10 px。参数变化会更新真实画布，不必关闭面板。
 3. 已知拍摄对象的宽高比时，选择 4:3、16:9、1:1 或填写自定义比例。默认的边长估计只用于展示，不代表实物的真实比例。输出宽度可以单独设置。
 4. 点击 **保留校正**，从原始像素生成完整 PNG 版本。一次撤销即可返回之前的工程；**取消**或 Esc 会丢弃整次草稿。**对照原图**只切换临时显示。
-5. 使用 **一键校色与微调**，或打开 **图片颜色与显示 → 一键校色（拍摄照片）**。先查看自动建议，再调整曝光、对比度、色温、色调及强度，最后点击 **应用**。颜色草稿同样可以取消、整体撤销。
+5. 使用 **一键校色与微调**，或打开 **图片颜色与显示 → 一键校色（拍摄照片）**。先查看自动建议，再调整亮度、对比度、色温、色调及强度，最后点击 **应用**。颜色草稿同样可以取消、整体撤销。
 
 识别不到可靠的四边边界时，编辑器会明确提示，并保留手动四角操作。边缘建议不能判断哪一块是胶图、纸张或屏幕里的内容；多层边界需要用户核对。
 
@@ -18,7 +18,7 @@
 
 **标尺拉正**使用两点参考线计算角度，适合把整体倾斜的电泳或 WB 图片摆正；它与填写真实长度的科研比例尺是两个功能。
 
-打开同一个校正面板，点击 **标尺拉正**，沿应当水平的条带行或可靠参考边拖一条线。松开后会自动计算角度并在画布预览；也可以选择垂直方向，或用两个端点的像素坐标微调。再次拖线即可重新建议，满意后仍使用 **保留校正**，不满意可以取消。
+打开同一个校正面板，点击 **标尺拉正**，沿应当水平的条带行或可靠参考边拖一条线。松开后会自动计算角度并在画布预览；也可以选择垂直方向，或用两个端点的像素坐标微调。再次拖线或修改端点会复用最初所选范围，避免累计裁小；满意后仍使用 **保留校正**，不满意可以取消。
 
 标尺模式对当前四点外接范围做统一旋转，会替代原有四角透视设置。输出采用范围内可用的矩形裁剪，不补画旋转后缺失的边角；界面与工程会记录参考线、角度和裁剪。继续手调四角或比例时，会明确标记为已经微调的结果。该操作不能矫正凝胶自身的弯曲，也不会分别移动或拉平各泳道。
 
@@ -40,10 +40,12 @@
 
 几何建议最多分析 640 px 边长的缩略图，并提出最多 5 个边界；完整校正直接采样所选原图区域。原图上限为 3200 万像素，输出上限为 4096 px 边长、1200 万像素，每方向最多放大至所选边长的两倍。输出 PNG 超过工程编码容量时会要求减小宽度，不会悄悄改成 JPEG。原图大小还受普通导入入口限制。
 
-所有图片分析、预览和处理都在本机执行，断网仍可使用。科研数据、原图、私有工程和拍摄信息不发送给文献服务。开发验证、真实照片操作与尚未完成的安装版验证分别记录在[照片校正验收报告](figure-studio-photo-correction-validation.md)中；真实照片工程验证不能代替独立标注集的检测准确率。
+所有图片分析、预览和处理都在本机执行，断网仍可使用。科研数据、原图、私有工程和拍摄信息不发送给文献服务。开发验证、真实照片操作、Windows 成品和本轮性能的实际状态分别记录在[照片校正验收报告](figure-studio-photo-correction-validation.md)中；真实照片工程验证不能代替独立标注集的检测准确率。
 
 ## English quick reference
 
 Import the original photo, then choose **Image tools → Auto straighten & refine**. Review the suggested outline; choose another outline or drag the corners. Specify a known aspect ratio when available. **Keep correction** creates a PNG version and retains the original; Cancel leaves the saved project unchanged. Reopening uses the retained source rather than resampling an earlier correction.
+
+For a global tilt, choose **Ruler straighten**, draw a horizontal or vertical reference, and preview one rigid rotation with an inscribed crop. Repeated ruler edits reuse the initial bounds. The ruler is not a physical scale bar or per-lane correction.
 
 Choose **Auto color & refine next**, or **Image display → Auto color (photos)**, to preview conservative whole-image display parameters. Manual controls remain editable and Apply creates one Undo step. Automatic per-image balancing is disabled in fluorescence mode. Processing stays local; this feature does not reconstruct image content or turn a photographed display into quantitative source data.

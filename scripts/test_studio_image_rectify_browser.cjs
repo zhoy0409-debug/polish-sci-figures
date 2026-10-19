@@ -299,4 +299,4 @@ async function run(o){
  console.log(JSON.stringify({passed:report.passed,privateLocalOnly:true,out:o.out,cases:report.cases.length,reportSha256:sha(fs.readFileSync(target))}));
 }
 if(require.main===module)run(options(process.argv.slice(2))).catch(e=>{console.error(e.message);process.exitCode=1;});
-module.exports={options,run};
+module.exports={options,run,acceptanceHelpers:{save,exportsAt,openRectify,ready,armTiming,collectTiming,frames}};
