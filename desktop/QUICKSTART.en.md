@@ -2,7 +2,7 @@
 
 The update window keeps the simple companions and shows downloaded bytes with an outline heart and jade water. Download completion is followed by integrity verification; save and confirm before installation. Animation preferences and reduced motion retain readable progress. See the [release notes](../docs/release-notes-v1.4.26.md) and separate [historical 0.1.23 acceptance](../docs/release-notes-v1.4.23.md) for each version's scope.
 
-Windows package, scientific-regression and large-figure performance acceptance for 0.1.26 is in progress. No new installed-package or official-upgrade pass is claimed. See the [photo-correction acceptance scope](../docs/figure-studio-photo-correction-validation.md); the previous stable 0.1.25 [final acceptance](../docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json) remains a separate historical record.
+Version 0.1.26 provides local outline correction, ruler straightening and global colour controls. See the [photo guide](../docs/figure-studio-photo-correction.md) and [actual acceptance scope](../docs/figure-studio-photo-correction-validation.md).
 
 Figure Studio creates, edits and arranges scientific figures. The Windows desktop edition supports Windows 10/11, 64-bit. Once installed, it works offline without Codex, a separate Python installation or an API key.
 

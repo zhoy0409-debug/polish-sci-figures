@@ -1,0 +1,551 @@
+{
+  "schema": "figure-studio-interaction-benchmark/2",
+  "label": "static25-26-abba-A1-5000",
+  "sourceCommitClaim": null,
+  "htmlSha256": "4687f6dc9f2edaf0bf13697e4c071d23acaf2d04cc0311e996c07c397850d640",
+  "assetHashes": {
+    "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
+    "axis-editing.js": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115",
+    "axis-settings-ui.css": "7d50d0bbc47253a0e6f673b294bf2d26ae413525eaf7d4f4729141ff7d2ca7c2",
+    "axis-settings-ui.js": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9",
+    "canvas-clipboard.js": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be",
+    "catalogue.js": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35",
+    "compact-whitespace.js": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb",
+    "component-style.js": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234",
+    "discovery-offline.js": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38",
+    "discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+    "discovery-ui.js": "cf1decd45eea8adcb2c7e3215780a3ee31ded139fc967931c40362cbbe9b5871",
+    "discovery.js": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43",
+    "duplicate-check.css": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e",
+    "duplicate-check.js": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1",
+    "duplicate-review.js": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf",
+    "duplicate-viewer.css": "b64a440392b3822afe5bcb1d0be97903bfafe5d37c36b90be1d6b4bdef0999cf",
+    "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
+    "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
+    "experience-tools.css": "41ae415b30e3e71b7a7c265d8a426416a8713804c21fce33d5add71ee2c4fa81",
+    "experience-tools.js": "546d1232bef1dc0d868cdef099056ffa75980bb3842e1879ed025fb8e997f1be",
+    "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
+    "grid-resize-ui.js": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed",
+    "group-spacing.js": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8",
+    "i18n.js": "fdf2bb3e6a89037858c1bcbfb9b555bb27468076b71cbd7a1d7435529c351b5d",
+    "image-color-ui.js": "b8334f01cb21b70be040a818a9d4d6b8d11b1000e2be6bcf57aa64624ec2a5f3",
+    "image-color.js": "dacfda2f9b8a8ba4a69b11aa34e6ecc2bdc03485d052dd1e0b63964a5d9b8698",
+    "image-insets-controller.js": "2ceb66b2eb1736e7dd6a78bae701090588a4d49cdafb2fba3d051ad1225f65ff",
+    "image-insets-ui.js": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035",
+    "image-insets.js": "df43d58d908de2bab4ea14432dae10a9c7b0ae2950272688cb771e2694210a0c",
+    "image-links-controller.js": "82c9e72262b734455973550d822e32a0d37d2b8268d767fdff5fca0efeb59151",
+    "image-links-ui.js": "cd89e8606765cef22e76095d27e1e351ed37a9fee7e3507419a5072400bbf837",
+    "image-links.js": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886",
+    "layers-panel.js": "5b25bebe5e6f44879b21781d6b7f58496759cabfcf27643aa58637118ebc41bb",
+    "layout-lock.js": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242",
+    "legacy-stat-cleanup.js": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92",
+    "library.js": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51",
+    "literature.css": "f696eccd3cfba3c0ea3fac45cbd5a74c6adb55728e59abf4ce1c5547f06e49f0",
+    "literature.js": "66b6852716cc59c622620504bac9c87ab6d2547a36c8d7b7fd3aa23574fa194b",
+    "mark-style.js": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419",
+    "mascot-border-collie.svg": "bc17f3211a96529966fc744fd1e28df518ad43a2f79c3d199ba383079996472d",
+    "mascot-maine-coon.svg": "87a2ac6f885101abba85c45f013fdc8f303d5398c0756419bdb38d08509103f3",
+    "mascot-minimal-cat.svg": "abee4441d83d8e127526e8656363b0117e01a0bc3e99ec27882f8d4d43975d83",
+    "mascot-minimal-dog.svg": "3ac69072935713d1f2af3c5849052d731710eea38aead5d4f7b5b9976072d9ee",
+    "mascot-scene.svg": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b",
+    "master-frame.js": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9",
+    "memory.js": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c",
+    "mobile-ui.css": "101335ce269683a514ceb526b46b15634019b57405144615b29debd897bfb14b",
+    "mobile-ui.js": "f9c1ad0e5db4794b9a79726fe5d19b458839ee1305ece35585b669f55b6c14c4",
+    "object-borders.js": "5ba4ed9c9d2971d3372ee14b8d04cf540753c879f40b165e1a37d758d542404a",
+    "panel-commands.js": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd",
+    "preview-sessions.js": "218ce572c39a858f5ff519531ea5d7c7424d293db5d9184672688a5423182a88",
+    "research-discovery.js": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f",
+    "rich-text.css": "1deadd7d55d7edee1f120d2f80062e034fca198d3b74da8acb62022fa41c43e3",
+    "rich-text.js": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4",
+    "scale-geometry.js": "cbf84b487787292009917c5e3f1e0ad0a677c5bf32e5ed1faaf726258677b73f",
+    "selection-resize-controller.js": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61",
+    "selection-transform-dom.js": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3",
+    "selection-transform.js": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719",
+    "statistical-line-geometry.js": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8",
+    "statistical-metadata.js": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747",
+    "studio.css": "951eea56f81bb985e412ea09c3f6bd59949ee39c9053da3e6d05db84a73b685c",
+    "studio.html": "951f7b0b900f5d58654e63db0f217b3c3917a885bf61c3c9a3b18344b46e5fae",
+    "studio.js": "9aaddfef9b1c153906d1fae8ab73fd27bdded4ba11210432d590ba7d7bb933b8",
+    "style-preview.js": "c0da41e0c15c37545f199525ec1f6db04086d68a146736b28ed7275f37fe767f",
+    "text-formatting.js": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1",
+    "text-tools-ui.js": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e",
+    "theme-controller.js": "e8c4266aa056f411f4bd14a823f7fda4b3564214854384e64eeb7d24d8234cdc",
+    "theme-tokens.css": "a36192cf3ce610e3ce7a1fb4413cc54efc58fc91c998a1570e27c8e2d4a4d5d6",
+    "theme.css": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab",
+    "third-party-notices.js": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682",
+    "tiff-export.js": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f",
+    "update-check.js": "977df4939713cedc0d340b58958a9b2000c3c7de5c79cf411483300a894c1d5f",
+    "update-scene.css": "eced7b3291d70b0a8afd06a434d6c3aa4a8cee1a048a468a6e7f3948a136c7db",
+    "update-scene.js": "444cc790b4c5948ee785e1772c145453cb13dde3e7e5b840edae5f56d305daa7",
+    "vector-interaction.js": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4",
+    "workspace-layout.css": "0a271a9e0d53de091efd2a8fc6cda1f11caed3a5f5147e000f99a449974e74ea",
+    "workspace-layout.js": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+  },
+  "protocol": {
+    "samplesPerOperation": 20,
+    "warmupIterations": 3,
+    "operationOrder": [
+      "select-text",
+      "text-colour"
+    ],
+    "settleMinimumMs": 250,
+    "settleRule": "Minimum pause, autosave no longer saving, and two rAF callbacks before each action; actions/assertions outside the timed operation are excluded.",
+    "tabRule": "Actual detail→palette and palette→detail, separate operations with explicit aria-pressed preconditions.",
+    "dragRule": "First motion jumps12 CSSpx (above production3px threshold); primary event must move≥8px; live preview, committed pose, singleUndo, Redo and restoration checked.",
+    "colourRule": "Actual quickColor control fill + Tab; input/change/blur recorded. Native colour-picker window latency excluded.",
+    "quantile": "Nearest rank ceil(n*p). At20 samples P95 is second largest; fixed sample count and no removal of outliers."
+  },
+  "measurement": "Capture-phase performance.now() to next/second rAF callback execution; presentation opportunities, not actual pixel/photon paint. rAF callback intervals are not continuous rendered FPS. Playwright wall time is reported separately.",
+  "recording": {
+    "enabled": false
+  },
+  "platform": "win32",
+  "architecture": "x64",
+  "logicalCpus": 22,
+  "node": "v24.18.0",
+  "browserMode": "headless",
+  "startedAt": "2026-10-19T10:21:46.244Z",
+  "fixtures": [
+    {
+      "kind": "synthetic_pressure_only",
+      "elements": 5000,
+      "svgSha256": "4d9b950601b3b95092251649c9d5d00f65a79f31a93b1fc9743d551d55928bd1",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "textKey": "e1",
+      "shapeKey": "e2",
+      "servedHtmlSha256": "4687f6dc9f2edaf0bf13697e4c071d23acaf2d04cc0311e996c07c397850d640",
+      "sourceAssetFingerprint": "41db305eee44b92c4ce24bbc71f66af863cdcd5eee71349a98caf0ba2c9e9fbf",
+      "geometry": [
+        {
+          "iteration": 0,
+          "warmup": true,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 1,
+          "warmup": true,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 2,
+          "warmup": true,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 3,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 4,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 5,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 6,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 7,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 8,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 9,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 10,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 11,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 12,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 13,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 14,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 15,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 16,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 17,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 18,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 19,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 20,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 21,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        },
+        {
+          "iteration": 22,
+          "warmup": false,
+          "artboard": {
+            "width": 480,
+            "height": 296
+          },
+          "viewport": {
+            "width": 888,
+            "height": 544
+          },
+          "quickbarHeight": 134,
+          "zoom": "fit",
+          "navigatorWidth": "220px"
+        }
+      ],
+      "summary": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 41.19999998807907,
+            "p95": 56.19999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 68.90000003576279,
+            "p95": 85.79999995231628
+          },
+          "commitToSecondRafMs": {
+            "p50": 37.5,
+            "p95": 46.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 123.19999998807907,
+            "p95": 148.29999995231628
+          },
+          "frames": {
+            "count": 167,
+            "p50": 8.300000011920929,
+            "p95": 49.30000001192093,
+            "max": 89.5,
+            "over50ms": 7
+          },
+          "longTasks": {
+            "count": 4,
+            "totalMs": 245,
+            "maxMs": 83
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 45.69999998807907,
+            "p95": 58.39999997615814
+          },
+          "inputToSecondRafMs": {
+            "p50": 65.69999998807907,
+            "p95": 78.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 65.09999996423721,
+            "p95": 78.10000002384186
+          },
+          "actionWallMs": {
+            "p50": 106.5,
+            "p95": 123.70000004768372
+          },
+          "frames": {
+            "count": 117,
+            "p50": 8.100000023841858,
+            "p95": 51.69999998807907,
+            "max": 84,
+            "over50ms": 6
+          },
+          "longTasks": {
+            "count": 5,
+            "totalMs": 287,
+            "maxMs": 75
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourceAssetsUnchanged": true,
+      "remoteRequests": [],
+      "errors": [],
+      "servedHtmlSha256After": "4687f6dc9f2edaf0bf13697e4c071d23acaf2d04cc0311e996c07c397850d640"
+    }
+  ],
+  "limitations": [
+    "One Windows device and sequential batches; no population, worst-case, GPU or physical-display-latency claim.",
+    "Actual UI spacing and fit zoom may differ by release; geometry is recorded. Fixed zoom is optional and constitutes a separate diagnostic condition.",
+    "No v1/v2 pooling: event thresholds, tab operations, warmup, assertions and waits differ."
+  ],
+  "browser": "155.0.8059.82",
+  "status": "PASS_VERIFIED_CAPTURE",
+  "finishedAt": "2026-10-19T10:22:20.138Z",
+  "rawSha256": "51a955422680a92e055af8d3e4c2b9815e3506418a6a954121665f1f71e9c9e7"
+}

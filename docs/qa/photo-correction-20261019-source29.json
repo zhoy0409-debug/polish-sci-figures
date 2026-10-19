@@ -1,0 +1,690 @@
+{
+  "schema": "figure-studio-photo-correction-public-acceptance/2",
+  "date": "2026-10-19",
+  "status": "SCOPED_LOCAL_RUNTIME_ACCEPTANCE_PASS_FINAL_DELIVERY_PENDING",
+  "suiteVersion": "1.4.26",
+  "studioVersion": "0.1.26",
+  "sourceStage": "source29",
+  "sourceFreezeManifestSha256": "f3f0b97d5115a713acdb0162087ea01faf51860a9ff818d80be49301a2411a4c",
+  "sourceRuntimeAssets": 85,
+  "backendSources": 27,
+  "packagedProductionBackend": 23,
+  "notPackagedTests": 4,
+  "mappedPycFiles": 58,
+  "testedArtifact": {
+    "setupSha256": "5a6adee507bc588380eed56faebe773a95cf4078896662351a5c3ca023ce11de",
+    "workspaceHtmlSha256": "360cf5460f3e6fe7dbaf8e1c2c508e7989b385cfb947c26c4d8005ad5345de35",
+    "servedHtmlSha256": "03fe63a8c562fe086d68ae0906d340ef01041decfe64fc4633a7aa4ed45b4a0e",
+    "applicationFiles": 2636,
+    "finalRebuiltDelivery": false,
+    "artifactSignature": "NotSigned"
+  },
+  "privacy": {
+    "rawImagesProjectsScreenshotsVideosDistributed": false,
+    "privateImagePixelsOrMeasurementValuesIncluded": false,
+    "localProcessing": true
+  },
+  "sourceBrowser": {
+    "groups": 12,
+    "overallPassed": true
+  },
+  "originalPixelParity": {
+    "roiComparisons": 6,
+    "strictZeroTolerance": true,
+    "completeOutputsComparedSeparately": 2,
+    "generalAccuracyClaimed": false
+  },
+  "installedPhoto": {
+    "groups": [
+      {
+        "name": "ordinary-file-import",
+        "status": "PASS"
+      },
+      {
+        "name": "actual-auto-geometry-candidates-and-cancel",
+        "status": "PASS"
+      },
+      {
+        "name": "preview-invalid-and-cancel",
+        "status": "PASS"
+      },
+      {
+        "name": "same-task-preview-undo-stale-fence",
+        "status": "PASS"
+      },
+      {
+        "name": "keep-one-undo-and-save-reopen",
+        "status": "PASS"
+      },
+      {
+        "name": "damaged-saved-project-rejected-before-replacement",
+        "status": "PASS"
+      },
+      {
+        "name": "corrected-old-exports-and-themes",
+        "status": "PASS"
+      },
+      {
+        "name": "visible-original-version-and-no-double-warp",
+        "status": "PASS"
+      },
+      {
+        "name": "colour-after-correction",
+        "status": "PASS"
+      },
+      {
+        "name": "actual-auto-colour-cancel-apply-and-one-undo",
+        "status": "PASS"
+      },
+      {
+        "name": "actual-ruler-drag-global-rotation-cancel-keep-and-reopen",
+        "status": "PASS"
+      },
+      {
+        "name": "actual-worker-cancel-and-browser-offline-auto",
+        "status": "PASS"
+      }
+    ],
+    "overallPassed": true,
+    "actualHarnessOuterExitCode": 0,
+    "harnessSha256": "1d6b486f628d9c9227b894496126834810df40b7a4cd2d092c73748f7222fb2a",
+    "pageErrors": 0,
+    "externalRequests": 0,
+    "privatePayloadLeak": false,
+    "originalFileStillExact": true,
+    "workersTerminated": 22,
+    "nativeIdentityBeforeAfterExact": true,
+    "ui85BeforeAfterExact": true,
+    "saveReopenCoreFiveExact": true,
+    "retainedEarlierOverallFailures": 3,
+    "qaCorrection": {
+      "actualStartupInertCapture": true,
+      "onlyChange": "Wait for actual body.inert=false after each of two navigations, before programmatic language selection; same existing timeout and all assertions retained.",
+      "productionChanged": false
+    }
+  },
+  "existingEditing": {
+    "originalExecutions": 98,
+    "originalPassed": 97,
+    "originalFailed": 1,
+    "sameConditionFollowupPassed": 1,
+    "p1Themes": 2,
+    "p1Checks": 74,
+    "allExecutions": 173,
+    "allPassed": 172,
+    "allFailed": 1,
+    "distinctChecksCovered": 172,
+    "singleUninterruptedAllPass": false,
+    "originalNavigationFailureCauseEstablished": false
+  },
+  "nativeLifecycle": {
+    "normalReinstallPreserved": true,
+    "normalUninstallCompleted": true,
+    "incompleteCleanup": false,
+    "applicationFilesExact": 2636,
+    "settingsSentinelSavedPublicIrisPreserved": true,
+    "fourRegistryViewsRestoredAbsent": true,
+    "externalDataPreserved": true,
+    "declaredProtectedNativeProcessCount": 0,
+    "declaredProtectedNativeIdentitiesUnchanged": true,
+    "powershellVersion": "7.6.5",
+    "nativeReinstallExitCode": null,
+    "nativeUninstallExitCode": null,
+    "nativeExitBoundary": "Safe stage JSON checks successful native exit but does not persist its numeric value; no zero is invented here. Root observed successful outer execution separately."
+  },
+  "videoReview": {
+    "sampledVideoTimePoints": 45,
+    "contactSheetsViewed": 5,
+    "fullResolutionFramesViewed": 4,
+    "completeVideosWatched": false,
+    "privateMediaDistributed": false,
+    "observedCoverage": ["photo preview", "original version", "colour display", "ruler", "P1 Carbon and Pearl operations"],
+    "retainedTransitions": ["startup/new-project/undo-import blank frames", "brief mixed-theme controls near 33s, stable by 33.5s"],
+    "fullAxisRangeVisualReview": false
+  },
+  "scientificRemaining": {
+    "entryScriptsPassed": 5,
+    "pythonStudioMethods": 10,
+    "offlineCliCanvases": 7,
+    "sourceBytesBeforeAfterExact": true,
+    "controlledLiteratureNotLiveServiceAvailability": true
+  },
+  "performance": {
+    "schema": "photo26-documentation-performance-readback/1",
+    "measurement": "Capture-phase trusted input to second rAF callback, presentation opportunity rather than FPS/physical pixel latency.",
+    "firstPairScope": "One Windows device, fresh sequential Chrome contexts. Before25 is original packaged UI served statically; after26 is actual installed native HTTP UI. Not a live native25/native26 pair, FPS, optical latency, statistical acceleration, IME, physical display or official-upgrade acceptance. All46 operations per version are retained.",
+    "abbaScope": "One Windows device, same-origin static original packaged25 and packaged26 UI in counterbalanced25-26-26-25 order. Each fresh batch retains all46 operations. This browser-only diagnostic does not establish native installation, an official upgrade, FPS/optical latency, general acceleration or causation.",
+    "allOriginalBatchesAndSamplesRetained": true,
+    "batches": [
+      {
+        "batch": "首对照",
+        "version": "0.1.25",
+        "kind": "original-package-static",
+        "rawSha256": "b09b40a382c9a7107e91ccdcdc31923cc69bb5b3f40967f2598c4fdfdec8b069",
+        "summarySha256": "e490203a6395688745936ba79e479611ed94beb27203274c0b3cf03d3ade9329",
+        "totalOperations": 46,
+        "summary": {
+          "select-text": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 39.89999997615814,
+              "p95": 43.40000003576279
+            },
+            "inputToSecondRafMs": {
+              "p50": 63.80000001192093,
+              "p95": 67.80000001192093
+            },
+            "commitToSecondRafMs": {
+              "p50": 34.5,
+              "p95": 38.19999998807907
+            },
+            "actionWallMs": {
+              "p50": 107.70000004768372,
+              "p95": 124.09999996423721
+            },
+            "frames": {
+              "count": 154,
+              "p50": 8.299999952316284,
+              "p95": 45.80000001192093,
+              "max": 48.39999997615814,
+              "over50ms": 0
+            },
+            "longTasks": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "verifiedOperations": 20
+          },
+          "text-colour": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 41.19999998807907,
+              "p95": 53.10000002384186
+            },
+            "inputToSecondRafMs": {
+              "p50": 60.19999998807907,
+              "p95": 72.69999998807907
+            },
+            "commitToSecondRafMs": {
+              "p50": 59.89999997615814,
+              "p95": 72.29999995231628
+            },
+            "actionWallMs": {
+              "p50": 90.60000002384186,
+              "p95": 118.10000002384186
+            },
+            "frames": {
+              "count": 107,
+              "p50": 7.899999976158142,
+              "p95": 19.80000001192093,
+              "max": 78.80000001192093,
+              "over50ms": 2
+            },
+            "longTasks": {
+              "count": 2,
+              "totalMs": 123,
+              "maxMs": 73
+            },
+            "verifiedOperations": 20
+          }
+        }
+      },
+      {
+        "batch": "首对照",
+        "version": "0.1.26",
+        "kind": "installed-native",
+        "rawSha256": "6e94592d9efbf0f9e1e63676508f309321cbdd0e6b93c436d832b1f29c236652",
+        "summarySha256": "5b5a6437b2a521cca0549f1d731a90d09faa50e5d27bab28366b506d258e6aef",
+        "totalOperations": 46,
+        "summary": {
+          "select-text": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 42.39999997615814,
+              "p95": 57.5
+            },
+            "inputToSecondRafMs": {
+              "p50": 66.69999998807907,
+              "p95": 84.60000002384186
+            },
+            "commitToSecondRafMs": {
+              "p50": 36.799999952316284,
+              "p95": 47.89999997615814
+            },
+            "actionWallMs": {
+              "p50": 115.69999998807907,
+              "p95": 140.20000004768372
+            },
+            "frames": {
+              "count": 155,
+              "p50": 8.300000011920929,
+              "p95": 51.69999998807907,
+              "max": 67.89999997615814,
+              "over50ms": 8
+            },
+            "longTasks": {
+              "count": 5,
+              "totalMs": 278,
+              "maxMs": 62
+            },
+            "verifiedOperations": 20
+          },
+          "text-colour": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 41,
+              "p95": 57.39999997615814
+            },
+            "inputToSecondRafMs": {
+              "p50": 55.69999998807907,
+              "p95": 73.89999997615814
+            },
+            "commitToSecondRafMs": {
+              "p50": 55.39999997615814,
+              "p95": 73.39999997615814
+            },
+            "actionWallMs": {
+              "p50": 91.30000001192093,
+              "p95": 115.19999998807907
+            },
+            "frames": {
+              "count": 117,
+              "p50": 7.699999988079071,
+              "p95": 18.19999998807907,
+              "max": 55.69999998807907,
+              "over50ms": 2
+            },
+            "longTasks": {
+              "count": 4,
+              "totalMs": 209,
+              "maxMs": 55
+            },
+            "verifiedOperations": 20
+          }
+        }
+      },
+      {
+        "batch": "A1",
+        "version": "0.1.25",
+        "kind": "同源静态 ABBA",
+        "rawSha256": "51a955422680a92e055af8d3e4c2b9815e3506418a6a954121665f1f71e9c9e7",
+        "summarySha256": "06d571b460cd7e893d9938aebe4958580ae2d0d1654e432b70e1ee9fa35e6b38",
+        "totalOperations": 46,
+        "summary": {
+          "select-text": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 41.19999998807907,
+              "p95": 56.19999998807907
+            },
+            "inputToSecondRafMs": {
+              "p50": 68.90000003576279,
+              "p95": 85.79999995231628
+            },
+            "commitToSecondRafMs": {
+              "p50": 37.5,
+              "p95": 46.69999998807907
+            },
+            "actionWallMs": {
+              "p50": 123.19999998807907,
+              "p95": 148.29999995231628
+            },
+            "frames": {
+              "count": 167,
+              "p50": 8.300000011920929,
+              "p95": 49.30000001192093,
+              "max": 89.5,
+              "over50ms": 7
+            },
+            "longTasks": {
+              "count": 4,
+              "totalMs": 245,
+              "maxMs": 83
+            },
+            "verifiedOperations": 20
+          },
+          "text-colour": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 45.69999998807907,
+              "p95": 58.39999997615814
+            },
+            "inputToSecondRafMs": {
+              "p50": 65.69999998807907,
+              "p95": 78.69999998807907
+            },
+            "commitToSecondRafMs": {
+              "p50": 65.09999996423721,
+              "p95": 78.10000002384186
+            },
+            "actionWallMs": {
+              "p50": 106.5,
+              "p95": 123.70000004768372
+            },
+            "frames": {
+              "count": 117,
+              "p50": 8.100000023841858,
+              "p95": 51.69999998807907,
+              "max": 84,
+              "over50ms": 6
+            },
+            "longTasks": {
+              "count": 5,
+              "totalMs": 287,
+              "maxMs": 75
+            },
+            "verifiedOperations": 20
+          }
+        }
+      },
+      {
+        "batch": "B1",
+        "version": "0.1.26",
+        "kind": "同源静态 ABBA",
+        "rawSha256": "8134c8598cf3283bf21efb0b308e3e59affd45df8ef0f1d0849140591463fcd7",
+        "summarySha256": "868c1c371e66bb3964ad0e4c9b01a93a8a55358997ed6102503c3d10edf33ea6",
+        "totalOperations": 46,
+        "summary": {
+          "select-text": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 48.80000001192093,
+              "p95": 86.30000001192093
+            },
+            "inputToSecondRafMs": {
+              "p50": 73.5,
+              "p95": 132.19999998807907
+            },
+            "commitToSecondRafMs": {
+              "p50": 37.09999996423721,
+              "p95": 73.69999998807907
+            },
+            "actionWallMs": {
+              "p50": 123.69999998807907,
+              "p95": 197.79999995231628
+            },
+            "frames": {
+              "count": 165,
+              "p50": 8.300000011920929,
+              "p95": 55.299999952316284,
+              "max": 112.69999998807907,
+              "over50ms": 13
+            },
+            "longTasks": {
+              "count": 9,
+              "totalMs": 633,
+              "maxMs": 106
+            },
+            "verifiedOperations": 20
+          },
+          "text-colour": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 40.69999998807907,
+              "p95": 66.30000001192093
+            },
+            "inputToSecondRafMs": {
+              "p50": 55,
+              "p95": 81.89999997615814
+            },
+            "commitToSecondRafMs": {
+              "p50": 54.60000002384186,
+              "p95": 81.39999997615814
+            },
+            "actionWallMs": {
+              "p50": 90.5,
+              "p95": 131.10000002384186
+            },
+            "frames": {
+              "count": 122,
+              "p50": 7.900000035762787,
+              "p95": 31.600000023841858,
+              "max": 112.60000002384186,
+              "over50ms": 3
+            },
+            "longTasks": {
+              "count": 4,
+              "totalMs": 279,
+              "maxMs": 102
+            },
+            "verifiedOperations": 20
+          }
+        }
+      },
+      {
+        "batch": "B2",
+        "version": "0.1.26",
+        "kind": "同源静态 ABBA",
+        "rawSha256": "9f2960ae7f5ce4e0f357f185b415fbe275f7fb19f9ca8cdcadfa206696669e93",
+        "summarySha256": "3793ccf6ee5eeabca52eda65de323fcc1cc58c20d8c01ab5d55ddfe29b1036bf",
+        "totalOperations": 46,
+        "summary": {
+          "select-text": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 36.30000001192093,
+              "p95": 49.69999998807907
+            },
+            "inputToSecondRafMs": {
+              "p50": 59,
+              "p95": 75.79999995231628
+            },
+            "commitToSecondRafMs": {
+              "p50": 33.5,
+              "p95": 41.299999952316284
+            },
+            "actionWallMs": {
+              "p50": 107.60000002384186,
+              "p95": 124.5
+            },
+            "frames": {
+              "count": 154,
+              "p50": 8.300000011920929,
+              "p95": 43.30000001192093,
+              "max": 55.5,
+              "over50ms": 4
+            },
+            "longTasks": {
+              "count": 2,
+              "totalMs": 101,
+              "maxMs": 51
+            },
+            "verifiedOperations": 20
+          },
+          "text-colour": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 36.700000047683716,
+              "p95": 52.60000002384186
+            },
+            "inputToSecondRafMs": {
+              "p50": 50.30000001192093,
+              "p95": 69.30000001192093
+            },
+            "commitToSecondRafMs": {
+              "p50": 49.90000003576279,
+              "p95": 68.80000001192093
+            },
+            "actionWallMs": {
+              "p50": 82.69999998807907,
+              "p95": 113.59999996423721
+            },
+            "frames": {
+              "count": 114,
+              "p50": 7.800000011920929,
+              "p95": 18.69999998807907,
+              "max": 51,
+              "over50ms": 2
+            },
+            "longTasks": {
+              "count": 2,
+              "totalMs": 102,
+              "maxMs": 52
+            },
+            "verifiedOperations": 20
+          }
+        }
+      },
+      {
+        "batch": "A2",
+        "version": "0.1.25",
+        "kind": "同源静态 ABBA",
+        "rawSha256": "dde3f7647cf57fef203859d576fda53a64fdb5695714b935c8f3db7756ec790a",
+        "summarySha256": "f0d638ebaefeb6bc7a38baa9319f178e4ebc61d54bf91e6ad264e3832a818c3f",
+        "totalOperations": 46,
+        "summary": {
+          "select-text": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 37.10000002384186,
+              "p95": 50.5
+            },
+            "inputToSecondRafMs": {
+              "p50": 59.30000001192093,
+              "p95": 79.10000002384186
+            },
+            "commitToSecondRafMs": {
+              "p50": 33.40000003576279,
+              "p95": 40.200000047683716
+            },
+            "actionWallMs": {
+              "p50": 112.90000003576279,
+              "p95": 130.29999995231628
+            },
+            "frames": {
+              "count": 159,
+              "p50": 8.300000011920929,
+              "p95": 42,
+              "max": 58.09999996423721,
+              "over50ms": 5
+            },
+            "longTasks": {
+              "count": 2,
+              "totalMs": 105,
+              "maxMs": 54
+            },
+            "verifiedOperations": 20
+          },
+          "text-colour": {
+            "samples": 20,
+            "inputToNextRafMs": {
+              "p50": 37.299999952316284,
+              "p95": 52.39999997615814
+            },
+            "inputToSecondRafMs": {
+              "p50": 53.799999952316284,
+              "p95": 69.59999996423721
+            },
+            "commitToSecondRafMs": {
+              "p50": 53.40000003576279,
+              "p95": 69.19999998807907
+            },
+            "actionWallMs": {
+              "p50": 82.69999998807907,
+              "p95": 99.10000002384186
+            },
+            "frames": {
+              "count": 102,
+              "p50": 7.800000011920929,
+              "p95": 18.30000001192093,
+              "max": 61,
+              "over50ms": 1
+            },
+            "longTasks": {
+              "count": 2,
+              "totalMs": 106,
+              "maxMs": 56
+            },
+            "verifiedOperations": 20
+          }
+        }
+      }
+    ],
+    "sourceEvidence": [
+      {
+        "sha256": "5710da865a6985ca1ae51853d5b22bb0657f63b0627b0a827123b93f6a07d21f",
+        "role": "first-pair"
+      },
+      {
+        "sha256": "ad531b659dfe9fa1a89f492b167c93e17edbd4b21e7d81a202891ea844738d1b",
+        "role": "abba"
+      }
+    ],
+    "noNewMeasurements": true
+  },
+  "rootEdgeObservation": {
+    "browser": "Edge extension actual page control",
+    "nativeSendInput": false,
+    "autoCandidates": 5,
+    "manualCropOutput": [
+      1024,
+      570
+    ],
+    "rulerAngleDegreesApprox": -2.06,
+    "globalRotationDegreesApprox": 2.06,
+    "rulerOutput": [
+      3617,
+      2429
+    ],
+    "cancelUndoRedoVersionColourObserved": true,
+    "saveToastObserved": true,
+    "downloadEventTimedOut": true,
+    "savedFileByteVerificationClaimed": false
+  },
+  "limitations": [
+    "Final documents require complete delivery rebuild; the future Setup must receive its own identity and installation/self-test evidence.",
+    "A genuine official25-to26 offer/download/verification/one-install/natural same-origin restore requires the public26 target and remains pending.",
+    "All first-pair and ABBA samples, including slower selection tails, are retained; no general no-regression claim.",
+    "One private photo is an engineering case, not an independently annotated blind detection set. No independent detection accuracy or quantitative recovery claim.",
+    "No new Windows SendInput/native IME, physical touch or novice-user study.",
+    "Edge-extension Save observed a real download toast but its download-event observation timed out; that manual observation is not file-byte verification."
+  ],
+  "evidence": {
+    "source29-final12": {
+      "sha256": "2ef26cd903c58051debbdde106ec84ddeaaebda2cdfaea24ef13e949f10bd9af"
+    },
+    "roi-six": {
+      "sha256": "1948b802ca0ce4576fa14789056a5c3c6a445c6afd0d49d2ec7920b8e0fc16ba"
+    },
+    "full-two-outputs": {
+      "sha256": "9d840356eac5abed6037b853599b9616b507bca859f6d1e6fb700404a49841b7"
+    },
+    "installed-followup-p1": {
+      "sha256": "bd4e2aa86b30dc56b4f7ec7281371c165d708804562b111a99c4ce7a3aa3e52a"
+    },
+    "first-pair": {
+      "sha256": "5710da865a6985ca1ae51853d5b22bb0657f63b0627b0a827123b93f6a07d21f"
+    },
+    "abba": {
+      "sha256": "ad531b659dfe9fa1a89f492b167c93e17edbd4b21e7d81a202891ea844738d1b"
+    },
+    "cpu29": {
+      "sha256": "fed8ff36c0c8491108995a003296deae17c88aaff4c41a81c9bdcc888055f9ae"
+    },
+    "remaining-science": {
+      "sha256": "a3fe36c801e18ac920ac8cbe431db100b6dbf43989af107a288ea3684e185c98"
+    },
+    "package": {
+      "sha256": "405a5b55a7e28265a90a4aa2800716cdc4e8cd1262f9b8a82dbd0c01de70495e"
+    },
+    "installed-photo-failed-r1": {
+      "sha256": "802ab50eb12dee329d467789697c037f5be3e608c7fade41ad26e8835785825d"
+    },
+    "installed-photo-pass": {
+      "sha256": "44f99da7a48d7f8ba1ccc21033f9122a5749d38efab6507a9d9728dff1b52ddd"
+    },
+    "installed-photo-binding": {
+      "sha256": "138ca2ea739212e69dbe6555b86df414ad26ba322f5470d6493b82ad528b2bac"
+    },
+    "installed-photo-scope": {
+      "sha256": "346e7eda7c4982012ec306bdc5f6e5e4cb45afcd897370cdda441562ae75b179"
+    },
+    "normal-reinstall": {
+      "sha256": "08c8e308af5c844c2804c231a6fe580c68284f95556c4cdbdf7fcad7365172d5"
+    },
+    "normal-uninstall": {
+      "sha256": "6ee5155ad1cc9023456ec2384e98860b265bf1dcf296712e2b69c837cd562067"
+    }
+  }
+}

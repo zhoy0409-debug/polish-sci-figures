@@ -2,7 +2,7 @@
 
 更新窗口保留简约猫狗，用透明空心心与翡翠水面呈现下载字节进度；下载完成后仍需等待完整性校验，再保存并确认安装。外观遵循角色动画和系统降动效设置。[本版说明](../docs/release-notes-v1.4.26.md#中文)与[0.1.23 历史验收](../docs/release-notes-v1.4.23.md#中文)分别记录版本范围。
 
-0.1.26 正在进行本轮 Windows 成品、科研回归和大图性能验收；尚未声明本版安装或官方更新通过。照片操作与当前状态见[照片校正验收报告](../docs/figure-studio-photo-correction-validation.md)。上一稳定版 0.1.25 的[最终验收](../docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json)保留为独立历史记录。
+0.1.26 提供本机照片边界校正、标尺拉正和全局校色。操作、容量及本轮实际验收见[照片指南](../docs/figure-studio-photo-correction.md)与[验收报告](../docs/figure-studio-photo-correction-validation.md)。
 
 Figure Studio 用于绘制、编辑和排版科研组图。Windows 桌面版适用于 Windows 10/11（64 位），安装后无需 Codex、Python 或 API 密钥，可离线使用。
 

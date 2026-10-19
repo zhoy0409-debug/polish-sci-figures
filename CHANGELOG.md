@@ -1,14 +1,14 @@
 # Changelog
 
-## v1.4.26 · Figure Studio 0.1.26 — release candidate
+## v1.4.26 · Figure Studio 0.1.26
 
-Prepared on 2026-10-19. This candidate combines the local photo workflow with the current large-figure editing work. Windows packaging, installed regression, matched performance and the real official 0.1.25 → 0.1.26 update require this round’s actual evidence; no new pass or publication is claimed here. See the [photo workflow](docs/figure-studio-photo-correction.md), [release scope](docs/release-notes-v1.4.26.md) and [acceptance record](docs/figure-studio-photo-correction-validation.md).
+Prepared on 2026-10-19. Add reversible local photo correction and global display controls while retaining the original image, editable canvas preview and one-step undo. See the [photo workflow](docs/figure-studio-photo-correction.md), [release scope](docs/release-notes-v1.4.26.md) and [complete acceptance record](docs/figure-studio-photo-correction-validation.md).
 
 - Add local edge-based outline suggestions, editable four-corner crop/perspective previews, output aspect/size controls and retained original/corrected versions. Full output uses the original raster and records geometry, interpolation and encoded-byte hashes.
 - Add a two-point ruler reference for whole-image straightening: drag a horizontal/vertical reference, preview the measured rotation and refine it. Crop within the original range; retain the line/angle audit and distinguish later four-corner edits.
 - Add a one-click conservative photo/brightfield display suggestion to the existing colour panel; retain editable global controls, source pixels, clipping review and one-step Apply/Cancel. Fluorescence keeps its existing common-display rules.
 - Reuse canonical canvas composition, preview transactions, project history and SVG/PNG/TIFF export. Keep private image evidence local and distinguish browser checks from installed Windows and independently labelled detection evaluation.
-- Reuse bounded, content- and policy-validated SVG templates, avoid repainting an unchanged photo candidate, and read decoded original pixels in cancellable strips. Prefer a well-supported inner boundary over a comparable enclosing frame while retaining alternatives for review.
+- Reuse bounded, content- and policy-validated SVG templates, avoid repainting an unchanged photo candidate, and map original ROI pixels in cancellable numerical chunks, retaining the strip-reading compatibility path only when worker capabilities are absent. Prefer a well-supported inner boundary over a comparable enclosing frame while retaining alternatives for review.
 - Move detection-thumbnail and original-ROI decoding/readback into cancellable local workers where supported. Keep the original unit-scale ROI, interpolation and encoded-byte verification independent of the detection thumbnail; preserve a capability fallback for older browsers.
 
 ## v1.4.25 · Figure Studio 0.1.25 — published

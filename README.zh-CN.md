@@ -2,7 +2,7 @@
 
 Figure Studio 0.1.26 增加拍摄照片的一键矫正、标尺拉正和一键校色；先在画布预览，不满意可微调或取消，保留原图并支持一次撤销。首次运行 Setup 安装，以后从受支持的编辑器内更新。[Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe) · [本版说明](docs/release-notes-v1.4.26.md#中文) · [使用入门](desktop/QUICKSTART.zh-CN.md) · [照片操作指南](docs/figure-studio-photo-correction.md)。
 
-0.1.26 正在进行本轮 Windows 成品、科研回归和大图性能验收；尚未声明本版安装或官方更新通过。照片操作与当前状态见[照片校正验收报告](docs/figure-studio-photo-correction-validation.md)。上一稳定版 0.1.25 的[最终验收](docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json)保留为独立历史记录。
+照片功能、容量与科学适用范围见[照片指南](docs/figure-studio-photo-correction.md)；本轮实际检查与全部性能批次见[验收报告](docs/figure-studio-photo-correction-validation.md)。
 
 [2026-10-18 发布后更新验收](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md)：原官方 0.1.20／0.1.21 → 0.1.22 更新、工程自动恢复和正常清理均已实测通过。
 

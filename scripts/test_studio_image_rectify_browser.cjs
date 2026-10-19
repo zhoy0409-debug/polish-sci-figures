@@ -161,7 +161,7 @@ async function run(o){
    report.unexpectedDialogs??=[];report.unexpectedDialogs.push({type:d.type(),message:d.message()});await d.dismiss();
   });
   const response=await context.request.get(o.url);assert.ok(response.ok());report.actualServedHtmlSha256=sha(await response.body());assert.equal(report.actualServedHtmlSha256,o.htmlSha,'Actual served HTML must match frozen source');
-  await page.goto(o.url);await page.locator('#language').selectOption('en');await H.newProject(page,'LOCAL PRIVATE photo correction acceptance');
+  await page.goto(o.url);await page.waitForFunction(()=>document.body?.inert===false,{},{timeout:15000});await page.locator('#language').selectOption('en');await H.newProject(page,'LOCAL PRIVATE photo correction acceptance');
   let baseline,baselineExports,kept,correctedHref;
   await step('ordinary-file-import',async e=>{
    await page.locator('#importFiles').click();await page.locator('#imageFile').setInputFiles({name:'LOCAL-PRIVATE-photo.jpg',mimeType:'image/jpeg',buffer:source});
@@ -298,7 +298,7 @@ async function run(o){
    // has loaded. It is explicitly not a claim about OS/network disconnection.
    let offlinePage;try{
     offlinePage=await context.newPage();offlinePage.setDefaultTimeout(15000);observeWorkers(offlinePage,'browser-offline');offlinePage.on('pageerror',error=>report.pageErrors.push('browser-offline: '+error.message));offlinePage.on('dialog',async d=>{report.unexpectedDialogs??=[];report.unexpectedDialogs.push({type:d.type(),message:d.message(),page:'browser-offline'});await d.dismiss();});
-    await offlinePage.goto(o.url);await offlinePage.locator('#language').selectOption('en');await H.newProject(offlinePage,'LOCAL PRIVATE browser-offline Worker acceptance');
+    await offlinePage.goto(o.url);await offlinePage.waitForFunction(()=>document.body?.inert===false,{},{timeout:15000});await offlinePage.locator('#language').selectOption('en');await H.newProject(offlinePage,'LOCAL PRIVATE browser-offline Worker acceptance');
     await offlinePage.locator('#importFiles').click();await offlinePage.locator('#imageFile').setInputFiles({name:'LOCAL-PRIVATE-photo.jpg',mimeType:'image/jpeg',buffer:source});await offlinePage.waitForFunction(()=>document.querySelectorAll('#artboard image[data-key]').length===1);if(await offlinePage.locator('#importContentDialog[open]').count())await offlinePage.locator('#importContentDialog button').last().click();await offlinePage.locator('#zoom').selectOption('fit');
     const baseline=await save(offlinePage,o.out,'private-browser-offline-original',{persist:true}),workerStart=report.workerEvents.length;
     await context.setOffline(true);e.offlineMechanism='Playwright BrowserContext.setOffline(true), after local page/import; not an OS disconnect';

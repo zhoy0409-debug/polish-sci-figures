@@ -2,7 +2,7 @@
 
 Figure Studio 0.1.26 adds local photo outline correction, ruler straightening and one-click colour suggestions. Preview on the canvas, refine or cancel, and retain the original with one-step undo. Install Setup once, then use supported in-editor updates. [Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe) · [Release notes](docs/release-notes-v1.4.26.md) · [Getting started](desktop/QUICKSTART.en.md) · [Photo workflow](docs/figure-studio-photo-correction.md#english-quick-reference).
 
-Windows package, scientific-regression and large-figure performance acceptance for 0.1.26 is in progress. No new installed-package or official-upgrade pass is claimed. See the [photo-correction acceptance scope](docs/figure-studio-photo-correction-validation.md); the previous stable 0.1.25 [final acceptance](docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json) remains a separate historical record.
+See the [photo guide](docs/figure-studio-photo-correction.md) for operation and scientific scope, and the [acceptance report](docs/figure-studio-photo-correction-validation.md) for actual checks and all performance batches.
 
 [Post-release update verification, 2026-10-18](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/qa/live-preview/postrelease-20261018/README.md): official 0.1.20 and 0.1.21 → 0.1.22 updates, automatic project recovery and normal cleanup passed.
 
