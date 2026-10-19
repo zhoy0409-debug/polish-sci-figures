@@ -2,7 +2,7 @@
 
 ## v1.4.26 · Figure Studio 0.1.26
 
-2026-10-19 dated supplement: final-r2 Setup installation, frozen self-test, three focused checks, normal reinstall/uninstall and final query passed against its own bytes. Genuine official 25 → 26 single download/install and exact automatic restoration passed; uninstalling the isolated acceptance-test copy remains unexecuted and finalAcceptance remains false. See the [dated evidence](docs/qa/photo-correction/windows-0.1.26/README.md). Keep all original performance batches and retained failures; add dated evidence without replacing the initial eight assets or tag.
+2026-10-19 dated supplement: final-r2 Setup installation, frozen self-test, three focused checks, normal reinstall/uninstall and final query passed against its own bytes. Genuine official 25 → 26 single download/install and exact automatic restoration passed; the isolated acceptance-test copy was subsequently closed and normally uninstalled with direct user approval. Its actual exit code was 0, all four registration views are absent, and external test data and evidence were retained; see the [cleanup receipt](docs/qa/photo-correction/windows-0.1.26/cleanup-20261019.json). See the [dated evidence](docs/qa/photo-correction/windows-0.1.26/README.md). Keep all original performance batches and retained failures; add dated evidence without replacing the initial eight assets or tag.
 
 Prepared on 2026-10-19. Add reversible local photo correction and global display controls while retaining the original image, editable canvas preview and one-step undo. See the [photo workflow](docs/figure-studio-photo-correction.md), [release scope](docs/release-notes-v1.4.26.md) and [complete acceptance record](docs/figure-studio-photo-correction-validation.md).
 
