@@ -968,7 +968,7 @@ if (typeof document !== 'undefined') (async () => {
   let savedCurrent = '', localSavedCurrent = '', knownCache, message = '';
   let exportBusy=false,exportRequest=null;
   let duplicateCheck=null;
-  let imageInsets=null,updateCheck=null,imageColorUI=null,imageColorPreview=[],imageLinks=null,gridResizeUI=null,textTools=null;
+  let imageInsets=null,updateCheck=null,imageColorUI=null,imageColorPreview=[],imageRectifyUI=null,imageRectifyPreview=null,imageLinks=null,gridResizeUI=null,textTools=null;
   let desktopSession=false,welcomeDismissed=false,newProjectBusy=false,desktopRestoredPayload=null;
   let activePane = 'explore',inspectorPanel=null,inspectorPreviewCache={},paletteHoverCancel=null;
   let preferenceData;try{preferenceData=JSON.parse(localStorage.getItem('figure-studio:preferences')||'null');}catch{}
@@ -1003,7 +1003,7 @@ if (typeof document !== 'undefined') (async () => {
     if(holdPalettes)paletteHost.hidden=true;
     try{if(repaint){if(reuseCanvas){cancelQueuedZoom({preserveControl:true});schedulePreviewFit();}else renderCanvas();}}finally{if(holdPalettes)paletteHost.hidden=false;}
     renderInspectorPreviews();if(name==='data'&&repaint)renderDataEditor();
-    imageInsets?.refresh();imageColorUI?.refresh();imageLinks?.refresh();if(imageInsets&&insetSelection().inset){$('statisticalAnnotations').hidden=true;$('conditionMatrixControls').hidden=true;}
+    imageInsets?.refresh();imageColorUI?.refresh();imageRectifyUI?.refresh();imageLinks?.refresh();if(imageInsets&&insetSelection().inset){$('statisticalAnnotations').hidden=true;$('conditionMatrixControls').hidden=true;}
     if(repaint){if(mobileWorkspace?.enabled)mobileWorkspace.showTab('adjustments');if(name==='detail'&&typeof ensureStatisticalMetadata==='function')ensureStatisticalMetadata().catch(()=>{});}
   }
   function switchEditorPane(name){
@@ -1058,6 +1058,7 @@ if (typeof document !== 'undefined') (async () => {
     if(typeof StudioObjectBorders!=='undefined')objectBordersUI=StudioObjectBorders.create({container:document.body,language,targets:borderTargets,state,project:()=>project,root:()=>$('artboard').querySelector('svg'),selectedPanel:()=>selectedPanel,scale:()=>currentOutput().scale,commit:commitPreviewState,previewSessions,dockContainer:document.querySelector('aside.inspector'),reveal:()=>{if(mobileWorkspace?.enabled)mobileWorkspace.showTab('adjustments');},say});
     const selectImage=ref=>{original=false;selectedPanel=ref.panelId;panelSelection=[ref.panelId];setElementSelection([{id:ref.panelId,vi:ref.variant,keys:[ref.key]}]);showPane('detail');render();};
     const color=()=>{showPane('detail');if(!insetSelection().source){const images=imageColorSources();if(images.length===1)selectImage(images[0]);else return experienceTools?.openImages('color');}imageColorUI?.open();};
+    const rectify=()=>{showPane('detail');if(!rectifyImageSelection().source){const images=rectifyImageSources();if(images.length===1)selectImage(images[0]);else return experienceTools?.openImages('rectify');}if(imageRectifyUI?.open()===false)say(rectifyImageSelection().reason||T('请先选中原图。'));};
     if(typeof StudioExperienceTools!=='undefined')experienceTools=StudioExperienceTools.create({document,language,say,images:imageColorSources,selectedImage:()=>insetSelection().source,selectImage,
       context:()=>({selected:!!selectedPanel,image:!!insetSelection().source}),duplicateStatus:()=>duplicateCheck?.status?.(),
       discovery:()=>{showPane('explore');$('openDiscovery')?.click();},edit:()=>showPane('detail'),
@@ -1067,7 +1068,7 @@ if (typeof document !== 'undefined') (async () => {
       appearance:()=>{if($('appearanceMenu')){$('appearanceMenu').open=true;$('studioTheme')?.focus();}},
       axes:()=>typeof openProfessionalAxes==='function'?openProfessionalAxes():showPane('detail'),
       export:()=>{$('exportOptions').open=true;$('exportOptions').scrollIntoView({block:'nearest'});$('exportMenu').open=true;},
-      borders:()=>objectBordersUI?.open(),duplicates:scope=>duplicateCheck?.open?.(scope),color,
+      borders:()=>objectBordersUI?.open(),duplicates:scope=>duplicateCheck?.open?.(scope),color,rectify,
       links:()=>{showPane('detail');imageLinks?.open();},inset:()=>{showPane('detail');const choice=insetSelection();if(choice.source)imageInsets?.startROI(choice.source,choice.inset?.id,2);else say(StudioI18n.language==='en'?'Select a source image first.':'请先选中原图。');}
     });
     const context=document.createElement('div');context.id='contextObjectTools';context.className='row';const border=document.createElement('button');border.id='openObjectBorder';border.textContent=language()==='en'?'Object borders':'对象边框';border.onclick=()=>objectBordersUI?.open();const images=document.createElement('button');images.id='openImageTools';images.textContent=language()==='en'?'Image tools':'图片工具';images.onclick=()=>experienceTools?.openImages();context.append(border,images);document.querySelector('[data-pane="detail"]')?.prepend(context);experienceTools?.refresh();
@@ -1232,10 +1233,21 @@ if (typeof document !== 'undefined') (async () => {
         if(v.size && !Object.hasOwn(sizeNames,v.size))throw Error(T('未知的画布规格'));
         const safe=sanitize(v.svg);if(safe.studioLegacyStatCleaned){v.viewBox=safe.getAttribute('viewBox').trim().split(/[\s,]+/).map(Number);v.height=v.width*v.viewBox[3]/v.viewBox[2];}
       }
+      if(pan.analysis?.imageRectification)validateImageRectification(pan);
     }
     for(const v of [...Object.values(p.layoutRenders||{}),...Object.values(p.heatmapRenders||{})])normalizeLegacyDerivedVariant(v);
     validateState(p.initialState, p);
     if(p.imageDuplicateReview!=null){try{StudioDuplicateReview.validate(p.imageDuplicateReview,p.id);}catch{throw Error(T('查重复核记录无效'));}}
+  }
+  function imageRectificationHrefs(asset){
+    const hrefs=asset.variants.map(v=>{const svg=sanitize(v.svg),images=[...svg.querySelectorAll('image')];if(images.length!==1)throw Error(T('图片校正记录无效'));return images[0].getAttribute('href')||images[0].getAttributeNS('http://www.w3.org/1999/xlink','href');});
+    if(hrefs.length!==2)throw Error(T('图片校正记录无效'));return {outputHref:hrefs[0],sourceHref:hrefs[1]};
+  }
+  function validateImageRectification(asset){
+    try{return StudioImageRectify.validateRecord(asset.analysis.imageRectification,imageRectificationHrefs(asset));}catch{throw Error(T('图片校正记录无效'));}
+  }
+  async function verifyImageRectifications(owner){
+    for(const asset of owner.panels)if(asset.analysis?.imageRectification){try{await StudioImageRectify.verifyRecord(asset.analysis.imageRectification,imageRectificationHrefs(asset));}catch{throw Error(T('图片校正原图或结果校验失败，未替换当前工程。'));}}
   }
   function baseSvg(id, vi, s=state(), includeInsertions=true) {
     const key = id + '/' + vi;
@@ -2171,17 +2183,17 @@ if (typeof document !== 'undefined') (async () => {
     }
     region.width=right-region.x;region.height=bottom-region.y;return region;
   }
-  function imageColorSources(){
+  function imageColorSources(sourceCanvas=null){
     if(original)return [];
-    const root=$('artboard').querySelector('svg'),groups=selectionGroups();if(!root)return [];
+    const root=sourceCanvas?.querySelectorAll?sourceCanvas:$('artboard').querySelector('svg'),groups=selectionGroups();if(!root)return [];
     return [...root.querySelectorAll('svg[data-panel]')].flatMap(base=>{
       const panelId=base.dataset.panel,p=state().panels[panelId];if(!p)return [];
       return [...base.querySelectorAll('image[data-key]')].filter(image=>!image.closest('defs,[data-inset-content]')&&isVisibleObject(image)).map((image,index)=>({panelId,variant:p.variant,key:image.dataset.key,label:StudioI18n.panelName(panel(panelId))+' · '+(index+1),locked:!!(p.locked||p.lockedElements?.[p.variant]?.includes(image.dataset.key)),selected:groups.some(group=>group.id===panelId&&group.vi===p.variant&&group.keys.includes(image.dataset.key))}));
     });
   }
-  function imageColorResolve(ref){
+  function imageColorResolve(ref,sourceCanvas=null){
     if(!ref||state().panels[ref.panelId]?.variant!==ref.variant)return null;
-    const root=$('artboard').querySelector('svg'),base=root&&[...root.querySelectorAll('svg[data-panel]')].find(node=>node.dataset.panel===ref.panelId);
+    const root=sourceCanvas?.querySelectorAll?sourceCanvas:$('artboard').querySelector('svg'),base=root&&[...root.querySelectorAll('svg[data-panel]')].find(node=>node.dataset.panel===ref.panelId);
     return base&&[...base.querySelectorAll('image[data-key]')].find(node=>node.dataset.key===ref.key&&!node.closest('defs,[data-inset-content]'))||null;
   }
   function importedImageColor(ref){
@@ -2206,6 +2218,89 @@ if (typeof document !== 'undefined') (async () => {
     const available=imageColorSources(),next=copy(state());
     for(const {source,adjustment}of entries){const target=available.find(ref=>ref.panelId===source.panelId&&ref.variant===source.variant&&ref.key===source.key);if(!target||target.locked)throw Error(StudioI18n.language==='en'?'An image changed or is locked. Reopen color matching.':'图片已变化或被锁定，请重新打开颜色匹配。');const p=next.panels[source.panelId];p.imageAdjustments||={};p.imageAdjustments[source.variant]||={};if(adjustment)p.imageAdjustments[source.variant][source.key]=StudioImageColor.validate(adjustment);else{const baseline=importedImageColor(source);if(baseline)p.imageAdjustments[source.variant][source.key]=StudioImageColor.validate({mode:baseline.mode});else delete p.imageAdjustments[source.variant][source.key];}}
     imageColorPreview=[];return commitPreviewState(next,message);
+  }
+  // Rectification is a new raster version, never an edit to the source SVG or
+  // its pixels. Keep the original committed canvas as the source of selection
+  // and lock checks while a canonical shadow canvas displays the candidate.
+  function rectifySourceCanvas(){
+    const draft=imageRectifyPreview;
+    return draft&&draft.owner===project&&draft.base===state()?draft.originalCanvas:null;
+  }
+  function rectifyImageSources(){return imageColorSources(rectifySourceCanvas());}
+  function rectifyImageResolve(ref){
+    if(!ref||state().panels[ref.panelId]?.variant!==ref.variant)return null;
+    const asset=panel(ref.panelId),record=asset.analysis?.imageRectification;
+    if(record&&ref.variant===record.outputVariant){const raw=asset.variants[record.originalVariant];if(!raw)return null;const svg=sanitize(raw.svg),images=[...svg.querySelectorAll('image')];return images.length===1?images[0]:null;}
+    return imageColorResolve(ref,rectifySourceCanvas());
+  }
+  function rectifyImageSettings(ref){
+    const record=ref&&panel(ref.panelId).analysis?.imageRectification;
+    return record?{corners:copy(record.corners),outputWidth:record.requestedWidth||record.outputWidth,outputHeight:record.requestedHeight||record.outputHeight,ratioMode:record.ratioMode,ratioValue:record.ratioValue,estimatedRatio:record.estimatedRatio,straighten:record.straighten?copy(record.straighten):null,straightenRefined:record.straightenRefined===true}:null;
+  }
+  function rectifyImageFingerprint(ref){return {settings:rectifyImageSettings(ref),display:imageColorCurrent(ref)};}
+  function rectifyImageVersions(){
+    const asset=panel(selectedPanel),record=asset?.analysis?.imageRectification;
+    return {available:!!record,value:record&&state().panels[selectedPanel].variant===record.originalVariant?'original':'corrected'};
+  }
+  function selectRectifiedImageVersion(value){
+    const asset=panel(selectedPanel),record=asset?.analysis?.imageRectification,p=state().panels[selectedPanel];
+    if(!record||p.locked||Object.values(p.lockedElements||{}).some(keys=>keys.length))return false;
+    const vi=value==='original'?record.originalVariant:record.outputVariant;if(!asset.variants[vi]||p.variant===vi)return false;
+    imageRectifyUI?.cancel();const next=copy(state());next.panels[selectedPanel].variant=vi;
+    selected=[];elementSelections=[];const kept=commit(next,professionalAxisText(value==='original'?'已显示保留的原始图片':'已显示透视校正版本',value==='original'?'Showing the retained original image':'Showing the perspective-corrected version'));
+    if(kept!==false)activateImportedFigure();return kept;
+  }
+  function rectifyImageSelection(){
+    if(original||selectedAnnotations.length||selectedPanelLabel)return {source:null,locked:true};
+    const sources=rectifyImageSources(),chosen=sources.filter(source=>source.selected),candidates=chosen.length?chosen:sources.filter(source=>source.panelId===selectedPanel);
+    const source=candidates.length===1?candidates[0]:null;
+    // Rectification creates a new panel version. Limit it to a dedicated raster
+    // panel so text, plots or other images cannot disappear as a side effect.
+    const sourceSvg=source?baseSvg(source.panelId,source.variant):null,rasterOnly=sourceSvg&&sourceSvg.querySelectorAll('image').length===1&&!panel(source.panelId).table&&!sourceSvg.querySelector('path,rect,circle,ellipse,line,polyline,polygon,text,use');
+    return {source,locked:!source||!rasterOnly||source.locked||Object.values(state().panels[source.panelId]?.lockedElements||{}).some(keys=>keys.length),reason:source&&!rasterOnly?T('请将拍摄原图单独导入；含其他图形或数据的小图不能整体替换。'):null};
+  }
+  function assertRectifyTarget(meta){
+    const selected=rectifyImageSelection(),source=meta?.source;
+    if(meta?.signal?.aborted||meta?.isCurrent?.()===false||!source||selected.locked||!selected.source||selected.source.panelId!==source.panelId||selected.source.variant!==source.variant||selected.source.key!==source.key)throw Error(professionalAxisText('原图或选择已变化，请重新打开透视校正。','The source or selection changed. Reopen perspective correction.'));
+    const image=rectifyImageResolve(source),href=image?.getAttribute('href')||image?.getAttributeNS('http://www.w3.org/1999/xlink','href');
+    if(!image||href!==meta.originalHref)throw Error(professionalAxisText('原图已变化，校正尚未应用。','The source changed. Correction was not applied.'));
+    if(imageRectifyPreview&&(imageRectifyPreview.owner!==project||imageRectifyPreview.base!==state()))throw Error(T('目标已变化，请重新选择'));
+    return source;
+  }
+  function rectifiedImageAsset(result,meta){
+    const source=assertRectifyTarget(meta),dimensions=StudioImageInsets.dimensionsFromHref(meta.originalHref),output=StudioImageInsets.dimensionsFromHref(result.href);
+    if(!/^data:image\/png;base64,/.test(result.href)||output.widthPx!==result.width||output.heightPx!==result.height||result.sourceWidth!==dimensions.widthPx||result.sourceHeight!==dimensions.heightPx||result.audit?.nonGenerative!==true||!/^\w[\w.-]*\/1$/.test(result.audit?.schema||'')||!/^[a-f0-9]{64}$/.test(result.audit?.sourceSha256||''))throw Error(professionalAxisText('透视校正结果无效，原图已保留。','Invalid perspective result. The source was retained.'));
+    StudioImageRectify.validateQuad(meta.corners,{width:dimensions.widthPx,height:dimensions.heightPx});
+    const prior=panel(source.panelId).analysis?.imageRectification,sourceVariant=prior&&source.variant===prior.outputVariant?prior.originalVariant:source.variant;
+    const record={...copy(result.audit),ratioMode:meta.ratioMode||'estimate',ratioValue:meta.ratioValue||meta.outputWidth/meta.outputHeight,estimatedRatio:meta.estimatedRatio!==false,requestedWidth:meta.outputWidth,requestedHeight:meta.outputHeight,sourcePanelId:source.panelId,sourceVariant,sourceKey:source.key,outputVariant:0,originalVariant:1,calibrationInherited:false,...(meta.detection?{detection:copy(meta.detection)}:{}),...(meta.straighten?{straighten:copy(meta.straighten),straightenRefined:meta.straightenRefined===true}:{})};
+    const raster=(href,w,h,name)=>{const width=360,height=360*h/w,svg=document.createElementNS(NS,'svg'),image=document.createElementNS(NS,'image');svg.setAttribute('width',width+'pt');svg.setAttribute('height',height+'pt');svg.setAttribute('viewBox',`0 0 ${width} ${height}`);image.setAttribute('width',String(width));image.setAttribute('height',String(height));image.setAttribute('href',href);svg.append(image);return {name,svg:new XMLSerializer().serializeToString(svg),width,height,viewBox:[0,0,width,height],size:'original',preserveAspect:true};};
+    return {name:panel(source.panelId).name,variants:[raster(result.href,result.width,result.height,professionalAxisText('透视校正','Perspective corrected')),raster(meta.originalHref,dimensions.widthPx,dimensions.heightPx,professionalAxisText('原始图片（未重采样）','Original image (not resampled)'))],initialVariant:0,recipe:{source:panel(source.panelId).name,operation:'perspective-rectification',version:1},analysis:{imageRectification:record},table:null,provenance:'user-import'};
+  }
+  function showImageRectifyPreview(result,meta){
+    const source=assertRectifyTarget(meta);
+    if(!imageRectifyPreview)imageRectifyPreview={kind:'image-rectify',id:'image-rectify',owner:project,base:state(),source:panel(source.panelId),panelId:source.panelId,originalCanvas:$('artboard').querySelector(':scope > svg'),originalView:zoomView};
+    const box=imageRectifyPreview,asset=rectifiedImageAsset(result,meta),prepared=installAsset(asset,source.panelId,null,professionalAxisText('图片透视校正','Image perspective correction'),false,false,false,rectifyImageDisplayState(meta),{prepareOnly:true}),value=professionalAxisShadowVisual(prepared);
+    assertRectifyTarget(meta);
+    const svg=value.svg,fit=$('zoom').value==='fit',zoom=fit?previewFitZoom(value.width,value.height):clampPreviewZoom(+$('zoom').value);
+    svg.dataset.previewSession=box.id;svg.dataset.previewKind='image-rectify';svg.setAttribute('aria-label',professionalAxisText('透视校正预览尚未应用；可在侧栏保留或取消。','Perspective preview is not applied. Keep or cancel it in the inspector.'));svg.style.width=value.width*zoom+'px';svg.style.height=value.height*zoom+'px';
+    svg.addEventListener('pointerdown',event=>{event.preventDefault();event.stopImmediatePropagation();imageRectifyUI?.cancel();},true);
+    $('artboard').replaceChildren(svg);zoomView={svg,width:value.width,height:value.height,zoom,fit,refreshSelection(){}};syncZoomControl(zoom,fit);return true;
+  }
+  function clearImageRectifyPreview(){
+    const box=imageRectifyPreview;if(!box)return;imageRectifyPreview=null;
+    restoreProfessionalAxisCanvas(box,'image-rectify-restore');
+  }
+  function rectifyImageDisplayState(meta){
+    const adjustment=imageColorCurrent(meta.source);if(!adjustment)return null;
+    const kept=StudioImageColor.validate(adjustment),oldIds=new Set(state().order);
+    return next=>{const id=next.order.find(value=>!oldIds.has(value));if(!id)throw Error(T('目标已变化，请重新选择'));next.panels[id].imageAdjustments={0:{e1:copy(kept)}};};
+  }
+  function commitImageRectify(result,message,meta){
+    const source=assertRectifyTarget(meta),asset=rectifiedImageAsset(result,meta);
+    if(result.width!==meta.outputWidth||result.height!==meta.outputHeight)throw Error(professionalAxisText('完整分辨率校正尚未完成。','Full-resolution correction has not completed.'));
+    clearImageRectifyPreview();previewCommitDepth++;previewPaintDepth++;
+    try{if(installAsset(asset,source.panelId,null,message,false,false,false,rectifyImageDisplayState(meta),{rollbackOnFailure:true})===false)return false;activateImportedFigure();return true;}
+    finally{previewPaintDepth--;previewCommitDepth--;}
   }
   function refreshInsetGraphics(svg,l,s=state()){
     for(const a of s.overlays||[])if(a.type==='inset'){
@@ -2240,7 +2335,7 @@ if (typeof document !== 'undefined') (async () => {
     for(const id of ['applyOverlay','lockOverlay','unlockOverlay','deleteOverlay'])$(id).disabled=!a;
     if(a){$('overlayAlign').value=a.align||'start';$('overlayText').value=a.text;$('overlayFont').value=a.font;$('overlaySize').value=(a.size*currentOutput().scale).toFixed(1);$('overlayColor').value=a.color;$('overlayStroke').value=a.stroke*currentOutput().scale;$('overlayOpacity').value=a.opacity;$('overlayFill').checked=a.fill;$('overlayBold').checked=a.bold;$('overlayText').disabled=a.type!=='text'||selectedAnnotations.length!==1;}
     for(const id of ['overlayColor','overlayStroke','overlayFill','overlayAlign'])$(id).closest('label').hidden=a?.type==='inset';
-    renderRichTextControls();renderQuickToolbar();imageInsets?.refresh();imageColorUI?.refresh();imageLinks?.refresh();if(imageInsets&&insetSelection().inset){$('statisticalAnnotations').hidden=true;$('conditionMatrixControls').hidden=true;}
+    renderRichTextControls();renderQuickToolbar();imageInsets?.refresh();imageColorUI?.refresh();imageRectifyUI?.refresh();imageLinks?.refresh();if(imageInsets&&insetSelection().inset){$('statisticalAnnotations').hidden=true;$('conditionMatrixControls').hidden=true;}
   }
   function applyAxisGeneratedEdits(svg,id,vi,s){
     for(const group of svg.querySelectorAll('[data-axis-generated]'))for(const el of [group,...group.querySelectorAll('[data-key]')]){
@@ -2294,7 +2389,8 @@ if (typeof document !== 'undefined') (async () => {
     root.setAttributeNS('http://www.w3.org/2000/xmlns/','xmlns',NS);if(!exportMode)root.setAttribute('overflow','visible');root.setAttribute('viewBox',`${l.masterFrame?.x||0} ${l.masterFrame?.y||0} ${l.width} ${l.height}`); root.setAttribute('width',l.width+'pt');root.setAttribute('height',l.height+'pt');
     if(exportMode){const output=exportGeometry(l.width,l.height,s.exportSettings);root.setAttribute('width',output.widthPt+'pt');root.setAttribute('height',output.heightPt+'pt');}
     if(region){const scale=exportMode?exportGeometry(l.width,l.height,s.exportSettings).scale:1;root.setAttribute('viewBox',`${region.x} ${region.y} ${region.width} ${region.height}`);root.setAttribute('width',region.width*scale+'pt');root.setAttribute('height',region.height*scale+'pt');root.setAttribute('overflow','hidden');}
-    const description=document.createElementNS(NS,'metadata');description.textContent=JSON.stringify({analysisChoices:s.order.filter(id=>(!onlyPanel||id===onlyPanel)&&s.panels[id].methodChoice).map(id=>({panel:id,...s.panels[id].methodChoice,result:statisticalAnalysisFor(id,s)?.[s.panels[id].methodChoice.key]})),statistics:statisticalExportRecords(s).filter(record=>!onlyPanel||record.panel===onlyPanel)});root.append(description);
+    const imageProcessing=s.order.filter(id=>(!onlyPanel||id===onlyPanel)&&panel(id).analysis?.imageRectification&&s.panels[id].variant===panel(id).analysis.imageRectification.outputVariant).map(id=>({panel:id,...copy(panel(id).analysis.imageRectification)}));
+    const description=document.createElementNS(NS,'metadata');description.textContent=JSON.stringify({analysisChoices:s.order.filter(id=>(!onlyPanel||id===onlyPanel)&&s.panels[id].methodChoice).map(id=>({panel:id,...s.panels[id].methodChoice,result:statisticalAnalysisFor(id,s)?.[s.panels[id].methodChoice.key]})),statistics:statisticalExportRecords(s).filter(record=>!onlyPanel||record.panel===onlyPanel),...(imageProcessing.length?{imageProcessing}:{})});root.append(description);
     const margins={left:60,right:18,top:Math.max(52,...s.order.map(id=>annotationFirstTopHeight(id,s)+44)),bottom:36};
 
     for (const position of positions) {
@@ -4319,7 +4415,7 @@ if (typeof document !== 'undefined') (async () => {
     viewport.onscroll=()=>{if(marquee)cancelSelectionGesture();};
     if(typeof gridResizeUI!=='undefined')gridResizeUI?.refresh();
     if(typeof experienceTools!=='undefined')experienceTools?.refresh();
-    imageInsets?.refresh();imageColorUI?.refresh();imageLinks?.refresh();if(imageInsets&&insetSelection().inset){$('statisticalAnnotations').hidden=true;$('conditionMatrixControls').hidden=true;}
+    imageInsets?.refresh();imageColorUI?.refresh();imageRectifyUI?.refresh();imageLinks?.refresh();if(imageInsets&&insetSelection().inset){$('statisticalAnnotations').hidden=true;$('conditionMatrixControls').hidden=true;}
     if(typeof previewSessions!=='undefined'&&!previewPaintDepth&&previewSessions?.active?.hasDraft){previewPaintDepth++;try{previewSessions.active.repaint();}finally{previewPaintDepth--;}}
   }
   function renderMethods(){
@@ -5569,7 +5665,7 @@ if (typeof document !== 'undefined') (async () => {
     finally{({project,history,checkpoints,selectedPanel,selected,original,layoutMode}=old);templateCache.clear();}
   }
   async function openCollected(record){
-    validatePayload(record.payload);await collectFigure();await libraryQueue;
+    validatePayload(record.payload);await verifyImageRectifications(record.payload.project);await collectFigure();await libraryQueue;
     const payload=(await StudioLibrary.list('figures')).find(r=>r.id===record.id)?.payload||record.payload;project=copy(payload.project);history=History.restore(payload.history,project,payload.state);checkpoints=copy(payload.checkpoints);dataDrafts=copy(payload.dataDrafts||{});dataSerial++;selectedPanel=state().order[0];contentSelection=null;selected=[];panelSelection=[];templateCache.clear();original=false;knownCache=localStorage.getItem('figure-studio:'+project.id);migrateLabelHistory();savedCurrent=saveSignature();persist();render();$('libraryDialog').close();say(T('工程已恢复'));
   }
   async function renderLibrary(){
@@ -5627,7 +5723,7 @@ if (typeof document !== 'undefined') (async () => {
   $('importLibrary').onclick=()=>$('libraryFiles').click();
   $('libraryFiles').onchange=guard(async()=>{
     const records=[],presets=[];for(const file of $('libraryFiles').files){if(file.size>PROJECT_FILE_LIMIT)throw Error(T('工程超过 200 MB，请拆分工程后保存。'));const input=JSON.parse(await file.text());if(input.format==='figure-studio-library-v1'){if(!Array.isArray(input.figures)||!Array.isArray(input.presets))throw Error(T('该工程需要重新导入'));records.push(...input.figures);presets.push(...input.presets);}else{validatePayload(input);records.push({id:input.project.id,name:input.project.title||input.project.id,updatedAt:new Date().toISOString(),payload:input});}}
-    for(const r of records){validatePayload(r.payload);if(r.id!==r.payload.project.id||typeof r.name!=='string'||typeof r.updatedAt!=='string')throw Error(T('该工程需要重新导入'));}
+    for(const r of records){validatePayload(r.payload);await verifyImageRectifications(r.payload.project);if(r.id!==r.payload.project.id||typeof r.name!=='string'||typeof r.updatedAt!=='string')throw Error(T('该工程需要重新导入'));}
     for(const p of presets){const source=records.find(r=>r.id===p.sourceId)||libraryRecords.find(r=>r.id===p.sourceId);if(!source||typeof p.id!=='string'||typeof p.name!=='string'||!Array.isArray(p.profile))throw Error(T('该工程需要重新导入'));validateState(p.sourceState,source.payload.project);}
     // Imports with existing IDs retain existing local edits; new figures are added.
     const existing=new Set((await StudioLibrary.list('figures')).map(r=>r.id));for(const r of records)if(!existing.has(r.id))await libraryWrite(r);
@@ -5641,7 +5737,7 @@ if (typeof document !== 'undefined') (async () => {
   async function openProjectFile(file,destination={}){
     if(!file)return false;if(fileImportSession)return say(T('请先完成或取消当前导入'));if(file.size>PROJECT_FILE_LIMIT)throw Error(T('工程超过 200 MB，请拆分工程后保存。'));
     const owner=destination.projectId||project.id,ownerHistory=destination.history||history;
-    const payload=JSON.parse(await file.text());validateProject(payload.project);validateState(payload.state,payload.project);
+    const payload=JSON.parse(await file.text());validateProject(payload.project);await verifyImageRectifications(payload.project);validateState(payload.state,payload.project);
     const restoredHistory=History.restore(payload.history,payload.project,payload.state);
     if(!Array.isArray(payload.checkpoints)||payload.checkpoints.length>20)throw Error(T('版本无效'));
     for(const c of payload.checkpoints){if(typeof c.name!=='string'||c.name.length>60)throw Error(T('版本名称无效'));validateState(c.state,payload.project);}
@@ -5764,10 +5860,10 @@ if (typeof document !== 'undefined') (async () => {
   setupLiveStyleDrafts();
   const workspaceSizing=typeof StudioWorkspace!=='undefined'?StudioWorkspace.init({t:T,resize:schedulePreviewFit}):null;
   try {
-    project=JSON.parse($('project').textContent);validateProject(project);desktopSession=project.desktopStarter===true;
-    if(desktopSession){try{const last=localStorage.getItem('figure-studio:desktop-last-project');if(last&&/^[a-f0-9]{20}$/.test(last)&&last!==project.id){const recent=await StudioLibrary.get('autosaves',last);if(recent?.payload){validatePayload(recent.payload);project=recent.payload.project;desktopRestoredPayload=recent.payload;}}}catch{}}
+    project=JSON.parse($('project').textContent);validateProject(project);await verifyImageRectifications(project);desktopSession=project.desktopStarter===true;
+    if(desktopSession){try{const last=localStorage.getItem('figure-studio:desktop-last-project');if(last&&/^[a-f0-9]{20}$/.test(last)&&last!==project.id){const recent=await StudioLibrary.get('autosaves',last);if(recent?.payload){validatePayload(recent.payload);await verifyImageRectifications(recent.payload.project);project=recent.payload.project;desktopRestoredPayload=recent.payload;}}}catch{}}
     history=new History(project.initialState);selectedPanel=state().order[0];savedCurrent=saveSignature();
-    try {knownCache=localStorage.getItem('figure-studio:'+project.id);let saved=desktopRestoredPayload||JSON.parse(knownCache||'null');if(saved?.idb){const record=await StudioLibrary.get('autosaves',project.id);if(!record)throw Error('Missing autosave');saved=record.payload;StudioI18n.restoreDisplayNames(saved.project,project);validateProject(saved.project);project=saved.project;}if(saved){validateState(saved.state,project);if(!Array.isArray(saved.checkpoints)||saved.checkpoints.length>20)throw Error(T('缓存版本无效'));for(const c of saved.checkpoints)validateState(c.state,project);try{history=History.restore(saved.history,project,saved.state);message=T('已恢复本浏览器的自动保存。');}catch{history=new History(saved.state);message=T('当前编辑已恢复，但旧撤销记录不可用。');}checkpoints=saved.checkpoints;dataDrafts=saved.dataDrafts||{};}}catch{message=T('未恢复本地缓存；可用「打开工程」导入已保存项目。');}
+    try {knownCache=localStorage.getItem('figure-studio:'+project.id);let saved=desktopRestoredPayload||JSON.parse(knownCache||'null');if(saved?.idb){const record=await StudioLibrary.get('autosaves',project.id);if(!record)throw Error('Missing autosave');saved=record.payload;StudioI18n.restoreDisplayNames(saved.project,project);validateProject(saved.project);await verifyImageRectifications(saved.project);project=saved.project;}if(saved){validateState(saved.state,project);if(!Array.isArray(saved.checkpoints)||saved.checkpoints.length>20)throw Error(T('缓存版本无效'));for(const c of saved.checkpoints)validateState(c.state,project);try{history=History.restore(saved.history,project,saved.state);message=T('已恢复本浏览器的自动保存。');}catch{history=new History(saved.state);message=T('当前编辑已恢复，但旧撤销记录不可用。');}checkpoints=saved.checkpoints;dataDrafts=saved.dataDrafts||{};}}catch{message=T('未恢复本地缓存；可用「打开工程」导入已保存项目。');}
     // A restored project may have removed the starter panel. Restore a valid
     // selection before any controller reads the active panel's variant.
     if(!state().panels[selectedPanel])selectedPanel=state().order[0];
@@ -5798,6 +5894,12 @@ if (typeof document !== 'undefined') (async () => {
       container:$('typePanel').parentElement,language:()=>StudioI18n.language,activePane:()=>activePane,previewSessions,
       selection:()=>{const selected=insetSelection(),source=selected.source&&imageColorSources().find(ref=>ref.panelId===selected.source.panelId&&ref.variant===selected.source.variant&&ref.key===selected.source.key);return {source,locked:selected.locked||!source||source.locked};},
       sources:imageColorSources,resolve:imageColorResolve,current:imageColorCurrent,preview:showImageColorPreview,clearPreview:clearImageColorPreview,commit:commitImageColors,say
+    });
+    if(typeof StudioImageRectifyUI!=='undefined')imageRectifyUI=StudioImageRectifyUI.create({
+      container:$('typePanel').parentElement,language:()=>StudioI18n.language,activePane:()=>activePane,previewSessions,
+      selection:rectifyImageSelection,sources:rectifyImageSources,resolve:rectifyImageResolve,current:rectifyImageFingerprint,settings:rectifyImageSettings,versions:rectifyImageVersions,selectVersion:selectRectifiedImageVersion,
+      preview:showImageRectifyPreview,clearPreview:clearImageRectifyPreview,commit:commitImageRectify,say,
+      color:()=>{showPane('detail');const source=imageColorSources().find(ref=>ref.panelId===selectedPanel);if(source)setElementSelection([{id:source.panelId,vi:source.variant,keys:[source.key]}]);renderCanvas();imageColorUI?.auto?.();}
     });
     if(typeof StudioImageLinksController!=='undefined')imageLinks=StudioImageLinksController.create({
       container:$('typePanel').parentElement,root:()=>$('artboard').querySelector('svg'),state,sources:imageColorSources,selectedInsets:()=>selectedAnnotations,previewSessions,

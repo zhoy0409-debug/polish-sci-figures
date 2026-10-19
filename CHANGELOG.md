@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased · Local photo correction
+
+Development work as of 2026-10-19; the published 0.1.25 installer is unchanged. See the [photo workflow](docs/figure-studio-photo-correction.md) and [acceptance scope](docs/figure-studio-photo-correction-validation.md).
+
+- Add local edge-based outline suggestions, editable four-corner crop/perspective previews, output aspect/size controls and retained original/corrected versions. Full output uses the original raster and records geometry, interpolation and encoded-byte hashes.
+- Add a two-point ruler reference for whole-image straightening: drag a horizontal/vertical reference, preview the measured rotation and refine it. Crop within the original range; retain the line/angle audit and distinguish later four-corner edits.
+- Add a one-click conservative photo/brightfield display suggestion to the existing colour panel; retain editable global controls, source pixels, clipping review and one-step Apply/Cancel. Fluorescence keeps its existing common-display rules.
+- Reuse canonical canvas composition, preview transactions, project history and SVG/PNG/TIFF export. Keep private image evidence local and distinguish browser checks from installed Windows and independently labelled detection evaluation.
+
 ## v1.4.25 · Figure Studio 0.1.25 — published
 
 Published on 2026-10-18. Revised candidate scientific/editing and Windows checks passed. The genuine official 0.1.24 → 0.1.25 download/install, complete-project/settings restoration and read-only verification passed; the actual same-profile 5000-element pair was accepted. Selection/colour second-rAF P95 was 116.1/91.7 ms before and 89.3/77.6 ms after, with all 46 operations per version retained. After the genuine upgrade, default-profile 0.1.25 focused checks passed: F2/one-step undo/save-reopen, theme SVG/RGBA, the complete scientific payload, companion pointer responses and reduced motion. Normal uninstall and external-profile preservation passed. See the [0.1.25 scope](docs/release-notes-v1.4.25.md), [official upgrade](docs/qa/jade-hearts/windows-0.1.25/official-update/README.md), [matched samples](docs/qa/jade-hearts/windows-0.1.25/matched-performance/README.md) and [final acceptance](docs/qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json).

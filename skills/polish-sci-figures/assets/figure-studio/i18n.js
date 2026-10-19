@@ -717,6 +717,12 @@ const StudioI18n = (() => {
   Object.assign(en,{'预览使用当前数据；排序依据数据结构与表达目的。':'Previews use the current data; ordering follows data structure and communication purpose.','可编辑科研图形 · 示例数据':'Editable scientific figures · Synthetic data'});
   Object.assign(en,{'框选元素':'Select elements','拖动框选图内元素；Shift 可追加选择':'Drag to select elements; Shift adds to the selection','混合':'Mixed'});
   Object.assign(en,{
+    '请将拍摄原图单独导入；含其他图形或数据的小图不能整体替换。':'Import the original photo as a separate panel. A panel containing other artwork or data cannot be replaced as a whole.',
+    '请明确选择拍摄照片／明场展示用途；荧光图不提供单图自动校色。':'Choose photo / brightfield display explicitly; automatic per-image color balancing is unavailable for fluorescence.',
+    '有效显示变化不足，未自动增强；请使用手动预览。':'There is too little display variation for an automatic enhancement; use manual preview.',
+    '自动建议可能增加显示截断，未套用；请降低曝光或手动调整。':'The automatic suggestion could add display clipping and was not applied; lower exposure or adjust manually.',
+    '图片校正记录无效':'Invalid photo-correction record',
+    '图片校正原图或结果校验失败，未替换当前工程。':'The photo-correction source or output failed verification. The workspace was not replaced.',
     '缩放整图':'Resize panel content',
     '图形缩放参数无效':'Invalid artwork resize parameters',
     '对象已到达画布边缘':'The object has reached the canvas edge',
@@ -890,6 +896,18 @@ const StudioI18n = (() => {
   Object.assign(en,{'当前小图在母版边界之外；请选择可见格子或先扩大母版。':'This panel is outside the paper. Select a visible cell or expand the paper first.','文字过长，请分段粘贴。':'This text is too long. Paste it in smaller sections.','请选中完整组合后对齐，或先取消组合。':'Select the complete group to align, or ungroup it first.','请至少选择两个独立对象或组合。':'Select at least two separate objects or groups.'});
   Object.assign(en,{'请先选中原图。':'Select a source image first.'});
   Object.assign(en,{'对象边框':'Object borders','图片工具':'Image tools','数据重绘保留可匹配的文字和统一样式；自由元素位移、局部图形改动与轴延伸可能重置。整步可撤销。':'Data re-rendering retains matching text and shared styles; free object movements, local artwork edits and axis extensions may reset. Undo restores the whole step.','专业坐标轴设置':'Professional axis settings','范围、刻度、绘图区尺寸和外观；也可双击识别轴。':'Range, ticks, plot dimensions and appearance; double-click a recognized axis to open.','当前为手动网格；请先恢复自动网格尺寸，再设置真实绘图区尺寸。':'The grid is manual. Restore automatic grid dimensions before setting the true plot size.','已恢复原始坐标轴':'Original axis settings restored','坐标轴设置':'Axis settings','检查已选图片':'Screen selected images','图片颜色与显示':'Image colour and display','关联总览与放大图':'Link overview and detail'});
+  Object.assign(en,{
+    '已显示保留的原始图片':'Showing the retained original image',
+    '已显示透视校正版本':'Showing the perspective-corrected version',
+    '原图或选择已变化，请重新打开透视校正。':'The source or selection changed. Reopen perspective correction.',
+    '原图已变化，校正尚未应用。':'The source changed. Correction was not applied.',
+    '透视校正结果无效，原图已保留。':'Invalid perspective result. The source was retained.',
+    '透视校正':'Perspective corrected',
+    '原始图片（未重采样）':'Original image (not resampled)',
+    '图片透视校正':'Image perspective correction',
+    '透视校正预览尚未应用；可在侧栏保留或取消。':'Perspective preview is not applied. Keep or cancel it in the inspector.',
+    '完整分辨率校正尚未完成。':'Full-resolution correction has not completed.'
+  });
   function t(text,...values){let result=language==='en'?(en[text]??text):text;return result.replace(/\{(\d+)\}/g,(_,n)=>String(values[+n]??''));}
   return {t,choose,setLanguage,panelName,projectTitle,validateDisplayNames,preserveDisplayNames,restoreDisplayNames,get language(){return language;},en};
 })();

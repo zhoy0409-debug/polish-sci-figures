@@ -26,6 +26,8 @@ def main():
                 assert f"skills/polish-sci-figures/scripts/{module}" in names, module
             for asset in ("selection-transform.js", "selection-transform-dom.js", "selection-resize-controller.js", "canvas-clipboard.js", "element-insertions.js", "grid-resize-ui.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
+            for asset in ("image-rectify.js", "image-rectify-detect.js", "image-straighten.js", "image-rectify-ui.js", "image-rectify.css"):
+                assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             for module in ("gallery_registry", "gallery_workbench", "gallery_compare", "gallery_time_composition",
                            "gallery_clinical", "gallery_omics_special", "gallery_misc", "gallery_model_extras",
                            "gallery_temporal_extras", "gallery_structure_extras", "gallery_axes", "gallery_heatmap",
@@ -46,6 +48,8 @@ def main():
             assert token in html, f"Missing embedded runtime resource: {token}"
         for token in ("root.StudioSelectionTransform=api", "const StudioSelectionTransformDOM=", "const StudioSelectionResize=", 'id="selectPanelContent"', 'id="fitPanelContent"', 'id="selectionAspect"'):
             assert token in html, f"Missing embedded resize resource/control: {token}"
+        for token in ("const StudioImageRectify", "const StudioImageRectifyDetect", "const StudioImageStraighten", "const StudioImageRectifyUI", "image-rectify-entry"):
+            assert token in html, f"Missing embedded perspective resource/control: {token}"
         assert html.index("const StudioSelectionResize=") < html.index("function createBlankProject("), "Resize controller must precede the main studio runtime"
         for token in ("const StudioCanvasClipboard=", 'id="quickCopy"', 'id="quickCut"', 'id="quickPaste"'):
             assert token in html, f"Missing embedded clipboard resource/control: {token}"
