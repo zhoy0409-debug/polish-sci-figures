@@ -1,0 +1,408 @@
+{
+  "schema": "figure-studio-final-windows-acceptance/1",
+  "status": "PASS_SCOPED_FINAL_BUILD",
+  "createdAtUTC": "2026-10-19T11:25:53.377017+00:00",
+  "version": "0.1.26",
+  "suiteVersion": "v1.4.26",
+  "approvedHead": "67527257d83a2257402692337b1c5b5d067b3403",
+  "approvedHeadTree": "7298e93c4fbdbf66cda3cec9530599daa0707c80",
+  "sourceStage": "source29",
+  "sourceFreezeManifestSha256": "f3f0b97d5115a713acdb0162087ea01faf51860a9ff818d80be49301a2411a4c",
+  "finalBuild": {
+    "artifacts": [
+      {
+        "name": "polish-sci-figures-Studio-0.1.26-Portable-x64.zip",
+        "sha256": "9a2cfac041c01ae84fb752b28686e823895ae981af1adfd83f449a135454bace",
+        "sizeBytes": 148056824
+      },
+      {
+        "name": "polish-sci-figures-Studio-0.1.26-Setup-x64.exe",
+        "sha256": "de0bb5591802cfd59b3974b72c9c9d64607b9149ac04acf91756434da8be73bf",
+        "sizeBytes": 106071955
+      }
+    ],
+    "exe": {
+      "name": "Figure Studio.exe",
+      "sha256": "ac30fa75dc87a2715387acb9ef8ba2bba9644da007372521783c905f1f1fb16c",
+      "sizeBytes": 18306386,
+      "status": "PASS",
+      "preflightExecutableExact": true,
+      "preflightEvidenceSha256": "1f63e06ca3b9b2b059577edeb52d2f55dcc17f25bc27bc2d6f26a7e29d78147c",
+      "modules": [
+        {
+          "module": "windows_updater",
+          "sourceFile": "desktop/windows_updater.py",
+          "sourceSha256": "90279742f589a6161d2ec1c59b5cf7413355f191825d52e88819e61fb4a70b20",
+          "compiledCodeEqual": true
+        },
+        {
+          "module": "figure_studio_app",
+          "sourceFile": "desktop/figure_studio_app.py",
+          "sourceSha256": "a23c28f8ca3cc821bb1e47a5b69e2ad9589414bf128670eebe3a918242e6a19c",
+          "compiledCodeEqual": true
+        }
+      ]
+    },
+    "artifactSignature": "NotSigned",
+    "packageProofSha256": "4a249457e604b90c9357c78f738ff0235506db0a5d6838501b58c9fab0c1d6a2",
+    "actualInstalledApplicationFiles": 2655,
+    "uiAssetsExact": 85,
+    "productionBackendModules": 23,
+    "mappedBytecodeModules": 58,
+    "canonicalReleaseInputs": 417,
+    "plainReleaseDataMatched": 359,
+    "runtimeEqualsEarlierFullyTestedSource29": true,
+    "documentationSnapshotExceptions": false
+  },
+  "actualFinalLifecycle": [
+    {
+      "phase": "Install",
+      "sha256": "4f42cba3dc94127497192853ce053c3f997ca8e6c2e57421c8fcfb41d5ac4d36",
+      "receipt": {
+        "protectedProcessIdentitiesUnchanged": true,
+        "phase": "Install",
+        "setupSha256": "de0bb5591802cfd59b3974b72c9c9d64607b9149ac04acf91756434da8be73bf",
+        "reinstallPreserved": false,
+        "completedPhases": [
+          "Install"
+        ],
+        "externalDataPreserved": false,
+        "frozen": true,
+        "selfTestReportSha256": "23ff729f51c5318ee41e9eaa1ef89289da6ca03fe59b36d3c612a883cd84c815",
+        "initialRegistryViewsAbsent": 4,
+        "checks": [
+          "Four exact AppId hive/view combinations initially absent",
+          "Protected application process identities and binaries unchanged",
+          "All packaged files match actual installed files",
+          "Actually installed x64 PE version matches",
+          "Frozen installed self-test passes with Python removed from PATH and invalid PYTHONHOME"
+        ],
+        "schema": "figure-studio-live-preview-windows/1",
+        "incompleteAttemptCleanup": false,
+        "uninstalled": false,
+        "servedHtmlSha256": null,
+        "reinstallPackageVerification": null,
+        "workspaceHtmlSha256": null,
+        "selfTestPassed": true,
+        "evidenceAttempt": "",
+        "harnessSha256": "b9df1604a91e7f48974edacb8cef41f45eef0a7118bf27e4931f5da7978662e7",
+        "protectedProcessCount": 0,
+        "powerShellVersion": "7.6.5",
+        "environment": "Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.",
+        "packageVerification": {
+          "everyPackagedFileMatches": true,
+          "fileCount": 2655,
+          "manifestSha256": "f194ccf7789dce4426307f8c55c7b38ef3739dcc2fe1e48cf581737dd7670a44"
+        },
+        "version": "0.1.26"
+      }
+    },
+    {
+      "phase": "Start",
+      "sha256": "82fac1883d431ceb4bb067be7fc0f9c41d45969cb13b5e7862580b43f605e374",
+      "receipt": {
+        "environment": "Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.",
+        "reinstallPreserved": false,
+        "checks": [
+          "Four exact AppId hive/view combinations initially absent",
+          "Protected application process identities and binaries unchanged",
+          "All packaged files match actual installed files",
+          "Actually installed x64 PE version matches",
+          "Frozen installed self-test passes with Python removed from PATH and invalid PYTHONHOME",
+          "Exact installed process serves authenticated local health on isolated persisted QA port"
+        ],
+        "externalDataPreserved": false,
+        "selfTestReportSha256": "23ff729f51c5318ee41e9eaa1ef89289da6ca03fe59b36d3c612a883cd84c815",
+        "protectedProcessCount": 0,
+        "harnessSha256": "b9df1604a91e7f48974edacb8cef41f45eef0a7118bf27e4931f5da7978662e7",
+        "protectedProcessIdentitiesUnchanged": true,
+        "evidenceAttempt": "",
+        "incompleteAttemptCleanup": false,
+        "uninstalled": false,
+        "powerShellVersion": "7.6.5",
+        "schema": "figure-studio-live-preview-windows/1",
+        "servedHtmlSha256": "62e12cd7b07adaa35139c8ad6ec8b0d713e55bea6c2544dad4f0a2623af22c4b",
+        "selfTestPassed": true,
+        "initialRegistryViewsAbsent": 4,
+        "version": "0.1.26",
+        "setupSha256": "de0bb5591802cfd59b3974b72c9c9d64607b9149ac04acf91756434da8be73bf",
+        "frozen": true,
+        "workspaceHtmlSha256": "360cf5460f3e6fe7dbaf8e1c2c508e7989b385cfb947c26c4d8005ad5345de35",
+        "packageVerification": {
+          "everyPackagedFileMatches": true,
+          "fileCount": 2655,
+          "manifestSha256": "f194ccf7789dce4426307f8c55c7b38ef3739dcc2fe1e48cf581737dd7670a44"
+        },
+        "completedPhases": [
+          "Install",
+          "Start"
+        ],
+        "phase": "Start",
+        "reinstallPackageVerification": null
+      }
+    },
+    {
+      "phase": "Reinstall",
+      "sha256": "79ef2ba75de23c603dfc9d29685911c566a1577139d47bb549a220c8e54873d4",
+      "receipt": {
+        "reinstallPreserved": true,
+        "initialRegistryViewsAbsent": 4,
+        "powerShellVersion": "7.6.5",
+        "protectedProcessCount": 0,
+        "harnessSha256": "b9df1604a91e7f48974edacb8cef41f45eef0a7118bf27e4931f5da7978662e7",
+        "checks": [
+          "Four exact AppId hive/view combinations initially absent",
+          "Protected application process identities and binaries unchanged",
+          "All packaged files match actual installed files",
+          "Actually installed x64 PE version matches",
+          "Frozen installed self-test passes with Python removed from PATH and invalid PYTHONHOME",
+          "Exact installed process serves authenticated local health on isolated persisted QA port",
+          "Same-version original Setup reinstall preserves exact settings, external sentinel and actual saved public project bytes"
+        ],
+        "schema": "figure-studio-live-preview-windows/1",
+        "phase": "Reinstall",
+        "frozen": true,
+        "packageVerification": {
+          "everyPackagedFileMatches": true,
+          "fileCount": 2655,
+          "manifestSha256": "f194ccf7789dce4426307f8c55c7b38ef3739dcc2fe1e48cf581737dd7670a44"
+        },
+        "evidenceAttempt": "final-r2",
+        "setupSha256": "de0bb5591802cfd59b3974b72c9c9d64607b9149ac04acf91756434da8be73bf",
+        "incompleteAttemptCleanup": false,
+        "reinstallPackageVerification": {
+          "manifestSha256": "f194ccf7789dce4426307f8c55c7b38ef3739dcc2fe1e48cf581737dd7670a44",
+          "fileCount": 2655,
+          "everyPackagedFileMatches": true
+        },
+        "protectedProcessIdentitiesUnchanged": true,
+        "selfTestReportSha256": "23ff729f51c5318ee41e9eaa1ef89289da6ca03fe59b36d3c612a883cd84c815",
+        "version": "0.1.26",
+        "servedHtmlSha256": "62e12cd7b07adaa35139c8ad6ec8b0d713e55bea6c2544dad4f0a2623af22c4b",
+        "selfTestPassed": true,
+        "workspaceHtmlSha256": "360cf5460f3e6fe7dbaf8e1c2c508e7989b385cfb947c26c4d8005ad5345de35",
+        "completedPhases": [
+          "Install",
+          "Start",
+          "Reinstall"
+        ],
+        "uninstalled": false,
+        "externalDataPreserved": false,
+        "environment": "Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release."
+      }
+    },
+    {
+      "phase": "Uninstall",
+      "sha256": "44ccde68c65778e004795a48c4e27e6642496a80cc1c7f725d65eb0b58a6c6da",
+      "receipt": {
+        "schema": "figure-studio-live-preview-windows/1",
+        "externalDataPreserved": true,
+        "powerShellVersion": "7.6.5",
+        "workspaceHtmlSha256": "360cf5460f3e6fe7dbaf8e1c2c508e7989b385cfb947c26c4d8005ad5345de35",
+        "setupSha256": "de0bb5591802cfd59b3974b72c9c9d64607b9149ac04acf91756434da8be73bf",
+        "packageVerification": {
+          "everyPackagedFileMatches": true,
+          "fileCount": 2655,
+          "manifestSha256": "f194ccf7789dce4426307f8c55c7b38ef3739dcc2fe1e48cf581737dd7670a44"
+        },
+        "selfTestPassed": true,
+        "reinstallPreserved": true,
+        "evidenceAttempt": "",
+        "servedHtmlSha256": "62e12cd7b07adaa35139c8ad6ec8b0d713e55bea6c2544dad4f0a2623af22c4b",
+        "uninstalled": true,
+        "selfTestReportSha256": "23ff729f51c5318ee41e9eaa1ef89289da6ca03fe59b36d3c612a883cd84c815",
+        "phase": "Uninstall",
+        "initialRegistryViewsAbsent": 4,
+        "completedPhases": [
+          "Install",
+          "Start",
+          "Reinstall",
+          "Uninstall"
+        ],
+        "reinstallPackageVerification": {
+          "manifestSha256": "f194ccf7789dce4426307f8c55c7b38ef3739dcc2fe1e48cf581737dd7670a44",
+          "fileCount": 2655,
+          "everyPackagedFileMatches": true
+        },
+        "protectedProcessIdentitiesUnchanged": true,
+        "environment": "Actual local Windows x64; exact original Setup/AppId, isolated install/data/LOCALAPPDATA, no Python on self-test PATH. Not a clean VM and not an official version update/release.",
+        "frozen": true,
+        "harnessSha256": "b9df1604a91e7f48974edacb8cef41f45eef0a7118bf27e4931f5da7978662e7",
+        "checks": [
+          "Four exact AppId hive/view combinations initially absent",
+          "Protected application process identities and binaries unchanged",
+          "All packaged files match actual installed files",
+          "Actually installed x64 PE version matches",
+          "Frozen installed self-test passes with Python removed from PATH and invalid PYTHONHOME",
+          "Exact installed process serves authenticated local health on isolated persisted QA port",
+          "Same-version original Setup reinstall preserves exact settings, external sentinel and actual saved public project bytes",
+          "Actual uninstaller restores all four AppId combinations to absence and preserves external data/protected processes"
+        ],
+        "version": "0.1.26",
+        "protectedProcessCount": 0,
+        "incompleteAttemptCleanup": false
+      }
+    }
+  ],
+  "focusedFinalInstalledSmoke": {
+    "reportSha256": "07784a13928118704bba3bd0539f4957a324c27925a34ffb50d405312c69974d",
+    "checks": 3,
+    "passed": 3,
+    "failed": 0,
+    "cases": [
+      {
+        "id": "border-draft-isolation",
+        "theme": "carbon",
+        "status": "PASS",
+        "pageErrors": 0,
+        "remoteRequests": 0,
+        "videoFile": "page@dd3aa38dde02b392610e5343af34ddfa.webm",
+        "videoSha256": "caef060fd0333f198fef4b015fce7734fd40721bbc44b1f3b8d29de52d4a4cde"
+      },
+      {
+        "id": "native-axis-draft-isolation",
+        "theme": "carbon",
+        "status": "PASS",
+        "pageErrors": 0,
+        "remoteRequests": 0,
+        "videoFile": "page@bd0665b4615d56acd7e69ad60cec4064.webm",
+        "videoSha256": "082fc6ed4f1b749785378404e2ef11814173bece5f8ac47f16525eeb0ba3e306"
+      },
+      {
+        "id": "public-iris-save-new-open-save-all5",
+        "status": "PASS",
+        "allFiveExact": true,
+        "observations": 150,
+        "sourceSvgCount": 12,
+        "pageErrors": 0,
+        "remoteRequests": 0
+      }
+    ],
+    "publicDataObservationsExact": 150,
+    "originalSvgVariantsExact": 12,
+    "allFiveContainersExact": true,
+    "checkpointAndDraftContainersEmptyInThisFocusedRoundtrip": true,
+    "ownBrowsersClosed": true,
+    "initialCacheHelperModuleResolutionFailureRetainedBeforeBrowserOrServiceAccess": true
+  },
+  "actualFinalEdge": {
+    "serviceReloadAndBrowserAutosaveRestoreObserved": true,
+    "retainedOriginalAndCorrectedVersionSwitchesObserved": true,
+    "originalAndLocalTestImageFilesBytesUnchanged": true,
+    "nativeSendInput": false,
+    "imageAndScreenshotsPubliclyDistributed": false
+  },
+  "earlierActualRuntimeAcceptance": {
+    "installedPhotoGroupsPassed": 12,
+    "overallPassed": true,
+    "localWorkersCreatedAndClosed": 22,
+    "pageErrors": 0,
+    "externalRequests": 0,
+    "sourceBrowserPhotoGroupsPassed": 12,
+    "pixelRoiComparisonsZeroTolerance": 6,
+    "completeOutputComparisonsExact": 2,
+    "installedFunctionalExecutions": 173,
+    "passedExecutions": 172,
+    "retainedInitialNavigationFailure": 1,
+    "unchangedConditionFollowupPassed": true,
+    "notRelabelledAsFinalSetupFullMatrix": true
+  },
+  "performance": {
+    "allNormalOperationsRetained": 276,
+    "allCpuWindowsRetained": 92,
+    "publicRecord": "docs/qa/photo-correction-performance-20261019/README.md",
+    "firstPairSelectionP95Ms": [
+      67.8,
+      84.6
+    ],
+    "allStaticAbbaSelectionP95Ms": [
+      85.8,
+      132.2,
+      75.8,
+      79.1
+    ],
+    "generalNoRegressionOrSpeedupClaim": false,
+    "repeatedPhotoTotalWaitImproved": false
+  },
+  "ci": {
+    "runId": 39242886758,
+    "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/39242886758",
+    "headSha256IsNotUsedForGitCommit": true,
+    "headCommit": "67527257d83a2257402692337b1c5b5d067b3403",
+    "jobsPassed": 8,
+    "runEvidenceSha256": "18acf5d617fa3bfb2ae5798d8d62ece7f55861efcaa14ef38813b760f1f3a556",
+    "jobsEvidenceSha256": "d98259a4d4760b6b8908ca7a7c690359ee7ad344090e3dc7f798660f1f216b75"
+  },
+  "distribution": {
+    "actualOriginalTestsPassed": 3,
+    "actualArchives": [
+      {
+        "name": "sci-figure-suite-v1.4.26.zip",
+        "bytes": 18246948,
+        "sha256": "bebceb5221a4014a90219789d72e717882ec44dd33d282180fe027de14213b11",
+        "memberCount": 417,
+        "allMemberBytesExact": true,
+        "extractedCli": {
+          "helpExitCode": 0,
+          "helpContainsUsage": true,
+          "doctorExitCode": 0,
+          "doctorFont": "DejaVu Sans",
+          "doctorSummary": {
+            "total": 19,
+            "blocking": 0,
+            "warnings": 5,
+            "manual_review": 1,
+            "exit_code": 0
+          }
+        }
+      },
+      {
+        "name": "polish-sci-figures-v1.4.26-skill.zip",
+        "bytes": 18271312,
+        "sha256": "3c9b27a08bb3f858848eb59f1570bb574bffdf983863935b58f29bc34ce8f7ce",
+        "memberCount": 418,
+        "allMemberBytesExact": true,
+        "extractedCli": {
+          "helpExitCode": 0,
+          "helpContainsUsage": true,
+          "doctorExitCode": 0,
+          "doctorFont": "DejaVu Sans",
+          "doctorSummary": {
+            "total": 19,
+            "blocking": 0,
+            "warnings": 5,
+            "manual_review": 1,
+            "exit_code": 0
+          }
+        }
+      }
+    ],
+    "optionalWarnings": [
+      "PyMuPDF",
+      "python-docx",
+      "python-pptx",
+      "tifffile",
+      "pdffonts"
+    ],
+    "manualReview": "PDF font embedding was not automatically checked because pdffonts was absent. Optional advanced Office/TIFF integrations are not claimed."
+  },
+  "publication": {
+    "stage": "initial-publication",
+    "published": false,
+    "official25to26": "awaiting_public_stable",
+    "finalAcceptance": false,
+    "sameVersionDatedSupplementRequired": true
+  },
+  "limits": [
+    "Actual local Windows x64 machine, not a clean VM.",
+    "No newly completed native SendInput or Windows IME test.",
+    "No independently human-labelled detection accuracy, sensitivity or false-positive estimate.",
+    "No new mobile artifacts or code-signing claim.",
+    "Large-image and 5000-object timing varies; all batches and failures retained.",
+    "Private source photographs, projects and media stay local."
+  ],
+  "privacyReview": {
+    "localPathsCredentialsPrivateImagePixelsAndMeasurementsIncluded": false,
+    "rawBrowserProfilesOrCpuProfilesIncluded": false
+  }
+}

@@ -1,0 +1,948 @@
+{
+  "schema": "figure-studio26-actual-update-audit/1",
+  "rawAuditSha256": "465ac61616fdad879508025360ba6fcbfff648bea039019546db909dc1b8d4ff",
+  "events": [
+    {
+      "event": "job-created",
+      "utc": "2026-10-19T11:55:21.794347+00:00",
+      "monotonicNs": 368970828000000,
+      "version": "0.1.26",
+      "sha256": "de0bb5591802cfd59b3974b72c9c9d64607b9149ac04acf91756434da8be73bf",
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:21.794347+00:00",
+      "monotonicNs": 368970828000000,
+      "status": "downloading",
+      "received": 0,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:23.108790+00:00",
+      "monotonicNs": 368972140000000,
+      "status": "downloading",
+      "received": 1310720,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:23.386530+00:00",
+      "monotonicNs": 368972421000000,
+      "status": "downloading",
+      "received": 2359296,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:23.508579+00:00",
+      "monotonicNs": 368972531000000,
+      "status": "downloading",
+      "received": 3407872,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:23.673301+00:00",
+      "monotonicNs": 368972703000000,
+      "status": "downloading",
+      "received": 4456448,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:23.863500+00:00",
+      "monotonicNs": 368972890000000,
+      "status": "downloading",
+      "received": 5505024,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:24.026110+00:00",
+      "monotonicNs": 368973046000000,
+      "status": "downloading",
+      "received": 6553600,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:24.200433+00:00",
+      "monotonicNs": 368973234000000,
+      "status": "downloading",
+      "received": 7602176,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:24.390703+00:00",
+      "monotonicNs": 368973421000000,
+      "status": "downloading",
+      "received": 8650752,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:24.561662+00:00",
+      "monotonicNs": 368973593000000,
+      "status": "downloading",
+      "received": 9699328,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:24.877721+00:00",
+      "monotonicNs": 368973906000000,
+      "status": "downloading",
+      "received": 10747904,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:24.971795+00:00",
+      "monotonicNs": 368974000000000,
+      "status": "downloading",
+      "received": 11796480,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:25.135048+00:00",
+      "monotonicNs": 368974156000000,
+      "status": "downloading",
+      "received": 12845056,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:25.288861+00:00",
+      "monotonicNs": 368974312000000,
+      "status": "downloading",
+      "received": 13893632,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:25.463449+00:00",
+      "monotonicNs": 368974484000000,
+      "status": "downloading",
+      "received": 14942208,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:25.622018+00:00",
+      "monotonicNs": 368974656000000,
+      "status": "downloading",
+      "received": 15990784,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:25.795966+00:00",
+      "monotonicNs": 368974828000000,
+      "status": "downloading",
+      "received": 17039360,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:25.980197+00:00",
+      "monotonicNs": 368975015000000,
+      "status": "downloading",
+      "received": 18087936,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:26.154043+00:00",
+      "monotonicNs": 368975187000000,
+      "status": "downloading",
+      "received": 19136512,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:26.471097+00:00",
+      "monotonicNs": 368975500000000,
+      "status": "downloading",
+      "received": 20185088,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:26.629169+00:00",
+      "monotonicNs": 368975656000000,
+      "status": "downloading",
+      "received": 21233664,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:26.834778+00:00",
+      "monotonicNs": 368975859000000,
+      "status": "downloading",
+      "received": 22282240,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:27.089692+00:00",
+      "monotonicNs": 368976125000000,
+      "status": "downloading",
+      "received": 23592960,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:27.276132+00:00",
+      "monotonicNs": 368976296000000,
+      "status": "downloading",
+      "received": 24641536,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:27.494044+00:00",
+      "monotonicNs": 368976515000000,
+      "status": "downloading",
+      "received": 25690112,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:27.706901+00:00",
+      "monotonicNs": 368976734000000,
+      "status": "downloading",
+      "received": 26738688,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:27.875369+00:00",
+      "monotonicNs": 368976906000000,
+      "status": "downloading",
+      "received": 27787264,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:28.059901+00:00",
+      "monotonicNs": 368977093000000,
+      "status": "downloading",
+      "received": 28835840,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:28.257875+00:00",
+      "monotonicNs": 368977281000000,
+      "status": "downloading",
+      "received": 29884416,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:28.500680+00:00",
+      "monotonicNs": 368977531000000,
+      "status": "downloading",
+      "received": 30932992,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:28.661507+00:00",
+      "monotonicNs": 368977687000000,
+      "status": "downloading",
+      "received": 31981568,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:28.855829+00:00",
+      "monotonicNs": 368977890000000,
+      "status": "downloading",
+      "received": 33030144,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:29.053025+00:00",
+      "monotonicNs": 368978078000000,
+      "status": "downloading",
+      "received": 34078720,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:29.242366+00:00",
+      "monotonicNs": 368978265000000,
+      "status": "downloading",
+      "received": 35127296,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:29.424930+00:00",
+      "monotonicNs": 368978453000000,
+      "status": "downloading",
+      "received": 36175872,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:29.664005+00:00",
+      "monotonicNs": 368978687000000,
+      "status": "downloading",
+      "received": 37224448,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:29.863319+00:00",
+      "monotonicNs": 368978890000000,
+      "status": "downloading",
+      "received": 38273024,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:30.032986+00:00",
+      "monotonicNs": 368979062000000,
+      "status": "downloading",
+      "received": 39321600,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:30.218662+00:00",
+      "monotonicNs": 368979250000000,
+      "status": "downloading",
+      "received": 40370176,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:30.400907+00:00",
+      "monotonicNs": 368979421000000,
+      "status": "downloading",
+      "received": 41418752,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:30.598424+00:00",
+      "monotonicNs": 368979625000000,
+      "status": "downloading",
+      "received": 42467328,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:30.766341+00:00",
+      "monotonicNs": 368979796000000,
+      "status": "downloading",
+      "received": 43515904,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:30.949468+00:00",
+      "monotonicNs": 368979984000000,
+      "status": "downloading",
+      "received": 44564480,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:31.196981+00:00",
+      "monotonicNs": 368980218000000,
+      "status": "downloading",
+      "received": 45613056,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:31.438602+00:00",
+      "monotonicNs": 368980468000000,
+      "status": "downloading",
+      "received": 46923776,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:31.621850+00:00",
+      "monotonicNs": 368980656000000,
+      "status": "downloading",
+      "received": 47972352,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:31.807618+00:00",
+      "monotonicNs": 368980828000000,
+      "status": "downloading",
+      "received": 49020928,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:31.981995+00:00",
+      "monotonicNs": 368981015000000,
+      "status": "downloading",
+      "received": 50069504,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:32.168306+00:00",
+      "monotonicNs": 368981203000000,
+      "status": "downloading",
+      "received": 51118080,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:32.344763+00:00",
+      "monotonicNs": 368981375000000,
+      "status": "downloading",
+      "received": 52166656,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:32.512243+00:00",
+      "monotonicNs": 368981546000000,
+      "status": "downloading",
+      "received": 53215232,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:32.680740+00:00",
+      "monotonicNs": 368981703000000,
+      "status": "downloading",
+      "received": 54263808,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:32.848149+00:00",
+      "monotonicNs": 368981875000000,
+      "status": "downloading",
+      "received": 55312384,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:33.023648+00:00",
+      "monotonicNs": 368982046000000,
+      "status": "downloading",
+      "received": 56360960,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:33.196606+00:00",
+      "monotonicNs": 368982218000000,
+      "status": "downloading",
+      "received": 57409536,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:33.363621+00:00",
+      "monotonicNs": 368982390000000,
+      "status": "downloading",
+      "received": 58458112,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:33.555265+00:00",
+      "monotonicNs": 368982578000000,
+      "status": "downloading",
+      "received": 59506688,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:33.744669+00:00",
+      "monotonicNs": 368982765000000,
+      "status": "downloading",
+      "received": 60555264,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:33.928788+00:00",
+      "monotonicNs": 368982953000000,
+      "status": "downloading",
+      "received": 61603840,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:34.144205+00:00",
+      "monotonicNs": 368983171000000,
+      "status": "downloading",
+      "received": 62652416,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:34.311948+00:00",
+      "monotonicNs": 368983343000000,
+      "status": "downloading",
+      "received": 63700992,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:34.487128+00:00",
+      "monotonicNs": 368983515000000,
+      "status": "downloading",
+      "received": 64749568,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:34.668792+00:00",
+      "monotonicNs": 368983703000000,
+      "status": "downloading",
+      "received": 65798144,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:34.870088+00:00",
+      "monotonicNs": 368983890000000,
+      "status": "downloading",
+      "received": 66846720,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:35.026618+00:00",
+      "monotonicNs": 368984046000000,
+      "status": "downloading",
+      "received": 67895296,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:35.261674+00:00",
+      "monotonicNs": 368984296000000,
+      "status": "downloading",
+      "received": 69206016,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:35.437021+00:00",
+      "monotonicNs": 368984468000000,
+      "status": "downloading",
+      "received": 70254592,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:35.595292+00:00",
+      "monotonicNs": 368984625000000,
+      "status": "downloading",
+      "received": 71303168,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:35.770281+00:00",
+      "monotonicNs": 368984796000000,
+      "status": "downloading",
+      "received": 72351744,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:35.949522+00:00",
+      "monotonicNs": 368984984000000,
+      "status": "downloading",
+      "received": 73400320,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:36.272090+00:00",
+      "monotonicNs": 368985296000000,
+      "status": "downloading",
+      "received": 74448896,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:36.470430+00:00",
+      "monotonicNs": 368985500000000,
+      "status": "downloading",
+      "received": 75497472,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:36.645530+00:00",
+      "monotonicNs": 368985671000000,
+      "status": "downloading",
+      "received": 76546048,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:36.813084+00:00",
+      "monotonicNs": 368985843000000,
+      "status": "downloading",
+      "received": 77594624,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:36.994814+00:00",
+      "monotonicNs": 368986015000000,
+      "status": "downloading",
+      "received": 78643200,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:37.164879+00:00",
+      "monotonicNs": 368986187000000,
+      "status": "downloading",
+      "received": 79691776,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:37.318594+00:00",
+      "monotonicNs": 368986343000000,
+      "status": "downloading",
+      "received": 80740352,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:37.513374+00:00",
+      "monotonicNs": 368986546000000,
+      "status": "downloading",
+      "received": 81788928,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:37.678922+00:00",
+      "monotonicNs": 368986703000000,
+      "status": "downloading",
+      "received": 82837504,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:37.859151+00:00",
+      "monotonicNs": 368986890000000,
+      "status": "downloading",
+      "received": 83886080,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:38.046173+00:00",
+      "monotonicNs": 368987078000000,
+      "status": "downloading",
+      "received": 84934656,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:38.227006+00:00",
+      "monotonicNs": 368987250000000,
+      "status": "downloading",
+      "received": 85983232,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:38.403066+00:00",
+      "monotonicNs": 368987437000000,
+      "status": "downloading",
+      "received": 87031808,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:38.579541+00:00",
+      "monotonicNs": 368987609000000,
+      "status": "downloading",
+      "received": 88080384,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:38.763556+00:00",
+      "monotonicNs": 368987796000000,
+      "status": "downloading",
+      "received": 89128960,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:38.987503+00:00",
+      "monotonicNs": 368988015000000,
+      "status": "downloading",
+      "received": 90177536,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:39.230115+00:00",
+      "monotonicNs": 368988265000000,
+      "status": "downloading",
+      "received": 91226112,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:39.430120+00:00",
+      "monotonicNs": 368988453000000,
+      "status": "downloading",
+      "received": 92536832,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:39.596767+00:00",
+      "monotonicNs": 368988625000000,
+      "status": "downloading",
+      "received": 93585408,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:39.778722+00:00",
+      "monotonicNs": 368988812000000,
+      "status": "downloading",
+      "received": 94633984,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:39.947915+00:00",
+      "monotonicNs": 368988968000000,
+      "status": "downloading",
+      "received": 95682560,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:40.171718+00:00",
+      "monotonicNs": 368989203000000,
+      "status": "downloading",
+      "received": 96731136,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:40.328509+00:00",
+      "monotonicNs": 368989359000000,
+      "status": "downloading",
+      "received": 97779712,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:40.637018+00:00",
+      "monotonicNs": 368989671000000,
+      "status": "downloading",
+      "received": 98828288,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:40.710868+00:00",
+      "monotonicNs": 368989734000000,
+      "status": "downloading",
+      "received": 99876864,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:40.876739+00:00",
+      "monotonicNs": 368989906000000,
+      "status": "downloading",
+      "received": 100925440,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:41.067703+00:00",
+      "monotonicNs": 368990093000000,
+      "status": "downloading",
+      "received": 101974016,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:41.236783+00:00",
+      "monotonicNs": 368990265000000,
+      "status": "downloading",
+      "received": 103022592,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:41.411850+00:00",
+      "monotonicNs": 368990437000000,
+      "status": "downloading",
+      "received": 104071168,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:41.596131+00:00",
+      "monotonicNs": 368990625000000,
+      "status": "downloading",
+      "received": 105119744,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:41.738532+00:00",
+      "monotonicNs": 368990765000000,
+      "status": "downloading",
+      "received": 106071955,
+      "total": 106071955
+    },
+    {
+      "event": "download-body-complete",
+      "utc": "2026-10-19T11:55:41.738532+00:00",
+      "monotonicNs": 368990765000000,
+      "received": 106071955,
+      "total": 106071955
+    },
+    {
+      "event": "verification-started",
+      "utc": "2026-10-19T11:55:41.738532+00:00",
+      "monotonicNs": 368990765000000,
+      "received": 106071955,
+      "total": 106071955
+    },
+    {
+      "event": "verification-passed",
+      "utc": "2026-10-19T11:55:41.753811+00:00",
+      "monotonicNs": 368990781000000,
+      "received": 106071955,
+      "total": 106071955
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:55:41.753811+00:00",
+      "monotonicNs": 368990781000000,
+      "status": "ready",
+      "received": 106071955,
+      "total": 106071955
+    },
+    {
+      "event": "installer-recheck-started",
+      "utc": "2026-10-19T11:55:49.607755+00:00",
+      "monotonicNs": 368998640000000
+    },
+    {
+      "event": "installer-recheck-passed",
+      "utc": "2026-10-19T11:55:49.955095+00:00",
+      "monotonicNs": 368998984000000,
+      "sha256": "de0bb5591802cfd59b3974b72c9c9d64607b9149ac04acf91756434da8be73bf"
+    },
+    {
+      "event": "backup-started",
+      "utc": "2026-10-19T11:55:49.957105+00:00",
+      "monotonicNs": 368998984000000
+    },
+    {
+      "event": "backup-copied",
+      "utc": "2026-10-19T11:56:04.453703+00:00",
+      "monotonicNs": 369013484000000,
+      "fileCount": 2629
+    },
+    {
+      "event": "backup-manifest-hashed",
+      "utc": "2026-10-19T11:56:06.335017+00:00",
+      "monotonicNs": 369015359000000,
+      "fileCount": 2629
+    },
+    {
+      "event": "helper-launched",
+      "utc": "2026-10-19T11:56:06.672801+00:00",
+      "monotonicNs": 369015703000000
+    },
+    {
+      "event": "helper-backup-verified",
+      "utc": "2026-10-19T11:56:15.229624+00:00",
+      "monotonicNs": 369024250000000,
+      "fileCount": 2629
+    },
+    {
+      "event": "helper-ready-written",
+      "utc": "2026-10-19T11:56:15.229624+00:00",
+      "monotonicNs": 369024250000000
+    },
+    {
+      "event": "wait-for-editor",
+      "utc": "2026-10-19T11:56:15.229624+00:00",
+      "monotonicNs": 369024250000000
+    },
+    {
+      "event": "helper-ready",
+      "utc": "2026-10-19T11:56:15.278039+00:00",
+      "monotonicNs": 369024312000000
+    },
+    {
+      "event": "state",
+      "utc": "2026-10-19T11:56:15.278039+00:00",
+      "monotonicNs": 369024312000000,
+      "status": "installing",
+      "received": 106071955,
+      "total": 106071955
+    },
+    {
+      "event": "previous-editor-exited",
+      "utc": "2026-10-19T11:56:15.691220+00:00",
+      "monotonicNs": 369024718000000
+    },
+    {
+      "event": "installer-requested",
+      "utc": "2026-10-19T11:56:15.691220+00:00",
+      "monotonicNs": 369024718000000
+    },
+    {
+      "event": "installer-exited",
+      "utc": "2026-10-19T11:56:49.602564+00:00",
+      "monotonicNs": 369058625000000,
+      "exitCode": 0
+    },
+    {
+      "event": "result-recorded",
+      "utc": "2026-10-19T11:56:49.618412+00:00",
+      "monotonicNs": 369058640000000,
+      "status": "installed"
+    },
+    {
+      "event": "restart-requested",
+      "utc": "2026-10-19T11:56:49.618412+00:00",
+      "monotonicNs": 369058640000000
+    },
+    {
+      "event": "restart-dispatched",
+      "utc": "2026-10-19T11:56:49.650075+00:00",
+      "monotonicNs": 369058671000000
+    }
+  ],
+  "installerExitedEvents": 1,
+  "installerExitCode": 0,
+  "scope": "Actual backend audit, distinct from sampled UI observation. Verification events do not mean the UI verifying state was seen."
+}

@@ -2,6 +2,8 @@
 
 ## v1.4.26 · Figure Studio 0.1.26
 
+2026-10-19 dated supplement: final-r2 Setup installation, frozen self-test, three focused checks, normal reinstall/uninstall and final query passed against its own bytes. Genuine official 25 → 26 single download/install and exact automatic restoration passed; uninstalling the isolated acceptance-test copy remains unexecuted and finalAcceptance remains false. See the [dated evidence](docs/qa/photo-correction/windows-0.1.26/README.md). Keep all original performance batches and retained failures; add dated evidence without replacing the initial eight assets or tag.
+
 Prepared on 2026-10-19. Add reversible local photo correction and global display controls while retaining the original image, editable canvas preview and one-step undo. See the [photo workflow](docs/figure-studio-photo-correction.md), [release scope](docs/release-notes-v1.4.26.md) and [complete acceptance record](docs/figure-studio-photo-correction-validation.md).
 
 - Add local edge-based outline suggestions, editable four-corner crop/perspective previews, output aspect/size controls and retained original/corrected versions. Full output uses the original raster and records geometry, interpolation and encoded-byte hashes.

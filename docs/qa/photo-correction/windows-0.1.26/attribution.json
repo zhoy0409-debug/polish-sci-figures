@@ -1,0 +1,16 @@
+{
+  "schema": "figure-studio-official26-media-attribution/1",
+  "sourceFixture": "scripts/fixtures/real-image-sources.json",
+  "sourceFixtureSha256": "28e80194bb6ca7269ef5a9d189af97708db14fc9e71f258d3406b4191da3ef68",
+  "he": {
+    "id": "he",
+    "modality": "H&E",
+    "file": "skin.jpg",
+    "url": "https://gitlab.com/scikit-image/data/-/raw/2cdc5ce89b334d28f06a58c9f0ca21aa6992a5ba/Normal_Epidermis_and_Dermis_with_Intradermal_Nevus_10x.JPG",
+    "sha256": "8759fe080509712163453f4b17106582b8513e73b0788d80160abf840e272075",
+    "license": "Public domain dedication by author Kilbad",
+    "credit": "Kilbad, distributed by scikit-image",
+    "source": "https://scikit-image.org/docs/0.25.x/api/skimage.data.html#skimage.data.skin"
+  },
+  "iris": "Existing public Iris scientific fixture; retain its existing project/source attribution. No new external lookup or citation invented."
+}

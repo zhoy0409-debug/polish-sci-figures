@@ -1,5 +1,7 @@
 # Figure Studio 使用入门
 
+Windows安装版实操及官方0.1.25→0.1.26编辑器内升级已通过所列检查；[验收记录](../docs/qa/photo-correction/windows-0.1.26/README.md)列明数据保护、性能结果和未完成事项。
+
 更新窗口保留简约猫狗，用透明空心心与翡翠水面呈现下载字节进度；下载完成后仍需等待完整性校验，再保存并确认安装。外观遵循角色动画和系统降动效设置。[本版说明](../docs/release-notes-v1.4.26.md#中文)与[0.1.23 历史验收](../docs/release-notes-v1.4.23.md#中文)分别记录版本范围。
 
 0.1.26 提供本机照片边界校正、标尺拉正和全局校色。操作、容量及本轮实际验收见[照片指南](../docs/figure-studio-photo-correction.md)与[验收报告](../docs/figure-studio-photo-correction-validation.md)。

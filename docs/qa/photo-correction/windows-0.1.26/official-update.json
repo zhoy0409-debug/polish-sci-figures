@@ -1,0 +1,344 @@
+{
+  "schema": "figure-studio-photo-correction-official-update/1",
+  "version": "0.1.26",
+  "suiteVersion": "v1.4.26",
+  "status": "ACTUAL_OFFICIAL_UPGRADE_PASS_NORMAL_CLEANUP_NOT_EXECUTED",
+  "actualOfficialUpgradePassed": true,
+  "productFunctionalScopePassed": true,
+  "productFunctionalScope": "Actual single official25-to26 flow and selected scientific/editing restoration checks; not every product operation or independent detection accuracy. Earlier photo and performance matrices keep their original batches.",
+  "finalAcceptance": false,
+  "createdAtUTC": "2026-10-19T12:05:43.377525+00:00",
+  "publication": {
+    "tree": "7298e93c4fbdbf66cda3cec9530599daa0707c80",
+    "publicBindingSha256": "cf130f9c01035186db92f2b59b399101b0cf764e8442d7fb8d81cff25b394161",
+    "tag": "v1.4.26",
+    "setupSha256": "de0bb5591802cfd59b3974b72c9c9d64607b9149ac04acf91756434da8be73bf",
+    "releaseId": 417215091,
+    "commit": "3256d85e46477d061336b00e8afff75cceb5fa45",
+    "publishedAt": "2026-10-19T11:53:52Z",
+    "latestVerified": true
+  },
+  "officialSourceVersion": "0.1.25",
+  "officialTargetVersion": "0.1.26",
+  "downloadCommands": 1,
+  "installCommands": 1,
+  "verifiedDownloadedPackage": {
+    "bytes": 106071955,
+    "sha256": "de0bb5591802cfd59b3974b72c9c9d64607b9149ac04acf91756434da8be73bf"
+  },
+  "automaticProjectRestore": true,
+  "completeFiveContainersExact": true,
+  "settingsBytesExact": true,
+  "actualSavedFiles": [
+    {
+      "file": "after-update-theme-carbon.json",
+      "bytes": 1189526,
+      "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653"
+    },
+    {
+      "file": "after-update-theme-pearl.json",
+      "bytes": 1189526,
+      "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653"
+    },
+    {
+      "file": "after-update-theme-restored.json",
+      "bytes": 1189526,
+      "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653"
+    },
+    {
+      "file": "before-update-theme-carbon.json",
+      "bytes": 1189526,
+      "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653"
+    },
+    {
+      "file": "before-update-theme-pearl.json",
+      "bytes": 1189526,
+      "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653"
+    },
+    {
+      "file": "before-update-theme-restored.json",
+      "bytes": 1189526,
+      "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653"
+    },
+    {
+      "file": "project-after-reopen.json",
+      "bytes": 1189526,
+      "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653"
+    },
+    {
+      "file": "project-before-update.json",
+      "bytes": 1189526,
+      "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653"
+    }
+  ],
+  "scientific": {
+    "observations": 150,
+    "originalSvgVariants": 12,
+    "panels": 2,
+    "historyStates": 5,
+    "historyIndex": 4,
+    "checkpoints": 1,
+    "dataDrafts": 1,
+    "embeddedRasterSha256": "8759fe080509712163453f4b17106582b8513e73b0788d80160abf840e272075",
+    "embeddedRasterReferences": 1
+  },
+  "themeChecks": [
+    {
+      "phase": "before-update",
+      "theme": "carbon",
+      "completeProjectExact": true,
+      "historyExact": true,
+      "checkpointsExact": true,
+      "dataDraftsExact": true,
+      "editableStateExact": true
+    },
+    {
+      "phase": "before-update",
+      "theme": "pearl",
+      "completeProjectExact": true,
+      "historyExact": true,
+      "checkpointsExact": true,
+      "dataDraftsExact": true,
+      "editableStateExact": true
+    },
+    {
+      "phase": "after-update",
+      "theme": "carbon",
+      "completeProjectExact": true,
+      "historyExact": true,
+      "checkpointsExact": true,
+      "dataDraftsExact": true,
+      "editableStateExact": true
+    },
+    {
+      "phase": "after-update",
+      "theme": "pearl",
+      "completeProjectExact": true,
+      "historyExact": true,
+      "checkpointsExact": true,
+      "dataDraftsExact": true,
+      "editableStateExact": true
+    }
+  ],
+  "rollback": {
+    "oldApplicationAndUninstallerFileCount": 2629,
+    "allOriginalHashesExact": true,
+    "differentFromTargetApplicationFiles": 2655
+  },
+  "targetApplication": {
+    "files": 2655,
+    "uiAssets": 85,
+    "everyExpectedFileExact": true,
+    "manifestFile": "target-package-manifest.json",
+    "manifestSha256": "bd238b38344412957c6405541c84263b61bc4e06873febed6e91459b4d010335"
+  },
+  "helperClosure": {
+    "automationChromeRootsRemaining": 0,
+    "ownedProfileNativeHelpersRemaining": 0,
+    "helperExitWasNatural": true,
+    "protectedNativeCount": 0,
+    "protectedBrowserRootCount": 2,
+    "protectedTuplesAndBinaryHashesExact": true
+  },
+  "progress": {
+    "allUiSamples": 24,
+    "allPassiveStatusSamples": 184,
+    "downloadingUiSamples": 20,
+    "downloadingPassiveSamples": 180,
+    "downloadBytesMonotonicInBothObservedStreams": true,
+    "uiObservedStages": [
+      "checking",
+      "downloading",
+      "ready",
+      "preparing",
+      "installing"
+    ],
+    "uiUnobservedStages": [
+      "verifying"
+    ],
+    "backendVerificationEvidenceSeparate": true
+  },
+  "normalCleanup": {
+    "executed": false,
+    "passed": null,
+    "status": "NOT_EXECUTED_AUTO_REVIEW_REJECTED",
+    "reason": "Automatic approval review rejected closing/uninstalling the isolated acceptance-test copy before process creation; explicit user confirmation remains pending.",
+    "risk": "The isolated upgraded acceptance-test copy and data remain in place. No post-uninstall four-view or whole-profile result exists for this copy yet. The actual upgrade and data-protection checks already passed.",
+    "scope": "The post-upgrade normal cleanup command was rejected before process creation. No cleanup was run, no app was stopped or uninstalled by that attempt. The earlier final-r2 installer lifecycle remains a separate completed check.",
+    "remainingScope": "Closing and uninstalling the isolated acceptance-test copy, then its post-uninstall four-view and full-profile preservation checks only.",
+    "productUpdateFailure": false
+  },
+  "earlierFinalInstallerChecks": {
+    "passed": true,
+    "applicationFiles": 2655,
+    "focusedChecks": 3,
+    "focusedCheckpointDraftEmpty": true,
+    "evidenceSha256": "097729efa97dd2f98f378e435a20d0cb9667bc838de0d1b6913b411c0c9c09e5"
+  },
+  "media": {
+    "originalScreenshots": [
+      {
+        "file": "before-real-download.png",
+        "bytes": 218637,
+        "sha256": "d305be2ca2bb0f02dd9cb8b0d923b532779df4826b0bfc3a0b0cd983331955f6"
+      },
+      {
+        "file": "real-package-verified-ready.png",
+        "bytes": 196904,
+        "sha256": "b7c7088c4729ea6839a77a4a36e0607bab70c73e30d337e6a864b9f2f86ff6d8"
+      },
+      {
+        "file": "real-updated-editor.png",
+        "bytes": 277011,
+        "sha256": "c17c4234a79ee5b95cf83a4658e1c97419cc7ca9ec48f2b44ee6ec7415b36802"
+      }
+    ],
+    "originalVideo": {
+      "file": "page@fe2d87b0176b57846b5c8d9e540cbc88.webm",
+      "bytes": 8545115,
+      "sha256": "5823806d12c2eaa21666585c9e06e8521380a4dfbbeb5f60da719f130c64136a"
+    },
+    "durationSeconds": 114.64,
+    "sampleTimesSeconds": [
+      2,
+      7.5,
+      10,
+      14,
+      18,
+      23,
+      28,
+      31,
+      39,
+      62,
+      100,
+      113
+    ],
+    "contactSheet": {
+      "file": "contact-sheet-12-samples.png",
+      "bytes": 1048183,
+      "sha256": "567828e1bef1ca39fc7fc6e008ace11752a61abc116b7b10ade2b98ead04768e"
+    },
+    "fullMovieViewed": false,
+    "rootThreeStillsReviewed": true,
+    "rootContactSheetReview": "Root reported actual review of the12-sample contact sheet; not a full-video review.",
+    "videoDistribution": "Original video only in independent dated Postrelease-QA attachment, not the Git repository."
+  },
+  "attribution": {
+    "schema": "figure-studio-official26-media-attribution/1",
+    "sourceFixture": "scripts/fixtures/real-image-sources.json",
+    "sourceFixtureSha256": "28e80194bb6ca7269ef5a9d189af97708db14fc9e71f258d3406b4191da3ef68",
+    "he": {
+      "id": "he",
+      "modality": "H&E",
+      "file": "skin.jpg",
+      "url": "https://gitlab.com/scikit-image/data/-/raw/2cdc5ce89b334d28f06a58c9f0ca21aa6992a5ba/Normal_Epidermis_and_Dermis_with_Intradermal_Nevus_10x.JPG",
+      "sha256": "8759fe080509712163453f4b17106582b8513e73b0788d80160abf840e272075",
+      "license": "Public domain dedication by author Kilbad",
+      "credit": "Kilbad, distributed by scikit-image",
+      "source": "https://scikit-image.org/docs/0.25.x/api/skimage.data.html#skimage.data.skin"
+    },
+    "iris": "Existing public Iris scientific fixture; retain its existing project/source attribution. No new external lookup or citation invented."
+  },
+  "evidence": [
+    {
+      "role": "actual-strict-result",
+      "file": "real-update-result.json",
+      "bytes": 31423,
+      "sha256": "4675c7241efb2bb301cbf403aa053d2b1dcb10f9017df3036531c6c985c246dd"
+    },
+    {
+      "role": "independent-eight-save-scientific-verification",
+      "file": "verified-actual-result.json",
+      "bytes": 7705,
+      "sha256": "0be7c3a53f6f3d6bc5812173762b304f0fb9d0b265e2e913f8f31070c4ca15f3"
+    },
+    {
+      "role": "independent-input-verification",
+      "file": "verified-input.json",
+      "bytes": 730,
+      "sha256": "c6c70582c4ace047e90c9662560105ea37749a75ae72a4d2d3d58c6d1d156f28"
+    },
+    {
+      "role": "actual-native-verify26",
+      "file": "Verify26.completed.json",
+      "bytes": 530450,
+      "sha256": "000cfa930fdc83c54bb1b3eb8326ba9493aaba62d6380ba35d9d212ef8156638"
+    },
+    {
+      "role": "actual-runstrict-phase",
+      "file": "RunStrict.completed.json",
+      "bytes": 1494,
+      "sha256": "b5434694a53483a3f790394e122968908d9bcc05b257fa89ec4276f837205d36"
+    },
+    {
+      "role": "actual-helper-browser-closure",
+      "file": "after-verify26-browser-helper-closure-readonly.json",
+      "bytes": 528,
+      "sha256": "58885c251227638972ea26bcf5a8314cb37040defc68067e832f1109ff91ae9a"
+    },
+    {
+      "role": "final-r2-installer-own-lifecycle",
+      "file": "final-windows-acceptance.public.json",
+      "bytes": 17005,
+      "sha256": "097729efa97dd2f98f378e435a20d0cb9667bc838de0d1b6913b411c0c9c09e5"
+    },
+    {
+      "role": "normal-cleanup-rejected-before-process-creation",
+      "file": "normal-cleanup-auto-review-rejection-r1.json",
+      "bytes": 1162,
+      "sha256": "4454823a506cf1e299cff8a344fdff33d5705b5801512b40c2a78a894808b8f6"
+    },
+    {
+      "role": "independent-safe-summary-r2",
+      "file": "safe-summary-official25to26-r2.json",
+      "bytes": 7390,
+      "sha256": "b18291667655801bc6e45e520241a90e2f7cb8e9d77aba8c540abcdc6dcd0a6b"
+    },
+    {
+      "role": "root-three-original-stills-review",
+      "file": "actual-three-stills.json",
+      "bytes": 1559,
+      "sha256": "a8963c4f35288a120cbf693963af066c4ff6a8c47ba84e620e5bcb52da2c9d3d"
+    },
+    {
+      "role": "sampled-original-video-visual-review",
+      "file": "visual-review.json",
+      "bytes": 4473,
+      "sha256": "9adb6851a60122cc6ef044b6d045b59c56a15d5de8f084cee81e6eaef393a4a3"
+    },
+    {
+      "role": "original-video-sample-provenance",
+      "file": "samples.json",
+      "bytes": 7040,
+      "sha256": "6bcaad17f06c0478e57d7cde21015b6b5dadbb8bdc79829542a9b0ec5451f57a"
+    },
+    {
+      "role": "existing-public-fixture-attribution",
+      "file": "attribution.json",
+      "bytes": 889,
+      "sha256": "4cb4771d1f4f4efc20be6538ea88ac8deb6d9f0504058a68d39f4cf227e6f12f"
+    },
+    {
+      "role": "actual-timed-journal",
+      "file": "timed-events.jsonl",
+      "bytes": 96599,
+      "sha256": "f285cf03a08c0127010a416eea072e559e4eaa48287c950901b0fbfe1a8aa51b"
+    }
+  ],
+  "immutableInitialAssetsPolicy": "Never overwrite original eight assets, installer bytes or tag. Add separately dated same-version evidence only.",
+  "limits": [
+    "Actual local Windows host, not a clean VM.",
+    "Old25 frontend drives this25-to26 download; no26-to-future download claim.",
+    "UI verifying was not captured; no frame/state reconstructed.",
+    "No new native SendInput/IME or independent human-labelled detection accuracy.",
+    "Unsigned artifacts; optional dependencies and pdffonts boundaries retained.",
+    "All276 original performance operations and92 CPU windows remain; no general no-regression/speedup claim.",
+    "Private user photo, image derivatives, project/table/profile/trace are not distributed."
+  ],
+  "privacy": {
+    "privateLocalPathsCredentialsImagePixelsMeasurementsOrRawProjectsIncluded": false,
+    "packageManifestContainsOnlyRelativeNamesSizesAndHashes": true
+  },
+  "finalAcceptanceScope": "This flag also includes closing/uninstalling the isolated acceptance-test copy and checking preservation afterward. The actual official upgrade, selected functional checks and data protection across the upgrade passed; only that test-environment teardown remains unexecuted.",
+  "dataProtectionAcrossUpgradePassed": true
+}
