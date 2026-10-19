@@ -1,0 +1,1641 @@
+{
+  "schema": "figure-studio26-actual-update-progress-samples/1",
+  "ui": [
+    {
+      "at": "2026-10-19T11:55:20.902Z",
+      "elapsedMs": 7466.625,
+      "scene": "checking",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "true",
+      "ratio": "0",
+      "received": null,
+      "total": null,
+      "percent": null,
+      "caption": "Checking official releases…",
+      "summary": "Checking official releases…"
+    },
+    {
+      "at": "2026-10-19T11:55:21.977Z",
+      "elapsedMs": 8542.112,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0",
+      "received": 0,
+      "total": 106071955,
+      "percent": "0%",
+      "caption": "Downloading: 0.0 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:23.006Z",
+      "elapsedMs": 9571.353,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.0024713789804288984",
+      "received": 262144,
+      "total": 106071955,
+      "percent": "0%",
+      "caption": "Downloading: 0.26 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:23.972Z",
+      "elapsedMs": 10536.6807,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.05684171654986467",
+      "received": 6029312,
+      "total": 106071955,
+      "percent": "5%",
+      "caption": "Downloading: 6.03 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:24.985Z",
+      "elapsedMs": 11549.6486,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.10874067513887153",
+      "received": 11534336,
+      "total": 106071955,
+      "percent": "10%",
+      "caption": "Downloading: 11.53 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:26.012Z",
+      "elapsedMs": 12577.3987,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.1680537706691651",
+      "received": 17825792,
+      "total": 106071955,
+      "percent": "16%",
+      "caption": "Downloading: 17.83 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:27.031Z",
+      "elapsedMs": 13596.1861,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.21500997129731417",
+      "received": 22806528,
+      "total": 106071955,
+      "percent": "21%",
+      "caption": "Downloading: 22.81 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:28.055Z",
+      "elapsedMs": 14619.5973,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.26690892988632103",
+      "received": 28311552,
+      "total": 106071955,
+      "percent": "26%",
+      "caption": "Downloading: 28.31 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:29.012Z",
+      "elapsedMs": 15577.3953,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.316336509494899",
+      "received": 33554432,
+      "total": 106071955,
+      "percent": "31%",
+      "caption": "Downloading: 33.55 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:30.026Z",
+      "elapsedMs": 16591.3021,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.3682354680839059",
+      "received": 39059456,
+      "total": 106071955,
+      "percent": "36%",
+      "caption": "Downloading: 39.06 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:31.062Z",
+      "elapsedMs": 17627.4883,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.42260580565334166",
+      "received": 44826624,
+      "total": 106071955,
+      "percent": "42%",
+      "caption": "Downloading: 44.83 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:32.102Z",
+      "elapsedMs": 18667.2676,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.4720333852619196",
+      "received": 50069504,
+      "total": 106071955,
+      "percent": "47%",
+      "caption": "Downloading: 50.07 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:33.093Z",
+      "elapsedMs": 19657.6656,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.5313464807922131",
+      "received": 56360960,
+      "total": 106071955,
+      "percent": "53%",
+      "caption": "Downloading: 56.36 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:34.105Z",
+      "elapsedMs": 20670.225,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.5857168183616489",
+      "received": 62128128,
+      "total": 106071955,
+      "percent": "58%",
+      "caption": "Downloading: 62.13 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:35.138Z",
+      "elapsedMs": 21703.09,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.6400871559310847",
+      "received": 67895296,
+      "total": 106071955,
+      "percent": "64%",
+      "caption": "Downloading: 67.9 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:36.184Z",
+      "elapsedMs": 22749.1431,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.6944574935005204",
+      "received": 73662464,
+      "total": 106071955,
+      "percent": "69%",
+      "caption": "Downloading: 73.66 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:37.129Z",
+      "elapsedMs": 23693.5706,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.7463564520895274",
+      "received": 79167488,
+      "total": 106071955,
+      "percent": "74%",
+      "caption": "Downloading: 79.17 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:38.168Z",
+      "elapsedMs": 24732.6497,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.803198168639392",
+      "received": 85196800,
+      "total": 106071955,
+      "percent": "80%",
+      "caption": "Downloading: 85.2 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:39.176Z",
+      "elapsedMs": 25741.5301,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.8575685062088277",
+      "received": 90963968,
+      "total": 106071955,
+      "percent": "85%",
+      "caption": "Downloading: 90.96 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:40.185Z",
+      "elapsedMs": 26749.6466,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.9094674647978347",
+      "received": 96468992,
+      "total": 106071955,
+      "percent": "90%",
+      "caption": "Downloading: 96.47 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:41.237Z",
+      "elapsedMs": 27802.3523,
+      "scene": "downloading",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "0.9663091813476993",
+      "received": 102498304,
+      "total": 106071955,
+      "percent": "96%",
+      "caption": "Downloading: 102.5 / 106.07 MB",
+      "summary": "Downloading your update"
+    },
+    {
+      "at": "2026-10-19T11:55:42.244Z",
+      "elapsedMs": 28809.443,
+      "scene": "ready",
+      "motion": "still",
+      "animation": "on",
+      "indeterminate": "false",
+      "ratio": "1",
+      "received": 1,
+      "total": 1,
+      "percent": "100%",
+      "caption": "Update verified. Ready to install.",
+      "summary": "Ready when you are"
+    },
+    {
+      "at": "2026-10-19T11:55:49.625Z",
+      "elapsedMs": 36190.2716,
+      "scene": "preparing",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "true",
+      "ratio": "0",
+      "received": null,
+      "total": null,
+      "percent": null,
+      "caption": "Preserving the previous version…",
+      "summary": "Preparing to install"
+    },
+    {
+      "at": "2026-10-19T11:56:15.425Z",
+      "elapsedMs": 61989.6389,
+      "scene": "installing",
+      "motion": "working",
+      "animation": "on",
+      "indeterminate": "true",
+      "ratio": "0",
+      "received": null,
+      "total": null,
+      "percent": null,
+      "caption": "Closing the previous version and installing. The editor will reopen afterwards.",
+      "summary": "Installing. Back in a moment."
+    }
+  ],
+  "passiveStatus": [
+    {
+      "at": "2026-10-19T11:55:20.943Z",
+      "elapsedMs": 7508.3762,
+      "status": "checking",
+      "received": 0,
+      "total": 0
+    },
+    {
+      "at": "2026-10-19T11:55:21.875Z",
+      "elapsedMs": 8440.3087,
+      "status": "downloading",
+      "received": 0,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:23.005Z",
+      "elapsedMs": 9570.1443,
+      "status": "downloading",
+      "received": 524288,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:23.118Z",
+      "elapsedMs": 9683.5161,
+      "status": "downloading",
+      "received": 1310720,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:23.225Z",
+      "elapsedMs": 9790.1621,
+      "status": "downloading",
+      "received": 1835008,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:23.438Z",
+      "elapsedMs": 10002.9868,
+      "status": "downloading",
+      "received": 2883584,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:23.543Z",
+      "elapsedMs": 10107.7181,
+      "status": "downloading",
+      "received": 3407872,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:23.643Z",
+      "elapsedMs": 10208.4572,
+      "status": "downloading",
+      "received": 4194304,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:23.746Z",
+      "elapsedMs": 10311.1149,
+      "status": "downloading",
+      "received": 4718592,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:23.851Z",
+      "elapsedMs": 10416.0835,
+      "status": "downloading",
+      "received": 5242880,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:23.955Z",
+      "elapsedMs": 10519.9929,
+      "status": "downloading",
+      "received": 6029312,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:24.055Z",
+      "elapsedMs": 10619.8415,
+      "status": "downloading",
+      "received": 6553600,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:24.156Z",
+      "elapsedMs": 10721.0992,
+      "status": "downloading",
+      "received": 7340032,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:24.258Z",
+      "elapsedMs": 10823.5278,
+      "status": "downloading",
+      "received": 7864320,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:24.358Z",
+      "elapsedMs": 10922.7885,
+      "status": "downloading",
+      "received": 8388608,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:24.460Z",
+      "elapsedMs": 11024.7031,
+      "status": "downloading",
+      "received": 8912896,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:24.561Z",
+      "elapsedMs": 11126.0285,
+      "status": "downloading",
+      "received": 9699328,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:24.666Z",
+      "elapsedMs": 11230.7195,
+      "status": "downloading",
+      "received": 9961472,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:24.769Z",
+      "elapsedMs": 11334.2004,
+      "status": "downloading",
+      "received": 10223616,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:24.871Z",
+      "elapsedMs": 11436.2631,
+      "status": "downloading",
+      "received": 10485760,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:24.976Z",
+      "elapsedMs": 11540.6522,
+      "status": "downloading",
+      "received": 11796480,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:25.076Z",
+      "elapsedMs": 11640.8208,
+      "status": "downloading",
+      "received": 12320768,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:25.187Z",
+      "elapsedMs": 11751.6347,
+      "status": "downloading",
+      "received": 13107200,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:25.286Z",
+      "elapsedMs": 11851.0952,
+      "status": "downloading",
+      "received": 13631488,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:25.393Z",
+      "elapsedMs": 11957.7126,
+      "status": "downloading",
+      "received": 14417920,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:25.495Z",
+      "elapsedMs": 12060.2776,
+      "status": "downloading",
+      "received": 14942208,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:25.600Z",
+      "elapsedMs": 12165.1985,
+      "status": "downloading",
+      "received": 15728640,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:25.704Z",
+      "elapsedMs": 12269.2301,
+      "status": "downloading",
+      "received": 16515072,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:25.807Z",
+      "elapsedMs": 12371.9449,
+      "status": "downloading",
+      "received": 17039360,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:25.908Z",
+      "elapsedMs": 12472.7259,
+      "status": "downloading",
+      "received": 17563648,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:26.008Z",
+      "elapsedMs": 12573.1965,
+      "status": "downloading",
+      "received": 18087936,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:26.108Z",
+      "elapsedMs": 12673.4764,
+      "status": "downloading",
+      "received": 18612224,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:26.212Z",
+      "elapsedMs": 12777.1943,
+      "status": "downloading",
+      "received": 19136512,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:26.310Z",
+      "elapsedMs": 12875.4346,
+      "status": "downloading",
+      "received": 19660800,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:26.512Z",
+      "elapsedMs": 13076.9097,
+      "status": "downloading",
+      "received": 20447232,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:26.623Z",
+      "elapsedMs": 13188.2287,
+      "status": "downloading",
+      "received": 20971520,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:26.725Z",
+      "elapsedMs": 13290.5187,
+      "status": "downloading",
+      "received": 21495808,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:26.823Z",
+      "elapsedMs": 13388.2486,
+      "status": "downloading",
+      "received": 22020096,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:26.927Z",
+      "elapsedMs": 13491.7153,
+      "status": "downloading",
+      "received": 22806528,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:27.027Z",
+      "elapsedMs": 13592.3881,
+      "status": "downloading",
+      "received": 23068672,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:27.129Z",
+      "elapsedMs": 13694.0319,
+      "status": "downloading",
+      "received": 23855104,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:27.234Z",
+      "elapsedMs": 13798.6762,
+      "status": "downloading",
+      "received": 24379392,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:27.341Z",
+      "elapsedMs": 13906.1147,
+      "status": "downloading",
+      "received": 24641536,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:27.442Z",
+      "elapsedMs": 14007.3253,
+      "status": "downloading",
+      "received": 25165824,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:27.544Z",
+      "elapsedMs": 14108.8871,
+      "status": "downloading",
+      "received": 25690112,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:27.645Z",
+      "elapsedMs": 14209.9383,
+      "status": "downloading",
+      "received": 26214400,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:27.744Z",
+      "elapsedMs": 14308.9123,
+      "status": "downloading",
+      "received": 26738688,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:27.849Z",
+      "elapsedMs": 14414.2922,
+      "status": "downloading",
+      "received": 27525120,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:27.950Z",
+      "elapsedMs": 14514.6226,
+      "status": "downloading",
+      "received": 28049408,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:28.053Z",
+      "elapsedMs": 14617.9138,
+      "status": "downloading",
+      "received": 28573696,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:28.166Z",
+      "elapsedMs": 14730.777,
+      "status": "downloading",
+      "received": 29360128,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:28.277Z",
+      "elapsedMs": 14841.7675,
+      "status": "downloading",
+      "received": 29884416,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:28.381Z",
+      "elapsedMs": 14945.9224,
+      "status": "downloading",
+      "received": 30408704,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:28.480Z",
+      "elapsedMs": 15045.3322,
+      "status": "downloading",
+      "received": 30670848,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:28.581Z",
+      "elapsedMs": 15145.8858,
+      "status": "downloading",
+      "received": 31457280,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:28.684Z",
+      "elapsedMs": 15249.2487,
+      "status": "downloading",
+      "received": 31981568,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:28.784Z",
+      "elapsedMs": 15348.8964,
+      "status": "downloading",
+      "received": 32505856,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:28.893Z",
+      "elapsedMs": 15457.6442,
+      "status": "downloading",
+      "received": 33030144,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:28.992Z",
+      "elapsedMs": 15557.0357,
+      "status": "downloading",
+      "received": 33554432,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:29.094Z",
+      "elapsedMs": 15658.5809,
+      "status": "downloading",
+      "received": 34078720,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:29.194Z",
+      "elapsedMs": 15758.904,
+      "status": "downloading",
+      "received": 34603008,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:29.296Z",
+      "elapsedMs": 15860.8587,
+      "status": "downloading",
+      "received": 35389440,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:29.396Z",
+      "elapsedMs": 15961.527,
+      "status": "downloading",
+      "received": 35913728,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:29.499Z",
+      "elapsedMs": 16063.9157,
+      "status": "downloading",
+      "received": 36175872,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:29.601Z",
+      "elapsedMs": 16166.4438,
+      "status": "downloading",
+      "received": 36700160,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:29.704Z",
+      "elapsedMs": 16268.9947,
+      "status": "downloading",
+      "received": 37224448,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:29.808Z",
+      "elapsedMs": 16373.3777,
+      "status": "downloading",
+      "received": 38010880,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:29.909Z",
+      "elapsedMs": 16474.2612,
+      "status": "downloading",
+      "received": 38535168,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:30.023Z",
+      "elapsedMs": 16587.7275,
+      "status": "downloading",
+      "received": 39059456,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:30.133Z",
+      "elapsedMs": 16698.2364,
+      "status": "downloading",
+      "received": 39845888,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:30.240Z",
+      "elapsedMs": 16804.9653,
+      "status": "downloading",
+      "received": 40370176,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:30.342Z",
+      "elapsedMs": 16906.6849,
+      "status": "downloading",
+      "received": 40894464,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:30.442Z",
+      "elapsedMs": 17007.4421,
+      "status": "downloading",
+      "received": 41680896,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:30.545Z",
+      "elapsedMs": 17110.0733,
+      "status": "downloading",
+      "received": 42205184,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:30.650Z",
+      "elapsedMs": 17215.4343,
+      "status": "downloading",
+      "received": 42729472,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:30.750Z",
+      "elapsedMs": 17315.0673,
+      "status": "downloading",
+      "received": 43253760,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:30.851Z",
+      "elapsedMs": 17415.6998,
+      "status": "downloading",
+      "received": 44040192,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:30.953Z",
+      "elapsedMs": 17518.0392,
+      "status": "downloading",
+      "received": 44564480,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:31.054Z",
+      "elapsedMs": 17619.2272,
+      "status": "downloading",
+      "received": 45088768,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:31.167Z",
+      "elapsedMs": 17731.9595,
+      "status": "downloading",
+      "received": 45350912,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:31.267Z",
+      "elapsedMs": 17831.9082,
+      "status": "downloading",
+      "received": 45875200,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:31.367Z",
+      "elapsedMs": 17931.6088,
+      "status": "downloading",
+      "received": 46399488,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:31.470Z",
+      "elapsedMs": 18035.5342,
+      "status": "downloading",
+      "received": 46923776,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:31.576Z",
+      "elapsedMs": 18140.5545,
+      "status": "downloading",
+      "received": 47710208,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:31.683Z",
+      "elapsedMs": 18248.1131,
+      "status": "downloading",
+      "received": 48234496,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:31.788Z",
+      "elapsedMs": 18353.0694,
+      "status": "downloading",
+      "received": 48758784,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:31.890Z",
+      "elapsedMs": 18455.0277,
+      "status": "downloading",
+      "received": 49283072,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:31.991Z",
+      "elapsedMs": 18556.1914,
+      "status": "downloading",
+      "received": 50069504,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:32.093Z",
+      "elapsedMs": 18657.6098,
+      "status": "downloading",
+      "received": 50593792,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:32.193Z",
+      "elapsedMs": 18758.1247,
+      "status": "downloading",
+      "received": 51118080,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:32.297Z",
+      "elapsedMs": 18862.5348,
+      "status": "downloading",
+      "received": 51904512,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:32.411Z",
+      "elapsedMs": 18976.2413,
+      "status": "downloading",
+      "received": 52428800,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:32.518Z",
+      "elapsedMs": 19082.6983,
+      "status": "downloading",
+      "received": 52953088,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:32.623Z",
+      "elapsedMs": 19188.4056,
+      "status": "downloading",
+      "received": 53739520,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:32.728Z",
+      "elapsedMs": 19292.9503,
+      "status": "downloading",
+      "received": 54263808,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:32.827Z",
+      "elapsedMs": 19392.4982,
+      "status": "downloading",
+      "received": 55050240,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:32.932Z",
+      "elapsedMs": 19496.5445,
+      "status": "downloading",
+      "received": 55574528,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:33.032Z",
+      "elapsedMs": 19596.8117,
+      "status": "downloading",
+      "received": 56360960,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:33.135Z",
+      "elapsedMs": 19700.0254,
+      "status": "downloading",
+      "received": 56885248,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:33.242Z",
+      "elapsedMs": 19807.2058,
+      "status": "downloading",
+      "received": 57671680,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:33.343Z",
+      "elapsedMs": 19907.779,
+      "status": "downloading",
+      "received": 58195968,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:33.465Z",
+      "elapsedMs": 20029.9636,
+      "status": "downloading",
+      "received": 58982400,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:33.565Z",
+      "elapsedMs": 20129.6391,
+      "status": "downloading",
+      "received": 59506688,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:33.665Z",
+      "elapsedMs": 20230.4269,
+      "status": "downloading",
+      "received": 60030976,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:33.765Z",
+      "elapsedMs": 20330.3758,
+      "status": "downloading",
+      "received": 60555264,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:33.876Z",
+      "elapsedMs": 20441.5329,
+      "status": "downloading",
+      "received": 61079552,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:33.985Z",
+      "elapsedMs": 20549.6708,
+      "status": "downloading",
+      "received": 61603840,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:34.093Z",
+      "elapsedMs": 20658.0498,
+      "status": "downloading",
+      "received": 62390272,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:34.193Z",
+      "elapsedMs": 20757.9741,
+      "status": "downloading",
+      "received": 62914560,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:34.293Z",
+      "elapsedMs": 20858.1126,
+      "status": "downloading",
+      "received": 63438848,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:34.393Z",
+      "elapsedMs": 20957.6546,
+      "status": "downloading",
+      "received": 63963136,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:34.501Z",
+      "elapsedMs": 21066.0501,
+      "status": "downloading",
+      "received": 64749568,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:34.610Z",
+      "elapsedMs": 21174.9343,
+      "status": "downloading",
+      "received": 65273856,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:34.715Z",
+      "elapsedMs": 21279.7859,
+      "status": "downloading",
+      "received": 65798144,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:34.816Z",
+      "elapsedMs": 21381.2468,
+      "status": "downloading",
+      "received": 66584576,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:34.917Z",
+      "elapsedMs": 21481.7689,
+      "status": "downloading",
+      "received": 67108864,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:35.023Z",
+      "elapsedMs": 21588.0021,
+      "status": "downloading",
+      "received": 67633152,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:35.132Z",
+      "elapsedMs": 21697.488,
+      "status": "downloading",
+      "received": 68419584,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:35.238Z",
+      "elapsedMs": 21802.6792,
+      "status": "downloading",
+      "received": 68943872,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:35.335Z",
+      "elapsedMs": 21900.0899,
+      "status": "downloading",
+      "received": 69468160,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:35.443Z",
+      "elapsedMs": 22007.9936,
+      "status": "downloading",
+      "received": 70254592,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:35.550Z",
+      "elapsedMs": 22115.2462,
+      "status": "downloading",
+      "received": 70778880,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:35.658Z",
+      "elapsedMs": 22223.3491,
+      "status": "downloading",
+      "received": 71565312,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:35.759Z",
+      "elapsedMs": 22324.0203,
+      "status": "downloading",
+      "received": 72089600,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:35.868Z",
+      "elapsedMs": 22433.256,
+      "status": "downloading",
+      "received": 72876032,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:35.969Z",
+      "elapsedMs": 22533.5524,
+      "status": "downloading",
+      "received": 73400320,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:36.076Z",
+      "elapsedMs": 22641.1085,
+      "status": "downloading",
+      "received": 73662464,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:36.177Z",
+      "elapsedMs": 22741.54,
+      "status": "downloading",
+      "received": 74186752,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:36.278Z",
+      "elapsedMs": 22843.3943,
+      "status": "downloading",
+      "received": 74448896,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:36.384Z",
+      "elapsedMs": 22948.5509,
+      "status": "downloading",
+      "received": 74973184,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:36.491Z",
+      "elapsedMs": 23055.7914,
+      "status": "downloading",
+      "received": 75497472,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:36.592Z",
+      "elapsedMs": 23156.831,
+      "status": "downloading",
+      "received": 76021760,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:36.692Z",
+      "elapsedMs": 23257.0117,
+      "status": "downloading",
+      "received": 76808192,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:36.794Z",
+      "elapsedMs": 23358.56,
+      "status": "downloading",
+      "received": 77332480,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:36.901Z",
+      "elapsedMs": 23465.9204,
+      "status": "downloading",
+      "received": 78118912,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:37.000Z",
+      "elapsedMs": 23565.2426,
+      "status": "downloading",
+      "received": 78643200,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:37.113Z",
+      "elapsedMs": 23678.517,
+      "status": "downloading",
+      "received": 79167488,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:37.201Z",
+      "elapsedMs": 23766.3849,
+      "status": "downloading",
+      "received": 79953920,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:37.311Z",
+      "elapsedMs": 23876.3757,
+      "status": "downloading",
+      "received": 80478208,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:37.412Z",
+      "elapsedMs": 23976.6111,
+      "status": "downloading",
+      "received": 81002496,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:37.516Z",
+      "elapsedMs": 24081.3328,
+      "status": "downloading",
+      "received": 81788928,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:37.618Z",
+      "elapsedMs": 24182.669,
+      "status": "downloading",
+      "received": 82313216,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:37.718Z",
+      "elapsedMs": 24283.0632,
+      "status": "downloading",
+      "received": 82837504,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:37.823Z",
+      "elapsedMs": 24388.0067,
+      "status": "downloading",
+      "received": 83623936,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:37.926Z",
+      "elapsedMs": 24490.6519,
+      "status": "downloading",
+      "received": 84148224,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:38.025Z",
+      "elapsedMs": 24589.9607,
+      "status": "downloading",
+      "received": 84672512,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:38.128Z",
+      "elapsedMs": 24692.6721,
+      "status": "downloading",
+      "received": 85196800,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:38.235Z",
+      "elapsedMs": 24799.798,
+      "status": "downloading",
+      "received": 85983232,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:38.344Z",
+      "elapsedMs": 24908.5925,
+      "status": "downloading",
+      "received": 86507520,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:38.441Z",
+      "elapsedMs": 25006.4303,
+      "status": "downloading",
+      "received": 87031808,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:38.549Z",
+      "elapsedMs": 25114.1304,
+      "status": "downloading",
+      "received": 87818240,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:38.650Z",
+      "elapsedMs": 25214.6626,
+      "status": "downloading",
+      "received": 88342528,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:38.750Z",
+      "elapsedMs": 25315.4674,
+      "status": "downloading",
+      "received": 88866816,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:38.851Z",
+      "elapsedMs": 25416.2258,
+      "status": "downloading",
+      "received": 89653248,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:38.952Z",
+      "elapsedMs": 25516.8291,
+      "status": "downloading",
+      "received": 89915392,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:39.056Z",
+      "elapsedMs": 25621.2771,
+      "status": "downloading",
+      "received": 90439680,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:39.157Z",
+      "elapsedMs": 25722.2307,
+      "status": "downloading",
+      "received": 90963968,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:39.267Z",
+      "elapsedMs": 25831.9529,
+      "status": "downloading",
+      "received": 91488256,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:39.367Z",
+      "elapsedMs": 25931.6648,
+      "status": "downloading",
+      "received": 92012544,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:39.475Z",
+      "elapsedMs": 26040.2843,
+      "status": "downloading",
+      "received": 92798976,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:39.583Z",
+      "elapsedMs": 26147.6848,
+      "status": "downloading",
+      "received": 93323264,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:39.683Z",
+      "elapsedMs": 26247.7081,
+      "status": "downloading",
+      "received": 93847552,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:39.789Z",
+      "elapsedMs": 26353.7595,
+      "status": "downloading",
+      "received": 94633984,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:39.891Z",
+      "elapsedMs": 26456.2092,
+      "status": "downloading",
+      "received": 95158272,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:39.990Z",
+      "elapsedMs": 26555.4336,
+      "status": "downloading",
+      "received": 95944704,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:40.094Z",
+      "elapsedMs": 26658.9111,
+      "status": "downloading",
+      "received": 96206848,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:40.195Z",
+      "elapsedMs": 26759.8337,
+      "status": "downloading",
+      "received": 96731136,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:40.298Z",
+      "elapsedMs": 26863.2846,
+      "status": "downloading",
+      "received": 97517568,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:40.402Z",
+      "elapsedMs": 26966.9699,
+      "status": "downloading",
+      "received": 98041856,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:40.505Z",
+      "elapsedMs": 27070.1166,
+      "status": "downloading",
+      "received": 98566144,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:40.708Z",
+      "elapsedMs": 27273.2358,
+      "status": "downloading",
+      "received": 99614720,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:40.809Z",
+      "elapsedMs": 27373.9037,
+      "status": "downloading",
+      "received": 100401152,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:40.908Z",
+      "elapsedMs": 27473.008,
+      "status": "downloading",
+      "received": 100925440,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:41.015Z",
+      "elapsedMs": 27579.928,
+      "status": "downloading",
+      "received": 101449728,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:41.128Z",
+      "elapsedMs": 27692.8017,
+      "status": "downloading",
+      "received": 102236160,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:41.226Z",
+      "elapsedMs": 27790.8655,
+      "status": "downloading",
+      "received": 102760448,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:41.327Z",
+      "elapsedMs": 27892.3138,
+      "status": "downloading",
+      "received": 103284736,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:41.431Z",
+      "elapsedMs": 27996.1733,
+      "status": "downloading",
+      "received": 104071168,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:41.527Z",
+      "elapsedMs": 28091.8774,
+      "status": "downloading",
+      "received": 104595456,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:41.626Z",
+      "elapsedMs": 28191.4951,
+      "status": "downloading",
+      "received": 105381888,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:41.734Z",
+      "elapsedMs": 28298.9069,
+      "status": "downloading",
+      "received": 105906176,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:41.833Z",
+      "elapsedMs": 28398.243,
+      "status": "ready",
+      "received": 106071955,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:55:49.614Z",
+      "elapsedMs": 36179.5319,
+      "status": "preparing",
+      "received": 106071955,
+      "total": 106071955
+    },
+    {
+      "at": "2026-10-19T11:56:15.303Z",
+      "elapsedMs": 61868.0664,
+      "status": "installing",
+      "received": 106071955,
+      "total": 106071955
+    }
+  ],
+  "downloadUiSampleCount": 20,
+  "downloadPassiveSampleCount": 180,
+  "downloadUiBytesMonotonic": true,
+  "downloadPassiveBytesMonotonic": true,
+  "actualTotalBytes": 106071955,
+  "uiUnobservedStages": [
+    "verifying"
+  ],
+  "readyUiSemanticNormalization": "UI ready uses normalized1/1 for semantic completion; it is not1 byte of the actual106071955-byte download. Monotonic checks apply to downloading samples only.",
+  "scope": "Every captured UI and passive-status sample retained. These sampled records do not establish every transient state or frame."
+}

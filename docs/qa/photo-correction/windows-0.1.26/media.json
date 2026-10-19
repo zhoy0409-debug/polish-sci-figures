@@ -1,0 +1,137 @@
+{
+  "schema": "figure-studio26-public-official-media/1",
+  "files": [
+    {
+      "file": "media/before-real-download.png",
+      "bytes": 218637,
+      "sha256": "d305be2ca2bb0f02dd9cb8b0d923b532779df4826b0bfc3a0b0cd983331955f6",
+      "inGit": true,
+      "role": "Original actual-update screenshot"
+    },
+    {
+      "file": "media/real-package-verified-ready.png",
+      "bytes": 196904,
+      "sha256": "b7c7088c4729ea6839a77a4a36e0607bab70c73e30d337e6a864b9f2f86ff6d8",
+      "inGit": true,
+      "role": "Original actual-update screenshot"
+    },
+    {
+      "file": "media/real-updated-editor.png",
+      "bytes": 277011,
+      "sha256": "c17c4234a79ee5b95cf83a4658e1c97419cc7ca9ec48f2b44ee6ec7415b36802",
+      "inGit": true,
+      "role": "Original actual-update screenshot"
+    },
+    {
+      "file": "media/contact-sheet-12-samples.png",
+      "bytes": 1048183,
+      "sha256": "567828e1bef1ca39fc7fc6e008ace11752a61abc116b7b10ade2b98ead04768e",
+      "inGit": true,
+      "role": "Derived12-frame contact sheet"
+    }
+  ],
+  "video": {
+    "file": "media/official25-to26-original.webm",
+    "bytes": 8545115,
+    "sha256": "5823806d12c2eaa21666585c9e06e8521380a4dfbbeb5f60da719f130c64136a",
+    "inGit": false,
+    "distribution": "Only the separate same-version Postrelease-QA attachment; original video bytes unchanged",
+    "durationSeconds": 114.64
+  },
+  "review": {
+    "originalScreenshotsViewed": 3,
+    "contactSheetSamplesViewed": 12,
+    "fullResolutionVideoFramesViewedSeconds": [
+      14,
+      18,
+      23
+    ],
+    "sampleTimesRequestedSeconds": [
+      2,
+      7.5,
+      10,
+      14,
+      18,
+      23,
+      28,
+      31,
+      39,
+      62,
+      100,
+      113
+    ],
+    "fullMovieViewed": false,
+    "rootOriginalStillsReceiptFile": "root-still-review.json",
+    "rootOriginalStillsReceiptSha256": "12231724bb72fd6d42b5cd54284090fdba96ae45b3f27cb5dceb9de8cee47f33",
+    "sampledReviewFile": "sampled-media-review.json",
+    "sampledReviewSha256": "9adb6851a60122cc6ef044b6d045b59c56a15d5de8f084cee81e6eaef393a4a3",
+    "rootContactSheetReviewReported": true,
+    "wholeMovieOrOcrPrivacyCertification": false,
+    "rootOriginalStillsRawReceiptSha256": "a8963c4f35288a120cbf693963af066c4ff6a8c47ba84e620e5bcb52da2c9d3d",
+    "rootOriginalStillsDistributionTransform": "CRLF-to-LF Git text normalization; every JSON value is unchanged. The raw original receipt remains independently hashed in official-update.json."
+  },
+  "sampleFrames": [
+    {
+      "requestedVideoSeconds": 2,
+      "sha256": "0c166e3a45d2e7abbef6b0d0661d55643c5e242d808a85279f3fecffa432d522",
+      "bytes": 665489
+    },
+    {
+      "requestedVideoSeconds": 7.5,
+      "sha256": "ce1214d709ba56ca6804f6a6cea7d52d6a22ae65fca51c59d7ed4e8e0a6a3956",
+      "bytes": 660253
+    },
+    {
+      "requestedVideoSeconds": 10,
+      "sha256": "82d7b19d84fc3670b1a7f732a427e12f74d03dde63e04b09f62639057e8b704b",
+      "bytes": 690823
+    },
+    {
+      "requestedVideoSeconds": 14,
+      "sha256": "cd77c424eb3e9e03670b841a5b6cf8ce7fb793abd4c9d975645d08e184fda01b",
+      "bytes": 550970
+    },
+    {
+      "requestedVideoSeconds": 18,
+      "sha256": "4a4dfaa4832be24192238153811fb3b53ee81caa6a9e9ae7425aebe459e7e38f",
+      "bytes": 526075
+    },
+    {
+      "requestedVideoSeconds": 23,
+      "sha256": "e3488181f197bd9fe1fb9e084cf03cdf34faf1f75cd9967032a7e01e040743b0",
+      "bytes": 540324
+    },
+    {
+      "requestedVideoSeconds": 28,
+      "sha256": "89ad87d10d0bf32b3aa911941d628fd82b7a8bbe7f0cb481502f8bf8efb02325",
+      "bytes": 510468
+    },
+    {
+      "requestedVideoSeconds": 31,
+      "sha256": "5c4a467992cd4fb99af67efea6616a2fd19945097e2eae3a4db2a6bc0a84272f",
+      "bytes": 502102
+    },
+    {
+      "requestedVideoSeconds": 39,
+      "sha256": "0cd1b8060543f7ab8f42c0fbc498794b20b7379b3118eca2f4a44573200fb9b6",
+      "bytes": 505389
+    },
+    {
+      "requestedVideoSeconds": 62,
+      "sha256": "2f067e79bb7eeb4af5a57ec1670c3b2e57d2f72e7ef2a2fdead06851b7fcd9af",
+      "bytes": 513225
+    },
+    {
+      "requestedVideoSeconds": 100,
+      "sha256": "bb9a372e336e50d1687df06ff0248eccc779100d7ff5fc35a61b51cb724e08c5",
+      "bytes": 509639
+    },
+    {
+      "requestedVideoSeconds": 113,
+      "sha256": "caa3b9411f699c8323f2b26a191c68d3a1e215206cd6c0a9b3b82e8ad51cf4e0",
+      "bytes": 626005
+    }
+  ],
+  "privacy": "Only Root-authorized public Iris and author-dedicated-public-domain Kilbad H&E scene; no private supplied photo or raw project. Unreviewed video frames are not certified.",
+  "updateScope": "Original public25 frontend drives real25-to26 update; no26-to-future download claim."
+}

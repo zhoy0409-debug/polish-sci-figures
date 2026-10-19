@@ -1,6 +1,6 @@
 # v1.4.26 · Figure Studio 0.1.26
 
-Prepared on 2026-10-19. This release adds local photo outlines, four-corner correction, ruler straightening and reversible global colour suggestions. Preview on the canvas, refine or cancel, and retain the original. The linked acceptance report records the tested Windows runtime, all performance batches and publication-dependent checks.
+Published on 2026-10-19 (release 417215091). Local photo outlines, four-corner correction, ruler straightening and reversible global colour suggestions retain the original and editable canvas. The final-r2 installer has its own actual local lifecycle checks. See the [acceptance report](figure-studio-photo-correction-validation.md) and [same-version official-update supplement](qa/photo-correction/windows-0.1.26/README.md); the genuine 25 → 26 chain passed; uninstalling the isolated acceptance-test copy remains unexecuted, so finalAcceptance remains false.
 
 [中文](#中文) · [English](#english) · [Photo workflow](figure-studio-photo-correction.md) · [Actual acceptance scope](figure-studio-photo-correction-validation.md)
 
@@ -28,7 +28,7 @@ Prepared on 2026-10-19. This release adds local photo outlines, four-corner corr
 
 本轮已完成实际安装版照片、保存重开、原图／审计／导出、既有科研编辑及正常重装／卸载检查。大图性能保留全部实测批次，未作通用无回退结论。当前实测范围以[专项报告](figure-studio-photo-correction-validation.md)为准，旧版[最终验收](qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json)保持不变。
 
-首次使用运行 [0.1.26 Windows Setup](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe)；[便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Portable-x64.zip)需完整解压。附件在[对应发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)提供；本说明准备时发行尚未完成。旧版安装用户的更新流程仍为 **更新 → 下载并准备更新 → 保存并确认 → 安装并重新打开**；真正的官方 0.1.25 → 0.1.26 更新要在目标公开后单独实测，不以本地覆盖安装替代。桌面包是否签名以本轮实际产物记录为准。
+首次使用运行 [0.1.26 Windows Setup](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe)；[便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Portable-x64.zip)需完整解压。附件在[对应发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)提供；发行状态由实际release metadata绑定（2026-10-19，release 417215091）。旧版安装用户的更新流程仍为 **更新 → 下载并准备更新 → 保存并确认 → 安装并重新打开**；真正的官方 0.1.25 → 0.1.26 更新及清理结果见[独立补充](qa/photo-correction/windows-0.1.26/README.md)，真实升级已通过，验收用隔离测试副本的关闭与卸载尚未执行，不能将它写为最终完成。实际产物未签名（NotSigned）。初始八附件及tag不重写。
 
 ## English
 
@@ -52,4 +52,4 @@ All processing is local. Automatic outlines are geometric proposals rather than 
 
 Actual installed-photo, save/reopen, source/audit/export, existing scientific editing and normal reinstall/uninstall checks are recorded. All large-figure performance batches are retained, without a general no-regression claim. The [acceptance report](figure-studio-photo-correction-validation.md) records actual results; the previous 0.1.25 evidence is not relabelled as this version’s result.
 
-Use the [version-specific release page](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26) for Setup, Portable and source/skill packages once available. Publication is not complete at this document’s preparation. A real official 0.1.25 → 0.1.26 update requires the public target and separate download, verification, backup, installation and automatic-restoration acceptance; a local reinstall is a different check. Signing status must come from the actual new artifacts.
+Use the [version-specific release page](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26) for Setup, Portable and source/skill packages. Actual publication: 2026-10-19, release 417215091; the original eight assets remain immutable. A real official 0.1.25 → 0.1.26 update requires the public target and separate download, verification, backup, installation and automatic-restoration acceptance; a local reinstall is a different check. The actual artifacts are unsigned (NotSigned). See the separate [official-update evidence](qa/photo-correction/windows-0.1.26/README.md); the genuine upgrade passed, while uninstalling the isolated acceptance-test copy remains unexecuted and finalAcceptance=false.

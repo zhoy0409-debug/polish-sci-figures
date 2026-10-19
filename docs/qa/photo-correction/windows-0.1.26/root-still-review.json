@@ -1,0 +1,29 @@
+{
+  "schema": "figure-studio26-root-still-review/1",
+  "atUTC": "2026-10-19T12:00:46.003716+00:00",
+  "method": "Root actual view_image inspection of all three original PNGs",
+  "passedForScopedVisualInspection": true,
+  "images": [
+    {
+      "file": "before-real-download.png",
+      "bytes": 218637,
+      "sha256": "d305be2ca2bb0f02dd9cb8b0d923b532779df4826b0bfc3a0b0cd983331955f6",
+      "actualVisualObservation": "Actual 0.1.25 to 0.1.26 offer, minimal black cat and dog, hollow hearts, public Iris and H&E workspace behind dialog."
+    },
+    {
+      "file": "real-package-verified-ready.png",
+      "bytes": 196904,
+      "sha256": "b7c7088c4729ea6839a77a4a36e0607bab70c73e30d337e6a864b9f2f86ff6d8",
+      "actualVisualObservation": "Actual ready state, 100% filled jade hearts, verification-complete caption, explicit save/install confirmation unchecked."
+    },
+    {
+      "file": "real-updated-editor.png",
+      "bytes": 277011,
+      "sha256": "c17c4234a79ee5b95cf83a4658e1c97419cc7ca9ec48f2b44ee6ec7415b36802",
+      "actualVisualObservation": "Actual reopened editor shows Iris scatter panel and H&E image panel with retained edits; no update dialog."
+    }
+  ],
+  "wholeVideoViewed": false,
+  "runtimeAndScientificProofNotInferredFromPictures": true,
+  "publicMediaPermission": "Only these public Iris and author-dedicated-public-domain Kilbad H&E viewport images and their same-input update video may be used in the postrelease QA supplement. No private gel/photo/project/profile or raw trace is permitted."
+}

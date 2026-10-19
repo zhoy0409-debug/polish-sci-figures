@@ -1,0 +1,112 @@
+{
+  "schema": "figure-studio-official26-sampled-visual-review/1",
+  "reviewer": "original_animation_audit",
+  "reviewedAtUTC": "2026-10-19T12:00:18.191029+00:00",
+  "sourceVideo": {
+    "file": "page@fe2d87b0176b57846b5c8d9e540cbc88.webm",
+    "bytes": 8545115,
+    "sha256": "5823806d12c2eaa21666585c9e06e8521380a4dfbbeb5f60da719f130c64136a"
+  },
+  "durationSeconds": 114.64,
+  "originalScreenshots": [
+    {
+      "file": "before-real-download.png",
+      "bytes": 218637,
+      "sha256": "d305be2ca2bb0f02dd9cb8b0d923b532779df4826b0bfc3a0b0cd983331955f6"
+    },
+    {
+      "file": "real-package-verified-ready.png",
+      "bytes": 196904,
+      "sha256": "b7c7088c4729ea6839a77a4a36e0607bab70c73e30d337e6a864b9f2f86ff6d8"
+    },
+    {
+      "file": "real-updated-editor.png",
+      "bytes": 277011,
+      "sha256": "c17c4234a79ee5b95cf83a4658e1c97419cc7ca9ec48f2b44ee6ec7415b36802"
+    }
+  ],
+  "contactSheet": {
+    "file": "contact-sheet-12-samples.png",
+    "bytes": 1048183,
+    "sha256": "567828e1bef1ca39fc7fc6e008ace11752a61abc116b7b10ade2b98ead04768e"
+  },
+  "sampleProofSha256": "6bcaad17f06c0478e57d7cde21015b6b5dadbb8bdc79829542a9b0ec5451f57a",
+  "sampleTimesRequestedSeconds": [
+    2,
+    7.5,
+    10,
+    14,
+    18,
+    23,
+    28,
+    31,
+    39,
+    62,
+    100,
+    113
+  ],
+  "actualViewing": {
+    "originalScreenshotsViewed": 3,
+    "contactSheetFramesViewed": 12,
+    "fullResolutionVideoFramesViewed": [
+      14,
+      18,
+      23
+    ],
+    "fullMovieViewed": false,
+    "allFramesInspected": false,
+    "ocrOrWholeMoviePrivacyCertification": false
+  },
+  "observations": [
+    {
+      "artifact": "before-real-download.png",
+      "visible": "Original0.1.25 offers0.1.26; aligned values and jade arrow, simple black cat and dog, ten empty outline hearts. Download-and-prepare control is visible."
+    },
+    {
+      "requestedVideoSeconds": [
+        10,
+        14,
+        18,
+        23
+      ],
+      "visible": "Downloading views show5%,26%,47%,74%; jade liquid fills hearts from left to right with a partial next heart. Cat/dog remain the original minimal style and move across the scene. At14s two hearts are full and the third partial; at18s four are full and the fifth partial; at23s seven are full and the eighth partial. Byte captions are visible."
+    },
+    {
+      "artifact": "real-package-verified-ready.png",
+      "requestedVideoSeconds": [
+        28,
+        31
+      ],
+      "visible": "Ready when you are,100%,ten full jade hearts and verified-ready text. Save/ready consent remains separate; the original screenshot shows it unchecked and Install-and-reopen inactive."
+    },
+    {
+      "requestedVideoSeconds": 39,
+      "visible": "Preparing-to-install view shows outline hearts rather than inventing a filled installation percentage."
+    },
+    {
+      "requestedVideoSeconds": [
+        62,
+        100
+      ],
+      "visible": "Installing/back-in-a-moment view keeps simple companions and outlined hearts; this sample does not expose a numerical installation completion percentage."
+    },
+    {
+      "artifact": "real-updated-editor.png",
+      "requestedVideoSeconds": 113,
+      "visible": "Restored editor shows two canvas panels: labelled Iris scatterplot above and H&E skin image below; visible side panel names and editable selection handles remain. The screenshot is Carbon and113s sampled video view is Pearl with its appearance menu open."
+    }
+  ],
+  "unobserved": [
+    "verifying UI state was not captured; do not reconstruct it from backend verification audit or insert it into video."
+  ],
+  "scope": "Actual public25 frontend drives the real25-to26 download/install. This does not demonstrate a new26-to-future download. Screenshot and sampled-frame visual review only; no claim of full-movie viewing, continuous smoothness/FPS, pixel-perfect animation at every frame, completed normal cleanup or final acceptance.",
+  "privacyAndLicensing": {
+    "distributionAuthorizedByRootForTheseThreeScreenshotsAndOriginalVideo": true,
+    "inputContext": "Public Iris plus public-domain H&E fixture. Preserve existing Iris/Kilbad/scikit-image attribution from the fixture; no private supplied photo is in this review.",
+    "privateMachinePathOrTokenVisibleInReviewedScreenshotsAndSamples": false,
+    "privateExperimentMeasurementValuesVisibleInReviewedScreenshotsAndSamples": false,
+    "unreviewedVideoFramesNotCertified": true
+  },
+  "finalAcceptance": false,
+  "cleanupResultNotInferred": true
+}

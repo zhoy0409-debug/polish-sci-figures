@@ -1,5 +1,7 @@
 # Getting started with Figure Studio
 
+The Windows installer workflow and genuine official 0.1.25 → 0.1.26 in-editor upgrade passed the listed checks. The [acceptance record](../docs/qa/photo-correction/windows-0.1.26/README.md) details data protection, performance results and remaining items.
+
 The update window keeps the simple companions and shows downloaded bytes with an outline heart and jade water. Download completion is followed by integrity verification; save and confirm before installation. Animation preferences and reduced motion retain readable progress. See the [release notes](../docs/release-notes-v1.4.26.md) and separate [historical 0.1.23 acceptance](../docs/release-notes-v1.4.23.md) for each version's scope.
 
 Version 0.1.26 provides local outline correction, ruler straightening and global colour controls. See the [photo guide](../docs/figure-studio-photo-correction.md) and [actual acceptance scope](../docs/figure-studio-photo-correction-validation.md).
