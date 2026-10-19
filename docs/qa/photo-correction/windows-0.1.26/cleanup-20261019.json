@@ -1,0 +1,175 @@
+{
+  "schema": "figure-studio-photo-correction-isolated-cleanup/1",
+  "version": "0.1.26",
+  "suiteVersion": "v1.4.26",
+  "status": "PASS_ACTUAL_AUTHORIZED_NORMAL_CLEANUP",
+  "passed": true,
+  "scope": "Closing and normally uninstalling only this isolated acceptance-test copy, followed by the original phase-required preservation and protection checks. No new product version, update run or installer was produced.",
+  "humanAuthorization": "The user explicitly authorized closing and normally uninstalling this isolated acceptance-test copy before this original phase was executed.",
+  "actualPhaseEvidence": {
+    "schema": "official25-to26-native-phase/1",
+    "phase": "NormalCleanup",
+    "sha256": "6b012e2a870bfeb72445e0d68a1f6aef2379e77963ed7a03c9e0322a9e1b1636",
+    "bytes": 1521,
+    "operatorSha256": "2ced926ae6db081ebdd08cb2fd28eda6a9e47044953960845a2b27f77e935225",
+    "planSha256": "29a51ee4137918eedd8f6c07927ac600f2b9fd69434ac3e961b2f121af6e3840",
+    "startedAtUTC": "2026-10-19T12:56:05.2607185Z",
+    "completedAtUTC": "2026-10-19T12:58:59.8672045Z"
+  },
+  "normalUninstallerSha256": "a9018548bc88195ef904317e5487a1a039d9577bed3280dea697cf030100ccbb",
+  "normalUninstallerExitCode": 0,
+  "registryViewsAfter": [
+    {
+      "view": "Registry32",
+      "exists": false,
+      "hive": "CurrentUser"
+    },
+    {
+      "view": "Registry64",
+      "exists": false,
+      "hive": "CurrentUser"
+    },
+    {
+      "view": "Registry32",
+      "exists": false,
+      "hive": "LocalMachine"
+    },
+    {
+      "view": "Registry64",
+      "exists": false,
+      "hive": "LocalMachine"
+    }
+  ],
+  "wholeExternalProfileProofPreludeInputPreserved": true,
+  "protectedNativeBeforeCount": 0,
+  "protectedNativeAfterCount": 0,
+  "protectedBrowserRootCount": 2,
+  "protectionGuardPassedAsPartOfActualPhase": true,
+  "phaseRequiredChecks": {
+    "ownedCopyStoppedAndExecutableRemoved": true,
+    "ownedPortNoLongerListening": true,
+    "source": "Original NormalCleanup must stop only its guarded owned copy, observe missing installed EXE and no owned listener, or throw before passed=true. These are phase-required checks, not a newly invented independent query."
+  },
+  "independentFinalQueryEvidence": {
+    "file": "normal-cleanup-human-authorized-final-query-r1.json",
+    "sha256": "c48729f393d943abf560512b5495346ff3188149a9ab9125dfdcfe8188aeef37",
+    "schema": "official25-to26-normal-cleanup-fresh-query/1",
+    "passed": true,
+    "queriedAtUTC": "2026-10-19T13:00:00.1068557Z",
+    "cleanupOuterExitCode": 0,
+    "nativeUninstallerExitCode": 0,
+    "targetExeAbsent": true,
+    "ownedNativeProcessesRemaining": 0,
+    "ownedPortFree": true,
+    "registryViews": [
+      {
+        "view": "Registry32",
+        "hive": "CurrentUser",
+        "exists": false
+      },
+      {
+        "view": "Registry64",
+        "hive": "CurrentUser",
+        "exists": false
+      },
+      {
+        "view": "Registry32",
+        "hive": "LocalMachine",
+        "exists": false
+      },
+      {
+        "view": "Registry64",
+        "hive": "LocalMachine",
+        "exists": false
+      }
+    ],
+    "protectedBrowserRootCount": 2,
+    "protectedTuplesAndBinaryHashesExact": true,
+    "postCleanupFileCounts": {
+      "profile-localappdata": 2642,
+      "proof": 14,
+      "prelude": 16,
+      "inputs": 1
+    },
+    "wholePreservedSetsEqualityProvenance": "Original hash-approved NormalCleanup Snapshot/SameSnapshot before and after normal uninstall",
+    "wholePreservedSetsIndependentlyRehashedHere": false,
+    "selectedEightSavesRehashedHere": true,
+    "selectedEightSaves": [
+      {
+        "bytes": 1189526,
+        "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653",
+        "file": "after-update-theme-carbon.json"
+      },
+      {
+        "bytes": 1189526,
+        "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653",
+        "file": "after-update-theme-pearl.json"
+      },
+      {
+        "bytes": 1189526,
+        "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653",
+        "file": "after-update-theme-restored.json"
+      },
+      {
+        "bytes": 1189526,
+        "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653",
+        "file": "before-update-theme-carbon.json"
+      },
+      {
+        "bytes": 1189526,
+        "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653",
+        "file": "before-update-theme-pearl.json"
+      },
+      {
+        "bytes": 1189526,
+        "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653",
+        "file": "before-update-theme-restored.json"
+      },
+      {
+        "bytes": 1189526,
+        "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653",
+        "file": "project-after-reopen.json"
+      },
+      {
+        "bytes": 1189526,
+        "sha256": "5849c445820ce0202390357e06252a42c06b68053d85f0df2aad3e5f29512653",
+        "file": "project-before-update.json"
+      }
+    ],
+    "settingsSha256": "e18265b0672110c973f9536c8fdd6685815a1e399026d704fb767f8bf81c319c",
+    "newDirectUserAuthorizationSha256": "2b9d3242662c9dde778f1f8f805fb3d47e590ade5c76bc32402463325bebe2d9",
+    "priorApprovalRejectionPreserved": true,
+    "runtimeGitReleaseOrPublishedAssetsMutated": false
+  },
+  "historicalNotExecutedSnapshot": {
+    "commit": "980ce9c01b6a029ba4e6308b943a2c7f010016c6",
+    "file": "docs/qa/photo-correction/windows-0.1.26/official-update.json",
+    "sha256": "6f265f082eaade2d79781fbc50a028f4bfb94ed72e31532673a849d8bfe12b02",
+    "url": "https://github.com/zhoy0409-debug/polish-sci-figures/blob/980ce9c01b6a029ba4e6308b943a2c7f010016c6/docs/qa/photo-correction/windows-0.1.26/official-update.json",
+    "status": "ACTUAL_OFFICIAL_UPGRADE_PASS_NORMAL_CLEANUP_NOT_EXECUTED",
+    "finalAcceptance": false,
+    "normalCleanup": {
+      "executed": false,
+      "passed": null,
+      "status": "NOT_EXECUTED_AUTO_REVIEW_REJECTED",
+      "reason": "Automatic approval review rejected closing/uninstalling the isolated acceptance-test copy before process creation; explicit user confirmation remains pending.",
+      "risk": "The isolated upgraded acceptance-test copy and data remain in place. No post-uninstall four-view or whole-profile result exists for this copy yet. The actual upgrade and data-protection checks already passed.",
+      "scope": "The post-upgrade normal cleanup command was rejected before process creation. No cleanup was run, no app was stopped or uninstalled by that attempt. The earlier final-r2 installer lifecycle remains a separate completed check.",
+      "remainingScope": "Closing and uninstalling the isolated acceptance-test copy, then its post-uninstall four-view and full-profile preservation checks only.",
+      "productUpdateFailure": false
+    },
+    "retainedInUnmodifiedOriginalPostreleaseQaAsset": true
+  },
+  "finalAcceptanceForListedScope": true,
+  "finalAcceptanceScope": "Actual official25-to26 flow, selected scientific/editing and data-preservation checks, plus the now-authorized isolated test-environment cleanup. Existing accuracy, performance, IME, signing and clean-machine limits remain unchanged.",
+  "releasePolicy": {
+    "existingElevenAssetsUnchanged": true,
+    "initialTagAndInstallerUnchanged": true,
+    "sameVersionSingleDatedJsonSupplementOnly": true,
+    "proposedNewAssetName": "Figure-Studio-0.1.26-Cleanup-Acceptance-20261019.json"
+  },
+  "privacy": {
+    "privateMachinePathsPidsCommandsProfilesImagesProjectsMeasurementsCredentialsIncluded": false
+  },
+  "format": "UTF-8 JSON, LF line endings and one final newline. The additional release asset uses these exact public-file bytes; no self-hash."
+}

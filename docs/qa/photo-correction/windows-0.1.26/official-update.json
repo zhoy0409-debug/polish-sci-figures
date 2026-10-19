@@ -2,11 +2,11 @@
   "schema": "figure-studio-photo-correction-official-update/1",
   "version": "0.1.26",
   "suiteVersion": "v1.4.26",
-  "status": "ACTUAL_OFFICIAL_UPGRADE_PASS_NORMAL_CLEANUP_NOT_EXECUTED",
+  "status": "ACTUAL_OFFICIAL_UPGRADE_AND_AUTHORIZED_NORMAL_CLEANUP_PASS",
   "actualOfficialUpgradePassed": true,
   "productFunctionalScopePassed": true,
   "productFunctionalScope": "Actual single official25-to26 flow and selected scientific/editing restoration checks; not every product operation or independent detection accuracy. Earlier photo and performance matrices keep their original batches.",
-  "finalAcceptance": false,
+  "finalAcceptance": true,
   "createdAtUTC": "2026-10-19T12:05:43.377525+00:00",
   "publication": {
     "tree": "7298e93c4fbdbf66cda3cec9530599daa0707c80",
@@ -159,14 +159,19 @@
     "backendVerificationEvidenceSeparate": true
   },
   "normalCleanup": {
-    "executed": false,
-    "passed": null,
-    "status": "NOT_EXECUTED_AUTO_REVIEW_REJECTED",
-    "reason": "Automatic approval review rejected closing/uninstalling the isolated acceptance-test copy before process creation; explicit user confirmation remains pending.",
-    "risk": "The isolated upgraded acceptance-test copy and data remain in place. No post-uninstall four-view or whole-profile result exists for this copy yet. The actual upgrade and data-protection checks already passed.",
-    "scope": "The post-upgrade normal cleanup command was rejected before process creation. No cleanup was run, no app was stopped or uninstalled by that attempt. The earlier final-r2 installer lifecycle remains a separate completed check.",
-    "remainingScope": "Closing and uninstalling the isolated acceptance-test copy, then its post-uninstall four-view and full-profile preservation checks only.",
-    "productUpdateFailure": false
+    "executed": true,
+    "passed": true,
+    "status": "PASS_ACTUAL_AUTHORIZED_NORMAL_CLEANUP",
+    "completedAtUTC": "2026-10-19T12:58:59.8672045Z",
+    "uninstallExitCode": 0,
+    "registryViewsAbsent": 4,
+    "wholeExternalProfileProofPreludeInputPreserved": true,
+    "protectionGuardPassed": true,
+    "protectedBrowserRootCount": 2,
+    "productUpdateFailure": false,
+    "remainingScope": "None in this authorized isolated-copy cleanup phase; original scientific/performance/IME/accuracy/signing/clean-machine limits remain.",
+    "evidenceFile": "cleanup-20261019.json",
+    "evidenceSha256": "1b782c715e3fcb5d533da32f93fcd7666990286887ffb64a097acad9f2ac0ac8"
   },
   "earlierFinalInstallerChecks": {
     "passed": true,
@@ -339,6 +344,34 @@
     "privateLocalPathsCredentialsImagePixelsMeasurementsOrRawProjectsIncluded": false,
     "packageManifestContainsOnlyRelativeNamesSizesAndHashes": true
   },
-  "finalAcceptanceScope": "This flag also includes closing/uninstalling the isolated acceptance-test copy and checking preservation afterward. The actual official upgrade, selected functional checks and data protection across the upgrade passed; only that test-environment teardown remains unexecuted.",
-  "dataProtectionAcrossUpgradePassed": true
+  "finalAcceptanceScope": "Actual official25-to26 flow, selected scientific/editing and data-preservation checks, plus the now-authorized isolated test-environment cleanup. Existing accuracy, performance, IME, signing and clean-machine limits remain unchanged.",
+  "dataProtectionAcrossUpgradePassed": true,
+  "cleanupHistory": [
+    {
+      "commit": "980ce9c01b6a029ba4e6308b943a2c7f010016c6",
+      "file": "docs/qa/photo-correction/windows-0.1.26/official-update.json",
+      "sha256": "6f265f082eaade2d79781fbc50a028f4bfb94ed72e31532673a849d8bfe12b02",
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/blob/980ce9c01b6a029ba4e6308b943a2c7f010016c6/docs/qa/photo-correction/windows-0.1.26/official-update.json",
+      "status": "ACTUAL_OFFICIAL_UPGRADE_PASS_NORMAL_CLEANUP_NOT_EXECUTED",
+      "finalAcceptance": false,
+      "normalCleanup": {
+        "executed": false,
+        "passed": null,
+        "status": "NOT_EXECUTED_AUTO_REVIEW_REJECTED",
+        "reason": "Automatic approval review rejected closing/uninstalling the isolated acceptance-test copy before process creation; explicit user confirmation remains pending.",
+        "risk": "The isolated upgraded acceptance-test copy and data remain in place. No post-uninstall four-view or whole-profile result exists for this copy yet. The actual upgrade and data-protection checks already passed.",
+        "scope": "The post-upgrade normal cleanup command was rejected before process creation. No cleanup was run, no app was stopped or uninstalled by that attempt. The earlier final-r2 installer lifecycle remains a separate completed check.",
+        "remainingScope": "Closing and uninstalling the isolated acceptance-test copy, then its post-uninstall four-view and full-profile preservation checks only.",
+        "productUpdateFailure": false
+      },
+      "retainedInUnmodifiedOriginalPostreleaseQaAsset": true
+    }
+  ],
+  "cleanupEvidence": {
+    "file": "cleanup-20261019.json",
+    "bytes": 7707,
+    "sha256": "1b782c715e3fcb5d533da32f93fcd7666990286887ffb64a097acad9f2ac0ac8",
+    "rawPhaseEvidenceSha256": "6b012e2a870bfeb72445e0d68a1f6aef2379e77963ed7a03c9e0322a9e1b1636"
+  },
+  "lastScopeUpdatedAtUTC": "2026-10-19T12:58:59.8672045Z"
 }
