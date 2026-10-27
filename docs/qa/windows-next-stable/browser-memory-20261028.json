@@ -1,0 +1,1936 @@
+{
+  "author": "a",
+  "created": "2026-10-28",
+  "schema": "figure-studio-public-browser-memory/1",
+  "order": [
+    "baseline-memory-r2-A1",
+    "candidate-memory-r2-B1",
+    "candidate-memory-r2-B2",
+    "baseline-memory-r2-A2"
+  ],
+  "scope": "Separate ABBA diagnostic after timing runs; own headless Chrome process group, no forced GC. Observed sampled maxima, not an absolute peak, native-app memory or a leak test. Working-set sums can count shared pages more than once; private bytes are committed private memory, not physical resident bytes.",
+  "runs": [
+    {
+      "rawSha256": "9be0659bc44479324bd51af9827b662ae78c1eaea2765b01475f4eaca03a2608",
+      "report": {
+        "author": "a",
+        "schema": "figure-studio-browser-memory/1",
+        "label": "baseline-memory-r2-A1",
+        "sourceCommitClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+        "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+        "startedAt": "2026-10-27T19:27:04.050Z",
+        "browser": "155.0.8059.85",
+        "platform": "win32",
+        "elements": 5000,
+        "samples": [
+          {
+            "phase": "empty-project",
+            "index": 0,
+            "jsHeapUsedBytes": 20160240,
+            "jsHeapTotalBytes": 36462592,
+            "dom": {
+              "documents": 4,
+              "nodes": 17946,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 728338432,
+              "privateBytes": 435322880,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 1,
+            "jsHeapUsedBytes": 20160240,
+            "jsHeapTotalBytes": 36462592,
+            "dom": {
+              "documents": 4,
+              "nodes": 17946,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 727347200,
+              "privateBytes": 435322880,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 2,
+            "jsHeapUsedBytes": 20160392,
+            "jsHeapTotalBytes": 36462592,
+            "dom": {
+              "documents": 4,
+              "nodes": 17946,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 732786688,
+              "privateBytes": 436281344,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 3,
+            "jsHeapUsedBytes": 20160392,
+            "jsHeapTotalBytes": 36462592,
+            "dom": {
+              "documents": 4,
+              "nodes": 17946,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 735936512,
+              "privateBytes": 439402496,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 4,
+            "jsHeapUsedBytes": 20160392,
+            "jsHeapTotalBytes": 36462592,
+            "dom": {
+              "documents": 4,
+              "nodes": 17946,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 736030720,
+              "privateBytes": 439463936,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 0,
+            "jsHeapUsedBytes": 33986628,
+            "jsHeapTotalBytes": 59146240,
+            "dom": {
+              "documents": 3,
+              "nodes": 177936,
+              "jsEventListeners": 1966
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 936484864,
+              "privateBytes": 639455232,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 1,
+            "jsHeapUsedBytes": 33986628,
+            "jsHeapTotalBytes": 59146240,
+            "dom": {
+              "documents": 3,
+              "nodes": 177936,
+              "jsEventListeners": 1966
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 936800256,
+              "privateBytes": 639913984,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 2,
+            "jsHeapUsedBytes": 33986628,
+            "jsHeapTotalBytes": 59146240,
+            "dom": {
+              "documents": 3,
+              "nodes": 177936,
+              "jsEventListeners": 1966
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 934744064,
+              "privateBytes": 639172608,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 3,
+            "jsHeapUsedBytes": 33986628,
+            "jsHeapTotalBytes": 59146240,
+            "dom": {
+              "documents": 3,
+              "nodes": 177936,
+              "jsEventListeners": 1966
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 933597184,
+              "privateBytes": 637726720,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 4,
+            "jsHeapUsedBytes": 33986628,
+            "jsHeapTotalBytes": 59146240,
+            "dom": {
+              "documents": 3,
+              "nodes": 177936,
+              "jsEventListeners": 1966
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 933617664,
+              "privateBytes": 637698048,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 0,
+            "jsHeapUsedBytes": 36459368,
+            "jsHeapTotalBytes": 59146240,
+            "dom": {
+              "documents": 3,
+              "nodes": 188151,
+              "jsEventListeners": 1973
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 960757760,
+              "privateBytes": 660574208,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 1,
+            "jsHeapUsedBytes": 36459368,
+            "jsHeapTotalBytes": 59146240,
+            "dom": {
+              "documents": 3,
+              "nodes": 188151,
+              "jsEventListeners": 1973
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 960585728,
+              "privateBytes": 659148800,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 2,
+            "jsHeapUsedBytes": 36459368,
+            "jsHeapTotalBytes": 59146240,
+            "dom": {
+              "documents": 3,
+              "nodes": 188151,
+              "jsEventListeners": 1973
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 956674048,
+              "privateBytes": 658415616,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 3,
+            "jsHeapUsedBytes": 36459368,
+            "jsHeapTotalBytes": 59146240,
+            "dom": {
+              "documents": 3,
+              "nodes": 188151,
+              "jsEventListeners": 1973
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 948170752,
+              "privateBytes": 649904128,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 4,
+            "jsHeapUsedBytes": 36459368,
+            "jsHeapTotalBytes": 59146240,
+            "dom": {
+              "documents": 3,
+              "nodes": 188151,
+              "jsEventListeners": 1973
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 948191232,
+              "privateBytes": 649924608,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 0,
+            "jsHeapUsedBytes": 30782448,
+            "jsHeapTotalBytes": 60588032,
+            "dom": {
+              "documents": 3,
+              "nodes": 177201,
+              "jsEventListeners": 1884
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1010814976,
+              "privateBytes": 711897088,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 1,
+            "jsHeapUsedBytes": 30782448,
+            "jsHeapTotalBytes": 60588032,
+            "dom": {
+              "documents": 3,
+              "nodes": 177201,
+              "jsEventListeners": 1884
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1010708480,
+              "privateBytes": 711729152,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 2,
+            "jsHeapUsedBytes": 30782448,
+            "jsHeapTotalBytes": 60588032,
+            "dom": {
+              "documents": 3,
+              "nodes": 177201,
+              "jsEventListeners": 1884
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1005228032,
+              "privateBytes": 707317760,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 3,
+            "jsHeapUsedBytes": 30782448,
+            "jsHeapTotalBytes": 60588032,
+            "dom": {
+              "documents": 3,
+              "nodes": 177201,
+              "jsEventListeners": 1884
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1005228032,
+              "privateBytes": 707317760,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 4,
+            "jsHeapUsedBytes": 30782448,
+            "jsHeapTotalBytes": 60588032,
+            "dom": {
+              "documents": 3,
+              "nodes": 177201,
+              "jsEventListeners": 1884
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1005228032,
+              "privateBytes": 707317760,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 0,
+            "jsHeapUsedBytes": 24314044,
+            "jsHeapTotalBytes": 59863040,
+            "dom": {
+              "documents": 3,
+              "nodes": 192165,
+              "jsEventListeners": 1886
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1037570048,
+              "privateBytes": 737161216,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 1,
+            "jsHeapUsedBytes": 24314044,
+            "jsHeapTotalBytes": 59863040,
+            "dom": {
+              "documents": 3,
+              "nodes": 192165,
+              "jsEventListeners": 1886
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1038598144,
+              "privateBytes": 738254848,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 2,
+            "jsHeapUsedBytes": 24314052,
+            "jsHeapTotalBytes": 59863040,
+            "dom": {
+              "documents": 3,
+              "nodes": 192165,
+              "jsEventListeners": 1886
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1035239424,
+              "privateBytes": 735678464,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 3,
+            "jsHeapUsedBytes": 24314052,
+            "jsHeapTotalBytes": 59863040,
+            "dom": {
+              "documents": 3,
+              "nodes": 192165,
+              "jsEventListeners": 1886
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1035239424,
+              "privateBytes": 735678464,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 4,
+            "jsHeapUsedBytes": 24314052,
+            "jsHeapTotalBytes": 59863040,
+            "dom": {
+              "documents": 3,
+              "nodes": 192165,
+              "jsEventListeners": 1886
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1035239424,
+              "privateBytes": 735678464,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          }
+        ],
+        "scope": "Own isolated headless Chrome only. No forced garbage collection. Five samples per phase. OS working set and private bytes are sums over that browser CDP process list; PIDs are not retained.",
+        "limitations": [
+          "Observed phase samples are not an absolute process peak or a memory-leak test.",
+          "JS heap excludes image buffers, most native DOM memory and the desktop Python engine.",
+          "Windows process memory is unavailable on other platforms or if process queries fail.",
+          "Not native installed UI, first-install launch, physical low-end hardware or physical display latency."
+        ],
+        "remoteRequests": 0,
+        "pageErrors": 0,
+        "sourceRoundtripUnchanged": true,
+        "finishedAt": "2026-10-27T19:27:27.386Z",
+        "status": "PASS_VERIFIED_CAPTURE"
+      }
+    },
+    {
+      "rawSha256": "c9a5e335ea6c6581df1aadab4ccaa2d352e867814a35143c1490252507bdbccf",
+      "report": {
+        "author": "a",
+        "schema": "figure-studio-browser-memory/1",
+        "label": "candidate-memory-r2-B1",
+        "sourceCommitClaim": "e04ec7de752a4d720d4dd84549c924a25d342cf0",
+        "htmlSha256": "4b5c2a620d14e5428a84e9dcecf8f75ecc5422faa8b3b9125ede72a24a309c9a",
+        "startedAt": "2026-10-27T19:27:28.842Z",
+        "browser": "155.0.8059.85",
+        "platform": "win32",
+        "elements": 5000,
+        "samples": [
+          {
+            "phase": "empty-project",
+            "index": 0,
+            "jsHeapUsedBytes": 20202964,
+            "jsHeapTotalBytes": 36724736,
+            "dom": {
+              "documents": 4,
+              "nodes": 18335,
+              "jsEventListeners": 1982
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 719769600,
+              "privateBytes": 427470848,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 1,
+            "jsHeapUsedBytes": 20202964,
+            "jsHeapTotalBytes": 36724736,
+            "dom": {
+              "documents": 4,
+              "nodes": 18335,
+              "jsEventListeners": 1982
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 717938688,
+              "privateBytes": 425713664,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 2,
+            "jsHeapUsedBytes": 20202964,
+            "jsHeapTotalBytes": 36724736,
+            "dom": {
+              "documents": 4,
+              "nodes": 18335,
+              "jsEventListeners": 1982
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 723132416,
+              "privateBytes": 427663360,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 3,
+            "jsHeapUsedBytes": 20203116,
+            "jsHeapTotalBytes": 36724736,
+            "dom": {
+              "documents": 4,
+              "nodes": 18335,
+              "jsEventListeners": 1982
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 727420928,
+              "privateBytes": 431300608,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 4,
+            "jsHeapUsedBytes": 20203116,
+            "jsHeapTotalBytes": 36724736,
+            "dom": {
+              "documents": 4,
+              "nodes": 18335,
+              "jsEventListeners": 1982
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 727478272,
+              "privateBytes": 431329280,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 0,
+            "jsHeapUsedBytes": 34229868,
+            "jsHeapTotalBytes": 60350464,
+            "dom": {
+              "documents": 4,
+              "nodes": 173925,
+              "jsEventListeners": 2005
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 927031296,
+              "privateBytes": 631250944,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 1,
+            "jsHeapUsedBytes": 34229868,
+            "jsHeapTotalBytes": 60350464,
+            "dom": {
+              "documents": 4,
+              "nodes": 173925,
+              "jsEventListeners": 2005
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 927555584,
+              "privateBytes": 632074240,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 2,
+            "jsHeapUsedBytes": 34229868,
+            "jsHeapTotalBytes": 60350464,
+            "dom": {
+              "documents": 4,
+              "nodes": 173925,
+              "jsEventListeners": 2005
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 925618176,
+              "privateBytes": 631439360,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 3,
+            "jsHeapUsedBytes": 34229868,
+            "jsHeapTotalBytes": 60350464,
+            "dom": {
+              "documents": 4,
+              "nodes": 173925,
+              "jsEventListeners": 2005
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 925630464,
+              "privateBytes": 631451648,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 4,
+            "jsHeapUsedBytes": 34229868,
+            "jsHeapTotalBytes": 60350464,
+            "dom": {
+              "documents": 4,
+              "nodes": 173925,
+              "jsEventListeners": 2005
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 924192768,
+              "privateBytes": 629731328,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 0,
+            "jsHeapUsedBytes": 36775736,
+            "jsHeapTotalBytes": 60350464,
+            "dom": {
+              "documents": 4,
+              "nodes": 179138,
+              "jsEventListeners": 2012
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 944078848,
+              "privateBytes": 646135808,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 1,
+            "jsHeapUsedBytes": 36775736,
+            "jsHeapTotalBytes": 60350464,
+            "dom": {
+              "documents": 4,
+              "nodes": 179138,
+              "jsEventListeners": 2012
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 944222208,
+              "privateBytes": 646324224,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 2,
+            "jsHeapUsedBytes": 36775736,
+            "jsHeapTotalBytes": 60350464,
+            "dom": {
+              "documents": 4,
+              "nodes": 179138,
+              "jsEventListeners": 2012
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 941502464,
+              "privateBytes": 645632000,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 3,
+            "jsHeapUsedBytes": 36775736,
+            "jsHeapTotalBytes": 60350464,
+            "dom": {
+              "documents": 4,
+              "nodes": 179138,
+              "jsEventListeners": 2012
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 941506560,
+              "privateBytes": 645632000,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 4,
+            "jsHeapUsedBytes": 36775736,
+            "jsHeapTotalBytes": 60350464,
+            "dom": {
+              "documents": 4,
+              "nodes": 179138,
+              "jsEventListeners": 2012
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 938725376,
+              "privateBytes": 642351104,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 0,
+            "jsHeapUsedBytes": 20750268,
+            "jsHeapTotalBytes": 60588032,
+            "dom": {
+              "documents": 2,
+              "nodes": 67082,
+              "jsEventListeners": 1877
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 946483200,
+              "privateBytes": 645341184,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 1,
+            "jsHeapUsedBytes": 20750268,
+            "jsHeapTotalBytes": 60588032,
+            "dom": {
+              "documents": 2,
+              "nodes": 67082,
+              "jsEventListeners": 1877
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 946651136,
+              "privateBytes": 645488640,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 2,
+            "jsHeapUsedBytes": 20750268,
+            "jsHeapTotalBytes": 60588032,
+            "dom": {
+              "documents": 2,
+              "nodes": 67082,
+              "jsEventListeners": 1877
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 931823616,
+              "privateBytes": 633110528,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 3,
+            "jsHeapUsedBytes": 20750268,
+            "jsHeapTotalBytes": 60588032,
+            "dom": {
+              "documents": 2,
+              "nodes": 67082,
+              "jsEventListeners": 1877
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 931823616,
+              "privateBytes": 633110528,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 4,
+            "jsHeapUsedBytes": 20750268,
+            "jsHeapTotalBytes": 60588032,
+            "dom": {
+              "documents": 2,
+              "nodes": 67082,
+              "jsEventListeners": 1877
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 931823616,
+              "privateBytes": 633110528,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 0,
+            "jsHeapUsedBytes": 27090136,
+            "jsHeapTotalBytes": 59076608,
+            "dom": {
+              "documents": 2,
+              "nodes": 147681,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 954245120,
+              "privateBytes": 654004224,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 1,
+            "jsHeapUsedBytes": 27090136,
+            "jsHeapTotalBytes": 59076608,
+            "dom": {
+              "documents": 2,
+              "nodes": 147681,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 955002880,
+              "privateBytes": 654733312,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 2,
+            "jsHeapUsedBytes": 27090144,
+            "jsHeapTotalBytes": 59076608,
+            "dom": {
+              "documents": 2,
+              "nodes": 147681,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 951480320,
+              "privateBytes": 651964416,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 3,
+            "jsHeapUsedBytes": 27090144,
+            "jsHeapTotalBytes": 59076608,
+            "dom": {
+              "documents": 2,
+              "nodes": 147681,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 951480320,
+              "privateBytes": 651964416,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 4,
+            "jsHeapUsedBytes": 27090144,
+            "jsHeapTotalBytes": 59076608,
+            "dom": {
+              "documents": 2,
+              "nodes": 147681,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 951480320,
+              "privateBytes": 651964416,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          }
+        ],
+        "scope": "Own isolated headless Chrome only. No forced garbage collection. Five samples per phase. OS working set and private bytes are sums over that browser CDP process list; PIDs are not retained.",
+        "limitations": [
+          "Observed phase samples are not an absolute process peak or a memory-leak test.",
+          "JS heap excludes image buffers, most native DOM memory and the desktop Python engine.",
+          "Windows process memory is unavailable on other platforms or if process queries fail.",
+          "Not native installed UI, first-install launch, physical low-end hardware or physical display latency."
+        ],
+        "remoteRequests": 0,
+        "pageErrors": 0,
+        "sourceRoundtripUnchanged": true,
+        "finishedAt": "2026-10-27T19:27:51.560Z",
+        "status": "PASS_VERIFIED_CAPTURE"
+      }
+    },
+    {
+      "rawSha256": "3b3eda99b78c9838e8119d17e1221877c90e044e65ee9e9d5d31360bfcf33cf6",
+      "report": {
+        "author": "a",
+        "schema": "figure-studio-browser-memory/1",
+        "label": "candidate-memory-r2-B2",
+        "sourceCommitClaim": "e04ec7de752a4d720d4dd84549c924a25d342cf0",
+        "htmlSha256": "4b5c2a620d14e5428a84e9dcecf8f75ecc5422faa8b3b9125ede72a24a309c9a",
+        "startedAt": "2026-10-27T19:27:53.146Z",
+        "browser": "155.0.8059.85",
+        "platform": "win32",
+        "elements": 5000,
+        "samples": [
+          {
+            "phase": "empty-project",
+            "index": 0,
+            "jsHeapUsedBytes": 20202884,
+            "jsHeapTotalBytes": 36462592,
+            "dom": {
+              "documents": 3,
+              "nodes": 17521,
+              "jsEventListeners": 1982
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 725204992,
+              "privateBytes": 434130944,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 1,
+            "jsHeapUsedBytes": 20202884,
+            "jsHeapTotalBytes": 36462592,
+            "dom": {
+              "documents": 3,
+              "nodes": 17521,
+              "jsEventListeners": 1982
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 724594688,
+              "privateBytes": 433950720,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 2,
+            "jsHeapUsedBytes": 20202884,
+            "jsHeapTotalBytes": 36462592,
+            "dom": {
+              "documents": 3,
+              "nodes": 17521,
+              "jsEventListeners": 1982
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 729853952,
+              "privateBytes": 435576832,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 3,
+            "jsHeapUsedBytes": 20203036,
+            "jsHeapTotalBytes": 36462592,
+            "dom": {
+              "documents": 3,
+              "nodes": 17521,
+              "jsEventListeners": 1982
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 733564928,
+              "privateBytes": 439070720,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 4,
+            "jsHeapUsedBytes": 20203036,
+            "jsHeapTotalBytes": 36462592,
+            "dom": {
+              "documents": 3,
+              "nodes": 17521,
+              "jsEventListeners": 1982
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 733609984,
+              "privateBytes": 439087104,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 0,
+            "jsHeapUsedBytes": 31262988,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 137967,
+              "jsEventListeners": 1985
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 905646080,
+              "privateBytes": 610820096,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 1,
+            "jsHeapUsedBytes": 31262988,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 137967,
+              "jsEventListeners": 1985
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 906379264,
+              "privateBytes": 611741696,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 2,
+            "jsHeapUsedBytes": 31262988,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 137967,
+              "jsEventListeners": 1985
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 904450048,
+              "privateBytes": 611098624,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 3,
+            "jsHeapUsedBytes": 31262988,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 137967,
+              "jsEventListeners": 1985
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 904507392,
+              "privateBytes": 611106816,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 4,
+            "jsHeapUsedBytes": 31262988,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 137967,
+              "jsEventListeners": 1985
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 903065600,
+              "privateBytes": 609390592,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 0,
+            "jsHeapUsedBytes": 33891080,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 143180,
+              "jsEventListeners": 1992
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 923168768,
+              "privateBytes": 625451008,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 1,
+            "jsHeapUsedBytes": 33891080,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 143180,
+              "jsEventListeners": 1992
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 923660288,
+              "privateBytes": 625618944,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 2,
+            "jsHeapUsedBytes": 33891080,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 143180,
+              "jsEventListeners": 1992
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 920055808,
+              "privateBytes": 624721920,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 3,
+            "jsHeapUsedBytes": 33891080,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 143180,
+              "jsEventListeners": 1992
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 920072192,
+              "privateBytes": 624730112,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 4,
+            "jsHeapUsedBytes": 33891080,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 143180,
+              "jsEventListeners": 1992
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 920072192,
+              "privateBytes": 624730112,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 0,
+            "jsHeapUsedBytes": 36055900,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 158502,
+              "jsEventListeners": 2040
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 949010432,
+              "privateBytes": 651534336,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 1,
+            "jsHeapUsedBytes": 36055900,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 158502,
+              "jsEventListeners": 2040
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 949026816,
+              "privateBytes": 651534336,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 2,
+            "jsHeapUsedBytes": 36055900,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 158502,
+              "jsEventListeners": 2040
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 945537024,
+              "privateBytes": 650485760,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 3,
+            "jsHeapUsedBytes": 36055900,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 158502,
+              "jsEventListeners": 2040
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 936296448,
+              "privateBytes": 641241088,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 4,
+            "jsHeapUsedBytes": 36055900,
+            "jsHeapTotalBytes": 58621952,
+            "dom": {
+              "documents": 2,
+              "nodes": 158502,
+              "jsEventListeners": 2040
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 928563200,
+              "privateBytes": 633499648,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 0,
+            "jsHeapUsedBytes": 28231992,
+            "jsHeapTotalBytes": 62881792,
+            "dom": {
+              "documents": 2,
+              "nodes": 152825,
+              "jsEventListeners": 1972
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 946896896,
+              "privateBytes": 648847360,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 1,
+            "jsHeapUsedBytes": 28231992,
+            "jsHeapTotalBytes": 62881792,
+            "dom": {
+              "documents": 2,
+              "nodes": 152825,
+              "jsEventListeners": 1972
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 947785728,
+              "privateBytes": 649723904,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 2,
+            "jsHeapUsedBytes": 28232000,
+            "jsHeapTotalBytes": 62881792,
+            "dom": {
+              "documents": 2,
+              "nodes": 152825,
+              "jsEventListeners": 1972
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 944259072,
+              "privateBytes": 647000064,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 3,
+            "jsHeapUsedBytes": 28232000,
+            "jsHeapTotalBytes": 62881792,
+            "dom": {
+              "documents": 2,
+              "nodes": 152825,
+              "jsEventListeners": 1972
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 944259072,
+              "privateBytes": 647000064,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 4,
+            "jsHeapUsedBytes": 28232000,
+            "jsHeapTotalBytes": 62881792,
+            "dom": {
+              "documents": 2,
+              "nodes": 152825,
+              "jsEventListeners": 1972
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 944259072,
+              "privateBytes": 647000064,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          }
+        ],
+        "scope": "Own isolated headless Chrome only. No forced garbage collection. Five samples per phase. OS working set and private bytes are sums over that browser CDP process list; PIDs are not retained.",
+        "limitations": [
+          "Observed phase samples are not an absolute process peak or a memory-leak test.",
+          "JS heap excludes image buffers, most native DOM memory and the desktop Python engine.",
+          "Windows process memory is unavailable on other platforms or if process queries fail.",
+          "Not native installed UI, first-install launch, physical low-end hardware or physical display latency."
+        ],
+        "remoteRequests": 0,
+        "pageErrors": 0,
+        "sourceRoundtripUnchanged": true,
+        "finishedAt": "2026-10-27T19:28:15.628Z",
+        "status": "PASS_VERIFIED_CAPTURE"
+      }
+    },
+    {
+      "rawSha256": "f123f514f8fe4a8ade5478d878f3b4518a72a8b5905a0708d10aa24d20b70094",
+      "report": {
+        "author": "a",
+        "schema": "figure-studio-browser-memory/1",
+        "label": "baseline-memory-r2-A2",
+        "sourceCommitClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+        "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+        "startedAt": "2026-10-27T19:28:17.136Z",
+        "browser": "155.0.8059.85",
+        "platform": "win32",
+        "elements": 5000,
+        "samples": [
+          {
+            "phase": "empty-project",
+            "index": 0,
+            "jsHeapUsedBytes": 20164376,
+            "jsHeapTotalBytes": 36724736,
+            "dom": {
+              "documents": 3,
+              "nodes": 17417,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 722694144,
+              "privateBytes": 431931392,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 1,
+            "jsHeapUsedBytes": 20164376,
+            "jsHeapTotalBytes": 36724736,
+            "dom": {
+              "documents": 3,
+              "nodes": 17417,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 722243584,
+              "privateBytes": 430477312,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 2,
+            "jsHeapUsedBytes": 20164376,
+            "jsHeapTotalBytes": 36724736,
+            "dom": {
+              "documents": 3,
+              "nodes": 17417,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 726687744,
+              "privateBytes": 432754688,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 3,
+            "jsHeapUsedBytes": 20164528,
+            "jsHeapTotalBytes": 36724736,
+            "dom": {
+              "documents": 3,
+              "nodes": 17417,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 730931200,
+              "privateBytes": 436260864,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "empty-project",
+            "index": 4,
+            "jsHeapUsedBytes": 20164528,
+            "jsHeapTotalBytes": 36724736,
+            "dom": {
+              "documents": 3,
+              "nodes": 17417,
+              "jsEventListeners": 1963
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 730996736,
+              "privateBytes": 436289536,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 0,
+            "jsHeapUsedBytes": 25613044,
+            "jsHeapTotalBytes": 59670528,
+            "dom": {
+              "documents": 4,
+              "nodes": 188366,
+              "jsEventListeners": 1974
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 944021504,
+              "privateBytes": 647471104,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 1,
+            "jsHeapUsedBytes": 25613044,
+            "jsHeapTotalBytes": 59670528,
+            "dom": {
+              "documents": 4,
+              "nodes": 188366,
+              "jsEventListeners": 1974
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 944041984,
+              "privateBytes": 647487488,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 2,
+            "jsHeapUsedBytes": 25613044,
+            "jsHeapTotalBytes": 59670528,
+            "dom": {
+              "documents": 4,
+              "nodes": 188366,
+              "jsEventListeners": 1974
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 942628864,
+              "privateBytes": 647507968,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 3,
+            "jsHeapUsedBytes": 25613044,
+            "jsHeapTotalBytes": 59670528,
+            "dom": {
+              "documents": 4,
+              "nodes": 188366,
+              "jsEventListeners": 1974
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 942628864,
+              "privateBytes": 647507968,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "imported",
+            "index": 4,
+            "jsHeapUsedBytes": 25613044,
+            "jsHeapTotalBytes": 59670528,
+            "dom": {
+              "documents": 4,
+              "nodes": 188366,
+              "jsEventListeners": 1974
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 941621248,
+              "privateBytes": 646234112,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 0,
+            "jsHeapUsedBytes": 28255280,
+            "jsHeapTotalBytes": 59670528,
+            "dom": {
+              "documents": 4,
+              "nodes": 198581,
+              "jsEventListeners": 1981
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 968740864,
+              "privateBytes": 669454336,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 1,
+            "jsHeapUsedBytes": 28255280,
+            "jsHeapTotalBytes": 59670528,
+            "dom": {
+              "documents": 4,
+              "nodes": 198581,
+              "jsEventListeners": 1981
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 969039872,
+              "privateBytes": 669736960,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 2,
+            "jsHeapUsedBytes": 28255280,
+            "jsHeapTotalBytes": 59670528,
+            "dom": {
+              "documents": 4,
+              "nodes": 198581,
+              "jsEventListeners": 1981
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 965791744,
+              "privateBytes": 668950528,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 3,
+            "jsHeapUsedBytes": 28255280,
+            "jsHeapTotalBytes": 59670528,
+            "dom": {
+              "documents": 4,
+              "nodes": 198581,
+              "jsEventListeners": 1981
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 965804032,
+              "privateBytes": 668950528,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "selected",
+            "index": 4,
+            "jsHeapUsedBytes": 28255280,
+            "jsHeapTotalBytes": 59670528,
+            "dom": {
+              "documents": 4,
+              "nodes": 198581,
+              "jsEventListeners": 1981
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 965812224,
+              "privateBytes": 668954624,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 0,
+            "jsHeapUsedBytes": 21628036,
+            "jsHeapTotalBytes": 60850176,
+            "dom": {
+              "documents": 4,
+              "nodes": 147160,
+              "jsEventListeners": 1858
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1084215296,
+              "privateBytes": 787718144,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 1,
+            "jsHeapUsedBytes": 21628036,
+            "jsHeapTotalBytes": 60850176,
+            "dom": {
+              "documents": 4,
+              "nodes": 147160,
+              "jsEventListeners": 1858
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1084338176,
+              "privateBytes": 787812352,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 2,
+            "jsHeapUsedBytes": 21628036,
+            "jsHeapTotalBytes": 60850176,
+            "dom": {
+              "documents": 4,
+              "nodes": 147160,
+              "jsEventListeners": 1858
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1075863552,
+              "privateBytes": 780251136,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 3,
+            "jsHeapUsedBytes": 21628036,
+            "jsHeapTotalBytes": 60850176,
+            "dom": {
+              "documents": 4,
+              "nodes": 147160,
+              "jsEventListeners": 1858
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1075863552,
+              "privateBytes": 780251136,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "palette",
+            "index": 4,
+            "jsHeapUsedBytes": 21628036,
+            "jsHeapTotalBytes": 60850176,
+            "dom": {
+              "documents": 4,
+              "nodes": 147160,
+              "jsEventListeners": 1858
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1068064768,
+              "privateBytes": 772448256,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 0,
+            "jsHeapUsedBytes": 24498756,
+            "jsHeapTotalBytes": 60387328,
+            "dom": {
+              "documents": 3,
+              "nodes": 147182,
+              "jsEventListeners": 1876
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1066512384,
+              "privateBytes": 767569920,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 1,
+            "jsHeapUsedBytes": 24498756,
+            "jsHeapTotalBytes": 60387328,
+            "dom": {
+              "documents": 3,
+              "nodes": 147182,
+              "jsEventListeners": 1876
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1066405888,
+              "privateBytes": 767041536,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 2,
+            "jsHeapUsedBytes": 24498764,
+            "jsHeapTotalBytes": 60387328,
+            "dom": {
+              "documents": 3,
+              "nodes": 147182,
+              "jsEventListeners": 1876
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1064271872,
+              "privateBytes": 766197760,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 3,
+            "jsHeapUsedBytes": 24498764,
+            "jsHeapTotalBytes": 60387328,
+            "dom": {
+              "documents": 3,
+              "nodes": 147182,
+              "jsEventListeners": 1876
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1064271872,
+              "privateBytes": 766197760,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          },
+          {
+            "phase": "reopened",
+            "index": 4,
+            "jsHeapUsedBytes": 24498764,
+            "jsHeapTotalBytes": 60387328,
+            "dom": {
+              "documents": 3,
+              "nodes": 147182,
+              "jsEventListeners": 1876
+            },
+            "processes": {
+              "count": 7,
+              "workingSetBytes": 1064271872,
+              "privateBytes": 766197760,
+              "expectedCount": 7
+            },
+            "processMemoryError": null
+          }
+        ],
+        "scope": "Own isolated headless Chrome only. No forced garbage collection. Five samples per phase. OS working set and private bytes are sums over that browser CDP process list; PIDs are not retained.",
+        "limitations": [
+          "Observed phase samples are not an absolute process peak or a memory-leak test.",
+          "JS heap excludes image buffers, most native DOM memory and the desktop Python engine.",
+          "Windows process memory is unavailable on other platforms or if process queries fail.",
+          "Not native installed UI, first-install launch, physical low-end hardware or physical display latency."
+        ],
+        "remoteRequests": 0,
+        "pageErrors": 0,
+        "sourceRoundtripUnchanged": true,
+        "finishedAt": "2026-10-27T19:28:39.528Z",
+        "status": "PASS_VERIFIED_CAPTURE"
+      }
+    }
+  ],
+  "retainedFailures": [
+    {
+      "label": "baseline-memory-A1",
+      "status": "FAIL",
+      "error": "response.body: Protocol error (Network.getResponseBody): Request content was evicted from inspector cache\nResponse body is not available for a response that was navigated away from. Read response.body() before triggering any navigation.",
+      "samples": 0,
+      "rawSha256": "2c4344c98d6ecc01b4e56921cf1f430e924b4388b5e4d69e1d9742f1f92f3034",
+      "resolution": "Large navigation response was evicted from the inspector cache before sampling. The tool now verifies bytes via its isolated request context before and after navigation. Failed record preserved; fresh filenames used."
+    }
+  ]
+}
