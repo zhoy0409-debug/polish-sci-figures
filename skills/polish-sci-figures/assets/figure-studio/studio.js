@@ -1248,7 +1248,7 @@ if (typeof document !== 'undefined') (async () => {
       }
       if(pan.analysis?.imageRectification)validateImageRectification(pan);
     }
-    if(p.scientificSources||p.panels.some(pan=>pan.analysis?.scientificImage)){
+    if(p.scientificSources||p.panels.some(pan=>pan.analysis?.scientificImage||pan.analysis?.scientificOrigin)){
       if(typeof StudioScientificTiff==='undefined')throw Error(T('当前版本无法核实原生 TIFF 源文件，请更新编辑器。'));
       StudioScientificTiff.validateSources(p);
     }
@@ -2258,7 +2258,7 @@ if (typeof document !== 'undefined') (async () => {
   function rectifyImageFingerprint(ref){return {settings:rectifyImageSettings(ref),display:imageColorCurrent(ref)};}
   function rectifyImageVersions(){
     const asset=panel(selectedPanel),record=asset?.analysis?.imageRectification;
-    return {available:!!record,value:record&&state().panels[selectedPanel].variant===record.originalVariant?'original':'corrected'};
+    return {available:!!record,value:record&&state().panels[selectedPanel].variant===record.originalVariant?'original':'corrected',...(asset?.analysis?.scientificImage||asset?.analysis?.scientificOrigin?{nativeDisplay:true}:{})};
   }
   function selectRectifiedImageVersion(value){
     const asset=panel(selectedPanel),record=asset?.analysis?.imageRectification,p=state().panels[selectedPanel];
@@ -2291,8 +2291,9 @@ if (typeof document !== 'undefined') (async () => {
     StudioImageRectify.validateQuad(meta.corners,{width:dimensions.widthPx,height:dimensions.heightPx});
     const prior=panel(source.panelId).analysis?.imageRectification,sourceVariant=prior&&source.variant===prior.outputVariant?prior.originalVariant:source.variant;
     const record={...copy(result.audit),ratioMode:meta.ratioMode||'estimate',ratioValue:meta.ratioValue||meta.outputWidth/meta.outputHeight,estimatedRatio:meta.estimatedRatio!==false,requestedWidth:meta.outputWidth,requestedHeight:meta.outputHeight,sourcePanelId:source.panelId,sourceVariant,sourceKey:source.key,outputVariant:0,originalVariant:1,calibrationInherited:false,...(meta.detection?{detection:copy(meta.detection)}:{}),...(meta.straighten?{straighten:copy(meta.straighten),straightenRefined:meta.straightenRefined===true}:{})};
+    const scientificOrigin=typeof StudioScientificTiff==='undefined'?null:StudioScientificTiff.originFor(project,panel(source.panelId));
     const raster=(href,w,h,name)=>{const width=360,height=360*h/w,svg=document.createElementNS(NS,'svg'),image=document.createElementNS(NS,'image');svg.setAttribute('width',width+'pt');svg.setAttribute('height',height+'pt');svg.setAttribute('viewBox',`0 0 ${width} ${height}`);image.setAttribute('width',String(width));image.setAttribute('height',String(height));image.setAttribute('href',href);svg.append(image);return {name,svg:new XMLSerializer().serializeToString(svg),width,height,viewBox:[0,0,width,height],size:'original',preserveAspect:true};};
-    return {name:panel(source.panelId).name,variants:[raster(result.href,result.width,result.height,professionalAxisText('透视校正','Perspective corrected')),raster(meta.originalHref,dimensions.widthPx,dimensions.heightPx,professionalAxisText('原始图片（未重采样）','Original image (not resampled)'))],initialVariant:0,recipe:{source:panel(source.panelId).name,operation:'perspective-rectification',version:1},analysis:{imageRectification:record},table:null,provenance:'user-import'};
+    return {name:panel(source.panelId).name,variants:[raster(result.href,result.width,result.height,professionalAxisText('透视校正','Perspective corrected')),raster(meta.originalHref,dimensions.widthPx,dimensions.heightPx,(scientificOrigin?professionalAxisText('校正前显示图（保留原生 TIFF）','Display before correction (native TIFF retained)'):professionalAxisText('原始图片（未重采样）','Original image (not resampled)')))],initialVariant:0,recipe:{source:panel(source.panelId).name,operation:'perspective-rectification',version:1},analysis:{imageRectification:record,...(scientificOrigin?{scientificOrigin}:{})},table:null,provenance:'user-import'};
   }
   function showImageRectifyPreview(result,meta){
     const source=assertRectifyTarget(meta);
@@ -4078,8 +4079,9 @@ if (typeof document !== 'undefined') (async () => {
   function renderScientificSource(){
     const box=$('scientificSourceInfo');if(!box)return;
     const source=typeof StudioScientificTiff==='undefined'?null:StudioScientificTiff.original(project,panel(selectedPanel));box.hidden=!source;if(!source)return;
-    const record=panel(selectedPanel).analysis.scientificImage,page=source.metadata.pages[record.page],en=StudioI18n.language==='en';
+    const sourcePanel=panel(selectedPanel),record=StudioScientificTiff.nativeRecord(project,sourcePanel),page=source.metadata.pages[record.page],en=StudioI18n.language==='en';
     $('scientificSourceText').textContent=(en?'Native TIFF retained: ':'已保留原生 TIFF：')+source.name+' · '+page.bitsPerSample.join('/')+' bit · '+(en?'page ':'第 ')+(record.page+1)+(en?'':' 页')+(en?'. Display PNG is not the quantitative source.':'。显示 PNG 不作为原生定量数据。');
+    if(sourcePanel.analysis.scientificOrigin)$('scientificSourceText').textContent+=en?' This is a crop/correction of the display image; calibration was not inherited.':' 当前为显示图的裁剪／校正衍生版本；未继承标定。';
     $('downloadScientificSource').textContent=en?'Download original TIFF':'下载原始 TIFF';
     $('downloadScientificSource').onclick=()=>{const link=document.createElement('a');link.href='data:image/tiff;base64,'+source.data;link.download=source.name;link.click();};
   }

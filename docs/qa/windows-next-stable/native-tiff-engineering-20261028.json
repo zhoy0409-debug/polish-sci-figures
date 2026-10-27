@@ -495,5 +495,27 @@
     ],
     "errors": [],
     "requests": []
+  },
+  "derivativeLineage": {
+    "author": "a",
+    "scope": "Public six-pixel synthetic TIFF, production Chrome and actual local decoder/correction engine; provenance only, not independent detection accuracy or Windows installation",
+    "browser": "155.0.8059.85",
+    "checks": [
+      "Native-TIFF correction preview/cancel retains the exact source, project and history",
+      "Keep records one undo, original display-to-TIFF lineage, separate display-only correction and no inherited calibration; raw TIFF still downloads exactly",
+      "Undo/redo and project reopen preserve source access and retained native bytes",
+      "Repeated correction refers to the same retained native original without duplicating bytes or creating a false native-pixel claim",
+      "Tampered original lineage is rejected without replacing the active project",
+      "Removing the native source store and base record cannot bypass derivative validation"
+    ],
+    "remoteRequests": 0,
+    "pageErrors": [],
+    "passed": true
+  },
+  "repeatableBrowserHarness": {
+    "script": "scripts/run_studio_tiff_browser_checks.py",
+    "localRun": "Chrome155; local production decoder and correction; three suites passed",
+    "ci": "Configured to run the same checks with pinned Chromium; this new commit CI still pending",
+    "nativeInstallation": false
   }
 }

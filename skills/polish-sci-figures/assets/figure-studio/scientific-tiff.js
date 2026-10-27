@@ -1,7 +1,7 @@
 /* Native scientific bytes remain distinct from their reversible display PNG. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.StudioScientificTiff=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
-  const SCHEMA='figure-studio-scientific-image/1',MAX_BYTES=64000000,MAX_TOTAL=80000000;
+  const SCHEMA='figure-studio-scientific-image/1',ORIGIN_SCHEMA='figure-studio-scientific-origin/1',MAX_BYTES=64000000,MAX_TOTAL=80000000;
   const checked=new WeakMap(),hex=value=>typeof value==='string'&&/^[a-f0-9]{64}$/.test(value);
   const integer=value=>Number.isSafeInteger(value)&&value>=0;
   function localEndpoint(endpoint,href){
@@ -28,6 +28,11 @@
     }
     if(total>MAX_TOTAL)throw Error('Native TIFF source limit: 80 MB per project; originals are never silently discarded');
     for(const panel of owner.panels||[]){
+      const origin=panel.analysis?.scientificOrigin;
+      if(origin){
+        const sourcePanel=(owner.panels||[]).find(p=>p.id===origin.sourcePanelId),source=sourcePanel?.analysis?.scientificImage;
+        if(origin.schema!==ORIGIN_SCHEMA||Object.keys(origin).sort().join(',')!=='displaySha256,schema,sourcePanelId,sourceSha256'||panel.analysis.scientificImage||typeof origin.sourcePanelId!=='string'||!source||!sources[source.sourceSha256]||origin.sourceSha256!==source.sourceSha256||origin.displaySha256!==source.display?.sha256||panel.analysis.imageRectification?.sourceSha256!==origin.displaySha256)throw Error('Scientific TIFF derivative does not match its retained original display');
+      }
       const record=panel.analysis?.scientificImage;if(!record)continue;
       const source=sources[record.sourceSha256],page=source?.metadata.pages[record.page],display=record.display;
       if(record.schema!==SCHEMA||!source||!integer(record.page)||!page||!page.supported||!hex(record.nativeSamplesSha256)||!display||!hex(display.sha256)||!Array.isArray(display.window)||display.window.length!==2||!display.window.every(Number.isFinite)||display.window[0]<0||display.window[1]<=display.window[0]||display.window[1]>(page.bitsPerSample?.[0]===16?65535:255)||!Number.isFinite(display.gamma)||display.gamma<.1||display.gamma>10||!['gray','green','magenta','cyan'].includes(display.lut)||!Array.isArray(display.size)||display.size.length!==2||!display.size.every(v=>integer(v)&&v>0)||typeof display.resampled!=='boolean'||display.quantitative!==false)throw Error('Invalid scientific TIFF display record');
@@ -92,6 +97,8 @@
     const resultAsset={name,variants:[{name:'imported_scientific_tiff',svg:`<svg xmlns="http://www.w3.org/2000/svg" width="${width}pt" height="${height}pt" viewBox="0 0 ${width} ${height}"><image width="${width}" height="${height}" href="${href}"/></svg>`,width,height,viewBox:[0,0,width,height],size:'original',preserveAspect:true}],initialVariant:0,recipe:{source:name},analysis:{scientificImage:record,import:{format:'tiff',displayOnly:true,page:native.page+1,nativeBits:page.bitsPerSample}},table:null,provenance:'user-scientific-image'};
     validateSources({scientificSources:{[source.sha256]:source},panels:[resultAsset]});return resultAsset;
   }
-  function original(owner,panel){const record=panel?.analysis?.scientificImage;return record?owner.scientificSources?.[record.sourceSha256]||null:null;}
-  return Object.freeze({SCHEMA,MAX_BYTES,MAX_TOTAL,localEndpoint,validateSources,verifySources,digest,decodeBase64,sourceRecord,asset,original});
+  function nativeRecord(owner,panel){const record=panel?.analysis?.scientificImage;if(record)return record;const id=panel?.analysis?.scientificOrigin?.sourcePanelId;return typeof id==='string'?(owner.panels||[]).find(p=>p.id===id)?.analysis?.scientificImage||null:null;}
+  function originFor(owner,panel){const record=panel?.analysis?.scientificImage;if(record)return {schema:ORIGIN_SCHEMA,sourcePanelId:panel.id,sourceSha256:record.sourceSha256,displaySha256:record.display.sha256};return panel?.analysis?.scientificOrigin?{...panel.analysis.scientificOrigin}:null;}
+  function original(owner,panel){const record=nativeRecord(owner,panel);return record?owner.scientificSources?.[record.sourceSha256]||null:null;}
+  return Object.freeze({SCHEMA,ORIGIN_SCHEMA,MAX_BYTES,MAX_TOTAL,localEndpoint,validateSources,verifySources,digest,decodeBase64,sourceRecord,asset,nativeRecord,originFor,original});
 });

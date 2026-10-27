@@ -4,7 +4,7 @@ const {chromium}=require('playwright'),H=require('./test_studio_carbon_helpers.c
 const {fs,path,assert}=H,url=H.localUrl(process.argv[2]||'http://127.0.0.1:19529/');
 const out=path.resolve(process.argv[3]||'.cache/next-stable-windows-20261028/browser-project-codec-r1');fs.mkdirSync(out,{recursive:true});
 (async()=>{
-  const browser=await chromium.launch({channel:'chrome',headless:true}),{context,page,remote,errors}=await H.browserPage(browser);
+  const browser=await chromium.launch(process.env.STUDIO_TIFF_BROWSER==='chromium'?{headless:true}:{channel:process.env.STUDIO_TIFF_BROWSER||'chrome',headless:true}),{context,page,remote,errors}=await H.browserPage(browser);
   try{
     await page.goto(url);await H.dismiss(page);
     const result=await page.evaluate(async()=>{

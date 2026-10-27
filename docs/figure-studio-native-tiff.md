@@ -19,6 +19,8 @@ created: 2026-10-28
 
 原生显示窗目前在导入预览中调整。保留后仍可使用原有的图片颜色、比例尺和排版工具；尚无保留后重新编辑原生显示窗的专门入口。不要把普通显示颜色调整解释为重新读取原生强度。
 
+使用标尺拉正、四角校正或裁剪时，处理对象是显示 PNG；工程继续关联原始 TIFF，说明区仍可下载原文件。校正前版本明确标为“显示图”，衍生图不声明为原生强度平面，也不自动继承比例尺标定。再次校正仍关联同一原生文件；保存和重开核对该关联，损坏或缺失的关联会拒绝载入。交付处理来源时请保留 JSON 工程和原始 TIFF；导出的显示图片不能代替原始文件。
+
 ## 支持范围
 
 - 无符号 8/16 位单通道 MINISBLACK、8 位连续 RGB；常规 TIFF 与经过结构核对的单系列、单文件 OME-TIFF。OME 映射支持明确的非默认顺序和部分映射；没有映射的页不猜测 C/Z/T。此核对不等于完整 OME schema 或采集记录认证。
@@ -35,6 +37,8 @@ This is an unreleased Windows source candidate. Import a `.tif` or `.tiff` using
 Adjustments preview on the real canvas at a 1024-pixel maximum edge. **Keep & import** generates the chosen native-size or explicitly resampled 2048-edge display and creates one undo record. **Cancel** preserves the existing project, including its history. Saving during preview excludes the draft. Download the exact original TIFF from the source information section after importing. The project stores each original once, with per-display provenance and SHA-256 checks; reopening verifies retained file and display bytes.
 
 The original retains its bit depth. The canvas uses an 8-bit display PNG, which is not a quantitative measurement source. Print DPI is not microscopy calibration. Resampling is explicit and requires an appropriate display-to-native calibration conversion before adding a scale bar. Native-window editing is currently available during import; the existing post-import image tools remain available, but do not reopen the native intensity window.
+
+Ruler, crop and perspective operations act on the display PNG. Corrected panels keep a validated reference to the original TIFF, including after repeated correction and project reopening; the source information section still downloads the exact original. The pre-correction version is labelled as a display image. No native-intensity or inherited-calibration claim is attached to the derivative. Keep the JSON project and raw TIFF when delivering processing provenance; exported display images do not replace them.
 
 Supported: unsigned 8/16-bit scalar MINISBLACK and contiguous RGB8; bounded ordinary TIFF and structurally checked single-series, single-file OME mapping. Limits are 64 MB/file, 32 MP/page, 128 pages, 80 MB of native files/project, 20 MB/display PNG and 200 MB/project JSON. Unsupported signed/float, RGB16, alpha, CMYK, white-is-zero, rotated, pyramidal/SubIFD, multi-series and externally referenced OME files are refused explicitly. Original bytes never leave the protected loopback endpoint. Full OME schema certification and native installed-app acceptance remain outside the checks completed here.
 

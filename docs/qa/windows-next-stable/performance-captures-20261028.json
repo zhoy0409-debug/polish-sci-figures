@@ -21,7 +21,11 @@
       "baseline-A5",
       "candidate-B5",
       "candidate-B6",
-      "baseline-A6"
+      "baseline-A6",
+      "baseline-A7",
+      "candidate-B7",
+      "candidate-B8",
+      "baseline-A8"
     ],
     "firstOperationScope": "First recorded warmup action of each kind, before excluded repeated-action summaries; not cold OS or first installation launch."
   },
@@ -3031,6 +3035,1007 @@
           "verified": true
         }
       }
+    },
+    {
+      "label": "baseline-A7",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+      "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+      "sourceAssetsSha256": "9ae3a50142f3b644c2b5a5585a97813b4b91ef7d197cbf016785a45faded8b09",
+      "rawSha256": "0f6e1a353ec4aaddba049b05c4855efd798547c9e1ff1a6512716f6ee41596d2",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 38.30000001192093,
+            "p95": 43.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 44.200000047683716,
+            "p95": 50.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.30000001192093,
+            "p95": 23
+          },
+          "actionWallMs": {
+            "p50": 99.10000002384186,
+            "p95": 107.39999997615814
+          },
+          "frames": {
+            "count": 150,
+            "p50": 7.800000011920929,
+            "p95": 43.60000002384186,
+            "max": 62.30000001192093,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 1,
+            "totalMs": 57,
+            "maxMs": 57
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 32.200000047683716,
+            "p95": 37.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 54,
+            "p95": 60.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 53.60000002384186,
+            "p95": 60
+          },
+          "actionWallMs": {
+            "p50": 90.69999998807907,
+            "p95": 99.09999996423721
+          },
+          "frames": {
+            "count": 137,
+            "p50": 7.600000023841858,
+            "p95": 36.09999996423721,
+            "max": 82.5,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.899999976158142,
+            "p95": 26.899999976158142
+          },
+          "commitToSecondRafMs": {
+            "p50": 151.20000004768372,
+            "p95": 180.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 273.9000000357628,
+            "p95": 299.9000000357628
+          },
+          "frames": {
+            "count": 282,
+            "p50": 8.300000011920929,
+            "p95": 140.80000001192093,
+            "max": 173.80000001192093,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2947,
+            "maxMs": 173
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 9
+          },
+          "commitToSecondRafMs": {
+            "p50": 26,
+            "p95": 31.900000035762787
+          },
+          "actionWallMs": {
+            "p50": 132.4000000357628,
+            "p95": 140.79999995231628
+          },
+          "frames": {
+            "count": 257,
+            "p50": 8.300000011920929,
+            "p95": 22.80000001192093,
+            "max": 33.59999996423721,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 241.10000002384186,
+            "p95": 276.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 274.7000000476837,
+            "p95": 316
+          },
+          "commitToSecondRafMs": {
+            "p50": 274.7000000476837,
+            "p95": 316
+          },
+          "actionWallMs": {
+            "p50": 343.80000001192093,
+            "p95": 404.19999998807907
+          },
+          "frames": {
+            "count": 149,
+            "p50": 8.400000035762787,
+            "p95": 249.69999998807907,
+            "max": 282.39999997615814,
+            "over50ms": 22
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 4876,
+            "maxMs": 278
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 16.599999964237213,
+            "p95": 18.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 26.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 26.5
+          },
+          "actionWallMs": {
+            "p50": 74,
+            "p95": 74.39999997615814
+          },
+          "frames": {
+            "count": 138,
+            "p50": 7.5,
+            "p95": 22.899999976158142,
+            "max": 25,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": [],
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 48.09999996423721,
+          "inputToSecondRafMs": 53.19999998807907,
+          "commitToSecondRafMs": 15.5,
+          "actionWallMs": 90.59999996423721,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 42.39999997615814,
+          "inputToSecondRafMs": 51.39999997615814,
+          "commitToSecondRafMs": 49.89999997615814,
+          "actionWallMs": 81.89999997615814,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 33.10000002384186,
+          "commitToSecondRafMs": 171.80000001192093,
+          "actionWallMs": 315.10000002384186,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 8.399999976158142,
+          "commitToSecondRafMs": 29.30000001192093,
+          "actionWallMs": 140.19999998807907,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 243.29999995231628,
+          "inputToSecondRafMs": 276.0,
+          "commitToSecondRafMs": 276.0,
+          "actionWallMs": 335.69999998807907,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 20.100000023841858,
+          "inputToSecondRafMs": 28,
+          "commitToSecondRafMs": 28,
+          "actionWallMs": 82.19999998807907,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "candidate-B7",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "e28b20d8c3ad19277540ff470105f9ba36281f8f",
+      "htmlSha256": "9e5428b3854cf3b8f08840b1000853ccb9ace5940cb98b2ce7ecd7f987ff4353",
+      "sourceAssetsSha256": "dc392992ea4fae5d3a7afd8b6a301c7e9109b356c19514a26aecf5870d2e7c62",
+      "rawSha256": "2cb7abf5998dc43cf433a5cfa5d345828f026f4691b4e6c487d1843241a8280d",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 33.19999998807907,
+            "p95": 39
+          },
+          "inputToSecondRafMs": {
+            "p50": 39.19999998807907,
+            "p95": 46.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.899999976158142,
+            "p95": 21.5
+          },
+          "actionWallMs": {
+            "p50": 74.19999998807907,
+            "p95": 90.5
+          },
+          "frames": {
+            "count": 108,
+            "p50": 8.299999952316284,
+            "p95": 39.19999998807907,
+            "max": 47.39999997615814,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 23.899999976158142,
+            "p95": 28.700000047683716
+          },
+          "inputToSecondRafMs": {
+            "p50": 37.39999997615814,
+            "p95": 43.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 36.89999997615814,
+            "p95": 43
+          },
+          "actionWallMs": {
+            "p50": 65.30000001192093,
+            "p95": 74
+          },
+          "frames": {
+            "count": 87,
+            "p50": 7.600000023841858,
+            "p95": 14,
+            "max": 14.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.200000047683716,
+            "p95": 27.200000047683716
+          },
+          "commitToSecondRafMs": {
+            "p50": 114.90000003576279,
+            "p95": 130.4000000357628
+          },
+          "actionWallMs": {
+            "p50": 215.80000001192093,
+            "p95": 265.19999998807907
+          },
+          "frames": {
+            "count": 251,
+            "p50": 8.300000011920929,
+            "p95": 109.59999996423721,
+            "max": 128.89999997615814,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2144,
+            "maxMs": 122
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 10.300000011920929
+          },
+          "commitToSecondRafMs": {
+            "p50": 26,
+            "p95": 30.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 132.30000001192093,
+            "p95": 140.70000004768372
+          },
+          "frames": {
+            "count": 267,
+            "p50": 8.300000011920929,
+            "p95": 21.299999952316284,
+            "max": 41.69999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 31.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 28,
+            "p95": 35.10000002384186
+          },
+          "commitToSecondRafMs": {
+            "p50": 28,
+            "p95": 35.10000002384186
+          },
+          "actionWallMs": {
+            "p50": 65.80000001192093,
+            "p95": 73.69999998807907
+          },
+          "frames": {
+            "count": 113,
+            "p50": 8.300000011920929,
+            "p95": 32.40000003576279,
+            "max": 40,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 5.5,
+            "p95": 7
+          },
+          "inputToSecondRafMs": {
+            "p50": 12.5,
+            "p95": 13
+          },
+          "commitToSecondRafMs": {
+            "p50": 12.599999964237213,
+            "p95": 13
+          },
+          "actionWallMs": {
+            "p50": 40.69999998807907,
+            "p95": 57.200000047683716
+          },
+          "frames": {
+            "count": 89,
+            "p50": 8.300000011920929,
+            "p95": 10.899999976158142,
+            "max": 14.600000023841858,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": [],
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 48.0,
+          "inputToSecondRafMs": 53.39999997615814,
+          "commitToSecondRafMs": 17.30000001192093,
+          "actionWallMs": 90.60000002384186,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 26.100000023841858,
+          "inputToSecondRafMs": 39.0,
+          "commitToSecondRafMs": 37.69999998807907,
+          "actionWallMs": 64.5,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 34.69999998807907,
+          "commitToSecondRafMs": 125.29999995231628,
+          "actionWallMs": 265.5,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.20000004768371582,
+          "inputToSecondRafMs": 8.400000035762787,
+          "commitToSecondRafMs": 24.599999964237213,
+          "actionWallMs": 140.69999998807907,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 34.19999998807907,
+          "inputToSecondRafMs": 37.0,
+          "commitToSecondRafMs": 37.0,
+          "actionWallMs": 73.60000002384186,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 6.199999988079071,
+          "inputToSecondRafMs": 12.399999976158142,
+          "commitToSecondRafMs": 12.399999976158142,
+          "actionWallMs": 40.5,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "candidate-B8",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "e28b20d8c3ad19277540ff470105f9ba36281f8f",
+      "htmlSha256": "9e5428b3854cf3b8f08840b1000853ccb9ace5940cb98b2ce7ecd7f987ff4353",
+      "sourceAssetsSha256": "dc392992ea4fae5d3a7afd8b6a301c7e9109b356c19514a26aecf5870d2e7c62",
+      "rawSha256": "197a42f689c6ef0937db8ceac887f8c62bbdd6993de14d5653d891337a571b5f",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 32.5,
+            "p95": 35.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 38.30000001192093,
+            "p95": 41.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.399999976158142,
+            "p95": 18.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 74.09999996423721,
+            "p95": 81.5
+          },
+          "frames": {
+            "count": 108,
+            "p50": 8.200000047683716,
+            "p95": 38.5,
+            "max": 41.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 23.900000035762787,
+            "p95": 29
+          },
+          "inputToSecondRafMs": {
+            "p50": 37.09999996423721,
+            "p95": 42
+          },
+          "commitToSecondRafMs": {
+            "p50": 36.59999996423721,
+            "p95": 41.59999996423721
+          },
+          "actionWallMs": {
+            "p50": 57.700000047683716,
+            "p95": 66.40000003576279
+          },
+          "frames": {
+            "count": 86,
+            "p50": 7.600000023841858,
+            "p95": 13.699999988079071,
+            "max": 30.19999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.600000023841858,
+            "p95": 25.400000035762787
+          },
+          "commitToSecondRafMs": {
+            "p50": 113.69999998807907,
+            "p95": 132.4000000357628
+          },
+          "actionWallMs": {
+            "p50": 215.79999995231628,
+            "p95": 241.80000001192093
+          },
+          "frames": {
+            "count": 243,
+            "p50": 8.299999952316284,
+            "p95": 109.10000002384186,
+            "max": 142.80000001192093,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2180,
+            "maxMs": 136
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.400000035762787,
+            "p95": 8.800000011920929
+          },
+          "commitToSecondRafMs": {
+            "p50": 25.30000001192093,
+            "p95": 29.899999976158142
+          },
+          "actionWallMs": {
+            "p50": 132.30000001192093,
+            "p95": 140.69999998807907
+          },
+          "frames": {
+            "count": 263,
+            "p50": 8.300000011920929,
+            "p95": 21.19999998807907,
+            "max": 34.19999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 24.899999976158142,
+            "p95": 28.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 28.19999998807907,
+            "p95": 31.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 28.19999998807907,
+            "p95": 31.80000001192093
+          },
+          "actionWallMs": {
+            "p50": 65.69999998807907,
+            "p95": 73.59999996423721
+          },
+          "frames": {
+            "count": 111,
+            "p50": 8.299999952316284,
+            "p95": 30.80000001192093,
+            "max": 34.60000002384186,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 5.700000047683716,
+            "p95": 6.199999988079071
+          },
+          "inputToSecondRafMs": {
+            "p50": 12.700000047683716,
+            "p95": 13.100000023841858
+          },
+          "commitToSecondRafMs": {
+            "p50": 12.799999952316284,
+            "p95": 13.199999988079071
+          },
+          "actionWallMs": {
+            "p50": 40.60000002384186,
+            "p95": 40.80000001192093
+          },
+          "frames": {
+            "count": 80,
+            "p50": 8.300000011920929,
+            "p95": 10,
+            "max": 10.699999988079071,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": [],
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 42.60000002384186,
+          "inputToSecondRafMs": 47.89999997615814,
+          "commitToSecondRafMs": 16.5,
+          "actionWallMs": 82.29999995231628,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 24.399999976158142,
+          "inputToSecondRafMs": 36.60000002384186,
+          "commitToSecondRafMs": 35.5,
+          "actionWallMs": 65.10000002384186,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 32.10000002384186,
+          "commitToSecondRafMs": 126.19999998807907,
+          "actionWallMs": 265.10000002384186,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.20000004768371582,
+          "inputToSecondRafMs": 8.800000011920929,
+          "commitToSecondRafMs": 27.5,
+          "actionWallMs": 140.29999995231628,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 33.19999998807907,
+          "inputToSecondRafMs": 36.0,
+          "commitToSecondRafMs": 36.10000002384186,
+          "actionWallMs": 73.80000001192093,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 5.800000011920929,
+          "inputToSecondRafMs": 12.599999964237213,
+          "commitToSecondRafMs": 12.599999964237213,
+          "actionWallMs": 40.90000003576279,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "baseline-A8",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+      "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+      "sourceAssetsSha256": "9ae3a50142f3b644c2b5a5585a97813b4b91ef7d197cbf016785a45faded8b09",
+      "rawSha256": "4bff63b19086483252240cf3dac8740388291afdd857a956fe6dc6d9f3204142",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 37.69999998807907,
+            "p95": 47.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 44.299999952316284,
+            "p95": 53.799999952316284
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.19999998807907,
+            "p95": 21.600000023841858
+          },
+          "actionWallMs": {
+            "p50": 98.60000002384186,
+            "p95": 107.10000002384186
+          },
+          "frames": {
+            "count": 143,
+            "p50": 8,
+            "p95": 44.40000003576279,
+            "max": 54.09999996423721,
+            "over50ms": 4
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 31.80000001192093,
+            "p95": 37.60000002384186
+          },
+          "inputToSecondRafMs": {
+            "p50": 53.80000001192093,
+            "p95": 63.10000002384186
+          },
+          "commitToSecondRafMs": {
+            "p50": 53.39999997615814,
+            "p95": 62.60000002384186
+          },
+          "actionWallMs": {
+            "p50": 90.69999998807907,
+            "p95": 115.40000003576279
+          },
+          "frames": {
+            "count": 134,
+            "p50": 7.600000023841858,
+            "p95": 35.60000002384186,
+            "max": 54.89999997615814,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.100000023841858,
+            "p95": 25.899999976158142
+          },
+          "commitToSecondRafMs": {
+            "p50": 157.60000002384186,
+            "p95": 173.89999997615814
+          },
+          "actionWallMs": {
+            "p50": 271.30000001192093,
+            "p95": 288.5999999642372
+          },
+          "frames": {
+            "count": 268,
+            "p50": 8.300000011920929,
+            "p95": 143.5,
+            "max": 170,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2961,
+            "maxMs": 168
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 9.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 25.799999952316284,
+            "p95": 36.59999996423721
+          },
+          "actionWallMs": {
+            "p50": 140.19999998807907,
+            "p95": 149.19999998807907
+          },
+          "frames": {
+            "count": 265,
+            "p50": 8.300000011920929,
+            "p95": 22.5,
+            "max": 33.80000001192093,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 238.9000000357628,
+            "p95": 275.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 274,
+            "p95": 312.0999999642372
+          },
+          "commitToSecondRafMs": {
+            "p50": 274,
+            "p95": 312.0999999642372
+          },
+          "actionWallMs": {
+            "p50": 343.39999997615814,
+            "p95": 422.0999999642372
+          },
+          "frames": {
+            "count": 153,
+            "p50": 8.399999976158142,
+            "p95": 246.0999999642372,
+            "max": 319.7999999523163,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 4830,
+            "maxMs": 315
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 16.30000001192093,
+            "p95": 20.399999976158142
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 30.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 30.5
+          },
+          "actionWallMs": {
+            "p50": 74.09999996423721,
+            "p95": 82.40000003576279
+          },
+          "frames": {
+            "count": 141,
+            "p50": 8,
+            "p95": 23.399999976158142,
+            "max": 27,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": [],
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 73.79999995231628,
+          "inputToSecondRafMs": 81.09999996423721,
+          "commitToSecondRafMs": 28,
+          "actionWallMs": 131.70000004768372,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 49.59999996423721,
+          "inputToSecondRafMs": 60.5,
+          "commitToSecondRafMs": 58.80000001192093,
+          "actionWallMs": 97.30000001192093,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 35.60000002384186,
+          "commitToSecondRafMs": 205.9000000357628,
+          "actionWallMs": 356.89999997615814,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 11.199999988079071,
+          "commitToSecondRafMs": 34.60000002384186,
+          "actionWallMs": 157.10000002384186,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 267.5,
+          "inputToSecondRafMs": 303.69999998807907,
+          "commitToSecondRafMs": 303.69999998807907,
+          "actionWallMs": 361.39999997615814,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 15.900000035762787,
+          "inputToSecondRafMs": 23.600000023841858,
+          "commitToSecondRafMs": 23.600000023841858,
+          "actionWallMs": 73.89999997615814,
+          "verified": true
+        }
+      }
     }
-  ]
+  ],
+  "latestVectorSnapshot": "e28b20d8c3ad19277540ff470105f9ba36281f8f; generatedHTML/assets captured before the later native-TIFF derivative lineage change, which does not alter vector interactions."
 }

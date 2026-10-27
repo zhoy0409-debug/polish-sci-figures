@@ -9,7 +9,7 @@ const out=path.resolve(process.argv[3]||'.cache/next-stable-windows-20261028/bro
 fs.mkdirSync(out,{recursive:true});
 
 (async()=>{
-  const browser=await chromium.launch({channel:'chrome',headless:true});
+  const browser=await chromium.launch(process.env.STUDIO_TIFF_BROWSER==='chromium'?{headless:true}:{channel:process.env.STUDIO_TIFF_BROWSER||'chrome',headless:true});
   const {context,page,remote,errors}=await H.browserPage(browser,{viewport:{width:1600,height:1000},recordVideo:{dir:path.join(out,'video')}});
   const checks=[],report={author:'a',scope:'Production Chrome and real local Pillow TIFF API; public synthetic byte fixture; not Windows installation or independent image-detection accuracy',browser:browser.version(),checks};
   const transportErrors=[];let binaryUploads=0;

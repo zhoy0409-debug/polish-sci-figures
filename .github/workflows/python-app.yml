@@ -380,6 +380,11 @@ jobs:
           node scripts/test_studio_compact_whitespace.cjs --dom
       - name: Prepare pinned Chromium for controlled update UI checks
         run: node .cache/mobile-local-spike/node_modules/playwright/cli.js install --with-deps chromium
+      - name: Native TIFF display, retained correction source and project Worker in real browser
+        env:
+          NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
+          STUDIO_TIFF_BROWSER: chromium
+        run: python scripts/run_studio_tiff_browser_checks.py --out .cache/native-tiff-browser-checks
       - name: Update scene real browser rendering and lifecycle (controlled states)
         env:
           NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
@@ -397,3 +402,4 @@ jobs:
             .cache/local-web-qa/wasm-dispatcher.json
             .cache/local-web-preview/SHA256SUMS.txt
             .cache/update-scene-ci/
+            .cache/native-tiff-browser-checks/

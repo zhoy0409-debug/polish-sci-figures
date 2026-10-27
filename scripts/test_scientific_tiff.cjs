@@ -18,6 +18,14 @@ const dom=new JSDOM();global.DOMParser=dom.window.DOMParser;
   owner.panels=[asset];owner.scientificSources={[source.sha256]:source};
   assert.equal(api.validateSources(owner),true);assert.equal(await api.verifySources(owner),true);
   assert.equal(api.original(owner,asset),source);
+  const origin=api.originFor(owner,asset),derived={id:'panel-1',variants:[],analysis:{scientificOrigin:origin,imageRectification:{sourceSha256:origin.displaySha256}}};
+  const lineage={...owner,panels:[asset,derived]};
+  assert.equal(api.validateSources(lineage),true);assert.equal(api.nativeRecord(lineage,derived),asset.analysis.scientificImage);assert.equal(api.original(lineage,derived),source);
+  assert.deepEqual(api.originFor(lineage,derived),origin);assert.notEqual(api.originFor(lineage,derived),origin,'repeated correction copies only the bounded reference');
+  assert.equal(api.original(lineage,{id:'ordinary',analysis:{}}),null,'ordinary images never acquire another panel\'s native source');
+  for(const change of [value=>value.panels[1].analysis.scientificOrigin.sourcePanelId='missing',value=>value.panels[1].analysis.scientificOrigin.sourceSha256='0'.repeat(64),value=>value.panels[1].analysis.scientificOrigin.displaySha256='0'.repeat(64),value=>value.panels[1].analysis.imageRectification.sourceSha256='0'.repeat(64),value=>value.panels[1].analysis.scientificImage=clone(asset.analysis.scientificImage)]){
+    const bad=clone(lineage);change(bad);assert.throws(()=>api.validateSources(bad),/derivative/);
+  }
   assert.equal(JSON.stringify(fixture),before,'constructors do not alter actual native/PNG fixtures');
 
   const originalData=source.data;source.data=(source.data[0]==='A'?'B':'A')+source.data.slice(1);

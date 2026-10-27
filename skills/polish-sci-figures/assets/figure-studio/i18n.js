@@ -185,6 +185,8 @@ const StudioI18n = (() => {
 "每次只能打开一个工程；图片和数据表可以批量导入":"Open one project at a time. Images and data tables can be imported together.",
 "支持工程 JSON、PDF、SVG、PNG、JPEG、WebP、CSV 或 TSV":"Supported: project JSON, PDF, SVG, PNG, JPEG, WebP, CSV or TSV",
 "支持工程 JSON、PDF、SVG、PNG、JPEG、WebP、TIFF、CSV 或 TSV":"Supported: project JSON, PDF, SVG, PNG, JPEG, WebP, TIFF, CSV or TSV",
+"校正前显示图（保留原生 TIFF）":"Display before correction (native TIFF retained)",
+" 当前为显示图的裁剪／校正衍生版本；未继承标定。":" This is a crop/correction of the display image; calibration was not inherited.",
 "当前版本无法核实原生 TIFF 源文件，请更新编辑器。":"This editor cannot verify native TIFF sources. Use a current editor version.",
 "松开打开工程；确认后替换整个工作区":"Drop to open this project. The workspace is replaced only after confirmation.",
 "松开导入数据表；确认目标图形后应用":"Drop to import data. Choose a destination chart before applying.",
