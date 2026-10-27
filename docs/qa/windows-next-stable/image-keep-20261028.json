@@ -1,0 +1,841 @@
+{
+  "author": "a",
+  "created": "2026-10-28",
+  "scope": "One Windows device, Chrome155 headless; three permitted RGB8 TIFFs, four serial A3/B3/B4/A4 batches. Private originals, filenames, paths and source hashes are excluded. Engineering byte-retention and callback timing, not installed-app acceptance or independent detector accuracy.",
+  "protocol": "Each batch creates a fresh browser/context and runs the same three real local files through import, window adjustment, explicit display size, Keep, project save, raw download and reopen. Each file has one procedure sample per batch, two baseline and two candidate observations; no operation-latency population P95 is inferred. Frame P95 is a within-procedure rAF interval statistic, not click-to-screen latency. Keep ends when the workspace closes and source information appears; it does not certify all future autosave writes completed.",
+  "baseline": "2d0e8bc production image-insets.js before the byte-copy loop change",
+  "change": "Replace Uint8Array.from(string, callback) with an equivalent indexed byte copy. Full base64 validation, headers, EXIF orientation, animation exclusions, pixel/side bounds and cache policy retained.",
+  "sources": {
+    "baselineImageInsetsSha256": "0b314f2f42190116c85f194ff237754958c2946d3283bbc3f1b7aedde0a260e7",
+    "candidateWorkingImageInsetsSha256": "d1d75b1ea15891038b831d901b14a588ec1bbed55609e01ceb7ef796725fc90c",
+    "baselineHtmlSha256": "0d8c4bd8b1873e1712f67391ef9dfe3e9770add277ad265b59bda24833a0ecac",
+    "candidateHtmlSha256": "1289c2862a885f453016d1753aaf1ee17935b24f447a616f2b65839bce985b9b"
+  },
+  "batches": [
+    {
+      "label": "A3",
+      "passed": true,
+      "cases": [
+        {
+          "case": "A",
+          "sourceBytes": 1268268,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 380.89999997615814,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.700000000000045,
+              "maxFrameCallbackGapMs": 16.800000000000182,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 356.7999999523163,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 16.699999999999818,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 265.5,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.59999999999991,
+              "maxFrameCallbackGapMs": 100.10000000000036,
+              "longTasks": 1,
+              "longTaskTotalMs": 106
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 180.70000004768372,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 229,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 92.30000001192093,
+              "frameCallbackP50Ms": 8.400000000000091,
+              "frameCallbackP95Ms": 41.59999999999991,
+              "maxFrameCallbackGapMs": 41.59999999999991,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            }
+          ]
+        },
+        {
+          "case": "B",
+          "sourceBytes": 29820168,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 1377.300000011921,
+              "frameCallbackP50Ms": 8.299999999999955,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 58.200000000000045,
+              "longTasks": 1,
+              "longTaskTotalMs": 58
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 584.3999999761581,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 844.1000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.600000000000364,
+              "maxFrameCallbackGapMs": 149.89999999999964,
+              "longTasks": 2,
+              "longTaskTotalMs": 207
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 592.6000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 24.900000000000546,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1524.6000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 100.09999999999945,
+              "longTasks": 1,
+              "longTaskTotalMs": 104
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 838.8999999761581,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 25,
+              "maxFrameCallbackGapMs": 83.30000000000018,
+              "longTasks": 2,
+              "longTaskTotalMs": 151
+            }
+          ]
+        },
+        {
+          "case": "C",
+          "sourceBytes": 39342300,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 2152.599999964237,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 75,
+              "longTasks": 1,
+              "longTaskTotalMs": 76
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 851,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.5,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 1439.199999988079,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 258.3000000000002,
+              "longTasks": 2,
+              "longTaskTotalMs": 313
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 623.6000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 16.799999999999272,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1841.6000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000001455,
+              "maxFrameCallbackGapMs": 116.60000000000036,
+              "longTasks": 1,
+              "longTaskTotalMs": 122
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 840.1000000238419,
+              "frameCallbackP50Ms": 8.300000000001091,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 74.89999999999964,
+              "longTasks": 2,
+              "longTaskTotalMs": 155
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "B3",
+      "passed": true,
+      "cases": [
+        {
+          "case": "A",
+          "sourceBytes": 1268268,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 405.69999998807907,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.699999999999818,
+              "maxFrameCallbackGapMs": 25.09999999999991,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 887.3999999761581,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 16.699999999999818,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 235.69999998807907,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 66.69999999999982,
+              "longTasks": 1,
+              "longTaskTotalMs": 64
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 173.60000002384186,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 203.30000001192093,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 8.400000000000546,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 98.19999998807907,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 50,
+              "maxFrameCallbackGapMs": 50,
+              "longTasks": 1,
+              "longTaskTotalMs": 52
+            }
+          ]
+        },
+        {
+          "case": "B",
+          "sourceBytes": 29820168,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 1404.199999988079,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 58.299999999999955,
+              "longTasks": 1,
+              "longTaskTotalMs": 56
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 636.3999999761581,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 857.5,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 75.09999999999945,
+              "longTasks": 2,
+              "longTaskTotalMs": 129
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 483.9000000357628,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.399999999999636,
+              "maxFrameCallbackGapMs": 16.699999999999818,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1486.800000011921,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 108.30000000000018,
+              "longTasks": 1,
+              "longTaskTotalMs": 116
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 846,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 74.89999999999964,
+              "longTasks": 2,
+              "longTaskTotalMs": 133
+            }
+          ]
+        },
+        {
+          "case": "C",
+          "sourceBytes": 39342300,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 2098.099999964237,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 75,
+              "longTasks": 1,
+              "longTaskTotalMs": 73
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 847.5,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.5,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 1451.0999999642372,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.399999999999636,
+              "maxFrameCallbackGapMs": 141.60000000000036,
+              "longTasks": 2,
+              "longTaskTotalMs": 192
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 597,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 16.699999999999818,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1781.6000000238419,
+              "frameCallbackP50Ms": 8.300000000001091,
+              "frameCallbackP95Ms": 8.400000000001455,
+              "maxFrameCallbackGapMs": 116.69999999999982,
+              "longTasks": 1,
+              "longTaskTotalMs": 119
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 892.2000000476837,
+              "frameCallbackP50Ms": 8.300000000001091,
+              "frameCallbackP95Ms": 25,
+              "maxFrameCallbackGapMs": 83.29999999999927,
+              "longTasks": 3,
+              "longTaskTotalMs": 217
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "B4",
+      "passed": true,
+      "cases": [
+        {
+          "case": "A",
+          "sourceBytes": 1268268,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 373,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.799999999999955,
+              "maxFrameCallbackGapMs": 24.90000000000009,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 361.19999998807907,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.59999999999991,
+              "maxFrameCallbackGapMs": 16.800000000000182,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 227.89999997615814,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.699999999999818,
+              "maxFrameCallbackGapMs": 58.40000000000009,
+              "longTasks": 1,
+              "longTaskTotalMs": 62
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 198.5,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.5,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 215.79999995231628,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 98.59999996423721,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 50,
+              "maxFrameCallbackGapMs": 50,
+              "longTasks": 1,
+              "longTaskTotalMs": 51
+            }
+          ]
+        },
+        {
+          "case": "B",
+          "sourceBytes": 29820168,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 1376.3999999761581,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 58.299999999999955,
+              "longTasks": 1,
+              "longTaskTotalMs": 55
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 566.6999999880791,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.5,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 853.3000000119209,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 83.30000000000018,
+              "longTasks": 2,
+              "longTaskTotalMs": 141
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 489.7000000476837,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 16.599999999999454,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1360.800000011921,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 83.10000000000036,
+              "longTasks": 1,
+              "longTaskTotalMs": 87
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 851.1999999880791,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.600000000000364,
+              "maxFrameCallbackGapMs": 75.10000000000036,
+              "longTasks": 2,
+              "longTaskTotalMs": 142
+            }
+          ]
+        },
+        {
+          "case": "C",
+          "sourceBytes": 39342300,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 2080.600000023842,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 74.90000000000009,
+              "longTasks": 1,
+              "longTaskTotalMs": 71
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 853,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.5,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 1562.6000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 133.39999999999964,
+              "longTasks": 2,
+              "longTaskTotalMs": 183
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 578.9000000357628,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 16.699999999999818,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1801.6000000238419,
+              "frameCallbackP50Ms": 8.300000000001091,
+              "frameCallbackP95Ms": 8.400000000001455,
+              "maxFrameCallbackGapMs": 116.69999999999982,
+              "longTasks": 1,
+              "longTaskTotalMs": 120
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 828.9000000357628,
+              "frameCallbackP50Ms": 8.300000000001091,
+              "frameCallbackP95Ms": 25,
+              "maxFrameCallbackGapMs": 75.09999999999854,
+              "longTasks": 2,
+              "longTaskTotalMs": 152
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "A4",
+      "passed": true,
+      "cases": [
+        {
+          "case": "A",
+          "sourceBytes": 1268268,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 395.39999997615814,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.699999999999818,
+              "maxFrameCallbackGapMs": 25,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 340.19999998807907,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 16.59999999999991,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 266.30000001192093,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.699999999999818,
+              "maxFrameCallbackGapMs": 100,
+              "longTasks": 1,
+              "longTaskTotalMs": 108
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 171.19999998807907,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 196.39999997615814,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.5,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 100.5,
+              "frameCallbackP50Ms": 8.399999999999636,
+              "frameCallbackP95Ms": 58.19999999999982,
+              "maxFrameCallbackGapMs": 58.19999999999982,
+              "longTasks": 1,
+              "longTaskTotalMs": 56
+            }
+          ]
+        },
+        {
+          "case": "B",
+          "sourceBytes": 29820168,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 1376,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 66.70000000000005,
+              "longTasks": 1,
+              "longTaskTotalMs": 56
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 596.1999999880791,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.900000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 860.6999999880791,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 149.90000000000055,
+              "longTasks": 2,
+              "longTaskTotalMs": 214
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 500.10000002384186,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.599999999999454,
+              "maxFrameCallbackGapMs": 16.599999999999454,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1347.0999999642372,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 91.60000000000036,
+              "longTasks": 1,
+              "longTaskTotalMs": 95
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 837.6000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 75,
+              "longTasks": 2,
+              "longTaskTotalMs": 139
+            }
+          ]
+        },
+        {
+          "case": "C",
+          "sourceBytes": 39342300,
+          "inputUnchanged": true,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 2330,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 83.29999999999995,
+              "longTasks": 1,
+              "longTaskTotalMs": 83
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 886.6000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 16.699999999999818,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 1444.3999999761581,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 266.6999999999998,
+              "longTasks": 2,
+              "longTaskTotalMs": 319
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 639.3000000119209,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.699999999999818,
+              "maxFrameCallbackGapMs": 16.599999999999454,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1811.8999999761581,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000001455,
+              "maxFrameCallbackGapMs": 116.60000000000036,
+              "longTasks": 1,
+              "longTaskTotalMs": 120
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 892.7000000476837,
+              "frameCallbackP50Ms": 8.300000000001091,
+              "frameCallbackP95Ms": 25,
+              "maxFrameCallbackGapMs": 75,
+              "longTasks": 3,
+              "longTaskTotalMs": 209
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "diagnostic": {
+    "scope": "Separate CPU sampling with tracing adds overhead; attribution only, not normal response timing. Both captures use the same permitted largest file.",
+    "baselineDimensionsSelfMs": 157.4,
+    "candidateDimensionsSelfMs": 9.3,
+    "baselineInstallAssetInclusiveMs": 256.6,
+    "candidateInstallAssetInclusiveMs": 93.3,
+    "sourceUnchanged": true
+  },
+  "limits": "Keep still has long tasks. Large-case total procedure wall time did not improve; original download, reopen and save remain separate phases. No native UI, independent accuracy, full OME or publication acceptance claim."
+}
