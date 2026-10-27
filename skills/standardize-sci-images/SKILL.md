@@ -70,3 +70,7 @@ Read `references/professional_basis.md` for the image-integrity, publication-lay
 ## Acceptance gate
 
 Do not deliver if any raw file was changed, calibration is absent or guessed, comparison-batch display settings differ, crops remove different scientific regions without justification, outputs differ in size, a scale bar is clipped, incorrect, or too small at final size, or unrequested labels/titles/serial numbers appear.
+
+## Resume an edited Studio image project
+
+Use the polish skill's [scoped project operation protocol](../polish-sci-figures/references/project_operations.md) for supported local presentation edits and revision checks. Inspect installed capabilities before creating operations. Preserve original raster bytes, source calibration, channel mapping, display policy and every unrelated manual edit. Image-only scientific checks remain unverifiable without the relevant acquisition/data records; geometry review is not quantitative validation.

@@ -33,12 +33,15 @@ const StudioLayersPanel = (() => {
     const spacer=doc.createElement('div');spacer.className='studio-layer-spacer';spacer.setAttribute('aria-hidden','true');
     const window=doc.createElement('div');window.className='studio-layer-window';window.setAttribute('role','rowgroup');
     const empty=doc.createElement('p');empty.className='studio-layer-empty';host.replaceChildren(spacer,window,empty);host.setAttribute('role','grid');host.setAttribute('aria-colcount','3');host.tabIndex=0;
-    let source=null,context=null,contextKey=null,rows=[],matches=[],indexes=new Map(),limit=PAGE_SIZE,query='',revision=null,language='',frame=0,focusKey=null,visible=new Map(),viewportHeight=340,lastStatus='';
+    let source=null,context=null,contextKey=null,rows=[],matches=[],indexes=new Map(),limit=PAGE_SIZE,query='',revision=null,language='',frame=0,focusKey=null,visible=new Map(),viewportHeight=340,lastStatus='',scrollPosition=0;
     const stats={indexes:0,indexedRows:0,createdRows:0,paints:0};
     const selected=()=>context?.selected||new Set(),isLocked=key=>!!(context?.panelLocked||context?.locked?.has(key)),isHidden=key=>context?.edits?.[key]?.hidden==='true';
     const name=item=>item.type==='text'?t('文字 ')+item.node.textContent:item.type==='image'?t('图片'):item.type==='path'?t('路径'):item.type;
     const filter=()=>{matches=query?rows.filter(item=>(name(item)+' '+item.type+' '+item.key).toLowerCase().includes(query)):rows;indexes=new Map(matches.map((item,index)=>[item.key,index]));};
     const available=()=>Math.min(limit,matches.length);
+    // Read scroll geometry on scroll/explicit flush, not after selection writes:
+    // a scrollTop getter here otherwise forces layout of the entire SVG.
+    const setScroll=value=>{scrollPosition=value;host.scrollTop=value;};
     const schedule=()=>{if(frame)return;frame=win.requestAnimationFrame(()=>{frame=0;paint();});};
     function makeRow(item){
       const row=doc.createElement('div');row.className='studio-layer-row';row.dataset.layerKey=item.key;row.setAttribute('role','row');
@@ -50,8 +53,8 @@ const StudioLayersPanel = (() => {
     }
     function paint(){
       stats.paints++;if(!context)return;
-      const count=available(),maxScroll=Math.max(0,count*ROW_HEIGHT-viewportHeight);if(host.scrollTop>maxScroll)host.scrollTop=maxScroll;
-      const start=Math.max(0,Math.floor(host.scrollTop/ROW_HEIGHT)-OVERSCAN),end=Math.min(count,start+Math.ceil(viewportHeight/ROW_HEIGHT)+OVERSCAN*2),next=new Map();
+      const count=available(),maxScroll=Math.max(0,count*ROW_HEIGHT-viewportHeight);if(scrollPosition>maxScroll)setScroll(maxScroll);
+      const start=Math.max(0,Math.floor(scrollPosition/ROW_HEIGHT)-OVERSCAN),end=Math.min(count,start+Math.ceil(viewportHeight/ROW_HEIGHT)+OVERSCAN*2),next=new Map();
       const retainedFocus=doc.activeElement?.closest?.('[data-layer-key]');
       if(retainedFocus&&!matches.slice(start,end).some(item=>item.key===retainedFocus.dataset.layerKey))host.focus({preventScroll:true});
       if(!focusKey||!indexes.has(focusKey)||indexes.get(focusKey)>=count)focusKey=matches[start]?.key||null;
@@ -75,10 +78,10 @@ const StudioLayersPanel = (() => {
     function update(next){
       const newPanel=contextKey!==next.key,changed=source!==next.source||newPanel,translated=language!==t('图层显示栏'),stateChanged=revision!==next.revision;context=next;contextKey=next.key;revision=next.revision;language=t('图层显示栏');
       if(changed){source=next.source;rows=collect(source);stats.indexes++;stats.indexedRows+=rows.length;}
-      if(newPanel){limit=PAGE_SIZE;host.scrollTop=0;focusKey=null;}
+      if(newPanel){limit=PAGE_SIZE;setScroll(0);focusKey=null;}
       if(changed||translated||query&&stateChanged)filter();paint();
     }
-    on(host,'scroll',schedule,{passive:true});
+    on(host,'scroll',()=>{scrollPosition=host.scrollTop;schedule();},{passive:true});
     on(host,'click',event=>{const button=event.target.closest('button[data-layer-action]'),row=button?.closest('[data-layer-key]');if(!row||button.disabled||!host.contains(row))return;focusKey=row.dataset.layerKey;const key=focusKey,action=button.dataset.layerAction;if(action==='name')adapter.choose(key,event.shiftKey||event.ctrlKey||event.metaKey);else if(action==='visibility')adapter.visibility(key,!isHidden(key));else adapter.lock(key,!isLocked(key));});
     on(host,'focusin',event=>{const key=event.target.closest('[data-layer-key]')?.dataset.layerKey;if(key&&focusKey!==key){focusKey=key;paint();}});
     on(host,'keydown',event=>{
@@ -87,14 +90,14 @@ const StudioLayersPanel = (() => {
       const row=event.target.closest('[data-layer-key]'),current=indexes.get(row?.dataset.layerKey||focusKey)||0,action=event.target.dataset.layerAction||'name';
       if(event.key==='ArrowLeft'||event.key==='ArrowRight'){const entry=visible.get(matches[current]?.key),buttons=entry?[entry.eye,entry.lock,entry.title].filter(button=>!button.disabled):[],index=buttons.indexOf(event.target);buttons[(Math.max(index,0)+(event.key==='ArrowLeft'?-1:1)+buttons.length)%buttons.length]?.focus();return;}
       const index=event.key==='Home'?0:event.key==='End'?count-1:Math.max(0,Math.min(count-1,current+(event.key==='ArrowUp'?-1:1)));focusKey=matches[index].key;
-      if(index*ROW_HEIGHT<host.scrollTop)host.scrollTop=index*ROW_HEIGHT;else if((index+1)*ROW_HEIGHT>host.scrollTop+viewportHeight)host.scrollTop=(index+1)*ROW_HEIGHT-viewportHeight;
+      if(index*ROW_HEIGHT<scrollPosition)setScroll(index*ROW_HEIGHT);else if((index+1)*ROW_HEIGHT>scrollPosition+viewportHeight)setScroll((index+1)*ROW_HEIGHT-viewportHeight);
       paint();const entry=visible.get(focusKey);(action==='visibility'&&!entry.eye.disabled?entry.eye:action==='lock'&&!entry.lock.disabled?entry.lock:entry.title).focus({preventScroll:true});
     });
-    on(search,'input',()=>{query=search.value.trim().toLowerCase();limit=PAGE_SIZE;host.scrollTop=0;filter();paint();});
+    on(search,'input',()=>{query=search.value.trim().toLowerCase();limit=PAGE_SIZE;setScroll(0);filter();paint();});
     on(more,'click',()=>{limit+=PAGE_SIZE;paint();});
     const measure=()=>{const next=host.clientHeight||340;if(next!==viewportHeight){viewportHeight=next;paint();}};
     const observer=win.ResizeObserver?new win.ResizeObserver(measure):null;observer?.observe(host);if(!observer)on(win,'resize',measure);measure();
-    return {update,stats,flush(){if(frame){win.cancelAnimationFrame(frame);frame=0;}paint();},destroy(){if(frame)win.cancelAnimationFrame(frame);observer?.disconnect();for(const dispose of disposers)dispose();host.replaceChildren();status.remove();}};
+    return {update,stats,flush(){if(frame){win.cancelAnimationFrame(frame);frame=0;}scrollPosition=host.scrollTop;paint();},destroy(){if(frame)win.cancelAnimationFrame(frame);observer?.disconnect();for(const dispose of disposers)dispose();host.replaceChildren();status.remove();}};
   }
   return {create,collect,ROW_HEIGHT,PAGE_SIZE,OVERSCAN};
 })();

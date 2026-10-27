@@ -45,9 +45,10 @@ test('repeated selection readers build annotations/layout once and cannot poison
 
 });
 
-test('only the four reviewed inspector reads borrow the canonical source; axis/component consumers retain clones',()=>{
+test('only the five reviewed inspector reads borrow the canonical source; axis/component consumers retain clones',()=>{
   const rich=section('  function richTextTarget(){','  function validRichTextTarget('),properties=section('  function renderSelectionProperties() {','  let figureDiscovery='),fonts=section('  function renderFontTargets(){',"  $('unifyTypography').onclick="),component=section('  function componentStyleTargets(){','  function renderComponentStyle(){');
   assert.equal((rich.match(/editableSourceSnapshot\(/g)||[]).length,1);assert.equal((properties.match(/editableSourceSnapshot\(/g)||[]).length,2);assert.equal((fonts.match(/editableSourceSnapshot\(/g)||[]).length,1);
+  const heatmap=section('  function renderHeatmapControls(){','  function updateHeatmapLabels(');assert.equal((heatmap.match(/editableSourceSnapshot\(/g)||[]).length,1);
   assert.match(component,/source=editableSource\(id,vi\)/);assert.match(component,/StudioAxisEditing\.apply\(source/);assert.match(component,/applyAxisGeneratedEdits\(source/);assert.equal(component.includes('editableSourceSnapshot('),false);
 });
 
@@ -165,6 +166,26 @@ test('actual partial commit keeps Undo/Redo enabled states and persistence in sy
   history.undo();fields.undo.disabled=true;fields.redo.disabled=false;const branch=clone(history.current);branch.panels.p.edits[0].e1={'offset-x':'5'};assert.equal(ctx.commit(branch,'Move',false),true);assert.equal(history.states.length,2);assert.equal(history.index,1);assert.equal(fields.undo.disabled,false);assert.equal(fields.redo.disabled,true,'a new partial edit discards redo and updates the header immediately');assert.equal(persisted,2);assert.equal(rendered,0);
   const saved=JSON.parse(JSON.stringify(history.toJSON())),reopened=core.History.restore(saved,project,history.current);assert.deepEqual(reopened.current,history.current);assert.deepEqual(reopened.undo(),initial);reopened.redo();assert.equal(reopened.current.panels.p.edits[0].e1['offset-x'],'5');
   const invalid=clone(history.current);invalid.panels.p.edits[0].e1={'object-transform':'not JSON'};assert.equal(ctx.commit(invalid,'Invalid',false),false);assert.equal(history.index,1);assert.equal(fields.undo.disabled,false);assert.equal(fields.redo.disabled,true);assert.equal(persisted,2);assert.equal(rendered,0);assert.ok(notices.length>=3);
+});
+
+test('source-content note avoids 5000-object clones during moves while invalidating real import changes',()=>{
+  const core=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+  const asset={variants:[{svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">'+Array.from({length:5000},()=>'<rect width="1" height="1"/>').join('')+'</svg>'}],analysis:{import:{format:'svg'}}};
+  const original=asset.variants[0].svg;let builds=0,s={panels:{p:{variant:0,edits:{}}}};
+  const ctx={project:{panels:[asset]},state:()=>s,panel:()=>asset,StudioI18n:{language:'en'},statisticalSourceBinding:()=>asset.variants[0].svg,
+    baseSvg(){builds++;const root=new dom.window.DOMParser().parseFromString(asset.variants[0].svg,'image/svg+xml').documentElement;for(const item of s.panels.p.insertedElements?.[0]||[]){const text=doc.createElementNS(NS,'text');text.textContent=item.text;root.appendChild(text);}return root;},
+    classifySvgContent:core.classifySvgContent,svgContentSummary:(counts,metadata)=>JSON.stringify({counts,metadata})};
+  vm.createContext(ctx);vm.runInContext(section('  function inspectorImportContent(','  function renderInspector()'),ctx);
+  const before=ctx.inspectorImportContent('p',0);assert.equal(JSON.parse(before).counts.vector,5000);
+  for(let i=0;i<25;i++){s=JSON.parse(JSON.stringify(s));s.panels.p.edits.e1={'offset-x':String(i)};assert.equal(ctx.inspectorImportContent('p',0),before);}
+  assert.equal(builds,1,'changing only presentation/selection must reuse source counts');
+  asset.variants[0].svg=original.replace('</svg>','<text>new source</text></svg>');assert.equal(JSON.parse(ctx.inspectorImportContent('p',0)).counts.text,1);assert.equal(builds,2);
+  s.panels.p.insertedElements={0:[{text:'inserted'}]};assert.equal(JSON.parse(ctx.inspectorImportContent('p',0)).counts.text,2);assert.equal(builds,3);
+  asset.analysis.import.format='pdf';assert.equal(JSON.parse(ctx.inspectorImportContent('p',0)).metadata.format,'pdf');assert.equal(builds,4);
+  ctx.StudioI18n.language='zh-CN';ctx.inspectorImportContent('p',0);assert.equal(builds,5);
+  ctx.project.statisticalRenders={'p/0':{svg:'derived',binding:'source'}};ctx.inspectorImportContent('p',0);assert.equal(builds,6);
+  ctx.project.heatmapRenders={'p/0':{svg:'enriched'}};ctx.inspectorImportContent('p',0);assert.equal(builds,7);
+  ctx.project={panels:[asset]};ctx.inspectorImportContent('p',0);assert.equal(builds,8,'a different project never inherits counts');
 });
 
 dom.window.close();console.log(`${passed} selection performance operation-count regressions passed`);

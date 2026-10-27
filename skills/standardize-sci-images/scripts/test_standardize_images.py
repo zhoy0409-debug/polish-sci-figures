@@ -9,7 +9,7 @@ import numpy as np
 from PIL import Image
 
 from make_example_data import create
-from standardize_images import sha256, standardize
+from standardize_images import apply_display, open_source, sha256, standardize
 
 TEST_FONT = "DejaVu Sans"
 
@@ -79,6 +79,28 @@ def main() -> None:
             assert "require explicit batch-locked display_min and display_max" in str(exc)
         else:
             raise AssertionError("Higher-bit-depth data were silently truncated without a display window")
+
+        # Real TIFF byte-order variants must retain native samples before an
+        # explicitly requested display transform; the input file stays exact.
+        native = np.array([[0, 256, 1024], [2048, 4095, 65535]], dtype=np.uint16)
+        expected_gray = np.round(np.clip(native.astype(float) / 4095, 0, 1) * 255).astype(np.uint8)
+        for dtype in ("<u2", ">u2"):
+            endian_path = root / "inputs" / ("little.tif" if dtype == "<u2" else "big.tif")
+            Image.fromarray(native.astype(dtype)).save(endian_path)
+            original_hash = sha256(endian_path)
+            decoded = open_source(endian_path)
+            assert decoded.mode.startswith("I;16") or decoded.mode == "I"
+            np.testing.assert_array_equal(np.asarray(decoded), native)
+            try:
+                apply_display(decoded, None, None, 1.0, "gray")
+            except ValueError as exc:
+                assert "require explicit batch-locked" in str(exc)
+            else:
+                raise AssertionError(f"TIFF {dtype} was reduced without an explicit display window")
+            shown = np.asarray(apply_display(decoded, 0, 4095, 1.0, "gray"))
+            np.testing.assert_array_equal(shown, np.repeat(expected_gray[..., None], 3, axis=-1))
+            np.testing.assert_array_equal(np.asarray(decoded), native)
+            assert sha256(endian_path) == original_hash
 
         try:
             standardize(manifest, root / "too_wide", scale_bar_um=20,

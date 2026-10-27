@@ -17,6 +17,9 @@ EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    'docs/figure-review.zh-CN.md',
+    'docs/figure-review.en.md',
+    'docs/windows-next-stable-audit.md',
     'docs/release-notes-v1.4.25.md',
     'docs/release-notes-v1.4.26.md',
     'docs/release-notes-v1.4.24.md',

@@ -22,6 +22,10 @@ python desktop/build_windows.py --iscc "C:\path\to\Inno Setup 7\ISCC.exe"
 
 The script regenerates the blank starter page, stages the suite and license notices, runs the windowed PyInstaller onedir build, and invokes Inno Setup. Application versions are set in `build_windows.py`; review that value before release.
 
+The build now isolates inherited `PYTHONPATH`, user-site packages and PyInstaller cache in its own process environment. Python children use UTF-8 explicitly. Preflight creates a non-graphical Tcl interpreter as well as importing Tk, so an importable but unusable Tcl runtime fails before freezing. Restricted build environments must allow the approved native runtime to read its own Tcl resources; changing system security settings is not part of the build.
+
+On Windows, use a short, fresh output path if the checkout is deeply nested, for example `--outdir .cache/win-candidate`. Third-party license paths can otherwise exceed legacy Windows path limits. Keep failed logs and verify resolved generated output/staging paths before a rebuild removes those generated directories. A development build with the existing version number must never replace official assets for that version.
+
 Outputs are under `dist/desktop/`:
 
 | Output | Purpose |

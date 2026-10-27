@@ -9,6 +9,8 @@ Figure Studio 0.1.26 增加拍摄照片的一键矫正、标尺拉正和一键�
 
 # polish-sci-figures
 
+The next Windows upgrade is under integration. See the [source-candidate workflow](docs/figure-review.en.md) and [dated acceptance scope](docs/windows-next-stable-audit.md); current download links continue to point to the published stable release.
+
 **Scientific figures, thoughtfully made.**
 
 Turn research data and scientific images into clear, editable figures.<br>

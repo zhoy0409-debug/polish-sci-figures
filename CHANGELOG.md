@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased · Windows integrated upgrade candidate
+
+Add local final-size figure review, issue location, cancellable text-size previews, existing-layout proposals, confirmed-result figure planning and revision-checked local project operations. Raw sources, data drafts, checkpoints and unrelated manual edits are retained. Existing same-data candidate changes require scientific review; unsupported redraws continue through the established workbench. Large vector projects generate actual palette thumbnails in visible, cancellable batches. See the [Chinese workflow](docs/figure-review.zh-CN.md), [English workflow](docs/figure-review.en.md) and [dated acceptance scope](docs/windows-next-stable-audit.md).
+
+This source candidate is not a released Windows installer. Installation, upgrade, full regression and matched performance gates remain required. No additional platform port is introduced, and the v1.4.26 release assets remain unchanged.
+
+Preserve native samples in both byte orders of 16-bit single-channel TIFF before an explicit display-window transform. Windows build preflight checks a working Tcl interpreter and isolates inherited Python packages; nested CLI QA uses UTF-8 for Chinese paths. Large-SVG selection avoids layer-list scroll reads after artwork writes; imported-content notes reuse source counts and invalidate when actual sources change. Performance acceptance retains all batches, including remaining regressions.
+
 ## v1.4.26 · Figure Studio 0.1.26
 
 2026-10-19 dated supplement: final-r2 Setup installation, frozen self-test, three focused checks, normal reinstall/uninstall and final query passed against its own bytes. Genuine official 25 → 26 single download/install and exact automatic restoration passed; the isolated acceptance-test copy was subsequently closed and normally uninstalled with direct user approval. Its actual exit code was 0, all four registration views are absent, and external test data and evidence were retained; see the [cleanup receipt](docs/qa/photo-correction/windows-0.1.26/cleanup-20261019.json). See the [dated evidence](docs/qa/photo-correction/windows-0.1.26/README.md). Keep all original performance batches and retained failures; add dated evidence without replacing the initial eight assets or tag.

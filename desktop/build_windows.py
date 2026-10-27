@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+from importlib import import_module
 import importlib.metadata as metadata
 import json
 import os
@@ -30,14 +31,39 @@ PACKAGES = ('numpy', 'scipy', 'pandas', 'matplotlib', 'openpyxl', 'Pillow', 'pyp
             'pyinstaller', 'pyinstaller-hooks-contrib')
 
 
+def build_environment():
+    """Keep freezer probes and caches inside this build, with UTF-8 IPC."""
+    env = os.environ.copy()
+    env.pop('PYTHONPATH', None)
+    env.update(PYTHONUTF8='1', PYTHONIOENCODING='utf-8', PYTHONNOUSERSITE='1',
+               PYTHONUSERBASE=str(WORK / 'python-userbase'),
+               PYINSTALLER_CONFIG_DIR=str(WORK / 'pyinstaller-config'))
+    return env
+
+
+def verify_build_runtime():
+    for name in ('tkinter', 'tkinter.ttk', 'tkinter.messagebox', '_tkinter'):
+        try:
+            import_module(name)
+        except ImportError as exc:
+            raise SystemExit(f'Windows build runtime is missing {name}; use a complete CPython with Tcl/Tk.') from exc
+    try:
+        import_module('tkinter').Tcl().call('info', 'patchlevel')
+    except Exception as exc:
+        raise SystemExit('Tcl/Tk initialization failed. Verify the build runtime and its native file-read permissions before freezing.') from exc
+
+
 def run(args, logfile=None):
+    args = list(args)
+    if str(args[0]) == sys.executable:
+        args[1:1] = ['-X', 'utf8']
     print('Running:', ' '.join(map(str, args)), flush=True)
     if logfile is None:
-        subprocess.run(list(map(str, args)), cwd=ROOT, check=True)
+        subprocess.run(list(map(str, args)), cwd=ROOT, check=True, env=build_environment())
     else:
         with logfile.open('w', encoding='utf-8') as log:
             result = subprocess.run(list(map(str, args)), cwd=ROOT,
-                                    stdout=log, stderr=subprocess.STDOUT)
+                                    stdout=log, stderr=subprocess.STDOUT, env=build_environment())
         if result.returncode:
             print(logfile.read_text(encoding='utf-8', errors='replace')[-8000:])
             result.check_returncode()
@@ -211,6 +237,7 @@ def main():
     APP = DIST / 'Figure Studio'
     if sys.platform != 'win32' or sys.maxsize <= 2**32:
         raise SystemExit('Build on Windows using 64-bit CPython.')
+    verify_build_runtime()
     WORK.mkdir(parents=True, exist_ok=True)
     DIST.mkdir(parents=True, exist_ok=True)
     run([sys.executable, ROOT / 'desktop/build_starter.py'])

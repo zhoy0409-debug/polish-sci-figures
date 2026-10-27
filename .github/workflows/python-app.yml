@@ -49,6 +49,7 @@ jobs:
         run: |
           python desktop/test_figure_studio_app.py
           python desktop/test_windows_updater.py
+          python desktop/test_windows_build.py
           python desktop/test_macos_build.py
       - name: Local image duplicate screening and evidence
         run: |
@@ -136,6 +137,11 @@ jobs:
           node scripts/test_local_web_engine.cjs
           node scripts/test_local_web_offline.cjs
           node scripts/test_studio_state.cjs
+          node scripts/test_figure_quality.cjs
+          node scripts/test_project_operations.cjs
+          node scripts/test_project_operations_cli.cjs
+          node scripts/test_figure_planning.cjs
+          node scripts/test_studio_deferred_previews.cjs
           node scripts/test_studio_duplicate_check.cjs
           node scripts/test_studio_duplicate_review.cjs
           node scripts/test_studio_duplicate_viewer.cjs

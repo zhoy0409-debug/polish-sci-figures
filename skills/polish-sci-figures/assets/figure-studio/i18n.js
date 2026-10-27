@@ -908,6 +908,29 @@ const StudioI18n = (() => {
     '透视校正预览尚未应用；可在侧栏保留或取消。':'Perspective preview is not applied. Keep or cancel it in the inspector.',
     '完整分辨率校正尚未完成。':'Full-resolution correction has not completed.'
   });
+  Object.assign(en,{
+    '正在生成当前图预览…':'Preparing preview from the current figure…',
+    '预览暂不可用；可在画布核对配色':'Preview unavailable; check the palette on the canvas',
+    '图形质检':'Review',
+    '最终尺寸检查、排版与本地 Skill 协作':'Final-size review, layout and local Skill collaboration',
+    '有未完成的数据或坐标轴计算，请完成后再检查。':'Finish pending data or axis calculations before review.',
+    '工程在预检期间发生变化，请重试。':'The project changed during preflight. Try again.',
+    '规划小图与工程不匹配':'Planned panels do not match the project',
+    '排版涉及已锁定内容，请使用现有母版控件逐项调整或先解锁。':'Layout affects locked content. Use the existing master controls or unlock it first.',
+    '当前母版已裁切，请先在母版控件恢复完整边界再预览新排版。':'Restore the full cropped master before previewing a new layout.',
+    '已应用质检预览修改':'Review edits applied',
+    '请先保留或取消当前预览，再检查已保存的图形。':'Keep or cancel the current preview before reviewing the committed figure.',
+    '目标小图已变化；请重新导出检查清单，避免覆盖人工修改。':'The target panel changed. Export a new inspection to preserve manual edits.',
+    '目标元素不存在或已锁定':'The target element is missing or locked',
+    '目标小图已锁定或不存在':'The target panel is locked or missing',
+    '操作协议或工程身份不匹配':'Operation schema or project identity does not match',
+    '样式值无效':'Invalid style value',
+    '操作包含不支持的字段':'Operation contains unsupported fields',
+    '候选须来自同一已绑定数据包、相同画布；重算图型请使用现有工作台。':'Candidates must share the bound data bundle and canvas. Use the existing workbench for redraws.',
+    '请先完成数据更新或解除目标小图内的锁定，再切换候选。':'Finish data updates or resolve content locks before switching candidates.',
+    '候选切换须说明科学适用性和展示重点；不能只按显著性选择。':'Explain candidate suitability and display purpose; do not select solely by significance.',
+    '请先导出当前工程检查清单并逐项确认已有结果。':'Inspect the current project and confirm each existing result first.'
+  });
   function t(text,...values){let result=language==='en'?(en[text]??text):text;return result.replace(/\{(\d+)\}/g,(_,n)=>String(values[+n]??''));}
   return {t,choose,setLanguage,panelName,projectTitle,validateDisplayNames,preserveDisplayNames,restoreDisplayNames,get language(){return language;},en};
 })();
