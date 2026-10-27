@@ -6,6 +6,8 @@ Add local final-size figure review, issue location, cancellable text-size previe
 
 This source candidate is not a released Windows installer. Installation, upgrade, full regression and matched performance gates remain required. No additional platform port is introduced, and the v1.4.26 release assets remain unchanged.
 
+Add bounded native TIFF import through the protected local engine: unsigned scalar 8/16-bit and RGB8, verified single-file OME page mapping, real-canvas window/gamma/LUT preview, explicit resampling, cancellation, one-step Keep/Undo, original-byte download and project integrity checks. Retain native originals once per project and refuse unsupported formats explicitly. Local binary sessions avoid repeated raw-image JSON uploads. Large-project JSON save/parse uses local Workers with call-time snapshots, preserving later unsaved edits. See the [native TIFF workflow and limits](docs/figure-studio-native-tiff.md); real-image engineering checks do not substitute for independent image-detection accuracy or installed Windows acceptance.
+
 Preserve native samples in both byte orders of 16-bit single-channel TIFF before an explicit display-window transform. Windows build preflight checks a working Tcl interpreter and isolates inherited Python packages; nested CLI QA uses UTF-8 for Chinese paths. Large-SVG selection avoids layer-list scroll reads after artwork writes; imported-content notes reuse source counts and invalidate when actual sources change. Performance acceptance retains all batches, including remaining regressions.
 
 ## v1.4.26 · Figure Studio 0.1.26

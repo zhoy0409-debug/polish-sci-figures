@@ -42,6 +42,7 @@ jobs:
       - name: Figure Studio packaging and provenance
         run: |
           python skills/polish-sci-figures/scripts/test_figure_studio.py
+          python scripts/test_studio_tiff.py
           python scripts/test_studio_pdf_font_fallback.py
           python scripts/test_verify_studio_windows_package_source.py
           python scripts/test_sanitize_studio_performance_trace.py
@@ -137,6 +138,9 @@ jobs:
           node scripts/test_local_web_engine.cjs
           node scripts/test_local_web_offline.cjs
           node scripts/test_studio_state.cjs
+          node scripts/test_studio_async_save.cjs
+          node scripts/test_project_codec.cjs
+          node scripts/test_scientific_tiff.cjs
           node scripts/test_figure_quality.cjs
           node scripts/test_project_operations.cjs
           node scripts/test_project_operations_cli.cjs

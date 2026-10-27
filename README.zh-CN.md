@@ -2,6 +2,8 @@
 
 下一代 Windows 集成升级正在独立分支验收；[源码候选操作指南](docs/figure-review.zh-CN.md)和[当前实测范围](docs/windows-next-stable-audit.md)明确区分实现、浏览器测试与安装版验收。以下下载仍对应已经发布的正式版。
 
+源码候选新增[原生 TIFF 导入、真实画布显示窗预览及大工程后台保存](docs/figure-studio-native-tiff.md)，保留原文件位深与字节，明确区分显示图和定量数据。尚未作为正式安装包发布。
+
 Windows安装版实操及官方0.1.25→0.1.26编辑器内升级已通过所列检查；[验收记录](docs/qa/photo-correction/windows-0.1.26/README.md)列明数据保护、性能结果和未完成事项。
 
 Figure Studio 0.1.26 增加拍摄照片的一键矫正、标尺拉正和一键校色；先在画布预览，不满意可微调或取消，保留原图并支持一次撤销。首次运行 Setup 安装，以后从受支持的编辑器内更新。[Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe) · [本版说明](docs/release-notes-v1.4.26.md#中文) · [使用入门](desktop/QUICKSTART.zh-CN.md) · [照片操作指南](docs/figure-studio-photo-correction.md)。

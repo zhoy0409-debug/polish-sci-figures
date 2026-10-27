@@ -1,0 +1,109 @@
+{
+  "author": "a",
+  "purpose": "PUBLIC SYNTHETIC byte-level regression; not experimental observations",
+  "name": "PUBLIC-synthetic-16bit.tif",
+  "data": "SUkqAAgAAAAJAAABBAABAAAAAwAAAAEBBAABAAAAAgAAAAIBAwABAAAAEAAAAAMBAwABAAAAAQAAAAYBAwABAAAAAQAAABEBBAABAAAAegAAABYBBAABAAAAAgAAABcBBAABAAAADAAAABwBAwABAAAAAQAAAAAAAAAAAAABAAQACP8P//8=",
+  "bytes": 134,
+  "metadata": {
+    "schema": "figure-studio-scientific-image/1",
+    "fileSha256": "0ae6dad4430f0a8a8719dc1ad04e0360049eb6a3a7747559e4dc34004d375b15",
+    "fileBytes": 134,
+    "byteOrder": "little",
+    "pages": [
+      {
+        "index": 0,
+        "width": 3,
+        "height": 2,
+        "bitsPerSample": [
+          16
+        ],
+        "samplesPerPixel": 1,
+        "sampleFormat": [
+          1
+        ],
+        "mode": "I;16",
+        "orientation": 1,
+        "photometry": 1,
+        "compression": "raw",
+        "supported": true,
+        "unsupportedReason": null
+      }
+    ],
+    "ome": null,
+    "displayOnly": true,
+    "originalRetainedRequired": true,
+    "decodingVerified": false,
+    "limitations": [
+      "Display PNG is 8-bit; native TIFF bytes/samples are separate and must be retained.",
+      "Without OME, pages are not assumed to be channels, time points, paired samples or replicates.",
+      "TIFF print resolution is not assumed to be a microscopy calibration."
+    ]
+  },
+  "result": {
+    "metadata": {
+      "schema": "figure-studio-scientific-image/1",
+      "fileSha256": "0ae6dad4430f0a8a8719dc1ad04e0360049eb6a3a7747559e4dc34004d375b15",
+      "fileBytes": 134,
+      "byteOrder": "little",
+      "pages": [
+        {
+          "index": 0,
+          "width": 3,
+          "height": 2,
+          "bitsPerSample": [
+            16
+          ],
+          "samplesPerPixel": 1,
+          "sampleFormat": [
+            1
+          ],
+          "mode": "I;16",
+          "orientation": 1,
+          "photometry": 1,
+          "compression": "raw",
+          "supported": true,
+          "unsupportedReason": null
+        }
+      ],
+      "ome": null,
+      "displayOnly": true,
+      "originalRetainedRequired": true,
+      "decodingVerified": true,
+      "limitations": [
+        "Display PNG is 8-bit; native TIFF bytes/samples are separate and must be retained.",
+        "Without OME, pages are not assumed to be channels, time points, paired samples or replicates.",
+        "TIFF print resolution is not assumed to be a microscopy calibration."
+      ]
+    },
+    "native": {
+      "page": 0,
+      "size": [
+        3,
+        2
+      ],
+      "bits": [
+        16
+      ],
+      "samplesSha256": "9a40bb329d3652f39d0caa6ed42a7f7450a6839e3934558215f57eb94d07aeaf",
+      "omePosition": null
+    },
+    "display": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAIAAAASFvFNAAAAGElEQVR4nGNkYGAQEBAwMDBgaGho+A8GACqjCDyPopDtAAAAAElFTkSuQmCC",
+      "sha256": "6f90464e7500fea2ee5078f0da75e9e903412013cfd55a60031a34a6d4dcc893",
+      "size": [
+        3,
+        2
+      ],
+      "window": [
+        0,
+        4095
+      ],
+      "gamma": 1,
+      "lut": "gray",
+      "resampled": false,
+      "previewEdge": 0,
+      "quantitative": false
+    }
+  }
+}

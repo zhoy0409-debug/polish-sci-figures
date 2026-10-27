@@ -23,6 +23,7 @@ function fixture(){
     engineFetch:async(url,options)=>{const body=JSON.parse(options.body);requests.push(body);if(body.action==='inspect')return {ok:true,json:async()=>({pdf:{pageCount:1}})};if(body.action==='page')return {ok:true,json:async()=>({pdf:{svg,widthPt:100,heightPt:80,pageCount:1,pageIndex:0,editable:{texts:1,paths:0,images:0},warnings:[]}})};return {ok:true,json:async()=>({panel:{name:'Data',recipe:body.recipe,table:{rows:body.rows},analysis:{},variants:[{name:'compare',svg,width:100,height:80,viewBox:[0,0,100,80]}]}})};}
   };
   vm.createContext(ctx);
+  vm.runInContext(source.slice(source.indexOf('  function serializeProjectFile('),source.indexOf('  function validatePayload(')),ctx);
   vm.runInContext(source.slice(source.indexOf('  function imageRectificationHrefs('),source.indexOf('  function baseSvg(')),ctx);
   vm.runInContext(source.slice(source.indexOf('  let imageDestination=null;'),source.indexOf('  let facetSplitRequest=')),ctx);
   vm.runInContext(source.slice(source.indexOf('  function installAsset('),source.indexOf('  let insertionCell=')),ctx);

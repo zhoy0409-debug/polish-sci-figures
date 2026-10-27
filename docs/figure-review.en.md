@@ -5,6 +5,8 @@ created: 2026-10-28
 
 # Figure review, result planning and scoped collaboration
 
+The source candidate also includes [native TIFF display previews and background project saves](figure-studio-native-tiff.md). The guide states supported formats, quantitative boundaries and the pending installed-Windows scope.
+
 This guide describes the next stable source candidate. Check the installed version and release record for availability. Existing editing, statistics and export controls remain available.
 
 Open **Review** beside Export. Set the minimum text and line sizes, then review the current figure at its final export size. The defaults, 8 pt and 0.25 pt, are generic thresholds rather than verified journal requirements. Locate findings on the canvas. Text overlap is a bounding-box screen and may need manual rejection for rotated text.

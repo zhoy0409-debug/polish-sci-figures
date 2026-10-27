@@ -1,0 +1,499 @@
+{
+  "author": "a",
+  "created": "2026-10-28",
+  "scope": "Production Chrome 155 with real protected local Pillow API. Three permitted private RGB8 TIFF images. Engineering/byte-retention checks only, not independent image-detection accuracy or native installation acceptance. No private images, paths, titles or source hashes in this report.",
+  "measurement": "One procedure run per case per batch, not an ABBA benchmark or a general speed claim. rAF callback gaps are not physical display latency. R1 synchronous JSON; R2 local Worker JSON. Total procedure time may increase even when main-thread stalls decrease.",
+  "limits": {
+    "nativeFileBytes": 64000000,
+    "pagePixels": 32000000,
+    "pages": 128,
+    "nativeBytesPerProject": 80000000,
+    "displayPngBytes": 20000000,
+    "projectJsonBytes": 200000000
+  },
+  "batches": [
+    {
+      "label": "R1",
+      "cases": [
+        {
+          "case": "A",
+          "sourceBytes": 1268268,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "inputUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 417.80000001192093,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.700000000000045,
+              "maxFrameCallbackGapMs": 25.100000000000364,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 342.60000002384186,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.59999999999991,
+              "maxFrameCallbackGapMs": 16.59999999999991,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 311.9000000357628,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 108.40000000000009,
+              "longTasks": 1,
+              "longTaskTotalMs": 111
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 199.69999998807907,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 16.700000000000273,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 235.69999998807907,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 85.19999998807907,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 49.999999999999545,
+              "maxFrameCallbackGapMs": 49.999999999999545,
+              "longTasks": 1,
+              "longTaskTotalMs": 56
+            }
+          ]
+        },
+        {
+          "case": "B",
+          "sourceBytes": 29820168,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "inputUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 1452.300000011921,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 66.70000000000005,
+              "longTasks": 1,
+              "longTaskTotalMs": 63
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 760,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.5,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 915.1999999880791,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.5,
+              "maxFrameCallbackGapMs": 133.30000000000018,
+              "longTasks": 2,
+              "longTaskTotalMs": 207
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 557.7999999523163,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 266.6999999999998,
+              "longTasks": 1,
+              "longTaskTotalMs": 263
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1611.800000011921,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 91.70000000000073,
+              "longTasks": 1,
+              "longTaskTotalMs": 94
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 492.69999998807907,
+              "frameCallbackP50Ms": 8.399999999999636,
+              "frameCallbackP95Ms": 83.40000000000146,
+              "maxFrameCallbackGapMs": 133.30000000000018,
+              "longTasks": 2,
+              "longTaskTotalMs": 221
+            }
+          ]
+        },
+        {
+          "case": "C",
+          "sourceBytes": 39342300,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "inputUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 2191.199999988079,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 75,
+              "longTasks": 1,
+              "longTaskTotalMs": 73
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 836.1999999880791,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.599999999999909,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 1364.300000011921,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 258.3000000000002,
+              "longTasks": 2,
+              "longTaskTotalMs": 317
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 546.2999999523163,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 291.7000000000007,
+              "longTasks": 1,
+              "longTaskTotalMs": 299
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1852.9000000357628,
+              "frameCallbackP50Ms": 8.300000000001091,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 99.89999999999964,
+              "longTasks": 1,
+              "longTaskTotalMs": 108
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 1006.6999999880791,
+              "frameCallbackP50Ms": 8.300000000001091,
+              "frameCallbackP95Ms": 33.30000000000109,
+              "maxFrameCallbackGapMs": 150.10000000000036,
+              "longTasks": 4,
+              "longTaskTotalMs": 358
+            }
+          ]
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "R2",
+      "cases": [
+        {
+          "case": "A",
+          "sourceBytes": 1268268,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "inputUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 406.39999997615814,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.699999999999818,
+              "maxFrameCallbackGapMs": 25,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 333.30000001192093,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.599999999999909,
+              "maxFrameCallbackGapMs": 16.699999999999818,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 276.19999998807907,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 16.699999999999818,
+              "maxFrameCallbackGapMs": 108.30000000000018,
+              "longTasks": 1,
+              "longTaskTotalMs": 115
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 163.89999997615814,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 178.89999997615814,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 91.59999996423721,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 41.59999999999991,
+              "maxFrameCallbackGapMs": 41.59999999999991,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            }
+          ]
+        },
+        {
+          "case": "B",
+          "sourceBytes": 29820168,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "inputUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 1353.5,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 58.399999999999864,
+              "longTasks": 1,
+              "longTaskTotalMs": 54
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 590.6999999880791,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 853.6000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 133.39999999999964,
+              "longTasks": 2,
+              "longTaskTotalMs": 187
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 484.5,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.399999999999636,
+              "maxFrameCallbackGapMs": 16.699999999999818,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1272.1000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 74.90000000000055,
+              "longTasks": 1,
+              "longTaskTotalMs": 80
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 841.6000000238419,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 66.69999999999982,
+              "longTasks": 2,
+              "longTaskTotalMs": 131
+            }
+          ]
+        },
+        {
+          "case": "C",
+          "sourceBytes": 39342300,
+          "nativeSamplesMatch": true,
+          "projectRetainsOriginalBytes": true,
+          "inputUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "passed": true,
+          "phases": [
+            {
+              "name": "select-file-to-real-preview",
+              "procedureWallMs": 2095.099999964237,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 75,
+              "longTasks": 1,
+              "longTaskTotalMs": 75
+            },
+            {
+              "name": "global-display-adjustment",
+              "procedureWallMs": 918.4000000357628,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000091,
+              "maxFrameCallbackGapMs": 8.400000000000091,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "keep-selected-resolution",
+              "procedureWallMs": 1369.5,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 266.59999999999945,
+              "longTasks": 2,
+              "longTaskTotalMs": 320
+            },
+            {
+              "name": "save-project-download",
+              "procedureWallMs": 653.0999999642372,
+              "frameCallbackP50Ms": 8.300000000000182,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 16.699999999999818,
+              "longTasks": 0,
+              "longTaskTotalMs": 0
+            },
+            {
+              "name": "download-original",
+              "procedureWallMs": 1802.5999999642372,
+              "frameCallbackP50Ms": 8.300000000001091,
+              "frameCallbackP95Ms": 8.400000000000546,
+              "maxFrameCallbackGapMs": 116.70000000000073,
+              "longTasks": 1,
+              "longTaskTotalMs": 123
+            },
+            {
+              "name": "reopen-saved-native-project",
+              "procedureWallMs": 841.6000000238419,
+              "frameCallbackP50Ms": 8.300000000001091,
+              "frameCallbackP95Ms": 33.30000000000109,
+              "maxFrameCallbackGapMs": 75,
+              "longTasks": 2,
+              "longTaskTotalMs": 149
+            }
+          ]
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "publicSyntheticBrowser": {
+    "author": "a",
+    "scope": "Production Chrome and real local Pillow TIFF API; public synthetic byte fixture; not Windows installation or independent image-detection accuracy",
+    "browser": "155.0.8059.85",
+    "checks": [
+      "Actual canvas native-window/gamma/LUT preview, bilingual live controls and Carbon/Pearl themes; save excludes draft; cancel retains exact project, source store and history",
+      "One-click global native min/max suggestion and real full-resolution Keep; source bit depth, bytes, page/sample hashes and display provenance retained",
+      "Exact original TIFF download plus one-step Undo/Redo; immutable native bytes remain available for Redo",
+      "Saved native-source project reopens only after integrity verification; corrupted original is refused without replacing active edits",
+      "A second display shares the original byte record and preserves the first panel and its manual state",
+      "Each original uploads once as local binary; subsequent previews use short-lived local IDs without repeatedly serializing raw bytes",
+      "A deliberately misconfigured external TIFF endpoint is refused before upload, even though the domain is otherwise allowed for literature searches"
+    ],
+    "passed": true,
+    "remoteRequests": 0,
+    "pageErrors": 0
+  },
+  "realLocalWorker": {
+    "author": "a",
+    "scope": "Real Chrome Blob Workers and production bundle; JSON fidelity/call-time snapshot; not native installation",
+    "browser": "155.0.8059.85",
+    "same": true,
+    "caption": "before",
+    "nativeBytes": 16000000,
+    "mime": "application/json",
+    "malformed": true,
+    "oversize": true,
+    "aborted": true,
+    "active": 0,
+    "started": 5,
+    "terminated": 5,
+    "remoteRequests": 0,
+    "pageErrors": [],
+    "passed": true
+  },
+  "retainedFailures": [
+    "Initial20MB cap refused large permitted files; raised bound only after measuring actual inputs",
+    "Live-language test initially exposed duplicate-source collection of an uncommitted preview panel; fixed committed-canvas source and retained failed batch",
+    "Workspace regression first used blank TIFF starter instead of its required multi-panel fixture; correct existing fixture repackaged with current assets, all8checks pass"
+  ],
+  "regression": {
+    "nodeUniqueCommands": 179,
+    "nodePassedBeforeFinalPreviewBindingFix": 179,
+    "additionalAsyncSaveHandlerPassed": true,
+    "postFixTargetedNodeCommands": 8,
+    "postFixTargetedNodePassed": 8,
+    "pythonCommands": 8,
+    "pythonPassed": 8,
+    "encodedTiffTests": 23,
+    "nativeInstalledAcceptance": false
+  },
+  "publicScientificRegression": {
+    "passed": true,
+    "scope": "Current production bundle with public Iris150 and licensed public H&E; original table/analysis/marker coordinates/JPEG bytes unchanged",
+    "checks": 3,
+    "pageErrors": 0,
+    "remoteRequests": 0
+  },
+  "localWorkspaceRegression": {
+    "passed": true,
+    "scope": "real Chrome production editor with explicit synthetic scientific data; not Windows installer acceptance",
+    "browser": "155.0.8059.85",
+    "checks": [
+      "Production SVG measured at final export size; bound-data coverage recorded without claiming statistical certification",
+      "Real canvas preview; save during draft excludes draft; cancel preserves original project, measurements and history",
+      "Batch keep is one undo record; undo restores state; raw project/data unchanged",
+      "Export local element/revision inspection; import real operation file; preview/keep; stale retry rejected; raw sources/drafts/checkpoints preserved",
+      "Existing bound-data candidate previews on canvas, requires separate scientific confirmation, preserves other panels and immutable source data",
+      "Layout suggestion uses existing grid preview and cancellation without saving a draft",
+      "Result planner requires explicit questions and confirmation, binds actual panel revisions, creates no fabricated result and invalidates after changed purpose",
+      "No page errors or network requests"
+    ],
+    "errors": [],
+    "requests": []
+  }
+}
