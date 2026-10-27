@@ -17,6 +17,11 @@ jobs:
   basic:
     name: basic (${{ matrix.os }}, py${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        # bash -e also stops on the first failed Python command on Windows;
+        # PowerShell's final exit code can otherwise hide an earlier failure.
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
