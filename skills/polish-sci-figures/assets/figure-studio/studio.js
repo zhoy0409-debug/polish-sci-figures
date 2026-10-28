@@ -185,6 +185,7 @@ function validateState(state, project) {
   for(const a of state.overlays||[]){validateTextSpacingState(a);if(a.presentationLock!==undefined&&(!a.presentationLock||!['width','height','dx','dy'].every(key=>Number.isFinite(a.presentationLock[key])&&Math.abs(a.presentationLock[key])<=1e7)||a.presentationLock.width<=0||a.presentationLock.height<=0))throw Error('锁定状态无效');}
   for(const a of state.overlays||[])if(a.richText!==undefined&&!validValue('rich-text',a.richText))throw Error('字符格式无效');
   if(state.exportSettings&&(!Number.isFinite(state.exportSettings.widthMm)||state.exportSettings.widthMm<(state.masterFrame?1e-9:20)||state.exportSettings.widthMm>2000||![600,900,1200].includes(state.exportSettings.dpi)))throw Error('导出尺寸或分辨率无效');
+  if(state.submissionProfile!==undefined)(typeof StudioSubmissionProfiles==='undefined'?require('./submission-profiles.js'):StudioSubmissionProfiles).validate(state.submissionProfile);
   if(state.masterFrame!==undefined&&!(typeof StudioMasterFrame!=='undefined'?StudioMasterFrame:require('./master-frame.js')).valid(state.masterFrame))throw Error('母版边界无效');
   if(state.masterFrame&&!(typeof StudioMasterFrame!=='undefined'?StudioMasterFrame:require('./master-frame.js')).contains(state.masterFrame,layoutLockAPI()?.pinnedBounds(state)))throw Error('母版不能裁掉已锁定的内容，请先解锁');
   if(state.labelNumbering!==undefined&&state.labelNumbering!==false&&!['upper','lower','numeric'].includes(state.labelNumbering))throw Error('图号参数无效');
@@ -5715,7 +5716,8 @@ if (typeof document !== 'undefined') (async () => {
     const payload=()=>({project,state:state(),dataDrafts});
     const reviewIdentity=()=>{const s=state(),positions=new Map(layout(s).positions.map(pos=>[pos.id,pos]));return [project,s,dataSerial,StudioI18n.language,typeof compactFontEpoch==='number'?compactFontEpoch:0,...s.order.flatMap(id=>{const p=panel(id),key=id+'/'+s.panels[id].variant,pos=positions.get(id);return [p,p.variants[s.panels[id].variant],project.statisticalRenders?.[key],project.heatmapRenders?.[key],pos&&fittedVariant(pos,s)];})];};
     const elementContext=(id,vi,key)=>{const source=editableSourceSnapshot(id,vi),el=source.querySelector(`[data-key="${key}"]`);if(!el)return null;const locks=state().panels[id].lockedElements?.[vi]||[];return {el,text:el.localName==='text',locked:!!state().panels[id].locked||[el,...el.querySelectorAll('[data-key]')].some(n=>locks.includes(n.getAttribute('data-key')))||locks.some(k=>{const locked=source.querySelector(`[data-key="${k}"]`);return locked?.contains(el);})};};
-    StudioQualityWorkspace.mount({document,trigger,t:T,quality:StudioFigureQuality,planning:StudioFigurePlanning,language:()=>StudioI18n.language,identity:reviewIdentity,
+    const reviewHost={document,trigger,t:T,quality:StudioFigureQuality,planning:StudioFigurePlanning,language:()=>StudioI18n.language,identity:reviewIdentity,
+      submissionAssessment:settings=>state().submissionProfile?StudioSubmissionProfiles.assess(state().submissionProfile,currentOutput(),settings):null,
       async capture(){
         if(previewSessions.active)throw Error(T('请先保留或取消当前预览，再检查已保存的图形。'));
         if(Object.keys(dataDrafts).length||dataBusy||axisBusy)throw Error(T('有未完成的数据或坐标轴计算，请完成后再检查。'));
@@ -5734,10 +5736,27 @@ if (typeof document !== 'undefined') (async () => {
       },
       fixPlan(issues,profile){const next=copy(state()),seen=new Set();let skipped=0;for(const issue of issues){const target=issue.target,token=JSON.stringify(target);if(seen.has(token))continue;seen.add(token);const context=elementContext(target.panel,target.variant,target.key);if(!context||context.locked||!context.text||context.el.querySelector('tspan')||context.el.getAttribute('data-rich-text')){skipped++;continue;}const size=profile.minTextPt/currentOutput().scale/textPointFactor(context.el,target.panel,target.variant);if(!validValue('font-size',String(size))){skipped++;continue;}setEdit(next,target.panel,target.variant,target.key,'font-size',String(size));}validateState(next,project);return {next,skipped};},
       layoutPlan(kind,order=state().order){const s=state();if(order.length!==s.order.length||new Set(order).size!==order.length||order.some(id=>!s.order.includes(id)))throw Error(T('规划小图与工程不匹配'));const base=copy(s);base.order=[...order];if(s.order.some(id=>s.panels[id].locked||s.panels[id].layoutLock||Object.values(s.panels[id].lockedElements||{}).some(keys=>keys.length)))throw Error(T('排版涉及已锁定内容，请使用现有母版控件逐项调整或先解锁。'));if(s.masterFrame)throw Error(T('当前母版已裁切，请先在母版控件恢复完整边界再预览新排版。'));const count=s.order.length,columns=kind==='portrait'?1:kind==='focus'&&count>2?3:Math.min(2,count),rows=kind==='focus'&&count>2?Math.max(2,Math.ceil((count+3)/3)):Math.ceil(count/columns),next=matchSizes(arrange(base,rows,columns,kind==='focus'&&count>2?'hero':'regular'));if(!s.typography)delete next.typography;validateState(next,project);return next;},
-      preview(next,finished){const base=state(),identity=reviewIdentity();validateState(next,project);const session=previewSessions.begin({kind:'quality-review',valid:()=>{const current=reviewIdentity();return identity.length===current.length&&identity.every((value,index)=>value===current[index]);},render:value=>renderCanvas(value),restore:()=>renderCanvas(),equal:value=>JSON.stringify(value)===JSON.stringify(base),commit:value=>commitPreviewState(value,T('已应用质检预览修改')),onFinish:finished,onError:message=>say(message)});session.update(next);return session;},
+      preview(next,finished,label=T('已应用质检预览修改')){
+        const base=state(),identity=reviewIdentity();validateState(next,project);
+        // The canonical renderer normally repaints the active draft at its end.
+        // A draft renderer must suppress that hook or it redraws the preceding
+        // value during a continuous update. Commit draws only its final state.
+        const draw=value=>{previewPaintDepth++;try{renderCanvas(value);}finally{previewPaintDepth--;}};
+        const session=previewSessions.begin({kind:'quality-review',originalValue:base,valid:()=>{const current=reviewIdentity();return identity.length===current.length&&identity.every((value,index)=>value===current[index]);},render:draw,restore:reason=>{if(reason!=='commit')draw(state());},equal:(a,b)=>JSON.stringify(a)===JSON.stringify(b),commit:value=>commitPreviewState(value,label),onFinish:finished,onError:message=>say(message)});session.update(next);return session;
+      },
       locate(target){if(target.panel&&!state().order.includes(target.panel))return false;if(target.key){const vi=state().panels[target.panel].variant;if(vi!==target.variant)return false;selectedAnnotations=[];selectedPanelLabel=null;setElementSelection([{id:target.panel,vi,keys:[target.key]}]);activePane='detail';render();}else if(target.annotation){selectedAnnotations=[target.annotation];activePane='annotation';render();}else if(target.label)selectPanelLabel(target.panel,true);else if(target.panel){selectedPanel=target.panel;selectWholePanel();render();}return true;},
       download:(value,name)=>download(new Blob([JSON.stringify(value,null,2)],{type:'application/json'}),name)
-    });
+    };
+    const reviewUI=StudioQualityWorkspace.mount(reviewHost);
+    if(typeof StudioSubmissionProfileUI!=='undefined'&&typeof StudioSubmissionProfiles!=='undefined'){
+      const entry=document.createElement('button');entry.id='openSubmissionProfiles';entry.type='button';$('exportOptions').querySelector('p').after(entry);
+      const profileUI=StudioSubmissionProfileUI.mount({document,trigger:entry,core:StudioSubmissionProfiles,language:()=>StudioI18n.language,storage:{getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)},
+        onOpen:()=>reviewUI.close(),current:()=>state().submissionProfile,output:currentOutput,download:reviewHost.download,preview:reviewHost.preview,
+        plan:profile=>{if(Object.keys(dataDrafts).length||dataBusy||axisBusy)throw Error(T('有未完成的数据或坐标轴计算，请完成后再检查。'));const next=copy(state());next.submissionProfile=StudioSubmissionProfiles.validate(profile);next.exportSettings={widthMm:profile.widthMm,dpi:profile.dpi};validateState(next,project);return next;},
+        review:profile=>reviewUI.reviewProfile(profile)
+      });
+      const openReview=trigger.onclick;trigger.onclick=event=>{profileUI.close();return openReview(event);};
+    }
   }
   function currentPayload(){return {project,state:copy(state()),history:copy(history.toJSON()),checkpoints:copy(checkpoints),dataDrafts:copy(dataDrafts)};}
   function serializeProjectFile(payload){return typeof StudioProjectCodec==='undefined'?Promise.resolve(projectFileBlob(payload)):StudioProjectCodec.serialize(payload,{limit:PROJECT_FILE_LIMIT,locale:StudioI18n.language});}

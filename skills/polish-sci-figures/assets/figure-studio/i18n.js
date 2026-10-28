@@ -935,6 +935,7 @@ const StudioI18n = (() => {
     '排版涉及已锁定内容，请使用现有母版控件逐项调整或先解锁。':'Layout affects locked content. Use the existing master controls or unlock it first.',
     '当前母版已裁切，请先在母版控件恢复完整边界再预览新排版。':'Restore the full cropped master before previewing a new layout.',
     '已应用质检预览修改':'Review edits applied',
+    '已应用投稿配置':'Submission profile applied',
     '请先保留或取消当前预览，再检查已保存的图形。':'Keep or cancel the current preview before reviewing the committed figure.',
     '目标小图已变化；请重新导出检查清单，避免覆盖人工修改。':'The target panel changed. Export a new inspection to preserve manual edits.',
     '目标元素不存在或已锁定':'The target element is missing or locked',

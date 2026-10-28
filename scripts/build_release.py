@@ -17,6 +17,7 @@ EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    'docs/figure-studio-submission-profiles.md',
     'docs/windows-next-stable-summary.zh-CN.md',
     'docs/figure-studio-native-tiff.md',
     'docs/figure-review.zh-CN.md',

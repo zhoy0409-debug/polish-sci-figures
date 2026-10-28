@@ -26,3 +26,5 @@ Candidate changes must use an existing, same-canvas alternative in the same boun
 For projects above 1000 elements, palette cards display swatches immediately and generate actual current-figure previews in visible batches. Pending previews are labelled, generation stops when the pane is left, and re-entry can resume. No demonstration chart substitutes for user data.
 
 See the [audit and acceptance record](windows-next-stable-audit.md) for the actual Windows installation, upgrade and performance scope.
+
+Under **Submission size and export → Submission profiles…**, save researcher-declared dimensions and review thresholds, preview on the actual canvas, then Keep or Cancel. **Review kept figure** uses the same measured-SVG rules and reports excess height and settings changed after the profile was kept. Sources are never fetched automatically; general defaults do not certify journal requirements. See the [profile workflow and scope](figure-studio-submission-profiles.md).

@@ -98,6 +98,8 @@ SHA-256 checksums compare file contents; they are not a publisher's digital sign
 
 ## Image tools and professional axes
 
+The unreleased candidate adds **Submission size and export → Submission profiles…**. Save researcher-declared dimensions and review thresholds, preview on the actual canvas, Keep or Cancel, then review the final output. Profiles travel with projects or separate JSON files; their sources are never fetched automatically. See the bundled [profile guide](docs/figure-studio-submission-profiles.md).
+
 The unreleased candidate adds [native TIFF display](docs/figure-studio-native-tiff.md): import a TIFF, adjust its native window/gamma/LUT on the real canvas, then Keep or Cancel. Download the exact original afterward. **New display from original TIFF** reopens the retained plane in a separate display, preserving existing images and edits and sharing the original file. The guide is bundled for offline use and lists the supported formats. The release page remains the authority for published versions.
 
 Use the five workflow entries, or **Find command** / Ctrl + K to search for borders, duplicate screening or tick intervals. Selected objects expose contextual actions. Image tools keep source pixels local and require explicit Apply; professional native axes re-render from data in four sections: range, ticks, size and appearance. See [image tools](../docs/figure-studio-image-tools.md), [axes](../docs/figure-studio-axes-round2.md) and [actual acceptance scope](../docs/figure-studio-experience-round2-validation.md).

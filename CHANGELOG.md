@@ -2,6 +2,8 @@
 
 ## Unreleased · Windows integrated upgrade candidate
 
+Add versioned local submission profiles for researcher-declared dimensions and preflight thresholds, with live canvas previews, one-step Keep/Undo, bounded profile import/export, project persistence and measured final-size review. Reports disclose manual setting mismatches and excess height without cropping or claiming journal certification. Fix continuous quality-preview rendering that could repaint the preceding draft; Keep now draws only the final committed state. See the [workflow](docs/figure-studio-submission-profiles.md).
+
 Add local final-size figure review, issue location, cancellable text-size previews, existing-layout proposals, confirmed-result figure planning and revision-checked local project operations. Raw sources, data drafts, checkpoints and unrelated manual edits are retained. Existing same-data candidate changes require scientific review; unsupported redraws continue through the established workbench. Large vector projects generate actual palette thumbnails in visible, cancellable batches. See the [Chinese workflow](docs/figure-review.zh-CN.md), [English workflow](docs/figure-review.en.md) and [dated acceptance scope](docs/windows-next-stable-audit.md).
 
 This source candidate is not a released Windows installer. Installation, upgrade, full regression and matched performance gates remain required. No additional platform port is introduced, and the v1.4.26 release assets remain unchanged.
