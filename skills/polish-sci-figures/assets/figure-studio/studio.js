@@ -4084,6 +4084,18 @@ if (typeof document !== 'undefined') (async () => {
     if(sourcePanel.analysis.scientificOrigin)$('scientificSourceText').textContent+=en?' This is a crop/correction of the display image; calibration was not inherited.':' 当前为显示图的裁剪／校正衍生版本；未继承标定。';
     $('downloadScientificSource').textContent=en?'Download original TIFF':'下载原始 TIFF';
     $('downloadScientificSource').onclick=()=>{const link=document.createElement('a');link.href='data:image/tiff;base64,'+source.data;link.download=source.name;link.click();};
+    const create=$('newScientificDisplay');
+    if(create){create.textContent=en?'New display from original TIFF':'从原始 TIFF 新建显示';create.disabled=!StudioScientificTiff.localEndpoint(localEngine?.tiffEndpoint,location.href)||localEngine?.mode==='browser';create.title=en?'Adjust the retained native plane in a separate display. Existing images and edits are preserved. Requires the local Windows engine.':'重新读取保留的原生平面，在独立显示中微调；保留现有图片和编辑。需要 Windows 本机服务。';create.onclick=guard(async()=>{
+      if(fileImportSession)throw Error(T('请先完成或取消当前导入'));
+      create.disabled=true;create.setAttribute('aria-busy','true');
+      try{
+      const owner=project,base=state(),where={projectId:project.id,history,...availableFigureImportTarget()},initial=copy(record);
+      const bytes=await StudioScientificTiff.decodeBase64(source.data,source.bytes);
+      if(await StudioScientificTiff.digest(bytes)!==source.sha256)throw Error('Native TIFF bytes failed SHA-256 verification');
+      if(project!==owner||state()!==base||panel(selectedPanel)!==sourcePanel)throw Error(T('目标已变化，请重新选择导入位置'));
+      await openScientificTiffImport(new File([bytes],source.name,{type:'image/tiff'}),where,initial);
+      }finally{create.removeAttribute('aria-busy');renderScientificSource();}
+    });}
   }
   function inspectorImportContent(id,vi,s=state()){
     // This note describes imported source content, not positional/style edits.
@@ -5441,7 +5453,7 @@ if (typeof document !== 'undefined') (async () => {
   $('applyPdfImport').onclick=guard(()=>{const session=pdfImportSession,result=session?.result;if(!result)return;validateImportTarget(session.target);const width=result.widthPt,height=result.heightPt;if(!Number.isFinite(width)||!Number.isFinite(height)||Math.min(width,height)<=0||Math.max(width,height)>14400)throw Error(T('SVG 尺寸无效'));const pageName=session.file.name+(result.pageCount>1?' · '+T('第 {0} 页',result.pageIndex+1):'');installAsset({name:pageName,variants:[{name:'imported_pdf',svg:result.svg,width,height,viewBox:[0,0,width,height],size:'original',preserveAspect:true}],initialVariant:0,recipe:{source:session.file.name},analysis:{import:{format:'pdf',page:result.pageIndex+1,editable:result.editable,warnings:result.warnings||[],warningCodes:result.warningCodes||[],rasterizedObjects:result.rasterizedObjects||0}},table:null,provenance:'user-import'},session.target.oldId,session.target.cell,T('PDF 已导入；可撤销恢复原图'));session.applied=true;$('pdfImportDialog').close();activateImportedFigure();});
   function activateImportedFigure(paneName='detail'){layoutMode=false;boxSelect=false;dragging=null;contentSelection=null;selected=[];elementSelections=[];selectedAnnotations=[];selectedPanelLabel=null;selectedAlignmentGuide=null;panelSelection=[selectedPanel];original=false;$('scope').value='panel';prepareTouchEditing();showPane(paneName,false);renderCanvas();}
   $('imageFile').onchange=guard(async()=>{const files=[...$('imageFile').files],target=imageDestination;$('imageFile').value='';imageDestination=null;if(files.length&&target)await importFiles(files,target);});
-  async function openScientificTiffImport(file,target){
+  async function openScientificTiffImport(file,target,initial=null){
     if(typeof StudioScientificTiffUI==='undefined'||typeof StudioScientificTiff==='undefined')throw Error(professionalAxisText('当前版本尚未提供原生 TIFF 导入。','Native TIFF import is unavailable in this version.'));
     const label=professionalAxisText('已导入原生 TIFF 显示图；原文件保留，可撤销','Native TIFF display imported; original retained, undo available');
     const sourceMap=source=>({[source.sha256]:project.scientificSources?.[source.sha256]||source});
@@ -5471,7 +5483,7 @@ if (typeof document !== 'undefined') (async () => {
         validateImportTarget(where);return box.session.commit();
       }
     });
-    return openScientificTiffImport.controller.open(file,target);
+    return openScientificTiffImport.controller.open(file,target,initial);
   }
   async function importFigureFile(file,target,batch=false){validateImportTarget(target);
     if(/\.tiff?$/i.test(file.name)||file.type==='image/tiff')return await openScientificTiffImport(file,target);

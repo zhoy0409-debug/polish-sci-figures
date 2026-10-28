@@ -12,6 +12,8 @@ Reduce measured main-thread raster-metadata work during large-image Keep without
 
 Retain a verified native-TIFF source reference through display crop/perspective operations, repeated correction and project reopening. Corrected displays keep original-file download access, do not claim native intensity pixels or inherited calibration, and reject broken source references. Add real local-engine browser checks to CI. The fourth 5000-object ABBA round retains every earlier batch and the remaining drag long tasks.
 
+Reopen a retained TIFF plane with its display settings prefilled to create a separate, editable display. Preserve existing images and manual edits, share the original bytes, and keep preview/cancel/one-step undo. Bundle the TIFF guide for offline use. An internal frozen executable passes the actual OME/LZW decoding self-test and complete portable/source comparison; these checks do not constitute native installed editing or official update acceptance.
+
 Preserve native samples in both byte orders of 16-bit single-channel TIFF before an explicit display-window transform. Windows build preflight checks a working Tcl interpreter and isolates inherited Python packages; nested CLI QA uses UTF-8 for Chinese paths. Large-SVG selection avoids layer-list scroll reads after artwork writes; imported-content notes reuse source counts and invalidate when actual sources change. Performance acceptance retains all batches, including remaining regressions.
 
 ## v1.4.26 · Figure Studio 0.1.26

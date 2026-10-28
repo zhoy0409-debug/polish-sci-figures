@@ -1,0 +1,43 @@
+{
+  "author": "a",
+  "date": "2026-10-28",
+  "scope": "Actual production Chrome with real protected loopback TIFF backend and public known-value fixture. Separate native-display creation; not installed Windows acceptance or independent image-detector accuracy.",
+  "sourceFiles": {
+    "skills/polish-sci-figures/assets/figure-studio/studio.js": "39ef4d7d5bf397613cbb40c65cf74220a781697594add00f67a042c867752e54",
+    "skills/polish-sci-figures/assets/figure-studio/studio.html": "c2675f08b3b1db4dcdf273626986fd9c89c88f9816512080966ff5fc594539af",
+    "skills/polish-sci-figures/assets/figure-studio/scientific-tiff-ui.js": "0547f44eb3dfc51395637b838358132e800bdb84d9f159ba978d1b8df6928ae5",
+    "skills/polish-sci-figures/assets/figure-studio/scientific-tiff.css": "ac4aafac32b037756c19160aa7a9d03dd55ccb6083dc24ccc2ca1b1e41421027"
+  },
+  "browser": "155.0.8059.85",
+  "checks": [
+    "Actual canvas native-window/gamma/LUT preview, bilingual live controls and Carbon/Pearl themes; save excludes draft; cancel retains exact project, source store and history",
+    "One-click global native min/max suggestion and real full-resolution Keep; source bit depth, bytes, page/sample hashes and display provenance retained",
+    "Exact original TIFF download plus one-step Undo/Redo; immutable native bytes remain available for Redo",
+    "Saved native-source project reopens only after integrity verification; corrupted original is refused without replacing active edits",
+    "A second display shares the original byte record and preserves the first panel and its manual state",
+    "Retained original reopens with current plane/window/gamma/LUT for a separate display; real preview/save/cancel, shared original, old manual states, one undo, redo and reopen verified",
+    "Each original uploads once as local binary; subsequent previews use short-lived local IDs without repeatedly serializing raw bytes",
+    "A deliberately misconfigured external TIFF endpoint is refused before upload, even though the domain is otherwise allowed for literature searches"
+  ],
+  "allThreeSuitesPassed": true,
+  "suites": [
+    {
+      "script": "test_project_codec_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_scientific_tiff_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_scientific_tiff_derivative_browser.cjs",
+      "exitCode": 0
+    }
+  ],
+  "remoteRequests": 0,
+  "pageErrors": 0,
+  "privateSourcesUsed": false,
+  "independentAccuracyAsserted": false,
+  "frozenPackageAsserted": false,
+  "semantics": "Prefill retained native plane/window/gamma/LUT/resolution; preview separate display; preserve existing manual panel states; store original once; keep/cancel/undo/redo/reopen. A derivative opens its native source, not transferred correction."
+}

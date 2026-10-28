@@ -17,7 +17,7 @@ created: 2026-10-28
 
 比较同批荧光或条带强弱时，请使用一致的显示窗、伽马和 LUT。逐图建议范围不能用于证明组间信号差异。原生 TIFF 用于保留与后续分析；画布中的显示 PNG 不作为密度定量输入。打印 DPI 不等于显微标定，不自动生成比例尺；明确重采样后，还需按显示像素与原生像素的比例核对标尺。
 
-原生显示窗目前在导入预览中调整。保留后仍可使用原有的图片颜色、比例尺和排版工具；尚无保留后重新编辑原生显示窗的专门入口。不要把普通显示颜色调整解释为重新读取原生强度。
+保留后想重新调整原生显示窗，在图片说明区点击 **从原始 TIFF 新建显示**。系统从保留的原文件读取当前页，带入当前下限、上限、伽马、LUT 和显示分辨率；修改后可点击 **保留新显示** 或 **取消**。新显示放入空位置，原图片及其文字、比例尺、ROI、颜色和排版编辑保持不变；原生文件仍只保存一份。一次保留产生一次撤销。校正衍生图的该入口读取原生平面，不会把校正后的像素当作原生强度，也不会把已有校正迁移到新显示。若需比较同批图片，应手动使用一致参数。此入口需要本机服务。
 
 使用标尺拉正、四角校正或裁剪时，处理对象是显示 PNG；工程继续关联原始 TIFF，说明区仍可下载原文件。校正前版本明确标为“显示图”，衍生图不声明为原生强度平面，也不自动继承比例尺标定。再次校正仍关联同一原生文件；保存和重开核对该关联，损坏或缺失的关联会拒绝载入。交付处理来源时请保留 JSON 工程和原始 TIFF；导出的显示图片不能代替原始文件。
 
@@ -36,7 +36,9 @@ This is an unreleased Windows source candidate. Import a `.tif` or `.tiff` using
 
 Adjustments preview on the real canvas at a 1024-pixel maximum edge. **Keep & import** generates the chosen native-size or explicitly resampled 2048-edge display and creates one undo record. **Cancel** preserves the existing project, including its history. Saving during preview excludes the draft. Download the exact original TIFF from the source information section after importing. The project stores each original once, with per-display provenance and SHA-256 checks; reopening verifies retained file and display bytes.
 
-The original retains its bit depth. The canvas uses an 8-bit display PNG, which is not a quantitative measurement source. Print DPI is not microscopy calibration. Resampling is explicit and requires an appropriate display-to-native calibration conversion before adding a scale bar. Native-window editing is currently available during import; the existing post-import image tools remain available, but do not reopen the native intensity window.
+The original retains its bit depth. The canvas uses an 8-bit display PNG, which is not a quantitative measurement source. Print DPI is not microscopy calibration. Resampling is explicit and requires an appropriate display-to-native calibration conversion before adding a scale bar.
+
+After import, click **New display from original TIFF** in the source information section. It rereads the retained native plane with the current window, gamma, LUT and resolution prefilled. Adjust on the canvas, then **Keep new display** or **Cancel**. The new display occupies a free position; existing images, text, scale bars, ROIs, colours and layout edits remain unchanged. The original is still stored once, and Keep creates one undo record. From a corrected derivative, this action rereads the native plane and does not transfer the correction to the new display. It requires the local engine and does not treat corrected pixels as native intensities. Use matching parameters for comparable images.
 
 Ruler, crop and perspective operations act on the display PNG. Corrected panels keep a validated reference to the original TIFF, including after repeated correction and project reopening; the source information section still downloads the exact original. The pre-correction version is labelled as a display image. No native-intensity or inherited-calibration claim is attached to the derivative. Keep the JSON project and raw TIFF when delivering processing provenance; exported display images do not replace them.
 

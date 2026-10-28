@@ -1,0 +1,112 @@
+{
+  "author": "a",
+  "date": "2026-10-28",
+  "sourceCommit": "21e3ec5d60579ffecce25756687687823bd7a714",
+  "scope": "Internal development snapshot 0.1.26 only. Not published, not installed editor acceptance, not official in-app upgrade or independent detector accuracy. Official v1.4.26 assets unchanged.",
+  "finalAcceptance": false,
+  "published": false,
+  "ci": {
+    "run": "40615812742",
+    "checks": 8,
+    "conclusion": "all success for the exact sourceCommit"
+  },
+  "frozenSelfTest": {
+    "passed": true,
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "tk": "8.6.12",
+    "tcl": "8.6.12",
+    "variants": 17,
+    "checks": [
+      "Tk desktop shell resources",
+      "GET editor",
+      "Local update endpoint and installation version (no release request)",
+      "Host / Origin / token guards",
+      "/api/analyze",
+      "/api/render",
+      "/api/reflow",
+      "/api/import-pdf",
+      "/api/import-pdf",
+      "/api/image-duplicates",
+      "Bundled OpenCV image check and evidence via local HTTP",
+      "/api/image-links",
+      "Bundled SIFT crop localization and original-pixel coordinates via local HTTP",
+      "Bundled uint16 OME/LZW TIFF, native samples, explicit display window and binary session via local HTTP"
+    ],
+    "nativeTiff": {
+      "passed": true,
+      "scope": "Public six-pixel two-plane uint16 OME/LZW fixture; real bundled HTTP, not installed UI or detector accuracy",
+      "sourceBytes": 736,
+      "sourceSha256": "3d3382e86998478749810c653fc052108e937a941b3ce873e9a46de72f4363c1",
+      "nativeSamplesSha256": [
+        "0983ce30b0195c28b82e9e1c74ca51134332b57318261950092b356fdee5b605",
+        "ef2d81e93b847af86e1ddeada1146eed4b6c3f92f612a583a98c72ab1cbfd387"
+      ],
+      "planes": 2,
+      "nativeBits": 16,
+      "actualDecodedDisplayLevels": [
+        0,
+        85,
+        170,
+        255
+      ],
+      "explicitWindowRequired": true,
+      "authorizationRequired": true,
+      "released": true
+    },
+    "installationRecognized": false
+  },
+  "sourceAndPackage": {
+    "status": "STAGE28_RUNTIME_AND_PORTABLE_MATCH",
+    "sourceStage": "source28",
+    "applicationVersion": "0.1.26",
+    "suiteVersion": "v1.4.26",
+    "artifacts": [
+      {
+        "name": "polish-sci-figures-Studio-0.1.26-Portable-x64.zip",
+        "sha256": "78bc097896afc3646b2f7b5f1c7b7e9d271711f3ea2e07d20afb4c066d72dd7b",
+        "sizeBytes": 148178606
+      },
+      {
+        "name": "polish-sci-figures-Studio-0.1.26-Setup-x64.exe",
+        "sha256": "67687a5fdbfb73d91a34dae8d666745ae33c0d0a59cf039360a11553807269d7",
+        "sizeBytes": 106159067
+      }
+    ],
+    "checksumsFileSha256": "c8321a081453e9f83a972dbd872b5f2e98728addb4660d9ba9158c1a8ab29478",
+    "sourceFreezeManifestSha256": "3343cbac2674b412de57c0eabe4682fa46da85b6f271d750814144104bd0950c",
+    "freezeApproval": {
+      "approvedManifestSha256": "3343cbac2674b412de57c0eabe4682fa46da85b6f271d750814144104bd0950c",
+      "approvedUiAssetCount": 95,
+      "freezeBytesExact": true,
+      "assetCountExact": true
+    },
+    "portableTree": {
+      "status": "PASS",
+      "applicationFiles": 2671,
+      "streamedZipFiles": 2671,
+      "fileSetExact": true,
+      "allSizesExact": true,
+      "allStreamSha256Exact": true,
+      "canonicalRelativeManifestSha256": "2894d08058ba63ed68bac9bfb8447f1955cf0cd6d10db6e2c9f8573d0f0c3c05",
+      "unsafePaths": 0,
+      "symlinks": 0,
+      "developmentCachePaths": 0
+    }
+  },
+  "counts": {
+    "uiAssets": 95,
+    "backendFrozen": 28,
+    "packagedBackend": 24,
+    "suiteCodeObjects": 59,
+    "nativeExecutableModules": 2,
+    "canonicalReleaseData": 374,
+    "documentSnapshotDifferences": 0
+  },
+  "limitations": [
+    "No native GUI or installation tested in this build.",
+    "No genuine official download/install/relaunch or failure recovery accepted.",
+    "Native window re-display was added after this build and requires a later freeze.",
+    "The native-TIFF workflow guide was absent from this build allowlist; fixed afterward for offline packages.",
+    "No independent annotated image-detection benchmark."
+  ]
+}

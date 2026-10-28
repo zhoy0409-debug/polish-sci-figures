@@ -4,7 +4,7 @@
   function create(host){
     const doc=host.document||document,core=host.core||StudioScientificTiff;let active=null;
     function cancel(){active?.close(false);}
-    async function open(file,target){
+    async function open(file,target,initial=null){
       cancel();if(!host.available())throw Error(host.language()==='en'?'Start the current local Windows engine to read TIFF; no cloud service is used.':'请启动当前 Windows 本机服务读取 TIFF；不会使用云端服务。');
       if(!file||file.size>core.MAX_BYTES)throw Error(host.language()==='en'?'TIFF limit: 64 MB':'TIFF 文件不能超过 64 MB');
       const en=()=>host.language()==='en',labels=new Map(),translate=(node,zh,english)=>{labels.set(node,[zh,english]);node.textContent=en()?english:zh;return node;};
@@ -16,6 +16,7 @@
       panel.append(el('p','比例尺需依据采集标定确认；TIFF 打印 DPI 不会自动当作显微标定。选择重采样显示时，请按显示像素与原生像素的比例核对标尺。','Confirm scale bars from acquisition calibration. TIFF print DPI is not microscopy calibration. For resampled display, account for the display-to-native pixel ratio.','muted'));
       panel.append(el('p','每个文件最多 64 MB、每页 3200 万像素、128 页；工程原生 TIFF 合计最多 80 MB。同一原文件只保存一份。','Limits: 64 MB per file, 32 megapixels per page, 128 pages; 80 MB of native TIFF per project. Shared originals are stored once.','muted'));
       const filename=el('p');filename.textContent=file.name;panel.append(filename);
+      if(initial)panel.append(el('p','从保留的原始 TIFF 新建独立显示。现有图片及其编辑保持不变；取消不写入工程。','Create a separate display from the retained original TIFF. Existing images and edits stay intact; Cancel leaves the project unchanged.','muted'));
       const info=el('p',null,null,'muted');info.id='tiffMetadata';panel.append(info);
       const fields=el('fieldset'),legend=el('legend','选择原生平面与显示参数','Native plane and display');fields.append(legend);panel.append(fields);
       function field(id,zh,english,type='number'){
@@ -29,6 +30,7 @@
       const status=el('p',null,null,'scientific-tiff-status');status.id='tiffStatus';status.setAttribute('role','status');panel.append(status);
       const details=el('details'),summary=el('summary','技术详情','Technical details'),errorDetail=el('p');details.append(summary,errorDetail);details.hidden=true;panel.append(details);
       const actions=el('div',null,null,'scientific-tiff-actions'),suggest=el('button','一键建议显示窗','Suggest display window'),keep=el('button','保留并导入','Keep & import','primary'),cancelButton=el('button','取消','Cancel');suggest.id='tiffSuggest';keep.id='tiffKeep';cancelButton.id='tiffCancel';actions.append(suggest,keep,cancelButton);panel.append(actions);
+      if(initial)translate(keep,'保留新显示','Keep new display');
       let resolveDone;const done=new Promise(resolve=>resolveDone=resolve);
       let closed=false,source=null,metadata=null,sourceId=null,revision=0,ready=-1,pending=null,timer=null,running=false,applying=false;
       const controllers=new Set(),controls=[page,lo,hi,gamma,lut,size,suggest];
@@ -125,7 +127,11 @@
           source=core.sourceRecord({name:file.name,data:rawData,bytes:file.size,sha256:fileSha,metadata});
           for(const p of metadata.pages){const option=el('option');option.value=String(p.index);option.disabled=!p.supported;option.textContent=pageText(p);page.append(option);}
           const first=metadata.pages.find(p=>p.supported);if(!first)throw Error(metadata.pages[0].unsupportedReason||'No supported native plane');
-          page.value=String(first.index);sync();pageChanged();
+          if(initial&&initial.sourceSha256!==fileSha)throw Error('TIFF display settings do not match the retained original');
+          const selected=initial?metadata.pages[initial.page]:first;
+          if(!selected?.supported)throw Error('The retained TIFF plane is not supported');
+          page.value=String(selected.index);sync();pageChanged();
+          if(initial){lo.value=String(initial.display.window[0]);hi.value=String(initial.display.window[1]);gamma.value=String(initial.display.gamma);lut.value=initial.display.lut;size.value=initial.display.resampled?'2048':'0';queue();}
         }catch(caught){if(!closed&&caught.name!=='AbortError'){error(caught);sync();}}
       })();
       return done;
