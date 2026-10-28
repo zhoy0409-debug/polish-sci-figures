@@ -1,0 +1,33 @@
+{
+  "author": "a",
+  "created": "2026-10-28",
+  "baseCommit": "b2623342892a884445741feb8e161b8754a06d6b",
+  "scope": "Real Chrome production command search and profile flow with public Iris150; not native Windows installation/update or new WB algorithm accuracy",
+  "browser": "155.0.8059.85",
+  "passed": true,
+  "checks": [
+    "Public Iris 150 observations loaded with original statistical bindings",
+    "Ordinary Chinese command search opens actual review and submission tools without changing scientific project/history",
+    "Searching for an already-open profile focuses it and preserves the active draft rather than closing or cancelling it",
+    "Actual canvas follows successive width edits; blank/invalid parameters refuse Keep; Save and Cancel preserve committed state, history and raw sources",
+    "Local library and bounded profile export contain no image, measurement table or analysis and do not edit the project",
+    "Continuous changes Keep as one undo record; Undo and Redo restore profile/dimensions; scientific tables, analyses, images and checkpoints unchanged",
+    "Actual SVG physical width and PNG pixel width/embedded DPI match kept profile; existing canonical exporters are used",
+    "Shared real-SVG review uses declared thresholds and actual height; excess height reported without crop or false certification",
+    "Manual export edits remain available; stale profile dimensions are disclosed, not silently reapplied",
+    "Project reopens with profile intact; local library survives new projects; live language switch retains controls and researcher text",
+    "1280x720 desktop viewport keeps preview/Keep/Cancel visible while scrolling the profile form",
+    "Unknown data fields and conflicting imported profile names refuse atomically; project and local library preserved",
+    "Delete and reimport affect only local profile library; project copy remains portable",
+    "Pearl Pro uses existing design tokens without changing figure or project state",
+    "Controlled profile-storage denial is reported; current fields, project saving and canvas preview/cancel remain usable",
+    "No page errors or external requests, including the researcher-entered source URL"
+  ],
+  "sourceAssets": {
+    "experience-tools.js": "568fa748b056679f578176378dda97b7fc49d79304ee2c6ab7d26e4f26b94929",
+    "studio.js": "f5714410e18e93d068f3daf4575e5ec5b4321ba057a4f6021519b27721709036"
+  },
+  "errors": [],
+  "externalRequests": [],
+  "aliasScope": "Last alias refinement routes fluorescence to the general image-tool chooser, not directly to photo colour. Node actual-command tests check this; no mode is inferred or changed from a search term."
+}

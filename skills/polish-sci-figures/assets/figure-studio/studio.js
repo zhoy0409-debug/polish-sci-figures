@@ -1071,6 +1071,8 @@ if (typeof document !== 'undefined') (async () => {
       appearance:()=>{if($('appearanceMenu')){$('appearanceMenu').open=true;$('studioTheme')?.focus();}},
       axes:()=>typeof openProfessionalAxes==='function'?openProfessionalAxes():showPane('detail'),
       export:()=>{$('exportOptions').open=true;$('exportOptions').scrollIntoView({block:'nearest'});$('exportMenu').open=true;},
+      review:()=>{const box=$('qualityWorkspace');if(box?.hidden!==false)$('openQualityWorkspace')?.click();else box.querySelector('input')?.focus();},
+      submissionProfiles:()=>{$('exportOptions').open=true;const box=$('submissionProfiles');if(box?.hidden!==false)$('openSubmissionProfiles')?.click();else $('submission-name')?.focus();},
       borders:()=>objectBordersUI?.open(),duplicates:scope=>duplicateCheck?.open?.(scope),color,rectify,
       links:()=>{showPane('detail');imageLinks?.open();},inset:()=>{showPane('detail');const choice=insetSelection();if(choice.source)imageInsets?.startROI(choice.source,choice.inset?.id,2);else say(StudioI18n.language==='en'?'Select a source image first.':'请先选中原图。');}
     });

@@ -6,7 +6,7 @@ const StudioExperienceTools=(()=>{
     const actions=[
       {id:'discovery',zh:'数据与智能选图',en:'Data & discovery',terms:'选图 数据 推荐 chart data discover',run:()=>host.discovery()},
       {id:'edit',zh:'编辑图形',en:'Edit artwork',terms:'文字 字体 对齐 edit text font align',run:()=>host.edit()},
-      {id:'images',zh:'图片工具',en:'Image tools',terms:'图片 图像 照片 image photo microscopy',run:()=>openImages()},
+      {id:'images',zh:'图片工具',en:'Image tools',terms:'图片 图像 照片 显微图 荧光 image photo fluorescence microscopy',run:()=>openImages()},
       {id:'axes',zh:'统计与坐标轴',en:'Statistics & axes',terms:'坐标 横轴 纵轴 范围 长度 尺寸 刻度 间隔 外观 axis range size ticks scale statistics',run:()=>host.axes()},
       {id:'export',zh:'投稿导出',en:'Publication export',terms:'投稿 导出 svg png tif tiff export print',run:()=>host.export()},
       {id:'text-color',zh:'更改所选文字颜色',en:'Change selected text colour',terms:'改字色 字色 文字颜色 text font color colour',run:()=>host.textColor?host.textColor():host.edit()},
@@ -15,11 +15,14 @@ const StudioExperienceTools=(()=>{
       {id:'appearance',zh:'界面主题与画布周边',en:'Interface theme and canvas surround',terms:'外观 深色 浅色 主题 carbon pearl jade theme appearance surround',run:()=>host.appearance?.()},
       {id:'border',zh:'给选中对象加边框',en:'Frame selected objects',terms:'边框 透明框 病理图 形状 border frame outline',run:()=>host.borders()},
       {id:'duplicates',zh:'图片查重',en:'Screen image duplicates',terms:'查重 重复 重叠 图像完整性 duplicate overlap integrity',run:()=>host.duplicates('all')},
-      {id:'rectify',zh:'一键矫正与微调',en:'Auto straighten & refine',terms:'照片 拍斜 透视 四角 拉正 矫正 裁剪 拉直 标尺 ruler deskew perspective rectify straighten crop photo corners',run:()=>openImages('rectify')},
+      {id:'rectify',zh:'一键矫正与微调',en:'Auto straighten & refine',terms:'照片 拍斜 透视 四角 拉正 矫正 裁剪 拉直 标尺 电泳 条带 泳道 WB western blot ruler deskew perspective rectify straighten crop photo corners',run:()=>openImages('rectify')},
       {id:'color',zh:'匹配参考图／图片颜色与显示',en:'Match reference / image display',terms:'颜色 色调 亮度 对比度 参考色 统一图片颜色 colour color reference brightness contrast',run:()=>openImages('color')},
       {id:'links',zh:'关联总览与放大图',en:'Link overview and detail',terms:'定位 局部 放大图 关联 来源 ROI overview detail localization link inset',run:()=>host.links()},
       {id:'inset',zh:'绘制局部放大／比例尺',en:'Create zoom inset / scale bar',terms:'裁剪 放大 比例尺 标定 crop inset scale bar calibration',run:()=>openImages('inset')}
     ];
+    // Resolve the later-mounted tools when invoked; keep the five main workflows.
+    if(typeof host.review==='function')actions.push({id:'review',zh:'图形质检与问题定位',en:'Review figure and locate issues',terms:'图形质检 图形检查 最终字号 线宽 figure review quality preflight text size line width',run:()=>host.review()});
+    if(typeof host.submissionProfiles==='function')actions.push({id:'submission-profile',zh:'投稿配置与尺寸预检',en:'Submission profiles and size review',terms:'投稿配置 期刊要求 最大高度 配置导入 submission profile requirements maximum height',run:()=>host.submissionProfiles()});
     const nav=doc.createElement('nav');nav.id='workflowNavigation';nav.className='workflow-navigation';nav.setAttribute('aria-label','Figure Studio workflows');
     doc.querySelector('.workspace')?.before(nav);
     const searchButton=doc.createElement('button');searchButton.id='commandSearch';searchButton.type='button';searchButton.className='command-search-trigger';doc.querySelector('.toolbar')?.append(searchButton);
