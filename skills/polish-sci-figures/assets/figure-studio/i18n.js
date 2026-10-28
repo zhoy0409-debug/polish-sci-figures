@@ -923,6 +923,8 @@ const StudioI18n = (() => {
     ' 页':'',
     '。显示 PNG 不作为原生定量数据。':'. Display PNG is not the quantitative source.',
     '下载原始 TIFF':'Download original TIFF',
+    '从原始 TIFF 新建显示':'New display from original TIFF',
+    '重新读取保留的原生平面，在独立显示中微调；保留现有图片和编辑。需要 Windows 本机服务。':'Adjust the retained native plane in a separate display. Existing images and edits are preserved. Requires the local Windows engine.',
     '当前版本尚未提供原生 TIFF 导入。':'Native TIFF import is unavailable in this version.',
     '已导入原生 TIFF 显示图；原文件保留，可撤销':'Native TIFF display imported; original retained, undo available',
     '原生 TIFF 仅在当前本机服务处理，不会发送到外部站点。':'Native TIFF is processed only by this local loopback service; it is never sent to an external site.',

@@ -85,6 +85,12 @@ fs.mkdirSync(out,{recursive:true});
     checks.push('Saved native-source project reopens only after integrity verification; corrupted original is refused without replacing active edits');
 
     const oldPanel=JSON.parse(JSON.stringify(rejected.state.panels[id]));
+    await page.locator('#language').selectOption('en');
+    assert.equal(await page.locator('#newScientificDisplay').textContent(),'New display from original TIFF');
+    await page.locator('#newScientificDisplay').click();await ready();
+    assert.equal(await page.locator('#tiffKeep').textContent(),'Keep new display');
+    await page.locator('#tiffCancel').click();
+    await page.locator('#language').selectOption('zh-CN');
     await startImport();await page.locator('#tiffKeep').click();await page.locator('#scientificTiffWorkspace').waitFor({state:'hidden'});
     const shared=await save('shared-source.json');assert.equal(shared.state.order.length,2);
     assert.deepEqual(shared.state.panels[id],oldPanel);assert.equal(Object.keys(shared.project.scientificSources).length,1);

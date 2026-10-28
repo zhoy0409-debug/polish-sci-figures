@@ -6,7 +6,8 @@
     "skills/polish-sci-figures/assets/figure-studio/studio.js": "39ef4d7d5bf397613cbb40c65cf74220a781697594add00f67a042c867752e54",
     "skills/polish-sci-figures/assets/figure-studio/studio.html": "c2675f08b3b1db4dcdf273626986fd9c89c88f9816512080966ff5fc594539af",
     "skills/polish-sci-figures/assets/figure-studio/scientific-tiff-ui.js": "0547f44eb3dfc51395637b838358132e800bdb84d9f159ba978d1b8df6928ae5",
-    "skills/polish-sci-figures/assets/figure-studio/scientific-tiff.css": "ac4aafac32b037756c19160aa7a9d03dd55ccb6083dc24ccc2ca1b1e41421027"
+    "skills/polish-sci-figures/assets/figure-studio/scientific-tiff.css": "ac4aafac32b037756c19160aa7a9d03dd55ccb6083dc24ccc2ca1b1e41421027",
+    "skills/polish-sci-figures/assets/figure-studio/i18n.js": "e0a7365607107371a8bf75447003767b58cb2be0a234c98f14c0d535bab6a429"
   },
   "browser": "155.0.8059.85",
   "checks": [
@@ -39,5 +40,16 @@
   "privateSourcesUsed": false,
   "independentAccuracyAsserted": false,
   "frozenPackageAsserted": false,
-  "semantics": "Prefill retained native plane/window/gamma/LUT/resolution; preview separate display; preserve existing manual panel states; store original once; keep/cancel/undo/redo/reopen. A derivative opens its native source, not transferred correction."
+  "semantics": "Prefill retained native plane/window/gamma/LUT/resolution; preview separate display; preserve existing manual panel states; store original once; keep/cancel/undo/redo/reopen. A derivative opens its native source, not transferred correction.",
+  "derivativeChecks": [
+    "Native-TIFF correction preview/cancel retains the exact source, project and history",
+    "Keep records one undo, original display-to-TIFF lineage, separate display-only correction and no inherited calibration; raw TIFF still downloads exactly",
+    "Undo/redo and project reopen preserve source access and retained native bytes",
+    "Repeated correction refers to the same retained native original without duplicating bytes or creating a false native-pixel claim",
+    "Tampered original lineage is rejected without replacing the active project",
+    "Removing the native source store and base record cannot bypass derivative validation",
+    "A corrected derivative can create a new native-plane display with inherited display parameters, while retaining its own correction/state and original bytes; cancel, one undo and redo verified"
+  ],
+  "globalEnglishCatalogCoveragePassed": true,
+  "retainedFailure": "0e55675 full integration stopped for missing global English catalog messages; fixed without relaxing the test. Prior source/browser runs and failure logs retained locally."
 }
