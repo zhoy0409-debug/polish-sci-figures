@@ -2049,10 +2049,13 @@ if (typeof document !== 'undefined') (async () => {
     for(const node of svg.querySelectorAll('metadata'))if(/(?:^|-)studio-stat-anchors$/.test(node.id||'')){const record=statisticalAnchorMetadata(node.textContent);if(record){for(const axis of record.axes){axis.axis=prefix+axis.axis;for(const cell of axis.groups)cell.members=cell.members.map(id=>prefix+id);}node.textContent=JSON.stringify(record);}}
     for (const el of [svg,...svg.querySelectorAll('*')]) {
       if (el.id) el.id=prefix+el.id;
-      for (const a of [...el.attributes]) {
-        if(a.name==='data-studio-image-color')continue; // Parameter/reference text contains no SVG IDs.
-        if (a.localName==='href' && a.value.startsWith('#')) a.value='#'+prefix+a.value.slice(1);
-        else if (/url\(/i.test(a.value)) a.value=a.value.replace(/url\(\s*['"]?#([^\s)'" ]+)['"]?\s*\)/g,(_,id)=>`url(#${prefix}${id})`);
+      // Read names/values without materializing an Attr wrapper for every
+      // coordinate and colour; only referenced attributes need a mutable node.
+      for (const name of el.getAttributeNames()) {
+        if(name==='data-studio-image-color')continue; // Parameter/reference text contains no SVG IDs.
+        const value=el.getAttribute(name);
+        if ((name==='href'||name.endsWith(':href'))&&value.startsWith('#')&&el.getAttributeNode(name).localName==='href') el.getAttributeNode(name).value='#'+prefix+value.slice(1);
+        else if (/url\(/i.test(value)) el.getAttributeNode(name).value=value.replace(/url\(\s*['"]?#([^\s)'" ]+)['"]?\s*\)/g,(_,id)=>`url(#${prefix}${id})`);
       }
     }
     return svg;

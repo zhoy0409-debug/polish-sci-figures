@@ -309,6 +309,7 @@ jobs:
           node scripts/test_studio_performance_summary.cjs
           node scripts/test_studio_update_real_evidence.cjs
           node scripts/test_studio_edited_svg_performance.cjs
+          node scripts/test_studio_svg_namespace.cjs
           node scripts/test_studio_autosave_coalescing.cjs
           node scripts/test_studio_template_cache.cjs
           node scripts/test_studio_font_replacement.cjs

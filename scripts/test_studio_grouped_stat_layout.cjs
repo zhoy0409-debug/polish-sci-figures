@@ -60,6 +60,8 @@ Matrix.prototype.translate=function(x,y){return this.multiply(new Matrix([1,0,0,
 Matrix.prototype.transformPoint=function(p){return {x:this.a*p.x+this.c*p.y+this.e,y:this.b*p.x+this.d*p.y+this.f};};
 Node.prototype.matches=function(selector){return selector.split(',').some(part=>{const s=part.trim(),tag=s.match(/^([\w-]+)/)?.[1],attrs=[...s.matchAll(/\[([\w-]+)(\^?=)?["']?([^"'\]]*)["']?\]/g)];return (!tag||tag===this.localName)&&attrs.every(([,key,op,value])=>op==='^='?(this.attrs[key]||'').startsWith(value):op==='='?this.attrs[key]===value:key in this.attrs);});};
 Object.defineProperty(Node.prototype,'attributes',{get(){const owner=this;return Object.keys(this.attrs).map(name=>({name,localName:name,get value(){return owner.attrs[name];},set value(value){owner.attrs[name]=value;}}));}});
+Node.prototype.getAttributeNames=function(){return Object.keys(this.attrs);};
+Node.prototype.getAttributeNode=function(name){return this.attributes.find(attribute=>attribute.name===name)||null;};
 const append=Node.prototype.append;Node.prototype.append=function(...nodes){for(const node of nodes){node.remove?.();if(!node.matches)node.matches=()=>false;if(!node.querySelectorAll)node.querySelectorAll=()=>[];}return append.apply(this,nodes);};
 const clone=value=>JSON.parse(JSON.stringify(value)),near=(actual,expected,message)=>assert.ok(Math.abs(actual-expected)<1e-5,`${message}: ${actual} != ${expected}`);
 const slice=(start,end)=>{const a=source.indexOf(start),b=source.indexOf(end,a);assert.ok(a>0&&b>a,start);return source.slice(a,b);};

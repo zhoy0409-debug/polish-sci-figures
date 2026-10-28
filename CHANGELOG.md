@@ -14,6 +14,8 @@ Retain a verified native-TIFF source reference through display crop/perspective 
 
 Reopen a retained TIFF plane with its display settings prefilled to create a separate, editable display. Preserve existing images and manual edits, share the original bytes, and keep preview/cancel/one-step undo. Bundle the TIFF guide for offline use. An internal frozen executable passes the actual OME/LZW decoding self-test and complete portable/source comparison; these checks do not constitute native installed editing or official update acceptance.
 
+Reduce SVG reference-isolation overhead by reading attribute names and values before obtaining mutable reference nodes. Preserve the full ID, metadata, href, filter and clip checks. A separate four-batch comparison improves 5000-object drag confirmation while retaining its remaining long tasks; rejected experiments and colour/selection results remain in the audit. Actual public-fixture SVG/PNG exports are byte- and pixel-identical across the change.
+
 Preserve native samples in both byte orders of 16-bit single-channel TIFF before an explicit display-window transform. Windows build preflight checks a working Tcl interpreter and isolates inherited Python packages; nested CLI QA uses UTF-8 for Chinese paths. Large-SVG selection avoids layer-list scroll reads after artwork writes; imported-content notes reuse source counts and invalidate when actual sources change. Performance acceptance retains all batches, including remaining regressions.
 
 ## v1.4.26 · Figure Studio 0.1.26
