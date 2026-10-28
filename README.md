@@ -9,7 +9,7 @@ Figure Studio 0.1.26 增加拍摄照片的一键矫正、标尺拉正和一键�
 
 # polish-sci-figures
 
-The next Windows upgrade is under integration. See the [source-candidate workflow](docs/figure-review.en.md) and [dated acceptance scope](docs/windows-next-stable-audit.md); current download links continue to point to the published stable release.
+The next Windows upgrade is under integration. See the [Chinese upgrade summary](docs/windows-next-stable-summary.zh-CN.md), [source-candidate workflow](docs/figure-review.en.md) and [dated acceptance scope](docs/windows-next-stable-audit.md); current download links continue to point to the published stable release.
 
 The source candidate also adds [native TIFF display previews and background project saves](docs/figure-studio-native-tiff.md), preserving original bytes and bit depth separately from the canvas display. Installed Windows acceptance remains pending.
 

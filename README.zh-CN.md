@@ -1,6 +1,6 @@
 # polish-sci-figures · 产品指南
 
-下一代 Windows 集成升级正在独立分支验收；[源码候选操作指南](docs/figure-review.zh-CN.md)和[当前实测范围](docs/windows-next-stable-audit.md)明确区分实现、浏览器测试与安装版验收。以下下载仍对应已经发布的正式版。
+下一代 Windows 集成升级正在独立分支验收；先看[面向科研用户的简明介绍](docs/windows-next-stable-summary.zh-CN.md)，再查[源码候选操作指南](docs/figure-review.zh-CN.md)和[当前实测范围](docs/windows-next-stable-audit.md)。说明明确区分实现、浏览器测试与安装版验收。以下下载仍对应已经发布的正式版。
 
 源码候选新增[原生 TIFF 导入、真实画布显示窗预览及大工程后台保存](docs/figure-studio-native-tiff.md)，保留原文件位深与字节，明确区分显示图和定量数据。尚未作为正式安装包发布。
 
