@@ -1,10 +1,12 @@
 # Getting started with Figure Studio
 
+**0.2.0 release-preparation snapshot (Suite 1.5.0, 2026-10-28):** the new-version links are pending publication and installed-app/real-upgrade acceptance. For an available installer, use the [previous stable v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26). See [candidate scope](../docs/release-notes-v1.5.0.md#english).
+
 The Windows installer workflow and genuine official 0.1.25 → 0.1.26 in-editor upgrade passed the listed checks. The [acceptance record](../docs/qa/photo-correction/windows-0.1.26/README.md) details data protection, performance results and remaining items.
 
-The update window keeps the simple companions and shows downloaded bytes with an outline heart and jade water. Download completion is followed by integrity verification; save and confirm before installation. Animation preferences and reduced motion retain readable progress. See the [release notes](../docs/release-notes-v1.4.26.md) and separate [historical 0.1.23 acceptance](../docs/release-notes-v1.4.23.md) for each version's scope.
+The update window keeps the simple companions and shows downloaded bytes with an outline heart and jade water. Download completion is followed by integrity verification; save and confirm before installation. Animation preferences and reduced motion retain readable progress. See the [release notes](../docs/release-notes-v1.5.0.md) and separate [historical 0.1.23 acceptance](../docs/release-notes-v1.4.23.md) for each version's scope.
 
-Version 0.1.26 provides local outline correction, ruler straightening and global colour controls. See the [photo guide](../docs/figure-studio-photo-correction.md) and [actual acceptance scope](../docs/figure-studio-photo-correction-validation.md).
+Version 0.2.0 retains local outline correction, ruler straightening and global colour controls. See the [photo guide](../docs/figure-studio-photo-correction.md) and [actual acceptance scope](../docs/figure-studio-photo-correction-validation.md).
 
 Figure Studio creates, edits and arranges scientific figures. The Windows desktop edition supports Windows 10/11, 64-bit. Once installed, it works offline without Codex, a separate Python installation or an API key.
 
@@ -14,7 +16,7 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 ## Install and open
 
-1. **Choose the Setup installer for first use:** download [polish-sci-figures-Studio-0.1.26-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe) from the [official v1.4.26 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26), then run it for your Windows user account. No extraction is needed.
+1. **Choose the Setup installer for first use:** download [polish-sci-figures-Studio-0.2.0-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe) from the [v1.5.0 release when published](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0), then run it for your Windows user account. No extraction is needed.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
 3. Choose **English** or **中文** at the top right. Opening the shortcut again opens the editor already running.
 
@@ -35,7 +37,7 @@ For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-
 
 In Studio 0.1.26, open **Appearance → Interface theme** for default **Carbon Atelier** or light **Pearl Pro**. **Canvas surround** changes the area around the white figure page to neutral, dark or light. Figure colours, image pixels and exported artwork are independent of these preferences. The current browser remembers your choice; if it cannot save the preference, the menu explains this.
 
-The inspector identifies the selected object type and prioritises related controls; expand other headings for more settings. Choose **Find command** or press **Ctrl + K** to search for `theme`, `border`, `duplicates` or `axis`. Search opens the existing tools. See the [appearance and update guide](../docs/figure-studio-appearance.md) for the exact controls, and the [0.1.26 release notes](../docs/release-notes-v1.4.26.md) for this build's validation status.
+The inspector identifies the selected object type and prioritises related controls; expand other headings for more settings. Choose **Find command** or press **Ctrl + K** to search for `theme`, `border`, `duplicates` or `axis`. Search opens the existing tools. See the [appearance and update guide](../docs/figure-studio-appearance.md) for the exact controls, and the [0.1.26 release notes](../docs/release-notes-v1.5.0.md) for this build's validation status.
 
 
 ## Adjust directly on the canvas
@@ -84,7 +86,7 @@ Closing a browser tab leaves the local service running. To stop it, choose **Qui
 
 **Already on a local 0.1.26 candidate?** When replacing a local 0.1.26 candidate with the official build, save your project, close Figure Studio and run the official Setup linked above. The updater compares version numbers and will not offer another build with the same version.
 
-**Already using installed 0.1.9–0.1.25?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.26 installer manually. Version 0.1.26 retains the long-path fix introduced in 0.1.10.
+**Already using installed 0.1.9–0.1.25?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.26 installer manually. Version 0.2.0 retains the long-path fix introduced in 0.1.10.
 
 **Future updates from the 0.1.26 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the supported application location and reopens Figure Studio on success; you do not need to extract or replace files. Installation is never started without confirmation, and Windows security prompts are not bypassed.
 

@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased · Windows integrated upgrade candidate
+## v1.5.0 · Figure Studio 0.2.0 — release preparation (unreleased)
+
+Prepared on 2026-10-28. Windows candidate identities, installer and update metadata are unified without changing the installation identity or project schema. See the [release preparation and exact scope](docs/release-notes-v1.5.0.md). Native installed editing, same-package 5000-object performance, genuine 0.1.26 → 0.2.0 in-editor upgrade and failure recovery remain release gates. Historical v1.4.26 assets and preview downloads retain their original versions.
 
 Make figure review and submission profiles directly searchable in Chinese and English, retaining an already-open profile draft. Add WB/electrophoresis and microscopy/fluorescence search terms for existing image tools without claiming new lane detection or native batch processing.
 

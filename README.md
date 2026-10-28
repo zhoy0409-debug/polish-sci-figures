@@ -1,6 +1,8 @@
 <div align="center">
 
-Figure Studio 0.1.26 增加拍摄照片的一键矫正、标尺拉正和一键校色；先在画布预览，不满意可微调或取消，保留原图并支持一次撤销。首次运行 Setup 安装，以后从受支持的编辑器内更新。[Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe) · [本版说明](docs/release-notes-v1.4.26.md#中文) · [使用入门](desktop/QUICKSTART.zh-CN.md) · [照片操作指南](docs/figure-studio-photo-correction.md)。
+**0.2.0 发布准备快照（Suite 1.5.0，2026-10-28）**：新版本链接为待发布路径；当前尚未完成安装版与真实升级验收。立即安装请使用[上一正式版 v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)。[本轮功能与范围](docs/release-notes-v1.5.0.md#中文)。
+
+Figure Studio 0.2.0 保留拍摄照片的一键矫正、标尺拉正和一键校色；先在画布预览，不满意可微调或取消，保留原图并支持一次撤销。首次运行 Setup 安装，以后从受支持的编辑器内更新。[Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe) · [本版说明](docs/release-notes-v1.5.0.md#中文) · [使用入门](desktop/QUICKSTART.zh-CN.md) · [照片操作指南](docs/figure-studio-photo-correction.md)。
 
 照片功能、容量与科学适用范围见[照片指南](docs/figure-studio-photo-correction.md)；本轮实际检查与全部性能批次见[验收报告](docs/figure-studio-photo-correction-validation.md)。
 
@@ -18,7 +20,7 @@ The source candidate also adds [native TIFF display previews and background proj
 Turn research data and scientific images into clear, editable figures.<br>
 Explore the right chart, refine every detail, and bring your results together.<br>
 
-[Figure Discovery / 智能选图](docs/figure-discovery.md) · [Appearance / 外观](docs/figure-studio-appearance.md) · [Image tools / 图片工具](docs/figure-studio-image-tools.md) · [Release notes / 本版说明](docs/release-notes-v1.4.26.md)
+[Figure Discovery / 智能选图](docs/figure-discovery.md) · [Appearance / 外观](docs/figure-studio-appearance.md) · [Image tools / 图片工具](docs/figure-studio-image-tools.md) · [Release notes / 本版说明](docs/release-notes-v1.5.0.md)
 AI skills for plotting, scientific image preparation, and figure refinement, with Figure Studio for hands-on editing.
 
 [English](#polish-sci-figures) · [中文](#中文)
@@ -27,7 +29,7 @@ AI skills for plotting, scientific image preparation, and figure refinement, wit
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-c95770.svg)](LICENSE)
 
-**[Download Figure Studio](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe)** · **[Use the AI skills](docs/platform-installation.en.md)** · **[Explore the guide](README.en.md)**
+**[Download Figure Studio](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)** · **[Use the AI skills](docs/platform-installation.en.md)** · **[Explore the guide](README.en.md)**
 
 </div>
 
@@ -117,7 +119,7 @@ Choose the way you prefer to work. Both paths belong to the same polish-sci-figu
 
 ### Open Figure Studio
 
-[Download the Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe), install it, and open the shortcut. Choose a template, replace its example data, then edit and export in your browser. Windows 10/11 x64; the runtime is included, with no separate Python setup, Codex, account, or API key required.
+[Download the Windows installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe), install it, and open the shortcut. Choose a template, replace its example data, then edit and export in your browser. Windows 10/11 x64; the runtime is included, with no separate Python setup, Codex, account, or API key required.
 
 [Quick start](desktop/QUICKSTART.en.md) · [Portable edition](https://github.com/zhoy0409-debug/polish-sci-figures/releases)
 
@@ -141,7 +143,7 @@ The suite covers plotting and analysis, calibrated image preparation, and final 
 
 ## Guides and project
 
-[Product guide](README.en.md) · [Latest improvements](docs/release-notes-v1.4.26.md) · [Validation record](docs/figure-studio-validation.md) · [Contributing](CONTRIBUTING.md)
+[Product guide](README.en.md) · [Latest improvements](docs/release-notes-v1.5.0.md) · [Validation record](docs/figure-studio-validation.md) · [Contributing](CONTRIBUTING.md)
 
 Official downloads and updates come from [this repository's Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases). The project is available under the [MIT License](LICENSE); citation details are in [CITATION.cff](CITATION.cff).
 
@@ -241,7 +243,7 @@ https://github.com/user-attachments/assets/f9359952-cdaf-43b5-a66f-50b5b1160718
 
 ### 指南与项目
 
-[完整功能指南](README.zh-CN.md) · [本版更新](docs/release-notes-v1.4.26.md#中文) · [验证记录](docs/figure-studio-validation.md) · [参与贡献](CONTRIBUTING.md)
+[完整功能指南](README.zh-CN.md) · [本版更新](docs/release-notes-v1.5.0.md#中文) · [验证记录](docs/figure-studio-validation.md) · [参与贡献](CONTRIBUTING.md)
 
 官方下载与更新统一通过[本仓库的 Releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases)提供。项目采用 [MIT 许可](LICENSE)，引用信息见 [CITATION.cff](CITATION.cff)。
 

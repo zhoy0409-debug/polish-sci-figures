@@ -1,10 +1,12 @@
 # Figure Studio 使用入门
 
+**0.2.0 发布准备快照（Suite 1.5.0，2026-10-28）**：新版本链接为待发布路径；当前尚未完成安装版与真实升级验收。立即安装请使用[上一正式版 v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)。[本轮功能与范围](../docs/release-notes-v1.5.0.md#中文)。
+
 Windows安装版实操及官方0.1.25→0.1.26编辑器内升级已通过所列检查；[验收记录](../docs/qa/photo-correction/windows-0.1.26/README.md)列明数据保护、性能结果和未完成事项。
 
-更新窗口保留简约猫狗，用透明空心心与翡翠水面呈现下载字节进度；下载完成后仍需等待完整性校验，再保存并确认安装。外观遵循角色动画和系统降动效设置。[本版说明](../docs/release-notes-v1.4.26.md#中文)与[0.1.23 历史验收](../docs/release-notes-v1.4.23.md#中文)分别记录版本范围。
+更新窗口保留简约猫狗，用透明空心心与翡翠水面呈现下载字节进度；下载完成后仍需等待完整性校验，再保存并确认安装。外观遵循角色动画和系统降动效设置。[本版说明](../docs/release-notes-v1.5.0.md#中文)与[0.1.23 历史验收](../docs/release-notes-v1.4.23.md#中文)分别记录版本范围。
 
-0.1.26 提供本机照片边界校正、标尺拉正和全局校色。操作、容量及本轮实际验收见[照片指南](../docs/figure-studio-photo-correction.md)与[验收报告](../docs/figure-studio-photo-correction-validation.md)。
+0.2.0 保留本机照片边界校正、标尺拉正和全局校色。操作、容量及本轮实际验收见[照片指南](../docs/figure-studio-photo-correction.md)与[验收报告](../docs/figure-studio-photo-correction-validation.md)。
 
 Figure Studio 用于绘制、编辑和排版科研组图。Windows 桌面版适用于 Windows 10/11（64 位），安装后无需 Codex、Python 或 API 密钥，可离线使用。
 
@@ -14,7 +16,7 @@ Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库
 
 ## 安装与打开
 
-1. **首次使用选择 Setup 安装版：** 从 [v1.4.26 官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)下载 [polish-sci-figures-Studio-0.1.26-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe)，直接运行并按提示安装到当前 Windows 用户，无需解压。
+1. **首次使用选择 Setup 安装版：** 从 [v1.5.0 发布后的发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0)下载 [polish-sci-figures-Studio-0.2.0-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)，直接运行并按提示安装到当前 Windows 用户，无需解压。
 2. 双击桌面或开始菜单中的 **polish-sci-figures Studio**。启动小窗口显示“编辑器已就绪”后，默认浏览器会打开编辑器；也可点击小窗口里的 **打开编辑器**。
 3. 页面右上角可切换中文和 English。再次点击快捷方式会打开已运行的编辑器。
 
@@ -35,7 +37,7 @@ Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库
 
 Studio 0.1.26 顶部**外观 → 界面主题**可选择默认深色 **Carbon Atelier** 或浅色 **Pearl Pro**。**画布周边**单独设置图纸外面的中性、深色或浅色区域；图纸保持白色，作品配色、图片像素和导出内容独立于界面偏好。当前浏览器会记住选择，无法保存时菜单会提示。
 
-右侧标明当前选中的对象类别，优先显示相关常用设置；其他标题仍可展开。点击**查找功能**或按 **Ctrl + K**，输入“主题”“边框”“图片查重”或“轴刻度”，即可打开对应的已有工具。具体入口见[外观与更新指南](../docs/figure-studio-appearance.md#中文)，本版实际验收状态见 [0.1.26 发行说明](../docs/release-notes-v1.4.26.md#中文)。
+右侧标明当前选中的对象类别，优先显示相关常用设置；其他标题仍可展开。点击**查找功能**或按 **Ctrl + K**，输入“主题”“边框”“图片查重”或“轴刻度”，即可打开对应的已有工具。具体入口见[外观与更新指南](../docs/figure-studio-appearance.md#中文)，本版实际验收状态见 [0.1.26 发行说明](../docs/release-notes-v1.5.0.md#中文)。
 
 ## 留在画布中调整
 

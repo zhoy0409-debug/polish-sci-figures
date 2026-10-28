@@ -28,6 +28,16 @@ def release(version='0.1.7', suffix='Setup-x64.exe', tag='v1.4.7', preview=False
 
 
 class UpdateTests(unittest.TestCase):
+    def test_next_minor_windows_version_independent_of_suite_tag(self):
+        target = release('0.2.0', tag='v1.5.0')
+        result = updates.choose_release([target], current(version='0.1.26'))
+        self.assertEqual(result['latestVersion'], '0.2.0')
+        self.assertEqual(result['releaseTag'], 'v1.5.0')
+        self.assertEqual(result['status'], 'update-available')
+        self.assertEqual(updates.choose_release([target], current(version='0.2.0'))['status'], 'up-to-date')
+        old = release('0.1.26', tag='v1.4.26')
+        self.assertEqual(updates.choose_release([old], current(version='0.2.0'))['status'], 'up-to-date')
+
     def test_numeric_studio_version_independent_of_suite(self):
         result = updates.choose_release([release('0.1.9'), release('0.1.10')], current(version='0.1.9'))
         self.assertEqual(result['latestVersion'], '0.1.10')
