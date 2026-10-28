@@ -43,6 +43,17 @@ class LauncherTests(unittest.TestCase):
         with mock.patch.dict(app.os.environ, {'LOCALAPPDATA': str(self.root)}), mock.patch.object(app.sys, 'platform', 'win32'):
             self.assertEqual(app.default_data_dir(), self.root / 'Figure Studio')
 
+    def test_native_tiff_self_check_uses_real_binary_routes_and_known_samples(self):
+        service = self.start()
+        result = app._self_test_native_tiff(service)
+        self.assertTrue(result['passed'])
+        self.assertEqual(result['nativeBits'], 16)
+        self.assertEqual(result['planes'], 2)
+        self.assertEqual(result['actualDecodedDisplayLevels'], [0, 85, 170, 255])
+        self.assertTrue(result['explicitWindowRequired'])
+        self.assertTrue(result['authorizationRequired'])
+        self.assertTrue(result['released'])
+
     def test_numeric_threads_default_and_explicit_configuration(self):
         before = dict(app.os.environ)
         with mock.patch.dict(app.os.environ, {'BENCHMARK_SENTINEL': 'untouched'}, clear=True):
