@@ -5,11 +5,15 @@ created: 2026-10-28
 
 # Suite 1.5.0 · Figure Studio 0.2.0
 
-这是 Windows 集中升级的发布准备记录。2026-10-28 的本次源码快照尚未通过新版本安装版实操、同包 5000 图元及真实应用内升级验收；正式发布状态、最终安装包哈希和后续验收补充以[本版发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0)为准。当前可用版本仍见[上一正式版 v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)。
+这是 Windows 集中升级的候选记录。2026-10-30 用户要求完成调试后先交其检查；未经再次批准，不合并、不创建标签、不发布安装包。2026-10-28 的本次源码快照尚未通过新版本安装版实操、同包 5000 图元及真实应用内升级验收；正式发布状态、最终安装包哈希和后续验收补充以[本版发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0)为准。当前可用版本仍见[上一正式版 v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)。
 
 [中文](#中文) · [English](#english) · [用户简明说明](windows-next-stable-summary.zh-CN.md) · [完整验收记录](windows-next-stable-audit.md)
 
 ## 中文
+
+### 分类抽屉与使用反馈
+
+六类任务工具使用唯一归属，搜索别名直接定位实际字段。工程与图层可收起，工具在选择对象后保持当前任务，重新进入未结束的边框草稿不会重置参数。帮助菜单提供经用户预览后在 GitHub 确认的反馈，以及扣除基线与登记验收的下载统计；历史净下载未知，不收集使用行为或活跃人数。[完整使用与统计口径](figure-studio-workspace-and-feedback.md)。
 
 ### 按最终尺寸检查并继续编辑
 
@@ -41,7 +45,7 @@ created: 2026-10-28
 
 ## English
 
-This is the release-preparation snapshot for Suite 1.5.0 / Figure Studio 0.2.0, focused on Windows. It adds final-size local figure review, scoped revision-checked changes, confirmed-result figure planning, declared submission profiles, bounded native TIFF display with retained originals, and local Worker project save/parse. Existing scientific data, statistics, editing, exports, visual themes and simple update companions remain available.
+This candidate is on an explicit user-review hold: no merge, tag or release until renewed approval. It adds canonical task drawers, alias-aware local search, reviewed GitHub feedback and QA-excluded incremental download accounting without usage telemetry. This is the release-preparation snapshot for Suite 1.5.0 / Figure Studio 0.2.0, focused on Windows. It adds final-size local figure review, scoped revision-checked changes, confirmed-result figure planning, declared submission profiles, bounded native TIFF display with retained originals, and local Worker project save/parse. Existing scientific data, statistics, editing, exports, visual themes and simple update companions remain available.
 
 Review and submission settings preview on the actual canvas, can be cancelled and create one Undo step when kept. TIFF display retains the original bit depth and bytes separately from an explicitly non-quantitative display PNG; a retained native plane can create a separate display without inheriting calibration or geometric edits. See the [review guide](figure-review.en.md), [submission guide](figure-studio-submission-profiles.md) and [TIFF limits](figure-studio-native-tiff.md#english-workflow).
 

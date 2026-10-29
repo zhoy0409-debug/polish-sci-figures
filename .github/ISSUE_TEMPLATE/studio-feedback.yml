@@ -1,0 +1,32 @@
+name: Figure Studio 使用反馈
+description: 告诉维护者哪里不好用，或哪些操作可以改进
+title: "[Figure Studio 反馈] "
+assignees: ["zhoy0409-debug"]
+body:
+  - type: markdown
+    attributes:
+      value: "反馈会公开展示。请勿粘贴患者标识、科研原始测量值、私有工程、本机路径或凭据。"
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 反馈类型
+      options: [功能问题, 不好用的地方, 改进建议]
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: 你想做什么、哪里不顺手、希望怎样改进
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Figure Studio 版本（可选）
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 提交前核对
+      options:
+        - label: 我已确认不含私人科研数据或敏感信息，并同意公开提交。
+          required: true

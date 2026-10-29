@@ -23,8 +23,8 @@ async function main(){
   });
   await page.locator('#projectFile').setInputFiles({name:'local-axis-acceptance.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
   await page.waitForFunction(()=>document.querySelectorAll('#artboard g[id*="axes_"]').length>0);
-  await page.locator('[data-tab="detail"]').click();
-  await page.locator('#professionalAxes').waitFor({state:'visible'});await page.locator('#professionalAxes').click();
+  if(await page.locator('.studio-drawers').count()){await page.locator('#commandSearch').click();await page.locator('#commandQuery').fill('axis settings');await page.locator('#command-axes').click();}
+  else{await page.locator('[data-tab="detail"]').click();await page.locator('#professionalAxes').waitFor({state:'visible'});await page.locator('#professionalAxes').click();}
   const host=page.locator('#professionalAxesHost'),field=key=>host.locator('[data-axis-field="'+key+'"]');
   await host.locator('.axis-settings-live input').uncheck();assert.equal(await host.locator('details').count(),4);
   async function openSection(index){const section=host.locator('details').nth(index);if(!await section.evaluate(node=>node.open))await section.locator('summary').click();}

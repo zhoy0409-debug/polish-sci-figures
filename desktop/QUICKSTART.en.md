@@ -37,22 +37,13 @@ For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-
 
 In Studio 0.1.26, open **Appearance → Interface theme** for default **Carbon Atelier** or light **Pearl Pro**. **Canvas surround** changes the area around the white figure page to neutral, dark or light. Figure colours, image pixels and exported artwork are independent of these preferences. The current browser remembers your choice; if it cannot save the preference, the menu explains this.
 
-The inspector places selection and editing modes before detailed settings. Expand text, paragraph, character formatting, colour or stroke headings when needed. The left **Layers / Layout / Export** shortcuts locate each area directly. **Canvas tools** contains panel scaling, grid and guides; **More tools** groups object organization, proportions, clipboard and text/colour tools. Active image screening retains its visible progress entry.
+Six task categories open a single right-hand tool drawer: **Data & charts**, **Text & object style**, **Image processing**, **Layout & canvas**, **Annotations & measurement**, and **Review & export**. Every tool has one category. Project, versions, local preferences and layers live on the left; Help stays in the header. Object paint, image display, straightening rulers, physical calibration, analysis and statistical annotation remain distinct.
 
-Choose **Find function** or press **Ctrl + K** and describe the task, such as `straighten`, `text spacing`, `physical scale bar` or `layout gap`. Results show their category and open the existing tool or expand and focus its real control. Arrow keys select results; Enter follows the result. Selection requirements and lock checks remain in effect.
+Choose **Back to this category** to find related tools, or collapse/reopen **Tools** to resume the current settings. Selecting another canvas object retains the chosen tool. Search with **Ctrl + K**; aliases such as `text spacing` lead to one canonical text tool and focus the actual field. Selection requirements, locking, live-preview cancellation and one-step history remain in effect.
 
-| Category | Functions |
-| --- | --- |
-| Data & charts | Figure discovery, data table, statistics, axes and chart group spacing |
-| Text & object style | Fonts, paragraph, object colour, stroke, borders and legend styling |
-| Image processing | Photo straightening/perspective, image display, reference colour and duplicates |
-| Layout & canvas | Layers, grid/gaps, align/distribute, group/lock, proportions and guides |
-| Annotations & measurement | Text/lines/shapes, panel labels, insets/links and calibrated physical scale bars |
-| Review & export | Figure review, submission profiles, dimensions and SVG/PNG/TIF export |
-| Project & interface | Open/save, checkpoints, undo/redo and interface themes |
+Use **Help → Send feedback** to prepare and review text, then confirm public submission on GitHub. Basic version diagnostics are optional and off by default. No project, image or measurement data are automatically attached. The deployed issue route assigns the maintainer; notifications depend on the account's existing GitHub/email settings. A prepared draft is not a submitted issue.
 
-A photo-straightening ruler is separate from physical calibration; object paint is separate from image pixel display. Search runs locally and sends no images, measurements or projects to a service. See the [appearance guide](../docs/figure-studio-appearance.md) and [current Windows acceptance scope](../docs/windows-next-stable-audit.md).
-
+**Help → Downloads excluding QA** fetches public metadata only after an explicit click. It counts new stable Windows Setup/Portable downloads after the accounting baseline, subtracting registered QA. Lifetime net downloads remain unknown; downloads are not users. No usage telemetry is collected. An unpublished/unavailable ledger or inconsistent counters yields an unreconciled result. See the [workflow and accounting details](../docs/figure-studio-workspace-and-feedback.md).
 
 ## Adjust directly on the canvas
 

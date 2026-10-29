@@ -11,3 +11,12 @@
 #commandDialog .command-category-results button{display:block;width:calc(100% - 8px);margin:var(--fs-space-1);text-align:left;padding:var(--fs-space-3)}
 #commandDialog .command-category-results button strong{display:block;font-size:var(--fs-font-sm);font-weight:600}
 #commandDialog .command-path{display:block;margin-top:var(--fs-space-1);font-size:var(--fs-font-xs);color:var(--fs-text-secondary)}
+#studioFeedback .command-heading,#studioDownloadMetrics .command-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--fs-space-3)}
+.studio-support-dialog p{font-size:var(--fs-font-xs);line-height:1.6;color:var(--fs-text-secondary)}
+.studio-support-dialog textarea{width:100%;box-sizing:border-box;padding:var(--fs-space-3);border:1px solid var(--fs-stroke-default);border-radius:var(--fs-radius-md);background:var(--fs-control-bg);resize:vertical}
+.studio-support-dialog label:has(input[type=checkbox]){display:flex;align-items:flex-start;gap:var(--fs-space-3)}
+.studio-support-dialog input[type=checkbox]{width:16px;min-height:16px;height:16px;margin:3px 0 0;flex:none;order:-1}
+.studio-support-dialog a{display:inline-block;padding:var(--fs-space-2) var(--fs-space-3);border-radius:var(--fs-radius-md);background:var(--fs-accent);color:var(--fs-on-accent);text-decoration:none;font-size:var(--fs-font-xs)}
+.studio-support-dialog a[aria-disabled=true]{opacity:.4;cursor:default}
+.studio-support-dialog pre{max-height:32vh;overflow:auto;border:1px solid var(--fs-stroke-subtle);white-space:pre-wrap}
+#studioDownloadMetrics table{width:100%;margin-top:var(--fs-space-4)}

@@ -18,6 +18,9 @@ def main():
             names=set(handle.namelist())
             for name in (*ROOT_FILES, *SUPPORT_FILES): assert name in names,name
             assert 'docs/figure-studio-native-tiff.md' in names, 'The native TIFF workflow must be available offline'
+            assert 'docs/figure-studio-workspace-and-feedback.md' in names, 'The canonical workspace and feedback/accounting guide must be available offline'
+            for asset in ('drawer-workspace.js', 'drawer-workspace.css', 'studio-support.js', 'download-metrics-ledger.json'):
+                assert f'skills/polish-sci-figures/assets/figure-studio/{asset}' in names, asset
             for skill in SKILL_NAMES: assert f"skills/{skill}/SKILL.md" in names,skill
             for asset in ("studio.html", "studio.css", "studio.js", "i18n.js", "memory.js", "discovery.js", "library.js", "catalogue.js", "catalogue-previews.json", "gallery-contracts.js", "template-starters.json", "rich-text.js", "rich-text.css", "workspace-layout.js", "workspace-layout.css", "group-spacing.js", "tiff-export.js", "compact-whitespace.js", "mark-style.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset

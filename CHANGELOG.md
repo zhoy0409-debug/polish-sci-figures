@@ -6,7 +6,11 @@ Prepared on 2026-10-28. Windows candidate identities, installer and update metad
 
 Fix the Windows Ctrl + Y shortcut missing from confirmed canvas edits. Keep Ctrl/Cmd + Shift + Z, toolbar Redo, input/IME and modal guards, one-step history and source data preservation. All three history key paths now share one command map.
 
-Condense Windows workspace settings into existing-control disclosures, move mode navigation before detailed properties and add direct layer/layout/export jumps. Expand local function search into seven task categories with bilingual paths and direct control reveal. Distinguish object paint from image display, and straightening rulers from physical calibration. Preserve original control bindings, active image-screening status, live preview/cancel and project history. Source-browser checks cover narrow windows, both themes, public research fixtures and a 5000-object workflow; the revised interface still requires installed-candidate verification.
+Replace the desktop property wall with six task categories and collapsible project/layer/tool drawers. Keep one canonical home per function, with alias-aware local search that focuses the requested field. Preserve current tool context across canvas selections, draft collapse/reopen, live cancellation and original control identities. Scientific pixel correction, object paint, physical calibration, analysis and annotation stay distinct.
+
+Add reviewed, opt-in GitHub feedback drafts and public download accounting without usage telemetry. Subtract the historical baseline and documented QA events; unknown lifetime net downloads remain unknown. Feedback remains a draft until confirmed on GitHub. See the [workflow and privacy/accounting scope](docs/figure-studio-workspace-and-feedback.md).
+
+**Publication hold, 2026-10-30:** finish local candidate testing and documentation, then wait for the user's review and renewed approval. Do not merge, tag or publish this candidate. Historical installed wn9 feedback does not validate this revised interface.
 
 Make figure review and submission profiles directly searchable in Chinese and English, retaining an already-open profile draft. Add WB/electrophoresis and microscopy/fluorescence search terms for existing image tools without claiming new lane detection or native batch processing.
 

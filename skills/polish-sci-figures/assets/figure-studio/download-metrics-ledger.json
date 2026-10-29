@@ -1,0 +1,454 @@
+{
+  "schema": "figure-studio-download-ledger/1",
+  "author": "a",
+  "recordedAt": "2026-10-29T17:55:11.171806+00:00",
+  "metric": "Net new Windows release-asset downloads after this baseline, excluding registered acceptance downloads; not users or installations.",
+  "historicalNetDownloads": null,
+  "historicalCoverage": "unreconciled; no lifetime external-download total is claimed",
+  "baseline": [
+    {
+      "id": 656093868,
+      "tag": "v1.4.26",
+      "name": "polish-sci-figures-Studio-0.1.26-Portable-x64.zip",
+      "count": 33,
+      "prerelease": false,
+      "createdAt": "2026-10-19T11:33:12Z"
+    },
+    {
+      "id": 656093861,
+      "tag": "v1.4.26",
+      "name": "polish-sci-figures-Studio-0.1.26-Setup-x64.exe",
+      "count": 114,
+      "prerelease": false,
+      "createdAt": "2026-10-19T11:33:11Z"
+    },
+    {
+      "id": 653108602,
+      "tag": "v1.4.25",
+      "name": "polish-sci-figures-Studio-0.1.25-Portable-x64.zip",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-18T09:46:47Z"
+    },
+    {
+      "id": 653108611,
+      "tag": "v1.4.25",
+      "name": "polish-sci-figures-Studio-0.1.25-Setup-x64.exe",
+      "count": 15,
+      "prerelease": false,
+      "createdAt": "2026-10-18T09:46:47Z"
+    },
+    {
+      "id": 652835654,
+      "tag": "v1.4.24",
+      "name": "polish-sci-figures-Studio-0.1.24-Portable-x64.zip",
+      "count": 1,
+      "prerelease": false,
+      "createdAt": "2026-10-18T07:42:06Z"
+    },
+    {
+      "id": 652835662,
+      "tag": "v1.4.24",
+      "name": "polish-sci-figures-Studio-0.1.24-Setup-x64.exe",
+      "count": 3,
+      "prerelease": false,
+      "createdAt": "2026-10-18T07:42:06Z"
+    },
+    {
+      "id": 652674185,
+      "tag": "v1.4.23",
+      "name": "polish-sci-figures-Studio-0.1.23-Portable-x64.zip",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-18T06:22:02Z"
+    },
+    {
+      "id": 652674180,
+      "tag": "v1.4.23",
+      "name": "polish-sci-figures-Studio-0.1.23-Setup-x64.exe",
+      "count": 3,
+      "prerelease": false,
+      "createdAt": "2026-10-18T06:22:02Z"
+    },
+    {
+      "id": 651688166,
+      "tag": "v1.4.22",
+      "name": "polish-sci-figures-Studio-0.1.22-Portable-x64.zip",
+      "count": 0,
+      "prerelease": false,
+      "createdAt": "2026-10-17T21:47:15Z"
+    },
+    {
+      "id": 651688165,
+      "tag": "v1.4.22",
+      "name": "polish-sci-figures-Studio-0.1.22-Setup-x64.exe",
+      "count": 3,
+      "prerelease": false,
+      "createdAt": "2026-10-17T21:47:15Z"
+    },
+    {
+      "id": 650453457,
+      "tag": "v1.4.21",
+      "name": "polish-sci-figures-Studio-0.1.21-Portable-x64.zip",
+      "count": 1,
+      "prerelease": true,
+      "createdAt": "2026-10-17T12:47:56Z"
+    },
+    {
+      "id": 650453453,
+      "tag": "v1.4.21",
+      "name": "polish-sci-figures-Studio-0.1.21-Setup-x64.exe",
+      "count": 1,
+      "prerelease": true,
+      "createdAt": "2026-10-17T12:47:56Z"
+    },
+    {
+      "id": 649969604,
+      "tag": "v1.4.20",
+      "name": "polish-sci-figures-Studio-0.1.20-Portable-x64.zip",
+      "count": 1,
+      "prerelease": false,
+      "createdAt": "2026-10-17T08:27:57Z"
+    },
+    {
+      "id": 649969608,
+      "tag": "v1.4.20",
+      "name": "polish-sci-figures-Studio-0.1.20-Setup-x64.exe",
+      "count": 3,
+      "prerelease": false,
+      "createdAt": "2026-10-17T08:27:57Z"
+    },
+    {
+      "id": 649756084,
+      "tag": "v1.4.19",
+      "name": "polish-sci-figures-Studio-0.1.19-Portable-x64.zip",
+      "count": 0,
+      "prerelease": false,
+      "createdAt": "2026-10-17T06:27:23Z"
+    },
+    {
+      "id": 649756081,
+      "tag": "v1.4.19",
+      "name": "polish-sci-figures-Studio-0.1.19-Setup-x64.exe",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-17T06:27:23Z"
+    },
+    {
+      "id": 645833189,
+      "tag": "v1.4.18",
+      "name": "polish-sci-figures-Studio-0.1.18-Portable-x64.zip",
+      "count": 7,
+      "prerelease": false,
+      "createdAt": "2026-10-16T02:06:20Z"
+    },
+    {
+      "id": 645833179,
+      "tag": "v1.4.18",
+      "name": "polish-sci-figures-Studio-0.1.18-Setup-x64.exe",
+      "count": 17,
+      "prerelease": false,
+      "createdAt": "2026-10-16T02:06:20Z"
+    },
+    {
+      "id": 644449450,
+      "tag": "v1.4.17",
+      "name": "polish-sci-figures-Studio-0.1.17-Portable-x64.zip",
+      "count": 5,
+      "prerelease": false,
+      "createdAt": "2026-10-15T16:25:18Z"
+    },
+    {
+      "id": 644449446,
+      "tag": "v1.4.17",
+      "name": "polish-sci-figures-Studio-0.1.17-Setup-x64.exe",
+      "count": 12,
+      "prerelease": false,
+      "createdAt": "2026-10-15T16:25:18Z"
+    },
+    {
+      "id": 644145760,
+      "tag": "v1.4.16",
+      "name": "polish-sci-figures-Studio-0.1.16-Portable-x64.zip",
+      "count": 0,
+      "prerelease": false,
+      "createdAt": "2026-10-15T14:36:03Z"
+    },
+    {
+      "id": 644145743,
+      "tag": "v1.4.16",
+      "name": "polish-sci-figures-Studio-0.1.16-Setup-x64.exe",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-15T14:36:02Z"
+    },
+    {
+      "id": 643694921,
+      "tag": "v1.4.15",
+      "name": "polish-sci-figures-Studio-0.1.15-Portable-x64.zip",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-15T11:47:30Z"
+    },
+    {
+      "id": 643694922,
+      "tag": "v1.4.15",
+      "name": "polish-sci-figures-Studio-0.1.15-Setup-x64.exe",
+      "count": 7,
+      "prerelease": false,
+      "createdAt": "2026-10-15T11:47:30Z"
+    },
+    {
+      "id": 643416075,
+      "tag": "v1.4.14",
+      "name": "polish-sci-figures-Studio-0.1.14-Portable-x64.zip",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-15T09:51:00Z"
+    },
+    {
+      "id": 643416068,
+      "tag": "v1.4.14",
+      "name": "polish-sci-figures-Studio-0.1.14-Setup-x64.exe",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-15T09:51:00Z"
+    },
+    {
+      "id": 641474178,
+      "tag": "v1.4.13",
+      "name": "polish-sci-figures-Studio-0.1.13-Portable-x64.zip",
+      "count": 4,
+      "prerelease": false,
+      "createdAt": "2026-10-14T19:50:41Z"
+    },
+    {
+      "id": 641474175,
+      "tag": "v1.4.13",
+      "name": "polish-sci-figures-Studio-0.1.13-Setup-x64.exe",
+      "count": 18,
+      "prerelease": false,
+      "createdAt": "2026-10-14T19:50:41Z"
+    },
+    {
+      "id": 641211616,
+      "tag": "v1.4.12",
+      "name": "polish-sci-figures-Studio-0.1.12-Portable-x64.zip",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-14T18:07:47Z"
+    },
+    {
+      "id": 641211608,
+      "tag": "v1.4.12",
+      "name": "polish-sci-figures-Studio-0.1.12-Setup-x64.exe",
+      "count": 4,
+      "prerelease": false,
+      "createdAt": "2026-10-14T18:07:47Z"
+    },
+    {
+      "id": 640945132,
+      "tag": "v1.4.11",
+      "name": "polish-sci-figures-Studio-0.1.11-Portable-x64.zip",
+      "count": 3,
+      "prerelease": false,
+      "createdAt": "2026-10-14T16:25:47Z"
+    },
+    {
+      "id": 640945139,
+      "tag": "v1.4.11",
+      "name": "polish-sci-figures-Studio-0.1.11-Setup-x64.exe",
+      "count": 5,
+      "prerelease": false,
+      "createdAt": "2026-10-14T16:25:47Z"
+    },
+    {
+      "id": 639331086,
+      "tag": "v1.4.10",
+      "name": "polish-sci-figures-Studio-0.1.10-Portable-x64.zip",
+      "count": 1,
+      "prerelease": false,
+      "createdAt": "2026-10-14T05:23:46Z"
+    },
+    {
+      "id": 639331095,
+      "tag": "v1.4.10",
+      "name": "polish-sci-figures-Studio-0.1.10-Setup-x64.exe",
+      "count": 23,
+      "prerelease": false,
+      "createdAt": "2026-10-14T05:23:46Z"
+    },
+    {
+      "id": 639299528,
+      "tag": "v1.4.9",
+      "name": "polish-sci-figures-Studio-0.1.9-Portable-x64.zip",
+      "count": 1,
+      "prerelease": false,
+      "createdAt": "2026-10-14T05:08:56Z"
+    },
+    {
+      "id": 639299526,
+      "tag": "v1.4.9",
+      "name": "polish-sci-figures-Studio-0.1.9-Setup-x64.exe",
+      "count": 7,
+      "prerelease": false,
+      "createdAt": "2026-10-14T05:08:56Z"
+    },
+    {
+      "id": 639160750,
+      "tag": "v1.4.8",
+      "name": "polish-sci-figures-Studio-0.1.8-Portable-x64.zip",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-14T04:02:50Z"
+    },
+    {
+      "id": 639160740,
+      "tag": "v1.4.8",
+      "name": "polish-sci-figures-Studio-0.1.8-Setup-x64.exe",
+      "count": 8,
+      "prerelease": false,
+      "createdAt": "2026-10-14T04:02:50Z"
+    },
+    {
+      "id": 639024855,
+      "tag": "v1.4.7",
+      "name": "polish-sci-figures-Studio-0.1.7-Portable-x64.zip",
+      "count": 6,
+      "prerelease": false,
+      "createdAt": "2026-10-14T03:00:25Z"
+    },
+    {
+      "id": 639024867,
+      "tag": "v1.4.7",
+      "name": "polish-sci-figures-Studio-0.1.7-Setup-x64.exe",
+      "count": 5,
+      "prerelease": false,
+      "createdAt": "2026-10-14T03:00:25Z"
+    },
+    {
+      "id": 638260651,
+      "tag": "v1.4.6",
+      "name": "polish-sci-figures-Studio-0.1.6-Portable-x64.zip",
+      "count": 7,
+      "prerelease": false,
+      "createdAt": "2026-10-13T21:08:34Z"
+    },
+    {
+      "id": 638260639,
+      "tag": "v1.4.6",
+      "name": "polish-sci-figures-Studio-0.1.6-Setup-x64.exe",
+      "count": 15,
+      "prerelease": false,
+      "createdAt": "2026-10-13T21:08:33Z"
+    },
+    {
+      "id": 636290694,
+      "tag": "v1.4.5",
+      "name": "polish-sci-figures-Studio-0.1.5-Portable-x64.zip",
+      "count": 11,
+      "prerelease": false,
+      "createdAt": "2026-10-13T07:43:13Z"
+    },
+    {
+      "id": 636290705,
+      "tag": "v1.4.5",
+      "name": "polish-sci-figures-Studio-0.1.5-Setup-x64.exe",
+      "count": 29,
+      "prerelease": false,
+      "createdAt": "2026-10-13T07:43:13Z"
+    },
+    {
+      "id": 636124322,
+      "tag": "v1.4.4",
+      "name": "polish-sci-figures-Studio-0.1.4-Portable-x64.zip",
+      "count": 1,
+      "prerelease": false,
+      "createdAt": "2026-10-13T06:28:32Z"
+    },
+    {
+      "id": 636124325,
+      "tag": "v1.4.4",
+      "name": "polish-sci-figures-Studio-0.1.4-Setup-x64.exe",
+      "count": 5,
+      "prerelease": false,
+      "createdAt": "2026-10-13T06:28:32Z"
+    },
+    {
+      "id": 633153452,
+      "tag": "v1.4.3",
+      "name": "polish-sci-figures-Studio-0.1.3-Portable-x64.zip",
+      "count": 9,
+      "prerelease": false,
+      "createdAt": "2026-10-12T08:25:40Z"
+    },
+    {
+      "id": 633153447,
+      "tag": "v1.4.3",
+      "name": "polish-sci-figures-Studio-0.1.3-Setup-x64.exe",
+      "count": 16,
+      "prerelease": false,
+      "createdAt": "2026-10-12T08:25:40Z"
+    },
+    {
+      "id": 632925671,
+      "tag": "v1.4.2",
+      "name": "polish-sci-figures-Studio-0.1.2-Portable-x64.zip",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-12T06:41:42Z"
+    },
+    {
+      "id": 632925672,
+      "tag": "v1.4.2",
+      "name": "polish-sci-figures-Studio-0.1.2-Setup-x64.exe",
+      "count": 1,
+      "prerelease": false,
+      "createdAt": "2026-10-12T06:41:42Z"
+    },
+    {
+      "id": 632833717,
+      "tag": "v1.4.1",
+      "name": "polish-sci-figures-Studio-0.1.1-Portable-x64.zip",
+      "count": 2,
+      "prerelease": false,
+      "createdAt": "2026-10-12T06:00:09Z"
+    },
+    {
+      "id": 632833713,
+      "tag": "v1.4.1",
+      "name": "polish-sci-figures-Studio-0.1.1-Setup-x64.exe",
+      "count": 1,
+      "prerelease": false,
+      "createdAt": "2026-10-12T06:00:08Z"
+    },
+    {
+      "id": 632613914,
+      "tag": "v1.4.0",
+      "name": "polish-sci-figures-Studio-0.1.0-Portable-x64.zip",
+      "count": 0,
+      "prerelease": false,
+      "createdAt": "2026-10-12T04:06:14Z"
+    },
+    {
+      "id": 632613907,
+      "tag": "v1.4.0",
+      "name": "polish-sci-figures-Studio-0.1.0-Setup-x64.exe",
+      "count": 0,
+      "prerelease": false,
+      "createdAt": "2026-10-12T04:06:13Z"
+    }
+  ],
+  "qaEvents": [],
+  "historicalEvidence": [
+    {
+      "id": "official-0.1.25-to-0.1.26-20261019",
+      "tag": "v1.4.26",
+      "assetName": "polish-sci-figures-Studio-0.1.26-Setup-x64.exe",
+      "knownCompleteQaDownloads": 1,
+      "evidence": "docs/qa/photo-correction/windows-0.1.26/README.md",
+      "exhaustive": false
+    }
+  ],
+  "policy": "Only evidenced complete download events are registered. Copied reports and passive status samples are not extra downloads; HTTP206 probes are not assumed to equal complete asset downloads. All counts before the baseline are excluded from the net-new metric."
+}

@@ -13,7 +13,7 @@ const url=H.localUrl(process.argv[2]),out=path.resolve(process.argv[3]);assert(!
     if(fs.existsSync(irisFile)){await H.loadProject(page,H.publicIris());report.publicIris150=true;}
     else{await H.newProject(page,'PUBLIC shortcut regression');report.publicIris150=false;}
     const source=await save('original.json');
-    await page.locator('#quickInsertText').click();await page.locator('#artboard').click({position:{x:150,y:100}});
+    await H.revealTool(page,'quickInsertText');await page.locator('#quickInsertText').click();await page.locator('#artboard').click({position:{x:150,y:100}});
     const editor=page.locator('.canvas-text-editor');await editor.waitFor({state:'visible'});await editor.fill('实验组');await page.locator('#viewport').click({position:{x:12,y:12}});await editor.waitFor({state:'hidden'});
     const before=await save('experiment.json'),annotation=before.state.overlays.find(a=>a.text==='实验组');assert(annotation);
     await page.locator('[data-annotation="'+annotation.id+'"] text').dblclick();await editor.waitFor({state:'visible'});await editor.fill('对照组');await page.locator('#viewport').click({position:{x:12,y:12}});await editor.waitFor({state:'hidden'});

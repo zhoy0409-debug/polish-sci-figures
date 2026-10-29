@@ -22,7 +22,7 @@ fs.mkdirSync(out,{recursive:true});
   const original=Buffer.from(fixture.data,'base64');
   async function save(name){const value=await H.save(page);fs.writeFileSync(path.join(out,name),JSON.stringify(value,null,2));return value;}
   async function startImport(){
-    await page.locator('#importFiles').click();
+    await page.locator('#quickImportFiles').click();
     await page.locator('#imageFile').setInputFiles({name:fixture.name,mimeType:'image/tiff',buffer:original});
     await page.locator('#scientificTiffWorkspace').waitFor({state:'visible'});
     await page.waitForFunction(()=>document.getElementById('tiffKeep')?.disabled===false,{},{timeout:30000});
@@ -73,7 +73,7 @@ fs.mkdirSync(out,{recursive:true});
 
     const reopened=JSON.parse(JSON.stringify(redone));reopened.project.title='PUBLIC TIFF reopened and verified';
     await H.loadProject(page,reopened,'PUBLIC-TIFF-reopen.json');
-    await page.locator('#projectTitle').filter({hasText:'PUBLIC TIFF reopened and verified'}).waitFor();
+    await H.revealTool(page,'projectTitle');await page.locator('#projectTitle').filter({hasText:'PUBLIC TIFF reopened and verified'}).waitFor();
     const afterReopen=await save('reopened.json');
     assert.deepEqual(afterReopen.project.scientificSources,kept.project.scientificSources);
     assert.deepEqual(afterReopen.state,kept.state);
@@ -131,7 +131,7 @@ fs.mkdirSync(out,{recursive:true});
       });
       misconfigured.page.on('request',r=>{if(r.method()==='POST'&&new URL(r.url()).pathname.includes('import-tiff'))unexpected.push(r.url());});
       await misconfigured.page.goto(url);await H.dismiss(misconfigured.page);await H.newProject(misconfigured.page,'PUBLIC endpoint privacy guard');
-      await misconfigured.page.locator('#importFiles').click();await misconfigured.page.locator('#imageFile').setInputFiles({name:fixture.name,mimeType:'image/tiff',buffer:original});
+      await misconfigured.page.locator('#quickImportFiles').click();await misconfigured.page.locator('#imageFile').setInputFiles({name:fixture.name,mimeType:'image/tiff',buffer:original});
       await misconfigured.page.locator('#status').filter({hasText:/本机服务|local Windows engine/}).waitFor();
       assert.deepEqual(unexpected,[]);assert.deepEqual(misconfigured.remote,[]);assert.deepEqual(misconfigured.errors,[]);
       checks.push('A deliberately misconfigured external TIFF endpoint is refused before upload, even though the domain is otherwise allowed for literature searches');

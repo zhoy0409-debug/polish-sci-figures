@@ -1,0 +1,54 @@
+/* Desktop task drawers. Scientific canvas content never inherits these rules. */
+@media(min-width:751px){
+body.studio-drawers>header{min-height:56px;padding:var(--fs-space-2) var(--fs-space-4);gap:var(--fs-space-4)}
+.studio-drawers .brand .mark{font-size:23px;padding:2px 10px;border-radius:7px}
+.studio-drawers .brand strong{font-size:var(--fs-font-md);letter-spacing:-.2px}
+.studio-drawers .brand-subtitle{display:none}
+#drawerTaskbar{display:flex;flex:none;align-items:center;gap:var(--fs-space-1);min-height:42px;padding:0 12px;background:var(--fs-surface-1);border-bottom:1px solid var(--fs-stroke-subtle);overflow-x:auto}
+#drawerTaskbar button{height:42px;min-height:42px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--fs-text-secondary);font-size:var(--fs-font-xs);padding:0 14px;white-space:nowrap}
+#drawerTaskbar button:hover{color:var(--fs-text-primary);background:var(--fs-hover)}
+#drawerTaskbar button[aria-pressed=true]{color:var(--fs-accent-text);border-bottom-color:var(--fs-accent);font-weight:600}
+.studio-drawer-shell{grid-template-columns:var(--navigator-width,290px) 6px minmax(260px,1fr) 6px var(--inspector-width,360px)!important}
+.studio-drawer-shell[data-left-open=false]{grid-template-columns:52px 0 minmax(260px,1fr) 6px var(--inspector-width,360px)!important}
+.studio-drawer-shell[data-right-open=false]{grid-template-columns:var(--navigator-width,290px) 6px minmax(260px,1fr) 0 44px!important}
+.studio-drawer-shell[data-left-open=false][data-right-open=false]{grid-template-columns:52px 0 minmax(260px,1fr) 0 44px!important}
+.studio-drawer-shell[data-left-open=false]>.workspace-splitter-left,.studio-drawer-shell[data-right-open=false]>.workspace-splitter-right{display:none}
+.studio-drawer-shell>.navigator,.studio-drawer-shell>.inspector{display:grid;grid-template-columns:52px minmax(0,1fr);overflow:hidden;padding:0;background:var(--fs-nav-bg)}
+.studio-drawer-shell>.inspector{grid-template-columns:44px minmax(0,1fr);background:var(--fs-inspector-bg)}
+.studio-drawer-rail{display:flex;flex-direction:column;gap:6px;padding:12px 4px;border-right:1px solid var(--fs-stroke-subtle);background:var(--fs-surface-1);min-width:0}
+.studio-drawer-rail button{height:44px;min-height:44px;padding:4px 2px;border:0;border-left:2px solid transparent;background:transparent;border-radius:var(--fs-radius-sm);color:var(--fs-text-muted);font-size:var(--fs-font-xs);white-space:nowrap}
+.studio-drawer-rail button:hover{background:var(--fs-hover);color:var(--fs-text-primary)}
+.studio-drawer-rail button[aria-pressed=true]{background:var(--fs-accent-selected-bg);color:var(--fs-accent-text);border-left-color:var(--fs-accent);font-weight:600}
+.studio-drawer-body{min-width:0;height:100%;overflow:auto;padding:0 12px 20px;overscroll-behavior:contain}
+.studio-drawer-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;position:sticky;top:0;z-index:6;padding:16px 0 12px;background:var(--fs-inspector-bg);border-bottom:1px solid var(--fs-stroke-subtle);margin-bottom:14px}
+.navigator .studio-drawer-heading{background:var(--fs-nav-bg)}
+.studio-drawer-heading>strong{font-size:var(--fs-font-md);font-weight:650;letter-spacing:-.2px;color:var(--fs-text-primary)}
+.studio-drawer-heading button{padding:2px 4px;min-height:26px;height:26px;font-size:var(--fs-font-xs);border:0;background:transparent;color:var(--fs-text-muted)}
+.studio-drawer-back{position:sticky;top:52px;z-index:5;background:var(--fs-inspector-bg);display:block;width:100%;text-align:left;border:0;padding:2px 0 12px;color:var(--fs-accent-text);font-size:var(--fs-font-xs)}
+.studio-tool-list>button{display:block;text-align:left;width:100%;padding:14px 8px;margin:0;border:0;border-bottom:1px solid var(--fs-stroke-subtle);border-radius:0;background:transparent;line-height:1.5;font-size:var(--fs-font-xs);font-weight:500;color:var(--fs-text-secondary)}
+.studio-tool-list>button:hover{background:var(--fs-hover);color:var(--fs-accent-text)}
+.studio-drawer-context{padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--fs-stroke-subtle)}
+.studio-drawer-context .inspector-context{margin:0;padding:0;border:0}.studio-drawer-context .inspector-context small{display:none}
+.studio-drawer-context .inspector-selection{margin:4px 0}.studio-drawer-context #selectionTitle{font-size:var(--fs-font-xs);font-weight:400;color:var(--fs-text-muted)}
+.studio-drawer-context label{font-size:var(--fs-font-xs)}
+.studio-tool-bank>:not(.studio-tool-active){display:none!important}
+.studio-tool-bank .inspector-tabs{display:none!important}
+.studio-drawers .studio-tool-bank>section,.studio-drawers .studio-tool-bank>details,.studio-drawers .studio-tool-bank>.workspace-secondary-properties{margin:0;padding:0;border:0;border-radius:0}
+.studio-drawers .studio-tool-bank details{margin:0;padding:0;border:0;border-radius:0}
+.studio-drawers .studio-tool-bank details>summary{padding:12px 0;margin:0;border-bottom:1px solid var(--fs-stroke-subtle);font-size:var(--fs-font-xs);font-weight:550;line-height:1.5;color:var(--fs-text-secondary)}
+.studio-drawers .studio-tool-bank details[open]>summary{margin-bottom:10px;color:var(--fs-text-primary)}
+.studio-tool-bank label{font-size:var(--fs-font-xs);line-height:1.5;margin:10px 0;color:var(--fs-text-secondary)}
+.studio-tool-bank .muted{font-size:var(--fs-font-xs);line-height:1.6;color:var(--fs-text-muted)}
+.studio-tool-bank h2{font-size:var(--fs-font-xs);line-height:1.5;margin:12px 0 10px}
+.studio-drawer-export-actions{display:grid;gap:6px;padding-top:12px}
+.studio-drawer-export-actions button{display:flex;gap:12px;align-items:center;text-align:left}.studio-drawer-export-actions b{min-width:32px}
+.studio-tool-bank .workspace-menu-section{display:flex;flex-wrap:wrap;gap:6px}.studio-tool-bank .workspace-menu-section>p{width:100%;margin:12px 0 4px}
+.studio-drawer-shell .canvas-tools{background:var(--fs-toolbar-bg)}
+.studio-drawer-shell .canvas-tools .canvasbar{min-height:42px;padding:4px 12px}
+.studio-drawer-shell .canvas-tools button{border-color:transparent;background:transparent;color:var(--fs-text-secondary);box-shadow:none}
+.studio-drawer-shell .canvas-tools button:hover:not(:disabled){background:var(--fs-hover);color:var(--fs-text-primary)}
+.studio-drawer-shell .canvas-tools button[aria-pressed=true]{background:var(--fs-accent-selected-bg);color:var(--fs-accent-text)}
+.studio-drawer-shell .canvas-tools button:disabled{opacity:.32}
+.studio-drawers #workflowNavigation[hidden]{display:none!important}
+}
+@media(min-width:751px) and (max-width:1300px){#drawerTaskbar{gap:0;padding:0 6px}#drawerTaskbar button{padding-inline:10px}}

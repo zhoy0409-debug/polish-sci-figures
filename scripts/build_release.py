@@ -19,6 +19,7 @@ ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt",
 SUPPORT_FILES = (
     'docs/release-notes-v1.5.0.md',
     'docs/figure-studio-submission-profiles.md',
+    'docs/figure-studio-workspace-and-feedback.md',
     'docs/windows-next-stable-summary.zh-CN.md',
     'docs/figure-studio-native-tiff.md',
     'docs/figure-review.zh-CN.md',
