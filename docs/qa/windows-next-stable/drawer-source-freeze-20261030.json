@@ -1,8 +1,8 @@
 {
   "schema": "studio-source-freeze/1",
   "author": "a",
-  "dateUtc": "2026-10-29T19:29:04.088925+00:00",
-  "sourceCommit": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+  "dateUtc": "2026-10-29T19:50:47.380473+00:00",
+  "sourceCommit": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
   "studioVersion": "0.2.0",
   "suiteVersion": "1.5.0",
   "assets": {
@@ -31,7 +31,7 @@
     "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
     "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
     "experience-tools.css": "9b4689ce2f55112f8abc51ce3dd2a1665dcce3bf25f86fb95389aa5a3bc95d4e",
-    "experience-tools.js": "84521bbfb2dba3ac7ee0b184af26bb27557ad37a7ddfad1e6360dcb7d1f31e88",
+    "experience-tools.js": "15cde017598f36dd5880474b5e8a38742374e4fb76102e0037bfe6ab491b2298",
     "figure-planning.js": "dc82b3c8d0b6fc2685b7723a758eea69e05e461211cea82fa15cad9d2249b003",
     "figure-quality.js": "60d570fe3a328d34358451ccd13206d79fb3794aeed39873942e21aa7a046e80",
     "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
@@ -138,7 +138,7 @@
     "test_figure_text_qa.py": "bf023bcafc7de833ca4ec1bc179b8b45ea9503798d8f9fa32925c307900908e4",
     "test_font_policy.py": "3b3e91be177db1549f38cd0df993979807d67aa40dff4c68af143531850bdd43"
   },
-  "htmlSha256": "07d2e39f7b248655b0f00560ca7fbf1cc324520219a0c72a6676e1973d0d4319",
+  "htmlSha256": "e3541346223be2150d759076f07e59362a7c87e11830dec5af8497db687d3924",
   "gitContentEquivalent": true,
   "checkoutTextCRLFOnlyDifferences": 105,
   "scope": "Internal candidate, exact checkout bytes recorded, text normalized against committed Git content. No installed UI, genuine update or publication claim. User review/reapproval required."

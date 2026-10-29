@@ -2794,7 +2794,7 @@
     "remaining": "20 drag long tasks per batch remain. Candidate text selection has2/1 overlapping long tasks versus baseline1/1; do not claim every pause eliminated.",
     "retainedFailure": "performance-drawers-r1: test helper relative-path error before any measurements; corrected inr2.",
     "candidateSourceCommit": "57c8b0fff1fe8763ed6ef8df80946111dd084916",
-    "laterChange": "Only download-accounting guard/status wording changed after timing; scientific/canvas/drawer code unchanged. Timing snapshot remains explicitly57c8b0f, not relabelled a native/package measurement."
+    "laterChange": "Only download-accounting guard/status and exact-label command ranking changed after timing; timed selection/colour/drag paths unchanged. Timing remains explicitly57c8b0f source, not relabelled native/package latency."
   },
   "uiHashes": {
     "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
@@ -3078,7 +3078,7 @@
     "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
     "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
     "experience-tools.css": "9b4689ce2f55112f8abc51ce3dd2a1665dcce3bf25f86fb95389aa5a3bc95d4e",
-    "experience-tools.js": "84521bbfb2dba3ac7ee0b184af26bb27557ad37a7ddfad1e6360dcb7d1f31e88",
+    "experience-tools.js": "15cde017598f36dd5880474b5e8a38742374e4fb76102e0037bfe6ab491b2298",
     "figure-planning.js": "dc82b3c8d0b6fc2685b7723a758eea69e05e461211cea82fa15cad9d2249b003",
     "figure-quality.js": "60d570fe3a328d34358451ccd13206d79fb3794aeed39873942e21aa7a046e80",
     "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
@@ -3178,6 +3178,139 @@
     "pending": "Resolved by e7b2259 CI40940516107, all8success"
   },
   "localCandidate": {
+    "author": "a",
+    "created": "2026-10-30",
+    "kind": "LOCAL_UNRELEASED_REVIEW_CANDIDATE",
+    "sourceCommit": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+    "sourceTree": "15f29d5970c17631d84e305e8fc789905be81167",
+    "suiteVersion": "v1.5.0",
+    "applicationVersion": "0.2.0",
+    "sourceFreezeSha256": "f91850d0ffb0e8e27ba5aa287448e6142f9d342a9d90c6fea262604f981eee2a",
+    "uiAssets": 101,
+    "backendSourceFiles": 28,
+    "canonicalData": 385,
+    "suiteCodeObjects": 59,
+    "nativeExecutableModules": 2,
+    "portableFiles": 2682,
+    "docSnapshotExceptions": [],
+    "sourceCI": {
+      "author": "a",
+      "headRevision": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+      "runId": 40943755572,
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/40943755572",
+      "status": "8/8success",
+      "checks": [
+        {
+          "name": "local browser preview (ubuntu, py3.12, Node24)",
+          "id": 123693574178,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "full integration (ubuntu, py3.12)",
+          "id": 123693574703,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (macos-latest, py3.12)",
+          "id": 123693574729,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (macos-latest, py3.10)",
+          "id": 123693574770,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (windows-latest, py3.12)",
+          "id": 123693574978,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (ubuntu-latest, py3.12)",
+          "id": 123693574994,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (ubuntu-latest, py3.10)",
+          "id": 123693575028,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (windows-latest, py3.10)",
+          "id": 123693576473,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    "frozenSelfTest": {
+      "passed": true,
+      "processExitCode": 0,
+      "variants": 17,
+      "checks": [
+        "Tk desktop shell resources",
+        "GET editor",
+        "Local update endpoint and installation version (no release request)",
+        "Host / Origin / token guards",
+        "/api/analyze",
+        "/api/render",
+        "/api/reflow",
+        "/api/import-pdf",
+        "/api/import-pdf",
+        "/api/image-duplicates",
+        "Bundled OpenCV image check and evidence via local HTTP",
+        "/api/image-links",
+        "Bundled SIFT crop localization and original-pixel coordinates via local HTTP",
+        "Bundled uint16 OME/LZW TIFF, native samples, explicit display window and binary session via local HTTP"
+      ],
+      "scope": "Actual frozen EXE with isolated data, hidden shell and real local HTTP; not installed editing or genuine updater"
+    },
+    "artifacts": [
+      {
+        "name": "polish-sci-figures-Studio-0.2.0-Portable-x64.zip",
+        "sha256": "918c774593ea0b0d0d1fbd3d7538df8e5c75546a188a4e52f5db26ca2c91feb4",
+        "sizeBytes": 148277940
+      },
+      {
+        "name": "polish-sci-figures-Studio-0.2.0-Setup-x64.exe",
+        "sha256": "02bfed5cbc6e403b8f2ca0758233151ecc004114af3537ac00c2c3b7ed6e15ce",
+        "sizeBytes": 106212631
+      }
+    ],
+    "releaseHold": {
+      "active": true,
+      "humanReviewAndRenewedApprovalRequired": true,
+      "mergeAllowed": false,
+      "tagAllowed": false,
+      "releaseAssetsAllowed": false
+    },
+    "acceptance": {
+      "newInstalledEditor": false,
+      "newNativeIme": false,
+      "samePackageNativeNumeric5000": false,
+      "genuineOfficialUpdate": false,
+      "actualFailureRecovery": false,
+      "independentDetectorAccuracy": false
+    },
+    "priorWn9ManualPassScope": "User-reported old candidate text/border/5000 functional workflow only, sourcecf461b3. Does not certify this interface.",
+    "privacy": "Only source resources and explicit public/synthetic fixtures; no private original, measurement, project, device identifier or credential distributed."
+  },
+  "priorLocalCandidateWn12": {
     "author": "a",
     "created": "2026-10-30",
     "kind": "LOCAL_UNRELEASED_REVIEW_CANDIDATE",
@@ -3309,5 +3442,18 @@
     },
     "priorWn9ManualPassScope": "User-reported old candidate text/border/5000 functional workflow only, sourcecf461b3. Does not certify this interface.",
     "privacy": "Only source resources and explicit public/synthetic fixtures; no private original, measurement, project, device identifier or credential distributed."
+  },
+  "fontSearchGuard": {
+    "reproducedFailure": "Exact Chinese font query previously selected broad edit alias and left focus in search. Real Node assertion failed; retained in tool history.",
+    "fix": "Prefer tool label matches over broad synonym-only matches. One canonical result; actual font field focus.",
+    "sourceCommit": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+    "node3CommandsPassed": true,
+    "actualSevenBrowserGroupsPassed": true
+  },
+  "video": {
+    "file": "drawer-workflow-20261030.webm",
+    "sha256": "80617ca7fe23228e452cab14e0241c4d8ec413a3d8efca32f1c3345e5ee02962",
+    "sizeBytes": 1435887,
+    "scope": "Actual automated source Chrome workflow; public Iris/H&E and synthetic5000 only. Not installed UI or manual IME."
   }
 }
