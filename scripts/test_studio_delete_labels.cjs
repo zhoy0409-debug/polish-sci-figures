@@ -2,7 +2,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const file='../skills/polish-sci-figures/assets/figure-studio/studio.js';
-const {History,arrange,movePanel,validateState,visualPanelOrder,panelNumberStyle,displayedPanelLabel,migratePanelLabels,numberPanelLabels,removeSelectedItems,editingTextTarget}=require(file);
+const {History,arrange,movePanel,validateState,visualPanelOrder,panelNumberStyle,displayedPanelLabel,migratePanelLabels,numberPanelLabels,removeSelectedItems,editingTextTarget,historyShortcut}=require(file);
 const source=fs.readFileSync(require.resolve(file),'utf8'),copy=x=>JSON.parse(JSON.stringify(x));
 const ids=Array.from({length:9},(_,i)=>'panel-'+i),project={panels:ids.map(id=>({id,variants:[{}]}))};
 const label=(text)=>({text,x:2,y:5,size:12,font:'Arial',bold:true});
@@ -60,7 +60,7 @@ assert.match(source,/const STYLES = new Set\(\['display'/,'hidden appearance sur
 let keyboard,deleteCalls=0,undoCalls=0;let groups=[{id:ids[0],vi:0,keys:['e3']}];
 const keyboardLine=source.split('\n').find(line=>line.includes("document.addEventListener('keydown',e=>{if(e.isComposing||editingTextTarget"));
 assert.ok(keyboardLine);
-vm.runInNewContext(keyboardLine,{document:{addEventListener:(_,handler)=>keyboard=handler,querySelector:()=>null},editingTextTarget,selectionGroups:()=>groups,selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],selectedEmptyCell:null,deleteSelectedObjects:()=>deleteCalls++,$:()=>({click:()=>undoCalls++})});
+vm.runInNewContext(keyboardLine,{document:{addEventListener:(_,handler)=>keyboard=handler,querySelector:()=>null},editingTextTarget,historyShortcut,selectionGroups:()=>groups,selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],selectedEmptyCell:null,deleteSelectedObjects:()=>deleteCalls++,$:()=>({click:()=>undoCalls++})});
 function press(key,target={closest:()=>null},extra={}){let prevented=false;keyboard({key,target,ctrlKey:false,metaKey:false,altKey:false,isComposing:false,preventDefault(){prevented=true;},...extra});return prevented;}
 assert.equal(press('Delete'),true);assert.equal(press('Backspace'),true);assert.equal(deleteCalls,2);
 for(const target of [{closest:()=>({tagName:'INPUT'})},{closest:()=>({tagName:'TEXTAREA'})},{closest:()=>({tagName:'SELECT'})},{isContentEditable:true,closest:()=>null}]){assert.equal(press('Delete',target),false);assert.equal(press('Backspace',target),false);}

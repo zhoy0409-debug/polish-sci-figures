@@ -4,6 +4,8 @@
 
 Prepared on 2026-10-28. Windows candidate identities, installer and update metadata are unified without changing the installation identity or project schema. See the [release preparation and exact scope](docs/release-notes-v1.5.0.md). Native installed editing, same-package 5000-object performance, genuine 0.1.26 → 0.2.0 in-editor upgrade and failure recovery remain release gates. Historical v1.4.26 assets and preview downloads retain their original versions.
 
+Fix the Windows Ctrl + Y shortcut missing from confirmed canvas edits. Keep Ctrl/Cmd + Shift + Z, toolbar Redo, input/IME and modal guards, one-step history and source data preservation. All three history key paths now share one command map.
+
 Make figure review and submission profiles directly searchable in Chinese and English, retaining an already-open profile draft. Add WB/electrophoresis and microscopy/fluorescence search terms for existing image tools without claiming new lane detection or native batch processing.
 
 Add versioned local submission profiles for researcher-declared dimensions and preflight thresholds, with live canvas previews, one-step Keep/Undo, bounded profile import/export, project persistence and measured final-size review. Reports disclose manual setting mismatches and excess height without cropping or claiming journal certification. Fix continuous quality-preview rendering that could repaint the preceding draft; Keep now draws only the final committed state. See the [workflow](docs/figure-studio-submission-profiles.md).

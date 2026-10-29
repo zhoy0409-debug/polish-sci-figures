@@ -821,7 +821,7 @@ const StudioI18n = (() => {
   });
   en['图形已更新，请关闭后重新打开导出预览']='The figure changed. Close and reopen the export preview.';
   Object.assign(en,{
-    '工程操作':'Project actions','撤销':'Undo','重做':'Redo','撤销 · Ctrl / Cmd + Z':'Undo · Ctrl / Cmd + Z','重做 · Ctrl / Cmd + Shift + Z':'Redo · Ctrl / Cmd + Shift + Z',
+    '工程操作':'Project actions','撤销':'Undo','重做':'Redo','撤销 · Ctrl / Cmd + Z':'Undo · Ctrl / Cmd + Z','重做 · Ctrl / Cmd + Shift + Z':'Redo · Ctrl / Cmd + Shift + Z','重做 · Ctrl + Y 或 Ctrl / Cmd + Shift + Z':'Redo · Ctrl + Y or Ctrl / Cmd + Shift + Z',
     '对照原图':'Compare','返回编辑':'Back to edits','对照原始外观；不改变当前编辑':'Compare the original appearance without changing your edits',
     '项目':'Project','保存':'Save','导出':'Export','可编辑矢量':'Editable vector','无损图像':'Lossless image','投稿级图像':'Publication image',
     '恢复此工程的初始版本；可撤销':'Restore this project’s initial version; this action can be undone',

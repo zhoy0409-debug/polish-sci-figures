@@ -295,6 +295,15 @@ function removeSelectedItems(s,{groups=[],annotations=[],labelId=null,labelIds=[
   return {next,removed};
 }
 function editingTextTarget(target){return !!(target?.isContentEditable||target?.closest?.('input,textarea,select,[contenteditable]:not([contenteditable="false"]),[role="textbox"]'));}
+
+// One command map for modal blocking, held-arrow commits and canvas history.
+function historyShortcut(event){
+  if(event.defaultPrevented||event.isComposing||event.keyCode===229||event.altKey)return null;
+  const key=String(event.key||'').toLowerCase();
+  if((event.ctrlKey||event.metaKey)&&key==='z')return event.shiftKey?'redo':'undo';
+  if(event.ctrlKey&&!event.metaKey&&!event.shiftKey&&key==='y')return 'redo';
+  return null;
+}
 // Compact mode only translates overlays; stored coordinates remain tied to
 // the uncropped composition so gestures never change their physical size.
 function overlayEditingSpace(geometry,annotation=null){
@@ -897,7 +906,7 @@ function createBlankProject(id,title='新建组图'){
   const svg='<svg xmlns="http://www.w3.org/2000/svg" width="345.6pt" height="259.2pt" viewBox="0 0 345.6 259.2"><rect width="345.6" height="259.2" fill="#ffffff"/></svg>';
   return {schema:'figure-studio/1',id,title:title.trim(),...(title==='新建组图'?{title_i18n:{'zh-CN':'新建组图',en:'Untitled figure'}}:{}),desktopStarter:true,panels:[{id:'panel-0',name:'blank_canvas',name_i18n:{'zh-CN':'空白画布',en:'Blank canvas'},provenance:'blank-canvas',recipe:{},analysis:{},table:null,initialVariant:0,variants:[{name:'blank_canvas',svg,width:345.6,height:259.2,viewBox:[0,0,345.6,259.2],size:'original',preserveAspect:true}]}],initialState:{order:['panel-0'],columns:1,gap:12,panels:{'panel-0':{variant:0,edits:{}}}}};
 }
-if (typeof module !== 'undefined') module.exports = {preparePositionedTextEdit,classifySvgContent,refreshHeatmapLabelContrast,heatmapFloat,validateHeatmapPalette,heatmapPaletteColor,applyHeatmapPalette,heatmapCellInfo,heatmapNumber,heatmapContrast,validateHeatmapLabels,applyHeatmapValueLabels,History, validateState, validValue, complementary, gridFor, arrange, movePanel, resizePanel, comparisonLetters, methodOrder, insertTracks, exportGeometry, pngWithDpi, installPanelState, dataTableValidation, parseDelimited, visualPanelOrder,panelNumberStyle,panelLabelText,displayedPanelLabel,migratePanelLabels,numberPanelLabels,removeSelectedItems,editingTextTarget,marqueeHit,clampPreviewZoom,wheelPreviewZoom,zoomAnchorScroll,svgElementSignature,svgElementMap,transferVariantEdits,SWATCH_SCHEMES,swatchSchemeFor,paletteSchemes,paletteSchemeName,paletteDeclaredColors};
+if (typeof module !== 'undefined') module.exports = {preparePositionedTextEdit,classifySvgContent,refreshHeatmapLabelContrast,heatmapFloat,validateHeatmapPalette,heatmapPaletteColor,applyHeatmapPalette,heatmapCellInfo,heatmapNumber,heatmapContrast,validateHeatmapLabels,applyHeatmapValueLabels,History, validateState, validValue, complementary, gridFor, arrange, movePanel, resizePanel, comparisonLetters, methodOrder, insertTracks, exportGeometry, pngWithDpi, installPanelState, dataTableValidation, parseDelimited, visualPanelOrder,panelNumberStyle,panelLabelText,displayedPanelLabel,migratePanelLabels,numberPanelLabels,removeSelectedItems,editingTextTarget,historyShortcut,marqueeHit,clampPreviewZoom,wheelPreviewZoom,zoomAnchorScroll,svgElementSignature,svgElementMap,transferVariantEdits,SWATCH_SCHEMES,swatchSchemeFor,paletteSchemes,paletteSchemeName,paletteDeclaredColors};
 if(typeof module!=='undefined')Object.assign(module.exports,{statisticsDataProfile,statisticsMethodChoices,stableTextEditSignature,migrateStableTextEdits,panelGaps,copyPanelGaps,createBlankProject,nudgeSelectionState,selectionAlignmentPlan,overlayEditingSpace,overlayLineEndpoints,overlayLineGeometry,resizeOverlayGeometry,orientOverlayLine,overlayInsertionGeometry,splitPanelState,validateAlignmentGuides,alignmentSnap,statisticalComparisons,statisticalPText,statisticalSymbol,statisticalLabelPlan,statisticalTextWidth,statisticalBracketPath,adjustedStatisticalBracket,statisticalLayout,statisticalBandLayout,statisticalMethodName});
 
 if(typeof module!=='undefined')Object.assign(module.exports,{removePanelState});
@@ -926,7 +935,7 @@ if (typeof document !== 'undefined') (async () => {
   document.body.inert=true;
   const $ = id => document.getElementById(id), NS = 'http://www.w3.org/2000/svg';
   const T=StudioI18n.t;
-  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]:not(.discovery-docked):not(.literature-preview-docked)')&&!editingTextTarget(e.target)&&(['Delete','Backspace','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)||(e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z')){e.preventDefault();e.stopImmediatePropagation();}},true);
+  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]:not(.discovery-docked):not(.literature-preview-docked)')&&!editingTextTarget(e.target)&&(['Delete','Backspace','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)||historyShortcut(e))){e.preventDefault();e.stopImmediatePropagation();}},true);
   let savedLanguage;try{savedLanguage=localStorage.getItem('figure-studio:language');}catch{}
   const systemLanguage=navigator.languages?.[0]||navigator.language;
   StudioI18n.setLanguage(StudioI18n.choose(savedLanguage,document.body.dataset.desktopStarter==='true'&&globalThis.StudioNativeBridge?.bundledAssets!==true?'zh-CN':systemLanguage));
@@ -6002,11 +6011,11 @@ if (typeof document !== 'undefined') (async () => {
   $('export').onclick=guard(()=>exportFigure('svg'));
   $('png').onclick=guard(()=>exportFigure('png'));
   $('tiff').onclick=guard(()=>openImageExport(null,'tif'));
-  document.addEventListener('keydown',e=>{if(!e.isComposing&&!editingTextTarget(e.target)&&nudgeGesture){if(e.key==='Escape'){e.preventDefault();finishNudge(false);return;}if(['Delete','Backspace'].includes(e.key)||(e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z')finishNudge(true,true,true);}keyboardNudge(e);});
+  document.addEventListener('keydown',e=>{if(!e.isComposing&&!editingTextTarget(e.target)&&nudgeGesture){if(e.key==='Escape'){e.preventDefault();finishNudge(false);return;}if(['Delete','Backspace'].includes(e.key)||historyShortcut(e))finishNudge(true,true,true);}keyboardNudge(e);});
   document.addEventListener('keyup',e=>{if(!nudgeGesture)return;nudgeGesture.keys.delete(e.key);if(!nudgeGesture.keys.size)finishNudge(true);});
   document.addEventListener('pointerdown',e=>{finishNudge(true,true,true);focusCanvasForKeyboard(e);},true);
   window.addEventListener('blur',()=>finishNudge(true));
-  document.addEventListener('keydown',e=>{if(e.isComposing||editingTextTarget(e.target))return;if(['Delete','Backspace'].includes(e.key)&&selectedAlignmentGuide&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();deleteAlignmentGuide();return;}if(['Delete','Backspace'].includes(e.key)&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&(selectionGroups().length||selectedAnnotations.length||selectedPanelLabel||panelSelection.length||selectedEmptyCell)){if(e.defaultPrevented||document.querySelector('dialog[open]:not(.discovery-docked):not(.literature-preview-docked)'))return;e.preventDefault();deleteSelectedObjects();return;}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();$(e.shiftKey?'redo':'undo').click();}});
+  document.addEventListener('keydown',e=>{if(e.isComposing||editingTextTarget(e.target))return;if(['Delete','Backspace'].includes(e.key)&&selectedAlignmentGuide&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();deleteAlignmentGuide();return;}if(['Delete','Backspace'].includes(e.key)&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&(selectionGroups().length||selectedAnnotations.length||selectedPanelLabel||panelSelection.length||selectedEmptyCell)){if(e.defaultPrevented||document.querySelector('dialog[open]:not(.discovery-docked):not(.literature-preview-docked)'))return;e.preventDefault();deleteSelectedObjects();return;}const action=historyShortcut(e);if(action){e.preventDefault();$(action).click();}});
   window.addEventListener('blur',()=>{if(cancelPanelGesture?.()||cancelSelectionGesture?.()||cancelObjectGesture?.())render();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(cancelPanelGesture?.()||cancelSelectionGesture?.()||cancelObjectGesture?.())){e.preventDefault();render();}});
   window.addEventListener('resize',schedulePreviewFit);
