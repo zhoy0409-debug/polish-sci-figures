@@ -1,0 +1,1109 @@
+{
+  "author": "a",
+  "created": "2026-10-30",
+  "schema": "figure-studio-windows-package-source-match/1",
+  "status": "STAGE40_RUNTIME_AND_PORTABLE_MATCH",
+  "sourceStage": "source40",
+  "finalAcceptance": false,
+  "acceptanceStage": "source40 package/source evidence; installation and final product acceptance are separate and not asserted by this read-only report.",
+  "applicationVersion": "0.2.0",
+  "suiteVersion": "v1.5.0",
+  "verification": "Read-only offline artifact verification. No install, extraction, app execution, registry changes or browser.",
+  "artifacts": [
+    {
+      "name": "polish-sci-figures-Studio-0.2.0-Portable-x64.zip",
+      "sha256": "e5a316ce8355d95bca58a0492c1d2b619a29de7ed3bbf13d3234e71b96c2b86e",
+      "sizeBytes": 148277902
+    },
+    {
+      "name": "polish-sci-figures-Studio-0.2.0-Setup-x64.exe",
+      "sha256": "1a5ec0c16ece1222306278b87a729bf34d11e5ec953b424b7f1d472335f3235a",
+      "sizeBytes": 106213308
+    }
+  ],
+  "checksumsFileSha256": "43e0f22e23dc6cf05968e892e2f65e03f9d342dcb8efe62ca60806c08f6c9334",
+  "sourceFreezeManifestSha256": "0f9d52d3375da621e83be1bd4293014a651ee59b24bceb4b491a7180ae4ad56e",
+  "sourceFreezeHtmlSha256": "07d2e39f7b248655b0f00560ca7fbf1cc324520219a0c72a6676e1973d0d4319",
+  "freezeApproval": {
+    "approvedManifestSha256": "0f9d52d3375da621e83be1bd4293014a651ee59b24bceb4b491a7180ae4ad56e",
+    "approvedUiAssetCount": 101,
+    "freezeBytesExact": true,
+    "assetCountExact": true
+  },
+  "sourceBackend": {
+    "status": "PASS",
+    "count": 28,
+    "packagedProductionCount": 24,
+    "allPackagedProductionCodeObjectsVerified": true,
+    "notPackagedTests": [
+      {
+        "file": "test_check_source_portability.py",
+        "sha256": "f777ff885736f6c3298ba667e93d418232fe5dc346ebdeffcdd7ca8e5ebee422"
+      },
+      {
+        "file": "test_figure_studio.py",
+        "sha256": "4112e01ce9ac98dd93453de33e680c18187d92829229bf796486b0b6661d0a22"
+      },
+      {
+        "file": "test_figure_text_qa.py",
+        "sha256": "bf023bcafc7de833ca4ec1bc179b8b45ea9503798d8f9fa32925c307900908e4"
+      },
+      {
+        "file": "test_font_policy.py",
+        "sha256": "3b3e91be177db1549f38cd0df993979807d67aa40dff4c68af143531850bdd43"
+      }
+    ],
+    "notPackagedTestReason": "The release builder excludes these four test_*.py sources. Their current source hashes are checked against the freeze, but no packaged code-object claim is made for them.",
+    "files": [
+      {
+        "file": "check_source_portability.py",
+        "sha256": "3754a11f060d50c86ef11243d5bbb4625c55769719828a2b7e6d3139cb65a1d1",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "check_svg_canvas.py",
+        "sha256": "5e92708c5a31e26382e0676d5b4d53781783e89517649f4b0831a4898436cf1b",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "check_svg_editability.py",
+        "sha256": "a3284efbf2283bc101c0eb3ea10e0ad366ee96f2a0af9787133f314c6b4a39f2",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "duplicate_files.py",
+        "sha256": "081a527f4fa2dd4ac0abe3f76473540931288d364ba543cef7502a04c1c91110",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "figure_accessibility_qa.py",
+        "sha256": "71ae0f25d4e8a7fe4348f5993e08a7ce6692da449505e120bd03fb4b93d23803",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "figure_studio.py",
+        "sha256": "91d575653a35a9f45642b668a3299e9046f87a2ffa342cc19d0649b6bc68fecd",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "figure_text_qa.py",
+        "sha256": "1862f09451eea65430ee330426fb6716c0177427f4e60ddfacfbf8b7d70faf32",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "make_montage.py",
+        "sha256": "253b3defccc3d1b7cf0cbd6fef791aeb7f5799e2f59eca168925da66d76489b2",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "panel_labels.py",
+        "sha256": "1b6351b6b76061b31eb223bce3dbd6c31cdac145c196c8ae4533a86cfdb911dd",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "render_doc_pages.py",
+        "sha256": "4aa5d3d9a587872049e0d9d7cf1632a10e830d3bca482c6c8a3bd463fabd837f",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_discovery.py",
+        "sha256": "84cd8cae79ee192981599362c857f25b455bbb73a5999151f148a31b8f470b8f",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_duplicate_jobs.py",
+        "sha256": "ffbb18ec65d117ca6498cf1e9b6fe40fc0d142b4786e9cd70f0f393fafe71352",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_duplicates.py",
+        "sha256": "cabc1b8c64674b757efb799b16c0f2dd19c519912eb8a6e471d9e2db9867f3a2",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_facets.py",
+        "sha256": "37765088bc8d5e4dede224f62e3020ea3b8ec4751664d90499e0d61737bb47ee",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_image_links.py",
+        "sha256": "9f239a7d6daf57d6ca853caa0d04494839fceeb993f7e827f571baad40408cc1",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_pdf.py",
+        "sha256": "10bb68b8ab2d351746bf218ed8c86be559c1d79ad702d829d426ed36d7149cea",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_render_statistics.py",
+        "sha256": "001b0c66afd1404c74ef5d6f5d3c6a85a80bced2f5679227a2155288ced43302",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_roc_sizes.py",
+        "sha256": "226bf49e00b1d6dd34a9b5b3e5720844e2a25df53883329219c3e75c2a501b44",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_server.py",
+        "sha256": "701581cb9785dd2681c792baa42eefc24fea293ee2a6edcf4c035e493cefa31f",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_sizes.py",
+        "sha256": "931835d8e693ac1618d4300902fbb2473b46c8a4ddb44888e9303d437f51cfb3",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_statistics.py",
+        "sha256": "69c232bc9fab2e0cdb48b31d9ed03ce8956c2881352f4eaac1e139c22eb319ad",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_tiff.py",
+        "sha256": "32f79a3e4f67b6a0562a6a0b6e4788c3b710cd4045ad5d711e333780a37333a4",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "studio_updates.py",
+        "sha256": "9bb1cd6a07e1472b4cd0d3939c659517aebd0349ff96e9b2496bd931a0681182",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "template_router.py",
+        "sha256": "227409cad611326809bf50d4d2b6207d0b5b58f336586ca4335bc95767bcb740",
+        "packaged": true,
+        "compiledCodeObjectVerified": true
+      },
+      {
+        "file": "test_check_source_portability.py",
+        "sha256": "f777ff885736f6c3298ba667e93d418232fe5dc346ebdeffcdd7ca8e5ebee422",
+        "packaged": false,
+        "compiledCodeObjectVerified": false
+      },
+      {
+        "file": "test_figure_studio.py",
+        "sha256": "4112e01ce9ac98dd93453de33e680c18187d92829229bf796486b0b6661d0a22",
+        "packaged": false,
+        "compiledCodeObjectVerified": false
+      },
+      {
+        "file": "test_figure_text_qa.py",
+        "sha256": "bf023bcafc7de833ca4ec1bc179b8b45ea9503798d8f9fa32925c307900908e4",
+        "packaged": false,
+        "compiledCodeObjectVerified": false
+      },
+      {
+        "file": "test_font_policy.py",
+        "sha256": "3b3e91be177db1549f38cd0df993979807d67aa40dff4c68af143531850bdd43",
+        "packaged": false,
+        "compiledCodeObjectVerified": false
+      }
+    ],
+    "currentSourcesMatchFreeze": true
+  },
+  "uiAssets": {
+    "status": "PASS",
+    "count": 101,
+    "fileSetExact": true,
+    "files": [
+      {
+        "file": "alignment-icons.js",
+        "sha256": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216"
+      },
+      {
+        "file": "axis-editing.js",
+        "sha256": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115"
+      },
+      {
+        "file": "axis-settings-ui.css",
+        "sha256": "7d50d0bbc47253a0e6f673b294bf2d26ae413525eaf7d4f4729141ff7d2ca7c2"
+      },
+      {
+        "file": "axis-settings-ui.js",
+        "sha256": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9"
+      },
+      {
+        "file": "canvas-clipboard.js",
+        "sha256": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be"
+      },
+      {
+        "file": "catalogue-previews.json",
+        "sha256": "a3644e7455c498ef2613ae1b02f8b04d52cd84e19f049e5240a84b9d3b129f19"
+      },
+      {
+        "file": "catalogue.js",
+        "sha256": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35"
+      },
+      {
+        "file": "chart-knowledge.json",
+        "sha256": "182d057d26602c57a292bdc8f1124458a22a90d89e42c96dba1ffad61416630b"
+      },
+      {
+        "file": "compact-whitespace.js",
+        "sha256": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb"
+      },
+      {
+        "file": "component-style.js",
+        "sha256": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234"
+      },
+      {
+        "file": "deferred-previews.js",
+        "sha256": "7e5eb85d2d63b3b9cf9cfa7744009cb84819c53a0c68f2e7e69bf526e5e064ca"
+      },
+      {
+        "file": "discovery-offline.js",
+        "sha256": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38"
+      },
+      {
+        "file": "discovery-ui.css",
+        "sha256": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099"
+      },
+      {
+        "file": "discovery-ui.js",
+        "sha256": "cf1decd45eea8adcb2c7e3215780a3ee31ded139fc967931c40362cbbe9b5871"
+      },
+      {
+        "file": "discovery.js",
+        "sha256": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43"
+      },
+      {
+        "file": "download-metrics-ledger.json",
+        "sha256": "5b7f597471788e763edc76157081ea9ed17a684fbcadcc0e4b6efa27eaf8528f"
+      },
+      {
+        "file": "drawer-workspace.css",
+        "sha256": "0630683d6ce11d27d4b918ae535eaadce0bddd3ce01f34fdf7ae9364b1bf2857"
+      },
+      {
+        "file": "drawer-workspace.js",
+        "sha256": "710c260377425fad9e12a81b93f60b87cae5f8da3fdde6c39062ba63da5005f8"
+      },
+      {
+        "file": "duplicate-check.css",
+        "sha256": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e"
+      },
+      {
+        "file": "duplicate-check.js",
+        "sha256": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1"
+      },
+      {
+        "file": "duplicate-review.js",
+        "sha256": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf"
+      },
+      {
+        "file": "duplicate-viewer.css",
+        "sha256": "b64a440392b3822afe5bcb1d0be97903bfafe5d37c36b90be1d6b4bdef0999cf"
+      },
+      {
+        "file": "duplicate-viewer.js",
+        "sha256": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf"
+      },
+      {
+        "file": "element-insertions.js",
+        "sha256": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608"
+      },
+      {
+        "file": "experience-tools.css",
+        "sha256": "9b4689ce2f55112f8abc51ce3dd2a1665dcce3bf25f86fb95389aa5a3bc95d4e"
+      },
+      {
+        "file": "experience-tools.js",
+        "sha256": "84521bbfb2dba3ac7ee0b184af26bb27557ad37a7ddfad1e6360dcb7d1f31e88"
+      },
+      {
+        "file": "figure-planning.js",
+        "sha256": "dc82b3c8d0b6fc2685b7723a758eea69e05e461211cea82fa15cad9d2249b003"
+      },
+      {
+        "file": "figure-quality.js",
+        "sha256": "60d570fe3a328d34358451ccd13206d79fb3794aeed39873942e21aa7a046e80"
+      },
+      {
+        "file": "gallery-contracts.js",
+        "sha256": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f"
+      },
+      {
+        "file": "grid-resize-ui.js",
+        "sha256": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed"
+      },
+      {
+        "file": "group-spacing.js",
+        "sha256": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8"
+      },
+      {
+        "file": "i18n.js",
+        "sha256": "11ea9e12362846749707c53451ce9f04b0311f6bbae5f3a5a620dfee457ca513"
+      },
+      {
+        "file": "image-color-ui.js",
+        "sha256": "9952bff2537451109035093725c2155750cdc5459583732a499d9b541873cb48"
+      },
+      {
+        "file": "image-color.js",
+        "sha256": "af514f347252c5b04444cc4cc4f99a4d96fd7a81e3a52045c86bc99f37dc118d"
+      },
+      {
+        "file": "image-insets-controller.js",
+        "sha256": "2ceb66b2eb1736e7dd6a78bae701090588a4d49cdafb2fba3d051ad1225f65ff"
+      },
+      {
+        "file": "image-insets-ui.js",
+        "sha256": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035"
+      },
+      {
+        "file": "image-insets.js",
+        "sha256": "d1d75b1ea15891038b831d901b14a588ec1bbed55609e01ceb7ef796725fc90c"
+      },
+      {
+        "file": "image-links-controller.js",
+        "sha256": "82c9e72262b734455973550d822e32a0d37d2b8268d767fdff5fca0efeb59151"
+      },
+      {
+        "file": "image-links-ui.js",
+        "sha256": "cd89e8606765cef22e76095d27e1e351ed37a9fee7e3507419a5072400bbf837"
+      },
+      {
+        "file": "image-links.js",
+        "sha256": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886"
+      },
+      {
+        "file": "image-rectify-detect.js",
+        "sha256": "808edeee0957793bf285e1bf9ad5f2731ecbecc5d3b9a5ccfc09b18d1c154aec"
+      },
+      {
+        "file": "image-rectify-ui.js",
+        "sha256": "f047930790e744a7e90beceffb30f0a2d7bedf8f0b65a792e6b54117f8b489e9"
+      },
+      {
+        "file": "image-rectify.css",
+        "sha256": "526d3c49041ba5561634fea0cffb2a9595a86a4521d0ef7eb73109fb06cfd2fb"
+      },
+      {
+        "file": "image-rectify.js",
+        "sha256": "95bf95f55c8d9d3489caa1250cc0b89bd8cbb1cadabbd7a30c6631a2363d255a"
+      },
+      {
+        "file": "image-straighten.js",
+        "sha256": "4323974477f35206e0d8a662d64785746665d369b49ec08dbc690e797a4426a5"
+      },
+      {
+        "file": "layers-panel.js",
+        "sha256": "df9833043b3b021e0fde04d009bcbfc13231baa475cfbedaa320b560decffa47"
+      },
+      {
+        "file": "layout-lock.js",
+        "sha256": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242"
+      },
+      {
+        "file": "legacy-stat-cleanup.js",
+        "sha256": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92"
+      },
+      {
+        "file": "library.js",
+        "sha256": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51"
+      },
+      {
+        "file": "literature.css",
+        "sha256": "f696eccd3cfba3c0ea3fac45cbd5a74c6adb55728e59abf4ce1c5547f06e49f0"
+      },
+      {
+        "file": "literature.js",
+        "sha256": "66b6852716cc59c622620504bac9c87ab6d2547a36c8d7b7fd3aa23574fa194b"
+      },
+      {
+        "file": "mark-style.js",
+        "sha256": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419"
+      },
+      {
+        "file": "mascot-border-collie.svg",
+        "sha256": "bc17f3211a96529966fc744fd1e28df518ad43a2f79c3d199ba383079996472d"
+      },
+      {
+        "file": "mascot-maine-coon.svg",
+        "sha256": "87a2ac6f885101abba85c45f013fdc8f303d5398c0756419bdb38d08509103f3"
+      },
+      {
+        "file": "mascot-minimal-cat.svg",
+        "sha256": "abee4441d83d8e127526e8656363b0117e01a0bc3e99ec27882f8d4d43975d83"
+      },
+      {
+        "file": "mascot-minimal-dog.svg",
+        "sha256": "3ac69072935713d1f2af3c5849052d731710eea38aead5d4f7b5b9976072d9ee"
+      },
+      {
+        "file": "mascot-scene.svg",
+        "sha256": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b"
+      },
+      {
+        "file": "master-frame.js",
+        "sha256": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9"
+      },
+      {
+        "file": "memory.js",
+        "sha256": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c"
+      },
+      {
+        "file": "mobile-ui.css",
+        "sha256": "101335ce269683a514ceb526b46b15634019b57405144615b29debd897bfb14b"
+      },
+      {
+        "file": "mobile-ui.js",
+        "sha256": "f9c1ad0e5db4794b9a79726fe5d19b458839ee1305ece35585b669f55b6c14c4"
+      },
+      {
+        "file": "object-borders.js",
+        "sha256": "5ba4ed9c9d2971d3372ee14b8d04cf540753c879f40b165e1a37d758d542404a"
+      },
+      {
+        "file": "panel-commands.js",
+        "sha256": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd"
+      },
+      {
+        "file": "preview-sessions.js",
+        "sha256": "218ce572c39a858f5ff519531ea5d7c7424d293db5d9184672688a5423182a88"
+      },
+      {
+        "file": "project-codec.js",
+        "sha256": "95343ac7819582e47071040820e33868b3bf79eddaa0a93f57c1f41a90205892"
+      },
+      {
+        "file": "project-operations.js",
+        "sha256": "47ec7234ae6fedcfb61357c375bdf8c0632a63d4ce6031cabf102b3c3a9a2540"
+      },
+      {
+        "file": "quality-workspace.css",
+        "sha256": "26b5829969110828d357f818725ce0d0e105647710ac6606d0137719f57a81d7"
+      },
+      {
+        "file": "quality-workspace.js",
+        "sha256": "41125480dcd80eba730c6b43d8efaffa855f4e2c035103c26931dd7af2247228"
+      },
+      {
+        "file": "research-discovery.js",
+        "sha256": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f"
+      },
+      {
+        "file": "rich-text.css",
+        "sha256": "1deadd7d55d7edee1f120d2f80062e034fca198d3b74da8acb62022fa41c43e3"
+      },
+      {
+        "file": "rich-text.js",
+        "sha256": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4"
+      },
+      {
+        "file": "scale-geometry.js",
+        "sha256": "cbf84b487787292009917c5e3f1e0ad0a677c5bf32e5ed1faaf726258677b73f"
+      },
+      {
+        "file": "scientific-tiff-ui.js",
+        "sha256": "0547f44eb3dfc51395637b838358132e800bdb84d9f159ba978d1b8df6928ae5"
+      },
+      {
+        "file": "scientific-tiff.css",
+        "sha256": "ac4aafac32b037756c19160aa7a9d03dd55ccb6083dc24ccc2ca1b1e41421027"
+      },
+      {
+        "file": "scientific-tiff.js",
+        "sha256": "e48cd93de05687655c8a66bf7bd343839583d0d614e4be800863b2e0a13dc05e"
+      },
+      {
+        "file": "selection-resize-controller.js",
+        "sha256": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61"
+      },
+      {
+        "file": "selection-transform-dom.js",
+        "sha256": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3"
+      },
+      {
+        "file": "selection-transform.js",
+        "sha256": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719"
+      },
+      {
+        "file": "statistical-line-geometry.js",
+        "sha256": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8"
+      },
+      {
+        "file": "statistical-metadata.js",
+        "sha256": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747"
+      },
+      {
+        "file": "studio-support.js",
+        "sha256": "c358ae47d025e119b01de5abdaf812161fcc6d18aac4ced3c97c95e1c5fd014d"
+      },
+      {
+        "file": "studio.css",
+        "sha256": "951eea56f81bb985e412ea09c3f6bd59949ee39c9053da3e6d05db84a73b685c"
+      },
+      {
+        "file": "studio.html",
+        "sha256": "4a544a2222f19d61b8eed4aa3d37ef1128e1583ad5d3d5fd200bd358b5d45458"
+      },
+      {
+        "file": "studio.js",
+        "sha256": "a21000d42765f249bb5302514ffb688bce9f5ba3fed6aa5a0c78647b29c7a777"
+      },
+      {
+        "file": "style-preview.js",
+        "sha256": "c0da41e0c15c37545f199525ec1f6db04086d68a146736b28ed7275f37fe767f"
+      },
+      {
+        "file": "submission-profile-ui.js",
+        "sha256": "ee98b8ef53c072aeee14dcc37fac3acaeaab9bb01f78d48cea69bee44a0c41ff"
+      },
+      {
+        "file": "submission-profiles.js",
+        "sha256": "47535d1292f0520eb2d87e47b70f3cbcd788e944957ef0b363c576d9550f41a3"
+      },
+      {
+        "file": "template-starters.json",
+        "sha256": "eb8f5d4c60a2cfbb03ad2d334e9aa4f44802e0e3df29fc8a1779ab6088c636ba"
+      },
+      {
+        "file": "text-formatting.js",
+        "sha256": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1"
+      },
+      {
+        "file": "text-tools-ui.js",
+        "sha256": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e"
+      },
+      {
+        "file": "theme-controller.js",
+        "sha256": "e8c4266aa056f411f4bd14a823f7fda4b3564214854384e64eeb7d24d8234cdc"
+      },
+      {
+        "file": "theme-tokens.css",
+        "sha256": "a36192cf3ce610e3ce7a1fb4413cc54efc58fc91c998a1570e27c8e2d4a4d5d6"
+      },
+      {
+        "file": "theme.css",
+        "sha256": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab"
+      },
+      {
+        "file": "third-party-notices.js",
+        "sha256": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682"
+      },
+      {
+        "file": "tiff-export.js",
+        "sha256": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f"
+      },
+      {
+        "file": "update-check.js",
+        "sha256": "977df4939713cedc0d340b58958a9b2000c3c7de5c79cf411483300a894c1d5f"
+      },
+      {
+        "file": "update-scene.css",
+        "sha256": "eced7b3291d70b0a8afd06a434d6c3aa4a8cee1a048a468a6e7f3948a136c7db"
+      },
+      {
+        "file": "update-scene.js",
+        "sha256": "444cc790b4c5948ee785e1772c145453cb13dde3e7e5b840edae5f56d305daa7"
+      },
+      {
+        "file": "vector-interaction.js",
+        "sha256": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4"
+      },
+      {
+        "file": "workspace-layout.css",
+        "sha256": "4b0775dea1787185f507783133403859e4688c39111c64de9156add721c5da8b"
+      },
+      {
+        "file": "workspace-layout.js",
+        "sha256": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+      }
+    ]
+  },
+  "suiteCodeObjects": {
+    "status": "PASS",
+    "mappedModules": 59,
+    "unmappedThirdPartyLicenseBytecode": [
+      "THIRD-PARTY-LICENSES/packaging/packaging/licenses/__pycache__/__init__.cpython-312.pyc",
+      "THIRD-PARTY-LICENSES/packaging/packaging/licenses/__pycache__/_spdx.cpython-312.pyc"
+    ],
+    "newRenderStatisticsModuleVerified": true,
+    "comparison": "marshal.loads(actual PYC payload) == compile(current source bytes, actual.co_filename, exec, dont_inherit=True, optimize=0); never marshal.dumps byte equality",
+    "files": [
+      {
+        "file": "sci_figures.pyc",
+        "sourceFile": "sci_figures.py",
+        "sourceSha256": "972c0d26dadaa38be09e1b771344a4202941789456904ebe0ab5c3123e3d1442",
+        "bytecodeSha256": "a1cbb3742687b6e12ff8071ef47ae12fe411552f606df0d412fcdad64324c887",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "scripts/audit_private_image_corpus.pyc",
+        "sourceFile": "scripts/audit_private_image_corpus.py",
+        "sourceSha256": "fb1313ab3f79237b4fbd4100ea0f4f62e4a483fdbfeed46ca1ec1c58a0837184",
+        "bytecodeSha256": "c3929f647ece61f7670a10d51f514de3179f2dcceeb427a6b601a440604a6e69",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "scripts/benchmark_image_screening.pyc",
+        "sourceFile": "scripts/benchmark_image_screening.py",
+        "sourceSha256": "712c2ceb4440f467ab7fd584519f658eda578fa26ac1eb9123472566844e620e",
+        "bytecodeSha256": "2a845550fe35757084fd73cc619fcf0a083f7640ac6e72252ab66457c6769fba",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "scripts/build_duplicate_browser_batch.pyc",
+        "sourceFile": "scripts/build_duplicate_browser_batch.py",
+        "sourceSha256": "492931a2f81ff2fe86e4e742b9e0b7601631388cb38ad95ad365b9ae37c02e67",
+        "bytecodeSha256": "eb731f2e92ab1a80ad3f0914cb7742a2d2e076e7f8210720f7b57d3e37a594a4",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "scripts/build_update_mascot_scene.pyc",
+        "sourceFile": "scripts/build_update_mascot_scene.py",
+        "sourceSha256": "d340ee63477ef7f345b20fcb50f919783f9ade253071d2e8a0ece17d102d841c",
+        "bytecodeSha256": "f8ce936d9bdeed7a4d52e7d41b181d0ca3b15d9c145faa48ef6e565d50700611",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "scripts/evaluate_scientific_images.pyc",
+        "sourceFile": "scripts/evaluate_scientific_images.py",
+        "sourceSha256": "ccdd1b922f7cc754db6c0c614b05adc00b3e69709724afa2ba8393cd1fec9592",
+        "bytecodeSha256": "c40b84a2a727c53c86eff6d5b0290368d370571e265e9b17d4b10cdbc4271d7f",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "scripts/prepare_axis_real_data_qa.pyc",
+        "sourceFile": "scripts/prepare_axis_real_data_qa.py",
+        "sourceSha256": "ee9431c8082f648d878af7fcdc7a7db4667d5aebd9a97e50c1673fcd09f4b565",
+        "bytecodeSha256": "bc0a56b45d539f05342e838e1989b3c9ee606366849d5456af03b318d6204a0c",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "scripts/prepare_real_image_regression.pyc",
+        "sourceFile": "scripts/prepare_real_image_regression.py",
+        "sourceSha256": "4f21392c064aa39dbda53c1c63c33bd30aa7c5bc9bf28c0f88a21d57e3f81978",
+        "bytecodeSha256": "c08a2ac91fa9b7848232c0eb5ea49a61d35ada922e21d6c8f56c1aed6278b4e9",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "scripts/prepare_reference_color_acceptance.pyc",
+        "sourceFile": "scripts/prepare_reference_color_acceptance.py",
+        "sourceSha256": "9634eb94931402f45914eabad71a8f693545548725bd4a613c010c6019f3ce9c",
+        "bytecodeSha256": "38a1ff859a51b92b6197bb628bb7f88e720e7d04f59071acf8115ede77d27660",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "scripts/test_private_raster_api.pyc",
+        "sourceFile": "scripts/test_private_raster_api.py",
+        "sourceSha256": "128349221c6e9ab0858f3d6dfd006f15300e2d89c183da51def656ddfe78295a",
+        "bytecodeSha256": "964e5a12dc4f7dd81a0deafd7d6218e19fa2cd647799791c554001477c72e4d6",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/advanced_template_workbench.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/advanced_template_workbench.py",
+        "sourceSha256": "231cf31a4b85b9783a88a299459495c4fdfde8be2ca3ff5598ff8d02b4a77b0e",
+        "bytecodeSha256": "6f8acb48cfff831d6a6e7b72de34293c2cbf933bb7d3857e4271a7ccc21b39db",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/data_family_workbench.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/data_family_workbench.py",
+        "sourceSha256": "7ff6de2e6917a4052f4d9c51f7c813cd72ac8f1040c8dc59fd7796cdc2c4ef5c",
+        "bytecodeSha256": "734fc1ce6217bd8bebc6fc031258356cbf0c4a63e33d5b4cd9d05ccacceb993b",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/distribution_styles.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/distribution_styles.py",
+        "sourceSha256": "ab89a36df3c6e4a034a5d4788a723304a7492ed51e6390997017b1d1f4be3fdc",
+        "bytecodeSha256": "19fbe256e9bd32e063d23fb63350a34fbcf2e76af85816e7c4f4a20cc073ec05",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/figure_discovery.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/figure_discovery.py",
+        "sourceSha256": "b55a17297e20657494f9ed7d01e22094ed72c886106911d106b63d398c210122",
+        "bytecodeSha256": "89fbd82de8532fb191a6687980631df8567ab4f8233d0aa4946aa8e2cf5f5a32",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/figure_workbench.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/figure_workbench.py",
+        "sourceSha256": "7c986239f4875502c29fc999407510e8d59e544e583a15c0c8483af49d512229",
+        "bytecodeSha256": "2396d1de7a9778ace41bb216880fa4a5dc9d31c9bb1146f6c08482fa580c939c",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_axes.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_axes.py",
+        "sourceSha256": "faab6c84ade9eeb96a3745d2705f329519f429fb11fe39cf2ad09e43067af2f9",
+        "bytecodeSha256": "c1b5055f698929f49e63bb76dc911c39e618c9a519a4f8066003563367821885",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_cli.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_cli.py",
+        "sourceSha256": "a49606080d670f4e6d072f28d8dd95c62dead6b23fe65b0d58b5f959d183445b",
+        "bytecodeSha256": "efe38d0a0d939aa7360250c91617e5d952087d2b5c1d26c20cae8b8e8e5164d6",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_clinical.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_clinical.py",
+        "sourceSha256": "5107c565659ebc9bced7c291c86d431150064e6a11283a11669d0e02c06d1c18",
+        "bytecodeSha256": "b9c29195d0b89f556ad15aafbebe0faf230e007b3ab16ad0d9de8810b6a6f656",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_compare.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_compare.py",
+        "sourceSha256": "e98f58fbc64045e012a4e1a17b9393290c2a236b9337dd72349f73454fb16418",
+        "bytecodeSha256": "e441012d3a7fd5a31f0051f5903946cacd71b783583c61210cbedb49ff7be9b2",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_discovery_summary.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_discovery_summary.py",
+        "sourceSha256": "e020bd66da502c5f189220833e35f2028d463d205add7ef174dcc596137510c1",
+        "bytecodeSha256": "a4970109ff2322f08f0b083e187b0e6df0a62a8ae06af4551728469e8942489a",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_fonts.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_fonts.py",
+        "sourceSha256": "3e5fb51f2a879c959da0f75a2e9854b75ae4f06dd21eb29e42e339da79fd150f",
+        "bytecodeSha256": "4bd4cb4502fe678c31dc8796d0bc15135d6026b02f8f9f9de4c7fa93e0a3b8b3",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_heatmap.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_heatmap.py",
+        "sourceSha256": "642c8c5d1f01a6cccd48d4bdee5261eff9114bc440965142443d219a2a802a3a",
+        "bytecodeSha256": "8e1fa9e15b097b42b46aa173010a9b7e5a9f5c1f3af7836124cd7ace54df485d",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_layout.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_layout.py",
+        "sourceSha256": "c22ca42c57b6ee751537e0c5c097006206a4b4f3eaf0069479e5e6556e8710d0",
+        "bytecodeSha256": "b4669e5f39dc613571100a2eb6977e01fa754d3f6cee81a86425910d90710295",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_marks.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_marks.py",
+        "sourceSha256": "544eacee7d25e1dd496b448b4f2d66a8c78fcc7988720de967be8fb87db8bcbe",
+        "bytecodeSha256": "c3f5e935eacc8482d80cffcfed51e68a7d185def34f8e7a83ff27d4655043927",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_misc.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_misc.py",
+        "sourceSha256": "332a282e98cdf4872982d7cc8e64b5eba040c412a87f48eebf035662068f5bf9",
+        "bytecodeSha256": "889c06fe05f211fdf0588999d3ff9034a26de20e363d1c72ec7825a063953aeb",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_model_extras.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_model_extras.py",
+        "sourceSha256": "1b736b05fa2b9d54d5bd882de9ad3c81bacf0e861f30029ae6ff05197a2dc577",
+        "bytecodeSha256": "881437c2177d27d68c0689b985bd66ded7e4102933536da14bf0309e81467c39",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_omics_special.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_omics_special.py",
+        "sourceSha256": "834ba7f20619d5bc6518ee7a645ff0e6d33972f3929c494da9c0a4492be11fa6",
+        "bytecodeSha256": "78dfd8e67a7205333f70d4ca133abd8940381166f8ab1f80e6121dede17ca48d",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_registry.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_registry.py",
+        "sourceSha256": "41b493507309ab8e53a28993f64183dd39c56fad9f17630f98570454f974739f",
+        "bytecodeSha256": "338c82459219fb0596353567f75080e038cb376ca7d08ed0e1ec8489cdad9f92",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_structure_extras.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_structure_extras.py",
+        "sourceSha256": "cae509f8494fe54dbf2ac17f7926c9998ab2b3eb51066ae08d71b0b19cbaf96f",
+        "bytecodeSha256": "36963b445db01e683683acfbbd9b47d866374ab2b2089240ec9d5ad0baca569c",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_temporal_extras.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_temporal_extras.py",
+        "sourceSha256": "8fbefa76c3cb324421636c0943e7cf93854e6f49149918fae17450d7804aa270",
+        "bytecodeSha256": "d85e3c336768fc3b243ee5037732cd78043222fb2e7fe9e9a0af3ddf0f475523",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_time_composition.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_time_composition.py",
+        "sourceSha256": "661ea5042ac5f747bf7845ccc3a35525341964aac73fe0f770306334a4072d3e",
+        "bytecodeSha256": "619bbb9fbd39180ddd002156a9f4c927b4a1849d8dc0a9456c8a5e11470be4f1",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/gallery_workbench.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/gallery_workbench.py",
+        "sourceSha256": "aac2da8dc94c4401b204250c5dc133790a3579a342ae8718a8422b9988d193fb",
+        "bytecodeSha256": "ab657a32ef89399eff9482156464ff6c17c6f1ca425db483245c86f859d308b1",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/roc_contract_workbench.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/roc_contract_workbench.py",
+        "sourceSha256": "d852044995c67cf560f0164a1837d6e7809181ea49bfd8aa4e18e538fe48e8a8",
+        "bytecodeSha256": "72af23113f52eb4a140d20e419962c4a59399b86c967ade979e17dd96328fa02",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/make-sci-data-figures/scripts/roc_explorer.pyc",
+        "sourceFile": "skills/make-sci-data-figures/scripts/roc_explorer.py",
+        "sourceSha256": "cbb8b43a4ad742922421a1a4b752aae538e71d7fd5f346ea6c9f2efa64ab98e0",
+        "bytecodeSha256": "b8935a6db8ce697b98a98eb4be4882a315b367ea802e814c4c0f318a2a51de94",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/check_source_portability.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/check_source_portability.py",
+        "sourceSha256": "3754a11f060d50c86ef11243d5bbb4625c55769719828a2b7e6d3139cb65a1d1",
+        "bytecodeSha256": "9d9d4c91244d8853204bdd74c40ff52f126799b61c00aa031710e4bf5440dadc",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/check_svg_canvas.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/check_svg_canvas.py",
+        "sourceSha256": "5e92708c5a31e26382e0676d5b4d53781783e89517649f4b0831a4898436cf1b",
+        "bytecodeSha256": "59f857ad76d54fea400321eb6555378e113974417342ef0266ac30b1bc93ea46",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/check_svg_editability.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/check_svg_editability.py",
+        "sourceSha256": "a3284efbf2283bc101c0eb3ea10e0ad366ee96f2a0af9787133f314c6b4a39f2",
+        "bytecodeSha256": "a5483c805e971db29f499f473396fdf0136d4276479b949abf156565a9188416",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/duplicate_files.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/duplicate_files.py",
+        "sourceSha256": "081a527f4fa2dd4ac0abe3f76473540931288d364ba543cef7502a04c1c91110",
+        "bytecodeSha256": "75a35369271825b924509c8b47cc1cbd390118ac70ce1ccd465c6921da49ab0f",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/figure_accessibility_qa.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/figure_accessibility_qa.py",
+        "sourceSha256": "71ae0f25d4e8a7fe4348f5993e08a7ce6692da449505e120bd03fb4b93d23803",
+        "bytecodeSha256": "8ba53787faef8a3d38b0e83de587c33e218f200b217b622d08e30b9615ad14dc",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/figure_studio.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/figure_studio.py",
+        "sourceSha256": "91d575653a35a9f45642b668a3299e9046f87a2ffa342cc19d0649b6bc68fecd",
+        "bytecodeSha256": "246c418b61da529cc6fb82cb614f696d224ac528040828898d65084543803e67",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/figure_text_qa.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/figure_text_qa.py",
+        "sourceSha256": "1862f09451eea65430ee330426fb6716c0177427f4e60ddfacfbf8b7d70faf32",
+        "bytecodeSha256": "3aa654c5993abf7c13a0c1ee11c4867581c7fe69969d3869fde35fcd5c3861a2",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/make_montage.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/make_montage.py",
+        "sourceSha256": "253b3defccc3d1b7cf0cbd6fef791aeb7f5799e2f59eca168925da66d76489b2",
+        "bytecodeSha256": "b163a7f0909fefdf31c14e1968a754d9bcc32b0f33b5d50726f636982e8b4cd3",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/panel_labels.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/panel_labels.py",
+        "sourceSha256": "1b6351b6b76061b31eb223bce3dbd6c31cdac145c196c8ae4533a86cfdb911dd",
+        "bytecodeSha256": "4d863998d246fa8271862b715b022a1d391e716445cb7e4d8c4d0210b89118a3",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/render_doc_pages.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/render_doc_pages.py",
+        "sourceSha256": "4aa5d3d9a587872049e0d9d7cf1632a10e830d3bca482c6c8a3bd463fabd837f",
+        "bytecodeSha256": "d2653ee84de1e7a533bf904c57648186ae2b7e50839053e31205aafed824f19f",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_discovery.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_discovery.py",
+        "sourceSha256": "84cd8cae79ee192981599362c857f25b455bbb73a5999151f148a31b8f470b8f",
+        "bytecodeSha256": "546e22bbfaf39192cf96703323db52fba0296489520f38d900970c7b197f34fa",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_duplicate_jobs.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_duplicate_jobs.py",
+        "sourceSha256": "ffbb18ec65d117ca6498cf1e9b6fe40fc0d142b4786e9cd70f0f393fafe71352",
+        "bytecodeSha256": "ce49fd52105fa217271f999e68c575390e88172507e6a991e0ad8cd9a7064715",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_duplicates.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_duplicates.py",
+        "sourceSha256": "cabc1b8c64674b757efb799b16c0f2dd19c519912eb8a6e471d9e2db9867f3a2",
+        "bytecodeSha256": "dfd3daa5d6dfbfd1be5e5db8ab993aef1d3cfb34a14f923beb69216ae3ca5b1c",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_facets.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_facets.py",
+        "sourceSha256": "37765088bc8d5e4dede224f62e3020ea3b8ec4751664d90499e0d61737bb47ee",
+        "bytecodeSha256": "a9117fa9122e640f2412fe9d0d352f6dc4b756decda33be2024d9bbebc77c89a",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_image_links.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_image_links.py",
+        "sourceSha256": "9f239a7d6daf57d6ca853caa0d04494839fceeb993f7e827f571baad40408cc1",
+        "bytecodeSha256": "5e3e2af37756135eec7a1de69a903fba2055914b2ddd4c943a644851da76c9a6",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_pdf.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_pdf.py",
+        "sourceSha256": "10bb68b8ab2d351746bf218ed8c86be559c1d79ad702d829d426ed36d7149cea",
+        "bytecodeSha256": "af2b880d0bde5ac438a593016af2bda024e527eff968e7fbf909e50a5edd58eb",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_render_statistics.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_render_statistics.py",
+        "sourceSha256": "001b0c66afd1404c74ef5d6f5d3c6a85a80bced2f5679227a2155288ced43302",
+        "bytecodeSha256": "0b2cbc7bd48a0f2456afa1749dd9e5d7413be6aafbeaecd902b8350aea14ec0a",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_roc_sizes.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_roc_sizes.py",
+        "sourceSha256": "226bf49e00b1d6dd34a9b5b3e5720844e2a25df53883329219c3e75c2a501b44",
+        "bytecodeSha256": "6b55f5b776187446153df6a56fc4b4922d7cbe94e38d9acf5003d999514e619c",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_server.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_server.py",
+        "sourceSha256": "701581cb9785dd2681c792baa42eefc24fea293ee2a6edcf4c035e493cefa31f",
+        "bytecodeSha256": "883f97604aee50d82844d9c00e05e586f8347d13413d22cc18b2be2df14059e7",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_sizes.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_sizes.py",
+        "sourceSha256": "931835d8e693ac1618d4300902fbb2473b46c8a4ddb44888e9303d437f51cfb3",
+        "bytecodeSha256": "3004793c811ba1b10733b21c811655ed4bcabc938897e8a9b895f704a00f5f40",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_statistics.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_statistics.py",
+        "sourceSha256": "69c232bc9fab2e0cdb48b31d9ed03ce8956c2881352f4eaac1e139c22eb319ad",
+        "bytecodeSha256": "8a6aa7a6175d4527b22d4a5e3f5baeadcf6e5b6009950717aecda5cbc802224d",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_tiff.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_tiff.py",
+        "sourceSha256": "32f79a3e4f67b6a0562a6a0b6e4788c3b710cd4045ad5d711e333780a37333a4",
+        "bytecodeSha256": "45b16261b33c7d24b18e5156e7162caa749845da7b12c24c2ca1055936288230",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/studio_updates.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/studio_updates.py",
+        "sourceSha256": "9bb1cd6a07e1472b4cd0d3939c659517aebd0349ff96e9b2496bd931a0681182",
+        "bytecodeSha256": "384ed1fdfb5a2695814cf0223a1ac9c2ed02ce240c4afa22159a3d22f72ee5f4",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/polish-sci-figures/scripts/template_router.pyc",
+        "sourceFile": "skills/polish-sci-figures/scripts/template_router.py",
+        "sourceSha256": "227409cad611326809bf50d4d2b6207d0b5b58f336586ca4335bc95767bcb740",
+        "bytecodeSha256": "fc47f79f00560a95131a927292c70ae5be484de2f37b3892b9f0f24927796767",
+        "compiledCodeEqual": true
+      },
+      {
+        "file": "skills/standardize-sci-images/scripts/standardize_images.pyc",
+        "sourceFile": "skills/standardize-sci-images/scripts/standardize_images.py",
+        "sourceSha256": "60381615a668af9a97cc73b116b704b89a22f08be9e089e4195e0002e3704578",
+        "bytecodeSha256": "866906dc77c0aae319908fa0a7d7acd29f4f72e8666336f0314c68edb0b128ac",
+        "compiledCodeEqual": true
+      }
+    ]
+  },
+  "suiteData": {
+    "status": "PASS",
+    "releaseDataFilesMatched": 385,
+    "documentSnapshotDifferences": [],
+    "desktopResourcesMatched": 2,
+    "rootQuickstartsMatched": 2,
+    "unexpectedNonThirdPartyFiles": 0,
+    "allowlist": "Current build_release.release_files plus desktop starter/icon, root quickstart copies and generated build metadata/notices; dependency notices remain under THIRD-PARTY-LICENSES."
+  },
+  "nativeExecutable": {
+    "name": "Figure Studio.exe",
+    "sha256": "53b3ed9662b9a7c3e1c066493fc2f552d2766c6302c32daac44975a194410c15",
+    "sizeBytes": 18309305,
+    "status": "PASS",
+    "preflightExecutableExact": true,
+    "preflightEvidenceSha256": "5631164ea2f4d71403b453cf2c3c30c6a202949ed7a5ef9b6d6dcd644722b244",
+    "modules": [
+      {
+        "module": "windows_updater",
+        "sourceFile": "desktop/windows_updater.py",
+        "sourceSha256": "90279742f589a6161d2ec1c59b5cf7413355f191825d52e88819e61fb4a70b20",
+        "compiledCodeEqual": true
+      },
+      {
+        "module": "figure_studio_app",
+        "sourceFile": "desktop/figure_studio_app.py",
+        "sourceSha256": "73afd205290d1301f63227064b8dc18aee7325dbbc640a82fc5e1fa2fad8de68",
+        "compiledCodeEqual": true
+      }
+    ]
+  },
+  "portableTree": {
+    "status": "PASS",
+    "applicationFiles": 2682,
+    "streamedZipFiles": 2682,
+    "fileSetExact": true,
+    "allSizesExact": true,
+    "allStreamSha256Exact": true,
+    "canonicalRelativeManifestSha256": "166a81771825631e6b9ccf16b241b560019b4f4cdcb0b136bc0b0f6d01f72666",
+    "unsafePaths": 0,
+    "symlinks": 0,
+    "developmentCachePaths": 0
+  },
+  "scope": "Setup/Portable hash and size, the explicitly approved exact frozen UI asset set, all mapped suite code objects, canonical release-data allowlist, two actual native executable modules and every portable file. This does not substitute for installation, frozen self-test, update transport, or real editor acceptance."
+}

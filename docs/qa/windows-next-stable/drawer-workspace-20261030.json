@@ -1,7 +1,7 @@
 {
   "author": "a",
   "date": "2026-10-30",
-  "status": "SOURCE_BROWSER_PASS_USER_RELEASE_HOLD",
+  "status": "LOCAL_CANDIDATE_SOURCE_CI_PACKAGE_PASS_HUMAN_REVIEW_HOLD",
   "scope": "Production source, independent headless Chrome and real loopback scientific engines. Not Windows installed UI, native IME, physical display latency, genuine official upgrade or independent image accuracy.",
   "releaseHold": {
     "humanReviewRequired": true,
@@ -2907,7 +2907,6 @@
   ],
   "privacy": "Only public Iris observations and explicitly synthetic TIFF/SVG/feedback fixtures. No private images, original measurements, user projects or credentials included. No issue created or email delivery claimed.",
   "pending": [
-    "New candidate package identity/self-test/source match",
     "Human review and new installed interface workflow",
     "Same-package native numeric performance",
     "Genuine official old-to-new download/verify/install/restart and actual failure recovery after separately approved publication",
@@ -3176,6 +3175,139 @@
       "local-packaging-test-r2.log (old five-script assertion surfaced)",
       "local-packaging-test-r3.log (all ten passed using process-local workspace TEMP/TMP)"
     ],
-    "pending": "New exact-commit CI required"
+    "pending": "Resolved by e7b2259 CI40940516107, all8success"
+  },
+  "localCandidate": {
+    "author": "a",
+    "created": "2026-10-30",
+    "kind": "LOCAL_UNRELEASED_REVIEW_CANDIDATE",
+    "sourceCommit": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+    "sourceTree": "e9e1652284d889d88f74975fcc2a7850c085e79f",
+    "suiteVersion": "v1.5.0",
+    "applicationVersion": "0.2.0",
+    "sourceFreezeSha256": "0f9d52d3375da621e83be1bd4293014a651ee59b24bceb4b491a7180ae4ad56e",
+    "uiAssets": 101,
+    "backendSourceFiles": 28,
+    "canonicalData": 385,
+    "suiteCodeObjects": 59,
+    "nativeExecutableModules": 2,
+    "portableFiles": 2682,
+    "docSnapshotExceptions": [],
+    "sourceCI": {
+      "author": "a",
+      "headRevision": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+      "runId": 40940516107,
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/40940516107",
+      "status": "8/8success",
+      "checks": [
+        {
+          "name": "local browser preview (ubuntu, py3.12, Node24)",
+          "id": 123682380318,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (ubuntu-latest, py3.10)",
+          "id": 123682380589,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (ubuntu-latest, py3.12)",
+          "id": 123682380828,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (macos-latest, py3.12)",
+          "id": 123682380832,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (windows-latest, py3.12)",
+          "id": 123682380837,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "full integration (ubuntu, py3.12)",
+          "id": 123682380840,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (windows-latest, py3.10)",
+          "id": 123682380849,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (macos-latest, py3.10)",
+          "id": 123682380851,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    "frozenSelfTest": {
+      "passed": true,
+      "processExitCode": 0,
+      "variants": 17,
+      "checks": [
+        "Tk desktop shell resources",
+        "GET editor",
+        "Local update endpoint and installation version (no release request)",
+        "Host / Origin / token guards",
+        "/api/analyze",
+        "/api/render",
+        "/api/reflow",
+        "/api/import-pdf",
+        "/api/import-pdf",
+        "/api/image-duplicates",
+        "Bundled OpenCV image check and evidence via local HTTP",
+        "/api/image-links",
+        "Bundled SIFT crop localization and original-pixel coordinates via local HTTP",
+        "Bundled uint16 OME/LZW TIFF, native samples, explicit display window and binary session via local HTTP"
+      ],
+      "scope": "Actual frozen EXE with isolated data, hidden shell and real local HTTP; not installed editing or genuine updater"
+    },
+    "artifacts": [
+      {
+        "name": "polish-sci-figures-Studio-0.2.0-Portable-x64.zip",
+        "sha256": "e5a316ce8355d95bca58a0492c1d2b619a29de7ed3bbf13d3234e71b96c2b86e",
+        "sizeBytes": 148277902
+      },
+      {
+        "name": "polish-sci-figures-Studio-0.2.0-Setup-x64.exe",
+        "sha256": "1a5ec0c16ece1222306278b87a729bf34d11e5ec953b424b7f1d472335f3235a",
+        "sizeBytes": 106213308
+      }
+    ],
+    "releaseHold": {
+      "active": true,
+      "humanReviewAndRenewedApprovalRequired": true,
+      "mergeAllowed": false,
+      "tagAllowed": false,
+      "releaseAssetsAllowed": false
+    },
+    "acceptance": {
+      "newInstalledEditor": false,
+      "newNativeIme": false,
+      "samePackageNativeNumeric5000": false,
+      "genuineOfficialUpdate": false,
+      "actualFailureRecovery": false,
+      "independentDetectorAccuracy": false
+    },
+    "priorWn9ManualPassScope": "User-reported old candidate text/border/5000 functional workflow only, sourcecf461b3. Does not certify this interface.",
+    "privacy": "Only source resources and explicit public/synthetic fixtures; no private original, measurement, project, device identifier or credential distributed."
   }
 }
