@@ -151,7 +151,7 @@ const StudioExperienceTools=(()=>{
       const common=['discovery','fonts','border','rectify','layout','review','export'];
       const paint=()=>{const q=input.value.trim().toLowerCase(),words=q.split(/\s+/);results.replaceChildren();
         for(const b of categoryBar.children)b.setAttribute('aria-pressed',String(!q&&b.dataset.category===currentCategory));
-        const score=a=>{const text=(a.zh+' '+a.en+' '+a.terms).toLowerCase();return words.every(w=>text.includes(w))?2:a.terms.split(' ').filter(w=>w.length>1).some(w=>q.includes(w))?1:0;};
+        const score=a=>{const label=(a.zh+' '+a.en).toLowerCase(),text=label+' '+a.terms.toLowerCase();return label.includes(q)?3:words.every(w=>text.includes(w))?2:a.terms.split(' ').filter(w=>w.length>1).some(w=>q.includes(w))?1:0;};
         const found=actions.filter(a=>q?score(a)>0:currentCategory==='common'?common.includes(a.id):a.category===currentCategory);if(q)found.sort((a,b)=>score(b)-score(a));
         const matches=workbench?(()=>{const rows=new Map();for(const a of found){const item=workbench.menus.find(x=>x.aliases.includes(a.id)),id=item?.id||a.id;if(!rows.has(id))rows.set(id,{...(item?.action||a),id,category:item?.owner||a.category,run:a.run});}return [...rows.values()];})():found;
         for(const [id,zh,eng]of categories){const items=matches.filter(a=>a.category===id);if(!items.length)continue;const group=doc.createElement('section');group.className='command-category-results';const heading=doc.createElement('h3');heading.textContent=t(zh,eng);group.append(heading);

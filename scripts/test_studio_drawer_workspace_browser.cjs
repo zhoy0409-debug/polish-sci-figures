@@ -23,6 +23,7 @@ try{
  const oldFont=await page.locator('#font').inputValue();for(let i=0;i<3;i++){await page.locator('#drawerTools').click();assert(!await page.locator('#font').isVisible());await page.locator('#drawerTools').click();assert(await page.locator('#font').isVisible());assert.equal(await page.locator('#font').inputValue(),oldFont);}
  await page.locator('#drawerBack').click();assert(await page.locator('[data-drawer-tool="fonts"]').isVisible());assert.equal(await page.locator('[data-drawer-tool="rectify"]').count(),0);await tool('style','fonts');
  await find('行距','fonts');assert(await page.locator('#para-line-height').isVisible());assert.equal(await page.evaluate(()=>document.activeElement.id),'para-line-height');
+ await find('字体','fonts');assert(await page.locator('#font').isVisible());assert.equal(await page.evaluate(()=>document.activeElement.id),'font');
  await find('颜色 线宽','colour-lines');await page.locator('#colorHex').fill('#115577');await page.locator('#colorHex').press('Escape');await frame();assert.deepEqual((await H.save(page)).state,before.state);
  report.checks.push('Repeated Tools collapse/reopen stays on the selected tool; Back preserves category; direct synonym search focuses real fields and cancels real colour preview');
  await find('边框','border');await page.locator('#border-width').fill('2');await frame();await page.locator('#drawerCloseTools').click();await page.locator('#drawerTools').click();assert.equal(await page.locator('#border-width').inputValue(),'2');
