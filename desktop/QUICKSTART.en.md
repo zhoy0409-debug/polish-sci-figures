@@ -37,7 +37,21 @@ For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-
 
 In Studio 0.1.26, open **Appearance → Interface theme** for default **Carbon Atelier** or light **Pearl Pro**. **Canvas surround** changes the area around the white figure page to neutral, dark or light. Figure colours, image pixels and exported artwork are independent of these preferences. The current browser remembers your choice; if it cannot save the preference, the menu explains this.
 
-The inspector identifies the selected object type and prioritises related controls; expand other headings for more settings. Choose **Find command** or press **Ctrl + K** to search for `theme`, `border`, `duplicates` or `axis`. Search opens the existing tools. See the [appearance and update guide](../docs/figure-studio-appearance.md) for the exact controls, and the [0.1.26 release notes](../docs/release-notes-v1.5.0.md) for this build's validation status.
+The inspector places selection and editing modes before detailed settings. Expand text, paragraph, character formatting, colour or stroke headings when needed. The left **Layers / Layout / Export** shortcuts locate each area directly. **Canvas tools** contains panel scaling, grid and guides; **More tools** groups object organization, proportions, clipboard and text/colour tools. Active image screening retains its visible progress entry.
+
+Choose **Find function** or press **Ctrl + K** and describe the task, such as `straighten`, `text spacing`, `physical scale bar` or `layout gap`. Results show their category and open the existing tool or expand and focus its real control. Arrow keys select results; Enter follows the result. Selection requirements and lock checks remain in effect.
+
+| Category | Functions |
+| --- | --- |
+| Data & charts | Figure discovery, data table, statistics, axes and chart group spacing |
+| Text & object style | Fonts, paragraph, object colour, stroke, borders and legend styling |
+| Image processing | Photo straightening/perspective, image display, reference colour and duplicates |
+| Layout & canvas | Layers, grid/gaps, align/distribute, group/lock, proportions and guides |
+| Annotations & measurement | Text/lines/shapes, panel labels, insets/links and calibrated physical scale bars |
+| Review & export | Figure review, submission profiles, dimensions and SVG/PNG/TIF export |
+| Project & interface | Open/save, checkpoints, undo/redo and interface themes |
+
+A photo-straightening ruler is separate from physical calibration; object paint is separate from image pixel display. Search runs locally and sends no images, measurements or projects to a service. See the [appearance guide](../docs/figure-studio-appearance.md) and [current Windows acceptance scope](../docs/windows-next-stable-audit.md).
 
 
 ## Adjust directly on the canvas
@@ -106,4 +120,4 @@ The unreleased candidate adds **Submission size and export → Submission profil
 
 The unreleased candidate adds [native TIFF display](docs/figure-studio-native-tiff.md): import a TIFF, adjust its native window/gamma/LUT on the real canvas, then Keep or Cancel. Download the exact original afterward. **New display from original TIFF** reopens the retained plane in a separate display, preserving existing images and edits and sharing the original file. The guide is bundled for offline use and lists the supported formats. The release page remains the authority for published versions.
 
-Use the five workflow entries, or **Find command** / Ctrl + K to search for borders, duplicate screening or tick intervals. Selected objects expose contextual actions. Image tools keep source pixels local and require explicit Apply; professional native axes re-render from data in four sections: range, ticks, size and appearance. See [image tools](../docs/figure-studio-image-tools.md), [axes](../docs/figure-studio-axes-round2.md) and [actual acceptance scope](../docs/figure-studio-experience-round2-validation.md).
+Use the five workflow shortcuts or the categorized **Find function** directory above. Shortcuts do not change a function's category. Selected objects expose contextual actions. Image tools keep source pixels local and require explicit Apply; professional native axes re-render from data in four sections: range, ticks, size and appearance. See [image tools](../docs/figure-studio-image-tools.md), [axes](../docs/figure-studio-axes-round2.md) and [actual acceptance scope](../docs/figure-studio-experience-round2-validation.md).

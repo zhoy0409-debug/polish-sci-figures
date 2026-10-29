@@ -328,6 +328,7 @@ jobs:
           node scripts/test_studio_image_insets_draft.cjs
           node scripts/test_studio_border_replacement.cjs
           node scripts/test_studio_experience_tools.cjs
+          node scripts/test_studio_workspace_hierarchy.cjs
           node scripts/test_studio_component_style.cjs --dom --real
           node scripts/test_studio_component_controls.cjs --dom
           node scripts/test_studio_grid_resize.cjs --dom
