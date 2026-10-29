@@ -3155,5 +3155,27 @@
     "vector-interaction.js": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4",
     "workspace-layout.css": "4b0775dea1787185f507783133403859e4688c39111c64de9156add721c5da8b",
     "workspace-layout.js": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+  },
+  "ciCorrection": {
+    "failedHead": "d68cd0169d1ab214dd584f70578bb66e2dfc3e2d",
+    "run": 40938790670,
+    "basicFailed": 6,
+    "integrationPassed": true,
+    "browserPassed": true,
+    "cause": "Packaging/provenance test retained the old sole EuropePMC connect-src and five-script assertion. Actual HTML adds one inert public accounting JSON script and explicit api.github.com metadata origin.",
+    "fix": "Assert exact two-origin allowlist, default/form deny, six scripts with only one executable runtime, parsed inert ledger schema and bundled tools. No runtime code or scientific test weakened.",
+    "localPackagingTests": 10,
+    "localPackagingPassed": true,
+    "launcherTests": 10,
+    "updaterTests": 18,
+    "traceSanitizerTests": 6,
+    "remainingBasicPassed": true,
+    "failuresRetained": [
+      "failed-ubuntu-py312.log (full original CI log)",
+      "local-packaging-test.log (sandbox temporary-directory permissions)",
+      "local-packaging-test-r2.log (old five-script assertion surfaced)",
+      "local-packaging-test-r3.log (all ten passed using process-local workspace TEMP/TMP)"
+    ],
+    "pending": "New exact-commit CI required"
   }
 }
