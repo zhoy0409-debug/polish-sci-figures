@@ -137,6 +137,10 @@
         "exitCode": 0
       },
       {
+        "name": "test_studio_host_ime.cjs",
+        "exitCode": 0
+      },
+      {
         "name": "test_studio_quick_style_blur.cjs",
         "exitCode": 0
       },
@@ -337,7 +341,7 @@
     "passed": true,
     "report": {
       "scope": "Actual Chromium CSS on representative component fixtures; not full-page WCAG AA certification",
-      "generatedUTC": "2026-10-30T20:32:19.543Z",
+      "generatedUTC": "2026-10-30T23:56:04.142Z",
       "browser": "156.0.8078.76",
       "platform": "win32",
       "viewport": {
@@ -1159,7 +1163,8 @@
     "IAB integrated-r1: per-field hint fix did not run because production capture listener intercepted Escape first; replaced with one generic capture-branch fix.",
     "focused-r3: new extraction assumed LF source; changed delimiters to semantic markers, no product workaround.",
     "focused-r4: representative component screenshot raster hash differed despite equal reported colors/DOM; final rerun passed unchanged component assertion. Final real SVG and8PNG exports separately exact; original failure retained, cause not established.",
-    "IAB download-result delivery took11269seconds; outside timing runs and not editor processing latency. No repeated IAB download waiting."
+    "IAB download-result delivery took11269seconds; outside timing runs and not editor processing latency. No repeated IAB download waiting.",
+    "cd13880 remote CI41146900275 local-browser-preview failed: field fixture omitted observed composition listeners; host IME fixture omitted say/T. Added real production listeners and required status dependencies/assertions; all6controlled IME groups and final11commands passed. Production UI unchanged; native IME not certified."
   ],
   "nativeGates": {
     "installerTextClipping": "USER_FAILED_UNRESOLVED",
