@@ -20,6 +20,7 @@ body.studio-drawers>header{min-height:56px;padding:var(--fs-space-2) var(--fs-sp
 .studio-drawer-rail button:hover{background:var(--fs-hover);color:var(--fs-text-primary)}
 .studio-drawer-rail button[aria-pressed=true]{background:var(--fs-accent-selected-bg);color:var(--fs-accent-text);border-left-color:var(--fs-accent);font-weight:600}
 .studio-drawer-body{min-width:0;height:100%;overflow:auto;padding:0 12px 20px;overscroll-behavior:contain}
+.studio-drawer-body:has(>.studio-tool-bank[data-tool=fonts]){scroll-padding-block:80px 12px}
 .studio-drawer-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;position:sticky;top:0;z-index:6;padding:16px 0 12px;background:var(--fs-inspector-bg);border-bottom:1px solid var(--fs-stroke-subtle);margin-bottom:14px}
 .navigator .studio-drawer-heading{background:var(--fs-nav-bg)}
 .studio-drawer-heading>strong{font-size:var(--fs-font-md);font-weight:650;letter-spacing:-.2px;color:var(--fs-text-primary)}
@@ -100,3 +101,11 @@ body.studio-drawers>header{min-height:50px;padding-block:6px}
 }
 @media(min-width:751px) and (max-width:1100px){.studio-drawer-shell .drawer-view-controls #dimensions{display:none}.drawer-view-controls{gap:4px}.studio-drawer-shell .canvas-tools .canvas-quickbar{padding-inline:8px;gap:4px}}
 @media(min-width:751px) and (max-width:1300px){.studio-drawer-shell .drawer-view-controls #dimensions{display:none}}
+/* Windows scaling can leave a desktop mouse/keyboard window under 1100 CSS
+   pixels. Wrap command groups without overflowing or mounting touch controls. */
+@media(min-width:751px) and (max-width:1100px){
+body.studio-drawers>header .brand strong{display:none}
+body.studio-drawers>header .project-identity{flex:0 1 160px;min-width:80px}
+body.studio-drawers>header .header-controls{flex:1 1 0;min-width:0}
+body.studio-drawers>header .toolbar{width:100%;max-width:100%;flex-wrap:wrap;justify-content:flex-end;gap:4px 8px}
+}

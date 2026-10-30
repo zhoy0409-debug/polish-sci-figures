@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
 const experience=require('../skills/polish-sci-figures/assets/figure-studio/experience-tools.js'),drawers=require('../skills/polish-sci-figures/assets/figure-studio/drawer-workspace.js');
 const dom=new JSDOM(fs.readFileSync(path.join(__dirname,'../skills/polish-sci-figures/assets/figure-studio/studio.html'),'utf8')),doc=dom.window.document;
-dom.window.matchMedia=()=>({matches:true});dom.window.HTMLElement.prototype.scrollIntoView=function(){};
+dom.window.matchMedia=query=>({matches:query==='(min-width: 751px)'});dom.window.HTMLElement.prototype.scrollIntoView=function(){};
 dom.window.HTMLDialogElement.prototype.showModal=function(){this.open=true;};dom.window.HTMLDialogElement.prototype.close=function(){this.open=false;};
 let language='zh-CN';const host={document:doc,drawerWorkspace:drawers,language:()=>language,images:()=>[],context:()=>({}),say(){}};
 for(const key of ['discovery','edit','axes','export','borders','duplicates','color','links','inset','review','submissionProfiles'])host[key]=()=>{};

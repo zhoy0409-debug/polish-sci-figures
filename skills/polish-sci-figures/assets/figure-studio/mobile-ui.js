@@ -63,7 +63,9 @@ const StudioMobileUI = (() => {
     const viewport=options.viewport||doc.getElementById('viewport'),workspace=options.workspace||doc.querySelector('.workspace');
     const main=options.main||workspace?.querySelector('main'),navigator=options.navigator||workspace?.querySelector('.navigator'),inspector=options.inspector||workspace?.querySelector('.inspector');
     if(!viewport||!workspace||!main||!navigator||!inspector)throw Error('Mobile workspace requires canvas, panels and adjustments regions.');
-    const media=win.matchMedia('(max-width: 1024px), (pointer: coarse)'),session=createTouchSession('pan');
+    // Match the desktop drawer breakpoint. A narrow mouse/keyboard window
+    // must not also mount the touch workspace over its existing tool drawers.
+    const media=win.matchMedia('(max-width: 750px), (pointer: coarse)'),session=createTouchSession('pan');
     let enabled=false,tab='canvas',frame=0,last=null,destroyed=false,blockClickUntil=0,gestureStarted=false;
     const captured=new Set(),listeners=[],localized=[];
     const T=key=>{

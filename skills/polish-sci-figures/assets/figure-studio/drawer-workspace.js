@@ -16,7 +16,7 @@ const StudioDrawerWorkspace=(()=>{
     return [...result.values()];
   }
   function create(adapter){
-    const doc=adapter.document,win=doc.defaultView;if(!win?.matchMedia?.('(min-width: 751px)').matches)return null;
+    const doc=adapter.document,win=doc.defaultView;if(!win?.matchMedia?.('(min-width: 751px)').matches||win.matchMedia('(pointer: coarse)').matches)return null;
     const workspace=doc.querySelector('.workspace'),left=doc.querySelector('.navigator'),right=doc.querySelector('.inspector');if(!workspace||!left||!right)return null;
     const node=id=>doc.getElementById(id),en=()=>adapter.language()==='en',t=(zh,eng)=>en()?eng:zh,labels=[],menus=catalog(adapter.actions);
     const el=(name,cls)=>{const n=doc.createElement(name);if(cls)n.className=cls;return n;},caption=(n,zh,eng)=>{labels.push([n,zh,eng]);return n;},button=(id,zh,eng,run)=>{const b=caption(el('button'),zh,eng);b.type='button';b.id=id;b.onclick=run;return b;};

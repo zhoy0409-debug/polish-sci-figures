@@ -1,5 +1,7 @@
 # Getting started with Figure Studio
 
+The unreleased 0.2.0 candidate still has a user-reported Chinese installer text-clipping issue. The narrow desktop workspace fix is separate; see the [remaining acceptance work](../docs/qa/windows-next-stable/remaining-20261031.md). Do not change system display scaling to complete installation.
+
 **0.2.0 release-preparation snapshot (Suite 1.5.0, 2026-10-28):** the new-version links are pending publication and installed-app/real-upgrade acceptance. For an available installer, use the [previous stable v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26). See [candidate scope](../docs/release-notes-v1.5.0.md#english).
 
 The Windows installer workflow and genuine official 0.1.25 → 0.1.26 in-editor upgrade passed the listed checks. The [acceptance record](../docs/qa/photo-correction/windows-0.1.26/README.md) details data protection, performance results and remaining items.
