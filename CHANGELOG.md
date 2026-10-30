@@ -2,6 +2,8 @@
 
 ## v1.5.0 · Figure Studio 0.2.0 — release preparation (unreleased)
 
+Improve the Windows installer text layout after a user-reported Chinese clipping issue: use a CJK UI font, concise shortcut-page text, wrapped descriptions and a task-list offset based on actual label height. Keep DPI aspect scaling and a modest wider wizard without shrinking text. Installer identity, data paths, task choice and update restart ownership remain unchanged. Native readability at the user's display settings remains a separate manual check; this is still an unpublished candidate.
+
 Prepared on 2026-10-28. Windows candidate identities, installer and update metadata are unified without changing the installation identity or project schema. See the [release preparation and exact scope](docs/release-notes-v1.5.0.md). Native installed editing, same-package 5000-object performance, genuine 0.1.26 → 0.2.0 in-editor upgrade and failure recovery remain release gates. Historical v1.4.26 assets and preview downloads retain their original versions.
 
 Fix the Windows Ctrl + Y shortcut missing from confirmed canvas edits. Keep Ctrl/Cmd + Shift + Z, toolbar Redo, input/IME and modal guards, one-step history and source data preservation. All three history key paths now share one command map.

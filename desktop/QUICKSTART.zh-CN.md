@@ -18,6 +18,8 @@ Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库
 
 1. **首次使用选择 Setup 安装版：** 从 [v1.5.0 发布后的发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0)下载 [polish-sci-figures-Studio-0.2.0-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)，直接运行并按提示安装到当前 Windows 用户，无需解压。
 2. 双击桌面或开始菜单中的 **polish-sci-figures Studio**。启动小窗口显示“编辑器已就绪”后，默认浏览器会打开编辑器；也可点击小窗口里的 **打开编辑器**。
+
+安装向导的 **快捷方式** 页仅决定是否创建桌面快捷方式；不勾选也可继续。中文说明可换行，使用中文界面字体，无需通过缩小系统文字来安装。
 3. 页面右上角可切换中文和 English。再次点击快捷方式会打开已运行的编辑器。
 
 **以后直接在编辑器内升级：更新 → 下载并准备更新 → 保存工程并勾选确认 → 安装并重新打开。** 受支持的安装版会下载、校验并安装后续版本，无需每次回到 GitHub 手动找包、解压或替换目录。

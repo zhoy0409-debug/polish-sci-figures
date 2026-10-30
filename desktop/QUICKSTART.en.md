@@ -18,6 +18,8 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 1. **Choose the Setup installer for first use:** download [polish-sci-figures-Studio-0.2.0-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe) from the [v1.5.0 release when published](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0), then run it for your Windows user account. No extraction is needed.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
+
+The installer's **Shortcuts** page only chooses whether to create a desktop shortcut. It is optional. The Chinese wizard uses a CJK UI font and wrapped instructions without reducing the system text size.
 3. Choose **English** or **中文** at the top right. Opening the shortcut again opens the editor already running.
 
 **For later versions, stay in the editor: Updates → Download and prepare update → save your project and tick the confirmation → Install and reopen.** The supported installer edition downloads, verifies and installs the update without repeated manual GitHub downloads, extraction or folder replacement.
