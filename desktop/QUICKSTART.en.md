@@ -39,11 +39,13 @@ For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-
 
 ## Choose appearance and find tools
 
-In Studio 0.1.26, open **Appearance → Interface theme** for default **Carbon Atelier** or light **Pearl Pro**. **Canvas surround** changes the area around the white figure page to neutral, dark or light. Figure colours, image pixels and exported artwork are independent of these preferences. The current browser remembers your choice; if it cannot save the preference, the menu explains this.
+Open **Appearance → Interface theme** for default **Carbon Atelier** or light **Pearl Pro**. The 0.2.0 candidate refines the existing directory, setting surfaces and folded groups while retaining the jade selection accent. **Canvas surround** changes the area around the white figure page to neutral, dark or light. Figure colours, image pixels and exported artwork are independent of these preferences. The current browser remembers your choice; if it cannot save the preference, the menu explains this.
 
 Six task categories open a single right-hand tool drawer: **Data & charts**, **Text & object style**, **Image processing**, **Layout & canvas**, **Annotations & measurement**, and **Review & export**. Every tool has one category. Project, versions, local preferences and layers live on the left; Help stays in the header. Object paint, image display, straightening rulers, physical calibration, analysis and statistical annotation remain distinct.
 
 The contextual canvas toolbar shows common controls for the selected text or image. Font settings show the basics first; batch replacement, paragraph and character settings expand on demand and keep your explicit choices when selection changes. Search expands the requested advanced group. Find panel arrangement under Layout and duplicate screening under Review & export.
+
+Font-size changes preview on the canvas. Enter or moving focus keeps the edit; Escape restores the original value and ends the live-preview status without adding an undo entry.
 
 Choose **Back to this category** to find related tools, or collapse/reopen **Tools** to resume the current settings. Selecting another canvas object retains the chosen tool. Search with **Ctrl + K**; aliases such as `text spacing` lead to one canonical text tool and focus the actual field. Selection requirements, locking, live-preview cancellation and one-step history remain in effect.
 

@@ -15,6 +15,7 @@ const StudioI18n = (() => {
 "已更新文字对齐":"Text alignment updated",
 "已更新段落格式":"Paragraph formatting updated",
 "已取消预览，原图保持不变。":"Preview cancelled; the original figure is unchanged.",
+"已取消预览，保留当前编辑。":"Preview cancelled; current edits are retained.",
 "正在预览，尚未应用…":"Preparing preview; not applied…",
 "预览尚未应用；点击图纸或按 Esc 取消。":"Preview is not applied. Click the canvas or press Esc to cancel.",
 "正在用当前数据准备画布预览…":"Preparing the canvas with current data…",

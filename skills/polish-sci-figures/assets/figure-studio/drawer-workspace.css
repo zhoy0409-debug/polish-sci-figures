@@ -109,3 +109,33 @@ body.studio-drawers>header .project-identity{flex:0 1 160px;min-width:80px}
 body.studio-drawers>header .header-controls{flex:1 1 0;min-width:0}
 body.studio-drawers>header .toolbar{width:100%;max-width:100%;flex-wrap:wrap;justify-content:flex-end;gap:4px 8px}
 }
+
+/* Mineral surface refinement: unchanged controls, opaque editing surfaces. */
+@media(min-width:751px){
+ body.studio-drawers>header{box-shadow:inset 0 1px 0 var(--fs-surface-inner-edge)}
+ #drawerTaskbar{border-bottom-color:var(--fs-surface-outline)}
+ #drawerTaskbar button{border-radius:7px 7px 0 0}
+ #drawerTaskbar button[aria-pressed=true]{background:var(--fs-accent-selected-bg)}
+ .studio-drawer-rail{border-right-color:var(--fs-surface-outline)}
+ .studio-drawer-rail button{border-radius:8px}
+ .studio-drawer-rail button[aria-pressed=true]{border-left-color:transparent;box-shadow:inset 0 0 0 1px var(--fs-surface-outline),inset 0 1px 0 var(--fs-surface-inner-edge)}
+ .studio-drawer-shell>.inspector{background:var(--fs-nav-bg)}
+ .inspector>.studio-drawer-body{margin:6px 6px 6px 0;height:calc(100% - 12px);border-radius:12px;background:var(--fs-inspector-bg);box-shadow:inset 0 0 0 1px var(--fs-surface-outline),var(--fs-surface-shadow)}
+ .studio-drawer-heading{box-shadow:0 1px 0 var(--fs-surface-outline)}
+ .studio-drawer-back{color:var(--fs-text-secondary)}
+ .studio-drawer-context{border-color:var(--fs-surface-outline)}
+ .studio-tool-list{display:grid;gap:6px}
+ .studio-tool-list>button{padding:12px 10px;border:1px solid var(--fs-surface-outline);border-radius:8px;background:var(--fs-surface-1);box-shadow:inset 0 1px 0 var(--fs-surface-inner-edge);font-weight:550}
+ .studio-tool-list>button:hover{background:var(--fs-hover);border-color:var(--fs-stroke-strong)}
+ .studio-tool-bank label{color:var(--fs-text-secondary)}
+ .studio-tool-bank :is(select,textarea,input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color])){border-radius:8px;box-shadow:var(--fs-shadow-control)}
+ .studio-tool-bank :is(select,textarea,input):focus{box-shadow:0 0 0 1px var(--fs-focus-soft);outline-offset:1px}
+ .studio-tool-bank :is(select,textarea,input):focus-visible{outline:2px solid var(--fs-focus);outline-offset:2px;box-shadow:0 0 0 4px var(--fs-focus-soft)}
+ .studio-tool-bank[data-tool=fonts] :is(.drawer-advanced,#paragraphPanel){border:1px solid var(--fs-surface-outline)!important;border-radius:8px!important;background:var(--fs-surface-1);padding:0 10px!important;box-shadow:inset 0 1px 0 var(--fs-surface-inner-edge)}
+ .studio-tool-bank[data-tool=fonts] :is(.drawer-advanced,#paragraphPanel)>summary{border:0;padding-block:10px;font-weight:550}
+ .studio-tool-bank[data-tool=fonts] #paragraphPanel[open]>summary{border-bottom:1px solid var(--fs-surface-outline)}
+ .studio-tool-bank .drawer-advanced .font-replacement-note{color:var(--fs-text-muted)}
+ .studio-drawer-export-actions button{border-radius:8px;box-shadow:var(--fs-shadow-control)}
+ .studio-drawer-shell .workspace-splitter{background:var(--fs-surface-outline)}
+ .studio-drawer-shell .canvas-tools .quick-tool-group{border-color:var(--fs-surface-outline)}
+}

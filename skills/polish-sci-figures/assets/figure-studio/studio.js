@@ -1054,7 +1054,7 @@ if (typeof document !== 'undefined') (async () => {
     event.preventDefault();event.stopImmediatePropagation();
     if(previewSessions.active.kind==='object-borders')objectBordersUI?.cancel('escape');
     else if(previewSessions.active.kind==='axes')professionalAxesUI?.cancel('escape');
-    else previewSessions.cancel('escape');
+    else if(previewSessions.cancel('escape'))say(T('已取消预览，保留当前编辑。'));
   },true);
 
 

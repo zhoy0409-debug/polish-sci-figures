@@ -23,6 +23,8 @@ try{
  assert(!await page.locator('#paragraphPanel').evaluate(n=>n.open),'Advanced paragraph fields start collapsed');
  assert(!await page.locator('#drawerFontAdvanced').evaluate(n=>n.open));assert(await page.locator('#fontSize').isVisible());
  await shot('01-fonts-carbon');
+ for(const id of ['fontSize','quickFontSize']){const input=page.locator('#'+id),value=await input.inputValue();await input.fill(String(Number(value)+1));await frame();assert.match(await page.locator('#status').textContent(),/实时预览/);await input.press('Escape');await frame();assert.equal(await input.inputValue(),value);assert.equal(await page.locator('#status').textContent(),'已取消预览，保留当前编辑。');const cancelled=await H.save(page);assert.deepEqual(cancelled.state,before.state);assert.deepEqual(cancelled.history,before.history);}
+ report.checks.push('Real document-capture Escape restores inspector and quick-toolbar font previews, clears the live hint and retains exact state/history');
  await page.locator('#paragraphPanel > summary').click();await page.locator('#artboard circle[data-key],#artboard path[data-key],#artboard rect[data-key]').first().click({force:true});await page.locator('#artboard text[data-key]').first().click({force:true});
  assert(await page.locator('#paragraphPanel').evaluate(n=>n.open),'Manual paragraph expansion survives a text-shape-text selection round trip');await page.locator('#paragraphPanel > summary').click();
  const toolbarHeight=await page.locator('.canvas-tools').evaluate(n=>n.getBoundingClientRect().height);assert(toolbarHeight<=48,'One contextual toolbar row at 1440px');
