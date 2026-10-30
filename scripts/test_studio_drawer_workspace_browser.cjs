@@ -23,7 +23,7 @@ try{
  assert(!await page.locator('#paragraphPanel').evaluate(n=>n.open),'Advanced paragraph fields start collapsed');
  assert(!await page.locator('#drawerFontAdvanced').evaluate(n=>n.open));assert(await page.locator('#fontSize').isVisible());
  await shot('01-fonts-carbon');
- await page.locator('#paragraphPanel > summary').click();await page.locator('#artboard circle[data-key],#artboard path[data-key]').first().click({force:true});await page.locator('#artboard text[data-key]').first().click({force:true});
+ await page.locator('#paragraphPanel > summary').click();await page.locator('#artboard circle[data-key],#artboard path[data-key],#artboard rect[data-key]').first().click({force:true});await page.locator('#artboard text[data-key]').first().click({force:true});
  assert(await page.locator('#paragraphPanel').evaluate(n=>n.open),'Manual paragraph expansion survives a text-shape-text selection round trip');await page.locator('#paragraphPanel > summary').click();
  const toolbarHeight=await page.locator('.canvas-tools').evaluate(n=>n.getBoundingClientRect().height);assert(toolbarHeight<=48,'One contextual toolbar row at 1440px');
  await page.locator('#viewport').click({position:{x:12,y:12}});await frame();assert.equal(await page.locator('.canvas-tools').evaluate(n=>n.getBoundingClientRect().height),toolbarHeight,'Clearing selection must not move the canvas');await page.locator('#artboard text[data-key]').first().click({force:true});
