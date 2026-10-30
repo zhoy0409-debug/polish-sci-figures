@@ -39,6 +39,8 @@ In Studio 0.1.26, open **Appearance → Interface theme** for default **Carbon A
 
 Six task categories open a single right-hand tool drawer: **Data & charts**, **Text & object style**, **Image processing**, **Layout & canvas**, **Annotations & measurement**, and **Review & export**. Every tool has one category. Project, versions, local preferences and layers live on the left; Help stays in the header. Object paint, image display, straightening rulers, physical calibration, analysis and statistical annotation remain distinct.
 
+The contextual canvas toolbar shows common controls for the selected text or image. Font settings show the basics first; batch replacement, paragraph and character settings expand on demand and keep your explicit choices when selection changes. Search expands the requested advanced group. Find panel arrangement under Layout and duplicate screening under Review & export.
+
 Choose **Back to this category** to find related tools, or collapse/reopen **Tools** to resume the current settings. Selecting another canvas object retains the chosen tool. Search with **Ctrl + K**; aliases such as `text spacing` lead to one canonical text tool and focus the actual field. Selection requirements, locking, live-preview cancellation and one-step history remain in effect.
 
 Use **Help → Send feedback** to prepare and review text, then confirm public submission on GitHub. Basic version diagnostics are optional and off by default. No project, image or measurement data are automatically attached. The deployed issue route assigns the maintainer; notifications depend on the account's existing GitHub/email settings. A prepared draft is not a submitted issue.

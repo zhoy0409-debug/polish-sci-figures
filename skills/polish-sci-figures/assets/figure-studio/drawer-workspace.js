@@ -63,6 +63,34 @@ const StudioDrawerWorkspace=(()=>{
     const discovery=node('openDiscovery');if(discovery){const box=el('section');box.id='drawerDiscovery';box.append(discovery);bank.append(box);}
     const variants=node('sizes')?.closest('section');if(variants){const box=el('section');box.dataset.pane='explore';box.id='drawerPanelGeometry';for(const n of [...variants.children]){if(n.localName==='h2'&&n.nextElementSibling?.textContent?.includes('数据结构'))break;if(n===node('candidateHint')||n.contains(node('chartGoal')))break;box.append(n);if(n===node('slotChoices'))break;}bank.append(box);}
     const exportActions=el('div','studio-drawer-export-actions');exportActions.id='drawerExportActions';for(const id of ['export','png','tiff'])if(node(id))exportActions.append(node(id));bank.append(exportActions);
+    // Progressive disclosure uses the original fields and controllers. Opening
+    // a tool never recreates its form or resets an in-flight preview.
+    function disclosure(id,zh,eng){const box=el('details','drawer-advanced');box.id=id;box.append(caption(el('summary'),zh,eng));return box;}
+    const fontPanel=node('typePanel');
+    if(fontPanel){
+      const advanced=disclosure('drawerFontAdvanced','批量调整与字体替换','Batch changes & font replacement');
+      const content=disclosure('drawerTextContent','文字内容','Text content');
+      for(const id of ['textRole','fontTargetInfo','replaceFontArial','replaceFontTimes','unifyTypography']){const n=node(id);if(!n)continue;const part=n.closest('label,.font-replacements')||n;advanced.append(part);}
+      const note=fontPanel.querySelector('.font-replacement-note');if(note)advanced.append(note);
+      for(const id of ['textContent','applyText']){const n=node(id);if(n)content.append(n.closest('label')||n);}
+      fontPanel.append(content,advanced);fontPanel.open=true;
+      const fontLabel=node('font')?.closest('label'),sizeLabel=node('fontSize')?.closest('label');
+      if(fontLabel){fontPanel.querySelector('summary')?.after(fontLabel);if(sizeLabel)fontLabel.after(sizeLabel);}
+      const first=bank.querySelector('[data-drawer-owner]')||bank.firstChild;bank.insertBefore(fontPanel,first);
+      // Keep full character and paragraph controls after the basic type form.
+      let after=fontPanel;for(const id of ['paragraphPanel','workspaceCharacterFormats','drawerFormattingTools']){const n=node(id);if(n){after.after(n);after=n;}}
+    }
+    const layoutBar=doc.querySelector('.canvas-layoutbar'),quickBar=node('canvasQuickToolbar');
+    if(layoutBar&&quickBar){
+      // A single contextual row replaces the two permanent canvas rows.
+      const arrange=node('arrangePanels');if(arrange&&layout)layout.append(arrange);
+      const duplicate=node('checkImageDuplicates');if(duplicate)exportActions.append(duplicate);
+      const align=node('quickAlignAction');if(align&&node('objectAlignmentPanel'))node('objectAlignmentPanel').append(align);
+      quickBar.append(...layoutBar.children);layoutBar.remove();
+      const view=el('div','drawer-view-controls');view.id='drawerViewControls';
+      for(const n of [node('dimensions'),node('zoom')?.closest('label')])if(n)view.append(n);
+      quickBar.append(view);
+    }
     const targets={fonts:['#typePanel','#workspaceCharacterFormats','#paragraphPanel','#drawerFormattingTools'], 'colour-lines':['#workspaceObjectStyle'],border:['#objectBorderDialog'],axes:['#professionalAxesHost','#axisControls'],'data-table':['section[data-pane="data"]'],statistics:['#methodExplorer','#dataInfo'],'stat-annotation':['#statisticalAnnotations','#conditionMatrixControls','#selectedStatisticalLine'],'category-spacing':['#categorySpacingControls'],'legend-style':['#componentStyle'],'chart-variants':['#chartGoal','#literatureExamples'],'panel-geometry':['#drawerPanelGeometry'],palette:['#palettes'],marks:['#markControls'],bars:['#drawerBars'],heatmap:['#heatmapTools'],preferences:['#memoryDetails'],rectify:['#imageRectifyDialog'],color:['#imageColorDialog'],links:['#imageLinksDialog'],inset:['#imageInsetsControls'],'scale-bar':['#scaleCalibration'], 'panel-label':['#panelLabelControls'],layout:['#workspaceLayout'],organization:['#groupSelection'], 'object-align':['#objectAlignmentPanel'],export:['#exportOptions','#drawerExportActions','#qa'],guides:['#drawerGuides'],annotations:['#overlayFont','#drawerInsertAnnotation'],clipboard:['#drawerClipboard'],'canvas-tools':['#drawerCanvasControls'],review:['#qualityWorkspace']};
     function rootOf(n){if(!n||!bank.contains(n))return null;while(n.parentElement!==bank)n=n.parentElement;return n;}
     targets.discovery=['#drawerDiscovery'];targets.rectify.push('#imageRectifyControls','.rectify-completed');targets.color.push('#imageColorControls');targets.links.push('#imageLinksControls');
@@ -74,7 +102,7 @@ const StudioDrawerWorkspace=(()=>{
     function openRight(open=true){const changed=workspace.dataset.rightOpen!==String(open);workspace.dataset.rightOpen=String(open);body.hidden=!open;rail.firstElementChild?.setAttribute('aria-pressed',String(open));resizeIf(changed);}
     function selectRoots(id){bank.querySelectorAll(':scope > .studio-tool-active').forEach(n=>n.classList.remove('studio-tool-active'));for(const n of roots(id))n.classList.add('studio-tool-active');bank.dataset.tool=id;}
     function paneFor(fallback='detail'){if(view==='catalog')return 'detail';if(active==='palette')return 'palette';if(['chart-variants','panel-geometry','discovery'].includes(active))return 'explore';if(active==='data-table')return 'data';if(['annotations','stat-annotation'].includes(active))return 'annotation';return 'detail';}
-    function openTool(id,label){const item=menus.find(x=>x.id===id);if(!item)return false;const changed=active!==id||view!=='tool';category=item.owner;active=id;view='tool';title.textContent=label||(en()?item.action.en:item.action.zh);back.hidden=false;list.hidden=true;bank.hidden=false;context.hidden=false;selectRoots(id);openRight(true);updateBar();if(changed){body.scrollTop=0;adapter.syncPane?.(paneFor());}return true;}
+    function openTool(id,label){const item=menus.find(x=>x.id===id);if(!item)return false;const changed=active!==id||view!=='tool';category=item.owner;active=id;view='tool';title.textContent=label||(en()?item.action.en:item.action.zh);back.hidden=false;list.hidden=true;bank.hidden=false;context.hidden=false;selectRoots(id);if(id==='fonts'&&fontPanel)fontPanel.open=true;openRight(true);updateBar();if(changed){body.scrollTop=0;adapter.syncPane?.(paneFor());}return true;}
     function openCategory(id){category=id;active=null;view='catalog';title.textContent=categoryName(id);back.hidden=true;bank.hidden=true;context.hidden=false;list.hidden=false;list.replaceChildren();for(const item of menus.filter(x=>x.owner===id)){const b=el('button');b.type='button';b.dataset.drawerTool=item.id;b.textContent=en()?item.action.en:item.action.zh;b.onclick=()=>adapter.launch(item.action);list.append(b);}if(!list.children.length){const p=el('p');p.textContent=t('此类操作从顶部菜单进入，也可以使用功能检索。','Use the header menu or function search for these actions.');list.append(p);}body.scrollTop=0;openRight(true);updateBar();adapter.syncPane?.('detail');}
     const categories=adapter.categories.filter(row=>menus.some(item=>item.owner===row[0]));
     function categoryName(id){const row=categories.find(x=>x[0]===id);return row?(en()?row[2]:row[1]):id;}

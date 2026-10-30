@@ -48,6 +48,11 @@ function fixture(preference, storage){
     status.textContent='其他窗口已更新 · 请先下载当前工程';await flush();assert.equal(status.dataset.saveState,'conflict');
     status.textContent='';await flush();assert.equal(status.dataset.saveState,'idle');
   }finally{f.close();}});
+  await test('drawer selections preserve explicit disclosure choices across object kinds',()=>{const f=fixture();try{
+    f.doc.body.classList.add('studio-drawers');const paragraph=f.doc.getElementById('paragraphPanel');paragraph.open=false;
+    f.ui.selection({kind:'text',count:1});assert.equal(paragraph.open,false,'Selecting text must not expand advanced paragraph settings');
+    paragraph.open=true;f.ui.selection({kind:'image',count:1});f.ui.selection({kind:'text',count:1});assert.equal(paragraph.open,true,'Explicit expansion must survive selection changes');
+  }finally{f.close();}});
   await test('appearance menu supports Escape and restores existing status node on teardown',()=>{const f=fixture();try{
     const menu=f.doc.getElementById('appearanceMenu');menu.open=true;f.doc.getElementById('studioTheme').focus();
     f.doc.getElementById('studioTheme').dispatchEvent(new f.dom.window.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));assert.equal(menu.open,false);

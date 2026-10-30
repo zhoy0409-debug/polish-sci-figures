@@ -1,0 +1,5493 @@
+{
+  "author": "a",
+  "date": "2026-10-30",
+  "publicationHold": true,
+  "parentCommit": "2b309629cba0bbbe4d19e8c21a95e9b6bfd76390",
+  "scope": "Source hierarchy refinement, public Iris/H&E and synthetic5000. Not installed Windows, native IME, physical latency, actual upgrade or independent detector accuracy.",
+  "uiHashes": {
+    "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
+    "axis-editing.js": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115",
+    "axis-settings-ui.css": "7d50d0bbc47253a0e6f673b294bf2d26ae413525eaf7d4f4729141ff7d2ca7c2",
+    "axis-settings-ui.js": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9",
+    "canvas-clipboard.js": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be",
+    "catalogue-previews.json": "a3644e7455c498ef2613ae1b02f8b04d52cd84e19f049e5240a84b9d3b129f19",
+    "catalogue.js": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35",
+    "chart-knowledge.json": "182d057d26602c57a292bdc8f1124458a22a90d89e42c96dba1ffad61416630b",
+    "compact-whitespace.js": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb",
+    "component-style.js": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234",
+    "deferred-previews.js": "7e5eb85d2d63b3b9cf9cfa7744009cb84819c53a0c68f2e7e69bf526e5e064ca",
+    "discovery-offline.js": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38",
+    "discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+    "discovery-ui.js": "cf1decd45eea8adcb2c7e3215780a3ee31ded139fc967931c40362cbbe9b5871",
+    "discovery.js": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43",
+    "download-metrics-ledger.json": "5b7f597471788e763edc76157081ea9ed17a684fbcadcc0e4b6efa27eaf8528f",
+    "drawer-workspace.css": "566a107b3cc520097fbce8f6038de1e72d828dfb3a6b62bbc217ef6342dc8ed2",
+    "drawer-workspace.js": "fb0819b30486afd4476cab2bc2f17d857834ab9611efccc2514a01487c543f0e",
+    "duplicate-check.css": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e",
+    "duplicate-check.js": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1",
+    "duplicate-review.js": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf",
+    "duplicate-viewer.css": "b64a440392b3822afe5bcb1d0be97903bfafe5d37c36b90be1d6b4bdef0999cf",
+    "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
+    "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
+    "experience-tools.css": "9b4689ce2f55112f8abc51ce3dd2a1665dcce3bf25f86fb95389aa5a3bc95d4e",
+    "experience-tools.js": "33d2e1688f058a05f449481870e7cfca9fd3eb876744accd047b4d7608f6524b",
+    "figure-planning.js": "dc82b3c8d0b6fc2685b7723a758eea69e05e461211cea82fa15cad9d2249b003",
+    "figure-quality.js": "60d570fe3a328d34358451ccd13206d79fb3794aeed39873942e21aa7a046e80",
+    "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
+    "grid-resize-ui.js": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed",
+    "group-spacing.js": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8",
+    "i18n.js": "11ea9e12362846749707c53451ce9f04b0311f6bbae5f3a5a620dfee457ca513",
+    "image-color-ui.js": "9952bff2537451109035093725c2155750cdc5459583732a499d9b541873cb48",
+    "image-color.js": "af514f347252c5b04444cc4cc4f99a4d96fd7a81e3a52045c86bc99f37dc118d",
+    "image-insets-controller.js": "2ceb66b2eb1736e7dd6a78bae701090588a4d49cdafb2fba3d051ad1225f65ff",
+    "image-insets-ui.js": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035",
+    "image-insets.js": "d1d75b1ea15891038b831d901b14a588ec1bbed55609e01ceb7ef796725fc90c",
+    "image-links-controller.js": "82c9e72262b734455973550d822e32a0d37d2b8268d767fdff5fca0efeb59151",
+    "image-links-ui.js": "cd89e8606765cef22e76095d27e1e351ed37a9fee7e3507419a5072400bbf837",
+    "image-links.js": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886",
+    "image-rectify-detect.js": "808edeee0957793bf285e1bf9ad5f2731ecbecc5d3b9a5ccfc09b18d1c154aec",
+    "image-rectify-ui.js": "f047930790e744a7e90beceffb30f0a2d7bedf8f0b65a792e6b54117f8b489e9",
+    "image-rectify.css": "526d3c49041ba5561634fea0cffb2a9595a86a4521d0ef7eb73109fb06cfd2fb",
+    "image-rectify.js": "95bf95f55c8d9d3489caa1250cc0b89bd8cbb1cadabbd7a30c6631a2363d255a",
+    "image-straighten.js": "4323974477f35206e0d8a662d64785746665d369b49ec08dbc690e797a4426a5",
+    "layers-panel.js": "df9833043b3b021e0fde04d009bcbfc13231baa475cfbedaa320b560decffa47",
+    "layout-lock.js": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242",
+    "legacy-stat-cleanup.js": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92",
+    "library.js": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51",
+    "literature.css": "f696eccd3cfba3c0ea3fac45cbd5a74c6adb55728e59abf4ce1c5547f06e49f0",
+    "literature.js": "66b6852716cc59c622620504bac9c87ab6d2547a36c8d7b7fd3aa23574fa194b",
+    "mark-style.js": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419",
+    "mascot-border-collie.svg": "bc17f3211a96529966fc744fd1e28df518ad43a2f79c3d199ba383079996472d",
+    "mascot-maine-coon.svg": "87a2ac6f885101abba85c45f013fdc8f303d5398c0756419bdb38d08509103f3",
+    "mascot-minimal-cat.svg": "abee4441d83d8e127526e8656363b0117e01a0bc3e99ec27882f8d4d43975d83",
+    "mascot-minimal-dog.svg": "3ac69072935713d1f2af3c5849052d731710eea38aead5d4f7b5b9976072d9ee",
+    "mascot-scene.svg": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b",
+    "master-frame.js": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9",
+    "memory.js": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c",
+    "mobile-ui.css": "101335ce269683a514ceb526b46b15634019b57405144615b29debd897bfb14b",
+    "mobile-ui.js": "f9c1ad0e5db4794b9a79726fe5d19b458839ee1305ece35585b669f55b6c14c4",
+    "object-borders.js": "5ba4ed9c9d2971d3372ee14b8d04cf540753c879f40b165e1a37d758d542404a",
+    "panel-commands.js": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd",
+    "preview-sessions.js": "218ce572c39a858f5ff519531ea5d7c7424d293db5d9184672688a5423182a88",
+    "project-codec.js": "95343ac7819582e47071040820e33868b3bf79eddaa0a93f57c1f41a90205892",
+    "project-operations.js": "47ec7234ae6fedcfb61357c375bdf8c0632a63d4ce6031cabf102b3c3a9a2540",
+    "quality-workspace.css": "26b5829969110828d357f818725ce0d0e105647710ac6606d0137719f57a81d7",
+    "quality-workspace.js": "41125480dcd80eba730c6b43d8efaffa855f4e2c035103c26931dd7af2247228",
+    "research-discovery.js": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f",
+    "rich-text.css": "1deadd7d55d7edee1f120d2f80062e034fca198d3b74da8acb62022fa41c43e3",
+    "rich-text.js": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4",
+    "scale-geometry.js": "cbf84b487787292009917c5e3f1e0ad0a677c5bf32e5ed1faaf726258677b73f",
+    "scientific-tiff-ui.js": "0547f44eb3dfc51395637b838358132e800bdb84d9f159ba978d1b8df6928ae5",
+    "scientific-tiff.css": "ac4aafac32b037756c19160aa7a9d03dd55ccb6083dc24ccc2ca1b1e41421027",
+    "scientific-tiff.js": "e48cd93de05687655c8a66bf7bd343839583d0d614e4be800863b2e0a13dc05e",
+    "selection-resize-controller.js": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61",
+    "selection-transform-dom.js": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3",
+    "selection-transform.js": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719",
+    "statistical-line-geometry.js": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8",
+    "statistical-metadata.js": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747",
+    "studio-support.js": "c358ae47d025e119b01de5abdaf812161fcc6d18aac4ced3c97c95e1c5fd014d",
+    "studio.css": "951eea56f81bb985e412ea09c3f6bd59949ee39c9053da3e6d05db84a73b685c",
+    "studio.html": "4a544a2222f19d61b8eed4aa3d37ef1128e1583ad5d3d5fd200bd358b5d45458",
+    "studio.js": "6f086a5e58ee818d7ace8c0495a44587eb72419e355f45a4714e6dda46ee8368",
+    "style-preview.js": "c0da41e0c15c37545f199525ec1f6db04086d68a146736b28ed7275f37fe767f",
+    "submission-profile-ui.js": "ee98b8ef53c072aeee14dcc37fac3acaeaab9bb01f78d48cea69bee44a0c41ff",
+    "submission-profiles.js": "47535d1292f0520eb2d87e47b70f3cbcd788e944957ef0b363c576d9550f41a3",
+    "template-starters.json": "eb8f5d4c60a2cfbb03ad2d334e9aa4f44802e0e3df29fc8a1779ab6088c636ba",
+    "text-formatting.js": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1",
+    "text-tools-ui.js": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e",
+    "theme-controller.js": "53a19e902fb02f91a0962c8ec19d3bf8065ed05d87f0d81e34c344fcbb14f6b9",
+    "theme-tokens.css": "a36192cf3ce610e3ce7a1fb4413cc54efc58fc91c998a1570e27c8e2d4a4d5d6",
+    "theme.css": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab",
+    "third-party-notices.js": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682",
+    "tiff-export.js": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f",
+    "update-check.js": "977df4939713cedc0d340b58958a9b2000c3c7de5c79cf411483300a894c1d5f",
+    "update-scene.css": "eced7b3291d70b0a8afd06a434d6c3aa4a8cee1a048a468a6e7f3948a136c7db",
+    "update-scene.js": "444cc790b4c5948ee785e1772c145453cb13dde3e7e5b840edae5f56d305daa7",
+    "vector-interaction.js": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4",
+    "workspace-layout.css": "4b0775dea1787185f507783133403859e4688c39111c64de9156add721c5da8b",
+    "workspace-layout.js": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+  },
+  "node": {
+    "author": "a",
+    "checks": [
+      {
+        "script": "scripts/test_studio_drawer_workspace.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_support.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_experience_tools.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_workspace_hierarchy.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_state.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_host_ime.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_component_ime.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_annotation_pane.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_selection_refresh_efficiency.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_pane_reuse.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_field_preview.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_object_borders_live_preview.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_async_save.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_theme_controller.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_theme_tokens.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_quick_paint_preview.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_text_spacing_preview.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_preview_sessions.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_history_shortcuts.cjs",
+        "exitCode": 0
+      }
+    ],
+    "passed": true
+  },
+  "browser": {
+    "author": "a",
+    "scope": "Real local browser and production TIFF/JSON/correction engines with public synthetic fixtures; not native installed Windows or independent detector accuracy",
+    "checks": [
+      {
+        "script": "test_project_codec_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_scientific_tiff_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_scientific_tiff_derivative_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_submission_profiles_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_history_shortcuts_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_drawer_workspace_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_support_browser.cjs",
+        "exitCode": 0
+      }
+    ],
+    "passed": true
+  },
+  "drawer": {
+    "author": "a",
+    "date": "2026-10-30",
+    "browser": "156.0.8078.49",
+    "scope": "Production source in independent Chrome. Public Iris and explicitly synthetic fixtures; not installed Windows, native IME or physical latency acceptance.",
+    "checks": [
+      "Six logical categories, one canonical entry per tool; synonyms do not duplicate functions across drawers",
+      "Palette and data-table drawers stay on the chosen task after real canvas selection; no automatic return to generic properties or an empty pane",
+      "Repeated Tools collapse/reopen stays on the selected tool; Back preserves category; direct synonym search focuses real fields and cancels real colour preview",
+      "Border draft survives collapse and category return; Save excludes it and Cancel restores committed state/history",
+      "Clipboard, panel scaling, guides, layout, output and character controls remain reachable in narrow/Pearl/bilingual views; original SVG, observations and analysis unchanged",
+      "5000 actual primitives: search/colour/one Undo/redo/save/reopen preserve exact state and source; no timing claim",
+      "Actual public-domain H&E microscopy: canonical image-display entry, live contrast filter, Save excludes draft, Cancel restores exact source/state, separate physical calibration entry; no calibration inferred"
+    ],
+    "layouts": [
+      {
+        "name": "01-fonts-carbon",
+        "width": 1440,
+        "height": 900,
+        "canvas": {
+          "x": 52,
+          "y": 132,
+          "width": 1062,
+          "height": 726
+        },
+        "toolbar": 44
+      },
+      {
+        "name": "02-fonts-1280",
+        "width": 1280,
+        "height": 720,
+        "canvas": {
+          "x": 52,
+          "y": 132,
+          "width": 902,
+          "height": 546
+        },
+        "toolbar": 44
+      },
+      {
+        "name": "03-canvas-expanded",
+        "width": 1280,
+        "height": 720,
+        "canvas": {
+          "x": 52,
+          "y": 132,
+          "width": 1184,
+          "height": 546
+        },
+        "toolbar": 44
+      },
+      {
+        "name": "04-fonts-pearl",
+        "width": 1440,
+        "height": 900,
+        "canvas": {
+          "x": 52,
+          "y": 132,
+          "width": 1062,
+          "height": 726
+        },
+        "toolbar": 44
+      }
+    ],
+    "publicIris150": true,
+    "publicMicroscopy": true,
+    "passed": true,
+    "errors": [],
+    "remote": []
+  },
+  "performance": [
+    {
+      "stage": "earlier candidate retained",
+      "protocol": {
+        "author": "a",
+        "date": "2026-10-30",
+        "baselineCommit": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+        "scope": "Serial source Chrome A1/B1/B2/A2, synthetic5000, 3 warmups +20 samples per operation, 250ms settle; event to second rAF, not installed or physical latency",
+        "htmlSha256": [
+          "e3541346223be2150d759076f07e59362a7c87e11830dec5af8497db687d3924",
+          "e990f4249115a08dc682626704c8e7e97dc5f2487464c74b1371ff4219f611a0"
+        ],
+        "batches": [
+          {
+            "label": "A1",
+            "exitCode": 0
+          },
+          {
+            "label": "B1",
+            "exitCode": 0
+          },
+          {
+            "label": "B2",
+            "exitCode": 0
+          },
+          {
+            "label": "A2",
+            "exitCode": 0
+          }
+        ],
+        "passed": true
+      },
+      "batches": {
+        "A1": {
+          "author": "a",
+          "date": "2026-10-30",
+          "browser": "156.0.8078.49",
+          "scope": "Independent source Chrome, event to second rAF, synthetic5000, no recording/profiler; not installed or physical latency.",
+          "samples": [
+            {
+              "name": "select-text",
+              "start": 10210,
+              "ms": 42
+            },
+            {
+              "name": "select-rect",
+              "start": 10533.5,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 11131.299999952316,
+              "ms": 40.800000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 11511,
+              "ms": 141.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 12452.5,
+              "ms": 49.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 12783.899999976158,
+              "ms": 40.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 13374.199999928474,
+              "ms": 40.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 13761.299999952316,
+              "ms": 141.80000007152557
+            },
+            {
+              "name": "select-text",
+              "start": 14635,
+              "ms": 41.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 14967.5,
+              "ms": 40.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 15569.600000023842,
+              "ms": 39.39999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 15993.5,
+              "ms": 147.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 16892,
+              "ms": 38.699999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 17224.799999952316,
+              "ms": 38
+            },
+            {
+              "name": "colour-confirm",
+              "start": 17817.199999928474,
+              "ms": 37
+            },
+            {
+              "name": "drag-confirm",
+              "start": 18185,
+              "ms": 136.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 19059.199999928474,
+              "ms": 49.10000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 19382.899999976158,
+              "ms": 38.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 19967,
+              "ms": 36.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 20335.399999976158,
+              "ms": 134.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 21194,
+              "ms": 40.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 21516.799999952316,
+              "ms": 38.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 22108.299999952316,
+              "ms": 38.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 22485.100000023842,
+              "ms": 132.09999990463257
+            },
+            {
+              "name": "select-text",
+              "start": 23358.699999928474,
+              "ms": 43
+            },
+            {
+              "name": "select-rect",
+              "start": 23675.199999928474,
+              "ms": 38.200000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 24256,
+              "ms": 37.799999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 24635.299999952316,
+              "ms": 132
+            },
+            {
+              "name": "select-text",
+              "start": 25500.600000023842,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 25833.299999952316,
+              "ms": 37.800000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 26415.199999928474,
+              "ms": 37.800000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 26818.799999952316,
+              "ms": 141.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 27691.799999952316,
+              "ms": 38
+            },
+            {
+              "name": "select-rect",
+              "start": 28016,
+              "ms": 35.699999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 28596.899999976158,
+              "ms": 37
+            },
+            {
+              "name": "drag-confirm",
+              "start": 28976.5,
+              "ms": 137.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 29851.199999928474,
+              "ms": 54.10000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 30199.899999976158,
+              "ms": 39.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 30790.199999928474,
+              "ms": 38
+            },
+            {
+              "name": "drag-confirm",
+              "start": 31168.600000023842,
+              "ms": 135.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 32034,
+              "ms": 37.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 32358,
+              "ms": 36.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 32952.39999997616,
+              "ms": 37.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 33335,
+              "ms": 139.69999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 34225.299999952316,
+              "ms": 43.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 34557.89999997616,
+              "ms": 41.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 35150.60000002384,
+              "ms": 40
+            },
+            {
+              "name": "drag-confirm",
+              "start": 35526.199999928474,
+              "ms": 131
+            },
+            {
+              "name": "select-text",
+              "start": 36375.299999952316,
+              "ms": 37.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 36708.10000002384,
+              "ms": 38.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 37297.299999952316,
+              "ms": 39.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 37694.799999952316,
+              "ms": 146.5
+            },
+            {
+              "name": "select-text",
+              "start": 38575.299999952316,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 38891.10000002384,
+              "ms": 38.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 39471.89999997616,
+              "ms": 36.700000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 39835.199999928474,
+              "ms": 136
+            },
+            {
+              "name": "select-text",
+              "start": 40692,
+              "ms": 49.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 41025.799999952316,
+              "ms": 38.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 41608.799999952316,
+              "ms": 39.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 41984.799999952316,
+              "ms": 138.5
+            },
+            {
+              "name": "select-text",
+              "start": 42866.299999952316,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 43190.799999952316,
+              "ms": 37.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 43772,
+              "ms": 37
+            },
+            {
+              "name": "drag-confirm",
+              "start": 44151.10000002384,
+              "ms": 131.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 45033.89999997616,
+              "ms": 44.10000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 45357.799999952316,
+              "ms": 37.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 45951.699999928474,
+              "ms": 40.200000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 46326.39999997616,
+              "ms": 132.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 47191.799999952316,
+              "ms": 36.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 47507.89999997616,
+              "ms": 36.200000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 48099.699999928474,
+              "ms": 36.700000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 48477.199999928474,
+              "ms": 137.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 49342.199999928474,
+              "ms": 37.800000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 49666.299999952316,
+              "ms": 62.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 50280.10000002384,
+              "ms": 39.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 50651.199999928474,
+              "ms": 138.70000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 51516.89999997616,
+              "ms": 49.299999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 51857.199999928474,
+              "ms": 37.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 52451.10000002384,
+              "ms": 36.799999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 52818,
+              "ms": 139.39999997615814
+            }
+          ],
+          "longTasks": [
+            {
+              "start": 4831.299999952316,
+              "ms": 129
+            },
+            {
+              "start": 5312.100000023842,
+              "ms": 124
+            },
+            {
+              "start": 7081.600000023842,
+              "ms": 126
+            },
+            {
+              "start": 7549.899999976158,
+              "ms": 104
+            },
+            {
+              "start": 9281.100000023842,
+              "ms": 143
+            },
+            {
+              "start": 9775.100000023842,
+              "ms": 123
+            },
+            {
+              "start": 11510.799999952316,
+              "ms": 121
+            },
+            {
+              "start": 11995.5,
+              "ms": 142
+            },
+            {
+              "start": 13761.199999928474,
+              "ms": 120
+            },
+            {
+              "start": 14219.5,
+              "ms": 108
+            },
+            {
+              "start": 15993.299999952316,
+              "ms": 126
+            },
+            {
+              "start": 16484.899999976158,
+              "ms": 105
+            },
+            {
+              "start": 18184.899999976158,
+              "ms": 117
+            },
+            {
+              "start": 18650.899999976158,
+              "ms": 109
+            },
+            {
+              "start": 20335.299999952316,
+              "ms": 115
+            },
+            {
+              "start": 20795.199999928474,
+              "ms": 98
+            },
+            {
+              "start": 22484.899999976158,
+              "ms": 113
+            },
+            {
+              "start": 22947.699999928474,
+              "ms": 109
+            },
+            {
+              "start": 24635.100000023842,
+              "ms": 112
+            },
+            {
+              "start": 25095.199999928474,
+              "ms": 107
+            },
+            {
+              "start": 26818.600000023842,
+              "ms": 121
+            },
+            {
+              "start": 27280.699999928474,
+              "ms": 103
+            },
+            {
+              "start": 28976.399999976158,
+              "ms": 118
+            },
+            {
+              "start": 29444.699999928474,
+              "ms": 105
+            },
+            {
+              "start": 31168.5,
+              "ms": 116
+            },
+            {
+              "start": 31623.199999928474,
+              "ms": 105
+            },
+            {
+              "start": 33334.799999952316,
+              "ms": 119
+            },
+            {
+              "start": 33814.60000002384,
+              "ms": 107
+            },
+            {
+              "start": 35526.199999928474,
+              "ms": 112
+            },
+            {
+              "start": 35976.10000002384,
+              "ms": 106
+            },
+            {
+              "start": 37694.699999928474,
+              "ms": 125
+            },
+            {
+              "start": 38174,
+              "ms": 101
+            },
+            {
+              "start": 39835.10000002384,
+              "ms": 116
+            },
+            {
+              "start": 40291.60000002384,
+              "ms": 100
+            },
+            {
+              "start": 41984.699999928474,
+              "ms": 118
+            },
+            {
+              "start": 42442.89999997616,
+              "ms": 118
+            },
+            {
+              "start": 44151,
+              "ms": 113
+            },
+            {
+              "start": 44622.39999997616,
+              "ms": 109
+            },
+            {
+              "start": 46326.299999952316,
+              "ms": 113
+            },
+            {
+              "start": 46784.60000002384,
+              "ms": 101
+            },
+            {
+              "start": 48477.10000002384,
+              "ms": 117
+            },
+            {
+              "start": 48941.39999997616,
+              "ms": 104
+            },
+            {
+              "start": 50651.10000002384,
+              "ms": 119
+            },
+            {
+              "start": 51109.699999928474,
+              "ms": 101
+            },
+            {
+              "start": 52818,
+              "ms": 118
+            },
+            {
+              "start": 53290.60000002384,
+              "ms": 101
+            }
+          ],
+          "select-text": {
+            "n": 20,
+            "p50": 40.799999952316284,
+            "p95": 49.89999997615814,
+            "max": 54.10000002384186,
+            "longTasks": 0
+          },
+          "select-rect": {
+            "n": 20,
+            "p50": 38.299999952316284,
+            "p95": 41.60000002384186,
+            "max": 62.10000002384186,
+            "longTasks": 0
+          },
+          "colour-confirm": {
+            "n": 20,
+            "p50": 37.800000071525574,
+            "p95": 40.5,
+            "max": 40.800000071525574,
+            "longTasks": 0
+          },
+          "drag-confirm": {
+            "n": 20,
+            "p50": 137.20000004768372,
+            "p95": 146.5,
+            "max": 147.60000002384186,
+            "longTasks": 20
+          },
+          "passed": true,
+          "errors": [],
+          "remote": []
+        },
+        "B1": {
+          "author": "a",
+          "date": "2026-10-30",
+          "browser": "156.0.8078.49",
+          "scope": "Independent source Chrome, event to second rAF, synthetic5000, no recording/profiler; not installed or physical latency.",
+          "samples": [
+            {
+              "name": "select-text",
+              "start": 9721.700000047684,
+              "ms": 50
+            },
+            {
+              "name": "select-rect",
+              "start": 10054.100000023842,
+              "ms": 40.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 10646.400000095367,
+              "ms": 39.199999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 11031.900000095367,
+              "ms": 152.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 11938.800000071526,
+              "ms": 54
+            },
+            {
+              "name": "select-rect",
+              "start": 12279.300000071526,
+              "ms": 42.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 12875.900000095367,
+              "ms": 37.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 13256.300000071526,
+              "ms": 138.19999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 14123.300000071526,
+              "ms": 52.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 14462.200000047684,
+              "ms": 40.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 15060.200000047684,
+              "ms": 42.200000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 15448.600000023842,
+              "ms": 144.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 16314.300000071526,
+              "ms": 61.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 16662.5,
+              "ms": 41
+            },
+            {
+              "name": "colour-confirm",
+              "start": 17262.700000047684,
+              "ms": 41.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 17639.600000023842,
+              "ms": 158.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 18546.5,
+              "ms": 63.5
+            },
+            {
+              "name": "select-rect",
+              "start": 18886.800000071526,
+              "ms": 40.299999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 19481.5,
+              "ms": 46.300000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 19872.400000095367,
+              "ms": 146.19999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 20771.200000047684,
+              "ms": 47.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 21111.700000047684,
+              "ms": 41
+            },
+            {
+              "name": "colour-confirm",
+              "start": 21703.800000071526,
+              "ms": 38.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 22081,
+              "ms": 133.90000009536743
+            },
+            {
+              "name": "select-text",
+              "start": 22971.200000047684,
+              "ms": 54.200000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 23311.300000071526,
+              "ms": 39.199999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 23894,
+              "ms": 37.40000009536743
+            },
+            {
+              "name": "drag-confirm",
+              "start": 24271.900000095367,
+              "ms": 131.5
+            },
+            {
+              "name": "select-text",
+              "start": 25120.800000071526,
+              "ms": 45.299999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 25454,
+              "ms": 36.300000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 26043.200000047684,
+              "ms": 37.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 26431.900000095367,
+              "ms": 153.59999990463257
+            },
+            {
+              "name": "select-text",
+              "start": 27311.800000071526,
+              "ms": 45
+            },
+            {
+              "name": "select-rect",
+              "start": 27645.5,
+              "ms": 39.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 28244.700000047684,
+              "ms": 36.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 28596.900000095367,
+              "ms": 131.59999990463257
+            },
+            {
+              "name": "select-text",
+              "start": 29454.200000047684,
+              "ms": 55.200000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 29803.200000047684,
+              "ms": 38.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 30390,
+              "ms": 39.90000009536743
+            },
+            {
+              "name": "drag-confirm",
+              "start": 30772.300000071526,
+              "ms": 140
+            },
+            {
+              "name": "select-text",
+              "start": 31654.200000047684,
+              "ms": 45.700000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 31978.100000023842,
+              "ms": 36
+            },
+            {
+              "name": "colour-confirm",
+              "start": 32560,
+              "ms": 36.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 32938.700000047684,
+              "ms": 134.70000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 33805,
+              "ms": 49.40000009536743
+            },
+            {
+              "name": "select-rect",
+              "start": 34144.700000047684,
+              "ms": 36.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 34736.200000047684,
+              "ms": 38.200000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 35113.700000047684,
+              "ms": 134.5
+            },
+            {
+              "name": "select-text",
+              "start": 35978.700000047684,
+              "ms": 44.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 36311.5,
+              "ms": 36.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 36899.60000002384,
+              "ms": 38.300000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 37281.700000047684,
+              "ms": 141.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 38154,
+              "ms": 43.700000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 38478,
+              "ms": 36.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 39061.90000009537,
+              "ms": 38.09999990463257
+            },
+            {
+              "name": "drag-confirm",
+              "start": 39430.300000071526,
+              "ms": 134.5
+            },
+            {
+              "name": "select-text",
+              "start": 40304,
+              "ms": 59.10000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 40653.40000009537,
+              "ms": 40.299999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 41249.60000002384,
+              "ms": 37.200000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 41613.200000047684,
+              "ms": 131.70000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 42461.90000009537,
+              "ms": 45.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 42786.800000071526,
+              "ms": 38.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 43380.200000047684,
+              "ms": 39
+            },
+            {
+              "name": "drag-confirm",
+              "start": 43755.5,
+              "ms": 131.70000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 44628.300000071526,
+              "ms": 48.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 44962.10000002384,
+              "ms": 37.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 45553.90000009537,
+              "ms": 36.699999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 45922.90000009537,
+              "ms": 128.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 46778.60000002384,
+              "ms": 47.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 47111.700000047684,
+              "ms": 37.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 47705.40000009537,
+              "ms": 37.39999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 48089,
+              "ms": 142.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 48972.10000002384,
+              "ms": 44.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 49294.40000009537,
+              "ms": 36.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 49887.5,
+              "ms": 37.700000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 50255.10000002384,
+              "ms": 134
+            },
+            {
+              "name": "select-text",
+              "start": 51121,
+              "ms": 59.40000009536743
+            },
+            {
+              "name": "select-rect",
+              "start": 51461.300000071526,
+              "ms": 37.299999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 52053.800000071526,
+              "ms": 36.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 52422.10000002384,
+              "ms": 133.30000007152557
+            }
+          ],
+          "longTasks": [
+            {
+              "start": 2964.4000000953674,
+              "ms": 59
+            },
+            {
+              "start": 4318.200000047684,
+              "ms": 139
+            },
+            {
+              "start": 4752.5,
+              "ms": 51
+            },
+            {
+              "start": 4818.5,
+              "ms": 109
+            },
+            {
+              "start": 6549.200000047684,
+              "ms": 124
+            },
+            {
+              "start": 7038.600000023842,
+              "ms": 156
+            },
+            {
+              "start": 7505.600000023842,
+              "ms": 51
+            },
+            {
+              "start": 8840,
+              "ms": 124
+            },
+            {
+              "start": 9327,
+              "ms": 100
+            },
+            {
+              "start": 11031.800000071526,
+              "ms": 132
+            },
+            {
+              "start": 11469.700000047684,
+              "ms": 50
+            },
+            {
+              "start": 11533.600000023842,
+              "ms": 106
+            },
+            {
+              "start": 13255.800000071526,
+              "ms": 118
+            },
+            {
+              "start": 13711.300000071526,
+              "ms": 102
+            },
+            {
+              "start": 15448.5,
+              "ms": 124
+            },
+            {
+              "start": 15918.800000071526,
+              "ms": 102
+            },
+            {
+              "start": 16312.900000095367,
+              "ms": 51
+            },
+            {
+              "start": 17639.5,
+              "ms": 137
+            },
+            {
+              "start": 18136.100000023842,
+              "ms": 108
+            },
+            {
+              "start": 18544.900000095367,
+              "ms": 55
+            },
+            {
+              "start": 19872.200000047684,
+              "ms": 126
+            },
+            {
+              "start": 20357.400000095367,
+              "ms": 115
+            },
+            {
+              "start": 22080.900000095367,
+              "ms": 114
+            },
+            {
+              "start": 22485.700000047684,
+              "ms": 57
+            },
+            {
+              "start": 22556.5,
+              "ms": 112
+            },
+            {
+              "start": 24271.800000071526,
+              "ms": 113
+            },
+            {
+              "start": 24735,
+              "ms": 98
+            },
+            {
+              "start": 26431.800000071526,
+              "ms": 131
+            },
+            {
+              "start": 26919.800000071526,
+              "ms": 99
+            },
+            {
+              "start": 28596.800000071526,
+              "ms": 113
+            },
+            {
+              "start": 29052.5,
+              "ms": 98
+            },
+            {
+              "start": 30772.100000023842,
+              "ms": 120
+            },
+            {
+              "start": 31253.600000023842,
+              "ms": 100
+            },
+            {
+              "start": 32938.60000002384,
+              "ms": 115
+            },
+            {
+              "start": 33405.5,
+              "ms": 98
+            },
+            {
+              "start": 35113.60000002384,
+              "ms": 114
+            },
+            {
+              "start": 35570.200000047684,
+              "ms": 100
+            },
+            {
+              "start": 37281.5,
+              "ms": 121
+            },
+            {
+              "start": 37757.40000009537,
+              "ms": 95
+            },
+            {
+              "start": 39430.200000047684,
+              "ms": 115
+            },
+            {
+              "start": 39902.90000009537,
+              "ms": 99
+            },
+            {
+              "start": 40302.800000071526,
+              "ms": 50
+            },
+            {
+              "start": 41613.10000002384,
+              "ms": 113
+            },
+            {
+              "start": 42072.300000071526,
+              "ms": 94
+            },
+            {
+              "start": 43755.40000009537,
+              "ms": 113
+            },
+            {
+              "start": 44167.90000009537,
+              "ms": 50
+            },
+            {
+              "start": 44231.60000002384,
+              "ms": 102
+            },
+            {
+              "start": 45922.700000047684,
+              "ms": 110
+            },
+            {
+              "start": 46378.300000071526,
+              "ms": 101
+            },
+            {
+              "start": 48088.800000071526,
+              "ms": 123
+            },
+            {
+              "start": 48564.700000047684,
+              "ms": 95
+            },
+            {
+              "start": 50255.10000002384,
+              "ms": 114
+            },
+            {
+              "start": 50713.90000009537,
+              "ms": 99
+            },
+            {
+              "start": 51119.90000009537,
+              "ms": 50
+            },
+            {
+              "start": 52422,
+              "ms": 114
+            },
+            {
+              "start": 52881.90000009537,
+              "ms": 95
+            }
+          ],
+          "select-text": {
+            "n": 20,
+            "p50": 48.89999997615814,
+            "p95": 61.799999952316284,
+            "max": 63.5,
+            "longTasks": 4
+          },
+          "select-rect": {
+            "n": 20,
+            "p50": 38.10000002384186,
+            "p95": 41,
+            "max": 42.39999997615814,
+            "longTasks": 0
+          },
+          "colour-confirm": {
+            "n": 20,
+            "p50": 37.89999997615814,
+            "p95": 42.200000047683716,
+            "max": 46.300000071525574,
+            "longTasks": 0
+          },
+          "drag-confirm": {
+            "n": 20,
+            "p50": 134.5,
+            "p95": 153.59999990463257,
+            "max": 158.39999997615814,
+            "longTasks": 20
+          },
+          "passed": true,
+          "errors": [],
+          "remote": []
+        },
+        "B2": {
+          "author": "a",
+          "date": "2026-10-30",
+          "browser": "156.0.8078.49",
+          "scope": "Independent source Chrome, event to second rAF, synthetic5000, no recording/profiler; not installed or physical latency.",
+          "samples": [
+            {
+              "name": "select-text",
+              "start": 9891.899999976158,
+              "ms": 44.90000009536743
+            },
+            {
+              "name": "select-rect",
+              "start": 10225.600000023842,
+              "ms": 36.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 10818.399999976158,
+              "ms": 37.40000009536743
+            },
+            {
+              "name": "drag-confirm",
+              "start": 11203.5,
+              "ms": 149.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 12111.399999976158,
+              "ms": 51.700000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 12451.399999976158,
+              "ms": 38
+            },
+            {
+              "name": "colour-confirm",
+              "start": 13039.600000023842,
+              "ms": 38
+            },
+            {
+              "name": "drag-confirm",
+              "start": 13429.700000047684,
+              "ms": 158.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 14394.5,
+              "ms": 55.300000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 14751,
+              "ms": 48
+            },
+            {
+              "name": "colour-confirm",
+              "start": 15356.899999976158,
+              "ms": 39.300000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 15745.300000071526,
+              "ms": 149.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 16617.399999976158,
+              "ms": 42.5
+            },
+            {
+              "name": "select-rect",
+              "start": 16950.100000023842,
+              "ms": 35.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 17531.100000023842,
+              "ms": 35.39999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 17894.399999976158,
+              "ms": 131
+            },
+            {
+              "name": "select-text",
+              "start": 18769.600000023842,
+              "ms": 60.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 19108.5,
+              "ms": 40.800000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 19701.200000047684,
+              "ms": 38.799999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 20069.300000071526,
+              "ms": 136.19999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 20958.800000071526,
+              "ms": 47.199999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 21293.300000071526,
+              "ms": 41.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 21886.899999976158,
+              "ms": 37.90000009536743
+            },
+            {
+              "name": "drag-confirm",
+              "start": 22269.5,
+              "ms": 135.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 23142,
+              "ms": 50
+            },
+            {
+              "name": "select-rect",
+              "start": 23475,
+              "ms": 37.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 24068.899999976158,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 24443.700000047684,
+              "ms": 131.5
+            },
+            {
+              "name": "select-text",
+              "start": 25309,
+              "ms": 42.700000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 25642,
+              "ms": 37
+            },
+            {
+              "name": "colour-confirm",
+              "start": 26220.600000023842,
+              "ms": 39.299999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 26603.600000023842,
+              "ms": 149.79999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 27492.200000047684,
+              "ms": 44.299999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 27826.399999976158,
+              "ms": 43.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 28428.100000023842,
+              "ms": 36.700000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 28793.700000047684,
+              "ms": 136.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 29667.800000071526,
+              "ms": 59.199999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 30016.600000023842,
+              "ms": 38.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 30607.899999976158,
+              "ms": 38.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 30978.100000023842,
+              "ms": 141.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 31852.600000023842,
+              "ms": 45.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 32174.899999976158,
+              "ms": 36.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 32769.89999997616,
+              "ms": 36.40000009536743
+            },
+            {
+              "name": "drag-confirm",
+              "start": 33143.800000071526,
+              "ms": 132.69999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 34018.5,
+              "ms": 49.10000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 34358.700000047684,
+              "ms": 38.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 34950.800000071526,
+              "ms": 37.39999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 35327.300000071526,
+              "ms": 130.79999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 36191.39999997616,
+              "ms": 43.5
+            },
+            {
+              "name": "select-rect",
+              "start": 36525.200000047684,
+              "ms": 36.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 37114.800000071526,
+              "ms": 37.299999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 37495.10000002384,
+              "ms": 140.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 38358.89999997616,
+              "ms": 44.700000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 38683.5,
+              "ms": 36.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 39278.700000047684,
+              "ms": 36.699999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 39643.39999997616,
+              "ms": 136.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 40516.89999997616,
+              "ms": 58.200000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 40867,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 41456.800000071526,
+              "ms": 35.59999990463257
+            },
+            {
+              "name": "drag-confirm",
+              "start": 41827.300000071526,
+              "ms": 135.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 42701.10000002384,
+              "ms": 46
+            },
+            {
+              "name": "select-rect",
+              "start": 43024.5,
+              "ms": 38.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 43623,
+              "ms": 37.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 43994.700000047684,
+              "ms": 131.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 44858.39999997616,
+              "ms": 49.800000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 45199.800000071526,
+              "ms": 37.59999990463257
+            },
+            {
+              "name": "colour-confirm",
+              "start": 45778,
+              "ms": 36.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 46160.5,
+              "ms": 133.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 47016.5,
+              "ms": 45.200000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 47349.800000071526,
+              "ms": 37.199999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 47946.700000047684,
+              "ms": 37
+            },
+            {
+              "name": "drag-confirm",
+              "start": 48327.10000002384,
+              "ms": 141.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 49200.300000071526,
+              "ms": 44
+            },
+            {
+              "name": "select-rect",
+              "start": 49533,
+              "ms": 35.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 50118.300000071526,
+              "ms": 40.199999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 50493.800000071526,
+              "ms": 145.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 51375.300000071526,
+              "ms": 60.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 51716.300000071526,
+              "ms": 40
+            },
+            {
+              "name": "colour-confirm",
+              "start": 52301,
+              "ms": 36.800000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 52669.300000071526,
+              "ms": 133.69999992847443
+            }
+          ],
+          "longTasks": [
+            {
+              "start": 3294.8000000715256,
+              "ms": 59
+            },
+            {
+              "start": 4629.100000023842,
+              "ms": 137
+            },
+            {
+              "start": 5074.899999976158,
+              "ms": 50
+            },
+            {
+              "start": 5138.800000071526,
+              "ms": 104
+            },
+            {
+              "start": 6812.700000047684,
+              "ms": 122
+            },
+            {
+              "start": 7285.5,
+              "ms": 112
+            },
+            {
+              "start": 7709.5,
+              "ms": 52
+            },
+            {
+              "start": 9036,
+              "ms": 117
+            },
+            {
+              "start": 9504.399999976158,
+              "ms": 97
+            },
+            {
+              "start": 11203.5,
+              "ms": 129
+            },
+            {
+              "start": 11632.399999976158,
+              "ms": 52
+            },
+            {
+              "start": 11698.899999976158,
+              "ms": 105
+            },
+            {
+              "start": 13429.200000047684,
+              "ms": 137
+            },
+            {
+              "start": 13916.600000023842,
+              "ms": 150
+            },
+            {
+              "start": 15745.200000047684,
+              "ms": 129
+            },
+            {
+              "start": 16225.200000047684,
+              "ms": 99
+            },
+            {
+              "start": 17894.200000047684,
+              "ms": 112
+            },
+            {
+              "start": 18359.600000023842,
+              "ms": 106
+            },
+            {
+              "start": 18768.399999976158,
+              "ms": 52
+            },
+            {
+              "start": 20069.200000047684,
+              "ms": 116
+            },
+            {
+              "start": 20555,
+              "ms": 99
+            },
+            {
+              "start": 22269.399999976158,
+              "ms": 115
+            },
+            {
+              "start": 22673.399999976158,
+              "ms": 51
+            },
+            {
+              "start": 22737.899999976158,
+              "ms": 105
+            },
+            {
+              "start": 24443.600000023842,
+              "ms": 112
+            },
+            {
+              "start": 24906.700000047684,
+              "ms": 103
+            },
+            {
+              "start": 26603.600000023842,
+              "ms": 127
+            },
+            {
+              "start": 27084.300000071526,
+              "ms": 102
+            },
+            {
+              "start": 28793.600000023842,
+              "ms": 117
+            },
+            {
+              "start": 29253.800000071526,
+              "ms": 106
+            },
+            {
+              "start": 30977.899999976158,
+              "ms": 121
+            },
+            {
+              "start": 31446.100000023842,
+              "ms": 99
+            },
+            {
+              "start": 33143.700000047684,
+              "ms": 113
+            },
+            {
+              "start": 33618.200000047684,
+              "ms": 101
+            },
+            {
+              "start": 35327.200000047684,
+              "ms": 112
+            },
+            {
+              "start": 35790.800000071526,
+              "ms": 100
+            },
+            {
+              "start": 37494.89999997616,
+              "ms": 119
+            },
+            {
+              "start": 37953,
+              "ms": 95
+            },
+            {
+              "start": 39643.200000047684,
+              "ms": 116
+            },
+            {
+              "start": 40117,
+              "ms": 96
+            },
+            {
+              "start": 41827.200000047684,
+              "ms": 116
+            },
+            {
+              "start": 42298.200000047684,
+              "ms": 97
+            },
+            {
+              "start": 43994.60000002384,
+              "ms": 111
+            },
+            {
+              "start": 44398.300000071526,
+              "ms": 50
+            },
+            {
+              "start": 44461.89999997616,
+              "ms": 101
+            },
+            {
+              "start": 46160.39999997616,
+              "ms": 113
+            },
+            {
+              "start": 46616.800000071526,
+              "ms": 102
+            },
+            {
+              "start": 48326.89999997616,
+              "ms": 121
+            },
+            {
+              "start": 48803.5,
+              "ms": 95
+            },
+            {
+              "start": 50493.700000047684,
+              "ms": 125
+            },
+            {
+              "start": 50977.700000047684,
+              "ms": 100
+            },
+            {
+              "start": 51374.39999997616,
+              "ms": 51
+            },
+            {
+              "start": 52669.200000047684,
+              "ms": 113
+            },
+            {
+              "start": 53126.200000047684,
+              "ms": 95
+            }
+          ],
+          "select-text": {
+            "n": 20,
+            "p50": 46,
+            "p95": 60.39999997615814,
+            "max": 60.799999952316284,
+            "longTasks": 2
+          },
+          "select-rect": {
+            "n": 20,
+            "p50": 37.59999990463257,
+            "p95": 43.60000002384186,
+            "max": 48,
+            "longTasks": 0
+          },
+          "colour-confirm": {
+            "n": 20,
+            "p50": 37.39999997615814,
+            "p95": 39.300000071525574,
+            "max": 40.199999928474426,
+            "longTasks": 0
+          },
+          "drag-confirm": {
+            "n": 20,
+            "p50": 136.10000002384186,
+            "p95": 149.89999997615814,
+            "max": 158.29999995231628,
+            "longTasks": 20
+          },
+          "passed": true,
+          "errors": [],
+          "remote": []
+        },
+        "A2": {
+          "author": "a",
+          "date": "2026-10-30",
+          "browser": "156.0.8078.49",
+          "scope": "Independent source Chrome, event to second rAF, synthetic5000, no recording/profiler; not installed or physical latency.",
+          "samples": [
+            {
+              "name": "select-text",
+              "start": 10127.5,
+              "ms": 67.79999995231628
+            },
+            {
+              "name": "select-rect",
+              "start": 10492.299999952316,
+              "ms": 44.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 11083.199999928474,
+              "ms": 40.39999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 11460.099999904633,
+              "ms": 143.40000009536743
+            },
+            {
+              "name": "select-text",
+              "start": 12342,
+              "ms": 39.199999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 12674.199999928474,
+              "ms": 37.800000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 13267.099999904633,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 13651.699999928474,
+              "ms": 137.70000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 14542.099999904633,
+              "ms": 47.200000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 14865.5,
+              "ms": 39.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 15464.5,
+              "ms": 38.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 15842.699999928474,
+              "ms": 134
+            },
+            {
+              "name": "select-text",
+              "start": 16682.699999928474,
+              "ms": 37.700000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 16999,
+              "ms": 37.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 17595.199999928474,
+              "ms": 39.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 17985.899999976158,
+              "ms": 147.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 18866.099999904633,
+              "ms": 38.40000009536743
+            },
+            {
+              "name": "select-rect",
+              "start": 19182.199999928474,
+              "ms": 37.200000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 19763.399999976158,
+              "ms": 37
+            },
+            {
+              "name": "drag-confirm",
+              "start": 20135.699999928474,
+              "ms": 136.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 21008.699999928474,
+              "ms": 55
+            },
+            {
+              "name": "select-rect",
+              "start": 21348.899999976158,
+              "ms": 40.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 21947.399999976158,
+              "ms": 42.699999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 22326.199999928474,
+              "ms": 141.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 23202.299999952316,
+              "ms": 45.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 23541.699999928474,
+              "ms": 43
+            },
+            {
+              "name": "colour-confirm",
+              "start": 24137.399999976158,
+              "ms": 47.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 24539.199999928474,
+              "ms": 179.80000007152557
+            },
+            {
+              "name": "select-text",
+              "start": 25510.599999904633,
+              "ms": 47.700000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 25849.399999976158,
+              "ms": 47.699999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 26455.699999928474,
+              "ms": 43.700000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 26834.299999952316,
+              "ms": 135.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 27698.5,
+              "ms": 38.199999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 28015.199999928474,
+              "ms": 40.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 28612.299999952316,
+              "ms": 37
+            },
+            {
+              "name": "drag-confirm",
+              "start": 28993.399999976158,
+              "ms": 143
+            },
+            {
+              "name": "select-text",
+              "start": 29884,
+              "ms": 42.299999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 30216,
+              "ms": 38.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 30812.299999952316,
+              "ms": 41.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 31201.299999952316,
+              "ms": 140
+            },
+            {
+              "name": "select-text",
+              "start": 32057.699999928474,
+              "ms": 60.300000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 32398.899999976158,
+              "ms": 40.199999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 32993.09999990463,
+              "ms": 36.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 33367.299999952316,
+              "ms": 138.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 34223.59999990463,
+              "ms": 42.10000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 34556.59999990463,
+              "ms": 38.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 35148.5,
+              "ms": 37.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 35525.199999928474,
+              "ms": 135.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 36433,
+              "ms": 45.59999990463257
+            },
+            {
+              "name": "select-rect",
+              "start": 36757,
+              "ms": 39
+            },
+            {
+              "name": "colour-confirm",
+              "start": 37353.699999928474,
+              "ms": 38.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 37734,
+              "ms": 133.69999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 38590.39999997616,
+              "ms": 37.299999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 38915.199999928474,
+              "ms": 36.300000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 39503.09999990463,
+              "ms": 38.300000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 39885.39999997616,
+              "ms": 145.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 40757.299999952316,
+              "ms": 39
+            },
+            {
+              "name": "select-rect",
+              "start": 41090.199999928474,
+              "ms": 36.800000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 41681.699999928474,
+              "ms": 38
+            },
+            {
+              "name": "drag-confirm",
+              "start": 42050.89999997616,
+              "ms": 133.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 42907.59999990463,
+              "ms": 49.700000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 43231.39999997616,
+              "ms": 38.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 43815.09999990463,
+              "ms": 39.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 44184.299999952316,
+              "ms": 142.5
+            },
+            {
+              "name": "select-text",
+              "start": 45057.699999928474,
+              "ms": 38.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 45381.799999952316,
+              "ms": 37.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 45967.199999928474,
+              "ms": 39.200000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 46350.699999928474,
+              "ms": 134.5
+            },
+            {
+              "name": "select-text",
+              "start": 47241,
+              "ms": 43.199999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 47564.699999928474,
+              "ms": 38.300000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 48160.199999928474,
+              "ms": 40.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 48542.699999928474,
+              "ms": 136.5
+            },
+            {
+              "name": "select-text",
+              "start": 49415.5,
+              "ms": 38.699999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 49748.59999990463,
+              "ms": 38.40000009536743
+            },
+            {
+              "name": "colour-confirm",
+              "start": 50342.299999952316,
+              "ms": 39
+            },
+            {
+              "name": "drag-confirm",
+              "start": 50726.5,
+              "ms": 137.19999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 51599.699999928474,
+              "ms": 39.800000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 51931.59999990463,
+              "ms": 37.90000009536743
+            },
+            {
+              "name": "colour-confirm",
+              "start": 52522.39999997616,
+              "ms": 37.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 52900.199999928474,
+              "ms": 137.30000007152557
+            }
+          ],
+          "longTasks": [
+            {
+              "start": 4794.5,
+              "ms": 123
+            },
+            {
+              "start": 5268,
+              "ms": 123
+            },
+            {
+              "start": 7029.799999952316,
+              "ms": 131
+            },
+            {
+              "start": 7521.5,
+              "ms": 113
+            },
+            {
+              "start": 9234.799999952316,
+              "ms": 116
+            },
+            {
+              "start": 9697.799999952316,
+              "ms": 112
+            },
+            {
+              "start": 10125.5,
+              "ms": 57
+            },
+            {
+              "start": 11460,
+              "ms": 124
+            },
+            {
+              "start": 11942.799999952316,
+              "ms": 103
+            },
+            {
+              "start": 13651.599999904633,
+              "ms": 119
+            },
+            {
+              "start": 14131.5,
+              "ms": 113
+            },
+            {
+              "start": 15842.699999928474,
+              "ms": 114
+            },
+            {
+              "start": 16291.199999928474,
+              "ms": 102
+            },
+            {
+              "start": 17985.799999952316,
+              "ms": 127
+            },
+            {
+              "start": 18459.699999928474,
+              "ms": 110
+            },
+            {
+              "start": 20135.599999904633,
+              "ms": 117
+            },
+            {
+              "start": 20591.299999952316,
+              "ms": 107
+            },
+            {
+              "start": 22326.099999904633,
+              "ms": 120
+            },
+            {
+              "start": 22799.699999928474,
+              "ms": 102
+            },
+            {
+              "start": 24538.699999928474,
+              "ms": 152
+            },
+            {
+              "start": 25007.299999952316,
+              "ms": 52
+            },
+            {
+              "start": 25074.5,
+              "ms": 130
+            },
+            {
+              "start": 26834.199999928474,
+              "ms": 117
+            },
+            {
+              "start": 27294.299999952316,
+              "ms": 106
+            },
+            {
+              "start": 28993.299999952316,
+              "ms": 123
+            },
+            {
+              "start": 29467.699999928474,
+              "ms": 109
+            },
+            {
+              "start": 31201.199999928474,
+              "ms": 120
+            },
+            {
+              "start": 31658.599999904633,
+              "ms": 102
+            },
+            {
+              "start": 33367.09999990463,
+              "ms": 118
+            },
+            {
+              "start": 33830,
+              "ms": 100
+            },
+            {
+              "start": 35525.09999990463,
+              "ms": 116
+            },
+            {
+              "start": 36007.699999928474,
+              "ms": 114
+            },
+            {
+              "start": 37733.89999997616,
+              "ms": 113
+            },
+            {
+              "start": 38185.39999997616,
+              "ms": 105
+            },
+            {
+              "start": 39885.299999952316,
+              "ms": 124
+            },
+            {
+              "start": 40357,
+              "ms": 103
+            },
+            {
+              "start": 42050.799999952316,
+              "ms": 114
+            },
+            {
+              "start": 42508.89999997616,
+              "ms": 100
+            },
+            {
+              "start": 44184.199999928474,
+              "ms": 122
+            },
+            {
+              "start": 44659,
+              "ms": 105
+            },
+            {
+              "start": 46350.5,
+              "ms": 116
+            },
+            {
+              "start": 46831.299999952316,
+              "ms": 103
+            },
+            {
+              "start": 48542.5,
+              "ms": 116
+            },
+            {
+              "start": 49008.39999997616,
+              "ms": 106
+            },
+            {
+              "start": 50726.5,
+              "ms": 117
+            },
+            {
+              "start": 51189.199999928474,
+              "ms": 103
+            },
+            {
+              "start": 52900.09999990463,
+              "ms": 119
+            },
+            {
+              "start": 53358.89999997616,
+              "ms": 101
+            }
+          ],
+          "select-text": {
+            "n": 20,
+            "p50": 42.10000002384186,
+            "p95": 60.300000071525574,
+            "max": 67.79999995231628,
+            "longTasks": 1
+          },
+          "select-rect": {
+            "n": 20,
+            "p50": 38.40000009536743,
+            "p95": 44.799999952316284,
+            "max": 47.699999928474426,
+            "longTasks": 0
+          },
+          "colour-confirm": {
+            "n": 20,
+            "p50": 38.5,
+            "p95": 43.700000047683716,
+            "max": 47.10000002384186,
+            "longTasks": 0
+          },
+          "drag-confirm": {
+            "n": 20,
+            "p50": 137.30000007152557,
+            "p95": 147.39999997615814,
+            "max": 179.80000007152557,
+            "longTasks": 20
+          },
+          "passed": true,
+          "errors": [],
+          "remote": []
+        }
+      }
+    },
+    {
+      "stage": "final source snapshot",
+      "protocol": {
+        "author": "a",
+        "date": "2026-10-30",
+        "baselineCommit": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+        "scope": "Serial source Chrome A1/B1/B2/A2, synthetic5000, 3 warmups +20 samples per operation, 250ms settle; event to second rAF, not installed or physical latency",
+        "htmlSha256": [
+          "e3541346223be2150d759076f07e59362a7c87e11830dec5af8497db687d3924",
+          "c7a613a42882264d66ab7e3924bea13ca56f973de1a3242c48276225b203d80f"
+        ],
+        "batches": [
+          {
+            "label": "A1",
+            "exitCode": 0
+          },
+          {
+            "label": "B1",
+            "exitCode": 0
+          },
+          {
+            "label": "B2",
+            "exitCode": 0
+          },
+          {
+            "label": "A2",
+            "exitCode": 0
+          }
+        ],
+        "passed": true
+      },
+      "batches": {
+        "A1": {
+          "author": "a",
+          "date": "2026-10-30",
+          "browser": "156.0.8078.49",
+          "scope": "Independent source Chrome, event to second rAF, synthetic5000, no recording/profiler; not installed or physical latency.",
+          "samples": [
+            {
+              "name": "select-text",
+              "start": 10075.699999928474,
+              "ms": 65
+            },
+            {
+              "name": "select-rect",
+              "start": 10436.299999952316,
+              "ms": 41.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 11031.799999952316,
+              "ms": 40.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 11405.399999976158,
+              "ms": 140.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 12269.199999928474,
+              "ms": 37.40000009536743
+            },
+            {
+              "name": "select-rect",
+              "start": 12586.299999952316,
+              "ms": 37.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 13183.299999952316,
+              "ms": 37.200000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 13562.199999928474,
+              "ms": 140.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 14520.699999928474,
+              "ms": 49.90000009536743
+            },
+            {
+              "name": "select-rect",
+              "start": 14860.799999952316,
+              "ms": 40.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 15458.399999976158,
+              "ms": 38.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 15837.399999976158,
+              "ms": 134.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 16693.899999976158,
+              "ms": 43.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 17027.399999976158,
+              "ms": 40.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 17622.199999928474,
+              "ms": 38.90000009536743
+            },
+            {
+              "name": "drag-confirm",
+              "start": 18005.699999928474,
+              "ms": 142.30000007152557
+            },
+            {
+              "name": "select-text",
+              "start": 18886.399999976158,
+              "ms": 40.5
+            },
+            {
+              "name": "select-rect",
+              "start": 19218.899999976158,
+              "ms": 38.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 19808.399999976158,
+              "ms": 36.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 20187.600000023842,
+              "ms": 139.69999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 21078.5,
+              "ms": 50.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 21419,
+              "ms": 39.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 22015.100000023842,
+              "ms": 37.699999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 22387.799999952316,
+              "ms": 133.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 23244,
+              "ms": 37.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 23568.299999952316,
+              "ms": 37.200000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 24152.899999976158,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 24529.399999976158,
+              "ms": 143.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 25428.100000023842,
+              "ms": 42.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 25751.799999952316,
+              "ms": 38.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 26336.799999952316,
+              "ms": 38.300000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 26712.399999976158,
+              "ms": 130.70000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 27561.199999928474,
+              "ms": 37.800000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 27885.899999976158,
+              "ms": 37.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 28478.600000023842,
+              "ms": 38.09999990463257
+            },
+            {
+              "name": "drag-confirm",
+              "start": 28864.5,
+              "ms": 151.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 29744.100000023842,
+              "ms": 55.5
+            },
+            {
+              "name": "select-rect",
+              "start": 30094.5,
+              "ms": 37.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 30688.600000023842,
+              "ms": 39.09999990463257
+            },
+            {
+              "name": "drag-confirm",
+              "start": 31062.199999928474,
+              "ms": 134.90000009536743
+            },
+            {
+              "name": "select-text",
+              "start": 31919.199999928474,
+              "ms": 51.90000009536743
+            },
+            {
+              "name": "select-rect",
+              "start": 32260.5,
+              "ms": 38.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 32855.89999997616,
+              "ms": 38.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 33237.60000002384,
+              "ms": 142.09999990463257
+            },
+            {
+              "name": "select-text",
+              "start": 34129,
+              "ms": 38.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 34460.299999952316,
+              "ms": 37.800000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 35056.299999952316,
+              "ms": 38.800000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 35437.5,
+              "ms": 133.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 36327.199999928474,
+              "ms": 43.700000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 36660.5,
+              "ms": 38.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 37250.60000002384,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 37628.89999997616,
+              "ms": 135.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 38502.39999997616,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 38835,
+              "ms": 39.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 39425.199999928474,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 39805.39999997616,
+              "ms": 141.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 40677.89999997616,
+              "ms": 37.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 41011,
+              "ms": 36.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 41604.699999928474,
+              "ms": 37.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 41971,
+              "ms": 144.69999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 42844.299999952316,
+              "ms": 50.800000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 43177,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 43758.299999952316,
+              "ms": 36.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 44120.199999928474,
+              "ms": 132.80000007152557
+            },
+            {
+              "name": "select-text",
+              "start": 44985.799999952316,
+              "ms": 39.300000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 45310.10000002384,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 45889.89999997616,
+              "ms": 36.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 46270.39999997616,
+              "ms": 131.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 47137.299999952316,
+              "ms": 43.300000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 47460.10000002384,
+              "ms": 38.09999990463257
+            },
+            {
+              "name": "colour-confirm",
+              "start": 48051.60000002384,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 48428.89999997616,
+              "ms": 135.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 49294.199999928474,
+              "ms": 40.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 49626.699999928474,
+              "ms": 39
+            },
+            {
+              "name": "colour-confirm",
+              "start": 50218.699999928474,
+              "ms": 38
+            },
+            {
+              "name": "drag-confirm",
+              "start": 50605.10000002384,
+              "ms": 139.09999990463257
+            },
+            {
+              "name": "select-text",
+              "start": 51487.199999928474,
+              "ms": 37.200000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 51819.799999952316,
+              "ms": 36.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 52411.5,
+              "ms": 38.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 52787.60000002384,
+              "ms": 149
+            }
+          ],
+          "longTasks": [
+            {
+              "start": 4726.399999976158,
+              "ms": 139
+            },
+            {
+              "start": 5227.299999952316,
+              "ms": 130
+            },
+            {
+              "start": 6966.899999976158,
+              "ms": 124
+            },
+            {
+              "start": 7446.899999976158,
+              "ms": 108
+            },
+            {
+              "start": 9167,
+              "ms": 134
+            },
+            {
+              "start": 9649.899999976158,
+              "ms": 112
+            },
+            {
+              "start": 10074,
+              "ms": 55
+            },
+            {
+              "start": 11405.299999952316,
+              "ms": 121
+            },
+            {
+              "start": 11869.799999952316,
+              "ms": 101
+            },
+            {
+              "start": 13562,
+              "ms": 121
+            },
+            {
+              "start": 13985.600000023842,
+              "ms": 60
+            },
+            {
+              "start": 14064,
+              "ms": 146
+            },
+            {
+              "start": 15837.199999928474,
+              "ms": 112
+            },
+            {
+              "start": 16286.899999976158,
+              "ms": 110
+            },
+            {
+              "start": 18005.600000023842,
+              "ms": 124
+            },
+            {
+              "start": 18478.899999976158,
+              "ms": 111
+            },
+            {
+              "start": 20187.5,
+              "ms": 120
+            },
+            {
+              "start": 20658.100000023842,
+              "ms": 113
+            },
+            {
+              "start": 22387.699999928474,
+              "ms": 115
+            },
+            {
+              "start": 22851.199999928474,
+              "ms": 100
+            },
+            {
+              "start": 24529.199999928474,
+              "ms": 123
+            },
+            {
+              "start": 25020.699999928474,
+              "ms": 107
+            },
+            {
+              "start": 26712.299999952316,
+              "ms": 111
+            },
+            {
+              "start": 27160.399999976158,
+              "ms": 103
+            },
+            {
+              "start": 28864.399999976158,
+              "ms": 130
+            },
+            {
+              "start": 29345.5,
+              "ms": 103
+            },
+            {
+              "start": 31062.100000023842,
+              "ms": 117
+            },
+            {
+              "start": 31520.199999928474,
+              "ms": 101
+            },
+            {
+              "start": 33237.5,
+              "ms": 123
+            },
+            {
+              "start": 33709.699999928474,
+              "ms": 101
+            },
+            {
+              "start": 35437.299999952316,
+              "ms": 114
+            },
+            {
+              "start": 35917,
+              "ms": 105
+            },
+            {
+              "start": 37628.799999952316,
+              "ms": 116
+            },
+            {
+              "start": 38091.299999952316,
+              "ms": 105
+            },
+            {
+              "start": 39805.199999928474,
+              "ms": 121
+            },
+            {
+              "start": 40276.199999928474,
+              "ms": 103
+            },
+            {
+              "start": 41970.89999997616,
+              "ms": 123
+            },
+            {
+              "start": 42442.199999928474,
+              "ms": 105
+            },
+            {
+              "start": 44120.10000002384,
+              "ms": 114
+            },
+            {
+              "start": 44575,
+              "ms": 102
+            },
+            {
+              "start": 46270.299999952316,
+              "ms": 113
+            },
+            {
+              "start": 46733.799999952316,
+              "ms": 102
+            },
+            {
+              "start": 48428.799999952316,
+              "ms": 116
+            },
+            {
+              "start": 48880,
+              "ms": 108
+            },
+            {
+              "start": 50605,
+              "ms": 119
+            },
+            {
+              "start": 51074.799999952316,
+              "ms": 101
+            },
+            {
+              "start": 52787.5,
+              "ms": 128
+            },
+            {
+              "start": 53261.299999952316,
+              "ms": 104
+            }
+          ],
+          "select-text": {
+            "n": 20,
+            "p50": 40.60000002384186,
+            "p95": 55.5,
+            "max": 65,
+            "longTasks": 1
+          },
+          "select-rect": {
+            "n": 20,
+            "p50": 38.299999952316284,
+            "p95": 40.799999952316284,
+            "max": 41.89999997615814,
+            "longTasks": 0
+          },
+          "colour-confirm": {
+            "n": 20,
+            "p50": 38.10000002384186,
+            "p95": 39.09999990463257,
+            "max": 40.89999997615814,
+            "longTasks": 0
+          },
+          "drag-confirm": {
+            "n": 20,
+            "p50": 139.09999990463257,
+            "p95": 149,
+            "max": 151.60000002384186,
+            "longTasks": 20
+          },
+          "passed": true,
+          "errors": [],
+          "remote": []
+        },
+        "B1": {
+          "author": "a",
+          "date": "2026-10-30",
+          "browser": "156.0.8078.49",
+          "scope": "Independent source Chrome, event to second rAF, synthetic5000, no recording/profiler; not installed or physical latency.",
+          "samples": [
+            {
+              "name": "select-text",
+              "start": 9654.100000023842,
+              "ms": 38.5
+            },
+            {
+              "name": "select-rect",
+              "start": 9978.400000095367,
+              "ms": 39.699999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 10575.5,
+              "ms": 42.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 10955.600000023842,
+              "ms": 154.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 11861.900000095367,
+              "ms": 49.299999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 12195.400000095367,
+              "ms": 47.199999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 12789.700000047684,
+              "ms": 37.200000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 13163.600000023842,
+              "ms": 136.5
+            },
+            {
+              "name": "select-text",
+              "start": 14028.700000047684,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 14360.700000047684,
+              "ms": 39
+            },
+            {
+              "name": "colour-confirm",
+              "start": 14952.600000023842,
+              "ms": 40
+            },
+            {
+              "name": "drag-confirm",
+              "start": 15339.600000023842,
+              "ms": 140.80000007152557
+            },
+            {
+              "name": "select-text",
+              "start": 16203,
+              "ms": 36.5
+            },
+            {
+              "name": "select-rect",
+              "start": 16527.5,
+              "ms": 36.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 17123.100000023842,
+              "ms": 36.800000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 17496.600000023842,
+              "ms": 140.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 18395.5,
+              "ms": 52.90000009536743
+            },
+            {
+              "name": "select-rect",
+              "start": 18727.5,
+              "ms": 40.90000009536743
+            },
+            {
+              "name": "colour-confirm",
+              "start": 19323.400000095367,
+              "ms": 39.59999990463257
+            },
+            {
+              "name": "drag-confirm",
+              "start": 19704.900000095367,
+              "ms": 137.79999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 20554.100000023842,
+              "ms": 38.5
+            },
+            {
+              "name": "select-rect",
+              "start": 20877.100000023842,
+              "ms": 37.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 21458.600000023842,
+              "ms": 36.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 21829.400000095367,
+              "ms": 137.5
+            },
+            {
+              "name": "select-text",
+              "start": 22729.600000023842,
+              "ms": 50.10000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 23061.900000095367,
+              "ms": 41.09999990463257
+            },
+            {
+              "name": "colour-confirm",
+              "start": 23651.400000095367,
+              "ms": 36.799999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 24029.600000023842,
+              "ms": 129.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 24895.600000023842,
+              "ms": 45
+            },
+            {
+              "name": "select-rect",
+              "start": 25227.600000023842,
+              "ms": 38.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 25814.800000071526,
+              "ms": 38.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 26197.600000023842,
+              "ms": 157.5
+            },
+            {
+              "name": "select-text",
+              "start": 27079,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 27411.900000095367,
+              "ms": 36.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 28004,
+              "ms": 41.700000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 28371.100000023842,
+              "ms": 135
+            },
+            {
+              "name": "select-text",
+              "start": 29228.600000023842,
+              "ms": 52.300000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 29579.700000047684,
+              "ms": 39.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 30167.400000095367,
+              "ms": 39.699999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 30546.300000071526,
+              "ms": 143.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 31411.800000071526,
+              "ms": 38.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 31745,
+              "ms": 36.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 32334,
+              "ms": 36.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 32713.100000023842,
+              "ms": 133.70000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 33596.40000009537,
+              "ms": 50.5
+            },
+            {
+              "name": "select-rect",
+              "start": 33927.40000009537,
+              "ms": 42.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 34529,
+              "ms": 45.700000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 34905.200000047684,
+              "ms": 146.5
+            },
+            {
+              "name": "select-text",
+              "start": 35786.60000002384,
+              "ms": 38
+            },
+            {
+              "name": "select-rect",
+              "start": 36111.200000047684,
+              "ms": 36.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 36691.90000009537,
+              "ms": 37.699999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 37083.60000002384,
+              "ms": 148.30000007152557
+            },
+            {
+              "name": "select-text",
+              "start": 37978.40000009537,
+              "ms": 39.5
+            },
+            {
+              "name": "select-rect",
+              "start": 38310.90000009537,
+              "ms": 36.59999990463257
+            },
+            {
+              "name": "colour-confirm",
+              "start": 38904.90000009537,
+              "ms": 40.199999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 39271,
+              "ms": 137.90000009536743
+            },
+            {
+              "name": "select-text",
+              "start": 40128.300000071526,
+              "ms": 51.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 40460.60000002384,
+              "ms": 39.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 41049.300000071526,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 41412.800000071526,
+              "ms": 133.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 42270.40000009537,
+              "ms": 42.299999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 42593.5,
+              "ms": 39.300000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 43193.200000047684,
+              "ms": 37.799999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 43570.800000071526,
+              "ms": 134.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 44512.700000047684,
+              "ms": 52.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 44853.10000002384,
+              "ms": 45.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 45451,
+              "ms": 43.300000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 45847.700000047684,
+              "ms": 165
+            },
+            {
+              "name": "select-text",
+              "start": 46753.700000047684,
+              "ms": 44
+            },
+            {
+              "name": "select-rect",
+              "start": 47085.90000009537,
+              "ms": 40.59999990463257
+            },
+            {
+              "name": "colour-confirm",
+              "start": 47675,
+              "ms": 37.700000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 48062.800000071526,
+              "ms": 145
+            },
+            {
+              "name": "select-text",
+              "start": 48936.300000071526,
+              "ms": 37.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 49260.5,
+              "ms": 36.300000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 49841.10000002384,
+              "ms": 38.800000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 50212.90000009537,
+              "ms": 142.69999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 51077.60000002384,
+              "ms": 52.200000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 51410.800000071526,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 52003.40000009537,
+              "ms": 35.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 52370.40000009537,
+              "ms": 133.69999992847443
+            }
+          ],
+          "longTasks": [
+            {
+              "start": 2997.7000000476837,
+              "ms": 52
+            },
+            {
+              "start": 4350.800000071526,
+              "ms": 142
+            },
+            {
+              "start": 4850.700000047684,
+              "ms": 107
+            },
+            {
+              "start": 6575.400000095367,
+              "ms": 132
+            },
+            {
+              "start": 7049,
+              "ms": 113
+            },
+            {
+              "start": 8788.800000071526,
+              "ms": 120
+            },
+            {
+              "start": 9259.200000047684,
+              "ms": 100
+            },
+            {
+              "start": 10955.5,
+              "ms": 133
+            },
+            {
+              "start": 11450.600000023842,
+              "ms": 107
+            },
+            {
+              "start": 13163.100000023842,
+              "ms": 116
+            },
+            {
+              "start": 13620.600000023842,
+              "ms": 104
+            },
+            {
+              "start": 15339.5,
+              "ms": 120
+            },
+            {
+              "start": 15808.300000071526,
+              "ms": 97
+            },
+            {
+              "start": 17496.400000095367,
+              "ms": 120
+            },
+            {
+              "start": 17964.600000023842,
+              "ms": 105
+            },
+            {
+              "start": 19704.800000071526,
+              "ms": 117
+            },
+            {
+              "start": 20158.100000023842,
+              "ms": 98
+            },
+            {
+              "start": 21829.300000071526,
+              "ms": 117
+            },
+            {
+              "start": 22314.300000071526,
+              "ms": 109
+            },
+            {
+              "start": 24029.400000095367,
+              "ms": 111
+            },
+            {
+              "start": 24486,
+              "ms": 103
+            },
+            {
+              "start": 26197.5,
+              "ms": 132
+            },
+            {
+              "start": 26679.5,
+              "ms": 104
+            },
+            {
+              "start": 28370.900000095367,
+              "ms": 116
+            },
+            {
+              "start": 28827.300000071526,
+              "ms": 101
+            },
+            {
+              "start": 30546.300000071526,
+              "ms": 123
+            },
+            {
+              "start": 31018.400000095367,
+              "ms": 100
+            },
+            {
+              "start": 32712.900000095367,
+              "ms": 113
+            },
+            {
+              "start": 33179.800000071526,
+              "ms": 110
+            },
+            {
+              "start": 34905,
+              "ms": 125
+            },
+            {
+              "start": 35372.200000047684,
+              "ms": 105
+            },
+            {
+              "start": 37083.5,
+              "ms": 127
+            },
+            {
+              "start": 37565,
+              "ms": 111
+            },
+            {
+              "start": 39270.90000009537,
+              "ms": 117
+            },
+            {
+              "start": 39729.60000002384,
+              "ms": 100
+            },
+            {
+              "start": 41412.700000047684,
+              "ms": 113
+            },
+            {
+              "start": 41869.10000002384,
+              "ms": 101
+            },
+            {
+              "start": 43570.700000047684,
+              "ms": 115
+            },
+            {
+              "start": 43984.90000009537,
+              "ms": 61
+            },
+            {
+              "start": 44064.300000071526,
+              "ms": 140
+            },
+            {
+              "start": 45847.60000002384,
+              "ms": 143
+            },
+            {
+              "start": 46341.300000071526,
+              "ms": 112
+            },
+            {
+              "start": 48062.60000002384,
+              "ms": 123
+            },
+            {
+              "start": 48535.40000009537,
+              "ms": 98
+            },
+            {
+              "start": 50212.800000071526,
+              "ms": 121
+            },
+            {
+              "start": 50670.5,
+              "ms": 101
+            },
+            {
+              "start": 52370.300000071526,
+              "ms": 114
+            },
+            {
+              "start": 52830.300000071526,
+              "ms": 95
+            }
+          ],
+          "select-text": {
+            "n": 20,
+            "p50": 42.299999952316284,
+            "p95": 52.39999997615814,
+            "max": 52.90000009536743,
+            "longTasks": 0
+          },
+          "select-rect": {
+            "n": 20,
+            "p50": 39,
+            "p95": 45.39999997615814,
+            "max": 47.199999928474426,
+            "longTasks": 0
+          },
+          "colour-confirm": {
+            "n": 20,
+            "p50": 37.799999952316284,
+            "p95": 43.300000071525574,
+            "max": 45.700000047683716,
+            "longTasks": 0
+          },
+          "drag-confirm": {
+            "n": 20,
+            "p50": 137.90000009536743,
+            "p95": 157.5,
+            "max": 165,
+            "longTasks": 20
+          },
+          "passed": true,
+          "errors": [],
+          "remote": []
+        },
+        "B2": {
+          "author": "a",
+          "date": "2026-10-30",
+          "browser": "156.0.8078.49",
+          "scope": "Independent source Chrome, event to second rAF, synthetic5000, no recording/profiler; not installed or physical latency.",
+          "samples": [
+            {
+              "name": "select-text",
+              "start": 9729.899999976158,
+              "ms": 39.200000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 10061.399999976158,
+              "ms": 38
+            },
+            {
+              "name": "colour-confirm",
+              "start": 10653.5,
+              "ms": 41.200000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 11039,
+              "ms": 148.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 11937.600000023842,
+              "ms": 54.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 12287.5,
+              "ms": 56.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 12896.100000023842,
+              "ms": 43.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 13280.600000023842,
+              "ms": 139.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 14172.399999976158,
+              "ms": 60.800000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 14537.5,
+              "ms": 52.300000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 15141.899999976158,
+              "ms": 53.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 15593.700000047684,
+              "ms": 196
+            },
+            {
+              "name": "select-text",
+              "start": 16554.300000071526,
+              "ms": 41.699999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 16877.600000023842,
+              "ms": 39.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 17472.800000071526,
+              "ms": 38.39999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 17839.399999976158,
+              "ms": 140.40000009536743
+            },
+            {
+              "name": "select-text",
+              "start": 18720.800000071526,
+              "ms": 49.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 19061.100000023842,
+              "ms": 38.799999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 19657.600000023842,
+              "ms": 44
+            },
+            {
+              "name": "drag-confirm",
+              "start": 20038.800000071526,
+              "ms": 153.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 20928.399999976158,
+              "ms": 40
+            },
+            {
+              "name": "select-rect",
+              "start": 21260.899999976158,
+              "ms": 37.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 21855,
+              "ms": 37.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 22229.899999976158,
+              "ms": 133.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 23112.200000047684,
+              "ms": 48.10000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 23444.700000047684,
+              "ms": 39.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 24037.600000023842,
+              "ms": 38.700000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 24413,
+              "ms": 131.80000007152557
+            },
+            {
+              "name": "select-text",
+              "start": 25278.200000047684,
+              "ms": 38.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 25610.800000071526,
+              "ms": 37.199999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 26207.5,
+              "ms": 36.800000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 26589,
+              "ms": 143.30000007152557
+            },
+            {
+              "name": "select-text",
+              "start": 27453.800000071526,
+              "ms": 40.59999990463257
+            },
+            {
+              "name": "select-rect",
+              "start": 27786,
+              "ms": 38.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 28376.800000071526,
+              "ms": 37.299999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 28746.399999976158,
+              "ms": 138.5
+            },
+            {
+              "name": "select-text",
+              "start": 29620.200000047684,
+              "ms": 53.5
+            },
+            {
+              "name": "select-rect",
+              "start": 29960.899999976158,
+              "ms": 39.300000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 30556.700000047684,
+              "ms": 38.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 30921,
+              "ms": 133.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 31778.899999976158,
+              "ms": 41.300000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 32102.100000023842,
+              "ms": 39.299999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 32685.700000047684,
+              "ms": 37.799999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 33063.5,
+              "ms": 143.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 33953.60000002384,
+              "ms": 44.5
+            },
+            {
+              "name": "select-rect",
+              "start": 34277.60000002384,
+              "ms": 37
+            },
+            {
+              "name": "colour-confirm",
+              "start": 34856,
+              "ms": 36.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 35229.89999997616,
+              "ms": 133.40000009536743
+            },
+            {
+              "name": "select-text",
+              "start": 36094.700000047684,
+              "ms": 40
+            },
+            {
+              "name": "select-rect",
+              "start": 36427.60000002384,
+              "ms": 37.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 37020.89999997616,
+              "ms": 42.90000009536743
+            },
+            {
+              "name": "drag-confirm",
+              "start": 37414.39999997616,
+              "ms": 146.30000007152557
+            },
+            {
+              "name": "select-text",
+              "start": 38286.5,
+              "ms": 38
+            },
+            {
+              "name": "select-rect",
+              "start": 38602.200000047684,
+              "ms": 36
+            },
+            {
+              "name": "colour-confirm",
+              "start": 39185.89999997616,
+              "ms": 49.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 39580.200000047684,
+              "ms": 154.19999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 40478.5,
+              "ms": 53.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 40819,
+              "ms": 43
+            },
+            {
+              "name": "colour-confirm",
+              "start": 41415.800000071526,
+              "ms": 40.59999990463257
+            },
+            {
+              "name": "drag-confirm",
+              "start": 41796.300000071526,
+              "ms": 140.79999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 42669.800000071526,
+              "ms": 36.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 42994.200000047684,
+              "ms": 37.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 43574.800000071526,
+              "ms": 38.39999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 43954.700000047684,
+              "ms": 136.89999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 44821.800000071526,
+              "ms": 45.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 45162.200000047684,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 45746.89999997616,
+              "ms": 40.40000009536743
+            },
+            {
+              "name": "drag-confirm",
+              "start": 46121.300000071526,
+              "ms": 136.5
+            },
+            {
+              "name": "select-text",
+              "start": 46970.700000047684,
+              "ms": 38.699999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 47303.60000002384,
+              "ms": 39.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 47887.89999997616,
+              "ms": 37.800000071525574
+            },
+            {
+              "name": "drag-confirm",
+              "start": 48272.5,
+              "ms": 142.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 49152.800000071526,
+              "ms": 38.299999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 49477.300000071526,
+              "ms": 36.09999990463257
+            },
+            {
+              "name": "colour-confirm",
+              "start": 50061.800000071526,
+              "ms": 37.299999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 50429.5,
+              "ms": 135.70000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 51302.800000071526,
+              "ms": 52.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 51635.800000071526,
+              "ms": 40.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 52229.5,
+              "ms": 37.39999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 52596.5,
+              "ms": 136.70000004768372
+            }
+          ],
+          "longTasks": [
+            {
+              "start": 4401.800000071526,
+              "ms": 138
+            },
+            {
+              "start": 4898,
+              "ms": 114
+            },
+            {
+              "start": 6683.899999976158,
+              "ms": 127
+            },
+            {
+              "start": 7146,
+              "ms": 109
+            },
+            {
+              "start": 8864.200000047684,
+              "ms": 120
+            },
+            {
+              "start": 9334.399999976158,
+              "ms": 97
+            },
+            {
+              "start": 11038.899999976158,
+              "ms": 128
+            },
+            {
+              "start": 11525.200000047684,
+              "ms": 110
+            },
+            {
+              "start": 13280,
+              "ms": 120
+            },
+            {
+              "start": 13745.700000047684,
+              "ms": 117
+            },
+            {
+              "start": 15593.600000023842,
+              "ms": 170
+            },
+            {
+              "start": 16130.700000047684,
+              "ms": 122
+            },
+            {
+              "start": 17839.300000071526,
+              "ms": 120
+            },
+            {
+              "start": 18308.100000023842,
+              "ms": 108
+            },
+            {
+              "start": 20038.700000047684,
+              "ms": 133
+            },
+            {
+              "start": 20526.300000071526,
+              "ms": 99
+            },
+            {
+              "start": 22229.800000071526,
+              "ms": 113
+            },
+            {
+              "start": 22700.600000023842,
+              "ms": 107
+            },
+            {
+              "start": 24412.899999976158,
+              "ms": 113
+            },
+            {
+              "start": 24870.300000071526,
+              "ms": 103
+            },
+            {
+              "start": 26588.800000071526,
+              "ms": 122
+            },
+            {
+              "start": 27053.100000023842,
+              "ms": 99
+            },
+            {
+              "start": 28746.399999976158,
+              "ms": 120
+            },
+            {
+              "start": 29206.100000023842,
+              "ms": 103
+            },
+            {
+              "start": 30920.899999976158,
+              "ms": 114
+            },
+            {
+              "start": 31379.800000071526,
+              "ms": 107
+            },
+            {
+              "start": 33063.39999997616,
+              "ms": 123
+            },
+            {
+              "start": 33541.300000071526,
+              "ms": 104
+            },
+            {
+              "start": 35229.800000071526,
+              "ms": 113
+            },
+            {
+              "start": 35691.200000047684,
+              "ms": 106
+            },
+            {
+              "start": 37414.300000071526,
+              "ms": 125
+            },
+            {
+              "start": 37885.5,
+              "ms": 98
+            },
+            {
+              "start": 39580.10000002384,
+              "ms": 131
+            },
+            {
+              "start": 40050.700000047684,
+              "ms": 111
+            },
+            {
+              "start": 41796.200000047684,
+              "ms": 120
+            },
+            {
+              "start": 42266.10000002384,
+              "ms": 98
+            },
+            {
+              "start": 43954.60000002384,
+              "ms": 116
+            },
+            {
+              "start": 44413.5,
+              "ms": 103
+            },
+            {
+              "start": 46121.200000047684,
+              "ms": 117
+            },
+            {
+              "start": 46569.200000047684,
+              "ms": 102
+            },
+            {
+              "start": 48272.39999997616,
+              "ms": 123
+            },
+            {
+              "start": 48742.300000071526,
+              "ms": 100
+            },
+            {
+              "start": 50429.39999997616,
+              "ms": 115
+            },
+            {
+              "start": 50895.89999997616,
+              "ms": 99
+            },
+            {
+              "start": 52596.300000071526,
+              "ms": 115
+            },
+            {
+              "start": 53061,
+              "ms": 98
+            }
+          ],
+          "select-text": {
+            "n": 20,
+            "p50": 41.300000071525574,
+            "p95": 54.39999997615814,
+            "max": 60.800000071525574,
+            "longTasks": 0
+          },
+          "select-rect": {
+            "n": 20,
+            "p50": 38.799999952316284,
+            "p95": 52.300000071525574,
+            "max": 56.10000002384186,
+            "longTasks": 0
+          },
+          "colour-confirm": {
+            "n": 20,
+            "p50": 38.39999997615814,
+            "p95": 49.10000002384186,
+            "max": 53.60000002384186,
+            "longTasks": 0
+          },
+          "drag-confirm": {
+            "n": 20,
+            "p50": 139.29999995231628,
+            "p95": 154.19999992847443,
+            "max": 196,
+            "longTasks": 20
+          },
+          "passed": true,
+          "errors": [],
+          "remote": []
+        },
+        "A2": {
+          "author": "a",
+          "date": "2026-10-30",
+          "browser": "156.0.8078.49",
+          "scope": "Independent source Chrome, event to second rAF, synthetic5000, no recording/profiler; not installed or physical latency.",
+          "samples": [
+            {
+              "name": "select-text",
+              "start": 10369.600000023842,
+              "ms": 60.799999952316284
+            },
+            {
+              "name": "select-rect",
+              "start": 10728.299999952316,
+              "ms": 41.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 11318.5,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 11696.700000047684,
+              "ms": 140.59999990463257
+            },
+            {
+              "name": "select-text",
+              "start": 12569.5,
+              "ms": 39.200000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 12894.100000023842,
+              "ms": 38.199999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 13490.200000047684,
+              "ms": 39.199999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 13870.700000047684,
+              "ms": 141.19999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 14761.299999952316,
+              "ms": 44.200000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 15093.899999976158,
+              "ms": 38.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 15685.200000047684,
+              "ms": 37
+            },
+            {
+              "name": "drag-confirm",
+              "start": 16062.399999976158,
+              "ms": 130
+            },
+            {
+              "name": "select-text",
+              "start": 16919.600000023842,
+              "ms": 41.10000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 17252.399999976158,
+              "ms": 38.300000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 17847.100000023842,
+              "ms": 37.39999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 18230.299999952316,
+              "ms": 144.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 19105.600000023842,
+              "ms": 54.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 19463.399999976158,
+              "ms": 64.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 20106.200000047684,
+              "ms": 57.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 20561.299999952316,
+              "ms": 230.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 21580.5,
+              "ms": 64.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 21946.299999952316,
+              "ms": 46.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 22547.899999976158,
+              "ms": 38.200000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 22912.600000023842,
+              "ms": 135
+            },
+            {
+              "name": "select-text",
+              "start": 23786.5,
+              "ms": 39.700000047683716
+            },
+            {
+              "name": "select-rect",
+              "start": 24110.700000047684,
+              "ms": 37.89999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 24702.399999976158,
+              "ms": 37.700000047683716
+            },
+            {
+              "name": "drag-confirm",
+              "start": 25079.600000023842,
+              "ms": 136.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 25961.399999976158,
+              "ms": 48.300000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 26296,
+              "ms": 42.10000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 26883.899999976158,
+              "ms": 40.39999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 27263.100000023842,
+              "ms": 139.29999995231628
+            },
+            {
+              "name": "select-text",
+              "start": 28127.799999952316,
+              "ms": 38.800000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 28452.200000047684,
+              "ms": 38.39999997615814
+            },
+            {
+              "name": "colour-confirm",
+              "start": 29044.299999952316,
+              "ms": 38
+            },
+            {
+              "name": "drag-confirm",
+              "start": 29430,
+              "ms": 158.39999997615814
+            },
+            {
+              "name": "select-text",
+              "start": 30396.600000023842,
+              "ms": 54.699999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 30735.700000047684,
+              "ms": 42.199999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 31345.600000023842,
+              "ms": 43.299999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 31720.899999976158,
+              "ms": 140.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 32586.5,
+              "ms": 50
+            },
+            {
+              "name": "select-rect",
+              "start": 32920,
+              "ms": 38.700000047683716
+            },
+            {
+              "name": "colour-confirm",
+              "start": 33510.60000002384,
+              "ms": 41.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 33888.10000002384,
+              "ms": 162.69999992847443
+            },
+            {
+              "name": "select-text",
+              "start": 34822.5,
+              "ms": 58.10000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 35178.700000047684,
+              "ms": 54.59999990463257
+            },
+            {
+              "name": "colour-confirm",
+              "start": 35802.700000047684,
+              "ms": 59.699999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 36208.39999997616,
+              "ms": 174.20000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 37170.60000002384,
+              "ms": 56.5
+            },
+            {
+              "name": "select-rect",
+              "start": 37512.10000002384,
+              "ms": 49.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 38119.5,
+              "ms": 42.799999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 38496.89999997616,
+              "ms": 152.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 39403.10000002384,
+              "ms": 40.89999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 39735.700000047684,
+              "ms": 44.199999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 40327.5,
+              "ms": 41.10000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 40730.89999997616,
+              "ms": 147.30000007152557
+            },
+            {
+              "name": "select-text",
+              "start": 41611.200000047684,
+              "ms": 38.09999990463257
+            },
+            {
+              "name": "select-rect",
+              "start": 41943.299999952316,
+              "ms": 35.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 42533.5,
+              "ms": 38.799999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 42912.700000047684,
+              "ms": 152.5
+            },
+            {
+              "name": "select-text",
+              "start": 43836.60000002384,
+              "ms": 54.699999928474426
+            },
+            {
+              "name": "select-rect",
+              "start": 44177.10000002384,
+              "ms": 40.199999928474426
+            },
+            {
+              "name": "colour-confirm",
+              "start": 44774.60000002384,
+              "ms": 37.5
+            },
+            {
+              "name": "drag-confirm",
+              "start": 45145.60000002384,
+              "ms": 136.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 46018.799999952316,
+              "ms": 37.800000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 46343.39999997616,
+              "ms": 43.300000071525574
+            },
+            {
+              "name": "colour-confirm",
+              "start": 46943.10000002384,
+              "ms": 38.699999928474426
+            },
+            {
+              "name": "drag-confirm",
+              "start": 47320.5,
+              "ms": 138.70000004768372
+            },
+            {
+              "name": "select-text",
+              "start": 48202.89999997616,
+              "ms": 43.800000071525574
+            },
+            {
+              "name": "select-rect",
+              "start": 48526.700000047684,
+              "ms": 38.5
+            },
+            {
+              "name": "colour-confirm",
+              "start": 49109.5,
+              "ms": 37.60000002384186
+            },
+            {
+              "name": "drag-confirm",
+              "start": 49486.799999952316,
+              "ms": 133.10000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 50337.10000002384,
+              "ms": 38.60000002384186
+            },
+            {
+              "name": "select-rect",
+              "start": 50660.299999952316,
+              "ms": 38.60000002384186
+            },
+            {
+              "name": "colour-confirm",
+              "start": 51252.5,
+              "ms": 45.89999997615814
+            },
+            {
+              "name": "drag-confirm",
+              "start": 51664.39999997616,
+              "ms": 161.60000002384186
+            },
+            {
+              "name": "select-text",
+              "start": 52569.89999997616,
+              "ms": 40.39999997615814
+            },
+            {
+              "name": "select-rect",
+              "start": 52894.200000047684,
+              "ms": 37.299999952316284
+            },
+            {
+              "name": "colour-confirm",
+              "start": 53479.200000047684,
+              "ms": 37.799999952316284
+            },
+            {
+              "name": "drag-confirm",
+              "start": 53862.10000002384,
+              "ms": 149
+            }
+          ],
+          "longTasks": [
+            {
+              "start": 3423,
+              "ms": 60
+            },
+            {
+              "start": 4827.399999976158,
+              "ms": 147
+            },
+            {
+              "start": 5334.700000047684,
+              "ms": 133
+            },
+            {
+              "start": 7092.799999952316,
+              "ms": 127
+            },
+            {
+              "start": 7577.700000047684,
+              "ms": 120
+            },
+            {
+              "start": 9384.299999952316,
+              "ms": 153
+            },
+            {
+              "start": 9902.5,
+              "ms": 140
+            },
+            {
+              "start": 10366,
+              "ms": 53
+            },
+            {
+              "start": 11696.600000023842,
+              "ms": 121
+            },
+            {
+              "start": 12168.5,
+              "ms": 101
+            },
+            {
+              "start": 13870.5,
+              "ms": 121
+            },
+            {
+              "start": 14350.100000023842,
+              "ms": 107
+            },
+            {
+              "start": 16062.299999952316,
+              "ms": 110
+            },
+            {
+              "start": 16512.200000047684,
+              "ms": 105
+            },
+            {
+              "start": 18230.200000047684,
+              "ms": 124
+            },
+            {
+              "start": 18693.299999952316,
+              "ms": 103
+            },
+            {
+              "start": 20561.100000023842,
+              "ms": 203
+            },
+            {
+              "start": 21137.700000047684,
+              "ms": 132
+            },
+            {
+              "start": 21578.899999976158,
+              "ms": 53
+            },
+            {
+              "start": 22912.5,
+              "ms": 116
+            },
+            {
+              "start": 23368.200000047684,
+              "ms": 110
+            },
+            {
+              "start": 25079.5,
+              "ms": 117
+            },
+            {
+              "start": 25552.5,
+              "ms": 110
+            },
+            {
+              "start": 27262.899999976158,
+              "ms": 119
+            },
+            {
+              "start": 27711.399999976158,
+              "ms": 106
+            },
+            {
+              "start": 29429.899999976158,
+              "ms": 137
+            },
+            {
+              "start": 29918.799999952316,
+              "ms": 141
+            },
+            {
+              "start": 31720.799999952316,
+              "ms": 120
+            },
+            {
+              "start": 32180.5,
+              "ms": 106
+            },
+            {
+              "start": 33888,
+              "ms": 137
+            },
+            {
+              "start": 34400.799999952316,
+              "ms": 116
+            },
+            {
+              "start": 36208.299999952316,
+              "ms": 150
+            },
+            {
+              "start": 36659.10000002384,
+              "ms": 54
+            },
+            {
+              "start": 36730.39999997616,
+              "ms": 131
+            },
+            {
+              "start": 38496.799999952316,
+              "ms": 130
+            },
+            {
+              "start": 38985.10000002384,
+              "ms": 116
+            },
+            {
+              "start": 40730.799999952316,
+              "ms": 127
+            },
+            {
+              "start": 41210,
+              "ms": 102
+            },
+            {
+              "start": 42912.5,
+              "ms": 130
+            },
+            {
+              "start": 43412.799999952316,
+              "ms": 114
+            },
+            {
+              "start": 45145.5,
+              "ms": 117
+            },
+            {
+              "start": 45609.89999997616,
+              "ms": 102
+            },
+            {
+              "start": 47320.299999952316,
+              "ms": 118
+            },
+            {
+              "start": 47791.799999952316,
+              "ms": 105
+            },
+            {
+              "start": 49486.799999952316,
+              "ms": 114
+            },
+            {
+              "start": 49935.89999997616,
+              "ms": 103
+            },
+            {
+              "start": 51664.200000047684,
+              "ms": 139
+            },
+            {
+              "start": 52155.39999997616,
+              "ms": 110
+            },
+            {
+              "start": 53862,
+              "ms": 127
+            },
+            {
+              "start": 54338.299999952316,
+              "ms": 123
+            }
+          ],
+          "select-text": {
+            "n": 20,
+            "p50": 43.800000071525574,
+            "p95": 60.799999952316284,
+            "max": 64.60000002384186,
+            "longTasks": 2
+          },
+          "select-rect": {
+            "n": 20,
+            "p50": 38.700000047683716,
+            "p95": 54.59999990463257,
+            "max": 64.60000002384186,
+            "longTasks": 0
+          },
+          "colour-confirm": {
+            "n": 20,
+            "p50": 38.699999928474426,
+            "p95": 57.5,
+            "max": 59.699999928474426,
+            "longTasks": 0
+          },
+          "drag-confirm": {
+            "n": 20,
+            "p50": 141.19999992847443,
+            "p95": 174.20000004768372,
+            "max": 230.20000004768372,
+            "longTasks": 20
+          },
+          "passed": true,
+          "errors": [],
+          "remote": []
+        }
+      }
+    }
+  ],
+  "performanceConclusion": "Final P50 broadly similar; selection/colour tails overlap the paired baseline range, drag P95 also overlaps and still has20long tasks in every batch. No stable overall speedup or native latency claim. Earlier viewport-wide selection attribute removed; all earlier samples retained.",
+  "failuresRetained": [
+    "Browser r1 sandbox network denied",
+    "Browser r2 could not connect to sandbox server; independent source server relaunched under normal approved loopback permissions",
+    "Performance r1 import-path setup failed before measurement",
+    "Component token test hit an old dangling carbon-qa junction while writing proof; did not change it, reran with explicit new output path"
+  ],
+  "pending": [
+    "Current-head remote CI",
+    "Candidate package selftest/provenance",
+    "Human review of revised interface",
+    "New installed interface/IME and same-package native timing",
+    "Genuine official upgrade and actual failure recovery"
+  ]
+}

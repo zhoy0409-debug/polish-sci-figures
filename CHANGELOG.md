@@ -8,6 +8,8 @@ Fix the Windows Ctrl + Y shortcut missing from confirmed canvas edits. Keep Ctrl
 
 Replace the desktop property wall with six task categories and collapsible project/layer/tool drawers. Keep one canonical home per function, with alias-aware local search that focuses the requested field. Preserve current tool context across canvas selections, draft collapse/reopen, live cancellation and original control identities. Scientific pixel correction, object paint, physical calibration, analysis and annotation stay distinct.
 
+Refine the unreleased hierarchy after independent screenshot review: merge the two permanent canvas rows into a reserved-height contextual toolbar, move low-frequency commands to their existing canonical tools, and show basic typography before batch, paragraph and character settings. Preserve explicit disclosure choices across selection kinds, direct search reveal, script shortcuts, real hit targets and scientific editing state. Keep the publication hold; browser evidence does not certify the new installed interface.
+
 Add reviewed, opt-in GitHub feedback drafts and public download accounting without usage telemetry. Subtract the historical baseline and documented QA events; unknown lifetime net downloads remain unknown. Feedback remains a draft until confirmed on GitHub. See the [workflow and privacy/accounting scope](docs/figure-studio-workspace-and-feedback.md).
 
 **Publication hold, 2026-10-30:** finish local candidate testing and documentation, then wait for the user's review and renewed approval. Do not merge, tag or publish this candidate. Historical installed wn9 feedback does not validate this revised interface.

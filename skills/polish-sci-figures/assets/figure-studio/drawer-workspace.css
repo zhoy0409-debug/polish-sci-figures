@@ -52,3 +52,51 @@ body.studio-drawers>header{min-height:56px;padding:var(--fs-space-2) var(--fs-sp
 .studio-drawers #workflowNavigation[hidden]{display:none!important}
 }
 @media(min-width:751px) and (max-width:1300px){#drawerTaskbar{gap:0;padding:0 6px}#drawerTaskbar button{padding-inline:10px}}
+
+/* Global commands, task navigation and contextual editing have distinct
+   weights. These rules style editor chrome only, never exported artwork. */
+@media(min-width:751px){
+body.studio-drawers>header{min-height:50px;padding-block:6px}
+#drawerTaskbar{min-height:36px;background:var(--fs-nav-bg)}
+#drawerTaskbar button{height:36px;min-height:36px;font-size:var(--fs-font-xs)}
+.studio-drawer-shell .canvas-tools .canvas-quickbar{height:auto;min-height:44px;display:flex;flex-wrap:wrap;gap:4px 8px;padding:5px 12px;background:var(--fs-toolbar-bg)}
+.studio-drawer-shell .canvas-quickbar>.quick-tool-group{border:0;padding:0;gap:4px;flex:none}
+.studio-drawer-shell .canvas-quickbar>.quick-tool-group:empty{display:none}
+.studio-drawer-shell .canvas-quickbar .quick-selection-status{display:none}
+.studio-drawer-shell .canvas-quickbar #quickImportFiles{order:-3;border-color:var(--fs-stroke-subtle);font-weight:500}
+.studio-drawer-shell .canvas-quickbar #boxSelect{order:-2}
+.studio-drawer-shell .canvas-quickbar .quick-format-group{order:0;padding-left:8px;border-left:1px solid var(--fs-stroke-subtle)}
+.studio-drawer-shell .canvas-quickbar .quick-object-group{order:2}
+.studio-drawer-shell .canvas-quickbar [id^=quickImage]{display:none}
+.studio-drawer-shell .canvas-quickbar[data-selection-kind=image] [id^=quickImage]{display:inline-flex}
+.studio-drawer-shell .canvas-quickbar:not([data-selection-kind=text]):not([data-selection-kind=multiple]) :is(#quickEditText,.quick-font-size,#quickBold,#quickItalic,#quickSuperscript,#quickSubscript){display:none}
+.studio-drawer-shell .canvas-quickbar[data-selection-kind=canvas] :is(.quick-format-group,.quick-object-group,#contextQuickTools){display:none}
+.drawer-view-controls{display:flex;align-items:center;gap:8px;margin-left:auto;order:10;flex:none}
+.studio-drawer-shell .drawer-view-controls #dimensions{font-size:11px;color:var(--fs-text-muted);padding-inline:4px;max-width:156px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.drawer-view-controls>label{font-size:0;margin:0;display:flex}
+.drawer-view-controls select{font-size:var(--fs-font-xs);max-width:110px;height:30px;min-height:30px}
+.studio-drawer-heading{padding:12px 0 8px;margin-bottom:4px;border-bottom:0}
+.studio-drawer-back{position:static;padding:2px 0 10px;font-size:11px;color:var(--fs-text-muted)}
+.studio-drawer-context{margin:0 0 14px;padding:10px 0 12px;border-top:1px solid var(--fs-stroke-subtle)}
+.studio-drawer-context .inspector-selection{margin:0 0 6px}
+.studio-drawer-context .inspector-context{display:flex;align-items:baseline;gap:8px}
+.studio-drawer-context .inspector-context-label{font-size:11px;color:var(--fs-text-muted)}
+.studio-drawer-context #selectionTitle{font-size:var(--fs-font-sm);font-weight:600;color:var(--fs-text-primary);margin:0}
+.studio-drawer-context label{margin:4px 0;font-size:11px}
+.studio-drawer-context select{height:32px;min-height:32px;margin-top:2px}
+.studio-tool-bank[data-tool=fonts] #typePanel>summary{display:none}
+.studio-tool-bank[data-tool=fonts] #typePanel>label{margin:10px 0}
+.studio-tool-bank[data-tool=fonts] #typePanel>label:has(#font){margin-top:0}
+.studio-tool-bank[data-tool=fonts] #typePanel>.row{gap:6px;margin:8px 0}
+.studio-tool-bank .drawer-advanced{margin-top:12px!important}
+.studio-tool-bank .drawer-advanced>summary{font-weight:500;color:var(--fs-text-muted)}
+.studio-tool-bank :is(#paragraphPanel,#workspaceCharacterFormats,#drawerFormattingTools){margin-top:8px!important}
+.studio-tool-bank .drawer-advanced .font-replacement-note{font-size:11px;line-height:1.5}
+.studio-drawers #artboard .slot-guide.is-selected{stroke-opacity:.35;stroke-width:.8}
+.studio-drawers #artboard .panel-move-handle.is-selected{opacity:.32}
+.studio-drawers #artboard [data-grid-resize="outer"]>rect:nth-of-type(2){fill-opacity:.35;stroke-opacity:.65}
+.studio-drawers #viewport #artboard .panel-move-handle:is(.is-hovered,:hover,:focus-within),.studio-drawers #viewport #artboard.is-arranging-panels .panel-move-handle{opacity:1}
+.studio-drawers #artboard .selection-resize-handle{stroke-width:1;fill:var(--fs-artboard-bg)}
+}
+@media(min-width:751px) and (max-width:1100px){.studio-drawer-shell .drawer-view-controls #dimensions{display:none}.drawer-view-controls{gap:4px}.studio-drawer-shell .canvas-tools .canvas-quickbar{padding-inline:8px;gap:4px}}
+@media(min-width:751px) and (max-width:1300px){.studio-drawer-shell .drawer-view-controls #dimensions{display:none}}

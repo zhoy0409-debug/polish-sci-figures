@@ -3674,6 +3674,10 @@ if (typeof document !== 'undefined') (async () => {
     if(typeof renderCanvasClipboard==='function')renderCanvasClipboard();
     $('quickFontSize').min='0.1';$('quickFontSize').max='1000';
     const panelTargets=selectionCommandInfo().panels,editablePanels=panelTargets.filter(id=>!StudioPanelCommands.lockedReason(state(),id));
+    // UI-only context, computed from the existing selection snapshot. No SVG
+    // queries, geometry reads, history entries or automatic drawer navigation.
+    const toolbarKind=all.length>1?'multiple':text.length?'text':all[0]?.el.localName==='image'?'image':all.length?'shape':guide?'guide':panelTargets.length?'panel':'canvas';
+    if($('canvasQuickToolbar').dataset.selectionKind!==toolbarKind)$('canvasQuickToolbar').dataset.selectionKind=toolbarKind;
     const alignUnits=selectionAlignmentPlan.availability(panelTargets.length?panelTargets.map(id=>({kind:'panel',id,locked:!!StudioPanelCommands.lockedReason(state(),id)})):all,state());
     $('quickAlignAction').disabled=original||alignUnits.disabled;$('quickAlignAction').title=T(alignUnits.reason||'对齐');for(const option of $('quickAlignAction').options||[])if(option.value.startsWith('distribute-')){option.disabled=original||alignUnits.distributionDisabled;option.title=T(alignUnits.distributionReason||'');}
     $('quickColor').disabled=original||!items.some(item=>item.el.localName!=='image');$('quickDelete').disabled=original||(!items.length&&!guide&&!panelTargets.some(id=>!state().panels[id].locked)&&!selectedEmptyCell);
