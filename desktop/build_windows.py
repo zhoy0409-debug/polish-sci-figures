@@ -107,7 +107,7 @@ def copy_suite():
         source = ROOT / 'desktop' / name
         if source.exists():
             content = archive_bytes(source, included, SUITE_VERSION).decode('utf-8')
-            (STAGE / name).write_text(content.replace('](../docs/', '](docs/'), encoding='utf-8')
+            (STAGE / name).write_text(content.replace('](../', ']('), encoding='utf-8')
     # Ship runtime bytecode in the same directories, preserving __file__-based
     # resource lookups. This is packaging, not DRM or a change of license.
     for source in STAGE.rglob('*.py'):
@@ -203,7 +203,9 @@ def package(compiler):
         if (STAGE / name).exists():
             if name.startswith('QUICKSTART.'):
                 content = (STAGE / name).read_text(encoding='utf-8')
-                (APP / name).write_text(content.replace('](docs/', '](_internal/suite/docs/'), encoding='utf-8')
+                content = re.sub(r'\]\((?!https?:|mailto:|#|/)([^)\s]+)\)',
+                                 r'](_internal/suite/\1)', content)
+                (APP / name).write_text(content, encoding='utf-8')
             else:
                 shutil.copy2(STAGE / name, APP / name)
     shutil.copytree(STAGE / 'THIRD-PARTY-LICENSES', APP / 'THIRD-PARTY-LICENSES', dirs_exist_ok=True)

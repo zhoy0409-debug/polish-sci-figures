@@ -206,9 +206,10 @@ def verify(package, freeze_path, preflight_path, expected_doc_snapshots=(), *, s
         require((suite / relative).read_bytes() == (ROOT / relative).read_bytes(), 'Desktop resource differs: ' + relative)
     for name in ('QUICKSTART.en.md', 'QUICKSTART.zh-CN.md'):
         allow.add(name)
-        expected = build_release.archive_bytes(ROOT / 'desktop' / name, included, build_release.VERSION).decode('utf-8').replace('](../docs/', '](docs/')
+        expected = build_release.archive_bytes(ROOT / 'desktop' / name, included, build_release.VERSION).decode('utf-8').replace('](../', '](')
         require((suite / name).read_text(encoding='utf-8') == expected, 'Root quickstart differs: ' + name)
-        require((app / name).read_text(encoding='utf-8') == expected.replace('](docs/', '](_internal/suite/docs/'), 'Application quickstart differs: ' + name)
+        application_guide = re.sub(r'\]\((?!https?:|mailto:|#|/)([^)\s]+)\)', r'](_internal/suite/\1)', expected)
+        require((app / name).read_text(encoding='utf-8') == application_guide, 'Application quickstart differs: ' + name)
     generated = {'build-info.json', 'THIRD-PARTY-NOTICES.txt'}
     unexpected = [path.relative_to(suite).as_posix() for path in suite.rglob('*') if path.is_file() and path.relative_to(suite).as_posix() not in allow | generated and not path.relative_to(suite).as_posix().startswith('THIRD-PARTY-LICENSES/')]
     require(not unexpected, 'Unexpected suite file outside release allowlist: ' + ', '.join(unexpected))
