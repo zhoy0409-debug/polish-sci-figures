@@ -11,7 +11,7 @@ function fixture(){
   w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};
   w.HTMLDialogElement.prototype.close=function(){if(!this.open)return;this.open=false;queueMicrotask(()=>this.dispatchEvent(new w.Event('close')));};
   const project=helpers.createBlankProject('1'.repeat(20),'Import test'),history=new helpers.History(project.initialState),messages=[],panes=[],staged=[],requests=[],timers=new Map();let timerSerial=0;
-  const ctx={...helpers,copy,project,history,checkpoints:[],selectedPanel:'panel-0',selected:[],elementSelections:[],selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],layoutMode:true,boxSelect:true,contentSelection:'panel-0',original:true,dragging:null,
+  const ctx={...helpers,copy,project,history,wbWorkspace:null,restoredWBDraft:null,wbDraftVersion:0,wbDraftKey:'',checkpoints:[],selectedPanel:'panel-0',selected:[],elementSelections:[],selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],layoutMode:true,boxSelect:true,contentSelection:'panel-0',original:true,dragging:null,
     PROJECT_FILE_LIMIT:200000000,confirm:()=>true,cancelPanelGesture:null,cancelSelectionGesture:null,cancelObjectGesture:null,setLabelSelection(ids){ctx.selectedPanelLabel=ids[0]||null;},migrateLabelHistory(){},saveSignature:()=>JSON.stringify(ctx.state()),render(){},
     document:d,window:w,FileReader:w.FileReader,Image:w.Image,XMLSerializer:w.XMLSerializer,NS:'http://www.w3.org/2000/svg',dataSerial:0,dataBusy:false,dataTimer:null,setTimeout:fn=>{timers.set(++timerSerial,fn);return timerSerial;},clearTimeout:id=>timers.delete(id),refreshDataExport(){},persist(){},paintDataValidation:()=>({valid:true}),
     $:id=>d.getElementById(id),T:(text,...args)=>text.replace(/\{(\d+)\}/g,(_,i)=>args[+i]),say:text=>messages.push(text),guard:fn=>(...args)=>Promise.resolve().then(()=>fn(...args)).catch(error=>messages.push(error.message)),
@@ -23,6 +23,8 @@ function fixture(){
     engineFetch:async(url,options)=>{const body=JSON.parse(options.body);requests.push(body);if(body.action==='inspect')return {ok:true,json:async()=>({pdf:{pageCount:1}})};if(body.action==='page')return {ok:true,json:async()=>({pdf:{svg,widthPt:100,heightPt:80,pageCount:1,pageIndex:0,editable:{texts:1,paths:0,images:0},warnings:[]}})};return {ok:true,json:async()=>({panel:{name:'Data',recipe:body.recipe,table:{rows:body.rows},analysis:{},variants:[{name:'compare',svg,width:100,height:80,viewBox:[0,0,100,80]}]}})};}
   };
   vm.createContext(ctx);
+  vm.runInContext(source.slice(source.indexOf('  function wbDraftFingerprint('),source.indexOf('  function wbExportPreview(')),ctx);
+  vm.runInContext(source.slice(source.indexOf('  function serializeProjectFile('),source.indexOf('  function validatePayload(')),ctx);
   vm.runInContext(source.slice(source.indexOf('  function imageRectificationHrefs('),source.indexOf('  function baseSvg(')),ctx);
   vm.runInContext(source.slice(source.indexOf('  let imageDestination=null;'),source.indexOf('  let facetSplitRequest=')),ctx);
   vm.runInContext(source.slice(source.indexOf('  function installAsset('),source.indexOf('  let insertionCell=')),ctx);

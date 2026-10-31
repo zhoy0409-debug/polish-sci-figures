@@ -47,6 +47,13 @@ def main():
     assert re.search(r'^version: "([^"]+)"$', citation, re.M).group(1) == VERSION.removeprefix("v")
     installer = (ROOT / "desktop/FigureStudio.iss").read_text(encoding="utf-8")
     assert re.search(r'#define AppVersion "([^"]+)"', installer).group(1) == app_version
+    # Version changes must keep recognizing existing per-user installations.
+    # This identity predates 0.2.0; a new GUID would break the upgrade path.
+    application_id = "51D78749-35EE-43BB-BA21-F79D6A1D5094"
+    assert "AppId={{" + application_id + "}" in installer
+    assert r"DefaultDirName={localappdata}\Programs\Figure Studio" in installer
+    updater = constants(ROOT / "desktop/windows_updater.py")
+    assert updater["UNINSTALL_KEY"].endswith("\\{" + application_id + "}_is1")
     verifier = (ROOT / "desktop/verify_windows.ps1").read_text(encoding="utf-8")
     assert re.search(r"\$Version = '([^']+)'", verifier).group(1) == app_version
 

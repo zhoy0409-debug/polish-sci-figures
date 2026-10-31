@@ -1,0 +1,1782 @@
+{
+  "author": "a",
+  "created": "2026-10-28",
+  "schema": "figure-studio-svg-namespace-investigation/1",
+  "scope": "One Windows machine, actual headless Chrome155, synthetic5000object fixture; event-to-rAF callbacks, not native installed editing, physical display latency, memory peak or independent image detection accuracy.",
+  "baselineCommit": "538ab3050fa706715e3832d7bb267ddf800172e7",
+  "finalStudioJsSha256": "ab9de683279a5a3a0d60f6cefe8a22a61676dc2f2f93a2159f521d3700624936",
+  "releaseAcceptance": false,
+  "historicalEvidence": "The earlier16batches in performance-captures-20261028.json remain unchanged. These two experiments use a later baseline and are not pooled with them.",
+  "experiments": [
+    {
+      "name": "namespace-abba",
+      "acceptedForSourceReview": false,
+      "reason": "Serialization-based ID-free shortcut: modest drag changes but B2 selection P95 and2longtasks worsened. Rejected; full reference checks restored.",
+      "batches": [
+        {
+          "label": "before-A1",
+          "browser": "155.0.8059.85",
+          "browserMode": "headless",
+          "recording": {
+            "enabled": false
+          },
+          "samplesPerOperation": 20,
+          "warmup": 3,
+          "settleMs": 250,
+          "elements": 5000,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "deviceScaleFactor": 1,
+          "htmlSha256": "34f58415056843e1c5727c6b868fa6be266a78c2f81cec9591a1f564674ef4bd",
+          "studioJsSha256": "136565cecd12b6ff9f923705868f045a14acc7646da25c5ad654eb64092b73b9",
+          "sourceAssetsUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "metrics": {
+            "select-text": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 32.30000001192093,
+                "p95": 38
+              },
+              "inputToSecondRafMs": {
+                "p50": 37.80000001192093,
+                "p95": 44.10000002384186
+              },
+              "commitToSecondRafMs": {
+                "p50": 17,
+                "p95": 20.69999998807907
+              },
+              "actionWallMs": {
+                "p50": 74.19999998807907,
+                "p95": 82.5
+              },
+              "frames": {
+                "count": 111,
+                "p50": 8.199999988079071,
+                "p95": 38.39999997615814,
+                "max": 42.80000001192093,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "text-colour": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 23.400000035762787,
+                "p95": 29
+              },
+              "inputToSecondRafMs": {
+                "p50": 36.10000002384186,
+                "p95": 42.69999998807907
+              },
+              "commitToSecondRafMs": {
+                "p50": 35.80000001192093,
+                "p95": 42.30000001192093
+              },
+              "actionWallMs": {
+                "p50": 57.60000002384186,
+                "p95": 82.30000001192093
+              },
+              "frames": {
+                "count": 87,
+                "p50": 7.699999988079071,
+                "p95": 13.899999976158142,
+                "max": 27.69999998807907,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "drag-shape": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.20000004768371582
+              },
+              "inputToSecondRafMs": {
+                "p50": 24.19999998807907,
+                "p95": 27.30000001192093
+              },
+              "commitToSecondRafMs": {
+                "p50": 114.09999996423721,
+                "p95": 141.60000002384186
+              },
+              "actionWallMs": {
+                "p50": 223.80000001192093,
+                "p95": 265.30000001192093
+              },
+              "frames": {
+                "count": 255,
+                "p50": 8.300000011920929,
+                "p95": 111.20000004768372,
+                "max": 156.19999998807907,
+                "over50ms": 20
+              },
+              "longTasks": {
+                "count": 20,
+                "totalMs": 2234,
+                "maxMs": 155
+              },
+              "verifiedOperations": 20
+            },
+            "resize-sidebar": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.19999998807907104
+              },
+              "inputToSecondRafMs": {
+                "p50": 8.599999964237213,
+                "p95": 9.699999988079071
+              },
+              "commitToSecondRafMs": {
+                "p50": 27.600000023841858,
+                "p95": 34.5
+              },
+              "actionWallMs": {
+                "p50": 132.30000001192093,
+                "p95": 149.0999999642372
+              },
+              "frames": {
+                "count": 261,
+                "p50": 8.299999952316284,
+                "p95": 24.100000023841858,
+                "max": 32.10000002384186,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-detail-to-palette": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 24.80000001192093,
+                "p95": 32.19999998807907
+              },
+              "inputToSecondRafMs": {
+                "p50": 28.19999998807907,
+                "p95": 36.19999998807907
+              },
+              "commitToSecondRafMs": {
+                "p50": 28.19999998807907,
+                "p95": 36.19999998807907
+              },
+              "actionWallMs": {
+                "p50": 65.80000001192093,
+                "p95": 74
+              },
+              "frames": {
+                "count": 115,
+                "p50": 8.299999952316284,
+                "p95": 31.399999976158142,
+                "max": 38.30000001192093,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-palette-to-detail": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 5.5,
+                "p95": 5.899999976158142
+              },
+              "inputToSecondRafMs": {
+                "p50": 12.600000023841858,
+                "p95": 13.100000023841858
+              },
+              "commitToSecondRafMs": {
+                "p50": 12.600000023841858,
+                "p95": 13.200000047683716
+              },
+              "actionWallMs": {
+                "p50": 40.69999998807907,
+                "p95": 49.10000002384186
+              },
+              "frames": {
+                "count": 84,
+                "p50": 8.300000011920929,
+                "p95": 10.300000011920929,
+                "max": 12.399999976158142,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            }
+          },
+          "rawReportSha256": "959f5469cdbbabb280a8058ba634a562c686d34c618b97077a18e402a568e66b",
+          "summarySha256": "3e1c7d27858e66f3f4ee2cee113482c18b12afe6ec5131382c20601f11c82a74"
+        },
+        {
+          "label": "after-B1",
+          "browser": "155.0.8059.85",
+          "browserMode": "headless",
+          "recording": {
+            "enabled": false
+          },
+          "samplesPerOperation": 20,
+          "warmup": 3,
+          "settleMs": 250,
+          "elements": 5000,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "deviceScaleFactor": 1,
+          "htmlSha256": "92abaff70b224e2cf83ca2e8ba0479b66efdc01c47c5b749ce87732f7b8589d6",
+          "studioJsSha256": "59a19964aed3999bcee4fd9d7c739b485b498ff4a6d66276959bd0f16712b904",
+          "sourceAssetsUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "metrics": {
+            "select-text": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 34,
+                "p95": 39.60000002384186
+              },
+              "inputToSecondRafMs": {
+                "p50": 40.39999997615814,
+                "p95": 46.5
+              },
+              "commitToSecondRafMs": {
+                "p50": 18,
+                "p95": 21.100000023841858
+              },
+              "actionWallMs": {
+                "p50": 74.20000004768372,
+                "p95": 88.30000001192093
+              },
+              "frames": {
+                "count": 109,
+                "p50": 8.300000011920929,
+                "p95": 40.80000001192093,
+                "max": 46,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "text-colour": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 24.100000023841858,
+                "p95": 30.19999998807907
+              },
+              "inputToSecondRafMs": {
+                "p50": 37.200000047683716,
+                "p95": 44.69999998807907
+              },
+              "commitToSecondRafMs": {
+                "p50": 36.700000047683716,
+                "p95": 44.30000001192093
+              },
+              "actionWallMs": {
+                "p50": 65.39999997615814,
+                "p95": 73.59999996423721
+              },
+              "frames": {
+                "count": 87,
+                "p50": 7.5,
+                "p95": 14.5,
+                "max": 32.19999998807907,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "drag-shape": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.19999998807907104
+              },
+              "inputToSecondRafMs": {
+                "p50": 24.099999964237213,
+                "p95": 25.900000035762787
+              },
+              "commitToSecondRafMs": {
+                "p50": 111.09999996423721,
+                "p95": 121.19999998807907
+              },
+              "actionWallMs": {
+                "p50": 215.69999998807907,
+                "p95": 232
+              },
+              "frames": {
+                "count": 248,
+                "p50": 8.299999952316284,
+                "p95": 105.90000003576279,
+                "max": 140.39999997615814,
+                "over50ms": 20
+              },
+              "longTasks": {
+                "count": 20,
+                "totalMs": 2087,
+                "maxMs": 133
+              },
+              "verifiedOperations": 20
+            },
+            "resize-sidebar": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.09999996423721313,
+                "p95": 0.20000004768371582
+              },
+              "inputToSecondRafMs": {
+                "p50": 8.5,
+                "p95": 9.100000023841858
+              },
+              "commitToSecondRafMs": {
+                "p50": 26.69999998807907,
+                "p95": 34.69999998807907
+              },
+              "actionWallMs": {
+                "p50": 132.5999999642372,
+                "p95": 149.10000002384186
+              },
+              "frames": {
+                "count": 266,
+                "p50": 8.300000011920929,
+                "p95": 22.19999998807907,
+                "max": 33.5,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-detail-to-palette": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 24.600000023841858,
+                "p95": 27.599999964237213
+              },
+              "inputToSecondRafMs": {
+                "p50": 28,
+                "p95": 31
+              },
+              "commitToSecondRafMs": {
+                "p50": 28,
+                "p95": 31
+              },
+              "actionWallMs": {
+                "p50": 65.79999995231628,
+                "p95": 74
+              },
+              "frames": {
+                "count": 116,
+                "p50": 8.200000047683716,
+                "p95": 30.599999964237213,
+                "max": 36.60000002384186,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-palette-to-detail": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 5.600000023841858,
+                "p95": 6.800000011920929
+              },
+              "inputToSecondRafMs": {
+                "p50": 12.5,
+                "p95": 13
+              },
+              "commitToSecondRafMs": {
+                "p50": 12.5,
+                "p95": 13
+              },
+              "actionWallMs": {
+                "p50": 40.60000002384186,
+                "p95": 56.60000002384186
+              },
+              "frames": {
+                "count": 87,
+                "p50": 8.300000011920929,
+                "p95": 10.699999988079071,
+                "max": 14,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            }
+          },
+          "rawReportSha256": "3923ed4149c946123e7da7080d998e6966146faa54f09c0cb0d14a75d6a62f0a",
+          "summarySha256": "fa0a2d2361a696393edce72d1ce1ea1b63430d18e8f28037ed1d64912e63755b"
+        },
+        {
+          "label": "after-B2",
+          "browser": "155.0.8059.85",
+          "browserMode": "headless",
+          "recording": {
+            "enabled": false
+          },
+          "samplesPerOperation": 20,
+          "warmup": 3,
+          "settleMs": 250,
+          "elements": 5000,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "deviceScaleFactor": 1,
+          "htmlSha256": "92abaff70b224e2cf83ca2e8ba0479b66efdc01c47c5b749ce87732f7b8589d6",
+          "studioJsSha256": "59a19964aed3999bcee4fd9d7c739b485b498ff4a6d66276959bd0f16712b904",
+          "sourceAssetsUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "metrics": {
+            "select-text": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 35.69999998807907,
+                "p95": 50.80000001192093
+              },
+              "inputToSecondRafMs": {
+                "p50": 41.80000001192093,
+                "p95": 58.30000001192093
+              },
+              "commitToSecondRafMs": {
+                "p50": 19.099999964237213,
+                "p95": 25.5
+              },
+              "actionWallMs": {
+                "p50": 74.30000001192093,
+                "p95": 104.69999998807907
+              },
+              "frames": {
+                "count": 110,
+                "p50": 8.299999952316284,
+                "p95": 45.60000002384186,
+                "max": 59.80000001192093,
+                "over50ms": 3
+              },
+              "longTasks": {
+                "count": 2,
+                "totalMs": 104,
+                "maxMs": 53
+              },
+              "verifiedOperations": 20
+            },
+            "text-colour": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 24.599999964237213,
+                "p95": 32.10000002384186
+              },
+              "inputToSecondRafMs": {
+                "p50": 38.60000002384186,
+                "p95": 51.90000003576279
+              },
+              "commitToSecondRafMs": {
+                "p50": 38.19999998807907,
+                "p95": 51.5
+              },
+              "actionWallMs": {
+                "p50": 65.29999995231628,
+                "p95": 81.80000001192093
+              },
+              "frames": {
+                "count": 89,
+                "p50": 7.700000047683716,
+                "p95": 18,
+                "max": 37.39999997615814,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "drag-shape": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.20000004768371582
+              },
+              "inputToSecondRafMs": {
+                "p50": 24.899999976158142,
+                "p95": 32
+              },
+              "commitToSecondRafMs": {
+                "p50": 113.59999996423721,
+                "p95": 135.20000004768372
+              },
+              "actionWallMs": {
+                "p50": 215.5999999642372,
+                "p95": 275.39999997615814
+              },
+              "frames": {
+                "count": 255,
+                "p50": 8.300000011920929,
+                "p95": 108.30000001192093,
+                "max": 135.89999997615814,
+                "over50ms": 20
+              },
+              "longTasks": {
+                "count": 20,
+                "totalMs": 2161,
+                "maxMs": 135
+              },
+              "verifiedOperations": 20
+            },
+            "resize-sidebar": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.20000004768371582
+              },
+              "inputToSecondRafMs": {
+                "p50": 8.5,
+                "p95": 10.699999988079071
+              },
+              "commitToSecondRafMs": {
+                "p50": 27,
+                "p95": 37.5
+              },
+              "actionWallMs": {
+                "p50": 140.60000002384186,
+                "p95": 156.89999997615814
+              },
+              "frames": {
+                "count": 269,
+                "p50": 8.300000011920929,
+                "p95": 23.19999998807907,
+                "max": 35.89999997615814,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-detail-to-palette": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 25.399999976158142,
+                "p95": 32.299999952316284
+              },
+              "inputToSecondRafMs": {
+                "p50": 28.69999998807907,
+                "p95": 36.89999997615814
+              },
+              "commitToSecondRafMs": {
+                "p50": 28.799999952316284,
+                "p95": 36.89999997615814
+              },
+              "actionWallMs": {
+                "p50": 65.89999997615814,
+                "p95": 82
+              },
+              "frames": {
+                "count": 116,
+                "p50": 8.199999988079071,
+                "p95": 31,
+                "max": 40.30000001192093,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-palette-to-detail": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 5.899999976158142,
+                "p95": 7.400000035762787
+              },
+              "inputToSecondRafMs": {
+                "p50": 12.400000035762787,
+                "p95": 13.099999964237213
+              },
+              "commitToSecondRafMs": {
+                "p50": 12.5,
+                "p95": 13.099999964237213
+              },
+              "actionWallMs": {
+                "p50": 40.89999997615814,
+                "p95": 56.69999998807907
+              },
+              "frames": {
+                "count": 92,
+                "p50": 8.300000011920929,
+                "p95": 12.399999976158142,
+                "max": 15.800000011920929,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            }
+          },
+          "rawReportSha256": "74d586e556aee98161a25e69309e598aa47469056bdaf88d3c0d3ef3d7f612f6",
+          "summarySha256": "2f4886cbd833913dab24ee681746cc7d66c7659b1713837ca75bae12599fe4e1"
+        },
+        {
+          "label": "before-A2",
+          "browser": "155.0.8059.85",
+          "browserMode": "headless",
+          "recording": {
+            "enabled": false
+          },
+          "samplesPerOperation": 20,
+          "warmup": 3,
+          "settleMs": 250,
+          "elements": 5000,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "deviceScaleFactor": 1,
+          "htmlSha256": "34f58415056843e1c5727c6b868fa6be266a78c2f81cec9591a1f564674ef4bd",
+          "studioJsSha256": "136565cecd12b6ff9f923705868f045a14acc7646da25c5ad654eb64092b73b9",
+          "sourceAssetsUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "metrics": {
+            "select-text": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 35.200000047683716,
+                "p95": 40.10000002384186
+              },
+              "inputToSecondRafMs": {
+                "p50": 41.30000001192093,
+                "p95": 46.39999997615814
+              },
+              "commitToSecondRafMs": {
+                "p50": 18.69999998807907,
+                "p95": 21.69999998807907
+              },
+              "actionWallMs": {
+                "p50": 74.19999998807907,
+                "p95": 91
+              },
+              "frames": {
+                "count": 111,
+                "p50": 8.300000011920929,
+                "p95": 40.69999998807907,
+                "max": 49.30000001192093,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "text-colour": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 24,
+                "p95": 30.30000001192093
+              },
+              "inputToSecondRafMs": {
+                "p50": 36.69999998807907,
+                "p95": 44.69999998807907
+              },
+              "commitToSecondRafMs": {
+                "p50": 36.19999998807907,
+                "p95": 44.30000001192093
+              },
+              "actionWallMs": {
+                "p50": 65.40000003576279,
+                "p95": 74
+              },
+              "frames": {
+                "count": 88,
+                "p50": 7.5,
+                "p95": 14,
+                "max": 23.5,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "drag-shape": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.19999998807907104
+              },
+              "inputToSecondRafMs": {
+                "p50": 25,
+                "p95": 28.5
+              },
+              "commitToSecondRafMs": {
+                "p50": 116.60000002384186,
+                "p95": 137.19999998807907
+              },
+              "actionWallMs": {
+                "p50": 225.30000001192093,
+                "p95": 265.69999998807907
+              },
+              "frames": {
+                "count": 261,
+                "p50": 8.300000011920929,
+                "p95": 111.39999997615814,
+                "max": 136.60000002384186,
+                "over50ms": 20
+              },
+              "longTasks": {
+                "count": 20,
+                "totalMs": 2225,
+                "maxMs": 129
+              },
+              "verifiedOperations": 20
+            },
+            "resize-sidebar": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.19999998807907104
+              },
+              "inputToSecondRafMs": {
+                "p50": 8.400000035762787,
+                "p95": 9.100000023841858
+              },
+              "commitToSecondRafMs": {
+                "p50": 27.299999952316284,
+                "p95": 31
+              },
+              "actionWallMs": {
+                "p50": 132.9000000357628,
+                "p95": 149.10000002384186
+              },
+              "frames": {
+                "count": 269,
+                "p50": 8.300000011920929,
+                "p95": 23.30000001192093,
+                "max": 31.30000001192093,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-detail-to-palette": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 26.899999976158142,
+                "p95": 30.599999964237213
+              },
+              "inputToSecondRafMs": {
+                "p50": 30.600000023841858,
+                "p95": 34.39999997615814
+              },
+              "commitToSecondRafMs": {
+                "p50": 30.69999998807907,
+                "p95": 34.39999997615814
+              },
+              "actionWallMs": {
+                "p50": 65.69999998807907,
+                "p95": 81.70000004768372
+              },
+              "frames": {
+                "count": 105,
+                "p50": 8.300000011920929,
+                "p95": 33.80000001192093,
+                "max": 43.5,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-palette-to-detail": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 5.800000011920929,
+                "p95": 6.900000035762787
+              },
+              "inputToSecondRafMs": {
+                "p50": 12.399999976158142,
+                "p95": 12.800000011920929
+              },
+              "commitToSecondRafMs": {
+                "p50": 12.5,
+                "p95": 12.800000011920929
+              },
+              "actionWallMs": {
+                "p50": 40.69999998807907,
+                "p95": 56.80000001192093
+              },
+              "frames": {
+                "count": 86,
+                "p50": 8.300000011920929,
+                "p95": 10.699999988079071,
+                "max": 13.700000047683716,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            }
+          },
+          "rawReportSha256": "ca3aa5e5254f2c87850ddb391f80f0190ef5b9e7107b65efcf0501dc0507af41",
+          "summarySha256": "f44fbfea348884b9b2fe2594ab028961a188efe19aa4539f027d0b4a1709b771"
+        }
+      ]
+    },
+    {
+      "name": "namespace-values-abba",
+      "acceptedForSourceReview": true,
+      "reason": "Full metadata, ID, href and url-reference isolation retained. Read attribute names/values and access mutable Attr only for a reference.",
+      "batches": [
+        {
+          "label": "before-A1",
+          "browser": "155.0.8059.85",
+          "browserMode": "headless",
+          "recording": {
+            "enabled": false
+          },
+          "samplesPerOperation": 20,
+          "warmup": 3,
+          "settleMs": 250,
+          "elements": 5000,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "deviceScaleFactor": 1,
+          "htmlSha256": "34f58415056843e1c5727c6b868fa6be266a78c2f81cec9591a1f564674ef4bd",
+          "studioJsSha256": "136565cecd12b6ff9f923705868f045a14acc7646da25c5ad654eb64092b73b9",
+          "sourceAssetsUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "metrics": {
+            "select-text": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 36.10000002384186,
+                "p95": 42.09999996423721
+              },
+              "inputToSecondRafMs": {
+                "p50": 41.80000001192093,
+                "p95": 48.5
+              },
+              "commitToSecondRafMs": {
+                "p50": 18.899999976158142,
+                "p95": 22.80000001192093
+              },
+              "actionWallMs": {
+                "p50": 74.29999995231628,
+                "p95": 90.39999997615814
+              },
+              "frames": {
+                "count": 110,
+                "p50": 8.199999988079071,
+                "p95": 42.700000047683716,
+                "max": 47.30000001192093,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "text-colour": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 26.30000001192093,
+                "p95": 29.80000001192093
+              },
+              "inputToSecondRafMs": {
+                "p50": 38.5,
+                "p95": 44.39999997615814
+              },
+              "commitToSecondRafMs": {
+                "p50": 38.10000002384186,
+                "p95": 43.89999997615814
+              },
+              "actionWallMs": {
+                "p50": 65.5,
+                "p95": 82
+              },
+              "frames": {
+                "count": 87,
+                "p50": 7.600000023841858,
+                "p95": 14,
+                "max": 27.69999998807907,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "drag-shape": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.09999996423721313,
+                "p95": 0.30000001192092896
+              },
+              "inputToSecondRafMs": {
+                "p50": 25,
+                "p95": 28.899999976158142
+              },
+              "commitToSecondRafMs": {
+                "p50": 116.20000004768372,
+                "p95": 138.30000001192093
+              },
+              "actionWallMs": {
+                "p50": 224.10000002384186,
+                "p95": 274
+              },
+              "frames": {
+                "count": 256,
+                "p50": 8.300000011920929,
+                "p95": 113.5,
+                "max": 141,
+                "over50ms": 20
+              },
+              "longTasks": {
+                "count": 20,
+                "totalMs": 2231,
+                "maxMs": 134
+              },
+              "verifiedOperations": 20
+            },
+            "resize-sidebar": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.19999998807907104,
+                "p95": 0.20000004768371582
+              },
+              "inputToSecondRafMs": {
+                "p50": 8.799999952316284,
+                "p95": 11.800000011920929
+              },
+              "commitToSecondRafMs": {
+                "p50": 28.200000047683716,
+                "p95": 32.30000001192093
+              },
+              "actionWallMs": {
+                "p50": 140.10000002384186,
+                "p95": 156.69999998807907
+              },
+              "frames": {
+                "count": 268,
+                "p50": 8.299999952316284,
+                "p95": 22,
+                "max": 33.19999998807907,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-detail-to-palette": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 26.69999998807907,
+                "p95": 34.59999996423721
+              },
+              "inputToSecondRafMs": {
+                "p50": 30.400000035762787,
+                "p95": 38.799999952316284
+              },
+              "commitToSecondRafMs": {
+                "p50": 30.400000035762787,
+                "p95": 38.80000001192093
+              },
+              "actionWallMs": {
+                "p50": 65.80000001192093,
+                "p95": 82
+              },
+              "frames": {
+                "count": 110,
+                "p50": 8.300000011920929,
+                "p95": 35.19999998807907,
+                "max": 41.19999998807907,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-palette-to-detail": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 5.699999988079071,
+                "p95": 6.5
+              },
+              "inputToSecondRafMs": {
+                "p50": 12.400000035762787,
+                "p95": 12.800000011920929
+              },
+              "commitToSecondRafMs": {
+                "p50": 12.5,
+                "p95": 12.900000035762787
+              },
+              "actionWallMs": {
+                "p50": 40.80000001192093,
+                "p95": 49.30000001192093
+              },
+              "frames": {
+                "count": 86,
+                "p50": 8.300000011920929,
+                "p95": 10.900000035762787,
+                "max": 13.5,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            }
+          },
+          "rawReportSha256": "dcd49602a300c3b9f329075c886602fd019719749f26d32b9cc75aec591ef30c",
+          "summarySha256": "60acfe1f00ac980649e1b61da74f4954b30959a763837f54ccd75ea4c4f34929"
+        },
+        {
+          "label": "after-B1",
+          "browser": "155.0.8059.85",
+          "browserMode": "headless",
+          "recording": {
+            "enabled": false
+          },
+          "samplesPerOperation": 20,
+          "warmup": 3,
+          "settleMs": 250,
+          "elements": 5000,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "deviceScaleFactor": 1,
+          "htmlSha256": "2a6049fc227f191ba3c7af7c6cfa825e220c59f15111e0a7801dc38b05b1a997",
+          "studioJsSha256": "ab9de683279a5a3a0d60f6cefe8a22a61676dc2f2f93a2159f521d3700624936",
+          "sourceAssetsUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "metrics": {
+            "select-text": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 33.89999997615814,
+                "p95": 41.90000003576279
+              },
+              "inputToSecondRafMs": {
+                "p50": 40,
+                "p95": 48.80000001192093
+              },
+              "commitToSecondRafMs": {
+                "p50": 17.80000001192093,
+                "p95": 21.900000035762787
+              },
+              "actionWallMs": {
+                "p50": 74.19999998807907,
+                "p95": 82.5
+              },
+              "frames": {
+                "count": 106,
+                "p50": 8.299999952316284,
+                "p95": 40.39999997615814,
+                "max": 48,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "text-colour": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 24.600000023841858,
+                "p95": 31.19999998807907
+              },
+              "inputToSecondRafMs": {
+                "p50": 38.5,
+                "p95": 45.69999998807907
+              },
+              "commitToSecondRafMs": {
+                "p50": 38.19999998807907,
+                "p95": 45.40000003576279
+              },
+              "actionWallMs": {
+                "p50": 65.5,
+                "p95": 90.59999996423721
+              },
+              "frames": {
+                "count": 90,
+                "p50": 7.5,
+                "p95": 15.300000011920929,
+                "max": 35.19999998807907,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "drag-shape": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.20000004768371582
+              },
+              "inputToSecondRafMs": {
+                "p50": 25,
+                "p95": 29.30000001192093
+              },
+              "commitToSecondRafMs": {
+                "p50": 109.89999997615814,
+                "p95": 124.90000003576279
+              },
+              "actionWallMs": {
+                "p50": 216.20000004768372,
+                "p95": 261
+              },
+              "frames": {
+                "count": 258,
+                "p50": 8.299999952316284,
+                "p95": 107.30000001192093,
+                "max": 147.9000000357628,
+                "over50ms": 20
+              },
+              "longTasks": {
+                "count": 20,
+                "totalMs": 2097,
+                "maxMs": 147
+              },
+              "verifiedOperations": 20
+            },
+            "resize-sidebar": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.19999998807907104
+              },
+              "inputToSecondRafMs": {
+                "p50": 8.699999988079071,
+                "p95": 9.799999952316284
+              },
+              "commitToSecondRafMs": {
+                "p50": 27.899999976158142,
+                "p95": 33.89999997615814
+              },
+              "actionWallMs": {
+                "p50": 140.60000002384186,
+                "p95": 148.9000000357628
+              },
+              "frames": {
+                "count": 268,
+                "p50": 8.299999952316284,
+                "p95": 23.5,
+                "max": 32.5,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-detail-to-palette": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 25.100000023841858,
+                "p95": 27.80000001192093
+              },
+              "inputToSecondRafMs": {
+                "p50": 28.5,
+                "p95": 31.5
+              },
+              "commitToSecondRafMs": {
+                "p50": 28.599999964237213,
+                "p95": 31.5
+              },
+              "actionWallMs": {
+                "p50": 65.60000002384186,
+                "p95": 66
+              },
+              "frames": {
+                "count": 110,
+                "p50": 8.299999952316284,
+                "p95": 31.099999964237213,
+                "max": 33.10000002384186,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-palette-to-detail": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 5.799999952316284,
+                "p95": 6.600000023841858
+              },
+              "inputToSecondRafMs": {
+                "p50": 12.5,
+                "p95": 12.699999988079071
+              },
+              "commitToSecondRafMs": {
+                "p50": 12.5,
+                "p95": 12.800000011920929
+              },
+              "actionWallMs": {
+                "p50": 40.69999998807907,
+                "p95": 49.10000002384186
+              },
+              "frames": {
+                "count": 84,
+                "p50": 8.300000011920929,
+                "p95": 10.699999988079071,
+                "max": 12.599999964237213,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            }
+          },
+          "rawReportSha256": "2e135cb35c1c04187a0a079f43772eb3a08e17bb340ff8eb3afc805c319118b6",
+          "summarySha256": "0f1bee5f3e1e63aa189bfd23fb83d1d75f8cff7900cf078845e70c61221f5cc6"
+        },
+        {
+          "label": "after-B2",
+          "browser": "155.0.8059.85",
+          "browserMode": "headless",
+          "recording": {
+            "enabled": false
+          },
+          "samplesPerOperation": 20,
+          "warmup": 3,
+          "settleMs": 250,
+          "elements": 5000,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "deviceScaleFactor": 1,
+          "htmlSha256": "2a6049fc227f191ba3c7af7c6cfa825e220c59f15111e0a7801dc38b05b1a997",
+          "studioJsSha256": "ab9de683279a5a3a0d60f6cefe8a22a61676dc2f2f93a2159f521d3700624936",
+          "sourceAssetsUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "metrics": {
+            "select-text": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 34.89999997615814,
+                "p95": 38.5
+              },
+              "inputToSecondRafMs": {
+                "p50": 41.39999997615814,
+                "p95": 45.5
+              },
+              "commitToSecondRafMs": {
+                "p50": 18.69999998807907,
+                "p95": 20.69999998807907
+              },
+              "actionWallMs": {
+                "p50": 74.30000001192093,
+                "p95": 90
+              },
+              "frames": {
+                "count": 111,
+                "p50": 8.299999952316284,
+                "p95": 41.5,
+                "max": 45,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "text-colour": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 26.100000023841858,
+                "p95": 29.599999964237213
+              },
+              "inputToSecondRafMs": {
+                "p50": 39.69999998807907,
+                "p95": 43.89999997615814
+              },
+              "commitToSecondRafMs": {
+                "p50": 39.19999998807907,
+                "p95": 43.39999997615814
+              },
+              "actionWallMs": {
+                "p50": 65.69999998807907,
+                "p95": 65.90000003576279
+              },
+              "frames": {
+                "count": 89,
+                "p50": 7.800000011920929,
+                "p95": 14.899999976158142,
+                "max": 30.399999976158142,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "drag-shape": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.19999998807907104
+              },
+              "inputToSecondRafMs": {
+                "p50": 24.5,
+                "p95": 27.099999964237213
+              },
+              "commitToSecondRafMs": {
+                "p50": 109.5,
+                "p95": 118.80000001192093
+              },
+              "actionWallMs": {
+                "p50": 207.9000000357628,
+                "p95": 238.69999998807907
+              },
+              "frames": {
+                "count": 250,
+                "p50": 8.299999952316284,
+                "p95": 106.70000004768372,
+                "max": 118.69999998807907,
+                "over50ms": 20
+              },
+              "longTasks": {
+                "count": 20,
+                "totalMs": 2028,
+                "maxMs": 112
+              },
+              "verifiedOperations": 20
+            },
+            "resize-sidebar": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.10000002384185791,
+                "p95": 0.19999998807907104
+              },
+              "inputToSecondRafMs": {
+                "p50": 8.600000023841858,
+                "p95": 9.5
+              },
+              "commitToSecondRafMs": {
+                "p50": 27.69999998807907,
+                "p95": 32.80000001192093
+              },
+              "actionWallMs": {
+                "p50": 140.80000001192093,
+                "p95": 148.9000000357628
+              },
+              "frames": {
+                "count": 266,
+                "p50": 8.300000011920929,
+                "p95": 23.80000001192093,
+                "max": 30.900000035762787,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-detail-to-palette": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 25.600000023841858,
+                "p95": 32.39999997615814
+              },
+              "inputToSecondRafMs": {
+                "p50": 29,
+                "p95": 36.5
+              },
+              "commitToSecondRafMs": {
+                "p50": 29.099999964237213,
+                "p95": 36.5
+              },
+              "actionWallMs": {
+                "p50": 65.69999998807907,
+                "p95": 81.59999996423721
+              },
+              "frames": {
+                "count": 110,
+                "p50": 8.299999952316284,
+                "p95": 32.30000001192093,
+                "max": 54.700000047683716,
+                "over50ms": 1
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-palette-to-detail": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 5.699999988079071,
+                "p95": 7.199999988079071
+              },
+              "inputToSecondRafMs": {
+                "p50": 12.300000011920929,
+                "p95": 12.700000047683716
+              },
+              "commitToSecondRafMs": {
+                "p50": 12.300000011920929,
+                "p95": 12.800000011920929
+              },
+              "actionWallMs": {
+                "p50": 40.60000002384186,
+                "p95": 49
+              },
+              "frames": {
+                "count": 86,
+                "p50": 8.300000011920929,
+                "p95": 11.099999964237213,
+                "max": 13.600000023841858,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            }
+          },
+          "rawReportSha256": "ad275e0c6056006b4411d4668f47ad1e0823e011f0b3f596fb927cbc54929e98",
+          "summarySha256": "f4fc5b4a5cbb2e43a90a38b4091491f0c8f4a9519a2670015234a1af97d442af"
+        },
+        {
+          "label": "before-A2",
+          "browser": "155.0.8059.85",
+          "browserMode": "headless",
+          "recording": {
+            "enabled": false
+          },
+          "samplesPerOperation": 20,
+          "warmup": 3,
+          "settleMs": 250,
+          "elements": 5000,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "deviceScaleFactor": 1,
+          "htmlSha256": "34f58415056843e1c5727c6b868fa6be266a78c2f81cec9591a1f564674ef4bd",
+          "studioJsSha256": "136565cecd12b6ff9f923705868f045a14acc7646da25c5ad654eb64092b73b9",
+          "sourceAssetsUnchanged": true,
+          "remoteRequests": 0,
+          "pageErrors": 0,
+          "metrics": {
+            "select-text": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 33.89999997615814,
+                "p95": 37.39999997615814
+              },
+              "inputToSecondRafMs": {
+                "p50": 39.90000003576279,
+                "p95": 43.69999998807907
+              },
+              "commitToSecondRafMs": {
+                "p50": 17.900000035762787,
+                "p95": 19.19999998807907
+              },
+              "actionWallMs": {
+                "p50": 74.19999998807907,
+                "p95": 82.40000003576279
+              },
+              "frames": {
+                "count": 105,
+                "p50": 8.200000047683716,
+                "p95": 40,
+                "max": 42.89999997615814,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "text-colour": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 25.400000035762787,
+                "p95": 30.899999976158142
+              },
+              "inputToSecondRafMs": {
+                "p50": 38.69999998807907,
+                "p95": 44
+              },
+              "commitToSecondRafMs": {
+                "p50": 38.30000001192093,
+                "p95": 43.60000002384186
+              },
+              "actionWallMs": {
+                "p50": 65.69999998807907,
+                "p95": 82.09999996423721
+              },
+              "frames": {
+                "count": 91,
+                "p50": 7.599999964237213,
+                "p95": 14.100000023841858,
+                "max": 37.90000003576279,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "drag-shape": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.09999996423721313,
+                "p95": 0.19999998807907104
+              },
+              "inputToSecondRafMs": {
+                "p50": 23.599999964237213,
+                "p95": 25.69999998807907
+              },
+              "commitToSecondRafMs": {
+                "p50": 113.60000002384186,
+                "p95": 129.5
+              },
+              "actionWallMs": {
+                "p50": 215.9000000357628,
+                "p95": 237.19999998807907
+              },
+              "frames": {
+                "count": 241,
+                "p50": 8.300000011920929,
+                "p95": 110.60000002384186,
+                "max": 130.89999997615814,
+                "over50ms": 20
+              },
+              "longTasks": {
+                "count": 20,
+                "totalMs": 2150,
+                "maxMs": 124
+              },
+              "verifiedOperations": 20
+            },
+            "resize-sidebar": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 0.19999998807907104,
+                "p95": 0.20000004768371582
+              },
+              "inputToSecondRafMs": {
+                "p50": 9,
+                "p95": 10.5
+              },
+              "commitToSecondRafMs": {
+                "p50": 27.30000001192093,
+                "p95": 32.80000001192093
+              },
+              "actionWallMs": {
+                "p50": 140.39999997615814,
+                "p95": 149.10000002384186
+              },
+              "frames": {
+                "count": 263,
+                "p50": 8.300000011920929,
+                "p95": 22.599999964237213,
+                "max": 31.600000023841858,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-detail-to-palette": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 25.700000047683716,
+                "p95": 31.5
+              },
+              "inputToSecondRafMs": {
+                "p50": 29.30000001192093,
+                "p95": 35
+              },
+              "commitToSecondRafMs": {
+                "p50": 29.400000035762787,
+                "p95": 35
+              },
+              "actionWallMs": {
+                "p50": 65.80000001192093,
+                "p95": 73.89999997615814
+              },
+              "frames": {
+                "count": 112,
+                "p50": 8.299999952316284,
+                "p95": 34.90000003576279,
+                "max": 45.5,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            },
+            "tab-palette-to-detail": {
+              "samples": 20,
+              "inputToNextRafMs": {
+                "p50": 5.900000035762787,
+                "p95": 6.699999988079071
+              },
+              "inputToSecondRafMs": {
+                "p50": 12.100000023841858,
+                "p95": 12.600000023841858
+              },
+              "commitToSecondRafMs": {
+                "p50": 12.100000023841858,
+                "p95": 12.699999988079071
+              },
+              "actionWallMs": {
+                "p50": 41,
+                "p95": 57.19999998807907
+              },
+              "frames": {
+                "count": 91,
+                "p50": 8.300000011920929,
+                "p95": 11,
+                "max": 12,
+                "over50ms": 0
+              },
+              "longTasks": {
+                "count": 0,
+                "totalMs": 0,
+                "maxMs": 0
+              },
+              "verifiedOperations": 20
+            }
+          },
+          "rawReportSha256": "c3517bb22b1f6c17e5db1723a1ca2913f1cabcc97164c1deaad32a73b7ed6117",
+          "summarySha256": "52908b9ae3b9b8a9cffc1f2f30f3fa93cf2584eed15b331c361ef5bd484cfa4e"
+        }
+      ]
+    }
+  ],
+  "otherRejectedDiagnostic": {
+    "name": "fit-size-read-before-SVG-swap",
+    "formalBenchmark": false,
+    "retained": false,
+    "reason": "The short CPU/trace diagnostic did not establish a stable overall improvement; original ordering restored. Raw diagnostic and candidate snapshot retained locally."
+  },
+  "limits": [
+    "Finalcandidate drag still has20longtasks per batch; notresolved.",
+    "Selection ranges overlap; colour confirmation did not consistently improve and one candidateP95 is higher. No all-metric improvement claim.",
+    "Profiler selftimes are diagnostic and not pooled with unprofiled timing. No changes to unrelated processes or system settings.",
+    "FinalWindowsinstallation and genuineofficialupgrade/failure-recovery gates remain pending."
+  ]
+}

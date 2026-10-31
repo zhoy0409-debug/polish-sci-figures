@@ -1,0 +1,670 @@
+{
+  "commands": 166,
+  "checks": [
+    {
+      "script": "scripts/test_figure_discovery.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_discovery_literature.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_literature.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_browser_transport.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_native_download.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_mobile_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_local_web_engine.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_local_web_offline.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_state.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_history_shortcuts.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_async_save.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_project_codec.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_scientific_tiff.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_figure_quality.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_submission_profiles.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_project_operations.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_project_operations_cli.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_figure_planning.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_deferred_previews.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_duplicate_check.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_duplicate_review.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_duplicate_viewer.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_header_menu.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_delete_labels.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_keyboard_nudge.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_new_project.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_beginner_flow.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_easy_statistics.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_statistical_line_editing.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_grouped_stat_layout.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_interaction_statistics.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_annotation_pane.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_statistical_metadata.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_variant_switch.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_stat_layout.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_composite_stat_layout.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_workspace_selection.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_selection_transform.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_selection_commands.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_panel_delete.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_panel_commands.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_heatmap_palettes.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_swatch_schemes.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_insert_inline.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_line_controls.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_svg_content.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_positioned_text.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_mark_styles.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_mark_controls.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_rich_text_regression.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_data_text_preservation.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_data_validation.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_tiff_export.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_panel_export.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_panel_gaps.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_compact_whitespace.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_compact_interactions.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_group_spacing.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_group_spacing_controls.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_group_spacing_gallery.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_text_geometry.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_pdf_text_editing.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_text_formatting.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_text_tools_integration.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_layout_lock.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_layout_lock_integration.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_released_motion.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_panel_commands_host.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_mixed_label_selection.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_selection_transform_dom.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_selection_resize_integration.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_continuous_commands.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_alignment_icons.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_alignment_guides.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_layers_panel.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_selection_performance.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_selection_lookup.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_preview_sessions.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_field_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_host_ime.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_component_ime.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_commit_preview_efficiency.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_palette_cache.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_human_ime_contract.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_discovery_install.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_resource_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_resource_preview_harness.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_verify_studio_served_html.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_pane_reuse.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_selection_click_reuse.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_selection_refresh_efficiency.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_pane_zoom.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_installed_acceptance_contract.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_installed_manifest_contract.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_installed_browser_identity.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_duplicate_network_capture.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_large_import_contracts.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_discovery_preview_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_quick_paint_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_palette_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_palette_pane_layout.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_object_borders_live_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_scale_geometry.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_scale_controls.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_performance_v2.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_performance_summary.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_update_real_evidence.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_edited_svg_performance.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_svg_namespace.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_autosave_coalescing.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_template_cache.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_font_replacement.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_axis_settings_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_axis_settings_async.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_axis_preview_isolation.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_axis_asset_draft.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_axis_canvas_restore.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_legacy_axis_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_scale_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_text_spacing_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_insets_draft.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_border_replacement.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_experience_tools.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_workspace_hierarchy.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_drawer_workspace.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_support.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_statistical_line_geometry.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_master_frame.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_master_frame_integration.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_legacy_stat_cleanup.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_legacy_stat_integration.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_direct_text_editing.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_canvas_clipboard.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_canvas_clipboard_append.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_element_insertions.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_element_insertions_render.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_imported_font_brush.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_quick_style_blur.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_inserted_text_font_scale.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_group_alignment.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_clipboard_event_guards.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_clipboard_compact_layout.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_nudge_hotpath.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_canvas_clipboard_integration.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_file_import.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_resize_text.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_mobile_dom_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_color_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_color_roundtrip.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_rectify.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_wb.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_rectify_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_rectify_detect.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_rectify_auto_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_straighten.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_rectify_ruler_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_color_auto.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_display_statistics.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_links_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_links_controller.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_insets_ui.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_insets_controller.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_image_insets_integration.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_update_transport.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_update_scene.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_studio_theme_controller.cjs",
+      "exitCode": 0
+    }
+  ],
+  "passed": true
+}

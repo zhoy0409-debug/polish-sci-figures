@@ -184,8 +184,12 @@ def http_request(port: int, path: str = '/', payload=None, token: str | None = N
     method = 'GET'
     if payload is not None:
         method = 'POST'
-        body = json.dumps(payload, ensure_ascii=False, allow_nan=False).encode('utf-8')
-        request_headers.setdefault('Content-Type', 'application/json')
+        if isinstance(payload, bytes):
+            body = payload
+            request_headers.setdefault('Content-Type', 'application/octet-stream')
+        else:
+            body = json.dumps(payload, ensure_ascii=False, allow_nan=False).encode('utf-8')
+            request_headers.setdefault('Content-Type', 'application/json')
         request_headers.setdefault('Origin', f'http://127.0.0.1:{port}')
     if token:
         request_headers['X-Studio-Token'] = token
@@ -434,6 +438,76 @@ def _self_test_image_links(service: RunningService, output_dir: Path) -> dict:
             'compiledModule': compiled, 'module': str(module.__file__)}
 
 
+def _self_test_native_tiff(service: RunningService) -> dict:
+    """Known encoded samples through actual bundled TIFF/OME/LZW HTTP routes.
+
+    This verifies the freezer's Pillow/libtiff and dynamic backend imports. It
+    does not replace installed GUI editing or scientific detector validation.
+    """
+    import base64
+    import io
+    import numpy as np
+    from PIL import Image, TiffImagePlugin
+
+    samples = np.array([[0, 21845, 43690], [65535, 0, 65535]], dtype=np.uint16)
+    page0, page1 = Image.fromarray(samples), Image.fromarray(65535 - samples)
+    tags = TiffImagePlugin.ImageFileDirectory_v2()
+    tags[270] = ('<OME><Image ID="Image:0"><Pixels ID="Pixels:0" DimensionOrder="XYCZT" '
+                 'Type="uint16" SizeX="3" SizeY="2" SizeC="1" SizeZ="1" SizeT="2">'
+                 '<Channel ID="Channel:0" SamplesPerPixel="1"/><TiffData/></Pixels></Image></OME>')
+    output = io.BytesIO()
+    page0.save(output, format='TIFF', save_all=True, append_images=[page1],
+               compression='tiff_lzw', tiffinfo=tags)
+    source = output.getvalue()
+    port, token = service.port, service.server.token
+
+    def request(payload, **kwargs):
+        status, raw = http_request(port, '/api/import-tiff', payload, token, **kwargs)
+        result = json.loads(raw)
+        assert status == 200, result
+        return result['tiff']
+
+    assert http_request(port, '/api/import-tiff', source,
+                        headers={'Content-Type': 'image/tiff'})[0] == 403
+    uploaded = request(source, headers={'Content-Type': 'image/tiff'})
+    metadata, source_id = uploaded['metadata'], uploaded['sourceId']
+    assert metadata['fileSha256'] == hashlib.sha256(source).hexdigest()
+    assert metadata['fileBytes'] == len(source) and len(metadata['pages']) == 2
+    assert metadata['pages'][0]['bitsPerSample'] == [16]
+    assert metadata['pages'][1]['omePosition'] == {'C': 0, 'Z': 0, 'T': 1}
+    status, raw = http_request(port, '/api/import-tiff',
+                              {'action': 'display', 'sourceId': source_id, 'page': 0}, token)
+    assert status == 422 and 'window' in json.loads(raw)['error'].lower()
+    hashes = []
+    try:
+        for index, native in enumerate((samples, 65535 - samples)):
+            result = request({'action': 'display', 'sourceId': source_id, 'page': index,
+                              'window': [0, 65535], 'gamma': 1, 'lut': 'gray', 'previewEdge': 0})
+            expected_hash = hashlib.sha256(native.astype('<u2').tobytes()).hexdigest()
+            assert result['native']['samplesSha256'] == expected_hash
+            assert result['native']['size'] == [3, 2]
+            png = base64.b64decode(result['display']['data'], validate=True)
+            assert hashlib.sha256(png).hexdigest() == result['display']['sha256']
+            displayed = np.asarray(Image.open(io.BytesIO(png)).convert('RGB'))
+            # Exact thirds of the uint16 range give independently known levels.
+            expected = np.array([[0, 85, 170], [255, 0, 255]], dtype=np.uint8)
+            if index:
+                expected = 255 - expected
+            assert np.array_equal(displayed, np.repeat(expected[..., None], 3, axis=2))
+            assert result['display']['quantitative'] is False
+            hashes.append(expected_hash)
+    finally:
+        assert request({'action': 'release', 'sourceId': source_id}) == {'released': True}
+    status, _ = http_request(port, '/api/import-tiff',
+                             {'action': 'suggest', 'sourceId': source_id, 'page': 0}, token)
+    assert status == 422
+    return {'passed': True, 'scope': 'Public six-pixel two-plane uint16 OME/LZW fixture; real bundled HTTP, not installed UI or detector accuracy',
+            'sourceBytes': len(source), 'sourceSha256': hashlib.sha256(source).hexdigest(),
+            'nativeSamplesSha256': hashes, 'planes': 2, 'nativeBits': 16,
+            'actualDecodedDisplayLevels': [0, 85, 170, 255], 'explicitWindowRequired': True,
+            'authorizationRequired': True, 'released': True}
+
+
 def self_test(service: RunningService, output_dir: Path) -> dict:
     """Use the same authorized HTTP routes as the packaged editor, not mocks."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -541,12 +615,14 @@ def self_test(service: RunningService, output_dir: Path) -> dict:
     checks.append('Bundled OpenCV image check and evidence via local HTTP')
     image_links = _self_test_image_links(service, output_dir)
     checks.extend(['/api/image-links', 'Bundled SIFT crop localization and original-pixel coordinates via local HTTP'])
+    native_tiff = _self_test_native_tiff(service)
+    checks.append('Bundled uint16 OME/LZW TIFF, native samples, explicit display window and binary session via local HTTP')
     report = {'passed': True, 'checks': checks, 'data_sha256': analysis['data_sha256'],
               'variants': len(panel['variants']), 'url': service.url,
               'frozen': bool(getattr(sys, 'frozen', False)), 'python': sys.version,
               'tk': tk_version, 'tcl': tcl_version,
               'resources': str(resource_root()), 'pdfObjects': pdf_result['editable'],
-              'imageLinks': image_links, 'localUpdateInfo': update_info}
+              'imageLinks': image_links, 'nativeTiff': native_tiff, 'localUpdateInfo': update_info}
     write_json(output_dir / 'self-test.json', report)
     return report
 

@@ -30,6 +30,7 @@ By default, the SVG physical width is set to the largest size that preserves 300
 - Apply the same crop policy, intensity window, gamma, and LUT to images in the same comparison batch. Do not tune each experimental group separately.
 - Default to no tone adjustment. If display adjustment is needed, declare fixed `display_min`, `display_max`, `gamma`, and `lut` settings in the manifest.
 - Keep higher-bit-depth single-channel data at their native depth until display mapping. Require an explicit native-unit display window; never silently cast 16-bit data to 8-bit.
+- The next Windows source candidate can import bounded native TIFF with cancellable window/gamma/LUT previews, optional explicit resampling and separately retained original bytes. **New display from original TIFF** reopens the retained plane/settings into a separate display without replacing earlier images or edits; originals remain shared. Read `../../docs/figure-studio-native-tiff.md` for exact formats and limits. It is not a batch-comparability workflow, quantitative analysis, full OME certification or an accepted released installer. Do not interpret TIFF print DPI as microscopy calibration or transfer a corrected display's calibration to the native plane.
 - Preserve a quantitative image/table separately. Display normalization is not a substitute for quantitative preprocessing.
 - Do not erase, clone, selectively blur, locally enhance, or move biological structures.
 - Do not resample by default. Equalize size by a common crop. If resampling is scientifically justified, perform it in a documented downstream workflow and update calibration.
@@ -70,3 +71,7 @@ Read `references/professional_basis.md` for the image-integrity, publication-lay
 ## Acceptance gate
 
 Do not deliver if any raw file was changed, calibration is absent or guessed, comparison-batch display settings differ, crops remove different scientific regions without justification, outputs differ in size, a scale bar is clipped, incorrect, or too small at final size, or unrequested labels/titles/serial numbers appear.
+
+## Resume an edited Studio image project
+
+Use the polish skill's [scoped project operation protocol](../polish-sci-figures/references/project_operations.md) for supported local presentation edits and revision checks. Inspect installed capabilities before creating operations. Preserve original raster bytes, source calibration, channel mapping, display policy and every unrelated manual edit. Image-only scientific checks remain unverifiable without the relevant acquisition/data records; geometry review is not quantitative validation.

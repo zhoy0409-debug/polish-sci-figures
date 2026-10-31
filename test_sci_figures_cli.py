@@ -163,8 +163,9 @@ def main():
         missing=run("inspect",xlsx,"--sheet","99","--json",check=False); assert missing.returncode==2
         assert json.loads(missing.stdout)["results"][0]["code"]=="INPUT_ERROR"
 
-        svg=root/"figure.svg"; svg.write_text('<svg xmlns="http://www.w3.org/2000/svg" width="50mm" height="30mm" viewBox="0 0 500 300"><text style="font-family:Arial">Live</text></svg>',encoding="utf-8")
+        svg=root/"科研图片_α.svg"; svg.write_text('<svg xmlns="http://www.w3.org/2000/svg" width="50mm" height="30mm" viewBox="0 0 500 300"><text style="font-family:Arial">Live</text></svg>',encoding="utf-8")
         qa=json.loads(run("qa",svg,"--font","Arial","--json").stdout); assert qa["summary"]["manual_review"]>=1
+        assert all(item['path']==str(svg) for item in qa['results'] if item.get('path')), 'UTF-8 paths must survive nested QA subprocess JSON'
         broken=root/"broken.svg"; broken.write_text("<svg>",encoding="utf-8")
         bad=run("qa",broken,"--json",check=False); assert bad.returncode==2 and json.loads(bad.stdout)["results"][0]["status"]=="FAIL"
         unsupported=root/"x.bin"; unsupported.write_bytes(b"x")

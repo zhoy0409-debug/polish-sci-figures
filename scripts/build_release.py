@@ -11,12 +11,35 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "v1.4.26"
+VERSION = "v1.5.0"
 SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    'docs/qa/windows-next-stable/installed-collaborative-20261101.md',
+    'docs/qa/windows-next-stable/installed-collaborative-20261101.json',
+    'docs/qa/windows-next-stable/installer-checkbox-20261101.md',
+    'docs/qa/windows-next-stable/installer-checkbox-20261101.json',
+    'docs/qa/windows-next-stable/setup-payload-20261101.md',
+    'docs/qa/windows-next-stable/setup-payload-20261101.json',
+    'docs/figure-studio-western-blot.zh-CN.md',
+    'docs/qa/windows-next-stable/wb-workflow-20261031.md',
+    'docs/qa/windows-next-stable/wb-workflow-20261031.json',
+    'docs/qa/windows-next-stable/wb-before-prototype-20261031.png',
+    'docs/qa/windows-next-stable/wb-carbon-20261031.png',
+    'docs/qa/windows-next-stable/wb-pearl-20261031.png',
+    'docs/qa/windows-next-stable/wb-compact-20261031.png',
+    'docs/qa/windows-next-stable/wb-workflow-20261031.webm',
+
+    'docs/release-notes-v1.5.0.md',
+    'docs/figure-studio-submission-profiles.md',
+    'docs/figure-studio-workspace-and-feedback.md',
+    'docs/windows-next-stable-summary.zh-CN.md',
+    'docs/figure-studio-native-tiff.md',
+    'docs/figure-review.zh-CN.md',
+    'docs/figure-review.en.md',
+    'docs/windows-next-stable-audit.md',
     'docs/release-notes-v1.4.25.md',
     'docs/release-notes-v1.4.26.md',
     'docs/release-notes-v1.4.24.md',

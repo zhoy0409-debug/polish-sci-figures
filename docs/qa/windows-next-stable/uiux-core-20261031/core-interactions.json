@@ -1,0 +1,63 @@
+{
+  "scope": "Actual source Chrome, local public or explicitly synthetic fixtures; not Windows installed or physical latency",
+  "checks": [
+    "Manual100% drawer and focus-canvas round trips preserve screen anchor, exact scientific project, state and history",
+    "Original shortcuts remain one row across bilingual1440/1366/1280/910; scientific superscript/subscript stay visible; More is keyboard dismissible with retained focus",
+    "Compact command results retain real keyboard routing; WB English paired input edges align"
+  ],
+  "errors": [],
+  "remote": [],
+  "browser": "156.0.8078.76",
+  "fixture": "public UCI Iris150",
+  "toolbar": [
+    {
+      "w": 1366,
+      "h": 768,
+      "lang": "zh-CN",
+      "height": 43
+    },
+    {
+      "w": 1366,
+      "h": 768,
+      "lang": "en",
+      "height": 43
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "lang": "zh-CN",
+      "height": 43
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "lang": "en",
+      "height": 43
+    },
+    {
+      "w": 910,
+      "h": 512,
+      "lang": "zh-CN",
+      "height": 43
+    },
+    {
+      "w": 910,
+      "h": 512,
+      "lang": "en",
+      "height": 43
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "zh-CN",
+      "height": 43
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "en",
+      "height": 43
+    }
+  ],
+  "passed": true
+}

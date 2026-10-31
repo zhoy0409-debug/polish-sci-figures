@@ -1,0 +1,1215 @@
+{
+  "author": "a",
+  "date": "2026-10-31",
+  "status": "LOCAL_UNRELEASED_USER_REVIEW",
+  "baselineCommit": "1dc8772a4edc0536fad885432d0951ae6b5a8e06",
+  "candidateHtmlSha256": "b512ed7b911ca88ab7547d5358952985968f348b191a83e23f693c5eb7316901",
+  "sourceAssets": {
+    "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
+    "axis-editing.js": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115",
+    "axis-settings-ui.css": "7d50d0bbc47253a0e6f673b294bf2d26ae413525eaf7d4f4729141ff7d2ca7c2",
+    "axis-settings-ui.js": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9",
+    "canvas-clipboard.js": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be",
+    "catalogue-previews.json": "a3644e7455c498ef2613ae1b02f8b04d52cd84e19f049e5240a84b9d3b129f19",
+    "catalogue.js": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35",
+    "chart-knowledge.json": "182d057d26602c57a292bdc8f1124458a22a90d89e42c96dba1ffad61416630b",
+    "compact-whitespace.js": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb",
+    "component-style.js": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234",
+    "deferred-previews.js": "7e5eb85d2d63b3b9cf9cfa7744009cb84819c53a0c68f2e7e69bf526e5e064ca",
+    "discovery-offline.js": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38",
+    "discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+    "discovery-ui.js": "cf1decd45eea8adcb2c7e3215780a3ee31ded139fc967931c40362cbbe9b5871",
+    "discovery.js": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43",
+    "download-metrics-ledger.json": "5b7f597471788e763edc76157081ea9ed17a684fbcadcc0e4b6efa27eaf8528f",
+    "drawer-workspace.css": "64afdfa96f209eee0803672124e75997758e423360423f7e3284bbbbd322c940",
+    "drawer-workspace.js": "3ed1751e462e623c77bba672498666e521289a5fa20c0f961dc45b6f648a023b",
+    "duplicate-check.css": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e",
+    "duplicate-check.js": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1",
+    "duplicate-review.js": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf",
+    "duplicate-viewer.css": "b64a440392b3822afe5bcb1d0be97903bfafe5d37c36b90be1d6b4bdef0999cf",
+    "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
+    "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
+    "experience-tools.css": "9b4689ce2f55112f8abc51ce3dd2a1665dcce3bf25f86fb95389aa5a3bc95d4e",
+    "experience-tools.js": "33d2e1688f058a05f449481870e7cfca9fd3eb876744accd047b4d7608f6524b",
+    "figure-planning.js": "dc82b3c8d0b6fc2685b7723a758eea69e05e461211cea82fa15cad9d2249b003",
+    "figure-quality.js": "60d570fe3a328d34358451ccd13206d79fb3794aeed39873942e21aa7a046e80",
+    "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
+    "grid-resize-ui.js": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed",
+    "group-spacing.js": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8",
+    "i18n.js": "6dc3b7814381899212bb22b104bf1a358fd84bd26df8f48e9cf8d8bf3c23e58b",
+    "image-color-ui.js": "9952bff2537451109035093725c2155750cdc5459583732a499d9b541873cb48",
+    "image-color.js": "af514f347252c5b04444cc4cc4f99a4d96fd7a81e3a52045c86bc99f37dc118d",
+    "image-insets-controller.js": "2ceb66b2eb1736e7dd6a78bae701090588a4d49cdafb2fba3d051ad1225f65ff",
+    "image-insets-ui.js": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035",
+    "image-insets.js": "d1d75b1ea15891038b831d901b14a588ec1bbed55609e01ceb7ef796725fc90c",
+    "image-links-controller.js": "82c9e72262b734455973550d822e32a0d37d2b8268d767fdff5fca0efeb59151",
+    "image-links-ui.js": "cd89e8606765cef22e76095d27e1e351ed37a9fee7e3507419a5072400bbf837",
+    "image-links.js": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886",
+    "image-rectify-detect.js": "808edeee0957793bf285e1bf9ad5f2731ecbecc5d3b9a5ccfc09b18d1c154aec",
+    "image-rectify-ui.js": "f047930790e744a7e90beceffb30f0a2d7bedf8f0b65a792e6b54117f8b489e9",
+    "image-rectify.css": "526d3c49041ba5561634fea0cffb2a9595a86a4521d0ef7eb73109fb06cfd2fb",
+    "image-rectify.js": "95bf95f55c8d9d3489caa1250cc0b89bd8cbb1cadabbd7a30c6631a2363d255a",
+    "image-straighten.js": "4323974477f35206e0d8a662d64785746665d369b49ec08dbc690e797a4426a5",
+    "layers-panel.js": "df9833043b3b021e0fde04d009bcbfc13231baa475cfbedaa320b560decffa47",
+    "layout-lock.js": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242",
+    "legacy-stat-cleanup.js": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92",
+    "library.js": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51",
+    "literature.css": "f696eccd3cfba3c0ea3fac45cbd5a74c6adb55728e59abf4ce1c5547f06e49f0",
+    "literature.js": "66b6852716cc59c622620504bac9c87ab6d2547a36c8d7b7fd3aa23574fa194b",
+    "mark-style.js": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419",
+    "mascot-border-collie.svg": "bc17f3211a96529966fc744fd1e28df518ad43a2f79c3d199ba383079996472d",
+    "mascot-maine-coon.svg": "87a2ac6f885101abba85c45f013fdc8f303d5398c0756419bdb38d08509103f3",
+    "mascot-minimal-cat.svg": "abee4441d83d8e127526e8656363b0117e01a0bc3e99ec27882f8d4d43975d83",
+    "mascot-minimal-dog.svg": "3ac69072935713d1f2af3c5849052d731710eea38aead5d4f7b5b9976072d9ee",
+    "mascot-scene.svg": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b",
+    "master-frame.js": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9",
+    "memory.js": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c",
+    "mobile-ui.css": "101335ce269683a514ceb526b46b15634019b57405144615b29debd897bfb14b",
+    "mobile-ui.js": "7c1349430b964ae2050f4a79079cfb5fc1e6aecd42384b14caaac16e64391f69",
+    "object-borders.js": "5ba4ed9c9d2971d3372ee14b8d04cf540753c879f40b165e1a37d758d542404a",
+    "panel-commands.js": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd",
+    "preview-sessions.js": "218ce572c39a858f5ff519531ea5d7c7424d293db5d9184672688a5423182a88",
+    "project-codec.js": "95343ac7819582e47071040820e33868b3bf79eddaa0a93f57c1f41a90205892",
+    "project-operations.js": "47ec7234ae6fedcfb61357c375bdf8c0632a63d4ce6031cabf102b3c3a9a2540",
+    "quality-workspace.css": "26b5829969110828d357f818725ce0d0e105647710ac6606d0137719f57a81d7",
+    "quality-workspace.js": "41125480dcd80eba730c6b43d8efaffa855f4e2c035103c26931dd7af2247228",
+    "research-discovery.js": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f",
+    "rich-text.css": "1deadd7d55d7edee1f120d2f80062e034fca198d3b74da8acb62022fa41c43e3",
+    "rich-text.js": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4",
+    "scale-geometry.js": "cbf84b487787292009917c5e3f1e0ad0a677c5bf32e5ed1faaf726258677b73f",
+    "scientific-tiff-ui.js": "0547f44eb3dfc51395637b838358132e800bdb84d9f159ba978d1b8df6928ae5",
+    "scientific-tiff.css": "ac4aafac32b037756c19160aa7a9d03dd55ccb6083dc24ccc2ca1b1e41421027",
+    "scientific-tiff.js": "e48cd93de05687655c8a66bf7bd343839583d0d614e4be800863b2e0a13dc05e",
+    "selection-resize-controller.js": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61",
+    "selection-transform-dom.js": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3",
+    "selection-transform.js": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719",
+    "statistical-line-geometry.js": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8",
+    "statistical-metadata.js": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747",
+    "studio-support.js": "c358ae47d025e119b01de5abdaf812161fcc6d18aac4ced3c97c95e1c5fd014d",
+    "studio.css": "951eea56f81bb985e412ea09c3f6bd59949ee39c9053da3e6d05db84a73b685c",
+    "studio.html": "4a544a2222f19d61b8eed4aa3d37ef1128e1583ad5d3d5fd200bd358b5d45458",
+    "studio.js": "16eb1afbda92420911e00aabf062cedff40a506d26e7ae4621bfd51d9650b84f",
+    "style-preview.js": "c0da41e0c15c37545f199525ec1f6db04086d68a146736b28ed7275f37fe767f",
+    "submission-profile-ui.js": "ee98b8ef53c072aeee14dcc37fac3acaeaab9bb01f78d48cea69bee44a0c41ff",
+    "submission-profiles.js": "47535d1292f0520eb2d87e47b70f3cbcd788e944957ef0b363c576d9550f41a3",
+    "template-starters.json": "eb8f5d4c60a2cfbb03ad2d334e9aa4f44802e0e3df29fc8a1779ab6088c636ba",
+    "text-formatting.js": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1",
+    "text-tools-ui.js": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e",
+    "theme-controller.js": "53a19e902fb02f91a0962c8ec19d3bf8065ed05d87f0d81e34c344fcbb14f6b9",
+    "theme-tokens.css": "85e0c3f1ae00cb9b3a6e4af623a0f4e276a8a55349072f40006d981c5d4b764f",
+    "theme.css": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab",
+    "third-party-notices.js": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682",
+    "tiff-export.js": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f",
+    "update-check.js": "977df4939713cedc0d340b58958a9b2000c3c7de5c79cf411483300a894c1d5f",
+    "update-scene.css": "eced7b3291d70b0a8afd06a434d6c3aa4a8cee1a048a468a6e7f3948a136c7db",
+    "update-scene.js": "444cc790b4c5948ee785e1772c145453cb13dde3e7e5b840edae5f56d305daa7",
+    "vector-interaction.js": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4",
+    "workspace-layout.css": "4b0775dea1787185f507783133403859e4688c39111c64de9156add721c5da8b",
+    "workspace-layout.js": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+  },
+  "scope": "Own IAB visual operation plus isolated source Chrome production tests; public Iris150/H&E and explicitly synthetic fixtures. Not native installed Windows, IME, physical latency, genuine official upgrade or detector accuracy acceptance.",
+  "inspiration": "User supplied images interpreted as spacing, grouping and restrained surface hierarchy only; no third-party reference image or asset copied or redistributed.",
+  "manualBrowser": {
+    "inspectorFont": "9 -> 10 -> Escape -> 9",
+    "quickFont": "9 -> 11 -> Escape -> 9",
+    "cancelStatus": "已取消预览，保留当前编辑。",
+    "savedCoreKeysExact": {
+      "project": true,
+      "state": true,
+      "history": true,
+      "dataDrafts": true,
+      "checkpoints": true
+    },
+    "viewports": [
+      "1280x720",
+      "1413x871",
+      "853x480"
+    ],
+    "temporaryViewportReset": true,
+    "noHorizontalOverflow853": true
+  },
+  "focused": {
+    "author": "a",
+    "date": "2026-10-31",
+    "checks": [
+      {
+        "name": "test_studio_field_preview.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_host_ime.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_quick_style_blur.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_property_commit.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_quick_paint_preview.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_preview_sessions.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_commit_preview_efficiency.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_drawer_workspace.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_theme_controller.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_theme_tokens.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_mobile_ui.cjs",
+        "exitCode": 0
+      }
+    ],
+    "passed": true
+  },
+  "production": {
+    "author": "a",
+    "scope": "Real local browser and production TIFF/JSON/correction engines with public synthetic fixtures; not native installed Windows or independent detector accuracy",
+    "checks": [
+      {
+        "script": "test_project_codec_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_scientific_tiff_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_scientific_tiff_derivative_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_submission_profiles_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_history_shortcuts_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_drawer_workspace_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_drawer_compact_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_support_browser.cjs",
+        "exitCode": 0
+      }
+    ],
+    "passed": true
+  },
+  "exports": {
+    "author": "a",
+    "date": "2026-10-31",
+    "passed": true,
+    "coreKeysExact": {
+      "project": true,
+      "state": true,
+      "history": true,
+      "dataDrafts": true,
+      "checkpoints": true
+    },
+    "exports": [
+      {
+        "owner": "baseline",
+        "theme": "carbon",
+        "name": "carbon-1",
+        "sha256": "07ad78340fa5d9fc487bc6c2e1e205eff368e7115fa61d817281ba7ee08aaa9b",
+        "canonicalSvgSha256": "ec32a5930cb85696ce69fc63c34af6b1368014dd3eac81fdeccf3d64c0d9fc73",
+        "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+        "size": [
+          2880,
+          2160
+        ],
+        "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      },
+      {
+        "owner": "baseline",
+        "theme": "carbon",
+        "name": "carbon-2",
+        "sha256": "7995e708291211440e5fbc61d119a5702ead76a20c72937e2027d0b27aa43542",
+        "canonicalSvgSha256": "ec32a5930cb85696ce69fc63c34af6b1368014dd3eac81fdeccf3d64c0d9fc73",
+        "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+        "size": [
+          2880,
+          2160
+        ],
+        "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      },
+      {
+        "owner": "baseline",
+        "theme": "pearl",
+        "name": "pearl-1",
+        "sha256": "a1d3aeecd7d3683112e3063a219a325245920d2d9b87a5b0a291b17a1e989dac",
+        "canonicalSvgSha256": "ec32a5930cb85696ce69fc63c34af6b1368014dd3eac81fdeccf3d64c0d9fc73",
+        "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+        "size": [
+          2880,
+          2160
+        ],
+        "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      },
+      {
+        "owner": "baseline",
+        "theme": "carbon",
+        "name": "carbon-3",
+        "sha256": "88808e01c3ac7f2e52f10608ef164e2e0cf4af7a470f12b16a18ccb268abc7e8",
+        "canonicalSvgSha256": "ec32a5930cb85696ce69fc63c34af6b1368014dd3eac81fdeccf3d64c0d9fc73",
+        "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+        "size": [
+          2880,
+          2160
+        ],
+        "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      },
+      {
+        "owner": "candidate",
+        "theme": "carbon",
+        "name": "carbon-1",
+        "sha256": "07ad78340fa5d9fc487bc6c2e1e205eff368e7115fa61d817281ba7ee08aaa9b",
+        "canonicalSvgSha256": "ec32a5930cb85696ce69fc63c34af6b1368014dd3eac81fdeccf3d64c0d9fc73",
+        "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+        "size": [
+          2880,
+          2160
+        ],
+        "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      },
+      {
+        "owner": "candidate",
+        "theme": "carbon",
+        "name": "carbon-2",
+        "sha256": "7995e708291211440e5fbc61d119a5702ead76a20c72937e2027d0b27aa43542",
+        "canonicalSvgSha256": "ec32a5930cb85696ce69fc63c34af6b1368014dd3eac81fdeccf3d64c0d9fc73",
+        "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+        "size": [
+          2880,
+          2160
+        ],
+        "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      },
+      {
+        "owner": "candidate",
+        "theme": "pearl",
+        "name": "pearl-1",
+        "sha256": "a1d3aeecd7d3683112e3063a219a325245920d2d9b87a5b0a291b17a1e989dac",
+        "canonicalSvgSha256": "ec32a5930cb85696ce69fc63c34af6b1368014dd3eac81fdeccf3d64c0d9fc73",
+        "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+        "size": [
+          2880,
+          2160
+        ],
+        "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      },
+      {
+        "owner": "candidate",
+        "theme": "carbon",
+        "name": "carbon-3",
+        "sha256": "88808e01c3ac7f2e52f10608ef164e2e0cf4af7a470f12b16a18ccb268abc7e8",
+        "canonicalSvgSha256": "ec32a5930cb85696ce69fc63c34af6b1368014dd3eac81fdeccf3d64c0d9fc73",
+        "pngSha256": "a72179c3bb88ea2f908f25d2ab238c7f94897f444ed549569acc34a4bd362548",
+        "size": [
+          2880,
+          2160
+        ],
+        "rgbaSha256": "b30373809b4b2d95bdd794cbb4b29d40edcad1d14a220f74680f8a273a616a92"
+      }
+    ],
+    "scope": "Actual baseline1dc8772 and integrated source, public Iris150, Carbon/Carbon repeat/Pearl/Carbon. Canonical SVG normalizes only known incrementing ID namespaces; PNG decoded RGBA pixels and dimensions exact. Not private-image or installed-app acceptance."
+  },
+  "componentChecks": {
+    "passed": true,
+    "report": {
+      "scope": "Actual Chromium CSS on representative component fixtures; not full-page WCAG AA certification",
+      "generatedUTC": "2026-10-30T23:56:04.142Z",
+      "browser": "156.0.8078.76",
+      "platform": "win32",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "themes": {
+        "carbon": {
+          "text": [
+            {
+              "selector": "#normal",
+              "color": "rgb(239, 243, 243)",
+              "bg": "rgb(32, 39, 46)",
+              "border": "rgba(0, 0, 0, 0)",
+              "outline": "rgb(239, 243, 243)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0.13s, 0.13s, 0.13s",
+              "contrast": 13.503660909210245
+            },
+            {
+              "selector": "#primary",
+              "color": "rgb(16, 27, 28)",
+              "bg": "rgb(73, 195, 165)",
+              "border": "rgb(73, 195, 165)",
+              "outline": "rgb(16, 27, 28)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0.13s, 0.13s, 0.13s",
+              "contrast": 8.056938457146465
+            },
+            {
+              "selector": "#selected",
+              "color": "rgb(112, 222, 198)",
+              "bg": "rgb(34, 68, 61)",
+              "border": "rgb(73, 195, 165)",
+              "outline": "rgb(112, 222, 198)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "13px",
+              "transition": "0.13s, 0.13s, 0.13s",
+              "contrast": 6.601047808711634
+            },
+            {
+              "selector": "#muted",
+              "color": "rgb(180, 193, 200)",
+              "bg": "rgb(34, 43, 50)",
+              "border": "rgb(180, 193, 200)",
+              "outline": "rgb(180, 193, 200)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 7.812056112013827
+            },
+            {
+              "selector": "#inputLabel",
+              "color": "rgb(192, 203, 208)",
+              "bg": "rgb(34, 43, 50)",
+              "border": "rgb(192, 203, 208)",
+              "outline": "rgb(192, 203, 208)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 8.697084658248098
+            },
+            {
+              "selector": "#input",
+              "color": "rgb(239, 243, 243)",
+              "bg": "rgb(32, 42, 50)",
+              "border": "rgb(119, 136, 149)",
+              "outline": "rgb(239, 243, 243)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0.13s, 0.13s, 0.13s, 0.13s, 0.13s",
+              "contrast": 13.057017874557232
+            },
+            {
+              "selector": "#context",
+              "color": "rgb(239, 243, 243)",
+              "bg": "rgb(40, 51, 59)",
+              "border": "rgb(239, 243, 243)",
+              "outline": "rgb(239, 243, 243)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "14px",
+              "transition": "0s",
+              "contrast": 11.546199009818183
+            },
+            {
+              "selector": "#tabSelected",
+              "color": "rgb(112, 222, 198)",
+              "bg": "rgb(34, 68, 61)",
+              "border": "rgb(73, 195, 165)",
+              "outline": "rgb(112, 222, 198)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0.13s, 0.13s, 0.13s",
+              "contrast": 6.601047808711634
+            },
+            {
+              "selector": "#notice",
+              "color": "rgb(239, 243, 243)",
+              "bg": "rgb(34, 44, 52)",
+              "border": "rgb(239, 243, 243)",
+              "outline": "rgb(239, 243, 243)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 12.710536805737341
+            },
+            {
+              "selector": "#warning",
+              "color": "rgb(243, 196, 119)",
+              "bg": "rgb(45, 56, 65)",
+              "border": "rgb(243, 196, 119)",
+              "outline": "rgb(243, 196, 119)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 7.3981834599960035
+            },
+            {
+              "selector": "#error",
+              "color": "rgb(247, 166, 177)",
+              "bg": "rgb(40, 51, 59)",
+              "border": "rgb(247, 166, 177)",
+              "outline": "rgb(247, 166, 177)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 6.788453347323717
+            },
+            {
+              "selector": "#link",
+              "color": "rgb(112, 222, 198)",
+              "bg": "rgb(34, 44, 52)",
+              "border": "rgb(112, 222, 198)",
+              "outline": "rgb(112, 222, 198)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "13px",
+              "transition": "0.13s, 0.13s, 0.13s, 0.13s, 0.13s",
+              "contrast": 8.764541033576489
+            },
+            {
+              "selector": "#imageHint",
+              "color": "rgb(192, 203, 208)",
+              "bg": "rgb(45, 56, 65)",
+              "border": "rgb(192, 203, 208)",
+              "outline": "rgb(192, 203, 208)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 7.239189048786445
+            },
+            {
+              "selector": "#imagePrimary",
+              "color": "rgb(16, 27, 28)",
+              "bg": "rgb(73, 195, 165)",
+              "border": "rgb(73, 195, 165)",
+              "outline": "rgb(16, 27, 28)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "13px",
+              "transition": "0.13s, 0.13s, 0.13s",
+              "contrast": 8.056938457146465
+            },
+            {
+              "selector": "#pointStyleStatus",
+              "color": "rgb(192, 203, 208)",
+              "bg": "rgb(40, 51, 59)",
+              "border": "rgb(192, 203, 208)",
+              "outline": "rgb(192, 203, 208)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 7.8028305708316985
+            }
+          ],
+          "boundaries": [
+            {
+              "selector": "#regularControl",
+              "contrast": 3.989852573295542
+            },
+            {
+              "selector": "#input",
+              "contrast": 3.989852573295542
+            },
+            {
+              "selector": "#axisInput",
+              "contrast": 3.989852573295542
+            }
+          ],
+          "states": [
+            {
+              "selector": "#primary",
+              "state": "hover",
+              "contrast": 10.834053567018241
+            },
+            {
+              "selector": "#primary",
+              "state": "pressed",
+              "contrast": 4.806096670448365
+            },
+            {
+              "selector": "#exportSummary",
+              "state": "hover",
+              "contrast": 10.834053567018241
+            },
+            {
+              "selector": "#exportSummary",
+              "state": "pressed",
+              "contrast": 4.806096670448365
+            },
+            {
+              "selector": "#input",
+              "state": "keyboard-focus",
+              "contrast": 9.00345679232388
+            }
+          ],
+          "tokenPairs": [
+            {
+              "foreground": "text-primary",
+              "background": "surface-0",
+              "contrast": 14.845757374262877
+            },
+            {
+              "foreground": "text-primary",
+              "background": "surface-1",
+              "contrast": 12.710536805737341
+            },
+            {
+              "foreground": "text-primary",
+              "background": "surface-2",
+              "contrast": 10.712153322851838
+            },
+            {
+              "foreground": "text-primary",
+              "background": "surface-raised",
+              "contrast": 10.712153322851838
+            },
+            {
+              "foreground": "text-primary",
+              "background": "control-bg",
+              "contrast": 13.057017874557232
+            },
+            {
+              "foreground": "text-primary",
+              "background": "hover",
+              "contrast": 9.148778004277679
+            },
+            {
+              "foreground": "text-primary",
+              "background": "pressed",
+              "contrast": 7.581527341204416
+            },
+            {
+              "foreground": "text-primary",
+              "background": "accent-selected-bg",
+              "contrast": 9.572989710200874
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "surface-0",
+              "contrast": 10.03264618845961
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "surface-1",
+              "contrast": 8.589680904958746
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "surface-2",
+              "contrast": 7.239189048786445
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "surface-raised",
+              "contrast": 7.239189048786445
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "control-bg",
+              "contrast": 8.823830088919923
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "hover",
+              "contrast": 6.18267229213942
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "pressed",
+              "contrast": 5.123536608128993
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "accent-selected-bg",
+              "contrast": 6.469351229915177
+            },
+            {
+              "foreground": "text-muted",
+              "background": "surface-0",
+              "contrast": 9.011708872110225
+            },
+            {
+              "foreground": "text-muted",
+              "background": "surface-1",
+              "contrast": 7.715581927812159
+            },
+            {
+              "foreground": "text-muted",
+              "background": "surface-2",
+              "contrast": 6.502518174404832
+            },
+            {
+              "foreground": "text-muted",
+              "background": "surface-raised",
+              "contrast": 6.502518174404832
+            },
+            {
+              "foreground": "text-muted",
+              "background": "control-bg",
+              "contrast": 7.925903735126316
+            },
+            {
+              "foreground": "text-muted",
+              "background": "hover",
+              "contrast": 5.553514167828682
+            },
+            {
+              "foreground": "text-muted",
+              "background": "pressed",
+              "contrast": 4.602157739915943
+            },
+            {
+              "foreground": "text-muted",
+              "background": "accent-selected-bg",
+              "contrast": 5.811020221413294
+            },
+            {
+              "foreground": "success",
+              "background": "success-bg",
+              "contrast": 6.6006622687968495
+            },
+            {
+              "foreground": "warning",
+              "background": "warning-bg",
+              "contrast": 7.09921380097684
+            },
+            {
+              "foreground": "error",
+              "background": "error-bg",
+              "contrast": 6.400855418689726
+            }
+          ],
+          "artwork": {
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(48, 52, 59)",
+            "stroke": "rgb(48, 52, 59)",
+            "fill": "rgb(179, 92, 113)",
+            "rasterSHA256": "2ef4cfe732d5bbad77d0991733670c765f953e47bbf0a36b216072b4d97eef15"
+          },
+          "scientificVariableColors": {
+            "fills": {
+              "inkFallback": "rgb(18, 52, 86)",
+              "textFallback": "rgb(52, 86, 120)",
+              "cardFallback": "rgb(86, 120, 154)",
+              "borderFallback": "rgb(120, 154, 188)",
+              "userInk": "rgb(170, 187, 204)"
+            },
+            "userDeclaration": "#abc"
+          }
+        },
+        "pearl": {
+          "text": [
+            {
+              "selector": "#normal",
+              "color": "rgb(40, 56, 47)",
+              "bg": "rgb(248, 250, 247)",
+              "border": "rgba(0, 0, 0, 0)",
+              "outline": "rgb(40, 56, 47)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0.13s, 0.13s, 0.13s",
+              "contrast": 11.790998624342318
+            },
+            {
+              "selector": "#primary",
+              "color": "rgb(255, 255, 255)",
+              "bg": "rgb(23, 107, 93)",
+              "border": "rgb(23, 107, 93)",
+              "outline": "rgb(255, 255, 255)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0.13s, 0.13s, 0.13s",
+              "contrast": 6.3683211313221335
+            },
+            {
+              "selector": "#selected",
+              "color": "rgb(23, 107, 93)",
+              "bg": "rgb(215, 240, 231)",
+              "border": "rgb(23, 107, 93)",
+              "outline": "rgb(23, 107, 93)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "13px",
+              "transition": "0.13s, 0.13s, 0.13s",
+              "contrast": 5.309164464464362
+            },
+            {
+              "selector": "#muted",
+              "color": "rgb(83, 102, 90)",
+              "bg": "rgb(240, 244, 240)",
+              "border": "rgb(83, 102, 90)",
+              "outline": "rgb(83, 102, 90)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 5.533858547361561
+            },
+            {
+              "selector": "#inputLabel",
+              "color": "rgb(77, 96, 84)",
+              "bg": "rgb(240, 244, 240)",
+              "border": "rgb(77, 96, 84)",
+              "outline": "rgb(77, 96, 84)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 6.065209962898105
+            },
+            {
+              "selector": "#input",
+              "color": "rgb(40, 56, 47)",
+              "bg": "rgb(249, 251, 247)",
+              "border": "rgb(23, 107, 93)",
+              "outline": "rgb(23, 107, 93)",
+              "outlineStyle": "solid",
+              "outlineWidth": "2px",
+              "fontSize": "12px",
+              "transition": "0.13s, 0.13s, 0.13s, 0.13s, 0.13s",
+              "contrast": 11.886043200142058
+            },
+            {
+              "selector": "#context",
+              "color": "rgb(40, 56, 47)",
+              "bg": "rgb(252, 253, 251)",
+              "border": "rgb(40, 56, 47)",
+              "outline": "rgb(40, 56, 47)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "14px",
+              "transition": "0s",
+              "contrast": 12.129015065949858
+            },
+            {
+              "selector": "#tabSelected",
+              "color": "rgb(23, 107, 93)",
+              "bg": "rgb(215, 240, 231)",
+              "border": "rgb(23, 107, 93)",
+              "outline": "rgb(23, 107, 93)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0.13s, 0.13s, 0.13s",
+              "contrast": 5.309164464464362
+            },
+            {
+              "selector": "#notice",
+              "color": "rgb(40, 56, 47)",
+              "bg": "rgb(241, 245, 240)",
+              "border": "rgb(40, 56, 47)",
+              "outline": "rgb(40, 56, 47)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 11.231613438971298
+            },
+            {
+              "selector": "#warning",
+              "color": "rgb(136, 82, 10)",
+              "bg": "rgb(252, 253, 251)",
+              "border": "rgb(136, 82, 10)",
+              "outline": "rgb(136, 82, 10)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 6.317148972033139
+            },
+            {
+              "selector": "#error",
+              "color": "rgb(179, 62, 79)",
+              "bg": "rgb(252, 253, 251)",
+              "border": "rgb(179, 62, 79)",
+              "outline": "rgb(179, 62, 79)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 5.534795448890968
+            },
+            {
+              "selector": "#link",
+              "color": "rgb(23, 107, 93)",
+              "bg": "rgb(241, 245, 240)",
+              "border": "rgb(23, 107, 93)",
+              "outline": "rgb(23, 107, 93)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "13px",
+              "transition": "0.13s, 0.13s, 0.13s, 0.13s, 0.13s",
+              "contrast": 5.779819016015081
+            },
+            {
+              "selector": "#imageHint",
+              "color": "rgb(77, 96, 84)",
+              "bg": "rgb(252, 253, 251)",
+              "border": "rgb(77, 96, 84)",
+              "outline": "rgb(77, 96, 84)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 6.6037972985063425
+            },
+            {
+              "selector": "#imagePrimary",
+              "color": "rgb(255, 255, 255)",
+              "bg": "rgb(23, 107, 93)",
+              "border": "rgb(23, 107, 93)",
+              "outline": "rgb(255, 255, 255)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "13px",
+              "transition": "0.13s, 0.13s, 0.13s",
+              "contrast": 6.3683211313221335
+            },
+            {
+              "selector": "#pointStyleStatus",
+              "color": "rgb(77, 96, 84)",
+              "bg": "rgb(252, 253, 251)",
+              "border": "rgb(77, 96, 84)",
+              "outline": "rgb(77, 96, 84)",
+              "outlineStyle": "none",
+              "outlineWidth": "3px",
+              "fontSize": "12px",
+              "transition": "0s",
+              "contrast": 6.6037972985063425
+            }
+          ],
+          "boundaries": [
+            {
+              "selector": "#regularControl",
+              "contrast": 3.4071045873487544
+            },
+            {
+              "selector": "#input",
+              "contrast": 6.116590362252528
+            },
+            {
+              "selector": "#axisInput",
+              "contrast": 3.4071045873487544
+            }
+          ],
+          "states": [
+            {
+              "selector": "#primary",
+              "state": "hover",
+              "contrast": 8.436342609169499
+            },
+            {
+              "selector": "#primary",
+              "state": "pressed",
+              "contrast": 10.139521434087776
+            },
+            {
+              "selector": "#exportSummary",
+              "state": "hover",
+              "contrast": 8.436342609169499
+            },
+            {
+              "selector": "#exportSummary",
+              "state": "pressed",
+              "contrast": 10.139521434087776
+            },
+            {
+              "selector": "#input",
+              "state": "keyboard-focus",
+              "contrast": 6.116590362252528
+            }
+          ],
+          "tokenPairs": [
+            {
+              "foreground": "text-primary",
+              "background": "surface-0",
+              "contrast": 10.673805910714377
+            },
+            {
+              "foreground": "text-primary",
+              "background": "surface-1",
+              "contrast": 11.231613438971298
+            },
+            {
+              "foreground": "text-primary",
+              "background": "surface-2",
+              "contrast": 12.129015065949858
+            },
+            {
+              "foreground": "text-primary",
+              "background": "surface-raised",
+              "contrast": 12.129015065949858
+            },
+            {
+              "foreground": "text-primary",
+              "background": "control-bg",
+              "contrast": 11.886043200142058
+            },
+            {
+              "foreground": "text-primary",
+              "background": "hover",
+              "contrast": 10.377328823179136
+            },
+            {
+              "foreground": "text-primary",
+              "background": "pressed",
+              "contrast": 9.793650572266676
+            },
+            {
+              "foreground": "text-primary",
+              "background": "accent-selected-bg",
+              "contrast": 10.317015599201108
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "surface-0",
+              "contrast": 5.811490071921725
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "surface-1",
+              "contrast": 6.115195511164749
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "surface-2",
+              "contrast": 6.6037972985063425
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "surface-raised",
+              "contrast": 6.6037972985063425
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "control-bg",
+              "contrast": 6.471508160244897
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "hover",
+              "contrast": 5.650069331730656
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "pressed",
+              "contrast": 5.332278246830989
+            },
+            {
+              "foreground": "text-secondary",
+              "background": "accent-selected-bg",
+              "contrast": 5.617231025948643
+            },
+            {
+              "foreground": "text-muted",
+              "background": "surface-0",
+              "contrast": 5.302366151236103
+            },
+            {
+              "foreground": "text-muted",
+              "background": "surface-1",
+              "contrast": 5.57946503999941
+            },
+            {
+              "foreground": "text-muted",
+              "background": "surface-2",
+              "contrast": 6.025262167168351
+            },
+            {
+              "foreground": "text-muted",
+              "background": "surface-raised",
+              "contrast": 6.025262167168351
+            },
+            {
+              "foreground": "text-muted",
+              "background": "control-bg",
+              "contrast": 5.904562408550037
+            },
+            {
+              "foreground": "text-muted",
+              "background": "hover",
+              "contrast": 5.155086906446209
+            },
+            {
+              "foreground": "text-muted",
+              "background": "pressed",
+              "contrast": 4.865136365211026
+            },
+            {
+              "foreground": "text-muted",
+              "background": "accent-selected-bg",
+              "contrast": 5.125125447528167
+            },
+            {
+              "foreground": "success",
+              "background": "success-bg",
+              "contrast": 5.541770554244637
+            },
+            {
+              "foreground": "warning",
+              "background": "warning-bg",
+              "contrast": 5.8176612455708945
+            },
+            {
+              "foreground": "error",
+              "background": "error-bg",
+              "contrast": 4.946770758256968
+            }
+          ],
+          "artwork": {
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(48, 52, 59)",
+            "stroke": "rgb(48, 52, 59)",
+            "fill": "rgb(179, 92, 113)",
+            "rasterSHA256": "2ef4cfe732d5bbad77d0991733670c765f953e47bbf0a36b216072b4d97eef15"
+          },
+          "scientificVariableColors": {
+            "fills": {
+              "inkFallback": "rgb(18, 52, 86)",
+              "textFallback": "rgb(52, 86, 120)",
+              "cardFallback": "rgb(86, 120, 154)",
+              "borderFallback": "rgb(120, 154, 188)",
+              "userInk": "rgb(170, 187, 204)"
+            },
+            "userDeclaration": "#abc"
+          }
+        }
+      },
+      "requests": [],
+      "workspaceGeometry": [
+        {
+          "left": 260,
+          "right": 340,
+          "navigatorWidth": 260,
+          "inspectorWidth": 340,
+          "workspace": [
+            "260px",
+            "340px"
+          ],
+          "svg": [
+            "220px",
+            "320px"
+          ],
+          "scientificNode": [
+            "220px",
+            "320px"
+          ]
+        },
+        {
+          "left": 290,
+          "right": 300,
+          "navigatorWidth": 290,
+          "inspectorWidth": 300,
+          "workspace": [
+            "290px",
+            "300px"
+          ],
+          "svg": [
+            "220px",
+            "320px"
+          ],
+          "scientificNode": [
+            "220px",
+            "320px"
+          ]
+        }
+      ]
+    },
+    "scope": "Token pairs and representative components only; no full-page accessibility certification."
+  },
+  "performance": {
+    "samples": 640,
+    "batches": 8,
+    "raw": "surface-performance-20261031.json",
+    "sourceDuringTiming": "integrated-r1; only Escape cancellation status placement changed later, outside measured operations",
+    "finding": "Broad batch variation; no stable overall speedup or regression-free latency certification. Candidate drag overlaps20/21 long tasks per batch; native same-package performance remains pending."
+  },
+  "retainedFailures": [
+    "focused-r1: weak muted/pressed contrast; corrected both themes and rerun.",
+    "exports-r2: loopback blocked by execution sandbox before loading either app; final explicit local QA session passed.",
+    "IAB integrated-r1: per-field hint fix did not run because production capture listener intercepted Escape first; replaced with one generic capture-branch fix.",
+    "focused-r3: new extraction assumed LF source; changed delimiters to semantic markers, no product workaround.",
+    "focused-r4: representative component screenshot raster hash differed despite equal reported colors/DOM; final rerun passed unchanged component assertion. Final real SVG and8PNG exports separately exact; original failure retained, cause not established.",
+    "IAB download-result delivery took11269seconds; outside timing runs and not editor processing latency. No repeated IAB download waiting.",
+    "cd13880 remote CI41146900275 local-browser-preview failed: field fixture omitted observed composition listeners; host IME fixture omitted say/T. Added real production listeners and required status dependencies/assertions; all6controlled IME groups and final11commands passed. Production UI unchanged; native IME not certified.",
+    "38f7cbe CI41147508830: profile remained open and intercepted the underlying export button. Final behavioral test uses its visible Close then exports and reopens retained settings; synthetic and public Iris passed, original dimensions/DPI/history/data assertions retained. Production UI unchanged; floating-profile workflow boundary remains explicit."
+  ],
+  "nativeGates": {
+    "installerTextClipping": "USER_FAILED_UNRESOLVED",
+    "currentInstalledEditorIME": "PENDING",
+    "samePackage5000": "PENDING",
+    "genuineOfficialInAppUpgrade": "PENDING",
+    "actualFailureRecovery": "PENDING",
+    "publicationAuthorized": false
+  },
+  "screenshots": {
+    "surface-before-carbon-20261031.jpg": {
+      "sha256": "275f7c2371c9a2bce195fdff5d9e9151e1f84822c0ea1b865fcf130a7d710f62",
+      "scope": "Actual own-source IAB screenshot, public Iris150"
+    },
+    "surface-after-carbon-20261031.jpg": {
+      "sha256": "f6631d222816675d6ddc9094532a0042e9cf5537df465c6897ac9d9549f5edd8",
+      "scope": "Actual own-source IAB screenshot, public Iris150"
+    },
+    "surface-before-pearl-20261031.jpg": {
+      "sha256": "8ffc57a4b2ee23dc59d27b91f026ec895e74156701457bb2b68d6202e2e63eb7",
+      "scope": "Actual own-source IAB screenshot, public Iris150"
+    },
+    "surface-after-pearl-20261031.jpg": {
+      "sha256": "3d3467eb0187080ffaf9af3591224e43087acf67386187c06ad1b27339c0da25",
+      "scope": "Actual own-source IAB screenshot, public Iris150"
+    },
+    "surface-compact-pearl-20261031.jpg": {
+      "sha256": "444db93e48ccae603be276ac3b4c3fc6404d5476848339b65327ad17d2439180",
+      "scope": "Actual own-source IAB screenshot, public Iris150"
+    }
+  },
+  "submissionExportFinal": {
+    "author": "a",
+    "date": "2026-10-31",
+    "checks": [
+      {
+        "name": "synthetic",
+        "exitCode": 0
+      },
+      {
+        "name": "iris",
+        "exitCode": 0
+      }
+    ],
+    "passed": true
+  }
+}

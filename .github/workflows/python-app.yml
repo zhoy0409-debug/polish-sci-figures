@@ -17,6 +17,11 @@ jobs:
   basic:
     name: basic (${{ matrix.os }}, py${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        # bash -e also stops on the first failed Python command on Windows;
+        # PowerShell's final exit code can otherwise hide an earlier failure.
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
@@ -42,13 +47,16 @@ jobs:
       - name: Figure Studio packaging and provenance
         run: |
           python skills/polish-sci-figures/scripts/test_figure_studio.py
+          python scripts/test_studio_tiff.py
           python scripts/test_studio_pdf_font_fallback.py
           python scripts/test_verify_studio_windows_package_source.py
+          python scripts/test_verify_studio_setup_payload.py
           python scripts/test_sanitize_studio_performance_trace.py
       - name: Desktop launcher lifecycle and local authorization
         run: |
           python desktop/test_figure_studio_app.py
           python desktop/test_windows_updater.py
+          python desktop/test_windows_build.py
           python desktop/test_macos_build.py
       - name: Local image duplicate screening and evidence
         run: |
@@ -136,6 +144,16 @@ jobs:
           node scripts/test_local_web_engine.cjs
           node scripts/test_local_web_offline.cjs
           node scripts/test_studio_state.cjs
+          node scripts/test_studio_history_shortcuts.cjs
+          node scripts/test_studio_async_save.cjs
+          node scripts/test_project_codec.cjs
+          node scripts/test_scientific_tiff.cjs
+          node scripts/test_figure_quality.cjs
+          node scripts/test_submission_profiles.cjs
+          node scripts/test_project_operations.cjs
+          node scripts/test_project_operations_cli.cjs
+          node scripts/test_figure_planning.cjs
+          node scripts/test_studio_deferred_previews.cjs
           node scripts/test_studio_duplicate_check.cjs
           node scripts/test_studio_duplicate_review.cjs
           node scripts/test_studio_duplicate_viewer.cjs
@@ -294,6 +312,7 @@ jobs:
           node scripts/test_studio_performance_summary.cjs
           node scripts/test_studio_update_real_evidence.cjs
           node scripts/test_studio_edited_svg_performance.cjs
+          node scripts/test_studio_svg_namespace.cjs
           node scripts/test_studio_autosave_coalescing.cjs
           node scripts/test_studio_template_cache.cjs
           node scripts/test_studio_font_replacement.cjs
@@ -310,6 +329,9 @@ jobs:
           node scripts/test_studio_image_insets_draft.cjs
           node scripts/test_studio_border_replacement.cjs
           node scripts/test_studio_experience_tools.cjs
+          node scripts/test_studio_workspace_hierarchy.cjs
+          node scripts/test_studio_drawer_workspace.cjs
+          node scripts/test_studio_support.cjs
           node scripts/test_studio_component_style.cjs --dom --real
           node scripts/test_studio_component_controls.cjs --dom
           node scripts/test_studio_grid_resize.cjs --dom
@@ -343,6 +365,7 @@ jobs:
           node scripts/test_studio_image_color_ui.cjs
           node scripts/test_studio_image_color_roundtrip.cjs
           node scripts/test_studio_image_rectify.cjs
+          node scripts/test_studio_wb.cjs
           node scripts/test_studio_image_rectify_ui.cjs
             node scripts/test_studio_image_rectify_detect.cjs
             node scripts/test_studio_image_rectify_auto_ui.cjs
@@ -365,6 +388,11 @@ jobs:
           node scripts/test_studio_compact_whitespace.cjs --dom
       - name: Prepare pinned Chromium for controlled update UI checks
         run: node .cache/mobile-local-spike/node_modules/playwright/cli.js install --with-deps chromium
+      - name: Native TIFF display, retained sources, project Worker and submission profiles in real browser
+        env:
+          NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
+          STUDIO_TIFF_BROWSER: chromium
+        run: python scripts/run_studio_tiff_browser_checks.py --out .cache/native-tiff-browser-checks
       - name: Update scene real browser rendering and lifecycle (controlled states)
         env:
           NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
@@ -382,3 +410,4 @@ jobs:
             .cache/local-web-qa/wasm-dispatcher.json
             .cache/local-web-preview/SHA256SUMS.txt
             .cache/update-scene-ci/
+            .cache/native-tiff-browser-checks/

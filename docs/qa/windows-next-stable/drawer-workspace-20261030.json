@@ -1,0 +1,3459 @@
+{
+  "author": "a",
+  "date": "2026-10-30",
+  "status": "LOCAL_CANDIDATE_SOURCE_CI_PACKAGE_PASS_HUMAN_REVIEW_HOLD",
+  "scope": "Production source, independent headless Chrome and real loopback scientific engines. Not Windows installed UI, native IME, physical display latency, genuine official upgrade or independent image accuracy.",
+  "releaseHold": {
+    "humanReviewRequired": true,
+    "mergeAllowed": false,
+    "tagAllowed": false,
+    "releaseAssetsAllowed": false
+  },
+  "broadNode": {
+    "commands": 184,
+    "passed": true,
+    "evidence": ".cache/ui-hierarchy-20261030/node-production-drawers-r1/result.json",
+    "boundary": "Broad run plus final affected checks; not an installed-app measurement."
+  },
+  "browserSuites": {
+    "author": "a",
+    "scope": "Real local browser and production TIFF/JSON/correction engines with public synthetic fixtures; not native installed Windows or independent detector accuracy",
+    "checks": [
+      {
+        "script": "test_project_codec_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_scientific_tiff_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_scientific_tiff_derivative_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_submission_profiles_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_history_shortcuts_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_drawer_workspace_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_support_browser.cjs",
+        "exitCode": 0
+      }
+    ],
+    "passed": true
+  },
+  "drawer": {
+    "author": "a",
+    "date": "2026-10-30",
+    "browser": "156.0.8078.49",
+    "scope": "Production source in independent Chrome. Public Iris and explicitly synthetic fixtures; not installed Windows, native IME or physical latency acceptance.",
+    "checks": [
+      "Six logical categories, one canonical entry per tool; synonyms do not duplicate functions across drawers",
+      "Palette and data-table drawers stay on the chosen task after real canvas selection; no automatic return to generic properties or an empty pane",
+      "Repeated Tools collapse/reopen stays on the selected tool; Back preserves category; direct synonym search focuses real fields and cancels real colour preview",
+      "Border draft survives collapse and category return; Save excludes it and Cancel restores committed state/history",
+      "Clipboard, panel scaling, guides, layout, output and character controls remain reachable in narrow/Pearl/bilingual views; original SVG, observations and analysis unchanged",
+      "5000 actual primitives: search/colour/one Undo/redo/save/reopen preserve exact state and source; no timing claim",
+      "Actual public-domain H&E microscopy: canonical image-display entry, live contrast filter, Save excludes draft, Cancel restores exact source/state, separate physical calibration entry; no calibration inferred"
+    ],
+    "layouts": [
+      {
+        "name": "01-fonts-carbon",
+        "width": 1440,
+        "height": 900,
+        "canvas": {
+          "x": 52,
+          "y": 188,
+          "width": 1062,
+          "height": 670
+        },
+        "toolbar": 88
+      },
+      {
+        "name": "02-fonts-1280",
+        "width": 1280,
+        "height": 720,
+        "canvas": {
+          "x": 52,
+          "y": 188,
+          "width": 902,
+          "height": 490
+        },
+        "toolbar": 88
+      },
+      {
+        "name": "03-canvas-expanded",
+        "width": 1280,
+        "height": 720,
+        "canvas": {
+          "x": 52,
+          "y": 188,
+          "width": 1184,
+          "height": 490
+        },
+        "toolbar": 88
+      },
+      {
+        "name": "04-fonts-pearl",
+        "width": 1440,
+        "height": 900,
+        "canvas": {
+          "x": 52,
+          "y": 188,
+          "width": 1062,
+          "height": 670
+        },
+        "toolbar": 88
+      }
+    ],
+    "publicIris150": true,
+    "publicMicroscopy": true,
+    "passed": true,
+    "errors": [],
+    "remote": []
+  },
+  "support": {
+    "author": "a",
+    "date": "2026-10-30",
+    "scope": "Actual local editor feedback and controlled public-metadata contracts only. No Issue created or email sent; no live user count or installed-app claim.",
+    "checks": [
+      "Real feedback form requires preview and renewed consent after changes; redacts synthetic path/email and does not attach source data or diagnostics by default; external submission not performed",
+      "Metadata requests start only after explicit click; controlled counters subtract the historical baseline and one QA event, yielding four net new downloads rather than a user count",
+      "Offline metadata failure remains explicit; closing support dialogs preserves project, raw SVG, observations, analysis and history exactly"
+    ],
+    "metadataRequests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/releases?per_page=100&page=1",
+        "hasBody": false,
+        "hasEditorToken": false
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/contents/skills/polish-sci-figures/assets/figure-studio/download-metrics-ledger.json?ref=main",
+        "hasBody": false,
+        "hasEditorToken": false
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/releases?per_page=100&page=1",
+        "hasBody": false,
+        "hasEditorToken": false
+      }
+    ],
+    "passed": true,
+    "errors": [],
+    "remote": []
+  },
+  "performance": {
+    "baselineCommit": "0908ef72191609505adb127f79046c5ec53c3b51",
+    "protocol": "Serial A1/B1/B2/A2; source Chrome156, same synthetic5000 project,3warmups,20samples per operation,250ms settle; actual trusted pointer/keyboard input to second rAF. No video/profiler or other agent-run heavy tests while timing. Not pooled with prior protocols.",
+    "htmlSha256": {
+      "baseline": "7b1e6b6acc359a3580efac9033922feb0e34994ce6119f58745628418c3ef384",
+      "candidate": "31491fe283998da59982ad4991a1200fc98e3ba1d25f8c6a3508db2843c96ede"
+    },
+    "batches": [
+      {
+        "label": "A1",
+        "browser": "156.0.8078.49",
+        "samples": [
+          {
+            "name": "select-text",
+            "start": 10781.600000023842,
+            "ms": 59.5
+          },
+          {
+            "name": "select-rect",
+            "start": 11155.600000023842,
+            "ms": 58.19999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 11775.699999988079,
+            "ms": 71.80000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 12208.900000035763,
+            "ms": 175.39999997615814
+          },
+          {
+            "name": "select-text",
+            "start": 13190.199999988079,
+            "ms": 64.70000004768372
+          },
+          {
+            "name": "select-rect",
+            "start": 13556.199999988079,
+            "ms": 57.80000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 14167.699999988079,
+            "ms": 43.90000003576279
+          },
+          {
+            "name": "drag-confirm",
+            "start": 14570.100000023842,
+            "ms": 165.69999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 15507.600000023842,
+            "ms": 63.59999996423721
+          },
+          {
+            "name": "select-rect",
+            "start": 15881,
+            "ms": 57.40000003576279
+          },
+          {
+            "name": "colour-confirm",
+            "start": 16492.30000001192,
+            "ms": 43
+          },
+          {
+            "name": "drag-confirm",
+            "start": 16885.69999998808,
+            "ms": 161.20000004768372
+          },
+          {
+            "name": "select-text",
+            "start": 17823.30000001192,
+            "ms": 64.89999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 18189.19999998808,
+            "ms": 57.200000047683716
+          },
+          {
+            "name": "colour-confirm",
+            "start": 18800.100000023842,
+            "ms": 46.09999996423721
+          },
+          {
+            "name": "drag-confirm",
+            "start": 19202.400000035763,
+            "ms": 165.39999997615814
+          },
+          {
+            "name": "select-text",
+            "start": 20131.900000035763,
+            "ms": 58.59999996423721
+          },
+          {
+            "name": "select-rect",
+            "start": 20498.400000035763,
+            "ms": 54.799999952316284
+          },
+          {
+            "name": "colour-confirm",
+            "start": 21116,
+            "ms": 44
+          },
+          {
+            "name": "drag-confirm",
+            "start": 21516.600000023842,
+            "ms": 163
+          },
+          {
+            "name": "select-text",
+            "start": 22465.30000001192,
+            "ms": 66.5
+          },
+          {
+            "name": "select-rect",
+            "start": 22838.69999998808,
+            "ms": 60.10000002384186
+          },
+          {
+            "name": "colour-confirm",
+            "start": 23450.5,
+            "ms": 46.10000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 23858.400000035763,
+            "ms": 162.69999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 24790.400000035763,
+            "ms": 63.39999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 25154.80000001192,
+            "ms": 57.60000002384186
+          },
+          {
+            "name": "colour-confirm",
+            "start": 25774.19999998808,
+            "ms": 43.80000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 26158.100000023842,
+            "ms": 159.5
+          },
+          {
+            "name": "select-text",
+            "start": 27115,
+            "ms": 66.69999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 27488.600000023842,
+            "ms": 58.30000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 28105.100000023842,
+            "ms": 45.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 28507.69999998808,
+            "ms": 163.10000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 29456.30000001192,
+            "ms": 59.10000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 29813.80000001192,
+            "ms": 57.5
+          },
+          {
+            "name": "colour-confirm",
+            "start": 30425.69999998808,
+            "ms": 43.40000003576279
+          },
+          {
+            "name": "drag-confirm",
+            "start": 30807.80000001192,
+            "ms": 177.30000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 31765.19999998808,
+            "ms": 64.30000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 32130.5,
+            "ms": 58
+          },
+          {
+            "name": "colour-confirm",
+            "start": 32749.400000035763,
+            "ms": 46.299999952316284
+          },
+          {
+            "name": "drag-confirm",
+            "start": 33149.5,
+            "ms": 161.69999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 34055.5,
+            "ms": 58.19999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 34406,
+            "ms": 54.80000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 35016.69999998808,
+            "ms": 44.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 35462.5,
+            "ms": 166.69999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 36405.69999998808,
+            "ms": 56.60000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 36764.10000002384,
+            "ms": 55.19999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 37367.60000002384,
+            "ms": 45.89999997615814
+          },
+          {
+            "name": "drag-confirm",
+            "start": 37757.80000001192,
+            "ms": 157.5
+          },
+          {
+            "name": "select-text",
+            "start": 38681.80000001192,
+            "ms": 77.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 39055.5,
+            "ms": 59.40000003576279
+          },
+          {
+            "name": "colour-confirm",
+            "start": 39673.69999998808,
+            "ms": 44
+          },
+          {
+            "name": "drag-confirm",
+            "start": 40083.5,
+            "ms": 179.5
+          },
+          {
+            "name": "select-text",
+            "start": 41056.40000003576,
+            "ms": 59.69999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 41413.19999998808,
+            "ms": 54.5
+          },
+          {
+            "name": "colour-confirm",
+            "start": 42016.69999998808,
+            "ms": 46.30000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 42416.10000002384,
+            "ms": 166.30000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 43372.80000001192,
+            "ms": 65.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 43738.30000001192,
+            "ms": 59
+          },
+          {
+            "name": "colour-confirm",
+            "start": 44356,
+            "ms": 60.10000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 44778.69999998808,
+            "ms": 190.60000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 45756.60000002384,
+            "ms": 60.19999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 46114,
+            "ms": 62.10000002384186
+          },
+          {
+            "name": "colour-confirm",
+            "start": 46733.80000001192,
+            "ms": 48.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 47126.90000003576,
+            "ms": 170
+          },
+          {
+            "name": "select-text",
+            "start": 48089.5,
+            "ms": 67.30000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 48455.19999998808,
+            "ms": 57.10000002384186
+          },
+          {
+            "name": "colour-confirm",
+            "start": 49064.10000002384,
+            "ms": 46.80000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 49458,
+            "ms": 178.80000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 50414.30000001192,
+            "ms": 59.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 50763.40000003576,
+            "ms": 62.59999996423721
+          },
+          {
+            "name": "colour-confirm",
+            "start": 51380.60000002384,
+            "ms": 44.09999996423721
+          },
+          {
+            "name": "drag-confirm",
+            "start": 51766.19999998808,
+            "ms": 159
+          },
+          {
+            "name": "select-text",
+            "start": 52731.80000001192,
+            "ms": 66.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 53098.10000002384,
+            "ms": 58.80000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 53716.80000001192,
+            "ms": 46.80000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 54116.10000002384,
+            "ms": 165.5
+          },
+          {
+            "name": "select-text",
+            "start": 55047.5,
+            "ms": 63
+          },
+          {
+            "name": "select-rect",
+            "start": 55404.69999998808,
+            "ms": 58.700000047683716
+          },
+          {
+            "name": "colour-confirm",
+            "start": 56021.60000002384,
+            "ms": 45.39999997615814
+          },
+          {
+            "name": "drag-confirm",
+            "start": 56416,
+            "ms": 156.80000001192093
+          }
+        ],
+        "longTasks": [
+          {
+            "start": 5030.400000035763,
+            "ms": 146
+          },
+          {
+            "start": 5553.800000011921,
+            "ms": 133
+          },
+          {
+            "start": 7453.699999988079,
+            "ms": 164
+          },
+          {
+            "start": 7977.5,
+            "ms": 134
+          },
+          {
+            "start": 8439.600000023842,
+            "ms": 54
+          },
+          {
+            "start": 9836,
+            "ms": 142
+          },
+          {
+            "start": 10348.199999988079,
+            "ms": 120
+          },
+          {
+            "start": 11775,
+            "ms": 58
+          },
+          {
+            "start": 12208.800000011921,
+            "ms": 144
+          },
+          {
+            "start": 12670.600000023842,
+            "ms": 56
+          },
+          {
+            "start": 12746.800000011921,
+            "ms": 128
+          },
+          {
+            "start": 14569.900000035763,
+            "ms": 134
+          },
+          {
+            "start": 15071.400000035763,
+            "ms": 119
+          },
+          {
+            "start": 16885.5,
+            "ms": 131
+          },
+          {
+            "start": 17383.5,
+            "ms": 120
+          },
+          {
+            "start": 19202.19999998808,
+            "ms": 134
+          },
+          {
+            "start": 19698,
+            "ms": 117
+          },
+          {
+            "start": 21516.400000035763,
+            "ms": 133
+          },
+          {
+            "start": 22030,
+            "ms": 124
+          },
+          {
+            "start": 23858.400000035763,
+            "ms": 132
+          },
+          {
+            "start": 24349.69999998808,
+            "ms": 116
+          },
+          {
+            "start": 26158,
+            "ms": 131
+          },
+          {
+            "start": 26605.400000035763,
+            "ms": 50
+          },
+          {
+            "start": 26674,
+            "ms": 117
+          },
+          {
+            "start": 28507.600000023842,
+            "ms": 132
+          },
+          {
+            "start": 29008.30000001192,
+            "ms": 116
+          },
+          {
+            "start": 30807.600000023842,
+            "ms": 138
+          },
+          {
+            "start": 31328.600000023842,
+            "ms": 119
+          },
+          {
+            "start": 33149.30000001192,
+            "ms": 132
+          },
+          {
+            "start": 33629.40000003576,
+            "ms": 114
+          },
+          {
+            "start": 35462.30000001192,
+            "ms": 138
+          },
+          {
+            "start": 35979.30000001192,
+            "ms": 113
+          },
+          {
+            "start": 37757.60000002384,
+            "ms": 128
+          },
+          {
+            "start": 38248.40000003576,
+            "ms": 114
+          },
+          {
+            "start": 38680.19999998808,
+            "ms": 53
+          },
+          {
+            "start": 40083.30000001192,
+            "ms": 147
+          },
+          {
+            "start": 40605.80000001192,
+            "ms": 121
+          },
+          {
+            "start": 42416,
+            "ms": 136
+          },
+          {
+            "start": 42932,
+            "ms": 123
+          },
+          {
+            "start": 44778.5,
+            "ms": 157
+          },
+          {
+            "start": 45313.19999998808,
+            "ms": 125
+          },
+          {
+            "start": 47126.80000001192,
+            "ms": 140
+          },
+          {
+            "start": 47578.90000003576,
+            "ms": 50
+          },
+          {
+            "start": 47646.90000003576,
+            "ms": 123
+          },
+          {
+            "start": 49457.80000001192,
+            "ms": 147
+          },
+          {
+            "start": 49973.69999998808,
+            "ms": 120
+          },
+          {
+            "start": 51766,
+            "ms": 129
+          },
+          {
+            "start": 52211.30000001192,
+            "ms": 51
+          },
+          {
+            "start": 52281.40000003576,
+            "ms": 127
+          },
+          {
+            "start": 54115.90000003576,
+            "ms": 134
+          },
+          {
+            "start": 54606.19999998808,
+            "ms": 122
+          },
+          {
+            "start": 56415.90000003576,
+            "ms": 128
+          },
+          {
+            "start": 56844.69999998808,
+            "ms": 52
+          },
+          {
+            "start": 56918.69999998808,
+            "ms": 127
+          }
+        ],
+        "select-text": {
+          "n": 20,
+          "p50": 63.39999997615814,
+          "p95": 67.30000001192093,
+          "max": 77.80000001192093,
+          "longTasks": 1
+        },
+        "select-rect": {
+          "n": 20,
+          "p50": 57.80000001192093,
+          "p95": 62.10000002384186,
+          "max": 62.59999996423721,
+          "longTasks": 0
+        },
+        "colour-confirm": {
+          "n": 20,
+          "p50": 45.5,
+          "p95": 60.10000002384186,
+          "max": 71.80000001192093,
+          "longTasks": 1
+        },
+        "drag-confirm": {
+          "n": 20,
+          "p50": 165.39999997615814,
+          "p95": 179.5,
+          "max": 190.60000002384186,
+          "longTasks": 20
+        },
+        "passed": true,
+        "errors": [],
+        "remote": []
+      },
+      {
+        "label": "B1",
+        "browser": "156.0.8078.49",
+        "samples": [
+          {
+            "name": "select-text",
+            "start": 10662.699999988079,
+            "ms": 60
+          },
+          {
+            "name": "select-rect",
+            "start": 11003.199999988079,
+            "ms": 44.19999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 11596.799999952316,
+            "ms": 43.30000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 11980.299999952316,
+            "ms": 156.4000000357628
+          },
+          {
+            "name": "select-text",
+            "start": 12937.599999964237,
+            "ms": 53.10000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 13279.399999976158,
+            "ms": 50.69999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 13881.799999952316,
+            "ms": 46.60000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 14272.399999976158,
+            "ms": 155.60000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 15204.199999988079,
+            "ms": 50.09999996423721
+          },
+          {
+            "name": "select-rect",
+            "start": 15545.699999988079,
+            "ms": 46.09999996423721
+          },
+          {
+            "name": "colour-confirm",
+            "start": 16146.199999988079,
+            "ms": 44.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 16521.599999964237,
+            "ms": 153.4000000357628
+          },
+          {
+            "name": "select-text",
+            "start": 17428.399999976158,
+            "ms": 41.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 17752.5,
+            "ms": 41
+          },
+          {
+            "name": "colour-confirm",
+            "start": 18338.5,
+            "ms": 42.59999996423721
+          },
+          {
+            "name": "drag-confirm",
+            "start": 18733.19999998808,
+            "ms": 154
+          },
+          {
+            "name": "select-text",
+            "start": 19647.19999998808,
+            "ms": 42.69999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 19978.19999998808,
+            "ms": 39.89999997615814
+          },
+          {
+            "name": "colour-confirm",
+            "start": 20568.299999952316,
+            "ms": 42.40000003576279
+          },
+          {
+            "name": "drag-confirm",
+            "start": 20954.19999998808,
+            "ms": 151.0999999642372
+          },
+          {
+            "name": "select-text",
+            "start": 21845.19999998808,
+            "ms": 56.09999996423721
+          },
+          {
+            "name": "select-rect",
+            "start": 22186,
+            "ms": 43.19999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 22780.399999976158,
+            "ms": 42
+          },
+          {
+            "name": "drag-confirm",
+            "start": 23154.69999998808,
+            "ms": 151.89999997615814
+          },
+          {
+            "name": "select-text",
+            "start": 24056,
+            "ms": 44.19999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 24386,
+            "ms": 41.89999997615814
+          },
+          {
+            "name": "colour-confirm",
+            "start": 24972.19999998808,
+            "ms": 40.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 25363,
+            "ms": 148.29999995231628
+          },
+          {
+            "name": "select-text",
+            "start": 26305.299999952316,
+            "ms": 46.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 26643.899999976158,
+            "ms": 42
+          },
+          {
+            "name": "colour-confirm",
+            "start": 27229.799999952316,
+            "ms": 41.30000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 27604.69999998808,
+            "ms": 155
+          },
+          {
+            "name": "select-text",
+            "start": 28513.399999976158,
+            "ms": 45.5
+          },
+          {
+            "name": "select-rect",
+            "start": 28844.799999952316,
+            "ms": 41.40000003576279
+          },
+          {
+            "name": "colour-confirm",
+            "start": 29428.399999976158,
+            "ms": 41.69999998807907
+          },
+          {
+            "name": "drag-confirm",
+            "start": 29841.799999952316,
+            "ms": 159.10000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 30746,
+            "ms": 41.89999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 31069,
+            "ms": 40
+          },
+          {
+            "name": "colour-confirm",
+            "start": 31663.399999976158,
+            "ms": 39.80000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 32037.299999952316,
+            "ms": 147.30000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 32929.39999997616,
+            "ms": 58.39999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 33269,
+            "ms": 44.299999952316284
+          },
+          {
+            "name": "colour-confirm",
+            "start": 33854.09999996424,
+            "ms": 40.69999998807907
+          },
+          {
+            "name": "drag-confirm",
+            "start": 34230.299999952316,
+            "ms": 147.4000000357628
+          },
+          {
+            "name": "select-text",
+            "start": 35121.89999997616,
+            "ms": 42.10000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 35444.5,
+            "ms": 41.5
+          },
+          {
+            "name": "colour-confirm",
+            "start": 36030.09999996424,
+            "ms": 45
+          },
+          {
+            "name": "drag-confirm",
+            "start": 36413.39999997616,
+            "ms": 147.80000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 37338.39999997616,
+            "ms": 48.39999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 37668.799999952316,
+            "ms": 41.10000002384186
+          },
+          {
+            "name": "colour-confirm",
+            "start": 38254.5,
+            "ms": 41.09999996423721
+          },
+          {
+            "name": "drag-confirm",
+            "start": 38629.799999952316,
+            "ms": 146.5
+          },
+          {
+            "name": "select-text",
+            "start": 39512,
+            "ms": 41
+          },
+          {
+            "name": "select-rect",
+            "start": 39835.5,
+            "ms": 41.39999997615814
+          },
+          {
+            "name": "colour-confirm",
+            "start": 40422.299999952316,
+            "ms": 41.30000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 40816.19999998808,
+            "ms": 158.89999997615814
+          },
+          {
+            "name": "select-text",
+            "start": 41738.39999997616,
+            "ms": 43.89999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 42069.5,
+            "ms": 46.89999997615814
+          },
+          {
+            "name": "colour-confirm",
+            "start": 42664.799999952316,
+            "ms": 46.90000003576279
+          },
+          {
+            "name": "drag-confirm",
+            "start": 43055,
+            "ms": 178.69999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 43978.59999996424,
+            "ms": 59.69999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 44320.19999998808,
+            "ms": 43.5
+          },
+          {
+            "name": "colour-confirm",
+            "start": 44904.19999998808,
+            "ms": 41.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 45287.59999996424,
+            "ms": 152.60000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 46178.89999997616,
+            "ms": 44
+          },
+          {
+            "name": "select-rect",
+            "start": 46511,
+            "ms": 41.09999996423721
+          },
+          {
+            "name": "colour-confirm",
+            "start": 47096.5,
+            "ms": 40.69999998807907
+          },
+          {
+            "name": "drag-confirm",
+            "start": 47479.299999952316,
+            "ms": 153.80000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 48412.799999952316,
+            "ms": 48.700000047683716
+          },
+          {
+            "name": "select-rect",
+            "start": 48744.39999997616,
+            "ms": 44.10000002384186
+          },
+          {
+            "name": "colour-confirm",
+            "start": 49329.59999996424,
+            "ms": 40.40000003576279
+          },
+          {
+            "name": "drag-confirm",
+            "start": 49713,
+            "ms": 148.19999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 50604.19999998808,
+            "ms": 42.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 50927.59999996424,
+            "ms": 40.19999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 51522.299999952316,
+            "ms": 45.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 51917.39999997616,
+            "ms": 172.19999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 52861.39999997616,
+            "ms": 42.60000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 53185.19999998808,
+            "ms": 44.09999996423721
+          },
+          {
+            "name": "colour-confirm",
+            "start": 53771.299999952316,
+            "ms": 40.40000003576279
+          },
+          {
+            "name": "drag-confirm",
+            "start": 54145.69999998808,
+            "ms": 144.39999997615814
+          }
+        ],
+        "longTasks": [
+          {
+            "start": 3164.199999988079,
+            "ms": 55
+          },
+          {
+            "start": 4132.5,
+            "ms": 53
+          },
+          {
+            "start": 4564,
+            "ms": 190
+          },
+          {
+            "start": 5126.299999952316,
+            "ms": 170
+          },
+          {
+            "start": 5654.399999976158,
+            "ms": 66
+          },
+          {
+            "start": 6047.099999964237,
+            "ms": 62
+          },
+          {
+            "start": 6695.399999976158,
+            "ms": 72
+          },
+          {
+            "start": 7125.799999952316,
+            "ms": 51
+          },
+          {
+            "start": 7218.199999988079,
+            "ms": 262
+          },
+          {
+            "start": 7803.899999976158,
+            "ms": 72
+          },
+          {
+            "start": 7905,
+            "ms": 186
+          },
+          {
+            "start": 9708.5,
+            "ms": 133
+          },
+          {
+            "start": 10218.599999964237,
+            "ms": 137
+          },
+          {
+            "start": 10661.299999952316,
+            "ms": 50
+          },
+          {
+            "start": 11980.099999964237,
+            "ms": 134
+          },
+          {
+            "start": 12419.199999988079,
+            "ms": 52
+          },
+          {
+            "start": 12496.699999988079,
+            "ms": 137
+          },
+          {
+            "start": 14272.299999952316,
+            "ms": 132
+          },
+          {
+            "start": 14710,
+            "ms": 50
+          },
+          {
+            "start": 14778.299999952316,
+            "ms": 121
+          },
+          {
+            "start": 16521.5,
+            "ms": 132
+          },
+          {
+            "start": 17002.5,
+            "ms": 123
+          },
+          {
+            "start": 18733,
+            "ms": 133
+          },
+          {
+            "start": 19226.599999964237,
+            "ms": 112
+          },
+          {
+            "start": 20954,
+            "ms": 130
+          },
+          {
+            "start": 21427.599999964237,
+            "ms": 116
+          },
+          {
+            "start": 23154.69999998808,
+            "ms": 131
+          },
+          {
+            "start": 23638.69999998808,
+            "ms": 112
+          },
+          {
+            "start": 25362.899999976158,
+            "ms": 127
+          },
+          {
+            "start": 25868.399999976158,
+            "ms": 119
+          },
+          {
+            "start": 27604.599999964237,
+            "ms": 131
+          },
+          {
+            "start": 28089.19999998808,
+            "ms": 117
+          },
+          {
+            "start": 29841.599999964237,
+            "ms": 137
+          },
+          {
+            "start": 30326.099999964237,
+            "ms": 113
+          },
+          {
+            "start": 32037.099999964237,
+            "ms": 126
+          },
+          {
+            "start": 32502.599999964237,
+            "ms": 112
+          },
+          {
+            "start": 34230.19999998808,
+            "ms": 126
+          },
+          {
+            "start": 34704.09999996424,
+            "ms": 109
+          },
+          {
+            "start": 36413.299999952316,
+            "ms": 126
+          },
+          {
+            "start": 36909.09999996424,
+            "ms": 121
+          },
+          {
+            "start": 38629.59999996424,
+            "ms": 124
+          },
+          {
+            "start": 39109.19999998808,
+            "ms": 111
+          },
+          {
+            "start": 40816.09999996424,
+            "ms": 135
+          },
+          {
+            "start": 41317.39999997616,
+            "ms": 114
+          },
+          {
+            "start": 43054.89999997616,
+            "ms": 155
+          },
+          {
+            "start": 43562.799999952316,
+            "ms": 118
+          },
+          {
+            "start": 43977.19999998808,
+            "ms": 50
+          },
+          {
+            "start": 45287.5,
+            "ms": 130
+          },
+          {
+            "start": 45766,
+            "ms": 111
+          },
+          {
+            "start": 47479.19999998808,
+            "ms": 131
+          },
+          {
+            "start": 47975.69999998808,
+            "ms": 121
+          },
+          {
+            "start": 49712.799999952316,
+            "ms": 127
+          },
+          {
+            "start": 50183,
+            "ms": 113
+          },
+          {
+            "start": 51917.299999952316,
+            "ms": 146
+          },
+          {
+            "start": 52428.59999996424,
+            "ms": 120
+          },
+          {
+            "start": 54145.59999996424,
+            "ms": 123
+          },
+          {
+            "start": 54621.5,
+            "ms": 119
+          }
+        ],
+        "select-text": {
+          "n": 20,
+          "p50": 44.19999998807907,
+          "p95": 59.69999998807907,
+          "max": 60,
+          "longTasks": 2
+        },
+        "select-rect": {
+          "n": 20,
+          "p50": 41.89999997615814,
+          "p95": 46.89999997615814,
+          "max": 50.69999998807907,
+          "longTasks": 0
+        },
+        "colour-confirm": {
+          "n": 20,
+          "p50": 41.5,
+          "p95": 46.60000002384186,
+          "max": 46.90000003576279,
+          "longTasks": 0
+        },
+        "drag-confirm": {
+          "n": 20,
+          "p50": 152.60000002384186,
+          "p95": 172.19999998807907,
+          "max": 178.69999998807907,
+          "longTasks": 20
+        },
+        "passed": true,
+        "errors": [],
+        "remote": []
+      },
+      {
+        "label": "B2",
+        "browser": "156.0.8078.49",
+        "samples": [
+          {
+            "name": "select-text",
+            "start": 9984.199999988079,
+            "ms": 54.5
+          },
+          {
+            "name": "select-rect",
+            "start": 10325.399999976158,
+            "ms": 54.700000047683716
+          },
+          {
+            "name": "colour-confirm",
+            "start": 10934.5,
+            "ms": 43.10000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 11318.5,
+            "ms": 166.69999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 12259.199999988079,
+            "ms": 49.90000003576279
+          },
+          {
+            "name": "select-rect",
+            "start": 12591.199999988079,
+            "ms": 43.30000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 13184.5,
+            "ms": 42.39999997615814
+          },
+          {
+            "name": "drag-confirm",
+            "start": 13560,
+            "ms": 148.39999997615814
+          },
+          {
+            "name": "select-text",
+            "start": 14441.199999988079,
+            "ms": 43.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 14765.699999988079,
+            "ms": 39.40000003576279
+          },
+          {
+            "name": "colour-confirm",
+            "start": 15368.5,
+            "ms": 41.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 15754.800000011921,
+            "ms": 163.30000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 16683.899999976158,
+            "ms": 43.5
+          },
+          {
+            "name": "select-rect",
+            "start": 17017,
+            "ms": 48.80000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 17615.899999976158,
+            "ms": 42.200000047683716
+          },
+          {
+            "name": "drag-confirm",
+            "start": 18001.19999998808,
+            "ms": 150.30000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 18892.30000001192,
+            "ms": 56.39999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 19232.399999976158,
+            "ms": 42.30000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 19817.399999976158,
+            "ms": 44.80000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 20193.19999998808,
+            "ms": 148.60000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 21092.600000023842,
+            "ms": 45.19999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 21424.399999976158,
+            "ms": 41.90000003576279
+          },
+          {
+            "name": "colour-confirm",
+            "start": 22017.100000023842,
+            "ms": 41.59999996423721
+          },
+          {
+            "name": "drag-confirm",
+            "start": 22396.69999998808,
+            "ms": 148
+          },
+          {
+            "name": "select-text",
+            "start": 23301.5,
+            "ms": 47.30000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 23641,
+            "ms": 40.60000002384186
+          },
+          {
+            "name": "colour-confirm",
+            "start": 24243,
+            "ms": 44.10000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 24626.899999976158,
+            "ms": 157.60000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 25541.600000023842,
+            "ms": 45.69999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 25874,
+            "ms": 42.39999997615814
+          },
+          {
+            "name": "colour-confirm",
+            "start": 26466.5,
+            "ms": 42.89999997615814
+          },
+          {
+            "name": "drag-confirm",
+            "start": 26863.19999998808,
+            "ms": 159.80000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 27759.19999998808,
+            "ms": 42.10000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 28090.600000023842,
+            "ms": 42.59999996423721
+          },
+          {
+            "name": "colour-confirm",
+            "start": 28674.399999976158,
+            "ms": 40.10000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 29050.600000023842,
+            "ms": 146
+          },
+          {
+            "name": "select-text",
+            "start": 29933.30000001192,
+            "ms": 55.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 30282.5,
+            "ms": 42.89999997615814
+          },
+          {
+            "name": "colour-confirm",
+            "start": 30867.69999998808,
+            "ms": 41.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 31242.30000001192,
+            "ms": 146.69999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 32125.80000001192,
+            "ms": 45.30000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 32457.399999976158,
+            "ms": 42.80000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 33052.19999998808,
+            "ms": 41.80000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 33434.19999998808,
+            "ms": 148.5
+          },
+          {
+            "name": "select-text",
+            "start": 34358.69999998808,
+            "ms": 47.60000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 34690.60000002384,
+            "ms": 42
+          },
+          {
+            "name": "colour-confirm",
+            "start": 35276.39999997616,
+            "ms": 40.200000047683716
+          },
+          {
+            "name": "drag-confirm",
+            "start": 35659.10000002384,
+            "ms": 143.69999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 36550,
+            "ms": 43.5
+          },
+          {
+            "name": "select-rect",
+            "start": 36873.89999997616,
+            "ms": 41.40000003576279
+          },
+          {
+            "name": "colour-confirm",
+            "start": 37467.30000001192,
+            "ms": 41.09999996423721
+          },
+          {
+            "name": "drag-confirm",
+            "start": 37877.5,
+            "ms": 158.10000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 38774.69999998808,
+            "ms": 42.10000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 39098.89999997616,
+            "ms": 39.5
+          },
+          {
+            "name": "colour-confirm",
+            "start": 39684.30000001192,
+            "ms": 41.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 40076.80000001192,
+            "ms": 152.80000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 40983.69999998808,
+            "ms": 91.10000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 41383.60000002384,
+            "ms": 48.69999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 41982.89999997616,
+            "ms": 43.60000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 42367.39999997616,
+            "ms": 151.60000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 43250.69999998808,
+            "ms": 42.5
+          },
+          {
+            "name": "select-rect",
+            "start": 43582.19999998808,
+            "ms": 41.10000002384186
+          },
+          {
+            "name": "colour-confirm",
+            "start": 44168.69999998808,
+            "ms": 40.5
+          },
+          {
+            "name": "drag-confirm",
+            "start": 44543.30000001192,
+            "ms": 148.80000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 45458.10000002384,
+            "ms": 49.19999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 45798.89999997616,
+            "ms": 41.5
+          },
+          {
+            "name": "colour-confirm",
+            "start": 46383.69999998808,
+            "ms": 41.60000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 46766.80000001192,
+            "ms": 140.89999997615814
+          },
+          {
+            "name": "select-text",
+            "start": 47641.89999997616,
+            "ms": 41.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 47973.60000002384,
+            "ms": 44.5
+          },
+          {
+            "name": "colour-confirm",
+            "start": 48560.60000002384,
+            "ms": 42.299999952316284
+          },
+          {
+            "name": "drag-confirm",
+            "start": 48971.60000002384,
+            "ms": 166.39999997615814
+          },
+          {
+            "name": "select-text",
+            "start": 49892,
+            "ms": 47.39999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 50224.30000001192,
+            "ms": 41
+          },
+          {
+            "name": "colour-confirm",
+            "start": 50809.60000002384,
+            "ms": 40.39999997615814
+          },
+          {
+            "name": "drag-confirm",
+            "start": 51183.80000001192,
+            "ms": 150.19999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 52082.80000001192,
+            "ms": 53.39999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 52423.60000002384,
+            "ms": 43.69999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 53004.5,
+            "ms": 40.19999998807907
+          },
+          {
+            "name": "drag-confirm",
+            "start": 53384.19999998808,
+            "ms": 148.19999998807907
+          }
+        ],
+        "longTasks": [
+          {
+            "start": 3160.600000023842,
+            "ms": 52
+          },
+          {
+            "start": 4514.899999976158,
+            "ms": 150
+          },
+          {
+            "start": 4956.600000023842,
+            "ms": 50
+          },
+          {
+            "start": 5023.100000023842,
+            "ms": 126
+          },
+          {
+            "start": 6798.699999988079,
+            "ms": 152
+          },
+          {
+            "start": 7298.899999976158,
+            "ms": 122
+          },
+          {
+            "start": 7733.800000011921,
+            "ms": 51
+          },
+          {
+            "start": 9060.899999976158,
+            "ms": 134
+          },
+          {
+            "start": 9547.100000023842,
+            "ms": 117
+          },
+          {
+            "start": 11318.399999976158,
+            "ms": 145
+          },
+          {
+            "start": 11831.100000023842,
+            "ms": 126
+          },
+          {
+            "start": 13559.899999976158,
+            "ms": 126
+          },
+          {
+            "start": 14031.600000023842,
+            "ms": 113
+          },
+          {
+            "start": 15754.600000023842,
+            "ms": 139
+          },
+          {
+            "start": 16254.899999976158,
+            "ms": 119
+          },
+          {
+            "start": 18001,
+            "ms": 129
+          },
+          {
+            "start": 18472,
+            "ms": 116
+          },
+          {
+            "start": 20193,
+            "ms": 126
+          },
+          {
+            "start": 20676.399999976158,
+            "ms": 110
+          },
+          {
+            "start": 22396.5,
+            "ms": 126
+          },
+          {
+            "start": 22875,
+            "ms": 118
+          },
+          {
+            "start": 24626.80000001192,
+            "ms": 134
+          },
+          {
+            "start": 25117.80000001192,
+            "ms": 124
+          },
+          {
+            "start": 26862.69999998808,
+            "ms": 135
+          },
+          {
+            "start": 27346,
+            "ms": 113
+          },
+          {
+            "start": 29050.5,
+            "ms": 125
+          },
+          {
+            "start": 29513.80000001192,
+            "ms": 111
+          },
+          {
+            "start": 31242.100000023842,
+            "ms": 123
+          },
+          {
+            "start": 31709.30000001192,
+            "ms": 108
+          },
+          {
+            "start": 33434,
+            "ms": 127
+          },
+          {
+            "start": 33938.80000001192,
+            "ms": 117
+          },
+          {
+            "start": 35659,
+            "ms": 122
+          },
+          {
+            "start": 36126.39999997616,
+            "ms": 120
+          },
+          {
+            "start": 37877.30000001192,
+            "ms": 136
+          },
+          {
+            "start": 38362.60000002384,
+            "ms": 111
+          },
+          {
+            "start": 40076.60000002384,
+            "ms": 131
+          },
+          {
+            "start": 40548.30000001192,
+            "ms": 113
+          },
+          {
+            "start": 40982.30000001192,
+            "ms": 75
+          },
+          {
+            "start": 42367.30000001192,
+            "ms": 130
+          },
+          {
+            "start": 42841.60000002384,
+            "ms": 109
+          },
+          {
+            "start": 44543.19999998808,
+            "ms": 127
+          },
+          {
+            "start": 45038,
+            "ms": 117
+          },
+          {
+            "start": 46766.69999998808,
+            "ms": 120
+          },
+          {
+            "start": 47230.19999998808,
+            "ms": 110
+          },
+          {
+            "start": 48971.39999997616,
+            "ms": 143
+          },
+          {
+            "start": 49466.69999998808,
+            "ms": 115
+          },
+          {
+            "start": 51183.69999998808,
+            "ms": 128
+          },
+          {
+            "start": 51655.39999997616,
+            "ms": 110
+          },
+          {
+            "start": 53384.10000002384,
+            "ms": 126
+          },
+          {
+            "start": 53854.60000002384,
+            "ms": 114
+          }
+        ],
+        "select-text": {
+          "n": 20,
+          "p50": 45.69999998807907,
+          "p95": 56.39999997615814,
+          "max": 91.10000002384186,
+          "longTasks": 1
+        },
+        "select-rect": {
+          "n": 20,
+          "p50": 42.30000001192093,
+          "p95": 48.80000001192093,
+          "max": 54.700000047683716,
+          "longTasks": 0
+        },
+        "colour-confirm": {
+          "n": 20,
+          "p50": 41.59999996423721,
+          "p95": 44.10000002384186,
+          "max": 44.80000001192093,
+          "longTasks": 0
+        },
+        "drag-confirm": {
+          "n": 20,
+          "p50": 148.80000001192093,
+          "p95": 166.39999997615814,
+          "max": 166.69999998807907,
+          "longTasks": 20
+        },
+        "passed": true,
+        "errors": [],
+        "remote": []
+      },
+      {
+        "label": "A2",
+        "browser": "156.0.8078.49",
+        "samples": [
+          {
+            "name": "select-text",
+            "start": 10760.5,
+            "ms": 58.30000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 11125.800000011921,
+            "ms": 56.69999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 11735.900000035763,
+            "ms": 45.39999997615814
+          },
+          {
+            "name": "drag-confirm",
+            "start": 12127.5,
+            "ms": 161
+          },
+          {
+            "name": "select-text",
+            "start": 13088.200000047684,
+            "ms": 95
+          },
+          {
+            "name": "select-rect",
+            "start": 13500.200000047684,
+            "ms": 68.29999995231628
+          },
+          {
+            "name": "colour-confirm",
+            "start": 14129.400000035763,
+            "ms": 48.89999997615814
+          },
+          {
+            "name": "drag-confirm",
+            "start": 14527.700000047684,
+            "ms": 168.0999999642372
+          },
+          {
+            "name": "select-text",
+            "start": 15494.100000023842,
+            "ms": 58.19999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 15848.900000035763,
+            "ms": 55.80000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 16452,
+            "ms": 45.10000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 16843.5,
+            "ms": 163.5
+          },
+          {
+            "name": "select-text",
+            "start": 17783.5,
+            "ms": 64.10000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 18149.400000035763,
+            "ms": 59.39999997615814
+          },
+          {
+            "name": "colour-confirm",
+            "start": 18768.30000001192,
+            "ms": 43.90000003576279
+          },
+          {
+            "name": "drag-confirm",
+            "start": 19168.400000035763,
+            "ms": 158.69999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 20092.700000047684,
+            "ms": 59.39999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 20458.100000023842,
+            "ms": 60.69999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 21087.600000023842,
+            "ms": 50.69999998807907
+          },
+          {
+            "name": "drag-confirm",
+            "start": 21494.30000001192,
+            "ms": 174.4000000357628
+          },
+          {
+            "name": "select-text",
+            "start": 22467.100000023842,
+            "ms": 71.39999997615814
+          },
+          {
+            "name": "select-rect",
+            "start": 22836.900000035763,
+            "ms": 66.89999997615814
+          },
+          {
+            "name": "colour-confirm",
+            "start": 23461,
+            "ms": 53.200000047683716
+          },
+          {
+            "name": "drag-confirm",
+            "start": 23879.700000047684,
+            "ms": 175.5
+          },
+          {
+            "name": "select-text",
+            "start": 24826.100000023842,
+            "ms": 57.5
+          },
+          {
+            "name": "select-rect",
+            "start": 25182.80000001192,
+            "ms": 58.10000002384186
+          },
+          {
+            "name": "colour-confirm",
+            "start": 25795.200000047684,
+            "ms": 43.89999997615814
+          },
+          {
+            "name": "drag-confirm",
+            "start": 26185,
+            "ms": 156.80000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 27125.700000047684,
+            "ms": 64
+          },
+          {
+            "name": "select-rect",
+            "start": 27493.30000001192,
+            "ms": 57.69999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 28119.100000023842,
+            "ms": 46
+          },
+          {
+            "name": "drag-confirm",
+            "start": 28512.900000035763,
+            "ms": 168.0999999642372
+          },
+          {
+            "name": "select-text",
+            "start": 29441.900000035763,
+            "ms": 60.5
+          },
+          {
+            "name": "select-rect",
+            "start": 29799.700000047684,
+            "ms": 58.89999997615814
+          },
+          {
+            "name": "colour-confirm",
+            "start": 30410.80000001192,
+            "ms": 44.10000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 30802,
+            "ms": 154.80000001192093
+          },
+          {
+            "name": "select-text",
+            "start": 31742.30000001192,
+            "ms": 66.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 32108.100000023842,
+            "ms": 57.19999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 32728,
+            "ms": 45
+          },
+          {
+            "name": "drag-confirm",
+            "start": 33127.10000002384,
+            "ms": 157.10000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 34059.30000001192,
+            "ms": 60.40000003576279
+          },
+          {
+            "name": "select-rect",
+            "start": 34425.200000047684,
+            "ms": 54.299999952316284
+          },
+          {
+            "name": "colour-confirm",
+            "start": 35024.5,
+            "ms": 42.80000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 35410.60000002384,
+            "ms": 158
+          },
+          {
+            "name": "select-text",
+            "start": 36359,
+            "ms": 63.5
+          },
+          {
+            "name": "select-rect",
+            "start": 36733.30000001192,
+            "ms": 56.19999998807907
+          },
+          {
+            "name": "colour-confirm",
+            "start": 37353.5,
+            "ms": 45.40000003576279
+          },
+          {
+            "name": "drag-confirm",
+            "start": 37743.60000002384,
+            "ms": 159.5
+          },
+          {
+            "name": "select-text",
+            "start": 38658.80000001192,
+            "ms": 60.19999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 39015.80000001192,
+            "ms": 56.90000003576279
+          },
+          {
+            "name": "colour-confirm",
+            "start": 39635,
+            "ms": 47.10000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 40027.200000047684,
+            "ms": 164.29999995231628
+          },
+          {
+            "name": "select-text",
+            "start": 40983.700000047684,
+            "ms": 63.299999952316284
+          },
+          {
+            "name": "select-rect",
+            "start": 41357.80000001192,
+            "ms": 58.30000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 41977.80000001192,
+            "ms": 44.10000002384186
+          },
+          {
+            "name": "drag-confirm",
+            "start": 42376.80000001192,
+            "ms": 158.19999998807907
+          },
+          {
+            "name": "select-text",
+            "start": 43292.40000003576,
+            "ms": 59.09999996423721
+          },
+          {
+            "name": "select-rect",
+            "start": 43640.30000001192,
+            "ms": 56
+          },
+          {
+            "name": "colour-confirm",
+            "start": 44244.200000047684,
+            "ms": 43.799999952316284
+          },
+          {
+            "name": "drag-confirm",
+            "start": 44626.90000003576,
+            "ms": 157.5999999642372
+          },
+          {
+            "name": "select-text",
+            "start": 45559.10000002384,
+            "ms": 69.80000001192093
+          },
+          {
+            "name": "select-rect",
+            "start": 45932,
+            "ms": 55.700000047683716
+          },
+          {
+            "name": "colour-confirm",
+            "start": 46535.10000002384,
+            "ms": 45.80000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 46926.60000002384,
+            "ms": 158
+          },
+          {
+            "name": "select-text",
+            "start": 47849.700000047684,
+            "ms": 60.69999998807907
+          },
+          {
+            "name": "select-rect",
+            "start": 48208.90000003576,
+            "ms": 56.30000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 48818.5,
+            "ms": 43.700000047683716
+          },
+          {
+            "name": "drag-confirm",
+            "start": 49209.700000047684,
+            "ms": 157.79999995231628
+          },
+          {
+            "name": "select-text",
+            "start": 50150.10000002384,
+            "ms": 65.10000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 50515.60000002384,
+            "ms": 58.80000001192093
+          },
+          {
+            "name": "colour-confirm",
+            "start": 51134.80000001192,
+            "ms": 44.80000001192093
+          },
+          {
+            "name": "drag-confirm",
+            "start": 51518.30000001192,
+            "ms": 170.60000002384186
+          },
+          {
+            "name": "select-text",
+            "start": 52450,
+            "ms": 60.10000002384186
+          },
+          {
+            "name": "select-rect",
+            "start": 52808.200000047684,
+            "ms": 56.09999996423721
+          },
+          {
+            "name": "colour-confirm",
+            "start": 53418.200000047684,
+            "ms": 44.299999952316284
+          },
+          {
+            "name": "drag-confirm",
+            "start": 53810.200000047684,
+            "ms": 162.79999995231628
+          },
+          {
+            "name": "select-text",
+            "start": 54783.40000003576,
+            "ms": 65
+          },
+          {
+            "name": "select-rect",
+            "start": 55149,
+            "ms": 59.40000003576279
+          },
+          {
+            "name": "colour-confirm",
+            "start": 55780.30000001192,
+            "ms": 75.40000003576279
+          },
+          {
+            "name": "drag-confirm",
+            "start": 56237.90000003576,
+            "ms": 189.19999998807907
+          }
+        ],
+        "longTasks": [
+          {
+            "start": 5089.600000023842,
+            "ms": 148
+          },
+          {
+            "start": 5614.100000023842,
+            "ms": 137
+          },
+          {
+            "start": 7455.300000011921,
+            "ms": 152
+          },
+          {
+            "start": 7960,
+            "ms": 127
+          },
+          {
+            "start": 8416.700000047684,
+            "ms": 54
+          },
+          {
+            "start": 9813.200000047684,
+            "ms": 140
+          },
+          {
+            "start": 10324.700000047684,
+            "ms": 119
+          },
+          {
+            "start": 12127.300000011921,
+            "ms": 130
+          },
+          {
+            "start": 12575,
+            "ms": 50
+          },
+          {
+            "start": 12643.100000023842,
+            "ms": 123
+          },
+          {
+            "start": 13085.600000023842,
+            "ms": 65
+          },
+          {
+            "start": 14527.600000023842,
+            "ms": 137
+          },
+          {
+            "start": 15043.200000047684,
+            "ms": 126
+          },
+          {
+            "start": 16843.5,
+            "ms": 134
+          },
+          {
+            "start": 17281.30000001192,
+            "ms": 50
+          },
+          {
+            "start": 17349.400000035763,
+            "ms": 122
+          },
+          {
+            "start": 19168.30000001192,
+            "ms": 129
+          },
+          {
+            "start": 19660.600000023842,
+            "ms": 113
+          },
+          {
+            "start": 21494.200000047684,
+            "ms": 143
+          },
+          {
+            "start": 21957.5,
+            "ms": 50
+          },
+          {
+            "start": 22026.100000023842,
+            "ms": 122
+          },
+          {
+            "start": 23879.5,
+            "ms": 145
+          },
+          {
+            "start": 24389.100000023842,
+            "ms": 120
+          },
+          {
+            "start": 26184.80000001192,
+            "ms": 129
+          },
+          {
+            "start": 26690.5,
+            "ms": 119
+          },
+          {
+            "start": 28512.700000047684,
+            "ms": 137
+          },
+          {
+            "start": 29008.700000047684,
+            "ms": 115
+          },
+          {
+            "start": 30801.900000035763,
+            "ms": 127
+          },
+          {
+            "start": 31239.100000023842,
+            "ms": 52
+          },
+          {
+            "start": 31309.80000001192,
+            "ms": 119
+          },
+          {
+            "start": 33126.90000003576,
+            "ms": 129
+          },
+          {
+            "start": 33627.10000002384,
+            "ms": 114
+          },
+          {
+            "start": 35410.40000003576,
+            "ms": 129
+          },
+          {
+            "start": 35857.40000003576,
+            "ms": 50
+          },
+          {
+            "start": 35926.700000047684,
+            "ms": 119
+          },
+          {
+            "start": 37743.5,
+            "ms": 130
+          },
+          {
+            "start": 38226.40000003576,
+            "ms": 117
+          },
+          {
+            "start": 40027.10000002384,
+            "ms": 134
+          },
+          {
+            "start": 40480.700000047684,
+            "ms": 51
+          },
+          {
+            "start": 40549.30000001192,
+            "ms": 121
+          },
+          {
+            "start": 42376.60000002384,
+            "ms": 129
+          },
+          {
+            "start": 42866,
+            "ms": 114
+          },
+          {
+            "start": 44626.80000001192,
+            "ms": 129
+          },
+          {
+            "start": 45123.40000003576,
+            "ms": 122
+          },
+          {
+            "start": 46926.60000002384,
+            "ms": 129
+          },
+          {
+            "start": 47417.40000003576,
+            "ms": 116
+          },
+          {
+            "start": 49209.60000002384,
+            "ms": 127
+          },
+          {
+            "start": 49647.10000002384,
+            "ms": 50
+          },
+          {
+            "start": 49715.30000001192,
+            "ms": 116
+          },
+          {
+            "start": 51518.10000002384,
+            "ms": 142
+          },
+          {
+            "start": 52016.10000002384,
+            "ms": 115
+          },
+          {
+            "start": 53810.10000002384,
+            "ms": 132
+          },
+          {
+            "start": 54256.90000003576,
+            "ms": 57
+          },
+          {
+            "start": 54334,
+            "ms": 126
+          },
+          {
+            "start": 55779.90000003576,
+            "ms": 53
+          },
+          {
+            "start": 56237.700000047684,
+            "ms": 157
+          },
+          {
+            "start": 56772.80000001192,
+            "ms": 148
+          }
+        ],
+        "select-text": {
+          "n": 20,
+          "p50": 60.69999998807907,
+          "p95": 71.39999997615814,
+          "max": 95,
+          "longTasks": 1
+        },
+        "select-rect": {
+          "n": 20,
+          "p50": 57.19999998807907,
+          "p95": 66.89999997615814,
+          "max": 68.29999995231628,
+          "longTasks": 0
+        },
+        "colour-confirm": {
+          "n": 20,
+          "p50": 45,
+          "p95": 53.200000047683716,
+          "max": 75.40000003576279,
+          "longTasks": 1
+        },
+        "drag-confirm": {
+          "n": 20,
+          "p50": 159.5,
+          "p95": 175.5,
+          "max": 189.19999998807907,
+          "longTasks": 20
+        },
+        "passed": true,
+        "errors": [],
+        "remote": []
+      }
+    ],
+    "scope": "Source browser event-to-second-rAF callback latency; layouts differ intentionally as the actual product. Not native installed app or physical latency.",
+    "remaining": "20 drag long tasks per batch remain. Candidate text selection has2/1 overlapping long tasks versus baseline1/1; do not claim every pause eliminated.",
+    "retainedFailure": "performance-drawers-r1: test helper relative-path error before any measurements; corrected inr2.",
+    "candidateSourceCommit": "57c8b0fff1fe8763ed6ef8df80946111dd084916",
+    "laterChange": "Only download-accounting guard/status and exact-label command ranking changed after timing; timed selection/colour/drag paths unchanged. Timing remains explicitly57c8b0f source, not relabelled native/package latency."
+  },
+  "uiHashes": {
+    "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
+    "axis-editing.js": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115",
+    "axis-settings-ui.css": "7d50d0bbc47253a0e6f673b294bf2d26ae413525eaf7d4f4729141ff7d2ca7c2",
+    "axis-settings-ui.js": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9",
+    "canvas-clipboard.js": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be",
+    "catalogue-previews.json": "a3644e7455c498ef2613ae1b02f8b04d52cd84e19f049e5240a84b9d3b129f19",
+    "catalogue.js": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35",
+    "chart-knowledge.json": "182d057d26602c57a292bdc8f1124458a22a90d89e42c96dba1ffad61416630b",
+    "compact-whitespace.js": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb",
+    "component-style.js": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234",
+    "deferred-previews.js": "7e5eb85d2d63b3b9cf9cfa7744009cb84819c53a0c68f2e7e69bf526e5e064ca",
+    "discovery-offline.js": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38",
+    "discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+    "discovery-ui.js": "cf1decd45eea8adcb2c7e3215780a3ee31ded139fc967931c40362cbbe9b5871",
+    "discovery.js": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43",
+    "download-metrics-ledger.json": "5b7f597471788e763edc76157081ea9ed17a684fbcadcc0e4b6efa27eaf8528f",
+    "drawer-workspace.css": "0630683d6ce11d27d4b918ae535eaadce0bddd3ce01f34fdf7ae9364b1bf2857",
+    "drawer-workspace.js": "710c260377425fad9e12a81b93f60b87cae5f8da3fdde6c39062ba63da5005f8",
+    "duplicate-check.css": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e",
+    "duplicate-check.js": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1",
+    "duplicate-review.js": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf",
+    "duplicate-viewer.css": "b64a440392b3822afe5bcb1d0be97903bfafe5d37c36b90be1d6b4bdef0999cf",
+    "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
+    "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
+    "experience-tools.css": "9b4689ce2f55112f8abc51ce3dd2a1665dcce3bf25f86fb95389aa5a3bc95d4e",
+    "experience-tools.js": "84521bbfb2dba3ac7ee0b184af26bb27557ad37a7ddfad1e6360dcb7d1f31e88",
+    "figure-planning.js": "dc82b3c8d0b6fc2685b7723a758eea69e05e461211cea82fa15cad9d2249b003",
+    "figure-quality.js": "60d570fe3a328d34358451ccd13206d79fb3794aeed39873942e21aa7a046e80",
+    "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
+    "grid-resize-ui.js": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed",
+    "group-spacing.js": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8",
+    "i18n.js": "11ea9e12362846749707c53451ce9f04b0311f6bbae5f3a5a620dfee457ca513",
+    "image-color-ui.js": "9952bff2537451109035093725c2155750cdc5459583732a499d9b541873cb48",
+    "image-color.js": "af514f347252c5b04444cc4cc4f99a4d96fd7a81e3a52045c86bc99f37dc118d",
+    "image-insets-controller.js": "2ceb66b2eb1736e7dd6a78bae701090588a4d49cdafb2fba3d051ad1225f65ff",
+    "image-insets-ui.js": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035",
+    "image-insets.js": "d1d75b1ea15891038b831d901b14a588ec1bbed55609e01ceb7ef796725fc90c",
+    "image-links-controller.js": "82c9e72262b734455973550d822e32a0d37d2b8268d767fdff5fca0efeb59151",
+    "image-links-ui.js": "cd89e8606765cef22e76095d27e1e351ed37a9fee7e3507419a5072400bbf837",
+    "image-links.js": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886",
+    "image-rectify-detect.js": "808edeee0957793bf285e1bf9ad5f2731ecbecc5d3b9a5ccfc09b18d1c154aec",
+    "image-rectify-ui.js": "f047930790e744a7e90beceffb30f0a2d7bedf8f0b65a792e6b54117f8b489e9",
+    "image-rectify.css": "526d3c49041ba5561634fea0cffb2a9595a86a4521d0ef7eb73109fb06cfd2fb",
+    "image-rectify.js": "95bf95f55c8d9d3489caa1250cc0b89bd8cbb1cadabbd7a30c6631a2363d255a",
+    "image-straighten.js": "4323974477f35206e0d8a662d64785746665d369b49ec08dbc690e797a4426a5",
+    "layers-panel.js": "df9833043b3b021e0fde04d009bcbfc13231baa475cfbedaa320b560decffa47",
+    "layout-lock.js": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242",
+    "legacy-stat-cleanup.js": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92",
+    "library.js": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51",
+    "literature.css": "f696eccd3cfba3c0ea3fac45cbd5a74c6adb55728e59abf4ce1c5547f06e49f0",
+    "literature.js": "66b6852716cc59c622620504bac9c87ab6d2547a36c8d7b7fd3aa23574fa194b",
+    "mark-style.js": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419",
+    "mascot-border-collie.svg": "bc17f3211a96529966fc744fd1e28df518ad43a2f79c3d199ba383079996472d",
+    "mascot-maine-coon.svg": "87a2ac6f885101abba85c45f013fdc8f303d5398c0756419bdb38d08509103f3",
+    "mascot-minimal-cat.svg": "abee4441d83d8e127526e8656363b0117e01a0bc3e99ec27882f8d4d43975d83",
+    "mascot-minimal-dog.svg": "3ac69072935713d1f2af3c5849052d731710eea38aead5d4f7b5b9976072d9ee",
+    "mascot-scene.svg": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b",
+    "master-frame.js": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9",
+    "memory.js": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c",
+    "mobile-ui.css": "101335ce269683a514ceb526b46b15634019b57405144615b29debd897bfb14b",
+    "mobile-ui.js": "f9c1ad0e5db4794b9a79726fe5d19b458839ee1305ece35585b669f55b6c14c4",
+    "object-borders.js": "5ba4ed9c9d2971d3372ee14b8d04cf540753c879f40b165e1a37d758d542404a",
+    "panel-commands.js": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd",
+    "preview-sessions.js": "218ce572c39a858f5ff519531ea5d7c7424d293db5d9184672688a5423182a88",
+    "project-codec.js": "95343ac7819582e47071040820e33868b3bf79eddaa0a93f57c1f41a90205892",
+    "project-operations.js": "47ec7234ae6fedcfb61357c375bdf8c0632a63d4ce6031cabf102b3c3a9a2540",
+    "quality-workspace.css": "26b5829969110828d357f818725ce0d0e105647710ac6606d0137719f57a81d7",
+    "quality-workspace.js": "41125480dcd80eba730c6b43d8efaffa855f4e2c035103c26931dd7af2247228",
+    "research-discovery.js": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f",
+    "rich-text.css": "1deadd7d55d7edee1f120d2f80062e034fca198d3b74da8acb62022fa41c43e3",
+    "rich-text.js": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4",
+    "scale-geometry.js": "cbf84b487787292009917c5e3f1e0ad0a677c5bf32e5ed1faaf726258677b73f",
+    "scientific-tiff-ui.js": "0547f44eb3dfc51395637b838358132e800bdb84d9f159ba978d1b8df6928ae5",
+    "scientific-tiff.css": "ac4aafac32b037756c19160aa7a9d03dd55ccb6083dc24ccc2ca1b1e41421027",
+    "scientific-tiff.js": "e48cd93de05687655c8a66bf7bd343839583d0d614e4be800863b2e0a13dc05e",
+    "selection-resize-controller.js": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61",
+    "selection-transform-dom.js": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3",
+    "selection-transform.js": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719",
+    "statistical-line-geometry.js": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8",
+    "statistical-metadata.js": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747",
+    "studio-support.js": "74fbe6c7d3e1a63ad7523d057da7429db17720dec5c6701cff1b32d6016c2fd6",
+    "studio.css": "951eea56f81bb985e412ea09c3f6bd59949ee39c9053da3e6d05db84a73b685c",
+    "studio.html": "4a544a2222f19d61b8eed4aa3d37ef1128e1583ad5d3d5fd200bd358b5d45458",
+    "studio.js": "a21000d42765f249bb5302514ffb688bce9f5ba3fed6aa5a0c78647b29c7a777",
+    "style-preview.js": "c0da41e0c15c37545f199525ec1f6db04086d68a146736b28ed7275f37fe767f",
+    "submission-profile-ui.js": "ee98b8ef53c072aeee14dcc37fac3acaeaab9bb01f78d48cea69bee44a0c41ff",
+    "submission-profiles.js": "47535d1292f0520eb2d87e47b70f3cbcd788e944957ef0b363c576d9550f41a3",
+    "template-starters.json": "eb8f5d4c60a2cfbb03ad2d334e9aa4f44802e0e3df29fc8a1779ab6088c636ba",
+    "text-formatting.js": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1",
+    "text-tools-ui.js": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e",
+    "theme-controller.js": "e8c4266aa056f411f4bd14a823f7fda4b3564214854384e64eeb7d24d8234cdc",
+    "theme-tokens.css": "a36192cf3ce610e3ce7a1fb4413cc54efc58fc91c998a1570e27c8e2d4a4d5d6",
+    "theme.css": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab",
+    "third-party-notices.js": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682",
+    "tiff-export.js": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f",
+    "update-check.js": "977df4939713cedc0d340b58958a9b2000c3c7de5c79cf411483300a894c1d5f",
+    "update-scene.css": "eced7b3291d70b0a8afd06a434d6c3aa4a8cee1a048a468a6e7f3948a136c7db",
+    "update-scene.js": "444cc790b4c5948ee785e1772c145453cb13dde3e7e5b840edae5f56d305daa7",
+    "vector-interaction.js": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4",
+    "workspace-layout.css": "4b0775dea1787185f507783133403859e4688c39111c64de9156add721c5da8b",
+    "workspace-layout.js": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+  },
+  "failuresRetained": [
+    "initial test-module path and loopback visibility setup failures; no native-interface retry",
+    "drawers-production-browser-r1: English text-spacing alias hit a broader action; matching priority corrected",
+    "production-seven-r1:6/7pass; old test waited for a collapsed project title; updated to open actual project drawer before checking",
+    "prototype and interim snapshots retained locally; none relabelled installed acceptance"
+  ],
+  "privacy": "Only public Iris observations and explicitly synthetic TIFF/SVG/feedback fixtures. No private images, original measurements, user projects or credentials included. No issue created or email delivery claimed.",
+  "pending": [
+    "Human review and new installed interface workflow",
+    "Same-package native numeric performance",
+    "Genuine official old-to-new download/verify/install/restart and actual failure recovery after separately approved publication",
+    "Real GitHub Issue routing/email delivery after deployment; controlled browser routing tests are not delivery proof",
+    "Historical net downloads and active-user counts remain unknown"
+  ],
+  "screenshots": [
+    {
+      "file": "drawer-fonts-carbon-20261030.png",
+      "sha256": "d70eab1344967ac4d590ebdf8964f52414ae8fd175e02b807d7dce0705f2ebc2"
+    },
+    {
+      "file": "drawer-canvas-expanded-20261030.png",
+      "sha256": "65a7f61ac955f4318d88018650f720a45fa6dac29a218f2ac09176c8fcb533ed"
+    },
+    {
+      "file": "drawer-fonts-pearl-20261030.png",
+      "sha256": "1e5be98e24acab744335e310e5fccd38af3b7c65b190685ed7fc8b08c4108b8b"
+    }
+  ],
+  "professionalAxes": {
+    "dataset": "Public Iris,150observations, DOI10.24432/C56C76",
+    "status": "PASS",
+    "source": "explicit local native-data project",
+    "checks": [
+      "discoverable professional axis entry; four sections; real local range/ticks/appearance/physical frame redraw",
+      "single undo/redo restores original artwork and new recipe",
+      "save/reopen retains unchanged source observations and declarative axis settings",
+      "double-click a recognized numeric axis tick opens settings",
+      "SVG and PNG export reflect actual data-axis redraw"
+    ],
+    "remoteRequests": [],
+    "errors": []
+  },
+  "finalAffectedNode": {
+    "author": "a",
+    "checks": [
+      {
+        "script": "scripts/test_studio_drawer_workspace.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_support.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_experience_tools.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_workspace_hierarchy.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_state.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_host_ime.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_component_ime.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_annotation_pane.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_selection_refresh_efficiency.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_pane_reuse.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_field_preview.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_object_borders_live_preview.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_async_save.cjs",
+        "exitCode": 0
+      }
+    ],
+    "passed": true
+  },
+  "packagingChecks": {
+    "windowsBuildTests": 4,
+    "sourceVerifierTests": 18,
+    "sourceArchiveAndExtractedCliAndPyc": true,
+    "newOfflineGuideAndFourUiAssetsMandatory": true
+  },
+  "supportFinalGuard": {
+    "author": "a",
+    "date": "2026-10-30",
+    "scope": "Actual local editor feedback draft and controlled GitHub metadata browser contract; no issue created or email sent; no live user count or installed Windows claim",
+    "checks": [
+      "Real feedback form requires preview and renewed consent after changes; redacts synthetic path/email and does not attach source data or diagnostics by default; external submission not performed",
+      "Metadata requests start only after explicit click; controlled counters subtract the historical baseline and one QA event, yielding four net new downloads rather than a user count",
+      "A prerelease-to-stable counter promotion stays unreconciled in the real UI; no verified-total or applied-exclusion claim",
+      "Offline metadata failure remains explicit; closing support dialogs preserves project, raw SVG, observations, analysis and history exactly"
+    ],
+    "metadataRequests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/releases?per_page=100&page=1",
+        "hasBody": false,
+        "hasEditorToken": false
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/contents/skills/polish-sci-figures/assets/figure-studio/download-metrics-ledger.json?ref=main",
+        "hasBody": false,
+        "hasEditorToken": false
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/releases?per_page=100&page=1",
+        "hasBody": false,
+        "hasEditorToken": false
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/contents/skills/polish-sci-figures/assets/figure-studio/download-metrics-ledger.json?ref=main",
+        "hasBody": false,
+        "hasEditorToken": false
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/zhoy0409-debug/polish-sci-figures/releases?per_page=100&page=1",
+        "hasBody": false,
+        "hasEditorToken": false
+      }
+    ],
+    "passed": true,
+    "errors": [],
+    "remote": [],
+    "unitTests": 11
+  },
+  "latestUiHashes": {
+    "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
+    "axis-editing.js": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115",
+    "axis-settings-ui.css": "7d50d0bbc47253a0e6f673b294bf2d26ae413525eaf7d4f4729141ff7d2ca7c2",
+    "axis-settings-ui.js": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9",
+    "canvas-clipboard.js": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be",
+    "catalogue-previews.json": "a3644e7455c498ef2613ae1b02f8b04d52cd84e19f049e5240a84b9d3b129f19",
+    "catalogue.js": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35",
+    "chart-knowledge.json": "182d057d26602c57a292bdc8f1124458a22a90d89e42c96dba1ffad61416630b",
+    "compact-whitespace.js": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb",
+    "component-style.js": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234",
+    "deferred-previews.js": "7e5eb85d2d63b3b9cf9cfa7744009cb84819c53a0c68f2e7e69bf526e5e064ca",
+    "discovery-offline.js": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38",
+    "discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+    "discovery-ui.js": "cf1decd45eea8adcb2c7e3215780a3ee31ded139fc967931c40362cbbe9b5871",
+    "discovery.js": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43",
+    "download-metrics-ledger.json": "5b7f597471788e763edc76157081ea9ed17a684fbcadcc0e4b6efa27eaf8528f",
+    "drawer-workspace.css": "0630683d6ce11d27d4b918ae535eaadce0bddd3ce01f34fdf7ae9364b1bf2857",
+    "drawer-workspace.js": "710c260377425fad9e12a81b93f60b87cae5f8da3fdde6c39062ba63da5005f8",
+    "duplicate-check.css": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e",
+    "duplicate-check.js": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1",
+    "duplicate-review.js": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf",
+    "duplicate-viewer.css": "b64a440392b3822afe5bcb1d0be97903bfafe5d37c36b90be1d6b4bdef0999cf",
+    "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
+    "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
+    "experience-tools.css": "9b4689ce2f55112f8abc51ce3dd2a1665dcce3bf25f86fb95389aa5a3bc95d4e",
+    "experience-tools.js": "15cde017598f36dd5880474b5e8a38742374e4fb76102e0037bfe6ab491b2298",
+    "figure-planning.js": "dc82b3c8d0b6fc2685b7723a758eea69e05e461211cea82fa15cad9d2249b003",
+    "figure-quality.js": "60d570fe3a328d34358451ccd13206d79fb3794aeed39873942e21aa7a046e80",
+    "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
+    "grid-resize-ui.js": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed",
+    "group-spacing.js": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8",
+    "i18n.js": "11ea9e12362846749707c53451ce9f04b0311f6bbae5f3a5a620dfee457ca513",
+    "image-color-ui.js": "9952bff2537451109035093725c2155750cdc5459583732a499d9b541873cb48",
+    "image-color.js": "af514f347252c5b04444cc4cc4f99a4d96fd7a81e3a52045c86bc99f37dc118d",
+    "image-insets-controller.js": "2ceb66b2eb1736e7dd6a78bae701090588a4d49cdafb2fba3d051ad1225f65ff",
+    "image-insets-ui.js": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035",
+    "image-insets.js": "d1d75b1ea15891038b831d901b14a588ec1bbed55609e01ceb7ef796725fc90c",
+    "image-links-controller.js": "82c9e72262b734455973550d822e32a0d37d2b8268d767fdff5fca0efeb59151",
+    "image-links-ui.js": "cd89e8606765cef22e76095d27e1e351ed37a9fee7e3507419a5072400bbf837",
+    "image-links.js": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886",
+    "image-rectify-detect.js": "808edeee0957793bf285e1bf9ad5f2731ecbecc5d3b9a5ccfc09b18d1c154aec",
+    "image-rectify-ui.js": "f047930790e744a7e90beceffb30f0a2d7bedf8f0b65a792e6b54117f8b489e9",
+    "image-rectify.css": "526d3c49041ba5561634fea0cffb2a9595a86a4521d0ef7eb73109fb06cfd2fb",
+    "image-rectify.js": "95bf95f55c8d9d3489caa1250cc0b89bd8cbb1cadabbd7a30c6631a2363d255a",
+    "image-straighten.js": "4323974477f35206e0d8a662d64785746665d369b49ec08dbc690e797a4426a5",
+    "layers-panel.js": "df9833043b3b021e0fde04d009bcbfc13231baa475cfbedaa320b560decffa47",
+    "layout-lock.js": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242",
+    "legacy-stat-cleanup.js": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92",
+    "library.js": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51",
+    "literature.css": "f696eccd3cfba3c0ea3fac45cbd5a74c6adb55728e59abf4ce1c5547f06e49f0",
+    "literature.js": "66b6852716cc59c622620504bac9c87ab6d2547a36c8d7b7fd3aa23574fa194b",
+    "mark-style.js": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419",
+    "mascot-border-collie.svg": "bc17f3211a96529966fc744fd1e28df518ad43a2f79c3d199ba383079996472d",
+    "mascot-maine-coon.svg": "87a2ac6f885101abba85c45f013fdc8f303d5398c0756419bdb38d08509103f3",
+    "mascot-minimal-cat.svg": "abee4441d83d8e127526e8656363b0117e01a0bc3e99ec27882f8d4d43975d83",
+    "mascot-minimal-dog.svg": "3ac69072935713d1f2af3c5849052d731710eea38aead5d4f7b5b9976072d9ee",
+    "mascot-scene.svg": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b",
+    "master-frame.js": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9",
+    "memory.js": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c",
+    "mobile-ui.css": "101335ce269683a514ceb526b46b15634019b57405144615b29debd897bfb14b",
+    "mobile-ui.js": "f9c1ad0e5db4794b9a79726fe5d19b458839ee1305ece35585b669f55b6c14c4",
+    "object-borders.js": "5ba4ed9c9d2971d3372ee14b8d04cf540753c879f40b165e1a37d758d542404a",
+    "panel-commands.js": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd",
+    "preview-sessions.js": "218ce572c39a858f5ff519531ea5d7c7424d293db5d9184672688a5423182a88",
+    "project-codec.js": "95343ac7819582e47071040820e33868b3bf79eddaa0a93f57c1f41a90205892",
+    "project-operations.js": "47ec7234ae6fedcfb61357c375bdf8c0632a63d4ce6031cabf102b3c3a9a2540",
+    "quality-workspace.css": "26b5829969110828d357f818725ce0d0e105647710ac6606d0137719f57a81d7",
+    "quality-workspace.js": "41125480dcd80eba730c6b43d8efaffa855f4e2c035103c26931dd7af2247228",
+    "research-discovery.js": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f",
+    "rich-text.css": "1deadd7d55d7edee1f120d2f80062e034fca198d3b74da8acb62022fa41c43e3",
+    "rich-text.js": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4",
+    "scale-geometry.js": "cbf84b487787292009917c5e3f1e0ad0a677c5bf32e5ed1faaf726258677b73f",
+    "scientific-tiff-ui.js": "0547f44eb3dfc51395637b838358132e800bdb84d9f159ba978d1b8df6928ae5",
+    "scientific-tiff.css": "ac4aafac32b037756c19160aa7a9d03dd55ccb6083dc24ccc2ca1b1e41421027",
+    "scientific-tiff.js": "e48cd93de05687655c8a66bf7bd343839583d0d614e4be800863b2e0a13dc05e",
+    "selection-resize-controller.js": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61",
+    "selection-transform-dom.js": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3",
+    "selection-transform.js": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719",
+    "statistical-line-geometry.js": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8",
+    "statistical-metadata.js": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747",
+    "studio-support.js": "c358ae47d025e119b01de5abdaf812161fcc6d18aac4ced3c97c95e1c5fd014d",
+    "studio.css": "951eea56f81bb985e412ea09c3f6bd59949ee39c9053da3e6d05db84a73b685c",
+    "studio.html": "4a544a2222f19d61b8eed4aa3d37ef1128e1583ad5d3d5fd200bd358b5d45458",
+    "studio.js": "a21000d42765f249bb5302514ffb688bce9f5ba3fed6aa5a0c78647b29c7a777",
+    "style-preview.js": "c0da41e0c15c37545f199525ec1f6db04086d68a146736b28ed7275f37fe767f",
+    "submission-profile-ui.js": "ee98b8ef53c072aeee14dcc37fac3acaeaab9bb01f78d48cea69bee44a0c41ff",
+    "submission-profiles.js": "47535d1292f0520eb2d87e47b70f3cbcd788e944957ef0b363c576d9550f41a3",
+    "template-starters.json": "eb8f5d4c60a2cfbb03ad2d334e9aa4f44802e0e3df29fc8a1779ab6088c636ba",
+    "text-formatting.js": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1",
+    "text-tools-ui.js": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e",
+    "theme-controller.js": "e8c4266aa056f411f4bd14a823f7fda4b3564214854384e64eeb7d24d8234cdc",
+    "theme-tokens.css": "a36192cf3ce610e3ce7a1fb4413cc54efc58fc91c998a1570e27c8e2d4a4d5d6",
+    "theme.css": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab",
+    "third-party-notices.js": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682",
+    "tiff-export.js": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f",
+    "update-check.js": "977df4939713cedc0d340b58958a9b2000c3c7de5c79cf411483300a894c1d5f",
+    "update-scene.css": "eced7b3291d70b0a8afd06a434d6c3aa4a8cee1a048a468a6e7f3948a136c7db",
+    "update-scene.js": "444cc790b4c5948ee785e1772c145453cb13dde3e7e5b840edae5f56d305daa7",
+    "vector-interaction.js": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4",
+    "workspace-layout.css": "4b0775dea1787185f507783133403859e4688c39111c64de9156add721c5da8b",
+    "workspace-layout.js": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+  },
+  "ciCorrection": {
+    "failedHead": "d68cd0169d1ab214dd584f70578bb66e2dfc3e2d",
+    "run": 40938790670,
+    "basicFailed": 6,
+    "integrationPassed": true,
+    "browserPassed": true,
+    "cause": "Packaging/provenance test retained the old sole EuropePMC connect-src and five-script assertion. Actual HTML adds one inert public accounting JSON script and explicit api.github.com metadata origin.",
+    "fix": "Assert exact two-origin allowlist, default/form deny, six scripts with only one executable runtime, parsed inert ledger schema and bundled tools. No runtime code or scientific test weakened.",
+    "localPackagingTests": 10,
+    "localPackagingPassed": true,
+    "launcherTests": 10,
+    "updaterTests": 18,
+    "traceSanitizerTests": 6,
+    "remainingBasicPassed": true,
+    "failuresRetained": [
+      "failed-ubuntu-py312.log (full original CI log)",
+      "local-packaging-test.log (sandbox temporary-directory permissions)",
+      "local-packaging-test-r2.log (old five-script assertion surfaced)",
+      "local-packaging-test-r3.log (all ten passed using process-local workspace TEMP/TMP)"
+    ],
+    "pending": "Resolved by e7b2259 CI40940516107, all8success"
+  },
+  "localCandidate": {
+    "author": "a",
+    "created": "2026-10-30",
+    "kind": "LOCAL_UNRELEASED_REVIEW_CANDIDATE",
+    "sourceCommit": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+    "sourceTree": "15f29d5970c17631d84e305e8fc789905be81167",
+    "suiteVersion": "v1.5.0",
+    "applicationVersion": "0.2.0",
+    "sourceFreezeSha256": "f91850d0ffb0e8e27ba5aa287448e6142f9d342a9d90c6fea262604f981eee2a",
+    "uiAssets": 101,
+    "backendSourceFiles": 28,
+    "canonicalData": 385,
+    "suiteCodeObjects": 59,
+    "nativeExecutableModules": 2,
+    "portableFiles": 2682,
+    "docSnapshotExceptions": [],
+    "sourceCI": {
+      "author": "a",
+      "headRevision": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+      "runId": 40943755572,
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/40943755572",
+      "status": "8/8success",
+      "checks": [
+        {
+          "name": "local browser preview (ubuntu, py3.12, Node24)",
+          "id": 123693574178,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "full integration (ubuntu, py3.12)",
+          "id": 123693574703,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (macos-latest, py3.12)",
+          "id": 123693574729,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (macos-latest, py3.10)",
+          "id": 123693574770,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (windows-latest, py3.12)",
+          "id": 123693574978,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (ubuntu-latest, py3.12)",
+          "id": 123693574994,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (ubuntu-latest, py3.10)",
+          "id": 123693575028,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (windows-latest, py3.10)",
+          "id": 123693576473,
+          "head": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    "frozenSelfTest": {
+      "passed": true,
+      "processExitCode": 0,
+      "variants": 17,
+      "checks": [
+        "Tk desktop shell resources",
+        "GET editor",
+        "Local update endpoint and installation version (no release request)",
+        "Host / Origin / token guards",
+        "/api/analyze",
+        "/api/render",
+        "/api/reflow",
+        "/api/import-pdf",
+        "/api/import-pdf",
+        "/api/image-duplicates",
+        "Bundled OpenCV image check and evidence via local HTTP",
+        "/api/image-links",
+        "Bundled SIFT crop localization and original-pixel coordinates via local HTTP",
+        "Bundled uint16 OME/LZW TIFF, native samples, explicit display window and binary session via local HTTP"
+      ],
+      "scope": "Actual frozen EXE with isolated data, hidden shell and real local HTTP; not installed editing or genuine updater"
+    },
+    "artifacts": [
+      {
+        "name": "polish-sci-figures-Studio-0.2.0-Portable-x64.zip",
+        "sha256": "918c774593ea0b0d0d1fbd3d7538df8e5c75546a188a4e52f5db26ca2c91feb4",
+        "sizeBytes": 148277940
+      },
+      {
+        "name": "polish-sci-figures-Studio-0.2.0-Setup-x64.exe",
+        "sha256": "02bfed5cbc6e403b8f2ca0758233151ecc004114af3537ac00c2c3b7ed6e15ce",
+        "sizeBytes": 106212631
+      }
+    ],
+    "releaseHold": {
+      "active": true,
+      "humanReviewAndRenewedApprovalRequired": true,
+      "mergeAllowed": false,
+      "tagAllowed": false,
+      "releaseAssetsAllowed": false
+    },
+    "acceptance": {
+      "newInstalledEditor": false,
+      "newNativeIme": false,
+      "samePackageNativeNumeric5000": false,
+      "genuineOfficialUpdate": false,
+      "actualFailureRecovery": false,
+      "independentDetectorAccuracy": false
+    },
+    "priorWn9ManualPassScope": "User-reported old candidate text/border/5000 functional workflow only, sourcecf461b3. Does not certify this interface.",
+    "privacy": "Only source resources and explicit public/synthetic fixtures; no private original, measurement, project, device identifier or credential distributed."
+  },
+  "priorLocalCandidateWn12": {
+    "author": "a",
+    "created": "2026-10-30",
+    "kind": "LOCAL_UNRELEASED_REVIEW_CANDIDATE",
+    "sourceCommit": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+    "sourceTree": "e9e1652284d889d88f74975fcc2a7850c085e79f",
+    "suiteVersion": "v1.5.0",
+    "applicationVersion": "0.2.0",
+    "sourceFreezeSha256": "0f9d52d3375da621e83be1bd4293014a651ee59b24bceb4b491a7180ae4ad56e",
+    "uiAssets": 101,
+    "backendSourceFiles": 28,
+    "canonicalData": 385,
+    "suiteCodeObjects": 59,
+    "nativeExecutableModules": 2,
+    "portableFiles": 2682,
+    "docSnapshotExceptions": [],
+    "sourceCI": {
+      "author": "a",
+      "headRevision": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+      "runId": 40940516107,
+      "url": "https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/40940516107",
+      "status": "8/8success",
+      "checks": [
+        {
+          "name": "local browser preview (ubuntu, py3.12, Node24)",
+          "id": 123682380318,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (ubuntu-latest, py3.10)",
+          "id": 123682380589,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (ubuntu-latest, py3.12)",
+          "id": 123682380828,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (macos-latest, py3.12)",
+          "id": 123682380832,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (windows-latest, py3.12)",
+          "id": 123682380837,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "full integration (ubuntu, py3.12)",
+          "id": 123682380840,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (windows-latest, py3.10)",
+          "id": 123682380849,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "basic (macos-latest, py3.10)",
+          "id": 123682380851,
+          "head": "e7b2259887e69ec47b2b45eaf336b95029a509d8",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    "frozenSelfTest": {
+      "passed": true,
+      "processExitCode": 0,
+      "variants": 17,
+      "checks": [
+        "Tk desktop shell resources",
+        "GET editor",
+        "Local update endpoint and installation version (no release request)",
+        "Host / Origin / token guards",
+        "/api/analyze",
+        "/api/render",
+        "/api/reflow",
+        "/api/import-pdf",
+        "/api/import-pdf",
+        "/api/image-duplicates",
+        "Bundled OpenCV image check and evidence via local HTTP",
+        "/api/image-links",
+        "Bundled SIFT crop localization and original-pixel coordinates via local HTTP",
+        "Bundled uint16 OME/LZW TIFF, native samples, explicit display window and binary session via local HTTP"
+      ],
+      "scope": "Actual frozen EXE with isolated data, hidden shell and real local HTTP; not installed editing or genuine updater"
+    },
+    "artifacts": [
+      {
+        "name": "polish-sci-figures-Studio-0.2.0-Portable-x64.zip",
+        "sha256": "e5a316ce8355d95bca58a0492c1d2b619a29de7ed3bbf13d3234e71b96c2b86e",
+        "sizeBytes": 148277902
+      },
+      {
+        "name": "polish-sci-figures-Studio-0.2.0-Setup-x64.exe",
+        "sha256": "1a5ec0c16ece1222306278b87a729bf34d11e5ec953b424b7f1d472335f3235a",
+        "sizeBytes": 106213308
+      }
+    ],
+    "releaseHold": {
+      "active": true,
+      "humanReviewAndRenewedApprovalRequired": true,
+      "mergeAllowed": false,
+      "tagAllowed": false,
+      "releaseAssetsAllowed": false
+    },
+    "acceptance": {
+      "newInstalledEditor": false,
+      "newNativeIme": false,
+      "samePackageNativeNumeric5000": false,
+      "genuineOfficialUpdate": false,
+      "actualFailureRecovery": false,
+      "independentDetectorAccuracy": false
+    },
+    "priorWn9ManualPassScope": "User-reported old candidate text/border/5000 functional workflow only, sourcecf461b3. Does not certify this interface.",
+    "privacy": "Only source resources and explicit public/synthetic fixtures; no private original, measurement, project, device identifier or credential distributed."
+  },
+  "fontSearchGuard": {
+    "reproducedFailure": "Exact Chinese font query previously selected broad edit alias and left focus in search. Real Node assertion failed; retained in tool history.",
+    "fix": "Prefer tool label matches over broad synonym-only matches. One canonical result; actual font field focus.",
+    "sourceCommit": "c07942b7754cdc74ec2a65b9bb2c9dcb9b693dd2",
+    "node3CommandsPassed": true,
+    "actualSevenBrowserGroupsPassed": true
+  },
+  "video": {
+    "file": "drawer-workflow-20261030.webm",
+    "sha256": "80617ca7fe23228e452cab14e0241c4d8ec413a3d8efca32f1c3345e5ee02962",
+    "sizeBytes": 1435887,
+    "scope": "Actual automated source Chrome workflow; public Iris/H&E and synthetic5000 only. Not installed UI or manual IME."
+  }
+}

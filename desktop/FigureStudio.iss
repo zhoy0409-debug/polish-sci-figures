@@ -1,5 +1,5 @@
 #ifndef AppVersion
-  #define AppVersion "0.1.26"
+  #define AppVersion "0.2.0"
 #endif
 #ifndef BuildRoot
   #error BuildRoot must point to the PyInstaller output directory
@@ -22,6 +22,8 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 MinVersion=10.0
 WizardStyle=modern
+WizardSizePercent=130,120
+WizardKeepAspectRatio=yes
 DisableWelcomePage=yes
 DisableDirPage=yes
 DisableProgramGroupPage=yes
@@ -45,6 +47,25 @@ VersionInfoCopyright=Copyright (c) 2026 Wenting Zhou
 Name: "chinesesimp"; MessagesFile: "compiler:Languages\ChineseSimplified.isl"
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
+[LangOptions]
+; Use a real CJK UI face instead of relying on a Latin font's fallback metrics.
+; Keep Inno 7's standard 9pt size and base scaling; never shrink the text to fit.
+chinesesimp.DialogFontName=Microsoft YaHei UI
+chinesesimp.DialogFontSize=9
+chinesesimp.DialogFontBaseScaleWidth=7
+chinesesimp.DialogFontBaseScaleHeight=15
+chinesesimp.WelcomeFontName=Microsoft YaHei UI
+
+[Messages]
+chinesesimp.SetupWindowTitle=安装 - Figure Studio
+english.SetupWindowTitle=Setup - Figure Studio
+chinesesimp.WizardSelectTasks=快捷方式
+chinesesimp.SelectTasksDesc=选择需要创建的快捷方式。
+chinesesimp.SelectTasksLabel2=桌面快捷方式为可选项，取消勾选也可继续安装。
+english.WizardSelectTasks=Shortcuts
+english.SelectTasksDesc=Choose the shortcuts to create.
+english.SelectTasksLabel2=The desktop shortcut is optional. You can continue without it.
+
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; Flags: checkedonce
 
@@ -59,6 +80,30 @@ Name: "{autodesktop}\polish-sci-figures Studio"; Filename: "{app}\Figure Studio.
 Filename: "{app}\Figure Studio.exe"; Description: "{cm:LaunchProgram,Figure Studio}"; Flags: nowait postinstall skipifsilent; Check: NotStudioUpdate
 
 [Code]
+procedure InitializeWizard;
+begin
+  WizardForm.PageDescriptionLabel.WordWrap := True;
+  WizardForm.SelectTasksLabel.WordWrap := True;
+  { The theme glyph may be wider than the list's legacy checkbox bitmap.
+    Reserve DPI-scaled leading room so its left edge stays inside the list. }
+  WizardForm.TasksList.Offset := ScaleX(13);
+  WizardForm.RunList.Offset := ScaleX(13);
+end;
+
+procedure CurPageChanged(CurPageID: Integer);
+var
+  HeightChange: Integer;
+begin
+  if CurPageID = wpSelectTasks then begin
+    { Use the actual DPI-scaled content width. AdjustHeight is idempotent:
+      returning to this page does not keep pushing its checklist down. }
+    WizardForm.SelectTasksLabel.AutoSize := False;
+    WizardForm.SelectTasksLabel.Width := WizardForm.TasksList.Width;
+    HeightChange := WizardForm.AdjustLabelHeight(WizardForm.SelectTasksLabel);
+    WizardForm.IncTopDecHeight(WizardForm.TasksList, HeightChange);
+  end;
+end;
+
 function NotStudioUpdate: Boolean;
 begin
   { The verified update helper restarts the application after Setup exits. }

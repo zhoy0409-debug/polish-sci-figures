@@ -1,0 +1,191 @@
+{
+  "author": "a",
+  "date": "2026-10-30",
+  "sourceBaseCommit": "cf461b34046b334fc35a80d68195810c7939215a",
+  "status": "SOURCE_BROWSER_PASSED_NEW_INSTALLER_PENDING",
+  "browser": "156.0.8078.49",
+  "scope": "Task-oriented function directory and existing-control disclosures. Separate source browser contexts; not native control, installed acceptance or performance latency.",
+  "checks": [
+    "1280x720 mode tabs, layer/layout/export jumps, nested paragraph/font/colour search targets and actual cancel preserve original state",
+    "Coherent image/style/physical-measurement separation, bilingual category paths and keyboard search-to-field navigation",
+    "Actual grouped canvas menus fit the viewport, preserve original control handlers and expose the existing text-spacing popover",
+    "Search opens the actual docked border tool; consecutive previews/save/cancel retain the committed project",
+    "5000 actual primitives retain source SVG; search-to-colour/one Undo/CtrlY/save/reopen preserve the exact committed result; no timing claim",
+    "Public microscopy image: image-straightening target picker and separate physical calibration entry are reachable; no calibration inference",
+    "Pearl Pro uses the same functional category directory and keeps physical measurement separate from image correction"
+  ],
+  "publicIris150": true,
+  "publicMicroscopy": true,
+  "nodeCommands": [
+    {
+      "script": "test_studio_workspace_hierarchy.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_experience_tools.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_quick_toolbar.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_history_shortcuts.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_text_spacing_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_group_spacing_controls.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_scale_preview.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_layers_panel.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_direct_text_editing.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_font_replacement.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_state.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_continuous_commands.cjs",
+      "exitCode": 0
+    }
+  ],
+  "productionBrowserGroups": [
+    {
+      "script": "test_project_codec_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_scientific_tiff_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_scientific_tiff_derivative_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_submission_profiles_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_history_shortcuts_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_workspace_hierarchy_browser.cjs",
+      "exitCode": 0
+    }
+  ],
+  "sourceAssetsSha256": {
+    "experience-tools.js": "b1311fcf272865a1dc1c109c1980111e51649f4f0b264344f0d27fd291cd44ce",
+    "experience-tools.css": "1ff5ff5e803c345402b6e6986337cbdc6fd7d59dc8880890659fa0291b92a418",
+    "workspace-layout.css": "4b0775dea1787185f507783133403859e4688c39111c64de9156add721c5da8b",
+    "studio.js": "8c45d16d4ca9f8b249bc22b7a4260b4aabdf7ca0ab97a00fc494d8e064d4c71a"
+  },
+  "measurements": {
+    "metric": "CSS layout/scroll height in pixels, not physical input latency",
+    "initialText1440x900": {
+      "before": {
+        "toolbar": 180,
+        "navigatorScrollHeight": 3570,
+        "inspectorScrollHeight": 3385
+      },
+      "after": {
+        "name": "01-text-1440",
+        "width": 1440,
+        "height": 900,
+        "toolbarHeight": 96,
+        "navigatorScrollHeight": 1288,
+        "inspectorScrollHeight": 1858
+      }
+    },
+    "initialText1280x720": {
+      "beforeToolbar": 222,
+      "afterToolbar": 134
+    },
+    "disclosureStates": "Initial matching selection only; later manually-expanded groups retain their state and can be longer. No claim all views remain short."
+  },
+  "screenshots": [
+    {
+      "file": "workspace-before-20261030.png",
+      "sha256": "9c86eb284983f89e7b325ff7e6c55209f121e0d67d2de51966566d5b22e004e6"
+    },
+    {
+      "file": "workspace-after-20261030.png",
+      "sha256": "d24ccb8a6a8aae84f491dae593a6fcf04afeeb960e5922eac1c7e25f675c17f4"
+    },
+    {
+      "file": "workspace-search-20261030.png",
+      "sha256": "cdc81117b605cc54297666d5d83441cbc6f35fa67d1a06e70a43d559b0ee3a39"
+    },
+    {
+      "file": "workspace-pearl-20261030.png",
+      "sha256": "7313bf841d7c7af37cc8f9dc334bb4c0dec7b58c381e0e2f01198a0413442470"
+    }
+  ],
+  "preservation": [
+    "Original DOM controls are moved, not cloned; original field identities and listeners are tested",
+    "Iris150 observed rows, analysis and original SVG preserved",
+    "Native TIFF originals, original-byte download and correction lineage preserved",
+    "5000 primitives: source preservation, actual colour preview, Undo/CtrlY, save/reopen",
+    "No remote requests or page errors"
+  ],
+  "manualInstalledPriorCandidate": {
+    "candidate": "wn9 / source cf461b3",
+    "textUndoRedo": "PASS_USER_REPORTED",
+    "borderPreviewCancelOneUndoRedo": "PASS_USER_REPORTED",
+    "synthetic5000Workflow": "PASS_USER_REPORTED",
+    "numericNativePerformanceMeasured": false,
+    "newInterfaceInstalledAcceptance": false
+  },
+  "retainedFailures": [
+    "Baseline source capture first failed with sandbox ERR_NETWORK_ACCESS_DENIED; retained, isolated loopback rerun succeeded",
+    "Intermediate UI candidates and their measurements retained; none represented as installed builds",
+    "First CI-fallback harness call omitted the existing Playwright media runtime path and could not create the video page. Kept that batch, closed its own session, restored the environment path and passed without installing anything. Added test cleanup for context setup failure."
+  ],
+  "pending": [
+    "Current commit CI and updated package provenance",
+    "Installed acceptance of revised interface",
+    "Native quantitative performance measurements",
+    "Genuine official old-to-new upgrade after target publication, and actual failure recovery"
+  ],
+  "privateImagesOrProjectsPublished": false,
+  "categories": [
+    "Data & charts",
+    "Text & object style",
+    "Image processing",
+    "Layout & canvas",
+    "Annotations & measurement",
+    "Review & export",
+    "Project & interface"
+  ],
+  "ciFallback": {
+    "syntheticFixturesPassed": true,
+    "usesPrivateOrCachedData": false,
+    "checks": [
+      "1280x720 mode tabs, layer/layout/export jumps, nested paragraph/font/colour search targets and actual cancel preserve original state",
+      "Coherent image/style/physical-measurement separation, bilingual category paths and keyboard search-to-field navigation",
+      "Actual grouped canvas menus fit the viewport, preserve original control handlers and expose the existing text-spacing popover",
+      "Search opens the actual docked border tool; consecutive previews/save/cancel retain the committed project",
+      "5000 actual primitives retain source SVG; search-to-colour/one Undo/CtrlY/save/reopen preserve the exact committed result; no timing claim",
+      "Explicit synthetic CI image: image-straightening target picker and separate physical calibration entry are reachable; no calibration inference",
+      "Pearl Pro uses the same functional category directory and keeps physical measurement separate from image correction"
+    ]
+  }
+}

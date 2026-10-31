@@ -1,0 +1,171 @@
+/* Desktop task drawers. Scientific canvas content never inherits these rules. */
+@media(min-width:751px){
+body.studio-drawers>header{min-height:56px;padding:var(--fs-space-2) var(--fs-space-4);gap:var(--fs-space-4)}
+.studio-drawers .brand .mark{font-size:23px;padding:2px 10px;border-radius:7px}
+.studio-drawers .brand strong{font-size:var(--fs-font-md);letter-spacing:-.2px}
+.studio-drawers .brand-subtitle{display:none}
+#drawerTaskbar{display:flex;flex:none;align-items:center;gap:var(--fs-space-1);min-height:42px;padding:0 12px;background:var(--fs-surface-1);border-bottom:1px solid var(--fs-stroke-subtle);overflow-x:auto}
+#drawerTaskbar button{height:42px;min-height:42px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--fs-text-secondary);font-size:var(--fs-font-xs);padding:0 14px;white-space:nowrap}
+#drawerTaskbar button:hover{color:var(--fs-text-primary);background:var(--fs-hover)}
+#drawerTaskbar button[aria-pressed=true]{color:var(--fs-accent-text);border-bottom-color:var(--fs-accent);font-weight:600}
+.studio-drawer-shell{grid-template-columns:var(--navigator-width,290px) 6px minmax(260px,1fr) 6px var(--inspector-width,360px)!important}
+.studio-drawer-shell[data-left-open=false]{grid-template-columns:52px 0 minmax(260px,1fr) 6px var(--inspector-width,360px)!important}
+.studio-drawer-shell[data-right-open=false]{grid-template-columns:var(--navigator-width,290px) 6px minmax(260px,1fr) 0 44px!important}
+.studio-drawer-shell[data-left-open=false][data-right-open=false]{grid-template-columns:52px 0 minmax(260px,1fr) 0 44px!important}
+.studio-drawer-shell[data-left-open=false]>.workspace-splitter-left,.studio-drawer-shell[data-right-open=false]>.workspace-splitter-right{display:none}
+.studio-drawer-shell>.navigator,.studio-drawer-shell>.inspector{display:grid;grid-template-columns:52px minmax(0,1fr);overflow:hidden;padding:0;background:var(--fs-nav-bg)}
+.studio-drawer-shell>.inspector{grid-template-columns:44px minmax(0,1fr);background:var(--fs-inspector-bg)}
+.studio-drawer-rail{display:flex;flex-direction:column;gap:6px;padding:12px 4px;border-right:1px solid var(--fs-stroke-subtle);background:var(--fs-surface-1);min-width:0}
+.studio-drawer-rail button{height:44px;min-height:44px;padding:4px 2px;border:0;border-left:2px solid transparent;background:transparent;border-radius:var(--fs-radius-sm);color:var(--fs-text-muted);font-size:var(--fs-font-xs);white-space:nowrap}
+.studio-drawer-rail button:hover{background:var(--fs-hover);color:var(--fs-text-primary)}
+.studio-drawer-rail button[aria-pressed=true]{background:var(--fs-accent-selected-bg);color:var(--fs-accent-text);border-left-color:var(--fs-accent);font-weight:600}
+.studio-drawer-body{min-width:0;height:100%;overflow:auto;padding:0 12px 20px;overscroll-behavior:contain}
+.studio-drawer-body:has(>.studio-tool-bank[data-tool=fonts]){scroll-padding-block:80px 12px}
+.studio-drawer-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;position:sticky;top:0;z-index:6;padding:16px 0 12px;background:var(--fs-inspector-bg);border-bottom:1px solid var(--fs-stroke-subtle);margin-bottom:14px}
+.navigator .studio-drawer-heading{background:var(--fs-nav-bg)}
+.studio-drawer-heading>strong{font-size:var(--fs-font-md);font-weight:650;letter-spacing:-.2px;color:var(--fs-text-primary);min-width:0;overflow-wrap:anywhere}
+.studio-drawer-heading button{padding:2px 4px;min-height:26px;height:26px;font-size:var(--fs-font-xs);border:0;background:transparent;color:var(--fs-text-muted)}
+.studio-drawer-heading>button[hidden]{display:none!important}
+.studio-drawer-heading .studio-drawer-return{display:inline-flex;align-items:center;justify-content:center;gap:4px;flex:none;min-height:32px;height:32px;padding:4px 10px;border:1px solid var(--fs-stroke-default);border-radius:var(--fs-radius-md);background:var(--fs-control-bg);color:var(--fs-text-primary);font-size:var(--fs-font-sm);font-weight:600;white-space:nowrap}
+.studio-drawer-heading .studio-drawer-return:hover{background:var(--fs-hover);border-color:var(--fs-accent);color:var(--fs-accent-text)}
+.studio-drawer-return>svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.studio-tool-list>button{display:block;text-align:left;width:100%;padding:14px 8px;margin:0;border:0;border-bottom:1px solid var(--fs-stroke-subtle);border-radius:0;background:transparent;line-height:1.5;font-size:var(--fs-font-xs);font-weight:500;color:var(--fs-text-secondary)}
+.studio-tool-list>button:hover{background:var(--fs-hover);color:var(--fs-accent-text)}
+.studio-drawer-context{padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--fs-stroke-subtle)}
+.studio-drawer-context .inspector-context{margin:0;padding:0;border:0}.studio-drawer-context .inspector-context small{display:none}
+.studio-drawer-context .inspector-selection{margin:4px 0}.studio-drawer-context #selectionTitle{font-size:var(--fs-font-xs);font-weight:400;color:var(--fs-text-muted)}
+.studio-drawer-context label{font-size:var(--fs-font-xs)}
+.studio-tool-bank>:not(.studio-tool-active){display:none!important}
+.studio-tool-bank .inspector-tabs{display:none!important}
+.studio-drawers .studio-tool-bank>section,.studio-drawers .studio-tool-bank>details,.studio-drawers .studio-tool-bank>.workspace-secondary-properties{margin:0;padding:0;border:0;border-radius:0}
+.studio-drawers .studio-tool-bank details{margin:0;padding:0;border:0;border-radius:0}
+.studio-drawers .studio-tool-bank details>summary{padding:12px 0;margin:0;border-bottom:1px solid var(--fs-stroke-subtle);font-size:var(--fs-font-xs);font-weight:550;line-height:1.5;color:var(--fs-text-secondary)}
+.studio-drawers .studio-tool-bank details[open]>summary{margin-bottom:10px;color:var(--fs-text-primary)}
+.studio-tool-bank label{font-size:var(--fs-font-xs);line-height:1.5;margin:10px 0;color:var(--fs-text-secondary)}
+.studio-tool-bank .muted{font-size:var(--fs-font-xs);line-height:1.6;color:var(--fs-text-muted)}
+.studio-tool-bank h2{font-size:var(--fs-font-xs);line-height:1.5;margin:12px 0 10px}
+.studio-drawer-export-actions{display:grid;gap:6px;padding-top:12px}
+.studio-drawer-export-actions button{display:flex;gap:12px;align-items:center;text-align:left}.studio-drawer-export-actions b{min-width:32px}
+.studio-tool-bank .workspace-menu-section{display:flex;flex-wrap:wrap;gap:6px}.studio-tool-bank .workspace-menu-section>p{width:100%;margin:12px 0 4px}
+.studio-drawer-shell .canvas-tools{background:var(--fs-toolbar-bg)}
+.studio-drawer-shell .canvas-tools .canvasbar{min-height:42px;padding:4px 12px}
+.studio-drawer-shell .canvas-tools button{border-color:transparent;background:transparent;color:var(--fs-text-secondary);box-shadow:none}
+.studio-drawer-shell .canvas-tools button:hover:not(:disabled){background:var(--fs-hover);color:var(--fs-text-primary)}
+.studio-drawer-shell .canvas-tools button[aria-pressed=true]{background:var(--fs-accent-selected-bg);color:var(--fs-accent-text)}
+.studio-drawer-shell .canvas-tools button:disabled{opacity:.32}
+.studio-drawers #workflowNavigation[hidden]{display:none!important}
+}
+@media(min-width:751px) and (max-width:1300px){#drawerTaskbar{gap:0;padding:0 6px}#drawerTaskbar button{padding-inline:10px}}
+
+/* Global commands, task navigation and contextual editing have distinct
+   weights. These rules style editor chrome only, never exported artwork. */
+@media(min-width:751px){
+body.studio-drawers>header{min-height:50px;padding-block:6px}
+#drawerTaskbar{min-height:36px;background:var(--fs-nav-bg)}
+#drawerTaskbar button{height:36px;min-height:36px;font-size:var(--fs-font-xs)}
+.studio-drawer-shell .canvas-tools .canvas-quickbar{height:auto;min-height:44px;display:flex;flex-wrap:wrap;gap:4px 8px;padding:5px 12px;background:var(--fs-toolbar-bg)}
+.studio-drawer-shell .canvas-quickbar>.quick-tool-group{border:0;padding:0;gap:4px;flex:none}
+.studio-drawer-shell .canvas-quickbar>.quick-tool-group:empty{display:none}
+.studio-drawer-shell .canvas-quickbar .quick-selection-status{display:none}
+.studio-drawer-shell .canvas-quickbar #quickImportFiles{order:-3;border-color:var(--fs-stroke-subtle);font-weight:500}
+.studio-drawer-shell .canvas-quickbar #boxSelect{order:-2}
+.studio-drawer-shell .canvas-quickbar .quick-format-group{order:0;padding-left:8px;border-left:1px solid var(--fs-stroke-subtle)}
+.studio-drawer-shell .canvas-quickbar .quick-object-group{order:2}
+.studio-drawer-shell .canvas-quickbar [id^=quickImage]{display:none}
+.studio-drawer-shell .canvas-quickbar[data-selection-kind=image] [id^=quickImage]{display:inline-flex}
+.studio-drawer-shell .canvas-quickbar:not([data-selection-kind=text]):not([data-selection-kind=multiple]) :is(#quickEditText,.quick-font-size,#quickBold,#quickItalic,#quickSuperscript,#quickSubscript){display:none}
+.studio-drawer-shell .canvas-quickbar[data-selection-kind=canvas] :is(.quick-format-group,.quick-object-group,#contextQuickTools){display:none}
+.drawer-view-controls{display:flex;align-items:center;gap:8px;margin-left:auto;order:10;flex:none}
+.studio-drawer-shell .drawer-view-controls #dimensions{font-size:11px;color:var(--fs-text-muted);padding-inline:4px;max-width:156px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.drawer-view-controls>label{font-size:0;margin:0;display:flex}
+.drawer-view-controls select{font-size:var(--fs-font-xs);max-width:110px;height:30px;min-height:30px}
+.studio-drawer-heading{padding:12px 0 8px;margin-bottom:4px;border-bottom:0}
+.studio-drawer-context{margin:0 0 14px;padding:10px 0 12px;border-top:1px solid var(--fs-stroke-subtle)}
+.studio-drawer-context .inspector-selection{margin:0 0 6px}
+.studio-drawer-context .inspector-context{display:flex;align-items:baseline;gap:8px}
+.studio-drawer-context .inspector-context-label{font-size:11px;color:var(--fs-text-muted)}
+.studio-drawer-context #selectionTitle{font-size:var(--fs-font-sm);font-weight:600;color:var(--fs-text-primary);margin:0}
+.studio-drawer-context label{margin:4px 0;font-size:11px}
+.studio-drawer-context select{height:32px;min-height:32px;margin-top:2px}
+.studio-tool-bank[data-tool=fonts] #typePanel>summary{display:none}
+.studio-tool-bank[data-tool=fonts] #typePanel>label{margin:10px 0}
+.studio-tool-bank[data-tool=fonts] #typePanel>label:has(#font){margin-top:0}
+.studio-tool-bank[data-tool=fonts] #typePanel>.row{gap:6px;margin:8px 0}
+.studio-tool-bank .drawer-advanced{margin-top:12px!important}
+.studio-tool-bank .drawer-advanced>summary{font-weight:500;color:var(--fs-text-muted)}
+.studio-tool-bank :is(#paragraphPanel,#workspaceCharacterFormats,#drawerFormattingTools){margin-top:8px!important}
+.studio-tool-bank .drawer-advanced .font-replacement-note{font-size:11px;line-height:1.5}
+.studio-drawers #artboard .slot-guide.is-selected{stroke-opacity:.35;stroke-width:.8}
+.studio-drawers #artboard .panel-move-handle.is-selected{opacity:.32}
+.studio-drawers #artboard [data-grid-resize="outer"]>rect:nth-of-type(2){fill-opacity:.35;stroke-opacity:.65}
+.studio-drawers #viewport #artboard .panel-move-handle:is(.is-hovered,:hover,:focus-within),.studio-drawers #viewport #artboard.is-arranging-panels .panel-move-handle{opacity:1}
+.studio-drawers #artboard .selection-resize-handle{stroke-width:1;fill:var(--fs-artboard-bg)}
+}
+@media(min-width:751px) and (max-width:1100px){.studio-drawer-shell .drawer-view-controls #dimensions{display:none}.drawer-view-controls{gap:4px}.studio-drawer-shell .canvas-tools .canvas-quickbar{padding-inline:8px;gap:4px}}
+@media(min-width:751px) and (max-width:1300px){.studio-drawer-shell .drawer-view-controls #dimensions{display:none}}
+/* Longer English commands need the same wrapping at intermediate widths.
+   Preserve readable labels and the existing desktop/touch boundary. */
+@media(min-width:751px) and (max-width:1300px){
+body.studio-drawers>header .brand strong{display:none}
+body.studio-drawers>header .project-identity{flex:0 1 110px;min-width:80px}
+body.studio-drawers>header .autosave{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.studio-drawers>header .header-controls{flex:1 1 0;min-width:0}
+body.studio-drawers>header .toolbar{width:100%;max-width:100%;flex-wrap:wrap;justify-content:flex-end;gap:4px 8px}
+}
+
+/* Mineral surface refinement: unchanged controls, opaque editing surfaces. */
+@media(min-width:751px){
+ body.studio-drawers>header{box-shadow:inset 0 1px 0 var(--fs-surface-inner-edge)}
+ #drawerTaskbar{border-bottom-color:var(--fs-surface-outline)}
+ #drawerTaskbar button{border-radius:7px 7px 0 0}
+ #drawerTaskbar button[aria-pressed=true]{background:var(--fs-accent-selected-bg)}
+ .studio-drawer-rail{border-right-color:var(--fs-surface-outline)}
+ .studio-drawer-rail button{border-radius:8px}
+ .studio-drawer-rail button[aria-pressed=true]{border-left-color:transparent;box-shadow:inset 0 0 0 1px var(--fs-surface-outline),inset 0 1px 0 var(--fs-surface-inner-edge)}
+ .studio-drawer-shell>.inspector{background:var(--fs-nav-bg)}
+ .inspector>.studio-drawer-body{margin:6px 6px 6px 0;height:calc(100% - 12px);border-radius:12px;background:var(--fs-inspector-bg);box-shadow:inset 0 0 0 1px var(--fs-surface-outline),var(--fs-surface-shadow)}
+ .studio-drawer-heading{box-shadow:0 1px 0 var(--fs-surface-outline)}
+ .studio-drawer-context{border-color:var(--fs-surface-outline)}
+ .studio-tool-list{display:grid;gap:6px}
+ .studio-tool-list>button{padding:12px 10px;border:1px solid var(--fs-surface-outline);border-radius:8px;background:var(--fs-surface-1);box-shadow:inset 0 1px 0 var(--fs-surface-inner-edge);font-weight:550}
+ .studio-tool-list>button:hover{background:var(--fs-hover);border-color:var(--fs-stroke-strong)}
+ .studio-tool-bank label{color:var(--fs-text-secondary)}
+ .studio-tool-bank :is(select,textarea,input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color])){border-radius:8px;box-shadow:var(--fs-shadow-control)}
+ .studio-tool-bank :is(select,textarea,input):focus{box-shadow:0 0 0 1px var(--fs-focus-soft);outline-offset:1px}
+ .studio-tool-bank :is(select,textarea,input):focus-visible{outline:2px solid var(--fs-focus);outline-offset:2px;box-shadow:0 0 0 4px var(--fs-focus-soft)}
+ .studio-tool-bank[data-tool=fonts] :is(.drawer-advanced,#paragraphPanel){border:1px solid var(--fs-surface-outline)!important;border-radius:8px!important;background:var(--fs-surface-1);padding:0 10px!important;box-shadow:inset 0 1px 0 var(--fs-surface-inner-edge)}
+ .studio-tool-bank[data-tool=fonts] :is(.drawer-advanced,#paragraphPanel)>summary{border:0;padding-block:10px;font-weight:550}
+ .studio-tool-bank[data-tool=fonts] #paragraphPanel[open]>summary{border-bottom:1px solid var(--fs-surface-outline)}
+ .studio-tool-bank .drawer-advanced .font-replacement-note{color:var(--fs-text-muted)}
+ .studio-drawer-export-actions button{border-radius:8px;box-shadow:var(--fs-shadow-control)}
+ .studio-drawer-shell .workspace-splitter{background:var(--fs-surface-outline)}
+ .studio-drawer-shell .canvas-tools .quick-tool-group{border-color:var(--fs-surface-outline)}
+}
+
+/* Compact commands retain their original controls; only limited toolbar space
+   changes which shortcuts are shown. Parameter drawers keep their one home. */
+@media(min-width:751px){
+ .drawer-quick-overflow{position:relative;order:6;flex:none}
+ .drawer-quick-menu{display:none;position:fixed;width:240px;max-width:calc(100vw - 24px);max-height:60vh;overflow:auto;z-index:30;padding:8px;background:var(--fs-surface-raised);border:1px solid var(--fs-stroke-default);border-radius:var(--fs-radius-lg);box-shadow:var(--fs-shadow-dialog)}
+ .drawer-more-open .drawer-quick-menu{display:grid;gap:8px}
+ .drawer-quick-menu>.quick-tool-group{display:flex;flex-wrap:wrap;height:auto;gap:4px;border:0;padding:0}
+ .drawer-quick-menu>button{width:100%;text-align:left}
+ .studio-drawer-shell .canvas-quickbar.drawer-quick-compact>.quick-format-group{border:0;padding:0}
+ .studio-drawer-shell .canvas-quickbar.drawer-quick-compact .drawer-view-controls{gap:4px}
+ .drawer-focus-canvas{font-size:var(--fs-font-xs);white-space:nowrap}
+ .studio-drawer-context{margin:0 0 12px;padding:8px 0;border-top:0;border-bottom:1px solid var(--fs-surface-outline)}
+ .studio-drawer-context .inspector-context-label{display:none}
+ .studio-drawer-context .inspector-context{margin:0;font-size:var(--fs-font-xs);font-weight:600;color:var(--fs-text-secondary)}
+ .studio-drawer-context .inspector-selection{margin:2px 0 8px}
+ .studio-drawer-context #selectionTitle{font-size:var(--fs-font-xs);font-weight:400;line-height:1.5}
+ .studio-drawer-context>label:has(#scope){display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px;font-size:var(--fs-font-xs);margin:4px 0}
+ .studio-drawer-context #scope{margin:0;min-width:0;width:100%}
+ .studio-drawer-heading{padding:10px 0 8px}
+ .studio-tool-bank[data-tool=fonts] :is(.drawer-advanced,#paragraphPanel){border:0!important;border-top:1px solid var(--fs-surface-outline)!important;border-radius:0!important;background:transparent;padding:0!important;box-shadow:none}
+ .studio-tool-bank[data-tool=fonts] :is(.drawer-advanced,#paragraphPanel)>summary{padding-block:10px}
+}
+
+
+@media(min-width:751px){.studio-drawer-shell .canvas-quickbar .drawer-focus-canvas{font-size:0;width:32px;min-width:32px;padding:4px}.drawer-focus-canvas::before{content:"⛶";font-size:20px;line-height:1}.drawer-focus-canvas[aria-pressed=true]{background:var(--fs-accent-selected-bg)}}
+
+@media(min-width:751px){.studio-drawer-shell .canvas-tools .canvas-quickbar{padding-block:4px}}

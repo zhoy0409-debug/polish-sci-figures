@@ -1,0 +1,112 @@
+{
+  "author": "a",
+  "created": "2026-10-29",
+  "schema": "figure-studio-history-shortcut-acceptance/1",
+  "candidateVersion": "0.2.0",
+  "sourceBase": "627d3e4d1dae3086afd2f3abc220ef47e91175e9",
+  "humanInstalledFinding": "Ctrl+Y无法回到对照组",
+  "cause": "Canvas mapped Ctrl/Cmd+Shift+Z to redo but had no WindowsCtrl+Y mapping. Original test guidance incorrectly assumed CtrlY support.",
+  "changes": [
+    "One history command map shared by modal guard, held-arrow finish and canvas history",
+    "WindowsCtrlY redo; existingCtrl/CmdShiftZ and toolbar remain",
+    "Native input, IME229/composing, AltGr, alreadyhandled event and modal safeguards",
+    "Bilingual discoverable tooltip and quickstarts"
+  ],
+  "targetedChecks": [
+    {
+      "script": "test_studio_state.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_history_shortcuts.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_direct_text_editing.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_keyboard_nudge.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_nudge_hotpath.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_delete_labels.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_group_alignment.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_continuous_commands.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_quick_style_blur.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_clipboard_event_guards.cjs",
+      "exitCode": 0
+    }
+  ],
+  "browser": {
+    "version": "156.0.8078.49",
+    "publicIris150": true,
+    "checks": [
+      "Actual inserted Chinese text, outside-click confirmation, one Ctrl+Z and Ctrl+Y restore exact canvas/project/history with original observations and analysis intact",
+      "Ctrl+Shift+Z and toolbar Redo restore the same committed text without another undo record",
+      "Native field shortcuts do not alter project history; saved project reopens intact; Chinese/English toolbar exposes Ctrl+Y"
+    ],
+    "passed": true,
+    "reportSha256": "b09a8ef238635625eceb3759226187a93dc781126cfe88370b44e5691461b9c0",
+    "remoteRequests": [],
+    "pageErrors": []
+  },
+  "existingProductionBrowserSuites": [
+    {
+      "script": "test_project_codec_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_scientific_tiff_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_scientific_tiff_derivative_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_submission_profiles_browser.cjs",
+      "exitCode": 0
+    }
+  ],
+  "retainedFailures": [
+    {
+      "kind": "Expected actualCtrlY failure on original document key binding",
+      "sha256": "928368c8b453ae8b7ddb3a08ddf99d8778d36d356e1246f8aae7bcc93ae4ee9c"
+    },
+    {
+      "kind": "Initial browser run denied loopback access by execution sandbox; normal elevated ownQA rerun succeeded without security setting changes",
+      "sha256": "7ec62b4cd068a55d1ed3a893315bebee4ba0a8b3db6a64cf8abda7f275194406"
+    },
+    {
+      "kind": "Browser property-input test attempted to focus a disabled font control after selection cleared. Corrected to an enabled export input with an explicit actual-focus assertion; production input guards unchanged.",
+      "sha256": "564dc80072932c80a1f89b9b29c6e801c66d82bd3fe23f433b7849a10a580df4"
+    }
+  ],
+  "runtimeSourceSha256": {
+    "studio.js": "c92a87fc99c5105091f7721fe3daff4613cf44c9f88589ffaebe250fe090c79d",
+    "studio.html": "975ae26d71ccbae1c28c7fc24758e0c30b38c7801e7263c10c7aa19559c4cbd4",
+    "i18n.js": "11ea9e12362846749707c53451ce9f04b0311f6bbae5f3a5a620dfee457ca513"
+  },
+  "newInstalledNativeRetestPassed": false,
+  "samePackageNative5000Passed": false,
+  "genuineOfficialUpgradePassed": false,
+  "actualFailureRecoveryPassed": false,
+  "published": false
+}

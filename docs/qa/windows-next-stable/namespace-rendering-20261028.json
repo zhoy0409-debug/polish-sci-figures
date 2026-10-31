@@ -1,0 +1,152 @@
+{
+  "author": "a",
+  "scope": "Actual Chrome and two exact frozen production HTML snapshots, public scientific data and public SVG fixtures. Not installed Windows, physical latency or independent image detection accuracy.",
+  "checks": [
+    "5000-object plain SVG source and decoded PNG export retained",
+    "Local clip/gradient/use references retain the same exported artwork",
+    "150 real Iris observations and licensed public H&E source retain SVG, data, analysis and decoded PNG pixels"
+  ],
+  "comparisons": [
+    {
+      "name": "plain-5000",
+      "before": {
+        "name": "plain-5000",
+        "htmlSha256": "34f58415056843e1c5727c6b868fa6be266a78c2f81cec9591a1f564674ef4bd",
+        "sourceSha256": "099c74a6118dc4db940c2152312680d0b73e8e6cfdf878d971f83c41d1889538",
+        "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+        "rawSvgSha256": "53b270b334206fa283fae20d62f50f6022a6d1969dfe0910eaa15db74174e74c",
+        "canonicalSvgSha256": "53b270b334206fa283fae20d62f50f6022a6d1969dfe0910eaa15db74174e74c",
+        "pngSha256": "6ebb3ae64fc52ba8c0df08a1d4def41249b75e702dbe387386d24a547ed91d83",
+        "decodedPng": {
+          "width": 3000,
+          "height": 1850,
+          "sha256": "35b3771511f0feae0146881999f4f93b85833c2739e7b96b137f555a18a3fa66"
+        },
+        "remoteRequests": 0,
+        "pageErrors": []
+      },
+      "after": {
+        "name": "plain-5000",
+        "htmlSha256": "2a6049fc227f191ba3c7af7c6cfa825e220c59f15111e0a7801dc38b05b1a997",
+        "sourceSha256": "099c74a6118dc4db940c2152312680d0b73e8e6cfdf878d971f83c41d1889538",
+        "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+        "rawSvgSha256": "53b270b334206fa283fae20d62f50f6022a6d1969dfe0910eaa15db74174e74c",
+        "canonicalSvgSha256": "53b270b334206fa283fae20d62f50f6022a6d1969dfe0910eaa15db74174e74c",
+        "pngSha256": "6ebb3ae64fc52ba8c0df08a1d4def41249b75e702dbe387386d24a547ed91d83",
+        "decodedPng": {
+          "width": 3000,
+          "height": 1850,
+          "sha256": "35b3771511f0feae0146881999f4f93b85833c2739e7b96b137f555a18a3fa66"
+        },
+        "remoteRequests": 0,
+        "pageErrors": []
+      },
+      "sourceEqual": true,
+      "canonicalSvgEqual": true,
+      "decodedExportPixelsEqual": true,
+      "stateEqual": true,
+      "rawSvgBytesEqual": true,
+      "encodedPngBytesEqual": true
+    },
+    {
+      "name": "local-id-references",
+      "before": {
+        "name": "local-id-references",
+        "htmlSha256": "34f58415056843e1c5727c6b868fa6be266a78c2f81cec9591a1f564674ef4bd",
+        "sourceSha256": "b7ed927d98cad0bbe8194dc85ff989a1979781db87008169d1e42c181921afcb",
+        "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+        "rawSvgSha256": "a3adde370a785f6913c9ee4cc79a2899dfeb8aa08b558aac524e47822b4d3403",
+        "canonicalSvgSha256": "8e7e2552858fad7a288f92f4cf7ed12c55457bb8daa524af2b92e4ee64999803",
+        "pngSha256": "1bdbe57df5c9473bc255d8e3e0d1a8f1d6301902fcb9396f7109c4516543ba12",
+        "decodedPng": {
+          "width": 3000,
+          "height": 1850,
+          "sha256": "a94293d24c9020e44e7781ec3c90a4efc0c3128f167fbb8b7791564cb1d0c9f0"
+        },
+        "remoteRequests": 0,
+        "pageErrors": []
+      },
+      "after": {
+        "name": "local-id-references",
+        "htmlSha256": "2a6049fc227f191ba3c7af7c6cfa825e220c59f15111e0a7801dc38b05b1a997",
+        "sourceSha256": "b7ed927d98cad0bbe8194dc85ff989a1979781db87008169d1e42c181921afcb",
+        "stateSha256": "ade9e3aa031de4ab609f2c3c7b38d27338e4cbce5bf8bc4e19b71477c481fbc2",
+        "rawSvgSha256": "a3adde370a785f6913c9ee4cc79a2899dfeb8aa08b558aac524e47822b4d3403",
+        "canonicalSvgSha256": "8e7e2552858fad7a288f92f4cf7ed12c55457bb8daa524af2b92e4ee64999803",
+        "pngSha256": "1bdbe57df5c9473bc255d8e3e0d1a8f1d6301902fcb9396f7109c4516543ba12",
+        "decodedPng": {
+          "width": 3000,
+          "height": 1850,
+          "sha256": "a94293d24c9020e44e7781ec3c90a4efc0c3128f167fbb8b7791564cb1d0c9f0"
+        },
+        "remoteRequests": 0,
+        "pageErrors": []
+      },
+      "sourceEqual": true,
+      "canonicalSvgEqual": true,
+      "decodedExportPixelsEqual": true,
+      "stateEqual": true,
+      "rawSvgBytesEqual": true,
+      "encodedPngBytesEqual": true
+    },
+    {
+      "name": "iris150-public-he",
+      "before": {
+        "name": "iris150-public-he",
+        "htmlSha256": "34f58415056843e1c5727c6b868fa6be266a78c2f81cec9591a1f564674ef4bd",
+        "sourceSha256": "b984ce767caebe38e718208274eb2a0a2170fee7073703d61817429475820663",
+        "stateSha256": "be04c896b74b91a3747f41fe84adb2c8d9bb107d9bbcdde445237ebc99795acc",
+        "rawSvgSha256": "6910ece0c6185f1f22655df67e185ad5d77d6a0d1c584f265e060cc5c7865bec",
+        "canonicalSvgSha256": "7d9d2a87d61a4381d16dd325d741d123b01e19c55cc9373ceb892e9593920058",
+        "pngSha256": "bfc2228b75a5f64e93f73d4b6f67ac91f454a8d684240233b9615717f913608e",
+        "decodedPng": {
+          "width": 3000,
+          "height": 4110,
+          "sha256": "976beb8100567a6aebcc95350b190e382a2b1be2291016426b5b017b74c03747"
+        },
+        "remoteRequests": 0,
+        "pageErrors": []
+      },
+      "after": {
+        "name": "iris150-public-he",
+        "htmlSha256": "2a6049fc227f191ba3c7af7c6cfa825e220c59f15111e0a7801dc38b05b1a997",
+        "sourceSha256": "b984ce767caebe38e718208274eb2a0a2170fee7073703d61817429475820663",
+        "stateSha256": "be04c896b74b91a3747f41fe84adb2c8d9bb107d9bbcdde445237ebc99795acc",
+        "rawSvgSha256": "6910ece0c6185f1f22655df67e185ad5d77d6a0d1c584f265e060cc5c7865bec",
+        "canonicalSvgSha256": "7d9d2a87d61a4381d16dd325d741d123b01e19c55cc9373ceb892e9593920058",
+        "pngSha256": "bfc2228b75a5f64e93f73d4b6f67ac91f454a8d684240233b9615717f913608e",
+        "decodedPng": {
+          "width": 3000,
+          "height": 4110,
+          "sha256": "976beb8100567a6aebcc95350b190e382a2b1be2291016426b5b017b74c03747"
+        },
+        "remoteRequests": 0,
+        "pageErrors": []
+      },
+      "sourceEqual": true,
+      "canonicalSvgEqual": true,
+      "decodedExportPixelsEqual": true,
+      "stateEqual": true,
+      "rawSvgBytesEqual": true,
+      "encodedPngBytesEqual": true
+    }
+  ],
+  "browser": "155.0.8059.85",
+  "passed": true,
+  "sourceBeforeCommit": "538ab3050fa706715e3832d7bb267ddf800172e7",
+  "sourceAfterStudioJsSha256": "ab9de683279a5a3a0d60f6cefe8a22a61676dc2f2f93a2159f521d3700624936",
+  "sources": [
+    {
+      "id": "UCI Iris",
+      "doi": "10.24432/C56C76",
+      "observations": 150,
+      "license": "CC BY4.0"
+    },
+    {
+      "id": "public H&E skin",
+      "license": "Public domain dedication by author Kilbad; scikit-image distribution",
+      "url": "https://scikit-image.org/docs/0.25.x/api/skimage.data.html#skimage.data.skin"
+    }
+  ],
+  "releaseAcceptance": false
+}

@@ -1,0 +1,122 @@
+{
+  "author": "a",
+  "date": "2026-10-29",
+  "applicationVersion": "0.2.0",
+  "suiteVersion": "v1.5.0",
+  "kind": "candidate-version-regression",
+  "scope": "Local candidate-version, package/CLI, Windows identity/updater and editor-state regressions. Controlled update checks are not actual installed-app/update acceptance.",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "scripts/test_release_versions.py"
+      ],
+      "exitCode": 0,
+      "logSha256": "568a658f56296737663cbd72ab5987ddbdfa9c97263d8401a63b9c4f1a4979b3"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/test_release_bundle.py"
+      ],
+      "exitCode": 0,
+      "logSha256": "76df5a9e54dbbcdb295e90d335b24f38eb48c52f4484933e9c2b265eac84d85a"
+    },
+    {
+      "command": [
+        "python",
+        "test_sci_figures_cli.py"
+      ],
+      "exitCode": 0,
+      "logSha256": "4fbe764ab214f683431cc2a5b9872cbc0db66de71a30c4ee0650026e0430642a"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/test_studio_updates.py"
+      ],
+      "exitCode": 0,
+      "logSha256": "a17b13436f708e17a9796b9e392c8bccd17cbdccb7c03dad877ec8c724af7ecd"
+    },
+    {
+      "command": [
+        "python",
+        "desktop/test_windows_build.py"
+      ],
+      "exitCode": 0,
+      "logSha256": "62b5f1994f8637eae9f1b06bb7ea453c165e109bdfeb4cd3674f4120db5a8b6e"
+    },
+    {
+      "command": [
+        "python",
+        "desktop/test_windows_updater.py"
+      ],
+      "exitCode": 0,
+      "logSha256": "40f09390fdba42efaae3aba346cdec8bcdd3a16d44d546a3006a4daa0516b323"
+    },
+    {
+      "command": [
+        "python",
+        "desktop/test_figure_studio_app.py"
+      ],
+      "exitCode": 0,
+      "logSha256": "2aa8fb46a16d846e62a8c8c602a2e8645a3cf3149177a121ae7da2a559aeb3dd"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/test_verify_studio_windows_package_source.py"
+      ],
+      "exitCode": 0,
+      "logSha256": "8183fc6c916d39eec82ead9ea02df2dccd9461b1df810b13e85420909bb76796"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/test_studio_state.cjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "50ed34b7973f424059fc3386bbc17999fec78f5715bddae7bcf4e45b73d280f1"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/test_studio_update_check.cjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "054f81ea66fba9ff6db81c6ff4d0a1741e9e3d3667e24ced9787c06ce619f8fc"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/test_studio_update_install.cjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "0c0a5d3c41c1eb51d6d31863379b3450846a168b82253a5c32d9b7cc8ba867aa"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/test_studio_update_transport.cjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "613060d50df3e27357f779ec363118f8a9cbea2131fcf5932f054360bd165dee"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/test_studio_update_real_evidence.cjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "a601a60536257aae76c7016e66081ffece0e003a9f0358f2ea196dc5c5859697"
+    }
+  ],
+  "retainedSetupFailures": "version-checks-r1/results.json: wrong CLI pathname and actual continuation invoked without required real prior proof; neither was an implementation assertion failure.",
+  "excluded": {
+    "scripts/test_studio_update_postverify.cjs": "Actual post-install continuation requires preserved real update proof and actual target installed server; intentionally not a unit regression or prepublication acceptance."
+  },
+  "passed": true,
+  "installedAcceptance": false,
+  "officialUpdateAcceptance": false,
+  "published": false
+}

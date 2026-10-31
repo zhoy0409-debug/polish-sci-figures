@@ -1,0 +1,13 @@
+{
+  "checks": [
+    {
+      "script": "skills/polish-sci-figures/scripts/test_figure_studio.py",
+      "exitCode": 0
+    },
+    {
+      "script": "scripts/test_release_bundle.py",
+      "exitCode": 0
+    }
+  ],
+  "passed": true
+}

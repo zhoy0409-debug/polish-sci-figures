@@ -1,0 +1,4041 @@
+{
+  "author": "a",
+  "created": "2026-10-28",
+  "schema": "figure-studio-public-performance-capture/1",
+  "scope": "Production headless Chrome on one Windows machine; browser event-to-rAF callbacks, not native installed UI or physical display latency. Every formal batch retained.",
+  "protocol": {
+    "version": 2,
+    "elements": 5000,
+    "samplesPerOperation": 20,
+    "warmupIterations": 3,
+    "settleMs": 250,
+    "order": [
+      "baseline-A1",
+      "candidate-B1",
+      "candidate-B2",
+      "baseline-A2",
+      "baseline-A3",
+      "candidate-B3",
+      "candidate-B4",
+      "baseline-A4",
+      "baseline-A5",
+      "candidate-B5",
+      "candidate-B6",
+      "baseline-A6",
+      "baseline-A7",
+      "candidate-B7",
+      "candidate-B8",
+      "baseline-A8"
+    ],
+    "firstOperationScope": "First recorded warmup action of each kind, before excluded repeated-action summaries; not cold OS or first installation launch."
+  },
+  "notMeasured": [
+    "native installed UI in this task",
+    "physical display latency",
+    "process peak memory",
+    "independent devices"
+  ],
+  "batches": [
+    {
+      "label": "baseline-A1",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+      "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+      "sourceAssetsSha256": "9ae3a50142f3b644c2b5a5585a97813b4b91ef7d197cbf016785a45faded8b09",
+      "rawSha256": "93a92c8e120a9d6fe815e0da6a4e182e7d2a4ea70adff1f0f103ada88f0db5ef",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 36.39999997615814,
+            "p95": 39.200000047683716
+          },
+          "inputToSecondRafMs": {
+            "p50": 42.10000002384186,
+            "p95": 44.700000047683716
+          },
+          "commitToSecondRafMs": {
+            "p50": 16.700000047683716,
+            "p95": 17.5
+          },
+          "actionWallMs": {
+            "p50": 91,
+            "p95": 99.29999995231628
+          },
+          "frames": {
+            "count": 145,
+            "p50": 8.100000023841858,
+            "p95": 41.80000001192093,
+            "max": 49,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 31.400000035762787,
+            "p95": 40.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 52.60000002384186,
+            "p95": 65.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 52.10000002384186,
+            "p95": 65.40000003576279
+          },
+          "actionWallMs": {
+            "p50": 90.10000002384186,
+            "p95": 107.09999996423721
+          },
+          "frames": {
+            "count": 132,
+            "p50": 7.5,
+            "p95": 34.40000003576279,
+            "max": 47.60000002384186,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 22.5,
+            "p95": 26.599999964237213
+          },
+          "commitToSecondRafMs": {
+            "p50": 145.19999998807907,
+            "p95": 172.5
+          },
+          "actionWallMs": {
+            "p50": 254.29999995231628,
+            "p95": 284.10000002384186
+          },
+          "frames": {
+            "count": 269,
+            "p50": 8.300000011920929,
+            "p95": 134,
+            "max": 184.30000001192093,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2830,
+            "maxMs": 184
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.400000035762787,
+            "p95": 9.100000023841858
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.700000047683716,
+            "p95": 28.099999964237213
+          },
+          "actionWallMs": {
+            "p50": 124.40000003576279,
+            "p95": 140.80000001192093
+          },
+          "frames": {
+            "count": 256,
+            "p50": 8.299999952316284,
+            "p95": 21.69999998807907,
+            "max": 29.600000023841858,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 222,
+            "p95": 271.10000002384186
+          },
+          "inputToSecondRafMs": {
+            "p50": 255.39999997615814,
+            "p95": 311.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 255.39999997615814,
+            "p95": 311.39999997615814
+          },
+          "actionWallMs": {
+            "p50": 326.60000002384186,
+            "p95": 385.80000001192093
+          },
+          "frames": {
+            "count": 142,
+            "p50": 8.400000035762787,
+            "p95": 235.89999997615814,
+            "max": 310.5,
+            "over50ms": 21
+          },
+          "longTasks": {
+            "count": 21,
+            "totalMs": 4678,
+            "maxMs": 272
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 15.399999976158142,
+            "p95": 18
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.30000001192093,
+            "p95": 28.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 23.400000035762787,
+            "p95": 28.5
+          },
+          "actionWallMs": {
+            "p50": 74.09999996423721,
+            "p95": 82
+          },
+          "frames": {
+            "count": 136,
+            "p50": 7.800000011920929,
+            "p95": 22.5,
+            "max": 28.19999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 48.5,
+          "inputToSecondRafMs": 53.30000001192093,
+          "commitToSecondRafMs": 14.900000035762787,
+          "actionWallMs": 90.80000001192093,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 39.19999998807907,
+          "inputToSecondRafMs": 47.39999997615814,
+          "commitToSecondRafMs": 46.10000002384186,
+          "actionWallMs": 73.69999998807907,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.2999999523162842,
+          "inputToSecondRafMs": 30.099999964237213,
+          "commitToSecondRafMs": 234.39999997615814,
+          "actionWallMs": 350.30000001192093,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 8.399999976158142,
+          "commitToSecondRafMs": 28.200000047683716,
+          "actionWallMs": 132.5,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 219,
+          "inputToSecondRafMs": 251.89999997615814,
+          "commitToSecondRafMs": 251.89999997615814,
+          "actionWallMs": 309.69999998807907,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 15.300000011920929,
+          "inputToSecondRafMs": 23.600000023841858,
+          "commitToSecondRafMs": 23.600000023841858,
+          "actionWallMs": 65.80000001192093,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "candidate-B1",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "working-tree-candidate",
+      "htmlSha256": "0c5f53be8caeb147cb008eca6abda22341c481c6a9240cdbc6eac91f411daf3e",
+      "sourceAssetsSha256": "4c8124ca2746cd3d5d9eb41d52f9b3bbbcc58cee3fe7912ba6aaf6d43d8c2012",
+      "rawSha256": "fe7e6bb37d914609af485d5816e4e5c879448fdaf32585a5e610acad47fef037",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 39.5,
+            "p95": 43.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 44.89999997615814,
+            "p95": 50
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.899999976158142,
+            "p95": 20.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 82.20000004768372,
+            "p95": 90.80000001192093
+          },
+          "frames": {
+            "count": 108,
+            "p50": 8.300000011920929,
+            "p95": 47.09999996423721,
+            "max": 54.39999997615814,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 31.100000023841858,
+            "p95": 34.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 40.80000001192093,
+            "p95": 44
+          },
+          "commitToSecondRafMs": {
+            "p50": 40.5,
+            "p95": 43.60000002384186
+          },
+          "actionWallMs": {
+            "p50": 65.69999998807907,
+            "p95": 73.59999996423721
+          },
+          "frames": {
+            "count": 86,
+            "p50": 7.599999964237213,
+            "p95": 10.699999988079071,
+            "max": 35.69999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.80000001192093,
+            "p95": 26.100000023841858
+          },
+          "commitToSecondRafMs": {
+            "p50": 145.69999998807907,
+            "p95": 163.5
+          },
+          "actionWallMs": {
+            "p50": 249.0999999642372,
+            "p95": 288.4000000357628
+          },
+          "frames": {
+            "count": 247,
+            "p50": 8.300000011920929,
+            "p95": 141.10000002384186,
+            "max": 205.30000001192093,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2814,
+            "maxMs": 205
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 9.800000011920929
+          },
+          "commitToSecondRafMs": {
+            "p50": 27,
+            "p95": 32.10000002384186
+          },
+          "actionWallMs": {
+            "p50": 140,
+            "p95": 148.69999998807907
+          },
+          "frames": {
+            "count": 264,
+            "p50": 8.299999952316284,
+            "p95": 22.299999952316284,
+            "max": 30.19999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 24.600000023841858,
+            "p95": 31.600000023841858
+          },
+          "inputToSecondRafMs": {
+            "p50": 28,
+            "p95": 35.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 28.099999964237213,
+            "p95": 35.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 65.89999997615814,
+            "p95": 74.19999998807907
+          },
+          "frames": {
+            "count": 116,
+            "p50": 8.300000011920929,
+            "p95": 30.600000023841858,
+            "max": 39.19999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 5.600000023841858,
+            "p95": 6.699999988079071
+          },
+          "inputToSecondRafMs": {
+            "p50": 12.300000011920929,
+            "p95": 13.199999988079071
+          },
+          "commitToSecondRafMs": {
+            "p50": 12.300000011920929,
+            "p95": 13.300000011920929
+          },
+          "actionWallMs": {
+            "p50": 40.80000001192093,
+            "p95": 49.10000002384186
+          },
+          "frames": {
+            "count": 85,
+            "p50": 8.300000011920929,
+            "p95": 10.400000035762787,
+            "max": 14.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 56.5,
+          "inputToSecondRafMs": 63.09999996423721,
+          "commitToSecondRafMs": 20.399999976158142,
+          "actionWallMs": 107.39999997615814,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 39.40000003576279,
+          "inputToSecondRafMs": 49.30000001192093,
+          "commitToSecondRafMs": 48,
+          "actionWallMs": 82.19999998807907,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.09999996423721313,
+          "inputToSecondRafMs": 37.5,
+          "commitToSecondRafMs": 169,
+          "actionWallMs": 299.30000001192093,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 8.699999988079071,
+          "commitToSecondRafMs": 25.30000001192093,
+          "actionWallMs": 140.60000002384186,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 26.30000001192093,
+          "inputToSecondRafMs": 28.900000035762787,
+          "commitToSecondRafMs": 28.900000035762787,
+          "actionWallMs": 65.90000003576279,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 6,
+          "inputToSecondRafMs": 11.400000035762787,
+          "commitToSecondRafMs": 11.400000035762787,
+          "actionWallMs": 48.69999998807907,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "candidate-B2",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "working-tree-candidate",
+      "htmlSha256": "0c5f53be8caeb147cb008eca6abda22341c481c6a9240cdbc6eac91f411daf3e",
+      "sourceAssetsSha256": "4c8124ca2746cd3d5d9eb41d52f9b3bbbcc58cee3fe7912ba6aaf6d43d8c2012",
+      "rawSha256": "e689d92de1671d6d638e07d30cab12b6c3a511a417869a7a9629c1e0f9a460ef",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 38.799999952316284,
+            "p95": 43.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 44.69999998807907,
+            "p95": 49.90000003576279
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.80000001192093,
+            "p95": 20.900000035762787
+          },
+          "actionWallMs": {
+            "p50": 82.39999997615814,
+            "p95": 90.80000001192093
+          },
+          "frames": {
+            "count": 113,
+            "p50": 8.299999952316284,
+            "p95": 44.299999952316284,
+            "max": 51.40000003576279,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 32.30000001192093,
+            "p95": 37.10000002384186
+          },
+          "inputToSecondRafMs": {
+            "p50": 41.19999998807907,
+            "p95": 47.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 40.80000001192093,
+            "p95": 46.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 65.89999997615814,
+            "p95": 107.60000002384186
+          },
+          "frames": {
+            "count": 91,
+            "p50": 7.700000047683716,
+            "p95": 13.800000011920929,
+            "max": 38.69999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.19999998807907104,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 28.100000023841858
+          },
+          "commitToSecondRafMs": {
+            "p50": 147.60000002384186,
+            "p95": 179.89999997615814
+          },
+          "actionWallMs": {
+            "p50": 257.30000001192093,
+            "p95": 306.30000001192093
+          },
+          "frames": {
+            "count": 250,
+            "p50": 8.300000011920929,
+            "p95": 144.30000001192093,
+            "max": 178.5999999642372,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2902,
+            "maxMs": 171
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 8.900000035762787
+          },
+          "commitToSecondRafMs": {
+            "p50": 26.5,
+            "p95": 32.10000002384186
+          },
+          "actionWallMs": {
+            "p50": 132.5,
+            "p95": 148.69999998807907
+          },
+          "frames": {
+            "count": 264,
+            "p50": 8.300000011920929,
+            "p95": 22.599999964237213,
+            "max": 29.899999976158142,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 24.899999976158142,
+            "p95": 30
+          },
+          "inputToSecondRafMs": {
+            "p50": 28.19999998807907,
+            "p95": 34
+          },
+          "commitToSecondRafMs": {
+            "p50": 28.19999998807907,
+            "p95": 34.10000002384186
+          },
+          "actionWallMs": {
+            "p50": 65.69999998807907,
+            "p95": 73.60000002384186
+          },
+          "frames": {
+            "count": 114,
+            "p50": 8.299999952316284,
+            "p95": 30.19999998807907,
+            "max": 39.60000002384186,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 5.5,
+            "p95": 6.399999976158142
+          },
+          "inputToSecondRafMs": {
+            "p50": 12.5,
+            "p95": 13
+          },
+          "commitToSecondRafMs": {
+            "p50": 12.5,
+            "p95": 13.100000023841858
+          },
+          "actionWallMs": {
+            "p50": 40.69999998807907,
+            "p95": 48.59999996423721
+          },
+          "frames": {
+            "count": 82,
+            "p50": 8.300000011920929,
+            "p95": 10.300000011920929,
+            "max": 11.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 55,
+          "inputToSecondRafMs": 61,
+          "commitToSecondRafMs": 19.19999998807907,
+          "actionWallMs": 99,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 36.69999998807907,
+          "inputToSecondRafMs": 45,
+          "commitToSecondRafMs": 43.80000001192093,
+          "actionWallMs": 74.09999996423721,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.09999996423721313,
+          "inputToSecondRafMs": 31.5,
+          "commitToSecondRafMs": 166.10000002384186,
+          "actionWallMs": 299.10000002384186,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 9.199999988079071,
+          "commitToSecondRafMs": 33.299999952316284,
+          "actionWallMs": 148.5999999642372,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 30.30000001192093,
+          "inputToSecondRafMs": 33.30000001192093,
+          "commitToSecondRafMs": 33.40000003576279,
+          "actionWallMs": 73.40000003576279,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 6.5,
+          "inputToSecondRafMs": 11.800000011920929,
+          "commitToSecondRafMs": 11.800000011920929,
+          "actionWallMs": 48.80000001192093,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "baseline-A2",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+      "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+      "sourceAssetsSha256": "9ae3a50142f3b644c2b5a5585a97813b4b91ef7d197cbf016785a45faded8b09",
+      "rawSha256": "f4d269dd3c25c37ee07ba183f8ce132faf84da78d4d87257574891399cdb54ec",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 35.80000001192093,
+            "p95": 39
+          },
+          "inputToSecondRafMs": {
+            "p50": 41.5,
+            "p95": 45.10000002384186
+          },
+          "commitToSecondRafMs": {
+            "p50": 16.5,
+            "p95": 18.100000023841858
+          },
+          "actionWallMs": {
+            "p50": 90.69999998807907,
+            "p95": 99.30000001192093
+          },
+          "frames": {
+            "count": 138,
+            "p50": 8,
+            "p95": 41.200000047683716,
+            "max": 51.59999996423721,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 31.19999998807907,
+            "p95": 35
+          },
+          "inputToSecondRafMs": {
+            "p50": 52.19999998807907,
+            "p95": 56.40000003576279
+          },
+          "commitToSecondRafMs": {
+            "p50": 51.89999997615814,
+            "p95": 55.80000001192093
+          },
+          "actionWallMs": {
+            "p50": 90.5,
+            "p95": 99.39999997615814
+          },
+          "frames": {
+            "count": 130,
+            "p50": 7.5,
+            "p95": 34.59999996423721,
+            "max": 39.200000047683716,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.600000023841858,
+            "p95": 26.600000023841858
+          },
+          "commitToSecondRafMs": {
+            "p50": 148.5,
+            "p95": 177.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 259.80000001192093,
+            "p95": 298.5999999642372
+          },
+          "frames": {
+            "count": 265,
+            "p50": 8.300000011920929,
+            "p95": 139.69999998807907,
+            "max": 186.39999997615814,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2894,
+            "maxMs": 185
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 9.600000023841858
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.599999964237213,
+            "p95": 27.700000047683716
+          },
+          "actionWallMs": {
+            "p50": 132.5,
+            "p95": 140.9000000357628
+          },
+          "frames": {
+            "count": 261,
+            "p50": 8.299999952316284,
+            "p95": 21.599999964237213,
+            "max": 28.899999976158142,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 233.39999997615814,
+            "p95": 253.4000000357628
+          },
+          "inputToSecondRafMs": {
+            "p50": 271.2999999523163,
+            "p95": 300.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 271.2999999523163,
+            "p95": 300.80000001192093
+          },
+          "actionWallMs": {
+            "p50": 334.7000000476837,
+            "p95": 398.69999998807907
+          },
+          "frames": {
+            "count": 141,
+            "p50": 8.5,
+            "p95": 244.0999999642372,
+            "max": 299.4000000357628,
+            "over50ms": 21
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 4778,
+            "maxMs": 295
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 16.100000023841858,
+            "p95": 18.799999952316284
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.19999998807907,
+            "p95": 29
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.30000001192093,
+            "p95": 29
+          },
+          "actionWallMs": {
+            "p50": 66.10000002384186,
+            "p95": 82.30000001192093
+          },
+          "frames": {
+            "count": 132,
+            "p50": 8.100000023841858,
+            "p95": 22.19999998807907,
+            "max": 29.30000001192093,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 65.19999998807907,
+          "inputToSecondRafMs": 73.60000002384186,
+          "commitToSecondRafMs": 26.200000047683716,
+          "actionWallMs": 123.19999998807907,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 59.60000002384186,
+          "inputToSecondRafMs": 70.40000003576279,
+          "commitToSecondRafMs": 69,
+          "actionWallMs": 106.69999998807907,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.09999996423721313,
+          "inputToSecondRafMs": 31.19999998807907,
+          "commitToSecondRafMs": 190.19999998807907,
+          "actionWallMs": 332.69999998807907,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 8.400000035762787,
+          "commitToSecondRafMs": 29.700000047683716,
+          "actionWallMs": 132.0999999642372,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 230.5999999642372,
+          "inputToSecondRafMs": 266.5999999642372,
+          "commitToSecondRafMs": 266.5999999642372,
+          "actionWallMs": 310.30000001192093,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 15,
+          "inputToSecondRafMs": 22.5,
+          "commitToSecondRafMs": 22.5,
+          "actionWallMs": 65.70000004768372,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "baseline-A3",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+      "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+      "sourceAssetsSha256": "9ae3a50142f3b644c2b5a5585a97813b4b91ef7d197cbf016785a45faded8b09",
+      "rawSha256": "f361a07569b20b0efbcfbc3596bd5f821b3147cfef30bce03eedefb8adcd9073",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 36.19999998807907,
+            "p95": 38.59999996423721
+          },
+          "inputToSecondRafMs": {
+            "p50": 42.09999996423721,
+            "p95": 44.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 16.599999964237213,
+            "p95": 17.5
+          },
+          "actionWallMs": {
+            "p50": 91,
+            "p95": 99.29999995231628
+          },
+          "frames": {
+            "count": 144,
+            "p50": 8.199999988079071,
+            "p95": 41.60000002384186,
+            "max": 43.59999996423721,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 30.69999998807907,
+            "p95": 39.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 51.90000003576279,
+            "p95": 60.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 51.5,
+            "p95": 60
+          },
+          "actionWallMs": {
+            "p50": 90.80000001192093,
+            "p95": 106.39999997615814
+          },
+          "frames": {
+            "count": 135,
+            "p50": 7.600000023841858,
+            "p95": 34.30000001192093,
+            "max": 47.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.5,
+            "p95": 25
+          },
+          "commitToSecondRafMs": {
+            "p50": 149.5,
+            "p95": 171.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 262.89999997615814,
+            "p95": 293.5
+          },
+          "frames": {
+            "count": 262,
+            "p50": 8.300000011920929,
+            "p95": 138.19999998807907,
+            "max": 167.9000000357628,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2871,
+            "maxMs": 166
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.09999996423721313,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 9.599999964237213
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.80000001192093,
+            "p95": 27.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 132.10000002384186,
+            "p95": 140.4000000357628
+          },
+          "frames": {
+            "count": 260,
+            "p50": 8.200000047683716,
+            "p95": 20.899999976158142,
+            "max": 30.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 234.60000002384186,
+            "p95": 312.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 270.80000001192093,
+            "p95": 349.39999997615814
+          },
+          "commitToSecondRafMs": {
+            "p50": 270.89999997615814,
+            "p95": 349.39999997615814
+          },
+          "actionWallMs": {
+            "p50": 336.10000002384186,
+            "p95": 416.10000002384186
+          },
+          "frames": {
+            "count": 146,
+            "p50": 8.400000035762787,
+            "p95": 242.69999998807907,
+            "max": 414.19999998807907,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 21,
+            "totalMs": 5026,
+            "maxMs": 340
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 16.19999998807907,
+            "p95": 18.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.80000001192093,
+            "p95": 27.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 23.899999976158142,
+            "p95": 27.80000001192093
+          },
+          "actionWallMs": {
+            "p50": 74.09999996423721,
+            "p95": 82.39999997615814
+          },
+          "frames": {
+            "count": 137,
+            "p50": 7.699999988079071,
+            "p95": 22.400000035762787,
+            "max": 25.69999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 55.89999997615814,
+          "inputToSecondRafMs": 61.60000002384186,
+          "commitToSecondRafMs": 17.700000047683716,
+          "actionWallMs": 106.60000002384186,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 38.799999952316284,
+          "inputToSecondRafMs": 46.89999997615814,
+          "commitToSecondRafMs": 45.60000002384186,
+          "actionWallMs": 81.30000001192093,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 30.700000047683716,
+          "commitToSecondRafMs": 168,
+          "actionWallMs": 282.60000002384186,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 8.5,
+          "commitToSecondRafMs": 30,
+          "actionWallMs": 140.30000001192093,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 229.5999999642372,
+          "inputToSecondRafMs": 265.39999997615814,
+          "commitToSecondRafMs": 265.39999997615814,
+          "actionWallMs": 311.19999998807907,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 16.69999998807907,
+          "inputToSecondRafMs": 25.5,
+          "commitToSecondRafMs": 25.5,
+          "actionWallMs": 74.09999996423721,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "candidate-B3",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "working-tree-candidate-v3",
+      "htmlSha256": "d0657f8a4c84090303aa58cbc03d134ed1c2c22bf75053bf6945ff5ce519d2f9",
+      "sourceAssetsSha256": "de82395cf7010325bf0956fc231b1ca04e6b36b91a160a49b30c10c5a9be76ec",
+      "rawSha256": "7fc9398a93f82fd4d21a1a80571ce3d0d517ca3b35027c8813f00989d094f72e",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 37.30000001192093,
+            "p95": 42.19999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 43.60000002384186,
+            "p95": 49.299999952316284
+          },
+          "commitToSecondRafMs": {
+            "p50": 18,
+            "p95": 22.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 82,
+            "p95": 82.80000001192093
+          },
+          "frames": {
+            "count": 105,
+            "p50": 8.300000011920929,
+            "p95": 44.89999997615814,
+            "max": 56.299999952316284,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 1,
+            "totalMs": 52,
+            "maxMs": 52
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 27.899999976158142,
+            "p95": 32.39999997615814
+          },
+          "inputToSecondRafMs": {
+            "p50": 41.10000002384186,
+            "p95": 45.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 40.69999998807907,
+            "p95": 45.40000003576279
+          },
+          "actionWallMs": {
+            "p50": 65.69999998807907,
+            "p95": 90.90000003576279
+          },
+          "frames": {
+            "count": 92,
+            "p50": 7.800000011920929,
+            "p95": 15,
+            "max": 30.600000023841858,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 25.30000001192093,
+            "p95": 26.200000047683716
+          },
+          "commitToSecondRafMs": {
+            "p50": 135.60000002384186,
+            "p95": 147.9000000357628
+          },
+          "actionWallMs": {
+            "p50": 240.39999997615814,
+            "p95": 267.0999999642372
+          },
+          "frames": {
+            "count": 239,
+            "p50": 8.300000011920929,
+            "p95": 132.30000001192093,
+            "max": 159.5999999642372,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2587,
+            "maxMs": 154
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.400000035762787,
+            "p95": 9.399999976158142
+          },
+          "commitToSecondRafMs": {
+            "p50": 26,
+            "p95": 30.299999952316284
+          },
+          "actionWallMs": {
+            "p50": 132.4000000357628,
+            "p95": 140.69999998807907
+          },
+          "frames": {
+            "count": 262,
+            "p50": 8.300000011920929,
+            "p95": 22.400000035762787,
+            "max": 33.40000003576279,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 23.600000023841858,
+            "p95": 27.600000023841858
+          },
+          "inputToSecondRafMs": {
+            "p50": 26.80000001192093,
+            "p95": 31.100000023841858
+          },
+          "commitToSecondRafMs": {
+            "p50": 26.900000035762787,
+            "p95": 31.100000023841858
+          },
+          "actionWallMs": {
+            "p50": 57.80000001192093,
+            "p95": 74.19999998807907
+          },
+          "frames": {
+            "count": 111,
+            "p50": 8.299999952316284,
+            "p95": 29.099999964237213,
+            "max": 52.60000002384186,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 5.599999964237213,
+            "p95": 6.800000011920929
+          },
+          "inputToSecondRafMs": {
+            "p50": 12.400000035762787,
+            "p95": 12.800000011920929
+          },
+          "commitToSecondRafMs": {
+            "p50": 12.5,
+            "p95": 12.800000011920929
+          },
+          "actionWallMs": {
+            "p50": 40.60000002384186,
+            "p95": 49.10000002384186
+          },
+          "frames": {
+            "count": 85,
+            "p50": 8.300000011920929,
+            "p95": 10.400000035762787,
+            "max": 11.600000023841858,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 50.90000003576279,
+          "inputToSecondRafMs": 56.5,
+          "commitToSecondRafMs": 17.099999964237213,
+          "actionWallMs": 90.30000001192093,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 30.80000001192093,
+          "inputToSecondRafMs": 42.19999998807907,
+          "commitToSecondRafMs": 40.69999998807907,
+          "actionWallMs": 65.59999996423721,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 33.5,
+          "commitToSecondRafMs": 161.80000001192093,
+          "actionWallMs": 307.19999998807907,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 8.899999976158142,
+          "commitToSecondRafMs": 32.5,
+          "actionWallMs": 149,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 31,
+          "inputToSecondRafMs": 34,
+          "commitToSecondRafMs": 34.09999996423721,
+          "actionWallMs": 73.5,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 6.5,
+          "inputToSecondRafMs": 12.199999988079071,
+          "commitToSecondRafMs": 12.199999988079071,
+          "actionWallMs": 40.5,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "candidate-B4",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "working-tree-candidate-v3",
+      "htmlSha256": "d0657f8a4c84090303aa58cbc03d134ed1c2c22bf75053bf6945ff5ce519d2f9",
+      "sourceAssetsSha256": "de82395cf7010325bf0956fc231b1ca04e6b36b91a160a49b30c10c5a9be76ec",
+      "rawSha256": "697fd8549c6647284db56bd28d9abf9b7726e839fd7cc0d9335622555b3dea89",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 39.59999996423721,
+            "p95": 49.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 45.89999997615814,
+            "p95": 56.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 18.5,
+            "p95": 22.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 82.5,
+            "p95": 98.59999996423721
+          },
+          "frames": {
+            "count": 114,
+            "p50": 8.299999952316284,
+            "p95": 48.59999996423721,
+            "max": 54.89999997615814,
+            "over50ms": 5
+          },
+          "longTasks": {
+            "count": 2,
+            "totalMs": 100,
+            "maxMs": 50
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 28.30000001192093,
+            "p95": 37.10000002384186
+          },
+          "inputToSecondRafMs": {
+            "p50": 41.30000001192093,
+            "p95": 53.10000002384186
+          },
+          "commitToSecondRafMs": {
+            "p50": 40.90000003576279,
+            "p95": 52.60000002384186
+          },
+          "actionWallMs": {
+            "p50": 65.80000001192093,
+            "p95": 82.19999998807907
+          },
+          "frames": {
+            "count": 93,
+            "p50": 7.599999964237213,
+            "p95": 17.5,
+            "max": 48.10000002384186,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 28.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 137,
+            "p95": 160.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 242.19999998807907,
+            "p95": 290.30000001192093
+          },
+          "frames": {
+            "count": 252,
+            "p50": 8.300000011920929,
+            "p95": 134.19999998807907,
+            "max": 165.10000002384186,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2655,
+            "maxMs": 158
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 9.300000011920929
+          },
+          "commitToSecondRafMs": {
+            "p50": 26.19999998807907,
+            "p95": 32
+          },
+          "actionWallMs": {
+            "p50": 132.4000000357628,
+            "p95": 140.89999997615814
+          },
+          "frames": {
+            "count": 256,
+            "p50": 8.299999952316284,
+            "p95": 23.299999952316284,
+            "max": 39.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 24.19999998807907,
+            "p95": 27.19999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 27.5,
+            "p95": 30.899999976158142
+          },
+          "commitToSecondRafMs": {
+            "p50": 27.600000023841858,
+            "p95": 30.899999976158142
+          },
+          "actionWallMs": {
+            "p50": 65.69999998807907,
+            "p95": 66.19999998807907
+          },
+          "frames": {
+            "count": 112,
+            "p50": 8.299999952316284,
+            "p95": 30,
+            "max": 53.69999998807907,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 5.699999988079071,
+            "p95": 6.800000011920929
+          },
+          "inputToSecondRafMs": {
+            "p50": 12.399999976158142,
+            "p95": 12.700000047683716
+          },
+          "commitToSecondRafMs": {
+            "p50": 12.399999976158142,
+            "p95": 12.800000011920929
+          },
+          "actionWallMs": {
+            "p50": 40.89999997615814,
+            "p95": 56.80000001192093
+          },
+          "frames": {
+            "count": 87,
+            "p50": 8.300000011920929,
+            "p95": 10.699999988079071,
+            "max": 13.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 49.40000003576279,
+          "inputToSecondRafMs": 55.40000003576279,
+          "commitToSecondRafMs": 19.100000023841858,
+          "actionWallMs": 90.59999996423721,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 33.40000003576279,
+          "inputToSecondRafMs": 44.700000047683716,
+          "commitToSecondRafMs": 43.5,
+          "actionWallMs": 74.29999995231628,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 32,
+          "commitToSecondRafMs": 150.60000002384186,
+          "actionWallMs": 282.10000002384186,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 8.400000035762787,
+          "commitToSecondRafMs": 27.30000001192093,
+          "actionWallMs": 132.5,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 27.900000035762787,
+          "inputToSecondRafMs": 30.900000035762787,
+          "commitToSecondRafMs": 30.900000035762787,
+          "actionWallMs": 65.39999997615814,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 5.400000035762787,
+          "inputToSecondRafMs": 12.900000035762787,
+          "commitToSecondRafMs": 13,
+          "actionWallMs": 40.89999997615814,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "baseline-A4",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+      "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+      "sourceAssetsSha256": "9ae3a50142f3b644c2b5a5585a97813b4b91ef7d197cbf016785a45faded8b09",
+      "rawSha256": "d0c9781a44a0c8bd04ed1556e0d1e2733032e62f06e7f31457890db48a647ea8",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 37.89999997615814,
+            "p95": 40.60000002384186
+          },
+          "inputToSecondRafMs": {
+            "p50": 43.5,
+            "p95": 47.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 16.900000035762787,
+            "p95": 18.799999952316284
+          },
+          "actionWallMs": {
+            "p50": 98.69999998807907,
+            "p95": 99.40000003576279
+          },
+          "frames": {
+            "count": 144,
+            "p50": 8.199999988079071,
+            "p95": 43.30000001192093,
+            "max": 47.30000001192093,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 31.900000035762787,
+            "p95": 39.39999997615814
+          },
+          "inputToSecondRafMs": {
+            "p50": 53.5,
+            "p95": 62.39999997615814
+          },
+          "commitToSecondRafMs": {
+            "p50": 53,
+            "p95": 62
+          },
+          "actionWallMs": {
+            "p50": 90.5,
+            "p95": 106.80000001192093
+          },
+          "frames": {
+            "count": 133,
+            "p50": 7.5,
+            "p95": 34.89999997615814,
+            "max": 42.39999997615814,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.100000023841858,
+            "p95": 31.600000023841858
+          },
+          "commitToSecondRafMs": {
+            "p50": 155,
+            "p95": 181.39999997615814
+          },
+          "actionWallMs": {
+            "p50": 265.39999997615814,
+            "p95": 315.4000000357628
+          },
+          "frames": {
+            "count": 270,
+            "p50": 8.300000011920929,
+            "p95": 142.30000001192093,
+            "max": 178,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2963,
+            "maxMs": 176
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 9.399999976158142
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.799999952316284,
+            "p95": 30.200000047683716
+          },
+          "actionWallMs": {
+            "p50": 132.39999997615814,
+            "p95": 149.10000002384186
+          },
+          "frames": {
+            "count": 263,
+            "p50": 8.199999988079071,
+            "p95": 21.100000023841858,
+            "max": 39.30000001192093,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 246.30000001192093,
+            "p95": 325.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 280.4000000357628,
+            "p95": 373.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 280.4000000357628,
+            "p95": 373.5
+          },
+          "actionWallMs": {
+            "p50": 374.5,
+            "p95": 449.19999998807907
+          },
+          "frames": {
+            "count": 150,
+            "p50": 10.800000011920929,
+            "p95": 268.5999999642372,
+            "max": 339.5,
+            "over50ms": 21
+          },
+          "longTasks": {
+            "count": 24,
+            "totalMs": 5412,
+            "maxMs": 326
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 16.599999964237213,
+            "p95": 20
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 29.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.80000001192093,
+            "p95": 29.5
+          },
+          "actionWallMs": {
+            "p50": 74.29999995231628,
+            "p95": 82.39999997615814
+          },
+          "frames": {
+            "count": 139,
+            "p50": 8,
+            "p95": 24.200000047683716,
+            "max": 26.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 49.19999998807907,
+          "inputToSecondRafMs": 54.59999996423721,
+          "commitToSecondRafMs": 16.399999976158142,
+          "actionWallMs": 90.29999995231628,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 35.700000047683716,
+          "inputToSecondRafMs": 44,
+          "commitToSecondRafMs": 42.69999998807907,
+          "actionWallMs": 65.79999995231628,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.09999996423721313,
+          "inputToSecondRafMs": 32.299999952316284,
+          "commitToSecondRafMs": 165.4000000357628,
+          "actionWallMs": 298.9000000357628,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 8.900000035762787,
+          "commitToSecondRafMs": 28.19999998807907,
+          "actionWallMs": 132.4000000357628,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 226.4000000357628,
+          "inputToSecondRafMs": 260.60000002384186,
+          "commitToSecondRafMs": 260.60000002384186,
+          "actionWallMs": 324.39999997615814,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 14.900000035762787,
+          "inputToSecondRafMs": 22.30000001192093,
+          "commitToSecondRafMs": 22.30000001192093,
+          "actionWallMs": 65.69999998807907,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "baseline-A5",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+      "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+      "sourceAssetsSha256": "9ae3a50142f3b644c2b5a5585a97813b4b91ef7d197cbf016785a45faded8b09",
+      "rawSha256": "b814d1fbfc0e104e67fe7f9030afe1cf904ab40e33871941f8ea52cabe83ee3a",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 39.30000001192093,
+            "p95": 46.89999997615814
+          },
+          "inputToSecondRafMs": {
+            "p50": 45.40000003576279,
+            "p95": 55.39999997615814
+          },
+          "commitToSecondRafMs": {
+            "p50": 18.100000023841858,
+            "p95": 21.5
+          },
+          "actionWallMs": {
+            "p50": 99.10000002384186,
+            "p95": 107.30000001192093
+          },
+          "frames": {
+            "count": 151,
+            "p50": 7.399999976158142,
+            "p95": 45.80000001192093,
+            "max": 56.80000001192093,
+            "over50ms": 4
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 32.80000001192093,
+            "p95": 44.10000002384186
+          },
+          "inputToSecondRafMs": {
+            "p50": 54.30000001192093,
+            "p95": 70.60000002384186
+          },
+          "commitToSecondRafMs": {
+            "p50": 53.69999998807907,
+            "p95": 70.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 90.80000001192093,
+            "p95": 124.10000002384186
+          },
+          "frames": {
+            "count": 145,
+            "p50": 7.599999964237213,
+            "p95": 35.69999998807907,
+            "max": 66.39999997615814,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 1,
+            "totalMs": 60,
+            "maxMs": 60
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.19999998807907,
+            "p95": 28.899999976158142
+          },
+          "commitToSecondRafMs": {
+            "p50": 157.30000001192093,
+            "p95": 174
+          },
+          "actionWallMs": {
+            "p50": 275.10000002384186,
+            "p95": 299.19999998807907
+          },
+          "frames": {
+            "count": 282,
+            "p50": 8.300000011920929,
+            "p95": 140.39999997615814,
+            "max": 174.5,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2963,
+            "maxMs": 173
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.800000011920929,
+            "p95": 10.700000047683716
+          },
+          "commitToSecondRafMs": {
+            "p50": 27.100000023841858,
+            "p95": 32
+          },
+          "actionWallMs": {
+            "p50": 132.39999997615814,
+            "p95": 149.10000002384186
+          },
+          "frames": {
+            "count": 261,
+            "p50": 8.299999952316284,
+            "p95": 22.5,
+            "max": 34.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 246.9000000357628,
+            "p95": 361.5999999642372
+          },
+          "inputToSecondRafMs": {
+            "p50": 281.69999998807907,
+            "p95": 427.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 281.7999999523163,
+            "p95": 427.4000000357628
+          },
+          "actionWallMs": {
+            "p50": 361.69999998807907,
+            "p95": 527.9000000357628
+          },
+          "frames": {
+            "count": 150,
+            "p50": 8.5,
+            "p95": 256.10000002384186,
+            "max": 406.10000002384186,
+            "over50ms": 21
+          },
+          "longTasks": {
+            "count": 21,
+            "totalMs": 5261,
+            "maxMs": 401
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 16.899999976158142,
+            "p95": 19.399999976158142
+          },
+          "inputToSecondRafMs": {
+            "p50": 25.100000023841858,
+            "p95": 28.899999976158142
+          },
+          "commitToSecondRafMs": {
+            "p50": 25.200000047683716,
+            "p95": 29.100000023841858
+          },
+          "actionWallMs": {
+            "p50": 74.19999998807907,
+            "p95": 89
+          },
+          "frames": {
+            "count": 142,
+            "p50": 7.699999988079071,
+            "p95": 23.5,
+            "max": 32.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 52.19999998807907,
+          "inputToSecondRafMs": 57.5,
+          "commitToSecondRafMs": 18,
+          "actionWallMs": 90.30000001192093,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 40.200000047683716,
+          "inputToSecondRafMs": 48.80000001192093,
+          "commitToSecondRafMs": 47.39999997615814,
+          "actionWallMs": 73.89999997615814,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 30,
+          "commitToSecondRafMs": 162.30000001192093,
+          "actionWallMs": 282.39999997615814,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 9.599999964237213,
+          "commitToSecondRafMs": 31.399999976158142,
+          "actionWallMs": 149,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 231.80000001192093,
+          "inputToSecondRafMs": 265.80000001192093,
+          "commitToSecondRafMs": 265.89999997615814,
+          "actionWallMs": 317.2000000476837,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 16.099999964237213,
+          "inputToSecondRafMs": 24.099999964237213,
+          "commitToSecondRafMs": 24.19999998807907,
+          "actionWallMs": 73.80000001192093,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "candidate-B5",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "working-tree-candidate-v5",
+      "htmlSha256": "4b5c2a620d14e5428a84e9dcecf8f75ecc5422faa8b3b9125ede72a24a309c9a",
+      "sourceAssetsSha256": "7a3e7eea197f5d1a59ad70c8d1ac505bfe971d3d8188b6d0e08ac69eb7f6b116",
+      "rawSha256": "c4a476a2599af792d249da32997b77b4eebc2eaa7304d5f101e71042a21dc26a",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 32.700000047683716,
+            "p95": 44.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 38.69999998807907,
+            "p95": 52.09999996423721
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.299999952316284,
+            "p95": 22.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 74,
+            "p95": 98.60000002384186
+          },
+          "frames": {
+            "count": 111,
+            "p50": 8.299999952316284,
+            "p95": 39,
+            "max": 50.700000047683716,
+            "over50ms": 2
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 23.5,
+            "p95": 29.200000047683716
+          },
+          "inputToSecondRafMs": {
+            "p50": 37.19999998807907,
+            "p95": 43.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 36.80000001192093,
+            "p95": 43.09999996423721
+          },
+          "actionWallMs": {
+            "p50": 57.59999996423721,
+            "p95": 96.59999996423721
+          },
+          "frames": {
+            "count": 91,
+            "p50": 7.5,
+            "p95": 14.399999976158142,
+            "max": 30.899999976158142,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.5,
+            "p95": 26.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 111.39999997615814,
+            "p95": 146.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 210.19999998807907,
+            "p95": 290
+          },
+          "frames": {
+            "count": 244,
+            "p50": 8.300000011920929,
+            "p95": 106.30000001192093,
+            "max": 154.80000001192093,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2139,
+            "maxMs": 148
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.19999998807907104,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 13.800000011920929
+          },
+          "commitToSecondRafMs": {
+            "p50": 25.80000001192093,
+            "p95": 32.700000047683716
+          },
+          "actionWallMs": {
+            "p50": 132.30000001192093,
+            "p95": 148.89999997615814
+          },
+          "frames": {
+            "count": 259,
+            "p50": 8.299999952316284,
+            "p95": 23,
+            "max": 33,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 25.400000035762787,
+            "p95": 33
+          },
+          "inputToSecondRafMs": {
+            "p50": 28.80000001192093,
+            "p95": 36.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 28.899999976158142,
+            "p95": 36.80000001192093
+          },
+          "actionWallMs": {
+            "p50": 65.60000002384186,
+            "p95": 82.19999998807907
+          },
+          "frames": {
+            "count": 110,
+            "p50": 8.299999952316284,
+            "p95": 32.10000002384186,
+            "max": 40.80000001192093,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 5.5,
+            "p95": 6.800000011920929
+          },
+          "inputToSecondRafMs": {
+            "p50": 12.600000023841858,
+            "p95": 13
+          },
+          "commitToSecondRafMs": {
+            "p50": 12.699999988079071,
+            "p95": 13.100000023841858
+          },
+          "actionWallMs": {
+            "p50": 40.60000002384186,
+            "p95": 56.80000001192093
+          },
+          "frames": {
+            "count": 86,
+            "p50": 8.300000011920929,
+            "p95": 10.800000011920929,
+            "max": 12.799999952316284,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 44.69999998807907,
+          "inputToSecondRafMs": 49.90000003576279,
+          "commitToSecondRafMs": 16.600000023841858,
+          "actionWallMs": 90.60000002384186,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 25.5,
+          "inputToSecondRafMs": 38,
+          "commitToSecondRafMs": 36.60000002384186,
+          "actionWallMs": 65.60000002384186,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 30.69999998807907,
+          "commitToSecondRafMs": 135.30000001192093,
+          "actionWallMs": 257.7000000476837,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0,
+          "inputToSecondRafMs": 8.300000011920929,
+          "commitToSecondRafMs": 23.400000035762787,
+          "actionWallMs": 124.09999996423721,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 31.69999998807907,
+          "inputToSecondRafMs": 34.39999997615814,
+          "commitToSecondRafMs": 34.39999997615814,
+          "actionWallMs": 74,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 5.699999988079071,
+          "inputToSecondRafMs": 12.699999988079071,
+          "commitToSecondRafMs": 12.800000011920929,
+          "actionWallMs": 40.90000003576279,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "candidate-B6",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "e04ec7de752a4d720d4dd84549c924a25d342cf0",
+      "htmlSha256": "4b5c2a620d14e5428a84e9dcecf8f75ecc5422faa8b3b9125ede72a24a309c9a",
+      "sourceAssetsSha256": "7a3e7eea197f5d1a59ad70c8d1ac505bfe971d3d8188b6d0e08ac69eb7f6b116",
+      "rawSha256": "02f5fd239696a5a2d83e0354c946d8badb4dacabfcf5dbe5cfcdfe2db1817d18",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 32.80000001192093,
+            "p95": 36.59999996423721
+          },
+          "inputToSecondRafMs": {
+            "p50": 39.10000002384186,
+            "p95": 42.39999997615814
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.80000001192093,
+            "p95": 20.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 74.19999998807907,
+            "p95": 82.39999997615814
+          },
+          "frames": {
+            "count": 107,
+            "p50": 8.299999952316284,
+            "p95": 40,
+            "max": 46.80000001192093,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 23,
+            "p95": 28.900000035762787
+          },
+          "inputToSecondRafMs": {
+            "p50": 35.60000002384186,
+            "p95": 41.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 35.30000001192093,
+            "p95": 41.5
+          },
+          "actionWallMs": {
+            "p50": 57.59999996423721,
+            "p95": 93.5
+          },
+          "frames": {
+            "count": 89,
+            "p50": 7.800000011920929,
+            "p95": 14,
+            "max": 42.90000003576279,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.399999976158142,
+            "p95": 29.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 108.39999997615814,
+            "p95": 149.5999999642372
+          },
+          "actionWallMs": {
+            "p50": 215.70000004768372,
+            "p95": 273.89999997615814
+          },
+          "frames": {
+            "count": 245,
+            "p50": 8.300000011920929,
+            "p95": 105.39999997615814,
+            "max": 156.80000001192093,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2176,
+            "maxMs": 149
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 10.600000023841858
+          },
+          "commitToSecondRafMs": {
+            "p50": 25.899999976158142,
+            "p95": 30
+          },
+          "actionWallMs": {
+            "p50": 132.20000004768372,
+            "p95": 148.69999998807907
+          },
+          "frames": {
+            "count": 258,
+            "p50": 8.299999952316284,
+            "p95": 22.80000001192093,
+            "max": 30.900000035762787,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 24.399999976158142,
+            "p95": 29.899999976158142
+          },
+          "inputToSecondRafMs": {
+            "p50": 27.69999998807907,
+            "p95": 33.39999997615814
+          },
+          "commitToSecondRafMs": {
+            "p50": 27.80000001192093,
+            "p95": 33.5
+          },
+          "actionWallMs": {
+            "p50": 65.69999998807907,
+            "p95": 73.5
+          },
+          "frames": {
+            "count": 114,
+            "p50": 8.199999988079071,
+            "p95": 31,
+            "max": 35.60000002384186,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 5.5,
+            "p95": 6.400000035762787
+          },
+          "inputToSecondRafMs": {
+            "p50": 12.600000023841858,
+            "p95": 13.099999964237213
+          },
+          "commitToSecondRafMs": {
+            "p50": 12.600000023841858,
+            "p95": 13.100000023841858
+          },
+          "actionWallMs": {
+            "p50": 40.69999998807907,
+            "p95": 41
+          },
+          "frames": {
+            "count": 81,
+            "p50": 8.300000011920929,
+            "p95": 9.799999952316284,
+            "max": 10.699999988079071,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 51.69999998807907,
+          "inputToSecondRafMs": 57.09999996423721,
+          "commitToSecondRafMs": 18.19999998807907,
+          "actionWallMs": 107.09999996423721,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 33.19999998807907,
+          "inputToSecondRafMs": 48.80000001192093,
+          "commitToSecondRafMs": 47,
+          "actionWallMs": 80.60000002384186,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 29.599999964237213,
+          "commitToSecondRafMs": 117.5,
+          "actionWallMs": 240.80000001192093,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.20000004768371582,
+          "inputToSecondRafMs": 9.100000023841858,
+          "commitToSecondRafMs": 24.69999998807907,
+          "actionWallMs": 140.69999998807907,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 30.299999952316284,
+          "inputToSecondRafMs": 33,
+          "commitToSecondRafMs": 33,
+          "actionWallMs": 73.90000003576279,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 5.300000011920929,
+          "inputToSecondRafMs": 12.600000023841858,
+          "commitToSecondRafMs": 12.699999988079071,
+          "actionWallMs": 41.09999996423721,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "baseline-A6",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+      "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+      "sourceAssetsSha256": "9ae3a50142f3b644c2b5a5585a97813b4b91ef7d197cbf016785a45faded8b09",
+      "rawSha256": "d665d0142b6c2e557b0c2b4125518f585951945a9f2d06e589257257338d87a1",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 37.69999998807907,
+            "p95": 41
+          },
+          "inputToSecondRafMs": {
+            "p50": 43.40000003576279,
+            "p95": 48
+          },
+          "commitToSecondRafMs": {
+            "p50": 16.600000023841858,
+            "p95": 18.80000001192093
+          },
+          "actionWallMs": {
+            "p50": 99.09999996423721,
+            "p95": 99.30000001192093
+          },
+          "frames": {
+            "count": 147,
+            "p50": 8.199999988079071,
+            "p95": 42.69999998807907,
+            "max": 47.30000001192093,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 30.799999952316284,
+            "p95": 37.89999997615814
+          },
+          "inputToSecondRafMs": {
+            "p50": 52.59999996423721,
+            "p95": 62.40000003576279
+          },
+          "commitToSecondRafMs": {
+            "p50": 52.19999998807907,
+            "p95": 62
+          },
+          "actionWallMs": {
+            "p50": 90.80000001192093,
+            "p95": 125.59999996423721
+          },
+          "frames": {
+            "count": 139,
+            "p50": 7.599999964237213,
+            "p95": 35,
+            "max": 44,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.80000001192093,
+            "p95": 27.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 151,
+            "p95": 188.9000000357628
+          },
+          "actionWallMs": {
+            "p50": 265.60000002384186,
+            "p95": 349.89999997615814
+          },
+          "frames": {
+            "count": 280,
+            "p50": 8.300000011920929,
+            "p95": 137.80000001192093,
+            "max": 182.0999999642372,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2932,
+            "maxMs": 181
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 10.099999964237213
+          },
+          "commitToSecondRafMs": {
+            "p50": 26.299999952316284,
+            "p95": 32.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 132.60000002384186,
+            "p95": 148.89999997615814
+          },
+          "frames": {
+            "count": 265,
+            "p50": 8.299999952316284,
+            "p95": 22.200000047683716,
+            "max": 31.400000035762787,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 225.30000001192093,
+            "p95": 275.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 259.39999997615814,
+            "p95": 312.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 259.39999997615814,
+            "p95": 312.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 327,
+            "p95": 443.39999997615814
+          },
+          "frames": {
+            "count": 139,
+            "p50": 8.5,
+            "p95": 247.5,
+            "max": 327.60000002384186,
+            "over50ms": 21
+          },
+          "longTasks": {
+            "count": 21,
+            "totalMs": 4805,
+            "maxMs": 276
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 16.600000023841858,
+            "p95": 21.200000047683716
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 31.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.799999952316284,
+            "p95": 31.599999964237213
+          },
+          "actionWallMs": {
+            "p50": 73.90000003576279,
+            "p95": 82.39999997615814
+          },
+          "frames": {
+            "count": 135,
+            "p50": 7.899999976158142,
+            "p95": 23.19999998807907,
+            "max": 31,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": 0,
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 49.39999997615814,
+          "inputToSecondRafMs": 54.80000001192093,
+          "commitToSecondRafMs": 16.30000001192093,
+          "actionWallMs": 90.69999998807907,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 42.19999998807907,
+          "inputToSecondRafMs": 50.80000001192093,
+          "commitToSecondRafMs": 49.40000003576279,
+          "actionWallMs": 73.89999997615814,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 33.69999998807907,
+          "commitToSecondRafMs": 191.0999999642372,
+          "actionWallMs": 324.19999998807907,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.09999996423721313,
+          "inputToSecondRafMs": 8.599999964237213,
+          "commitToSecondRafMs": 31.099999964237213,
+          "actionWallMs": 141,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 246.69999998807907,
+          "inputToSecondRafMs": 282.60000002384186,
+          "commitToSecondRafMs": 282.69999998807907,
+          "actionWallMs": 326.60000002384186,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 15.799999952316284,
+          "inputToSecondRafMs": 23.799999952316284,
+          "commitToSecondRafMs": 23.899999976158142,
+          "actionWallMs": 66,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "baseline-A7",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+      "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+      "sourceAssetsSha256": "9ae3a50142f3b644c2b5a5585a97813b4b91ef7d197cbf016785a45faded8b09",
+      "rawSha256": "0f6e1a353ec4aaddba049b05c4855efd798547c9e1ff1a6512716f6ee41596d2",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 38.30000001192093,
+            "p95": 43.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 44.200000047683716,
+            "p95": 50.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.30000001192093,
+            "p95": 23
+          },
+          "actionWallMs": {
+            "p50": 99.10000002384186,
+            "p95": 107.39999997615814
+          },
+          "frames": {
+            "count": 150,
+            "p50": 7.800000011920929,
+            "p95": 43.60000002384186,
+            "max": 62.30000001192093,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 1,
+            "totalMs": 57,
+            "maxMs": 57
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 32.200000047683716,
+            "p95": 37.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 54,
+            "p95": 60.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 53.60000002384186,
+            "p95": 60
+          },
+          "actionWallMs": {
+            "p50": 90.69999998807907,
+            "p95": 99.09999996423721
+          },
+          "frames": {
+            "count": 137,
+            "p50": 7.600000023841858,
+            "p95": 36.09999996423721,
+            "max": 82.5,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.899999976158142,
+            "p95": 26.899999976158142
+          },
+          "commitToSecondRafMs": {
+            "p50": 151.20000004768372,
+            "p95": 180.30000001192093
+          },
+          "actionWallMs": {
+            "p50": 273.9000000357628,
+            "p95": 299.9000000357628
+          },
+          "frames": {
+            "count": 282,
+            "p50": 8.300000011920929,
+            "p95": 140.80000001192093,
+            "max": 173.80000001192093,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2947,
+            "maxMs": 173
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 9
+          },
+          "commitToSecondRafMs": {
+            "p50": 26,
+            "p95": 31.900000035762787
+          },
+          "actionWallMs": {
+            "p50": 132.4000000357628,
+            "p95": 140.79999995231628
+          },
+          "frames": {
+            "count": 257,
+            "p50": 8.300000011920929,
+            "p95": 22.80000001192093,
+            "max": 33.59999996423721,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 241.10000002384186,
+            "p95": 276.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 274.7000000476837,
+            "p95": 316
+          },
+          "commitToSecondRafMs": {
+            "p50": 274.7000000476837,
+            "p95": 316
+          },
+          "actionWallMs": {
+            "p50": 343.80000001192093,
+            "p95": 404.19999998807907
+          },
+          "frames": {
+            "count": 149,
+            "p50": 8.400000035762787,
+            "p95": 249.69999998807907,
+            "max": 282.39999997615814,
+            "over50ms": 22
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 4876,
+            "maxMs": 278
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 16.599999964237213,
+            "p95": 18.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 26.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 26.5
+          },
+          "actionWallMs": {
+            "p50": 74,
+            "p95": 74.39999997615814
+          },
+          "frames": {
+            "count": 138,
+            "p50": 7.5,
+            "p95": 22.899999976158142,
+            "max": 25,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": [],
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 48.09999996423721,
+          "inputToSecondRafMs": 53.19999998807907,
+          "commitToSecondRafMs": 15.5,
+          "actionWallMs": 90.59999996423721,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 42.39999997615814,
+          "inputToSecondRafMs": 51.39999997615814,
+          "commitToSecondRafMs": 49.89999997615814,
+          "actionWallMs": 81.89999997615814,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 33.10000002384186,
+          "commitToSecondRafMs": 171.80000001192093,
+          "actionWallMs": 315.10000002384186,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 8.399999976158142,
+          "commitToSecondRafMs": 29.30000001192093,
+          "actionWallMs": 140.19999998807907,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 243.29999995231628,
+          "inputToSecondRafMs": 276.0,
+          "commitToSecondRafMs": 276.0,
+          "actionWallMs": 335.69999998807907,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 20.100000023841858,
+          "inputToSecondRafMs": 28,
+          "commitToSecondRafMs": 28,
+          "actionWallMs": 82.19999998807907,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "candidate-B7",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "e28b20d8c3ad19277540ff470105f9ba36281f8f",
+      "htmlSha256": "9e5428b3854cf3b8f08840b1000853ccb9ace5940cb98b2ce7ecd7f987ff4353",
+      "sourceAssetsSha256": "dc392992ea4fae5d3a7afd8b6a301c7e9109b356c19514a26aecf5870d2e7c62",
+      "rawSha256": "2cb7abf5998dc43cf433a5cfa5d345828f026f4691b4e6c487d1843241a8280d",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 33.19999998807907,
+            "p95": 39
+          },
+          "inputToSecondRafMs": {
+            "p50": 39.19999998807907,
+            "p95": 46.69999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.899999976158142,
+            "p95": 21.5
+          },
+          "actionWallMs": {
+            "p50": 74.19999998807907,
+            "p95": 90.5
+          },
+          "frames": {
+            "count": 108,
+            "p50": 8.299999952316284,
+            "p95": 39.19999998807907,
+            "max": 47.39999997615814,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 23.899999976158142,
+            "p95": 28.700000047683716
+          },
+          "inputToSecondRafMs": {
+            "p50": 37.39999997615814,
+            "p95": 43.30000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 36.89999997615814,
+            "p95": 43
+          },
+          "actionWallMs": {
+            "p50": 65.30000001192093,
+            "p95": 74
+          },
+          "frames": {
+            "count": 87,
+            "p50": 7.600000023841858,
+            "p95": 14,
+            "max": 14.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.200000047683716,
+            "p95": 27.200000047683716
+          },
+          "commitToSecondRafMs": {
+            "p50": 114.90000003576279,
+            "p95": 130.4000000357628
+          },
+          "actionWallMs": {
+            "p50": 215.80000001192093,
+            "p95": 265.19999998807907
+          },
+          "frames": {
+            "count": 251,
+            "p50": 8.300000011920929,
+            "p95": 109.59999996423721,
+            "max": 128.89999997615814,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2144,
+            "maxMs": 122
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 10.300000011920929
+          },
+          "commitToSecondRafMs": {
+            "p50": 26,
+            "p95": 30.69999998807907
+          },
+          "actionWallMs": {
+            "p50": 132.30000001192093,
+            "p95": 140.70000004768372
+          },
+          "frames": {
+            "count": 267,
+            "p50": 8.300000011920929,
+            "p95": 21.299999952316284,
+            "max": 41.69999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 31.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 28,
+            "p95": 35.10000002384186
+          },
+          "commitToSecondRafMs": {
+            "p50": 28,
+            "p95": 35.10000002384186
+          },
+          "actionWallMs": {
+            "p50": 65.80000001192093,
+            "p95": 73.69999998807907
+          },
+          "frames": {
+            "count": 113,
+            "p50": 8.300000011920929,
+            "p95": 32.40000003576279,
+            "max": 40,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 5.5,
+            "p95": 7
+          },
+          "inputToSecondRafMs": {
+            "p50": 12.5,
+            "p95": 13
+          },
+          "commitToSecondRafMs": {
+            "p50": 12.599999964237213,
+            "p95": 13
+          },
+          "actionWallMs": {
+            "p50": 40.69999998807907,
+            "p95": 57.200000047683716
+          },
+          "frames": {
+            "count": 89,
+            "p50": 8.300000011920929,
+            "p95": 10.899999976158142,
+            "max": 14.600000023841858,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": [],
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 48.0,
+          "inputToSecondRafMs": 53.39999997615814,
+          "commitToSecondRafMs": 17.30000001192093,
+          "actionWallMs": 90.60000002384186,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 26.100000023841858,
+          "inputToSecondRafMs": 39.0,
+          "commitToSecondRafMs": 37.69999998807907,
+          "actionWallMs": 64.5,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 34.69999998807907,
+          "commitToSecondRafMs": 125.29999995231628,
+          "actionWallMs": 265.5,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.20000004768371582,
+          "inputToSecondRafMs": 8.400000035762787,
+          "commitToSecondRafMs": 24.599999964237213,
+          "actionWallMs": 140.69999998807907,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 34.19999998807907,
+          "inputToSecondRafMs": 37.0,
+          "commitToSecondRafMs": 37.0,
+          "actionWallMs": 73.60000002384186,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 6.199999988079071,
+          "inputToSecondRafMs": 12.399999976158142,
+          "commitToSecondRafMs": 12.399999976158142,
+          "actionWallMs": 40.5,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "candidate-B8",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "e28b20d8c3ad19277540ff470105f9ba36281f8f",
+      "htmlSha256": "9e5428b3854cf3b8f08840b1000853ccb9ace5940cb98b2ce7ecd7f987ff4353",
+      "sourceAssetsSha256": "dc392992ea4fae5d3a7afd8b6a301c7e9109b356c19514a26aecf5870d2e7c62",
+      "rawSha256": "197a42f689c6ef0937db8ceac887f8c62bbdd6993de14d5653d891337a571b5f",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 32.5,
+            "p95": 35.30000001192093
+          },
+          "inputToSecondRafMs": {
+            "p50": 38.30000001192093,
+            "p95": 41.19999998807907
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.399999976158142,
+            "p95": 18.19999998807907
+          },
+          "actionWallMs": {
+            "p50": 74.09999996423721,
+            "p95": 81.5
+          },
+          "frames": {
+            "count": 108,
+            "p50": 8.200000047683716,
+            "p95": 38.5,
+            "max": 41.5,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 23.900000035762787,
+            "p95": 29
+          },
+          "inputToSecondRafMs": {
+            "p50": 37.09999996423721,
+            "p95": 42
+          },
+          "commitToSecondRafMs": {
+            "p50": 36.59999996423721,
+            "p95": 41.59999996423721
+          },
+          "actionWallMs": {
+            "p50": 57.700000047683716,
+            "p95": 66.40000003576279
+          },
+          "frames": {
+            "count": 86,
+            "p50": 7.600000023841858,
+            "p95": 13.699999988079071,
+            "max": 30.19999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 23.600000023841858,
+            "p95": 25.400000035762787
+          },
+          "commitToSecondRafMs": {
+            "p50": 113.69999998807907,
+            "p95": 132.4000000357628
+          },
+          "actionWallMs": {
+            "p50": 215.79999995231628,
+            "p95": 241.80000001192093
+          },
+          "frames": {
+            "count": 243,
+            "p50": 8.299999952316284,
+            "p95": 109.10000002384186,
+            "max": 142.80000001192093,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2180,
+            "maxMs": 136
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.400000035762787,
+            "p95": 8.800000011920929
+          },
+          "commitToSecondRafMs": {
+            "p50": 25.30000001192093,
+            "p95": 29.899999976158142
+          },
+          "actionWallMs": {
+            "p50": 132.30000001192093,
+            "p95": 140.69999998807907
+          },
+          "frames": {
+            "count": 263,
+            "p50": 8.300000011920929,
+            "p95": 21.19999998807907,
+            "max": 34.19999998807907,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 24.899999976158142,
+            "p95": 28.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 28.19999998807907,
+            "p95": 31.80000001192093
+          },
+          "commitToSecondRafMs": {
+            "p50": 28.19999998807907,
+            "p95": 31.80000001192093
+          },
+          "actionWallMs": {
+            "p50": 65.69999998807907,
+            "p95": 73.59999996423721
+          },
+          "frames": {
+            "count": 111,
+            "p50": 8.299999952316284,
+            "p95": 30.80000001192093,
+            "max": 34.60000002384186,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 5.700000047683716,
+            "p95": 6.199999988079071
+          },
+          "inputToSecondRafMs": {
+            "p50": 12.700000047683716,
+            "p95": 13.100000023841858
+          },
+          "commitToSecondRafMs": {
+            "p50": 12.799999952316284,
+            "p95": 13.199999988079071
+          },
+          "actionWallMs": {
+            "p50": 40.60000002384186,
+            "p95": 40.80000001192093
+          },
+          "frames": {
+            "count": 80,
+            "p50": 8.300000011920929,
+            "p95": 10,
+            "max": 10.699999988079071,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": [],
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 42.60000002384186,
+          "inputToSecondRafMs": 47.89999997615814,
+          "commitToSecondRafMs": 16.5,
+          "actionWallMs": 82.29999995231628,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 24.399999976158142,
+          "inputToSecondRafMs": 36.60000002384186,
+          "commitToSecondRafMs": 35.5,
+          "actionWallMs": 65.10000002384186,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 32.10000002384186,
+          "commitToSecondRafMs": 126.19999998807907,
+          "actionWallMs": 265.10000002384186,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.20000004768371582,
+          "inputToSecondRafMs": 8.800000011920929,
+          "commitToSecondRafMs": 27.5,
+          "actionWallMs": 140.29999995231628,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 33.19999998807907,
+          "inputToSecondRafMs": 36.0,
+          "commitToSecondRafMs": 36.10000002384186,
+          "actionWallMs": 73.80000001192093,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 5.800000011920929,
+          "inputToSecondRafMs": 12.599999964237213,
+          "commitToSecondRafMs": 12.599999964237213,
+          "actionWallMs": 40.90000003576279,
+          "verified": true
+        }
+      }
+    },
+    {
+      "label": "baseline-A8",
+      "browser": "155.0.8059.85",
+      "sourceClaim": "5f7b6c069cf80834face370e466ecb25457c1d6d",
+      "htmlSha256": "e97535d422f895152f16a62c42965b8a3338bf1f495bfe04f99b4fdd66912ccf",
+      "sourceAssetsSha256": "9ae3a50142f3b644c2b5a5585a97813b4b91ef7d197cbf016785a45faded8b09",
+      "rawSha256": "4bff63b19086483252240cf3dac8740388291afdd857a956fe6dc6d9f3204142",
+      "captureStatus": "PASS_VERIFIED_CAPTURE",
+      "operations": {
+        "select-text": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 37.69999998807907,
+            "p95": 47.5
+          },
+          "inputToSecondRafMs": {
+            "p50": 44.299999952316284,
+            "p95": 53.799999952316284
+          },
+          "commitToSecondRafMs": {
+            "p50": 17.19999998807907,
+            "p95": 21.600000023841858
+          },
+          "actionWallMs": {
+            "p50": 98.60000002384186,
+            "p95": 107.10000002384186
+          },
+          "frames": {
+            "count": 143,
+            "p50": 8,
+            "p95": 44.40000003576279,
+            "max": 54.09999996423721,
+            "over50ms": 4
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "text-colour": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 31.80000001192093,
+            "p95": 37.60000002384186
+          },
+          "inputToSecondRafMs": {
+            "p50": 53.80000001192093,
+            "p95": 63.10000002384186
+          },
+          "commitToSecondRafMs": {
+            "p50": 53.39999997615814,
+            "p95": 62.60000002384186
+          },
+          "actionWallMs": {
+            "p50": 90.69999998807907,
+            "p95": 115.40000003576279
+          },
+          "frames": {
+            "count": 134,
+            "p50": 7.600000023841858,
+            "p95": 35.60000002384186,
+            "max": 54.89999997615814,
+            "over50ms": 1
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "drag-shape": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.19999998807907104
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.100000023841858,
+            "p95": 25.899999976158142
+          },
+          "commitToSecondRafMs": {
+            "p50": 157.60000002384186,
+            "p95": 173.89999997615814
+          },
+          "actionWallMs": {
+            "p50": 271.30000001192093,
+            "p95": 288.5999999642372
+          },
+          "frames": {
+            "count": 268,
+            "p50": 8.300000011920929,
+            "p95": 143.5,
+            "max": 170,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 2961,
+            "maxMs": 168
+          },
+          "verifiedOperations": 20
+        },
+        "resize-sidebar": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 0.10000002384185791,
+            "p95": 0.20000004768371582
+          },
+          "inputToSecondRafMs": {
+            "p50": 8.5,
+            "p95": 9.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 25.799999952316284,
+            "p95": 36.59999996423721
+          },
+          "actionWallMs": {
+            "p50": 140.19999998807907,
+            "p95": 149.19999998807907
+          },
+          "frames": {
+            "count": 265,
+            "p50": 8.300000011920929,
+            "p95": 22.5,
+            "max": 33.80000001192093,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        },
+        "tab-detail-to-palette": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 238.9000000357628,
+            "p95": 275.69999998807907
+          },
+          "inputToSecondRafMs": {
+            "p50": 274,
+            "p95": 312.0999999642372
+          },
+          "commitToSecondRafMs": {
+            "p50": 274,
+            "p95": 312.0999999642372
+          },
+          "actionWallMs": {
+            "p50": 343.39999997615814,
+            "p95": 422.0999999642372
+          },
+          "frames": {
+            "count": 153,
+            "p50": 8.399999976158142,
+            "p95": 246.0999999642372,
+            "max": 319.7999999523163,
+            "over50ms": 20
+          },
+          "longTasks": {
+            "count": 20,
+            "totalMs": 4830,
+            "maxMs": 315
+          },
+          "verifiedOperations": 20
+        },
+        "tab-palette-to-detail": {
+          "samples": 20,
+          "inputToNextRafMs": {
+            "p50": 16.30000001192093,
+            "p95": 20.399999976158142
+          },
+          "inputToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 30.5
+          },
+          "commitToSecondRafMs": {
+            "p50": 24.69999998807907,
+            "p95": 30.5
+          },
+          "actionWallMs": {
+            "p50": 74.09999996423721,
+            "p95": 82.40000003576279
+          },
+          "frames": {
+            "count": 141,
+            "p50": 8,
+            "p95": 23.399999976158142,
+            "max": 27,
+            "over50ms": 0
+          },
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "verifiedOperations": 20
+        }
+      },
+      "sourcesUnchanged": true,
+      "remoteRequests": 0,
+      "errors": [],
+      "firstOperations": {
+        "select-text": {
+          "inputToNextRafMs": 73.79999995231628,
+          "inputToSecondRafMs": 81.09999996423721,
+          "commitToSecondRafMs": 28,
+          "actionWallMs": 131.70000004768372,
+          "verified": true
+        },
+        "text-colour": {
+          "inputToNextRafMs": 49.59999996423721,
+          "inputToSecondRafMs": 60.5,
+          "commitToSecondRafMs": 58.80000001192093,
+          "actionWallMs": 97.30000001192093,
+          "verified": true
+        },
+        "drag-shape": {
+          "inputToNextRafMs": 0.10000002384185791,
+          "inputToSecondRafMs": 35.60000002384186,
+          "commitToSecondRafMs": 205.9000000357628,
+          "actionWallMs": 356.89999997615814,
+          "verified": true
+        },
+        "resize-sidebar": {
+          "inputToNextRafMs": 0.19999998807907104,
+          "inputToSecondRafMs": 11.199999988079071,
+          "commitToSecondRafMs": 34.60000002384186,
+          "actionWallMs": 157.10000002384186,
+          "verified": true
+        },
+        "tab-detail-to-palette": {
+          "inputToNextRafMs": 267.5,
+          "inputToSecondRafMs": 303.69999998807907,
+          "commitToSecondRafMs": 303.69999998807907,
+          "actionWallMs": 361.39999997615814,
+          "verified": true
+        },
+        "tab-palette-to-detail": {
+          "inputToNextRafMs": 15.900000035762787,
+          "inputToSecondRafMs": 23.600000023841858,
+          "commitToSecondRafMs": 23.600000023841858,
+          "actionWallMs": 73.89999997615814,
+          "verified": true
+        }
+      }
+    }
+  ],
+  "latestVectorSnapshot": "e28b20d8c3ad19277540ff470105f9ba36281f8f; generatedHTML/assets captured before the later native-TIFF derivative lineage change, which does not alter vector interactions."
+}

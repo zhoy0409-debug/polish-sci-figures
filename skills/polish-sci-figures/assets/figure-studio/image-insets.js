@@ -271,7 +271,10 @@ const StudioImageInsets = (() => {
     if(dimensionsCache.has(href))return {...dimensionsCache.get(href)};
     const match=href.match(/^data:image\/(png|jpeg|webp);base64,([a-z\d+/=\s]+)$/i);if(!match)fail('source','局部放大仅支持工程中嵌入的静态 PNG、JPEG 或 WebP 图片。');
     let binary;try{binary=atob(match[2].replace(/\s/g,''));}catch{fail('pixels','原图像素无法读取。');}
-    const result=headerDimensions(Uint8Array.from(binary,c=>c.charCodeAt(0)),match[1].toLowerCase());dimensionsCache.set(href,result);let bytes=[...dimensionsCache.keys()].reduce((sum,key)=>sum+key.length,0);while(dimensionsCache.size>CACHE_SIZE||bytes>CACHE_BYTES){const first=dimensionsCache.keys().next().value;bytes-=first.length;dimensionsCache.delete(first);}return {...result};
+    // Avoid a string iterator and a JavaScript callback for every raster byte.
+    // Header, animation/orientation checks and cache bounds remain identical.
+    const decodedBytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)decodedBytes[i]=binary.charCodeAt(i);
+    const result=headerDimensions(decodedBytes,match[1].toLowerCase());dimensionsCache.set(href,result);let bytes=[...dimensionsCache.keys()].reduce((sum,key)=>sum+key.length,0);while(dimensionsCache.size>CACHE_SIZE||bytes>CACHE_BYTES){const first=dimensionsCache.keys().next().value;bytes-=first.length;dimensionsCache.delete(first);}return {...result};
   }
   function decodeSource(image){
     let href,dimensions;try{href=hrefFor(image);if(decoded.has(href))return decoded.get(href);dimensions=dimensionsFromHref(href);}catch(error){return Promise.reject(error);}

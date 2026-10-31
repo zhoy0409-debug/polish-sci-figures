@@ -63,7 +63,7 @@ const StudioTheme = (() => {
       if (!quick || !quick.isConnected) return;
       const width = quick.getBoundingClientRect().width;
       if (!width) return;
-      const previous = quick.dataset.context, oldMinimum = quick.style.minHeight;
+      const previous = quick.dataset.context, previousKind = quick.dataset.selectionKind, oldMinimum = quick.style.minHeight;
       const group = doc.getElementById('contextImageActions');
       const children = group ? [...group.childNodes] : [];
       const focused = group?.contains(doc.activeElement) ? doc.activeElement : null;
@@ -72,15 +72,17 @@ const StudioTheme = (() => {
         quick.style.minHeight = '0px';
         for (const kind of ['text', 'image']) {
           quick.dataset.context = kind;
+          if(doc.body.classList.contains('studio-drawers'))quick.dataset.selectionKind=kind;
           if (group) {
             group.replaceChildren();
-            const labels = kind === 'image' ? [['边框','Borders'],['颜色与显示','Image display'],['图片查重','Duplicates'],['关联放大图','Link detail']] : [['边框','Borders']];
+            const labels = kind === 'image' ? doc.body.classList.contains('studio-drawers') ? [['边框','Borders'],['透视校正','Perspective'],['颜色与显示','Image display']] : [['边框','Borders'],['颜色与显示','Image display'],['图片查重','Duplicates'],['关联放大图','Link detail']] : [['边框','Borders']];
             for (const pair of labels) { const button = doc.createElement('button'); button.type = 'button'; button.textContent = t(...pair); group.append(button); }
           }
           height = Math.max(height, quick.getBoundingClientRect().height);
         }
       } finally {
         if (previous === undefined) delete quick.dataset.context; else quick.dataset.context = previous;
+        if(previousKind===undefined)delete quick.dataset.selectionKind;else quick.dataset.selectionKind=previousKind;
         if (group) group.replaceChildren(...children);
         focused?.focus({preventScroll: true});
         quick.style.minHeight = height > 0 ? `${Math.ceil(height)}px` : oldMinimum;
@@ -116,7 +118,7 @@ const StudioTheme = (() => {
       if (lastKind !== next.kind) {
         lastKind = next.kind;
         const quick = doc.getElementById('canvasQuickToolbar'); if (quick) quick.dataset.context = next.kind;
-        for (const group of groups) { const open = group.id === groupFor[next.kind] && !group.hidden; if (group.open !== open) group.open = open; }
+        if(!doc.body.classList.contains('studio-drawers'))for (const group of groups) { const open = group.id === groupFor[next.kind] && !group.hidden; if (group.open !== open) group.open = open; }
       }
     }
     const syncDocument = () => {

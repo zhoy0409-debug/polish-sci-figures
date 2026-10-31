@@ -1,8 +1,14 @@
 # polish-sci-figures · 产品指南
 
+**Figure Studio 0.2.0 · Suite 1.5.0（2026-11-01）**：Windows 集中升级。安装、中文输入法、工具返回、边框和真实数据坐标轴已完成用户协同验收；详见[本版说明](docs/release-notes-v1.5.0.md#中文)和[实测范围](docs/qa/windows-next-stable/installed-collaborative-20261101.md)。
+
+本版集中完善 Windows 科研编辑工作台。先看[简明介绍](docs/windows-next-stable-summary.zh-CN.md)，再查[操作指南](docs/figure-review.zh-CN.md)和[当前实测范围](docs/qa/windows-next-stable/installed-collaborative-20261101.md)。
+
+本版新增[原生 TIFF 导入、真实画布显示窗预览及大工程后台保存](docs/figure-studio-native-tiff.md)，保留原文件位深与字节，明确区分显示图和定量数据。原生精度与显示导出的边界见该指南。
+
 Windows安装版实操及官方0.1.25→0.1.26编辑器内升级已通过所列检查；[验收记录](docs/qa/photo-correction/windows-0.1.26/README.md)列明数据保护、性能结果和未完成事项。
 
-Figure Studio 0.1.26 增加拍摄照片的一键矫正、标尺拉正和一键校色；先在画布预览，不满意可微调或取消，保留原图并支持一次撤销。首次运行 Setup 安装，以后从受支持的编辑器内更新。[Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe) · [本版说明](docs/release-notes-v1.4.26.md#中文) · [使用入门](desktop/QUICKSTART.zh-CN.md) · [照片操作指南](docs/figure-studio-photo-correction.md)。
+Figure Studio 0.2.0 保留拍摄照片的一键矫正、标尺拉正和一键校色；先在画布预览，不满意可微调或取消，保留原图并支持一次撤销。首次运行 Setup 安装，以后从受支持的编辑器内更新。[Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe) · [本版说明](docs/release-notes-v1.5.0.md#中文) · [使用入门](desktop/QUICKSTART.zh-CN.md) · [照片操作指南](docs/figure-studio-photo-correction.md)。
 
 照片功能、容量与科学适用范围见[照片指南](docs/figure-studio-photo-correction.md)；本轮实际检查与全部性能批次见[验收报告](docs/figure-studio-photo-correction-validation.md)。
 
@@ -20,9 +26,9 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**套件 v1.4.26 · Figure Studio 0.1.26（Windows 桌面版）**
+**套件 v1.5.0 · Figure Studio 0.2.0（Windows 桌面版）**
 
-[v1.4.26 官方下载 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版说明](docs/release-notes-v1.4.26.md#中文)
+[v1.5.0 候选下载 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版说明](docs/release-notes-v1.5.0.md#中文)
 
 ## 选择入口 / Choose your workflow
 
@@ -46,14 +52,14 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 ## 安装即用
 
-1. **首次使用选择 Setup 安装版：** 从 [v1.4.26 官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)下载 [polish-sci-figures-Studio-0.1.26-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.26/polish-sci-figures-Studio-0.1.26-Setup-x64.exe)，直接运行安装，无需解压。
+1. **首次使用选择 Setup 安装版：** 从 [v1.5.0 发布后的发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0)下载 [polish-sci-figures-Studio-0.2.0-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)，直接运行安装，无需解压。
 2. 安装后从桌面或开始菜单打开 **polish-sci-figures Studio** 快捷方式。启动窗口会打开默认浏览器中的编辑器。
 3. 选择 **从模板开始**，浏览真实预览，再将示例数据替换为自己的数据；也可导入现有图片、SVG 或选定的 PDF 页面。受支持的原生文字与矢量路径保留编辑能力；PDF 特效可能需要局部图片图层或整页外观图像。详见[转换边界](docs/release-v1.4.3.md#本版更新)，导出前请检查字体替代效果。
 4. 编辑完成后导出 SVG / PNG / TIFF，并用 **保存** 下载可继续编辑的 JSON 备份。
 
 **后续升级留在编辑器内完成：更新 → 下载并准备更新 → 保存工程并勾选确认 → 安装并重新打开。** 受支持的安装版无需每次手动找包、解压或替换目录。
 
-便携版为 `polish-sci-figures-Studio-0.1.26-Portable-x64.zip`。完整解压后运行 `Figure Studio.exe`，保留旁边的 `_internal` 文件夹。桌面包自带绘图与统计运行环境，可离线使用。数据表支持单元格编辑、直接粘贴 Excel 区域及导入 CSV/TSV；直接导入 XLSX 工作簿请使用“智能选图”（首个工作表）。
+便携版为 `polish-sci-figures-Studio-0.2.0-Portable-x64.zip`。完整解压后运行 `Figure Studio.exe`，保留旁边的 `_internal` 文件夹。桌面包自带绘图与统计运行环境，可离线使用。数据表支持单元格编辑、直接粘贴 Excel 区域及导入 CSV/TSV；直接导入 XLSX 工作簿请使用“智能选图”（首个工作表）。
 
 关闭浏览器不会关闭本机服务；使用结束时关闭启动小窗口。自动保存位于所用浏览器的本地存储中，清理网站数据、切换浏览器或使用隐私窗口可能丢失记录。**重要工程请下载 JSON 备份。** 详见 [中文入门](desktop/QUICKSTART.zh-CN.md)。
 
@@ -65,7 +71,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 选中位图，点击**局部放大**并框选需要展示的细节。生成的放大窗可以移动、缩放，切换 2× / 3× / 4×，并调整边框和连接线。需要准确比例尺时，沿原图已知标尺划线，输入其实际长度（µm）；自动标尺采用常见的 1 / 2 / 5 数值，并根据真实标定计算线长。SVG 保留嵌入的原始像素与可编辑放大窗元素；TIFF 按所选输出分辨率导出。
 
-顶部**更新**入口查询 GitHub 官方版本，不发送图片、表格或工程。Windows 安装版可选择**下载并准备更新**，等待完整性校验，保存工程备份并勾选确认，再选择**安装并重新打开**；安装程序沿用受支持的当前位置，成功后重新打开应用，无需自行解压或替换文件。安装需要用户确认，断网不影响本地工作。**0.1.8 或更早版本需先手动安装一次 0.1.26。** 安装版 0.1.9 已支持应用内更新；若因长文件路径在准备阶段失败，请关闭应用后手动运行当前安装程序。0.1.26 保留了 0.1.10 加入的长路径修复。[版本说明与平台范围](docs/release-notes-v1.4.26.md#中文)。
+顶部**更新**入口查询 GitHub 官方版本，不发送图片、表格或工程。Windows 安装版可选择**下载并准备更新**，等待完整性校验，保存工程备份并勾选确认，再选择**安装并重新打开**；安装程序沿用受支持的当前位置，成功后重新打开应用，无需自行解压或替换文件。安装需要用户确认，断网不影响本地工作。**0.1.8 或更早版本需先手动安装一次已发布的当前版本。** 安装版 0.1.9 已支持应用内更新；若因长文件路径在准备阶段失败，请关闭应用后手动运行当前安装程序。0.2.0 保留了 0.1.10 加入的长路径修复。[版本说明与平台范围](docs/release-notes-v1.5.0.md#中文)。
 
 便携版、源码运行及未识别的自定义副本不会被强制覆盖。需要后续应用内升级时，先保存工程 JSON、退出旧副本，运行一次官方 Setup 并采用默认安装位置，再从桌面或开始菜单的正式快捷方式打开，载入工程备份。若仍不支持，应按具体提示处理，不能绕过安全与安装位置检查；Mac/Android 开发预览仍按各自手动步骤安装。
 
@@ -185,7 +191,7 @@ python sci_figures.py duplicates image-a.png image-b.tif figure.svg --out image-
 | [`standardize-sci-images`](skills/standardize-sci-images/SKILL.md) | 显微 / 病理图像规范化、统一显示设置、权威校准比例尺与处理审计 |
 | [`polish-sci-figures`](skills/polish-sci-figures/SKILL.md) | 精修与组图、Figure Studio、文字与几何检查、最终尺寸质控 |
 
-从 [v1.4.26 官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)下载 `polish-sci-figures-v1.4.26-Source.zip`，解压后进入其中的 `polish-sci-figures-source` 目录；三项技能都在源码内。AI/CLI 路径需要自行安装依赖；Windows 桌面包已包含运行环境。
+从 [v1.5.0 发布后的发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0)下载 `polish-sci-figures-v1.5.0-Source.zip`，解压后进入其中的 `polish-sci-figures-source` 目录；三项技能都在源码内。AI/CLI 路径需要自行安装依赖；Windows 桌面包已包含运行环境。
 
 ```powershell
 python -m pip install -r requirements.txt

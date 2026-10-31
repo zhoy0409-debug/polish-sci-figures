@@ -1,0 +1,27 @@
+'use strict';
+const assert=require('node:assert/strict'),ops=require('../skills/polish-sci-figures/assets/figure-studio/project-operations.js'),core=require('../skills/polish-sci-figures/assets/figure-studio/studio.js');
+const copy=x=>JSON.parse(JSON.stringify(x));
+const panels=Array.from({length:4},(_,i)=>({id:'panel-'+i,name:'ABCD'[i],variants:[{name:'raw',svg:'<svg/>',width:120,height:90,viewBox:[0,0,120,90]}]})),state={order:panels.map(p=>p.id),columns:2,gap:12,panels:Object.fromEntries(panels.map(p=>[p.id,{variant:0,edits:{}}]))};
+const payload={project:{schema:'figure-studio/1',id:'1234567890abcdef1234',title:'Local scientific project',panels,initialState:copy(state)},state:copy(state),history:{sentinel:'untouched'},checkpoints:[{name:'Keep'}],dataDrafts:{'panel-1':[['private',42]]}};
+const host={validValue:core.validValue,validateState:core.validateState,resolveElement:(_id,_vi,key)=>key==='e3'?{text:true,locked:false}:null};
+(async()=>{
+ const inspection=await ops.inspect(payload),patch={schema:ops.SCHEMA,projectId:payload.project.id,base:{'panel-2':inspection.panels[2].revision},operations:[{type:'element.style',panel:'panel-2',variant:0,key:'e3',style:{fill:'#123456'}}]};
+ const before=JSON.stringify(payload),plan=await ops.preflight(payload,patch,host);assert.equal(JSON.stringify(payload),before);assert.equal(plan.next.panels['panel-2'].edits[0].e3.fill,'#123456');for(const id of ['panel-0','panel-1','panel-3'])assert.deepEqual(plan.next.panels[id],payload.state.panels[id]);
+ payload.state.panels['panel-0'].edits={0:{e1:{fill:'#aabbcc'}}};const rebased=await ops.preflight(payload,patch,host);assert.deepEqual(rebased.next.panels['panel-0'],payload.state.panels['panel-0'],'New A edits survive C-only patch');
+ const stale=copy(payload);stale.state.panels['panel-2'].edits={0:{e3:{fill:'#000000'}}};await assert.rejects(ops.preflight(stale,patch,host),/已变化/);
+ const sourceChanged=copy(payload);sourceChanged.project.panels[2].variants[0].svg='<svg><text>Changed</text></svg>';await assert.rejects(ops.preflight(sourceChanged,patch,host),/已变化/);
+ const invalid=copy(patch);invalid.operations.push({...patch.operations[0],key:'e999'});await assert.rejects(ops.preflight(payload,invalid,host),/不存在/);assert.equal(payload.state.panels['panel-2'].edits[0],undefined,'Partial plan must not leak');
+ await assert.rejects(ops.preflight(payload,patch,{...host,resolveElement:()=>({locked:true,text:true})}),/锁定/);
+ for(const operation of [{...patch.operations[0],type:'project.replace'},{...patch.operations[0],style:{text:'fake result'}},{...patch.operations[0],style:{fill:'url(https://example.com)'}}])await assert.rejects(ops.preflight(payload,{...patch,operations:[operation]},host));
+ await assert.rejects(ops.preflight(payload,{...patch,projectId:'other'},host),/身份/);
+ assert.equal(await ops.digest({b:2,a:1}),await ops.digest({a:1,b:2}));
+ assert.equal(await ops.digest({a:1,optional:undefined}),await ops.digest({a:1}),'JSON round trips must retain revision identity');assert.equal(await ops.digest([undefined]),await ops.digest([null]));
+ const resized=copy(payload);resized.state.exportSettings={widthMm:85,dpi:600};await assert.rejects(ops.preflight(resized,patch,host),/已变化/);
+ const derived=copy(payload);derived.project.statisticalRenders={'panel-2/0':{svg:'Updated bound result'}};await assert.rejects(ops.preflight(derived,patch,host),/已变化/);derived.project.statisticalRenders={'panel-0/0':{svg:'Unrelated A result'}};await ops.preflight(derived,patch,host);
+ const h=new core.History(payload.state);h.commit(plan.next);assert.equal(h.states.length,2);assert.deepEqual(h.undo(),payload.state);assert.deepEqual(h.redo(),plan.next);
+ assert(!JSON.stringify(inspection).includes('private'));assert(!JSON.stringify(inspection).includes('svg>'));
+ const bound=copy(payload),p=bound.project.panels[2];p.provenance='upstream-bundle';p.table={rows:[['unit','value'],['synthetic-1',1]]};p.analysis={design:'independent'};p.recipe={design:'independent'};p.variants.push({...copy(p.variants[0]),name:'distribution'});
+ const switchPatch={schema:ops.SCHEMA,projectId:bound.project.id,base:{'panel-2':await ops.revision(bound,'panel-2')},reason:'Compare individual distributions with the same declared independent-group data.',operations:[{type:'panel.candidate',panel:'panel-2',variant:1}]},switched=await ops.preflight(bound,switchPatch,host);assert.equal(switched.requiresScientificReview,true);assert.equal(switched.next.panels['panel-2'].variant,1);assert.deepEqual(switched.next.panels['panel-0'],bound.state.panels['panel-0']);
+ await assert.rejects(ops.preflight(bound,{...switchPatch,reason:undefined},host),/展示重点/);p.recipe.family='gallery';switchPatch.base['panel-2']=await ops.revision(bound,'panel-2');await assert.rejects(ops.preflight(bound,switchPatch,host),/现有工作台/);
+ console.log('PASS scoped C-only edit, concurrent A preservation, conflicts, source identity, locked/missing targets, atomic rollback, private-data omission and one-step undo');
+})().catch(error=>{console.error(error);process.exitCode=1;});

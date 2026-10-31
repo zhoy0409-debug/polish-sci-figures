@@ -2,7 +2,7 @@
 'use strict';
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const file='../skills/polish-sci-figures/assets/figure-studio/studio.js';
-const {History,nudgeSelectionState,editingTextTarget,alignmentSnap}=require(file);
+const {History,nudgeSelectionState,editingTextTarget,historyShortcut,alignmentSnap}=require(file);
 const source=fs.readFileSync(require.resolve(file),'utf8'),copy=x=>JSON.parse(JSON.stringify(x));
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,a+' != '+b);
 const geometry={width:400,height:300,positions:[{id:'p',x:10,y:12,width:180,height:140},{id:'q',x:210,y:12,width:180,height:140}]};
@@ -59,7 +59,7 @@ function harness(){
  const buttons={undo:{disabled:true,click(){if(!this.disabled)this.onclick?.();}},redo:{disabled:true,click(){if(!this.disabled)this.onclick?.();}}};
  const viewport={clientLeft:1,clientTop:1,clientWidth:400,clientHeight:300,getBoundingClientRect:()=>({left:20,top:30}),setAttribute(k,v){this[k]=v;},focus(options){assert.equal(options.preventScroll,true);focuses++;}};
  const preview={draw(s,delta){draws.push({s:copy(s),delta:copy(delta)});},clear(){clears++;}};
- const ctx={copy,nudgeSelectionState,editingTextTarget,history,project:{id:'figure'},original:false,layoutMode:false,dragging:null,overlayPlacement:null,inlineEditor:null,
+ const ctx={copy,nudgeSelectionState,editingTextTarget,historyShortcut,history,project:{id:'figure'},original:false,layoutMode:false,dragging:null,overlayPlacement:null,inlineEditor:null,
   contentSelection:null,selectedAnnotations:['note'],selectedPanelLabel:'q',selectedAlignmentGuide:null,panelSelection:[],selectedEmptyCell:null,
   state:()=>history.current,panel:id=>assets[id],selectionGroups:()=>groups,quickSelectedObjects:()=>objects,currentOutput:()=>({scale}),
   zoomView:{nudgeCanvas:{geometry,capture:()=>preview}},cancelQueuedZoom(){},cancelQuickPreview(){},

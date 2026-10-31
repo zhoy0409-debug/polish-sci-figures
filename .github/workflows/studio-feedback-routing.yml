@@ -1,0 +1,24 @@
+name: Route Figure Studio feedback
+on:
+  issues:
+    types: [opened]
+permissions:
+  issues: write
+jobs:
+  route:
+    if: startsWith(github.event.issue.title, '[Figure Studio 反馈] ')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label feedback and notify the maintainer by assignment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$ISSUE_NUMBER" in ''|*[!0-9]*) exit 1 ;; esac
+          if ! gh api "repos/$GITHUB_REPOSITORY/labels/user-feedback" --silent; then
+            gh api "repos/$GITHUB_REPOSITORY/labels" --method POST -f name=user-feedback -f color=44BFA5 -f description='Figure Studio user feedback' --silent
+          fi
+          gh api "repos/$GITHUB_REPOSITORY/issues/$ISSUE_NUMBER/labels" --method POST -f 'labels[]=user-feedback' --silent
+          gh api "repos/$GITHUB_REPOSITORY/issues/$ISSUE_NUMBER/assignees" --method POST -f 'assignees[]=zhoy0409-debug' --silent

@@ -107,7 +107,7 @@ def open_source(path: Path) -> Image.Image:
     # keeps formats such as TIFF open until the Image object is collected,
     # which can lock raw microscopy files on Windows.
     with Image.open(path) as opened:
-        if opened.mode in {"L", "RGB", "RGBA", "I;16", "I", "F"}:
+        if opened.mode in {"L", "RGB", "RGBA", "I", "F"} or opened.mode.startswith("I;16"):
             image = opened.copy()
         else:
             image = opened.convert("RGB")
@@ -128,7 +128,9 @@ def center_crop(image: Image.Image, width: int, height: int) -> tuple[Image.Imag
 
 
 def apply_display(image: Image.Image, display_min, display_max, gamma: float, lut: str) -> Image.Image:
-    high_bit = image.mode in {"I;16", "I", "F"}
+    # TIFF byte order is not an instruction to reduce scientific bit depth.
+    # Pillow may expose the same unsigned 16-bit samples as I;16, I;16L or I;16B.
+    high_bit = image.mode in {"I", "F"} or image.mode.startswith("I;16")
     if high_bit and (clean_scalar(display_min) is None or clean_scalar(display_max) is None):
         raise ValueError(
             "Higher-bit-depth single-channel images require explicit batch-locked display_min and display_max "

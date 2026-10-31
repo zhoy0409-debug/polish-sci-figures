@@ -36,7 +36,7 @@ For the original editable gallery, run `scripts/gallery_cli.py --list` to inspec
 
 The gallery CLI accepts `--palette NAME`, using the registry's existing palette validation. Its default `zhoy_muted` keeps the gallery's blue/red display colors (`#3f6da3`, `#c95770`); the legacy workbench's palette of the same name has its own established colors. Do not silently recolor existing figures to make these entry points identical.
 
-This skill remains the AI/CLI data entry point in suite v1.4.10. Figure Studio 0.1.10 is the official Windows companion in the [same repository's releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases); it bundles this engine for users who want an installed visual editor without Python or an AI environment. It does not replace this skill or require a fourth skill. Keep all three suite folders together for the original source workflow.
+This skill remains the AI/CLI data entry point in the complete suite. Figure Studio is the official Windows companion in the [same repository's releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases); it bundles this engine for users who want an installed visual editor without Python or an AI environment. It does not replace this skill or require a fourth skill. Keep all three suite folders together for the original source workflow.
 
 ## Minimum intake
 
@@ -184,3 +184,7 @@ Read `references/professional_basis.md` for the reporting, experimental-unit, *P
 ## Acceptance gate
 
 Do not deliver if the experimental unit/design is unresolved, a required group is missing, a family-specific uniqueness/positivity check fails, specialist inference has been substituted with a descriptive shortcut, statistics are presented as confirmatory without declared scope, raw observations are hidden unnecessarily, candidate canvases differ, palette switching changes semantics, final-size text is small or ragged, or any title/number/overlap appears in the artwork.
+
+## Resume an edited Studio project
+
+Use the polish skill's [scoped project operation protocol](../polish-sci-figures/references/project_operations.md). Inspect actual capabilities and target revisions first. Existing data-bound candidates may change display emphasis after scientific review; new statistical models still use the established workbench and confirmed experimental-unit contract. Preserve all unrelated human edits, raw data and analysis records. Never overwrite a whole saved project to change one panel.

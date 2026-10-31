@@ -17,6 +17,11 @@ def main():
         with zipfile.ZipFile(archive) as handle:
             names=set(handle.namelist())
             for name in (*ROOT_FILES, *SUPPORT_FILES): assert name in names,name
+            assert 'docs/figure-studio-western-blot.zh-CN.md' in names, 'The WB workflow guide must be available offline'
+            assert 'docs/figure-studio-native-tiff.md' in names, 'The native TIFF workflow must be available offline'
+            assert 'docs/figure-studio-workspace-and-feedback.md' in names, 'The canonical workspace and feedback/accounting guide must be available offline'
+            for asset in ('drawer-workspace.js', 'drawer-workspace.css', 'studio-support.js', 'download-metrics-ledger.json'):
+                assert f'skills/polish-sci-figures/assets/figure-studio/{asset}' in names, asset
             for skill in SKILL_NAMES: assert f"skills/{skill}/SKILL.md" in names,skill
             for asset in ("studio.html", "studio.css", "studio.js", "i18n.js", "memory.js", "discovery.js", "library.js", "catalogue.js", "catalogue-previews.json", "gallery-contracts.js", "template-starters.json", "rich-text.js", "rich-text.css", "workspace-layout.js", "workspace-layout.css", "group-spacing.js", "tiff-export.js", "compact-whitespace.js", "mark-style.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
@@ -27,6 +32,8 @@ def main():
             for asset in ("selection-transform.js", "selection-transform-dom.js", "selection-resize-controller.js", "canvas-clipboard.js", "element-insertions.js", "grid-resize-ui.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             for asset in ("image-rectify.js", "image-rectify-detect.js", "image-straighten.js", "image-rectify-ui.js", "image-rectify.css"):
+                assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
+            for asset in ("western-blot.js", "wb-detect.js", "wb-workspace.js", "wb-workspace.css", "wb-pptx.js"):
                 assert f"skills/polish-sci-figures/assets/figure-studio/{asset}" in names, asset
             for module in ("gallery_registry", "gallery_workbench", "gallery_compare", "gallery_time_composition",
                            "gallery_clinical", "gallery_omics_special", "gallery_misc", "gallery_model_extras",

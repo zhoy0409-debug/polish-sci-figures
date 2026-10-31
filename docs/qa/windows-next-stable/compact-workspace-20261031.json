@@ -1,0 +1,771 @@
+{
+  "author": "a",
+  "date": "2026-10-31",
+  "baselineCommit": "066bb623b7a5fa1ada3f5b3750ad96e5150f578c",
+  "sourceUiSha256": {
+    "mobile-ui.js": "7c1349430b964ae2050f4a79079cfb5fc1e6aecd42384b14caaac16e64391f69",
+    "drawer-workspace.js": "3ed1751e462e623c77bba672498666e521289a5fa20c0f961dc45b6f648a023b",
+    "drawer-workspace.css": "0afe8766f3bbbce32aa515c36d388064dce06aecfb814886d3c3da47b3fe7914"
+  },
+  "compact": {
+    "author": "a",
+    "date": "2026-10-31",
+    "scope": "Isolated source Chrome; CSS viewport and emulated DPR only, not OS scale, native window, installed editing, IME or user discoverability timing.",
+    "cases": [
+      {
+        "theme": "carbon",
+        "emulatedDpr": 1,
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "checks": [
+          {
+            "query": "行距",
+            "id": "fonts",
+            "target": "#para-line-height"
+          },
+          {
+            "query": "字体",
+            "id": "fonts",
+            "target": "#font"
+          },
+          {
+            "query": "边框",
+            "id": "border"
+          },
+          {
+            "query": "text spacing",
+            "id": "fonts",
+            "target": "#para-line-height"
+          }
+        ],
+        "issues": [],
+        "geometry": {
+          "innerWidth": 1280,
+          "innerHeight": 720,
+          "bodyScrollWidth": 1280,
+          "rootScrollWidth": 1280,
+          "elements": [
+            {
+              "id": "commandSearch",
+              "left": 1108.5,
+              "top": 6.5,
+              "right": 1214,
+              "bottom": 42.5,
+              "width": 105.5,
+              "height": 36,
+              "clientWidth": 104,
+              "scrollWidth": 104
+            },
+            {
+              "id": "drawerTools",
+              "left": 965,
+              "top": 99,
+              "right": 1000,
+              "bottom": 143,
+              "width": 35,
+              "height": 44,
+              "clientWidth": 33,
+              "scrollWidth": 33
+            },
+            {
+              "id": "drawerCloseTools",
+              "left": 1236,
+              "top": 99,
+              "right": 1268,
+              "bottom": 125,
+              "width": 32,
+              "height": 26,
+              "clientWidth": 32,
+              "scrollWidth": 32
+            },
+            {
+              "id": "font",
+              "left": 1017,
+              "top": 335.796875,
+              "right": 1268,
+              "bottom": 371.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "fontSize",
+              "left": 1017,
+              "top": 407.796875,
+              "right": 1268,
+              "bottom": 443.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "viewport",
+              "left": 52,
+              "top": 132,
+              "right": 954,
+              "bottom": 678,
+              "width": 902,
+              "height": 546,
+              "clientWidth": 902,
+              "scrollWidth": 902
+            }
+          ]
+        },
+        "english": {
+          "width": 1280,
+          "body": 1280,
+          "root": 1280
+        },
+        "passed": true
+      },
+      {
+        "theme": "pearl",
+        "emulatedDpr": 1,
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "checks": [
+          {
+            "query": "行距",
+            "id": "fonts",
+            "target": "#para-line-height"
+          },
+          {
+            "query": "字体",
+            "id": "fonts",
+            "target": "#font"
+          },
+          {
+            "query": "边框",
+            "id": "border"
+          },
+          {
+            "query": "text spacing",
+            "id": "fonts",
+            "target": "#para-line-height"
+          }
+        ],
+        "issues": [],
+        "geometry": {
+          "innerWidth": 1280,
+          "innerHeight": 720,
+          "bodyScrollWidth": 1280,
+          "rootScrollWidth": 1280,
+          "elements": [
+            {
+              "id": "commandSearch",
+              "left": 1108.5,
+              "top": 6.5,
+              "right": 1214,
+              "bottom": 42.5,
+              "width": 105.5,
+              "height": 36,
+              "clientWidth": 104,
+              "scrollWidth": 104
+            },
+            {
+              "id": "drawerTools",
+              "left": 965,
+              "top": 99,
+              "right": 1000,
+              "bottom": 143,
+              "width": 35,
+              "height": 44,
+              "clientWidth": 33,
+              "scrollWidth": 33
+            },
+            {
+              "id": "drawerCloseTools",
+              "left": 1236,
+              "top": 99,
+              "right": 1268,
+              "bottom": 125,
+              "width": 32,
+              "height": 26,
+              "clientWidth": 32,
+              "scrollWidth": 32
+            },
+            {
+              "id": "font",
+              "left": 1017,
+              "top": 335.796875,
+              "right": 1268,
+              "bottom": 371.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "fontSize",
+              "left": 1017,
+              "top": 407.796875,
+              "right": 1268,
+              "bottom": 443.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "viewport",
+              "left": 52,
+              "top": 132,
+              "right": 954,
+              "bottom": 678,
+              "width": 902,
+              "height": 546,
+              "clientWidth": 902,
+              "scrollWidth": 902
+            }
+          ]
+        },
+        "english": {
+          "width": 1280,
+          "body": 1280,
+          "root": 1280
+        },
+        "passed": true
+      },
+      {
+        "theme": "carbon",
+        "emulatedDpr": 1.25,
+        "viewport": {
+          "width": 1024,
+          "height": 576
+        },
+        "checks": [
+          {
+            "query": "行距",
+            "id": "fonts",
+            "target": "#para-line-height"
+          },
+          {
+            "query": "字体",
+            "id": "fonts",
+            "target": "#font"
+          },
+          {
+            "query": "边框",
+            "id": "border"
+          },
+          {
+            "query": "text spacing",
+            "id": "fonts",
+            "target": "#para-line-height"
+          }
+        ],
+        "issues": [],
+        "geometry": {
+          "innerWidth": 1024,
+          "innerHeight": 576,
+          "bodyScrollWidth": 1024,
+          "rootScrollWidth": 1024,
+          "elements": [
+            {
+              "id": "commandSearch",
+              "left": 852.5,
+              "top": 46,
+              "right": 958,
+              "bottom": 82,
+              "width": 105.5,
+              "height": 36,
+              "clientWidth": 104,
+              "scrollWidth": 104
+            },
+            {
+              "id": "drawerTools",
+              "left": 709,
+              "top": 138,
+              "right": 744,
+              "bottom": 182,
+              "width": 35,
+              "height": 44,
+              "clientWidth": 33,
+              "scrollWidth": 33
+            },
+            {
+              "id": "drawerCloseTools",
+              "left": 980,
+              "top": 138,
+              "right": 1012,
+              "bottom": 164,
+              "width": 32,
+              "height": 26,
+              "clientWidth": 32,
+              "scrollWidth": 32
+            },
+            {
+              "id": "font",
+              "left": 761,
+              "top": 287.796875,
+              "right": 1012,
+              "bottom": 323.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "fontSize",
+              "left": 761,
+              "top": 359.796875,
+              "right": 1012,
+              "bottom": 395.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "viewport",
+              "left": 52,
+              "top": 209,
+              "right": 698,
+              "bottom": 534,
+              "width": 646,
+              "height": 325,
+              "clientWidth": 646,
+              "scrollWidth": 646
+            }
+          ]
+        },
+        "english": {
+          "width": 1024,
+          "body": 1024,
+          "root": 1024
+        },
+        "passed": true
+      },
+      {
+        "theme": "pearl",
+        "emulatedDpr": 1.25,
+        "viewport": {
+          "width": 1024,
+          "height": 576
+        },
+        "checks": [
+          {
+            "query": "行距",
+            "id": "fonts",
+            "target": "#para-line-height"
+          },
+          {
+            "query": "字体",
+            "id": "fonts",
+            "target": "#font"
+          },
+          {
+            "query": "边框",
+            "id": "border"
+          },
+          {
+            "query": "text spacing",
+            "id": "fonts",
+            "target": "#para-line-height"
+          }
+        ],
+        "issues": [],
+        "geometry": {
+          "innerWidth": 1024,
+          "innerHeight": 576,
+          "bodyScrollWidth": 1024,
+          "rootScrollWidth": 1024,
+          "elements": [
+            {
+              "id": "commandSearch",
+              "left": 852.5,
+              "top": 46,
+              "right": 958,
+              "bottom": 82,
+              "width": 105.5,
+              "height": 36,
+              "clientWidth": 104,
+              "scrollWidth": 104
+            },
+            {
+              "id": "drawerTools",
+              "left": 709,
+              "top": 138,
+              "right": 744,
+              "bottom": 182,
+              "width": 35,
+              "height": 44,
+              "clientWidth": 33,
+              "scrollWidth": 33
+            },
+            {
+              "id": "drawerCloseTools",
+              "left": 980,
+              "top": 138,
+              "right": 1012,
+              "bottom": 164,
+              "width": 32,
+              "height": 26,
+              "clientWidth": 32,
+              "scrollWidth": 32
+            },
+            {
+              "id": "font",
+              "left": 761,
+              "top": 287.796875,
+              "right": 1012,
+              "bottom": 323.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "fontSize",
+              "left": 761,
+              "top": 359.796875,
+              "right": 1012,
+              "bottom": 395.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "viewport",
+              "left": 52,
+              "top": 209,
+              "right": 698,
+              "bottom": 534,
+              "width": 646,
+              "height": 325,
+              "clientWidth": 646,
+              "scrollWidth": 646
+            }
+          ]
+        },
+        "english": {
+          "width": 1024,
+          "body": 1024,
+          "root": 1024
+        },
+        "passed": true
+      },
+      {
+        "theme": "carbon",
+        "emulatedDpr": 1.5,
+        "viewport": {
+          "width": 853,
+          "height": 480
+        },
+        "checks": [
+          {
+            "query": "行距",
+            "id": "fonts",
+            "target": "#para-line-height"
+          },
+          {
+            "query": "字体",
+            "id": "fonts",
+            "target": "#font"
+          },
+          {
+            "query": "边框",
+            "id": "border"
+          },
+          {
+            "query": "text spacing",
+            "id": "fonts",
+            "target": "#para-line-height"
+          }
+        ],
+        "issues": [],
+        "geometry": {
+          "innerWidth": 853,
+          "innerHeight": 480,
+          "bodyScrollWidth": 853,
+          "rootScrollWidth": 853,
+          "elements": [
+            {
+              "id": "commandSearch",
+              "left": 681.5,
+              "top": 46,
+              "right": 787,
+              "bottom": 82,
+              "width": 105.5,
+              "height": 36,
+              "clientWidth": 104,
+              "scrollWidth": 104
+            },
+            {
+              "id": "drawerTools",
+              "left": 538,
+              "top": 138,
+              "right": 573,
+              "bottom": 182,
+              "width": 35,
+              "height": 44,
+              "clientWidth": 33,
+              "scrollWidth": 33
+            },
+            {
+              "id": "drawerCloseTools",
+              "left": 809,
+              "top": 138,
+              "right": 841,
+              "bottom": 164,
+              "width": 32,
+              "height": 26,
+              "clientWidth": 32,
+              "scrollWidth": 32
+            },
+            {
+              "id": "font",
+              "left": 590,
+              "top": 205.796875,
+              "right": 841,
+              "bottom": 241.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "fontSize",
+              "left": 590,
+              "top": 277.796875,
+              "right": 841,
+              "bottom": 313.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "viewport",
+              "left": 52,
+              "top": 243,
+              "right": 527,
+              "bottom": 438,
+              "width": 475,
+              "height": 195,
+              "clientWidth": 475,
+              "scrollWidth": 475
+            }
+          ]
+        },
+        "english": {
+          "width": 853,
+          "body": 853,
+          "root": 853
+        },
+        "passed": true
+      },
+      {
+        "theme": "pearl",
+        "emulatedDpr": 1.5,
+        "viewport": {
+          "width": 853,
+          "height": 480
+        },
+        "checks": [
+          {
+            "query": "行距",
+            "id": "fonts",
+            "target": "#para-line-height"
+          },
+          {
+            "query": "字体",
+            "id": "fonts",
+            "target": "#font"
+          },
+          {
+            "query": "边框",
+            "id": "border"
+          },
+          {
+            "query": "text spacing",
+            "id": "fonts",
+            "target": "#para-line-height"
+          }
+        ],
+        "issues": [],
+        "geometry": {
+          "innerWidth": 853,
+          "innerHeight": 480,
+          "bodyScrollWidth": 853,
+          "rootScrollWidth": 853,
+          "elements": [
+            {
+              "id": "commandSearch",
+              "left": 681.5,
+              "top": 46,
+              "right": 787,
+              "bottom": 82,
+              "width": 105.5,
+              "height": 36,
+              "clientWidth": 104,
+              "scrollWidth": 104
+            },
+            {
+              "id": "drawerTools",
+              "left": 538,
+              "top": 138,
+              "right": 573,
+              "bottom": 182,
+              "width": 35,
+              "height": 44,
+              "clientWidth": 33,
+              "scrollWidth": 33
+            },
+            {
+              "id": "drawerCloseTools",
+              "left": 809,
+              "top": 138,
+              "right": 841,
+              "bottom": 164,
+              "width": 32,
+              "height": 26,
+              "clientWidth": 32,
+              "scrollWidth": 32
+            },
+            {
+              "id": "font",
+              "left": 590,
+              "top": 205.796875,
+              "right": 841,
+              "bottom": 241.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "fontSize",
+              "left": 590,
+              "top": 277.796875,
+              "right": 841,
+              "bottom": 313.796875,
+              "width": 251,
+              "height": 36,
+              "clientWidth": 249,
+              "scrollWidth": 249
+            },
+            {
+              "id": "viewport",
+              "left": 52,
+              "top": 243,
+              "right": 527,
+              "bottom": 438,
+              "width": 475,
+              "height": 195,
+              "clientWidth": 475,
+              "scrollWidth": 475
+            }
+          ]
+        },
+        "english": {
+          "width": 853,
+          "body": 853,
+          "root": 853
+        },
+        "passed": true
+      },
+      {
+        "viewport": {
+          "width": 750,
+          "height": 650
+        },
+        "emulatedTouch": false,
+        "mode": {
+          "drawers": false,
+          "touch": true,
+          "coarse": false
+        },
+        "passed": true
+      },
+      {
+        "viewport": {
+          "width": 751,
+          "height": 650
+        },
+        "emulatedTouch": false,
+        "mode": {
+          "drawers": true,
+          "touch": false,
+          "coarse": false
+        },
+        "passed": true
+      },
+      {
+        "viewport": {
+          "width": 1024,
+          "height": 650
+        },
+        "emulatedTouch": true,
+        "mode": {
+          "drawers": false,
+          "touch": true,
+          "coarse": true
+        },
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "remote": [],
+    "browser": "156.0.8078.76",
+    "passed": true
+  },
+  "productionChecks": [
+    {
+      "script": "test_project_codec_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_scientific_tiff_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_scientific_tiff_derivative_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_submission_profiles_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_history_shortcuts_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_drawer_workspace_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_drawer_compact_browser.cjs",
+      "exitCode": 0
+    },
+    {
+      "script": "test_studio_support_browser.cjs",
+      "exitCode": 0
+    }
+  ],
+  "failuresRetained": [
+    "Initial missing NODE_PATH; no browser started.",
+    "layout-r1 sandbox network access denied; layout-r2 cross-session timeout; no editor interaction.",
+    "layout-r3 exposes desktop/touch overlap, with one not-yet-visible first selection and immediate focus assertions retained.",
+    "layout-r4 exposes page horizontal overflow; ordinary scrolled Back is not required to stay fixed and was excluded from fixed-control assertions.",
+    "production-r1 submission export download timed out under globally applied scroll padding; scope narrowed to fonts, without changing download assertions.",
+    "focused-r1 uses a nonexistent header test name and a dangling theme output junction. Correct existing theme test passed with a fresh explicit output directory.",
+    "Attempted preview refresh refused overwrite. Old-page compact run is non-final; compact-current-r1 uses a fresh current-source page."
+  ],
+  "installerReadability": "FAIL_USER_REPORTED_UNRESOLVED",
+  "installedUiAcceptance": false,
+  "realWindowsScaleAcceptance": false,
+  "nativeIMEAcceptance": false,
+  "native5000TimingAcceptance": false,
+  "genuineInAppUpgradeAcceptance": false,
+  "actualFailureRecoveryAcceptance": false,
+  "publicationAuthorized": false
+}

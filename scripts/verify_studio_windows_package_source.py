@@ -91,12 +91,12 @@ def approved_ui_freeze(freeze_bytes, expected_freeze_sha256, expected_ui_assets)
 
 
 def backend_package_boundary(frozen_backend, compiled_by_source, release_included):
-    """Distinguish the 27-source freeze from the 23-module release boundary."""
-    require(len(frozen_backend) == 27, 'The source freeze must contain 27 backend sources')
+    """Distinguish the 28-source freeze from the 24-module release boundary."""
+    require(len(frozen_backend) == 28, 'The source freeze must contain 28 backend sources')
     tests = {name for name in frozen_backend if name.startswith('test_')}
     require(tests == NOT_PACKAGED_BACKEND_TESTS, 'Unexpected non-packaged backend test-source boundary')
     production = set(frozen_backend) - tests
-    require(len(production) == 23, 'Expected 23 production backend sources')
+    require(len(production) == 24, 'Expected 24 production backend sources')
     files, not_packaged = [], []
     for name, expected_sha in sorted(frozen_backend.items()):
         relative = BACKEND_PREFIX + name
@@ -111,7 +111,7 @@ def backend_package_boundary(frozen_backend, compiled_by_source, release_include
                     'A declared non-packaged test backend source was unexpectedly packaged: ' + name)
             not_packaged.append({'file': name, 'sha256': expected_sha})
             files.append({'file': name, 'sha256': expected_sha, 'packaged': False, 'compiledCodeObjectVerified': False})
-    return {'status': 'PASS', 'count': 27, 'packagedProductionCount': 23,
+    return {'status': 'PASS', 'count': 28, 'packagedProductionCount': 24,
             'allPackagedProductionCodeObjectsVerified': True, 'notPackagedTests': not_packaged,
             'notPackagedTestReason': 'The release builder excludes these four test_*.py sources. Their current source hashes are checked against the freeze, but no packaged code-object claim is made for them.',
             'files': files}
@@ -127,7 +127,7 @@ def verify(package, freeze_path, preflight_path, expected_doc_snapshots=(), *, s
     app = package / 'Figure Studio'
     suite = app / '_internal' / 'suite'
     frozen_backend = freeze['backend']
-    require(len(frozen_backend) == 27, 'The source freeze must contain 27 backend modules')
+    require(len(frozen_backend) == 28, 'The source freeze must contain 28 backend modules')
     backend_root = ROOT / 'skills/polish-sci-figures/scripts'
     for name, expected_sha in sorted(frozen_backend.items()):
         require(Path(name).name == name and name.endswith('.py'), 'Invalid backend relative name')
@@ -206,7 +206,10 @@ def verify(package, freeze_path, preflight_path, expected_doc_snapshots=(), *, s
         require((suite / relative).read_bytes() == (ROOT / relative).read_bytes(), 'Desktop resource differs: ' + relative)
     for name in ('QUICKSTART.en.md', 'QUICKSTART.zh-CN.md'):
         allow.add(name)
-        require((suite / name).read_bytes() == (ROOT / 'desktop' / name).read_bytes(), 'Root quickstart differs: ' + name)
+        expected = build_release.archive_bytes(ROOT / 'desktop' / name, included, build_release.VERSION).decode('utf-8').replace('](../', '](')
+        require((suite / name).read_text(encoding='utf-8') == expected, 'Root quickstart differs: ' + name)
+        application_guide = re.sub(r'\]\((?!https?:|mailto:|#|/)([^)\s]+)\)', r'](_internal/suite/\1)', expected)
+        require((app / name).read_text(encoding='utf-8') == application_guide, 'Application quickstart differs: ' + name)
     generated = {'build-info.json', 'THIRD-PARTY-NOTICES.txt'}
     unexpected = [path.relative_to(suite).as_posix() for path in suite.rglob('*') if path.is_file() and path.relative_to(suite).as_posix() not in allow | generated and not path.relative_to(suite).as_posix().startswith('THIRD-PARTY-LICENSES/')]
     require(not unexpected, 'Unexpected suite file outside release allowlist: ' + ', '.join(unexpected))

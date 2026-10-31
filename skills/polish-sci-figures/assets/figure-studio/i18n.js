@@ -15,6 +15,7 @@ const StudioI18n = (() => {
 "已更新文字对齐":"Text alignment updated",
 "已更新段落格式":"Paragraph formatting updated",
 "已取消预览，原图保持不变。":"Preview cancelled; the original figure is unchanged.",
+"已取消预览，保留当前编辑。":"Preview cancelled; current edits are retained.",
 "正在预览，尚未应用…":"Preparing preview; not applied…",
 "预览尚未应用；点击图纸或按 Esc 取消。":"Preview is not applied. Click the canvas or press Esc to cancel.",
 "正在用当前数据准备画布预览…":"Preparing the canvas with current data…",
@@ -184,6 +185,10 @@ const StudioI18n = (() => {
 "松开以导入；现有小图不会被覆盖":"Drop to import. Existing panels will be preserved.",
 "每次只能打开一个工程；图片和数据表可以批量导入":"Open one project at a time. Images and data tables can be imported together.",
 "支持工程 JSON、PDF、SVG、PNG、JPEG、WebP、CSV 或 TSV":"Supported: project JSON, PDF, SVG, PNG, JPEG, WebP, CSV or TSV",
+"支持工程 JSON、PDF、SVG、PNG、JPEG、WebP、TIFF、CSV 或 TSV":"Supported: project JSON, PDF, SVG, PNG, JPEG, WebP, TIFF, CSV or TSV",
+"校正前显示图（保留原生 TIFF）":"Display before correction (native TIFF retained)",
+" 当前为显示图的裁剪／校正衍生版本；未继承标定。":" This is a crop/correction of the display image; calibration was not inherited.",
+"当前版本无法核实原生 TIFF 源文件，请更新编辑器。":"This editor cannot verify native TIFF sources. Use a current editor version.",
 "松开打开工程；确认后替换整个工作区":"Drop to open this project. The workspace is replaced only after confirmation.",
 "松开导入数据表；确认目标图形后应用":"Drop to import data. Choose a destination chart before applying.",
 "保留现有小图；导入第 {0} 行、第 {1} 列":"Existing panel kept. Import into row {0}, column {1}.",
@@ -601,6 +606,8 @@ const StudioI18n = (() => {
     '已更新行列母版':'Grid updated','已应用跨格':'Span applied','间距应为 0–100 pt。':'Gutter must be 0–100 pt.','已修改间距':'Gutter changed','已调整面板顺序':'Panel order changed',
     '请输入版本名称。':'Enter a version name.','已保存 20 个命名版本，请另存工程后继续整理。':'20 named versions are already saved. Download the project before continuing.',
     '已保存命名版本「{0}」':'Saved version “{0}”',
+    '已下载点击保存时的工程；之后的修改尚未下载。':'Downloaded the project as it was when Save was clicked. Later edits have not been downloaded.',
+    '已下载原工程；当前工程未标记为已保存。':'Downloaded the previous project. The current project has not been marked as saved.',
     '已下载工程；包含原图、当前修改和命名版本。':'Project downloaded with source artwork, current edits and named versions.',
     '工程超过 100 MB':'Project exceeds 100 MB','工程超过 200 MB，请拆分工程后保存。':'Project exceeds 200 MB. Split it into smaller projects before saving.','查重复核记录无效':'Invalid image review record','命名版本无效':'Invalid named versions','版本名称无效':'Invalid version name',
     '打开工程将替换当前工作区。若当前修改尚未下载，请先取消并保存工程。':'Opening a project replaces the current workspace. If your edits have not been downloaded, cancel and save the project first.',
@@ -815,7 +822,7 @@ const StudioI18n = (() => {
   });
   en['图形已更新，请关闭后重新打开导出预览']='The figure changed. Close and reopen the export preview.';
   Object.assign(en,{
-    '工程操作':'Project actions','撤销':'Undo','重做':'Redo','撤销 · Ctrl / Cmd + Z':'Undo · Ctrl / Cmd + Z','重做 · Ctrl / Cmd + Shift + Z':'Redo · Ctrl / Cmd + Shift + Z',
+    '工程操作':'Project actions','撤销':'Undo','重做':'Redo','撤销 · Ctrl / Cmd + Z':'Undo · Ctrl / Cmd + Z','重做 · Ctrl / Cmd + Shift + Z':'Redo · Ctrl / Cmd + Shift + Z','重做 · Ctrl + Y 或 Ctrl / Cmd + Shift + Z':'Redo · Ctrl + Y or Ctrl / Cmd + Shift + Z',
     '对照原图':'Compare','返回编辑':'Back to edits','对照原始外观；不改变当前编辑':'Compare the original appearance without changing your edits',
     '项目':'Project','保存':'Save','导出':'Export','可编辑矢量':'Editable vector','无损图像':'Lossless image','投稿级图像':'Publication image',
     '恢复此工程的初始版本；可撤销':'Restore this project’s initial version; this action can be undone',
@@ -907,6 +914,48 @@ const StudioI18n = (() => {
     '图片透视校正':'Image perspective correction',
     '透视校正预览尚未应用；可在侧栏保留或取消。':'Perspective preview is not applied. Keep or cancel it in the inspector.',
     '完整分辨率校正尚未完成。':'Full-resolution correction has not completed.'
+  });
+  Object.assign(en,{
+    '正在生成当前图预览…':'Preparing preview from the current figure…',
+    '预览暂不可用；可在画布核对配色':'Preview unavailable; check the palette on the canvas',
+    '图形质检':'Review',
+    '已保留原生 TIFF：':'Native TIFF retained: ',
+    '第 ':'page ',
+    ' 页':'',
+    '。显示 PNG 不作为原生定量数据。':'. Display PNG is not the quantitative source.',
+    '下载原始 TIFF':'Download original TIFF',
+    '从原始 TIFF 新建显示':'New display from original TIFF',
+    '重新读取保留的原生平面，在独立显示中微调；保留现有图片和编辑。需要 Windows 本机服务。':'Adjust the retained native plane in a separate display. Existing images and edits are preserved. Requires the local Windows engine.',
+    '当前版本尚未提供原生 TIFF 导入。':'Native TIFF import is unavailable in this version.',
+    '已导入原生 TIFF 显示图；原文件保留，可撤销':'Native TIFF display imported; original retained, undo available',
+    '原生 TIFF 仅在当前本机服务处理，不会发送到外部站点。':'Native TIFF is processed only by this local loopback service; it is never sent to an external site.',
+    '最终尺寸检查、排版与本地 Skill 协作':'Final-size review, layout and local Skill collaboration',
+    '有未完成的数据或坐标轴计算，请完成后再检查。':'Finish pending data or axis calculations before review.',
+    '工程在预检期间发生变化，请重试。':'The project changed during preflight. Try again.',
+    '规划小图与工程不匹配':'Planned panels do not match the project',
+    '排版涉及已锁定内容，请使用现有母版控件逐项调整或先解锁。':'Layout affects locked content. Use the existing master controls or unlock it first.',
+    '当前母版已裁切，请先在母版控件恢复完整边界再预览新排版。':'Restore the full cropped master before previewing a new layout.',
+    '已应用质检预览修改':'Review edits applied',
+    '已应用投稿配置':'Submission profile applied',
+    '请先保留或取消当前预览，再检查已保存的图形。':'Keep or cancel the current preview before reviewing the committed figure.',
+    '目标小图已变化；请重新导出检查清单，避免覆盖人工修改。':'The target panel changed. Export a new inspection to preserve manual edits.',
+    '目标元素不存在或已锁定':'The target element is missing or locked',
+    '目标小图已锁定或不存在':'The target panel is locked or missing',
+    '操作协议或工程身份不匹配':'Operation schema or project identity does not match',
+    '样式值无效':'Invalid style value',
+    '操作包含不支持的字段':'Operation contains unsupported fields',
+    '候选须来自同一已绑定数据包、相同画布；重算图型请使用现有工作台。':'Candidates must share the bound data bundle and canvas. Use the existing workbench for redraws.',
+    '请先完成数据更新或解除目标小图内的锁定，再切换候选。':'Finish data updates or resolve content locks before switching candidates.',
+    '候选切换须说明科学适用性和展示重点；不能只按显著性选择。':'Explain candidate suitability and display purpose; do not select solely by significance.',
+    '请先导出当前工程检查清单并逐项确认已有结果。':'Inspect the current project and confirm each existing result first.'
+  });
+  Object.assign(en,{
+    'WB 显示调整请对同一源图整体应用。':'Apply WB display adjustments consistently to the whole source.',
+    'WB 来源记录与基础图形不匹配':'WB source records do not match the base artwork',
+    'WB 原生 TIFF 来源缺失或不匹配':'The original WB TIFF source is missing or inconsistent',
+    'WB 条带不能单独调整显示；请使用 WB 工作流的全源图显示设置。':'WB fragments cannot be adjusted individually. Use whole-source display settings in the WB workspace.',
+    'WB 组图预览':'WB composition preview',
+    'WB 组图已保留；可撤销':'WB composition kept; undo is available'
   });
   function t(text,...values){let result=language==='en'?(en[text]??text):text;return result.replace(/\{(\d+)\}/g,(_,n)=>String(values[+n]??''));}
   return {t,choose,setLanguage,panelName,projectTitle,validateDisplayNames,preserveDisplayNames,restoreDisplayNames,get language(){return language;},en};

@@ -423,15 +423,15 @@ def qa(args):
             elif suffix==".pdf": items += pdf_qa(path)
             elif suffix==".svg":
                 for label, script in (("SVG canvas","check_svg_canvas.py"),("SVG editability","check_svg_editability.py")):
-                    check=subprocess.run([sys.executable,str(POLISH/"scripts"/script),str(path)],cwd=ROOT,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+                    check=subprocess.run([sys.executable,'-X','utf8',str(POLISH/"scripts"/script),str(path)],cwd=ROOT,text=True,encoding='utf-8',stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
                     items.append(finding("PASS" if check.returncode==0 else "FAIL",script.replace(".py","").upper(),label,check.stdout.strip(),path=str(path)))
-                cmd=[sys.executable,str(POLISH/"scripts"/"figure_accessibility_qa.py"),str(path),"--json"]+(["--font",args.font] if args.font else [])
-                p=subprocess.run(cmd,cwd=ROOT,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+                cmd=[sys.executable,'-X','utf8',str(POLISH/"scripts"/"figure_accessibility_qa.py"),str(path),"--json"]+(["--font",args.font] if args.font else [])
+                p=subprocess.run(cmd,cwd=ROOT,text=True,encoding='utf-8',stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
                 try: items += json.loads(p.stdout)["results"]
                 except Exception: items.append(finding("FAIL","SVG_QA_ERROR","SVG QA",p.stdout.strip(),path=str(path)))
             elif suffix in {".py",".r",".txt",".ps1",".sh"}:
-                cmd=[sys.executable,str(POLISH/"scripts"/"check_source_portability.py")]+(["--strict"] if args.strict_sources else [])+[str(path),"--json"]
-                p=subprocess.run(cmd,cwd=ROOT,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+                cmd=[sys.executable,'-X','utf8',str(POLISH/"scripts"/"check_source_portability.py")]+(["--strict"] if args.strict_sources else [])+[str(path),"--json"]
+                p=subprocess.run(cmd,cwd=ROOT,text=True,encoding='utf-8',stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
                 items.append(finding("PASS" if p.returncode==0 else "FAIL","SOURCE_PORTABILITY","Source portability",p.stdout.strip(),path=str(path)))
             else: items.append(finding("FAIL","UNSUPPORTED_QA_TYPE","QA input",f"Unsupported suffix {suffix!r}",path=str(path)))
         except Exception as exc: items.append(finding("FAIL","FILE_READ_ERROR","QA input",str(exc),path=str(path)))
@@ -460,6 +460,21 @@ def parser():
         from duplicate_files import run_cli
         return run_cli(args)
     p.set_defaults(func=image_duplicates)
+    p=sub.add_parser('project-ops',help='Inspect a local Studio project or apply revision-checked operations to a new file (Node.js 18+)')
+    p.add_argument('operation',choices=['inspect','apply','plan']);p.add_argument('project');p.add_argument('--patch');p.add_argument('--assignments');p.add_argument('--out');p.add_argument('--confirm-scientific-change',action='store_true')
+    def project_operations(args):
+        node=shutil.which('node')
+        if not node:raise ValueError('Project operations CLI requires Node.js 18+; use Figure Studio for browser-only preflight.')
+        command=[node,str(POLISH/'scripts'/'studio_operations.cjs'),args.operation,args.project]
+        if args.operation=='plan':
+            if not args.assignments:raise ValueError('plan requires --assignments with confirmed existing-result roles and questions')
+            command.append(args.assignments)
+        if args.operation=='apply':
+            if not args.patch or not args.out:raise ValueError('apply requires --patch and --out; the original project is never overwritten')
+            command.extend([args.patch,args.out])
+            if args.confirm_scientific_change:command.append('--confirm-scientific-change')
+        return subprocess.call(command)
+    p.set_defaults(func=project_operations)
     p=sub.add_parser("studio", help="Build an offline visual editor from existing SVG candidate bundles")
     p.add_argument("panels", nargs="+"); p.add_argument("--out", required=True)
     p.add_argument("--title", default="Figure Studio"); p.add_argument("--columns", type=int, help="Grid columns: default 1 for one panel, otherwise 2")
