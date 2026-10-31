@@ -17,6 +17,12 @@ EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    'docs/qa/windows-next-stable/installed-collaborative-20261101.md',
+    'docs/qa/windows-next-stable/installed-collaborative-20261101.json',
+    'docs/qa/windows-next-stable/installer-checkbox-20261101.md',
+    'docs/qa/windows-next-stable/installer-checkbox-20261101.json',
+    'docs/qa/windows-next-stable/setup-payload-20261101.md',
+    'docs/qa/windows-next-stable/setup-payload-20261101.json',
     'docs/figure-studio-western-blot.zh-CN.md',
     'docs/qa/windows-next-stable/wb-workflow-20261031.md',
     'docs/qa/windows-next-stable/wb-workflow-20261031.json',

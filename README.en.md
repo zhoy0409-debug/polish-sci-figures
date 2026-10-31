@@ -1,8 +1,8 @@
 # polish-sci-figures · Product guide
 
-**0.2.0 release-preparation snapshot (Suite 1.5.0, 2026-10-28):** the new-version links are pending publication and installed-app/real-upgrade acceptance. For an available installer, use the [previous stable v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26). See [candidate scope](docs/release-notes-v1.5.0.md#english).
+**Figure Studio 0.2.0 · Suite 1.5.0 (2026-11-01):** a Windows-focused release. Collaborative installed-app checks covered installation, Microsoft Pinyin, tool navigation, borders and real-data axes. See the [release notes](docs/release-notes-v1.5.0.md#english) and [actual acceptance scope](docs/qa/windows-next-stable/installed-collaborative-20261101.md).
 
-The next Windows upgrade is under integration on a separate branch. The [source-candidate workflow](docs/figure-review.en.md) and [dated acceptance scope](docs/windows-next-stable-audit.md) distinguish implemented features, browser tests and installed-app acceptance. The version-specific download paths below are prepared for the candidate; the previous stable release remains available above.
+This release preserves the scientific editing workflow while improving task discovery, native TIFF display and project handling. The [dated acceptance report](docs/qa/windows-next-stable/installed-collaborative-20261101.md) distinguishes installed human checks from browser regressions and unexecuted upgrade tests.
 
 The Windows installer workflow and genuine official 0.1.25 → 0.1.26 in-editor upgrade passed the listed checks. The [acceptance record](docs/qa/photo-correction/windows-0.1.26/README.md) details data protection, performance results and remaining items.
 

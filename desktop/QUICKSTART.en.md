@@ -1,8 +1,8 @@
 # Getting started with Figure Studio
 
-The unreleased 0.2.0 candidate still has a user-reported Chinese installer text-clipping issue. The narrow desktop workspace fix is separate; see the [remaining acceptance work](../docs/qa/windows-next-stable/remaining-20261031.md). Do not change system display scaling to complete installation.
+The clipped checkbox edge is fixed. The user confirmed intact controls and successful installation at unchanged display settings. See the [installed acceptance report](../docs/qa/windows-next-stable/installed-collaborative-20261101.md); this does not certify every Windows scaling configuration.
 
-**0.2.0 release-preparation snapshot (Suite 1.5.0, 2026-10-28):** the new-version links are pending publication and installed-app/real-upgrade acceptance. For an available installer, use the [previous stable v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26). See [candidate scope](../docs/release-notes-v1.5.0.md#english).
+**Figure Studio 0.2.0 · Suite 1.5.0 (2026-11-01):** a Windows-focused release. Collaborative installed-app checks covered installation, Microsoft Pinyin, tool navigation, borders and real-data axes. See the [release notes](../docs/release-notes-v1.5.0.md#english) and [actual acceptance scope](../docs/qa/windows-next-stable/installed-collaborative-20261101.md).
 
 The Windows installer workflow and genuine official 0.1.25 → 0.1.26 in-editor upgrade passed the listed checks. The [acceptance record](../docs/qa/photo-correction/windows-0.1.26/README.md) details data protection, performance results and remaining items.
 
@@ -18,13 +18,16 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 ## Install and open
 
-1. **Choose the Setup installer for first use:** download [polish-sci-figures-Studio-0.2.0-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe) from the [v1.5.0 release when published](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0), then run it for your Windows user account. No extraction is needed.
+1. **Choose the Setup installer for first use:** download [polish-sci-figures-Studio-0.2.0-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe) from the [v1.5.0 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0), then run it for your Windows user account. No extraction is needed.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
 
 The installer's **Shortcuts** page only chooses whether to create a desktop shortcut. It is optional. The Chinese wizard uses a CJK UI font and wrapped instructions without reducing the system text size.
 3. Choose **English** or **中文** at the top right. Opening the shortcut again opens the editor already running.
 
 **For later versions, stay in the editor: Updates → Download and prepare update → save your project and tick the confirmation → Install and reopen.** The supported installer edition downloads, verifies and installs the update without repeated manual GitHub downloads, extraction or folder replacement.
+
+
+The complete official 0.1.26 → 0.2.0 in-app installation/restart and actual failure-recovery path has not been executed for this release. Earlier update results do not certify this version. Retain project files and recovery directories if an update fails; the official Setup also supports installation over the existing edition.
 
 For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-Portable-x64.zip` before running `Figure Studio.exe`. Keep its adjacent `_internal` folder.
 
@@ -101,13 +104,13 @@ Application settings, the workspace page and logs are under `%LOCALAPPDATA%\Figu
 
 Closing a browser tab leaves the local service running. To stop it, choose **Quit** in the small Figure Studio launcher window, or close that window. Accepted calculations finish before the service exits.
 
-**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.1.26 installer. The older update entry only opens a download; it cannot install this upgrade for you.
+**Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the 0.2.0 installer. The older update entry only opens a download; it cannot install this upgrade for you.
 
-**Already on a local 0.1.26 candidate?** When replacing a local 0.1.26 candidate with the official build, save your project, close Figure Studio and run the official Setup linked above. The updater compares version numbers and will not offer another build with the same version.
+**Already on a local 0.2.0 candidate?** When replacing a local 0.2.0 candidate with the official build, save your project, close Figure Studio and run the official Setup linked above. The updater compares version numbers and will not offer another build with the same version.
 
-**Already using installed 0.1.9–0.1.25?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.1.26 installer manually. Version 0.2.0 retains the long-path fix introduced in 0.1.10.
+**Already using installed 0.1.9–0.1.25?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.2.0 installer manually. Version 0.2.0 retains the long-path fix introduced in 0.1.10.
 
-**Future updates from the 0.1.26 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the supported application location and reopens Figure Studio on success; you do not need to extract or replace files. Installation is never started without confirmation, and Windows security prompts are not bypassed.
+**Future updates from the 0.2.0 installer edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the supported application location and reopens Figure Studio on success; you do not need to extract or replace files. Installation is never started without confirmation, and Windows security prompts are not bypassed.
 
 **Portable, source-run or unrecognized custom copies:** these are not forcibly overwritten. To use future in-editor upgrades, save a project JSON, quit the old copy, download and run the official Setup once using its default location, then open the installed desktop or Start-menu shortcut. Use **Project → Open project** to load your backup. If the installed copy still reports an unsupported setup, follow its specific error; installation-location and security checks remain in force. The older-version, same-version candidate and long-path exceptions above still apply.
 
@@ -119,13 +122,13 @@ SHA-256 checksums compare file contents; they are not a publisher's digital sign
 
 ## Image tools and professional axes
 
-The unreleased candidate adds **Submission size and export → Submission profiles…**. Save researcher-declared dimensions and review thresholds, preview on the actual canvas, Keep or Cancel, then review the final output. Profiles travel with projects or separate JSON files; their sources are never fetched automatically. See the bundled [profile guide](docs/figure-studio-submission-profiles.md).
+This release adds **Submission size and export → Submission profiles…**. Save researcher-declared dimensions and review thresholds, preview on the actual canvas, Keep or Cancel, then review the final output. Profiles travel with projects or separate JSON files; their sources are never fetched automatically. See the bundled [profile guide](../docs/figure-studio-submission-profiles.md).
 
-The unreleased candidate adds [native TIFF display](docs/figure-studio-native-tiff.md): import a TIFF, adjust its native window/gamma/LUT on the real canvas, then Keep or Cancel. Download the exact original afterward. **New display from original TIFF** reopens the retained plane in a separate display, preserving existing images and edits and sharing the original file. The guide is bundled for offline use and lists the supported formats. The release page remains the authority for published versions.
+This release adds [native TIFF display](../docs/figure-studio-native-tiff.md): import a TIFF, adjust its native window/gamma/LUT on the real canvas, then Keep or Cancel. Download the exact original afterward. **New display from original TIFF** reopens the retained plane in a separate display, preserving existing images and edits and sharing the original file. The guide is bundled for offline use and lists the supported formats. The release page remains the authority for published versions.
 
 Use the five workflow shortcuts or the categorized **Find function** directory above. Shortcuts do not change a function's category. Selected objects expose contextual actions. Image tools keep source pixels local and require explicit Apply; professional native axes re-render from data in four sections: range, ticks, size and appearance. See [image tools](../docs/figure-studio-image-tools.md), [axes](../docs/figure-studio-axes-round2.md) and [actual acceptance scope](../docs/figure-studio-experience-round2-validation.md).
 
 
 ## Western blot workflow
 
-The unreleased candidate adds **Image processing → WB processing & composition** (Ctrl+K: WB). Import retained originals, crop/straighten, confirm lane/source mappings and keep editable canvas objects. Suspend preserves a working draft. Original 16-bit TIFF and 8-bit display derivatives remain distinct; no densitometry is provided. See the bundled [workflow guide](docs/figure-studio-western-blot.zh-CN.md).
+This release adds **Image processing → WB processing & composition** (Ctrl+K: WB). Import retained originals, crop/straighten, confirm lane/source mappings and keep editable canvas objects. Suspend preserves a working draft. Original 16-bit TIFF and 8-bit display derivatives remain distinct; no densitometry is provided. See the bundled [workflow guide](../docs/figure-studio-western-blot.zh-CN.md).

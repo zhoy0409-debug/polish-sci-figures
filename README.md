@@ -1,6 +1,6 @@
 <div align="center">
 
-**0.2.0 发布准备快照（Suite 1.5.0，2026-10-28）**：新版本链接为待发布路径；当前尚未完成安装版与真实升级验收。立即安装请使用[上一正式版 v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)。[本轮功能与范围](docs/release-notes-v1.5.0.md#中文)。
+**Figure Studio 0.2.0 · Suite 1.5.0（2026-11-01）**：Windows 集中升级。安装、中文输入法、工具返回、边框和真实数据坐标轴已完成用户协同验收；详见[本版说明](docs/release-notes-v1.5.0.md#中文)和[实测范围](docs/qa/windows-next-stable/installed-collaborative-20261101.md)。
 
 Figure Studio 0.2.0 保留拍摄照片的一键矫正、标尺拉正和一键校色；先在画布预览，不满意可微调或取消，保留原图并支持一次撤销。首次运行 Setup 安装，以后从受支持的编辑器内更新。[Windows 安装包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe) · [本版说明](docs/release-notes-v1.5.0.md#中文) · [使用入门](desktop/QUICKSTART.zh-CN.md) · [照片操作指南](docs/figure-studio-photo-correction.md)。
 

@@ -106,7 +106,8 @@ def copy_suite():
     for name in ('QUICKSTART.zh-CN.md', 'QUICKSTART.en.md'):
         source = ROOT / 'desktop' / name
         if source.exists():
-            shutil.copy2(source, STAGE / name)
+            content = archive_bytes(source, included, SUITE_VERSION).decode('utf-8')
+            (STAGE / name).write_text(content.replace('](../docs/', '](docs/'), encoding='utf-8')
     # Ship runtime bytecode in the same directories, preserving __file__-based
     # resource lookups. This is packaging, not DRM or a change of license.
     for source in STAGE.rglob('*.py'):
@@ -200,7 +201,11 @@ def package(compiler):
     for name in ('LICENSE', 'THIRD-PARTY-NOTICES.txt', 'build-info.json',
                  'QUICKSTART.zh-CN.md', 'QUICKSTART.en.md'):
         if (STAGE / name).exists():
-            shutil.copy2(STAGE / name, APP / name)
+            if name.startswith('QUICKSTART.'):
+                content = (STAGE / name).read_text(encoding='utf-8')
+                (APP / name).write_text(content.replace('](docs/', '](_internal/suite/docs/'), encoding='utf-8')
+            else:
+                shutil.copy2(STAGE / name, APP / name)
     shutil.copytree(STAGE / 'THIRD-PARTY-LICENSES', APP / 'THIRD-PARTY-LICENSES', dirs_exist_ok=True)
     # Refresh data-only renderers/resources after a UI fix without refreezing Python.
     target_suite = (APP / '_internal' / 'suite').resolve()

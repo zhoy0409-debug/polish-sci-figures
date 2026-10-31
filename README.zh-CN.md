@@ -1,10 +1,10 @@
 # polish-sci-figures · 产品指南
 
-**0.2.0 发布准备快照（Suite 1.5.0，2026-10-28）**：新版本链接为待发布路径；当前尚未完成安装版与真实升级验收。立即安装请使用[上一正式版 v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26)。[本轮功能与范围](docs/release-notes-v1.5.0.md#中文)。
+**Figure Studio 0.2.0 · Suite 1.5.0（2026-11-01）**：Windows 集中升级。安装、中文输入法、工具返回、边框和真实数据坐标轴已完成用户协同验收；详见[本版说明](docs/release-notes-v1.5.0.md#中文)和[实测范围](docs/qa/windows-next-stable/installed-collaborative-20261101.md)。
 
-下一代 Windows 集成升级正在独立分支验收；先看[面向科研用户的简明介绍](docs/windows-next-stable-summary.zh-CN.md)，再查[源码候选操作指南](docs/figure-review.zh-CN.md)和[当前实测范围](docs/windows-next-stable-audit.md)。说明明确区分实现、浏览器测试与安装版验收。以下新版下载路径用于发布准备，当前正式版入口见上方。
+本版集中完善 Windows 科研编辑工作台。先看[简明介绍](docs/windows-next-stable-summary.zh-CN.md)，再查[操作指南](docs/figure-review.zh-CN.md)和[当前实测范围](docs/qa/windows-next-stable/installed-collaborative-20261101.md)。
 
-源码候选新增[原生 TIFF 导入、真实画布显示窗预览及大工程后台保存](docs/figure-studio-native-tiff.md)，保留原文件位深与字节，明确区分显示图和定量数据。尚未作为正式安装包发布。
+本版新增[原生 TIFF 导入、真实画布显示窗预览及大工程后台保存](docs/figure-studio-native-tiff.md)，保留原文件位深与字节，明确区分显示图和定量数据。原生精度与显示导出的边界见该指南。
 
 Windows安装版实操及官方0.1.25→0.1.26编辑器内升级已通过所列检查；[验收记录](docs/qa/photo-correction/windows-0.1.26/README.md)列明数据保护、性能结果和未完成事项。
 
