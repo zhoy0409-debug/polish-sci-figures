@@ -50,6 +50,7 @@ jobs:
           python scripts/test_studio_tiff.py
           python scripts/test_studio_pdf_font_fallback.py
           python scripts/test_verify_studio_windows_package_source.py
+          python scripts/test_verify_studio_setup_payload.py
           python scripts/test_sanitize_studio_performance_trace.py
       - name: Desktop launcher lifecycle and local authorization
         run: |

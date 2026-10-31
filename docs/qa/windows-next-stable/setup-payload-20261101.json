@@ -1,0 +1,51 @@
+{
+  "schema": "figure-studio-setup-payload-match/1",
+  "author": "a",
+  "createdUtc": "2026-10-31T16:27:19.387342+00:00",
+  "status": "SETUP_PAYLOAD_AND_PORTABLE_MATCH",
+  "artifacts": [
+    {
+      "name": "polish-sci-figures-Studio-0.2.0-Setup-x64.exe",
+      "sha256": "0593aedf5c82cb46c5ce7a769d22237de4063821a82d7fd99412b9558c5e0ecd",
+      "sizeBytes": 107722880
+    },
+    {
+      "name": "polish-sci-figures-Studio-0.2.0-Portable-x64.zip",
+      "sha256": "f093252adf324ec2400c4ed15cc34ed9228f2297aba5b6acb5d1182fde5ca95a",
+      "sizeBytes": 149816672
+    }
+  ],
+  "applicationFiles": 2695,
+  "fileSetExact": true,
+  "allSizesExact": true,
+  "allStreamSha256Exact": true,
+  "canonicalRelativeManifestSha256": "1c2a74c73fb2b47ac0094332adc2e786746deec055836d0760278f8f4dff37fb",
+  "unsafePaths": 0,
+  "symlinksOrReparsePoints": 0,
+  "finalAcceptance": false,
+  "scope": "Offline-extracted Setup application payload versus every pinned Portable file. No installation, app execution, browser, registry changes, native IME, native performance or real update acceptance. Extractor provenance is recorded separately.",
+  "dateLocal": "2026-11-01",
+  "candidateRuntimeSource": "819fe452d567e1e73dbc8736d10afaf0a0360269",
+  "extractor": {
+    "releaseAsset": "https://github.com/jrathlev/InnoUnpacker-Windows-GUI/releases/download/ui_2_2_13/innounp-2.zip",
+    "archiveSha256": "f8e45c9676bebc7d7570108ab572673b541fcf7a7d3d24a04319ac6b5315b4e8",
+    "githubDigestVerified": true,
+    "actualConsoleVersion": "2.71.3",
+    "executableSha256": "ab58400460cfda503ec88702dd3d82f6ee207b28e0548c9f8861ef008f85b644",
+    "releaseDescriptionCaveat": "Upstream release description says 2.71.2; downloaded checksum-pinned executable reports 2.71.3. Record actual bytes and version; do not infer identity from description."
+  },
+  "localChecks": {
+    "payloadVerifierTests": 7,
+    "existingSourceVerifierTests": 18,
+    "actualCandidateCLI": true,
+    "unchangedRuntimeSourceCheck": true,
+    "allPassed": true
+  },
+  "retainedFailures": [
+    "Initial tests could not create or clean fixtures under sandbox TEMP. Process-local TEMP/TMP moved into workspace; no system permissions changed.",
+    "Malformed ZIP fixture was normalized by Windows ZipInfo. Preserve raw malformed member, inspect orig_filename before accepting paths; seven tests then passed.",
+    "One cache harness-copy shell quoting error occurred before checks; retained."
+  ],
+  "publicationAuthorizedConditionally": true,
+  "nativeAccepted": false
+}
