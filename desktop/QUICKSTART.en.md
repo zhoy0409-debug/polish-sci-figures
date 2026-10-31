@@ -45,6 +45,8 @@ Six task categories open a single right-hand tool drawer: **Data & charts**, **T
 
 The contextual canvas toolbar shows common controls for the selected text or image. Font settings show the basics first; batch replacement, paragraph and character settings expand on demand and keep your explicit choices when selection changes. Search expands the requested advanced group. Find panel arrangement under Layout and duplicate screening under Review & export.
 
+With a narrow canvas, **More** contains the import, selection, border/image, alignment, lock and delete shortcuts; Escape closes it. Text size and superscript/subscript remain directly accessible. The corner icon beside zoom is **Focus canvas**: hide the side panels, then click again to restore their previous state. Explicitly opening a drawer exits focus mode. Manual zoom keeps the artwork position; Fit uses the available space. These view changes do not edit the project or its history.
+
 **Text content & character formatting** contains the existing live text editor and character tools. Opening it brings the group into view. Without a text selection, the disabled fallback field explains what to select; locked text remains protected.
 
 Font-size changes preview on the canvas. Enter or moving focus keeps the edit; Escape restores the original value and ends the live-preview status without adding an undo entry.
