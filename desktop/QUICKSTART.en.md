@@ -45,6 +45,8 @@ Six task categories open a single right-hand tool drawer: **Data & charts**, **T
 
 The contextual canvas toolbar shows common controls for the selected text or image. Font settings show the basics first; batch replacement, paragraph and character settings expand on demand and keep your explicit choices when selection changes. Search expands the requested advanced group. Find panel arrangement under Layout and duplicate screening under Review & export.
 
+**Text content & character formatting** contains the existing live text editor and character tools. Opening it brings the group into view. Without a text selection, the disabled fallback field explains what to select; locked text remains protected.
+
 Font-size changes preview on the canvas. Enter or moving focus keeps the edit; Escape restores the original value and ends the live-preview status without adding an undo entry.
 
 Choose **Back to this category** to find related tools, or collapse/reopen **Tools** to resume the current settings. Selecting another canvas object retains the chosen tool. Search with **Ctrl + K**; aliases such as `text spacing` lead to one canonical text tool and focus the actual field. Selection requirements, locking, live-preview cancellation and one-step history remain in effect.

@@ -2,6 +2,8 @@
 
 ## v1.5.0 · Figure Studio 0.2.0 — release preparation (unreleased)
 
+Fix the empty text-content disclosure by placing the existing unified text editor, character tools and legacy fallback in one canonical group. Reveal that group when expanded, retain the no-selection prompt and lock protection, and add a real browser edit/Undo/Redo/language/theme regression. Record the user's WB workflow reference as scoped requirements; no new WB algorithm, molecular-mass estimate or editable PPT export is claimed. Publication remains on hold.
+
 Refine existing Carbon/Pearl tokens, task selection, tool directory and folded font groups with restrained opaque surfaces. Retain scientific artwork and the six canonical categories. Fix document-level Escape leaving a stale live-preview hint after restoring a draft; preserve IME guards and history. Eight source-browser suites, exact Iris SVG/PNG exports and all eight 5000-object timing batches are recorded in the [2026-10-31 review](docs/qa/windows-next-stable/surface-refinement-20261031.md). Timing varies substantially and does not certify regression-free performance. Keep the publication hold and native acceptance gates.
 
 Keep the mouse/keyboard desktop drawers and touch workspace mutually exclusive at the 750/751 CSS-pixel boundary. Wrap global command groups in narrow desktop windows and keep font-search targets clear of the sticky heading. Preserve original controls, scientific content, project history and export logic. Browser-emulated viewport/DPR checks do not certify Windows display scaling or installation. The Chinese installer text attempt below still failed user review; see the [remaining acceptance work](docs/qa/windows-next-stable/remaining-20261031.md).

@@ -25,7 +25,7 @@
   .workspace-focused #workspaceEditingHelp>summary{color:var(--fs-text-muted);font-weight:400}
   .workspace-focused .workspace-secondary-properties{margin:0;padding:0;border:0}
   .workspace-focused .inspector>section[data-pane=detail]{margin-top:var(--fs-space-3);padding-top:var(--fs-space-3)}
-  .workspace-focused #workspaceCharacterFormats:has(>#richTextControls[hidden]){display:none}
+  .workspace-focused:not(.studio-drawers) #workspaceCharacterFormats:has(>#richTextControls[hidden]){display:none}
   .workspace-focused #richTextControls{border:0;margin:0;padding:0}
   .workspace-focused #workspaceNavigatorTabs{display:flex;position:sticky;top:-24px;z-index:5;gap:2px;margin:var(--fs-space-3) 0;padding:3px;background:var(--fs-nav-bg);border:1px solid var(--fs-stroke-subtle);border-radius:var(--fs-radius-md);box-shadow:0 -8px 0 8px var(--fs-nav-bg)}
   .workspace-focused #workspaceNavigatorTabs button{flex:1;padding:var(--fs-space-2) var(--fs-space-1);border:0;background:transparent;font-size:var(--fs-font-xs)}

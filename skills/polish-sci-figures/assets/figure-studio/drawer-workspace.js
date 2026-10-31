@@ -69,7 +69,11 @@ const StudioDrawerWorkspace=(()=>{
     const fontPanel=node('typePanel');
     if(fontPanel){
       const advanced=disclosure('drawerFontAdvanced','批量调整与字体替换','Batch changes & font replacement');
-      const content=disclosure('drawerTextContent','文字内容','Text content');
+      // The unified editor owns both the live text field and character tools.
+      // Keep the original host; a separate legacy-only drawer becomes empty
+      // whenever renderRichTextControls hides the replaced legacy input.
+      const content=node('workspaceCharacterFormats')||disclosure('drawerTextContent','文字内容','Text content');content.classList.add('drawer-advanced');
+      content.addEventListener('toggle',()=>{if(content.open)win.requestAnimationFrame?.(()=>{if(content.open&&content.isConnected)content.scrollIntoView({block:'nearest'});});});
       for(const id of ['textRole','fontTargetInfo','replaceFontArial','replaceFontTimes','unifyTypography']){const n=node(id);if(!n)continue;const part=n.closest('label,.font-replacements')||n;advanced.append(part);}
       const note=fontPanel.querySelector('.font-replacement-note');if(note)advanced.append(note);
       for(const id of ['textContent','applyText']){const n=node(id);if(n)content.append(n.closest('label')||n);}
@@ -78,7 +82,7 @@ const StudioDrawerWorkspace=(()=>{
       if(fontLabel){fontPanel.querySelector('summary')?.after(fontLabel);if(sizeLabel)fontLabel.after(sizeLabel);}
       const first=bank.querySelector('[data-drawer-owner]')||bank.firstChild;bank.insertBefore(fontPanel,first);
       // Keep full character and paragraph controls after the basic type form.
-      let after=fontPanel;for(const id of ['paragraphPanel','workspaceCharacterFormats','drawerFormattingTools']){const n=node(id);if(n){after.after(n);after=n;}}
+      let after=fontPanel;for(const id of ['paragraphPanel','drawerFormattingTools']){const n=node(id);if(n){after.after(n);after=n;}}
     }
     const layoutBar=doc.querySelector('.canvas-layoutbar'),quickBar=node('canvasQuickToolbar');
     if(layoutBar&&quickBar){

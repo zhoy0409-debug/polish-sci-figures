@@ -27,7 +27,7 @@ const StudioExperienceTools=(()=>{
     foldSection(node('categorySpacingControls'),'categorySpacingControls','图表组间距','Chart group spacing');
     if(text&&node('textRole'))text.querySelector('summary').after(node('textRole').parentElement);
     const rich=node('richTextControls');
-    if(rich){const box=doc.createElement('details');box.id='workspaceCharacterFormats';box.className='workspace-disclosure';rich.before(box);box.append(title(doc.createElement('summary'),'字符格式与上下标','Character formatting & scripts'),rich);}
+    if(rich){const box=doc.createElement('details');box.id='workspaceCharacterFormats';box.className='workspace-disclosure';rich.before(box);box.append(title(doc.createElement('summary'),'文字内容与字符格式','Text content & character formatting'),rich);}
     const secondary=doc.createElement('section');secondary.dataset.pane='detail';secondary.className='workspace-secondary-properties';
     if(text)text.after(secondary);
     for(const id of ['paragraphPanel','objectAlignmentPanel']){const box=node(id);if(box){box.open=false;secondary.append(box);}}
