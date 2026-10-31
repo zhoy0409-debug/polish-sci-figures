@@ -3,7 +3,7 @@
   "date": "2026-10-31",
   "scope": "Current source in isolated headless Chrome, public Iris/H&E and labelled synthetic WB; CSS viewport/DPR approximates content reflow at zoom, not actual browser-chrome zoom, Windows system scale or installed manual acceptance.",
   "baselineCommit": "3c055e6970582334fc9df71b99f1ca61dd3c5724",
-  "candidateBaseCommit": "46edbb9e13e3bdfbbd6349a79b816f46972877f5",
+  "candidateBaseCommit": "ec6b42e31835cf97c829434d863ce4271c0f9171",
   "candidateDirtyAssetsExpected": true,
   "captures": [
     {
@@ -9057,33 +9057,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "锁定",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -9767,12 +9743,6 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
-          "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
           "id": "quickEditText",
           "tag": "button",
           "text": "编辑文字",
@@ -9815,33 +9785,9 @@
           "disabled": false
         },
         {
-          "id": "quickDelete",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "删除所选对象",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "锁定",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -10548,33 +10494,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "Borders",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "Align objects · 对象对齐",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "Lock",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "Import files…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "Select elements",
+          "text": "More",
           "disabled": false
         },
         {
@@ -11258,12 +11180,6 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
-          "tag": "button",
-          "text": "Borders",
-          "disabled": false
-        },
-        {
           "id": "quickEditText",
           "tag": "button",
           "text": "Edit text",
@@ -11306,33 +11222,9 @@
           "disabled": false
         },
         {
-          "id": "quickDelete",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "Delete selected objects",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "Align objects · 对象对齐",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "Lock",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "Import files…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "Select elements",
+          "text": "More",
           "disabled": false
         },
         {
@@ -20721,33 +20613,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "锁定",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -21431,12 +21299,6 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
-          "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
           "id": "quickEditText",
           "tag": "button",
           "text": "编辑文字",
@@ -21479,33 +21341,9 @@
           "disabled": false
         },
         {
-          "id": "quickDelete",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "删除所选对象",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "锁定",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -22212,33 +22050,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "Borders",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "Align objects · 对象对齐",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "Lock",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "Import files…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "Select elements",
+          "text": "More",
           "disabled": false
         },
         {
@@ -22922,12 +22736,6 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
-          "tag": "button",
-          "text": "Borders",
-          "disabled": false
-        },
-        {
           "id": "quickEditText",
           "tag": "button",
           "text": "Edit text",
@@ -22970,33 +22778,9 @@
           "disabled": false
         },
         {
-          "id": "quickDelete",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "Delete selected objects",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "Align objects · 对象对齐",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "Lock",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "Import files…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "Select elements",
+          "text": "More",
           "disabled": false
         },
         {
@@ -26543,27 +26327,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -27237,12 +27003,6 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
-          "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
           "id": "quickEditText",
           "tag": "button",
           "text": "编辑文字",
@@ -27285,33 +27045,9 @@
           "disabled": false
         },
         {
-          "id": "quickDelete",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "删除所选对象",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "锁定",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -28666,12 +28402,6 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
-          "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
           "id": "quickEditText",
           "tag": "button",
           "text": "编辑文字",
@@ -28714,33 +28444,9 @@
           "disabled": false
         },
         {
-          "id": "quickDelete",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "删除所选对象",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "锁定",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -29531,51 +29237,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
-          "id": "quickImageRectify",
-          "tag": "button",
-          "text": "透视校正",
-          "disabled": false
-        },
-        {
-          "id": "quickImageDisplay",
-          "tag": "button",
-          "text": "颜色与显示",
-          "disabled": false
-        },
-        {
-          "id": "quickDelete",
-          "tag": "button",
-          "text": "删除所选对象",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "锁定",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -30228,51 +29892,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
-          "id": "quickImageRectify",
-          "tag": "button",
-          "text": "透视校正",
-          "disabled": false
-        },
-        {
-          "id": "quickImageDisplay",
-          "tag": "button",
-          "text": "颜色与显示",
-          "disabled": false
-        },
-        {
-          "id": "quickDelete",
-          "tag": "button",
-          "text": "删除所选对象",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "锁定",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -30885,51 +30507,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
-          "id": "quickImageRectify",
-          "tag": "button",
-          "text": "透视校正",
-          "disabled": false
-        },
-        {
-          "id": "quickImageDisplay",
-          "tag": "button",
-          "text": "颜色与显示",
-          "disabled": false
-        },
-        {
-          "id": "quickDelete",
-          "tag": "button",
-          "text": "删除所选对象",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "锁定",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -31858,51 +31438,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "边框",
-          "disabled": false
-        },
-        {
-          "id": "quickImageRectify",
-          "tag": "button",
-          "text": "透视校正",
-          "disabled": false
-        },
-        {
-          "id": "quickImageDisplay",
-          "tag": "button",
-          "text": "颜色与显示",
-          "disabled": false
-        },
-        {
-          "id": "quickDelete",
-          "tag": "button",
-          "text": "删除所选对象",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "对象对齐 · Align objects",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "锁定",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "导入文件…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "框选元素",
+          "text": "更多",
           "disabled": false
         },
         {
@@ -33028,51 +32566,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "Borders",
-          "disabled": false
-        },
-        {
-          "id": "quickImageRectify",
-          "tag": "button",
-          "text": "Perspective",
-          "disabled": false
-        },
-        {
-          "id": "quickImageDisplay",
-          "tag": "button",
-          "text": "Image display",
-          "disabled": false
-        },
-        {
-          "id": "quickDelete",
-          "tag": "button",
-          "text": "Delete selected objects",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "Align objects · 对象对齐",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "Lock",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "Import files…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "Select elements",
+          "text": "More",
           "disabled": false
         },
         {
@@ -33931,51 +33427,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "Borders",
-          "disabled": false
-        },
-        {
-          "id": "quickImageRectify",
-          "tag": "button",
-          "text": "Perspective",
-          "disabled": false
-        },
-        {
-          "id": "quickImageDisplay",
-          "tag": "button",
-          "text": "Image display",
-          "disabled": false
-        },
-        {
-          "id": "quickDelete",
-          "tag": "button",
-          "text": "Delete selected objects",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "Align objects · 对象对齐",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "Lock",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "Import files…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "Select elements",
+          "text": "More",
           "disabled": false
         },
         {
@@ -34571,51 +34025,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "Borders",
-          "disabled": false
-        },
-        {
-          "id": "quickImageRectify",
-          "tag": "button",
-          "text": "Perspective",
-          "disabled": false
-        },
-        {
-          "id": "quickImageDisplay",
-          "tag": "button",
-          "text": "Image display",
-          "disabled": false
-        },
-        {
-          "id": "quickDelete",
-          "tag": "button",
-          "text": "Delete selected objects",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "Align objects · 对象对齐",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "Lock",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "Import files…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "Select elements",
+          "text": "More",
           "disabled": false
         },
         {
@@ -35109,51 +34521,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "Borders",
-          "disabled": false
-        },
-        {
-          "id": "quickImageRectify",
-          "tag": "button",
-          "text": "Perspective",
-          "disabled": false
-        },
-        {
-          "id": "quickImageDisplay",
-          "tag": "button",
-          "text": "Image display",
-          "disabled": false
-        },
-        {
-          "id": "quickDelete",
-          "tag": "button",
-          "text": "Delete selected objects",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "Align objects · 对象对齐",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "Lock",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "Import files…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "Select elements",
+          "text": "More",
           "disabled": false
         },
         {
@@ -35789,51 +35159,9 @@
           "disabled": false
         },
         {
-          "id": "quickObjectBorder",
+          "id": "drawerQuickMore",
           "tag": "button",
-          "text": "Borders",
-          "disabled": false
-        },
-        {
-          "id": "quickImageRectify",
-          "tag": "button",
-          "text": "Perspective",
-          "disabled": false
-        },
-        {
-          "id": "quickImageDisplay",
-          "tag": "button",
-          "text": "Image display",
-          "disabled": false
-        },
-        {
-          "id": "quickDelete",
-          "tag": "button",
-          "text": "Delete selected objects",
-          "disabled": false
-        },
-        {
-          "id": "quickAlignmentToggle",
-          "tag": "button",
-          "text": "Align objects · 对象对齐",
-          "disabled": true
-        },
-        {
-          "id": "quickLock",
-          "tag": "button",
-          "text": "Lock",
-          "disabled": false
-        },
-        {
-          "id": "quickImportFiles",
-          "tag": "button",
-          "text": "Import files…",
-          "disabled": false
-        },
-        {
-          "id": "boxSelect",
-          "tag": "button",
-          "text": "Select elements",
+          "text": "More",
           "disabled": false
         },
         {
@@ -36122,32 +35450,32 @@
     {
       "step": 19,
       "click": "#artboard text[data-key] >> nth=0",
-      "visibleControls": 42
+      "visibleControls": 38
     },
     {
       "step": 20,
       "click": "#drawerTaskbar [data-drawer-category=\"style\"]",
-      "visibleControls": 50
+      "visibleControls": 45
     },
     {
       "step": 21,
       "click": "[data-drawer-tool=\"fonts\"]",
-      "visibleControls": 50
+      "visibleControls": 45
     },
     {
       "step": 22,
       "click": "#artboard text[data-key] >> nth=0",
-      "visibleControls": 42
+      "visibleControls": 38
     },
     {
       "step": 23,
       "click": "#drawerTaskbar [data-drawer-category=\"style\"]",
-      "visibleControls": 50
+      "visibleControls": 45
     },
     {
       "step": 24,
       "click": "[data-drawer-tool=\"fonts\"]",
-      "visibleControls": 50
+      "visibleControls": 45
     },
     {
       "step": 25,
@@ -36242,32 +35570,32 @@
     {
       "step": 43,
       "click": "#artboard text[data-key] >> nth=0",
-      "visibleControls": 42
+      "visibleControls": 38
     },
     {
       "step": 44,
       "click": "#drawerTaskbar [data-drawer-category=\"style\"]",
-      "visibleControls": 50
+      "visibleControls": 45
     },
     {
       "step": 45,
       "click": "[data-drawer-tool=\"fonts\"]",
-      "visibleControls": 50
+      "visibleControls": 45
     },
     {
       "step": 46,
       "click": "#artboard text[data-key] >> nth=0",
-      "visibleControls": 42
+      "visibleControls": 38
     },
     {
       "step": 47,
       "click": "#drawerTaskbar [data-drawer-category=\"style\"]",
-      "visibleControls": 50
+      "visibleControls": 45
     },
     {
       "step": 48,
       "click": "[data-drawer-tool=\"fonts\"]",
-      "visibleControls": 50
+      "visibleControls": 45
     },
     {
       "step": 49,
@@ -36302,22 +35630,22 @@
     {
       "step": 55,
       "click": "#artboard text[data-key] >> nth=0",
-      "visibleControls": 41
+      "visibleControls": 38
     },
     {
       "step": 56,
       "click": "#drawerTaskbar [data-drawer-category=\"style\"]",
-      "visibleControls": 50
+      "visibleControls": 45
     },
     {
       "step": 57,
       "click": "[data-drawer-tool=\"fonts\"]",
-      "visibleControls": 50
+      "visibleControls": 45
     },
     {
       "step": 58,
       "click": "#drawerCloseTools",
-      "visibleControls": 78
+      "visibleControls": 73
     },
     {
       "step": 59,
@@ -36327,100 +35655,100 @@
     {
       "step": 60,
       "click": "#artboard image[data-key] >> nth=0",
-      "visibleControls": 64
+      "visibleControls": 60
     },
     {
       "step": 61,
       "click": "#drawerTaskbar [data-drawer-category=\"image\"]",
-      "visibleControls": 67
+      "visibleControls": 60
     },
     {
       "step": 62,
       "click": "[data-drawer-tool=\"color\"]",
-      "visibleControls": 44
+      "visibleControls": 37
     },
     {
       "step": 63,
       "click": "#drawerTaskbar [data-drawer-category=\"image\"]",
-      "visibleControls": 70
+      "visibleControls": 63
     },
     {
       "step": 64,
       "click": "[data-drawer-tool=\"western-blot\"]",
-      "visibleControls": 44
+      "visibleControls": 37
     },
     {
       "step": 65,
       "click": "#wbWorkspace > header > button",
-      "visibleControls": 104
+      "visibleControls": 97
     },
     {
       "step": 66,
       "click": "#drawerTaskbar [data-drawer-category=\"image\"]",
-      "visibleControls": 42
+      "visibleControls": 35
     },
     {
       "step": 67,
       "click": "[data-drawer-tool=\"western-blot\"]",
-      "visibleControls": 44
+      "visibleControls": 37
     },
     {
       "step": 68,
       "click": "#wbCancel",
-      "visibleControls": 104
+      "visibleControls": 97
     },
     {
       "step": 69,
       "click": "#commandSearch",
-      "visibleControls": 42
+      "visibleControls": 35
     },
     {
       "step": 70,
       "click": "#projectMenu summary",
-      "visibleControls": 42
+      "visibleControls": 35
     },
     {
       "step": 71,
       "click": "#newProject",
-      "visibleControls": 42
+      "visibleControls": 35
     },
     {
       "step": 72,
       "click": "#cancelNewProject",
-      "visibleControls": 46
+      "visibleControls": 39
     },
     {
       "step": 73,
       "click": "#drawerTaskbar [data-drawer-category=\"style\"]",
-      "visibleControls": 42
+      "visibleControls": 35
     },
     {
       "step": 74,
       "click": "[data-drawer-tool=\"fonts\"]",
-      "visibleControls": 45
+      "visibleControls": 38
     }
   ],
   "errors": [],
   "remote": [],
   "captureComplete": true,
   "ordinarySearchRecoveryCount": 0,
-  "servedHtmlSha256": "e2d377000b989bebef4e6a1f329cbbb45007c60fae186d0b456276dadd4ee5ac",
+  "servedHtmlSha256": "9a7a867666bfc6bf84c988f792655ce24ee15150532a96e9ef1a95f0ce738f12",
   "selectedImages": {
     "text-before.png": "04a6f23ce9cca65ea1a787b0b0e5206d72d2328b59bfcd4f8c01e7fb1f717cfd",
-    "text-after.png": "847b173456876fb3269a86848e32fe9ae9750fbd39682787de87664549d890ee",
+    "text-after.png": "c2f2cb82dd3bb65873ac09717b6807a9725c176f6deead2c20ff9c9a332d6bcd",
     "compact-before.png": "508826c0064d4d83a826604ace3990e5b34c612a84da15d7f6d77cddbc8a064a",
     "compact-after.png": "5814a2a2092805ecf93249ade2919920ab76b88ce24616fb044a895ebacf1bff",
     "header-before.png": "c622e70e24c8d6db90c3656e22c50d6a96019ffcec12d8534fd69c991b9ddb7b",
     "header-after.png": "34ffa510220502ad68eff8176ab2a7f6898e2b5a495cf72f4461d15047f535c3",
     "image-before.png": "e0c7c92dd9926b352fc5416e5198dca325ebd9793b11283bede410670dce307d",
-    "image-after.png": "19205d895f53ae5339d7baebaf472ce337f0350d0a13240bf3b1234752f24f64",
+    "image-after.png": "1800a7126b32e2dcbe4f8eff2432eb143c3d62d3b33e9df6c09db2214b0f3eaa",
     "wb-before.png": "9845fe8c9bafaf7f6c22e854149e143186c8cc1c797923163aa8e6f1aadaf344",
-    "wb-after.png": "c600201399c961ababada95b9f9598a0b137aa9ca4c33236f7d87ec62439d680",
+    "wb-after.png": "dd12a8cb42d505ef21def5ac7ebd9b131512984a56c6d526a792a73b7d446bf4",
     "search-before.png": "3349b5c66f80eb0ff467705ee5bb5e591cd96c8582990942e71b5fbcf0b416f4",
-    "search-after.png": "96ee90ddbe5128dfaad6fcd81723339e6fdfaf203d3cde9a18a7fe5bb648d585",
-    "pearl-after.png": "76d427cec4d73b7bf43ef4f96be69669b2ebbb6699ce61586d2fdde1ae80405e",
-    "dropdown-after.png": "6135fa1cbb9615efcd83c9c3af6883f1b1e2fba5205c39a930c4f57c702cf611",
-    "dialog-after.png": "38cdb130942f727b61bdf96e71695a3682cf2118444fabd5c9ff63081e9991c0"
+    "search-after.png": "ccf8e289e0d9e2966474e5858ca5e44e59b290a38646a63f7677a5ecc4f38809",
+    "pearl-after.png": "774a24138055cf3ab8fe15d0248aebfe21efee30780817888119ad8518fb2ae9",
+    "dropdown-after.png": "6ffd6a6f52167cd8edf741289bef0625404378dba97a4aac9dacf3316db4cfc6",
+    "dialog-after.png": "9043fedecdb808652f9c64269b284192f34c36231cce5537f785c0d60d7218fe"
   },
   "runtimeAssets": {
     "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
@@ -36440,7 +35768,7 @@
     "discovery.js": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43",
     "download-metrics-ledger.json": "5b7f597471788e763edc76157081ea9ed17a684fbcadcc0e4b6efa27eaf8528f",
     "drawer-workspace.css": "4cf7b6175079a09cbc67a692966d83f082100ae19e5e6c55d04817c93de24e37",
-    "drawer-workspace.js": "18eaeb6491280c60cf5a400f5f7aae4a513e9ebde81601986610d17c447be7bd",
+    "drawer-workspace.js": "19dc47fb26104464230ffcbc7cd297f0b63688bc15e6cd377903b32f23249635",
     "duplicate-check.css": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e",
     "duplicate-check.js": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1",
     "duplicate-review.js": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf",
@@ -36529,5 +35857,6 @@
     "western-blot.js": "a12ae3b2f1a5a5e934b3f11f5628df05433b6f09ef6dd32a8b9e847683f99c22",
     "workspace-layout.css": "6143e92c9684fa3a4bb0a38cc55e769b12773b67df79575e7b6a87fa2266c8bb",
     "workspace-layout.js": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
-  }
+  },
+  "ciWidthFailureRetained": true
 }
