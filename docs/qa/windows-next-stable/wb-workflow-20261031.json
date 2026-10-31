@@ -1,0 +1,1494 @@
+{
+  "schema": "figure-studio-wb-engineering/1",
+  "author": "a",
+  "created": "2026-10-31",
+  "state": "UNRELEASED_SOURCE_VALIDATED_NATIVE_PENDING",
+  "baseCommit": "8141f172b6c151dfd22b10ea38c3be69f49d06ef",
+  "runtimeSourceSha256": {
+    "alignment-icons.js": "48e49baff77be11efe8ebc68c86c1613af5f628d561d0d9e4e65279b726c1216",
+    "axis-editing.js": "7368cfec0c7fb8ebb0e723d8e57fc8677e13d36f1223e57648f5c13de6f2e115",
+    "axis-settings-ui.css": "7d50d0bbc47253a0e6f673b294bf2d26ae413525eaf7d4f4729141ff7d2ca7c2",
+    "axis-settings-ui.js": "f318844bad3fe63c71cbe9c33d2435d7f19e569340cd0c915743dcd4ec5fb0c9",
+    "canvas-clipboard.js": "2fffc25d89665681a10be996d959a47ef09fef4c96e39bed5d6b71d0a8baf3be",
+    "catalogue-previews.json": "a3644e7455c498ef2613ae1b02f8b04d52cd84e19f049e5240a84b9d3b129f19",
+    "catalogue.js": "5b368231b42b1432a8a76a144a9d25aa88f3f6ad94d8c6c370be465e1c072a35",
+    "chart-knowledge.json": "182d057d26602c57a292bdc8f1124458a22a90d89e42c96dba1ffad61416630b",
+    "compact-whitespace.js": "1a378fff537b5c3555175cb8b44768a0af3aa55664e173c0ccd9de46b49652bb",
+    "component-style.js": "724ae874a0247d511403c10c83ead2c9d0db1fd6352d5af73128438e1c164234",
+    "deferred-previews.js": "7e5eb85d2d63b3b9cf9cfa7744009cb84819c53a0c68f2e7e69bf526e5e064ca",
+    "discovery-offline.js": "7c37b422623516051e770e0a6b4e01113425ff4248a405e1452ca7e1d54e0d38",
+    "discovery-ui.css": "a3f9711f6ffbadf003b6838aaf47fb937fc6e96c51edf86e97addc3be3876099",
+    "discovery-ui.js": "cf1decd45eea8adcb2c7e3215780a3ee31ded139fc967931c40362cbbe9b5871",
+    "discovery.js": "44f2d0579b9a28aafbd167e2b154bff9d51a5ce866ab4084444024e41012ea43",
+    "download-metrics-ledger.json": "5b7f597471788e763edc76157081ea9ed17a684fbcadcc0e4b6efa27eaf8528f",
+    "drawer-workspace.css": "64afdfa96f209eee0803672124e75997758e423360423f7e3284bbbbd322c940",
+    "drawer-workspace.js": "564b14f8488249c06c46c11b88733f63dcd69d8e146d6a085851a787917cdb8e",
+    "duplicate-check.css": "f094cfc9e00509b4208460b7d26c75fe12668636afa6b6d1024a426050b2648e",
+    "duplicate-check.js": "936778ebc111ca713b0c8ca5bb953bc673dd2b0353e3a70aceac91e9919c0bd1",
+    "duplicate-review.js": "463f4e6bff877e89f60653d9889c0381a752b93a840486a0c19037e78d77ebcf",
+    "duplicate-viewer.css": "b64a440392b3822afe5bcb1d0be97903bfafe5d37c36b90be1d6b4bdef0999cf",
+    "duplicate-viewer.js": "c00cb9e68bd334fdf9a1a62026b15ed182bdc93e239a7451036d3eb761204ebf",
+    "element-insertions.js": "3da9f757fdfcfccdcc244e5ddfee6247ad329abfb2a926009951abf3e8a70608",
+    "experience-tools.css": "9b4689ce2f55112f8abc51ce3dd2a1665dcce3bf25f86fb95389aa5a3bc95d4e",
+    "experience-tools.js": "21a617a2ffd0695d01facd3d71acc1d0cc437a86e6c17c41e18ecd4f8c483c21",
+    "figure-planning.js": "dc82b3c8d0b6fc2685b7723a758eea69e05e461211cea82fa15cad9d2249b003",
+    "figure-quality.js": "60d570fe3a328d34358451ccd13206d79fb3794aeed39873942e21aa7a046e80",
+    "gallery-contracts.js": "81110e8549debb6a6c8089a1a5dfadd2a001d3da3cfbbcc866a3f480ef59b42f",
+    "grid-resize-ui.js": "a5eddb1a01637cc90ab7bc9379f5139fc5b6c5fcaa76ae31cdad3957b490daed",
+    "group-spacing.js": "cded91585104c8c54bf46922b034c8b7ffd5436a96a5b86d534865d1026214a8",
+    "i18n.js": "6dc3b7814381899212bb22b104bf1a358fd84bd26df8f48e9cf8d8bf3c23e58b",
+    "image-color-ui.js": "9952bff2537451109035093725c2155750cdc5459583732a499d9b541873cb48",
+    "image-color.js": "af514f347252c5b04444cc4cc4f99a4d96fd7a81e3a52045c86bc99f37dc118d",
+    "image-insets-controller.js": "2ceb66b2eb1736e7dd6a78bae701090588a4d49cdafb2fba3d051ad1225f65ff",
+    "image-insets-ui.js": "8add281c2bb1e30d48544d5795d6db16f4ea1f2f47b8e2e7e7bf86aabce98035",
+    "image-insets.js": "d1d75b1ea15891038b831d901b14a588ec1bbed55609e01ceb7ef796725fc90c",
+    "image-links-controller.js": "82c9e72262b734455973550d822e32a0d37d2b8268d767fdff5fca0efeb59151",
+    "image-links-ui.js": "cd89e8606765cef22e76095d27e1e351ed37a9fee7e3507419a5072400bbf837",
+    "image-links.js": "7c43cdd3d8168a6251b55f868b5af08b09e14a480812d7a43df159cd07d44886",
+    "image-rectify-detect.js": "808edeee0957793bf285e1bf9ad5f2731ecbecc5d3b9a5ccfc09b18d1c154aec",
+    "image-rectify-ui.js": "f047930790e744a7e90beceffb30f0a2d7bedf8f0b65a792e6b54117f8b489e9",
+    "image-rectify.css": "526d3c49041ba5561634fea0cffb2a9595a86a4521d0ef7eb73109fb06cfd2fb",
+    "image-rectify.js": "95bf95f55c8d9d3489caa1250cc0b89bd8cbb1cadabbd7a30c6631a2363d255a",
+    "image-straighten.js": "4323974477f35206e0d8a662d64785746665d369b49ec08dbc690e797a4426a5",
+    "layers-panel.js": "df9833043b3b021e0fde04d009bcbfc13231baa475cfbedaa320b560decffa47",
+    "layout-lock.js": "21f34afd68af6f5ee80032a8c1a9bd2d3e01e5702ab8170faadafba2d2150242",
+    "legacy-stat-cleanup.js": "c2054aa220a1c3bef6a6e94f9a093def3ce5e6fdae84d0cc6b4b2ee1a1e1fd92",
+    "library.js": "20934503ee627cd44cecf5caefdf179382eb13981ec31e47fafea5a85a496d51",
+    "literature.css": "f696eccd3cfba3c0ea3fac45cbd5a74c6adb55728e59abf4ce1c5547f06e49f0",
+    "literature.js": "66b6852716cc59c622620504bac9c87ab6d2547a36c8d7b7fd3aa23574fa194b",
+    "mark-style.js": "78f685895fa7704374b90391a5a1aa9c3a79e3c0d12e44aa50516e287d125419",
+    "mascot-border-collie.svg": "bc17f3211a96529966fc744fd1e28df518ad43a2f79c3d199ba383079996472d",
+    "mascot-maine-coon.svg": "87a2ac6f885101abba85c45f013fdc8f303d5398c0756419bdb38d08509103f3",
+    "mascot-minimal-cat.svg": "abee4441d83d8e127526e8656363b0117e01a0bc3e99ec27882f8d4d43975d83",
+    "mascot-minimal-dog.svg": "3ac69072935713d1f2af3c5849052d731710eea38aead5d4f7b5b9976072d9ee",
+    "mascot-scene.svg": "cb21cf87bc4e011a2c8114c68ff3059795e63ba9d84ac86fe6b497227baa7c3b",
+    "master-frame.js": "577177c73632c055e2759ff3fa9b8ec5b71c173a501cc6569a0af562fa435cb9",
+    "memory.js": "1c41f4ed7f20748fc5a02a18c5033d8a31344050724ac0f9ac2064fd5bb54d8c",
+    "mobile-ui.css": "101335ce269683a514ceb526b46b15634019b57405144615b29debd897bfb14b",
+    "mobile-ui.js": "7c1349430b964ae2050f4a79079cfb5fc1e6aecd42384b14caaac16e64391f69",
+    "object-borders.js": "5ba4ed9c9d2971d3372ee14b8d04cf540753c879f40b165e1a37d758d542404a",
+    "panel-commands.js": "ab7257de063c0c017c655070e644b352cfd1ca58936786c56ec26f0846fb7bcd",
+    "preview-sessions.js": "218ce572c39a858f5ff519531ea5d7c7424d293db5d9184672688a5423182a88",
+    "project-codec.js": "95343ac7819582e47071040820e33868b3bf79eddaa0a93f57c1f41a90205892",
+    "project-operations.js": "47ec7234ae6fedcfb61357c375bdf8c0632a63d4ce6031cabf102b3c3a9a2540",
+    "quality-workspace.css": "26b5829969110828d357f818725ce0d0e105647710ac6606d0137719f57a81d7",
+    "quality-workspace.js": "41125480dcd80eba730c6b43d8efaffa855f4e2c035103c26931dd7af2247228",
+    "research-discovery.js": "7d2619716b1d08a1582da23639541346e406ca81f84a28ba8bbc744b3ecad67f",
+    "rich-text.css": "1deadd7d55d7edee1f120d2f80062e034fca198d3b74da8acb62022fa41c43e3",
+    "rich-text.js": "91ee47fd313e2751fd4a41a70d08949d3ab261c2673e0e8cb61dac6b0d7c38c4",
+    "scale-geometry.js": "cbf84b487787292009917c5e3f1e0ad0a677c5bf32e5ed1faaf726258677b73f",
+    "scientific-tiff-ui.js": "0547f44eb3dfc51395637b838358132e800bdb84d9f159ba978d1b8df6928ae5",
+    "scientific-tiff.css": "ac4aafac32b037756c19160aa7a9d03dd55ccb6083dc24ccc2ca1b1e41421027",
+    "scientific-tiff.js": "e48cd93de05687655c8a66bf7bd343839583d0d614e4be800863b2e0a13dc05e",
+    "selection-resize-controller.js": "a7d9ff42beba4e7de1587e9b45e1a7735ba2c9654836ec15121f91b3ad68ef61",
+    "selection-transform-dom.js": "a5c9a0e812c8faf2dc3676c1b489b669add41897ddbe0f71c38ee06d25a57fe3",
+    "selection-transform.js": "1382152027a9e0af58bebb980f995d0b20c19aab9e50ec0d4fdcc5272d09b719",
+    "statistical-line-geometry.js": "77a39daac75a1a0ee208b988ed28224b11e7c19db3f9a4f58ff6c892d6fc4cb8",
+    "statistical-metadata.js": "50ed24fa0e32d4aa41282f17e7aa2a46a098b35c6c46b3fabcd4ed45a9935747",
+    "studio-support.js": "c358ae47d025e119b01de5abdaf812161fcc6d18aac4ced3c97c95e1c5fd014d",
+    "studio.css": "951eea56f81bb985e412ea09c3f6bd59949ee39c9053da3e6d05db84a73b685c",
+    "studio.html": "4a544a2222f19d61b8eed4aa3d37ef1128e1583ad5d3d5fd200bd358b5d45458",
+    "studio.js": "ee0d50fbe2518a93e86b632f8c251f1d85fbb148587880f4e73b184b9cf56967",
+    "style-preview.js": "c0da41e0c15c37545f199525ec1f6db04086d68a146736b28ed7275f37fe767f",
+    "submission-profile-ui.js": "ee98b8ef53c072aeee14dcc37fac3acaeaab9bb01f78d48cea69bee44a0c41ff",
+    "submission-profiles.js": "47535d1292f0520eb2d87e47b70f3cbcd788e944957ef0b363c576d9550f41a3",
+    "template-starters.json": "eb8f5d4c60a2cfbb03ad2d334e9aa4f44802e0e3df29fc8a1779ab6088c636ba",
+    "text-formatting.js": "56444c1a7f6f937e50804915b7000b2c7c81067ffd3a7d074975d53ac325d7d1",
+    "text-tools-ui.js": "d14187400c06d76be58ca61cf85665a7e7ab884f3c8d5f0fad8c00798312865e",
+    "theme-controller.js": "53a19e902fb02f91a0962c8ec19d3bf8065ed05d87f0d81e34c344fcbb14f6b9",
+    "theme-tokens.css": "85e0c3f1ae00cb9b3a6e4af623a0f4e276a8a55349072f40006d981c5d4b764f",
+    "theme.css": "10852cb7c71d3f34b601e9c2108d258c816c5f52f88a60a875072b9dbf0c03ab",
+    "third-party-notices.js": "ea0d0f3f7bed2c0be844c532979bed6fa31f4354b2445446f0d7be7f7be6c682",
+    "tiff-export.js": "5a51b88e2398bcf400c2c5992b85856befdb2d631d0e847bf6c9eb51a547358f",
+    "update-check.js": "977df4939713cedc0d340b58958a9b2000c3c7de5c79cf411483300a894c1d5f",
+    "update-scene.css": "eced7b3291d70b0a8afd06a434d6c3aa4a8cee1a048a468a6e7f3948a136c7db",
+    "update-scene.js": "444cc790b4c5948ee785e1772c145453cb13dde3e7e5b840edae5f56d305daa7",
+    "vector-interaction.js": "4d2a68c49d13ee3c43b635cf44c8e7ebda660f4775d65097493a5a0ed6e014d4",
+    "wb-detect.js": "3b9937f581b050853292ff84c32703769e9efd34f23904749fa53e390e3529d8",
+    "wb-pptx.js": "dc70319b72274f64f24928d304943d55e7ae282f0e9bb53ae4ffe9e86a50b375",
+    "wb-workspace.css": "bd41a3f6fec3eeb1a467238ba126f7098438314b6ededfe5a1e1086b6c7ce9ef",
+    "wb-workspace.js": "0f48ee0316c7b7ad7002c896cc2ae8646a668a718feb351db603eb3176a5b129",
+    "western-blot.js": "cbfca4ba761b27dc9f8e8fe9615796f549c51754405d9a7bcb7438a3f9dd39b6",
+    "workspace-layout.css": "6143e92c9684fa3a4bb0a38cc55e769b12773b67df79575e7b6a87fa2266c8bb",
+    "workspace-layout.js": "55a29c144668fcd0f06553c877e3bce085ad3ba8ca08032e30b55cd7d08fad5e"
+  },
+  "uiAssets": 106,
+  "publicationAuthorized": false,
+  "productionRegression": {
+    "author": "a",
+    "scope": "Real local browser and production TIFF/JSON/correction engines with public synthetic fixtures; not native installed Windows or independent detector accuracy",
+    "checks": [
+      {
+        "script": "test_project_codec_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_scientific_tiff_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_scientific_tiff_derivative_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_submission_profiles_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_history_shortcuts_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_drawer_workspace_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_drawer_compact_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_support_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_text_content_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_wb_browser.cjs",
+        "exitCode": 0
+      },
+      {
+        "script": "test_studio_wb_advanced_browser.cjs",
+        "exitCode": 0
+      }
+    ],
+    "passed": true
+  },
+  "affectedContracts": {
+    "author": "a",
+    "date": "2026-10-31",
+    "checks": [
+      {
+        "name": "test_studio_drawer_workspace",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_workspace_hierarchy",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_rich_text_regression",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_text_geometry",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_host_ime",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_component_ime",
+        "exitCode": 0
+      },
+      {
+        "name": "test_studio_human_ime_contract",
+        "exitCode": 0
+      },
+      {
+        "name": "production9",
+        "exitCode": 0
+      }
+    ],
+    "passed": true
+  },
+  "wbBase": {
+    "author": "a",
+    "date": "2026-10-31",
+    "scope": "Actual source browser workflow with declared synthetic bands; not native installed Windows, human IME or independent detection accuracy",
+    "checks": [
+      "Two exposures, two source crops, independent ruler angle, lane/condition matrix and calibrated log-mass interpolation update actual canvas without saving a draft",
+      "Keep creates one undo; byte-exact sources, row/source mappings, original Iris data, checkpoints and data drafts retained",
+      "Undo, redo, full project re-open, WB source re-edit and cancel preserve saved composition",
+      "Out-of-source rotated crop is rejected, with no committed replacement"
+    ],
+    "canvasCarryGlyphWeights": [
+      700,
+      700
+    ],
+    "passed": true,
+    "errors": [],
+    "remote": []
+  },
+  "wbAdvanced": {
+    "author": "a",
+    "date": "2026-10-31",
+    "scope": "Source-browser P0/P1 engineering paths with declared synthetic pixels; no native installation or independent detection accuracy claim",
+    "checks": [
+      "Zoom and source-pixel nudge; source-specific lane map; non-adjacent/reversed order forces two visible splice boundaries",
+      "One shared source display curve, reset and retained original bytes; integer crop pixels agree within pointer/subpixel rounding of one display level",
+      "Suspend, downloaded working draft and full project reopen retain source maps and unconfirmed composition without applying it",
+      "Actual local-worker detection remains unconfirmed overlays until accepted; manual rejection preserves prior edits",
+      "Carbon 1440, Pearl 1280 and compact 853: visible controls stay inside the viewport; compact source/figure tabs operate; global toolbar undo/redo acts on WB draft"
+    ],
+    "pixelChecks": [
+      {
+        "width": 90,
+        "height": 45,
+        "maxDifference": 0
+      },
+      {
+        "width": 90,
+        "height": 45,
+        "maxDifference": 0
+      },
+      {
+        "width": 90,
+        "height": 45,
+        "maxDifference": 0
+      }
+    ],
+    "passed": true,
+    "errors": [],
+    "remote": []
+  },
+  "independentPptx": {
+    "author": "a",
+    "sourceSha256": "2bc5a89bd5d49b2b3abfe73bdb96daabeed88138e1d24a821cbf7444ed19e0a8",
+    "parser": "python-pptx 1.0.2",
+    "slideCount": 1,
+    "editableGroupCount": 1,
+    "pictureCount": 2,
+    "textCount": 25,
+    "textEditSaveReopen": true,
+    "allXmlParsed": true,
+    "allRelationshipsInternalAndResolvable": true,
+    "boundary": "Package structure and independent parser editing; not native PowerPoint visual acceptance"
+  },
+  "privateRealSamples": {
+    "count": 3,
+    "width": 1792,
+    "height": 1464,
+    "pages": 1,
+    "bitsPerSample": 8,
+    "e2ePassed": true,
+    "originalAndCopiedBytesUnchanged": true,
+    "independentLabels": false,
+    "imagesPathsProjectsAndVideosExcluded": true,
+    "finalSourceRerun": "private-native-final-r3 passed; only sanitized counts published"
+  },
+  "largeBatches": {
+    "large-r3": {
+      "author": "a",
+      "date": "2026-10-31",
+      "scope": "Declared synthetic 48 MB two-page uint16 TIFF, actual source browser/local decoder; not real experimental high-bit-depth or installed Windows acceptance",
+      "latenciesMs": [
+        522.9866999999995,
+        502.6266999999998,
+        489.65600000000086,
+        520.4920999999995,
+        500.4366000000009
+      ],
+      "checks": [
+        "48 MB, 4000×3000, two uint16 planes load through the production decoder, select plane two, retain exact original bytes and visible bit-depth distinction",
+        "Five real local resampling previews, keep and project reopen preserve native bytes; derivatives remain explicitly 8-bit display PNG"
+      ],
+      "heapBefore": 22555899,
+      "importPathMs": 4514.6858999999995,
+      "heapAfterImport": 158183555,
+      "heapAfterReopen": 325444032,
+      "longTasks": [
+        {
+          "start": 1362.5,
+          "duration": 86
+        },
+        {
+          "start": 4122.699999928474,
+          "duration": 120
+        },
+        {
+          "start": 4922.299999952316,
+          "duration": 103
+        },
+        {
+          "start": 5504.099999904633,
+          "duration": 235
+        },
+        {
+          "start": 5783.099999904633,
+          "duration": 71
+        },
+        {
+          "start": 6324.699999928474,
+          "duration": 113
+        },
+        {
+          "start": 6457.299999952316,
+          "duration": 84
+        },
+        {
+          "start": 6872.199999928474,
+          "duration": 91
+        },
+        {
+          "start": 6979.399999976158,
+          "duration": 83
+        },
+        {
+          "start": 7372.299999952316,
+          "duration": 93
+        },
+        {
+          "start": 7479.299999952316,
+          "duration": 81
+        },
+        {
+          "start": 7867.399999976158,
+          "duration": 88
+        },
+        {
+          "start": 7988.399999976158,
+          "duration": 81
+        },
+        {
+          "start": 8382.299999952316,
+          "duration": 94
+        },
+        {
+          "start": 8489.899999976158,
+          "duration": 83
+        },
+        {
+          "start": 8884,
+          "duration": 92
+        },
+        {
+          "start": 8990.199999928474,
+          "duration": 93
+        },
+        {
+          "start": 10490.899999976158,
+          "duration": 139
+        },
+        {
+          "start": 10662.599999904633,
+          "duration": 98
+        },
+        {
+          "start": 11032.5,
+          "duration": 77
+        },
+        {
+          "start": 12204,
+          "duration": 125
+        },
+        {
+          "start": 12660.699999928474,
+          "duration": 88
+        },
+        {
+          "start": 12798.099999904633,
+          "duration": 85
+        },
+        {
+          "start": 13121.299999952316,
+          "duration": 103
+        },
+        {
+          "start": 13230.699999928474,
+          "duration": 59
+        },
+        {
+          "start": 13469.799999952316,
+          "duration": 98
+        }
+      ],
+      "passed": true,
+      "errors": [],
+      "remote": []
+    },
+    "large-final-r1": {
+      "author": "a",
+      "date": "2026-10-31",
+      "scope": "Declared synthetic 48 MB two-page uint16 TIFF, actual source browser/local decoder; not real experimental high-bit-depth or installed Windows acceptance",
+      "latenciesMs": [
+        508.9412000000002,
+        497.15990000000056,
+        516.7289999999994,
+        486.10369999999966,
+        493.41529999999875
+      ],
+      "checks": [
+        "48 MB, 4000×3000, two uint16 planes load through the production decoder, select plane two, retain exact original bytes and visible bit-depth distinction",
+        "Five real local resampling previews, keep and project reopen preserve native bytes; derivatives remain explicitly 8-bit display PNG"
+      ],
+      "heapBefore": 22406083,
+      "importPathMs": 4534.164699999999,
+      "heapAfterImport": 157814474,
+      "heapAfterReopen": 328142312,
+      "longTasks": [
+        {
+          "start": 1497.6999999284744,
+          "duration": 88
+        },
+        {
+          "start": 4266.600000023842,
+          "duration": 51
+        },
+        {
+          "start": 4322.100000023842,
+          "duration": 101
+        },
+        {
+          "start": 5078.899999976158,
+          "duration": 100
+        },
+        {
+          "start": 5666.899999976158,
+          "duration": 225
+        },
+        {
+          "start": 5934.299999952316,
+          "duration": 69
+        },
+        {
+          "start": 6447.299999952316,
+          "duration": 122
+        },
+        {
+          "start": 6587.699999928474,
+          "duration": 82
+        },
+        {
+          "start": 6986.399999976158,
+          "duration": 95
+        },
+        {
+          "start": 7094.899999976158,
+          "duration": 85
+        },
+        {
+          "start": 7486.399999976158,
+          "duration": 93
+        },
+        {
+          "start": 7598.699999928474,
+          "duration": 79
+        },
+        {
+          "start": 8011.299999952316,
+          "duration": 85
+        },
+        {
+          "start": 8110,
+          "duration": 78
+        },
+        {
+          "start": 8495.399999976158,
+          "duration": 86
+        },
+        {
+          "start": 8594,
+          "duration": 82
+        },
+        {
+          "start": 8994.100000023842,
+          "duration": 81
+        },
+        {
+          "start": 9092.799999952316,
+          "duration": 94
+        },
+        {
+          "start": 11461.399999976158,
+          "duration": 137
+        },
+        {
+          "start": 11633.5,
+          "duration": 77
+        },
+        {
+          "start": 12001.199999928474,
+          "duration": 96
+        },
+        {
+          "start": 13093.799999952316,
+          "duration": 118
+        },
+        {
+          "start": 13483.100000023842,
+          "duration": 80
+        },
+        {
+          "start": 13606.399999976158,
+          "duration": 78
+        },
+        {
+          "start": 14167.399999976158,
+          "duration": 111
+        }
+      ],
+      "passed": true,
+      "errors": [],
+      "remote": []
+    },
+    "large-final-r2": {
+      "author": "a",
+      "date": "2026-10-31",
+      "scope": "Declared synthetic 48 MB two-page uint16 TIFF, actual source browser/local decoder; not real experimental high-bit-depth or installed Windows acceptance",
+      "latenciesMs": [
+        441.59920000000056,
+        446.119999999999,
+        413.7618000000002,
+        424.6707000000006,
+        486.242400000001
+      ],
+      "checks": [
+        "48 MB, 4000×3000, two uint16 planes load through the production decoder, select plane two, retain exact original bytes and visible bit-depth distinction",
+        "Five real local resampling previews, keep and project reopen preserve native bytes; derivatives remain explicitly 8-bit display PNG"
+      ],
+      "heapBefore": 22403354,
+      "importPathMs": 5225.028,
+      "heapAfterImport": 159357956,
+      "heapAfterReopen": 338044978,
+      "longTasks": [
+        {
+          "start": 2099.6999999284744,
+          "duration": 72
+        },
+        {
+          "start": 5422.600000023842,
+          "duration": 105
+        },
+        {
+          "start": 6205.399999976158,
+          "duration": 134
+        },
+        {
+          "start": 6916.799999952316,
+          "duration": 290
+        },
+        {
+          "start": 7256.699999928474,
+          "duration": 77
+        },
+        {
+          "start": 7825.399999976158,
+          "duration": 140
+        },
+        {
+          "start": 8313.299999952316,
+          "duration": 97
+        },
+        {
+          "start": 8745.799999952316,
+          "duration": 110
+        },
+        {
+          "start": 9179.299999952316,
+          "duration": 91
+        },
+        {
+          "start": 9595.899999976158,
+          "duration": 99
+        },
+        {
+          "start": 10095,
+          "duration": 87
+        },
+        {
+          "start": 12297,
+          "duration": 140
+        },
+        {
+          "start": 13929.100000023842,
+          "duration": 128
+        },
+        {
+          "start": 14367.5,
+          "duration": 80
+        },
+        {
+          "start": 14492.199999928474,
+          "duration": 82
+        },
+        {
+          "start": 15034.799999952316,
+          "duration": 97
+        }
+      ],
+      "passed": true,
+      "errors": [],
+      "remote": []
+    },
+    "large-memory-r1": {
+      "author": "a",
+      "date": "2026-10-31",
+      "scope": "Declared synthetic 48 MB two-page uint16 TIFF, actual source browser/local decoder; not real experimental high-bit-depth or installed Windows acceptance",
+      "latenciesMs": [
+        541.7391000000007,
+        550.4204000000009,
+        585.7549999999992,
+        611.2888999999996,
+        554.8734999999997
+      ],
+      "checks": [
+        "48 MB, 4000×3000, two uint16 planes load through the production decoder, select plane two, retain exact original bytes and visible bit-depth distinction",
+        "Three additional re-entry/cancel cycles report GC-normalized retained JS heap with the original project still open; this is not total process RAM or a general leak certification",
+        "Five real local resampling previews, keep and project reopen preserve native bytes; derivatives remain explicitly 8-bit display PNG"
+      ],
+      "heapBefore": 22415450,
+      "importPathMs": 8177.164,
+      "heapAfterImport": 157678007,
+      "heapAfterReopen": 342205256,
+      "longTasks": [
+        {
+          "start": 2240.5,
+          "duration": 68
+        },
+        {
+          "start": 2800.0999999046326,
+          "duration": 139
+        },
+        {
+          "start": 5342.899999976158,
+          "duration": 50
+        },
+        {
+          "start": 7699.599999904633,
+          "duration": 53
+        },
+        {
+          "start": 7760.199999928474,
+          "duration": 207
+        },
+        {
+          "start": 8939.299999952316,
+          "duration": 226
+        },
+        {
+          "start": 9940.299999952316,
+          "duration": 743
+        },
+        {
+          "start": 10683.399999976158,
+          "duration": 166
+        },
+        {
+          "start": 10852.799999952316,
+          "duration": 186
+        },
+        {
+          "start": 11266.699999928474,
+          "duration": 232
+        },
+        {
+          "start": 12073.299999952316,
+          "duration": 60
+        },
+        {
+          "start": 12157.099999904633,
+          "duration": 305
+        },
+        {
+          "start": 12864.799999952316,
+          "duration": 147
+        },
+        {
+          "start": 13386.699999928474,
+          "duration": 173
+        },
+        {
+          "start": 13963.099999904633,
+          "duration": 183
+        },
+        {
+          "start": 14554.799999952316,
+          "duration": 201
+        },
+        {
+          "start": 15167.799999952316,
+          "duration": 147
+        },
+        {
+          "start": 15354,
+          "duration": 51
+        },
+        {
+          "start": 19271.699999928474,
+          "duration": 328
+        },
+        {
+          "start": 22551.599999904633,
+          "duration": 553
+        },
+        {
+          "start": 23815.799999952316,
+          "duration": 138
+        },
+        {
+          "start": 23962.099999904633,
+          "duration": 79
+        },
+        {
+          "start": 24043.199999928474,
+          "duration": 168
+        },
+        {
+          "start": 24290.899999976158,
+          "duration": 61
+        },
+        {
+          "start": 24925.599999904633,
+          "duration": 220
+        },
+        {
+          "start": 25173.399999976158,
+          "duration": 122
+        }
+      ],
+      "retainedHeapAfterDraftClose": [
+        151597238,
+        151676958,
+        151716874
+      ],
+      "passed": true,
+      "errors": [],
+      "remote": []
+    }
+  },
+  "largeNativeArchive": {
+    "author": "a",
+    "schema": "wb-native-archive-independent-check/1",
+    "passed": true,
+    "synthetic": true,
+    "bytes": 48000384,
+    "sha256": "08f4e01686670423e51b491a78ef076eee0afd298bea5aa9580ee1dd7f8dcf45",
+    "pages": 2,
+    "dimensions": [
+      4000,
+      3000
+    ],
+    "bitsPerSample": 16,
+    "planeSampleSha256": [
+      "8512449442b2d793b02ad7f0b448d56890f1cc2edcb570a6ca4f0f65db9beea5",
+      "f4843091f2e8ccef9998e59df0781c8f8aec6e348acbe1d3cec1c242c287260f"
+    ],
+    "fullOriginalByteEquality": true,
+    "mappingNativeBits": true,
+    "boundary": "Original archival precision, not 16-bit cropped WB derivative export"
+  },
+  "current5000": {
+    "author": "a",
+    "date": "2026-10-31T05:20:17.922Z",
+    "browser": "156.0.8078.76",
+    "scope": "Independent source Chrome, event to second rAF, synthetic5000, no recording/profiler; not installed or physical latency.",
+    "samples": [
+      {
+        "name": "select-text",
+        "start": 9975.600000023842,
+        "ms": 36.700000047683716
+      },
+      {
+        "name": "select-rect",
+        "start": 10295.300000071526,
+        "ms": 48.799999952316284
+      },
+      {
+        "name": "colour-confirm",
+        "start": 10887.900000095367,
+        "ms": 41
+      },
+      {
+        "name": "drag-confirm",
+        "start": 11272.300000071526,
+        "ms": 140.39999997615814
+      },
+      {
+        "name": "select-text",
+        "start": 12146.700000047684,
+        "ms": 49.60000002384186
+      },
+      {
+        "name": "select-rect",
+        "start": 12484.700000047684,
+        "ms": 36.799999952316284
+      },
+      {
+        "name": "colour-confirm",
+        "start": 13076.600000023842,
+        "ms": 37.300000071525574
+      },
+      {
+        "name": "drag-confirm",
+        "start": 13446.700000047684,
+        "ms": 146.10000002384186
+      },
+      {
+        "name": "select-text",
+        "start": 14353.800000071526,
+        "ms": 54.699999928474426
+      },
+      {
+        "name": "select-rect",
+        "start": 14701.700000047684,
+        "ms": 38.700000047683716
+      },
+      {
+        "name": "colour-confirm",
+        "start": 15280.300000071526,
+        "ms": 37.699999928474426
+      },
+      {
+        "name": "drag-confirm",
+        "start": 15662.300000071526,
+        "ms": 144.60000002384186
+      },
+      {
+        "name": "select-text",
+        "start": 16519.100000023842,
+        "ms": 41.5
+      },
+      {
+        "name": "select-rect",
+        "start": 16851.5,
+        "ms": 37.10000002384186
+      },
+      {
+        "name": "colour-confirm",
+        "start": 17426.900000095367,
+        "ms": 37.89999997615814
+      },
+      {
+        "name": "drag-confirm",
+        "start": 17805.300000071526,
+        "ms": 138.39999997615814
+      },
+      {
+        "name": "select-text",
+        "start": 18686.300000071526,
+        "ms": 36.39999997615814
+      },
+      {
+        "name": "select-rect",
+        "start": 19001.200000047684,
+        "ms": 33
+      },
+      {
+        "name": "colour-confirm",
+        "start": 19578.700000047684,
+        "ms": 36.10000002384186
+      },
+      {
+        "name": "drag-confirm",
+        "start": 19953.800000071526,
+        "ms": 130.10000002384186
+      },
+      {
+        "name": "select-text",
+        "start": 20810.100000023842,
+        "ms": 48.200000047683716
+      },
+      {
+        "name": "select-rect",
+        "start": 21150.900000095367,
+        "ms": 38.09999990463257
+      },
+      {
+        "name": "colour-confirm",
+        "start": 21746.800000071526,
+        "ms": 35
+      },
+      {
+        "name": "drag-confirm",
+        "start": 22121.200000047684,
+        "ms": 143.79999995231628
+      },
+      {
+        "name": "select-text",
+        "start": 22968.300000071526,
+        "ms": 36.60000002384186
+      },
+      {
+        "name": "select-rect",
+        "start": 23284.900000095367,
+        "ms": 37.59999990463257
+      },
+      {
+        "name": "colour-confirm",
+        "start": 23865.600000023842,
+        "ms": 35.200000047683716
+      },
+      {
+        "name": "drag-confirm",
+        "start": 24246.600000023842,
+        "ms": 155.5
+      },
+      {
+        "name": "select-text",
+        "start": 25152.300000071526,
+        "ms": 43.199999928474426
+      },
+      {
+        "name": "select-rect",
+        "start": 25475.900000095367,
+        "ms": 36.299999952316284
+      },
+      {
+        "name": "colour-confirm",
+        "start": 26054.5,
+        "ms": 37.300000071525574
+      },
+      {
+        "name": "drag-confirm",
+        "start": 26417.300000071526,
+        "ms": 138.10000002384186
+      },
+      {
+        "name": "select-text",
+        "start": 27268.5,
+        "ms": 39.10000002384186
+      },
+      {
+        "name": "select-rect",
+        "start": 27602.800000071526,
+        "ms": 35.199999928474426
+      },
+      {
+        "name": "colour-confirm",
+        "start": 28179.5,
+        "ms": 36.300000071525574
+      },
+      {
+        "name": "drag-confirm",
+        "start": 28580.100000023842,
+        "ms": 145.10000002384186
+      },
+      {
+        "name": "select-text",
+        "start": 29443.5,
+        "ms": 36.800000071525574
+      },
+      {
+        "name": "select-rect",
+        "start": 29767.900000095367,
+        "ms": 43.799999952316284
+      },
+      {
+        "name": "colour-confirm",
+        "start": 30355.100000023842,
+        "ms": 38.700000047683716
+      },
+      {
+        "name": "drag-confirm",
+        "start": 30737.100000023842,
+        "ms": 140.5
+      },
+      {
+        "name": "select-text",
+        "start": 31601.700000047684,
+        "ms": 51.700000047683716
+      },
+      {
+        "name": "select-rect",
+        "start": 31934.300000071526,
+        "ms": 35.39999997615814
+      },
+      {
+        "name": "colour-confirm",
+        "start": 32517.800000071526,
+        "ms": 37.699999928474426
+      },
+      {
+        "name": "drag-confirm",
+        "start": 32903.800000071526,
+        "ms": 138.69999992847443
+      },
+      {
+        "name": "select-text",
+        "start": 33769.90000009537,
+        "ms": 36.199999928474426
+      },
+      {
+        "name": "select-rect",
+        "start": 34093.5,
+        "ms": 50.5
+      },
+      {
+        "name": "colour-confirm",
+        "start": 34696.800000071526,
+        "ms": 43.60000002384186
+      },
+      {
+        "name": "drag-confirm",
+        "start": 35088,
+        "ms": 148.20000004768372
+      },
+      {
+        "name": "select-text",
+        "start": 35978,
+        "ms": 51
+      },
+      {
+        "name": "select-rect",
+        "start": 36309.40000009537,
+        "ms": 37.199999928474426
+      },
+      {
+        "name": "colour-confirm",
+        "start": 36887,
+        "ms": 40.10000002384186
+      },
+      {
+        "name": "drag-confirm",
+        "start": 37270.40000009537,
+        "ms": 139.09999990463257
+      },
+      {
+        "name": "select-text",
+        "start": 38118.5,
+        "ms": 35.800000071525574
+      },
+      {
+        "name": "select-rect",
+        "start": 38442.90000009537,
+        "ms": 37.199999928474426
+      },
+      {
+        "name": "colour-confirm",
+        "start": 39032.300000071526,
+        "ms": 38
+      },
+      {
+        "name": "drag-confirm",
+        "start": 39413.40000009537,
+        "ms": 147.29999995231628
+      },
+      {
+        "name": "select-text",
+        "start": 40270.300000071526,
+        "ms": 36.60000002384186
+      },
+      {
+        "name": "select-rect",
+        "start": 40592.700000047684,
+        "ms": 35.39999997615814
+      },
+      {
+        "name": "colour-confirm",
+        "start": 41178.10000002384,
+        "ms": 37.39999997615814
+      },
+      {
+        "name": "drag-confirm",
+        "start": 41545.10000002384,
+        "ms": 133.10000002384186
+      },
+      {
+        "name": "select-text",
+        "start": 42409.90000009537,
+        "ms": 50
+      },
+      {
+        "name": "select-rect",
+        "start": 42742.5,
+        "ms": 35.60000002384186
+      },
+      {
+        "name": "colour-confirm",
+        "start": 43328.5,
+        "ms": 35.700000047683716
+      },
+      {
+        "name": "drag-confirm",
+        "start": 43689,
+        "ms": 137.90000009536743
+      },
+      {
+        "name": "select-text",
+        "start": 44544.800000071526,
+        "ms": 37.699999928474426
+      },
+      {
+        "name": "select-rect",
+        "start": 44859.300000071526,
+        "ms": 34.699999928474426
+      },
+      {
+        "name": "colour-confirm",
+        "start": 45450.5,
+        "ms": 37.5
+      },
+      {
+        "name": "drag-confirm",
+        "start": 45820.300000071526,
+        "ms": 132.5
+      },
+      {
+        "name": "select-text",
+        "start": 46676.40000009537,
+        "ms": 42.09999990463257
+      },
+      {
+        "name": "select-rect",
+        "start": 47002.10000002384,
+        "ms": 36
+      },
+      {
+        "name": "colour-confirm",
+        "start": 47578.800000071526,
+        "ms": 38
+      },
+      {
+        "name": "drag-confirm",
+        "start": 47945.200000047684,
+        "ms": 128.89999997615814
+      },
+      {
+        "name": "select-text",
+        "start": 48792.700000047684,
+        "ms": 36.299999952316284
+      },
+      {
+        "name": "select-rect",
+        "start": 49111.300000071526,
+        "ms": 37.10000002384186
+      },
+      {
+        "name": "colour-confirm",
+        "start": 49688.5,
+        "ms": 37.800000071525574
+      },
+      {
+        "name": "drag-confirm",
+        "start": 50063.700000047684,
+        "ms": 147.79999995231628
+      },
+      {
+        "name": "select-text",
+        "start": 50944.40000009537,
+        "ms": 42.199999928474426
+      },
+      {
+        "name": "select-rect",
+        "start": 51268.10000002384,
+        "ms": 44.60000002384186
+      },
+      {
+        "name": "colour-confirm",
+        "start": 51865.60000002384,
+        "ms": 36.700000047683716
+      },
+      {
+        "name": "drag-confirm",
+        "start": 52236.90000009537,
+        "ms": 138.79999995231628
+      }
+    ],
+    "longTasks": [
+      {
+        "start": 4742.5,
+        "ms": 127
+      },
+      {
+        "start": 5209.700000047684,
+        "ms": 115
+      },
+      {
+        "start": 6943.400000095367,
+        "ms": 127
+      },
+      {
+        "start": 7410.600000023842,
+        "ms": 108
+      },
+      {
+        "start": 9122,
+        "ms": 117
+      },
+      {
+        "start": 9576.200000047684,
+        "ms": 102
+      },
+      {
+        "start": 11272.200000047684,
+        "ms": 120
+      },
+      {
+        "start": 11741.400000095367,
+        "ms": 101
+      },
+      {
+        "start": 13446.600000023842,
+        "ms": 123
+      },
+      {
+        "start": 13930,
+        "ms": 117
+      },
+      {
+        "start": 15662.200000047684,
+        "ms": 123
+      },
+      {
+        "start": 16120.5,
+        "ms": 100
+      },
+      {
+        "start": 17805.200000047684,
+        "ms": 120
+      },
+      {
+        "start": 18273.300000071526,
+        "ms": 108
+      },
+      {
+        "start": 19953.700000047684,
+        "ms": 110
+      },
+      {
+        "start": 20405.100000023842,
+        "ms": 105
+      },
+      {
+        "start": 22121.100000023842,
+        "ms": 122
+      },
+      {
+        "start": 22579.700000047684,
+        "ms": 92
+      },
+      {
+        "start": 24246.5,
+        "ms": 134
+      },
+      {
+        "start": 24739.400000095367,
+        "ms": 101
+      },
+      {
+        "start": 26417.100000023842,
+        "ms": 117
+      },
+      {
+        "start": 26866.400000095367,
+        "ms": 105
+      },
+      {
+        "start": 28580,
+        "ms": 125
+      },
+      {
+        "start": 29041.600000023842,
+        "ms": 100
+      },
+      {
+        "start": 30737,
+        "ms": 122
+      },
+      {
+        "start": 31191.900000095367,
+        "ms": 104
+      },
+      {
+        "start": 32903.700000047684,
+        "ms": 119
+      },
+      {
+        "start": 33361.700000047684,
+        "ms": 104
+      },
+      {
+        "start": 35087.800000071526,
+        "ms": 126
+      },
+      {
+        "start": 35574.40000009537,
+        "ms": 102
+      },
+      {
+        "start": 37270.300000071526,
+        "ms": 119
+      },
+      {
+        "start": 37727.90000009537,
+        "ms": 102
+      },
+      {
+        "start": 39413.200000047684,
+        "ms": 127
+      },
+      {
+        "start": 39874.5,
+        "ms": 100
+      },
+      {
+        "start": 41545,
+        "ms": 114
+      },
+      {
+        "start": 42002.200000047684,
+        "ms": 101
+      },
+      {
+        "start": 43688.90000009537,
+        "ms": 120
+      },
+      {
+        "start": 44147.10000002384,
+        "ms": 94
+      },
+      {
+        "start": 45820.10000002384,
+        "ms": 109
+      },
+      {
+        "start": 46279.40000009537,
+        "ms": 102
+      },
+      {
+        "start": 47945,
+        "ms": 109
+      },
+      {
+        "start": 48387,
+        "ms": 99
+      },
+      {
+        "start": 50063.60000002384,
+        "ms": 125
+      },
+      {
+        "start": 50533.10000002384,
+        "ms": 105
+      },
+      {
+        "start": 52236.800000071526,
+        "ms": 117
+      },
+      {
+        "start": 52694.60000002384,
+        "ms": 101
+      }
+    ],
+    "select-text": {
+      "n": 20,
+      "p50": 39.10000002384186,
+      "p95": 51.700000047683716,
+      "max": 54.699999928474426,
+      "longTasks": 0
+    },
+    "select-rect": {
+      "n": 20,
+      "p50": 37.10000002384186,
+      "p95": 48.799999952316284,
+      "max": 50.5,
+      "longTasks": 0
+    },
+    "colour-confirm": {
+      "n": 20,
+      "p50": 37.5,
+      "p95": 41,
+      "max": 43.60000002384186,
+      "longTasks": 0
+    },
+    "drag-confirm": {
+      "n": 20,
+      "p50": 139.09999990463257,
+      "p95": 148.20000004768372,
+      "max": 155.5,
+      "longTasks": 20
+    },
+    "passed": true,
+    "errors": [],
+    "remote": []
+  },
+  "publicArtifacts": {
+    "wb-before-prototype-20261031.png": {
+      "sha256": "933345f5af92747a1adec3963559b5fd3e9143c0fd6e1a7de281a0cdb2634887",
+      "bytes": 100111,
+      "syntheticOrPublicIrisOnly": true
+    },
+    "wb-carbon-20261031.png": {
+      "sha256": "1dfac434c6c698c51589ffc7e0cc3a0048e03a758b27f45d3cd7f6a9a707c976",
+      "bytes": 124754,
+      "syntheticOrPublicIrisOnly": true
+    },
+    "wb-pearl-20261031.png": {
+      "sha256": "6233fda37f189b56a20870d9ecc39ad50da565e09fcce5d172520f97bd2550ca",
+      "bytes": 103559,
+      "syntheticOrPublicIrisOnly": true
+    },
+    "wb-compact-20261031.png": {
+      "sha256": "48cabb2f9c2459d141998e318fe02431b9ea6b030a3b552eef2b9a1f4eff84ec",
+      "bytes": 83531,
+      "syntheticOrPublicIrisOnly": true
+    },
+    "wb-workflow-20261031.webm": {
+      "sha256": "c0b0a0ab53ea022532cd5d8fafd1fffbd2a05c495297572b0cde649a8a9a0500",
+      "bytes": 1026947,
+      "syntheticOrPublicIrisOnly": true
+    }
+  },
+  "remaining": [
+    "Windows installer Chinese clipping failed user review",
+    "Installed current WB and Microsoft Pinyin",
+    "Same-package native 5000 timing",
+    "Genuine official old-to-new in-app update and actual recovery",
+    "Independent labelled detector accuracy",
+    "Native PowerPoint visual operation",
+    "Real experimental high-bit-depth WB and all-scene all-format manual quality",
+    "Arbitrary canvas overrides are not included in WB parameter-draft PPTX",
+    "No native WB PDF, 16-bit WB derivative or densitometry"
+  ],
+  "retainedFailures": "All prior failed and diagnostic directories retained locally; private evidence excluded from public artifacts. Memory diagnostic timing overlaps regression and is not a matched performance batch.",
+  "pythonRegression": {
+    "total": 55,
+    "passed": true,
+    "checks": [
+      {
+        "script": "desktop/test_windows_build.py",
+        "exitCode": 0
+      },
+      {
+        "script": "desktop/test_figure_studio_app.py",
+        "exitCode": 0
+      },
+      {
+        "script": "desktop/test_windows_updater.py",
+        "exitCode": 0
+      },
+      {
+        "script": "scripts/test_studio_tiff.py",
+        "exitCode": 0
+      }
+    ]
+  },
+  "releaseArchive": {
+    "passed": true,
+    "extractedCLIAndBytecodeRuntime": true,
+    "offlineWBGuideAndResourcesRegistered": true
+  },
+  "pythonInitialFailureRetained": {
+    "testsRun": 52,
+    "errors": 16,
+    "causes": [
+      "Invocation import path",
+      "Sandbox WinError10013 loopback"
+    ],
+    "scriptAndAssertionsUnchanged": true
+  },
+  "preRestoreGuardTimingSourceSha256": {
+    "studio.js": "bdcdc0564a989f8ded113d5183f5ee1922b402d948cc9389d65ba07218ad6fca",
+    "wb-workspace.js": "668d54be8be7bc8071468737529b9d8db807dc3587974a36c1ea1931040a8713"
+  },
+  "timingBoundary": "Large and 5000 timings were measured before the final browser draft-restore checksum/selection/disclosure fix; later final production regression passed. Do not relabel timing as native or exact final-installed performance.",
+  "browserDraftRestore": {
+    "rawSourceChecksumsVerified": true,
+    "actualReloadPassed": true,
+    "rowSourceModeAndDisclosuresRetained": true,
+    "firstAddedReloadRunFailureRetained": true
+  }
+}

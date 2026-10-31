@@ -133,3 +133,8 @@ Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库
 本轮未发布候选增加[原生 TIFF 显示](docs/figure-studio-native-tiff.md)：从**导入文件**打开 TIFF，在真实画布微调原生显示窗、伽马及 LUT；取消恢复工程，保留后可下载原始 TIFF。需要再次调整时，在图片说明区选择**从原始 TIFF 新建显示**；原有图片和编辑保留，新显示共用原文件。此说明随 Windows 包提供，断网可阅读；具体格式限制见该页。正式版本仍以发布页为准。
 
 从顶部六类任务或 **功能检索** 进入工具；快捷入口不会改变功能归属。选中对象后可直接加独立边框；参考校色在图片处理，查重在检查与导出，总览／放大图关联在标注与测量。原生图的专业坐标轴按范围、刻度、尺寸、外观分区，应用后重新绘图，可撤销。详见[图片工具](../docs/figure-studio-image-tools.md)、[坐标轴](../docs/figure-studio-axes-round2.md)及[真实验收范围](../docs/figure-studio-experience-round2-validation.md)。
+
+
+## WB 条带处理与组图
+
+未发布候选：从 **图片处理 → WB 条带处理与组图** 或 Ctrl+K 搜索“WB”进入。导入原图、框选／拉正、确认泳道与曝光，再保留为可编辑画布对象；暂存会保留未确认草稿。16-bit 原 TIFF 与 8-bit 展示衍生分别保存，不做灰度定量。详见随包的[操作指南](docs/figure-studio-western-blot.zh-CN.md)。

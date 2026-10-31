@@ -79,7 +79,7 @@ fs.mkdirSync(out,{recursive:true});
     assert.deepEqual(afterReopen.state,kept.state);
     const corrupted=JSON.parse(JSON.stringify(afterReopen));corrupted.project.title='MUST NOT OPEN';
     const source=corrupted.project.scientificSources[record.sourceSha256];source.data=(source.data[0]==='A'?'B':'A')+source.data.slice(1);
-    await H.loadProject(page,corrupted,'PUBLIC-corrupt-native.json');
+    await H.loadProject(page,corrupted,'PUBLIC-corrupt-native.json',{expectReplacement:false});
     await page.locator('#status').filter({hasText:/SHA-256/}).waitFor();
     const rejected=await save('rejected-native.json');assert.deepEqual(rejected.project,afterReopen.project);assert.deepEqual(rejected.state,afterReopen.state);
     checks.push('Saved native-source project reopens only after integrity verification; corrupted original is refused without replacing active edits');

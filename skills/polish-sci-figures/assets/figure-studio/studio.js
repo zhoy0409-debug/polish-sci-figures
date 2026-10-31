@@ -1054,11 +1054,12 @@ if (typeof document !== 'undefined') (async () => {
     event.preventDefault();event.stopImmediatePropagation();
     if(previewSessions.active.kind==='object-borders')objectBordersUI?.cancel('escape');
     else if(previewSessions.active.kind==='axes')professionalAxesUI?.cancel('escape');
+    else if(previewSessions.active.kind==='western-blot')wbWorkspace?.suspend();
     else if(previewSessions.cancel('escape'))say(T('已取消预览，保留当前编辑。'));
   },true);
 
 
-  let objectBordersUI=null,experienceTools=null;
+  let objectBordersUI=null,experienceTools=null,wbWorkspace=null,restoredWBDraft=null,wbDraftVersion=0,wbDraftTimer=null,wbDraftKey='';
   function borderTargets(){
     const items=quickSelectedObjects(),out=[],grouped=new Set();
     for(const group of selectionGroups())for(const keys of state().panels[group.id].elementGroups?.[group.vi]||[]){if(keys.length>1&&keys.every(k=>group.keys.includes(k))){out.push({target:{kind:'group',panelId:group.id,variant:group.vi,keys:[...keys]},locked:items.some(i=>i.id===group.id&&keys.includes(i.key)&&i.locked)});keys.forEach(k=>grouped.add(group.id+'/'+group.vi+'/'+k));}}
@@ -1070,9 +1071,10 @@ if (typeof document !== 'undefined') (async () => {
     const language=()=>StudioI18n.language;
     if(typeof StudioObjectBorders!=='undefined')objectBordersUI=StudioObjectBorders.create({container:document.body,language,targets:borderTargets,state,project:()=>project,root:()=>$('artboard').querySelector('svg'),selectedPanel:()=>selectedPanel,scale:()=>currentOutput().scale,commit:commitPreviewState,previewSessions,dockContainer:document.querySelector('aside.inspector'),reveal:()=>{if(mobileWorkspace?.enabled)mobileWorkspace.showTab('adjustments');},say});
     const selectImage=ref=>{original=false;selectedPanel=ref.panelId;panelSelection=[ref.panelId];setElementSelection([{id:ref.panelId,vi:ref.variant,keys:[ref.key]}]);showPane('detail');render();};
-    const color=()=>{showPane('detail');if(!insetSelection().source){const images=imageColorSources();if(images.length===1)selectImage(images[0]);else return experienceTools?.openImages('color');}imageColorUI?.open();};
+    const color=()=>{if(panel(selectedPanel)?.analysis?.westernBlot){openWBWorkspace();say(T('WB 显示调整请对同一源图整体应用。'));return;}showPane('detail');if(!insetSelection().source){const images=imageColorSources();if(images.length===1)selectImage(images[0]);else return experienceTools?.openImages('color');}imageColorUI?.open();};
     const rectify=()=>{showPane('detail');if(!rectifyImageSelection().source){const images=rectifyImageSources();if(images.length===1)selectImage(images[0]);else return experienceTools?.openImages('rectify');}if(imageRectifyUI?.open()===false)say(rectifyImageSelection().reason||T('请先选中原图。'));};
     if(typeof StudioExperienceTools!=='undefined')experienceTools=StudioExperienceTools.create({document,language,say,images:imageColorSources,selectedImage:()=>insetSelection().source,selectImage,
+      westernBlot:()=>openWBWorkspace(),
       supportInfo:()=>localEngine?.updateInfo||{},syncPane:name=>showPane(name,false),
       context:()=>({selected:!!selectedPanel,image:!!insetSelection().source}),duplicateStatus:()=>duplicateCheck?.status?.(),
       discovery:()=>{showPane('explore');$('openDiscovery')?.click();},edit:()=>showPane('detail'),
@@ -1089,7 +1091,7 @@ if (typeof document !== 'undefined') (async () => {
     });
     if(!experienceTools?.workbench){const context=document.createElement('div');context.id='contextObjectTools';context.className='row';const border=document.createElement('button');border.id='openObjectBorder';border.textContent=language()==='en'?'Object borders':'对象边框';border.onclick=()=>objectBordersUI?.open();const images=document.createElement('button');images.id='openImageTools';images.textContent=language()==='en'?'Image tools':'图片工具';images.onclick=()=>experienceTools?.openImages();context.append(border,images);document.querySelector('[data-pane="detail"]')?.prepend(context);}experienceTools?.refresh();
   }
-  const saveSignature = () => JSON.stringify({state:state(),checkpoints,dataDrafts,imageReview:project?.imageDuplicateReview?{createdAt:project.imageDuplicateReview.createdAt,updatedAt:project.imageDuplicateReview.updatedAt,reviews:project.imageDuplicateReview.reviews}:null});
+  const saveSignature = () => JSON.stringify({state:state(),checkpoints,dataDrafts,wbDraftVersion,imageReview:project?.imageDuplicateReview?{createdAt:project.imageDuplicateReview.createdAt,updatedAt:project.imageDuplicateReview.updatedAt,reviews:project.imageDuplicateReview.reviews}:null});
   const panel = id => project.panels.find(p => p.id === id);
   const variant = id => panel(id).variants[state().panels[id].variant];
   const say = text => { message = text; $('status').textContent = T(text); };
@@ -1260,6 +1262,7 @@ if (typeof document !== 'undefined') (async () => {
         if(v.size && !Object.hasOwn(sizeNames,v.size))throw Error(T('未知的画布规格'));
         const safe=sanitize(v.svg);if(safe.studioLegacyStatCleaned){v.viewBox=safe.getAttribute('viewBox').trim().split(/[\s,]+/).map(Number);v.height=v.width*v.viewBox[3]/v.viewBox[2];}
       }
+      if(pan.analysis?.westernBlot){StudioWesternBlot.validate(pan.analysis.westernBlot,{rendered:true});if(pan.variants.length!==1||pan.variants[0].svg!==StudioWesternBlot.compose(pan.analysis.westernBlot).svg)throw Error(T('WB 来源记录与基础图形不匹配'));validateWBNativeSources(pan.analysis.westernBlot,p);}
       if(pan.analysis?.imageRectification)validateImageRectification(pan);
     }
     if(p.scientificSources||p.panels.some(pan=>pan.analysis?.scientificImage||pan.analysis?.scientificOrigin)){
@@ -1270,6 +1273,7 @@ if (typeof document !== 'undefined') (async () => {
     validateState(p.initialState, p);
     if(p.imageDuplicateReview!=null){try{StudioDuplicateReview.validate(p.imageDuplicateReview,p.id);}catch{throw Error(T('查重复核记录无效'));}}
   }
+  function validateWBNativeSources(model,owner){for(const source of model.sources){const origin=source.origin?.native;if(!origin)continue;const original=owner.panels.find(p=>p.id===origin.sourcePanelId),native=original?.analysis?.scientificImage;const sourcePanel=owner.panels.find(p=>p.id===source.origin.panelId),derived=sourcePanel?.analysis?.imageRectification;if(!native||native.sourceSha256!==origin.sourceSha256||native.display.sha256!==source.sha256&&derived?.outputSha256!==source.sha256||!owner.scientificSources?.[origin.sourceSha256])throw Error(T('WB 原生 TIFF 来源缺失或不匹配'));}}
   function imageRectificationHrefs(asset){
     const hrefs=asset.variants.map(v=>{const svg=sanitize(v.svg),images=[...svg.querySelectorAll('image')];if(images.length!==1)throw Error(T('图片校正记录无效'));return images[0].getAttribute('href')||images[0].getAttributeNS('http://www.w3.org/1999/xlink','href');});
     if(hrefs.length!==2)throw Error(T('图片校正记录无效'));return {outputHref:hrefs[0],sourceHref:hrefs[1]};
@@ -1279,6 +1283,7 @@ if (typeof document !== 'undefined') (async () => {
   }
   async function verifyImageRectifications(owner){
     if(owner.scientificSources)await StudioScientificTiff.verifySources(owner);
+    for(const asset of owner.panels)if(asset.analysis?.westernBlot)await StudioWesternBlot.verify(asset.analysis.westernBlot);
     for(const asset of owner.panels)if(asset.analysis?.imageRectification){try{await StudioImageRectify.verifyRecord(asset.analysis.imageRectification,imageRectificationHrefs(asset));}catch{throw Error(T('图片校正原图或结果校验失败，未替换当前工程。'));}}
   }
   function baseSvg(id, vi, s=state(), includeInsertions=true) {
@@ -2250,7 +2255,7 @@ if (typeof document !== 'undefined') (async () => {
   }
   function clearImageColorPreview(){const saved=imageColorPreview;imageColorPreview=[];if(saved.length)showImageColorPreview(saved.map(({source})=>({source,adjustment:imageColorCurrent(source)})));imageColorPreview=[];}
   function commitImageColors(entries,message){
-    const available=imageColorSources(),next=copy(state());
+    if(entries.some(e=>panel(e.source.panelId)?.analysis?.westernBlot))throw Error(T('WB 条带不能单独调整显示；请使用 WB 工作流的全源图显示设置。'));const available=imageColorSources(),next=copy(state());
     for(const {source,adjustment}of entries){const target=available.find(ref=>ref.panelId===source.panelId&&ref.variant===source.variant&&ref.key===source.key);if(!target||target.locked)throw Error(StudioI18n.language==='en'?'An image changed or is locked. Reopen color matching.':'图片已变化或被锁定，请重新打开颜色匹配。');const p=next.panels[source.panelId];p.imageAdjustments||={};p.imageAdjustments[source.variant]||={};if(adjustment)p.imageAdjustments[source.variant][source.key]=StudioImageColor.validate(adjustment);else{const baseline=importedImageColor(source);if(baseline)p.imageAdjustments[source.variant][source.key]=StudioImageColor.validate({mode:baseline.mode});else delete p.imageAdjustments[source.variant][source.key];}}
     imageColorPreview=[];return commitPreviewState(next,message);
   }
@@ -2476,7 +2481,7 @@ if (typeof document !== 'undefined') (async () => {
   }
   let autosaveQueue=Promise.resolve(),autosaveTicket=0,duplicateReviewSaveTimer=null;
   const autosavePending=new Map();let autosaveRunning=false;
-  function currentAutosave(task){return task.ticket===autosaveTicket&&project.id===task.payload.project.id&&history===task.history&&state()===task.payload.state&&project.imageDuplicateReview===task.payload.project.imageDuplicateReview;}
+  function currentAutosave(task){return task.ticket===autosaveTicket&&(task.payload.wbDraftVersion||0)===wbDraftVersion&&project.id===task.payload.project.id&&history===task.history&&state()===task.payload.state&&project.imageDuplicateReview===task.payload.project.imageDuplicateReview;}
   function autosaveConflict(task){try{return task.readCache&&localStorage.getItem(task.key)!==task.previous;}catch{return false;}}
   function autosaveConflictNotice(task){if(currentAutosave(task)){$('autosaveStatus').textContent=T('其他窗口已更新 · 请先下载当前工程');localSavedCurrent='';}}
   function autosavePaint(){return new Promise(resolve=>{const timer=setTimeout(resolve,48);if(typeof requestAnimationFrame==='function')requestAnimationFrame(()=>setTimeout(()=>{clearTimeout(timer);resolve();},0));});}
@@ -2489,7 +2494,7 @@ if (typeof document !== 'undefined') (async () => {
       if(autosaveConflict(task)){autosaveConflictNotice(task);continue;}
       try{
         const payload=task.payload,review=payload.project.imageDuplicateReview;
-        const signature=JSON.stringify({state:payload.state,checkpoints:payload.checkpoints,dataDrafts:payload.dataDrafts,imageReview:review?{createdAt:review.createdAt,updatedAt:review.updatedAt,reviews:review.reviews}:null});
+        const signature=JSON.stringify({state:payload.state,checkpoints:payload.checkpoints,dataDrafts:payload.dataDrafts,wbDraftVersion:payload.wbDraftVersion||0,imageReview:review?{createdAt:review.createdAt,updatedAt:review.updatedAt,reviews:review.reviews}:null});
         await StudioLibrary.put('autosaves',{id:payload.project.id,payload});
         // A queued successor owns the marker; an old completion cannot mark a
         // newer edit as saved or change the active project's status.
@@ -2509,7 +2514,7 @@ if (typeof document !== 'undefined') (async () => {
     // History states, checkpoint records and draft tables are immutable once
     // installed. Snapshot their containers, without deep-copying 81 undo states
     // on every input. IndexedDB clones the retained snapshot at the actual write.
-    const payload={project:{...project,panels:[...project.panels]},state:state(),history:{states:[...history.states],index:history.index},checkpoints:[...checkpoints],dataDrafts:{...dataDrafts}};
+    const payload={project:{...project,panels:[...project.panels]},state:state(),history:{states:[...history.states],index:history.index},checkpoints:[...checkpoints],dataDrafts:{...dataDrafts},wbDraftVersion,wbDraft:wbWorkspace?.snapshot()||restoredWBDraft};
     autosavePending.set(key,{key,previous,readCache,ticket:++autosaveTicket,history,payload});$('autosaveStatus').textContent=T('正在保存…');
     if(!autosaveRunning){autosaveRunning=true;autosaveQueue=autosaveQueue.catch(()=>{}).then(drainAutosaves);}return true;
   }
@@ -3829,6 +3834,43 @@ if (typeof document !== 'undefined') (async () => {
   function previewDiscoveredCandidate(asset,meta={}){
     return requestResourcePreview({kind:'discovery',key:asset,meta,produce:box=>{box.target||=availableFigureImportTarget(gridFor(box.base).places[box.panelId]);const candidate=copy(asset);candidate.provenance='user-data';return {...installAsset(candidate,box.target.oldId,box.target.cell,T('智能选图已应用；可撤销'),false,false,false,null,{prepareOnly:true}),asset:candidate,target:box.target};},commit:value=>{applyDiscoveredAsset(value.asset,value.target);return true;}});
   }
+  function groupWBObjects(next){const id=selectedPanel,root=baseSvg(id,0,next),keys=[...root.querySelectorAll('image[data-key],text[data-key],line[data-key]')].map(n=>n.dataset.key);if(keys.length>1)next.panels[id].elementGroups={0:[keys]};}
+  function wbDraftFingerprint(draft){if(!draft)return '';const m=draft.model,value={panel:draft.panelId,sources:m.sources.map(({id,sha256,exposure,sampleSet,lanes,display,detection})=>({id,sha256,exposure,sampleSet,lanes,display,detection})),rows:m.rows.map(({output,...row})=>row),lanes:m.lanes,conditions:m.conditions,groups:m.groups||[],layout:m.layout,marker:m.marker,ui:draft.ui};const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;return JSON.stringify(stable(value));}
+  function wbExportPreview(prepared){const saved=axisDraftBindings();try{project=prepared.project;history={current:prepared.state};selectedPanel=prepared.panelId;axisDraftCaches();return composite(false,true,prepared.state,prepared.panelId);}finally{restoreAxisDraftBindings(saved);}}
+  function wbModelFromCanvas(id){
+    const source=panel(id),record=source?.analysis?.westernBlot;if(!record)return null;const model=StudioWesternBlot.snapshot(record),root=editedSvg(id,state().panels[id].variant),texts=new Map([...root.querySelectorAll('text[id]')].map(n=>[n.id,n.textContent]));
+    for(const row of model.rows){const protein=texts.get('wb-row-'+row.id+'-protein'),mass=texts.get('wb-row-'+row.id+'-mass');if(protein!==undefined)row.protein=protein;if(mass!==undefined){row.mass=mass;if(mass!==record.rows.find(r=>r.id===row.id)?.mass)delete row.massEstimate;}}
+    model.lanes=model.lanes.map((value,i)=>texts.get('wb-lane-'+i)??value);model.conditions=model.conditions.map((c,j)=>({name:texts.get('wb-condition-'+j+'-name')??c.name,values:c.values.map((value,i)=>texts.get('wb-condition-'+j+'-value-'+i)??value)}));model.groups=model.groups?.map((g,i)=>({...g,label:texts.get('wb-group-'+i)??g.label}));return model;
+  }
+  function preserveWBCanvas(oldId){return next=>{
+    const newId=selectedPanel,old=state().panels[oldId];groupWBObjects(next);if(!old||!panel(oldId)?.analysis?.westernBlot)return;
+    const target=next.panels[newId];if(old.insertedElements)target.insertedElements=copy(old.insertedElements);
+    const before=baseSvg(oldId,old.variant),visible=editedSvg(oldId,old.variant),after=baseSvg(newId,0,next),byId=new Map([...after.querySelectorAll('[id][data-key]')].map(n=>[n.id,n])),keyMap=new Map();
+    for(const node of before.querySelectorAll('[id][data-key]')){const replacement=byId.get(node.id);if(!replacement)continue;const oldKey=node.dataset.key,newKey=replacement.dataset.key;keyMap.set(oldKey,newKey);const props=old.edits?.[old.variant]?.[oldKey];if(!props)continue;const edits=copy(props),shown=visible.querySelector('[data-key="'+oldKey+'"]');if(shown?.localName==='text'&&shown.textContent!==replacement.textContent){delete edits.text;delete edits['rich-text'];}if(Object.keys(edits).length){target.edits[0]||={};target.edits[0][newKey]=edits;}}
+    for(const node of after.querySelectorAll('[data-key]'))if(!keyMap.has(node.dataset.key)&&node.dataset.key.startsWith('i'))keyMap.set(node.dataset.key,node.dataset.key);
+    const prior=old.elementGroups?.[old.variant];if(prior&&!(prior.length===1&&prior[0].length===before.querySelectorAll('image[data-key],text[data-key],line[data-key]').length))target.elementGroups={0:prior.map(group=>group.map(key=>keyMap.get(key)).filter(Boolean)).filter(group=>group.length>1)};
+    if(old.lockedElements?.[old.variant])target.lockedElements={0:old.lockedElements[old.variant].map(key=>keyMap.get(key)).filter(Boolean)};
+    const imageUnchanged=key=>{const mapped=keyMap.get(key),a=before.querySelector('[data-key="'+key+'"]'),b=mapped&&after.querySelector('[data-key="'+mapped+'"]');return a?.localName==='image'&&b?.localName==='image'&&a.getAttribute('href')===b.getAttribute('href');};
+    for(const field of ['scales','imageCalibrations'])if(old[field]?.[old.variant]){const retained=Object.entries(old[field][old.variant]).filter(([key])=>imageUnchanged(key)).map(([key,value])=>[keyMap.get(key),copy(value)]);if(retained.length)target[field]={0:Object.fromEntries(retained)};}
+    for(const overlay of state().overlays||[])if(overlay.type==='inset'&&overlay.source?.panelId===oldId&&imageUnchanged(overlay.source.key)){const item=next.overlays?.find(o=>o.id===overlay.id);if(item)item.source={...item.source,panelId:newId,variant:0,key:keyMap.get(item.source.key)};}
+    for(const border of state().objectBorders||[]){if(border.target.panelId!==oldId||!['element','group'].includes(border.target.kind))continue;const keys=border.target.keys||[border.target.key],mapped=keys.map(key=>keyMap.get(key));if(mapped.some(key=>!key))continue;const record=copy(border);record.target={...record.target,panelId:newId,variant:0,...(record.target.kind==='group'?{keys:mapped}:{key:mapped[0]})};next.objectBorders||=[];next.objectBorders.push(record);}
+  };}
+  function openWBWorkspace(){
+    wbWorkspace||=StudioWBWorkspace.create({document,language:()=>StudioI18n.language,say,history:parameters=>new History(parameters),historyState:value=>{$('undo').disabled=value?!value.undo:history.index===0;$('redo').disabled=value?!value.redo:history.index===history.states.length-1;},
+      draftChanged:()=>{const draft=wbWorkspace?.snapshot(),key=wbDraftFingerprint(draft);restoredWBDraft=null;if(key===wbDraftKey)return;wbDraftKey=key;wbDraftVersion=draft?wbDraftVersion+1:0;clearTimeout(wbDraftTimer);wbDraftTimer=setTimeout(persist,400);},
+      begin:()=>{const source=panel(selectedPanel),s=state();if(s.panels[selectedPanel]?.locked)throw Error(T('小图已锁定'));return {draft:restoredWBDraft,model:restoredWBDraft?.model||wbModelFromCanvas(selectedPanel)||null,token:{owner:project,base:s,source,id:selectedPanel,serial:dataSerial,target:source.analysis?.westernBlot?{oldId:selectedPanel,cell:null}:availableFigureImportTarget()}};},
+      valid:token=>project===token.owner&&state()===token.base&&selectedPanel===token.id&&panel(token.id)===token.source&&dataSerial===token.serial&&!state().panels[token.id].locked,
+      sources:()=>{const result=[],seenWB=new Set();for(const ref of imageColorSources()){const p=panel(ref.panelId),selected=ref.selected||ref.panelId===selectedPanel;if(p.analysis?.westernBlot){if(!seenWB.has(p.id)){seenWB.add(p.id);for(const original of p.analysis.westernBlot.sources)result.push({...original,selected});}continue;}const image=imageColorResolve(ref),href=image?.getAttribute('href')||image?.getAttributeNS('http://www.w3.org/1999/xlink','href'),native=StudioScientificTiff.originFor(project,p);if(!/^data:image\/(png|jpeg|webp);base64,/.test(href))continue;result.push({href,name:p.name,selected,origin:{panelId:ref.panelId,variant:ref.variant,key:ref.key,...(native?{native}: {})},metadata:native?{nativeSourceSha256:native.sourceSha256,nativeBits:project.scientificSources[native.sourceSha256].metadata.pages[StudioScientificTiff.nativeRecord(project,p).page].bitsPerSample,displayBitsPerSample:8,acquisition:project.scientificSources[native.sourceSha256].metadata}:undefined});}return result;},
+      importTiff:async file=>{const target={...availableFigureImportTarget(),projectId:project.id,history};return openScientificTiffImport(file,target);},
+      nativeSource:origin=>origin?.native?project.scientificSources?.[origin.native.sourceSha256]:null,
+      cancelPreview:()=>cancelResourcePreview('western-blot'),
+      previewNode:token=>token.wbPreview,
+      preview:(asset,token,meta)=>requestResourcePreview({kind:'western-blot',key:asset,meta,
+        produce:()=>{const prepared=installAsset(asset,token.target.oldId,token.target.cell,T('WB 组图预览'),false,false,false,preserveWBCanvas(token.target.oldId),{prepareOnly:true,immutableAsset:true});token.wbPreview=wbExportPreview(prepared);return {...prepared,asset};},
+        commit:value=>{const kept=installAsset(value.asset,token.target.oldId,token.target.cell,T('WB 组图已保留；可撤销'),false,false,false,preserveWBCanvas(token.target.oldId),{rollbackOnFailure:true});if(kept!==false)activateImportedFigure();return kept!==false;}}),
+      keep:(asset,token)=>{const box=resourcePreviewDraft;if(!box||box.kind!=='western-blot'||box.requestedKey!==asset||!box.session.isCurrent())return false;return box.session.commit();}
+    });wbWorkspace.open();
+  }
   async function commitDiscoveredCandidate(asset,meta={}){
     let box=resourcePreviewDraft;if(!box||box.kind!=='discovery'||box.requestedKey!==asset||!box.session.isCurrent()){if(!await previewDiscoveredCandidate(asset,meta))return false;box=resourcePreviewDraft;}
     if(!box||meta.isCurrent?.()===false||meta.signal?.aborted)return false;return box.session.commit();
@@ -4466,7 +4508,7 @@ if (typeof document !== 'undefined') (async () => {
     svg.onlostpointercapture=()=>{if(marquee)cancelSelectionGesture();else if(panelDrag||resizeDrag||elementDrag||overlayDrag||labelDrag||guideDrag)svg.onpointercancel();};
     svg.ondragstart=e=>e.preventDefault();
     svg.ondragover=e=>{if(importHasFiles(e)){e.preventDefault();e.dataTransfer.dropEffect='copy';return;}if(layoutMode&&dragging){e.preventDefault();previewLayoutDrop(e);}};svg.ondragleave=()=>clearGhost();svg.ondrop=e=>{if(droppedFiles(e,destination(e),at(destination(e))))return;e.preventDefault();clearGhost();drop(e);};
-    svg.ondblclick=event=>{if(event.target.closest('[data-inset-content]')||event.target.closest('[data-inset-window]'))return;const axis=typeof professionalAxisHit==='function'?professionalAxisHit(event.target):null;if(axis&&openProfessionalAxes(axis)){event.preventDefault();return;}const text=event.target.closest('text');if(text){event.preventDefault();startInlineTextEdit(text);}};
+    svg.ondblclick=event=>{if(event.target.closest('[data-inset-content]')||event.target.closest('[data-inset-window]'))return;const wbPanel=event.target.closest('svg[data-panel]')?.dataset.panel;if(wbPanel&&panel(wbPanel)?.analysis?.westernBlot&&!event.target.closest('text')){selectedPanel=wbPanel;openWBWorkspace();event.preventDefault();return;}const axis=typeof professionalAxisHit==='function'?professionalAxisHit(event.target):null;if(axis&&openProfessionalAxes(axis)){event.preventDefault();return;}const text=event.target.closest('text');if(text){event.preventDefault();startInlineTextEdit(text);}};
     svg.onclick=event=>{
       if(suppressClick){suppressClick=false;return;}const mark=event.target.closest('[data-annotation]');if(mark){if(!selectedAnnotations.includes(mark.dataset.annotation)){selectedAnnotations=event.shiftKey?[...selectedAnnotations,mark.dataset.annotation]:[mark.dataset.annotation];if(!event.shiftKey){selected=[];elementSelections=[];selectedPanelLabel=null;}}activePane='annotation';finishSelectionUI();return;}const appendLabels=event.shiftKey?selectedLabelIds():[],appendAnnotations=event.shiftKey?[...selectedAnnotations]:[];if(!event.shiftKey)selectedAnnotations=[];
       if(event.target.closest('[data-panel-label]')){selectPanelLabel(event.target.closest('[data-panel-label]').dataset.panelLabel,false,event.shiftKey);return;}
@@ -5221,7 +5263,7 @@ if (typeof document !== 'undefined') (async () => {
   function installAsset(asset,oldId,cell,label,preserveAppearance=false,preserveStatistics=false,keepSelection=false,stateAdjust=null,transaction=null){
     const preparing=transaction?.prepareOnly===true,rollback=transaction?.rollbackOnFailure===true,saved=preparing||rollback?axisDraftBindings():null;
     try{
-    if(preparing||rollback){project=axisDraftProject(project);if(preparing){history={current:copy(state())};asset=copy(asset);}axisDraftCaches();}
+    if(preparing||rollback){project=axisDraftProject(project);if(preparing){history={current:copy(state())};asset=transaction?.immutableAsset?asset:copy(asset);}axisDraftCaches();}
     const resetAxisExtension=preserveAppearance&&oldId&&Object.values(state().panels[oldId]?.edits||{}).some(edits=>Object.values(edits).some(props=>props['axis-extension']));
     let resetObjectBorders=0;
     if(project.panels.length>=512)throw Error(T('工程版本资源已达上限，请另存为新工程'));
@@ -5775,10 +5817,10 @@ if (typeof document !== 'undefined') (async () => {
       const openReview=trigger.onclick;trigger.onclick=event=>{profileUI.close();return openReview(event);};
     }
   }
-  function currentPayload(){return {project,state:copy(state()),history:copy(history.toJSON()),checkpoints:copy(checkpoints),dataDrafts:copy(dataDrafts)};}
+  function currentPayload(){return {project,state:copy(state()),history:copy(history.toJSON()),checkpoints:copy(checkpoints),dataDrafts:copy(dataDrafts),wbDraftVersion,wbDraft:wbWorkspace?.snapshot()||restoredWBDraft};}
   function serializeProjectFile(payload){return typeof StudioProjectCodec==='undefined'?Promise.resolve(projectFileBlob(payload)):StudioProjectCodec.serialize(payload,{limit:PROJECT_FILE_LIMIT,locale:StudioI18n.language});}
   function parseProjectFile(file){return typeof StudioProjectCodec==='undefined'?file.text().then(JSON.parse):StudioProjectCodec.parse(file,{limit:PROJECT_FILE_LIMIT,locale:StudioI18n.language});}
-  function validatePayload(payload){validateProject(payload.project);validateState(payload.state,payload.project);History.restore(payload.history,payload.project,payload.state);if(!Array.isArray(payload.checkpoints)||payload.checkpoints.length>20)throw Error(T('版本无效'));for(const c of payload.checkpoints){if(typeof c.name!=='string'||c.name.length>60)throw Error(T('版本名称无效'));validateState(c.state,payload.project);}return payload;}
+  function validatePayload(payload){validateProject(payload.project);if(payload.wbDraft){StudioWesternBlot.validateDraft(payload.wbDraft);validateWBNativeSources(payload.wbDraft.model,payload.project);}validateState(payload.state,payload.project);History.restore(payload.history,payload.project,payload.state);if(!Array.isArray(payload.checkpoints)||payload.checkpoints.length>20)throw Error(T('版本无效'));for(const c of payload.checkpoints){if(typeof c.name!=='string'||c.name.length>60)throw Error(T('版本名称无效'));validateState(c.state,payload.project);}return payload;}
   function libraryWrite(record){libraryIds.add(record.id);const task=libraryQueue.catch(()=>{}).then(()=>StudioLibrary.put('figures',record));libraryQueue=task;task.catch(()=>{$('libraryStatus').textContent=T('总览保存失败，请下载工程备份。');});return task;}
   function renderProjectStart(){
     const start=$('projectStart');if(!start)return;
@@ -5802,7 +5844,7 @@ if (typeof document !== 'undefined') (async () => {
       const initial={project:fresh,state:copy(fresh.initialState),history:new History(fresh.initialState).toJSON(),checkpoints:[],dataDrafts:{}};
       await StudioLibrary.put('autosaves',{id:fresh.id,payload:initial});
       if(!$('newProjectDialog').open||state()!==snapshot||project!==sourceProject)return;
-      project=fresh;history=new History(fresh.initialState);checkpoints=[];dataDrafts={};dataSerial++;
+      wbWorkspace?.reset();restoredWBDraft=null;wbDraftVersion=0;wbDraftKey='';project=fresh;history=new History(fresh.initialState);checkpoints=[];dataDrafts={};dataSerial++;
       selectedPanel='panel-0';contentSelection=null;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];selectedPanelLabel=null;selectedAlignmentGuide=null;panelSelection=[];original=false;layoutMode=false;boxSelect=false;welcomeDismissed=false;activePane='explore';inspectorPanel=null;
       templateCache.clear();knownCache=null;localSavedCurrent='';savedCurrent=saveSignature();migrateLabelHistory();$('scope').value='panel';$('newProjectDialog').close();persist();render();say(T('已新建工程；上一工程保存在“项目与预设”。'));
     }catch(error){$('newProjectStatus').textContent=T('未新建：当前工程尚未安全保存。请下载工程备份后重试。');throw error;}
@@ -5828,7 +5870,7 @@ if (typeof document !== 'undefined') (async () => {
   }
   async function openCollected(record){
     validatePayload(record.payload);await verifyImageRectifications(record.payload.project);await collectFigure();await libraryQueue;
-    const payload=(await StudioLibrary.list('figures')).find(r=>r.id===record.id)?.payload||record.payload;project=copy(payload.project);history=History.restore(payload.history,project,payload.state);checkpoints=copy(payload.checkpoints);dataDrafts=copy(payload.dataDrafts||{});dataSerial++;selectedPanel=state().order[0];contentSelection=null;selected=[];panelSelection=[];templateCache.clear();original=false;knownCache=localStorage.getItem('figure-studio:'+project.id);migrateLabelHistory();savedCurrent=saveSignature();persist();render();$('libraryDialog').close();say(T('工程已恢复'));
+    const payload=(await StudioLibrary.list('figures')).find(r=>r.id===record.id)?.payload||record.payload;if(payload.wbDraft)await StudioWesternBlot.verifyDraft(payload.wbDraft);wbWorkspace?.reset();restoredWBDraft=payload.wbDraft||null;wbDraftVersion=payload.wbDraftVersion||0;wbDraftKey=wbDraftFingerprint(restoredWBDraft);project=copy(payload.project);history=History.restore(payload.history,project,payload.state);checkpoints=copy(payload.checkpoints);dataDrafts=copy(payload.dataDrafts||{});dataSerial++;selectedPanel=state().order[0];contentSelection=null;selected=[];panelSelection=[];templateCache.clear();original=false;knownCache=localStorage.getItem('figure-studio:'+project.id);migrateLabelHistory();savedCurrent=saveSignature();persist();render();$('libraryDialog').close();say(T('工程已恢复'));
   }
   async function renderLibrary(){
     await libraryQueue;[libraryRecords,presetRecords]=await Promise.all([StudioLibrary.list('figures'),StudioLibrary.list('presets')]);
@@ -5911,7 +5953,7 @@ if (typeof document !== 'undefined') (async () => {
   async function openProjectFile(file,destination={}){
     if(!file)return false;if(fileImportSession)return say(T('请先完成或取消当前导入'));if(file.size>PROJECT_FILE_LIMIT)throw Error(T('工程超过 200 MB，请拆分工程后保存。'));
     const owner=destination.projectId||project.id,ownerHistory=destination.history||history;
-    const payload=await parseProjectFile(file);validateProject(payload.project);await verifyImageRectifications(payload.project);validateState(payload.state,payload.project);
+    const payload=await parseProjectFile(file);validateProject(payload.project);await verifyImageRectifications(payload.project);if(payload.wbDraft){await StudioWesternBlot.verifyDraft(payload.wbDraft);validateWBNativeSources(payload.wbDraft.model,payload.project);}validateState(payload.state,payload.project);
     const restoredHistory=History.restore(payload.history,payload.project,payload.state);
     if(!Array.isArray(payload.checkpoints)||payload.checkpoints.length>20)throw Error(T('版本无效'));
     for(const c of payload.checkpoints){if(typeof c.name!=='string'||c.name.length>60)throw Error(T('版本名称无效'));validateState(c.state,payload.project);}
@@ -5919,7 +5961,7 @@ if (typeof document !== 'undefined') (async () => {
     if(project.id!==owner||history!==ownerHistory)throw Error(T('目标已变化，请重新选择导入位置'));
     if(!confirm(T('打开工程将替换当前工作区。若当前修改尚未下载，请先取消并保存工程。')))return false;
     cancelPanelGesture?.();cancelSelectionGesture?.();cancelObjectGesture?.();clearTimeout(dataTimer);clearTimeout(fileImportDataTimer);fileImportDataRefresh=null;
-    project=payload.project;history=restoredHistory;checkpoints=payload.checkpoints;dataDrafts=copy(payload.dataDrafts||{});dataSerial++;selectedPanel=state().order[0];contentSelection=null;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];setLabelSelection([]);selectedAlignmentGuide=null;selectedEmptyCell=null;panelSelection=[selectedPanel];selectionAfterMarquee=false;layoutMode=false;boxSelect=false;dragging=null;templateCache.clear();original=false;migrateLabelHistory();savedCurrent=saveSignature();knownCache=undefined;persist();render();say(T('工程已恢复'));return true;
+    wbWorkspace?.reset();restoredWBDraft=payload.wbDraft||null;wbDraftVersion=payload.wbDraftVersion||0;wbDraftKey=wbDraftFingerprint(restoredWBDraft);project=payload.project;history=restoredHistory;checkpoints=payload.checkpoints;dataDrafts=copy(payload.dataDrafts||{});dataSerial++;selectedPanel=state().order[0];contentSelection=null;selected=[];elementSelections=[];selectionAnchor=null;selectedAnnotations=[];setLabelSelection([]);selectedAlignmentGuide=null;selectedEmptyCell=null;panelSelection=[selectedPanel];selectionAfterMarquee=false;layoutMode=false;boxSelect=false;dragging=null;templateCache.clear();original=false;migrateLabelHistory();savedCurrent=saveSignature();knownCache=undefined;persist();render();say(T('工程已恢复'));return true;
   }
   $('projectFile').onchange=guard(async()=>{const file=$('projectFile').files[0];try{await openProjectFile(file);}finally{$('projectFile').value='';}});
   $('dimensions').onclick=()=>{$('exportOptions').open=true;$('exportOptions').scrollIntoView({block:'nearest'});$('exportWidth').focus();};
@@ -6035,9 +6077,9 @@ if (typeof document !== 'undefined') (async () => {
   const workspaceSizing=typeof StudioWorkspace!=='undefined'?StudioWorkspace.init({t:T,resize:schedulePreviewFit}):null;
   try {
     project=JSON.parse($('project').textContent);validateProject(project);await verifyImageRectifications(project);desktopSession=project.desktopStarter===true;
-    if(desktopSession){try{const last=localStorage.getItem('figure-studio:desktop-last-project');if(last&&/^[a-f0-9]{20}$/.test(last)&&last!==project.id){const recent=await StudioLibrary.get('autosaves',last);if(recent?.payload){validatePayload(recent.payload);await verifyImageRectifications(recent.payload.project);project=recent.payload.project;desktopRestoredPayload=recent.payload;}}}catch{}}
+    if(desktopSession){try{const last=localStorage.getItem('figure-studio:desktop-last-project');if(last&&/^[a-f0-9]{20}$/.test(last)&&last!==project.id){const recent=await StudioLibrary.get('autosaves',last);if(recent?.payload){validatePayload(recent.payload);await verifyImageRectifications(recent.payload.project);if(recent.payload.wbDraft)await StudioWesternBlot.verifyDraft(recent.payload.wbDraft);project=recent.payload.project;desktopRestoredPayload=recent.payload;}}}catch{}}
     history=new History(project.initialState);selectedPanel=state().order[0];savedCurrent=saveSignature();
-    try {knownCache=localStorage.getItem('figure-studio:'+project.id);let saved=desktopRestoredPayload||JSON.parse(knownCache||'null');if(saved?.idb){const record=await StudioLibrary.get('autosaves',project.id);if(!record)throw Error('Missing autosave');saved=record.payload;StudioI18n.restoreDisplayNames(saved.project,project);validateProject(saved.project);await verifyImageRectifications(saved.project);project=saved.project;}if(saved){validateState(saved.state,project);if(!Array.isArray(saved.checkpoints)||saved.checkpoints.length>20)throw Error(T('缓存版本无效'));for(const c of saved.checkpoints)validateState(c.state,project);try{history=History.restore(saved.history,project,saved.state);message=T('已恢复本浏览器的自动保存。');}catch{history=new History(saved.state);message=T('当前编辑已恢复，但旧撤销记录不可用。');}checkpoints=saved.checkpoints;dataDrafts=saved.dataDrafts||{};}}catch{message=T('未恢复本地缓存；可用「打开工程」导入已保存项目。');}
+    try {knownCache=localStorage.getItem('figure-studio:'+project.id);let saved=desktopRestoredPayload||JSON.parse(knownCache||'null');if(saved?.idb){const record=await StudioLibrary.get('autosaves',project.id);if(!record)throw Error('Missing autosave');saved=record.payload;StudioI18n.restoreDisplayNames(saved.project,project);validateProject(saved.project);await verifyImageRectifications(saved.project);if(saved.wbDraft){await StudioWesternBlot.verifyDraft(saved.wbDraft);validateWBNativeSources(saved.wbDraft.model,saved.project);}project=saved.project;}if(saved){if(saved.wbDraft){await StudioWesternBlot.verifyDraft(saved.wbDraft);validateWBNativeSources(saved.wbDraft.model,project);}validateState(saved.state,project);if(!Array.isArray(saved.checkpoints)||saved.checkpoints.length>20)throw Error(T('缓存版本无效'));for(const c of saved.checkpoints)validateState(c.state,project);try{history=History.restore(saved.history,project,saved.state);message=T('已恢复本浏览器的自动保存。');}catch{history=new History(saved.state);message=T('当前编辑已恢复，但旧撤销记录不可用。');}checkpoints=saved.checkpoints;dataDrafts=saved.dataDrafts||{};restoredWBDraft=saved.wbDraft||null;wbDraftVersion=saved.wbDraftVersion||0;wbDraftKey=wbDraftFingerprint(restoredWBDraft);}}catch{message=T('未恢复本地缓存；可用「打开工程」导入已保存项目。');}
     // A restored project may have removed the starter panel. Restore a valid
     // selection before any controller reads the active panel's variant.
     if(!state().panels[selectedPanel])selectedPanel=state().order[0];

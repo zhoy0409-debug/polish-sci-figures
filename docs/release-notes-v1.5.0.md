@@ -41,7 +41,7 @@ created: 2026-10-28
 
 ### 明确未纳入与待验收范围
 
-同文件多平面批量显示原型留在独立开发分支，本版不包含。自动图例安排、轴标题距离／标注避让、WB 专项泳道识别／统一裁剪、复杂多文件 OME、原生 PDF／CMYK／字体嵌入仍未完成。缺少独立人工标注的检测功能没有准确率、漏检或误报认证。
+同文件多平面批量显示原型留在独立开发分支，本版不包含。自动图例安排、轴标题距离／标注避让、复杂多文件 OME、原生 PDF／CMYK／字体嵌入仍未完成。缺少独立人工标注的检测功能没有准确率、漏检或误报认证。
 
 本快照不把浏览器、冻结 HTTP 自检或受控文件恢复当作 Windows 安装实操及真正更新。只有新候选版本自身 CI、来源核对、原图／工程／科研数据保留、安装编辑与同包性能、真实旧版到新版的下载／校验／安装／自动重启及实际失败恢复全部通过，才合并并发布一次稳定版。
 
@@ -53,6 +53,15 @@ Review and submission settings preview on the actual canvas, can be cancelled an
 
 SVG performance changes preserve scientific metadata, references and actual export bytes. All comparison batches and remaining long tasks stay in the [audit](windows-next-stable-audit.md); this is not a claim that every operation is faster. Original data stays local, with literature network requests explicitly initiated by the user.
 
-The multi-plane batching experiment, automatic legend/label arrangement, dedicated WB lane workflows, complex multi-file OME, native PDF/CMYK/font embedding and independently labelled detector accuracy are outside this release scope. No new platform preview is published or relabelled by updating source version constants.
+The multi-plane batching experiment, automatic legend/label arrangement, complex multi-file OME, native PDF/CMYK/font embedding and independently labelled detector accuracy are outside this release scope. No new platform preview is published or relabelled by updating source version constants.
 
 As of this dated preparation snapshot, final installed Windows editing, same-package 5000-object measurement and genuine 0.1.26 → 0.2.0 in-app update/failure recovery remain pending. Browser tests, frozen HTTP self-tests and controlled recovery checks do not establish those results. The installer identity and project location stay compatible. Once actually published, use Setup for first installation and the existing in-editor download, integrity check, save/confirm and install/reopen flow for supported installations. Publication and final artifact evidence belong to the [version-specific release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0).
+
+
+## 2026-10-31 · WB 开发候选补充（未发布）
+
+新增“图片处理 → WB 条带处理与组图”，复用原生 TIFF、本地图像重采样、实际画布预览、现有历史和工程合同。支持源图／曝光管理、可修正检测建议、标尺拉正与裁切、源图泳道映射及强制拼接边界、蛋白／条件／分组标注、独立画布对象及重开续编。源图整体显示调整与采集曝光分开，不能单独美化某个条带。补充完整原图／映射 ZIP 和限定为 WB 参数稿的可编辑 PPTX；后续自由画布编辑请用 SVG／工程导出。
+
+[操作指南](figure-studio-western-blot.zh-CN.md)与[实际验收范围](qa/windows-next-stable/wb-workflow-20261031.md)区分真实私图工程测试、公开合成高位深测试和未通过的原生门槛。16-bit 原 TIFF 字节保留，WB 衍生图为 8-bit 显示；不宣称 16-bit WB 输出、独立检测准确率或灰度定量。当前仍不合并、不发布。
+
+The WB development candidate is now implemented, with original-source retention, editable crop/lane provenance and native canvas objects. Its PPTX exports the WB parameter draft, not arbitrary subsequent canvas overrides. Source-browser tests and an independent OOXML parser do not certify installed Windows or native PowerPoint acceptance. Publication remains on hold.

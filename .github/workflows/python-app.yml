@@ -364,6 +364,7 @@ jobs:
           node scripts/test_studio_image_color_ui.cjs
           node scripts/test_studio_image_color_roundtrip.cjs
           node scripts/test_studio_image_rectify.cjs
+          node scripts/test_studio_wb.cjs
           node scripts/test_studio_image_rectify_ui.cjs
             node scripts/test_studio_image_rectify_detect.cjs
             node scripts/test_studio_image_rectify_auto_ui.cjs

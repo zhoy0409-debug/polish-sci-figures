@@ -15,6 +15,8 @@ The next Windows upgrade is under integration. See the [Chinese upgrade summary]
 
 The source candidate also adds [native TIFF display previews and background project saves](docs/figure-studio-native-tiff.md), preserving original bytes and bit depth separately from the canvas display. Installed Windows acceptance remains pending.
 
+The unreleased Windows candidate also has a dedicated [Western blot workflow](docs/figure-studio-western-blot.zh-CN.md): source-preserving crops, lane provenance, reversible composition and editable objects. [Engineering evidence and remaining manual checks](docs/qa/windows-next-stable/wb-workflow-20261031.md) are recorded separately. This does not change the publication hold.
+
 **Scientific figures, thoughtfully made.**
 
 Turn research data and scientific images into clear, editable figures.<br>

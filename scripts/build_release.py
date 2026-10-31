@@ -17,6 +17,15 @@ EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    'docs/figure-studio-western-blot.zh-CN.md',
+    'docs/qa/windows-next-stable/wb-workflow-20261031.md',
+    'docs/qa/windows-next-stable/wb-workflow-20261031.json',
+    'docs/qa/windows-next-stable/wb-before-prototype-20261031.png',
+    'docs/qa/windows-next-stable/wb-carbon-20261031.png',
+    'docs/qa/windows-next-stable/wb-pearl-20261031.png',
+    'docs/qa/windows-next-stable/wb-compact-20261031.png',
+    'docs/qa/windows-next-stable/wb-workflow-20261031.webm',
+
     'docs/release-notes-v1.5.0.md',
     'docs/figure-studio-submission-profiles.md',
     'docs/figure-studio-workspace-and-feedback.md',

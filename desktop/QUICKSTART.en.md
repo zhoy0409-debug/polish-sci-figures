@@ -122,3 +122,8 @@ The unreleased candidate adds **Submission size and export → Submission profil
 The unreleased candidate adds [native TIFF display](docs/figure-studio-native-tiff.md): import a TIFF, adjust its native window/gamma/LUT on the real canvas, then Keep or Cancel. Download the exact original afterward. **New display from original TIFF** reopens the retained plane in a separate display, preserving existing images and edits and sharing the original file. The guide is bundled for offline use and lists the supported formats. The release page remains the authority for published versions.
 
 Use the five workflow shortcuts or the categorized **Find function** directory above. Shortcuts do not change a function's category. Selected objects expose contextual actions. Image tools keep source pixels local and require explicit Apply; professional native axes re-render from data in four sections: range, ticks, size and appearance. See [image tools](../docs/figure-studio-image-tools.md), [axes](../docs/figure-studio-axes-round2.md) and [actual acceptance scope](../docs/figure-studio-experience-round2-validation.md).
+
+
+## Western blot workflow
+
+The unreleased candidate adds **Image processing → WB processing & composition** (Ctrl+K: WB). Import retained originals, crop/straighten, confirm lane/source mappings and keep editable canvas objects. Suspend preserves a working draft. Original 16-bit TIFF and 8-bit display derivatives remain distinct; no densitometry is provided. See the bundled [workflow guide](docs/figure-studio-western-blot.zh-CN.md).
