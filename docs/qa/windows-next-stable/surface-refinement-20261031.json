@@ -1164,7 +1164,8 @@
     "focused-r3: new extraction assumed LF source; changed delimiters to semantic markers, no product workaround.",
     "focused-r4: representative component screenshot raster hash differed despite equal reported colors/DOM; final rerun passed unchanged component assertion. Final real SVG and8PNG exports separately exact; original failure retained, cause not established.",
     "IAB download-result delivery took11269seconds; outside timing runs and not editor processing latency. No repeated IAB download waiting.",
-    "cd13880 remote CI41146900275 local-browser-preview failed: field fixture omitted observed composition listeners; host IME fixture omitted say/T. Added real production listeners and required status dependencies/assertions; all6controlled IME groups and final11commands passed. Production UI unchanged; native IME not certified."
+    "cd13880 remote CI41146900275 local-browser-preview failed: field fixture omitted observed composition listeners; host IME fixture omitted say/T. Added real production listeners and required status dependencies/assertions; all6controlled IME groups and final11commands passed. Production UI unchanged; native IME not certified.",
+    "38f7cbe CI41147508830: profile remained open and intercepted the underlying export button. Final behavioral test uses its visible Close then exports and reopens retained settings; synthetic and public Iris passed, original dimensions/DPI/history/data assertions retained. Production UI unchanged; floating-profile workflow boundary remains explicit."
   ],
   "nativeGates": {
     "installerTextClipping": "USER_FAILED_UNRESOLVED",
@@ -1195,5 +1196,20 @@
       "sha256": "444db93e48ccae603be276ac3b4c3fc6404d5476848339b65327ad17d2439180",
       "scope": "Actual own-source IAB screenshot, public Iris150"
     }
+  },
+  "submissionExportFinal": {
+    "author": "a",
+    "date": "2026-10-31",
+    "checks": [
+      {
+        "name": "synthetic",
+        "exitCode": 0
+      },
+      {
+        "name": "iris",
+        "exitCode": 0
+      }
+    ],
+    "passed": true
   }
 }
