@@ -51,7 +51,7 @@ With a narrow canvas, **More** contains the import, selection, border/image, ali
 
 Font-size changes preview on the canvas. Enter or moving focus keeps the edit; Escape restores the original value and ends the live-preview status without adding an undo entry.
 
-Choose **Back to this category** to find related tools, or collapse/reopen **Tools** to resume the current settings. Selecting another canvas object retains the chosen tool. Search with **Ctrl + K**; aliases such as `text spacing` lead to one canonical text tool and focus the actual field. Selection requirements, locking, live-preview cancellation and one-step history remain in effect.
+The top-right **‹ Back** returns to the current category and focuses the tool you just used; the panel stays open. Only the category list offers **Hide panel**. The **Tools** button at the edge hides/restores the current page and settings. Selecting another canvas object retains the chosen tool. Search with **Ctrl + K**; aliases such as `text spacing` lead to one canonical text tool and focus the actual field. Selection requirements, locking, live-preview cancellation and one-step history remain in effect.
 
 Use **Help → Send feedback** to prepare and review text, then confirm public submission on GitHub. Basic version diagnostics are optional and off by default. No project, image or measurement data are automatically attached. The deployed issue route assigns the maintainer; notifications depend on the account's existing GitHub/email settings. A prepared draft is not a submitted issue.
 

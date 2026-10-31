@@ -20,10 +20,10 @@ try{for(const scale of [1,1.25,1.5])for(const theme of ['carbon','pearl']){
   assert(await page.locator('#paragraphPanel').evaluate(n=>n.open));
   await page.locator('#artboard rect[data-key],#artboard path[data-key],#artboard circle[data-key]').first().click({force:true});
   await page.locator('#artboard text[data-key]').first().click({force:true});assert(await page.locator('#paragraphPanel').evaluate(n=>n.open));
-  await page.locator('#drawerCloseTools').click();await page.locator('#drawerTools').click();assert(await page.locator('#paragraphPanel').evaluate(n=>n.open));
+  await page.locator('#drawerTools').click();await page.locator('#drawerTools').click();assert(await page.locator('#paragraphPanel').evaluate(n=>n.open));
   await find('字体','fonts','#font');
   item.geometry=await page.evaluate(()=>{
-   const ids=['commandSearch','drawerTools','drawerCloseTools','font','fontSize','viewport'];
+   const ids=['commandSearch','drawerTools','drawerBack','font','fontSize','viewport'];
    return {innerWidth,innerHeight,bodyScrollWidth:document.body.scrollWidth,rootScrollWidth:document.documentElement.scrollWidth,
     elements:ids.map(id=>{const n=document.getElementById(id),r=n.getBoundingClientRect();return{id,left:r.left,top:r.top,right:r.right,bottom:r.bottom,width:r.width,height:r.height,clientWidth:n.clientWidth,scrollWidth:n.scrollWidth};})};
   });
@@ -34,7 +34,7 @@ try{for(const scale of [1,1.25,1.5])for(const theme of ['carbon','pearl']){
   const fontLabel=await page.locator('#font').evaluate(n=>({top:n.closest('label').getBoundingClientRect().top,headingBottom:n.closest('.studio-drawer-body').querySelector('.studio-drawer-heading').getBoundingClientRect().bottom}));
   if(fontLabel.top<fontLabel.headingBottom-1)item.issues.push('Font label hidden under sticky heading');
   await page.screenshot({path:path.join(out,theme+'-'+scale+'-fonts.png')});
-  await find('边框','border');await page.locator('#border-width').fill('2');await page.locator('#drawerCloseTools').click();await page.locator('#drawerTools').click();assert.equal(await page.locator('#border-width').inputValue(),'2');await page.locator('#borderCancel').click();
+  await find('边框','border');await page.locator('#border-width').fill('2');await page.locator('#drawerTools').click();await page.locator('#drawerTools').click();assert.equal(await page.locator('#border-width').inputValue(),'2');await page.locator('#borderCancel').click();
   assert.deepEqual((await H.save(page)).state,before.state);assert.deepEqual((await H.save(page)).project,before.project);
   await page.locator('#language').selectOption('en');await find('text spacing','fonts','#para-line-height');
   const english=await page.evaluate(()=>({width:innerWidth,body:document.body.scrollWidth,root:document.documentElement.scrollWidth}));

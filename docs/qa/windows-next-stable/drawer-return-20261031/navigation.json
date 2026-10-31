@@ -1,0 +1,300 @@
+{
+  "author": "a",
+  "date": "2026-10-31",
+  "before": {
+    "author": "a",
+    "date": "2026-10-31",
+    "scope": "Actual isolated source Chrome with public UCI Iris, not installed Windows acceptance",
+    "baseline": true,
+    "cases": [
+      {
+        "width": 1440,
+        "theme": "carbon",
+        "lang": "zh-CN",
+        "header": {
+          "height": 44,
+          "buttons": [
+            {
+              "id": "drawerCloseTools",
+              "text": "收起",
+              "aria": null
+            }
+          ]
+        },
+        "rightAction": "hides whole panel",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 1440,
+        "theme": "carbon",
+        "lang": "en",
+        "header": {
+          "height": 44,
+          "buttons": [
+            {
+              "id": "drawerCloseTools",
+              "text": "Collapse",
+              "aria": null
+            }
+          ]
+        },
+        "rightAction": "hides whole panel",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 1440,
+        "theme": "pearl",
+        "lang": "zh-CN",
+        "header": {
+          "height": 44,
+          "buttons": [
+            {
+              "id": "drawerCloseTools",
+              "text": "收起",
+              "aria": null
+            }
+          ]
+        },
+        "rightAction": "hides whole panel",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 1440,
+        "theme": "pearl",
+        "lang": "en",
+        "header": {
+          "height": 44,
+          "buttons": [
+            {
+              "id": "drawerCloseTools",
+              "text": "Collapse",
+              "aria": null
+            }
+          ]
+        },
+        "rightAction": "hides whole panel",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 910,
+        "theme": "carbon",
+        "lang": "zh-CN",
+        "header": {
+          "height": 44,
+          "buttons": [
+            {
+              "id": "drawerCloseTools",
+              "text": "收起",
+              "aria": null
+            }
+          ]
+        },
+        "rightAction": "hides whole panel",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 910,
+        "theme": "carbon",
+        "lang": "en",
+        "header": {
+          "height": 44,
+          "buttons": [
+            {
+              "id": "drawerCloseTools",
+              "text": "Collapse",
+              "aria": null
+            }
+          ]
+        },
+        "rightAction": "hides whole panel",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 910,
+        "theme": "pearl",
+        "lang": "zh-CN",
+        "header": {
+          "height": 44,
+          "buttons": [
+            {
+              "id": "drawerCloseTools",
+              "text": "收起",
+              "aria": null
+            }
+          ]
+        },
+        "rightAction": "hides whole panel",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 910,
+        "theme": "pearl",
+        "lang": "en",
+        "header": {
+          "height": 44,
+          "buttons": [
+            {
+              "id": "drawerCloseTools",
+              "text": "Collapse",
+              "aria": null
+            }
+          ]
+        },
+        "rightAction": "hides whole panel",
+        "sourceStateHistoryExact": true
+      }
+    ],
+    "errors": [],
+    "remote": [],
+    "browser": "156.0.8078.76",
+    "passed": true
+  },
+  "after": {
+    "author": "a",
+    "date": "2026-10-31",
+    "scope": "Actual isolated source Chrome with public UCI Iris, not installed Windows acceptance",
+    "baseline": false,
+    "cases": [
+      {
+        "width": 1440,
+        "theme": "carbon",
+        "lang": "zh-CN",
+        "header": {
+          "height": 50,
+          "buttons": [
+            {
+              "id": "drawerBack",
+              "text": "返回",
+              "aria": "返回“文字与对象样式”工具列表，保留当前设置"
+            }
+          ]
+        },
+        "rightAction": "returns within category",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 1440,
+        "theme": "carbon",
+        "lang": "en",
+        "header": {
+          "height": 50,
+          "buttons": [
+            {
+              "id": "drawerBack",
+              "text": "Back",
+              "aria": "Back to Text & object style tools; keep current settings"
+            }
+          ]
+        },
+        "rightAction": "returns within category",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 1440,
+        "theme": "pearl",
+        "lang": "zh-CN",
+        "header": {
+          "height": 50,
+          "buttons": [
+            {
+              "id": "drawerBack",
+              "text": "返回",
+              "aria": "返回“文字与对象样式”工具列表，保留当前设置"
+            }
+          ]
+        },
+        "rightAction": "returns within category",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 1440,
+        "theme": "pearl",
+        "lang": "en",
+        "header": {
+          "height": 50,
+          "buttons": [
+            {
+              "id": "drawerBack",
+              "text": "Back",
+              "aria": "Back to Text & object style tools; keep current settings"
+            }
+          ]
+        },
+        "rightAction": "returns within category",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 910,
+        "theme": "carbon",
+        "lang": "zh-CN",
+        "header": {
+          "height": 50,
+          "buttons": [
+            {
+              "id": "drawerBack",
+              "text": "返回",
+              "aria": "返回“文字与对象样式”工具列表，保留当前设置"
+            }
+          ]
+        },
+        "rightAction": "returns within category",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 910,
+        "theme": "carbon",
+        "lang": "en",
+        "header": {
+          "height": 50,
+          "buttons": [
+            {
+              "id": "drawerBack",
+              "text": "Back",
+              "aria": "Back to Text & object style tools; keep current settings"
+            }
+          ]
+        },
+        "rightAction": "returns within category",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 910,
+        "theme": "pearl",
+        "lang": "zh-CN",
+        "header": {
+          "height": 50,
+          "buttons": [
+            {
+              "id": "drawerBack",
+              "text": "返回",
+              "aria": "返回“文字与对象样式”工具列表，保留当前设置"
+            }
+          ]
+        },
+        "rightAction": "returns within category",
+        "sourceStateHistoryExact": true
+      },
+      {
+        "width": 910,
+        "theme": "pearl",
+        "lang": "en",
+        "header": {
+          "height": 50,
+          "buttons": [
+            {
+              "id": "drawerBack",
+              "text": "Back",
+              "aria": "Back to Text & object style tools; keep current settings"
+            }
+          ]
+        },
+        "rightAction": "returns within category",
+        "sourceStateHistoryExact": true
+      }
+    ],
+    "errors": [],
+    "remote": [],
+    "browser": "156.0.8078.76",
+    "passed": true
+  }
+}
