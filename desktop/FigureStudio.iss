@@ -84,6 +84,10 @@ procedure InitializeWizard;
 begin
   WizardForm.PageDescriptionLabel.WordWrap := True;
   WizardForm.SelectTasksLabel.WordWrap := True;
+  { The theme glyph may be wider than the list's legacy checkbox bitmap.
+    Reserve DPI-scaled leading room so its left edge stays inside the list. }
+  WizardForm.TasksList.Offset := ScaleX(13);
+  WizardForm.RunList.Offset := ScaleX(13);
 end;
 
 procedure CurPageChanged(CurPageID: Integer);

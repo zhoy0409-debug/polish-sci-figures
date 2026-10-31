@@ -1,0 +1,69 @@
+{
+  "schema": "figure-studio-installer-checkbox-fix/1",
+  "author": "a",
+  "dateLocal": "2026-11-01",
+  "runtimeSource": "819fe452d567e1e73dbc8736d10afaf0a0360269",
+  "installerSourceBase": "f4c4a669aea18fc733a880b24c2829f33b3b1c4f",
+  "installerSourceSha256": "031d84370bc76db93bfd9c1d1f4b39025f25158b40a15b5779b2bf4a6991dfb3",
+  "candidate": "wn26",
+  "artifacts": [
+    {
+      "name": "polish-sci-figures-Studio-0.2.0-Setup-x64.exe",
+      "sizeBytes": 107722902,
+      "sha256": "e95f4e8434bac9047764c7e68863ca536edc4c479c652b9f774766bdc6b2bc23"
+    },
+    {
+      "name": "polish-sci-figures-Studio-0.2.0-Portable-x64.zip",
+      "sizeBytes": 149816672,
+      "sha256": "f093252adf324ec2400c4ed15cc34ed9228f2297aba5b6acb5d1182fde5ca95a"
+    }
+  ],
+  "payload": {
+    "schema": "figure-studio-setup-payload-match/1",
+    "author": "a",
+    "createdUtc": "2026-10-31T17:10:21.959418+00:00",
+    "status": "SETUP_PAYLOAD_AND_PORTABLE_MATCH",
+    "artifacts": [
+      {
+        "name": "polish-sci-figures-Studio-0.2.0-Setup-x64.exe",
+        "sha256": "e95f4e8434bac9047764c7e68863ca536edc4c479c652b9f774766bdc6b2bc23",
+        "sizeBytes": 107722902
+      },
+      {
+        "name": "polish-sci-figures-Studio-0.2.0-Portable-x64.zip",
+        "sha256": "f093252adf324ec2400c4ed15cc34ed9228f2297aba5b6acb5d1182fde5ca95a",
+        "sizeBytes": 149816672
+      }
+    ],
+    "applicationFiles": 2695,
+    "fileSetExact": true,
+    "allSizesExact": true,
+    "allStreamSha256Exact": true,
+    "canonicalRelativeManifestSha256": "1c2a74c73fb2b47ac0094332adc2e786746deec055836d0760278f8f4dff37fb",
+    "unsafePaths": 0,
+    "symlinksOrReparsePoints": 0,
+    "finalAcceptance": false,
+    "scope": "Offline-extracted Setup application payload versus every pinned Portable file. No installation, app execution, browser, registry changes, native IME, native performance or real update acceptance. Extractor provenance is recorded separately."
+  },
+  "userVisualResult": "PASS_USER_REPORTED: 方框、文字和按钮均完整",
+  "userInstalledStartup": "PASS_USER_REPORTED: 安装完成，编辑器正常打开",
+  "installedExpectedFilesVerified": 2695,
+  "scope": "Current user display settings only, exact scale not measured. No native update/failure recovery, performance timing, other monitors or full editor acceptance claim.",
+  "diagnosis": {
+    "status": "Source-based explanation consistent with cropped left checkbox edge and same-machine retest; no actual theme/bounds telemetry captured",
+    "upstream": "https://github.com/jrsoftware/issrc/blob/is-7_1_0/Components/NewCheckListBox.pas",
+    "explanation": "The list positions text with legacy bitmap width and Offset, then paints the themed checkbox with its true width. A wider theme glyph can cross the list left boundary. DPI-scaled leading Offset reserves room; supported setter remeasures and repaints."
+  },
+  "regression": {
+    "buildRulesPassed": true,
+    "controlledUpdaterPassed": true,
+    "setupPayloadFilesExact": 2695,
+    "portableBytesUnchanged": true
+  },
+  "earlierFailuresRetained": [
+    "wn15 user reported clipping",
+    "wn25 user reported checkbox glyph missing left edge; small screenshot retained privately"
+  ],
+  "publicationAuthorizedConditionally": true,
+  "publicationConditionsSatisfied": false
+}
