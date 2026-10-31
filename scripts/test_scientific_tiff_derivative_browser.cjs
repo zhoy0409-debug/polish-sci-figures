@@ -15,7 +15,7 @@ const {fs,path,assert}=H,url=H.localUrl(process.argv[2]||'http://127.0.0.1:19531
   }
   try{
     await page.goto(url);await H.dismiss(page);await H.newProject(page,'PUBLIC native TIFF correction provenance');
-    await page.locator('#quickImportFiles').click();await page.locator('#imageFile').setInputFiles({name:fixture.name,mimeType:'image/tiff',buffer:Buffer.from(fixture.data,'base64')});
+    await H.openImport(page);await page.locator('#imageFile').setInputFiles({name:fixture.name,mimeType:'image/tiff',buffer:Buffer.from(fixture.data,'base64')});
     await page.waitForFunction(()=>document.getElementById('tiffKeep')?.disabled===false);await page.locator('#tiffKeep').click();await page.locator('#scientificTiffWorkspace').waitFor({state:'hidden'});
     const baseline=await H.save(page),sourcePanel=baseline.project.panels.find(p=>p.id===baseline.state.order[0]);await original();
     await preview();const draft=await H.save(page);assert.deepEqual(draft.project,baseline.project);assert.deepEqual(draft.state,baseline.state);await page.locator('[data-rectify="cancel"]').click();

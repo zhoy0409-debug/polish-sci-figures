@@ -101,11 +101,12 @@ body.studio-drawers>header{min-height:50px;padding-block:6px}
 }
 @media(min-width:751px) and (max-width:1100px){.studio-drawer-shell .drawer-view-controls #dimensions{display:none}.drawer-view-controls{gap:4px}.studio-drawer-shell .canvas-tools .canvas-quickbar{padding-inline:8px;gap:4px}}
 @media(min-width:751px) and (max-width:1300px){.studio-drawer-shell .drawer-view-controls #dimensions{display:none}}
-/* Windows scaling can leave a desktop mouse/keyboard window under 1100 CSS
-   pixels. Wrap command groups without overflowing or mounting touch controls. */
-@media(min-width:751px) and (max-width:1100px){
+/* Longer English commands need the same wrapping at intermediate widths.
+   Preserve readable labels and the existing desktop/touch boundary. */
+@media(min-width:751px) and (max-width:1300px){
 body.studio-drawers>header .brand strong{display:none}
-body.studio-drawers>header .project-identity{flex:0 1 160px;min-width:80px}
+body.studio-drawers>header .project-identity{flex:0 1 110px;min-width:80px}
+body.studio-drawers>header .autosave{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 body.studio-drawers>header .header-controls{flex:1 1 0;min-width:0}
 body.studio-drawers>header .toolbar{width:100%;max-width:100%;flex-wrap:wrap;justify-content:flex-end;gap:4px 8px}
 }
@@ -139,3 +140,32 @@ body.studio-drawers>header .toolbar{width:100%;max-width:100%;flex-wrap:wrap;jus
  .studio-drawer-shell .workspace-splitter{background:var(--fs-surface-outline)}
  .studio-drawer-shell .canvas-tools .quick-tool-group{border-color:var(--fs-surface-outline)}
 }
+
+/* Compact commands retain their original controls; only limited toolbar space
+   changes which shortcuts are shown. Parameter drawers keep their one home. */
+@media(min-width:751px){
+ .drawer-quick-overflow{position:relative;order:6;flex:none}
+ .drawer-quick-menu{display:none;position:fixed;width:240px;max-width:calc(100vw - 24px);max-height:60vh;overflow:auto;z-index:30;padding:8px;background:var(--fs-surface-raised);border:1px solid var(--fs-stroke-default);border-radius:var(--fs-radius-lg);box-shadow:var(--fs-shadow-dialog)}
+ .drawer-more-open .drawer-quick-menu{display:grid;gap:8px}
+ .drawer-quick-menu>.quick-tool-group{display:flex;flex-wrap:wrap;height:auto;gap:4px;border:0;padding:0}
+ .drawer-quick-menu>button{width:100%;text-align:left}
+ .studio-drawer-shell .canvas-quickbar.drawer-quick-compact>.quick-format-group{border:0;padding:0}
+ .studio-drawer-shell .canvas-quickbar.drawer-quick-compact .drawer-view-controls{gap:4px}
+ .drawer-focus-canvas{font-size:var(--fs-font-xs);white-space:nowrap}
+ .studio-drawer-context{margin:0 0 12px;padding:8px 0;border-top:0;border-bottom:1px solid var(--fs-surface-outline)}
+ .studio-drawer-context .inspector-context-label{display:none}
+ .studio-drawer-context .inspector-context{margin:0;font-size:var(--fs-font-xs);font-weight:600;color:var(--fs-text-secondary)}
+ .studio-drawer-context .inspector-selection{margin:2px 0 8px}
+ .studio-drawer-context #selectionTitle{font-size:var(--fs-font-xs);font-weight:400;line-height:1.5}
+ .studio-drawer-context>label:has(#scope){display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px;font-size:var(--fs-font-xs);margin:4px 0}
+ .studio-drawer-context #scope{margin:0;min-width:0;width:100%}
+ .studio-drawer-back{padding:2px 0 6px;font-size:var(--fs-font-xs)}
+ .studio-drawer-heading{padding:10px 0 8px}
+ .studio-tool-bank[data-tool=fonts] :is(.drawer-advanced,#paragraphPanel){border:0!important;border-top:1px solid var(--fs-surface-outline)!important;border-radius:0!important;background:transparent;padding:0!important;box-shadow:none}
+ .studio-tool-bank[data-tool=fonts] :is(.drawer-advanced,#paragraphPanel)>summary{padding-block:10px}
+}
+
+
+@media(min-width:751px){.studio-drawer-shell .canvas-quickbar .drawer-focus-canvas{font-size:0;width:32px;min-width:32px;padding:4px}.drawer-focus-canvas::before{content:"⛶";font-size:20px;line-height:1}.drawer-focus-canvas[aria-pressed=true]{background:var(--fs-accent-selected-bg)}}
+
+@media(min-width:751px){.studio-drawer-shell .canvas-tools .canvas-quickbar{padding-block:4px}}

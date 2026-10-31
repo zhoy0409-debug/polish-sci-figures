@@ -10,3 +10,15 @@
 
 /* Keep source controls reachable when Windows scaling reduces the CSS viewport. */
 .wb-source-pane{overflow:auto}.wb-source-pane>.wb-actions,.wb-source-pane>label,.wb-source-pane>h3,.wb-source-pane>.wb-note{flex-shrink:0}
+
+/* Paired labels share a row height even when either translation wraps. */
+.wb-grid{align-items:start;grid-auto-rows:auto}
+.wb-grid>label{display:grid;grid-template-rows:subgrid;grid-row:span 2;gap:5px;margin:8px 0;align-items:start}
+.wb-grid>label>span{align-self:end;line-height:1.5}
+.wb-workspace{border-radius:var(--fs-radius-dialog)}
+.wb-workspace h2{font-size:var(--fs-font-lg)}
+.wb-workspace h3{font-size:var(--fs-font-sm)}
+.wb-workspace :is(label,button,summary,.wb-note,.wb-status){font-size:var(--fs-font-xs)}
+.wb-workspace details{border:0;border-top:1px solid var(--fs-stroke-subtle);border-radius:0;padding:10px 0;margin:12px 0}
+.wb-workspace details>summary{line-height:1.5;color:var(--fs-text-secondary)}
+.wb-workspace details[open]>summary{margin-bottom:8px;color:var(--fs-text-primary)}

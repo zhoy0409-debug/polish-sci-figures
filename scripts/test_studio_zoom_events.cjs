@@ -24,7 +24,7 @@ const viewport={clientWidth:900,clientHeight:620,clientLeft:0,clientTop:0,
   addEventListener(name,fn,options){listeners.set(name,{fn,options});},getBoundingClientRect(){return {left:80,top:50};}
 };
 const sandbox={...helpers,console,
-  $:id=>({viewport,zoom:control})[id],
+  $:id=>({viewport,zoom:control,artboard:{style:{}}})[id],
   T:(s,...values)=>s.replace(/\{(\d+)\}/g,(_,n)=>values[+n]),
   getComputedStyle:()=>({paddingLeft:'32px',paddingRight:'32px',paddingTop:'32px',paddingBottom:'32px'}),
   document:{createElement:()=>makeOption('')},
@@ -128,7 +128,7 @@ const pointerEnd=source.indexOf('    svg.onpointermove=',pointerStart);
 assert.ok(pointerStart>=0&&pointerEnd>pointerStart);
 svg.querySelectorAll=()=>[];svg.classList={add(){}};svg.setPointerCapture=()=>{};
 vm.runInContext(`let original=false,layoutMode=false,boxSelect=true,marquee=null,selectionAfterMarquee=false,selectedAlignmentGuide=null;
-  const drawAlignmentGuides=()=>{},renderAlignmentGuideControls=()=>{};
+  const drawAlignmentGuides=()=>{},renderAlignmentGuideControls=()=>{},chooseBehind=()=>false;
   const viewport=$('viewport');viewport.classList={add(){}};
   const canvasPoint=()=>({x:.5,y:.5}),state=()=>({overlays:[]}),screenRect=el=>el.getBoundingClientRect();
   ${source.slice(source.indexOf('    const beginMarquee='),source.indexOf('    const stopMarqueeFeedback='))}
@@ -149,15 +149,15 @@ assert.equal(control.value,'fit');assert.equal(sandbox.inspectZoom().fit,true);
 
 // Existing selections use fresh screen geometry when a selection is drawn at any zoom.
 const canvasPointCode=source.match(/^    const canvasPoint=e=>.*$/m)?.[0];
-const selectionStart=source.indexOf('    const drawSelection=(nodes,candidate=false)=>{');
+const selectionStart=source.indexOf('    const drawSelection=');
 const selectionEnd=source.indexOf('    const selectedNodes=',selectionStart);
 const selectionCode=source.slice(selectionStart,selectionEnd);
 assert.ok(canvasPointCode&&selectionStart>=0&&selectionEnd>selectionStart);
-const selectionLayer={children:[],replaceChildren(){this.children=[];},append(el){this.children.push(el);}};
+const selectionLayer={children:[],removeAttribute(){},replaceChildren(){this.children=[];},append(el){this.children.push(el);}};
 const createSvgElement=()=>({attributes:{},setAttribute(k,v){this.attributes[k]=String(v);}});
 const selectSandbox={svg,l:{width:720,height:504},NS:'svg',selectionLayer,document:{createElementNS:createSvgElement},screenRect:el=>el.getBoundingClientRect()};
 vm.createContext(selectSandbox);
-vm.runInContext(`${canvasPointCode}\n${selectionCode}\nglobalThis.canvasPoint=canvasPoint;globalThis.drawSelection=drawSelection;`,selectSandbox);
+vm.runInContext(`const selectionResize=null;\n${canvasPointCode}\n${selectionCode}\nglobalThis.canvasPoint=canvasPoint;globalThis.drawSelection=drawSelection;`,selectSandbox);
 for(const z of [.1,.37,1,4]){
   sandbox.setZoom(z,{x:430,y:280});const r=svg.getBoundingClientRect();
   const point=selectSandbox.canvasPoint({clientX:r.left+r.width*.3,clientY:r.top+r.height*.6});near(point.x,.3);near(point.y,.6);

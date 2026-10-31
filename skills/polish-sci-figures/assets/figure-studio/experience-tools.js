@@ -156,7 +156,7 @@ const StudioExperienceTools=(()=>{
         const found=actions.filter(a=>q?score(a)>0:currentCategory==='common'?common.includes(a.id):a.category===currentCategory);if(q)found.sort((a,b)=>score(b)-score(a));
         const matches=workbench?(()=>{const rows=new Map();for(const a of found){const item=workbench.menus.find(x=>x.aliases.includes(a.id)),id=item?.id||a.id;if(!rows.has(id))rows.set(id,{...(item?.action||a),id,category:item?.owner||a.category,run:a.run});}return [...rows.values()];})():found;
         for(const [id,zh,eng]of categories){const items=matches.filter(a=>a.category===id);if(!items.length)continue;const group=doc.createElement('section');group.className='command-category-results';const heading=doc.createElement('h3');heading.textContent=t(zh,eng);group.append(heading);
-          for(const a of items){const b=button('',a,'command-'+a.id),name=doc.createElement('strong'),path=doc.createElement('span');name.textContent=en()?a.en:a.zh;path.textContent=t(zh,eng)+' › '+(en()?a.en:a.zh);b.setAttribute('aria-label',name.textContent);path.className='command-path';b.append(name,path);group.append(b);}results.append(group);}
+          for(const a of items){const b=button('',a,'command-'+a.id),name=doc.createElement('strong');name.textContent=en()?a.en:a.zh;b.setAttribute('aria-label',name.textContent);b.append(name);const key={ 'history-undo':'Ctrl Z','history-redo':'Ctrl Y' }[a.id];if(key){const hint=doc.createElement('kbd');hint.textContent=key;b.append(hint);}group.append(b);}results.append(group);}
         if(!matches.length){const p=doc.createElement('p');p.textContent=t('未找到；试试“边框”“查重”“坐标轴”，或点击上方分类。','No matches; try border, duplicates or axis, or choose a category.');results.append(p);}
       };
       for(const [id,zh,eng]of [['common','常用','Common'],...categories]){const b=doc.createElement('button');b.type='button';b.dataset.category=id;b.textContent=t(zh,eng);b.onclick=()=>{currentCategory=id;input.value='';paint();};categoryBar.append(b);}
@@ -194,7 +194,7 @@ const StudioExperienceTools=(()=>{
     }
     doc.addEventListener('keydown',event=>{if(!event.defaultPrevented&&!event.isComposing&&event.keyCode!==229&&(event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'&&!doc.querySelector('dialog[open]')){event.preventDefault();openCommands();}});
     const drawers=host.drawerWorkspace||(typeof StudioDrawerWorkspace!=='undefined'?StudioDrawerWorkspace:null);
-    if(hierarchy&&drawers)workbench=drawers.create({document:doc,language:host.language,hierarchy,actions,categories,legacyNavigation:nav,launch,syncPane:host.syncPane});
+    if(hierarchy&&drawers)workbench=drawers.create({document:doc,language:host.language,hierarchy,actions,categories,legacyNavigation:nav,launch,syncPane:host.syncPane,captureViewAnchor:host.captureViewAnchor,restoreViewAnchor:host.restoreViewAnchor});
     refresh();return {refresh,openImages,openCommands,actions,nav,workbench};
   }
   return {create,workspaceHierarchy};

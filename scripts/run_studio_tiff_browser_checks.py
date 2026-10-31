@@ -39,7 +39,7 @@ def main():
     worker.start()
     report = {'author': 'a', 'scope': 'Real local browser and production TIFF/JSON/correction engines with public synthetic fixtures; not native installed Windows or independent detector accuracy', 'checks': []}
     try:
-        for name in ('test_project_codec_browser.cjs', 'test_scientific_tiff_browser.cjs', 'test_scientific_tiff_derivative_browser.cjs', 'test_submission_profiles_browser.cjs', 'test_history_shortcuts_browser.cjs', 'test_studio_drawer_workspace_browser.cjs', 'test_studio_drawer_compact_browser.cjs', 'test_studio_support_browser.cjs', 'test_studio_text_content_browser.cjs', 'test_studio_wb_browser.cjs', 'test_studio_wb_advanced_browser.cjs'):
+        for name in ('test_project_codec_browser.cjs', 'test_scientific_tiff_browser.cjs', 'test_scientific_tiff_derivative_browser.cjs', 'test_submission_profiles_browser.cjs', 'test_history_shortcuts_browser.cjs', 'test_studio_drawer_workspace_browser.cjs', 'test_studio_drawer_compact_browser.cjs', 'test_studio_support_browser.cjs', 'test_studio_text_content_browser.cjs', 'test_studio_wb_browser.cjs', 'test_studio_wb_advanced_browser.cjs', 'test_studio_core_workbench_browser.cjs'):
             target = output / Path(name).stem
             result = subprocess.run(['node', str(ROOT / 'scripts' / name), 'http://' + server.address + '/', str(target)], cwd=ROOT, env=os.environ.copy(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding='utf-8', errors='replace', timeout=150)
             (output / (name + '.log')).write_text(result.stdout, encoding='utf-8')

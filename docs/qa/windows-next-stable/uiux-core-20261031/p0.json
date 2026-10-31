@@ -1,0 +1,169 @@
+{
+  "scope": "Isolated source Chrome; public Iris and H&E, not installed Windows acceptance",
+  "cases": [
+    {
+      "theme": "carbon",
+      "lang": "zh-CN",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1440,
+      "viewport": 1440,
+      "directWbAndFonts": true
+    },
+    {
+      "theme": "carbon",
+      "lang": "en",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1440,
+      "viewport": 1440,
+      "directWbAndFonts": true
+    },
+    {
+      "theme": "pearl",
+      "lang": "zh-CN",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1440,
+      "viewport": 1440,
+      "directWbAndFonts": true
+    },
+    {
+      "theme": "pearl",
+      "lang": "en",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1440,
+      "viewport": 1440,
+      "directWbAndFonts": true
+    },
+    {
+      "w": 1152,
+      "h": 720,
+      "lang": "en",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1152,
+      "viewport": 1152
+    },
+    {
+      "w": 1152,
+      "h": 720,
+      "lang": "zh-CN",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1152,
+      "viewport": 1152
+    },
+    {
+      "w": 910,
+      "h": 512,
+      "lang": "en",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 910,
+      "viewport": 910
+    },
+    {
+      "w": 910,
+      "h": 512,
+      "lang": "zh-CN",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 910,
+      "viewport": 910
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "lang": "en",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1280,
+      "viewport": 1280
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "lang": "zh-CN",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1280,
+      "viewport": 1280
+    },
+    {
+      "w": 1366,
+      "h": 768,
+      "lang": "en",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1366,
+      "viewport": 1366
+    },
+    {
+      "w": 1366,
+      "h": 768,
+      "lang": "zh-CN",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1366,
+      "viewport": 1366
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "en",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1440,
+      "viewport": 1440
+    },
+    {
+      "w": 1440,
+      "h": 900,
+      "lang": "zh-CN",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1440,
+      "viewport": 1440
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "lang": "en",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1920,
+      "viewport": 1920
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "lang": "zh-CN",
+      "children": 2,
+      "parent": "studio-tool-bank",
+      "owner": "inset",
+      "width": 1920,
+      "viewport": 1920
+    }
+  ],
+  "errors": [],
+  "remote": [],
+  "browser": "156.0.8078.76",
+  "passed": true
+}

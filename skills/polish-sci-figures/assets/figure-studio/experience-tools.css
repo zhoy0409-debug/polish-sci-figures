@@ -6,10 +6,12 @@
 #commandDialog .command-categories button{font-size:var(--fs-font-xs);margin:0}
 #commandDialog .command-categories [aria-pressed=true]{background:var(--fs-accent-selected-bg);color:var(--fs-accent-text);border-color:var(--fs-accent)}
 #commandDialog .command-results{max-height:50vh;overflow:auto;overscroll-behavior:contain;padding:2px}
-#commandDialog .command-category-results{border:0;padding:0;margin:var(--fs-space-2) 0}
-#commandDialog .command-category-results h3{font-size:var(--fs-font-xs);color:var(--fs-text-muted);margin:var(--fs-space-2) 0}
-#commandDialog .command-category-results button{display:block;width:calc(100% - 8px);margin:var(--fs-space-1);text-align:left;padding:var(--fs-space-3)}
-#commandDialog .command-category-results button strong{display:block;font-size:var(--fs-font-sm);font-weight:600}
+#commandDialog .command-category-results{border:0;padding:0;margin:0}
+#commandDialog .command-category-results h3{font-size:var(--fs-font-xs);line-height:16px;color:var(--fs-text-muted);margin:var(--fs-space-1) var(--fs-space-3) 0}
+#commandDialog .command-category-results button{display:flex;align-items:center;justify-content:space-between;gap:var(--fs-space-3);width:100%;margin:0;text-align:left;padding:var(--fs-space-2) var(--fs-space-3);min-height:38px;border:1px solid transparent;background:transparent;border-radius:var(--fs-radius-md)}
+#commandDialog .command-category-results button:hover,#commandDialog .command-category-results button:focus-visible{background:var(--fs-hover);border-color:var(--fs-stroke-strong)}
+#commandDialog .command-category-results button strong{font-size:var(--fs-font-sm);font-weight:500}
+#commandDialog .command-category-results button kbd{font:inherit;font-size:var(--fs-font-xs);color:var(--fs-text-muted);white-space:nowrap}
 #commandDialog .command-path{display:block;margin-top:var(--fs-space-1);font-size:var(--fs-font-xs);color:var(--fs-text-secondary)}
 #studioFeedback .command-heading,#studioDownloadMetrics .command-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--fs-space-3)}
 .studio-support-dialog p{font-size:var(--fs-font-xs);line-height:1.6;color:var(--fs-text-secondary)}

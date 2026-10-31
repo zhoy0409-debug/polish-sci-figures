@@ -1075,7 +1075,7 @@ if (typeof document !== 'undefined') (async () => {
     const rectify=()=>{showPane('detail');if(!rectifyImageSelection().source){const images=rectifyImageSources();if(images.length===1)selectImage(images[0]);else return experienceTools?.openImages('rectify');}if(imageRectifyUI?.open()===false)say(rectifyImageSelection().reason||T('请先选中原图。'));};
     if(typeof StudioExperienceTools!=='undefined')experienceTools=StudioExperienceTools.create({document,language,say,images:imageColorSources,selectedImage:()=>insetSelection().source,selectImage,
       westernBlot:()=>openWBWorkspace(),
-      supportInfo:()=>localEngine?.updateInfo||{},syncPane:name=>showPane(name,false),
+      supportInfo:()=>localEngine?.updateInfo||{},syncPane:name=>showPane(name,false),captureViewAnchor,restoreViewAnchor,
       context:()=>({selected:!!selectedPanel,image:!!insetSelection().source}),duplicateStatus:()=>duplicateCheck?.status?.(),
       discovery:()=>{showPane('explore');$('openDiscovery')?.click();},edit:()=>showPane('detail'),
       textColor:()=>{showPane('detail');const field=$(selectedLabelIds().length?'quickColor':'color');for(let p=field.parentElement;p;p=p.parentElement)if(p.localName==='details')p.open=true;field.scrollIntoView({block:'center'});field.focus();},
@@ -4205,6 +4205,19 @@ if (typeof document !== 'undefined') (async () => {
   }
   // Reuse the current SVG on zoom; do not regenerate panels or reset selection.
   let zoomView=null,zoomFrame=0,queuedZoom=null,fitZoomFrame=0;
+  function captureViewAnchor(){
+    const view=zoomView;if(!view?.svg?.isConnected||view.fit)return null;
+    const rect=view.svg.getBoundingClientRect();return{svg:view.svg,left:rect.left,top:rect.top};
+  }
+  function restoreViewAnchor(anchor){
+    const view=zoomView,viewport=$('viewport'),board=$('artboard');if(!anchor||anchor.svg!==view?.svg||view.fit)return;
+    const rect=viewport.getBoundingClientRect(),css=getComputedStyle(viewport),pad=parseFloat(css.paddingLeft)||0;
+    // A manual view keeps its screen anchor when drawers change. Margins are
+    // editor-only; they never alter figure coordinates or exported pixels.
+    const target=anchor.left-rect.left-viewport.clientLeft-pad+viewport.scrollLeft;
+    board.style.marginLeft=Math.max(0,target)+'px';board.style.marginRight='0px';
+    const after=view.svg.getBoundingClientRect();viewport.scrollLeft+=after.left-anchor.left;viewport.scrollTop+=after.top-anchor.top;
+  }
   function previewFitZoom(width,height){
     const viewport=$('viewport'),css=getComputedStyle(viewport);
     const x=(parseFloat(css.paddingLeft)||0)+(parseFloat(css.paddingRight)||0);
@@ -4232,7 +4245,7 @@ if (typeof document !== 'undefined') (async () => {
     const before=view.svg.getBoundingClientRect();
     const next=fit?previewFitZoom(view.width,view.height):clampPreviewZoom(zoom);
     view.svg.style.width=view.width*next+'px';view.svg.style.height=view.height*next+'px';view.zoom=next;view.fit=fit;
-    if(fit){viewport.scrollLeft=0;viewport.scrollTop=0;}
+    if(fit){$('artboard').style.marginLeft='';$('artboard').style.marginRight='';viewport.scrollLeft=0;viewport.scrollTop=0;}
     else{
       const rect=viewport.getBoundingClientRect();point||={x:rect.left+viewport.clientLeft+viewport.clientWidth/2,y:rect.top+viewport.clientTop+viewport.clientHeight/2};
       const scroll=zoomAnchorScroll({before,after:view.svg.getBoundingClientRect(),point,scrollLeft:viewport.scrollLeft,scrollTop:viewport.scrollTop,scrollWidth:viewport.scrollWidth,scrollHeight:viewport.scrollHeight,viewportWidth:viewport.clientWidth,viewportHeight:viewport.clientHeight});

@@ -1,0 +1,18 @@
+'use strict';
+// Exercises the original failing route with ordinary clicks, without search recovery.
+const {chromium}=require('playwright'),H=require('./test_studio_carbon_helpers.cjs');
+const {fs,path,assert}=H,url=H.localUrl(process.argv[2]),out=path.resolve(process.argv[3]);
+assert(!fs.existsSync(out));fs.mkdirSync(out,{recursive:true});
+const report={scope:'Isolated source Chrome; public Iris and H&E, not installed Windows acceptance',cases:[],errors:[],remote:[]};
+const settle=p=>p.evaluate(async()=>{await document.fonts.ready;await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));await new Promise(r=>setTimeout(r,300));});
+async function click(p,s){await p.locator(s).click({timeout:4000});await settle(p);}
+async function contained(p){const v=await p.evaluate(()=>{const i=document.querySelector('.inspector'),n=document.getElementById('imageInsetsControls');return{children:i.children.length,parent:n.parentElement.className,owner:n.dataset.drawerOwner,width:document.documentElement.scrollWidth,viewport:innerWidth};});assert.equal(v.children,2);assert(v.parent.includes('studio-tool-bank'));assert.equal(v.owner,'inset');assert(v.width<=v.viewport,JSON.stringify(v));return v;}
+(async()=>{const b=await chromium.launch({channel:'chrome',headless:true});report.browser=b.version();try{
+ const x=await H.browserPage(b),{page:p,context}=x;
+ try{await p.goto(url);await H.dismiss(p);await H.loadProject(p,H.publicIris());await click(p,'#artboard text[data-key] >> nth=0');await click(p,'[data-drawer-category="style"]');await click(p,'[data-drawer-tool="fonts"]');await H.loadSvg(p,H.publicHe().svg,'PUBLIC-domain-H&E.svg');await click(p,'#artboard image[data-key] >> nth=0');
+  for(const theme of ['carbon','pearl']){await p.locator('#appearanceMenu summary').click();await p.locator('#studioTheme').selectOption(theme);await p.locator('#appearanceMenu summary').click();for(const lang of ['zh-CN','en']){await p.locator('#language').selectOption(lang);await settle(p);await click(p,'[data-drawer-category="image"]');const v=await contained(p);await click(p,'[data-drawer-tool="western-blot"]');await p.locator('#wbWorkspace').waitFor({state:'visible'});await click(p,'#wbCancel');await click(p,'[data-drawer-category="style"]');await click(p,'[data-drawer-tool="fonts"]');await p.locator('#font').waitFor({state:'visible'});await contained(p);report.cases.push({theme,lang,...v,directWbAndFonts:true});}}
+  await click(p,'[data-drawer-category="image"]');await p.screenshot({path:path.join(out,'image-containment-after.png')});
+ }finally{report.errors.push(...x.errors);report.remote.push(...x.remote);await context.close();}
+ for(const [w,h]of [[1152,720],[910,512],[1280,720],[1366,768],[1440,900],[1920,1080]])for(const lang of ['en','zh-CN']){const x=await H.browserPage(b,{viewport:{width:w,height:h}}),{page:p,context}=x;try{await p.goto(url);await H.dismiss(p);await p.locator('#language').selectOption(lang);await settle(p);const v=await contained(p);for(const id of ['save','undo','redo','exportMenu']){const r=await p.locator('#'+id).boundingBox();assert(r&&r.x>=0&&r.x+r.width<=w+.5,id+JSON.stringify(r));}report.cases.push({w,h,lang,...v});if(w===1152&&lang==='en')await p.screenshot({path:path.join(out,'header-after.png')});}finally{report.errors.push(...x.errors);report.remote.push(...x.remote);await context.close();}}
+ assert.deepEqual(report.errors,[]);assert.deepEqual(report.remote,[]);report.passed=true;
+}catch(e){report.error=e.stack;throw e;}finally{fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(report,null,2));await b.close();}console.log(JSON.stringify(report));})().catch(e=>{console.error(e);process.exitCode=1;});
