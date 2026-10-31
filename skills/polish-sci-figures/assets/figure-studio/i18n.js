@@ -949,6 +949,14 @@ const StudioI18n = (() => {
     '候选切换须说明科学适用性和展示重点；不能只按显著性选择。':'Explain candidate suitability and display purpose; do not select solely by significance.',
     '请先导出当前工程检查清单并逐项确认已有结果。':'Inspect the current project and confirm each existing result first.'
   });
+  Object.assign(en,{
+    'WB 显示调整请对同一源图整体应用。':'Apply WB display adjustments consistently to the whole source.',
+    'WB 来源记录与基础图形不匹配':'WB source records do not match the base artwork',
+    'WB 原生 TIFF 来源缺失或不匹配':'The original WB TIFF source is missing or inconsistent',
+    'WB 条带不能单独调整显示；请使用 WB 工作流的全源图显示设置。':'WB fragments cannot be adjusted individually. Use whole-source display settings in the WB workspace.',
+    'WB 组图预览':'WB composition preview',
+    'WB 组图已保留；可撤销':'WB composition kept; undo is available'
+  });
   function t(text,...values){let result=language==='en'?(en[text]??text):text;return result.replace(/\{(\d+)\}/g,(_,n)=>String(values[+n]??''));}
   return {t,choose,setLanguage,panelName,projectTitle,validateDisplayNames,preserveDisplayNames,restoreDisplayNames,get language(){return language;},en};
 })();

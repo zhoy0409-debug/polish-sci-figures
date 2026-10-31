@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const source=fs.readFileSync(path.resolve(__dirname,'../skills/polish-sci-figures/assets/figure-studio/studio.js'),'utf8');
 function fixture(){
   const button={disabled:false},messages=[],downloads=[];let complete,fail,learned=0;
-  const ctx={Blob,project:{id:'previous'},history:{id:1,toJSON:()=>({states:[{text:'before'}],index:0})},savedCurrent:'unsaved',stateValue:{text:'before'},checkpoints:[],dataDrafts:{},copy:v=>JSON.parse(JSON.stringify(v)),state:()=>ctx.stateValue,
+  const ctx={Blob,project:{id:'previous'},history:{id:1,toJSON:()=>({states:[{text:'before'}],index:0})},savedCurrent:'unsaved',stateValue:{text:'before'},checkpoints:[],dataDrafts:{},wbDraftVersion:0,wbWorkspace:null,restoredWBDraft:null,copy:v=>JSON.parse(JSON.stringify(v)),state:()=>ctx.stateValue,
     $:()=>button,guard:fn=>fn,T:v=>v,say:v=>messages.push(v),saveSignature:()=>JSON.stringify(ctx.stateValue),learnPreferences:()=>learned++,StudioI18n:{language:'en'},PROJECT_FILE_LIMIT:200000000,
     download:async(blob,name)=>{downloads.push({payload:JSON.parse(await blob.text()),name});return ctx.downloadResult;},
     StudioProjectCodec:{serialize(payload){const snapshot=JSON.stringify(payload);return new Promise((resolve,reject)=>{complete=()=>resolve(new Blob([snapshot],{type:'application/json'}));fail=reject;});}}};
@@ -18,5 +18,6 @@ function fixture(){
   f=fixture();task=f.button.onclick();f.complete();await task;assert.equal(f.ctx.savedCurrent,f.ctx.saveSignature());assert.equal(f.learned(),1);assert.equal(f.button.disabled,false);
   f=fixture();task=f.button.onclick();f.fail(Error('background error'));await assert.rejects(task,/background error/);assert.equal(f.ctx.savedCurrent,'unsaved');assert.equal(f.button.disabled,false);
   f=fixture();f.ctx.downloadResult=false;task=f.button.onclick();f.complete();await task;assert.equal(f.ctx.savedCurrent,'unsaved');assert.equal(f.learned(),0);assert.equal(f.button.disabled,false);
+  f=fixture();let draft={model:{lanes:['Control']}};f.ctx.wbDraftVersion=1;f.ctx.wbWorkspace={snapshot:()=>JSON.parse(JSON.stringify(draft))};f.ctx.saveSignature=()=>JSON.stringify({state:f.ctx.stateValue,wbDraftVersion:f.ctx.wbDraftVersion});task=f.button.onclick();draft.model.lanes[0]='Treatment';f.ctx.wbDraftVersion=2;f.complete();await task;assert.equal(f.downloads[0].payload.wbDraft.model.lanes[0],'Control');assert.equal(f.downloads[0].payload.wbDraftVersion,1);assert.notEqual(f.ctx.savedCurrent,f.ctx.saveSignature());assert.equal(f.learned(),0);
   console.log('PASS production async Save handler: call-time snapshot, later edits remain unsaved, project replacement remains unsaved, failures/cancel retain status and re-enable Save');
 })().catch(error=>{console.error(error);process.exitCode=1;});

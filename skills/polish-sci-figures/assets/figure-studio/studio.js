@@ -2501,7 +2501,7 @@ if (typeof document !== 'undefined') (async () => {
         if(autosavePending.has(key))continue;
         if(autosaveConflict(task)){autosaveConflictNotice(task);continue;}
         const stamp=JSON.stringify({idb:true,savedAt:new Date().toISOString(),ticket:task.ticket});
-        try{localStorage.setItem(key,stamp);if(currentAutosave(task)){knownCache=stamp;if(desktopSession)localStorage.setItem('figure-studio:desktop-last-project',payload.project.id);}}catch{}
+        try{localStorage.setItem(key,stamp);if(project.id===payload.project.id&&history===task.history)knownCache=stamp;if(currentAutosave(task)&&desktopSession)localStorage.setItem('figure-studio:desktop-last-project',payload.project.id);}catch{}
         if(!currentAutosave(task))continue;
         localSavedCurrent=signature;$('autosaveStatus').textContent=T('已自动保存 · 含撤销记录');$('autosaveStatus').classList.remove('unsaved');
         if(libraryIds.has(project.id))collectFigure();
