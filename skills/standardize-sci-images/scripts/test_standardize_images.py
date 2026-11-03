@@ -33,6 +33,15 @@ def main() -> None:
             assert bar["scale_bar_label_alignment"] == "centered_over_scale_bar"
         assert all(abs(record["effective_raster_dpi_at_panel_size"] - 300) < 1e-6 for record in records)
         assert all(sha256(path) == before[path] for path in sources)
+        fitted = standardize(manifest, root / "fitted", scale_bar_um=20, font=TEST_FONT,
+                             fit_box_mm=(35, 20))
+        for original, record in zip(records, fitted):
+            assert abs(record["panel_height_mm"] - 20) < 1e-9
+            assert abs(record["panel_width_mm"] / record["panel_height_mm"] - 500 / 390) < 1e-9
+            assert record["effective_raster_dpi_at_panel_size"] > 300
+            assert record["scale_bar"] == original["scale_bar"]
+            assert record["source_sha256"] == original["source_sha256"]
+            assert not record["resampled"]
         outputs = list((root / "outputs").glob("*.png"))
         assert len(outputs) == 9  # display + preview for four panels, plus montage
         panel_sizes = {Image.open(path).size for path in outputs if path.name != "montage.png"}

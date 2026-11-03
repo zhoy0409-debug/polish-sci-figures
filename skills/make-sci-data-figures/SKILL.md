@@ -1,6 +1,6 @@
 ---
 name: make-sci-data-figures
-description: Raw-data scientific figure workbench and editable template engine for CSV/TSV/XLSX tables. Use for 原始数据, Excel/CSV, design checks, group comparisons, relationships, time-course, compositions, matrices, survival, dose-response, ROC/PR and supplied specialist results. Generate data-backed candidates and Figure Studio bundles with explicit analysis provenance. Route microscopy standardization and final-only SVG polishing to the companion skills.
+description: Raw-data scientific figure workbench and editable template engine for CSV/TSV/XLSX tables. Use for 原始数据, Excel/CSV, design checks, group comparisons, relationships, time-course, compositions, matrices, survival, dose-response, ROC/PR and supplied specialist results. Generate data-backed candidates and Figure Studio bundles and statistical reports with explicit analysis provenance. Route microscopy standardization and final-only SVG polishing to the companion skills.
 ---
 
 # Make SCI Data Figures
@@ -8,6 +8,12 @@ description: Raw-data scientific figure workbench and editable template engine f
 Start from the biological question and experimental unit, not from a preferred chart type. Produce several honest candidates from the same data, keep their canvas and typography identical, and explain why each candidate is or is not appropriate.
 
 An ordinary request such as “帮我把这张表画成适合论文的图” is enough to begin. Read the table before asking questions; when design is unresolved, ask concretely whether records describe the same objects before/after or different objects. Offer a small useful shortlist and explain what each reveals instead of requiring statistical jargon or an elaborate prompt.
+
+## Plan linked results and export analyses
+
+For multiple endpoints or evidence types, read [evidence and reporting workflow](references/evidence_and_reporting.md). Profile the inputs before asking for missing design facts, then trace each panel to the experimental unit, endpoint and supported claim. Hand off reviewed panels and their source records to the polish workflow.
+
+For a saved workbench analysis, run `python scripts/export_analysis_report.py RUN/analysis_plan.json --out statistical-report.html` from this skill folder. Export a report from the analysis record even if the figure intentionally omits statistical labels. Keep the original plan alongside it. In a supported Studio build, **Export statistical report** in the analysis dialog saves the current validated preview as HTML before applying figure annotations.
 
 ## Shared Figure Discovery
 
@@ -73,7 +79,7 @@ Use an explicit design for inference:
 ```bash
 python scripts/figure_workbench.py generate data.csv \
   --group condition --value response --unit sample_id \
-  --design independent --outcome-type continuous \
+  --design independent --order Control,Treatment --outcome-type continuous \
   --unit-label "%" --outdir results
 ```
 

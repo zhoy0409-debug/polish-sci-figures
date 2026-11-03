@@ -1,6 +1,6 @@
 ---
 name: standardize-sci-images
-description: Scientific image standardization for microscopy, fluorescence, histology, pathology, and electron-microscopy image batches. Use when the user has raw or derived scientific raster images needing non-destructive processing, locked tone settings, equal dimensions, calibrated scale bars, manifests, montages, duplicate-image screening, 图片查重, or image audit trails. Do not use for raw CSV/Excel charting or final-only SVG layout polishing.
+description: Scientific image standardization for microscopy, fluorescence, histology, pathology, Western blot, and electron-microscopy image batches. Use when the user has raw or derived scientific raster images needing non-destructive processing, locked tone settings, equal dimensions, calibrated scale bars, manifests, montages, duplicate-image screening, 图片查重, or image audit trails. Do not use for raw CSV/Excel charting or final-only SVG layout polishing.
 ---
 
 # Standardize Scientific Images
@@ -22,6 +22,14 @@ The requested overlay font defaults to Arial and must be installed. Use `--allow
 
 By default, the SVG physical width is set to the largest size that preserves 300 dpi. Use `--panel-width-mm` only for a known final slot; the command refuses a width that would fall below 300 dpi instead of inventing pixels.
 
+For automatic fit into a physical slot, add `--fit-box-mm WIDTH HEIGHT`. This sets the largest proportional placement inside both maxima while retaining at least 300 dpi. It records the achieved dimensions and effective dpi in the audit. The manifest crop and display rules still apply. If the intended result needs the entire field, keep a matching full-frame canvas or separate the images into compatible batches before fitting.
+
+## Western blot and native intensity
+
+Read [the Western blot workflow](../../docs/figure-studio-western-blot.zh-CN.md) and check the active build for its tools. Map each strip and lane to the original exposure, membrane, sample/group, ROI, acquisition settings and control. Confirm automatically suggested ROIs and lane identities against acquisition records. Review comparable exposures and common display mapping. Mark lane omissions, reordered lanes and splices in the figure/legend as appropriate, and retain the uncropped exposures and source coordinates. Carry any densitometry as a separate, attributable measurement record.
+
+For TIFF and fluorescence, identify the native plane, channel, bit depth, calibration and acquisition settings before display conversion. Keep native measurements and their quantification separate from composite and presentation derivatives. Record any crop, shared intensity window, LUT, gamma, resampling and derived calibration. Recheck comparability across the complete batch and read the native-TIFF guide below when using Studio.
+
 ## Scientific integrity rules
 
 - Treat raw acquisition files as immutable. Write derivatives to a new directory and record source SHA-256 hashes.
@@ -30,7 +38,7 @@ By default, the SVG physical width is set to the largest size that preserves 300
 - Apply the same crop policy, intensity window, gamma, and LUT to images in the same comparison batch. Do not tune each experimental group separately.
 - Default to no tone adjustment. If display adjustment is needed, declare fixed `display_min`, `display_max`, `gamma`, and `lut` settings in the manifest.
 - Keep higher-bit-depth single-channel data at their native depth until display mapping. Require an explicit native-unit display window; never silently cast 16-bit data to 8-bit.
-- The next Windows source candidate can import bounded native TIFF with cancellable window/gamma/LUT previews, optional explicit resampling and separately retained original bytes. **New display from original TIFF** reopens the retained plane/settings into a separate display without replacing earlier images or edits; originals remain shared. Read `../../docs/figure-studio-native-tiff.md` for exact formats and limits. It is not a batch-comparability workflow, quantitative analysis, full OME certification or an accepted released installer. Do not interpret TIFF print DPI as microscopy calibration or transfer a corrected display's calibration to the native plane.
+- Supported Studio builds can import bounded native TIFF with cancellable window/gamma/LUT previews, optional explicit resampling and separately retained original bytes. **New display from original TIFF** reopens the retained plane/settings into a separate display without replacing earlier images or edits; originals remain shared. Read `../../docs/figure-studio-native-tiff.md` for exact formats and limits. It is not a batch-comparability workflow, quantitative analysis or full OME certification. Do not interpret TIFF print DPI as microscopy calibration or transfer a corrected display's calibration to the native plane.
 - Preserve a quantitative image/table separately. Display normalization is not a substitute for quantitative preprocessing.
 - Do not erase, clone, selectively blur, locally enhance, or move biological structures.
 - Do not resample by default. Equalize size by a common crop. If resampling is scientifically justified, perform it in a documented downstream workflow and update calibration.

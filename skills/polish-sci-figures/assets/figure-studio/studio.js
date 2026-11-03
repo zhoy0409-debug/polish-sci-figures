@@ -5106,8 +5106,70 @@ if (typeof document !== 'undefined') (async () => {
     for(const set of analysis.facets||[analysis]){const info=statisticalComparisons(set);if(info.reason)continue;const heading=document.createElement('strong');heading.textContent=[set.label,T(statisticalMethodName(info.method))].filter(Boolean).join(' · ');region.append(heading);const table=document.createElement('table');table.className='statistics-result-table';const head=document.createElement('tr');for(const text of ['组间比较','样本量',analysis.correction==='none'?'P 值':'校正后的 P 值']){const th=document.createElement('th');th.textContent=T(text);head.append(th);}table.append(head);for(const c of info.comparisons){const row=document.createElement('tr'),label=document.createElement('td'),count=document.createElement('td'),number=document.createElement('td');label.textContent=`${info.order[c.a]} — ${info.order[c.b]}`;count.textContent=Number.isFinite(c.n_a)?`${c.n_a} / ${c.n_b}`:'—';const p=document.createElement('i');p.textContent='P';number.append(p,document.createTextNode(statisticalPText(c.p)));row.append(label,count,number);table.append(row);if(Number.isFinite(c.estimate)&&Array.isArray(c.ci95)){const effect=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=3;cell.textContent=T('均值差（后组 − 前组）：{0}；95% CI：{1} 至 {2}',precision(c.estimate),precision(c.ci95[0]),precision(c.ci95[1]));effect.append(cell);table.append(effect);}}region.append(table);}
     const footnote=document.createElement('p');footnote.className='muted';footnote.hidden=!(analysis.facets||[analysis]).some(set=>(set.primary_test?.pairwise||[]).some(c=>Array.isArray(c.ci95)));footnote.textContent=T('均值差的 95% CI 为单项区间，未作多重比较校正。P 值不能代替差异大小与实际意义。');region.append(footnote);
   }
+  function statisticsReport(record,panelName){
+    const en=StudioI18n.language==='en',label=(zh,english)=>en?english:zh;
+    const doc=document.implementation.createHTMLDocument(T('统计分析'));
+    doc.documentElement.lang=en?'en':'zh-CN';
+    const meta=doc.createElement('meta');meta.charset='utf-8';doc.head.prepend(meta);
+    const author=doc.createElement('meta');author.name='author';author.content='a';doc.head.append(author);
+    const css=doc.createElement('style');
+    css.textContent='body{font:16px system-ui;margin:2rem;color:#202520} table{width:100%;border-collapse:collapse;font-size:.9rem} th,td{padding:.4rem .6rem;border:1px solid #bbc5bf;text-align:left;overflow-wrap:anywhere} th{background:#eef3ef} pre{white-space:pre-wrap;overflow-wrap:anywhere} @media print{body{margin:0} tr{break-inside:avoid}}';
+    doc.head.append(css);
+    const add=(parent,tag,content)=>{
+      const item=doc.createElement(tag);item.textContent=content;parent.append(item);return item;
+    };
+    const precision=value=>Number.isFinite(value)?Number(value.toPrecision(6)).toString():value;
+    const addValue=(row,value)=>add(row,'td',precision(value)??'—');
+    const {analysis,config,binding,data_sha256}=record;
+    add(doc.body,'h1',T('统计分析'));
+    add(doc.body,'p',panelName);
+    add(doc.body,'p',label('本机计算或导入的分析预览。表内数值显示至六位有效数字，来源记录保留原始精度。','Local analysis preview or imported results. The table displays up to six significant digits. The analysis record retains the full precision.'));
+    const adjusted=analysis.correction!=='none';
+    const facets=analysis.facets||[analysis],results=facets.flatMap(facet=>facet.primary_test.pairwise);
+    for(const facet of facets){
+      add(doc.body,'h2',facet.label||label('比较结果','Comparisons'));
+      add(doc.body,'p',facet.primary_test.name);
+      const table=doc.createElement('table');doc.body.append(table);
+      const header=table.createTHead().insertRow(),body=table.createTBody();
+      const pHeader=(zh,en)=>{
+        const cell=add(header,'th',label(zh,en));
+        add(cell,'i','P');cell.append(label(' 值',' value'));
+      };
+      const columns=[
+        ['样本量（前组 / 后组）','Sample size (first / second)','n_a',r=>r.n_a+' / '+r.n_b],
+        ['统计量','Statistic','statistic'],['自由度','Degrees of freedom','degrees_of_freedom'],
+        ['效应定义','Estimand','estimand'],['估计值','Estimate','estimate'],
+        ['描述性中位差','Descriptive median difference','descriptive_median_difference'],
+        ['95% CI','95% CI','ci95',r=>r.ci95?.map(precision).join(label(' 至 ',' to '))],
+        ['数值计算方法','Calculation method','p_method']
+      ].filter(([, ,key])=>facet.primary_test.pairwise.some(r=>r[key]!=null));
+      add(header,'th',label('比较（后组 − 前组）','Contrast (second − first)'));
+      for(const [zh,en] of columns)add(header,'th',label(zh,en));
+      pHeader('原始 ','Raw ');
+      if(adjusted)pHeader('校正后 ','Adjusted ');
+      for(const result of facet.primary_test.pairwise){
+        const row=body.insertRow();
+        add(row,'td',result.group_b+' − '+result.group_a);
+        for(const [,,key,format] of columns)addValue(row,format?format(result):result[key]);
+        addValue(row,result.p_raw??(adjusted?'—':result.p));
+        if(adjusted)addValue(row,result.p);
+      }
+    }
+    if(results.some(result=>Array.isArray(result.ci95))){
+      add(doc.body,'p',label('均值差的 95% CI 为单项区间。','Mean-difference 95% CIs are individual intervals.'));
+    }
+    if(results.some(result=>result.p===0||result.p_raw===0)){
+      const note=add(doc.body,'p',label('遇到 ','For a reported '));
+      add(note,'i','P');note.append(label(' = 0，请核查数值精度或报告下限。',' of zero, verify precision or the reporting limit.'));
+    }
+    for(const note of analysis.diagnostics||[])add(doc.body,'p',[note.facet,note.group_a&&note.group_b&&[note.group_a,note.group_b].join(' / '),en?note.en:note.zh].filter(Boolean).join(' · '));
+    const details=doc.createElement('details');doc.body.append(details);
+    add(details,'summary',label('完整分析与来源记录','Full analysis and provenance'));
+    add(details,'pre',JSON.stringify({binding,data_sha256,config,analysis},null,2));
+    return '<!doctype html>\n'+doc.documentElement.outerHTML;
+  }
   function statisticsInvalidate(clearMethod=false){
-    clearTimeout(statisticsTimer);statisticsRequest++;if(statisticsSession){statisticsSession.pending=null;statisticsSession.busy=false;statisticsSession.failure=false;}if(clearMethod)$('statisticsMethod').value='';$('applyStatistics').disabled=true;$('statisticsPreviewStyleControls').hidden=true;$('statisticsPreviewBadge').textContent='';$('statisticsRunStatus').replaceChildren();$('statisticsPreview').replaceChildren();const p=document.createElement('p');p.textContent=T('选择方法后，这里显示当前图形的真实分析结果。');$('statisticsPreview').append(p);
+    clearTimeout(statisticsTimer);statisticsRequest++;if(statisticsSession){statisticsSession.pending=null;statisticsSession.busy=false;statisticsSession.failure=false;}if(clearMethod)$('statisticsMethod').value='';$('applyStatistics').disabled=true;$('exportStatisticsReport').disabled=true;$('statisticsPreviewStyleControls').hidden=true;$('statisticsPreviewBadge').textContent='';$('statisticsRunStatus').replaceChildren();$('statisticsPreview').replaceChildren();const p=document.createElement('p');p.textContent=T('选择方法后，这里显示当前图形的真实分析结果。');$('statisticsPreview').append(p);
   }
   function openStatistics(style='p'){
     if(state().panels[selectedPanel].locked)return;statisticsRequest++;statisticsSession={id:selectedPanel,projectId:project.id,source:panel(selectedPanel),style,serial:dataSerial,pending:null};
@@ -5136,13 +5198,13 @@ if (typeof document !== 'undefined') (async () => {
     const letters=(session.pending.record.analysis.facets||[session.pending.record.analysis]).every(set=>statisticalComparisons(set).letters);for(const option of $('statisticsPreviewStyle').options)if(option.value==='letters')option.disabled=!letters;$('statisticsPreviewStyle').value=next.panels[session.id].annotationStyle;$('applyStatistics').disabled=false;
   }
   async function runStatisticsPreview(){
-    const session=statisticsSession,reason=statisticsReadyReason();if(!session||reason){$('statisticsReadyHint').textContent=reason;return;}const config=statisticsConfig();if(config.mode==='raw'&&!config.method)return;const request=++statisticsRequest,binding=$('statisticsSource').value;session.pending=null;session.busy=true;session.failure=false;$('applyStatistics').disabled=true;$('runStatistics').disabled=true;$('statisticsPreviewBadge').textContent=T('正在计算…');$('statisticsRunStatus').textContent=T('正在计算比较结果…');
+    const session=statisticsSession,reason=statisticsReadyReason();if(!session||reason){$('statisticsReadyHint').textContent=reason;return;}const config=statisticsConfig();if(config.mode==='raw'&&!config.method)return;const request=++statisticsRequest,binding=$('statisticsSource').value;session.pending=null;session.busy=true;session.failure=false;$('applyStatistics').disabled=true;$('exportStatisticsReport').disabled=true;$('runStatistics').disabled=true;$('statisticsPreviewBadge').textContent=T('正在计算…');$('statisticsRunStatus').textContent=T('正在计算比较结果…');
     try{
       const rows=copy(statisticsRows());if(!rows?.length)throw Error(T('请连接有效数据表。'));
       const response=await engineFetch(localEngine.analyzeEndpoint||'/api/analyze',{method:'POST',headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify({recipe:session.source.recipe,rows,config})});const result=await response.json();if(!response.ok)throw Error(result.error);
       if(request!==statisticsRequest||statisticsSession!==session)return;
       if(!statisticsSessionValid(session,config))throw Error(T('数据或分析设置已变化，请重新分析。'));
-      session.pending={config,record:{binding,tableKey:session.source.table?.sha256||'',config:result.config,analysis:result.analysis,data_sha256:result.data_sha256,...(binding!=='current'?{inputRows:rows}:{})}};statisticsResultSummary(result.analysis);renderStatisticsPreview();
+      session.pending={config,record:{binding,tableKey:session.source.table?.sha256||'',config:result.config,analysis:result.analysis,data_sha256:result.data_sha256,...(binding!=='current'?{inputRows:rows}:{})}};statisticsResultSummary(result.analysis);renderStatisticsPreview();$('exportStatisticsReport').disabled=false;
     }catch(e){if(request===statisticsRequest&&statisticsSession===session){session.pending=null;session.failure=true;$('statisticsPreviewBadge').textContent=T('请检查数据');const parts=String(e.message).split(' / ');$('statisticsRunStatus').textContent=parts.length>1?(StudioI18n.language==='en'?parts.slice(1).join(' / '):parts[0]):e.message;}}
     finally{if(request===statisticsRequest&&statisticsSession===session){session.busy=false;statisticsControls();}}
   }
@@ -5156,6 +5218,12 @@ if (typeof document !== 'undefined') (async () => {
   $('statisticsChooseFile').onclick=()=>{$('statisticsFile').value='';$('statisticsFile').click();};
   $('statisticsFile').onchange=guard(async()=>{const file=$('statisticsFile').files[0],session=statisticsSession;if(!file)return;if(file.size>2000000)throw Error(T('数据表不能超过 2 MB'));const content=await file.text();if(statisticsSession!==session)return;statisticsInvalidate(true);$('statisticsTable').value=content;$('statisticsOutcome').value='';$('statisticsUnitConfirmed').checked=false;$('statisticsResultsConfirmed').checked=false;statisticsColumns();});
   $('runStatistics').onclick=runStatisticsPreview;$('statisticsPreviewStyle').onchange=renderStatisticsPreview;
+  $('exportStatisticsReport').onclick=guard(async()=>{
+    const session=statisticsSession,pending=session?.pending;
+    if(!pending||!statisticsSessionValid(session,pending.config))throw Error(T('数据或分析设置已变化，请重新分析。'));
+    const report=statisticsReport(pending.record,StudioI18n.panelName(session.source));
+    if(await download(new Blob([report],{type:'text/html;charset=utf-8'}),'statistical-report.html'))say(T('统计报告已保存'));
+  });
   $('applyStatistics').onclick=()=>{const session=statisticsSession;if(!session?.pending||!statisticsSessionValid(session,session.pending.config)){statisticsInvalidate();statisticsControls();$('statisticsRunStatus').textContent=T('数据或分析设置已变化，请重新分析。');return;}const next=statisticsPreviewState(session);if(commit(next,T('统计结果与标注已更新')))$('statisticsDialog').close();};
   function dataRows(){return dataDrafts[selectedPanel]||panel(selectedPanel)?.table?.rows;}
   function refreshDataExport(){const pending=exportBusy||Object.keys(dataDrafts).some(id=>state().order.includes(id));for(const id of ['export','png','tiff'])if($(id))$(id).disabled=pending;}

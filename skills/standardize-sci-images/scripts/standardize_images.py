@@ -330,7 +330,8 @@ def standardize(manifest: Path, outdir: Path, target_width: int | None = None,
                 target_height: int | None = None, scale_bar_um: float | None = None,
                 label_scale_bar: bool = True, output_format: str = "png",
                 panel_width_mm: float | None = None, font: str = DEFAULT_FONT,
-                allow_font_fallback: bool = False) -> list[dict]:
+                allow_font_fallback: bool = False,
+                fit_box_mm: tuple[float, float] | None = None) -> list[dict]:
     raw = pd.read_csv(manifest)
     row_scale = "scale_bar_um" in raw and pd.to_numeric(raw["scale_bar_um"], errors="coerce").notna().any()
     df = validate_manifest(raw, manifest, require_scale=scale_bar_um is not None or row_scale)
@@ -342,8 +343,17 @@ def standardize(manifest: Path, outdir: Path, target_width: int | None = None,
             modes.append(image.mode)
     width = int(target_width or min(w for w, _ in sizes))
     height = int(target_height or min(h for _, h in sizes))
-    physical_width_mm = float(panel_width_mm or (width / 300 * 25.4))
-    if physical_width_mm <= 0:
+    if width <= 0 or height <= 0:
+        raise ValueError("Target pixel dimensions must be positive.")
+    max_width_at_300_dpi = width / 300 * 25.4
+    if fit_box_mm is not None:
+        box_width, box_height = fit_box_mm
+        if panel_width_mm is not None or any(not math.isfinite(v) or v <= 0 for v in fit_box_mm):
+            raise ValueError("Supply a positive finite fit box or an explicit panel width.")
+        physical_width_mm = min(box_width, box_height * width / height, max_width_at_300_dpi)
+    else:
+        physical_width_mm = float(panel_width_mm if panel_width_mm is not None else max_width_at_300_dpi)
+    if not math.isfinite(physical_width_mm) or physical_width_mm <= 0:
         raise ValueError("panel_width_mm must be positive.")
     effective_dpi = width / (physical_width_mm / 25.4)
     if effective_dpi < 300 - 1e-6:
@@ -401,6 +411,7 @@ def standardize(manifest: Path, outdir: Path, target_width: int | None = None,
             "output_width": width, "output_height": height,
             "panel_width_mm": physical_width_mm, "panel_height_mm": physical_height_mm,
             "effective_raster_dpi_at_panel_size": effective_dpi,
+            "fit_box_mm": list(fit_box_mm) if fit_box_mm is not None else None,
             "crop_box_source_pixels": list(crop_box), "batch": str(row.get("batch", "batch_1")),
             "um_per_pixel": clean_scalar(row.get("um_per_pixel")),
             "display_min": float(clean_scalar(row.get("display_min"), 0.0)),
@@ -431,8 +442,11 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--scale-bar-um", type=float)
     p.add_argument("--no-scale-bar-label", action="store_true")
     p.add_argument("--format", choices=["png", "tiff"], default="png")
-    p.add_argument("--panel-width-mm", type=float,
-                   help="Final SVG panel width; omitted means the largest width that preserves 300 dpi")
+    sizing = p.add_mutually_exclusive_group()
+    sizing.add_argument("--panel-width-mm", type=float,
+                        help="Exact final SVG panel width; must preserve at least 300 dpi")
+    sizing.add_argument("--fit-box-mm", nargs=2, type=float, metavar=("WIDTH", "HEIGHT"),
+                        help="Fit the physical SVG within these maxima at 300 dpi or higher, without stretching")
     p.add_argument("--font", default=DEFAULT_FONT)
     p.add_argument("--allow-font-fallback", action="store_true",
                    help="permit a draft-only fallback font when --font is not installed")
@@ -444,7 +458,7 @@ def main() -> None:
     records = standardize(Path(args.manifest), Path(args.outdir), args.target_width,
                           args.target_height, args.scale_bar_um, not args.no_scale_bar_label,
                           args.format, args.panel_width_mm, args.font,
-                          args.allow_font_fallback)
+                          args.allow_font_fallback, args.fit_box_mm)
     print(f"Standardized {len(records)} images in {Path(args.outdir).resolve()}")
 
 

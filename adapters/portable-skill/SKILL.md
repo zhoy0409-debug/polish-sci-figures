@@ -33,8 +33,8 @@ Install optional dependencies only for a workflow that requires them, from `suit
 
 | Input or task | Local instructions |
 | --- | --- |
-| Raw CSV/TSV/XLSX, chart choice or statistical analysis | [Data figure workbench](suite/skills/make-sci-data-figures/WORKFLOW.md) |
-| Calibrated microscopy or pathology images | [Scientific image preparation](suite/skills/standardize-sci-images/WORKFLOW.md) |
+| Raw CSV/TSV/XLSX, chart choice, statistical analysis or report export | [Data figure workbench](suite/skills/make-sci-data-figures/WORKFLOW.md) |
+| Calibrated microscopy, pathology or Western blot images | [Scientific image preparation](suite/skills/standardize-sci-images/WORKFLOW.md) |
 | Existing SVG, visual refinement, composition or Studio editing | [Figure polishing and editing](suite/skills/polish-sci-figures/WORKFLOW.md) |
 | Duplicate images or suspected image reuse | [Local image duplicate check](suite/docs/image-duplicate-check.md) |
 

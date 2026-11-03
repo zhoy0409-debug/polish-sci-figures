@@ -3,7 +3,7 @@ name: macOS local preview (manual)
 on:
   workflow_dispatch:
   push:
-    branches: [codex/macos-local-preview]
+    branches: [codex/macos-local-preview, codex/skill-suite-1.6.0]
     paths:
       - 'desktop/**'
       - 'skills/**'
