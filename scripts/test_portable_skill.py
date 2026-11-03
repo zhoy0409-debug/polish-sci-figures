@@ -120,6 +120,21 @@ def main():
         assert analysis["source_sha256"] == source_hash
         assert hashlib.sha256(table.read_bytes()).hexdigest() == source_hash
         assert "primary_test" not in analysis, "Descriptive candidates must not fabricate inferential results"
+        inference = workspace / "inference"
+        run([suite / "skills/make-sci-data-figures/scripts/figure_workbench.py",
+             "generate", table, "--group", "group", "--value", "value", "--unit", "unit",
+             "--design", "independent", "--outcome-type", "continuous",
+             "--order", "Control,Treatment", "--outdir", inference, "--font", "DejaVu Sans"], workspace)
+        plan = inference / "analysis_plan.json"
+        saved = json.loads(plan.read_text(encoding="utf-8"))
+        report_path = workspace / "statistical-report.html"
+        run([suite / "skills/make-sci-data-figures/scripts/export_analysis_report.py",
+             plan, "--out", report_path], workspace)
+        report_text = report_path.read_text(encoding="utf-8")
+        assert hashlib.sha256(plan.read_bytes()).hexdigest() in report_text
+        assert f'<dt><i>P</i> value</dt><dd>{saved["primary_test"]["p_value"]}</dd>' in report_text
+        assert "Control-0" not in report_text
+
         # Present a short candidate set from the generated compatible alternatives.
         candidates = [bundle / (view + ".svg") for view in
                       ("compare_box_points", "compare_raincloud", "compare_violin")]

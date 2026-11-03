@@ -6,11 +6,13 @@ Suite v1.4.11 provides a self-contained upload package with an entry skill and t
 
 ## Which package to download
 
-Download [polish-sci-figures-v1.4.11-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.11/polish-sci-figures-v1.4.11-skill.zip). It has one root folder, `polish-sci-figures/`, and exactly one entry `SKILL.md` across the entire ZIP. The three complete workflows are included as `WORKFLOW.md` files inside `suite/`, alongside the CLI and runtime resources. Keep this structure and upload the original ZIP.
+Download `polish-sci-figures-<version>-skill.zip` for the selected version from [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases). It has one root folder, `polish-sci-figures/`, and exactly one entry `SKILL.md` across the entire ZIP. The three complete workflows are included as `WORKFLOW.md` files inside `suite/`, alongside the CLI and runtime resources. Keep this structure and upload the original ZIP.
 
 The v1.4.0 upload package contained four `SKILL.md` files and was rejected in an actual Claude upload. The corrected single-entry structure was successfully uploaded to Claude in v1.4.1 and is retained in v1.4.11. Use the current package instead of the old file.
 
-To run the source yourself or manage the three skills separately, choose `sci-figure-suite-v1.4.11.zip` from the same release. These packages serve different purposes: do not upload the entire three-skill source archive as one skill.
+To run the source yourself or manage the three skills separately, choose `sci-figure-suite-<version>.zip` from the same release. These packages serve different purposes: do not upload the entire three-skill source archive as one skill.
+
+Choose one installation form for the Figure Studio suite. If ScholarFlow also supplies a skill named `polish-sci-figures`, locate the Figure Studio entry by its installation path and keep one discoverable entry under that name. Check the separate macOS preview and Windows release evidence before relying on desktop features. The local Skill/CLI remains available when the installed editor lacks a feature.
 
 ## Platform entry points
 

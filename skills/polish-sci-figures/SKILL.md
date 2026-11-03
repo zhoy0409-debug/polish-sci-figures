@@ -19,7 +19,7 @@ If no candidate passes, identify the specific missing runtime/package and propos
 
 ## Product entry points
 
-The unreleased Windows candidate also provides local **Submission profiles…** under submission size/export. Use requirements explicitly supplied by the researcher or a verified guideline, with source and date; do not invent journal dimensions from a profile name. Profiles use `figure-studio-submission-profile/1`, contain no artwork or measurement tables, and are validated on project open. Preview/Cancel/Keep reuse the editor transaction; final-size review uses the shared `figure-quality.js` rules with the declared thresholds and discloses width/DPI/height mismatches. See [the workflow and supported scope](../../docs/figure-studio-submission-profiles.md).
+Supported builds also provide local **Submission profiles…** under submission size/export. Use requirements explicitly supplied by the researcher or a verified guideline, with source and date; do not invent journal dimensions from a profile name. Profiles use `figure-studio-submission-profile/1`, contain no artwork or measurement tables, and are validated on project open. Preview/Cancel/Keep reuse the editor transaction; final-size review uses the shared `figure-quality.js` rules with the declared thresholds and discloses width/DPI/height mismatches. See [the workflow and supported scope](../../docs/figure-studio-submission-profiles.md).
 
 This skill and Figure Studio are two entry points to the same product. The original AI/CLI workflow remains available; manual editing is optional. Figure Studio is the official Windows companion editor, not a fourth independently installed skill. Direct users who want an installed editor to the [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases): its Windows x64 installer bundles the renderer and local analysis engine, needs no separate Python/Codex installation, account or activation, and works offline. Do not ask those users to set up an agent runtime.
 
@@ -28,6 +28,12 @@ For an AI handoff, generate a self-contained page from reviewed candidate bundle
 The editor must open on the final approved chart. For a candidate directory, pass `--view` with the chosen SVG filename stem, preserve its data and analysis records, and inspect the initial HTML alongside the final image. For an individually edited final SVG, package that exact SVG or update its bundle candidate first. One panel defaults to one column; extra blank cells require an intentional layout. Never substitute the default candidate for the user's final choice.
 
 The suite retains MIT licensing and third-party notices. Official branding identifies the maintained distribution; it is not copy protection. Never add account gates, activation or an online authenticity check as part of ordinary figure delivery.
+
+### Match the installed capability
+
+Identify the platform, build and required feature before routing. Check the official release assets and the installed controls or local inspection capabilities. Record Windows installed, macOS native preview and shared browser-source checks separately. On a build that lacks a feature, continue locally with the bundled Python CLI or compatible browser editor when available. Preserve a saved project copy before testing a newer build.
+
+For image sizing, use **Auto-fit to cell** for centered proportional placement. The drag controls separately offer Auto (corner handles preserve proportions), Locked and Free scaling. Use proportional placement for calibrated images. For a specific publication slot with width and height maxima, use the image workflow’s `--fit-box-mm` and inspect its achieved physical size, effective DPI and scale-bar alignment.
 
 ## Local image tools and professional axes
 
@@ -225,6 +231,10 @@ For presentations, put the conclusion-style slide title, per-panel explanation, 
 
 **Showcase.** Keep the image self-explanatory at 1200 px, disclose synthetic data, and package provenance for published-figure reproductions. Render the actual README or website container at that width. Do not place dense multi-panel figures in two-column gallery cells; use full-width previews or purpose-built thumbnails.
 
+## Refine confirmed results
+
+For mixed-source figures, use the data workflow's evidence map and image provenance as inputs. Compare reading order and panel grouping in rendered alternatives when these affect interpretation. Confirm inferred roles with the researcher before committing scientific changes. Read [scoped project operations](references/project_operations.md) for supported operations and revision checks.
+
 ## Produce and inspect
 
 1. Generate from the authoritative source at the declared canvas and final-size typography.
@@ -233,7 +243,7 @@ For presentations, put the conclusion-style slide title, per-panel explanation, 
 4. Open every final image and inspect a montage for cross-figure typography, canvas rhythm, palette, and margins.
 5. Run SVG editability and canvas audits; run the panel-label audit only when labels were explicitly required.
 6. Insert into the actual manuscript page or slide at 100% declared size and render that container. LibreOffice output is a compatibility preview, not native PowerPoint/Word rendering.
-7. Correct every failure and rerun the relevant checks before delivery.
+7. For each material finding, record the panel/element, location and measured or visible conflict. Apply the smallest supported correction and re-render at the same physical width. Compare the affected area and the full figure against the original, and confirm neighboring elements and scientific content. Keep a reversible source or patch and report any blocked fixes with their exact locations. Only pass the checks that were actually performed.
 
 ## Screen image reuse when reviewing image panels
 

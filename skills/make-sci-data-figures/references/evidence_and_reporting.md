@@ -1,0 +1,14 @@
+# Evidence and reporting for linked figures
+
+Use this workflow when a figure combines outcomes, models, modalities or independent experiments.
+
+1. Read the study question, design and files. Map every proposed panel to a source file/table or acquisition, population, experimental unit, endpoint, contrast, and result status. Mark declarations separately from inferences and identify missing facts that affect a planned comparison.
+2. Classify the supported claim as descriptive, associational, supported by an intervention, or causal within a verified design. Record the primary endpoint or phenotype, contextual comparisons, mechanism-related measurements and independent validation only when the design supports these roles. For animal data, animal IDs rather than fields or lanes usually determine replication. For genome results, distinguish isolate counts, gene presence and phenotypic resistance. For survival, retain time units, event coding, censoring, group counts and numbers at risk.
+3. Keep each analysis with its source and recipe. Use the existing workbench and its validation for supported calculations, or use clearly identified supplied estimates. Preserve denominators, uncertainty, endpoint scope and multiplicity. Separate confirmed and exploratory results. Keep alternative evidence orders available when the study question supports multiple readings, without selecting endpoints based on the smallest *P* value.
+4. Hand off validated panels, provenance, interpretation limits and candidate reading orders. Render competing layouts at the same final width when order or grouping materially affects interpretation. Keep unresolved panels visibly draft and get scientific confirmation before promoting inferred panel roles or causal links.
+
+## Export a statistical report
+
+Use the saved `analysis_plan.json` from the selected data revision. The report command reads the recorded output and adds a provenance hash. For a Studio analysis dialog with export support, compute or connect the results and click **Export statistical report**. The HTML records the analysis configuration and source data hash, with the original measurements excluded. Treat reports and their group or endpoint labels as private project material.
+
+Check the exported values against the source record. Retain primary and sensitivity roles, facet and contrast direction, experimental unit and sample counts, effect and CI, test statistic and degrees of freedom, and adjustment method/scope wherever supplied. Keep raw and adjusted *P* values distinct. A missing or undefined value stays unavailable. A reported zero requires checking numerical precision or the reporting limit. For linked results whose source supplies only adjusted *P* values, leave raw values, effect estimates and sample counts unavailable unless the researcher supplies authoritative records.

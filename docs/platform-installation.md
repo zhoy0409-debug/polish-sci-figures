@@ -6,11 +6,13 @@
 
 ## 下载哪个包
 
-下载 [polish-sci-figures-v1.4.11-skill.zip](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.4.11/polish-sci-figures-v1.4.11-skill.zip)。它只有一个根目录 `polish-sci-figures/`，整个 ZIP 中仅有一个入口 `SKILL.md`。完整三项工作流以 `WORKFLOW.md` 存放在内部 `suite/`，CLI 与运行资源一起保留。保持这个结构，直接上传原 ZIP。
+从[官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases)下载所选版本的 `polish-sci-figures-<版本>-skill.zip`。它只有一个根目录 `polish-sci-figures/`，整个 ZIP 中仅有一个入口 `SKILL.md`。完整三项工作流以 `WORKFLOW.md` 存放在内部 `suite/`，CLI 与运行资源一起保留。保持这个结构，直接上传原 ZIP。
 
 v1.4.0 上传包内含四个 `SKILL.md`，已在真实 Claude 上传中确认被拒绝。v1.4.1 已通过 Claude 实际上传验证，v1.4.11 延续其单入口结构。请下载当前版本，不要继续上传旧文件。
 
-需要自行运行源码、分别管理三个技能时，选择同一发行页的 `sci-figure-suite-v1.4.11.zip`。这两个包用途不同，不要将整个三技能源码包作为单个技能上传。
+需要自行运行源码、分别管理三个技能时，选择同一发行页的 `sci-figure-suite-<版本>.zip`。这两个包用途不同，不要将整个三技能源码包作为单个技能上传。
+
+单入口 ZIP 和三技能源码包属于同一套工作流，任选一种安装。若环境还有 ScholarFlow 的同名技能，通过 Figure Studio 安装包的路径定位入口。独立安装时应只让宿主发现一份同名入口。macOS 预览和 Windows 正式版按各自发行资产和验收记录核对，缺少对应桌面功能时可使用本地 Skill/CLI。
 
 ## 平台入口
 

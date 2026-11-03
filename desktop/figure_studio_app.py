@@ -535,6 +535,8 @@ def self_test(service: RunningService, output_dir: Path) -> dict:
     status, raw = http_request(port)
     assert status == 200 and b'id="local-engine"' in raw and b'id="project"' in raw
     checks.append('GET editor')
+    assert b'id="exportStatisticsReport"' in raw and b'id="fitPanelContent"' in raw
+    checks.append('Bundled statistics-report and proportional fit controls')
     update_info = _self_test_local_configuration(raw, service.server.update_checker.current)
     checks.append('Local update endpoint and installation version (no release request)')
     assert http_request(port, '/api/analyze', {})[0] == 403
