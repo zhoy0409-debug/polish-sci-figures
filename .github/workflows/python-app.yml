@@ -143,7 +143,9 @@ jobs:
           node scripts/test_studio_mobile_ui.cjs
           node scripts/test_local_web_engine.cjs
           node scripts/test_local_web_offline.cjs
+          node scripts/test_studio_feedback_routing.cjs
           node scripts/test_studio_state.cjs
+          node scripts/test_studio_statistics_report_i18n.cjs
           node scripts/test_studio_history_shortcuts.cjs
           node scripts/test_studio_async_save.cjs
           node scripts/test_project_codec.cjs
