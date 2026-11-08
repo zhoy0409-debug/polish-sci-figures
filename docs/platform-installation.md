@@ -2,29 +2,19 @@
 
 [English](platform-installation.en.md) | [中文](platform-installation.md)
 
-套件 v1.4.11 提供一个自包含上传包，内含入口技能和完整本机绘图资源。Claude 用户可直接上传，不必手工重打 ZIP 或让宿主分别寻找三个技能。想直接操作图形的 Windows 用户请使用 [Figure Studio 安装包](../desktop/QUICKSTART.zh-CN.md)，无需安装 AI 技能。
+从 [正式 v1.6.0 发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.0) 下载 [单入口 Skill ZIP](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-v1.6.0-skill.zip)。解压后的 `polish-sci-figures/` 包含一个 `SKILL.md` 和完整的 `suite/` 资源。
 
-## 下载哪个包
-
-从[官方发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases)下载所选版本的 `polish-sci-figures-<版本>-skill.zip`。它只有一个根目录 `polish-sci-figures/`，整个 ZIP 中仅有一个入口 `SKILL.md`。完整三项工作流以 `WORKFLOW.md` 存放在内部 `suite/`，CLI 与运行资源一起保留。保持这个结构，直接上传原 ZIP。
-
-v1.4.0 上传包内含四个 `SKILL.md`，已在真实 Claude 上传中确认被拒绝。v1.4.1 已通过 Claude 实际上传验证，v1.4.11 延续其单入口结构。请下载当前版本，不要继续上传旧文件。
-
-需要自行运行源码、分别管理三个技能时，选择同一发行页的 `sci-figure-suite-<版本>.zip`。这两个包用途不同，不要将整个三技能源码包作为单个技能上传。
-
-单入口 ZIP 和三技能源码包属于同一套工作流，任选一种安装。若环境还有 ScholarFlow 的同名技能，通过 Figure Studio 安装包的路径定位入口。独立安装时应只让宿主发现一份同名入口。macOS 预览和 Windows 正式版按各自发行资产和验收记录核对，缺少对应桌面功能时可使用本地 Skill/CLI。
-
-## 平台入口
-
-| 平台 | 安装方式 | 使用条件 |
+| 宿主 | 安装 | 调用 |
 | --- | --- | --- |
-| Claude | Customize → Skills → Yours → Add skill → Upload skill，上传上述 ZIP | 开启代码执行；以账户实际可用功能为准 |
-| Claude Code | 解压单入口包，使 `~/.claude/skills/polish-sci-figures/SKILL.md` 存在；也可放在项目 `.claude/skills/` 下 | 本机允许执行 Python，并安装套件所需依赖 |
-| Codex 等文件夹技能环境 | 将完整源码套件的三个 `skills/` 子目录放入工具配置的技能目录 | 保留三个配套技能并安装 Python 依赖；参见 [产品指南](../README.zh-CN.md#ai-与命令行工作流) |
+| Claude 网页或桌面版 | 保持 ZIP 原样。在 Customize → Skills 中上传，并启用代码执行。 | 在新会话的 Skills 菜单选中 `polish-sci-figures`，再附上数据或图件。 |
+| Claude Code | 解压整个目录至 `~/.claude/skills/` 或项目的 `.claude/skills/`。 | 在会话中输入 `/polish-sci-figures`。 |
+| Codex | 解压整个目录至个人 `~/.agents/skills/` 或项目根目录的 `.agents/skills/`。 | 在输入框用 `$` 选中 `$polish-sci-figures`，再描述任务。 |
 
-Claude 上传入口按本次实际界面记录，其他入口依据官方文档核对。首次运行时，技能要求代理先检查现有 Python 和依赖：优先项目虚拟环境，再检查工具提供的运行时，实际导入科学计算包后复用同一个解释器。不能假定系统的 `python` 就是合适版本，也不能假定工具自带 Python 已安装 SciPy。随后检查字体并处理数据，无需用户猜路径或另写检查提示词；不会自动修改系统 PATH 或全局安装包。
+安装后检查宿主目录中的 `polish-sci-figures/SKILL.md` 和同目录的 `suite/`。本机工作流使用已有 Python 环境，Skill 会检查运行依赖。单入口包适用于上表各宿主；需要逐项管理 Skill 或运行 CLI 时，再下载[三技能源码包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/sci-figure-suite-v1.6.0.zip)。同名技能同时存在时，按安装路径选择 Figure Studio 这一份。
 
-官方依据：[Claude 使用技能](https://support.claude.com/en/articles/12512180-use-skills-in-claude)、[Claude 上传包结构](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)、[Claude Code 技能目录](https://code.claude.com/docs/en/skills)。
+独立编辑图件可直接安装 [Figure Studio Windows x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Setup-x64.exe)。
+
+[Claude 使用说明](https://support.claude.com/en/articles/12512180-use-skills-in-claude) · [Claude Code 技能目录](https://code.claude.com/docs/en/skills) · [Codex 技能目录与调用](https://developers.openai.com/codex/skills)
 
 ## 第一次使用
 

@@ -930,6 +930,7 @@ const StudioI18n = (() => {
     '当前版本尚未提供原生 TIFF 导入。':'Native TIFF import is unavailable in this version.',
     '已导入原生 TIFF 显示图；原文件保留，可撤销':'Native TIFF display imported; original retained, undo available',
     '原生 TIFF 仅在当前本机服务处理，不会发送到外部站点。':'Native TIFF is processed only by this local loopback service; it is never sent to an external site.',
+    '位图可调整整体显示。逐个图元换色请导入源 SVG 或原始数据。':'Adjust the overall raster display. Import the source SVG or data to recolour individual elements.',
     '最终尺寸检查、排版与本地 Skill 协作':'Final-size review, layout and local Skill collaboration',
     '有未完成的数据或坐标轴计算，请完成后再检查。':'Finish pending data or axis calculations before review.',
     '工程在预检期间发生变化，请重试。':'The project changed during preflight. Try again.',
@@ -957,6 +958,27 @@ const StudioI18n = (() => {
     'WB 条带不能单独调整显示；请使用 WB 工作流的全源图显示设置。':'WB fragments cannot be adjusted individually. Use whole-source display settings in the WB workspace.',
     'WB 组图预览':'WB composition preview',
     'WB 组图已保留；可撤销':'WB composition kept; undo is available'
+  });
+  // Statistical reports share the UI dictionary, including whitespace fragments.
+  Object.assign(en,{
+    '本机计算或导入的分析预览。表内数值显示至六位有效数字，来源记录保留原始精度。':'Local analysis preview or imported results. The table displays up to six significant digits. The analysis record retains the full precision.',
+    '比较结果':'Comparisons',
+    ' 值':' value',
+    '样本量（前组 / 后组）':'Sample size (first / second)',
+    '统计量':'Statistic',
+    '自由度':'Degrees of freedom',
+    '效应定义':'Estimand',
+    '估计值':'Estimate',
+    '描述性中位差':'Descriptive median difference',
+    ' 至 ':' to ',
+    '数值计算方法':'Calculation method',
+    '比较（后组 − 前组）':'Contrast (second − first)',
+    '均值差的 95% CI 为单项区间。':'Mean-difference 95% CIs are individual intervals.',
+    '遇到 ':'For a reported ',
+    ' = 0，请核查数值精度或报告下限。':' of zero, verify precision or the reporting limit.',
+    '完整分析与来源记录':'Full analysis and provenance',
+    '原始 ':'Raw ',
+    '校正后 ':'Adjusted '
   });
   function t(text,...values){let result=language==='en'?(en[text]??text):text;return result.replace(/\{(\d+)\}/g,(_,n)=>String(values[+n]??''));}
   return {t,choose,setLanguage,panelName,projectTitle,validateDisplayNames,preserveDisplayNames,restoreDisplayNames,get language(){return language;},en};

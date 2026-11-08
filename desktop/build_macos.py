@@ -23,8 +23,8 @@ import sysconfig
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '0.2.0'
-SUITE_VERSION = 'v1.5.0'
+VERSION = '0.2.1'
+SUITE_VERSION = 'v1.6.0'
 ARCHITECTURES = ('arm64', 'x86_64')
 RUNTIME_PACKAGES = ('numpy', 'scipy', 'pandas', 'matplotlib', 'openpyxl', 'Pillow',
                     'pypdfium2', 'pypdf', 'opencv-python-headless', 'pyinstaller',
@@ -286,7 +286,7 @@ def notices(stage, versions, libraries, architecture):
 def preview_readme(architecture):
     return f'''Figure Studio {VERSION} — macOS {architecture} preview
 
-Internal CI preview; not Developer ID signed or notarized. No claim of Finder,
+macOS preview; signed ad hoc and not notarized by Apple. No claim of Finder,
 Gatekeeper, Safari or Chrome interaction testing is made by the build self-test.
 Keep the complete .app bundle. Its bundled runtime computes on this Mac and
 opens the editor in the default browser; no system Python, Codex or API key is
@@ -300,7 +300,7 @@ Preview build target: macOS 15, {architecture}. Other systems are unverified.
 
 Figure Studio {VERSION} — macOS {architecture} 预览
 
-仅用于 CI 内部审查，未使用 Developer ID 签名，未经 Apple 公证。
+macOS 预览使用临时签名，未经 Apple 公证。
 构建自检不代表已完成 Finder、Gatekeeper、Safari 或 Chrome 的交互测试。
 请保留完整 .app。程序自带运行环境，在这台 Mac 本机计算，并在默认浏览器
 打开编辑器；无需另装 Python、打开 Codex 或提供 API 密钥，不使用云端数据服务。

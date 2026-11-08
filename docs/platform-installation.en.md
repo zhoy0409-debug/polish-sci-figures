@@ -2,29 +2,19 @@
 
 [English](platform-installation.en.md) | [中文](platform-installation.md)
 
-Suite v1.4.11 provides a self-contained upload package with an entry skill and the complete local plotting resources. Claude users can upload this package without rebuilding the ZIP or asking the host to locate three separate skills. Windows users who prefer direct graphical editing can use the [Figure Studio installer](../desktop/QUICKSTART.en.md), which does not require AI skills.
+Download the [single-entry Skill ZIP](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-v1.6.0-skill.zip) from the [stable v1.6.0 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.0). It contains one `SKILL.md` and the full `suite/` resources inside `polish-sci-figures/`.
 
-## Which package to download
-
-Download `polish-sci-figures-<version>-skill.zip` for the selected version from [official releases](https://github.com/zhoy0409-debug/polish-sci-figures/releases). It has one root folder, `polish-sci-figures/`, and exactly one entry `SKILL.md` across the entire ZIP. The three complete workflows are included as `WORKFLOW.md` files inside `suite/`, alongside the CLI and runtime resources. Keep this structure and upload the original ZIP.
-
-The v1.4.0 upload package contained four `SKILL.md` files and was rejected in an actual Claude upload. The corrected single-entry structure was successfully uploaded to Claude in v1.4.1 and is retained in v1.4.11. Use the current package instead of the old file.
-
-To run the source yourself or manage the three skills separately, choose `sci-figure-suite-<version>.zip` from the same release. These packages serve different purposes: do not upload the entire three-skill source archive as one skill.
-
-Choose one installation form for the Figure Studio suite. If ScholarFlow also supplies a skill named `polish-sci-figures`, locate the Figure Studio entry by its installation path and keep one discoverable entry under that name. Check the separate macOS preview and Windows release evidence before relying on desktop features. The local Skill/CLI remains available when the installed editor lacks a feature.
-
-## Platform entry points
-
-| Platform | Installation | Requirements |
+| Host | Install | Invoke |
 | --- | --- | --- |
-| Claude | Customize → Skills → Yours → Add skill → Upload skill; upload the ZIP above | Enable code execution; feature availability depends on your account |
-| Claude Code | Extract the single-entry package so that `~/.claude/skills/polish-sci-figures/SKILL.md` exists, or place it under the project's `.claude/skills/` directory | Local Python execution and the suite's dependencies |
-| Codex and other folder-based skill environments | Place all three `skills/` subdirectories from the source suite in the tool's configured skill directory | Keep the three companion skills together and install the Python dependencies; see the [README](../README.en.md#ai-and-command-line-workflows) |
+| Claude web or desktop | Upload the ZIP as-is in Customize → Skills and enable code execution. | Select `polish-sci-figures` in the Skills menu of a new conversation, then attach data or artwork. |
+| Claude Code | Extract the complete folder into `~/.claude/skills/` or the project's `.claude/skills/`. | Enter `/polish-sci-figures` in the conversation. |
+| Codex | Extract the complete folder into `~/.agents/skills/` or the project's `.agents/skills/`. | Open the skill picker with `$`, choose `$polish-sci-figures` and describe the task. |
 
-The Claude upload path reflects the interface observed during testing; the other entry points were checked against official documentation. On first use, the skill instructs the agent to check existing Python environments: prefer the project's virtual environment, then a runtime supplied by the host, actually import the scientific packages, and reuse the same verified executable. The agent must not assume that the system's `python` is compatible or that a host-bundled Python includes SciPy. Font checks and data processing follow. Users do not need to guess paths or write a setup-check prompt; the skill does not automatically change PATH or install packages globally.
+For local installation, verify that `polish-sci-figures/SKILL.md` and `suite/` are alongside each other. The skill checks the available Python environment and dependencies. The single-entry ZIP works for the hosts above. Use the [three-skill source suite](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/sci-figure-suite-v1.6.0.zip) to manage the workflows separately or run the CLI. If the host shows two skills with the same name, choose the Figure Studio skill by installation path.
 
-Official sources: [using skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude), [Claude upload structure](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills), and [Claude Code skill directories](https://code.claude.com/docs/en/skills).
+For hands-on editing, install [Figure Studio for Windows x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Setup-x64.exe).
+
+[Claude guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude) · [Claude Code skills](https://code.claude.com/docs/en/skills) · [Codex skills](https://developers.openai.com/codex/skills)
 
 ## First use
 

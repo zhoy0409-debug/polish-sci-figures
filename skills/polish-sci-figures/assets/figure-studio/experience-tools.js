@@ -83,7 +83,7 @@ const StudioExperienceTools=(()=>{
       {id:'border',zh:'给选中对象加边框',en:'Frame selected objects',terms:'边框 透明框 病理图 形状 border frame outline',run:()=>host.borders()},
       {id:'duplicates',zh:'图片查重',en:'Screen image duplicates',terms:'查重 重复 重叠 图像完整性 duplicate overlap integrity',run:()=>host.duplicates('all')},
       {id:'rectify',zh:'一键矫正与微调',en:'Auto straighten & refine',terms:'照片 拍斜 透视 四角 拉正 矫正 裁剪 拉直 标尺 电泳 条带 泳道 WB western blot ruler deskew perspective rectify straighten crop photo corners',run:()=>host.selectedImage?.()?host.rectify?.():openImages('rectify')},
-      {id:'color',zh:'匹配参考图／图片颜色与显示',en:'Match reference / image display',terms:'颜色 色调 亮度 对比度 参考色 统一图片颜色 colour color reference brightness contrast',run:()=>host.selectedImage?.()?host.color():openImages('color')},
+      {id:'color',zh:'匹配参考图／图片颜色与显示',en:'Match reference / image display',terms:'校色 一键校色 调色 颜色 色调 亮度 对比度 参考色 统一图片颜色 colour color reference brightness contrast',run:()=>host.selectedImage?.()?host.color():openImages('color')},
       {id:'links',zh:'关联总览与放大图',en:'Link overview and detail',terms:'定位 局部 放大图 关联 来源 ROI overview detail localization link inset',run:()=>host.links()},
       {id:'inset',zh:'绘制局部放大图',en:'Create a zoom inset',terms:'裁剪 放大 局部 ROI crop inset zoom',run:()=>openImages('inset')}
     ];
@@ -117,7 +117,7 @@ const StudioExperienceTools=(()=>{
       ['category-spacing','categorySpacing','图表组间距','Chart group spacing','组间距 类别 间隔 category group spacing'],
       ['chart-variants','chartGoal','同数据图形与推荐','Same-data chart alternatives','候选 图型 推荐 变体 candidates chart alternatives'],
       ['panel-geometry','sizes','小图方向、比例与跨格','Panel orientation, proportions & span','横版 竖版 跨格 分面 orientation portrait landscape facet span'],
-      ['palette','palettes','图表配色方案','Chart colour palettes','配色 色板 互补色 palette scheme complementary'],
+      ['palette','palettes','图表配色方案','Chart colour palettes','换色 一键换色 换配色 改色 配色 色板 互补色 palette scheme complementary'],
       ['marks','markControls','样本点与误差棒','Sample points & error bars','样本点 误差棒 points error bars'],
       ['bars','barGeometry','柱宽与柱间距','Bar width & spacing','柱宽 柱形 间距 bar width gap'],
       ['heatmap','heatmapTools','热图数值与显示','Heatmap values & display','热图 小数 数值 heatmap decimals values'],
@@ -141,6 +141,18 @@ const StudioExperienceTools=(()=>{
     const images=doc.createElement('dialog');images.id='imageToolsDialog';images.className='experience-dialog image-tools-dialog';doc.body.append(images);
     const group=doc.createElement('div');group.className='quick-tool-group experience-context';group.id='contextImageActions';doc.getElementById('canvasQuickToolbar')?.prepend(group);
     const hint=doc.createElement('button');hint.id='imageScreeningHint';hint.type='button';hint.hidden=true;hint.className='image-screening-hint';hint.onclick=()=>launch(()=>host.duplicates('all'));nav.append(hint);
+    const primaryColor=doc.createElement('button');
+    primaryColor.id='contextColorAction';
+    primaryColor.type='button';
+    primaryColor.hidden=true;
+    group.before(primaryColor);
+    const colorAliases=new Set(['换色','一键换色','改色','校色','一键校色','调色','换配色','recolor','recolour','auto color','auto colour']);
+    function colorAction(kind,objectOnly=false){
+      const names={photo:['校色','Auto colour'],chart:objectOnly?['图元改色','Change object colour']:['换配色','Change palette'],raster:['显示调整','Adjust display'],wb:['WB 显示设置','WB display settings']};
+      const name=names[kind];
+      if(!name||!host.contextColor)return null;
+      return {id:'context-color',zh:name[0],en:name[1],category:kind==='chart'?'style':'image',run:()=>host.contextColor(kind,objectOnly)};
+    }
     let workbench=null;
     function launch(action){try{commands.close();images.close();if(typeof action!=='function'&&workbench?.prepare(action))return;const result=typeof action==='function'?action():action.run();if(result?.catch)result.catch(e=>host.say(e.message));}catch(e){host.say(e.message);}}
     function button(label,run,id){const b=doc.createElement('button');b.type='button';b.textContent=label;if(id)b.id=id;b.onclick=()=>launch(run);return b;}
@@ -155,7 +167,10 @@ const StudioExperienceTools=(()=>{
         const score=a=>{const label=(a.zh+' '+a.en).toLowerCase(),text=label+' '+a.terms.toLowerCase();return label.includes(q)?3:words.every(w=>text.includes(w))?2:a.terms.split(' ').filter(w=>w.length>1).some(w=>q.includes(w))?1:0;};
         const found=actions.filter(a=>q?score(a)>0:currentCategory==='common'?common.includes(a.id):a.category===currentCategory);if(q)found.sort((a,b)=>score(b)-score(a));
         const matches=workbench?(()=>{const rows=new Map();for(const a of found){const item=workbench.menus.find(x=>x.aliases.includes(a.id)),id=item?.id||a.id;if(!rows.has(id))rows.set(id,{...(item?.action||a),id,category:item?.owner||a.category,run:a.run});}return [...rows.values()];})():found;
-        for(const [id,zh,eng]of categories){const items=matches.filter(a=>a.category===id);if(!items.length)continue;const group=doc.createElement('section');group.className='command-category-results';const heading=doc.createElement('h3');heading.textContent=t(zh,eng);group.append(heading);
+        const preferred=colorAliases.has(q)?colorAction(host.context?.().color,q==='改色'):null;
+        if(preferred)matches.unshift(preferred);
+        const orderedCategories=preferred?[...categories.filter(c=>c[0]===preferred.category),...categories.filter(c=>c[0]!==preferred.category)]:categories;
+        for(const [id,zh,eng]of orderedCategories){const items=matches.filter(a=>a.category===id);if(!items.length)continue;const group=doc.createElement('section');group.className='command-category-results';const heading=doc.createElement('h3');heading.textContent=t(zh,eng);group.append(heading);
           for(const a of items){const b=button('',a,'command-'+a.id),name=doc.createElement('strong');name.textContent=en()?a.en:a.zh;b.setAttribute('aria-label',name.textContent);b.append(name);const key={ 'history-undo':'Ctrl Z','history-redo':'Ctrl Y' }[a.id];if(key){const hint=doc.createElement('kbd');hint.textContent=key;b.append(hint);}group.append(b);}results.append(group);}
         if(!matches.length){const p=doc.createElement('p');p.textContent=t('未找到；试试“边框”“查重”“坐标轴”，或点击上方分类。','No matches; try border, duplicates or axis, or choose a category.');results.append(p);}
       };
@@ -190,7 +205,14 @@ const StudioExperienceTools=(()=>{
       searchButton.textContent=t('功能检索 · Ctrl K','Find function · Ctrl K');searchButton.onclick=openCommands;group.replaceChildren();
       for(const [id,zh,eng]of [['openObjectBorder','对象边框','Object borders'],['openImageTools','图片工具','Image tools']]){const b=doc.getElementById(id);if(b)b.textContent=t(zh,eng);}
       const count=doc.querySelectorAll('#artboard svg image[data-key]').length;hint.hidden=count<2;hint.textContent=t('已导入多张图片 · 可手动查重','Multiple images · Screen duplicates');hint.title=t('点击后先确认检查范围，不会自动扫描。','Review the scope before starting; no automatic scan.');nav.append(hint);
-      const context=host.context?.()||{};if(context.selected){group.append(button(t('边框','Borders'),()=>host.borders(),'quickObjectBorder'));if(context.image){if(host.rectify)group.append(button(t('透视校正','Perspective'),()=>host.rectify(),'quickImageRectify'));group.append(button(t('颜色与显示','Image display'),()=>host.color(),'quickImageDisplay'));if(!workbench)group.append(button(t('图片查重','Duplicates'),()=>host.duplicates('selected'),'quickImageDuplicates'),button(t('关联放大图','Link detail'),()=>host.links(),'quickImageLinks'));}}
+      const context=host.context?.()||{},preferred=colorAction(context.color);
+      primaryColor.hidden=!preferred;
+      if(preferred){
+        primaryColor.textContent=t(preferred.zh,preferred.en);
+        primaryColor.title=context.color==='raster'?t('位图整体显示调整。逐个图元换色请导入源 SVG 或原始数据。','Adjust raster display. Import the source SVG or data to recolour individual elements.'):primaryColor.textContent;
+        primaryColor.onclick=()=>launch(preferred.run);
+      }
+      if(context.selected){group.append(button(t('边框','Borders'),()=>host.borders(),'quickObjectBorder'));if(context.image){if(host.rectify)group.append(button(t('透视校正','Perspective'),()=>host.rectify(),'quickImageRectify'));group.append(button(t('颜色与显示','Image display'),()=>host.color(),'quickImageDisplay'));if(!workbench)group.append(button(t('图片查重','Duplicates'),()=>host.duplicates('selected'),'quickImageDuplicates'),button(t('关联放大图','Link detail'),()=>host.links(),'quickImageLinks'));}}
     }
     doc.addEventListener('keydown',event=>{if(!event.defaultPrevented&&!event.isComposing&&event.keyCode!==229&&(event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'&&!doc.querySelector('dialog[open]')){event.preventDefault();openCommands();}});
     const drawers=host.drawerWorkspace||(typeof StudioDrawerWorkspace!=='undefined'?StudioDrawerWorkspace:null);

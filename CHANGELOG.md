@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.6.0 · Figure Studio 0.2.1
+
+Align panel labels on their text baseline during drag. Add contextual colour actions, a local review handoff and editable project JSON delivery. See the [release notes](docs/release-notes-v1.6.0.md) and [acceptance evidence](docs/qa/canvas-snap-and-onboarding/README.md).
+
 ## v1.5.0 · Figure Studio 0.2.0 — 2026-11-01
 
 Fix the Chinese installer checkbox edge with DPI-scaled leading space, preserving installation identity, project locations and update safety. The user confirmed intact controls, installation/startup, drawer Back, Microsoft Pinyin candidate Enter/Escape, border preview/cancel/one-step history, and real-data axis changes/save/reopen. All 2695 installed files matched the tested package; the saved Iris project retained 150 observations and 12 original SVGs. The user then authorized publication. New native 5000-object timing, installed WB/PowerPoint end-to-end tests and genuine official 0.1.26 → 0.2.0 update/recovery remain unexecuted. See the [honest scope](docs/qa/windows-next-stable/installed-collaborative-20261101.md).
