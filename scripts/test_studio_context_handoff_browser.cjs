@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const {pathToFileURL}=require('node:url');
 const {chromium}=require('playwright');
-const {openImport}=require('./test_studio_carbon_helpers.cjs');
+const {clickQuick,openImport}=require('./test_studio_carbon_helpers.cjs');
 
 (async()=>{
   const [, , html, destination, photo, screenshot, projectFile]=process.argv;
@@ -51,12 +51,12 @@ const {openImport}=require('./test_studio_carbon_helpers.cjs');
     const primary=chart.locator('#contextColorAction');
     assert.equal(await primary.textContent(),'换配色');
     for(const term of ['换色','一键换色','调色'])await checkSearch(chart,term,'换配色');
-    await primary.click();
+    await clickQuick(chart,'contextColorAction');
     const card=chart.locator('#palettes button.palette').first();
     await card.hover();
     await chart.waitForFunction(()=>document.querySelector('#status')?.textContent.includes('点击应用'),{},{timeout:6000});
     await shot(chart,'chart-palette-preview');
-    await chart.locator('#contextColorAction').hover();
+    await chart.mouse.move(0,0);
     await chart.waitForFunction(()=>document.querySelector('#status')?.textContent.includes('已返回当前编辑版'));
     const chartCancelled=await save(chart,'chart-cancelled');
     assert.deepEqual(chartCancelled.data.state,original.data.state);
@@ -127,23 +127,24 @@ const {openImport}=require('./test_studio_carbon_helpers.cjs');
       await page.waitForFunction(()=>document.querySelector('#artboard svg image[data-key]'));
       const notice=page.locator('#importContentDialog[open]');
       if(await notice.count())await notice.locator('button').last().click();
-      assert.equal(await page.locator('#contextColorAction').textContent(),button);
+      const action=page.locator('#contextColorAction');
+      assert.equal(await action.textContent(),button);
+      if(kind==='png')assert.match(await action.getAttribute('title'),/源 SVG 或原始数据/);
       await checkSearch(page,'一键校色',button);
       await checkSearch(page,'调色',button);
       const before=await save(page,kind+'-before');
-      await page.locator('#contextColorAction').click();
+      await clickQuick(page,'contextColorAction');
       const display=page.locator('#imageColorDialog');
       await display.waitFor();
       if(kind==='photo'){
         await page.waitForFunction(()=>document.querySelector('#artboard image[data-key]')?.hasAttribute('filter'));
       }else{
-        assert((await page.locator('#status').textContent()).includes('源 SVG 或原始数据'));
         await display.locator('[data-color-number=exposureEv]').first().fill('.4');
       }
       await shot(page,kind+'-preview');
       await display.locator('[data-color=cancel]').click();
       assert.deepEqual((await save(page,kind+'-cancelled')).data.state,before.data.state);
-      await page.locator('#contextColorAction').click();
+      await clickQuick(page,'contextColorAction');
       if(kind==='photo')await page.waitForFunction(()=>document.querySelector('#artboard image[data-key]')?.hasAttribute('filter'));
       else await display.locator('[data-color-number=exposureEv]').first().fill('.4');
       await display.locator('[data-color=apply]').click();
