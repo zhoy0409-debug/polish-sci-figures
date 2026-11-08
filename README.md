@@ -1,3 +1,11 @@
+# Figure Studio
+
+**[下载 Figure Studio 编辑器｜Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)**。双击 Setup 安装，从桌面或开始菜单打开。绘图和编辑可离线使用。
+
+**[在 Claude / Codex 中使用 AI Skill](docs/platform-installation.md)**。按宿主安装单入口 Skill，然后在会话中选择并调用。
+
+其他下载 · [Windows 便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Portable-x64.zip) · [三技能源码包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/sci-figure-suite-v1.5.0.zip) · [SHA-256](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/SHA256SUMS.txt) · [桌面和 Skill 预览版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.0-rc.1)
+
 <div align="center">
 
 **Figure Studio 0.2.0 · Suite 1.5.0（2026-11-01）**：Windows 集中升级。安装、中文输入法、工具返回、边框和真实数据坐标轴已完成用户协同验收；详见[本版说明](docs/release-notes-v1.5.0.md#中文)和[实测范围](docs/qa/windows-next-stable/installed-collaborative-20261101.md)。
@@ -10,12 +18,6 @@ Figure Studio 0.2.0 保留拍摄照片的一键矫正、标尺拉正和一键校
 
 
 # polish-sci-figures
-
-The next Windows upgrade is under integration. See the [Chinese upgrade summary](docs/windows-next-stable-summary.zh-CN.md), [source-candidate workflow](docs/figure-review.en.md) and [dated acceptance scope](docs/windows-next-stable-audit.md); current download links continue to point to the published stable release.
-
-The source candidate also adds [native TIFF display previews and background project saves](docs/figure-studio-native-tiff.md), preserving original bytes and bit depth separately from the canvas display. Installed Windows acceptance remains pending.
-
-The unreleased Windows candidate also has a dedicated [Western blot workflow](docs/figure-studio-western-blot.zh-CN.md): source-preserving crops, lane provenance, reversible composition and editable objects. [Engineering evidence and remaining manual checks](docs/qa/windows-next-stable/wb-workflow-20261031.md) are recorded separately. This does not change the publication hold.
 
 **Scientific figures, thoughtfully made.**
 
@@ -31,7 +33,7 @@ AI skills for plotting, scientific image preparation, and figure refinement, wit
 [![Skill checks](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml/badge.svg)](https://github.com/zhoy0409-debug/polish-sci-figures/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-c95770.svg)](LICENSE)
 
-**[Download Figure Studio](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)** · **[Use the AI skills](docs/platform-installation.en.md)** · **[Explore the guide](README.en.md)**
+[English guide](README.en.md) · [中文产品指南](README.zh-CN.md)
 
 </div>
 
@@ -157,7 +159,7 @@ Official downloads and updates come from [this repository's Releases](https://gi
 
 **polish-sci-figures** 将科研绘图、科学图像处理和组图精修连接在一起。从研究问题出发，找到适合数据的图形；也可以直接打开配套编辑器 **Figure Studio**，调整细节、编排小图，完成论文中的整幅图。
 
-**[下载 Figure Studio](https://github.com/zhoy0409-debug/polish-sci-figures/releases/latest)** · **[使用 AI 技能](docs/platform-installation.md)** · **[阅读完整指南](README.zh-CN.md)**
+[下载与安装](#figure-studio)
 
 [![红蓝配色的九联科研组图，包含基因组关联、差异表达、富集、相关性、ROC 曲线、效应估计和 PCA。](demo/composite_showcase/Figure_1_Bioinformatics.png)](demo/composite_showcase/Figure_1_Bioinformatics.png)
 

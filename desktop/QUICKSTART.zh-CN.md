@@ -1,5 +1,9 @@
 # Figure Studio 使用入门
 
+**[下载 Figure Studio 编辑器｜Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)**。双击 Setup 安装，从桌面或开始菜单打开。绘图和编辑可离线使用。
+
+**[在 Claude / Codex 中使用 AI Skill](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.md)**。按宿主安装单入口 Skill，然后在会话中选择并调用。
+
 **Figure Studio 0.2.0 · Suite 1.5.0（2026-11-01）**：Windows 集中升级。安装、中文输入法、工具返回、边框和真实数据坐标轴已完成用户协同验收；详见[本版说明](../docs/release-notes-v1.5.0.md#中文)和[实测范围](../docs/qa/windows-next-stable/installed-collaborative-20261101.md)。
 
 Windows安装版实操及官方0.1.25→0.1.26编辑器内升级已通过所列检查；[验收记录](../docs/qa/photo-correction/windows-0.1.26/README.md)列明数据保护、性能结果和未完成事项。

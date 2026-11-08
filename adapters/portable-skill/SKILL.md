@@ -59,10 +59,12 @@ The check runs in the host's Python environment and does not upload images to a 
 
 ## Deliver editable outputs
 
-Generate an optional self-contained editing page from the final reviewed SVG:
+For desktop editing, use [Figure Studio Setup for Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe). Double-click Setup and open Figure Studio from the desktop or Start menu to work offline. For help installing or invoking the AI package, use the [Claude and Codex guide](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.en.md).
+
+Generate an editable project from the reviewed SVG or data bundle. In Figure Studio, choose **Project → Open project** and select the JSON. Add the standalone HTML when browser editing is also requested.
 
 ```bash
-python suite/sci_figures.py studio FIGURE_OR_BUNDLE --out figure-studio.html
+python suite/sci_figures.py studio FIGURE_OR_BUNDLE --project-out figure-studio-project.json --out figure-studio.html
 ```
 
 When retaining a candidate bundle, pass `--view SELECTED_VARIANT` using the exact filename stem of the approved SVG (for example, `--view estimation_graphic`). Never assume the bundle's default is the final choice. A single panel defaults to one column; use `--columns` only for an intentional layout. Open the delivered HTML and verify that its initial chart, labels, units and styling match the final SVG/PNG, and that there are no unintended empty grid cells. If the final SVG was edited after generating the bundle, regenerate the matching candidate or package that reviewed SVG directly; do not hand off an older version.

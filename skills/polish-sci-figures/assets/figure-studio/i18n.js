@@ -930,6 +930,7 @@ const StudioI18n = (() => {
     '当前版本尚未提供原生 TIFF 导入。':'Native TIFF import is unavailable in this version.',
     '已导入原生 TIFF 显示图；原文件保留，可撤销':'Native TIFF display imported; original retained, undo available',
     '原生 TIFF 仅在当前本机服务处理，不会发送到外部站点。':'Native TIFF is processed only by this local loopback service; it is never sent to an external site.',
+    '位图可调整整体显示。逐个图元换色请导入源 SVG 或原始数据。':'Adjust the overall raster display. Import the source SVG or data to recolour individual elements.',
     '最终尺寸检查、排版与本地 Skill 协作':'Final-size review, layout and local Skill collaboration',
     '有未完成的数据或坐标轴计算，请完成后再检查。':'Finish pending data or axis calculations before review.',
     '工程在预检期间发生变化，请重试。':'The project changed during preflight. Try again.',

@@ -1,5 +1,11 @@
 # polish-sci-figures · Product guide
 
+**[Download Figure Studio editor | Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)**. Double-click Setup, then open Figure Studio from the desktop or Start menu. Plot and edit offline.
+
+**[Use the AI Skill in Claude / Codex](docs/platform-installation.en.md)**. Follow the instructions for your host, then select and invoke the skill in a conversation.
+
+Other downloads · [Windows portable](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Portable-x64.zip) · [Three-skill source suite](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/sci-figure-suite-v1.5.0.zip) · [SHA-256](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/SHA256SUMS.txt) · [Desktop and Skill previews](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.0-rc.1)
+
 **Figure Studio 0.2.0 · Suite 1.5.0 (2026-11-01):** a Windows-focused release. Collaborative installed-app checks covered installation, Microsoft Pinyin, tool navigation, borders and real-data axes. See the [release notes](docs/release-notes-v1.5.0.md#english) and [actual acceptance scope](docs/qa/windows-next-stable/installed-collaborative-20261101.md).
 
 This release preserves the scientific editing workflow while improving task discovery, native TIFF display and project handling. The [dated acceptance report](docs/qa/windows-next-stable/installed-collaborative-20261101.md) distinguishes installed human checks from browser regressions and unexecuted upgrade tests.

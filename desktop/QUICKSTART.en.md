@@ -1,5 +1,9 @@
 # Getting started with Figure Studio
 
+**[Download Figure Studio editor | Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)**. Double-click Setup, then open Figure Studio from the desktop or Start menu. Plot and edit offline.
+
+**[Use the AI Skill in Claude / Codex](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.en.md)**. Follow the instructions for your host, then select and invoke the skill in a conversation.
+
 The clipped checkbox edge is fixed. The user confirmed intact controls and successful installation at unchanged display settings. See the [installed acceptance report](../docs/qa/windows-next-stable/installed-collaborative-20261101.md); this does not certify every Windows scaling configuration.
 
 **Figure Studio 0.2.0 · Suite 1.5.0 (2026-11-01):** a Windows-focused release. Collaborative installed-app checks covered installation, Microsoft Pinyin, tool navigation, borders and real-data axes. See the [release notes](../docs/release-notes-v1.5.0.md#english) and [actual acceptance scope](../docs/qa/windows-next-stable/installed-collaborative-20261101.md).
@@ -42,7 +46,7 @@ For the portable edition, extract the entire `polish-sci-figures-Studio-VERSION-
 
 ## Choose appearance and find tools
 
-Open **Appearance → Interface theme** for default **Carbon Atelier** or light **Pearl Pro**. The 0.2.0 candidate refines the existing directory, setting surfaces and folded groups while retaining the jade selection accent. **Canvas surround** changes the area around the white figure page to neutral, dark or light. Figure colours, image pixels and exported artwork are independent of these preferences. The current browser remembers your choice; if it cannot save the preference, the menu explains this.
+Open **Appearance → Interface theme** for default **Carbon Atelier** or light **Pearl Pro**. Version 0.2.0 refines the existing directory, setting surfaces and folded groups while retaining the jade selection accent. **Canvas surround** changes the area around the white figure page to neutral, dark or light. Figure colours, image pixels and exported artwork are independent of these preferences. The current browser remembers your choice; if it cannot save the preference, the menu explains this.
 
 Six task categories open a single right-hand tool drawer: **Data & charts**, **Text & object style**, **Image processing**, **Layout & canvas**, **Annotations & measurement**, and **Review & export**. Every tool has one category. Project, versions, local preferences and layers live on the left; Help stays in the header. Object paint, image display, straightening rulers, physical calibration, analysis and statistical annotation remain distinct.
 

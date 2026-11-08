@@ -1,5 +1,11 @@
 # polish-sci-figures · 产品指南
 
+**[下载 Figure Studio 编辑器｜Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)**。双击 Setup 安装，从桌面或开始菜单打开。绘图和编辑可离线使用。
+
+**[在 Claude / Codex 中使用 AI Skill](docs/platform-installation.md)**。按宿主安装单入口 Skill，然后在会话中选择并调用。
+
+其他下载 · [Windows 便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Portable-x64.zip) · [三技能源码包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/sci-figure-suite-v1.5.0.zip) · [SHA-256](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/SHA256SUMS.txt) · [桌面和 Skill 预览版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.0-rc.1)
+
 **Figure Studio 0.2.0 · Suite 1.5.0（2026-11-01）**：Windows 集中升级。安装、中文输入法、工具返回、边框和真实数据坐标轴已完成用户协同验收；详见[本版说明](docs/release-notes-v1.5.0.md#中文)和[实测范围](docs/qa/windows-next-stable/installed-collaborative-20261101.md)。
 
 本版集中完善 Windows 科研编辑工作台。先看[简明介绍](docs/windows-next-stable-summary.zh-CN.md)，再查[操作指南](docs/figure-review.zh-CN.md)和[当前实测范围](docs/qa/windows-next-stable/installed-collaborative-20261101.md)。
@@ -28,7 +34,7 @@ polish-sci-figures 把科研绘图、图像规范化和组图质控放在同一�
 
 **套件 v1.5.0 · Figure Studio 0.2.0（Windows 桌面版）**
 
-[v1.5.0 候选下载 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版说明](docs/release-notes-v1.5.0.md#中文)
+[v1.5.0 正式发行 / Downloads](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0) · [中文入门](desktop/QUICKSTART.zh-CN.md) · [English quick start](desktop/QUICKSTART.en.md) · [本版说明](docs/release-notes-v1.5.0.md#中文)
 
 ## 选择入口 / Choose your workflow
 

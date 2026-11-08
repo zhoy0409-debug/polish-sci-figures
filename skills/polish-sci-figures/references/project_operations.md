@@ -1,5 +1,7 @@
 # Local project review and scoped operations
 
+In builds that expose **Ask AI to review this figure**, select a panel and open **Review**. This action saves a local checklist scoped to the selected panel, with a copyable task prompt. Use its exact project ID, panel revision, variant and element keys. Return the operation JSON on its own so that **Preview AI edits** can check it against the current project before the user keeps it. If preflight reports a changed target, obtain a fresh checklist. Keep the user's unrelated edits, sources and analyses.
+
 This reference describes the source-tree candidate. Check the installed editor's capabilities before promising a feature in an older desktop release.
 
 In Figure Studio, open **图形质检 / Review** beside Export. Review uses the real exported figure at its declared final size. The default 8 pt text and 0.25 pt line thresholds are editable generic review thresholds, not verified journal rules. Geometry findings require human review; an unavailable scientific check is not a pass. Text-size corrections preview on the real canvas, respect locks, and commit as one undo step. Save during preview saves only committed edits.
