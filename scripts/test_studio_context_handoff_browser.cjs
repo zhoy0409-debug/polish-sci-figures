@@ -151,7 +151,10 @@ const {clickQuick,openImport}=require('./test_studio_carbon_helpers.cjs');
       await display.waitFor({state:'hidden'});
       const after=await save(page,kind+'-kept');
       assert.equal(after.data.history.index,before.data.history.index+1);
-      assert.deepEqual(after.data.project,before.data.project);
+      // A local render may finish after the first save and populate the derived cache.
+      const {layoutRenders:cachedBefore,...sourceBefore}=before.data.project;
+      const {layoutRenders:cachedAfter,...sourceAfter}=after.data.project;
+      assert.deepEqual(sourceAfter,sourceBefore);
       await page.locator('#projectFile').setInputFiles(after.file);
       await page.waitForFunction(()=>document.querySelector('#status')?.textContent.includes('工程已恢复'));
       assert.deepEqual((await save(page,kind+'-reopened')).data.state,after.data.state);
