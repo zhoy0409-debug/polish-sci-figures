@@ -23,8 +23,8 @@ WORK = ROOT / '.cache' / 'desktop-build'
 STAGE = WORK / 'suite'
 DIST = ROOT / 'dist' / 'desktop'
 APP = DIST / 'Figure Studio'
-VERSION = '0.2.0'
-SUITE_VERSION = 'v1.5.0'
+VERSION = '0.2.1'
+SUITE_VERSION = 'v1.6.0'
 PACKAGES = ('numpy', 'scipy', 'pandas', 'matplotlib', 'openpyxl', 'Pillow', 'pypdfium2', 'pypdf', 'opencv-python-headless',
             'contourpy', 'cycler', 'fonttools', 'kiwisolver', 'packaging',
             'python-dateutil', 'pytz', 'tzdata', 'six', 'et_xmlfile', 'pyparsing', 'PyYAML',
@@ -153,7 +153,7 @@ def notices():
             shutil.copy2(source, dest)
     versions['Python'] = sys.version.split()[0]
     manifest = {'application': 'polish-sci-figures Figure Studio', 'version': VERSION,
-                'platform': 'windows-x86_64', 'runtime': versions,
+                'suiteVersion': SUITE_VERSION, 'platform': 'windows-x86_64', 'runtime': versions,
                 'projectLicense': 'MIT', 'requiresSystemPython': False,
                 'requiresCodex': False,
                 'officialProject': 'https://github.com/zhoy0409-debug/polish-sci-figures',

@@ -1,4 +1,4 @@
-param([string]$Version = '0.2.0', [string]$PackageRoot = '')
+param([string]$Version = '0.2.1', [string]$PackageRoot = '')
 $ErrorActionPreference = 'Stop'
 $studioRoot = Split-Path -Parent $PSScriptRoot
 $studioCache = [IO.Path]::GetFullPath((Join-Path $studioRoot '.cache'))

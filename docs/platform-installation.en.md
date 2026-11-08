@@ -2,7 +2,7 @@
 
 [English](platform-installation.en.md) | [中文](platform-installation.md)
 
-Download the [single-entry Skill ZIP](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-v1.5.0-skill.zip) from the [stable v1.5.0 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0). It contains one `SKILL.md` and the full `suite/` resources inside `polish-sci-figures/`.
+Download the [single-entry Skill ZIP](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-v1.6.0-skill.zip) from the [stable v1.6.0 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.0). It contains one `SKILL.md` and the full `suite/` resources inside `polish-sci-figures/`.
 
 | Host | Install | Invoke |
 | --- | --- | --- |
@@ -10,9 +10,9 @@ Download the [single-entry Skill ZIP](https://github.com/zhoy0409-debug/polish-s
 | Claude Code | Extract the complete folder into `~/.claude/skills/` or the project's `.claude/skills/`. | Enter `/polish-sci-figures` in the conversation. |
 | Codex | Extract the complete folder into `~/.agents/skills/` or the project's `.agents/skills/`. | Open the skill picker with `$`, choose `$polish-sci-figures` and describe the task. |
 
-For local installation, verify that `polish-sci-figures/SKILL.md` and `suite/` are alongside each other. The skill checks the available Python environment and dependencies. The single-entry ZIP works for the hosts above. Use the [three-skill source suite](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/sci-figure-suite-v1.5.0.zip) to manage the workflows separately or run the CLI. If the host shows two skills with the same name, choose the Figure Studio skill by installation path.
+For local installation, verify that `polish-sci-figures/SKILL.md` and `suite/` are alongside each other. The skill checks the available Python environment and dependencies. The single-entry ZIP works for the hosts above. Use the [three-skill source suite](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/sci-figure-suite-v1.6.0.zip) to manage the workflows separately or run the CLI. If the host shows two skills with the same name, choose the Figure Studio skill by installation path.
 
-For hands-on editing, install [Figure Studio for Windows x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe).
+For hands-on editing, install [Figure Studio for Windows x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Setup-x64.exe).
 
 [Claude guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude) · [Claude Code skills](https://code.claude.com/docs/en/skills) · [Codex skills](https://developers.openai.com/codex/skills)
 

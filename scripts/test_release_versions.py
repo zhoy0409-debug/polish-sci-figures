@@ -35,11 +35,8 @@ def main():
     macos = constants(ROOT / "desktop/build_macos.py")
     assert PORTABLE_VERSION == VERSION == windows["SUITE_VERSION"]
     app_version = windows["VERSION"]
-    # Shared editor changes require new native builds, with the same source
-    # version as the Windows release; old previews must not be relabeled.
-    preview_version, preview_suite = app_version, VERSION
-    assert macos["VERSION"] == preview_version
-    assert macos["SUITE_VERSION"] == preview_suite
+    assert macos["VERSION"] == app_version
+    assert macos["SUITE_VERSION"] == VERSION
     updates = constants(ROOT / "skills/polish-sci-figures/scripts/studio_updates.py")
     assert updates["STUDIO_VERSION"] == app_version
     assert updates["SUITE_VERSION"] == VERSION.removeprefix("v")
@@ -58,29 +55,34 @@ def main():
     assert re.search(r"\$Version = '([^']+)'", verifier).group(1) == app_version
 
     ios = plistlib.loads((ROOT / "mobile/ios/Info.plist").read_bytes())
-    assert ios["CFBundleShortVersionString"] == preview_version
-    assert ios["StudioSuiteVersion"] == preview_suite.removeprefix("v")
+    mobile_version = ios["CFBundleShortVersionString"]
+    mobile_suite = ios["StudioSuiteVersion"]
+    assert tuple(map(int, mobile_version.split("."))) <= tuple(map(int, app_version.split(".")))
+    assert tuple(map(int, mobile_suite.split("."))) <= tuple(map(int, VERSION.removeprefix("v").split(".")))
     assert int(ios["CFBundleVersion"]) == 13
     android = (ROOT / "mobile/android/app/build.gradle").read_text(encoding="utf-8")
-    assert re.search(r"versionName '([^']+)'", android).group(1) == preview_version + "-local-preview"
+    assert re.search(r"versionName '([^']+)'", android).group(1) == mobile_version + "-local-preview"
     assert int(re.search(r"versionCode (\d+)", android).group(1)) == 15
     native_updates = (ROOT / "mobile/android/app/src/main/java/org/polishscifigures/studio/preview/UpdateChecker.java").read_text(encoding="utf-8")
-    assert re.search(r'put\("suiteVersion", "([^"]+)"\)', native_updates).group(1) == VERSION.removeprefix("v")
+    assert re.search(r'put\("suiteVersion", "([^"]+)"\)', native_updates).group(1) == mobile_suite
 
-    # Windows links identify the new build. Preview links may retain an older,
-    # separately published build during a Windows-only release. Historical release notes
-    # deliberately retain their original version and verification scope.
+    # Desktop downloads point to this release. Mobile previews keep their own tags.
     notes = f"docs/release-notes-{VERSION}.md"
     documents = ["README.md", "README.en.md", "README.zh-CN.md",
                  "desktop/QUICKSTART.en.md", "desktop/QUICKSTART.zh-CN.md",
                  "docs/local-device-trial.md", notes]
+    setup = f"/releases/download/{VERSION}/polish-sci-figures-Studio-{app_version}-Setup-x64.exe"
+    for name in ("README.md", "README.en.md", "README.zh-CN.md", notes):
+        assert setup in (ROOT / name).read_text(encoding="utf-8").splitlines()[2], name
     for name in documents:
         text = (ROOT / name).read_text(encoding="utf-8")
         for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-(?:Setup-x64\.exe|Portable-x64\.zip)", text):
             assert (tag, version) == (VERSION, app_version), (name, tag, version)
-        for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-(?:macOS-[^/)]+|Android-preview\.apk)", text):
+        for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-macOS-[^/)]+", text):
+            assert (tag, version) == (VERSION, app_version), (name, tag, version)
+        for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-Android-preview\.apk", text):
             assert tag == "figure-studio-local-preview-" + version, (name, tag, version)
-            assert tuple(map(int, version.split("."))) <= tuple(map(int, preview_version.split("."))), (name, tag, version)
+            assert tuple(map(int, version.split("."))) <= tuple(map(int, mobile_version.split("."))), (name, tag, version)
     assert "## 中文" in (ROOT / notes).read_text(encoding="utf-8")
 
     # The PE resource is generated, not checked in. Exercise its real generator

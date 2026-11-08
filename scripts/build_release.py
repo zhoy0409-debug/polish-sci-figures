@@ -11,7 +11,7 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "v1.5.0"
+VERSION = "v1.6.0"
 SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
@@ -32,6 +32,7 @@ SUPPORT_FILES = (
     'docs/qa/windows-next-stable/wb-compact-20261031.png',
     'docs/qa/windows-next-stable/wb-workflow-20261031.webm',
 
+    'docs/release-notes-v1.6.0.md',
     'docs/release-notes-v1.5.0.md',
     'docs/figure-studio-submission-profiles.md',
     'docs/figure-studio-workspace-and-feedback.md',

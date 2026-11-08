@@ -959,6 +959,27 @@ const StudioI18n = (() => {
     'WB 组图预览':'WB composition preview',
     'WB 组图已保留；可撤销':'WB composition kept; undo is available'
   });
+  // Statistical reports share the UI dictionary, including whitespace fragments.
+  Object.assign(en,{
+    '本机计算或导入的分析预览。表内数值显示至六位有效数字，来源记录保留原始精度。':'Local analysis preview or imported results. The table displays up to six significant digits. The analysis record retains the full precision.',
+    '比较结果':'Comparisons',
+    ' 值':' value',
+    '样本量（前组 / 后组）':'Sample size (first / second)',
+    '统计量':'Statistic',
+    '自由度':'Degrees of freedom',
+    '效应定义':'Estimand',
+    '估计值':'Estimate',
+    '描述性中位差':'Descriptive median difference',
+    ' 至 ':' to ',
+    '数值计算方法':'Calculation method',
+    '比较（后组 − 前组）':'Contrast (second − first)',
+    '均值差的 95% CI 为单项区间。':'Mean-difference 95% CIs are individual intervals.',
+    '遇到 ':'For a reported ',
+    ' = 0，请核查数值精度或报告下限。':' of zero, verify precision or the reporting limit.',
+    '完整分析与来源记录':'Full analysis and provenance',
+    '原始 ':'Raw ',
+    '校正后 ':'Adjusted '
+  });
   function t(text,...values){let result=language==='en'?(en[text]??text):text;return result.replace(/\{(\d+)\}/g,(_,n)=>String(values[+n]??''));}
   return {t,choose,setLanguage,panelName,projectTitle,validateDisplayNames,preserveDisplayNames,restoreDisplayNames,get language(){return language;},en};
 })();

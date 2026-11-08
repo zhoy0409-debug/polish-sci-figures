@@ -2,7 +2,7 @@
 
 [English](platform-installation.en.md) | [中文](platform-installation.md)
 
-从 [正式 v1.5.0 发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0) 下载 [单入口 Skill ZIP](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-v1.5.0-skill.zip)。解压后的 `polish-sci-figures/` 包含一个 `SKILL.md` 和完整的 `suite/` 资源。
+从 [正式 v1.6.0 发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.0) 下载 [单入口 Skill ZIP](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-v1.6.0-skill.zip)。解压后的 `polish-sci-figures/` 包含一个 `SKILL.md` 和完整的 `suite/` 资源。
 
 | 宿主 | 安装 | 调用 |
 | --- | --- | --- |
@@ -10,9 +10,9 @@
 | Claude Code | 解压整个目录至 `~/.claude/skills/` 或项目的 `.claude/skills/`。 | 在会话中输入 `/polish-sci-figures`。 |
 | Codex | 解压整个目录至个人 `~/.agents/skills/` 或项目根目录的 `.agents/skills/`。 | 在输入框用 `$` 选中 `$polish-sci-figures`，再描述任务。 |
 
-安装后检查宿主目录中的 `polish-sci-figures/SKILL.md` 和同目录的 `suite/`。本机工作流使用已有 Python 环境，Skill 会检查运行依赖。单入口包适用于上表各宿主；需要逐项管理 Skill 或运行 CLI 时，再下载[三技能源码包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/sci-figure-suite-v1.5.0.zip)。同名技能同时存在时，按安装路径选择 Figure Studio 这一份。
+安装后检查宿主目录中的 `polish-sci-figures/SKILL.md` 和同目录的 `suite/`。本机工作流使用已有 Python 环境，Skill 会检查运行依赖。单入口包适用于上表各宿主；需要逐项管理 Skill 或运行 CLI 时，再下载[三技能源码包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/sci-figure-suite-v1.6.0.zip)。同名技能同时存在时，按安装路径选择 Figure Studio 这一份。
 
-独立编辑图件可直接安装 [Figure Studio Windows x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)。
+独立编辑图件可直接安装 [Figure Studio Windows x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Setup-x64.exe)。
 
 [Claude 使用说明](https://support.claude.com/en/articles/12512180-use-skills-in-claude) · [Claude Code 技能目录](https://code.claude.com/docs/en/skills) · [Codex 技能目录与调用](https://developers.openai.com/codex/skills)
 

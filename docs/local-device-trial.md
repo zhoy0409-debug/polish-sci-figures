@@ -1,10 +1,6 @@
 # Try Figure Studio on your device
 
-**0.2.0 release-preparation snapshot (Suite 1.5.0, 2026-10-28):** the new-version links are pending publication and installed-app/real-upgrade acceptance. For an available installer, use the [previous stable v1.4.26](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.4.26). See [candidate scope](release-notes-v1.5.0.md#english).
-
-Figure Studio 0.2.0 retains local photo correction and ruler straightening while retaining the existing editor and update companions. See the [photo workflow](figure-studio-photo-correction.md#english-quick-reference) and [release scope](release-notes-v1.5.0.md).
-
-Windows installed-package and same-package large-figure acceptance for 0.2.0 remains pending. No new installed-package or official-upgrade pass is claimed. See the [current acceptance scope](windows-next-stable-audit.md); the previous stable 0.1.25 [final acceptance](qa/jade-hearts/windows-0.1.25/postrelease-acceptance.json) remains a separate historical record.
+Figure Studio 0.2.1 ships with Suite v1.6.0. Windows has a stable installer and portable build. The macOS 15+ builds are previews for Apple Silicon and Intel. [Release notes](release-notes-v1.6.0.md#english)
 
 English · [中文](#中文)
 
@@ -12,8 +8,8 @@ Figure Studio is the visual editor for **polish-sci-figures**. The app includes 
 
 | Device | Download and status |
 | --- | --- |
-| Windows 10/11, 64-bit | [Installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe) · [Portable ZIP](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Portable-x64.zip). Windows desktop package. |
-| Mac with Apple silicon / Intel | [M-series Mac](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/figure-studio-local-preview-0.1.18/polish-sci-figures-Studio-0.1.18-macOS-arm64-Preview.zip) · [Intel Mac](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/figure-studio-local-preview-0.1.18/polish-sci-figures-Studio-0.1.18-macOS-x86_64-Preview.zip). Version 0.1.18 development previews require **macOS 15 or later**. [Build and test record](macos-preview-validation.md). |
+| Windows 10/11, 64-bit | [Installer](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Setup-x64.exe) · [Portable ZIP](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Portable-x64.zip). Windows desktop package. |
+| Mac with Apple silicon / Intel | [M-series Mac](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-macOS-arm64-Preview.zip) · [Intel Mac](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-macOS-x86_64-Preview.zip). Version 0.2.1 previews require **macOS 15 or later**. The builds use ad-hoc signing and are not Apple-notarized. [Build and test record](macos-preview-validation.md). |
 | Android phone / tablet | [Development APK](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/figure-studio-local-preview-0.1.18/polish-sci-figures-Studio-0.1.18-Android-preview.apk). Version 0.1.18 development preview requires **Android 8 or later** and a current Android System WebView. [Native test record](mobile-preview-validation.md). |
 | iPhone / iPad | Development and simulator testing. There is no installable iPhone/iPad package yet; simulator ZIPs cannot be installed on a phone. |
 
@@ -21,7 +17,7 @@ Mac and Android packages are development previews, with more installation steps 
 
 The historical 0.1.14 audit passed the iPhone simulator workflow, but did not qualify the iPad Save/Open sequence. Its Android phone and landscape-tablet captures were reviewed; the portrait-tablet capture did not establish a complete visual pass. See that [native evidence scope](mobile-preview-validation.md#current-status--15-october-2026) and each later release's `NATIVE-VALIDATION.json` for its own checks. Historical findings do not certify the new 0.1.26 packages, whose checks belong to their own release attachments. No new physical-phone or tablet acceptance follows from the shared editor changes alone.
 
-**Upgrading Windows:** users on 0.1.8 or earlier must install the published current version manually once. Installed 0.1.9 and later support updates in the app; if 0.1.9 cannot prepare an update on a long path, save your project, close Figure Studio and run the current installer manually. Version 0.2.0 retains the long-path fix introduced in 0.1.10. The [Windows quick start](../desktop/QUICKSTART.en.md#save-quit-and-upgrade) explains the steps; portable Windows and development previews retain manual installation.
+**Upgrading Windows:** users on 0.1.8 or earlier must install the published current version manually once. Installed 0.1.9 and later support updates in the app; if 0.1.9 cannot prepare an update on a long path, save your project, close Figure Studio and run the current installer manually. Version 0.2.1 retains the long-path fix introduced in 0.1.10. The [Windows quick start](../desktop/QUICKSTART.en.md#save-quit-and-upgrade) explains the steps; portable Windows and development previews retain manual installation.
 
 ## Your first figure
 
@@ -45,18 +41,12 @@ Try a small non-sensitive example first. Tell us your device/model and OS versio
 
 ## 中文
 
-Figure Studio 0.2.0 保留本机照片矫正与标尺拉正、现有编辑器和更新猫狗。[照片操作](figure-studio-photo-correction.md)与[本版范围](release-notes-v1.5.0.md#中文)分别说明步骤和验收状态。旧 Mac／Android 下载保持不变。
-
-0.2.0 的 Windows 安装版、同包大工程和官方升级验收仍待完成，当前状态见[本轮验收记录](windows-next-stable-audit.md)。上一正式版 0.1.26 的[实际验收](qa/photo-correction/windows-0.1.26/README.md)保留为独立历史记录。
-
-### 在自己的设备上试用 Figure Studio
-
-Figure Studio 是 **polish-sci-figures** 的可视化编辑器。程序内置计算环境，不需要安装 Python、打开 Codex 或 Claude，也不需要账号或 API 密钥。统计分析与图片查重在本机完成。
+Figure Studio 0.2.1 随 Suite v1.6.0 提供 Windows 正式安装版和便携版，以及面向 Apple Silicon 与 Intel 的 macOS 15+ 预览。[发行说明](release-notes-v1.6.0.md#中文)
 
 | 设备 | 下载与当前状态 |
 | --- | --- |
-| Windows 10/11，64 位 | [下载安装版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe) · [免安装 ZIP](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Portable-x64.zip)。Windows 桌面安装包。 |
-| Apple 芯片 / Intel Mac | [M 系列芯片版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/figure-studio-local-preview-0.1.18/polish-sci-figures-Studio-0.1.18-macOS-arm64-Preview.zip) · [Intel 版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/figure-studio-local-preview-0.1.18/polish-sci-figures-Studio-0.1.18-macOS-x86_64-Preview.zip)。0.1.18 开发预览，要求 **macOS 15 或更新系统**。[实际验证记录](macos-preview-validation.md#中文)。 |
+| Windows 10/11，64 位 | [下载安装版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Setup-x64.exe) · [免安装 ZIP](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Portable-x64.zip)。Windows 桌面安装包。 |
+| Apple 芯片 / Intel Mac | [M 系列芯片版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-macOS-arm64-Preview.zip) · [Intel 版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-macOS-x86_64-Preview.zip)。0.2.1 预览，采用临时签名，尚未经过 Apple 公证，要求 **macOS 15 或更新系统**。[实际验证记录](macos-preview-validation.md#中文)。 |
 | Android 手机 / 平板 | [开发 APK](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/figure-studio-local-preview-0.1.18/polish-sci-figures-Studio-0.1.18-Android-preview.apk)。0.1.18 开发预览，要求 **Android 8 或更新系统**，并使用较新的 Android System WebView。[原生测试记录](mobile-preview-validation.md#中文)。 |
 | iPhone / iPad | 正在开发和进行模拟器测试；目前没有可安装到手机、平板的安装包，模拟器 ZIP 不能直接安装。 |
 
@@ -64,7 +54,7 @@ Mac 和 Android 目前属于开发预览，安装步骤比 Windows 正式版多�
 
 历史 0.1.14 验收中，iPhone 模拟器流程通过，但 iPad 的保存／打开流程未能通过；当时核对了 Android 手机及平板横屏截图，平板竖屏截图不足以确认完整视觉通过。详见该份[原生验证范围](mobile-preview-validation.md#当前状态2026-年-10-月-15-日)，以及后续各发行自己的 `NATIVE-VALIDATION.json`。这些历史记录不能替代 0.1.26 成品包随发行附件提供的新检查，共享编辑器的修改也不构成新的手机或平板真机验收。
 
-**Windows 升级：** 0.1.8 或更早版本需先手动安装一次已发布的当前版本。安装版 0.1.9 及更新版本支持应用内更新；若 0.1.9 因长路径无法准备更新，请保存工程、关闭 Figure Studio，再手动运行当前安装程序。0.2.0 保留了 0.1.10 加入的长路径修复，步骤见 [Windows 快速入门](../desktop/QUICKSTART.zh-CN.md#保存退出与升级)。便携版和开发预览版仍按手动步骤安装。
+**Windows 升级：** 0.1.8 或更早版本需先手动安装一次已发布的当前版本。安装版 0.1.9 及更新版本支持应用内更新；若 0.1.9 因长路径无法准备更新，请保存工程、关闭 Figure Studio，再手动运行当前安装程序。0.2.1 保留了 0.1.10 加入的长路径修复，步骤见 [Windows 快速入门](../desktop/QUICKSTART.zh-CN.md#保存退出与升级)。便携版和开发预览版仍按手动步骤安装。
 
 ### 第一张图，三步开始
 

@@ -5197,7 +5197,7 @@ if (typeof document !== 'undefined') (async () => {
     const footnote=document.createElement('p');footnote.className='muted';footnote.hidden=!(analysis.facets||[analysis]).some(set=>(set.primary_test?.pairwise||[]).some(c=>Array.isArray(c.ci95)));footnote.textContent=T('均值差的 95% CI 为单项区间，未作多重比较校正。P 值不能代替差异大小与实际意义。');region.append(footnote);
   }
   function statisticsReport(record,panelName){
-    const en=StudioI18n.language==='en',label=(zh,english)=>en?english:zh;
+    const en=StudioI18n.language==='en';
     const doc=document.implementation.createHTMLDocument(T('统计分析'));
     doc.documentElement.lang=en?'en':'zh-CN';
     const meta=doc.createElement('meta');meta.charset='utf-8';doc.head.prepend(meta);
@@ -5213,48 +5213,48 @@ if (typeof document !== 'undefined') (async () => {
     const {analysis,config,binding,data_sha256}=record;
     add(doc.body,'h1',T('统计分析'));
     add(doc.body,'p',panelName);
-    add(doc.body,'p',label('本机计算或导入的分析预览。表内数值显示至六位有效数字，来源记录保留原始精度。','Local analysis preview or imported results. The table displays up to six significant digits. The analysis record retains the full precision.'));
+    add(doc.body,'p',T('本机计算或导入的分析预览。表内数值显示至六位有效数字，来源记录保留原始精度。'));
     const adjusted=analysis.correction!=='none';
     const facets=analysis.facets||[analysis],results=facets.flatMap(facet=>facet.primary_test.pairwise);
     for(const facet of facets){
-      add(doc.body,'h2',facet.label||label('比较结果','Comparisons'));
+      add(doc.body,'h2',facet.label||T('比较结果'));
       add(doc.body,'p',facet.primary_test.name);
       const table=doc.createElement('table');doc.body.append(table);
       const header=table.createTHead().insertRow(),body=table.createTBody();
-      const pHeader=(zh,en)=>{
-        const cell=add(header,'th',label(zh,en));
-        add(cell,'i','P');cell.append(label(' 值',' value'));
+      const pHeader=zh=>{
+        const cell=add(header,'th',T(zh));
+        add(cell,'i','P');cell.append(T(' 值'));
       };
       const columns=[
-        ['样本量（前组 / 后组）','Sample size (first / second)','n_a',r=>r.n_a+' / '+r.n_b],
-        ['统计量','Statistic','statistic'],['自由度','Degrees of freedom','degrees_of_freedom'],
-        ['效应定义','Estimand','estimand'],['估计值','Estimate','estimate'],
-        ['描述性中位差','Descriptive median difference','descriptive_median_difference'],
-        ['95% CI','95% CI','ci95',r=>r.ci95?.map(precision).join(label(' 至 ',' to '))],
-        ['数值计算方法','Calculation method','p_method']
-      ].filter(([, ,key])=>facet.primary_test.pairwise.some(r=>r[key]!=null));
-      add(header,'th',label('比较（后组 − 前组）','Contrast (second − first)'));
-      for(const [zh,en] of columns)add(header,'th',label(zh,en));
-      pHeader('原始 ','Raw ');
-      if(adjusted)pHeader('校正后 ','Adjusted ');
+        ['样本量（前组 / 后组）','n_a',r=>r.n_a+' / '+r.n_b],
+        ['统计量','statistic'],['自由度','degrees_of_freedom'],
+        ['效应定义','estimand'],['估计值','estimate'],
+        ['描述性中位差','descriptive_median_difference'],
+        ['95% CI','ci95',r=>r.ci95?.map(precision).join(T(' 至 '))],
+        ['数值计算方法','p_method']
+      ].filter(([,key])=>facet.primary_test.pairwise.some(r=>r[key]!=null));
+      add(header,'th',T('比较（后组 − 前组）'));
+      for(const [zh] of columns)add(header,'th',T(zh));
+      pHeader('原始 ');
+      if(adjusted)pHeader('校正后 ');
       for(const result of facet.primary_test.pairwise){
         const row=body.insertRow();
         add(row,'td',result.group_b+' − '+result.group_a);
-        for(const [,,key,format] of columns)addValue(row,format?format(result):result[key]);
+        for(const [,key,format] of columns)addValue(row,format?format(result):result[key]);
         addValue(row,result.p_raw??(adjusted?'—':result.p));
         if(adjusted)addValue(row,result.p);
       }
     }
     if(results.some(result=>Array.isArray(result.ci95))){
-      add(doc.body,'p',label('均值差的 95% CI 为单项区间。','Mean-difference 95% CIs are individual intervals.'));
+      add(doc.body,'p',T('均值差的 95% CI 为单项区间。'));
     }
     if(results.some(result=>result.p===0||result.p_raw===0)){
-      const note=add(doc.body,'p',label('遇到 ','For a reported '));
-      add(note,'i','P');note.append(label(' = 0，请核查数值精度或报告下限。',' of zero, verify precision or the reporting limit.'));
+      const note=add(doc.body,'p',T('遇到 '));
+      add(note,'i','P');note.append(T(' = 0，请核查数值精度或报告下限。'));
     }
     for(const note of analysis.diagnostics||[])add(doc.body,'p',[note.facet,note.group_a&&note.group_b&&[note.group_a,note.group_b].join(' / '),en?note.en:note.zh].filter(Boolean).join(' · '));
     const details=doc.createElement('details');doc.body.append(details);
-    add(details,'summary',label('完整分析与来源记录','Full analysis and provenance'));
+    add(details,'summary',T('完整分析与来源记录'));
     add(details,'pre',JSON.stringify({binding,data_sha256,config,analysis},null,2));
     return '<!doctype html>\n'+doc.documentElement.outerHTML;
   }

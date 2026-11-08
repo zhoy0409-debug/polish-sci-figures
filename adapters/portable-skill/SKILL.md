@@ -59,7 +59,7 @@ The check runs in the host's Python environment and does not upload images to a 
 
 ## Deliver editable outputs
 
-For desktop editing, use [Figure Studio Setup for Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe). Double-click Setup and open Figure Studio from the desktop or Start menu to work offline. For help installing or invoking the AI package, use the [Claude and Codex guide](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.en.md).
+For desktop editing, use [Figure Studio Setup for Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Setup-x64.exe). Double-click Setup and open Figure Studio from the desktop or Start menu to work offline. For help installing or invoking the AI package, use the [Claude and Codex guide](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.en.md).
 
 Generate an editable project from the reviewed SVG or data bundle. In Figure Studio, choose **Project → Open project** and select the JSON. Add the standalone HTML when browser editing is also requested.
 

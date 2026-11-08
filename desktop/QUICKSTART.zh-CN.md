@@ -1,16 +1,16 @@
 # Figure Studio 使用入门
 
-**[下载 Figure Studio 编辑器｜Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)**。双击 Setup 安装，从桌面或开始菜单打开。绘图和编辑可离线使用。
+**[下载 Figure Studio 编辑器｜Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Setup-x64.exe)**。双击 Setup 安装，从桌面或开始菜单打开。绘图和编辑可离线使用。
 
 **[在 Claude / Codex 中使用 AI Skill](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.md)**。按宿主安装单入口 Skill，然后在会话中选择并调用。
 
-**Figure Studio 0.2.0 · Suite 1.5.0（2026-11-01）**：Windows 集中升级。安装、中文输入法、工具返回、边框和真实数据坐标轴已完成用户协同验收；详见[本版说明](../docs/release-notes-v1.5.0.md#中文)和[实测范围](../docs/qa/windows-next-stable/installed-collaborative-20261101.md)。
+**Figure Studio 0.2.1 · Suite 1.6.0**。拖动图号即可对齐文字基线，导入后直接打开对应的颜色工具，也可在同一个可编辑工程中往返进行本地 Skill 质检。[发行说明](../docs/release-notes-v1.6.0.md#中文) · [Windows 实测](../docs/qa/canvas-snap-and-onboarding/README.md)。
 
 Windows安装版实操及官方0.1.25→0.1.26编辑器内升级已通过所列检查；[验收记录](../docs/qa/photo-correction/windows-0.1.26/README.md)列明数据保护、性能结果和未完成事项。
 
-更新窗口保留简约猫狗，用透明空心心与翡翠水面呈现下载字节进度；下载完成后仍需等待完整性校验，再保存并确认安装。外观遵循角色动画和系统降动效设置。[本版说明](../docs/release-notes-v1.5.0.md#中文)与[0.1.23 历史验收](../docs/release-notes-v1.4.23.md#中文)分别记录版本范围。
+更新窗口保留简约猫狗，用透明空心心与翡翠水面呈现下载字节进度；下载完成后仍需等待完整性校验，再保存并确认安装。外观遵循角色动画和系统降动效设置。[本版说明](../docs/release-notes-v1.6.0.md#中文)与[0.1.23 历史验收](../docs/release-notes-v1.4.23.md#中文)分别记录版本范围。
 
-0.2.0 保留本机照片边界校正、标尺拉正和全局校色。操作、容量及本轮实际验收见[照片指南](../docs/figure-studio-photo-correction.md)与[验收报告](../docs/figure-studio-photo-correction-validation.md)。
+0.2.1 保留本机照片边界校正、标尺拉正和全局校色。操作、容量及本轮实际验收见[照片指南](../docs/figure-studio-photo-correction.md)与[验收报告](../docs/figure-studio-photo-correction-validation.md)。
 
 Figure Studio 用于绘制、编辑和排版科研组图。Windows 桌面版适用于 Windows 10/11（64 位），安装后无需 Codex、Python 或 API 密钥，可离线使用。
 
@@ -20,7 +20,7 @@ Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库
 
 ## 安装与打开
 
-1. **首次使用选择 Setup 安装版：** 从 [v1.5.0 发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0)下载 [polish-sci-figures-Studio-0.2.0-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)，直接运行并按提示安装到当前 Windows 用户，无需解压。
+1. **首次使用选择 Setup 安装版：** 从 [v1.6.0 发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.0)下载 [polish-sci-figures-Studio-0.2.1-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.0/polish-sci-figures-Studio-0.2.1-Setup-x64.exe)，直接运行并按提示安装到当前 Windows 用户，无需解压。
 2. 双击桌面或开始菜单中的 **polish-sci-figures Studio**。启动小窗口显示“编辑器已就绪”后，默认浏览器会打开编辑器；也可点击小窗口里的 **打开编辑器**。
 
 安装向导的 **快捷方式** 页仅决定是否创建桌面快捷方式；不勾选也可继续。中文说明可换行，使用中文界面字体，无需通过缩小系统文字来安装。
@@ -31,7 +31,7 @@ Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库
 **以后直接在编辑器内升级：更新 → 下载并准备更新 → 保存工程并勾选确认 → 安装并重新打开。** 受支持的安装版会下载、校验并安装后续版本，无需每次回到 GitHub 手动找包、解压或替换目录。
 
 
-本版安装编辑已完成下列范围的实测；官方 0.1.26 → 0.2.0 的完整应用内安装、自动重启及实际失败恢复仍未执行，不沿用旧版升级结果作为本版通过证明。更新失败时保留工程文件，勿手工删除恢复目录；可用发行页 Setup 覆盖安装。
+应用内更新失败时，请保留工程文件和恢复目录，关闭 Figure Studio 后运行发行页的 Setup 覆盖安装。
 
 便携版用户须先完整解压 `polish-sci-figures-Studio-版本号-Portable-x64.zip`，再运行其中的 `Figure Studio.exe`；请保留旁边的 `_internal` 文件夹。
 
@@ -119,13 +119,13 @@ Figure Studio 是 **polish-sci-figures 的官方配套编辑器**。官方仓库
 
 关闭浏览器标签页不会停止本机服务。结束使用时，在 Figure Studio 启动小窗口点击 **关闭服务并退出**；关闭该小窗口也会退出。正在计算的任务会等待完成。
 
-**从 0.1.8 或更早版本升级：** 保存工程 JSON，关闭 Figure Studio，再运行 0.2.0 安装程序。旧版更新入口只能打开下载链接，不能替你安装这次升级。
+**从 0.1.8 或更早版本升级：** 保存工程 JSON，关闭 Figure Studio，再运行 0.2.1 安装程序。旧版更新入口只能打开下载链接，不能替你安装这次升级。
 
-**已经使用本地 0.2.0 候选版？** 用正式构建替换本地 0.2.0 候选版时，请保存工程、关闭 Figure Studio，再手动运行上方官方安装包覆盖。更新器按版本号判断，不会自动提供另一个同版本构建。
+**已经使用 Studio 0.2.0？** 可打开安装版内的**更新**，也可保存工程、关闭 Figure Studio，再运行上方 0.2.1 安装包。
 
-**已经安装 0.1.9–0.1.25？** 可使用应用内更新流程；若 0.1.9 因路径过长而在准备阶段失败，请保存工程、关闭 Figure Studio，再手动运行当前 0.2.0 安装程序。0.1.26 保留 0.1.10 加入的长路径修复。
+**已经安装 0.1.9–0.1.25？** 可使用应用内更新流程；若 0.1.9 因路径过长而在准备阶段失败，请保存工程、关闭 Figure Studio，再手动运行当前 0.2.1 安装程序。0.1.26 保留 0.1.10 加入的长路径修复。
 
-**安装 0.2.0 后获取后续更新：** 打开**更新**，选择**下载并准备更新**，等待下载和完整性校验。保存工程，勾选已保存、可以关闭编辑器的确认项，再选择**安装并重新打开**。安装程序沿用受支持的当前应用位置，成功后重新打开 Figure Studio；无需自行解压或替换文件。未经确认不会启动安装，也不会绕过 Windows 安全提示。
+**安装 0.2.1 后获取后续更新：** 打开**更新**，选择**下载并准备更新**，等待下载和完整性校验。保存工程，勾选已保存、可以关闭编辑器的确认项，再选择**安装并重新打开**。安装程序沿用受支持的当前应用位置，成功后重新打开 Figure Studio；无需自行解压或替换文件。未经确认不会启动安装，也不会绕过 Windows 安全提示。
 
 **便携版、源码运行或未识别的自定义副本：** 不会被强制覆盖。若希望以后在编辑器内升级，先保存工程 JSON，退出旧副本，从官方入口下载并运行一次 Setup，使用默认安装位置，再从桌面或开始菜单的正式快捷方式启动；可用**项目 → 打开工程**载入备份。安装后仍提示不支持时，按具体错误处理，不绕过安装位置和安全检查。上述旧版本、同版本候选版及长路径例外仍适用。
 
