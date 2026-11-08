@@ -101,7 +101,7 @@ const StudioDrawerWorkspace=(()=>{
       // no object tree reads or extra controls enter the selection hot path.
       const overflow=el('div','drawer-quick-overflow'),more=button('drawerQuickMore','更多','More',()=>setMore(!quickBar.classList.contains('drawer-more-open'))),menu=el('div','drawer-quick-menu');
       menu.id='drawerQuickMenu';more.setAttribute('aria-controls',menu.id);more.setAttribute('aria-expanded','false');menu.setAttribute('role','group');overflow.append(more,menu);quickBar.insertBefore(overflow,view);overflow.hidden=true;
-      const secondary=[node('quickImportFiles'),node('boxSelect'),node('contextImageActions'),node('quickAlignmentToggle')?.closest('.quick-tool-group'),quickBar.querySelector('.quick-object-group'),node('quickDelete')].filter(Boolean).map(n=>{const marker=doc.createComment('toolbar '+n.id);n.before(marker);return{n,marker};});
+      const secondary=[node('quickImportFiles'),node('boxSelect'),node('contextColorAction'),node('contextImageActions'),node('quickAlignmentToggle')?.closest('.quick-tool-group'),quickBar.querySelector('.quick-object-group'),node('quickDelete')].filter(Boolean).map(n=>{const marker=doc.createComment('toolbar '+n.id);n.before(marker);return{n,marker};});
       function setMore(open){quickBar.classList.toggle('drawer-more-open',open);more.setAttribute('aria-expanded',String(open));if(open){const r=more.getBoundingClientRect(),width=Math.min(240,win.innerWidth-24),top=r.bottom+6;menu.style.width=width+'px';menu.style.left=Math.max(12,Math.min(r.left,win.innerWidth-width-12))+'px';menu.style.top=top+'px';menu.style.maxHeight=Math.max(80,win.innerHeight-top-12)+'px';}}
       let compact=false;
       // Reserve space for longer English/fallback font metrics as well as Chinese.
