@@ -68,6 +68,8 @@ assert.equal(i18n.choose('en','zh-CN'),'en');
 i18n.setLanguage('en');assert.equal(i18n.t('行数'),'Rows');
 assert.equal(i18n.t('已保存命名版本「{0}」','我的中文版本'),'Saved version “我的中文版本”');
 assert.equal(i18n.t('unknown-family'),'unknown-family');
+assert.equal(i18n.t('本机计算或导入的分析预览。表内数值显示至六位有效数字，来源记录保留原始精度。'),
+  'Local analysis preview or imported results. The table displays up to six significant digits. The analysis record retains the full precision.');
 i18n.setLanguage('zh-CN');assert.equal(i18n.t('已选 {0} 个元素',3),'已选 3 个元素');
 const js=fs.readFileSync('skills/polish-sci-figures/assets/figure-studio/studio.js','utf8');
 for(const match of js.matchAll(/'([^'\r\n]*[\u4e00-\u9fff][^'\r\n]*)'/g))assert.ok(Object.hasOwn(i18n.en,match[1]),'Missing English message: '+match[1]);
