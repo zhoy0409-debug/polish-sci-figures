@@ -1201,7 +1201,7 @@ if (typeof document !== 'undefined') (async () => {
     const summary=info.kind==='mixed'?T('混合内容：{0} 个文字对象、{1} 个矢量对象、{2} 个图片层。文字和矢量可独立编辑；图片层内部细节不能拆开编辑。',info.text,info.vector,info.image):info.text?T('可编辑内容：{0} 个文字对象、{1} 个矢量对象。点选可修改，直接拖动或用方向键微调；Delete 删除。',info.text,info.vector):T('检测到 {0} 个矢量对象，可单独移动、改色或删除。没有原生文字；已经转成轮廓的字只能作为形状调整。',info.vector);
     return info.outlined&&info.text?summary+' '+T('部分文字已转为轮廓，只能作为形状编辑。'):summary;
   }
-  function showImportedContentNotice(info){
+  function showImportedContentNotice(info,guided=false){
     const inspector=document.querySelector('.inspector');if(inspector)inspector.scrollTop=0;
     if(!['raster','mixed'].includes(info.kind)&&!info.outlined)return;
     let dialog=$('importContentDialog');
@@ -1210,7 +1210,7 @@ if (typeof document !== 'undefined') (async () => {
       const title=document.createElement('h2');title.id='importContentDialogTitle';const body=document.createElement('p');body.className='import-content-description';const note=document.createElement('p');note.className='muted';const close=document.createElement('button');close.className='primary';close.type='button';close.onclick=()=>dialog.close();dialog.append(title,body,note,close);document.body.append(dialog);
       dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const box=dialog.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)dialog.close();});
     }
-    dialog.querySelector('h2').textContent=T('图形已导入');dialog.querySelector('.import-content-description').textContent=svgContentSummary(info);dialog.querySelector('.muted').textContent=T('导入结果已保留，可用撤销恢复。');dialog.querySelector('button').textContent=T('关闭');if(!dialog.open)dialog.showModal();
+    dialog.querySelector('h2').textContent=T('图形已导入');dialog.querySelector('.import-content-description').textContent=svgContentSummary(info);dialog.querySelector('.muted').textContent=T('导入结果已保留，可用撤销恢复。');dialog.querySelector('button').textContent=T(guided?'继续：修改图件':'关闭');if(!dialog.open)dialog.showModal();
   }
   function inlineSvgStyles(root){
     const styles=[...root.querySelectorAll('style')];if(!styles.length)return;
@@ -5619,8 +5619,11 @@ if (typeof document !== 'undefined') (async () => {
       const summary=T('已导入 {0}/{1} 个文件；可逐项撤销',session.applied,files.length),message=(session.cancelled?T('已取消后续导入；已导入内容可逐项撤销')+' · ':'')+summary+(session.errors.length?' · '+session.errors.join(' · '):'');
       paintFileImportStatus(message);say(message);
       if(session.applied&&project.id===session.projectId&&history===session.history)experienceTools?.journeyEvent('imported',()=>{
-        const svg=baseSvg(selectedPanel,state().panels[selectedPanel].variant);
-        return svg.querySelector('text')?'text':svg.querySelector('image')?'image':'vector';
+        const variant=state().panels[selectedPanel].variant;
+        const content=classifySvgContent(baseSvg(selectedPanel,variant));
+        if(panel(selectedPanel)?.analysis?.import?.warningCodes?.includes('page_appearance'))
+          return {...content,kind:'raster',pageAppearance:true};
+        return content;
       });
       if(project.id===session.projectId&&history===session.history){const ids=state().order.filter(id=>dataDrafts[id]);if(ids.length){clearTimeout(dataTimer);fileImportDataRefresh={projectId:session.projectId,history:session.history,ids,pending:[...ids]};resumeImportedDataRefresh();}}
     }
@@ -5770,7 +5773,7 @@ if (typeof document !== 'undefined') (async () => {
     if(file.name.toLowerCase().endsWith('.svg')){const raw=await file.text();if(/<!ENTITY/i.test(raw))throw Error(T('不支持 XML 实体'));await validateSvgImportFeatures(raw);const clean=sanitize(raw);contentInfo=classifySvgContent(clean);viewBox=(clean.getAttribute('viewBox')||'').trim().split(/[ ,]+/).map(Number);if(viewBox.length!==4||!viewBox.every(Number.isFinite)||viewBox[2]<=0||viewBox[3]<=0)throw Error(T('SVG 需要有效 viewBox'));width=360;height=360*viewBox[3]/viewBox[2];svg=new XMLSerializer().serializeToString(clean);}
     else{if(!['image/png','image/jpeg','image/webp'].includes(file.type))throw Error(T('支持 PNG、JPEG、WebP、SVG 或 PDF'));const url=await readFileDataUrl(file);const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error(T('图片无法解码')));img.src=url;});width=360;height=360*img.naturalHeight/img.naturalWidth;viewBox=[0,0,width,height];svg=`<svg xmlns="${NS}" width="${width}pt" height="${height}pt" viewBox="0 0 ${width} ${height}"><image width="${width}" height="${height}" href="${url}"/></svg>`;}
     if(!Number.isFinite(width)||!Number.isFinite(height)||width<=0||height<=0||Math.max(width,height)>14400)throw Error(T('SVG 尺寸无效'));
-    validateImportTarget(target);installAsset({name:file.name,variants:[{name:'imported_image',svg,width,height,viewBox,size:'original',preserveAspect:true}],initialVariant:0,recipe:{source:file.name},analysis:{},table:null,provenance:'user-import'},target.oldId,target.cell,T('图片已导入；可撤销恢复原图'));activateImportedFigure();if(!batch)showImportedContentNotice(contentInfo);return true;
+    validateImportTarget(target);installAsset({name:file.name,variants:[{name:'imported_image',svg,width,height,viewBox,size:'original',preserveAspect:true}],initialVariant:0,recipe:{source:file.name},analysis:{},table:null,provenance:'user-import'},target.oldId,target.cell,T('图片已导入；可撤销恢复原图'));activateImportedFigure();if(!batch)showImportedContentNotice(contentInfo,experienceTools?.guidingImport());return true;
   }
   let canvasClipboard=null,canvasClipboardBusy=false,canvasClipboardTarget=null,canvasCopyPending=null,canvasPasteSerial=0;
   function trackCanvasClipboardCell(cell,explicit=true){if(!explicit){canvasClipboardTarget=null;return;}if(cell&&Number.isInteger(cell.row)&&Number.isInteger(cell.col))canvasClipboardTarget={projectId:project.id,history,selectionPanel:selectedPanel,cell:{row:cell.row,col:cell.col}};}

@@ -36,7 +36,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1']}={}){
   const parse=()=>new dom.window.DOMParser().parseFromString(raw,'image/svg+xml').documentElement;
   const ctx={copy,document,$,selectionAlignmentPlan,StudioRichText:rich,StudioTextFormatting:require(base+'text-formatting.js'),StudioI18n:{panelName:p=>p.name},project,preparePositionedTextEdit,
     original:false,selectedPanel:'p0',selected:[...keys],selectedAnnotations:[],selectedPanelLabel:null,selectedAlignmentGuide:null,panelSelection:[],contentSelection:null,selectedEmptyCell:null,textTools:null,
-    state:()=>current,panel:()=>asset,currentOutput:()=>({scale:outputScale}),
+    state:()=>current,panel:()=>asset,currentOutput:()=>({scale:outputScale}),previewSelectedLabelMatch:null,
     selectionGroups:()=>[{id:'p0',vi:0,keys:[...ctx.selected]}],
     editsFor:(id,vi,s=current)=>s.panels[id].edits[vi]||{},
     paint:(el,prop)=>el.style.getPropertyValue(prop)||el.getAttribute(prop)|| (prop==='fill'?'#000000':'none'),

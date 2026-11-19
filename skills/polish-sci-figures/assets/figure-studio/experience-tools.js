@@ -192,7 +192,7 @@ const StudioExperienceTools=(()=>{
     journeyActions.className='first-figure-actions';
     const journeyTool=button('',()=>{
       if(journey.stage==='export')return openExportSettings(true);
-      if(journey.kind==='image')return host.color();
+      if(journey.content?.kind==='raster')return host.color();
       const action=actions.find(item=>item.id==='colour-lines');
       if(action)launch(action);else host.edit();
     });
@@ -202,6 +202,7 @@ const StudioExperienceTools=(()=>{
     const reviewNext=button('',()=>openExportMenu(true));
     const reviewSize=button('',()=>openExportSettings(true));
     const reviewSkip=button('',pauseJourney);
+    const reviewFormat=doc.createElement('p');reviewFormat.className='quality-first-figure-format';
     let journey=null,journeyLanguage=null;
     const group=doc.createElement('div');group.className='quick-tool-group experience-context';group.id='contextImageActions';doc.getElementById('canvasQuickToolbar')?.prepend(group);
     const hint=doc.createElement('button');hint.id='imageScreeningHint';hint.type='button';hint.hidden=true;hint.className='image-screening-hint';hint.onclick=()=>launch(()=>host.duplicates('all'));nav.append(hint);
@@ -238,7 +239,7 @@ const StudioExperienceTools=(()=>{
       const reviewActions=doc.getElementById('qualityFirstFigureActions');
       if(reviewActions){
         reviewActions.hidden=journeyBar.hidden||journey.stage!=='export';
-        if(!reviewActions.hidden&&!reviewActions.hasChildNodes())reviewActions.append(reviewSize,reviewNext,reviewSkip);
+        if(!reviewActions.hidden&&!reviewActions.hasChildNodes())reviewActions.append(reviewFormat,reviewSize,reviewNext,reviewSkip);
         reviewNext.textContent=t('下一步：打开导出选项','Next: open export options');
         reviewSize.textContent=t('导出尺寸','Export dimensions');
         reviewSkip.textContent=t('跳过，直接编辑','Skip to editing');
@@ -246,30 +247,44 @@ const StudioExperienceTools=(()=>{
       if(journeyBar.hidden)return;
       journeyBar.dataset.stage=journey.stage;
       journeyBar.setAttribute('aria-label',t('首次编辑流程','First figure workflow'));
-      const editHint=journey.kind==='text'
-        ?t('双击画布上的可编辑文字，输入后按 Enter 确认。改完后打开质检。','Double-click editable text on the canvas, then press Enter to keep the change. Open review when ready.')
-        :journey.kind==='image'
-          ?t('可调整整张图片的显示，或另加标注。改完后打开质检。','Adjust the image display or add annotations. Open review when ready.')
-          :t('选中画布上的图形可调整颜色或线条。改完后打开质检。','Select a shape on the canvas to change colour or stroke. Open review when ready.');
+      const content=journey.content;
+      const raster=content?.kind==='raster',mixed=content?.kind==='mixed';
+      const exportHint=raster
+        ?t('核对尺寸和图内细节后可选 PNG。想继续排版可保存工程。','Check final dimensions and details, then choose PNG. Save the project to keep editing the layout.')
+        :mixed
+          ?t('SVG 保留可编辑内容，图片层仍是位图。需要整张图片时可选 PNG。','SVG retains editable objects. Image layers stay raster. Choose PNG for a single image.')
+          :t('核对最终尺寸。SVG 保留矢量和可编辑文字，PNG 可直接作为图片使用。','Check the final dimensions. SVG retains vectors and editable text. PNG is ready to use as an image.');
+      reviewFormat.hidden=!raster&&!mixed;
+      reviewFormat.textContent=exportHint;
+      const editHints=[];
+      if(raster){
+        editHints.push(content.pageAppearance
+          ?t('本页已按整页图片导入。可调整整页显示或另加标注，图内文字和线条不能单独改。','This page was imported as a single image. Adjust its display or add annotations. Text and lines inside the image cannot be edited separately.')
+          :t('可调整整张图片的显示或另加标注。图内文字和线条不能单独改。','Adjust the whole image or add annotations. Text and lines inside the image cannot be edited separately.'));
+      }else if(content){
+        if(content.text)editHints.push(t('双击画布上的可编辑文字，输入后按 Enter 确认。','Double-click editable text on the canvas, then press Enter to keep the change.'));
+        if(content.vector&&(!content.text||mixed))
+          editHints.push(t('点选矢量图形可改颜色或线条。','Select a vector shape to change its colour or stroke.'));
+        if(mixed)editHints.push(t('图片层内部的字不能单独改。','Text inside image layers cannot be edited separately.'));
+        if(content.outlined)editHints.push(t('轮廓字可作为图形调整。','Outlined text can be adjusted as shapes.'));
+      }
       const stages={
         import:[t('导入素材','Import artwork'),t('选择一个 SVG、PDF 或图片文件。','Choose an SVG, PDF, or image file.'),t('导入素材','Import artwork')],
-        edit:[t('修改图件','Edit artwork'),editHint,t('打开图形质检','Open figure review')],
+        edit:[t('修改图件','Edit artwork'),editHints.join(t('',' ')),t('打开图形质检','Open figure review')],
         review:[t('检查图形','Review the figure'),t('在质检面板点「检查当前图形」。完成后这里会显示导出入口。','Click Review current figure in the review panel. Export becomes available here when the check finishes.'),t('前往检查按钮','Go to review button')],
-        export:[t('导出成图','Export the figure'),journey.kind==='image'
-          ?t('核对尺寸后可选 PNG。要继续调整排版，请保存工程。','Check the dimensions before choosing PNG. Save the project to keep editing the layout.')
-          :t('核对最终尺寸。SVG 保留矢量和可编辑文字，PNG 可直接作为图片使用。','Check the final dimensions. SVG retains vectors and editable text. PNG is ready to use as an image.'),t('打开导出选项','Open export options')],
+        export:[t('导出成图','Export the figure'),exportHint,t('打开导出选项','Open export options')],
         done:[t('图形已导出','Figure exported'),t('还要继续编辑时，可用「保存」留一份工程备份。','Use Save to keep a project backup for later editing.'),t('完成向导','Finish guide')]
       };
       const [title,hint,next]=stages[journey.stage];
       journeyTitle.textContent=title;journeyHint.textContent=hint;journeyNext.textContent=next;
-      const editTool=journey.stage==='edit'&&journey.kind!=='text';
+      const editTool=journey.stage==='edit'&&(raster||(!content?.text&&!!content?.vector));
       journeyTool.hidden=!editTool&&journey.stage!=='export';
-      journeyTool.textContent=editTool?(journey.kind==='image'?t('打开图片显示','Open image display'):t('打开颜色工具','Open colour tools')):t('导出尺寸','Export dimensions');
+      journeyTool.textContent=editTool?(raster?t('打开图片显示','Open image display'):t('打开颜色工具','Open colour tools')):t('导出尺寸','Export dimensions');
       journeySkip.textContent=t('跳过，直接编辑','Skip to editing');journeySkip.hidden=journey.stage==='done';
     }
     function startJourney(){
       if(journey){journey.paused=false;paintJourney();journeyNext.focus();return;}
-      journey={stage:'import',kind:null,paused:false,owner:host.journeyOwner?.()};paintJourney();click('quickImportFiles');
+      journey={stage:'import',content:null,paused:false,owner:host.journeyOwner?.()};paintJourney();click('quickImportFiles');
     }
     function pauseJourney(){
       if(!journey||journey.paused)return;
@@ -286,13 +301,18 @@ const StudioExperienceTools=(()=>{
       }else if(journey.stage==='export')openExportMenu(true);
       else if(journey.stage==='done'){journey=null;paintJourney();helpTitle.focus();}
     }
-    function journeyEvent(event,kind){
+    function guidingImport(){
+      return !!journey&&!journey.paused&&['import','edit'].includes(journey.stage)&&journey.owner===host.journeyOwner?.();
+    }
+    function journeyEvent(event,readContent){
       if(!journey)return;
-      if(event==='imported'&&['import','edit'].includes(journey.stage)){journey.stage='edit';journey.kind=kind();}
+      if(event==='imported'&&['import','edit'].includes(journey.stage)){journey.stage='edit';journey.content=readContent();}
       else if(event==='reviewed'&&['edit','review'].includes(journey.stage))journey.stage='export';
       else if(event==='exported'&&journey.stage==='export')journey.stage='done';
       else return;
       paintJourney();
+      if(event==='reviewed'&&!journey.paused)
+        reviewNext.scrollIntoView?.({block:'nearest'});
     }
     function openGuide(){
       if(guide.open)return;
@@ -417,7 +437,7 @@ const StudioExperienceTools=(()=>{
     doc.addEventListener('keydown',event=>{if(!event.defaultPrevented&&!event.isComposing&&event.keyCode!==229&&(event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'&&!doc.querySelector('dialog[open]')){event.preventDefault();openCommands();}});
     const drawers=host.drawerWorkspace||(typeof StudioDrawerWorkspace!=='undefined'?StudioDrawerWorkspace:null);
     if(hierarchy&&drawers)workbench=drawers.create({document:doc,language:host.language,hierarchy,actions,categories,legacyNavigation:nav,launch,syncPane:host.syncPane,captureViewAnchor:host.captureViewAnchor,restoreViewAnchor:host.restoreViewAnchor});
-    refresh();return {refresh,openImages,openCommands,openGuide,journeyEvent,actions,nav,workbench};
+    refresh();return {refresh,openImages,openCommands,openGuide,journeyEvent,guidingImport,actions,nav,workbench};
   }
   return {create,workspaceHierarchy};
 })();

@@ -309,6 +309,7 @@ const StudioI18n = (() => {
 "文件尚未保存，请重试。":"The file has not been saved. Please retry.",
 "设备内计算暂不可用。工程与数据草稿已保留，请重试初始化。":"On-device calculation is unavailable. Your project and data drafts are kept; try initializing again.",
 "图形已导入":"Artwork imported",
+"继续：修改图件":"Continue to editing",
 "导入结果已保留，可用撤销恢复。":"The imported artwork is already in your figure. You can undo to restore the previous version.",
 "拉伸的图片已按适合编辑的分辨率重新采样，以保持操作流畅。":"A stretched image was resampled at a bounded resolution to keep editing responsive.",
 "PDF 已损坏或设有密码，请另存为可正常打开的无密码副本后重试。":"This PDF is damaged or password protected. Save an unlocked copy and try again.",
