@@ -45,6 +45,17 @@ Windows 上使用 Chrome 157 和本机绘图引擎。选用此前已做过配色
 
 安装包 SHA-256 为 `c21180f1f0a2eb3ceb90e5d43564fa49d8fce3532c8c1fa18f65f284307c1b90`。
 
+## 集中体验候选
+
+根据 ChatGPT 的独立复审和实际代码核查，将四项改动合入一次本地候选。Windows x64 隔离安装 `f3db612` 后，首次启动页确认加载新资源，2,704 个文件与打包文件校验一致，本机引擎自检通过。
+
+- 剪贴板可直接预览纯 JSON 或只有一个 JSON 代码块的回复。包含多个代码块的回复被拒绝，空剪贴板时已有手动输入保留。
+- 预览列出原值与新值，支持在画布切换修改前后的状态。收起侧栏并返回时保留同一预览，确认仍然只增加一条撤销记录。
+- 单一小图的样式操作版本过期时，可按当前工程状态重新复制该小图的任务。原回复留在输入框，旧版本无法应用。
+- 更新界面使用受控版本响应验收。跳过一个版本后，重开与后台刷新均不重复显示该版本的角标。手动检查和后续新版本角标仍可用。
+
+复测了 A 参照对齐 B/C、公开 Iris 的图内文字调整与 SVG/PNG 导出。此前从 ChatGPT 和 Claude 网页实际复制的回复分别在安装版重跑预览、一次撤销和保存重开。候选已卸载，正式版注册和可执行文件校验值一致。安装包 SHA-256 为 `52ea00cf2407882c8ff3494916210b2d52b891dd34564d7bb21ee188c7848bb5`。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。
