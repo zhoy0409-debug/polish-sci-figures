@@ -96,6 +96,14 @@ Windows x64 隔离安装 `3741649` 后分别在 1440×900 和 910×512 视口验
 
 运行质检后，报告测得一段文字，来自新增标注。结果旁说明扫描图内部应看预览，PNG 会合成整页和标注，保存工程可继续改标注。实际下载并打开 PNG，核对页码及新增标注。存盘状态保留独立标注，源 PDF 和嵌入图片各自的校验值在编辑前后相同。另复测 PNG、混合 PDF 和 SVG 向导。
 
+#### 扫描 PDF 候选安装包复测
+
+隔离安装 Windows x64 候选 `e1d2819`，校验 2,704 个安装文件和实际启动页，自检通过。使用同一份三页 PDF，在 1440×900 和 910×512 均从首页向导实际导入第 2 页，添加文字标注并双击修改，运行质检并下载 PNG。打开导出文件，确认所选页和新标注均保留。质检报告测得一段文字，来自新增标注。
+
+两个视口均在修改标注后点一次「跳过，直接编辑」，对照工程状态和撤销历史，再从顶部恢复原向导并完成质检与导出。另验证首页打开向导后可一键进入画布。全程使用可见界面入口。测试候选已卸载，正式版的注册记录及程序校验一致。
+
+安装包 SHA-256 为 `a592882c2345783d0dfae9ea84b64428d7afe9ea68d0c57db11395e059f8cfe6`。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。

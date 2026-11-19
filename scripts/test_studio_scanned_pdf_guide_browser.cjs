@@ -75,6 +75,18 @@ async function main(){
     await shot('03-annotation-edited');
     assert.equal(await imageHash(raster),second);
 
+    const beforeSkip=await H.save(page);
+    await click('跳过，直接编辑',workflow);
+    await workflow.waitFor({state:'hidden'});
+    await annotation.getByText('Review note 02',{exact:true}).waitFor();
+    const afterSkip=await H.save(page);
+    assert.deepEqual(afterSkip.state,beforeSkip.state);
+    assert.deepEqual(afterSkip.history,beforeSkip.history);
+    await click('向导');
+    await click('使用向导');
+    await click('继续首次流程',guide);
+    await workflow.getByText('修改图件',{exact:true}).waitFor();
+
     await click('打开图形质检',workflow);
     await click('检查当前图形',review);
     await review.getByText(/检查完成/).waitFor();
@@ -110,7 +122,7 @@ async function main(){
     assert.equal(H.sha(fs.readFileSync(source)),sha);
     assert.deepEqual(errors,[]);
     assert.deepEqual(remote,[]);
-    Object.assign(notes,{importedPage:2,pageCount:3,annotationReedited:true,rasterUnchanged:true,measuredTexts:report.summary.texts,pngExported:true,usedFunctionSearch:false,completed:true});
+    Object.assign(notes,{importedPage:2,pageCount:3,annotationReedited:true,rasterUnchanged:true,oneClickSkipPreservedState:true,resumedAtEdit:true,measuredTexts:report.summary.texts,pngExported:true,usedFunctionSearch:false,completed:true});
   }catch(error){
     await shot('stopped').catch(()=>{});
     throw error;
