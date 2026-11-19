@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+Match existing panel labels to a reference label's font size and canvas baseline through the local Skill handoff. Preview the changes together and keep them with one undo step. Review checks the reference and target revisions before applying the batch.
+
 ## v1.6.0 · Figure Studio 0.2.1
 
 Align panel labels on their text baseline during drag. Add contextual colour actions, a local review handoff and editable project JSON delivery. See the [release notes](docs/release-notes-v1.6.0.md) and [acceptance evidence](docs/qa/canvas-snap-and-onboarding/README.md).

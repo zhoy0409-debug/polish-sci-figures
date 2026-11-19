@@ -2485,6 +2485,7 @@ if (typeof document !== 'undefined') (async () => {
     if(value)group.setAttribute('transform',`matrix(${value[0]} ${value[1]} ${value[2]} ${value[3]} ${value[4]*unit} ${value[5]*unit})`);
     svg.append(...backgrounds,group);return group;
   }
+  function panelLabelY(frame,label){return frame.y+frame.height*label.y/100;}
   function composite(raw=false, exportMode=false, s=state(), onlyPanel=null,skipCompact=false,inspection=false) {
     const l=layout(s,skipCompact), root=document.createElementNS(NS,'svg');
     const region=onlyPanel?panelExportRegion(l,s,onlyPanel):null;
@@ -2505,7 +2506,7 @@ if (typeof document !== 'undefined') (async () => {
       if (!exportMode && !raw && pos.id===selectedPanel && s.panels[pos.id].variant===state().panels[pos.id].variant) for (const key of selected) svg.querySelector(`[data-key="${key}"]`)?.classList.add('chosen');
       if(position.renderBox&&typeof StudioCompactWhitespace!=='undefined')StudioCompactWhitespace.appendPanel(root,svg,position);else root.append(svg);
     }
-    for(const position of positions){const pos=position.renderBox||position,label=displayedPanelLabel(s,pos.id);if(!label)continue;const text=document.createElementNS(NS,'text');text.textContent=label.text;for(const [key,value]of Object.entries({x:pos.x+pos.width*label.x/100,y:pos.y+pos.height*label.y/100,'font-size':label.size,'font-family':label.font,'font-weight':label.bold?'700':'400','font-style':label.fontStyle||'normal',fill:label.color||'#20242A'}))text.setAttribute(key,value);if(label.richText&&typeof StudioRichText!=='undefined')StudioRichText.apply(text,label.richText);if(typeof StudioTextFormatting!=='undefined'&&(label.letterSpacing!==undefined||label.lineHeight!==undefined))StudioTextFormatting.applySpacing(text,{letterSpacing:label.letterSpacing,lineHeight:label.lineHeight});if(!exportMode){text.setAttribute('data-panel-label',pos.id);text.setAttribute('aria-label',T('图号 {0}：单击选择，双击编辑',label.text));text.style.cursor='move';}if(label.stretch&&label.stretch!==1){const x=pos.x+pos.width*label.x/100,y=pos.y+pos.height*label.y/100;text.setAttribute('transform',`translate(${x} ${y}) scale(${label.stretch} 1) translate(${-x} ${-y})`);}root.append(text);}
+    for(const position of positions){const pos=position.renderBox||position,label=displayedPanelLabel(s,pos.id);if(!label)continue;const text=document.createElementNS(NS,'text');text.textContent=label.text;for(const [key,value]of Object.entries({x:pos.x+pos.width*label.x/100,y:panelLabelY(pos,label),'font-size':label.size,'font-family':label.font,'font-weight':label.bold?'700':'400','font-style':label.fontStyle||'normal',fill:label.color||'#20242A'}))text.setAttribute(key,value);if(label.richText&&typeof StudioRichText!=='undefined')StudioRichText.apply(text,label.richText);if(typeof StudioTextFormatting!=='undefined'&&(label.letterSpacing!==undefined||label.lineHeight!==undefined))StudioTextFormatting.applySpacing(text,{letterSpacing:label.letterSpacing,lineHeight:label.lineHeight});if(!exportMode){text.setAttribute('data-panel-label',pos.id);text.setAttribute('aria-label',T('图号 {0}：单击选择，双击编辑',label.text));text.style.cursor='move';}if(label.stretch&&label.stretch!==1){const x=pos.x+pos.width*label.x/100,y=panelLabelY(pos,label);text.setAttribute('transform',`translate(${x} ${y}) scale(${label.stretch} 1) translate(${-x} ${-y})`);}root.append(text);}
     if(!exportMode&&(showGuides||layoutMode)){
       const guides=document.createElementNS(NS,'g');guides.dataset.editorGuides='true';guides.style.pointerEvents='none';
       const occupied=new Set(),g=gridFor(s);
@@ -5955,11 +5956,17 @@ if (typeof document !== 'undefined') (async () => {
         return {svg,panels:state().order.map(id=>{const source=panel(id),record=state().panels[id].statistics,analysis=statisticalAnalysisFor(id);return {id,bound:!!source.table?.rows&&!!analysis&&Object.keys(analysis).length>0,stale:!!record&&(!!record.stale||record.tableKey!==(source.table?.sha256||'')),analysis:analysis?.primary_estimand?{primary_estimand:{ci95:copy(analysis.primary_estimand.ci95??null)}}:null};}),cleanup:()=>wrapper.remove()};
       },
       targetPanel:()=>selectedPanel,
-      async inspection(targetPanel){const panels=targetPanel?[targetPanel]:state().order,elements={};for(const id of panels){const vi=state().panels[id].variant,source=editableSourceSnapshot(id,vi);elements[id]=[...source.querySelectorAll('[data-key]')].map(el=>({key:el.getAttribute('data-key'),tag:el.localName,...(el.localName==='text'?{text:el.textContent.slice(0,200),fontSizeLocal:textPointSize(el),pointFactor:textPointFactor(el,id,vi)*currentOutput().scale,finalSizePt:textOutputSize(el,id,vi)}:{}),locked:!!state().panels[id].locked||(state().panels[id].lockedElements?.[vi]||[]).includes(el.getAttribute('data-key'))}));}return StudioProjectOperations.inspect(payload(),{elements,panels,selection:{panel:targetPanel||selectedPanel,keys:[...selected],label:displayedPanelLabel(state(),targetPanel||selectedPanel)?.text}});},
+      async inspection(targetPanel){const panels=targetPanel?[targetPanel]:state().order,elements={},displayLabels={};for(const id of panels){const vi=state().panels[id].variant,source=editableSourceSnapshot(id,vi);displayLabels[id]=displayedPanelLabel(state(),id)?.text;elements[id]=[...source.querySelectorAll('[data-key]')].map(el=>({key:el.getAttribute('data-key'),tag:el.localName,...(el.localName==='text'?{text:el.textContent.slice(0,200),fontSizeLocal:textPointSize(el),pointFactor:textPointFactor(el,id,vi)*currentOutput().scale,finalSizePt:textOutputSize(el,id,vi)}:{}),locked:!!state().panels[id].locked||(state().panels[id].lockedElements?.[vi]||[]).includes(el.getAttribute('data-key'))}));}return StudioProjectOperations.inspect(payload(),{elements,panels,displayLabels,selection:{panel:targetPanel||selectedPanel,keys:[...selected],label:displayedPanelLabel(state(),targetPanel||selectedPanel)?.text}});},
       async preflight(patch){
         for(let attempt=0;attempt<3;attempt++){
           const capture=reviewIdentity,before=capture();
-          const plan=await StudioProjectOperations.preflight(payload(),patch,{validValue,validateState,resolveElement:(id,vi,key)=>elementContext(id,vi,key)}),after=capture();
+          const frames=new WeakMap();
+          const matchLabelY=(snapshot,reference,target)=>{
+            if(!frames.has(snapshot))frames.set(snapshot,new Map(layout(snapshot).positions.map(pos=>[pos.id,pos.renderBox||pos])));
+            const boxes=frames.get(snapshot),from=boxes.get(reference),to=boxes.get(target);
+            return from&&to?.height>0?100*(panelLabelY(from,snapshot.panels[reference].label)-to.y)/to.height:NaN;
+          };
+          const plan=await StudioProjectOperations.preflight(payload(),patch,{validValue,validateState,matchLabelY,resolveElement:(id,vi,key)=>elementContext(id,vi,key)}),after=capture();
           if(before.length===after.length&&before.every((value,index)=>value===after[index]))return plan;
           // Rebase onto fresh unrelated edits; a changed target fails its own hash.
         }

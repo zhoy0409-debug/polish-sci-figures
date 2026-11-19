@@ -393,6 +393,13 @@ jobs:
           NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
           STUDIO_TIFF_BROWSER: chromium
         run: python scripts/run_studio_tiff_browser_checks.py --out .cache/native-tiff-browser-checks
+      - name: Preview, save, reopen and undo reference label alignment
+        env:
+          NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
+          STUDIO_TIFF_BROWSER: chromium
+        run: |
+          python scripts/build_canvas_round_fixture.py --out .cache/label-match-fixture
+          node scripts/test_studio_label_match_browser.cjs .cache/label-match-fixture .cache/label-match-browser
       - name: Update scene real browser rendering and lifecycle (controlled states)
         env:
           NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules

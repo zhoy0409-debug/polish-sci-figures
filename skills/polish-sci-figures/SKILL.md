@@ -294,3 +294,5 @@ For new editable handoffs, use this installed skill's `scripts/figure_studio.py`
 ## Final-size review and scoped project collaboration
 
 Use the bundled Review workspace and [local operation protocol](references/project_operations.md) for final-size findings and targeted edits to a saved project. Preserve unrelated human edits; import operation files for atomic preflight and real-canvas preview instead of replacing the whole project. Do not infer statistics from a flattened figure. Capability availability in a source-tree candidate does not imply an older Windows installer contains it.
+
+When asked to match the size and baseline of several panel labels, use the [reference-label operation](references/project_operations.md#match-several-panel-labels-to-one-reference) if advertised by the Studio inspection. Resolve letters using `displayLabel` and return one operation JSON for all specified targets.

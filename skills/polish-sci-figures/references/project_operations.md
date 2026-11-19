@@ -28,6 +28,7 @@ Supported operations:
 
 - `element.style`: explicit existing SVG element, current variant; color, opacity, typography, anchor and line width. No text/result/data replacement or arbitrary CSS. Element resolution uses Studio's existing sanitizer and current source snapshot.
 - `panel.label.style`: an existing unlocked panel label; color and typography. It cannot invent labels or rewrite scientific wording.
+- `panel.label.match`: match the font size and actual canvas baseline of an existing reference panel label. Studio computes both values and preserves the target's label text, horizontal position, typeface and color.
 - `panel.candidate`: select a `localSwitch: true` variant already present in the same bound source-data bundle, with the same physical canvas and viewBox. Include a meaningful `reason` describing suitability and display purpose. The editor requires separate scientific confirmation. This does not fit a new model or regenerate a gallery/ROC recipe; use the established workbench for those changes. Data drafts and content locks must be resolved first. Edits on other panels remain exact.
 
 Style lengths use local SVG coordinates. For a text root, the inspection includes `fontSizeLocal`, `pointFactor` and `finalSizePt`; a desired final size is converted to local size by dividing by the measured `pointFactor`. Do not guess the factor for PDF-derived transforms or unsupported objects. Non-text ink, opacity and line-width changes require scientific confirmation because they may affect data/legend encoding. The normal manual editor remains available. Revision fingerprints also include the key-scheme version, relevant derived renders and presentation context, preventing reuse after a conflicting sanitizer, final-size or layout change.
@@ -42,6 +43,26 @@ python sci_figures.py project-ops apply saved-project.json --patch operations.js
 The CLI requires Node.js 18+ and refuses existing output files. The independently installed polish skill also provides `node scripts/studio_operations.cjs inspect PROJECT` and `apply PROJECT PATCH NEW_OUTPUT`. CLI application supports panel label styles and existing candidates; element styles require editor preflight because the CLI does not introduce a second SVG sanitizer. For an already reviewed candidate change, the CLI requires `--confirm-scientific-change`. Never use it merely to suppress review.
 
 Source images, analysis records, measurement data, checkpoints and data drafts are preserved. History gains one state only after the whole operation succeeds. This protocol intentionally cannot overwrite a project, execute code, fetch resources, infer pairing or calibration, choose the smallest P value, or replace raw scientific evidence.
+
+## Match several panel labels to one reference
+
+In **Review → Skill collaboration (local files)**, choose **Export inspection** to include the reference and all targets. Use `displayLabel` to match the visible letters and verify each panel ID. If a label is ambiguous, ask which panel the user means. Check that `capabilities.operations` includes `panel.label.match`.
+
+For “match B and C to A”, return a single operation file. Use `base` for the targets' revisions and use A's ID and revision as the reference in each operation. Use the actual identifiers and revisions from the inspection:
+
+```json
+{
+  "schema": "figure-studio-operations/1",
+  "projectId": "COPY_PROJECT_ID",
+  "base": {"panel-1": "COPY_B_REVISION", "panel-2": "COPY_C_REVISION"},
+  "operations": [
+    {"type": "panel.label.match", "panel": "panel-1", "reference": "panel-0", "referenceRevision": "COPY_A_REVISION"},
+    {"type": "panel.label.match", "panel": "panel-2", "reference": "panel-0", "referenceRevision": "COPY_A_REVISION"}
+  ]
+}
+```
+
+Use **Preview AI edits** in Studio to check the batch, then Keep or Cancel. Keep adds one undo step. The batch may contain only label matches, with each target listed once and no changes to the reference. If the reference or a target has changed, export a fresh inspection. Rich text, pinned label geometry, locked targets and baselines outside a target panel's permitted range are rejected. This operation uses the editor's current layout and requires Studio rather than the CLI.
 
 ## Organize confirmed existing results
 

@@ -35,7 +35,7 @@ Install optional dependencies only for a workflow that requires them, from `suit
 | --- | --- |
 | Raw CSV/TSV/XLSX, chart choice, statistical analysis or report export | [Data figure workbench](suite/skills/make-sci-data-figures/WORKFLOW.md) |
 | Calibrated microscopy, pathology or Western blot images | [Scientific image preparation](suite/skills/standardize-sci-images/WORKFLOW.md) |
-| Existing SVG, visual refinement, composition or Studio editing | [Figure polishing and editing](suite/skills/polish-sci-figures/WORKFLOW.md) |
+| Existing SVG, visual refinement, composition or an inspection exported from Studio | [Figure polishing and editing](suite/skills/polish-sci-figures/WORKFLOW.md) |
 | Duplicate images or suspected image reuse | [Local image duplicate check](suite/docs/image-duplicate-check.md) |
 
 These are local instructions, not separately installed skills. A companion-skill reference in a nested document means reading the corresponding bundled document above. Resolve its `scripts/`, `references/` and `assets/` paths relative to that document. Run commands beginning with `skills/` from `suite/`; resolve user input and output paths before changing working directory. Save task outputs in the user's workspace, not in the installed skill directory.
