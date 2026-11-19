@@ -55,47 +55,69 @@ async function reopenAndCheckHistory(browser,url,viewport,out,savedPath,saved,sc
     await shot('05-project-reopened');
 
     await editAnnotation(page,annotation,updatedText);
-    const edited=await H.save(page);
-    assert.equal(edited.history.index,reopened.history.index+1);
-    assert.deepEqual(edited.history.states.slice(0,edited.history.index),reopened.history.states.slice(0,reopened.history.index+1));
-    assert.equal(edited.state.overlays[0].text,updatedText);
-    const stateWithoutNewText=structuredClone(edited.state);
-    Object.assign(stateWithoutNewText.overlays[0],{text:original.text,richText:original.richText});
-    assert.deepEqual(stateWithoutNewText,reopened.state,'The new edit may only change the annotation text');
     assert.equal(await imageHash(scan),scanHash);
     await shot('06-annotation-changed-after-reopen');
 
     await page.getByRole('button',{name:/^撤销/}).click();
-    const undone=await H.save(page);
+    const undoPath=path.join(out,'scan-page-02-saved-after-undo.json');
+    const undone=await saveProjectFile(page,undoPath);
+    const undoFileHash=H.sha(fs.readFileSync(undoPath));
     await verifyRestored(page,undone,reopened,scanHash);
     assert.equal(undone.history.index,reopened.history.index);
-    assert.deepEqual(undone.history,{...edited.history,index:reopened.history.index},'Undo must move back exactly one step and preserve the history');
-    await shot('07-after-one-undo');
-
-    await page.getByRole('button',{name:/^重做/}).click();
-    const redoPath=path.join(out,'scan-page-02-after-redo.json');
-    const redone=await saveProjectFile(page,redoPath);
-    await verifyRestored(page,redone,edited,scanHash);
-    assert.deepEqual(redone.history,edited.history,'Redo must reapply exactly the one undone edit');
-    await shot('08-after-one-redo');
+    const redoIndex=undone.history.index+1;
+    assert.equal(undone.history.states.length,redoIndex+1,'The undone edit must be saved as a single pending redo');
+    assert.deepEqual(undone.history.states.slice(0,redoIndex),reopened.history.states.slice(0,redoIndex));
+    const editedState=undone.history.states[redoIndex];
+    assert.equal(editedState.overlays[0].text,updatedText);
+    const stateWithoutNewText=structuredClone(editedState);
+    Object.assign(stateWithoutNewText.overlays[0],{text:original.text,richText:original.richText});
+    assert.deepEqual(stateWithoutNewText,reopened.state,'The new edit may only change the annotation text');
+    await shot('07-saved-after-one-undo');
     assert.deepEqual(errors,[]);
     assert.deepEqual(remote,[]);
     await context.close();
+
+    const redoPath=path.join(out,'scan-page-02-after-redo.json');
+    const replay=await H.browserPage(browser,{viewport});
+    let undoReopened,redone;
+    try{
+      undoReopened=await openProject(replay.page,url,undoPath);
+      await verifyRestored(replay.page,undoReopened,undone,scanHash);
+      assert.deepEqual(undoReopened.history,undone.history,'Reopening an undone project must preserve its pending redo');
+      const redo=replay.page.getByRole('button',{name:/^重做/});
+      assert.equal(await redo.isEnabled(),true);
+      await replay.page.screenshot({path:path.join(out,'08-undo-project-reopened.png')});
+
+      await redo.click();
+      redone=await saveProjectFile(replay.page,redoPath);
+      await verifyRestored(replay.page,redone,{...undone,state:editedState},scanHash);
+      assert.deepEqual(redone.history,{...undone.history,index:redoIndex},'Redo must reapply exactly the one undone edit');
+      assert.equal(H.sha(fs.readFileSync(undoPath)),undoFileHash);
+      assert.deepEqual(replay.errors,[]);
+      assert.deepEqual(replay.remote,[]);
+      await replay.page.screenshot({path:path.join(out,'09-redone-after-reopening-undo.png')});
+    }catch(error){
+      await replay.page.screenshot({path:path.join(out,'undo-reopen-stopped.png')}).catch(()=>{});
+      throw error;
+    }finally{
+      await replay.context.close();
+    }
 
     const proof=await H.browserPage(browser,{viewport});
     try{
       const final=await openProject(proof.page,url,redoPath);
       await verifyRestored(proof.page,final,redone,scanHash);
-      assert.deepEqual(final.history,redone.history,'The second reopen must restore the full redo state and undo history');
+      assert.deepEqual(final.history,redone.history,'Reopening the redone project must restore its full history');
       assert.equal(await proof.page.getByRole('button',{name:/^撤销/}).isEnabled(),true);
       assert.equal(await proof.page.getByRole('button',{name:/^重做/}).isDisabled(),true);
       assert.equal(H.sha(fs.readFileSync(savedPath)),backupHash);
       assert.deepEqual(proof.errors,[]);
       assert.deepEqual(proof.remote,[]);
-      await proof.page.screenshot({path:path.join(out,'09-redone-project-reopened.png')});
-      return {reopened:true,indexOnReopen:reopened.history.index,indexAfterEdit:edited.history.index,indexAfterUndo:undone.history.index,
+      await proof.page.screenshot({path:path.join(out,'10-redone-project-reopened.png')});
+      return {reopened:true,indexOnReopen:reopened.history.index,indexAfterEdit:redoIndex,indexAfterUndo:undone.history.index,
+        indexAfterReopeningUndo:undoReopened.history.index,undoneProjectReopened:true,redoAvailableAfterReopeningUndo:true,
         indexAfterRedo:redone.history.index,indexAfterReopeningRedo:final.history.index,originalText:original.text,editedText:updatedText,
-        restoredText:undone.state.overlays[0].text,persistedRedoText:final.state.overlays[0].text,onlyLatestEditUndone:true,
+        restoredText:undoReopened.state.overlays[0].text,persistedRedoText:final.state.overlays[0].text,onlyLatestEditUndone:true,
         onlyLatestEditRedone:true,redoAndHistoryPersisted:true};
     }catch(error){
       await proof.page.screenshot({path:path.join(out,'redo-reopen-stopped.png')}).catch(()=>{});
