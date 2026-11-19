@@ -64,6 +64,14 @@ Windows x64 隔离安装 `0b8a5db` 后，Chrome 验证了首页与向导中的�
 
 候选同时通过图号对齐、Iris 导出及此前两家真实回复的回放。候选测试后已卸载，正式版校验一致。安装包 SHA-256 为 `f312d04222a10d9976c8ab8dfa970bb06d24812d68e02cec0e18f2db78f52ea2`。
 
+### 首次从素材到成图
+
+在全新浏览器会话从首页打开向导，全程不点功能检索。旧流程导入后没有下一步，用户需要自行找到文字编辑、质检和导出。新流程用画布上方的操作栏承接导入与修改，在质检结果旁提供下一步。窄窗口中原来盖住轴文字的母版边缘热区已向外移动。导出步骤使用跟顶部入口相同的响应式路由，直接显示当前窗口实际使用的导出工具。
+
+Windows x64 隔离安装 `3741649` 后分别在 1440×900 和 910×512 视口验收。实际取消一次选文件，再导入公开 Iris SVG。中途点击跳过，双击把横轴 `X` 改为 `Sepal length (cm)`，然后从顶部恢复原流程。运行质检并实际下载可编辑 SVG，确认导出包含新标题。通过文件选择器打开保存的工程，确认一次撤销恢复原标签。两个视口均通过，原 SVG SHA-256 一致。源码浏览器还确认导入 PNG 后可直接打开图片显示调整。
+
+原有向导、图号对齐、Iris SVG/PNG 导出和两家真实回复回放均复测通过。测试候选已卸载，正式版校验一致。安装包 SHA-256 为 `a57063ab59c8140e5129185ca41cc198c2b1cc926030078322ebc4962dbe87e1`。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。
