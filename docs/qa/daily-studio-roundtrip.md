@@ -37,6 +37,14 @@ Windows 上使用 Chrome 157 和本机绘图引擎。选用此前已做过配色
 
 确认前保存只写入已提交状态。两家最终测试均逐项核对了 A、B 和原始工程。还复测了 A 统一 B/C 图号以及 Iris 的图内文字局部修改。此次网页交接复测使用本机源码版 Studio，适用范围为这项局部改色。
 
+### Windows 安装版复测
+
+在 Windows x64 隔离安装 `660499a` 候选包。安装包包含重新从源代码生成的启动页。安装后校验 2,704 个文件，程序自检通过，确认运行中的编辑器加载了新版协作界面。
+
+从安装版复制 917 字节的 C 任务，在 ChatGPT 和 Claude 分别开新对话。两家均直接接收正文，各自返回的 JSON 从网页复制后原样粘回安装版。每轮均从同一个 Iris 副本开始，预览显示“小图 C · 1 项修改”。确认只新增一条撤销记录，保存重开保留改色，一次撤销恢复原色。A、B、源数据、其他样式和原始工程文件校验均通过。卸载候选后，原正式版的注册和可执行文件校验值一致。
+
+安装包 SHA-256 为 `c21180f1f0a2eb3ceb90e5d43564fa49d8fce3532c8c1fa18f65f284307c1b90`。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。
