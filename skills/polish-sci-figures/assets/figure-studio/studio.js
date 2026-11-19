@@ -1147,7 +1147,17 @@ if (typeof document !== 'undefined') (async () => {
       appearance:()=>{if($('appearanceMenu')){$('appearanceMenu').open=true;$('studioTheme')?.focus();}},
       axes:()=>typeof openProfessionalAxes==='function'?openProfessionalAxes():showPane('detail'),
       export:()=>{$('exportOptions').open=true;$('exportOptions').scrollIntoView({block:'nearest'});if(!experienceTools?.workbench)$('exportMenu').open=true;},
-      review:()=>{const box=$('qualityWorkspace');if(box?.hidden!==false)$('openQualityWorkspace')?.click();else box.querySelector('input')?.focus();},
+      review:()=>{const box=$('qualityWorkspace');if(box?.hidden!==false)$('openQualityWorkspace')?.click();$('qualityScan')?.focus();},
+      leaveReviewForExport:()=>{
+        if(previewSessions?.active){
+          const message=language()==='en'?'Keep or cancel the current preview before exporting.':'请先保留或取消当前预览，再导出。';
+          const status=$('qualityStatus');if(status)status.textContent=message;
+          say(message);return false;
+        }
+        if($('qualityWorkspace')?.hidden===false)$('openQualityWorkspace').click();
+        return true;
+      },
+      journeyOwner:()=>history,
       guideHandoff:destination=>{
         if($('qualityWorkspace')?.hidden)$('openQualityWorkspace')?.click();
         const collaboration=$('qualityCollaboration');
@@ -5608,6 +5618,10 @@ if (typeof document !== 'undefined') (async () => {
       if(fileImportSession===session)fileImportSession=null;
       const summary=T('已导入 {0}/{1} 个文件；可逐项撤销',session.applied,files.length),message=(session.cancelled?T('已取消后续导入；已导入内容可逐项撤销')+' · ':'')+summary+(session.errors.length?' · '+session.errors.join(' · '):'');
       paintFileImportStatus(message);say(message);
+      if(session.applied&&project.id===session.projectId&&history===session.history)experienceTools?.journeyEvent('imported',()=>{
+        const svg=baseSvg(selectedPanel,state().panels[selectedPanel].variant);
+        return svg.querySelector('text')?'text':svg.querySelector('image')?'image':'vector';
+      });
       if(project.id===session.projectId&&history===session.history){const ids=state().order.filter(id=>dataDrafts[id]);if(ids.length){clearTimeout(dataTimer);fileImportDataRefresh={projectId:session.projectId,history:session.history,ids,pending:[...ids]};resumeImportedDataRefresh();}}
     }
   }
@@ -5977,6 +5991,7 @@ if (typeof document !== 'undefined') (async () => {
     const elementContext=(id,vi,key)=>{const source=editableSourceSnapshot(id,vi),el=source.querySelector(`[data-key="${key}"]`);if(!el)return null;const locks=state().panels[id].lockedElements?.[vi]||[];return {el,text:el.localName==='text',locked:!!state().panels[id].locked||[el,...el.querySelectorAll('[data-key]')].some(n=>locks.includes(n.getAttribute('data-key')))||locks.some(k=>{const locked=source.querySelector(`[data-key="${k}"]`);return locked?.contains(el);})};};
     const reviewHost={document,trigger,t:T,quality:StudioFigureQuality,planning:StudioFigurePlanning,language:()=>StudioI18n.language,identity:reviewIdentity,
       submissionAssessment:settings=>state().submissionProfile?StudioSubmissionProfiles.assess(state().submissionProfile,currentOutput(),settings):null,
+      onReviewComplete:()=>experienceTools?.journeyEvent('reviewed'),
       async capture(){
         if(previewSessions.active)throw Error(T('请先保留或取消当前预览，再检查已保存的图形。'));
         if(Object.keys(dataDrafts).length||dataBusy||axisBusy)throw Error(T('有未完成的数据或坐标轴计算，请完成后再检查。'));
@@ -6340,6 +6355,7 @@ if (typeof document !== 'undefined') (async () => {
       assertExportReady(panelId);if(project.id!==projectId||state()!==snapshot)throw Error(T('导出期间图形已更新，请重新导出'));
       if(await download(blob,filename)===false){if($('imageExportDialog').open)$('imageExportStatus').textContent=T('保存已取消');return;}
       const status=(format==='svg'?T('已导出可编辑 SVG。'):T('已导出 {0} × {1} px，{2} dpi；物理尺寸 {3} × {4} mm。',w,h,dpi,output.widthMm.toFixed(2),output.heightMm.toFixed(2)))+(notice?' '+notice:'');say(status);if($('imageExportDialog').open)$('imageExportStatus').textContent=status;
+      if(!panelId)experienceTools?.journeyEvent('exported');
     }finally{if(url)URL.revokeObjectURL(url);if(canvas){canvas.width=0;canvas.height=0;}exportBusy=false;refreshDataExport();updateImageExport(true);}
   }
   $('closeImageExport').onclick=()=>{if(!exportBusy)$('imageExportDialog').close();};

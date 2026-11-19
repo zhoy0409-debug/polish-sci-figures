@@ -34,7 +34,7 @@ skipHome.onclick=()=>{start.hidden=true;};
 assert.equal(guide.open,false,'The first-run guide is optional');
 doc.getElementById('startStudioGuide').click();
 assert.equal(guide.open,true);
-assert.equal(guide.querySelectorAll('[data-guide-topic]').length,6);
+assert.equal(guide.querySelectorAll('[data-guide-topic]').length,7);
 assert.match(guide.textContent,/Open & save a project/);
 doc.getElementById('skipStudioGuide').click();
 assert.equal(guide.open,false);

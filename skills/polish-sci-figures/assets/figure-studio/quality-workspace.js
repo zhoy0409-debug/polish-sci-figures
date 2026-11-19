@@ -12,6 +12,8 @@
     function field(label,value,min,max,step){const wrap=node('label',label),input=node('input');input.type='number';input.min=min;input.max=max;input.step=step;input.value=value;wrap.append(input);form.append(wrap);return input;}
     const font=field(t('最小字号（pt）','Minimum text (pt)'),8,4,36,.5),line=field(t('最小线宽（pt）','Minimum line (pt)'),.25,.1,3,.05);
     const scan=node('button',t('检查当前图形','Review current figure'),'primary'),exportReport=node('button',t('保存检查报告','Save report')),status=node('p','','quality-status');status.setAttribute('role','status');
+    scan.id='qualityScan';status.id='qualityStatus';
+    const firstFigureActions=node('div',null,'quality-first-figure-actions');firstFigureActions.id='qualityFirstFigureActions';firstFigureActions.hidden=true;
     const actions=node('div',null,'quality-actions');actions.append(scan,exportReport);exportReport.disabled=true;
     const results=node('div',null,'quality-results'),previewBar=node('div',null,'quality-preview-bar'),previewNote=node('span'),keep=node('button',t('保留修改','Keep edits'),'primary'),cancel=node('button',t('取消预览','Cancel preview'));
     const compare=node('button',t('对照修改前','Compare before edits')),collapsePreview=node('button',t('收起侧栏','Hide sidebar')),changes=node('details',null,'quality-preview-changes'),changeTitle=node('summary',t('具体改动','Changes')),changeList=node('ul');
@@ -41,7 +43,7 @@
     actions.insertBefore(previewClipboard,importPatch);
     collaboration.append(requestLabel,copyTask,pasteEdits,collabActions);
     const scientificReview=node('label'),scientificConfirmed=node('input');scientificReview.className='quality-scientific-review';scientificReview.hidden=true;scientificConfirmed.type='checkbox';scientificReview.append(scientificConfirmed,localText(t('已核对研究设计、图例、数据绑定和展示重点；同意本次修改。','I verified the design, legend, data binding and display purpose and agree to these edits.')));previewBar.prepend(scientificReview);scientificConfirmed.onchange=()=>keep.disabled=!scientificConfirmed.checked;
-    section.append(heading,note,form,actions,handoff,status,previewBar,results,layouts,collaboration);doc.body.append(section);
+    section.append(heading,note,form,actions,handoff,status,firstFigureActions,previewBar,results,layouts,collaboration);doc.body.append(section);
     if(host.planning){
       const planner=node('details'),summary=node('summary',t('把已有结果组织成组图','Plan a figure from existing results')),description=node('p',t('逐项说明已有小图要回答的问题。系统只安排已确认的结果，不补造实验或推断因果链。','Declare each existing panel’s question. Only confirmed results are arranged; no experiments or causal chain are invented.')),fields=node('div'),prepare=node('button',t('读取当前小图','Read current panels')),build=node('button',t('生成组图建议','Plan figure')),downloadPlan=node('button',t('保存结果规划','Save figure plan')),plans=node('div');build.disabled=true;downloadPlan.disabled=true;
       planner.append(summary,description,prepare,fields,build,downloadPlan,plans);section.append(planner);let inspection=null,bindings=null,inputs=[],planned=null;
@@ -100,7 +102,29 @@
       const list=node('ol');for(const issue of report.issues.slice(0,500)){const item=node('li'),code=node('strong',t(({ 'small-text':'字号偏小','outside-canvas':'超出画布','text-overlap':'文字可能重叠','text-contrast':'文字对比度偏低','thin-line':'线条偏细','text-clipped':'文字被裁切','stale-statistics':'统计记录已过期','invalid-interval':'置信区间无效'})[issue.code]||issue.code,issue.code.replaceAll('-',' '))),text=node('p',issueMessage(issue));item.append(code,text);if(issue.target){const locate=node('button',t('定位','Locate'));locate.onclick=()=>{if(!current(reportIdentity))return say(t('图形已变化，请重新检查','Figure changed. Run review again.'));host.locate(issue.target);};item.append(locate);if(issue.code==='small-text'&&issue.target.key){const fix=node('button',t('预览调整','Preview adjustment'));fix.onclick=()=>attempt(()=>{if(!current(reportIdentity))throw Error(t('图形已变化，请重新检查','Figure changed. Run review again.'));const planned=host.fixPlan([issue],report.profile);if(planned.skipped)throw Error(t('该对象已锁定或不支持安全字号调整','Object is locked or does not support safe text sizing'));preview(planned.next,t('字号预览','Text preview'));});item.append(fix);}}list.append(item);}results.append(list);if(report.issues.length>500)results.append(node('p',t('界面仅显示前 500 项，保存报告可查看全部结果。','First 500 shown. Save the report for all findings.')));
       const coverage=node('details'),summary=node('summary',t('已检查范围与无法核实项','Coverage and unverifiable checks'));coverage.open=report.coverage.some(c=>c.check==='统计与数据设计'&&c.status==='unverifiable');coverage.append(summary);for(const entry of report.coverage)coverage.append(node('p',coverageMessage(entry)));for(const [index,limit]of report.limitations.entries())coverage.append(node('p',t(limit,['Bounding-box screening does not certify pixel-level occlusion.','No specimen units, uncertainty definition, calibration or statistical model is inferred from an image.','This report is a snapshot. Review again after changing the figure or export size.'][index]||limit)));results.append(coverage);
     }
-    scan.onclick=()=>attempt(async()=>{cancelPreview();controller?.abort();controller=new AbortController();const signal=controller.signal,own=++ticket,before=identity();report=null;exportReport.disabled=true;results.replaceChildren();say(t('正在测量最终尺寸；仍可编辑画布…','Measuring final size; the canvas remains editable…'));let capture;try{const settings=host.quality.profile({minTextPt:font.valueAsNumber,minLinePt:line.valueAsNumber});capture=await host.capture();const measured=await host.quality.measure(capture.svg,{signal,panels:capture.panels});if(signal.aborted||own!==ticket)return;if(!current(before)){say(t('检查期间图形已变化，请重新检查。','Figure changed during review. Run it again.'));return;}say(t('正在本地后台检查结构与文字…','Checking geometry and text in a local background worker…'));report=await host.quality.inspectAsync(measured,settings,{signal});if(signal.aborted||own!==ticket)return;if(!current(before)){report=null;say(t('检查期间图形已变化，请重新检查。','Figure changed during review. Run it again.'));return;}if(host.submissionAssessment)report.submission=host.submissionAssessment(settings);reportIdentity=before;paint();exportReport.disabled=false;say(t('检查完成；定位与修改前请核对研究含义。','Review complete. Check scientific meaning before making edits.'));}finally{capture?.cleanup();}});
+    scan.onclick=()=>attempt(async()=>{
+      cancelPreview();controller?.abort();controller=new AbortController();
+      const signal=controller.signal,own=++ticket,before=identity();
+      const changed=()=>say(t('检查期间图形已变化，请重新检查。','Figure changed during review. Run it again.'));
+      report=null;exportReport.disabled=true;results.replaceChildren();
+      say(t('正在测量最终尺寸；仍可编辑画布…','Measuring final size; the canvas remains editable…'));
+      let capture;
+      try{
+        const settings=host.quality.profile({minTextPt:font.valueAsNumber,minLinePt:line.valueAsNumber});
+        capture=await host.capture();
+        const measured=await host.quality.measure(capture.svg,{signal,panels:capture.panels});
+        if(signal.aborted||own!==ticket)return;
+        if(!current(before))return changed();
+        say(t('正在本地后台检查结构与文字…','Checking geometry and text in a local background worker…'));
+        report=await host.quality.inspectAsync(measured,settings,{signal});
+        if(signal.aborted||own!==ticket)return;
+        if(!current(before)){report=null;return changed();}
+        if(host.submissionAssessment)report.submission=host.submissionAssessment(settings);
+        reportIdentity=before;paint();exportReport.disabled=false;
+        say(t('检查完成；定位与修改前请核对研究含义。','Review complete. Check scientific meaning before making edits.'));
+        host.onReviewComplete?.();
+      }finally{capture?.cleanup();}
+    });
     inspect.onclick=()=>attempt(async()=>{const value=await host.inspection();await host.download(value,'figure-studio-inspection.json');say(t('已导出本地清单，不含原图或测量数据表。','Local inspection exported without source images or measurement tables.'));});
     async function prepareTask(inline=false){
       const target=host.targetPanel(),before=identity(),scope=inline?host.taskScope():null;

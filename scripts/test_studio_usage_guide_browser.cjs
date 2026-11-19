@@ -26,7 +26,7 @@ async function main(){
     await page.locator('#startStudioGuide').waitFor();
     const initial=await H.save(page);
     await page.locator('#startStudioGuide').click();
-    assert.equal(await guide.locator('[data-guide-topic]').count(),6);
+    assert.equal(await guide.locator('[data-guide-topic]').count(),7);
     await guide.getByRole('button',{name:'跳过，直接编辑',exact:true}).click();
     assert.equal(await guide.isVisible(),false);
     assert.equal(await page.locator('#projectStart').isVisible(),false);
@@ -109,7 +109,7 @@ async function main(){
     await page.locator('#exportWidth').waitFor();
     await open('export');
     await step('export-menu');
-    assert.equal(await page.locator('#exportMenu').evaluate(menu=>menu.open),true);
+    await page.getByRole('button',{name:/SVG.*可编辑矢量/}).waitFor();
     await page.keyboard.press('Escape');
     const after=await H.save(page);
     assert.deepEqual(after.project.panels,before.project.panels);
@@ -145,7 +145,7 @@ async function main(){
 
     assert.deepEqual(errors,[]);
     assert.deepEqual(remote,[]);
-    const result={browser:browser.version(),route:'local-loopback',topics:6,firstRunSkip:true,
+    const result={browser:browser.version(),route:'local-loopback',topics:7,firstRunSkip:true,
       skipWhilePreviewing:true,projectUnchanged:true,selectionPreserved:true,compactWidths:[910,390],
       verifiedRoutes:['open','discovery','layout','align','rectify','handoff','clipboard','export-settings','export-menu','command-search']};
     fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(result,null,2));
