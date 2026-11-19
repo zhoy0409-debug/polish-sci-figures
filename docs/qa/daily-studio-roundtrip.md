@@ -17,6 +17,14 @@ Windows 上使用 Chrome 157 和本机绘图引擎。选用此前已做过配色
 
 文件导入、字体刷、可编辑图件剪贴板、尺寸适配、图号以及历史记录的定向回归通过。日常耗时来自一次本机运行，不能外推到其他设备、复杂大文件或外部 AI 宿主。
 
+## Windows 候选安装复测
+
+在 Windows x64 隔离安装分支 `codex/studio-daily-workflow` 的 `2b13f9b` 候选包。核对安装包 SHA-256、2,704 个安装文件及分支的编辑器资源。安装版启动自检通过，Chrome 通过其本地服务加载编辑器。
+
+- 先选 A，再选 B、C。预览将 B 的 23 pt 和 C 的 17 pt 统一为 A 的 13 pt，三者共用 A 的基线。取消恢复原值，确认后保存重开保留对齐，一次撤销恢复两处修改；A 及原项目文件保持原值。
+- 使用同一公开 Iris 工程复跑拖入、质检、局部任务交接、预览、确认、保存重开、导出和撤销。保留 150 条原观测、12 个候选版本及原手调。交接无需中间文件，粘贴到预览约 62 ms；SVG 和 PNG 均成功导出。
+- 测试后卸载候选。正式版本的注册信息和可执行文件校验值在安装前后相同。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。
