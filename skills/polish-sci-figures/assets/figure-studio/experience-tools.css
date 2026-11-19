@@ -44,9 +44,13 @@ body:has(#qualityWorkspace:not([hidden])) .first-figure-guide[data-stage=export]
 .first-figure-guide span{font-size:var(--fs-font-xs);color:var(--fs-text-secondary);line-height:1.45}
 .first-figure-actions{display:flex;flex:none;gap:var(--fs-space-2);flex-wrap:wrap}
 .first-figure-actions button{margin:0;white-space:normal}
+.first-figure-raster-pdf{flex-wrap:wrap}
+.first-figure-raster-pdf > :first-child{flex:1 1 20em}
+.first-figure-raster-pdf .first-figure-actions{max-width:100%}
 @media(max-width:750px){
   .first-figure-guide{align-items:flex-start;flex-direction:column}
   .first-figure-actions{flex:none}
+  .first-figure-raster-pdf > :first-child{flex:auto}
 }
 @media(max-width:600px){
   .usage-guide{padding:var(--fs-space-4)}

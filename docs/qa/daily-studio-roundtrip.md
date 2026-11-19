@@ -88,6 +88,14 @@ Windows x64 隔离安装 `3741649` 后分别在 1440×900 和 910×512 视口验
 
 安装包 SHA-256 为 `f2732fa0b5571a105d4179b210d377f7efe03a692adc46bfce6e5fdfba4b00ba`。
 
+### 多页扫描 PDF 添加标注
+
+用公开 Iris 图件生成三页无文字层的模拟扫描件。在 Windows 本机独立数据目录启动候选程序，分别以 1440×900 和 910×512 从首页打开向导并实际导入第 2 页。核对选页预览与画布上的图片一致，工程当前只含所选页。全程使用界面入口。
+
+修复前，向导只说明可以加标注，需要另进「标注与测量」和「插入文字、线条与形状」找到工具。修复后，导入的纯图片 PDF 在向导上直接显示「添加文字标注」和「调整整页显示」，明确整页图片和新标注的编辑范围。实测打开整页显示工具并取消，在画布上添加文字，再双击把它改成 `Review note 02`。双击原页标题未进入文字编辑。
+
+运行质检后，报告测得一段文字，来自新增标注。结果旁说明扫描图内部应看预览，PNG 会合成整页和标注，保存工程可继续改标注。实际下载并打开 PNG，核对页码及新增标注。存盘状态保留独立标注，源 PDF 和嵌入图片各自的校验值在编辑前后相同。另复测 PNG、混合 PDF 和 SVG 向导。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。

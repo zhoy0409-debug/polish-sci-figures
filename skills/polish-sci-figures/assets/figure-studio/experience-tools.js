@@ -196,8 +196,10 @@ const StudioExperienceTools=(()=>{
       const action=actions.find(item=>item.id==='colour-lines');
       if(action)launch(action);else host.edit();
     });
+    const journeyAnnotate=button('',()=>click('quickInsertText'));
+    journeyAnnotate.hidden=true;
     const journeyNext=button('',()=>nextInJourney()),journeySkip=button('',pauseJourney);
-    journeyNext.className='primary';journeyActions.append(journeyTool,journeyNext,journeySkip);journeyBar.append(journeyCopy,journeyActions);
+    journeyNext.className='primary';journeyActions.append(journeyAnnotate,journeyTool,journeyNext,journeySkip);journeyBar.append(journeyCopy,journeyActions);
     doc.getElementById('viewport')?.before(journeyBar);
     const reviewNext=button('',()=>openExportMenu(true));
     const reviewSize=button('',()=>openExportSettings(true));
@@ -248,8 +250,11 @@ const StudioExperienceTools=(()=>{
       journeyBar.dataset.stage=journey.stage;
       journeyBar.setAttribute('aria-label',t('首次编辑流程','First figure workflow'));
       const content=journey.content;
-      const raster=content?.kind==='raster',mixed=content?.kind==='mixed';
-      const exportHint=raster
+      const raster=content?.kind==='raster',mixed=content?.kind==='mixed',rasterPdf=!!content?.rasterPdf;
+      journeyBar.classList.toggle('first-figure-raster-pdf',rasterPdf&&journey.stage==='edit');
+      const exportHint=rasterPdf
+        ?t('质检可检查新加的标注。扫描图内细节请看预览。PNG 合成整页和标注，保存工程可继续改标注。','Review can check added annotations. Inspect details inside the scanned image in the preview. PNG combines the page and annotations. Save the project to keep the annotations editable.')
+        :raster
         ?t('核对尺寸和图内细节后可选 PNG。想继续排版可保存工程。','Check final dimensions and details, then choose PNG. Save the project to keep editing the layout.')
         :mixed
           ?t('SVG 保留可编辑内容，图片层仍是位图。需要整张图片时可选 PNG。','SVG retains editable objects. Image layers stay raster. Choose PNG for a single image.')
@@ -258,8 +263,8 @@ const StudioExperienceTools=(()=>{
       reviewFormat.textContent=exportHint;
       const editHints=[];
       if(raster){
-        editHints.push(content.pageAppearance
-          ?t('本页已按整页图片导入。可调整整页显示或另加标注，图内文字和线条不能单独改。','This page was imported as a single image. Adjust its display or add annotations. Text and lines inside the image cannot be edited separately.')
+        editHints.push(rasterPdf
+          ?t('本页是一张图片，可调整整页显示。图内文字和线条不能单独改，新加的标注可单独编辑。','This page is one image. You can adjust the whole page. Its internal text and lines cannot be edited separately. New annotations are editable.')
           :t('可调整整张图片的显示或另加标注。图内文字和线条不能单独改。','Adjust the whole image or add annotations. Text and lines inside the image cannot be edited separately.'));
       }else if(content){
         if(content.text)editHints.push(t('双击画布上的可编辑文字，输入后按 Enter 确认。','Double-click editable text on the canvas, then press Enter to keep the change.'));
@@ -278,8 +283,12 @@ const StudioExperienceTools=(()=>{
       const [title,hint,next]=stages[journey.stage];
       journeyTitle.textContent=title;journeyHint.textContent=hint;journeyNext.textContent=next;
       const editTool=journey.stage==='edit'&&(raster||(!content?.text&&!!content?.vector));
+      journeyAnnotate.hidden=journey.stage!=='edit'||!rasterPdf;
+      journeyAnnotate.textContent=t('添加文字标注','Add text annotation');
       journeyTool.hidden=!editTool&&journey.stage!=='export';
-      journeyTool.textContent=editTool?(raster?t('打开图片显示','Open image display'):t('打开颜色工具','Open colour tools')):t('导出尺寸','Export dimensions');
+      journeyTool.textContent=editTool
+        ?(rasterPdf?t('调整整页显示','Adjust page display'):raster?t('打开图片显示','Open image display'):t('打开颜色工具','Open colour tools'))
+        :t('导出尺寸','Export dimensions');
       journeySkip.textContent=t('跳过，直接编辑','Skip to editing');journeySkip.hidden=journey.stage==='done';
     }
     function startJourney(){

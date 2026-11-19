@@ -5621,8 +5621,9 @@ if (typeof document !== 'undefined') (async () => {
       if(session.applied&&project.id===session.projectId&&history===session.history)experienceTools?.journeyEvent('imported',()=>{
         const variant=state().panels[selectedPanel].variant;
         const content=classifySvgContent(baseSvg(selectedPanel,variant));
-        if(panel(selectedPanel)?.analysis?.import?.warningCodes?.includes('page_appearance'))
-          return {...content,kind:'raster',pageAppearance:true};
+        const imported=panel(selectedPanel)?.analysis?.import;
+        if(imported?.format==='pdf'&&(content.kind==='raster'||imported.warningCodes?.includes('page_appearance')))
+          return {...content,kind:'raster',rasterPdf:true};
         return content;
       });
       if(project.id===session.projectId&&history===session.history){const ids=state().order.filter(id=>dataDrafts[id]);if(ids.length){clearTimeout(dataTimer);fileImportDataRefresh={projectId:session.projectId,history:session.history,ids,pending:[...ids]};resumeImportedDataRefresh();}}
