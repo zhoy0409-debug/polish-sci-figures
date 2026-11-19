@@ -133,13 +133,98 @@ async function reopenAndCheckHistory(browser,url,viewport,out,savedPath,saved,sc
   }
 }
 
+async function editPreviouslyUndoneProject(browser,url,viewport,out,previousPath){
+  const input=fs.readFileSync(previousPath),previous=JSON.parse(input);
+  const original=previous.state.overlays[0],baseIndex=previous.history.index;
+  const discarded=previous.history.states[baseIndex+1].overlays[0].text;
+  const replacement='New annotation 02';
+  assert.equal(activeAsset(previous).analysis.import.page,2);
+  assert.equal(previous.state.order.length,1);
+  assert.equal(original.text,'Review note 02');
+  assert.equal(discarded,'Second note 02');
+  const newPath=path.join(out,'scan-page-02-new-annotation.json');
+  const first=await H.browserPage(browser,{viewport});
+  let saved,scanHash;
+  try{
+    const opened=await openProject(first.page,url,previousPath);
+    const image=first.page.locator('#artboard svg[data-panel] image');
+    const annotation=first.page.locator('#artboard [data-annotation] text');
+    const redo=first.page.getByRole('button',{name:/^重做/});
+    scanHash=await imageHash(image);
+    await verifyRestored(first.page,opened,previous,scanHash);
+    assert.deepEqual(opened.history,previous.history);
+    assert.equal(await redo.isEnabled(),true);
+    await first.page.screenshot({path:path.join(out,'01-previous-undo-project-opened.png')});
+
+    await editAnnotation(first.page,annotation,replacement);
+    assert.equal(await redo.isDisabled(),true,'A new annotation edit must clear the old redo immediately');
+    saved=await saveProjectFile(first.page,newPath);
+    assert.equal(saved.history.index,baseIndex+1);
+    assert.deepEqual(saved.history.states,[...previous.history.states.slice(0,baseIndex+1),saved.state]);
+    assert.equal(saved.state.overlays[0].text,replacement);
+    assert(!saved.history.states.some(state=>state.overlays?.some(note=>note.text===discarded)));
+    const expected=structuredClone(previous);
+    Object.assign(expected.state.overlays[0],{text:replacement,richText:saved.state.overlays[0].richText});
+    await verifyRestored(first.page,saved,expected,scanHash);
+    assert.deepEqual(first.errors,[]);
+    assert.deepEqual(first.remote,[]);
+    await first.page.screenshot({path:path.join(out,'02-new-annotation-saved.png')});
+  }catch(error){
+    await first.page.screenshot({path:path.join(out,'new-edit-stopped.png')}).catch(()=>{});
+    throw error;
+  }finally{
+    await first.context.close();
+  }
+
+  const second=await H.browserPage(browser,{viewport});
+  try{
+    const reopened=await openProject(second.page,url,newPath);
+    await verifyRestored(second.page,reopened,saved,scanHash);
+    assert.deepEqual(reopened.history,saved.history);
+    const redo=second.page.getByRole('button',{name:/^重做/});
+    assert.equal(await redo.isDisabled(),true,'The discarded redo must stay unavailable after reopening');
+    await second.page.screenshot({path:path.join(out,'03-new-project-reopened.png')});
+
+    await second.page.getByRole('button',{name:/^撤销/}).click();
+    const undone=await H.save(second.page);
+    await verifyRestored(second.page,undone,previous,scanHash);
+    assert.deepEqual(undone.history,{...saved.history,index:baseIndex});
+    assert.equal(undone.history.states[baseIndex+1].overlays[0].text,replacement);
+    assert.equal(await redo.isEnabled(),true);
+    assert.equal(H.sha(fs.readFileSync(previousPath)),H.sha(input));
+    assert.deepEqual(second.errors,[]);
+    assert.deepEqual(second.remote,[]);
+    await second.page.screenshot({path:path.join(out,'04-after-undo-new-annotation.png')});
+    return {inputProjectSha256:H.sha(input),page:2,originalText:original.text,discardedRedoText:discarded,newText:replacement,
+      indexBeforeEdit:baseIndex,indexAfterReopen:reopened.history.index,indexAfterUndo:undone.history.index,
+      oldRedoCleared:true,historyPersisted:true,onlyNewEditUndone:true};
+  }catch(error){
+    await second.page.screenshot({path:path.join(out,'new-project-reopen-stopped.png')}).catch(()=>{});
+    throw error;
+  }finally{
+    await second.context.close();
+  }
+}
+
 async function main(){
-  const [url,source,output,width='1440']=process.argv.slice(2);
-  assert(url&&source&&output,'Usage: node scripts/test_studio_scanned_pdf_guide_browser.cjs LOCAL_URL THREE_PAGE_SCAN_PDF OUTPUT [WIDTH]');
+  const [url,source,output,width='1440',previousProject]=process.argv.slice(2);
+  assert(url&&source&&output,'Usage: node scripts/test_studio_scanned_pdf_guide_browser.cjs LOCAL_URL THREE_PAGE_SCAN_PDF OUTPUT [WIDTH] [SAVED_UNDONE_PROJECT]');
   const viewport={width:Number(width),height:width==='910'?512:900};
   const out=path.resolve(output),sha=H.sha(fs.readFileSync(source));
   fs.mkdirSync(out,{recursive:true});
   const browser=await chromium.launch({channel:'chrome'});
+  if(previousProject){
+    try{
+      const branch=await editPreviouslyUndoneProject(browser,url,viewport,out,path.resolve(previousProject));
+      assert.equal(H.sha(fs.readFileSync(source)),sha);
+      const notes={viewport,sourceSha256:sha,branch,completed:true};
+      fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(notes,null,2));
+      console.log(JSON.stringify(notes));
+    }finally{
+      await browser.close();
+    }
+    return;
+  }
   const {context,page,errors,remote}=await H.browserPage(browser,{viewport});
   const workflow=page.getByRole('region',{name:'首次编辑流程',exact:true});
   const review=page.getByRole('complementary',{name:'图形质检与协作',exact:true});

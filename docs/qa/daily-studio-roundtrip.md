@@ -122,6 +122,12 @@ Windows x64 隔离安装 `3741649` 后分别在 1440×900 和 910×512 视口验
 
 关闭会话，在全新会话打开撤销后保存的文件。第 2 页底图、标注位置样式和撤销历史均恢复，画布仍显示 `Review note 02`。此时点一次「重做」恢复 `Second note 02`，历史索引从 4 到 5，底图保持一致。另将重做结果保存并重开，确认同一修改和完整历史可继续保留。测试候选已卸载，正式版注册记录及程序校验一致。
 
+#### 扫描 PDF 撤销后直接修改标注
+
+在同一 Windows 候选版 `e1d2819` 上，以 1440×900 和 910×512 分别打开上一轮撤销后直接保存的原工程文件。两份文件均来自同一份三页 PDF 的第 2 页，画布显示 `Review note 02`，待重做的是 `Second note 02`。直接把标注改为 `New annotation 02`，没有点重做。旧修改从历史移除，按钮立即变为不可用，早先的历史记录均保留。
+
+将新修改保存为另一个文件，在全新会话打开。第 2 页底图、标注位置和样式均保持一致，新标注和更新后的历史正确恢复。点一次撤销，文字回到 `Review note 02`，历史索引从 5 回到 4。此时唯一可重做的是 `New annotation 02`。上一轮原工程文件校验值一致。测试候选已卸载，正式版注册记录及程序校验一致。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。
