@@ -16,35 +16,48 @@ async function editAnnotation(page,annotation,text){
   await annotation.getByText(text,{exact:true}).waitFor();
 }
 
-async function reopenAndUndo(browser,url,viewport,out,savedPath,saved,scanHash){
+async function openProject(page,url,projectPath){
+  page.setDefaultTimeout(10000);
+  await page.goto(H.localUrl(url));
+  const open=page.locator('#projectStart').getByRole('button',{name:'打开工程',exact:true});
+  const [picker]=await Promise.all([page.waitForEvent('filechooser'),open.click()]);
+  await picker.setFiles(projectPath);
+  await page.getByText('工程已恢复',{exact:true}).waitFor();
+  return H.save(page);
+}
+
+async function saveProjectFile(page,projectPath){
+  const save=page.getByRole('button',{name:'保存',exact:true});
+  const [download]=await Promise.all([page.waitForEvent('download'),save.click()]);
+  await download.saveAs(projectPath);
+  return JSON.parse(fs.readFileSync(projectPath,'utf8'));
+}
+
+async function verifyRestored(page,snapshot,expected,scanHash){
+  assert.deepEqual(snapshot.state,expected.state,'The saved page and annotation must be restored exactly');
+  assert.equal(snapshot.project.id,expected.project.id);
+  assert.deepEqual(activeAsset(snapshot),activeAsset(expected),'The imported PDF page and its metadata must be preserved');
+  assert.equal(await imageHash(page.locator('#artboard svg[data-panel] image')),scanHash);
+  await page.locator('#artboard [data-annotation] text').getByText(expected.state.overlays[0].text,{exact:true}).waitFor();
+}
+
+async function reopenAndCheckHistory(browser,url,viewport,out,savedPath,saved,scanHash){
   const {context,page,errors,remote}=await H.browserPage(browser,{viewport});
   const original=saved.state.overlays[0],updatedText='Second note 02';
   const scan=page.locator('#artboard svg[data-panel] image');
   const annotation=page.locator('#artboard [data-annotation] text');
   const shot=name=>page.screenshot({path:path.join(out,name+'.png')});
   const backupHash=H.sha(fs.readFileSync(savedPath));
-  const verifyRestored=async snapshot=>{
-    assert.deepEqual(snapshot.state,saved.state,'The saved page and annotation must be restored exactly');
-    assert.equal(snapshot.project.id,saved.project.id);
-    assert.deepEqual(activeAsset(snapshot),activeAsset(saved),'The imported PDF page and its metadata must be preserved');
-    assert.equal(await imageHash(scan),scanHash);
-    await annotation.getByText(original.text,{exact:true}).waitFor();
-  };
-  page.setDefaultTimeout(10000);
   try{
-    await page.goto(H.localUrl(url));
-    const open=page.locator('#projectStart').getByRole('button',{name:'打开工程',exact:true});
-    const [picker]=await Promise.all([page.waitForEvent('filechooser'),open.click()]);
-    await picker.setFiles(savedPath);
-    await page.getByText('工程已恢复',{exact:true}).waitFor();
-    const reopened=await H.save(page);
-    await verifyRestored(reopened);
+    const reopened=await openProject(page,url,savedPath);
+    await verifyRestored(page,reopened,saved,scanHash);
     assert.deepEqual(reopened.history,saved.history,'Reopening must restore the existing undo history');
     await shot('05-project-reopened');
 
     await editAnnotation(page,annotation,updatedText);
     const edited=await H.save(page);
     assert.equal(edited.history.index,reopened.history.index+1);
+    assert.deepEqual(edited.history.states.slice(0,edited.history.index),reopened.history.states.slice(0,reopened.history.index+1));
     assert.equal(edited.state.overlays[0].text,updatedText);
     const stateWithoutNewText=structuredClone(edited.state);
     Object.assign(stateWithoutNewText.overlays[0],{text:original.text,richText:original.richText});
@@ -54,15 +67,42 @@ async function reopenAndUndo(browser,url,viewport,out,savedPath,saved,scanHash){
 
     await page.getByRole('button',{name:/^撤销/}).click();
     const undone=await H.save(page);
-    await verifyRestored(undone);
+    await verifyRestored(page,undone,reopened,scanHash);
     assert.equal(undone.history.index,reopened.history.index);
     assert.deepEqual(undone.history,{...edited.history,index:reopened.history.index},'Undo must move back exactly one step and preserve the history');
-    assert.equal(H.sha(fs.readFileSync(savedPath)),backupHash);
+    await shot('07-after-one-undo');
+
+    await page.getByRole('button',{name:/^重做/}).click();
+    const redoPath=path.join(out,'scan-page-02-after-redo.json');
+    const redone=await saveProjectFile(page,redoPath);
+    await verifyRestored(page,redone,edited,scanHash);
+    assert.deepEqual(redone.history,edited.history,'Redo must reapply exactly the one undone edit');
+    await shot('08-after-one-redo');
     assert.deepEqual(errors,[]);
     assert.deepEqual(remote,[]);
-    await shot('07-after-one-undo');
-    return {reopened:true,indexOnReopen:reopened.history.index,indexAfterEdit:edited.history.index,indexAfterUndo:undone.history.index,
-      originalText:original.text,editedText:updatedText,restoredText:undone.state.overlays[0].text,onlyLatestEditUndone:true};
+    await context.close();
+
+    const proof=await H.browserPage(browser,{viewport});
+    try{
+      const final=await openProject(proof.page,url,redoPath);
+      await verifyRestored(proof.page,final,redone,scanHash);
+      assert.deepEqual(final.history,redone.history,'The second reopen must restore the full redo state and undo history');
+      assert.equal(await proof.page.getByRole('button',{name:/^撤销/}).isEnabled(),true);
+      assert.equal(await proof.page.getByRole('button',{name:/^重做/}).isDisabled(),true);
+      assert.equal(H.sha(fs.readFileSync(savedPath)),backupHash);
+      assert.deepEqual(proof.errors,[]);
+      assert.deepEqual(proof.remote,[]);
+      await proof.page.screenshot({path:path.join(out,'09-redone-project-reopened.png')});
+      return {reopened:true,indexOnReopen:reopened.history.index,indexAfterEdit:edited.history.index,indexAfterUndo:undone.history.index,
+        indexAfterRedo:redone.history.index,indexAfterReopeningRedo:final.history.index,originalText:original.text,editedText:updatedText,
+        restoredText:undone.state.overlays[0].text,persistedRedoText:final.state.overlays[0].text,onlyLatestEditUndone:true,
+        onlyLatestEditRedone:true,redoAndHistoryPersisted:true};
+    }catch(error){
+      await proof.page.screenshot({path:path.join(out,'redo-reopen-stopped.png')}).catch(()=>{});
+      throw error;
+    }finally{
+      await proof.context.close();
+    }
   }catch(error){
     await shot('roundtrip-stopped').catch(()=>{});
     throw error;
@@ -172,10 +212,8 @@ async function main(){
     assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
     assert(bytes.readUInt32BE(16)>0&&bytes.readUInt32BE(20)>0);
     await workflow.getByText('图形已导出',{exact:true}).waitFor();
-    const [projectDownload]=await Promise.all([page.waitForEvent('download'),click('保存')]);
     const savedPath=path.join(out,'scan-page-02-project.json');
-    await projectDownload.saveAs(savedPath);
-    const saved=JSON.parse(fs.readFileSync(savedPath,'utf8'));
+    const saved=await saveProjectFile(page,savedPath);
     assert.equal(saved.state.order.length,1);
     const asset=activeAsset(saved);
     assert.equal(asset.analysis.import.page,2);
@@ -186,7 +224,7 @@ async function main(){
     assert.deepEqual(errors,[]);
     assert.deepEqual(remote,[]);
     await context.close();
-    const roundtrip=await reopenAndUndo(browser,url,viewport,out,savedPath,saved,second);
+    const roundtrip=await reopenAndCheckHistory(browser,url,viewport,out,savedPath,saved,second);
     assert.equal(H.sha(fs.readFileSync(source)),sha);
     Object.assign(notes,{importedPage:2,pageCount:3,annotationReedited:true,rasterUnchanged:true,oneClickSkipPreservedState:true,resumedAtEdit:true,measuredTexts:report.summary.texts,pngExported:true,usedFunctionSearch:false,roundtrip,completed:true});
   }catch(error){
