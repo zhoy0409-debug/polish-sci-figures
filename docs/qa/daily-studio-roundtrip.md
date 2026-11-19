@@ -56,6 +56,14 @@ Windows 上使用 Chrome 157 和本机绘图引擎。选用此前已做过配色
 
 复测了 A 参照对齐 B/C、公开 Iris 的图内文字调整与 SVG/PNG 导出。此前从 ChatGPT 和 Claude 网页实际复制的回复分别在安装版重跑预览、一次撤销和保存重开。候选已卸载，正式版注册和可执行文件校验值一致。安装包 SHA-256 为 `52ea00cf2407882c8ff3494916210b2d52b891dd34564d7bb21ee188c7848bb5`。
 
+### 使用向导与一键跳过
+
+向导默认关闭，可从空白首页、顶部向导菜单或功能检索打开。六类任务为打开与保存工程、从数据作图、组图与图号、处理科研图片、AI 精修和质检与导出。步骤按钮打开现有工具或将焦点移到对应控件。
+
+Windows x64 隔离安装 `0b8a5db` 后，Chrome 验证了首页与向导中的一键跳过，以及 910 和 390 像素视口下的打开和退出。使用公开 Iris 验证了打开工程、智能选图、排版、图号对齐、图片矫正入口、AI 任务、剪贴板预览、导出设置和导出菜单。预览中点跳过或按 Esc，仍可继续同一次预览，保存的工程和历史校验一致。
+
+候选同时通过图号对齐、Iris 导出及此前两家真实回复的回放。候选测试后已卸载，正式版校验一致。安装包 SHA-256 为 `f312d04222a10d9976c8ab8dfa970bb06d24812d68e02cec0e18f2db78f52ea2`。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。
