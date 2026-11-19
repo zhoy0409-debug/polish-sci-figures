@@ -21,12 +21,14 @@
     const layoutActions=node('div',null,'quality-actions');layouts.append(layoutTitle,layoutNote,layoutActions);
     for(const [id,zh,english]of [['balanced','均衡','Balanced'],['portrait','纵向','Portrait'],['focus','重点大图','Focus']]){const b=node('button',t(zh,english));b.type='button';b.onclick=()=>attempt(()=>preview(host.layoutPlan(id),t('排版预览','Layout preview')));layoutActions.append(b);}
     const collaboration=node('details'),collabTitle=node('summary',t('与 Skill 协作','Skill collaboration')),collabNote=node('p',t('复制任务后，粘贴到你的 AI 对话；将返回的 JSON 粘回这里预览。','Copy the task into your AI chat, then paste its JSON reply here to preview.'));
+    collaboration.id='qualityCollaboration';
     const collabActions=node('div',null,'quality-actions'),inspect=node('button',t('导出检查清单','Export inspection')),importPatch=node('button',t('预览 AI 修改','Preview AI edits')),patchFile=node('input');patchFile.type='file';patchFile.accept='.json,application/json';patchFile.hidden=true;collabActions.append(inspect);actions.append(importPatch,patchFile);collaboration.append(collabTitle,collabNote);
     const askAI=node('button',t('请 AI 检查当前图','Ask AI to review this figure'));
     const previewClipboard=node('button',t('从剪贴板预览','Preview from clipboard'));
+    previewClipboard.id='qualityPreviewClipboard';
     const copyTask=node('button',t('复制局部 Skill 任务（含图中文字）','Copy scoped Skill task with figure text'));
     const editRequest=node('textarea',null,'quality-request'),requestLabel=node('label',t('这次想改什么？','What should change?'));
-    editRequest.rows=2;editRequest.maxLength=1000;requestLabel.append(editRequest);
+    editRequest.id='qualityEditRequest';editRequest.rows=2;editRequest.maxLength=1000;requestLabel.append(editRequest);
     const pasteEdits=node('details',null,'quality-paste'),pasteTitle=node('summary',t('粘贴 Skill 修改','Paste Skill edits')),pasted=node('textarea'),previewPasted=node('button',t('预览粘贴的修改','Preview pasted edits')),recopy=node('button');
     pasted.rows=4;pasteTitle.id='pasteSkillEdits';pasted.setAttribute('aria-labelledby',pasteTitle.id);
     recopy.hidden=true;pasteEdits.append(pasteTitle,pasted,previewPasted,recopy);

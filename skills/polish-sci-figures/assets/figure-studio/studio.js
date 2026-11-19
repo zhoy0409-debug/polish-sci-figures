@@ -1066,6 +1066,7 @@ if (typeof document !== 'undefined') (async () => {
   function refreshLivePreviews(){previewSessions?.sync();objectBordersUI?.refresh();syncScaleControls();const status=$('scaleStatus');if(status){const warning=$('artboard').querySelector(`svg[data-panel="${selectedPanel}"][data-scale-warning]`);status.hidden=!warning;status.textContent=warning?T('比例尺已保留在工程中，但当前无法可靠绘制；请检查标定与裁剪。'):'';}}
   document.addEventListener('keydown',event=>{
     if(event.key!=='Escape'||event.isComposing||event.keyCode===229||typeof activeInputCompositions!=='undefined'&&(activeInputCompositions.has(event.target)||activeInputCompositions.has(document.activeElement))||!previewSessions?.active)return;
+    if($('studioUsageGuide')?.open)return;
     event.preventDefault();event.stopImmediatePropagation();
     if(previewSessions.active.kind==='object-borders')objectBordersUI?.cancel('escape');
     else if(previewSessions.active.kind==='axes')professionalAxesUI?.cancel('escape');
@@ -1147,6 +1148,27 @@ if (typeof document !== 'undefined') (async () => {
       axes:()=>typeof openProfessionalAxes==='function'?openProfessionalAxes():showPane('detail'),
       export:()=>{$('exportOptions').open=true;$('exportOptions').scrollIntoView({block:'nearest'});if(!experienceTools?.workbench)$('exportMenu').open=true;},
       review:()=>{const box=$('qualityWorkspace');if(box?.hidden!==false)$('openQualityWorkspace')?.click();else box.querySelector('input')?.focus();},
+      guideHandoff:destination=>{
+        if($('qualityWorkspace')?.hidden)$('openQualityWorkspace')?.click();
+        const collaboration=$('qualityCollaboration');
+        if(!collaboration)return;
+        if(destination==='request')collaboration.open=true;
+        $(destination==='request'?'qualityEditRequest':'qualityPreviewClipboard')?.focus();
+      },
+      guideAlignment:()=>{
+        mobileWorkspace?.showTab('canvas');
+        const viewport=$('viewport'),toggle=$('quickAlignmentToggle');
+        if(selectedLabelIds().length<2||!toggle||toggle.disabled){
+          if(!viewport.hasAttribute('tabindex'))viewport.tabIndex=-1;
+          viewport.focus();
+          say(language()==='en'?'Select the reference label first. Shift-click the other labels, then open Align objects.':'先选择参照图号，再按住 Shift 点选其他图号，然后打开「对象对齐」。');
+          return;
+        }
+        const overflow=$('drawerQuickMenu'),more=$('drawerQuickMore');
+        if(overflow?.contains(toggle)&&more?.getAttribute('aria-expanded')==='false')more.click();
+        toggle.focus();
+        if(toggle.getAttribute('aria-expanded')!=='true')toggle.click();
+      },
       submissionProfiles:()=>{$('exportOptions').open=true;const box=$('submissionProfiles');if(box?.hidden!==false)$('openSubmissionProfiles')?.click();else $('submission-name')?.focus();},
       borders:()=>objectBordersUI?.open(),duplicates:scope=>duplicateCheck?.open?.(scope),color,rectify,
       links:()=>{showPane('detail');imageLinks?.open();},inset:()=>{showPane('detail');const choice=insetSelection();if(choice.source)imageInsets?.startROI(choice.source,choice.inset?.id,2);else say(StudioI18n.language==='en'?'Select a source image first.':'请先选中原图。');}
