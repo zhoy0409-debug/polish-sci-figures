@@ -104,6 +104,12 @@ Windows x64 隔离安装 `3741649` 后分别在 1440×900 和 910×512 视口验
 
 安装包 SHA-256 为 `a592882c2345783d0dfae9ea84b64428d7afe9ea68d0c57db11395e059f8cfe6`。
 
+#### 扫描 PDF 工程保存重开与一次撤销
+
+重新隔离安装同一候选包，复用同一份三页 PDF。在 1440×900 和 910×512 都从首页导入第 2 页并添加标注，点击「保存」下载工程。关闭原浏览器会话，在全新会话从首页「打开工程」选择实际下载的文件。第 2 页的图片及导入信息、标注内容及位置样式、完整撤销历史均与保存时一致。
+
+重开后仅把 `Review note 02` 改为 `Second note 02`。历史索引从 4 变为 5，点一次「撤销」后回到 4。标注恢复为 `Review note 02`，工程状态和底图与刚重开时一致。源 PDF 和保存的工程文件校验一致。测试候选已卸载，正式版的注册记录及程序校验一致。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。

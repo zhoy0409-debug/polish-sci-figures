@@ -4,6 +4,73 @@ const {chromium}=require('playwright');
 const H=require('./test_studio_carbon_helpers.cjs');
 const {assert,fs,path}=H;
 
+const imageHash=async image=>H.sha(await image.evaluate(node=>node.getAttribute('href')||node.getAttribute('xlink:href')));
+const activeAsset=snapshot=>snapshot.project.panels.find(panel=>panel.id===snapshot.state.order[0]);
+
+async function editAnnotation(page,annotation,text){
+  const box=await annotation.boundingBox();
+  await page.mouse.dblclick(box.x+box.width*.5,box.y+box.height*.5);
+  const editor=page.getByRole('textbox',{name:'画布文字编辑',exact:true});
+  await editor.fill(text);
+  await editor.press('Enter');
+  await annotation.getByText(text,{exact:true}).waitFor();
+}
+
+async function reopenAndUndo(browser,url,viewport,out,savedPath,saved,scanHash){
+  const {context,page,errors,remote}=await H.browserPage(browser,{viewport});
+  const original=saved.state.overlays[0],updatedText='Second note 02';
+  const scan=page.locator('#artboard svg[data-panel] image');
+  const annotation=page.locator('#artboard [data-annotation] text');
+  const shot=name=>page.screenshot({path:path.join(out,name+'.png')});
+  const backupHash=H.sha(fs.readFileSync(savedPath));
+  const verifyRestored=async snapshot=>{
+    assert.deepEqual(snapshot.state,saved.state,'The saved page and annotation must be restored exactly');
+    assert.equal(snapshot.project.id,saved.project.id);
+    assert.deepEqual(activeAsset(snapshot),activeAsset(saved),'The imported PDF page and its metadata must be preserved');
+    assert.equal(await imageHash(scan),scanHash);
+    await annotation.getByText(original.text,{exact:true}).waitFor();
+  };
+  page.setDefaultTimeout(10000);
+  try{
+    await page.goto(H.localUrl(url));
+    const open=page.locator('#projectStart').getByRole('button',{name:'打开工程',exact:true});
+    const [picker]=await Promise.all([page.waitForEvent('filechooser'),open.click()]);
+    await picker.setFiles(savedPath);
+    await page.getByText('工程已恢复',{exact:true}).waitFor();
+    const reopened=await H.save(page);
+    await verifyRestored(reopened);
+    assert.deepEqual(reopened.history,saved.history,'Reopening must restore the existing undo history');
+    await shot('05-project-reopened');
+
+    await editAnnotation(page,annotation,updatedText);
+    const edited=await H.save(page);
+    assert.equal(edited.history.index,reopened.history.index+1);
+    assert.equal(edited.state.overlays[0].text,updatedText);
+    const stateWithoutNewText=structuredClone(edited.state);
+    Object.assign(stateWithoutNewText.overlays[0],{text:original.text,richText:original.richText});
+    assert.deepEqual(stateWithoutNewText,reopened.state,'The new edit may only change the annotation text');
+    assert.equal(await imageHash(scan),scanHash);
+    await shot('06-annotation-changed-after-reopen');
+
+    await page.getByRole('button',{name:/^撤销/}).click();
+    const undone=await H.save(page);
+    await verifyRestored(undone);
+    assert.equal(undone.history.index,reopened.history.index);
+    assert.deepEqual(undone.history,{...edited.history,index:reopened.history.index},'Undo must move back exactly one step and preserve the history');
+    assert.equal(H.sha(fs.readFileSync(savedPath)),backupHash);
+    assert.deepEqual(errors,[]);
+    assert.deepEqual(remote,[]);
+    await shot('07-after-one-undo');
+    return {reopened:true,indexOnReopen:reopened.history.index,indexAfterEdit:edited.history.index,indexAfterUndo:undone.history.index,
+      originalText:original.text,editedText:updatedText,restoredText:undone.state.overlays[0].text,onlyLatestEditUndone:true};
+  }catch(error){
+    await shot('roundtrip-stopped').catch(()=>{});
+    throw error;
+  }finally{
+    await context.close();
+  }
+}
+
 async function main(){
   const [url,source,output,width='1440']=process.argv.slice(2);
   assert(url&&source&&output,'Usage: node scripts/test_studio_scanned_pdf_guide_browser.cjs LOCAL_URL THREE_PAGE_SCAN_PDF OUTPUT [WIDTH]');
@@ -16,7 +83,6 @@ async function main(){
   const review=page.getByRole('complementary',{name:'图形质检与协作',exact:true});
   const click=(name,scope=page)=>scope.getByRole('button',{name,exact:true}).click();
   const shot=name=>page.screenshot({path:path.join(out,name+'.png')});
-  const imageHash=async image=>H.sha(await image.evaluate(node=>node.getAttribute('href')||node.getAttribute('xlink:href')));
   const notes={viewport,sourceSha256:sha};
   page.setDefaultTimeout(10000);
   try{
@@ -66,12 +132,7 @@ async function main(){
     await editor.press('Enter');
     const annotation=page.locator('#artboard [data-annotation] text');
     await annotation.getByText('Scan note 02',{exact:true}).waitFor();
-    const noteBox=await annotation.boundingBox();
-    await page.mouse.dblclick(noteBox.x+noteBox.width*.5,noteBox.y+noteBox.height*.5);
-    await editor.waitFor();
-    await editor.fill('Review note 02');
-    await editor.press('Enter');
-    await annotation.getByText('Review note 02',{exact:true}).waitFor();
+    await editAnnotation(page,annotation,'Review note 02');
     await shot('03-annotation-edited');
     assert.equal(await imageHash(raster),second);
 
@@ -111,18 +172,23 @@ async function main(){
     assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
     assert(bytes.readUInt32BE(16)>0&&bytes.readUInt32BE(20)>0);
     await workflow.getByText('图形已导出',{exact:true}).waitFor();
-    const saved=await H.save(page);
+    const [projectDownload]=await Promise.all([page.waitForEvent('download'),click('保存')]);
+    const savedPath=path.join(out,'scan-page-02-project.json');
+    await projectDownload.saveAs(savedPath);
+    const saved=JSON.parse(fs.readFileSync(savedPath,'utf8'));
     assert.equal(saved.state.order.length,1);
-    const asset=saved.project.panels.find(panel=>panel.id===saved.state.order[0]);
+    const asset=activeAsset(saved);
     assert.equal(asset.analysis.import.page,2);
     assert.ok(asset.analysis.import.warningCodes.includes('image_only'));
     assert.equal(saved.state.overlays.length,1);
     assert.equal(saved.state.overlays[0].text,'Review note 02');
     assert.equal(await imageHash(raster),second);
-    assert.equal(H.sha(fs.readFileSync(source)),sha);
     assert.deepEqual(errors,[]);
     assert.deepEqual(remote,[]);
-    Object.assign(notes,{importedPage:2,pageCount:3,annotationReedited:true,rasterUnchanged:true,oneClickSkipPreservedState:true,resumedAtEdit:true,measuredTexts:report.summary.texts,pngExported:true,usedFunctionSearch:false,completed:true});
+    await context.close();
+    const roundtrip=await reopenAndUndo(browser,url,viewport,out,savedPath,saved,second);
+    assert.equal(H.sha(fs.readFileSync(source)),sha);
+    Object.assign(notes,{importedPage:2,pageCount:3,annotationReedited:true,rasterUnchanged:true,oneClickSkipPreservedState:true,resumedAtEdit:true,measuredTexts:report.summary.texts,pngExported:true,usedFunctionSearch:false,roundtrip,completed:true});
   }catch(error){
     await shot('stopped').catch(()=>{});
     throw error;
