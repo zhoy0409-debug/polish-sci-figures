@@ -17,10 +17,12 @@
     const layouts=node('details'),layoutTitle=node('summary',t('排版建议','Layout suggestions')),layoutNote=node('p',t('复用现有母版与原生横竖版；预览不会写入工程。锁定位置或内容不被强行移动。','Reuses existing masters and native variants. Preview does not save edits. Locked content is protected.'));
     const layoutActions=node('div',null,'quality-actions');layouts.append(layoutTitle,layoutNote,layoutActions);
     for(const [id,zh,english]of [['balanced','均衡','Balanced'],['portrait','纵向','Portrait'],['focus','重点大图','Focus']]){const b=node('button',t(zh,english));b.type='button';b.onclick=()=>attempt(()=>preview(host.layoutPlan(id),t('排版预览','Layout preview')));layoutActions.append(b);}
-    const collaboration=node('details'),collabTitle=node('summary',t('与 Skill 协作（本地文件）','Skill collaboration (local files)')),collabNote=node('p',t('导出小图版本与元素清单，交给 Skill 生成局部样式操作文件，再导入预检。目标小图有新修改时会拒绝；其他小图的人工编辑会保留。不会联网。','Export panel revisions and element references, then import a scoped style operation file for preflight. Conflicting panel edits are refused; other panels are retained. No network requests.'));
-    const collabActions=node('div',null,'quality-actions'),inspect=node('button',t('导出检查清单','Export inspection')),importPatch=node('button',t('预览 AI 修改','Preview AI edits')),patchFile=node('input');patchFile.type='file';patchFile.accept='.json,application/json';patchFile.hidden=true;collabActions.append(inspect);actions.append(importPatch,patchFile);collaboration.append(collabTitle,collabNote,collabActions);
+    const collaboration=node('details'),collabTitle=node('summary',t('与 Skill 协作','Skill collaboration')),collabNote=node('p',t('复制任务后，粘贴到你的 AI 对话；将返回的 JSON 粘回这里预览。','Copy the task into your AI chat, then paste its JSON reply here to preview.'));
+    const collabActions=node('div',null,'quality-actions'),inspect=node('button',t('导出检查清单','Export inspection')),importPatch=node('button',t('预览 AI 修改','Preview AI edits')),patchFile=node('input');patchFile.type='file';patchFile.accept='.json,application/json';patchFile.hidden=true;collabActions.append(inspect);actions.append(importPatch,patchFile);collaboration.append(collabTitle,collabNote);
     const askAI=node('button',t('请 AI 检查当前图','Ask AI to review this figure'));
     const copyTask=node('button',t('复制局部 Skill 任务（含图中文字）','Copy scoped Skill task with figure text'));
+    const editRequest=node('textarea',null,'quality-request'),requestLabel=node('label',t('这次想改什么？','What should change?'));
+    editRequest.rows=2;editRequest.maxLength=1000;requestLabel.append(editRequest);
     const pasteEdits=node('details',null,'quality-paste'),pasteTitle=node('summary',t('粘贴 Skill 修改','Paste Skill edits')),pasted=node('textarea'),previewPasted=node('button',t('预览粘贴的修改','Preview pasted edits'));
     pasted.rows=4;pasteTitle.id='pasteSkillEdits';pasted.setAttribute('aria-labelledby',pasteTitle.id);
     pasteEdits.append(pasteTitle,pasted,previewPasted);
@@ -29,7 +31,7 @@
     prompt.setAttribute('aria-label',t('给 Skill 的指令','Instructions for the Skill'));
     handoff.append(prompt,copyPrompt);
     actions.insertBefore(askAI,importPatch);
-    collaboration.append(copyTask,pasteEdits);
+    collaboration.append(requestLabel,copyTask,pasteEdits,collabActions);
     const scientificReview=node('label'),scientificConfirmed=node('input');scientificReview.className='quality-scientific-review';scientificReview.hidden=true;scientificConfirmed.type='checkbox';scientificReview.append(scientificConfirmed,localText(t('已核对研究设计、图例、数据绑定和展示重点；同意本次修改。','I verified the design, legend, data binding and display purpose and agree to these edits.')));previewBar.prepend(scientificReview);scientificConfirmed.onchange=()=>keep.disabled=!scientificConfirmed.checked;
     section.append(heading,note,form,actions,handoff,status,previewBar,results,layouts,collaboration);doc.body.append(section);
     if(host.planning){
@@ -76,19 +78,43 @@
     scan.onclick=()=>attempt(async()=>{cancelPreview();controller?.abort();controller=new AbortController();const signal=controller.signal,own=++ticket,before=identity();report=null;exportReport.disabled=true;results.replaceChildren();say(t('正在测量最终尺寸；仍可编辑画布…','Measuring final size; the canvas remains editable…'));let capture;try{const settings=host.quality.profile({minTextPt:font.valueAsNumber,minLinePt:line.valueAsNumber});capture=await host.capture();const measured=await host.quality.measure(capture.svg,{signal,panels:capture.panels});if(signal.aborted||own!==ticket)return;if(!current(before)){say(t('检查期间图形已变化，请重新检查。','Figure changed during review. Run it again.'));return;}say(t('正在本地后台检查结构与文字…','Checking geometry and text in a local background worker…'));report=await host.quality.inspectAsync(measured,settings,{signal});if(signal.aborted||own!==ticket)return;if(!current(before)){report=null;say(t('检查期间图形已变化，请重新检查。','Figure changed during review. Run it again.'));return;}if(host.submissionAssessment)report.submission=host.submissionAssessment(settings);reportIdentity=before;paint();exportReport.disabled=false;say(t('检查完成；定位与修改前请核对研究含义。','Review complete. Check scientific meaning before making edits.'));}finally{capture?.cleanup();}});
     inspect.onclick=()=>attempt(async()=>{const value=await host.inspection();await host.download(value,'figure-studio-inspection.json');say(t('已导出本地清单，不含原图或测量数据表。','Local inspection exported without source images or measurement tables.'));});
     async function prepareTask(inline=false){
-      const target=host.targetPanel(),before=identity();
-      const inspection=await host.inspection(target);
-      if(!current(before)||host.targetPanel()!==target)throw Error(t('所选小图已变化，请重试。','Selected panel changed. Try again.'));
+      const target=host.targetPanel(),before=identity(),scope=inline?host.taskScope():null;
+      const inspection=await host.inspection(target,scope);
+      if(!current(before)||host.targetPanel()!==target||(inline&&host.taskScope()!==scope))throw Error(t('所选小图已变化，请重试。','Selected panel changed. Try again.'));
       const label=inspection.selection?.label;
       const panelName=label?label+' ('+target+')':target;
       const task=t('检查字号、颜色对比度和样式一致性。','Review type size, colour contrast and style consistency.');
-      const source=inline?t('下方检查清单','the inspection below'):t('附件 figure-studio-ai-review.json','the attached figure-studio-ai-review.json');
+      const request=editRequest.value.trim();
+      if(inline){
+        const [panel]=inspection.panels;
+        const labelOnly=scope==='label';
+        const description=request||(labelOnly
+          ?t('检查所选图号的字号与颜色。','Review the selected panel label’s size and colour.')
+          :task);
+        const selectedKeys=new Set(inspection.selection.keys);
+        const elements=labelOnly?[]:panel.elements.filter(e=>e.tag==='text'||selectedKeys.has(e.key));
+        const includedKeys=new Set(elements.map(e=>e.key));
+        const findings=!labelOnly&&!request&&report&&current(reportIdentity)?report.issues
+          .filter(issue=>issue.target?.panel===target&&includedKeys.has(issue.target.key))
+          .map(({code,message,target})=>({code,message,key:target.key})):[];
+        const labelStyles=t('图号用 panel.label.style，只填 type、panel、style；颜色字段为 fill。','Use panel.label.style with type, panel and style only; use fill for colour.');
+        const elementStyles=labelOnly?'':t(' 图内元素用 element.style，另填 variant 和清单中的 key。字号用 SVG 本地单位，最终 pt 除以 pointFactor。',' For plot elements use element.style with the listed variant and key. For font size, divide final pt by pointFactor to get SVG units.');
+        const instructions=t(
+          '按清单中的 task 修改 Figure Studio 小图。只返回一个可粘贴的 JSON 代码块，字段为 schema（固定为 figure-studio-operations/1）、projectId、base（以小图 id 为键、revision 为值）和 operations（数组）。使用清单的原值。保留其他小图、数据和分析。无法确定目标时，请先询问。 ',
+          'Apply the task in this Figure Studio inspection. Return one pasteable JSON code block with schema (figure-studio-operations/1), projectId, base (panel id mapped to its revision), and operations (an array). Use the exact values below. Preserve other panels, data and analysis. Ask if the target is unclear. '
+        )+labelStyles+elementStyles;
+        const {id,revision,variant,locked,displayLabel}=panel;
+        return {instructions,schema:inspection.schema,projectId:inspection.projectId,
+          task:{panel:target,scope,description,...(findings.length?{findings}:{})},
+          selection:{panel:target,label,keys:labelOnly?[]:[...selectedKeys]},
+          panels:[{id,revision,variant,locked,displayLabel,label:panel.label,elements}]};
+      }
       const instructions=t(
-        '请使用 polish-sci-figures，读取'+source+'。只检查小图 '+panelName+'。'+task+' 如需修改，请用清单中的工程 ID、版本和元素标识生成 figure-studio-operations/1 JSON，只针对该小图。保留其他小图、数据和分析。',
-        'Use polish-sci-figures with '+source+'. Review panel '+panelName+' only. '+task+' If edits are needed, return a figure-studio-operations/1 JSON using the recorded project ID, revision and element keys. Preserve the other panels, data and analyses.'
+        '请使用 polish-sci-figures，读取附件 figure-studio-ai-review.json。只检查小图 '+panelName+'。'+(request||task)+' 如需修改，请用清单中的工程 ID、版本和元素标识生成 figure-studio-operations/1 JSON，只针对该小图。保留其他小图、数据和分析。',
+        'Use polish-sci-figures with the attached figure-studio-ai-review.json. Review panel '+panelName+' only. '+(request||task)+' If edits are needed, return a figure-studio-operations/1 JSON using the recorded project ID, revision and element keys. Preserve the other panels, data and analyses.'
       );
       const issues=report&&current(reportIdentity)?report.issues.filter(issue=>issue.target?.panel===target).map(({code,message,target})=>({code,message,target})):[];
-      return {...inspection,author:'a',task:{panel:target,description:task,issues},instructions};
+      return {...inspection,author:'a',task:{panel:target,description:request||task,issues},instructions};
     }
     askAI.onclick=()=>attempt(async()=>{
       const task=await prepareTask();
@@ -122,7 +148,12 @@
       return previewOperationPlan(await host.preflight(patch),patch.reason);
     }
     function previewOperationPlan(plan,reason){
-      preview(plan.next,t(`局部操作预览：${plan.changes.length} 项修改${plan.requiresScientificReview&&reason?'；'+reason:''}`,`Scoped operation preview: ${plan.changes.length} edits${plan.requiresScientificReview&&reason?'; '+reason:''}`),plan.requiresScientificReview);
+      const targets=plan.affected.map(id=>host.displayLabel(id)||id);
+      const panels=targets.length<=3?t('小图 '+targets.join('、'),(targets.length===1?'Panel ':'Panels ')+targets.join(', '))
+        :t(targets.length+' 个小图',targets.length+' panels');
+      const count=t(plan.changes.length+' 项修改',plan.changes.length+(plan.changes.length===1?' edit':' edits'));
+      const explanation=plan.requiresScientificReview&&reason?' · '+reason:'';
+      preview(plan.next,panels+' · '+count+explanation,plan.requiresScientificReview);
     }
     importPatch.onclick=()=>patchFile.click();
     patchFile.onchange=()=>attempt(async()=>{
@@ -132,7 +163,9 @@
     });
     previewPasted.onclick=()=>attempt(async()=>{
       await previewOperations(pasted.value);
+      handoff.hidden=true;
       pasted.value='';pasteEdits.open=false;
+      (keep.disabled?scientificConfirmed:keep).focus();
     });
     exportReport.onclick=()=>attempt(async()=>{if(!report||!current(reportIdentity))throw Error(t('图形已变化，请重新检查','Figure changed. Run review again.'));await host.download({...report,author:'a',createdAt:new Date().toISOString()},'figure-quality-report.json');});
     keep.onclick=()=>attempt(async()=>{if(await previewSession?.commit())say(t('已保留修改；可撤销。请重新检查最终图形。','Edits kept; undo is available. Review the final figure again.'));});cancel.onclick=cancelPreview;

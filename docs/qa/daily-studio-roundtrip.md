@@ -25,6 +25,18 @@ Windows 上使用 Chrome 157 和本机绘图引擎。选用此前已做过配色
 - 使用同一公开 Iris 工程复跑拖入、质检、局部任务交接、预览、确认、保存重开、导出和撤销。保留 150 条原观测、12 个候选版本及原手调。交接无需中间文件，粘贴到预览约 62 ms；SVG 和 PNG 均成功导出。
 - 测试后卸载候选。正式版本的注册信息和可执行文件校验值在安装前后相同。
 
+## ChatGPT 和 Claude 网页交接
+
+把同一份公开 Iris 保存工程做成验收副本，保留 A 的原手调和历史，再用同一批观察值的已有变体做 B、C。两个网页聊天都使用同一个任务，只把图号 C 从 `#20242A` 改成 `#176b5d`。聊天只收到 C 的局部任务。Studio 的浏览器验收逐条使用网页返回的实际 JSON。
+
+| 阶段 | ChatGPT | Claude |
+| --- | --- | --- |
+| 首轮 | 约 12.7 KB 的任务被折成文本附件。回复使用了 `operation` 字段，并把版本放在单项内，编辑器拒绝。 | 同样被折成文本附件。复制回复中的代码，预览、一次撤销和保存重开均通过。 |
+| 修复后 | 917 字节的任务直接进入正文，回复的单个 JSON 代码块通过预检。 | 相同任务直接进入正文，回复的单个 JSON 代码块通过预检。 |
+| 最终本机复测 | 预览注明“小图 C · 1 项修改”，确认只增加一条历史，保存重开保留改色，一次撤销恢复。 | 同样通过。 |
+
+确认前保存只写入已提交状态。两家最终测试均逐项核对了 A、B 和原始工程。还复测了 A 统一 B/C 图号以及 Iris 的图内文字局部修改。此次网页交接复测使用本机源码版 Studio，适用范围为这项局部改色。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。

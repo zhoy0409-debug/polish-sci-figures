@@ -84,7 +84,7 @@ async function main() {
     assert.equal(new Set(beforeLabels.map(label => label.y)).size, 3);
     await shot(page, '01-before');
     await page.locator('#openQualityWorkspace').click();
-    await review(page).getByText('与 Skill 协作（本地文件）', {exact: true}).click();
+    await review(page).getByText('与 Skill 协作', {exact: true}).click();
     const inspection = await download(page, review(page).getByRole('button', {name: '导出检查清单'}), 'inspection.json');
     assert(inspection.capabilities.operations.includes('panel.label.match'));
     const byLabel = Object.fromEntries(inspection.panels.map(panel => [panel.displayLabel, panel]));
@@ -153,13 +153,19 @@ async function main() {
     assert.deepEqual(await renderLabels(direct),beforeLabels);
 
     await label(c).click();
-    await review(direct).getByText('与 Skill 协作（本地文件）', {exact:true}).click();
+    await review(direct).getByText('与 Skill 协作', {exact:true}).click();
+    await review(direct).getByRole('textbox',{name:'这次想改什么？'}).fill('只把图号 C 的颜色改为 #176b5d。');
     await review(direct).getByRole('button', {name:'复制局部 Skill 任务（含图中文字）'}).click();
     const prompt = review(direct).locator('.quality-handoff textarea');
     await prompt.waitFor();
-    const task = JSON.parse((await prompt.inputValue()).split('\n\n')[1]);
+    const instructionText = await prompt.inputValue();
+    const task = JSON.parse(instructionText.split('\n\n')[1]);
     assert.deepEqual(task.panels.map(panel=>panel.id),[c]);
     assert(!task.panels[0].table && !task.panels[0].analysis);
+    assert.equal(task.task.description,'只把图号 C 的颜色改为 #176b5d。');
+    assert.equal(task.task.scope,'label');
+    assert.deepEqual(task.panels[0].elements,[]);
+    assert.match(instructionText,/base.*revision.*operations/);
     await review(direct).getByText('粘贴 Skill 修改',{exact:true}).click();
     const field=review(direct).getByRole('textbox',{name:'粘贴 Skill 修改'});
     const previewPaste=review(direct).getByRole('button',{name:'预览粘贴的修改'});
@@ -169,6 +175,8 @@ async function main() {
     assert.equal(await review(direct).locator('.quality-preview-bar').isVisible(), false);
     await field.fill('```json\n'+JSON.stringify(patch)+'\n```');
     await previewPaste.click();
+    await review(direct).getByText('小图 B、C · 2 项修改',{exact:true}).waitFor();
+    assert.equal(await prompt.isVisible(),false);
     await review(direct).getByRole('button',{name:'保留修改'}).click();
     assertAligned(await renderLabels(direct));
     assert.equal((await save(direct,'pasted-kept')).history.index,before.history.index+1);

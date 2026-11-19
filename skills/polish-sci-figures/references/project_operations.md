@@ -8,7 +8,9 @@ In Figure Studio, open **图形质检 / Review** beside Export. Review uses the 
 
 For local Skill collaboration, expand **与 Skill 协作 / Skill collaboration** and export the inspection JSON. It contains project identity, per-panel revision hashes, current variants and editable element references. It omits original images and measurement tables, but may contain research text, so keep it private unless the user authorizes sharing.
 
-When Studio provides a copied task, use the inspection JSON embedded in that message. Return the operation object as plain JSON or one JSON code block for **Paste Skill edits**, using the same protocol and preflight as a file import.
+For a small edit, select the panel label or an object in the panel, open **Review → Skill collaboration**, and enter the change in **What should change?** before choosing **Copy scoped Skill task with figure text**. The copied task includes the response format and can be used in a chat without an installed Skill. Selecting a single panel label limits the inspection to that label. For chart edits, the copied inspection includes editable text and explicitly selected objects. Use **Export inspection** or **Ask AI to review this figure** when you need the full element and candidate lists.
+
+Use the inspection JSON embedded in that message. Return the operation object as plain JSON or one JSON code block for **Paste Skill edits**, using the same protocol and preflight as a file import. The pasted response still needs the original project ID and target revision.
 
 Create an operation file using only capabilities in that inspection:
 
@@ -48,7 +50,7 @@ Source images, analysis records, measurement data, checkpoints and data drafts a
 
 ## Match several panel labels to one reference
 
-In **Review → Skill collaboration (local files)**, choose **Export inspection** to include the reference and all targets. Use `displayLabel` to match the visible letters and verify each panel ID. If a label is ambiguous, ask which panel the user means. Check that `capabilities.operations` includes `panel.label.match`.
+In **Review → Skill collaboration**, choose **Export inspection** to include the reference and all targets. Use `displayLabel` to match the visible letters and verify each panel ID. If a label is ambiguous, ask which panel the user means. Check that `capabilities.operations` includes `panel.label.match`.
 
 For “match B and C to A”, return a single operation file. Use `base` for the targets' revisions and use A's ID and revision as the reference in each operation. Use the actual identifiers and revisions from the inspection:
 

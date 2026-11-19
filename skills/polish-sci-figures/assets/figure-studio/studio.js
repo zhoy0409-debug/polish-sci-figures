@@ -5962,11 +5962,14 @@ if (typeof document !== 'undefined') (async () => {
         return {svg,panels:state().order.map(id=>{const source=panel(id),record=state().panels[id].statistics,analysis=statisticalAnalysisFor(id);return {id,bound:!!source.table?.rows&&!!analysis&&Object.keys(analysis).length>0,stale:!!record&&(!!record.stale||record.tableKey!==(source.table?.sha256||'')),analysis:analysis?.primary_estimand?{primary_estimand:{ci95:copy(analysis.primary_estimand.ci95??null)}}:null};}),cleanup:()=>wrapper.remove()};
       },
       targetPanel:()=>selectedPanel,
-      async inspection(targetPanel){
+      displayLabel:id=>displayedPanelLabel(state(),id)?.text,
+      taskScope:()=>selectedLabelIds().length===1&&selectedLabelIds()[0]===selectedPanel&&!selected.length&&!selectedAnnotations.length?'label':'styles',
+      async inspection(targetPanel,scope){
         const panels=targetPanel?[targetPanel]:state().order,elements={},displayLabels={},scale=currentOutput().scale;
         for(const id of panels){
-          const vi=state().panels[id].variant,source=editableSourceSnapshot(id,vi);
           displayLabels[id]=displayedPanelLabel(state(),id)?.text;
+          if(scope==='label')continue;
+          const vi=state().panels[id].variant,source=editableSourceSnapshot(id,vi);
           elements[id]=[...source.querySelectorAll('[data-key]')].map(el=>{
             const key=el.getAttribute('data-key'),tag=el.localName;
             const result={key,tag,locked:!!state().panels[id].locked||(state().panels[id].lockedElements?.[vi]||[]).includes(key)};

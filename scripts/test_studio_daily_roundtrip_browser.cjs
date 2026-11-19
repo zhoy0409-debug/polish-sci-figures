@@ -53,7 +53,7 @@ async function main(){
     const report=JSON.parse(fs.readFileSync(path.join(out,'review.json'),'utf8'));
     assert(report.summary.objects>0&&report.summary.texts>0);
 
-    await review.getByText('与 Skill 协作（本地文件）',{exact:true}).click();
+    await review.getByText('与 Skill 协作',{exact:true}).click();
     let fileHandoffs=0;
     const countHandoff=()=>fileHandoffs++;
     page.on('download',countHandoff);
@@ -66,6 +66,8 @@ async function main(){
     const task=JSON.parse(content.slice(content.indexOf('\n\n')+2));
     assert.deepEqual(task.panels.map(p=>p.id),[id]);
     assert(!task.panels[0].table&&!task.panels[0].analysis);
+    assert.equal(task.task.scope,'styles');
+    assert(task.panels[0].elements.every(e=>e.tag==='text'||task.selection.keys.includes(e.key)));
     const rawEdits=initialEdits[task.panels[0].variant]||{};
     const target=task.panels[0].elements.find(e=>e.tag==='text'&&!e.locked&&!rawEdits[e.key]&&e.text.trim());
     assert(target,'The existing chart must have a separate editable label for a targeted change');
