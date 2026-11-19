@@ -134,6 +134,12 @@ Windows x64 隔离安装 `3741649` 后分别在 1440×900 和 910×512 视口验
 
 重开后点一次「重做」，仅恢复 `New annotation 02`，历史索引回到 5。`Second note 02` 在保存文件、重开后的工程及重做后的历史中均不存在。原工程和撤销后保存的文件各自校验一致。测试候选已卸载，正式版注册记录及程序校验一致。
 
+#### 扫描 PDF 保存重做结果后再次撤销和重做
+
+同一 Windows 候选版 `e1d2819` 和三页 PDF 在 1440×900 与 910×512 均通过。从上一轮撤销后保存的原文件重做恢复 `New annotation 02`，再实际保存为新文件。两个窗口的保存文件分别与上一轮对应的新标注存档校验一致。
+
+从全新会话重开新文件，确认第 2 页、`New annotation 02` 的位置和样式及完整历史均恢复。点击一次撤销回到 `Review note 02`，再点击一次重做恢复 `New annotation 02`，历史索引为 5、4、5。已清除的 `Second note 02` 始终未出现在状态和历史中。测试候选已卸载，正式版注册记录及程序校验一致。
+
 ## GitHub 收件箱对应项目
 
 旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。
