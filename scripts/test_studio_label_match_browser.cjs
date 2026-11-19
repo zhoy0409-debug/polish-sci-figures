@@ -6,8 +6,8 @@ const {pathToFileURL} = require('node:url');
 const {chromium} = require('playwright');
 
 async function main() {
-  const [fixture, destination] = process.argv.slice(2);
-  assert(fixture && destination, 'Usage: node scripts/test_studio_label_match_browser.cjs FIXTURE_DIR OUTPUT_DIR');
+  const [fixture, destination, installedUrl] = process.argv.slice(2);
+  assert(fixture && destination, 'Usage: node scripts/test_studio_label_match_browser.cjs FIXTURE_DIR OUTPUT_DIR [INSTALLED_URL]');
   const out = path.resolve(destination);
   fs.mkdirSync(out, {recursive: true});
   const source = JSON.parse(fs.readFileSync(path.join(fixture, 'skill-project.json'), 'utf8'));
@@ -22,7 +22,8 @@ async function main() {
   }
   const browser = await chromium.launch(process.env.STUDIO_TIFF_BROWSER === 'chromium' ? {} : {channel: 'chrome'});
   const errors = [];
-  const url = pathToFileURL(path.resolve(fixture, 'canvas.html')).href;
+  const url = installedUrl ? new URL(installedUrl) : pathToFileURL(path.resolve(fixture, 'canvas.html'));
+  if (installedUrl) assert.equal(url.origin, `http://127.0.0.1:${url.port}`, 'Use the installed loopback service');
   const jsonFile = (name, value) => ({name, mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(value))});
   const review = page => page.locator('#qualityWorkspace');
   async function open(project) {
@@ -30,7 +31,7 @@ async function main() {
     page.setDefaultTimeout(12000);
     page.on('pageerror', error => errors.push(error.message));
     page.on('dialog', dialog => dialog.accept());
-    await page.goto(url);
+    await page.goto(url.href);
     await page.waitForFunction(() => !document.body.inert && document.querySelector('#artboard>svg'));
     if (await page.locator('#dismissProjectStart').isVisible()) await page.locator('#dismissProjectStart').click();
     await page.locator('#projectFile').setInputFiles(project);
@@ -144,7 +145,7 @@ async function main() {
     staleTarget.state.panels[c].label.y = 51;
     await assertRejected(staleTarget, patch, '目标小图已变化', 'stale-target');
     assert.deepEqual(errors, []);
-    const result = {browser: browser.version(), before: beforeLabels, preview, reopened: afterReopen,
+    const result = {entry: installedUrl ? 'installed-loopback' : 'source-html', browser: browser.version(), before: beforeLabels, preview, reopened: afterReopen,
       history: {before: before.history.index, kept: kept.history.index, undone: undone.history.index},
       verified: ['preview', 'save during preview', 'cancel', 'keep', 'save and reopen', 'one undo', 'stale reference', 'stale target', 'source equality']};
     fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify(result, null, 2));

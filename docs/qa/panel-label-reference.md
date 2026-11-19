@@ -22,4 +22,18 @@ python scripts/build_canvas_round_fixture.py --out .cache/label-match-fixture
 node scripts/test_studio_label_match_browser.cjs .cache/label-match-fixture .cache/label-match-browser
 ```
 
-输出目录包含前后画布截图、`result.json`、实际导出的检查清单和重新打开的工程。验收脚本按已导出的标识和版本生成交接 JSON。此轮实测覆盖源码浏览器流程；Windows 安装包和外部 AI 宿主不在本次实测范围内。
+输出目录包含前后画布截图、`result.json`、实际导出的检查清单和重新打开的工程。验收脚本按已导出的标识和版本生成交接 JSON。
+
+## Windows x64 候选安装版复测
+
+2026-11-19，使用提交 `f5cec0b` 全量冻结运行环境，并以单独的 Inno Setup 安装标识构建本地候选。候选使用隔离的程序目录与 `--data-dir`。Setup 校验值为 `22e0a33837c43b800605d1084d6985179fba4279ab58f10ca32e3009112fc38f`。
+
+| 场景 | 证据 |
+| --- | --- |
+| 安装和冻结运行时 | Setup 退出码 0，安装的 2,704 个文件与冻结构建逐项匹配。另核对与分支相同的 `studio.js` 和 `project-operations.js`。已安装 EXE 的冻结自检通过。 |
+| 从已安装程序进入实际编辑器 | 从隔离目录启动 EXE，核对服务记录的 PID，Chrome 157.0.8103.79 通过该进程提供的本机地址执行同一组验收。 |
+| A 参照 B/C | 预览后字号均为 13 pt，三条基线均为 262.222 CSS px；横坐标保持。预览中保存仍保留已提交状态，取消恢复原样。 |
+| 保留、保存重开及撤销 | 在新的浏览器上下文打开保存的工程，图号继续对齐。一次撤销恢复 B 和 C，历史索引为 `0 → 1 → 0`。原始图件、数据与分析记录一致。参照或目标版本变化时，分别拒绝旧操作。 |
+| 清理和与正式版并存 | 候选卸载退出码 0，候选登记已移除。正式版安装登记中的版本、路径及可执行文件校验值保持一致。 |
+
+复测时，将已安装 EXE 提供的本机地址作为脚本第三个参数。`result.json` 的 `entry` 为 `installed-loopback`，用于区分安装版与源码页面。安装流程使用静默 Setup。启动快捷方式、覆盖升级和外部 AI 宿主调用未在本次测试中验证。
