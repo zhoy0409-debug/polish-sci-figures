@@ -10,7 +10,9 @@ For local Skill collaboration, expand **与 Skill 协作 / Skill collaboration**
 
 For a small edit, select the panel label or an object in the panel, open **Review → Skill collaboration**, and enter the change in **What should change?** before choosing **Copy scoped Skill task with figure text**. The copied task includes the response format and can be used in a chat without an installed Skill. Selecting a single panel label limits the inspection to that label. For chart edits, the copied inspection includes editable text and explicitly selected objects. Use **Export inspection** or **Ask AI to review this figure** when you need the full element and candidate lists.
 
-Use the inspection JSON embedded in that message. Return the operation object as plain JSON or one JSON code block for **Paste Skill edits**, using the same protocol and preflight as a file import. The pasted response still needs the original project ID and target revision.
+Use the inspection JSON embedded in that message. Return the operation object as plain JSON or one JSON code block. In **Review**, choose **Preview from clipboard** or paste the reply manually. A reply may include explanation around a single JSON code block. Studio still checks the project ID and target revision before preview. If a single-panel style edit is stale, Studio can copy a fresh task for that panel.
+
+Inspect **Changes** and use **Compare before edits** to toggle the canvas between the current and proposed designs. **Hide sidebar** reveals the canvas while retaining the preview. Use **Resume review preview** to return to the same proposed edits.
 
 Create an operation file using only capabilities in that inspection:
 

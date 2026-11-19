@@ -13,24 +13,30 @@
     const font=field(t('最小字号（pt）','Minimum text (pt)'),8,4,36,.5),line=field(t('最小线宽（pt）','Minimum line (pt)'),.25,.1,3,.05);
     const scan=node('button',t('检查当前图形','Review current figure'),'primary'),exportReport=node('button',t('保存检查报告','Save report')),status=node('p','','quality-status');status.setAttribute('role','status');
     const actions=node('div',null,'quality-actions');actions.append(scan,exportReport);exportReport.disabled=true;
-    const results=node('div',null,'quality-results'),previewBar=node('div',null,'quality-preview-bar'),previewNote=node('span'),keep=node('button',t('保留修改','Keep edits'),'primary'),cancel=node('button',t('取消预览','Cancel preview'));previewBar.hidden=true;previewBar.append(previewNote,keep,cancel);
+    const results=node('div',null,'quality-results'),previewBar=node('div',null,'quality-preview-bar'),previewNote=node('span'),keep=node('button',t('保留修改','Keep edits'),'primary'),cancel=node('button',t('取消预览','Cancel preview'));
+    const compare=node('button',t('对照修改前','Compare before edits')),collapsePreview=node('button',t('收起侧栏','Hide sidebar')),changes=node('details',null,'quality-preview-changes'),changeTitle=node('summary',t('具体改动','Changes')),changeList=node('ul');
+    compare.setAttribute('aria-pressed','false');changes.append(changeTitle,changeList);
+    previewBar.hidden=true;previewBar.append(previewNote,changes,keep,cancel,compare,collapsePreview);
     const layouts=node('details'),layoutTitle=node('summary',t('排版建议','Layout suggestions')),layoutNote=node('p',t('复用现有母版与原生横竖版；预览不会写入工程。锁定位置或内容不被强行移动。','Reuses existing masters and native variants. Preview does not save edits. Locked content is protected.'));
     const layoutActions=node('div',null,'quality-actions');layouts.append(layoutTitle,layoutNote,layoutActions);
     for(const [id,zh,english]of [['balanced','均衡','Balanced'],['portrait','纵向','Portrait'],['focus','重点大图','Focus']]){const b=node('button',t(zh,english));b.type='button';b.onclick=()=>attempt(()=>preview(host.layoutPlan(id),t('排版预览','Layout preview')));layoutActions.append(b);}
     const collaboration=node('details'),collabTitle=node('summary',t('与 Skill 协作','Skill collaboration')),collabNote=node('p',t('复制任务后，粘贴到你的 AI 对话；将返回的 JSON 粘回这里预览。','Copy the task into your AI chat, then paste its JSON reply here to preview.'));
     const collabActions=node('div',null,'quality-actions'),inspect=node('button',t('导出检查清单','Export inspection')),importPatch=node('button',t('预览 AI 修改','Preview AI edits')),patchFile=node('input');patchFile.type='file';patchFile.accept='.json,application/json';patchFile.hidden=true;collabActions.append(inspect);actions.append(importPatch,patchFile);collaboration.append(collabTitle,collabNote);
     const askAI=node('button',t('请 AI 检查当前图','Ask AI to review this figure'));
+    const previewClipboard=node('button',t('从剪贴板预览','Preview from clipboard'));
     const copyTask=node('button',t('复制局部 Skill 任务（含图中文字）','Copy scoped Skill task with figure text'));
     const editRequest=node('textarea',null,'quality-request'),requestLabel=node('label',t('这次想改什么？','What should change?'));
     editRequest.rows=2;editRequest.maxLength=1000;requestLabel.append(editRequest);
-    const pasteEdits=node('details',null,'quality-paste'),pasteTitle=node('summary',t('粘贴 Skill 修改','Paste Skill edits')),pasted=node('textarea'),previewPasted=node('button',t('预览粘贴的修改','Preview pasted edits'));
+    const pasteEdits=node('details',null,'quality-paste'),pasteTitle=node('summary',t('粘贴 Skill 修改','Paste Skill edits')),pasted=node('textarea'),previewPasted=node('button',t('预览粘贴的修改','Preview pasted edits')),recopy=node('button');
     pasted.rows=4;pasteTitle.id='pasteSkillEdits';pasted.setAttribute('aria-labelledby',pasteTitle.id);
-    pasteEdits.append(pasteTitle,pasted,previewPasted);
+    recopy.hidden=true;pasteEdits.append(pasteTitle,pasted,previewPasted,recopy);
+    pasted.oninput=()=>{recopy.hidden=true;};
     const handoff=node('div',null,'quality-handoff'),prompt=node('textarea'),copyPrompt=node('button',t('复制指令','Copy instructions'));
     handoff.hidden=true;prompt.readOnly=true;prompt.rows=4;
     prompt.setAttribute('aria-label',t('给 Skill 的指令','Instructions for the Skill'));
     handoff.append(prompt,copyPrompt);
     actions.insertBefore(askAI,importPatch);
+    actions.insertBefore(previewClipboard,importPatch);
     collaboration.append(requestLabel,copyTask,pasteEdits,collabActions);
     const scientificReview=node('label'),scientificConfirmed=node('input');scientificReview.className='quality-scientific-review';scientificReview.hidden=true;scientificConfirmed.type='checkbox';scientificReview.append(scientificConfirmed,localText(t('已核对研究设计、图例、数据绑定和展示重点；同意本次修改。','I verified the design, legend, data binding and display purpose and agree to these edits.')));previewBar.prepend(scientificReview);scientificConfirmed.onchange=()=>keep.disabled=!scientificConfirmed.checked;
     section.append(heading,note,form,actions,handoff,status,previewBar,results,layouts,collaboration);doc.body.append(section);
@@ -67,8 +73,25 @@
     }[entry.check]||[entry.check,entry.detail],status={measured:['已测量','Measured'],recorded:['有分析记录','Recorded'],partial:['部分可核查','Partial'],unverifiable:['无法核实','Unverifiable']}[entry.status]||[entry.status,entry.status];return t(`${entry.panel||''} ${entry.check} · ${status[0]} — ${entry.detail}`,`${entry.panel||''} ${check[0]} · ${status[1]} — ${check[1]}`);}
     const say=text=>status.textContent=text;
     async function attempt(work){try{return await work();}catch(e){if(e.name!=='AbortError')say(host.t?.(e.message)||e.message);return false;}}
-    function cancelPreview(){previewSession?.cancel('review-cancel');previewSession=null;previewBar.hidden=true;}
-    function preview(next,label,requiresScientificReview=false){cancelPreview();if(!next)return;previewSession=host.preview(next,()=>{previewSession=null;previewBar.hidden=true;});if(!previewSession)throw Error(t('预览未能建立','Could not start preview'));scientificReview.hidden=!requiresScientificReview;scientificConfirmed.checked=false;keep.disabled=requiresScientificReview;previewNote.textContent=label;previewBar.hidden=false;say(t('在真实画布查看效果；保留后只记录一次撤销。','Review on the actual canvas. Keeping edits creates one undo step.'));}
+    const triggerText=()=>{if(host.trigger){
+      host.trigger.textContent=section.hidden&&previewSession?t('继续质检预览','Resume review preview'):t('图形质检','Review');
+      host.trigger.setAttribute('aria-expanded',String(!section.hidden));
+    }};
+    function clearPreview(){previewSession=null;previewBar.hidden=true;triggerText();}
+    function cancelPreview(){previewSession?.cancel('review-cancel');clearPreview();}
+    function preview(next,label,requiresScientificReview=false){
+      cancelPreview();if(!next)return;
+      previewSession=host.preview(next,clearPreview);
+      if(!previewSession)throw Error(t('预览未能建立','Could not start preview'));
+      scientificReview.hidden=!requiresScientificReview;scientificConfirmed.checked=false;keep.disabled=requiresScientificReview;
+      changes.hidden=true;changeList.replaceChildren();compare.setAttribute('aria-pressed','false');
+      previewNote.textContent=label;previewBar.hidden=false;say(t('在真实画布查看效果；保留后只记录一次撤销。','Review on the actual canvas. Keeping edits creates one undo step.'));
+    }
+    compare.onclick=()=>attempt(()=>{
+      const original=compare.getAttribute('aria-pressed')!=='true';
+      if(previewSession?.showOriginal(original))compare.setAttribute('aria-pressed',String(original));
+    });
+    collapsePreview.onclick=()=>{section.hidden=true;triggerText();host.trigger?.focus();};
     function paint(){results.replaceChildren();if(!report)return;const intro=node('p',t(`发现 ${report.summary.issues} 项待检查；这不是投稿或统计正确性认证。`,`${report.summary.issues} items to review. This is not submission or statistical certification.`));results.append(intro);
       if(report.submission){const summary=node('div',null,'submission-assessment'),p=report.submission.profile;summary.append(node('strong',t('已保留的投稿配置：','Kept submission profile: ')+p.name));if(p.source)summary.append(node('p',t('用户填写来源：','Researcher-declared source: ')+p.source));if(p.checkedOn)summary.append(node('p',t('人工核对日期：','Date checked by researcher: ')+p.checkedOn));for(const check of report.submission.checks){const names={width:t('成图宽度','Final width'),dpi:t('栅格分辨率','Raster resolution'),height:t('最大高度','Maximum height'),'review-thresholds':t('本次预检阈值','Review thresholds')};const display=value=>check.id==='review-thresholds'?t('字号 '+value.minTextPt+' pt、线宽 '+value.minLinePt+' pt','Text '+value.minTextPt+' pt, line '+value.minLinePt+' pt'):Number(value).toLocaleString(en()?'en':'zh-CN',{maximumFractionDigits:2})+(check.unit?' '+check.unit:'');summary.append(node('p',(check.ok?'✓ ':'! ')+names[check.id]+': '+display(check.actual)+' / '+t('要求 ','required ')+display(check.required??check.maximum)));}summary.append(node('p',t('以上为配置匹配检查；实际内容问题见下方。没有核实外部期刊要求，也不构成投稿认证。','These checks compare settings. See content findings below. External journal requirements are not verified; this is not submission certification.')));results.append(summary);}
       const small=report.issues.filter(i=>i.code==='small-text'&&i.target?.key);if(small.length){const fix=node('button',t('批量预览字号调整','Preview text size adjustments'));fix.onclick=()=>attempt(()=>{if(!current(reportIdentity))throw Error(t('图形已变化，请重新检查','Figure changed. Run review again.'));const planned=host.fixPlan(small,report.profile);preview(planned.next,t(`字号预览（跳过 ${planned.skipped} 项锁定或不支持对象）`,`Text preview (${planned.skipped} locked or unsupported items skipped)`));});results.append(fix);}
@@ -122,13 +145,14 @@
       prompt.value=task.instructions;handoff.hidden=false;
       say(t('交接文件已保存到本机。复制指令并在需要时附上文件。','Handoff saved locally. Copy the instructions and attach the file when ready.'));
     });
-    copyTask.onclick=()=>attempt(async()=>{
+    async function copyScopedTask(){
       const {instructions,...inspection}=await prepareTask(true);
       const content=instructions+'\n\n'+JSON.stringify(inspection);
       if(new Blob([content]).size>65536)throw Error(t('当前清单较大，请用「请 AI 检查当前图」导出文件。','This inspection is large. Use “Ask AI to review this figure” to export a file.'));
       prompt.value=content;handoff.hidden=false;
       await copyInstructions(t('已复制任务和清单。可直接粘贴到 Skill。','Task and inspection copied. Paste them into the Skill.'));
-    });
+    }
+    copyTask.onclick=()=>attempt(copyScopedTask);
     async function copyInstructions(message){
       prompt.focus();prompt.select();
       try{
@@ -139,13 +163,42 @@
       }
     }
     copyPrompt.onclick=()=>attempt(()=>copyInstructions(t('已复制 Skill 指令','Skill instructions copied')));
-    async function previewOperations(value){
+    async function previewOperations(value,allowProse=false){
+      recopy.hidden=true;
       if(new Blob([value]).size>2000000)throw Error(t('操作内容超过 2 MB','Operation JSON exceeds 2 MB'));
       const source=value.trim();
-      const fenced=source.match(/^```(?:json)?[ \t]*\r?\n([\s\S]+?)\r?\n```$/i);
       let patch;
-      try{patch=JSON.parse(fenced?fenced[1]:source);}catch{throw Error(t('操作内容不是有效的 JSON。','The operation content is not valid JSON.'));}
-      return previewOperationPlan(await host.preflight(patch),patch.reason);
+      try{patch=JSON.parse(source);}catch{
+        const fences=[...source.matchAll(/^[ \t]{0,3}(`{3,}|~{3,})([^\r\n]*)/gm)];
+        const [start,end]=fences;
+        if(fences.length!==2||start[1]!==end[1]||!/^(?:json)?$/i.test(start[2].trim())||end[2].trim()
+          ||!allowProse&&(start.index!==0||end.index+end[0].length!==source.length)){
+          throw Error(t('操作内容不是有效的 JSON。请粘贴纯 JSON 或只含一个 JSON 代码块的回复。','The operation content is not valid JSON. Paste plain JSON or a reply with exactly one JSON code block.'));
+        }
+        try{patch=JSON.parse(source.slice(start.index+start[0].length,end.index));}catch{
+          throw Error(t('代码块里的 JSON 无法读取，请重新复制。','Could not read the JSON in the code block. Copy it again.'));
+        }
+      }
+      let plan;
+      try{plan=await host.preflight(patch);}catch(error){
+        if(allowProse&&error.code==='stale-target'){
+          const [first]=patch.operations;
+          if(first&&patch.operations.every(op=>op?.panel===first.panel&&['panel.label.style','element.style'].includes(op.type))){
+            const label=host.displayLabel(first.panel)||first.panel;
+            const owner=identity()[0];
+            recopy.textContent=t('按当前状态重新复制小图 '+label+' 的任务','Copy a fresh task for panel '+label);
+            recopy.onclick=()=>attempt(async()=>{
+              if(identity()[0]!==owner||!host.locate({panel:first.panel,label:first.type==='panel.label.style'}))throw Error(t('目标小图不在当前工程。','The target panel is no longer in this project.'));
+              await copyScopedTask();
+              recopy.hidden=true;
+            });
+            recopy.hidden=false;
+            recopy.focus();
+          }
+        }
+        throw error;
+      }
+      return previewOperationPlan(plan,patch.reason);
     }
     function previewOperationPlan(plan,reason){
       const targets=plan.affected.map(id=>host.displayLabel(id)||id);
@@ -153,7 +206,11 @@
         :t(targets.length+' 个小图',targets.length+' panels');
       const count=t(plan.changes.length+' 项修改',plan.changes.length+(plan.changes.length===1?' edit':' edits'));
       const explanation=plan.requiresScientificReview&&reason?' · '+reason:'';
+      const items=host.operationDetails(plan);
       preview(plan.next,panels+' · '+count+explanation,plan.requiresScientificReview);
+      changes.hidden=!items.length;changes.open=items.length<=4;
+      for(const item of items.slice(0,24))changeList.append(node('li',item));
+      if(items.length>24)changeList.append(node('li',t('其余 '+(items.length-24)+' 项可在画布对照。', 'Compare the remaining '+(items.length-24)+' changes on the canvas.')));
     }
     importPatch.onclick=()=>patchFile.click();
     patchFile.onchange=()=>attempt(async()=>{
@@ -161,20 +218,37 @@
       if(file.size>2000000)throw Error(t('操作文件超过 2 MB','Operation file exceeds 2 MB'));
       await previewOperations(await file.text());
     });
-    previewPasted.onclick=()=>attempt(async()=>{
-      await previewOperations(pasted.value);
+    async function startPastedPreview(){
+      await previewOperations(pasted.value,true);
       handoff.hidden=true;
       pasted.value='';pasteEdits.open=false;
       (keep.disabled?scientificConfirmed:keep).focus();
+    }
+    previewPasted.onclick=()=>attempt(startPastedPreview);
+    previewClipboard.onclick=()=>attempt(async()=>{
+      let value='';
+      try{value=await doc.defaultView.navigator.clipboard.readText();}catch{}
+      collaboration.open=pasteEdits.open=true;
+      if(!value.trim()){
+        pasted.focus();
+        return say(t('请在输入框粘贴回复，再点预览。','Paste the reply in the field, then preview it.'));
+      }
+      pasted.value=value;
+      await startPastedPreview();
     });
     exportReport.onclick=()=>attempt(async()=>{if(!report||!current(reportIdentity))throw Error(t('图形已变化，请重新检查','Figure changed. Run review again.'));await host.download({...report,author:'a',createdAt:new Date().toISOString()},'figure-quality-report.json');});
     keep.onclick=()=>attempt(async()=>{if(await previewSession?.commit())say(t('已保留修改；可撤销。请重新检查最终图形。','Edits kept; undo is available. Review the final figure again.'));});cancel.onclick=cancelPreview;
-    function closePanel(){controller?.abort();ticket++;cancelPreview();section.hidden=true;host.trigger?.focus();}
+    function closePanel(){controller?.abort();ticket++;section.hidden=true;cancelPreview();host.trigger?.focus();}
     close.onclick=closePanel; // Draft Escape handling stays with the editor's IME-aware transaction manager.
-    host.trigger.onclick=()=>{section.hidden=!section.hidden;if(section.hidden)closePanel();else scan.focus();};
-    const refreshLanguage=()=>{for(const item of labels){if(!item.value.isConnected){labels.delete(item);continue;}item.value.nodeValue=en()?item.pair[1]:item.pair[0];}if(host.trigger)host.trigger.textContent=t('图形质检','Review');section.setAttribute('aria-label',t('图形质检与协作','Figure review and collaboration'));close.setAttribute('aria-label',t('关闭质检','Close review'));};
+    host.trigger.onclick=()=>{
+      if(!section.hidden)return closePanel();
+      section.hidden=false;triggerText();
+      (previewSession?(keep.disabled?scientificConfirmed:keep):scan).focus();
+    };
+    const refreshLanguage=()=>{for(const item of labels){if(!item.value.isConnected){labels.delete(item);continue;}item.value.nodeValue=en()?item.pair[1]:item.pair[0];}triggerText();section.setAttribute('aria-label',t('图形质检与协作','Figure review and collaboration'));close.setAttribute('aria-label',t('关闭质检','Close review'));};
     const languageField=doc.getElementById('language'),languageChange=()=>queueMicrotask(refreshLanguage);languageField?.addEventListener('change',languageChange);
-    return {element:section,close:closePanel,showOperationPlan(plan){section.hidden=false;previewOperationPlan(plan);keep.focus();},reviewProfile(profile){font.value=profile.minTextPt;line.value=profile.minLinePt;refreshLanguage();section.hidden=false;return scan.onclick();},dispose(){closePanel();languageField?.removeEventListener('change',languageChange);labels.clear();section.remove();},refresh(){if(previewSession&&!previewSession.isCurrent())cancelPreview();}};
+    triggerText();
+    return {element:section,close:closePanel,showOperationPlan(plan){section.hidden=false;triggerText();previewOperationPlan(plan);keep.focus();},reviewProfile(profile){font.value=profile.minTextPt;line.value=profile.minLinePt;section.hidden=false;refreshLanguage();return scan.onclick();},dispose(){closePanel();languageField?.removeEventListener('change',languageChange);labels.clear();section.remove();},refresh(){if(previewSession&&!previewSession.isCurrent())cancelPreview();}};
   }
   return {mount};
 });

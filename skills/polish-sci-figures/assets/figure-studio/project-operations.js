@@ -32,7 +32,14 @@
     checkPayload(payload);exactKeys(patch,['schema','projectId','base','operations','reason']);if(patch.schema!==SCHEMA||patch.projectId!==payload.project.id)fail('操作协议或工程身份不匹配');
     if(patch.reason!==undefined&&(typeof patch.reason!=='string'||patch.reason.length>2000))fail('操作说明须为不超过 2000 字符的文本');
     if(!Array.isArray(patch.operations)||patch.operations.length<1||patch.operations.length>500)fail('操作数量须为 1–500');
-    const affected=new Set(patch.operations.map(op=>op?.panel));exactKeys(patch.base,[...affected]);for(const id of affected){if(typeof patch.base?.[id]!=='string'||patch.base[id]!==await revision(payload,id))fail('目标小图已变化；请重新导出检查清单，避免覆盖人工修改。');}
+    const affected=new Set(patch.operations.map(op=>op?.panel));exactKeys(patch.base,[...affected]);
+    for(const id of affected){
+      if(typeof patch.base?.[id]!=='string'||patch.base[id]!==await revision(payload,id)){
+        const error=Error('目标小图已变化；请重新导出检查清单，避免覆盖人工修改。');
+        error.code='stale-target';
+        throw error;
+      }
+    }
     const next=clone(payload.state),changes=[];let requiresScientificReview=false;
     const matching=patch.operations.some(op=>op?.type==='panel.label.match');
     if(matching){

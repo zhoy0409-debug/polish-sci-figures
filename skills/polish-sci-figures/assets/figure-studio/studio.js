@@ -5963,6 +5963,46 @@ if (typeof document !== 'undefined') (async () => {
       },
       targetPanel:()=>selectedPanel,
       displayLabel:id=>displayedPanelLabel(state(),id)?.text,
+      operationDetails(plan){
+        const before=state(),seen=new Set(),items=[];
+        const wording=(zh,en)=>StudioI18n.language==='en'?en:zh;
+        const labelKeys={fill:'color','font-family':'font','font-size':'size','font-weight':'bold','font-style':'fontStyle'};
+        const properties={fill:wording('填充色','Fill'),stroke:wording('描边色','Stroke'),opacity:wording('不透明度','Opacity'),
+          'font-family':wording('字体','Font'),'font-size':wording('字号','Font size'),'font-weight':wording('字重','Font weight'),
+          'font-style':wording('字形','Font style'),'stroke-width':wording('线宽','Stroke width'),'text-anchor':wording('文字对齐','Text alignment')};
+        const format=value=>value==null||value===''?wording('原样式','Original style'):String(value).slice(0,100);
+        function record(target,id,property,previous,next){
+          const token=JSON.stringify([id,property]),from=format(previous),to=format(next);
+          if(seen.has(token)||from===to)return;
+          seen.add(token);items.push(target+' · '+property+wording('：',': ')+from+' → '+to);
+        }
+        for(const change of plan.changes){
+          const id=change.panel,prior=before.panels[id],next=plan.next.panels[id];
+          const title=displayedPanelLabel(before,id)?.text||id;
+          if(change.type==='panel.label.match'){
+            record(title,[id,'label'],properties['font-size'],prior.label.size+' pt',next.label.size+' pt');
+            record(title,[id,'label'],wording('基线位置','Baseline position'),prior.label.y.toFixed(1)+'%',next.label.y.toFixed(1)+'%');
+          }else if(change.type==='panel.label.style'){
+            for(const property of Object.keys(change.style)){
+              const key=labelKeys[property],value=v=>key==='bold'?(v?'700':'400'):key==='size'?v+' pt':v;
+              record(title,[id,'label'],properties[property],value(prior.label[key]),value(next.label[key]));
+            }
+          }else if(change.type==='panel.candidate'){
+            const variants=panel(id).variants;
+            record(title,[id,'variant'],wording('候选图','Chart candidate'),variants[prior.variant].name,variants[next.variant].name);
+          }else if(change.type==='element.style'){
+            const context=elementContext(id,prior.variant,change.key);
+            const text=context?.text?context.el.textContent.trim().slice(0,55):'';
+            const target=title+' · '+(text||change.key);
+            for(const property of Object.keys(change.style)){
+              const original=prior.edits?.[prior.variant]?.[change.key]?.[property]??(context?.el.style.getPropertyValue(property)||context?.el.getAttribute(property));
+              const edited=next.edits?.[next.variant]?.[change.key]?.[property];
+              record(target,[id,change.key],properties[property],original,edited);
+            }
+          }
+        }
+        return items;
+      },
       taskScope:()=>selectedLabelIds().length===1&&selectedLabelIds()[0]===selectedPanel&&!selected.length&&!selectedAnnotations.length?'label':'styles',
       async inspection(targetPanel,scope){
         const panels=targetPanel?[targetPanel]:state().order,elements={},displayLabels={},scale=currentOutput().scale;
@@ -6009,7 +6049,14 @@ if (typeof document !== 'undefined') (async () => {
         // A draft renderer must suppress that hook or it redraws the preceding
         // value during a continuous update. Commit draws only its final state.
         const draw=value=>{previewPaintDepth++;try{renderCanvas(value);}finally{previewPaintDepth--;}};
-        const session=previewSessions.begin({kind:'quality-review',originalValue:base,valid:()=>{const current=reviewIdentity();return identity.length===current.length&&identity.every((value,index)=>value===current[index]);},render:draw,restore:reason=>{if(reason!=='commit')draw(state());},equal:(a,b)=>JSON.stringify(a)===JSON.stringify(b),commit:value=>commitPreviewState(value,label),onFinish:finished,onError:message=>say(message)});session.update(next);return session;
+        let showingOriginal=false;
+        const session=previewSessions.begin({kind:'quality-review',originalValue:base,valid:()=>{const current=reviewIdentity();return identity.length===current.length&&identity.every((value,index)=>value===current[index]);},render:value=>draw(showingOriginal?base:value),restore:reason=>{if(reason!=='commit')draw(state());},equal:(a,b)=>JSON.stringify(a)===JSON.stringify(b),commit:value=>commitPreviewState(value,label),onFinish:finished,onError:message=>say(message)});
+        session.showOriginal=value=>{
+          if(!session.isCurrent())return false;
+          showingOriginal=value;
+          return session.repaint()||session.flush();
+        };
+        session.update(next);return session;
       },
       locate(target){if(target.panel&&!state().order.includes(target.panel))return false;if(target.key){const vi=state().panels[target.panel].variant;if(vi!==target.variant)return false;selectedAnnotations=[];selectedPanelLabel=null;setElementSelection([{id:target.panel,vi,keys:[target.key]}]);activePane='detail';render();}else if(target.annotation){selectedAnnotations=[target.annotation];activePane='annotation';render();}else if(target.label)selectPanelLabel(target.panel,true);else if(target.panel){selectedPanel=target.panel;selectWholePanel();render();}return true;},
       download:(value,name)=>download(new Blob([JSON.stringify(value,null,2)],{type:'application/json'}),name)

@@ -52,6 +52,24 @@ if(process.argv.includes('--dom'))(async()=>{
   // Simultaneous focus and visibility events share one in-flight request.
   clock+=25*3600000;let finish;nextReply=()=>new Promise(resolve=>{finish=resolve;});dom.window.dispatchEvent(new dom.window.Event('focus'));doc.dispatchEvent(new dom.window.Event('visibilitychange'));await settle();assert.equal(automaticRequests,4);finish(available);await recurring.check({manual:false});assert.equal(recurring.dialog.open,false);
   const callsBeforeDestroy=automaticRequests;recurring.destroy();clock+=25*3600000;dom.window.dispatchEvent(new dom.window.Event('focus'));doc.dispatchEvent(new dom.window.Event('visibilitychange'));await settle();assert.equal(automaticRequests,callsBeforeDestroy,'destroy unregisters both automatic event handlers');
+  const quietHost={...recurringHost,autoCheck:false};
+  nextReply=async()=>available;
+  let quiet=Updates.create(quietHost);quiet.open();await quiet.check();
+  quiet.dialog.querySelector('#studioSkipUpdate').click();
+  assert.equal(quiet.dialog.open,false);
+  assert.equal(badgeHidden(quiet),true);
+  quiet.destroy();clock+=26*3600000;
+  quiet=Updates.create(quietHost);await quiet.check({manual:false});
+  assert.equal(badgeHidden(quiet),true,'A skipped version stays quiet after app restart and daily refresh');
+  quiet.open();await quiet.check();
+  assert.equal(quiet.dialog.querySelector('.update-download').hidden,false,'Manual checking can still install the skipped version');
+  assert.equal(badgeHidden(quiet),true);
+  quiet.close();
+  nextReply=async()=>({...available,latestVersion:'0.1.8',downloadUrl:download.replace('0.1.7','0.1.8')});
+  clock+=26*3600000;await quiet.check({manual:false});
+  assert.equal(badgeHidden(quiet),false);
+  assert.equal(quiet.dialog.open,false,'A later version only earns a badge, without opening a dialog');
+  quiet.destroy();
   // Cached metadata is revalidated, including exact platform and URL boundaries.
   for(const [key,value]of cache){const state=JSON.parse(value);state.result.downloadUrl='https://example.invalid/stolen.exe';cache.set(key,JSON.stringify(state));}
   const poisoned=Updates.create({...recurringHost,autoCheck:false});assert.equal(badgeHidden(poisoned),true);poisoned.open();assert.equal(poisoned.dialog.querySelector('.update-download').hasAttribute('href'),false);poisoned.destroy();await settle();

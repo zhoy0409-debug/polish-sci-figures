@@ -182,6 +182,75 @@ async function main() {
     assert.equal((await save(direct,'pasted-kept')).history.index,before.history.index+1);
     await direct.close();
 
+    const handoff = await open(jsonFile('figure-project.json',source));
+    const q = review(handoff);
+    const color = () => handoff.locator(`#artboard [data-panel-label="${c}"]`).getAttribute('fill');
+    const changed = {schema:patch.schema,projectId:patch.projectId,base:{[c]:byLabel.C.revision},
+      operations:[{type:'panel.label.style',panel:c,style:{fill:'#176b5d'}}]};
+    const json = JSON.stringify(changed);
+    const reply = 'Here are the changes.\n\n```json\n'+json+'\n```\n\nPreview before keeping.';
+    const invalid = reply+'\n```json\n'+json+'\n```';
+    await handoff.locator('#openQualityWorkspace').click();
+    const paste = q.getByRole('textbox',{name:'粘贴 Skill 修改'});
+    const clipboardButton = q.getByRole('button',{name:'从剪贴板预览'});
+    if(installedUrl){
+      await handoff.context().grantPermissions(['clipboard-read','clipboard-write']);
+      await handoff.evaluate(text=>navigator.clipboard.writeText(text),invalid);
+      await clipboardButton.click();
+    }else{
+      await q.getByText('与 Skill 协作',{exact:true}).click();
+      await q.getByText('粘贴 Skill 修改',{exact:true}).click();
+      await paste.fill(invalid);
+      await q.getByRole('button',{name:'预览粘贴的修改'}).click();
+    }
+    await q.getByText(/只含一个 JSON 代码块/).waitFor();
+    assert.equal(await paste.inputValue(),invalid);
+    assert.equal(await color(),source.state.panels[c].label.color);
+    if(installedUrl){
+      await handoff.evaluate(text=>navigator.clipboard.writeText(text),reply);
+      await clipboardButton.click();
+    }else{
+      await paste.fill(reply);
+      await q.getByRole('button',{name:'预览粘贴的修改'}).click();
+    }
+    await q.getByText('小图 C · 1 项修改',{exact:true}).waitFor();
+    await q.getByText('C · 填充色：#367260 → #176b5d',{exact:true}).waitFor();
+    await handoff.waitForFunction(id=>document.querySelector(`#artboard [data-panel-label="${id}"]`)?.getAttribute('fill')==='#176b5d',c);
+    const compare=q.getByRole('button',{name:'对照修改前'});
+    await compare.click();
+    assert.equal(await compare.getAttribute('aria-pressed'),'true');
+    assert.equal(await color(),'#367260');
+    await compare.click();
+    assert.equal(await color(),'#176b5d');
+    await q.getByRole('button',{name:'收起侧栏'}).click();
+    assert.equal(await q.isVisible(),false);
+    assert.equal(await color(),'#176b5d');
+    await handoff.getByRole('button',{name:'继续质检预览'}).click();
+    await q.getByText('C · 填充色：#367260 → #176b5d',{exact:true}).waitFor();
+    await compare.click();
+    await q.getByRole('button',{name:'保留修改'}).click();
+    const colorKept=await save(handoff,'chat-keep-after-comparison');
+    assert.equal(colorKept.history.index,before.history.index+1);
+    assert.equal(colorKept.state.panels[c].label.color,'#176b5d');
+    await q.getByText('粘贴 Skill 修改',{exact:true}).click();
+    await paste.fill(reply);
+    await q.getByRole('button',{name:'预览粘贴的修改'}).click();
+    await q.getByRole('button',{name:'按当前状态重新复制小图 C 的任务'}).click();
+    const refreshed=JSON.parse((await q.locator('.quality-handoff textarea').inputValue()).split('\n\n')[1]);
+    assert.deepEqual(refreshed.panels.map(panel=>panel.id),[c]);
+    assert.notEqual(refreshed.panels[0].revision,byLabel.C.revision);
+    assert.equal(await paste.inputValue(),reply);
+    assert.equal(await color(),'#176b5d');
+    await handoff.locator('#undo').click();
+    assert.deepEqual((await save(handoff,'chat-undo')).state,before.state);
+    if(installedUrl){
+      await handoff.evaluate(()=>navigator.clipboard.writeText(''));
+      await clipboardButton.click();
+      await q.getByText('请在输入框粘贴回复，再点预览。',{exact:true}).waitFor();
+      assert.equal(await paste.inputValue(),reply,'A failed clipboard read must keep the manual reply');
+    }
+    await handoff.close();
+
     const staleReference = structuredClone(source);
     staleReference.state.panels[a].label.size = 15;
     await assertRejected(staleReference, patch, '参照小图已变化', 'stale-reference');
@@ -191,7 +260,7 @@ async function main() {
     assert.deepEqual(errors, []);
     const result = {entry: installedUrl ? 'installed-loopback' : 'source-html', browser: browser.version(), before: beforeLabels, preview, reopened: afterReopen,
       history: {before: before.history.index, kept: kept.history.index, undone: undone.history.index},
-      verified: ['preview', 'save during preview', 'cancel', 'keep', 'save and reopen', 'one undo', 'direct alignment', 'scoped inline task', 'paste and preview', 'stale reference', 'stale target', 'source equality']};
+      verified: ['preview', 'save during preview', 'cancel', 'keep', 'save and reopen', 'one undo', 'direct alignment', 'scoped inline task', 'paste and preview', 'stale reference', 'stale target', 'source equality','reply with prose','reject ambiguous reply','show exact difference','compare original without losing draft','hide and resume preview','recopy fresh scoped task']};
     fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify(result, null, 2));
     console.log(JSON.stringify(result));
   } finally {

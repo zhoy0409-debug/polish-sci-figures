@@ -8,3 +8,6 @@
 .submission-preview-actions{position:sticky;top:68px;z-index:2;background:var(--fs-surface-1);padding:10px 0;border-bottom:1px solid var(--fs-stroke-subtle)}.submission-preview-actions .quality-status{flex-basis:100%;min-height:0;margin:0}
 
 .quality-handoff textarea,.quality-paste textarea,.quality-request{display:block;width:100%;box-sizing:border-box;margin:.4rem 0;resize:vertical}
+.quality-workspace .quality-preview-changes{flex-basis:100%;margin:0;padding:0;border:0}
+.quality-preview-changes ul{margin:.3rem 0;padding-inline-start:1.2rem;max-height:min(138px,20vh);overflow:auto;overflow-wrap:anywhere}
+.quality-preview-bar button[aria-pressed=true]{outline:2px solid var(--fs-accent);outline-offset:1px}
