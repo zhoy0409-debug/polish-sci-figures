@@ -138,6 +138,42 @@ async function main() {
     assert.deepEqual(await renderLabels(reopened), beforeLabels);
     await reopened.close();
 
+    const direct = await open(jsonFile('figure-project.json', source));
+    const label = id => direct.locator(`#artboard [data-panel-label="${id}"]`);
+    await label(a).click();
+    await label(b).click({modifiers:['Shift']});
+    await label(c).click({modifiers:['Shift']});
+    const alignToggle=direct.locator('#quickAlignmentToggle');
+    if(!await alignToggle.isVisible())await direct.locator('#drawerQuickMore').click();
+    await alignToggle.click();
+    await direct.locator('[data-alignment-action="match-labels"]').click();
+    await review(direct).locator('.quality-preview-bar').waitFor();
+    assertAligned(await renderLabels(direct));
+    await review(direct).getByRole('button', {name:'取消预览'}).click();
+    assert.deepEqual(await renderLabels(direct),beforeLabels);
+
+    await label(c).click();
+    await review(direct).getByText('与 Skill 协作（本地文件）', {exact:true}).click();
+    await review(direct).getByRole('button', {name:'复制局部 Skill 任务（含图中文字）'}).click();
+    const prompt = review(direct).locator('.quality-handoff textarea');
+    await prompt.waitFor();
+    const task = JSON.parse((await prompt.inputValue()).split('\n\n')[1]);
+    assert.deepEqual(task.panels.map(panel=>panel.id),[c]);
+    assert(!task.panels[0].table && !task.panels[0].analysis);
+    await review(direct).getByText('粘贴 Skill 修改',{exact:true}).click();
+    const field=review(direct).getByRole('textbox',{name:'粘贴 Skill 修改'});
+    const previewPaste=review(direct).getByRole('button',{name:'预览粘贴的修改'});
+    await field.fill('invalid');
+    await previewPaste.click();
+    await direct.waitForFunction(()=>document.querySelector('#qualityWorkspace [role=status]')?.textContent.includes('不是有效的 JSON'));
+    assert.equal(await review(direct).locator('.quality-preview-bar').isVisible(), false);
+    await field.fill('```json\n'+JSON.stringify(patch)+'\n```');
+    await previewPaste.click();
+    await review(direct).getByRole('button',{name:'保留修改'}).click();
+    assertAligned(await renderLabels(direct));
+    assert.equal((await save(direct,'pasted-kept')).history.index,before.history.index+1);
+    await direct.close();
+
     const staleReference = structuredClone(source);
     staleReference.state.panels[a].label.size = 15;
     await assertRejected(staleReference, patch, '参照小图已变化', 'stale-reference');
@@ -147,7 +183,7 @@ async function main() {
     assert.deepEqual(errors, []);
     const result = {entry: installedUrl ? 'installed-loopback' : 'source-html', browser: browser.version(), before: beforeLabels, preview, reopened: afterReopen,
       history: {before: before.history.index, kept: kept.history.index, undone: undone.history.index},
-      verified: ['preview', 'save during preview', 'cancel', 'keep', 'save and reopen', 'one undo', 'stale reference', 'stale target', 'source equality']};
+      verified: ['preview', 'save during preview', 'cancel', 'keep', 'save and reopen', 'one undo', 'direct alignment', 'scoped inline task', 'paste and preview', 'stale reference', 'stale target', 'source equality']};
     fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify(result, null, 2));
     console.log(JSON.stringify(result));
   } finally {

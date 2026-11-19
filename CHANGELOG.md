@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+Match selected panel labels directly from the alignment menu. Copy a scoped Skill task and paste its returned operations into Review for preview. The existing file handoff remains available for larger inspections.
+
 Match existing panel labels to a reference label's font size and canvas baseline through the local Skill handoff. Preview the changes together and keep them with one undo step. Review checks the reference and target revisions before applying the batch.
 
 ## v1.6.0 · Figure Studio 0.2.1

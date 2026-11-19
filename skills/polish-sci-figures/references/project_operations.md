@@ -8,6 +8,8 @@ In Figure Studio, open **图形质检 / Review** beside Export. Review uses the 
 
 For local Skill collaboration, expand **与 Skill 协作 / Skill collaboration** and export the inspection JSON. It contains project identity, per-panel revision hashes, current variants and editable element references. It omits original images and measurement tables, but may contain research text, so keep it private unless the user authorizes sharing.
 
+When Studio provides a copied task, use the inspection JSON embedded in that message. Return the operation object as plain JSON or one JSON code block for **Paste Skill edits**, using the same protocol and preflight as a file import.
+
 Create an operation file using only capabilities in that inspection:
 
 ```json

@@ -670,6 +670,7 @@ input:disabled, select:disabled, textarea:disabled { cursor: not-allowed; }
 .alignment-icon-grid,.object-align.alignment-icon-grid{display:grid;grid-template-columns:repeat(3,36px);gap:var(--fs-space-2);justify-content:start}
 .object-align.alignment-icon-grid{margin:var(--fs-space-2) 0 var(--fs-space-4)}
 .alignment-icon-button,.object-align .alignment-icon-button{display:inline-flex;align-items:center;justify-content:center;width:36px;height:34px;min-height:34px;padding:var(--fs-space-2);border:1px solid transparent;border-radius:var(--fs-radius-md);background:transparent;color:var(--fs-text-primary);cursor:pointer;margin:0}
+.alignment-icon-button[hidden]{display:none}
 .alignment-icon-button svg{display:block;flex:none;width:22px;height:22px;fill:currentColor;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
 .alignment-icon-button:hover{background:var(--fs-hover);border-color:var(--fs-stroke-strong)}
 .alignment-icon-button[aria-pressed=true]{background:var(--fs-accent-selected-bg);border-color:var(--fs-accent);color:var(--fs-accent-text)}

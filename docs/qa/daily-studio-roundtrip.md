@@ -1,0 +1,24 @@
+---
+author: a
+created: 2026-11-19
+---
+
+# 日常工程与局部精修复测
+
+Windows 上使用 Chrome 157 和本机绘图引擎。选用此前已做过配色编辑的公开 UCI Iris 工程，包含 150 条观测、12 个候选版本和一处已有样式修改。用同一张数据表单独调用 Skill 的图库命令，重建 6 种关系图和可打开的工程。交接测试从编辑器复制的任务生成应用内操作 JSON，考察本机用户流程。
+
+| 操作 | 验收范围 |
+| --- | --- |
+| 从文件拖入保存过的工程 | 恢复项目身份、源数据、候选图及原有手调。公开 Iris 这一次用时约 0.33 秒。 |
+| 运行最终尺寸检查 | 测量 172 个对象和 10 段文字。在该尺寸和默认阈值下没有几何提示。此结果只覆盖该工程。 |
+| 复制局部任务、粘贴修改 | 全程没有下载或重新选取交接文件。现有布局和分析保持原样，只新增指定 SVG 文字元素的颜色编辑。准备任务和粘贴预览这一轮分别约 58 ms 和 73 ms。 |
+| 保存、重开及导出 | 一次确认只新增一条历史。重开状态相同，可导出 SVG 和 PNG。一次撤销只去掉新样式，原手调仍在，输入文件校验值一致。 |
+| 图号批量对齐及重新选择 | Chrome 验证 A/B/C 直接预览、取消、保存与撤销。多选后单点 C 会重新确定交接目标，再复制任务时清单只有 C。 |
+
+文件导入、字体刷、可编辑图件剪贴板、尺寸适配、图号以及历史记录的定向回归通过。日常耗时来自一次本机运行，不能外推到其他设备、复杂大文件或外部 AI 宿主。
+
+## GitHub 收件箱对应项目
+
+旧 [#219](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735430835) 和 [#220](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/41735518493) 缺少统计报告英文文案；[#222](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42497540626) 同时遇到窄窗口工具栏换行；[#223](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42498314206) 另有图号测试替身缺少 DOM 方法。后续 [main #228](https://github.com/zhoy0409-debug/polish-sci-figures/actions/runs/42500209259) 全部通过。
+
+[反馈 #42](https://github.com/zhoy0409-debug/polish-sci-figures/issues/42) 的 0.2.1 macOS 双架构预览已在 [Suite v1.6.0](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.0) 提供，两种原生构建自检均通过。自动适合格子的回归通过，实际浏览器下载的统计报告与本机分析结果一致。macOS 交互与完整平台等同仍属于预览范围。
