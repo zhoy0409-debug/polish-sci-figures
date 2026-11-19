@@ -206,16 +206,92 @@ async function editPreviouslyUndoneProject(browser,url,viewport,out,previousPath
   }
 }
 
+async function redoNewAnnotationAfterSavingUndo(browser,url,viewport,out,previousPath){
+  const input=fs.readFileSync(previousPath),saved=JSON.parse(input);
+  const activeIndex=saved.history.index,undoIndex=activeIndex-1;
+  const originalState=saved.history.states[undoIndex];
+  const undoneHistory={...saved.history,index:undoIndex};
+  const originalText=originalState.overlays[0].text,newText=saved.state.overlays[0].text;
+  const undoPath=path.join(out,'scan-page-02-new-annotation-undone.json');
+  const verifyNoOldRedo=snapshot=>{
+    assert.equal(snapshot.history.states.some(state=>state.overlays?.some(note=>note.text==='Second note 02')),false);
+  };
+  assert.equal(activeAsset(saved).analysis.import.page,2);
+  assert.equal(originalText,'Review note 02');
+  assert.equal(newText,'New annotation 02');
+  assert.equal(saved.history.states.length,activeIndex+1);
+  verifyNoOldRedo(saved);
+
+  const first=await H.browserPage(browser,{viewport});
+  let scanHash,undoFileHash,undone;
+  try{
+    const opened=await openProject(first.page,url,previousPath);
+    scanHash=await imageHash(first.page.locator('#artboard svg[data-panel] image'));
+    await verifyRestored(first.page,opened,saved,scanHash);
+    assert.deepEqual(opened.history,saved.history);
+
+    await first.page.getByRole('button',{name:/^撤销/}).click();
+    undone=await saveProjectFile(first.page,undoPath);
+    undoFileHash=H.sha(fs.readFileSync(undoPath));
+    await verifyRestored(first.page,undone,{...saved,state:originalState},scanHash);
+    assert.deepEqual(undone.history,undoneHistory);
+    assert.equal(undone.history.states[undoIndex+1].overlays[0].text,newText);
+    verifyNoOldRedo(undone);
+    assert.deepEqual(first.errors,[]);
+    assert.deepEqual(first.remote,[]);
+    await first.page.screenshot({path:path.join(out,'01-undo-saved-directly.png')});
+  }catch(error){
+    await first.page.screenshot({path:path.join(out,'save-undo-stopped.png')}).catch(()=>{});
+    throw error;
+  }finally{
+    await first.context.close();
+  }
+
+  const replay=await H.browserPage(browser,{viewport});
+  try{
+    const reopened=await openProject(replay.page,url,undoPath);
+    await verifyRestored(replay.page,reopened,undone,scanHash);
+    assert.deepEqual(reopened.history,undoneHistory);
+    verifyNoOldRedo(reopened);
+    const redo=replay.page.getByRole('button',{name:/^重做/});
+    assert.equal(await redo.isEnabled(),true);
+    await replay.page.screenshot({path:path.join(out,'02-undo-file-reopened.png')});
+
+    await redo.click();
+    const redone=await H.save(replay.page);
+    await verifyRestored(replay.page,redone,saved,scanHash);
+    assert.deepEqual(redone.history,saved.history);
+    assert.equal(await redo.isDisabled(),true);
+    verifyNoOldRedo(redone);
+    assert.equal(H.sha(fs.readFileSync(previousPath)),H.sha(input));
+    assert.equal(H.sha(fs.readFileSync(undoPath)),undoFileHash);
+    assert.deepEqual(replay.errors,[]);
+    assert.deepEqual(replay.remote,[]);
+    await replay.page.screenshot({path:path.join(out,'03-only-new-annotation-redone.png')});
+    return {inputProjectSha256:H.sha(input),savedUndoSha256:undoFileHash,page:2,newText,originalText,
+      indexBeforeUndo:activeIndex,indexAtSave:undone.history.index,indexAfterReopening:reopened.history.index,
+      indexAfterRedo:redone.history.index,reopenedText:reopened.state.overlays[0].text,redoneText:redone.state.overlays[0].text,
+      onlyNewAnnotationRedone:true,oldRedoPresent:false};
+  }catch(error){
+    await replay.page.screenshot({path:path.join(out,'redo-new-stopped.png')}).catch(()=>{});
+    throw error;
+  }finally{
+    await replay.context.close();
+  }
+}
+
 async function main(){
-  const [url,source,output,width='1440',previousProject]=process.argv.slice(2);
-  assert(url&&source&&output,'Usage: node scripts/test_studio_scanned_pdf_guide_browser.cjs LOCAL_URL THREE_PAGE_SCAN_PDF OUTPUT [WIDTH] [SAVED_UNDONE_PROJECT]');
+  const [url,source,output,width='1440',previousProject,scenario='new-edit']=process.argv.slice(2);
+  assert(url&&source&&output,'Usage: node scripts/test_studio_scanned_pdf_guide_browser.cjs LOCAL_URL THREE_PAGE_SCAN_PDF OUTPUT [WIDTH] [SAVED_PROJECT] [new-edit|redo-new]');
+  assert(['new-edit','redo-new'].includes(scenario),'Unknown saved-project scenario');
   const viewport={width:Number(width),height:width==='910'?512:900};
   const out=path.resolve(output),sha=H.sha(fs.readFileSync(source));
   fs.mkdirSync(out,{recursive:true});
   const browser=await chromium.launch({channel:'chrome'});
   if(previousProject){
     try{
-      const branch=await editPreviouslyUndoneProject(browser,url,viewport,out,path.resolve(previousProject));
+      const run=scenario==='redo-new'?redoNewAnnotationAfterSavingUndo:editPreviouslyUndoneProject;
+      const branch=await run(browser,url,viewport,out,path.resolve(previousProject));
       assert.equal(H.sha(fs.readFileSync(source)),sha);
       const notes={viewport,sourceSha256:sha,branch,completed:true};
       fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(notes,null,2));
