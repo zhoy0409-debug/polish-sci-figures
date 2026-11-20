@@ -25,7 +25,7 @@ const helpers=[
   chunk('  function setEdit(','  let statisticalLineGesture='),
   chunk('  function targetObjects(','  function paletteHeatmapInfo('),
   chunk('  function quickSelectedObjects(','  function cancelQuickPreview('),
-  chunk('  function renderQuickToolbar(','  function setupQuickToolbar('),
+  chunk('  let alignmentIcons=','  function setupQuickToolbar('),
   chunk('  function renderSelectionProperties(','  let literatureBrowser='),
   chunk('  function namespace(svg)','  let compactLayoutCache='),
   chunk('  function applyElementOffsets(','  let autosaveQueue='),

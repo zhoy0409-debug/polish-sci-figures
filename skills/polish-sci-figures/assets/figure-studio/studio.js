@@ -1150,7 +1150,7 @@ if (typeof document !== 'undefined') (async () => {
       review:()=>{const box=$('qualityWorkspace');if(box?.hidden!==false)$('openQualityWorkspace')?.click();$('qualityScan')?.focus();},
       leaveReviewForExport:()=>{
         if(previewSessions?.active){
-          const message=language()==='en'?'Keep or cancel the current preview before exporting.':'请先保留或取消当前预览，再导出。';
+          const message=T('请先保留或取消当前预览，再导出。');
           const status=$('qualityStatus');if(status)status.textContent=message;
           say(message);return false;
         }
@@ -1171,7 +1171,7 @@ if (typeof document !== 'undefined') (async () => {
         if(selectedLabelIds().length<2||!toggle||toggle.disabled){
           if(!viewport.hasAttribute('tabindex'))viewport.tabIndex=-1;
           viewport.focus();
-          say(language()==='en'?'Select the reference label first. Shift-click the other labels, then open Align objects.':'先选择参照图号，再按住 Shift 点选其他图号，然后打开「对象对齐」。');
+          say(T('先选择参照图号，再按住 Shift 点选其他图号，然后打开「对象对齐」。'));
           return;
         }
         const overflow=$('drawerQuickMenu'),more=$('drawerQuickMore');
@@ -6006,23 +6006,23 @@ if (typeof document !== 'undefined') (async () => {
       displayLabel:id=>displayedPanelLabel(state(),id)?.text,
       operationDetails(plan){
         const before=state(),seen=new Set(),items=[];
-        const wording=(zh,en)=>StudioI18n.language==='en'?en:zh;
+        const separator=StudioI18n.language==='en'?': ':'：';
         const labelKeys={fill:'color','font-family':'font','font-size':'size','font-weight':'bold','font-style':'fontStyle'};
-        const properties={fill:wording('填充色','Fill'),stroke:wording('描边色','Stroke'),opacity:wording('不透明度','Opacity'),
-          'font-family':wording('字体','Font'),'font-size':wording('字号','Font size'),'font-weight':wording('字重','Font weight'),
-          'font-style':wording('字形','Font style'),'stroke-width':wording('线宽','Stroke width'),'text-anchor':wording('文字对齐','Text alignment')};
-        const format=value=>value==null||value===''?wording('原样式','Original style'):String(value).slice(0,100);
+        const properties={fill:T('填充色'),stroke:T('描边色'),opacity:T('不透明度'),
+          'font-family':T('字体'),'font-size':T('字号'),'font-weight':T('字重'),
+          'font-style':T('字形'),'stroke-width':T('线宽'),'text-anchor':T('文字对齐')};
+        const format=value=>value==null||value===''?T('原样式'):String(value).slice(0,100);
         function record(target,id,property,previous,next){
           const token=JSON.stringify([id,property]),from=format(previous),to=format(next);
           if(seen.has(token)||from===to)return;
-          seen.add(token);items.push(target+' · '+property+wording('：',': ')+from+' → '+to);
+          seen.add(token);items.push(target+' · '+property+separator+from+' → '+to);
         }
         for(const change of plan.changes){
           const id=change.panel,prior=before.panels[id],next=plan.next.panels[id];
           const title=displayedPanelLabel(before,id)?.text||id;
           if(change.type==='panel.label.match'){
             record(title,[id,'label'],properties['font-size'],prior.label.size+' pt',next.label.size+' pt');
-            record(title,[id,'label'],wording('基线位置','Baseline position'),prior.label.y.toFixed(1)+'%',next.label.y.toFixed(1)+'%');
+            record(title,[id,'label'],T('基线位置'),prior.label.y.toFixed(1)+'%',next.label.y.toFixed(1)+'%');
           }else if(change.type==='panel.label.style'){
             for(const property of Object.keys(change.style)){
               const key=labelKeys[property],value=v=>key==='bold'?(v?'700':'400'):key==='size'?v+' pt':v;
@@ -6030,7 +6030,7 @@ if (typeof document !== 'undefined') (async () => {
             }
           }else if(change.type==='panel.candidate'){
             const variants=panel(id).variants;
-            record(title,[id,'variant'],wording('候选图','Chart candidate'),variants[prior.variant].name,variants[next.variant].name);
+            record(title,[id,'variant'],T('候选图'),variants[prior.variant].name,variants[next.variant].name);
           }else if(change.type==='element.style'){
             const context=elementContext(id,prior.variant,change.key);
             const text=context?.text?context.el.textContent.trim().slice(0,55):'';
