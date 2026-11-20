@@ -27,12 +27,13 @@ async function main() {
   const jsonFile = (name, value) => ({name, mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(value))});
   const review = page => page.locator('#qualityWorkspace');
   async function open(project) {
-    const page = await browser.newPage({viewport: {width: 1520, height: 1000}});
+    const page = await browser.newPage({locale: 'zh-CN', viewport: {width: 1520, height: 1000}});
     page.setDefaultTimeout(12000);
     page.on('pageerror', error => errors.push(error.message));
     page.on('dialog', dialog => dialog.accept());
     await page.goto(url.href);
     await page.waitForFunction(() => !document.body.inert && document.querySelector('#artboard>svg'));
+    assert.equal(await page.locator('html').getAttribute('lang'), 'zh-CN');
     if (await page.locator('#dismissProjectStart').isVisible()) await page.locator('#dismissProjectStart').click();
     await page.locator('#projectFile').setInputFiles(project);
     await page.waitForFunction(() => document.querySelector('#status')?.textContent.includes('工程已恢复'));
