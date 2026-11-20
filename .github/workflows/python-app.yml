@@ -14,6 +14,65 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  windows-stable-upgrade:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && startsWith(github.head_ref, 'codex/windows-stable-v')
+    runs-on: windows-latest
+    timeout-minutes: 20
+    permissions:
+      # Releases are still drafts during acceptance and need repository write access to read.
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download and verify the two official installers
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $newTag = $env:GITHUB_HEAD_REF.Substring('codex/windows-stable-'.Length)
+          if ($newTag -notmatch '^v[0-9]+\.[0-9]+\.[0-9]+$') { throw 'Unexpected release ref' }
+          $oldTag = gh api "repos/$env:GITHUB_REPOSITORY/releases/latest" --jq '.tag_name'
+          if ($LASTEXITCODE -ne 0 -or $oldTag -eq $newTag) { throw 'Previous stable release unavailable' }
+          foreach ($label in 'prior','target') {
+            $tag = if ($label -eq 'prior') { $oldTag } else { $newTag }
+            $folder = Join-Path $env:RUNNER_TEMP "studio-$label"
+            gh release download $tag -R $env:GITHUB_REPOSITORY -D $folder -p 'polish-sci-figures-Studio-*-Setup-x64.exe' -p 'SHA256SUMS.txt'
+            if ($LASTEXITCODE -ne 0) { throw "Download failed for $tag" }
+            $files = @(Get-ChildItem -LiteralPath $folder -Filter '*-Setup-x64.exe' -File)
+            if ($files.Count -ne 1 -or $files[0].Name -notmatch '^polish-sci-figures-Studio-([0-9]+\.[0-9]+\.[0-9]+)-Setup-x64\.exe$') { throw "Unexpected assets for $tag" }
+            $version = $Matches[1]
+            $checksums = Get-Content -LiteralPath (Join-Path $folder 'SHA256SUMS.txt')
+            $digest = (Get-FileHash -LiteralPath $files[0].FullName).Hash.ToLowerInvariant()
+            if ($checksums -notcontains "$digest  $($files[0].Name)") { throw "Checksum mismatch for $tag" }
+            "$($label.ToUpperInvariant())_SETUP=$($files[0].FullName)" >> $env:GITHUB_ENV
+            "$($label.ToUpperInvariant())_VERSION=$version" >> $env:GITHUB_ENV
+          }
+      - name: Install the Chromium test runtime
+        shell: pwsh
+        run: |
+          npm install --prefix .cache/stable-upgrade --ignore-scripts --no-audit --no-fund --save-exact playwright@1.62.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node .cache/stable-upgrade/node_modules/playwright/cli.js install chromium
+      - name: Run the real Windows upgrade on a clean profile
+        shell: pwsh
+        run: |
+          $env:NODE_PATH = (Resolve-Path .cache/stable-upgrade/node_modules).Path
+          node scripts/test_studio_windows_stable_upgrade.cjs $env:PRIOR_SETUP $env:TARGET_SETUP $env:PRIOR_VERSION $env:TARGET_VERSION (Join-Path $env:RUNNER_TEMP 'studio-upgrade-proof')
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-stable-upgrade-evidence
+          path: |
+            ${{ runner.temp }}/studio-upgrade-proof/official-upgrade-result.json
+            ${{ runner.temp }}/studio-upgrade-proof/*.log
+            ${{ runner.temp }}/studio-upgrade-proof/self-test/self-test.json
+          retention-days: 7
+          if-no-files-found: ignore
   basic:
     name: basic (${{ matrix.os }}, py${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}

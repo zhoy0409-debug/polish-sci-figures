@@ -23,8 +23,8 @@ import sysconfig
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '0.2.1'
-SUITE_VERSION = 'v1.6.0'
+VERSION = '0.2.2'
+SUITE_VERSION = 'v1.6.1'
 ARCHITECTURES = ('arm64', 'x86_64')
 RUNTIME_PACKAGES = ('numpy', 'scipy', 'pandas', 'matplotlib', 'openpyxl', 'Pillow',
                     'pypdfium2', 'pypdf', 'opencv-python-headless', 'pyinstaller',
