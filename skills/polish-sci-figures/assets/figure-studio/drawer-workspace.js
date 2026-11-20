@@ -3,7 +3,7 @@
 'use strict';
 const StudioDrawerWorkspace=(()=>{
   const ALIASES={edit:'fonts',typography:'fonts',paragraph:'fonts','text-color':'colour-lines','label-color':'colour-lines','submission-profile':'export',group:'organization',lock:'organization',aspect:'canvas-tools'};
-  const SEARCH_ONLY=new Set(['appearance','checkpoints','open-project','save-project','history-undo','history-redo','feedback','download-metrics','layers','preferences']);
+  const SEARCH_ONLY=new Set(['appearance','checkpoints','open-project','save-project','history-undo','history-redo','feedback','download-metrics','layers','preferences','usage-guide']);
   const OWNER={duplicates:'export','legend-style':'data'};
   function canonical(action){return ALIASES[action.id]||action.id;}
   function catalog(actions){

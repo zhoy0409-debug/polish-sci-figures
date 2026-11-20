@@ -68,7 +68,7 @@ async function testHandlers(){
   const controls=new Map(),downloads=[],canvases=[],encoded=[],revoked=[],messages=[];
   const control=id=>{if(!controls.has(id)){const e=new Element('control');Object.assign(e,{value:'',disabled:false,open:false,listeners:{},focus(){},addEventListener(name,fn){this.listeners[name]=fn;},showModal(){this.open=true;},close(){this.open=false;},replaceChildren(...nodes){this.children=[];this.append(...nodes);}});controls.set(id,e);}return controls.get(id);};
   const tinyPng=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a4xQAAAAASUVORK5CYII=','base64');
-  Object.assign(ctx,{state:()=>active,project:{id:'project-1'},dataDrafts:{},exportBusy:false,exportRequest:null,$:control,Blob,Uint8Array,
+  Object.assign(ctx,{state:()=>active,project:{id:'project-1'},dataDrafts:{},exportBusy:false,exportRequest:null,experienceTools:null,$:control,Blob,Uint8Array,
     ensureCurrentReflows:async()=>{if(reflowHook)await reflowHook();},rasterResolution:async()=>{if(hook)await hook();return '';},
     XMLSerializer:class{serializeToString(svg){return JSON.stringify({attrs:svg.attrs,text:svg.textContent});}},
     Image:class{set src(value){this.url=value;queueMicrotask(()=>imageFails?this.onerror():this.onload());}},

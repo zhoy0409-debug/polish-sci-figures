@@ -66,7 +66,9 @@ def main():
     native_updates = (ROOT / "mobile/android/app/src/main/java/org/polishscifigures/studio/preview/UpdateChecker.java").read_text(encoding="utf-8")
     assert re.search(r'put\("suiteVersion", "([^"]+)"\)', native_updates).group(1) == mobile_suite
 
-    # Desktop downloads point to this release. Mobile previews keep their own tags.
+    # Windows and the skill suite move together. Published previews have their
+    # own release cadence and download URLs.
+    mac_preview = ("v1.6.0", "0.2.1")
     notes = f"docs/release-notes-{VERSION}.md"
     documents = ["README.md", "README.en.md", "README.zh-CN.md",
                  "desktop/QUICKSTART.en.md", "desktop/QUICKSTART.zh-CN.md",
@@ -79,7 +81,7 @@ def main():
         for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-(?:Setup-x64\.exe|Portable-x64\.zip)", text):
             assert (tag, version) == (VERSION, app_version), (name, tag, version)
         for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-macOS-[^/)]+", text):
-            assert (tag, version) == (VERSION, app_version), (name, tag, version)
+            assert (tag, version) == mac_preview, (name, tag, version)
         for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-Android-preview\.apk", text):
             assert tag == "figure-studio-local-preview-" + version, (name, tag, version)
             assert tuple(map(int, version.split("."))) <= tuple(map(int, mobile_version.split("."))), (name, tag, version)

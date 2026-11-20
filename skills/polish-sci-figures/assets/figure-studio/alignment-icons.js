@@ -7,6 +7,7 @@ const StudioAlignmentIcons = (() => {
     left:['左对齐','Align left'],center:['水平居中','Align horizontal centers'],right:['右对齐','Align right'],
     top:['顶端对齐','Align top'],middle:['垂直居中','Align vertical centers'],bottom:['底端对齐','Align bottom'],
     'distribute-x':['水平等距分布','Distribute horizontal spacing'],'distribute-y':['垂直等距分布','Distribute vertical spacing'],
+    'match-labels':['按首选图号统一字号和基线','Match first selected label size and baseline'],
     'text-start':['文字左对齐','Align text left'],'text-middle':['文字居中','Center text'],'text-end':['文字右对齐','Align text right']
   };
   const icons={
@@ -18,6 +19,7 @@ const StudioAlignmentIcons = (() => {
     bottom:'<path d="M3 20h18"/><rect x="5" y="4" width="4" height="13" rx=".7"/><rect x="14" y="9" width="4" height="8" rx=".7"/>',
     'distribute-x':'<path d="M3 3v18M21 3v18M8 12h8M10 10l-2 2 2 2M14 10l2 2-2 2"/><rect x="5" y="6" width="3" height="12" rx=".5"/><rect x="16" y="6" width="3" height="12" rx=".5"/>',
     'distribute-y':'<path d="M3 3h18M3 21h18M12 8v8M10 10l2-2 2 2M10 14l2 2 2-2"/><rect x="6" y="5" width="12" height="3" rx=".5"/><rect x="6" y="16" width="12" height="3" rx=".5"/>',
+    'match-labels':'<path d="m3 16 4-10 4 10M5 12h4m5 4 3-8 4 8m-6-3h4M2 19h20"/>',
     'text-start':'<path d="M4 5h16M4 10h10M4 15h16M4 20h10"/>',
     'text-middle':'<path d="M4 5h16M7 10h10M4 15h16M7 20h10"/>',
     'text-end':'<path d="M4 5h16M10 10h10M4 15h16M10 20h10"/>'
@@ -38,7 +40,7 @@ const StudioAlignmentIcons = (() => {
     const heading=doc.createElement('p');heading.className='alignment-popover-heading';popup.append(heading);
     const grid=doc.createElement('div');grid.className='alignment-icon-grid';grid.setAttribute('role','menu');popup.append(grid);doc.body.append(popup);
     const close=()=>{popup.hidden=true;toggle.setAttribute('aria-expanded','false');};
-    const available=()=>[...grid.querySelectorAll('button')].filter(button=>!button.disabled);
+    const available=()=>[...grid.querySelectorAll('button')].filter(button=>!button.disabled&&!button.hidden);
     const position=()=>{const rect=toggle.getBoundingClientRect(),width=146,height=170;popup.style.left=Math.max(8,Math.min(rect.left,(win?.innerWidth||1024)-width-8))+'px';popup.style.top=Math.max(8,Math.min(rect.bottom+7,(win?.innerHeight||768)-height-8))+'px';};
     const choose=mode=>{close();select.value=mode;select.dispatchEvent(new win.Event('change',{bubbles:true}));};
     for(const option of [...select.options].filter(option=>labels[option.value])){
@@ -77,7 +79,7 @@ const StudioAlignmentIcons = (() => {
       if(signature===lastSignature)return;lastSignature=signature;
       const title=local('对象对齐','Align objects');toggle.title=title;toggle.setAttribute('aria-label',title);toggle.disabled=select.disabled;heading.textContent=t('对齐');grid.setAttribute('aria-label',title);
       if(toggle.disabled)close();
-      for(const button of [...grid.querySelectorAll('button'),...objectButtons]){const mode=button.dataset.alignmentAction||button.dataset.alignObjects;button.disabled=select.disabled||options.get(mode)?.disabled===true;button.title=caption(mode);button.setAttribute('aria-label',caption(mode));}
+      for(const button of [...grid.querySelectorAll('button'),...objectButtons]){const mode=button.dataset.alignmentAction||button.dataset.alignObjects;button.disabled=select.disabled||options.get(mode)?.disabled===true;if(mode==='match-labels')button.hidden=button.disabled;button.title=caption(mode);button.setAttribute('aria-label',caption(mode));}
       for(const group of doc.querySelectorAll('.object-align.alignment-icon-grid'))group.setAttribute('aria-label',title);
       for(const {input,group} of selectControls){group.setAttribute('aria-label',local('文本对齐','Text alignment'));for(const button of group.children){button.disabled=input.disabled;button.setAttribute('aria-pressed',String(input.value===button.dataset.textAlign));button.title=caption('text-'+button.dataset.textAlign);button.setAttribute('aria-label',button.title);}}
     }

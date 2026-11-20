@@ -123,7 +123,11 @@
         const corner=edge==='corner',vertical=edge==='right'||edge==='left',cx=paper.x+(edge==='left'?0:vertical||corner?l.width:edge==='top'?l.width*.25:l.width/2),cy=paper.y+(edge==='top'?0:vertical?l.height/2:l.height),label=t(frameMode?(corner?'调整母版边界；内容不缩放':edge==='top'?'裁切母版上边缘':edge==='left'?'裁切母版左边缘':edge==='right'?'裁切母版右边缘':'裁切母版下边缘'):corner?'调整整张母版大小；Shift 可自由调整比例':vertical?'调整整张母版宽度':'调整整张母版高度'),g=addSvg('g',{'data-grid-resize':'outer','data-grid-edge':edge,role:corner?'button':'separator',tabindex:'0','aria-label':label,'aria-keyshortcuts':corner?'ArrowLeft ArrowRight ArrowUp ArrowDown':'','aria-valuenow':(vertical?l.width:l.height).toFixed(1)},layer);
         if(!corner)g.setAttribute('aria-orientation',vertical?'vertical':'horizontal');g.style.cursor=corner?'nwse-resize':vertical?'ew-resize':'ns-resize';g.style.touchAction='none';
         addSvg('title',{},g).textContent=label;
-        addSvg('rect',{x:cx-14*ux,y:cy-14*uy,width:28*ux,height:28*uy,fill:'transparent'},g);
+        // Keep the visible grip and its 28px hit target. The extra hit area
+        // belongs outside the page so it does not cover text near the edge.
+        const hitX=cx-(edge==='left'?24:edge==='right'?4:14)*ux;
+        const hitY=cy-(edge==='top'?24:edge==='bottom'?4:14)*uy;
+        addSvg('rect',{x:hitX,y:hitY,width:28*ux,height:28*uy,fill:'transparent'},g);
         addSvg('rect',{x:cx-(corner?14:vertical?4:14)*ux,y:cy-(corner?14:vertical?14:4)*uy,width:(corner?28:vertical?8:28)*ux,height:(corner?28:vertical?28:8)*uy,rx:3*Math.min(ux,uy),fill:corner?'#ffffff':'#7f99bf',stroke:corner?'#5278ad':'white','stroke-width':1,'vector-effect':'non-scaling-stroke'},g);
         if(corner)addSvg('path',{d:`M ${cx-6*ux} ${cy+5*uy} L ${cx+5*ux} ${cy-6*uy} M ${cx-1*ux} ${cy+6*uy} L ${cx+6*ux} ${cy-1*uy}`,fill:'none',stroke:'#5278ad','stroke-width':1.5,'vector-effect':'non-scaling-stroke','pointer-events':'none'},g);
       }
