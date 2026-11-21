@@ -55,6 +55,32 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Verify installed files, isolated runtime, reinstall and uninstall
         run: ./desktop/verify_windows.ps1
+      - name: Exercise the frozen application in real Chromium
+        run: |
+          $env:NODE_PATH = (Resolve-Path .cache/stable-upgrade/node_modules).Path
+          $env:STUDIO_TIFF_BROWSER = 'chromium'
+          $proof = Join-Path $env:RUNNER_TEMP 'studio-frozen-browser'
+          $data = Join-Path $proof 'profile'
+          New-Item -ItemType Directory -Path $proof -Force | Out-Null
+          $exe = (Resolve-Path 'dist/desktop/Figure Studio/Figure Studio.exe').Path
+          $app = Start-Process $exe -ArgumentList ('--no-open --data-dir "' + $data + '"') -PassThru
+          try {
+            $instance = Join-Path $data 'instance.json'
+            $deadline = (Get-Date).AddSeconds(60)
+            while (-not (Test-Path $instance)) {
+              if ($app.HasExited -or (Get-Date) -gt $deadline) { throw 'Frozen app failed to start' }
+              Start-Sleep -Milliseconds 250
+            }
+            $record = Get-Content $instance -Raw | ConvertFrom-Json
+            if ($record.pid -ne $app.Id) { throw 'Unexpected instance identity' }
+            $url = "http://127.0.0.1:$($record.port)/"
+            foreach ($script in 'test_project_codec_browser','test_scientific_tiff_browser','test_scientific_tiff_derivative_browser','test_submission_profiles_browser','test_history_shortcuts_browser','test_studio_drawer_workspace_browser','test_studio_drawer_compact_browser','test_studio_support_browser','test_studio_text_content_browser','test_studio_wb_browser','test_studio_wb_advanced_browser','test_studio_core_workbench_browser','test_studio_statistics_report_browser') {
+              node "scripts/$script.cjs" $url (Join-Path $proof $script)
+              if ($LASTEXITCODE -ne 0) { throw "Frozen browser check failed: $script" }
+            }
+          } finally {
+            if (-not $app.HasExited) { Stop-Process -Id $app.Id; $app.WaitForExit() }
+          }
       - name: Download checksum-verified previous stable installer
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -97,6 +123,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-maintenance-evidence
+          include-hidden-files: true
           retention-days: 14
           if-no-files-found: ignore
           path: |
@@ -105,3 +132,4 @@ jobs:
             ${{ runner.temp }}/studio-upgrade-proof/official-upgrade-result.json
             ${{ runner.temp }}/studio-upgrade-proof/*.log
             ${{ runner.temp }}/studio-upgrade-proof/self-test/self-test.json
+            ${{ runner.temp }}/studio-frozen-browser/
