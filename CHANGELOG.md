@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.6.2 — Figure Studio 0.2.3
+
+- Fix automatic feedback routing for bare Chinese feedback titles and titles without a trailing space.
+- Add feedback-title and bilingual statistical-report regression coverage without changing translations.
+
 ## Unreleased
 
 ## v1.6.1 · Figure Studio 0.2.2

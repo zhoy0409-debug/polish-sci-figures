@@ -1,0 +1,97 @@
+name: Windows maintenance release candidate
+
+on:
+  push:
+    branches: [codex/windows-stable-v1.6.2]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install official build tools and pinned dependencies
+        run: |
+          python -m pip install -r desktop/requirements-build.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          choco install innosetup --yes --no-progress
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          npm install --prefix .cache/stable-upgrade --ignore-scripts --no-audit --no-fund --save-exact playwright@1.62.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node .cache/stable-upgrade/node_modules/playwright/cli.js install chromium
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build with the repository Windows release script
+        run: |
+          $compiler = Get-ChildItem 'C:/Program Files (x86)/Inno Setup */ISCC.exe' | Sort-Object FullName -Descending | Select-Object -First 1
+          if (-not $compiler -or $compiler.VersionInfo.FileMajorPart -lt 7) { throw 'Inno Setup 7 or later is required' }
+          python scripts/test_release_versions.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python desktop/build_windows.py --iscc $compiler.FullName
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify installed files, isolated runtime, reinstall and uninstall
+        run: ./desktop/verify_windows.ps1
+      - name: Download checksum-verified previous stable installer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $prior = Join-Path $env:RUNNER_TEMP 'prior-stable'
+          gh release download v1.6.1 -R $env:GITHUB_REPOSITORY -D $prior -p 'polish-sci-figures-Studio-0.2.2-Setup-x64.exe' -p SHA256SUMS.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $setup = Join-Path $prior 'polish-sci-figures-Studio-0.2.2-Setup-x64.exe'
+          $digest = (Get-FileHash $setup).Hash.ToLowerInvariant()
+          if ((Get-Content (Join-Path $prior 'SHA256SUMS.txt')) -notcontains "$digest  polish-sci-figures-Studio-0.2.2-Setup-x64.exe") { throw 'Prior stable checksum mismatch' }
+          "PRIOR_SETUP=$setup" >> $env:GITHUB_ENV
+      - name: Verify real stable upgrade, persisted project and PNG export
+        run: |
+          $env:NODE_PATH = (Resolve-Path .cache/stable-upgrade/node_modules).Path
+          node scripts/test_studio_windows_stable_upgrade.cjs $env:PRIOR_SETUP dist/desktop/polish-sci-figures-Studio-0.2.3-Setup-x64.exe 0.2.2 0.2.3 (Join-Path $env:RUNNER_TEMP 'studio-upgrade-proof')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build and check Skill archives
+        run: |
+          python scripts/build_release.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/test_release_bundle.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/build_portable_skill.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/test_portable_skill.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Retain candidate artifacts only after acceptance
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-maintenance-candidate
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            dist/desktop/*-Setup-x64.exe
+            dist/desktop/*-Portable-x64.zip
+            dist/desktop/SHA256SUMS.txt
+            dist/*.zip
+      - name: Retain diagnostics and acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-maintenance-evidence
+          retention-days: 14
+          if-no-files-found: ignore
+          path: |
+            .cache/desktop-build/*.log
+            .cache/desktop-installer-proof-*/
+            ${{ runner.temp }}/studio-upgrade-proof/official-upgrade-result.json
+            ${{ runner.temp }}/studio-upgrade-proof/*.log
+            ${{ runner.temp }}/studio-upgrade-proof/self-test/self-test.json
