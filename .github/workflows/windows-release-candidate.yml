@@ -21,7 +21,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
+          python-version: '3.12.14'
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -29,15 +29,19 @@ jobs:
         run: |
           python -m pip install -r desktop/requirements-build.txt
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          choco install innosetup --yes --no-progress
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $installer = Join-Path $env:RUNNER_TEMP 'innosetup-7.1.1-x64.exe'
+          Invoke-WebRequest 'https://github.com/jrsoftware/issrc/releases/download/is-7_1_1/innosetup-7.1.1-x64.exe' -OutFile $installer
+          $signature = Get-AuthenticodeSignature $installer
+          if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'Pyrsys B.V.') { throw 'Official Inno Setup signature mismatch' }
+          $install = Start-Process $installer -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -PassThru -Wait
+          if ($install.ExitCode -ne 0) { throw 'Inno Setup installation failed' }
           npm install --prefix .cache/stable-upgrade --ignore-scripts --no-audit --no-fund --save-exact playwright@1.62.1
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           node .cache/stable-upgrade/node_modules/playwright/cli.js install chromium
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Build with the repository Windows release script
         run: |
-          $compiler = Get-ChildItem 'C:/Program Files (x86)/Inno Setup */ISCC.exe' | Sort-Object FullName -Descending | Select-Object -First 1
+          $compiler = Get-ChildItem 'C:/Program Files/Inno Setup */ISCC.exe' | Sort-Object FullName -Descending | Select-Object -First 1
           if (-not $compiler -or $compiler.VersionInfo.FileMajorPart -lt 7) { throw 'Inno Setup 7 or later is required' }
           python scripts/test_release_versions.py
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
