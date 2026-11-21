@@ -6,7 +6,7 @@ permissions:
   issues: write
 jobs:
   route:
-    if: startsWith(github.event.issue.title, '[Figure Studio 反馈] ')
+    if: startsWith(github.event.issue.title, '[Figure Studio 反馈]')
     runs-on: ubuntu-latest
     steps:
       - name: Label feedback and notify the maintainer by assignment
