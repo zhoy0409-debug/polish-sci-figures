@@ -10,3 +10,6 @@ pypdf==6.20.0
 opencv-python-headless==4.11.0.86
 pyinstaller==6.22.0
 pyinstaller-hooks-contrib==2026.8
+# Explicitly bundled by desktop/build_windows.py license manifest.
+PyYAML==6.0.3
+six==1.17.0

@@ -1,0 +1,135 @@
+name: Windows maintenance release candidate
+
+on:
+  push:
+    branches: [codex/windows-stable-v1.6.2]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          # Last python.org Windows installer in the 3.12 series; later builds are source-only.
+          python-version: '3.12.10'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install official build tools and pinned dependencies
+        run: |
+          python -m pip install -r desktop/requirements-build.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $installer = Join-Path $env:RUNNER_TEMP 'innosetup-7.1.1-x64.exe'
+          Invoke-WebRequest 'https://github.com/jrsoftware/issrc/releases/download/is-7_1_1/innosetup-7.1.1-x64.exe' -OutFile $installer
+          if ((Get-FileHash $installer -Algorithm SHA256).Hash.ToLowerInvariant() -ne '8a5a6711c3766a6e5fb74f280ba0e3551e719ce94538d901fdbd1f8f9920b3f0') { throw 'Official Inno Setup checksum mismatch' }
+          $signature = Get-AuthenticodeSignature $installer
+          if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'Pyrsys B.V.') { throw 'Official Inno Setup signature mismatch' }
+          $inno = Join-Path $env:RUNNER_TEMP 'studio-inno-7.1.1'
+          $install = Start-Process $installer -ArgumentList ('/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /DIR="' + $inno + '"') -PassThru -Wait
+          if ($install.ExitCode -ne 0) { throw 'Inno Setup installation failed' }
+          "STUDIO_ISCC=$inno/ISCC.exe" >> $env:GITHUB_ENV
+          npm install --prefix .cache/stable-upgrade --ignore-scripts --no-audit --no-fund --save-exact playwright@1.62.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node .cache/stable-upgrade/node_modules/playwright/cli.js install chromium
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build with the repository Windows release script
+        run: |
+          $compiler = Get-Item -LiteralPath $env:STUDIO_ISCC
+          $version = & $compiler.FullName /? | Out-String
+          Write-Output $version
+          if ($version -notmatch 'Inno Setup 7') { throw 'Inno Setup 7 is required' }
+          python scripts/test_release_versions.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python desktop/build_windows.py --iscc $compiler.FullName
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify installed files, isolated runtime, reinstall and uninstall
+        run: ./desktop/verify_windows.ps1
+      - name: Exercise the frozen application in real Chromium
+        run: |
+          $env:NODE_PATH = (Resolve-Path .cache/stable-upgrade/node_modules).Path
+          $env:STUDIO_TIFF_BROWSER = 'chromium'
+          $proof = Join-Path $env:RUNNER_TEMP 'studio-frozen-browser'
+          $data = Join-Path $proof 'profile'
+          New-Item -ItemType Directory -Path $proof -Force | Out-Null
+          $exe = (Resolve-Path 'dist/desktop/Figure Studio/Figure Studio.exe').Path
+          $app = Start-Process $exe -ArgumentList ('--no-open --data-dir "' + $data + '"') -PassThru
+          try {
+            $instance = Join-Path $data 'instance.json'
+            $deadline = (Get-Date).AddSeconds(60)
+            while (-not (Test-Path $instance)) {
+              if ($app.HasExited -or (Get-Date) -gt $deadline) { throw 'Frozen app failed to start' }
+              Start-Sleep -Milliseconds 250
+            }
+            $record = Get-Content $instance -Raw | ConvertFrom-Json
+            if ($record.pid -ne $app.Id) { throw 'Unexpected instance identity' }
+            $url = "http://127.0.0.1:$($record.port)/"
+            foreach ($script in 'test_project_codec_browser','test_scientific_tiff_browser','test_scientific_tiff_derivative_browser','test_submission_profiles_browser','test_history_shortcuts_browser','test_studio_drawer_workspace_browser','test_studio_drawer_compact_browser','test_studio_support_browser','test_studio_text_content_browser','test_studio_wb_browser','test_studio_wb_advanced_browser','test_studio_core_workbench_browser','test_studio_statistics_report_browser') {
+              node "scripts/$script.cjs" $url (Join-Path $proof $script)
+              if ($LASTEXITCODE -ne 0) { throw "Frozen browser check failed: $script" }
+            }
+          } finally {
+            if (-not $app.HasExited) { Stop-Process -Id $app.Id; $app.WaitForExit() }
+          }
+      - name: Download checksum-verified previous stable installer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $prior = Join-Path $env:RUNNER_TEMP 'prior-stable'
+          gh release download v1.6.1 -R $env:GITHUB_REPOSITORY -D $prior -p 'polish-sci-figures-Studio-0.2.2-Setup-x64.exe' -p SHA256SUMS.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $setup = Join-Path $prior 'polish-sci-figures-Studio-0.2.2-Setup-x64.exe'
+          $digest = (Get-FileHash $setup).Hash.ToLowerInvariant()
+          if ((Get-Content (Join-Path $prior 'SHA256SUMS.txt')) -notcontains "$digest  polish-sci-figures-Studio-0.2.2-Setup-x64.exe") { throw 'Prior stable checksum mismatch' }
+          "PRIOR_SETUP=$setup" >> $env:GITHUB_ENV
+      - name: Verify real stable upgrade, persisted project and PNG export
+        run: |
+          $env:NODE_PATH = (Resolve-Path .cache/stable-upgrade/node_modules).Path
+          node scripts/test_studio_windows_stable_upgrade.cjs $env:PRIOR_SETUP dist/desktop/polish-sci-figures-Studio-0.2.3-Setup-x64.exe 0.2.2 0.2.3 (Join-Path $env:RUNNER_TEMP 'studio-upgrade-proof')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build and check Skill archives
+        run: |
+          python scripts/build_release.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/test_release_bundle.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/build_portable_skill.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/test_portable_skill.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Retain candidate artifacts only after acceptance
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-maintenance-candidate
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            dist/desktop/*-Setup-x64.exe
+            dist/desktop/*-Portable-x64.zip
+            dist/desktop/SHA256SUMS.txt
+            dist/*.zip
+      - name: Retain diagnostics and acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-maintenance-evidence
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: ignore
+          path: |
+            .cache/desktop-build/*.log
+            .cache/desktop-installer-proof-*/
+            ${{ runner.temp }}/studio-upgrade-proof/official-upgrade-result.json
+            ${{ runner.temp }}/studio-upgrade-proof/*.log
+            ${{ runner.temp }}/studio-upgrade-proof/self-test/self-test.json
+            ${{ runner.temp }}/studio-frozen-browser/
