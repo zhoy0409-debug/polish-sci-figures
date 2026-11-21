@@ -35,7 +35,7 @@ Install optional dependencies only for a workflow that requires them, from `suit
 | --- | --- |
 | Raw CSV/TSV/XLSX, chart choice, statistical analysis or report export | [Data figure workbench](suite/skills/make-sci-data-figures/WORKFLOW.md) |
 | Calibrated microscopy, pathology or Western blot images | [Scientific image preparation](suite/skills/standardize-sci-images/WORKFLOW.md) |
-| Existing SVG, visual refinement, composition or Studio editing | [Figure polishing and editing](suite/skills/polish-sci-figures/WORKFLOW.md) |
+| Existing SVG, visual refinement, composition or an inspection exported from Studio | [Figure polishing and editing](suite/skills/polish-sci-figures/WORKFLOW.md) |
 | Duplicate images or suspected image reuse | [Local image duplicate check](suite/docs/image-duplicate-check.md) |
 
 These are local instructions, not separately installed skills. A companion-skill reference in a nested document means reading the corresponding bundled document above. Resolve its `scripts/`, `references/` and `assets/` paths relative to that document. Run commands beginning with `skills/` from `suite/`; resolve user input and output paths before changing working directory. Save task outputs in the user's workspace, not in the installed skill directory.
@@ -59,10 +59,12 @@ The check runs in the host's Python environment and does not upload images to a 
 
 ## Deliver editable outputs
 
-Generate an optional self-contained editing page from the final reviewed SVG:
+For desktop editing, use [Figure Studio Setup for Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.1/polish-sci-figures-Studio-0.2.2-Setup-x64.exe). Double-click Setup and open Figure Studio from the desktop or Start menu to work offline. For help installing or invoking the AI package, use the [Claude and Codex guide](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.en.md).
+
+Generate an editable project from the reviewed SVG or data bundle. In Figure Studio, choose **Project → Open project** and select the JSON. Add the standalone HTML when browser editing is also requested.
 
 ```bash
-python suite/sci_figures.py studio FIGURE_OR_BUNDLE --out figure-studio.html
+python suite/sci_figures.py studio FIGURE_OR_BUNDLE --project-out figure-studio-project.json --out figure-studio.html
 ```
 
 When retaining a candidate bundle, pass `--view SELECTED_VARIANT` using the exact filename stem of the approved SVG (for example, `--view estimation_graphic`). Never assume the bundle's default is the final choice. A single panel defaults to one column; use `--columns` only for an intentional layout. Open the delivered HTML and verify that its initial chart, labels, units and styling match the final SVG/PNG, and that there are no unintended empty grid cells. If the final SVG was edited after generating the bundle, regenerate the matching candidate or package that reviewed SVG directly; do not hand off an older version.

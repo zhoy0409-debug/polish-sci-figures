@@ -22,3 +22,39 @@
 .studio-support-dialog a[aria-disabled=true]{opacity:.4;cursor:default}
 .studio-support-dialog pre{max-height:32vh;overflow:auto;border:1px solid var(--fs-stroke-subtle);white-space:pre-wrap}
 #studioDownloadMetrics table{width:100%;margin-top:var(--fs-space-4)}
+.usage-guide{box-sizing:border-box;width:min(760px,calc(100vw - 24px));max-height:84vh}
+.usage-guide .command-heading{align-items:center;margin-bottom:var(--fs-space-4)}
+.usage-guide .command-heading h2{margin:0}
+.usage-guide-body{display:grid;grid-template-columns:minmax(9rem,30%) minmax(0,1fr);gap:var(--fs-space-5)}
+.usage-guide-body nav{display:grid;align-content:start;gap:var(--fs-space-1)}
+.usage-guide-body nav button{margin:0;text-align:start;white-space:normal;line-height:1.4}
+.usage-guide-body nav button[aria-pressed=true]{background:var(--fs-hover);border-color:var(--fs-stroke-strong);color:var(--fs-accent-text);font-weight:650}
+.usage-guide-steps{min-width:0;border-inline-start:1px solid var(--fs-stroke-subtle);padding-inline-start:var(--fs-space-5)}
+.usage-guide-steps h3{margin:0;font-size:var(--fs-font-lg);line-height:1.4}
+.usage-guide-steps ol{margin:var(--fs-space-3) 0 0;padding-inline-start:1.25em}
+.usage-guide-steps li+li{margin-top:var(--fs-space-3)}
+.usage-guide-steps p{margin:0;line-height:1.55;color:var(--fs-text-secondary)}
+.usage-guide-steps button{margin:var(--fs-space-1) 0 0}
+.first-figure-guide{flex:none;display:flex;align-items:center;justify-content:space-between;gap:var(--fs-space-3);margin:0;padding:var(--fs-space-2) var(--fs-space-4);background:var(--fs-surface-1);border-block-end:1px solid var(--fs-stroke-subtle)}
+.first-figure-guide[hidden],.first-figure-actions button[hidden]{display:none}
+.quality-first-figure-actions:not([hidden]){display:flex;flex-wrap:wrap;gap:var(--fs-space-2);margin:var(--fs-space-2) 0}
+.quality-first-figure-format{flex-basis:100%;margin:0;color:var(--fs-text-secondary);font-size:var(--fs-font-xs)}
+body:has(#qualityWorkspace:not([hidden])) .first-figure-guide[data-stage=export] .first-figure-actions{display:none}
+.first-figure-guide strong{display:block;margin-bottom:2px;color:var(--fs-accent-text)}
+.first-figure-guide span{font-size:var(--fs-font-xs);color:var(--fs-text-secondary);line-height:1.45}
+.first-figure-actions{display:flex;flex:none;gap:var(--fs-space-2);flex-wrap:wrap}
+.first-figure-actions button{margin:0;white-space:normal}
+.first-figure-raster-pdf{flex-wrap:wrap}
+.first-figure-raster-pdf > :first-child{flex:1 1 20em}
+.first-figure-raster-pdf .first-figure-actions{max-width:100%}
+@media(max-width:750px){
+  .first-figure-guide{align-items:flex-start;flex-direction:column}
+  .first-figure-actions{flex:none}
+  .first-figure-raster-pdf > :first-child{flex:auto}
+}
+@media(max-width:600px){
+  .usage-guide{padding:var(--fs-space-4)}
+  .usage-guide-body{grid-template-columns:1fr;gap:var(--fs-space-4)}
+  .usage-guide-body nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .usage-guide-steps{border-inline-start:0;padding-inline-start:0;border-top:1px solid var(--fs-stroke-subtle);padding-top:var(--fs-space-3)}
+}

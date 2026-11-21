@@ -186,17 +186,34 @@ def main(argv=None) -> int:
         sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("panels", nargs="+", type=Path)
-    parser.add_argument("--out", required=True, type=Path, help="New standalone HTML file (never overwrites)")
+    parser.add_argument("--out", type=Path, help="New standalone HTML editor")
+    parser.add_argument("--project-out", type=Path, help="New editable project JSON for Figure Studio → Open project")
     parser.add_argument("--title", default="Figure Studio")
     parser.add_argument("--columns", type=int, help="Grid columns: default 1 for one panel, otherwise 2")
     parser.add_argument("--view", help="Initial SVG variant name; must exist in every input panel")
     parser.add_argument("--with-layouts", action="store_true", help="Prepare portrait and wide canvases from supported workbench recipes and verified source data")
     args = parser.parse_args(argv)
     try:
-        write_html(build_project(args.panels, args.title, args.columns, args.with_layouts, args.view), args.out)
+        outputs = [path for path in (args.out, args.project_out) if path is not None]
+        if not outputs or len({path.resolve() for path in outputs}) != len(outputs):
+            raise ValueError("Provide distinct --out HTML and/or --project-out JSON paths.")
+        if any(path.exists() for path in outputs):
+            raise ValueError("Choose new output paths. Existing files are preserved.")
+        project = build_project(args.panels, args.title, args.columns, args.with_layouts, args.view)
+        if args.project_out:
+            payload = {"project": project, "state": project["initialState"], "checkpoints": [], "dataDrafts": {}}
+            content = json.dumps(payload, ensure_ascii=False, allow_nan=False).encode("utf-8")
+            if len(content) > 200_000_000:
+                raise ValueError("Project exceeds the 200 MB editor limit.")
+            args.project_out.parent.mkdir(parents=True, exist_ok=True)
+            with args.project_out.open("xb") as stream:
+                stream.write(content)
+        if args.out:
+            write_html(project, args.out)
     except (ValueError, OSError, ET.ParseError) as exc:
         parser.error(str(exc))
-    print(f"Figure Studio: {args.out.resolve()}")
+    for path in outputs:
+        print(f"Figure Studio: {path.resolve()}")
     return 0
 
 

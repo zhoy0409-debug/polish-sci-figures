@@ -5,6 +5,16 @@ created: 2026-10-28
 
 # Suite 1.5.0 · Figure Studio 0.2.0
 
+**[下载 Figure Studio 编辑器｜Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)**。双击 Setup 安装，从桌面或开始菜单打开。绘图和编辑可离线使用。
+
+**[在 Claude / Codex 中使用 AI Skill](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.md)**。按宿主安装单入口 Skill，然后在会话中选择并调用。
+
+其他下载 · [Windows 便携版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Portable-x64.zip) · [三技能源码包](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/sci-figure-suite-v1.5.0.zip) · [SHA-256](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/SHA256SUMS.txt) · [桌面和 Skill 预览版](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.0-rc.1)
+
+**[Download Figure Studio editor | Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.5.0/polish-sci-figures-Studio-0.2.0-Setup-x64.exe)**. Double-click Setup, then open Figure Studio from the desktop or Start menu. Plot and edit offline.
+
+**[Use the AI Skill in Claude / Codex](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.en.md)**. Follow the instructions for your host, then select and invoke the skill in a conversation.
+
 本版为 Windows 集中升级。用户在 2026-11-01 完成下述范围的安装版协同验收并明确批准自主发布。安装包、校验文件与最终发布状态以[发行页](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0)为准；[实测报告](qa/windows-next-stable/installed-collaborative-20261101.md)保留未执行范围，不将发布授权记作测试通过。
 
 [中文](#中文) · [English](#english) · [用户简明说明](windows-next-stable-summary.zh-CN.md) · [完整验收记录](windows-next-stable-audit.md)
@@ -57,7 +67,7 @@ SVG performance changes preserve scientific metadata, references and actual expo
 
 The multi-plane batching experiment, automatic legend/label arrangement, complex multi-file OME, native PDF/CMYK/font embedding and independently labelled detector accuracy are outside this release scope. No new platform preview is published or relabelled by updating source version constants.
 
-Collaborative installed checks passed for setup, navigation, Microsoft Pinyin, reversible border previews and real-data axis editing/save/reopen. The saved 150-observation Iris project and all 12 original SVG variants were independently checked. New native 5000-object timing, full installed WB/PowerPoint workflows and genuine official 0.1.26 → 0.2.0 in-app installation/restart/failure recovery remain unexecuted; publication approval is not a test result. Browser tests, frozen HTTP self-tests and controlled recovery checks do not establish those results. The installer identity and project location stay compatible. Once actually published, use Setup for first installation and the existing in-editor download, integrity check, save/confirm and install/reopen flow for supported installations. Publication and final artifact evidence belong to the [version-specific release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0).
+Collaborative installed checks passed for setup, navigation, Microsoft Pinyin, reversible border previews and real-data axis editing/save/reopen. The saved 150-observation Iris project and all 12 original SVG variants were independently checked. New native 5000-object timing, full installed WB/PowerPoint workflows and genuine official 0.1.26 → 0.2.0 in-app installation/restart/failure recovery remain unexecuted; publication approval is not a test result. Browser tests, frozen HTTP self-tests and controlled recovery checks do not establish those results. The installer identity and project location stay compatible. Use Setup for first installation and the existing in-editor download, integrity check, save/confirm and install/reopen flow for supported installations. Publication and final artifact evidence belong to the [version-specific release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.5.0).
 
 
 ## WB 条带处理与组图

@@ -178,7 +178,7 @@ class Matrix{
  transformPoint(p){return {x:this.a*p.x+this.c*p.y+this.e,y:this.b*p.x+this.d*p.y+this.f};}
 }
 function svgNode(attrs={},matrix=new Matrix()){
- return {attrs:{...attrs},parentElement:{getScreenCTM:()=>matrix},getAttribute(k){return this.attrs[k]??null;},setAttribute(k,v){this.attrs[k]=String(v);},removeAttribute(k){delete this.attrs[k];}};
+ return {attrs:{...attrs},parentElement:{getScreenCTM:()=>matrix},closest:()=>null,hasAttribute(k){return Object.hasOwn(this.attrs,k);},getAttribute(k){return this.attrs[k]??null;},setAttribute(k,v){this.attrs[k]=String(v);},removeAttribute(k){delete this.attrs[k];}};
 }
 for(const zoom of [.25,1,3.5]){
  let liveZoom=zoom;

@@ -21,6 +21,10 @@ Under **Plan a figure from existing results**, read the current panels, declare 
 
 For Skill collaboration, export a local inspection, ask the local Skill for a targeted operation file, then import it for preflight and real-canvas preview. The inspection omits original images and measurement tables but may contain private research text. A C-only edit preserves new manual changes to A; changes to C invalidate its revision. Arbitrary project overwrites, raw-data replacement, code execution and external resource loading are refused.
 
+**Use A as the reference for B and C.** Select A first, then Shift-click B and C. In the alignment menu, choose **Match first selected label size and baseline**. In a narrow window, open alignment from **More**. Review the preview and choose Keep or Cancel. One undo restores both target labels. This workflow requires existing plain labels and a baseline both targets can reach.
+
+**Hand a scoped edit to the Skill.** Select the panel and choose **Copy scoped Skill task with figure text** under **Skill collaboration (local files)**. Review the copied content, paste it into the Skill, and specify the edit. Back in Studio, use **Paste Skill edits** to preview the returned operation JSON. The file handoff remains available. If the reference or a target changed, copy or export a fresh inspection.
+
 Candidate changes must use an existing, same-canvas alternative in the same bound data bundle and explain scientific suitability. They require a separate scientific confirmation. Regenerated chart families continue through the established workbench. See the [operation protocol and CLI](../skills/polish-sci-figures/references/project_operations.md).
 
 For projects above 1000 elements, palette cards display swatches immediately and generate actual current-figure previews in visible batches. Pending previews are labelled, generation stops when the pane is left, and re-entry can resume. No demonstration chart substitutes for user data.

@@ -12,7 +12,7 @@ const StudioUpdateCheck = (() => {
     ios:['iPhone / iPad 暂无可直接安装的公开安装包。','No public iPhone / iPad installer is available yet.'],
     privacy:['只查询官方版本信息，不发送工程、图片或研究数据。','Only official release information is checked. Projects, images and research data are not sent.'],
     stale:['当前无法联网；以下为上次成功检查的信息，可能已有变化。','Currently offline. These are the last successfully checked release details and may have changed.'],
-    download:['下载更新','Download update'],releases:['官方发布页','Official releases'],later:['稍后','Later'],close:['关闭','Close'],retry:['重新检查','Check again'],
+    download:['下载更新','Download update'],releases:['官方发布页','Official releases'],later:['稍后','Later'],skip:['跳过此版本','Skip this version'],close:['关闭','Close'],retry:['重新检查','Check again'],
     save:['安装更新前，请先保存工程。','Save your project before installing the update.'],
     inAppHint:['后续更新直接在编辑器内下载、校验并安装，无需手动解压或替换文件。安装前请先保存工程。','Download, verify and install future updates here in the editor. No manual extraction or file replacement is needed. Save your project before installing.'],
     firstSetup:['安装 Windows 桌面版','Install Windows desktop edition'],
@@ -79,9 +79,9 @@ const StudioUpdateCheck = (() => {
     const summary=el('p','update-summary');summary.setAttribute('role','status');summary.setAttribute('aria-live','polite');
     const versionRow=el('div','update-version-row'),versions=el('dl','update-versions'),currentGroup=el('div','update-version'),latestGroup=el('div','update-version'),currentLabel=el('dt'),currentValue=el('dd'),latestLabel=el('dt'),latestValue=el('dd');currentGroup.append(currentLabel,currentValue);latestGroup.append(latestLabel,latestValue);versions.append(currentGroup,latestGroup);
     const channel=el('p','update-channel'),hint=el('p','update-hint'),stale=el('p','update-muted'),privacy=el('p','update-muted'),release=el('a','update-release'),error=el('p','update-error'),details=el('details','update-details'),detailsTitle=el('summary');error.setAttribute('role','alert');versionRow.append(versions,channel);details.append(detailsTitle,privacy,release);
-    const actions=el('div','update-actions'),later=el('button'),checkButton=el('button'),download=el('a','update-download');later.type=checkButton.type='button';
+    const actions=el('div','update-actions'),later=el('button'),checkButton=el('button'),skip=el('button'),download=el('a','update-download');later.type=checkButton.type=skip.type='button';skip.id='studioSkipUpdate';
     for(const a of [release,download]){a.target='_blank';a.rel='noopener noreferrer';a.referrerPolicy='no-referrer';}
-    checkButton.className='update-recheck';checkButton.id='studioRetryUpdateCheck';actions.append(later,checkButton,download);dialog.append(heading,summary,versionRow,hint,stale,error,actions,details);doc.body.append(dialog);
+    checkButton.className='update-recheck';checkButton.id='studioRetryUpdateCheck';actions.append(later,checkButton,skip,download);dialog.append(heading,summary,versionRow,hint,stale,error,actions,details);doc.body.append(dialog);
     const installArea=el('div','update-install-area'),progress=el('progress','update-progress-native'),progressLabel=el('p','update-progress-caption'),confirmation=el('label'),savedBox=el('input'),savedText=el('span'),installButton=el('button'),cancelButton=el('button'),retryStatusButton=el('button'),connectionHint=el('p','update-connection-hint');
     const scene=el('div','update-progress-scene'),percent=el('span','update-progress-percent'),steps=el('ol','update-steps');
     if(!Scene)throw Error('Update scene module is missing');
@@ -99,7 +99,8 @@ const StudioUpdateCheck = (() => {
     try{if(saved().result)result=normalize(saved().result,info());}catch{}
     function refresh(){
       if(destroyed)return;const current=result||normalize({status:'unavailable',...info()}),snooze=saved();
-      const showBadge=result?.status==='update-available'&&!(snooze.version===result.latestVersion&&snooze.until>now());
+      const skipped=result?.status==='update-available'&&snooze.skippedVersion===result.latestVersion;
+      const showBadge=result?.status==='update-available'&&!skipped&&!(snooze.version===result.latestVersion&&snooze.until>now());
       buttonText.textContent=t('updates');badge.hidden=!showBadge;button.title=showBadge?t('newLabel',result.latestVersion):t('check');button.setAttribute('aria-label',button.title);button.setAttribute('aria-expanded',String(dialog.open));
       title.textContent=t('title');closeButton.title=t('close');closeButton.setAttribute('aria-label',t('close'));detailsTitle.textContent=t('details');currentLabel.textContent=t('current');currentValue.textContent=current.currentVersion||t('unknown');latestLabel.textContent=t('latest');latestValue.textContent=current.latestVersion||t('unknown');latestGroup.hidden=latestLabel.hidden=latestValue.hidden=!current.latestVersion;
       channel.textContent=current.channel==='preview'?t('preview'):t('stable');privacy.textContent=t('privacy');release.textContent=t('releases');release.href=current.releaseUrl||official;
@@ -111,6 +112,7 @@ const StudioUpdateCheck = (() => {
       if(!download.hidden)download.href=current.downloadUrl;else download.removeAttribute('href');later.textContent=result?.status==='update-available'?t('later'):t('close');
       error.textContent=temporaryError?t('openFailed'):'';error.hidden=!temporaryError;
       const view=Scene.presentation({installation,confirmedInstallation,busy,result,connectionLost,invalid:installError}),{working,ready,determinate,ratio,verifying}=view,stage=installation?.status;
+      skip.textContent=t('skip');skip.hidden=busy||working||ready||connectionLost||skipped||result?.status!=='update-available';
       installArea.hidden=!canInstall()||(!installation||['idle','unsupported'].includes(stage))&&!connectionLost;progress.hidden=!working&&!ready&&!connectionLost;steps.hidden=!working&&!ready;
       const mb=value=>(value/1e6).toFixed(2).replace(/0$/,'');
       let caption=connectionLost?t(statusFailures>=3||installError?'connectionPaused':'connecting'):verifying?t('verifying'):stage==='downloading'?installation.total>0?t('downloadProgress',mb(installation.received||0),mb(installation.total)):t('downloadUnknown',mb(installation.received||0)):ready?t('downloaded'):stage==='preparing'?t('preparing'):stage==='installing'?t('installing'):stage==='cancelled'?t('cancelled'):stage==='checking'?t('checking'):'';
@@ -174,7 +176,9 @@ const StudioUpdateCheck = (() => {
       return inflight;
     }
     const external=event=>{if(!host.openExternal)return;event.preventDefault();const href=event.currentTarget.href;if(!officialURL(href,{download:event.currentTarget===download}))return;temporaryError=false;Promise.resolve().then(()=>host.openExternal(href)).then(value=>{if(value===false)throw Error('Open failed');}).catch(()=>{if(!destroyed){temporaryError=true;refresh();}});};
-    button.onclick=open;closeButton.onclick=()=>close(true);checkButton.onclick=()=>check({manual:true});later.onclick=()=>close(true);release.onclick=external;download.onclick=event=>{if(canInstall()){event.preventDefault();installRequest('download');}else external(event);};
+    button.onclick=open;closeButton.onclick=()=>close(true);checkButton.onclick=()=>check({manual:true});later.onclick=()=>close(true);
+    skip.onclick=()=>{if(!skip.hidden){save({skippedVersion:result.latestVersion});close();}};
+    release.onclick=external;download.onclick=event=>{if(canInstall()){event.preventDefault();installRequest('download');}else external(event);};
     motionBox.onchange=()=>{sceneUI.setEnabled(motionBox.checked);try{storage?.setItem('figure-studio:update-motion',motionBox.checked?'on':'off');}catch{}};
     savedBox.onchange=refresh;installButton.onclick=()=>installRequest('install');cancelButton.onclick=()=>installRequest('cancel');retryStatusButton.onclick=()=>{statusFailures=0;installRequest('status');};
     dialog.addEventListener('cancel',event=>{event.preventDefault();event.stopPropagation();close(true);});dialog.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();close(true);}});

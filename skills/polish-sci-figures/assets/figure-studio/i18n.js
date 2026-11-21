@@ -309,6 +309,7 @@ const StudioI18n = (() => {
 "文件尚未保存，请重试。":"The file has not been saved. Please retry.",
 "设备内计算暂不可用。工程与数据草稿已保留，请重试初始化。":"On-device calculation is unavailable. Your project and data drafts are kept; try initializing again.",
 "图形已导入":"Artwork imported",
+"继续：修改图件":"Continue to editing",
 "导入结果已保留，可用撤销恢复。":"The imported artwork is already in your figure. You can undo to restore the previous version.",
 "拉伸的图片已按适合编辑的分辨率重新采样，以保持操作流畅。":"A stretched image was resampled at a bounded resolution to keep editing responsive.",
 "PDF 已损坏或设有密码，请另存为可正常打开的无密码副本后重试。":"This PDF is damaged or password protected. Save an unlocked copy and try again.",
@@ -660,7 +661,7 @@ const StudioI18n = (() => {
   en['原图已嵌入主分析 P 值，请先由分析流程重绘']='The artwork contains primary-analysis P values. Regenerate it through the analysis pipeline first.';
   Object.assign(en,{'应用跨格':'Apply span','拖动画布小图移动／交换；拖右边、下边或角点吸附跨格。Shift 多选。也可用行列定位。':'Drag panels to move or swap. Drag right, bottom or corner handles to snap across cells. Shift-select or use row/column controls.'});
   en['图层']='Layers';
-  Object.assign(en,{"导出统计报告":"Export statistical report","自动适合格子":"Auto-fit to cell","统计报告已保存":"Statistical report saved"});
+  Object.assign(en,{"导出统计报告":"Export statistical report","自动适合格子":"Auto-fit to cell","统计报告已保存":"Statistical report saved","按首选图号统一字号和基线":"Match first selected label size and baseline"});
   Object.assign(en,{"已连接 {0} 项组间比较。":"{0} group comparisons connected.","使用已连接的分析结果；可通过“更新统计分析”更改方法或数据。":"Connected analysis results are in use. Choose Update analysis to change the method or data.","分析当前数据或连接已有比较结果。方法按研究问题和数据结构排序，不按 P 值大小排序。":"Analyze the current data or connect existing comparison results. Methods are ranked by research question and data structure, never by P value.","新建组图": "Untitled figure", "空白画布": "Blank canvas", "新工程名称无效": "Invalid project name", "新建工程": "New project", "从数据到图形，从这里开始": "Start with your data and ideas", "空白编辑": "Edit blank canvas", "选择可编辑模板，或导入已有的图片与流程图。": "Choose an editable template, or import images and diagrams.", "从模板开始": "Start from a template", "导入图片": "Import image", "选择模板": "Choose a template", "替换数据": "Replace data", "分析与标注": "Analyze & annotate", "调整与导出": "Refine & export", "模板绘制服务尚未连接；仍可打开工程或导入图片。": "Template rendering is not connected. You can still open a project or import images.", "取消": "Cancel", "当前工程将完整保存在“项目与预设”，包括撤销记录和未应用的数据修改。保存成功后，再打开新的空白画布。": "Your current project, undo history and pending data edits will be saved in Projects & presets before a new blank canvas opens.", "工程名称": "Project name", "下载当前工程备份": "Download current project", "保留当前并新建": "Save current & create", "正在保存当前工程…": "Saving the current project…", "已新建工程；上一工程保存在“项目与预设”。": "New project created. The previous project is in Projects & presets.", "未新建：当前工程尚未安全保存。请下载工程备份后重试。": "No project created: the current project could not be saved safely. Download a backup and try again.", "已导出可编辑 SVG。": "Editable SVG exported."});
   en['此图暂无可直接切换的图型；可从完整图型库选择模板。']='No alternate chart is available for this figure. Choose a template from the full catalogue.';
   const panelLabels={
@@ -930,6 +931,7 @@ const StudioI18n = (() => {
     '当前版本尚未提供原生 TIFF 导入。':'Native TIFF import is unavailable in this version.',
     '已导入原生 TIFF 显示图；原文件保留，可撤销':'Native TIFF display imported; original retained, undo available',
     '原生 TIFF 仅在当前本机服务处理，不会发送到外部站点。':'Native TIFF is processed only by this local loopback service; it is never sent to an external site.',
+    '位图可调整整体显示。逐个图元换色请导入源 SVG 或原始数据。':'Adjust the overall raster display. Import the source SVG or data to recolour individual elements.',
     '最终尺寸检查、排版与本地 Skill 协作':'Final-size review, layout and local Skill collaboration',
     '有未完成的数据或坐标轴计算，请完成后再检查。':'Finish pending data or axis calculations before review.',
     '工程在预检期间发生变化，请重试。':'The project changed during preflight. Try again.',
@@ -939,6 +941,17 @@ const StudioI18n = (() => {
     '已应用质检预览修改':'Review edits applied',
     '已应用投稿配置':'Submission profile applied',
     '请先保留或取消当前预览，再检查已保存的图形。':'Keep or cancel the current preview before reviewing the committed figure.',
+    '请先保留或取消当前预览，再导出。':'Keep or cancel the current preview before exporting.',
+    '先选择参照图号，再按住 Shift 点选其他图号，然后打开「对象对齐」。':'Select the reference label first. Shift-click the other labels, then open Align objects.',
+    '填充色':'Fill',
+    '描边色':'Stroke',
+    '字号':'Font size',
+    '字形':'Font style',
+    '线宽':'Stroke width',
+    '文字对齐':'Text alignment',
+    '原样式':'Original style',
+    '基线位置':'Baseline position',
+    '候选图':'Chart candidate',
     '目标小图已变化；请重新导出检查清单，避免覆盖人工修改。':'The target panel changed. Export a new inspection to preserve manual edits.',
     '目标元素不存在或已锁定':'The target element is missing or locked',
     '目标小图已锁定或不存在':'The target panel is locked or missing',

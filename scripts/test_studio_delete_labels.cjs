@@ -84,7 +84,7 @@ fields.removePanelLabel.click();assert.equal(labelState.panels[ids[0]].label,und
 // Actual pointer handlers and label selection helper: click keeps the SVG alive,
 // drag preserves the pointer-to-label offset, and double-click focuses editing.
 let dragState=copy(baseline),dragCommits=0,selectionRefreshes=0,focused=0,captureTarget=null,inspectorBuilds=0;
-const labelNode={dataset:{panelLabel:ids[0]},attrs:{},getAttribute:key=>key==='data-panel-label'?ids[0]:null,setAttribute(k,v){this.attrs[k]=+v;}};
+const labelNode={dataset:{panelLabel:ids[0]},attrs:{},hasAttribute:key=>key==='data-panel-label',getAttribute:key=>key==='data-panel-label'?ids[0]:null,setAttribute(k,v){this.attrs[k]=+v;}};
 labelNode.closest=selector=>['[data-panel-label]','text'].includes(selector)?labelNode:null;
 labelNode.setPointerCapture=()=>{captureTarget=labelNode;};
 const pointTarget=labelNode;
@@ -111,7 +111,7 @@ vm.createContext(dragContext);
 vm.runInContext(`let labelDrag=null,overlayDrag=null,elementDrag=null,guideDrag=null,marquee=null,suppressClick=false,pending=null,layoutMode=false,boxSelect=false,resizeDrag=null,panelDrag=null,ghost=null,dragging=null,original=false,selectedPanel='${ids[0]}',selected=[],elementSelections=[],selectionAnchor=null,selectedAnnotations=[],panelSelection=[],selectedPanelLabel=null,selectionAfterMarquee=false,activePane='explore',selectedAlignmentGuide=null;
 let contentSelection=null;
 ${source.slice(source.indexOf('function panelContentDelta('),source.indexOf('function nudgeSelectionState('))}
-${source.slice(source.indexOf('    const captureLabelMotion='),source.indexOf('    const selectedDragItems='))}
+${source.slice(source.indexOf('    const captureLabelMotion='),source.indexOf('    const boundedObjectDelta='))}
 ${source.slice(source.indexOf('  function selectionGroups(){'),source.indexOf('  const sizeNames='))}
 ${source.slice(selectStart,selectEnd)}
 ${source.slice(behindStart,behindEnd)}

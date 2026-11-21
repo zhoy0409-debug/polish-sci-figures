@@ -12,9 +12,16 @@ function fixture(){
   return {dom,doc,select,ui,commands,selection,language(value){language=value;ui.sync();},close(){ui.destroy();dom.window.close();}};
 }
 test('compact toolbar uses eight accessible icons and one existing host command per choice',()=>{const f=fixture();try{
-  assert.equal(f.select.hidden,true);const toggle=f.doc.getElementById('quickAlignmentToggle'),popup=f.doc.getElementById('quickAlignmentPopover');assert.equal(toggle.getAttribute('aria-haspopup'),'menu');assert.equal(popup.querySelectorAll('button').length,8);
+  assert.equal(f.select.hidden,true);const toggle=f.doc.getElementById('quickAlignmentToggle'),popup=f.doc.getElementById('quickAlignmentPopover');assert.equal(toggle.getAttribute('aria-haspopup'),'menu');assert.equal(popup.querySelectorAll('button:not([hidden])').length,8);
   toggle.click();assert.equal(popup.hidden,false);popup.querySelector('[data-alignment-action="right"]').click();assert.deepEqual(f.commands,['right']);assert.equal(f.select.value,'');assert.equal(popup.hidden,true);assert.deepEqual(f.selection,['a','b','c']);
   for(const button of popup.querySelectorAll('button')){assert.ok(button.querySelector('svg[aria-hidden="true"]'));assert.match(button.getAttribute('aria-label'),/[a-zA-Z]+/);assert.match(button.title,/[\u3400-\u9fff]/);assert.equal(button.textContent,'');}
+}finally{f.close();}});
+test('reference-label command appears only when the host enables the selection',()=>{const f=fixture();try{
+  const option=f.select.querySelector('[value="match-labels"]'),button=f.doc.querySelector('[data-alignment-action="match-labels"]');
+  assert.equal(button.hidden,true);
+  option.disabled=false;f.ui.sync();assert.equal(button.hidden,false);
+  button.click();assert.deepEqual(f.commands,['match-labels']);
+  option.disabled=true;f.ui.sync();assert.equal(button.hidden,true);
 }finally{f.close();}});
 test('sidebar icons retain the original click handlers and share distribution commands',()=>{const f=fixture();try{
   for(const group of f.doc.querySelectorAll('.object-align')){assert.equal(group.querySelectorAll('button').length,8);group.querySelector('[data-align-objects="left"]').click();group.querySelector('[data-align-objects="distribute-y"]').click();}
