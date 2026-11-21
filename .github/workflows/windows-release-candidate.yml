@@ -35,16 +35,20 @@ jobs:
           if ((Get-FileHash $installer -Algorithm SHA256).Hash.ToLowerInvariant() -ne '8a5a6711c3766a6e5fb74f280ba0e3551e719ce94538d901fdbd1f8f9920b3f0') { throw 'Official Inno Setup checksum mismatch' }
           $signature = Get-AuthenticodeSignature $installer
           if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'Pyrsys B.V.') { throw 'Official Inno Setup signature mismatch' }
-          $install = Start-Process $installer -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -PassThru -Wait
+          $inno = Join-Path $env:RUNNER_TEMP 'studio-inno-7.1.1'
+          $install = Start-Process $installer -ArgumentList ('/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /DIR="' + $inno + '"') -PassThru -Wait
           if ($install.ExitCode -ne 0) { throw 'Inno Setup installation failed' }
+          "STUDIO_ISCC=$inno/ISCC.exe" >> $env:GITHUB_ENV
           npm install --prefix .cache/stable-upgrade --ignore-scripts --no-audit --no-fund --save-exact playwright@1.62.1
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           node .cache/stable-upgrade/node_modules/playwright/cli.js install chromium
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Build with the repository Windows release script
         run: |
-          $compiler = Get-ChildItem 'C:/Program Files/Inno Setup */ISCC.exe' | Sort-Object FullName -Descending | Select-Object -First 1
-          if (-not $compiler -or $compiler.VersionInfo.FileMajorPart -lt 7) { throw 'Inno Setup 7 or later is required' }
+          $compiler = Get-Item -LiteralPath $env:STUDIO_ISCC
+          $version = & $compiler.FullName /? | Out-String
+          Write-Output $version
+          if ($version -notmatch 'Inno Setup 7') { throw 'Inno Setup 7 is required' }
           python scripts/test_release_versions.py
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python desktop/build_windows.py --iscc $compiler.FullName
