@@ -1,0 +1,62 @@
+name: Upload verified v1.6.2 draft assets
+on:
+  push:
+    branches: [codex/upload-v1.6.2-artifacts]
+permissions:
+  contents: read
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      actions: read
+      contents: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Check the exact accepted build and the existing empty draft
+        run: |
+          gh api repos/$GITHUB_REPOSITORY/actions/runs/44877396605 > /tmp/run.json
+          gh api repos/$GITHUB_REPOSITORY/releases/453505058 > /tmp/release.json
+          python - <<'PY'
+          import json
+          run=json.load(open('/tmp/run.json')); release=json.load(open('/tmp/release.json'))
+          assert run['head_sha']=='245893ea41c4ba41633255991c1d52f3cc4bb9f3'
+          assert run['status']=='completed' and run['conclusion']=='success'
+          assert release['draft'] and not release['prerelease'] and release['tag_name']=='v1.6.2'
+          assert release['target_commitish']==run['head_sha'] and release['assets']==[]
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          repository: zhoy0409-debug/polish-sci-figures
+          run-id: 44877396605
+          artifact-ids: 14696443152
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: candidate
+          merge-multiple: true
+      - name: Verify independently recorded bytes and upload without overwrite
+        run: |
+          mkdir publish
+          cp candidate/desktop/*-Setup-x64.exe candidate/desktop/*-Portable-x64.zip candidate/*.zip publish/
+          cd publish
+          cat > SHA256SUMS.txt <<'SUMS'
+          3d99ff12fb124545e78e32b8f27dbd9262dac05369cec5ce3909cebc1d6754dd  polish-sci-figures-Studio-0.2.3-Portable-x64.zip
+          fb425c8fc9c7f7af8ebc0cff6c307efd34215028d82a3c5243af107c562c7fb2  polish-sci-figures-Studio-0.2.3-Setup-x64.exe
+          d8c422db0cd5a36db641084fd9b42dc1b0f8b494213a4a387a0b240d9a791bd4  polish-sci-figures-v1.6.2-skill.zip
+          fb4973a23968b7462ac931cd860203026130f0cb1f07d97ae6c3ebc88386fe3f  sci-figure-suite-v1.6.2.zip
+          SUMS
+          test "$(find . -maxdepth 1 -type f | wc -l)" -eq 5
+          sha256sum --check SHA256SUMS.txt
+          gh release upload v1.6.2 ./* -R "$GITHUB_REPOSITORY"
+      - name: Verify that the populated release is still a draft
+        run: |
+          gh api repos/$GITHUB_REPOSITORY/releases/453505058 > /tmp/release-after.json
+          python - <<'PY'
+          import hashlib,json,pathlib
+          r=json.load(open('/tmp/release-after.json'))
+          assert r['draft'] and r['published_at'] is None
+          expected={p.name:'sha256:'+hashlib.sha256(p.read_bytes()).hexdigest() for p in pathlib.Path('publish').iterdir()}
+          assert {a['name']:a['digest'] for a in r['assets']}==expected
+          assert all(a['state']=='uploaded' for a in r['assets'])
+          print('Five exact assets uploaded; release remains unpublished.')
+          PY
