@@ -1,11 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Accept Python 3.13 and 3.14 in `doctor` and the Skill runtime checks (supported range 3.10–3.14); CI adds Python 3.14 on Windows, macOS and Ubuntu.
+- Add `demo/composite_showcase/make_figure_1.py`, a reproducible generator for the bioinformatics showcase. It keeps volcano labels and leaders clear of guide lines, points and each other, uses a sequential scale for −log₁₀ *q*, sets 5 × 10⁻⁸ upright and computes every displayed statistic from its synthetic data.
+
 ## v1.6.2 — Figure Studio 0.2.3
 
 - Fix automatic feedback routing for bare Chinese feedback titles and titles without a trailing space.
 - Add feedback-title and bilingual statistical-report regression coverage without changing translations.
-
-## Unreleased
 
 ## v1.6.1 · Figure Studio 0.2.2
 
