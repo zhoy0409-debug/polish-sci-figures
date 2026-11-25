@@ -4,7 +4,7 @@
 
 **[在 Claude / Codex 中使用 AI Skill](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.md)**。按宿主安装单入口 Skill，然后在会话中选择并调用。
 
-**Figure Studio 0.2.4 · Suite 1.6.2**。首页向导贯通导入、编辑、质检与导出，支持扫描 PDF 选页标注、图号对齐和剪贴板协作。[发行说明](../docs/release-notes-v1.6.3.md#中文) · [Windows 实测](../docs/qa/daily-studio-roundtrip.md)。
+**Figure Studio 0.2.4 · Suite 1.6.3**。首页向导贯通导入、编辑、质检与导出，支持扫描 PDF 选页标注、图号对齐和剪贴板协作。[发行说明](../docs/release-notes-v1.6.3.md#中文) · [Windows 实测](../docs/qa/daily-studio-roundtrip.md)。
 
 Windows安装版实操及官方0.1.25→0.1.26编辑器内升级已通过所列检查；[验收记录](../docs/qa/photo-correction/windows-0.1.26/README.md)列明数据保护、性能结果和未完成事项。
 

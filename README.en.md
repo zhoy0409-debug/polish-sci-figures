@@ -6,7 +6,7 @@
 
 Other downloads · [Windows portable](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.3/polish-sci-figures-Studio-0.2.4-Portable-x64.zip) · [Three-skill source suite](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.3/sci-figure-suite-v1.6.3.zip) · [SHA-256](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.3/SHA256SUMS.txt) · [macOS previews](docs/local-device-trial.md)
 
-**Figure Studio 0.2.4 · Suite 1.6.2**. The guide leads from import to export, with scanned PDF annotations, panel label alignment, and clipboard-based review. [Release notes](docs/release-notes-v1.6.3.md#english) · [Windows acceptance](docs/qa/daily-studio-roundtrip.md).
+**Figure Studio 0.2.4 · Suite 1.6.3**. The guide leads from import to export, with scanned PDF annotations, panel label alignment, and clipboard-based review. [Release notes](docs/release-notes-v1.6.3.md#english) · [Windows acceptance](docs/qa/daily-studio-roundtrip.md).
 
 This release preserves the scientific editing workflow while improving task discovery, native TIFF display and project handling. The [dated acceptance report](docs/qa/windows-next-stable/installed-collaborative-20261101.md) distinguishes installed human checks from browser regressions and unexecuted upgrade tests.
 

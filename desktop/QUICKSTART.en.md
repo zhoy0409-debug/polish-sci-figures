@@ -6,7 +6,7 @@
 
 The clipped checkbox edge is fixed. The user confirmed intact controls and successful installation at unchanged display settings. See the [installed acceptance report](../docs/qa/windows-next-stable/installed-collaborative-20261101.md); this does not certify every Windows scaling configuration.
 
-**Figure Studio 0.2.4 · Suite 1.6.2**. The guide leads from import to export, with scanned PDF annotations, panel label alignment, and clipboard-based review. [Release notes](../docs/release-notes-v1.6.3.md#english) · [Windows acceptance](../docs/qa/daily-studio-roundtrip.md).
+**Figure Studio 0.2.4 · Suite 1.6.3**. The guide leads from import to export, with scanned PDF annotations, panel label alignment, and clipboard-based review. [Release notes](../docs/release-notes-v1.6.3.md#english) · [Windows acceptance](../docs/qa/daily-studio-roundtrip.md).
 
 The Windows installer workflow and genuine official 0.1.25 → 0.1.26 in-editor upgrade passed the listed checks. The [acceptance record](../docs/qa/photo-correction/windows-0.1.26/README.md) details data protection, performance results and remaining items.
 

@@ -78,6 +78,8 @@ def main():
         assert setup in (ROOT / name).read_text(encoding="utf-8").splitlines()[2], name
     for name in documents:
         text = (ROOT / name).read_text(encoding="utf-8")
+        for studio, suite in re.findall(r"Figure Studio ([\d.]+) · Suite v?([\d.]+)", text):
+            assert (studio, suite) == (app_version, VERSION.removeprefix("v")), (name, studio, suite)
         for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-(?:Setup-x64\.exe|Portable-x64\.zip)", text):
             assert (tag, version) == (VERSION, app_version), (name, tag, version)
         for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-macOS-[^/)]+", text):
