@@ -14,6 +14,9 @@ const localUrl=/^http:\/\/127\.0\.0\.1:\d+\/$/.test(htmlArg),html=localUrl?htmlA
   const pixel=async()=>(await page.locator('#artboard').screenshot()).toString('base64');
   try{
     await page.goto(localUrl?html:pathToFileURL(html).href);await page.waitForFunction(()=>!document.body.inert&&document.querySelector('#artboard svg'));
+    // The checks below assert Chinese strings; keep the fixture deterministic, then test the English switch.
+    await page.locator('#language').selectOption('zh-CN');
+    await page.waitForFunction(()=>document.documentElement.lang==='zh-CN');
     if(process.env.STUDIO_LENS_PROJECT){
       const restored=page.waitForEvent('dialog');
       await page.locator('#projectFile').setInputFiles(process.env.STUDIO_LENS_PROJECT);
