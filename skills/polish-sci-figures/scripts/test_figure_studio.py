@@ -62,7 +62,11 @@ class StudioTests(unittest.TestCase):
             def handle_data(self,data):
                 if self.active:self.scripts[-1]+=data
         parsed=Scripts();parsed.feed(html)
-        self.assertEqual(len(parsed.scripts),6)
+        self.assertEqual(len(parsed.scripts),7)
+        decoder=next(i for i,attrs in enumerate(parsed.attributes) if attrs.get("id")=="scientific-tiff-decoder")
+        self.assertEqual(parsed.attributes[decoder].get("type"),"application/json")
+        self.assertIn("UTIF.decodeImage",json.loads(parsed.scripts[decoder]))
+        self.assertIn("Permission is hereby granted",json.loads(parsed.scripts[decoder]))
         ledger=next(i for i,attrs in enumerate(parsed.attributes) if attrs.get('id')=='downloadMetricsLedger')
         self.assertEqual(parsed.attributes[ledger].get('type'),'application/json')
         self.assertEqual(json.loads(parsed.scripts[ledger])['schema'],'figure-studio-download-ledger/1')

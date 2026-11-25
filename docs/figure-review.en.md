@@ -35,7 +35,7 @@ Under **Submission size and export → Submission profiles…**, save researcher
 
 ## Colour vision, notation and find/replace
 
-These features ship with Figure Studio 0.2.4.
+These features ship with Figure Studio 0.2.5.
 
 - **Colour-vision preview** shows red-, green- and blue-blind and grayscale views on screen only. A badge stays visible; projects and exports keep their colours.
 - **Review current figure** also lists colours that merge in those views, mixed fonts, and baseline notation such as IC50, cm^2 or 1e-05. It does not decide whether colour carries group meaning. More than 24 chromatic colours is treated as a continuous scale.

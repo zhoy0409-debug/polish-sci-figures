@@ -61,10 +61,18 @@ test('cancel, blur, lost capture, second pointer and selection changes never cre
 test('asynchronous decode rejects stale selection, project state and replaced DOM without late gestures',async()=>{
  for(const change of [f=>{f.selected={};},f=>f.setState(copy(f.state)),f=>f.image.replaceWith(f.image.cloneNode(true)),f=>f.controller.cancel()]){const f=fixture({delay:true}),pending=f.controller.startROI(f.source);change(f);f.resolve();assert.equal(await pending,false);f.pointer('pointerdown',100,100);f.pointer('pointerup',400,400);assert.equal(f.commits.length,0);f.close();}
 });
-test('calibration uses original horizontal pixel length, commits a physical scale and clamps saved bars',async()=>{
- const f=fixture();f.state.panels['panel-1'].scales={0:{e1:{length:200,calibration:900}}};await f.controller.startCalibration(f.source);f.pointer('pointerdown',950,736);f.pointer('pointerup',1150,750);assert.equal(f.commits.length,0);const dialog=f.doc.querySelector('dialog');assert.equal(dialog.open,true);assert.ok(dialog.textContent.includes('200.0 pixels'));
+test('horizontal calibration uses original pixel length, commits a physical scale and clamps saved bars',async()=>{
+ const f=fixture();f.state.panels['panel-1'].scales={0:{e1:{length:200,calibration:900}}};await f.controller.startCalibration(f.source);f.pointer('pointerdown',950,736);f.pointer('pointerup',1150,736);assert.equal(f.commits.length,0);const dialog=f.doc.querySelector('dialog');assert.equal(dialog.open,true);assert.ok(dialog.textContent.includes('200.0 pixels'));
  const input=dialog.querySelector('input');input.value='20';dialog.querySelector('.primary').click();await Promise.resolve();await Promise.resolve();near(f.state.panels['panel-1'].imageCalibrations[0].e1,120);near(f.state.panels['panel-1'].scales[0].e1.length,96);assert.equal(dialog.open,false);assert.equal(f.commits.length,1);
  await roi(f);const scale=core.scaleInfo(f.state.overlays[0],{geometry:f.host.geometry(),calibration:120});near(scale.length/(f.state.overlays[0].w*600),scale.lengthUm/24);assert.deepEqual([...f.doc.querySelector('[data-inset-control="scaleLengthUm"]').options].slice(1).map(option=>+option.value),[2,5,10],'manual choices must be readable at the current physical display size');f.close();
+});
+test('vertical and diagonal calibration measure original pixel axes and preview the same endpoints',async()=>{
+ for(const [start,end,length]of [[[100,100],[100,300],200],[[100,100],[400,500],500],[[400,500],[100,100],500]]){
+  const f=fixture();await f.controller.startCalibration(f.source);f.pointer('pointerdown',...start);f.pointer('pointermove',...end);await new Promise(resolve=>f.dom.window.requestAnimationFrame(resolve));
+  const points=f.doc.querySelector('[data-inset-gesture] polyline').getAttribute('points').split(' ').map(p=>p.split(',').map(Number));
+  assert.equal(points.length,2);assert.notDeepEqual(points[0],points[1]);f.pointer('pointerup',...end);
+  const dialog=f.doc.querySelector('dialog');assert.ok(dialog.textContent.includes(length.toFixed(1)+' pixels'));dialog.querySelector('input').value='20';dialog.querySelector('.primary').click();await Promise.resolve();await Promise.resolve();near(f.state.panels['panel-1'].imageCalibrations[0].e1,1200*20/length);assert.equal(f.commits.length,1);f.close();
+ }
 });
 test('calibration cancellation and stale selection do not attach measurements to another source',async()=>{
  const f=fixture();await f.controller.startCalibration(f.source);f.pointer('pointerdown',900,700);f.pointer('pointerup',1100,700);f.selected={};f.controller.refresh();const dialog=f.doc.querySelector('dialog');assert.equal(dialog.open,false);dialog.querySelector('input').value='20';dialog.querySelector('.primary').click();await Promise.resolve();assert.equal(f.commits.length,0);f.close();

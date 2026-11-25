@@ -43,6 +43,7 @@ class Node{
   replaceChildren(...nodes){for(const n of this.childNodes)n.parentNode=null;this.childNodes=[];this.append(...nodes);}
   replaceChild(next,old){const i=this.childNodes.indexOf(old);assert.ok(i>=0);const replacement=next.nodeType===11?[...next.childNodes]:[next];for(const n of replacement)n.parentNode=this;this.childNodes.splice(i,1,...replacement);old.parentNode=null;if(next.nodeType===11)next.childNodes=[];}
   setAttribute(k,v){this.attributes[k]=String(v);if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=String(v);}
+  setAttributeNS(ns,k,v){this.setAttribute(k,v);}
   getAttribute(k){return this.attributes[k]??null;}
   hasAttribute(k){return Object.hasOwn(this.attributes,k);}
   matches(query){return query.split(',').some(q=>{const m=q.trim().match(/^(\w+)?(?:\[([^=\]]+)(?:="([^"]*)")?\])?$/);return !!m&&(!m[1]||m[1]===this.localName)&&(!m[2]||this.hasAttribute(m[2])&&(m[3]===undefined||this.getAttribute(m[2])===m[3]));});}

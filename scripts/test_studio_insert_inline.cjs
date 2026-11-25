@@ -9,7 +9,7 @@ function node(tag='div'){
     setAttribute(k,v){this.attrs[k]=String(v);},getAttribute(k){return this.attrs[k]??null;},
     get firstChild(){return this.children[0];},append(n){n.parent=this;this.children.push(n);},remove(){if(this.parent)this.parent.children=this.parent.children.filter(n=>n!==this);},
     addEventListener(type,handler,capture){(handlers[type]??=[]).push({handler,capture});},
-    closest(){return null;},querySelector(){return null;},setPointerCapture(id){this.captured=id;},
+    closest(){return null;},querySelector(){return null;},querySelectorAll(){return [];},setPointerCapture(id){this.captured=id;},
     focus(){this.focused=true;},select(){this.selectionStart=0;this.selectionEnd=this.value.length;},setSelectionRange(a,b){this.selectionStart=a;this.selectionEnd=b;},
     getBoundingClientRect:()=>({left:180,top:130,width:70,height:20})};
 }
@@ -17,7 +17,7 @@ function harness(){
   const project={id:'project',panels:[{id:'p0',variants:[{},{}],analysis:{p:.032}}]},initial=arrange({order:['p0'],columns:1,gap:12,panels:{p0:{variant:0,edits:{},label:{text:'A',x:2,y:5,size:12,font:'Arial',bold:true}}}},1,1);
   const history=new History(initial),viewport=node(),artboard=node(),svg=node('svg'),body=node(),docEvents={},winEvents={},frames=[],messages=[];let commits=0,clears=0,refreshes=0,clock=100;
   svg.getBoundingClientRect=()=>({left:100,top:80,width:600,height:400});
-  const fields={viewport,artboard,addOverlay:node('button'),overlayType:node('select'),editOverlayText:node('button'),overlayLineDirection:node('select')};fields.overlayType.value='text';
+  const fields={viewport,artboard,addOverlay:node('button'),overlayType:node('select'),editOverlayText:node('button'),overlayLineDirection:node('select'),overlayArrowheads:node('select')};fields.overlayType.value='text';
   const sourceNode=node('text'),labelNode=node('text');sourceNode.dataset.key='e1';labelNode.dataset.panelLabel='p0';
   sourceNode.closest=s=>s==='[data-panel]'?{dataset:{panel:'p0'}}:s==='text[data-key]'?sourceNode:null;
   labelNode.closest=s=>s==='[data-panel-label]'?labelNode:null;

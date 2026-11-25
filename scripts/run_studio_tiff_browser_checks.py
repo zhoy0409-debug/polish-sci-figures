@@ -39,13 +39,22 @@ def main():
     worker.start()
     report = {'author': 'a', 'scope': 'Real local browser and production TIFF/JSON/correction engines with public synthetic fixtures; not native installed Windows or independent detector accuracy', 'checks': []}
     try:
-        for name in ('test_project_codec_browser.cjs', 'test_scientific_tiff_browser.cjs', 'test_scientific_tiff_derivative_browser.cjs', 'test_submission_profiles_browser.cjs', 'test_history_shortcuts_browser.cjs', 'test_studio_drawer_workspace_browser.cjs', 'test_studio_drawer_compact_browser.cjs', 'test_studio_discovery_dock_browser.cjs', 'test_studio_support_browser.cjs', 'test_studio_text_content_browser.cjs', 'test_studio_wb_browser.cjs', 'test_studio_wb_advanced_browser.cjs', 'test_studio_core_workbench_browser.cjs', 'test_studio_statistics_report_browser.cjs'):
+        for name in ('test_project_codec_browser.cjs', 'test_scientific_tiff_browser.cjs', 'test_scientific_tiff_derivative_browser.cjs', 'test_submission_profiles_browser.cjs', 'test_history_shortcuts_browser.cjs', 'test_studio_drawer_workspace_browser.cjs', 'test_studio_drawer_compact_browser.cjs', 'test_studio_discovery_dock_browser.cjs', 'test_studio_support_browser.cjs', 'test_studio_text_content_browser.cjs', 'test_studio_wb_browser.cjs', 'test_studio_wb_advanced_browser.cjs', 'test_studio_core_workbench_browser.cjs', 'test_studio_statistics_report_browser.cjs', 'test_studio_feedback_five_browser.cjs'):
             target = output / Path(name).stem
             result = subprocess.run(['node', str(ROOT / 'scripts' / name), 'http://' + server.address + '/', str(target)], cwd=ROOT, env=os.environ.copy(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding='utf-8', errors='replace', timeout=150)
             (output / (name + '.log')).write_text(result.stdout, encoding='utf-8')
             report['checks'].append({'script': name, 'exitCode': result.returncode})
             (output / 'summary.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
             print(result.stdout, flush=True)
+        result = subprocess.run(['node', str(ROOT/'scripts/test_studio_feedback_five_browser.cjs'), html.as_uri(), str(output/'offline-feedback-five')], cwd=ROOT, env=os.environ.copy(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding='utf-8', errors='replace', timeout=150)
+        (output/'offline-feedback-five.log').write_text(result.stdout, encoding='utf-8')
+        report['checks'].append({'script':'test_studio_feedback_five_browser.cjs (file)', 'exitCode':result.returncode})
+        from make_tiff_browser_fixtures import build as tiff_fixtures
+        fixtures = tiff_fixtures(output / 'offline-fixtures')
+        result = subprocess.run(['node', str(ROOT/'scripts/test_scientific_tiff_offline_browser.cjs'), str(html), str(fixtures), str(output/'offline-tiff')], cwd=ROOT, env=os.environ.copy(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding='utf-8', errors='replace', timeout=150)
+        (output/'offline-tiff.log').write_text(result.stdout, encoding='utf-8')
+        report['checks'].append({'script':'test_scientific_tiff_offline_browser.cjs','exitCode':result.returncode})
+        print(result.stdout, flush=True)
         report['passed'] = all(check['exitCode'] == 0 for check in report['checks'])
         return 0 if report['passed'] else 1
     finally:

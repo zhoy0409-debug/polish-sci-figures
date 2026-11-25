@@ -8,7 +8,7 @@ const StudioImageInsetsUI = (() => {
     factor:['显示放大','Display magnification'],border:['边框','Border'],width:['线宽（pt）','Width (pt)'],
     connectors:['显示连接线','Show connectors'],scaleBar:['显示比例尺','Show scale bar'],
     calibrate:['沿原图比例尺标定','Calibrate from the source scale bar'],calibrationNeeded:['沿原图比例尺划线并输入其实际长度。','Trace the source scale bar and enter its physical length.'],scaleHint:['采用常用标尺数值，线长按实际标定自适应。','Uses common scale values; bar length adapts to the physical calibration.'],scaleLength:['比例尺数值','Scale value'],scaleAuto:['自动','Automatic'],scaleUnavailable:['当前数值超出可用范围','Current value is outside the available range'],
-    calibrationTitle:['标定原图比例尺','Calibrate the source scale bar'],calibrationHint:['输入刚才所描比例尺代表的实际长度。','Enter the physical length represented by the scale bar you traced.'],
+    calibrationTitle:['标定原图比例尺','Calibrate the source scale bar'],calibrationHint:['支持水平、垂直或倾斜划线。输入刚才所描线段代表的实际长度。','Trace horizontally, vertically or diagonally, then enter the physical length represented by the segment.'],
     realLength:['实际长度（μm）','Physical length (μm)'],calibrationPixels:['已描线长：{0} 像素','Traced length: {0} pixels'],
     validLength:['请输入大于 0 的实际长度。','Enter a physical length greater than zero.'],confirm:['确认标定','Confirm calibration'],cancel:['取消','Cancel'],
     remove:['删除放大图','Delete inset'],locked:['此对象已锁定。','This object is locked.'],

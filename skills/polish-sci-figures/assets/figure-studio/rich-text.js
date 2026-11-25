@@ -123,6 +123,7 @@ const StudioRichText = (() => {
     return compact(el.textContent,styles);
   }
   function rebuildText(el,text){
+    el.setAttributeNS('http://www.w3.org/XML/1998/namespace','xml:space','preserve');el.style.whiteSpace='pre';
     const nodes=textNodes(el),size=pointSize(el),base=nodes.find(n=>absoluteSize(inherited(n,'fontSize','font-size',el))>=size*.85);
     if(size>0&&!el.style.fontSize&&!el.hasAttribute('font-size'))el.setAttribute('font-size',size);
     const family=nodes.length?inherited(nodes[0],'fontFamily','font-family',el):'';if(family&&!el.style.fontFamily&&!el.hasAttribute('font-family'))el.setAttribute('font-family',family);

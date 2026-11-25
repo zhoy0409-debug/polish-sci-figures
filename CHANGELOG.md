@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## v1.6.4 — Figure Studio 0.2.5
+
+- Measure source scale traces along horizontal, vertical or diagonal lines using original pixel axes.
+- Add single/double arrows and arrowheads on existing lines; preserve consecutive text spaces through SVG export and project reopen.
+- Group images, native objects, labels and annotations across panels with shared drag/resize, locking, ungrouping and undo.
+- Decode supported classic lossless TIFF offline inside self-contained browser HTML using pinned MIT-licensed UTIF.js in a bounded Worker. Native source bytes and sample digests remain separate from reversible display PNGs. Desktop TIFF stays on the existing Pillow pipeline.
+- Clarify TIFF import stages, dark 16-bit display guidance and atomic failure/cancellation. Update Windows, macOS previews and Skill distribution together.
+
 ## v1.6.3 — Figure Studio 0.2.4
 
 - Restore Figure Discovery to the correct tool drawer, dismiss the welcome card when entering it, and show data/design controls before optional background fields.

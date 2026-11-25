@@ -1,0 +1,192 @@
+{
+  "author": "a",
+  "scope": "Offline browser and real embedded decoder; public synthetic files, independent Pillow golden native samples and display pixels",
+  "cases": [
+    {
+      "name": "u16-raw",
+      "ok": true,
+      "native": "f1e9566b503af86b854a0dbd0da33aad91fe423c28bd2f8d55308c4a25945039",
+      "file": "b841c16f277233c4e56c355fbf21468996d14da363ba245093596aeced6411a8",
+      "rgb": "0d9c20de4b535a4e27a059cb8ace78efb4005558f70edd349cf47fa059ae4b47",
+      "ome": null
+    },
+    {
+      "name": "u8-raw",
+      "ok": true,
+      "native": "667c9de7d2acbb274bbcb54e6d66087d33b5687fd9d2912d27b3f6f75831bec5",
+      "file": "f0819619569258efce14b3564a2ed72fc4199cedc36f4fdc6ebe5ee71496ed1b",
+      "rgb": "326a579c0add2bdac2f471d0784a3e0ed6f68ae290db9e215dc0bd14bedd4f8d",
+      "ome": null
+    },
+    {
+      "name": "rgb-raw",
+      "ok": true,
+      "native": "6b3b4010c843bb91326648d7af0a4582b86590cb94ba8db364ca76e3163b3c15",
+      "file": "b5877bb579bedcb2c25ae087cd6a57e85dcc61ea1d72f5b22d1dd18c50669e1f",
+      "rgb": "714940dc3b3a2feaca695c056f6fcf9f66aaae8794d11ef0f715e9a803929112",
+      "ome": null
+    },
+    {
+      "name": "u16-tiff_lzw",
+      "ok": true,
+      "native": "f1e9566b503af86b854a0dbd0da33aad91fe423c28bd2f8d55308c4a25945039",
+      "file": "2ec6fb274e56280d80d0eda58d0910e2fbc3b6267718ee9b70a21afb77ee6d01",
+      "rgb": "0d9c20de4b535a4e27a059cb8ace78efb4005558f70edd349cf47fa059ae4b47",
+      "ome": null
+    },
+    {
+      "name": "u8-tiff_lzw",
+      "ok": true,
+      "native": "667c9de7d2acbb274bbcb54e6d66087d33b5687fd9d2912d27b3f6f75831bec5",
+      "file": "4bbab9cd8140ff03786abded3a7eabb17cbd25085716f3ffb3ab2bbef9668176",
+      "rgb": "326a579c0add2bdac2f471d0784a3e0ed6f68ae290db9e215dc0bd14bedd4f8d",
+      "ome": null
+    },
+    {
+      "name": "rgb-tiff_lzw",
+      "ok": true,
+      "native": "555d2ac87f4579f6db9f5ff7048417aabed4d3f8ecbe1310ce3bd3f3a935c3a0",
+      "file": "9fd1c3832561ebd4d17defaa81e8640f229674e35c0b6f47b6c02fca4d198442",
+      "rgb": "c2f81a2023c63fa03db76010fb8f5330e97f4474570faf94262793ef7090888c",
+      "ome": null
+    },
+    {
+      "name": "u16-tiff_adobe_deflate",
+      "ok": true,
+      "native": "f1e9566b503af86b854a0dbd0da33aad91fe423c28bd2f8d55308c4a25945039",
+      "file": "8dfa1dec76cd3b3ac7b8ed249be8496d3c6bcb89d04f756f7a695cb52c7f641c",
+      "rgb": "0d9c20de4b535a4e27a059cb8ace78efb4005558f70edd349cf47fa059ae4b47",
+      "ome": null
+    },
+    {
+      "name": "u8-tiff_adobe_deflate",
+      "ok": true,
+      "native": "667c9de7d2acbb274bbcb54e6d66087d33b5687fd9d2912d27b3f6f75831bec5",
+      "file": "ed19e951ae8f925f0eef040470c97fffd7188acfb55d35e2d695bf36d708ff7c",
+      "rgb": "326a579c0add2bdac2f471d0784a3e0ed6f68ae290db9e215dc0bd14bedd4f8d",
+      "ome": null
+    },
+    {
+      "name": "rgb-tiff_adobe_deflate",
+      "ok": true,
+      "native": "c20b06d148f5910deddd6a32e31b2158f4b78714d1d8a1e60a2c252aeb0b6c11",
+      "file": "a9be9a57bc057b520e07f8213151936dab929a58770b21dce4bdd3f2330eb18f",
+      "rgb": "dde8159efbb720c2a04b19deb3a619af8080d3dd6d269665b83fb993b00b8ac6",
+      "ome": null
+    },
+    {
+      "name": "u16-packbits",
+      "ok": true,
+      "native": "f1e9566b503af86b854a0dbd0da33aad91fe423c28bd2f8d55308c4a25945039",
+      "file": "e2d522d8ed83dd431c1d7ccb735fd0cdb91920bc3353e0b0abb8a6f3169a761d",
+      "rgb": "0d9c20de4b535a4e27a059cb8ace78efb4005558f70edd349cf47fa059ae4b47",
+      "ome": null
+    },
+    {
+      "name": "u8-packbits",
+      "ok": true,
+      "native": "667c9de7d2acbb274bbcb54e6d66087d33b5687fd9d2912d27b3f6f75831bec5",
+      "file": "08e878f88d9fffab5a41c4668c57fbd73fbec7927f708a70905a66d8706c516e",
+      "rgb": "326a579c0add2bdac2f471d0784a3e0ed6f68ae290db9e215dc0bd14bedd4f8d",
+      "ome": null
+    },
+    {
+      "name": "rgb-packbits",
+      "ok": true,
+      "native": "49334c959db75aff3c0cfb09cf971a5660fff8cd239bde6e14c22341989d6881",
+      "file": "e7e90546e1dd0bdd467d39dc64a748f34b044c2ffd075df7705ffe9f413312e2",
+      "rgb": "3fd2c6e093f659a92b1b7c42c2f10687c2cf1ee5cb4424f07abaaa478a35ef5c",
+      "ome": null
+    },
+    {
+      "name": "big-endian-u16",
+      "ok": true,
+      "native": "f1e9566b503af86b854a0dbd0da33aad91fe423c28bd2f8d55308c4a25945039",
+      "file": "2a1bc77112c58f7258a55e1ff16508edb452a2ae26712617af917818bdb3f4cb",
+      "rgb": "0d9c20de4b535a4e27a059cb8ace78efb4005558f70edd349cf47fa059ae4b47",
+      "ome": null
+    },
+    {
+      "name": "multipage-u16",
+      "ok": true,
+      "native": "bf193fca22adc7e6934be92d77be32b9ac746211bfdc17b35c51841be4ac5abe",
+      "file": "5ebaed9b269b4c2f1f5070835391d51744b173174a63be1e4f7810dbb4d180fe",
+      "rgb": "bebbf5f9c13d32f4ec9d7e4e254f446a27bb0c0e76b05200810baf9116e8d921",
+      "ome": null
+    },
+    {
+      "name": "ome-two-planes",
+      "ok": true,
+      "native": "bf193fca22adc7e6934be92d77be32b9ac746211bfdc17b35c51841be4ac5abe",
+      "file": "c75213f71f93fdedadbafa2031c225c392752576b98c21dc19f24e402149b378",
+      "rgb": "bebbf5f9c13d32f4ec9d7e4e254f446a27bb0c0e76b05200810baf9116e8d921",
+      "ome": {
+        "dimensionOrder": "XYCZT",
+        "sizes": {
+          "X": 193,
+          "Y": 137,
+          "Z": 1,
+          "C": 2,
+          "T": 1
+        },
+        "pixelType": "uint16",
+        "significantBits": null,
+        "channels": [
+          {
+            "index": 0,
+            "name": ""
+          },
+          {
+            "index": 1,
+            "name": ""
+          }
+        ],
+        "physicalSize": {},
+        "planePositions": {
+          "0": {
+            "C": 0,
+            "Z": 0,
+            "T": 0
+          },
+          "1": {
+            "C": 1,
+            "Z": 0,
+            "T": 0
+          }
+        },
+        "mappedPlanes": 2,
+        "declaredPlanes": 2,
+        "complete": true,
+        "xmlSha256": "4523ace02936a449b7ab0e590ce720406cc4fb53ae709bfb8b7397ad6afe0204",
+        "mappingReference": "https://docs.openmicroscopy.org/ome-model/6.2.2/ome-tiff/specification.html",
+        "validation": "Supported structural mapping; not full OME schema or acquisition validation"
+      }
+    },
+    {
+      "name": "float-refused",
+      "ok": false,
+      "error": "Signed/float TIFF samples are not silently reduced to 8-bit."
+    },
+    {
+      "name": "truncated-refused",
+      "ok": false,
+      "error": "Invalid TIFF directory"
+    },
+    {
+      "name": "damaged-strip-refused",
+      "ok": false,
+      "error": "Damaged LZW TIFF strip"
+    }
+  ],
+  "ui": {
+    "cancel": true,
+    "keep": true,
+    "undo": true,
+    "reopen": true,
+    "newDisplay": true,
+    "originalBytes": true,
+    "remoteRequests": 0,
+    "pageErrors": 0
+  },
+  "passed": true
+}
