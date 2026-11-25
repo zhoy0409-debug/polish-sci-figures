@@ -130,6 +130,7 @@ jobs:
           python skills/polish-sci-figures/scripts/test_check_source_portability.py
           python skills/polish-sci-figures/scripts/figure_accessibility_qa.py --self-test
           python scripts/test_qa_parsers.py
+          python scripts/test_svg_final_size_qa.py
       - name: Validate skill behavior evals
         run: |
           python scripts/validate_skill_evals.py
@@ -210,6 +211,7 @@ jobs:
           node scripts/test_project_codec.cjs
           node scripts/test_scientific_tiff.cjs
           node scripts/test_figure_quality.cjs
+          node scripts/test_figure_lens.cjs
           node scripts/test_submission_profiles.cjs
           node scripts/test_project_operations.cjs
           node scripts/test_project_operations_cli.cjs

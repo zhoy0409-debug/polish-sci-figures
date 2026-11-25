@@ -9,6 +9,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
+# A skill body is loaded whole on every use; detail belongs in references/.
+MAX_SKILL_BYTES = 24_000
+LINK_RE = re.compile(r"\]\(([^)#\s]+)(?:#[^)]*)?\)")
 NAME_RE = re.compile(r"^[a-z0-9-]+$")
 
 
@@ -47,6 +50,12 @@ def main() -> int:
             errors.append(f"{skill}: invalid skill name")
         if len(frontmatter.get("description", "")) < 80:
             errors.append(f"{skill}: description is too short for reliable triggering")
+        if skill_md.stat().st_size > MAX_SKILL_BYTES:
+            errors.append(f"{skill}: SKILL.md exceeds {MAX_SKILL_BYTES} bytes; move detail into references/")
+        for document in (skill_md, *sorted((folder / "references").glob("*.md"))):
+            for target in LINK_RE.findall(document.read_text(encoding="utf-8")):
+                if not re.match(r"[a-z]+:", target) and not (document.parent / target).exists():
+                    errors.append(f"{document.relative_to(ROOT)}: broken link {target}")
         if not agent.is_file():
             errors.append(f"{skill}: missing agents/openai.yaml")
     if errors:

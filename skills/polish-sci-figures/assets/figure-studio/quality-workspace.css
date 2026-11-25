@@ -11,3 +11,8 @@
 .quality-workspace .quality-preview-changes{flex-basis:100%;margin:0;padding:0;border:0}
 .quality-preview-changes ul{margin:.3rem 0;padding-inline-start:1.2rem;max-height:min(138px,20vh);overflow:auto;overflow-wrap:anywhere}
 .quality-preview-bar button[aria-pressed=true]{outline:2px solid var(--fs-accent);outline-offset:1px}
+#figureLens button[aria-pressed=true]{outline:2px solid var(--fs-accent);outline-offset:1px}
+#figureLensBadge{position:fixed;left:50%;bottom:44px;transform:translateX(-50%);z-index:25;padding:7px 14px;border-radius:999px;border:1px solid var(--fs-accent);background:var(--fs-surface-1);color:var(--fs-text-primary);box-shadow:0 4px 14px #0003;cursor:pointer}
+#figureLensBadge[hidden]{display:none}
+.quality-workspace .figure-find-options label{display:flex;align-items:center;gap:6px}.quality-workspace .figure-find-options input{width:auto}
+.quality-workspace .figure-find-results{max-height:220px;overflow:auto;padding-left:22px}.figure-find-results button{width:100%;text-align:left;overflow-wrap:anywhere;margin:2px 0}

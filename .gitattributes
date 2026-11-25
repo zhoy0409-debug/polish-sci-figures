@@ -1,0 +1,2 @@
+# Recorded source hashes cover exact bytes; a CRLF checkout breaks verification.
+* text=auto eol=lf

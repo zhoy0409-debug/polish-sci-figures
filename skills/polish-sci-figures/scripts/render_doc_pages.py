@@ -115,7 +115,10 @@ def to_pdf(src: str, workdir: str) -> str:
 
 def render(pdf_path: str, out_dir: str, dpi: int = 150) -> int:
     try:
-        import fitz  # PyMuPDF
+        try:
+            import pymupdf as fitz
+        except ImportError:
+            import fitz  # PyMuPDF < 1.24.3
     except ImportError:
         fitz = None
     os.makedirs(out_dir, exist_ok=True)
