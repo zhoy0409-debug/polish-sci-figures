@@ -2,7 +2,7 @@
 """Safe unified entry point for the SCI Figure Skills suite."""
 from __future__ import annotations
 
-import argparse, importlib, json, os, platform, re, shlex, shutil, subprocess, sys, tempfile
+import argparse, contextlib, importlib, json, os, platform, re, shlex, shutil, subprocess, sys, tempfile
 from pathlib import Path
 from typing import Any
 
@@ -11,7 +11,7 @@ SKILLS = ROOT / "skills"
 MAKE, STANDARDIZE, POLISH = (SKILLS / n for n in ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures"))
 SUPPORTED_PYTHON = ((3, 10), (3, 14))
 CORE = {"matplotlib": "matplotlib", "numpy": "numpy", "openpyxl": "openpyxl", "pandas": "pandas", "Pillow": "PIL", "scipy": "scipy"}
-OPTIONAL = {"PyMuPDF": "fitz", "python-docx": "docx", "python-pptx": "pptx", "tifffile": "tifffile"}
+OPTIONAL = {"PyMuPDF": "pymupdf", "python-docx": "docx", "python-pptx": "pptx", "tifffile": "tifffile"}
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -79,7 +79,9 @@ def ensure_mpl_config() -> tuple[bool, str]:
     return False, "No writable Matplotlib cache directory is available"
 
 def version_of(name: str) -> str:
-    module = importlib.import_module(name); return str(getattr(module, "__version__", "installed"))
+    # Third-party import banners must never corrupt machine-readable stdout.
+    with contextlib.redirect_stdout(sys.stderr): module = importlib.import_module(name)
+    return str(getattr(module, "__version__", "installed"))
 
 def doctor(args) -> int:
     items = []
@@ -412,6 +414,15 @@ def pdf_qa(path):
     bad=[x["name"] for x in fonts if x["emb"]!="yes"]
     return [finding("FAIL" if bad else "PASS","PDF_FONT_EMBEDDING","PDF font embedding","not embedded: "+", ".join(bad) if bad else f"{len(fonts)} font entries embedded",path=str(path))]
 
+def svg_final_size_qa(path,args):
+    cmd=[sys.executable,'-X','utf8',str(POLISH/"scripts"/"svg_final_size_qa.py"),str(path),"--json",*(["--min-text-pt",str(args.min_text_pt)] if args.min_text_pt is not None else []),"--min-line-pt",str(args.min_line_pt)]
+    if args.width_mm is not None: cmd+=["--width-mm",str(args.width_mm)]
+    p=subprocess.run(cmd,cwd=ROOT,text=True,encoding='utf-8',stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    try: report=json.loads(p.stdout)["reports"][0]
+    except Exception: return [finding("FAIL","SVG_FINAL_SIZE_ERROR","Final-size review",(p.stderr or p.stdout).strip(),path=str(path))]
+    rows=[finding(x["severity"],x["code"],"Final-size review",x["message"]+("; e.g. "+"; ".join(x["examples"][:3]) if x["examples"] else ""),path=str(path)) for x in report["issues"]]
+    return rows or [finding("PASS","SVG_FINAL_SIZE","Final-size review",f'{report["texts"]} text objects and {report["strokes"]} strokes measured at {report["width_mm"]:.1f} x {report["height_mm"]:.1f} mm',path=str(path))]
+
 def qa(args):
     items=[]
     for raw in args.paths:
@@ -429,6 +440,7 @@ def qa(args):
                 p=subprocess.run(cmd,cwd=ROOT,text=True,encoding='utf-8',stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
                 try: items += json.loads(p.stdout)["results"]
                 except Exception: items.append(finding("FAIL","SVG_QA_ERROR","SVG QA",p.stdout.strip(),path=str(path)))
+                items += svg_final_size_qa(path,args)
             elif suffix in {".py",".r",".txt",".ps1",".sh"}:
                 cmd=[sys.executable,'-X','utf8',str(POLISH/"scripts"/"check_source_portability.py")]+(["--strict"] if args.strict_sources else [])+[str(path),"--json"]
                 p=subprocess.run(cmd,cwd=ROOT,text=True,encoding='utf-8',stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
@@ -452,7 +464,7 @@ def parser():
     for name in sorted(set().union(*(set(v) for v in REQUIRED.values()))-{"design"}): p.add_argument("--"+name)
     p.add_argument("--positive",help="positive outcome class value for ROC/PR; this is not a column name")
     p.add_argument("--outdir",default="results"); p.add_argument("--command-platform",choices=["windows","posix"]); p.set_defaults(func=route)
-    p=sub.add_parser("qa"); p.add_argument("paths",nargs="+"); p.add_argument("--width-mm",type=float); p.add_argument("--font"); p.add_argument("--strict-sources",action="store_true"); p.add_argument("--json",action="store_true"); p.set_defaults(func=qa)
+    p=sub.add_parser("qa"); p.add_argument("paths",nargs="+"); p.add_argument("--width-mm",type=float,help="final placed width for raster DPI and SVG text/line size"); p.add_argument("--min-text-pt",type=float,help="required minimum final text size; blocks when given, otherwise below 5 pt is a warning"); p.add_argument("--min-line-pt",type=float,default=0.25); p.add_argument("--font"); p.add_argument("--strict-sources",action="store_true"); p.add_argument("--json",action="store_true"); p.set_defaults(func=qa)
     p=sub.add_parser("duplicates", help="Check local images and SVG raster layers for duplicates and suspected overlap")
     p.add_argument("paths", nargs="+"); p.add_argument("--out", required=True, help="New report folder (never overwrites)"); p.add_argument("--json", action="store_true")
     def image_duplicates(args):

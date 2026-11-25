@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add `svg_final_size_qa.py` and run it from `sci_figures.py qa`. It measures text and line size at the placed width through transforms, CSS, nested SVGs and `use`, then reports clipped or overlapping text, baseline notation, mixed fonts, and colours that merge under colour-vision deficiency or grayscale. `--width-mm` now applies to SVG; `--min-text-pt` blocks only when given. The former SVG contrast rule could never fire, and its grayscale rule compared neutral inks and ignored `rgb()` paint; both are replaced.
+- Figure Studio Review adds a screen-only colour-vision and grayscale preview, colour-merge, notation and mixed-font findings, one-step notation fixes, and figure-wide find and replace (Ctrl/Cmd + H). Locked, statistical and character-formatted text is never bulk-edited.
+- Split the polish Skill into a short workflow and task-specific references; rules are kept. Structure validation now limits Skill size and checks links.
+- Fix `doctor --json` output corrupted by newer PyMuPDF, whose legacy `fitz` import prints to stdout.
+- Keep LF on checkout so bundled source hashes verify on Windows Git with `core.autocrlf=true`.
+- Report embedded-raster widths in percent or units instead of failing on them.
 - Accept Python 3.13 and 3.14 in `doctor` and the Skill runtime checks (supported range 3.10–3.14); CI adds Python 3.14 on Windows, macOS and Ubuntu.
 - Add `demo/composite_showcase/make_figure_1.py`, a reproducible generator for the bioinformatics showcase. It keeps volcano labels and leaders clear of guide lines, points and each other, uses a sequential scale for −log₁₀ *q*, sets 5 × 10⁻⁸ upright and computes counts, correlations and model summaries from synthetic inputs. Panel D uses a fixed illustrative enrichment table.
 

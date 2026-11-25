@@ -122,7 +122,7 @@ const StudioExperienceTools=(()=>{
       {id:'inset',zh:'绘制局部放大图',en:'Create a zoom inset',terms:'裁剪 放大 局部 ROI crop inset zoom',run:()=>openImages('inset')}
     ];
     // Resolve the later-mounted tools when invoked; keep the five main workflows.
-    if(typeof host.review==='function')actions.push({id:'review',zh:'图形质检与问题定位',en:'Review figure and locate issues',terms:'图形质检 图形检查 最终字号 线宽 figure review quality preflight text size line width',run:()=>host.review()});
+    if(typeof host.review==='function')actions.push({id:'review',zh:'图形质检与问题定位',en:'Review figure and locate issues',terms:'图形质检 图形检查 最终字号 线宽 色盲 色觉 灰度 查找 替换 记号 上下标 figure review quality preflight text size line width colour blind color grayscale find replace notation',run:()=>host.review()});
     if(typeof host.submissionProfiles==='function')actions.push({id:'submission-profile',zh:'投稿配置与尺寸预检',en:'Submission profiles and size review',terms:'投稿配置 期刊要求 最大高度 配置导入 submission profile requirements maximum height',run:()=>host.submissionProfiles()});
     if(support)actions.push({id:'feedback',zh:'使用反馈',en:'Send feedback',terms:'反馈 建议 不好用 问题 错误 联系作者 feedback problem suggestion bug contact',run:()=>support.openFeedback()},{id:'download-metrics',zh:'下载统计（扣除验收）',en:'Downloads excluding QA',terms:'下载 统计 下载量 验收 download count metrics statistics QA',run:()=>support.openMetrics()});
     if(hierarchy)for(const [id,target,zh,eng,terms]of [

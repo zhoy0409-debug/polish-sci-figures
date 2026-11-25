@@ -1,9 +1,9 @@
 """Basic accessibility and delivery QA for scientific figures.
 
 This checker intentionally separates automatic findings from human-review
-items. It can verify SVG external resources, embedded-raster effective DPI,
-basic color contrast, and grayscale separation; it cannot prove that a figure
-does not rely on color alone for meaning.
+items. It can verify SVG external resources, embedded-raster effective DPI and
+declared fonts; it cannot prove that a figure does not rely on color alone.
+Text size, contrast and colour-vision checks are in svg_final_size_qa.py.
 """
 from __future__ import annotations
 
@@ -11,7 +11,6 @@ import argparse
 import base64
 import io
 import json
-import math
 import re
 import sys
 import tempfile
@@ -55,27 +54,6 @@ def _viewbox(root: ET.Element) -> tuple[float, float] | None:
     if len(values) != 4 or values[2] <= 0 or values[3] <= 0:
         return None
     return values[2], values[3]
-
-
-def _rgb(hex_color: str) -> tuple[float, float, float]:
-    value = hex_color.lstrip("#")
-    return tuple(int(value[index:index + 2], 16) / 255 for index in (0, 2, 4))
-
-
-def _linear(channel: float) -> float:
-    if channel <= 0.03928:
-        return channel / 12.92
-    return ((channel + 0.055) / 1.055) ** 2.4
-
-
-def luminance(hex_color: str) -> float:
-    r, g, b = (_linear(channel) for channel in _rgb(hex_color))
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b
-
-
-def contrast(a: str, b: str) -> float:
-    first, second = sorted((luminance(a), luminance(b)), reverse=True)
-    return (first + 0.05) / (second + 0.05)
 
 
 def _font_families(value: str) -> list[str]:
@@ -150,23 +128,9 @@ def audit_svg(path: str | Path, min_dpi: float = 300.0, required_font: str | Non
         issues.append({"severity": "WARN", "code": "SVG_FRAGMENTED_TEXT",
                        "message": f"{fragmented_text} tspan elements may make text difficult to edit"})
 
+    # Contrast, grayscale and colour-vision findings need resolved paint and text
+    # colours, so they live in svg_final_size_qa.py.
     colors = sorted(set(HEX_COLOR.findall(raw)))
-    for color in colors:
-        if contrast(color, "#FFFFFF") < 3.0 and contrast(color, "#000000") < 3.0:
-            issues.append({
-                "severity": "WARN",
-                "code": "LOW_BASIC_CONTRAST",
-                "message": f"{color} has low contrast against both white and black backgrounds",
-            })
-    for index, first in enumerate(colors):
-        for second in colors[index + 1:]:
-            if abs(luminance(first) - luminance(second)) < 0.025:
-                issues.append({
-                    "severity": "WARN",
-                    "code": "LOW_GRAYSCALE_SEPARATION",
-                    "message": f"{first} and {second} may be hard to distinguish in grayscale",
-                })
-                break
 
     embedded_rasters = 0
     external_resources = 0
@@ -199,7 +163,15 @@ def audit_svg(path: str | Path, min_dpi: float = 300.0, required_font: str | Non
                 "message": "Cannot decode embedded raster to compute effective DPI",
             })
             continue
-        display_width = float(element.get("width", viewbox[0]))
+        # Nested transforms are not resolved here; percentages fill the viewBox.
+        raw_width = element.get("width") or "100%"
+        number = LENGTH_RE.match(raw_width.rstrip("%"))
+        if number is None or float(number[1]) <= 0:
+            issues.append({"severity": "WARN", "code": "RASTER_DPI_UNKNOWN",
+                           "message": f"Cannot interpret embedded raster width {raw_width!r}"})
+            continue
+        display_width = (viewbox[0] * float(number[1]) / 100 if raw_width.endswith("%")
+                         else _length_mm(raw_width) / UNIT_TO_MM[""])
         display_width_mm = width_mm * display_width / viewbox[0]
         dpi = image_size[0] / (display_width_mm / 25.4)
         raster_dpi.append(dpi)

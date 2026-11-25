@@ -6085,6 +6085,33 @@ if (typeof document !== 'undefined') (async () => {
         throw Error(T('工程在预检期间发生变化，请重试。'));
       },
       fixPlan(issues,profile){const next=copy(state()),seen=new Set();let skipped=0;for(const issue of issues){const target=issue.target,token=JSON.stringify(target);if(seen.has(token))continue;seen.add(token);const context=elementContext(target.panel,target.variant,target.key);if(!context||context.locked||!context.text||context.el.querySelector('tspan')||context.el.getAttribute('data-rich-text')){skipped++;continue;}const size=profile.minTextPt/currentOutput().scale/textPointFactor(context.el,target.panel,target.variant);if(!validValue('font-size',String(size))){skipped++;continue;}setEdit(next,target.panel,target.variant,target.key,'font-size',String(size));}validateState(next,project);return {next,skipped};},
+      // Display text only: locked objects, statistical results and rich text
+      // keep their own editors, so a bulk edit cannot rewrite recorded evidence.
+      texts(){
+        const found=[];
+        for(const id of state().order){
+          const vi=state().panels[id].variant,locks=new Set(state().panels[id].lockedElements?.[vi]||[]),source=editableSourceSnapshot(id,vi);
+          for(const el of source.querySelectorAll('text[data-key]')){
+            const text=el.textContent;if(!text.trim())continue;
+            const key=el.getAttribute('data-key');let locked=!!state().panels[id].locked||locks.has(key);
+            for(let up=el.parentElement;up&&!locked;up=up.parentElement)locked=locks.has(up.getAttribute('data-key'));
+            found.push({target:{panel:id,variant:vi,key},text,locked,statistical:el.hasAttribute('data-stat-result')||el.hasAttribute('data-stat-top'),rich:!StudioFigureQuality.plainText(el)||!!editsFor(id,vi)[key]?.['rich-text']});
+          }
+        }
+        for(const a of state().overlays||[])if(a.type==='text'&&a.text)found.push({target:{annotation:a.id},text:a.text,locked:!!a.locked,statistical:false,rich:!!a.richText});
+        return found;
+      },
+      textPlan(edits){
+        const token=t=>t.annotation?'a/'+t.annotation:t.panel+'/'+t.variant+'/'+t.key,available=new Map(reviewHost.texts().map(item=>[token(item.target),item])),next=copy(state()),changed=[];let skipped=0;
+        for(const {target,from,to}of edits){
+          const item=available.get(token(target));
+          if(!item||item.locked||item.statistical||item.rich||from!==undefined&&item.text!==from||typeof to!=='string'||!to.trim()||!target.annotation&&!validValue('text',to)||to.length>2000){skipped++;continue;}
+          if(to===item.text)continue;
+          if(target.annotation)next.overlays.find(a=>a.id===target.annotation).text=to;else setEdit(next,target.panel,target.variant,target.key,'text',to);
+          changed.push({target,from:item.text,to});
+        }
+        validateState(next,project);return {next,changed,skipped};
+      },
       layoutPlan(kind,order=state().order){const s=state();if(order.length!==s.order.length||new Set(order).size!==order.length||order.some(id=>!s.order.includes(id)))throw Error(T('规划小图与工程不匹配'));const base=copy(s);base.order=[...order];if(s.order.some(id=>s.panels[id].locked||s.panels[id].layoutLock||Object.values(s.panels[id].lockedElements||{}).some(keys=>keys.length)))throw Error(T('排版涉及已锁定内容，请使用现有母版控件逐项调整或先解锁。'));if(s.masterFrame)throw Error(T('当前母版已裁切，请先在母版控件恢复完整边界再预览新排版。'));const count=s.order.length,columns=kind==='portrait'?1:kind==='focus'&&count>2?3:Math.min(2,count),rows=kind==='focus'&&count>2?Math.max(2,Math.ceil((count+3)/3)):Math.ceil(count/columns),next=matchSizes(arrange(base,rows,columns,kind==='focus'&&count>2?'hero':'regular'));if(!s.typography)delete next.typography;validateState(next,project);return next;},
       preview(next,finished,label=T('已应用质检预览修改')){
         const base=state(),identity=reviewIdentity();validateState(next,project);
@@ -6105,6 +6132,8 @@ if (typeof document !== 'undefined') (async () => {
       download:(value,name)=>download(new Blob([JSON.stringify(value,null,2)],{type:'application/json'}),name)
     };
     const reviewUI=StudioQualityWorkspace.mount(reviewHost);
+    if(typeof StudioFigureLens!=='undefined')StudioFigureLens.mount({document,quality:StudioFigureQuality,artboard:$('artboard'),language:()=>StudioI18n.language,host:reviewHost,review:reviewUI,
+      blocked:()=>!!inlineEditor||!!document.querySelector('dialog[open]:not(.discovery-docked):not(.literature-preview-docked)')});
     previewSelectedLabelMatch=async()=>{
       const ids=selectedLabelIds();
       if(ids.length<2)return;
