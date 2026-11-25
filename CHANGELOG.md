@@ -6,7 +6,6 @@
 - Figure Studio Review adds a screen-only colour-vision and grayscale preview, colour-merge, notation and mixed-font findings, one-step notation fixes, and figure-wide find and replace (Ctrl/Cmd + H). Locked, statistical and character-formatted text is never bulk-edited.
 - Split the polish Skill into a short workflow and task-specific references; rules are kept. Structure validation now limits Skill size and checks links.
 - Fix filled data areas, such as confidence bands and violins, that detached from their curves when Figure Studio aligned axes across panels. Matplotlib fills were resized like marker symbols; exports were affected too. Recheck composed figures that contain such fills.
-- Fix the Figure Discovery panel collapsing to a 44-pixel column in the desktop drawer.
 - Notation fixes use true subscript and superscript runs in the declared font instead of Unicode digits that some Arial builds lack.
 - Fix `doctor --json` output corrupted by newer PyMuPDF, whose legacy `fitz` import prints to stdout.
 - Keep LF on checkout so bundled source hashes verify on Windows Git with `core.autocrlf=true`.

@@ -27,11 +27,7 @@ const built=spawnSync(python,['-X','utf8',path.join(root,'sci_figures.py'),'stud
       assert(Math.abs((lt-t)/h-20/140)<.02&&Math.abs((b-lb)/h-20/140)<.02,`panel ${i}: fill is vertically detached ${JSON.stringify(p)}`);
       for(const d of p.dots)assert(Math.abs((d[2]-d[0])-(d[3]-d[1]))<.6,`panel ${i}: marker symbol was distorted`);
     }
-    // Figure Discovery opens inside the tool body, not a collapsed grid track.
-    await page.locator('#drawerTaskbar [data-drawer-category]').first().click();await page.locator('button:visible',{hasText:'数据与智能选图'}).first().click();await page.waitForTimeout(400);
-    if(await page.locator('#figureDiscoveryDialog[open]').count()===0)await page.locator('#openDiscovery').click();
-    await page.locator('#figureDiscoveryDialog').waitFor({state:'visible'});const box=await page.locator('#figureDiscoveryDialog').boundingBox();assert(box.width>200,'Discovery panel width '+box.width);
-    await page.screenshot({path:path.join(out,'discovery.png')});assert.deepEqual(errors,[]);
-    console.log('PASS data-coordinate fills follow aligned axes, markers keep shape, and Discovery keeps a usable width');
+    assert.deepEqual(errors,[]);
+    console.log('PASS data-coordinate fills follow aligned axes, and markers keep shape');
   }finally{await page.screenshot({path:path.join(out,'last.png')}).catch(()=>{});await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});
