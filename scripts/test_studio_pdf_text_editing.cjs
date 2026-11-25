@@ -14,7 +14,7 @@ const helpers=[
   chunk('  function isVisibleObject(', '  // Editor-only hit areas'),
   chunk('function richTextAPI(){','function imageInsetsAPI(){'),
   chunk('  let labelSelections=[];','  const sizeNames='),
-  chunk('  function selectionCommandInfo(){','  function renderSelectionCommands(){'),
+  chunk('function objectGroupToken(','function validateState(')+chunk('  function selectionCommandInfo(){','  function renderSelectionCommands(){'),
   chunk('function validValue(','function heatmapCellInfo('),
   chunk('  function textPointSize(','  async function ensureReflows('),
   chunk('  function setEdit(','  let statisticalLineGesture='),

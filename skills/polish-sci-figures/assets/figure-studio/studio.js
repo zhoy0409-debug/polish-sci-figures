@@ -1060,11 +1060,13 @@ if (typeof document !== 'undefined') (async () => {
     setElementSelection([...groups.values()]);selectedAnnotations=refs.filter(r=>r.kind==='overlay').map(r=>r.id);setLabelSelection(refs.filter(r=>r.kind==='label').map(r=>r.id));
   }
   function expandObjectGroupSelection(){
+    if(!state().objectGroups?.length)return;
     const refs=objectSelectionRefs(),known=new Map(refs.map(r=>[objectGroupToken(r),r])),index=objectGroupIndex(state());
     for(const ref of refs)for(const member of index.get(objectGroupToken(ref))||[])if(objectGroupRefPresent(member,state()))known.set(objectGroupToken(member),member);
     if(known.size!==refs.length)setObjectSelectionRefs([...known.values()]);
   }
   function objectGroupAtTarget(target){
+    if(!state().objectGroups?.length)return null;
     const overlay=target.closest?.('[data-annotation]'),label=target.closest?.('[data-panel-label]'),node=target.closest?.('text[data-key]')||target.closest?.('[data-key]'),owner=node?.closest('[data-panel]');
     const ref=overlay?{kind:'overlay',id:overlay.dataset.annotation}:label?{kind:'label',id:label.dataset.panelLabel}:owner?{kind:'element',id:owner.dataset.panel,vi:state().panels[owner.dataset.panel]?.variant,key:node.dataset.key}:null;
     return ref?objectGroupIndex(state()).get(objectGroupToken(ref)):null;
@@ -2708,7 +2710,7 @@ if (typeof document !== 'undefined') (async () => {
   function deleteSelectedObjects(){
     if(original)return say(T('请先退出原版对照。'));
     if(!selectionGroups().length&&!selectedAnnotations.length&&!selectedLabelIds().length){const ids=selectionCommandInfo().panels;if(ids.length)return removePanels(ids);if(selectedEmptyCell)return deleteEmptyCell();}
-    if(selectionCommandInfo().mixed.some(group=>group.some(ref=>objectGroupRefLocked(ref,state()))))return say(T('组合中有锁定元素，请先解锁整个组合'));
+    if(state().objectGroups?.length&&selectionCommandInfo().mixed.some(group=>group.some(ref=>objectGroupRefLocked(ref,state()))))return say(T('组合中有锁定元素，请先解锁整个组合'));
     const groups=selectionGroups().map(g=>{const source=editableSource(g.id,g.vi),locked=state().panels[g.id].lockedElements?.[g.vi]||[];return {...g,keys:g.keys.filter(key=>{const el=source.querySelector(`[data-key="${key}"]`);return el&&isVisibleObject(el)&&![el,...el.querySelectorAll('[data-key]')].some(n=>locked.includes(n.getAttribute('data-key')));})};});
     const result=removeSelectedItems(state(),{groups,annotations:selectedAnnotations,labelIds:selectedLabelIds()});
     if(!result.removed)return say(T('请选择未锁定的图内元素'));

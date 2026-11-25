@@ -54,7 +54,7 @@ const editDOM=new (require('jsdom').JSDOM)('<!doctype html>'),editSVG=editDOM.wi
 const ctx={preparePositionedTextEdit:require(file).preparePositionedTextEdit,raw:false,id:ids[0],vi:0,s:deleted.next,editsFor:()=>deleted.next.panels[ids[0]].edits[0],svg:editSVG};
 const editIndexer=source.split('\n').find(line=>line.trimStart().startsWith('let editNodeIndex='));assert.ok(editIndexer,'extract the production shared key index with its consuming edit loop');
 vm.runInNewContext(editIndexer+'\n'+source.slice(editsStart,editsEnd)+'\napplyElementEdits(editsFor(id,vi,s));',ctx);assert.equal(node.style.display,'none');assert.equal(node.textContent,'Source text');editDOM.window.close();
-assert.match(source,/const STYLES = new Set\(\['display'/,'hidden appearance survives sanitized SVG reimport');
+assert.match(source,/const STYLES = new Set\(\[[^\]]*'display'/,'hidden appearance survives sanitized SVG reimport');
 
 // Actual keyboard listener: normal inputs, contenteditable and IME own their keys.
 let keyboard,deleteCalls=0,undoCalls=0;let groups=[{id:ids[0],vi:0,keys:['e3']}];
@@ -108,6 +108,7 @@ assert.ok(behindStart>=0&&behindEnd>behindStart,'the real overlap-selection help
 const doubleClick=source.split('\n').find(line=>line.includes('svg.ondblclick=event=>'));
 const clickStart=source.indexOf('    svg.onclick=event=>{',pointerStart),clickEnd=source.indexOf('    viewport.onpointerdown=',clickStart);
 vm.createContext(dragContext);
+vm.runInContext(source.slice(source.indexOf('function objectGroupToken('),source.indexOf('function validateState(')),dragContext);
 vm.runInContext(`let labelDrag=null,overlayDrag=null,elementDrag=null,guideDrag=null,marquee=null,suppressClick=false,pending=null,layoutMode=false,boxSelect=false,resizeDrag=null,panelDrag=null,ghost=null,dragging=null,original=false,selectedPanel='${ids[0]}',selected=[],elementSelections=[],selectionAnchor=null,selectedAnnotations=[],panelSelection=[],selectedPanelLabel=null,selectionAfterMarquee=false,activePane='explore',selectedAlignmentGuide=null;
 let contentSelection=null;
 ${source.slice(source.indexOf('function panelContentDelta('),source.indexOf('function nudgeSelectionState('))}

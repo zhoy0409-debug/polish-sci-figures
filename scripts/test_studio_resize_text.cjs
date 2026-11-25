@@ -18,7 +18,7 @@ const helpers=[
   drawDeclaration,
   chunk('  function isVisibleObject(el) {','  function keysToObjects(svg)'),
   chunk('  let labelSelections=[];','  const sizeNames='),
-  chunk('  function selectionCommandInfo(){','  function renderSelectionCommands(){'),
+  chunk('function objectGroupToken(','function validateState(')+chunk('  function selectionCommandInfo(){','  function renderSelectionCommands(){'),
   chunk('function validPresentationMatrix(','function heatmapCellInfo('),
   chunk('  function textPointSize(','  async function ensureReflows('),
   chunk('  function paint(el, prop)','  function statisticalAnalysisFor('),

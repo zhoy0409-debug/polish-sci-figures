@@ -27,7 +27,7 @@ function harness(){
     ${section('  let quickPreview=','  function quickSelectedObjects(')}
     ${section('function layoutLockAPI(){','function imageInsetsAPI(){')}
     ${section('  let labelSelections=[];','  const sizeNames=')}
-    ${section('  function selectionCommandInfo(){','  function renderSelectionCommands(){')}
+    ${section('function objectGroupToken(','function validateState(')+section('  function selectionCommandInfo(){','  function renderSelectionCommands(){')}
     ${section('  let pointerEditCommit=','  function migrateLabelHistory(')}
     ${section('  function richTextTarget(){','  function focusRichTextControls(')}
     ${section('  function startInlineTextEdit(','  $(\'addOverlay\').onclick=')}

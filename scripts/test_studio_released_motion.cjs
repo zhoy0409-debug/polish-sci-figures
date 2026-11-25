@@ -3,7 +3,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),{createRequire}=require('node:module');
 const fixtureFile=path.resolve('scripts/test_studio_layout_lock_integration.cjs'),fixture=fs.readFileSync(fixtureFile,'utf8'),factory={require:createRequire(fixtureFile),console};
-vm.createContext(factory);vm.runInContext(fixture.slice(0,fixture.indexOf('const test=(name,fn)=>'))+'\nglobalThis.fixture=harness;',factory);
+vm.createContext(factory);require('./helpers/studio-object-group-fixture.cjs')(factory);vm.runInContext(fixture.slice(0,fixture.indexOf('const test=(name,fn)=>'))+'\nglobalThis.fixture=harness;',factory);
 const base=path.resolve('skills/polish-sci-figures/assets/figure-studio'),source=fs.readFileSync(base+'/studio.js','utf8'),geo=require(base+'/image-insets.js'),grid=require(base+'/grid-resize-ui.js'),studio=require(base+'/studio.js'),clone=value=>JSON.parse(JSON.stringify(value));
 let checks=0;
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-6,`${a} != ${b}`),pointClose=(a,b)=>{close(a.x,b.x);close(a.y,b.y);};

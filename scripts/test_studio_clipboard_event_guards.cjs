@@ -4,7 +4,7 @@
 // these assertions do not claim a browser permission or glyph-paint measurement.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),Module=require('node:module');
 const file=path.join(__dirname,'test_studio_canvas_clipboard_integration.cjs'),source=fs.readFileSync(file,'utf8'),stop=source.indexOf('\nlet passed=0;');assert.ok(stop>0,'Production clipboard fixture is available');
-const host={require:Module.createRequire(file),__dirname,console,setImmediate,clearImmediate,setTimeout,clearTimeout,TextEncoder};vm.createContext(host);vm.runInContext(source.slice(0,stop)+'\nglobalThis.clipboardGuardFixture=fixture;',host);
+const host={require:Module.createRequire(file),__dirname,console,setImmediate,clearImmediate,setTimeout,clearTimeout,TextEncoder};vm.createContext(host);require('./helpers/studio-object-group-fixture.cjs')(host);vm.runInContext(source.slice(0,stop)+'\nglobalThis.clipboardGuardFixture=fixture;',host);
 const fixture=host.clipboardGuardFixture,copy=x=>JSON.parse(JSON.stringify(x)),tick=()=>new Promise(resolve=>setImmediate(resolve));
 async function until(test){for(let i=0;i<60;i++){if(test())return;await tick();}throw Error('Clipboard checkpoint was not reached');}
 const records=(f,id='panel-0')=>f.ctx.state().panels[id]?.insertedElements?.[0]||[];

@@ -12,7 +12,7 @@ const svgGeometry=require(directory+'image-insets.js');
 const presentation=require(directory+'selection-transform-dom.js');
 const rich=require(directory+'rich-text.js');
 const hostSource=fs.readFileSync('skills/polish-sci-figures/assets/figure-studio/studio.js','utf8'),hostGeometry={StudioImageInsets:svgGeometry,overlayEditingSpace:require(directory+'studio.js').overlayEditingSpace,copy:value=>JSON.parse(JSON.stringify(value))};
-vm.createContext(hostGeometry);vm.runInContext(hostSource.slice(hostSource.indexOf('function panelContentDelta('),hostSource.indexOf('function gridFor(')),hostGeometry);
+vm.createContext(hostGeometry);require('./helpers/studio-object-group-fixture.cjs')(hostGeometry);vm.runInContext(hostSource.slice(hostSource.indexOf('function panelContentDelta('),hostSource.indexOf('function gridFor(')),hostGeometry);
 const NS='http://www.w3.org/2000/svg';
 const I=[1,0,0,1,0,0];
 const raster='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aOqkAAAAASUVORK5CYII=';
@@ -191,7 +191,7 @@ test('actual inset refresh applies live resize once and leaves the source ROI in
   try{
     const source=fs.readFileSync(require.resolve(directory+'studio.js'),'utf8'),start=source.indexOf('  function refreshInsetGraphics('),end=source.indexOf('  function refreshOverlaySelection(',start);
     assert.ok(start>0&&end>start);
-    ctx={document:f.doc,NS,StudioImageInsets:svgGeometry,selectedAnnotations:[],imageLinks:null,state:()=>f.state,overlayEditingSpace:require(directory+'studio.js').overlayEditingSpace};vm.createContext(ctx);
+    ctx={document:f.doc,NS,StudioImageInsets:svgGeometry,selectedAnnotations:[],imageLinks:null,state:()=>f.state,overlayEditingSpace:require(directory+'studio.js').overlayEditingSpace};vm.createContext(ctx);require('./helpers/studio-object-group-fixture.cjs')(ctx);
     vm.runInContext(source.split('\n').find(line=>line.startsWith('function insetCalibrationWidth('))+'\n'+source.slice(start,end),ctx);
     const image=f.find('p1');image.closest('[data-panel]').dataset.panel='panel-1';
     const a={id:'annotation-7',type:'inset',x:300/600,y:100/240,w:60/600,h:60/240,text:'',font:'Arial',size:9,stroke:1,color:'#ffffff',opacity:1,fill:false,bold:false,locked:false,source:{panelId:'panel-1',variant:0,key:'e1',widthPx:1,heightPx:1},roi:{x:0,y:0,w:1,h:1},connector:true,showScale:false};
@@ -414,7 +414,7 @@ test('large selections resolve one canonical panel space per capture instead of 
   }finally{f.close();}
 });
 test('actual released panel and element snapshots retain resize previews after style, nudge and saved-state recomposition',()=>{
-  const path=require('node:path'),{createRequire}=require('node:module'),file=path.resolve('scripts/test_studio_layout_lock_integration.cjs'),fixtureSource=fs.readFileSync(file,'utf8'),factory={require:createRequire(file),console};vm.createContext(factory);vm.runInContext(fixtureSource.slice(0,fixtureSource.indexOf('const test=(name,fn)=>'))+'\nglobalThis.make=harness;',factory);
+  const path=require('node:path'),{createRequire}=require('node:module'),file=path.resolve('scripts/test_studio_layout_lock_integration.cjs'),fixtureSource=fs.readFileSync(file,'utf8'),factory={require:createRequire(file),console};vm.createContext(factory);require('./helpers/studio-object-group-fixture.cjs')(factory);vm.runInContext(fixtureSource.slice(0,fixtureSource.indexOf('const test=(name,fn)=>'))+'\nglobalThis.make=harness;',factory);
   for(const mode of ['panel','element']){
     const h=factory.make(),{ctx,doc,dom}=h,priorStyle=global.getComputedStyle,grid=require(directory+'grid-resize-ui.js'),main=require(directory+'studio.js'),proto=dom.window.SVGElement.prototype;
     vm.runInContext(hostSource.slice(hostSource.indexOf('function panelContentDelta('),hostSource.indexOf('function gridFor(')),ctx);

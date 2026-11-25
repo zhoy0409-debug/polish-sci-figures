@@ -11,9 +11,9 @@ class Element{
     this.classList={add:name=>this.setAttribute('class',((this.getAttribute('class')||'')+' '+name).trim())};}
   get id(){return this.getAttribute('id')||'';}set id(v){this.setAttribute('id',v);}
   get textContent(){return this.ownText+this.children.map(n=>n.textContent).join('');}set textContent(v){this.ownText=String(v);this.children=[];}
-  get attributes(){return Object.entries(this.attrs).map(([name,value])=>({name,localName:name,value}));}
+  get attributes(){return Object.entries(this.attrs).map(([name,value])=>({name,localName:name.split(':').pop(),value}));}
   getAttribute(k){return this.attrs[k]??null;}setAttribute(k,v){this.attrs[k]=String(v);}hasAttribute(k){return k in this.attrs;}removeAttribute(k){delete this.attrs[k];}removeAttributeNode(a){delete this.attrs[a.name];}
-  setAttributeNS(namespace,k,v){assert.equal(namespace,'http://www.w3.org/2000/xmlns/');this.setAttribute(k,v);}
+  setAttributeNS(namespace,k,v){assert.ok(['http://www.w3.org/2000/xmlns/','http://www.w3.org/XML/1998/namespace'].includes(namespace));this.setAttribute(k,v);}
   append(...nodes){for(const n of nodes){n.remove?.();n.parentNode=n.parentElement=this;this.children.push(n);}}
   remove(){if(this.parentElement)this.parentElement.children=this.parentElement.children.filter(n=>n!==this);this.parentElement=this.parentNode=null;}
   matches(s){return s.split(',').some(part=>{const m=part.trim().match(/^(\*|[\w-]+)?(?:\[([\w-]+)([\^*$]?=)?["']?([^"'\]]*)["']?\])?$/);return !!m&&(!m[1]||m[1]==='*'||m[1]===this.localName)&&(!m[2]||(m[3]==='='?this.getAttribute(m[2])===m[4]:m[3]==='^='?(this.getAttribute(m[2])||'').startsWith(m[4]):m[3]==='$='?(this.getAttribute(m[2])||'').endsWith(m[4]):this.hasAttribute(m[2])));});}
@@ -43,7 +43,7 @@ const ctx={imageInsets:null,...helpers,NS:'http://www.w3.org/2000/svg',state:()=
   displayedPanelLabel:(s,id)=>{calls.labels.push({id,order:s.order.slice()});return{text:id==='a'?'A':'B',x:2,y:5,size:12,font:'Arial',bold:true};},
   annotationFirstTopHeight:id=>id==='a'?82:40,statisticalAnalysisFor:id=>({primary_test:{name:'Welch',source:id}}),statisticalExportRecords:s=>s.order.map(id=>({panel:id,analysis:s.panels[id].statistics.analysis})),
   gridFor:()=>({rows:2,places:{a:{row:0,col:0,rs:1,cs:1},b:{row:1,col:1,rs:1,cs:1}}})};
-vm.createContext(ctx);
+vm.createContext(ctx);require('./helpers/studio-object-group-fixture.cjs')(ctx);
 const extract=(begin,end)=>{const a=source.indexOf(begin),b=source.indexOf(end,a);assert.ok(a>0&&b>a,begin);return source.slice(a,b);};
 vm.runInContext(extract('  function insetGeometry(','  function insetSelection(')+'\n'+extract('  function panelExportRegion(','  function refreshInsetGraphics(')+'\n'+extract('  function overlayNode(','  function refreshOverlaySelection(')+'\n'+extract('  function wrapPanelContent(','  function composite(')+'\n'+extract('  function composite(','  let autosaveQueue='),ctx);
 let checks=0;const eq=(a,b,label)=>{assert.deepEqual(a,b,label);checks++;},near=(a,b)=>{assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);checks++;};

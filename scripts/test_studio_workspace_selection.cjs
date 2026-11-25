@@ -42,7 +42,7 @@ function harness({vector=false}={}){
     overlayNode:()=>el('g',{annotation:'note'},noteBox),commit(next){commits++;Object.assign(s,copy(next));},
     editsFor:()=>({}),setEdit(next,id,vi,key,prop,value){((next.panels[id].edits[vi]??={})[key]??={})[prop]=value;},
     selectPanelLabel(){},at:()=>null,destination:()=>null,zoomView:{},
-  };ctx.overlayEditingSpace=require(path).overlayEditingSpace;if(vector)ctx.StudioVectorInteraction=require('../skills/polish-sci-figures/assets/figure-studio/vector-interaction.js');vm.createContext(ctx);
+  };ctx.overlayEditingSpace=require(path).overlayEditingSpace;if(vector)ctx.StudioVectorInteraction=require('../skills/polish-sci-figures/assets/figure-studio/vector-interaction.js');vm.createContext(ctx);require('./helpers/studio-object-group-fixture.cjs')(ctx);
   vm.runInContext(source.slice(source.indexOf('function panelContentDelta('),source.indexOf('function nudgeSelectionState(')),ctx);
   vm.runInContext(source.slice(source.indexOf('  function canvasObjectTarget('),source.indexOf('  function addStatisticalHitAreas(')),ctx);
   const groups=source.slice(source.indexOf('  function selectionGroups('),source.indexOf('  const sizeNames='))+source.slice(source.indexOf('  function refreshOverlaySelection('),source.indexOf('  function renderOverlayProperties('));

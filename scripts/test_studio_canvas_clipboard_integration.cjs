@@ -25,7 +25,7 @@ function fixture(){
  };
  ctx.editsFor=(id,vi,s=ctx.state())=>s.panels[id].edits[vi]||{};ctx.textPointSize=rich.pointSize;ctx.textPointFactor=(node,id,vi)=>rich.localFontScale(node,node.ownerSVGElement||node.closest('svg'));
  ctx.editableSource=(id,vi)=>ctx.editedSvg(id,vi);ctx.editableSourceSnapshot=ctx.editableSource;ctx.currentOutput=()=>helpers.exportGeometry(ctx.layout().width,ctx.layout().height,ctx.state().exportSettings);
- vm.createContext(ctx);
+ vm.createContext(ctx);require('./helpers/studio-object-group-fixture.cjs')(ctx);
  vm.runInContext(source.slice(source.indexOf('function elementInsertionsAPI(){'),source.indexOf('function imageInsetsAPI(){')),ctx);
  vm.runInContext(source.split('\n').filter(line=>/^  const (TAGS|ATTRS|STYLES) = new Set/.test(line)||/^  const DRAW =/.test(line)).join('\n')+source.slice(source.indexOf('  function safeValue('),source.indexOf('  function validateProject('))+section('  function isVisibleObject(','  // Editor-only hit areas'),ctx);
  vm.runInContext(source.slice(source.indexOf('  function selectionGroups(){'),source.indexOf('  const sizeNames=')),ctx);
