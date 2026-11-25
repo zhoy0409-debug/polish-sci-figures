@@ -9,8 +9,8 @@ const history=fixture.history,ctx=fixture.ctx,$=fixture.$;
 history.current.overlays=[{id:'annotation-1',type:'text',text:'Note',x:.1,y:.1,w:.1,h:.1,font:'Arial',size:12,stroke:1,color:'#222222',opacity:1,locked:false,fill:false}];
 function select(g=[],panels=[]){fixture.selectObjects(g);ctx.panelSelection=panels;ctx.selectedAnnotations=[];ctx.selectedPanelLabel=null;ctx.renderSelectionCommands();}
 select([{id:'a',vi:0,keys:['e1']},{id:'b',vi:0,keys:['e1']}],['a','b']);
-assert.equal($('groupSelection').disabled,true,'cross-panel object selection must not group whole panels');
-$('groupSelection').onclick();assert.equal(history.current.panelGroups,undefined);
+assert.equal($('groupSelection').disabled,false,'cross-panel objects can form a mixed group without grouping whole panels');
+$('groupSelection').click();assert.equal(history.current.panelGroups,undefined);assert.equal(history.current.objectGroups[0].length,2);$('ungroupSelection').click();
 select([{id:'a',vi:0,keys:['e1','e2']}],['a']);$('groupSelection').click();ctx.renderSelectionCommands();
 assert.deepEqual(copy(history.current.panels.a.elementGroups[0]),[['e1','e2']]);
 assert.equal($('quickGroup').textContent,'取消组合');assert.equal($('ungroupSelection').disabled,false);

@@ -46,7 +46,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1']}={}){
     commit(next){validateState(next,project);history.commit(next);current=copy(next);render();return true;},
     renderCanvas:next=>render(next||current)
   };
-  vm.createContext(ctx);vm.runInContext(helpers,ctx);
+  vm.createContext(ctx);require('./helpers/studio-object-group-fixture.cjs')(ctx);vm.runInContext(helpers,ctx);
   ctx.editableSource=(id,vi,s=current)=>ctx.applyStoredEdits(parse(),id,vi,s);ctx.editableSourceSnapshot=ctx.editableSource;
   function render(s=current){const root=ctx.editableSource('p0',0,s);root.setAttribute('data-panel','p0');root.setAttribute('width',String(width));$('artboard').replaceChildren(root);return root;}
   $('scope').value='element';render();
@@ -135,7 +135,7 @@ test('annotation and label fields enforce physical limits before preview or hist
   const project={panels:[{id:'p0',variants:[{}]}]},initial={order:['p0'],columns:1,gap:0,panels:{p0:{variant:0,edits:{},label:{text:'A',x:2,y:5,size:.012,font:'Arial',bold:true}}},overlays:[{id:'annotation-1',type:'text',x:.1,y:.1,w:.2,h:.1,text:'Text',font:'Arial',size:.012,color:'#000000',stroke:.001,opacity:1,fill:false,locked:false}]};
   let current=copy(initial),commits=0,previews=0;const history=new History(current);
   const ctx={copy,$,state:()=>current,currentOutput:()=>({scale:1000}),project,validateState,selectedPanel:'p0',selectedPanelLabel:'p0',selectedAnnotations:['annotation-1'],panelNumberStyle:()=>false,displayedPanelLabel:s=>s.panels.p0.label,numberPanelLabels:require(base+'studio.js').numberPanelLabels,T:x=>x,say:m=>messages.push(m),renderCanvas:()=>previews++,commit(next){validateState(next,project);history.commit(next);current=copy(next);commits++;return true;}};
-  vm.createContext(ctx);
+  vm.createContext(ctx);require('./helpers/studio-object-group-fixture.cjs')(ctx);
   vm.runInContext(chunk('  function renderLabelControls(','  function selectPanelLabel(')+chunk('  const labelValues=text=>',"  $('deleteElements').onclick=")+source.split('\n').find(line=>line.startsWith('  const updateOverlay=')),ctx);
   ctx.renderLabelControls();assert.equal($('labelSize').value,'12','label inspector displays final pt rather than the tiny stored value');
   $('font').value='Arial';$('overlayFont').value='Arial';$('overlayColor').value='#000000';$('overlayStroke').value='1';$('overlayOpacity').value='1';$('overlayText').value='Text';

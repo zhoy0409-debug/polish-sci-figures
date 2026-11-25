@@ -20,6 +20,7 @@ function create({ids=['panel-0','panel-1','panel-2'],initial=null,project:provid
     render(){renders++;paint();},renderCanvas(){paint();}
   };
   vm.createContext(ctx);
+  vm.runInContext(extract('function objectGroupToken(', 'function validateState('),ctx);
   vm.runInContext(extract('function panelContentDelta(','function nudgeSelectionState('),ctx);
   vm.runInContext(extract('  function selectionGroups(){','  const sizeNames=')+extract('  function layout(s=state(),','  function plotFrame(')+extract('  function selectionCommandInfo(){','  function renderQuickToolbar(){')+extract('  function cancelQuickPreview(','  function previewQuickStyle(')+extract('  function alignSelectedObjects(','  function selectionCommandInfo(){')+extract('  function deleteSelectedObjects(){','  function renderLabelControls(){')+extract('  function gridMetrics(l){','  function render() {')+extract("  $('groupSelection').onclick=", "  $('compare').onclick="),ctx);
   vm.runInContext('let quickPreview=null,quickPreviewFrame=0;',ctx);

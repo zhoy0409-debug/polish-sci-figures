@@ -64,7 +64,7 @@ const StudioImageInsetsController = (() => {
       raf=0;if(!drag||!unchanged(drag))return;
       try{
         const root=host.root(),r=drag.rect,m=core.relativeMatrix(sourceDOM(drag.source),root),a=drag.start,b=drag.end;
-        const points=drag.mode==='roi'?[a,{x:b.x,y:a.y},b,{x:a.x,y:b.y}]:[a,{x:b.x,y:a.y}];
+        const points=drag.mode==='roi'?[a,{x:b.x,y:a.y},b,{x:a.x,y:b.y}]:[a,b];
         if(!overlay||overlay.parentNode!==root){overlay?.remove();overlay=doc.createElementNS(NS,'g');overlay.setAttribute('data-inset-gesture','true');overlay.setAttribute('pointer-events','none');root.append(overlay);}
         const shape=doc.createElementNS(NS,drag.mode==='roi'?'polygon':'polyline');shape.setAttribute('points',points.map(p=>core.point(m,{x:r.x+p.x*r.width,y:r.y+p.y*r.height})).map(p=>`${p.x},${p.y}`).join(' '));shape.setAttribute('fill',drag.mode==='roi'?'#8dbaff22':'none');shape.setAttribute('stroke','#2d7ed6');shape.setAttribute('stroke-width','1.5');shape.setAttribute('vector-effect','non-scaling-stroke');overlay.replaceChildren(shape);
       }catch(error){cancel();report(error);}
@@ -109,8 +109,10 @@ const StudioImageInsetsController = (() => {
       try{
         if(!unchanged(value)){cancel();return;}value.end=bounded(pixelPoint(event,value),value.rect.visible);clearGesture();
         if(value.mode==='roi'){makeInset(value);return;}
-        const pixelLength=Math.abs(value.end.x-value.start.x)*value.source.widthPx;if(pixelLength<1)return;
-        const lineRoi={x:Math.min(value.start.x,value.end.x),y:clamp(value.start.y,value.rect.visible.y,value.rect.visible.y+value.rect.visible.h-1/value.source.heightPx),w:pixelLength/value.source.widthPx,h:1/value.source.heightPx};
+        const dx=value.end.x-value.start.x,dy=value.end.y-value.start.y;
+        const pixelLength=Math.hypot(dx*value.source.widthPx,dy*value.source.heightPx);if(pixelLength<1)return;
+        const minW=1/value.source.widthPx,minH=1/value.source.heightPx,visible=value.rect.visible;
+        const lineRoi={x:clamp(Math.min(value.start.x,value.end.x),visible.x,visible.x+visible.w-minW),y:clamp(Math.min(value.start.y,value.end.y),visible.y,visible.y+visible.h-minH),w:Math.max(Math.abs(dx),minW),h:Math.max(Math.abs(dy),minH)};
         core.sourceInfo(prototype(value.source,value.source,lineRoi),host.root());
         calibrationPending={...value,pixelLength};const full=host.calibration(value.source),initialLengthUm=full>0?pixelLength/value.source.widthPx*full:undefined;
         if(!ui.requestCalibration({pixelLength,initialLengthUm}))calibrationPending=null;

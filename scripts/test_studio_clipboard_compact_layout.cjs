@@ -3,7 +3,7 @@
 // geometry comes from deterministic affine adapters, not a browser ink claim.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),Module=require('node:module');
 const fixtureFile=path.join(__dirname,'test_studio_canvas_clipboard_integration.cjs'),fixtureSource=fs.readFileSync(fixtureFile,'utf8'),cut=fixtureSource.indexOf('\nlet passed=0;');assert.ok(cut>0);
-const host={require:Module.createRequire(fixtureFile),__dirname,console,setImmediate,clearImmediate,setTimeout,clearTimeout,TextEncoder};vm.createContext(host);vm.runInContext(fixtureSource.slice(0,cut)+'\nglobalThis.testFixture=fixture;',host);
+const host={require:Module.createRequire(fixtureFile),__dirname,console,setImmediate,clearImmediate,setTimeout,clearTimeout,TextEncoder};vm.createContext(host);require('./helpers/studio-object-group-fixture.cjs')(host);vm.runInContext(fixtureSource.slice(0,cut)+'\nglobalThis.testFixture=fixture;',host);
 const directory=path.resolve(__dirname,'../skills/polish-sci-figures/assets/figure-studio'),studio=fs.readFileSync(path.join(directory,'studio.js'),'utf8'),compactSource=fs.readFileSync(path.join(directory,'compact-whitespace.js'),'utf8'),copy=x=>JSON.parse(JSON.stringify(x)),NS='http://www.w3.org/2000/svg';
 const section=(a,b)=>{const start=studio.indexOf(a),stop=studio.indexOf(b,start+a.length);assert.ok(start>=0&&stop>start,a);return studio.slice(start,stop);};
 let passed=0;async function test(name,fn){await fn();passed++;console.log('PASS '+name);}
@@ -23,7 +23,7 @@ function setup(){
     if(values){const xs=values.filter((_,i)=>i%2===0),ys=values.filter((_,i)=>i%2===1);return{x:Math.min(...xs),y:Math.min(...ys),width:Math.max(...xs)-Math.min(...xs),height:Math.max(...ys)-Math.min(...ys)};}
     throw Error('Unexpected native geometry: '+this.localName);
   };
-  const moduleContext={document:f.d,getComputedStyle:computed};vm.createContext(moduleContext);vm.runInContext(compactSource+'\nglobalThis.testCompact=StudioCompactWhitespace;',moduleContext);
+  const moduleContext={document:f.d,getComputedStyle:computed};vm.createContext(moduleContext);require('./helpers/studio-object-group-fixture.cjs')(moduleContext);vm.runInContext(compactSource+'\nglobalThis.testCompact=StudioCompactWhitespace;',moduleContext);
   const original=moduleContext.testCompact,calls=[];const compact={...original,measure(svg,options){activeRoot=svg;calls.push(options||{});return original.measure(svg,options);}};
   Object.assign(c,{StudioCompactWhitespace:compact,StudioI18n:{language:'en'}});vm.runInContext(section('  let compactLayoutCache=','  function renderCompactWhitespaceControls(){'),c);
   return Object.assign(f,{c,compact,calls,measure:compact.measure,resetLayoutCaches(){vm.runInContext('compactLayoutCache=new WeakMap();compactMetricCache=null;',c);}});

@@ -22,7 +22,7 @@ function harness(){
   // This isolated VM exercises the actual production quick-style fallback;
   // managed preview sessions have separate component and installed acceptance.
   // Extract its declarations too, so new cancellation state is never omitted.
-  vm.createContext(ctx);vm.runInContext(`let original=false,selectedPanel='p0',selected=[],elementSelections=[],selectedAnnotations=[],selectedPanelLabel=null,selectedAlignmentGuide=null,activePane='detail',inlineEditor=null,richTextEditor=null,panelSelection=[],contentSelection=null,selectedEmptyCell=null,textTools=null;
+  vm.createContext(ctx);require('./helpers/studio-object-group-fixture.cjs')(ctx);vm.runInContext(`let original=false,selectedPanel='p0',selected=[],elementSelections=[],selectedAnnotations=[],selectedPanelLabel=null,selectedAlignmentGuide=null,activePane='detail',inlineEditor=null,richTextEditor=null,panelSelection=[],contentSelection=null,selectedEmptyCell=null,textTools=null;
     const selectionGroups=()=>elementSelections;const setElementSelection=groups=>{elementSelections=groups;selected=groups[0]?.keys||[];};
     ${section('  let quickPreview=','  function quickSelectedObjects(')}
     ${section('function layoutLockAPI(){','function imageInsetsAPI(){')}

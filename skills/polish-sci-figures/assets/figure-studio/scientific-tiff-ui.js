@@ -5,19 +5,22 @@
     const doc=host.document||document,core=host.core||StudioScientificTiff;let active=null;
     function cancel(){active?.close(false);}
     async function open(file,target,initial=null){
-      cancel();if(!host.available())throw Error(host.language()==='en'?'Start the current local Windows engine to read TIFF; no cloud service is used.':'请启动当前 Windows 本机服务读取 TIFF；不会使用云端服务。');
-      if(!file||file.size>core.MAX_BYTES)throw Error(host.language()==='en'?'TIFF limit: 64 MB':'TIFF 文件不能超过 64 MB');
+      cancel();if(!host.available())throw Error(host.language()==='en'?'Open TIFF in the desktop editor or a browser that supports offline TIFF decoding. No file is uploaded.':'请在桌面编辑器或支持离线 TIFF 解码的浏览器中导入；文件不会上传。');
+      if(!file)throw Error(host.language()==='en'?'Choose a TIFF file.':'请选择 TIFF 文件。');
       const en=()=>host.language()==='en',labels=new Map(),translate=(node,zh,english)=>{labels.set(node,[zh,english]);node.textContent=en()?english:zh;return node;};
       const el=(tag,zh,english,cls)=>{const node=doc.createElement(tag);if(tag==='button')node.type='button';if(zh!=null)translate(node,zh,english||zh);if(cls)node.className=cls;return node;};
       const panel=el('aside',null,null,'scientific-tiff-workspace');panel.id='scientificTiffWorkspace';panel.setAttribute('aria-label','TIFF');
-      const heading=el('div',null,null,'scientific-tiff-heading'),title=el('h2','原生 TIFF 显示','Native TIFF display'),close=el('button','×');close.type='button';close.setAttribute('aria-label',en()?'Close & cancel':'关闭并取消');heading.append(title,close);panel.append(heading);
+      const heading=el('div',null,null,'scientific-tiff-heading'),title=el('h2','导入 TIFF · 先预览，再保留','Import TIFF · Preview, then keep'),close=el('button','×');close.type='button';close.setAttribute('aria-label',en()?'Close & cancel':'关闭并取消');heading.append(title,close);panel.append(heading);
       panel.append(el('p','原始位深与采集元数据保留；这里只调整显示，不作密度定量。','Native bit depth and acquisition metadata are retained. These controls adjust display, not densitometry.','muted'));
       panel.append(el('p','比较同批荧光或密度时，请使用一致的显示窗。逐图建议范围不能作为信号强弱比较。','Use the same display window for comparable fluorescence or density images. Per-image suggested ranges do not establish relative signal strength.','muted'));
       panel.append(el('p','比例尺需依据采集标定确认；TIFF 打印 DPI 不会自动当作显微标定。选择重采样显示时，请按显示像素与原生像素的比例核对标尺。','Confirm scale bars from acquisition calibration. TIFF print DPI is not microscopy calibration. For resampled display, account for the display-to-native pixel ratio.','muted'));
       panel.append(el('p','每个文件最多 64 MB、每页 3200 万像素、128 页；工程原生 TIFF 合计最多 80 MB。同一原文件只保存一份。','Limits: 64 MB per file, 32 megapixels per page, 128 pages; 80 MB of native TIFF per project. Shared originals are stored once.','muted'));
       const filename=el('p');filename.textContent=file.name;panel.append(filename);
       if(initial)panel.append(el('p','从保留的原始 TIFF 新建独立显示。现有图片及其编辑保持不变；取消不写入工程。','Create a separate display from the retained original TIFF. Existing images and edits stay intact; Cancel leaves the project unchanged.','muted'));
+      const support=el('details',null,null,'scientific-tiff-support'),supportTitle=el('summary','原始文件、支持格式与限制','Original file, supported formats and limits');support.append(supportTitle);
+      [...panel.children].filter(n=>n.tagName==='P'&&n!==filename).slice(1).forEach(n=>support.append(n));panel.append(support);
       const info=el('p',null,null,'muted');info.id='tiffMetadata';panel.append(info);
+      const steps=el('ol',null,null,'scientific-tiff-steps'),stages=[el('li','1 选择页面','1 Choose plane'),el('li','2 画布预览','2 Preview'),el('li','3 保留导入','3 Keep & import')];steps.append(...stages);panel.append(steps);
       const fields=el('fieldset'),legend=el('legend','选择原生平面与显示参数','Native plane and display');fields.append(legend);panel.append(fields);
       function field(id,zh,english,type='number'){
         const label=el('label'),caption=el('span',zh,english),input=el(type==='select'?'select':'input');input.id=id;if(type!=='select'){input.type=type;input.step='any';}label.append(caption,input);fields.append(label);return input;
@@ -27,6 +30,7 @@
       const lut=field('tiffLut','显示颜色','Display LUT','select');for(const [value,zh,english]of [['gray','灰度','Grayscale'],['green','绿色','Green'],['magenta','洋红','Magenta'],['cyan','青色','Cyan']]){const option=el('option',zh,english);option.value=value;lut.append(option);}
       const size=field('tiffFinalSize','保留时的显示分辨率','Display resolution when kept','select');for(const [value,zh,english]of [['0','原始像素尺寸','Native pixel dimensions'],['2048','最长边 2048（明确重采样）','2048 maximum edge (resampled)']]){const option=el('option',zh,english);option.value=value;size.append(option);}
       panel.append(el('p','调整时在真实画布预览，最长边 1024。保留时按上方分辨率生成 8 位显示 PNG；原始 TIFF 不降位、不覆盖。','Adjust on the real canvas using a 1024-edge preview. Keep generates an 8-bit display PNG at the chosen resolution; native TIFF bytes remain unchanged.','muted'));
+      panel.append(el('p','16 位图像预览偏暗时，可点击“一键建议显示窗”查看信号；同批比较请手动采用一致范围。','If a 16-bit preview looks dark, use Suggest display window to inspect the signal; use one shared range for batch comparisons.','muted'));
       const status=el('p',null,null,'scientific-tiff-status');status.id='tiffStatus';status.setAttribute('role','status');panel.append(status);
       const details=el('details'),summary=el('summary','技术详情','Technical details'),errorDetail=el('p');details.append(summary,errorDetail);details.hidden=true;panel.append(details);
       const actions=el('div',null,null,'scientific-tiff-actions'),suggest=el('button','一键建议显示窗','Suggest display window'),keep=el('button','保留并导入','Keep & import','primary'),cancelButton=el('button','取消','Cancel');suggest.id='tiffSuggest';keep.id='tiffKeep';cancelButton.id='tiffCancel';actions.append(suggest,keep,cancelButton);panel.append(actions);
@@ -35,9 +39,13 @@
       let closed=false,source=null,metadata=null,sourceId=null,revision=0,ready=-1,pending=null,timer=null,running=false,applying=false;
       const controllers=new Set(),controls=[page,lo,hi,gamma,lut,size,suggest];
       const current=version=>{if(closed||revision!==version)return false;if(!host.valid(target)){message('导入目标已变化，请取消后重新选择。','The import target changed. Cancel and choose it again.');return false;}return true;};
-      function sync(){fields.disabled=!metadata||applying;controls.forEach(input=>input.disabled=!metadata||applying||(input===suggest&&running));keep.disabled=!metadata||applying||running||ready!==revision;panel.setAttribute('aria-busy',String(running||applying||!metadata));}
+      function sync(){fields.disabled=!metadata||applying;controls.forEach(input=>input.disabled=!metadata||applying||(input===suggest&&running));keep.disabled=!metadata||applying||running||ready!==revision;panel.setAttribute('aria-busy',String(running||applying||!metadata));const stage=applying||metadata&&ready===revision?2:metadata?1:0;stages.forEach((node,index)=>{node.classList.toggle('is-current',index===stage);node.setAttribute('aria-current',index===stage?'step':'false');});}
       function message(zh,english){translate(status,zh,english);}
-      function error(error){details.hidden=false;errorDetail.textContent=error.message;message('暂未完成显示：请检查页码、参数或文件支持范围。','Display is incomplete. Check the plane, parameters or supported file range.');}
+      function error(error){
+        const technical=String(error.message||error).slice(0,1000);details.hidden=false;errorDetail.textContent=technical;
+        const translations=[[/64 MB/,'文件超过 64 MB；尚未导入，原文件和工程未改变。'],[/32 megapixels|pixel limit|dimensions\/count|32768/,'页面超过支持的像素范围；尚未导入，原文件和工程未改变。'],[/signed\/float|Signed\/float/,'暂不支持有符号或浮点 TIFF 显示；不会自动截成 8 位。'],[/photometry|channels|RGB16/,'支持 8／16 位灰度和 8 位 RGB；当前通道或像素类型暂不支持。'],[/ICC profile/,'这张 RGB TIFF 含 ICC 色彩配置；请在桌面编辑器导入以保留色彩配置。'],[/BigTIFF|browser.*desktop|worker|browser.*supports|storage layout|metadata limit/i,'当前浏览器无法完整读取这种 TIFF；请在桌面编辑器导入。'],[/20 MB/,'显示 PNG 超过 20 MB；请选择明确重采样的显示分辨率后再保留。'],[/OME/,'OME 页面映射无法核实；请查看技术详情，当前工程未改变。'],[/checksum|Damaged|Truncated|outside|Invalid TIFF|decoding\/compression/i,'文件损坏、数据不完整或该编码暂不支持；当前工程未改变。']];
+        const found=translations.find(([pattern])=>pattern.test(technical));message('未导入：'+(found?found[1]:technical),'Not imported: '+technical);status.setAttribute('role','alert');
+      }
       function closePanel(applied){if(closed)return;closed=true;clearTimeout(timer);pending=null;controllers.forEach(controller=>controller.abort());if(sourceId)host.release?.(sourceId);host.cancelPreview();panel.remove();doc.getElementById('language')?.removeEventListener('change',languageChanged);if(active?.panel===panel)active=null;resolveDone(!!applied);}
       function pageText(p){return (en()?'Page ':'第 ')+(p.index+1)+(en()?'':' 页')+` · ${p.width} × ${p.height} · ${p.bitsPerSample.join('/')} bit`+(p.supported?'':' · '+(en()?'unsupported':'暂不支持'));}
       function languageChanged(){for(const [node,pair]of labels)node.textContent=en()?pair[1]:pair[0];close.setAttribute('aria-label',en()?'Close & cancel':'关闭并取消');if(metadata)for(const option of page.options)option.textContent=pageText(metadata.pages[Number(option.value)]);paintInfo();}
@@ -87,7 +95,7 @@
             message('正在本机解码并生成真实预览…','Decoding locally and generating the real preview…');
             const result=await request('display',config);if(!current(task.revision))return;
             const asset=await prepare(result);if(!current(task.revision))return;
-            if(await host.preview(asset,source,target,{isCurrent:()=>current(task.revision),onState:onPreviewState})){ready=task.revision;message('真实画布预览 · 尚未写入工程','Real canvas preview · not saved to the project');}
+            if(await host.preview(asset,source,target,{isCurrent:()=>current(task.revision),onState:onPreviewState})){ready=task.revision;message('已在画布预览。点击“保留并导入”完成；取消不会修改工程。','Preview is on the canvas. Click Keep & import to finish; Cancel leaves the project unchanged.');status.setAttribute('role','status');}
           }
         }catch(caught){if(!closed&&caught.name!=='AbortError')error(caught);}
         finally{running=false;sync();if(pending&&!closed)drain();}
@@ -115,6 +123,7 @@
       let rawData='';
       (async()=>{
         try{
+          if(file.size>core.MAX_BYTES)throw Error('TIFF limit: 64 MB');
           const uploadController=new AbortController();controllers.add(uploadController);
           let uploaded,values;
           try{values=await Promise.all([host.readFile(file),file.arrayBuffer(),host.upload?host.upload(file,uploadController.signal).then(value=>{uploaded=value;return value;}):Promise.resolve()]);}finally{controllers.delete(uploadController);}

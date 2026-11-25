@@ -1,0 +1,113 @@
+{
+  "author": "a",
+  "mode": "candidate",
+  "synthetic": true,
+  "cases": [
+    {
+      "name": "calibration",
+      "guide": "69.12002563476565,26.04000091552737 69.12002563476565,95.16000366210938",
+      "verticalDialog": true,
+      "pixelText": "标定原图比例尺\n\n支持水平、垂直或倾斜划线。输入刚才所描线段代表的实际长度。\n\n已描线长：96.0 像素\n\n实际长度（μm）\n\n取消\n确认标定",
+      "calibrations": {
+        "0": {
+          "e1": 79.99999682108576
+        }
+      },
+      "errors": [],
+      "remote": [],
+      "completed": true
+    },
+    {
+      "name": "spaces",
+      "native": {
+        "text": "A   B  C",
+        "chars": 8,
+        "space": "preserve",
+        "style": "pre"
+      },
+      "annotation": {
+        "text": "A   B  C",
+        "chars": 8,
+        "space": "preserve",
+        "style": "pre"
+      },
+      "errors": [],
+      "remote": [],
+      "completed": true
+    },
+    {
+      "name": "arrows",
+      "options": [
+        "text",
+        "line",
+        "lineVertical",
+        "lineFree",
+        "arrow",
+        "arrowBoth",
+        "bracket",
+        "rect",
+        "ellipse"
+      ],
+      "heads": 1,
+      "overlays": [
+        {
+          "id": "annotation-1795629932403",
+          "type": "line",
+          "x": 0.35,
+          "y": 0.3000000103099926,
+          "w": 0.25,
+          "h": 0.1999999896900074,
+          "text": "",
+          "font": "Arial",
+          "size": 10,
+          "stroke": 1,
+          "color": "#253247",
+          "opacity": 1,
+          "fill": false,
+          "bold": false,
+          "locked": false,
+          "direction": "free",
+          "arrowheads": "end"
+        }
+      ],
+      "errors": [],
+      "remote": [],
+      "completed": true
+    },
+    {
+      "name": "groups",
+      "canGroup": true,
+      "groups": [
+        [
+          {
+            "kind": "element",
+            "id": "panel-1",
+            "vi": 0,
+            "key": "e1"
+          },
+          {
+            "kind": "overlay",
+            "id": "annotation-1795629938314"
+          }
+        ]
+      ],
+      "delta": {
+        "image": [
+          28.79998779296875,
+          12.4000244140625
+        ],
+        "text": [
+          28.79998779296875,
+          12.4000244140625
+        ]
+      },
+      "history": 1,
+      "stage": "unlock",
+      "resizeOneUndo": true,
+      "undoReopenLockUngroupInvalid": true,
+      "errors": [],
+      "remote": [],
+      "completed": true
+    }
+  ]
+}

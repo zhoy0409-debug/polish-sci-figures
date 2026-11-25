@@ -644,7 +644,13 @@ const StudioI18n = (() => {
     '缓存版本无效':'Invalid cached versions',
     '界面语言已切换；图内文字、数据和编辑历史保持不变。':'Interface language changed. Figure text, data and edit history are unchanged.'
   };
-  Object.assign(en,{'自动':'Auto'});
+  Object.assign(en,{
+  '重新读取保留的原生平面，在独立显示中微调；保留现有图片和编辑。':'Adjust the retained native plane in a separate display. Existing images and edits are preserved.',
+  '组合中有锁定对象，请先解锁组合。':'This group contains locked objects. Unlock the group first.',
+  'Shift 多选图片、文字、图号或线条后组合。点击任一成员可整组移动、缩放；Ctrl / Cmd + G 组合，Ctrl / Cmd + Shift + G 取消组合。':'Shift-select images, text, panel labels or lines, then group. Select any member to move or resize the group. Ctrl / Cmd + G groups; Ctrl / Cmd + Shift + G ungroups.',
+  'Shift 多选图片、文字或线条后组合；Ctrl + G 组合，Ctrl + Shift + G 取消组合':'Shift-select images, text or lines; Ctrl / Cmd + G to group, Ctrl / Cmd + Shift + G to ungroup',
+  '组合中有锁定元素，请先解锁整个组合':'This group contains locked objects. Unlock the complete group first',
+'自动':'Auto'});
   Object.assign(en,{'坐标范围与首组间距':'Axis ranges & first-group spacing','首组距纵轴（组距）':'First-group gap (group intervals)','首组间距预览':'First-group gap preview','0 表示纵轴经过首组中心；负值将纵轴向右移动，可能裁切首组。':'At zero, the vertical axis crosses the first group centre. Negative values move it right and may clip the first group.','横轴下限':'X minimum','横轴上限':'X maximum','纵轴下限':'Y minimum','纵轴上限':'Y maximum','恢复自动范围与间距':'Reset axis ranges & spacing','请输入有效的坐标数值':'Enter a valid axis value','坐标下限必须小于上限':'The axis minimum must be below the maximum','请先完成当前数据修改，再调整坐标。':'Complete the pending data edit before changing axes.','正在重绘坐标与参考线…':'Redrawing axes and reference lines…','坐标与参考线已更新':'Axes and reference lines updated','参考线':'Reference lines','添加参考线':'Add reference line','添加零基线':'Add zero baseline','按坐标值定位；线条不改变数据或自动扩大坐标范围。':'Positioned by data coordinates. Lines do not change data or expand axis ranges.','参考线 {0} · {1}':'Reference line {0} · {1}','竖线（横轴值）':'Vertical (X value)','横线（纵轴值）':'Horizontal (Y value)','方向':'Direction','坐标值':'Coordinate value','线型':'Line style','虚线':'Dashed','点线':'Dotted','实线':'Solid','移除':'Remove'});
   Object.assign(en,{'统计标注字体':'Statistical annotation font','整体斜体':'Italic labels','显示分面标题':'Show facet titles','标题可在图中选中编辑；隐藏后仍保留分面对应关系。':'Select a title in the figure to edit it. Hiding titles preserves facet identities.','分面标题设置无效':'Invalid facet title setting','已更新分面标题显示':'Facet title visibility updated','已更新统计标注字体':'Statistical annotation font updated'});
   Object.assign(en,{'P 值显示':'P-value format','标准 · 3 位小数，小值显示 < 0.001':'Standard · 3 decimals; small values < 0.001','精确 · 3 位有效数字，小值用科学计数法':'Precise · 3 significant digits; scientific notation for small values','仅调整显示精度，计算与显著性判断使用完整数值。':'Display precision only; calculations and significance use the full value.','P 值显示格式无效':'Invalid P-value format','已更新 P 值显示格式':'P-value format updated'});
@@ -901,6 +907,7 @@ const StudioI18n = (() => {
   Object.assign(en,{'智能选图':'Figure Discovery','智能选图已应用；可撤销':'Discovery view applied; undo is available'});
   function choose(saved,preferred='en'){return ['zh-CN','en'].includes(saved)?saved:/^zh\b/i.test(preferred)?'zh-CN':'en';}
   function setLanguage(value){language=value==='en'?'en':'zh-CN';return language;}
+  Object.assign(en,{"单向箭头": "Arrow", "双向箭头": "Double-headed arrow", "箭头样式": "Arrowheads", "无箭头": "No arrowheads", "末端箭头": "End arrowhead", "起点箭头": "Start arrowhead", "两端箭头": "Both arrowheads", "已更新箭头": "Arrowheads updated", "箭头参数无效": "Invalid arrow settings", "拖动画箭头；可拖动两端调整方向和长度。Esc 取消。": "Drag to draw an arrow; drag its ends to adjust direction and length. Esc cancels."});
   Object.assign(en,fontReplacementEnglish,{'请至少选择三个独立对象或组合。':'Select at least three separate objects or groups.'});
   Object.assign(en,{'当前小图在母版边界之外；请选择可见格子或先扩大母版。':'This panel is outside the paper. Select a visible cell or expand the paper first.','文字过长，请分段粘贴。':'This text is too long. Paste it in smaller sections.','请选中完整组合后对齐，或先取消组合。':'Select the complete group to align, or ungroup it first.','请至少选择两个独立对象或组合。':'Select at least two separate objects or groups.'});
   Object.assign(en,{'请先选中原图。':'Select a source image first.'});
