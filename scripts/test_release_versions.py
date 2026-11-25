@@ -68,7 +68,7 @@ def main():
 
     # Windows and the skill suite move together. Published previews have their
     # own release cadence and download URLs.
-    mac_preview = ("v1.6.0", "0.2.1")
+    mac_preview = (VERSION, app_version)
     notes = f"docs/release-notes-{VERSION}.md"
     documents = ["README.md", "README.en.md", "README.zh-CN.md",
                  "desktop/QUICKSTART.en.md", "desktop/QUICKSTART.zh-CN.md",

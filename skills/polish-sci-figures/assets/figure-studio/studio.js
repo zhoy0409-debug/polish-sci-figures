@@ -3978,6 +3978,7 @@ if (typeof document !== 'undefined') (async () => {
   }
   function openFigureDiscovery(){
     if(typeof FigureDiscoveryUI==='undefined')return;
+    welcomeDismissed=true;renderProjectStart();
     let snapshot=null;if(figureDiscoveryLanguage!==StudioI18n.language){snapshot=figureDiscovery?.snapshot?.();figureDiscovery?.destroy();figureDiscovery=null;figureDiscoveryLanguage=StudioI18n.language;}
     if(!figureDiscovery)figureDiscovery=FigureDiscoveryUI.mount($('figureDiscoveryDialog'),{
       language:()=>StudioI18n.language,registry:JSON.parse($('chartKnowledge').textContent),context:discoveryContext,

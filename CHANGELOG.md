@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## v1.6.3 — Figure Studio 0.2.4
+
+- Restore Figure Discovery to the correct tool drawer, dismiss the welcome card when entering it, and show data/design controls before optional background fields.
+- Keep preview actions out of the initial import step, name import/paste/filter controls for assistive navigation, and retain optional-field expansion through language changes.
+- Integrate final-size SVG review, screen colour-vision previews and figure-wide text replacement with reversible previews.
+- Rebuild Windows, macOS previews and Skill packages from the release source, with platform-specific acceptance records.
+
+
 - Add `svg_final_size_qa.py` and run it from `sci_figures.py qa`. It measures text and line size at the placed width through transforms, CSS, nested SVGs and `use`, then reports clipped or overlapping text, baseline notation, mixed fonts, and colours that merge under colour-vision deficiency or grayscale. `--width-mm` now applies to SVG; `--min-text-pt` blocks only when given. The former SVG contrast rule could never fire, and its grayscale rule compared neutral inks and ignored `rgb()` paint; both are replaced.
 - Figure Studio Review adds a screen-only colour-vision and grayscale preview, colour-merge, notation and mixed-font findings, one-step notation fixes, and figure-wide find and replace (Ctrl/Cmd + H). Locked, statistical and character-formatted text is never bulk-edited.
 - Split the polish Skill into a short workflow and task-specific references; rules are kept. Structure validation now limits Skill size and checks links.

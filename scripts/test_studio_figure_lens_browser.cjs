@@ -5,15 +5,16 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{pathToFileURL}=require('node:url'),{chromium}=require('playwright');
 const [,,htmlArg,outArg]=process.argv;
 if(!htmlArg||!outArg)throw Error('Usage: node scripts/test_studio_figure_lens_browser.cjs editor.html output-folder');
-const html=path.resolve(htmlArg),out=path.resolve(outArg);fs.mkdirSync(out,{recursive:true});
+const localUrl=/^http:\/\/127\.0\.0\.1:\d+\/$/.test(htmlArg),html=localUrl?htmlArg:path.resolve(htmlArg),out=path.resolve(outArg);fs.mkdirSync(out,{recursive:true});
 (async()=>{
-  const browser=await chromium.launch({channel:'chrome',headless:true}),page=await browser.newPage({viewport:{width:1600,height:1000}}),errors=[],requests=[];
-  page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(/^https?:/.test(r.url()))requests.push(r.url());});
+  const browser=await chromium.launch({headless:true,...(process.env.STUDIO_TIFF_BROWSER==='chromium'?{}:{channel:'chrome'})}),page=await browser.newPage({viewport:{width:1600,height:1000}}),errors=[],requests=[];
+  page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(/^https?:/.test(r.url())&&!['127.0.0.1','localhost'].includes(new URL(r.url()).hostname))requests.push(r.url());});
   const save=async name=>{const waiting=page.waitForEvent('download');await page.locator('#save').click();const file=path.join(out,name);await(await waiting).saveAs(file);return JSON.parse(fs.readFileSync(file,'utf8'));};
   const texts=()=>page.evaluate(()=>[...document.querySelectorAll('#artboard svg text')].map(n=>n.textContent));
   const pixel=async()=>(await page.locator('#artboard').screenshot()).toString('base64');
   try{
-    await page.goto(pathToFileURL(html).href);await page.waitForFunction(()=>!document.body.inert&&document.querySelector('#artboard svg'));
+    await page.goto(localUrl?html:pathToFileURL(html).href);await page.waitForFunction(()=>!document.body.inert&&document.querySelector('#artboard svg'));
+    if(process.env.STUDIO_LENS_PROJECT){await page.locator('#projectFile').setInputFiles(process.env.STUDIO_LENS_PROJECT);await page.waitForFunction(()=>document.querySelector('#artboard text[data-key]'));}
     const before=await save('before.json'),normal=await pixel();
     // Colour-vision lens: pixels change, nothing that can be saved does.
     await page.locator('#openQualityWorkspace').click();await page.locator('#figureLens > summary').click();

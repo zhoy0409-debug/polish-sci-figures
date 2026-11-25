@@ -24,3 +24,5 @@
 .discovery-card[data-preview-state=error]{border-color:var(--fs-warning)}
 .discovery-docked #discoveryFilter{margin:var(--fs-space-3) 0;max-width:100%;width:100%}
 .discovery-docked .literature-semantics{grid-template-columns:minmax(0,1fr)}
+.figure-discovery-dialog .discovery-preview-actions[hidden]{display:none}
+@media(min-width:751px){.studio-drawers .discovery-docked>.discovery-preview-actions{top:60px}}

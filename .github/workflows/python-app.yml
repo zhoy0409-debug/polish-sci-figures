@@ -456,6 +456,14 @@ jobs:
           NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
           STUDIO_TIFF_BROWSER: chromium
         run: python scripts/run_studio_tiff_browser_checks.py --out .cache/native-tiff-browser-checks
+      - name: Colour vision and figure-wide text editing in the real browser
+        env:
+          NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
+          STUDIO_TIFF_BROWSER: chromium
+        run: |
+          python skills/make-sci-data-figures/scripts/figure_workbench.py generate scripts/fixtures/discovery/independent.csv --group group --value value --design independent --unit unit --order Control,Treatment --outcome-type continuous --font Arial --outdir .cache/figure-lens-ci/bundle
+          python sci_figures.py studio .cache/figure-lens-ci/bundle --out .cache/figure-lens-ci/editor.html
+          node scripts/test_studio_figure_lens_browser.cjs .cache/figure-lens-ci/editor.html .cache/figure-lens-ci/browser
       - name: Preview, save, reopen and undo reference label alignment
         env:
           NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
@@ -480,4 +488,5 @@ jobs:
             .cache/local-web-qa/wasm-dispatcher.json
             .cache/local-web-preview/SHA256SUMS.txt
             .cache/update-scene-ci/
+            .cache/figure-lens-ci/
             .cache/native-tiff-browser-checks/

@@ -72,6 +72,8 @@ async function main(){
         if(route==='start')await current.locator('#startDiscovery').click();
         else {await H.dismiss(current);await openFromMenu(current);}
         await current.locator('#figureDiscoveryDialog[open]').waitFor();
+        assert(!(await current.locator('#projectStart').isVisible()),'Entering Discovery clears the welcome card from the canvas');
+        assert(!(await current.locator('#discovery-research_question').isVisible()),'Optional metadata starts collapsed');
         const initial=await assertDock(current);
         await current.locator('#discoveryData').fill('draft,keep\nA,1');
         await current.locator('#drawerTools').click();
