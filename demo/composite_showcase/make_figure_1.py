@@ -1,8 +1,8 @@
 """Rebuild the synthetic bioinformatics showcase (Figure_1_Bioinformatics.png).
 
-All values are generated here from fixed seeds; every displayed statistic
-(classification counts, NES and permutation P, AUC and bootstrap CI, effect
-intervals, correlations, PCA variance) is computed from those synthetic data.
+The example uses seeded synthetic data. Panel D plots a fixed illustrative
+enrichment table. Counts, NES and permutation P, AUC and bootstrap intervals,
+effect intervals, correlations and PCA variance are computed from the inputs.
 
 Usage (from the repository root):
     python demo/composite_showcase/make_figure_1.py
@@ -151,7 +151,7 @@ def draw_manhattan(fig, col, row, letter, rng, peaks, shades, cohort):
         top = logp[lead]
         ax.plot([x[lead], x[lead]], [top + 0.9, top + 2.3], color=INK, lw=0.8)
         ax.text(x[lead], top + 2.7, name, ha="center", va="bottom", fontsize=10)
-    ax.text(0.02, 0.985, f"{cohort} · 59,800 variants\nThreshold: $\\mathit{{P}}$ = 5 × 10$^{{-8}}$",
+    ax.text(0.02, 0.985, f"{cohort} · {len(logp):,} variants\nThreshold: $\\mathit{{P}}$ = 5 × 10$^{{-8}}$",
             transform=ax.transAxes, ha="left", va="top", fontsize=11, linespacing=1.35)
     ax.set_xlim(-10, end)
     ax.set_ylim(0, 36)
@@ -201,7 +201,7 @@ def draw_volcano(fig, rng):
             ax.plot([sign * (LABEL_COLUMN - 0.08), gx - sign * 0.05], [label_y, gy + 0.06], color=colour, lw=0.8, zorder=3)
             ax.text(sign * LABEL_COLUMN, label_y, gene, ha=ha, va="center", fontsize=10.5,
                     style="italic", color=colour, zorder=5)
-    ax.set_xlim(-4.35, 4.35)
+    ax.set_xlim(-4.7, 4.7)
     ax.set_ylim(0, 10.5)
     ax.set_xlabel("log$_2$ fold change")
     ax.set_ylabel("$-$log$_{10}$ adjusted $\\mathit{P}$")
@@ -325,7 +325,7 @@ def draw_correlation(fig, rng):
             value = r[i, j]
             text = f"{value:.2f}".replace("-", "−") if round(value, 2) != 0 else "0.00"
             ax.text(j, i, text, ha="center", va="center", fontsize=9.6,
-                    color="white" if abs(value) > 0.55 else INK)
+                    color="white" if abs(value) > 0.85 else INK)
     ax.set_xlim(-0.5, 8.5)
     ax.set_ylim(8.5, -0.5)
     ax.set_xticks(range(9))
@@ -597,7 +597,7 @@ def main(argv=None) -> int:
         print(f"Preview only: rendering with {font!r} instead of {args.font!r}.", file=sys.stderr)
     out = args.out or DEFAULT_OUT
     fig = build_figure(font)
-    fig.savefig(out, dpi=DPI, facecolor="white", metadata={"Software": None})
+    fig.savefig(out, dpi=DPI, facecolor="white", metadata={"Author": "a", "Software": None})
     plt.close(fig)
     print(out)
     return 0
