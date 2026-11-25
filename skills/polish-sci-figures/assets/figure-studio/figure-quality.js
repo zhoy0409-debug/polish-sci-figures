@@ -66,6 +66,18 @@
     for(const [code,pattern,replacement,skipRich]of NOTATION){if(skipRich&&!plain)continue;const updated=text.replace(pattern,replacement);if(updated!==text&&!codes.includes(code))codes.push(code);text=updated;}
     return {text,codes};
   }
+  // Many text fonts, including common Arial builds, lack Unicode sub/superscript
+  // digits and silently fall back. Corrections use baseline characters plus
+  // script ranges, so the figure keeps its declared family.
+  function scriptRuns(value){
+    const SUBS='₀₁₂₃₄₅₆₇₈₉',SUPS='⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺',runs=[];let text='';
+    for(const c of value){
+      const low=SUBS.indexOf(c),high=SUPS.indexOf(c),script=low>=0?'sub':high>=0?'super':null,last=runs.at(-1);
+      if(script){if(last&&last.script===script&&last.end===text.length)last.end++;else runs.push({start:text.length,end:text.length+1,script});}
+      text+=low>=0?String(low):high>=0?'0123456789−+'[high]:c;
+    }
+    return {text,runs};
+  }
   // The editor wraps every edited phrase in tspans. Only positioned, resized,
   // shifted or differently styled runs carry formatting a text edit could lose.
   function plainText(el){
@@ -146,5 +158,5 @@
     }
     return {paper:{x:vb.x*scale,y:vb.y*scale,width:vb.width*scale,height:vb.height*scale},items,panels,unmeasured,unverifiedClips};
   }
-  return {VERSION,PROFILES,VISION,profile,inspect,measure,contrast,lab,deltaE,colorConflicts,suggestNotation,plainText};
+  return {VERSION,PROFILES,VISION,profile,inspect,measure,contrast,lab,deltaE,colorConflicts,suggestNotation,scriptRuns,plainText};
 });

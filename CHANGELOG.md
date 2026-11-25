@@ -13,6 +13,8 @@
 - Add `svg_final_size_qa.py` and run it from `sci_figures.py qa`. It measures text and line size at the placed width through transforms, CSS, nested SVGs and `use`, then reports clipped or overlapping text, baseline notation, mixed fonts, and colours that merge under colour-vision deficiency or grayscale. `--width-mm` now applies to SVG; `--min-text-pt` blocks only when given. The former SVG contrast rule could never fire, and its grayscale rule compared neutral inks and ignored `rgb()` paint; both are replaced.
 - Figure Studio Review adds a screen-only colour-vision and grayscale preview, colour-merge, notation and mixed-font findings, one-step notation fixes, and figure-wide find and replace (Ctrl/Cmd + H). Locked, statistical and character-formatted text is never bulk-edited.
 - Split the polish Skill into a short workflow and task-specific references; rules are kept. Structure validation now limits Skill size and checks links.
+- Fix filled data areas, such as confidence bands and violins, that detached from their curves when Figure Studio aligned axes across panels. Matplotlib fills were resized like marker symbols; exports were affected too. Recheck composed figures that contain such fills.
+- Notation fixes use true subscript and superscript runs in the declared font instead of Unicode digits that some Arial builds lack.
 - Fix `doctor --json` output corrupted by newer PyMuPDF, whose legacy `fitz` import prints to stdout.
 - Keep LF on checkout so bundled source hashes verify on Windows Git with `core.autocrlf=true`.
 - Report embedded-raster widths in percent or units instead of failing on them.

@@ -53,9 +53,11 @@ const localUrl=/^http:\/\/127\.0\.0\.1:\d+\/$/.test(htmlArg),html=localUrl?htmlA
     const kept=await save('kept.json');assert.equal(kept.history.index,before.history.index+1);assert.deepEqual(kept.project,before.project,'Bound data and analysis must not change');
     // The same text now trips the notation rule and can be corrected in one step.
     await page.locator('#qualityScan').click();await page.waitForFunction(()=>document.querySelector('#qualityStatus').textContent.startsWith('检查完成'));
-    await page.locator('#qualityFixNotation').click();await page.waitForTimeout(200);assert((await texts()).some(t=>t.includes('IC₅₀ $& log₂')));
+    await page.locator('#qualityFixNotation').click();await page.waitForTimeout(200);assert((await texts()).some(t=>t==='IC50 $& log2'),'Corrections keep baseline characters');
+    assert.deepEqual(await page.evaluate(()=>{const t=[...document.querySelectorAll('#artboard svg text')].find(n=>n.textContent==='IC50 $& log2');return [...t.querySelectorAll('tspan')].filter(n=>n.style.baselineShift==='sub'||n.getAttribute('baseline-shift')==='sub').map(n=>n.textContent);}),['50','2'],'Scripts must be semantic runs in the declared font');
     await panel.getByRole('button',{name:'保留修改',exact:true}).click();await page.waitForTimeout(200);
-    await page.locator('#figureFind').fill('IC₅₀');assert.match(await page.locator('#figureFindStatus').innerText(),/^1 段文字匹配，1 段可替换/,'Edited text must stay replaceable');
+    await page.locator('#qualityScan').click();await page.waitForFunction(()=>document.querySelector('#qualityStatus').textContent.startsWith('检查完成'));assert.equal(await page.locator('#qualityFixNotation').count(),0,'A corrected label must not be reported again');
+    await page.locator('#figureFind').fill('IC50');assert.match(await page.locator('#figureFindStatus').innerText(),/^1 段文字匹配，0 段可替换/,'Formatted text must not be bulk-replaced');
     await page.locator('#undo').click();await page.locator('#undo').click();await page.waitForTimeout(150);
     assert.deepEqual((await save('undone.json')).state,before.state);
     // Language switch retitles the new controls.

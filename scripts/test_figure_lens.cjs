@@ -11,6 +11,8 @@ for(const [id,matrix]of Object.entries(quality.VISION)){
   assert.equal(lens.filterValues(matrix).split(' ').length,20,id);
   for(const row of matrix)assert(Math.abs(row.reduce((a,b)=>a+b)-1)<1e-5,'Neutral colours must stay neutral: '+id);
 }
+assert.deepEqual(quality.scriptRuns('MIC₅₀ × 10⁻⁵ µ'),{text:'MIC50 × 10−5 µ',runs:[{start:3,end:5,script:'sub'},{start:10,end:12,script:'super'}]});
+assert.deepEqual(quality.scriptRuns('对照 A'),{text:'对照 A',runs:[]});
 const text=(id,value,extra={})=>({id,kind:'text',target:{panel:'panel-0',variant:0,key:'e'+id},text:value,sizePt:10,box:{x:10,y:20*id,width:30,height:12},...extra});
 const inspect=items=>quality.inspect({paper:{x:0,y:0,width:400,height:400},items,panels:[]}),codes=r=>r.issues.map(i=>i.code);
 assert.deepEqual(codes(inspect([text(1,'IC50',{plain:true})])),['notation']);

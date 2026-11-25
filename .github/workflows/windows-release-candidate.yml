@@ -87,8 +87,12 @@ jobs:
             $env:STUDIO_LENS_PROJECT = (Resolve-Path .cache/figure-lens-candidate/project.json).Path
             node scripts/test_studio_figure_lens_browser.cjs $url (Join-Path $proof 'figure-lens')
             if ($LASTEXITCODE -ne 0) { throw 'Frozen colour-vision and text editing check failed.' }
+            $env:STUDIO_FILL_URL = $url
+            node scripts/test_studio_fill_alignment_browser.cjs (Join-Path $proof 'fill-alignment') python
+            if ($LASTEXITCODE -ne 0) { throw 'Frozen fill and marker alignment check failed.' }
           } finally {
             Remove-Item Env:/STUDIO_LENS_PROJECT -ErrorAction SilentlyContinue
+            Remove-Item Env:/STUDIO_FILL_URL -ErrorAction SilentlyContinue
             if (-not $app.HasExited) { Stop-Process -Id $app.Id; $app.WaitForExit() }
           }
       - name: Download checksum-verified previous stable installer

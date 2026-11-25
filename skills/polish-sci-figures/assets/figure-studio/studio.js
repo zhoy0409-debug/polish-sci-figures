@@ -2252,7 +2252,12 @@ if (typeof document !== 'undefined') (async () => {
     const legends=[...svg.querySelectorAll('[id^="legend_"]')];
     const host=document.createElement('div');host.style.cssText='position:fixed;left:-10000px;top:0;visibility:hidden;pointer-events:none';host.append(svg);document.body.append(host);
     let legendAnchors;try{legendAnchors=new Map(legends.map(el=>{const b=el.getBBox();return [el,{x:b.x+b.width,y:b.y+b.height}];}));}finally{svg.remove();host.remove();}
-    const objects=[...legends,...[...svg.querySelectorAll('text,use,[data-studio-cap]')].filter(el=>!el.closest('defs')&&!el.closest('[id^="legend_"]'))];
+    // Matplotlib draws fills and meshes as a <use> at (0, figure height) of a
+    // path already in data coordinates. Those must scale with the axes; only
+    // marker symbols, anchored at their own point, keep their physical size.
+    const dataGeometry=el=>el.localName==='use'&&(!!el.closest('[id*="PolyCollection"]')||(parseFloat(el.getAttribute('x'))||0)===0&&Math.abs((parseFloat(el.getAttribute('y'))||0)-v.viewBox[3])<.01);
+    for(const el of svg.querySelectorAll('use'))if(dataGeometry(el)){const id=(el.getAttribute('href')||el.getAttributeNS('http://www.w3.org/1999/xlink','href')||'').slice(1);svg.querySelector(`[id="${CSS.escape(id)}"]`)?.setAttribute('vector-effect','non-scaling-stroke');}
+    const objects=[...legends,...[...svg.querySelectorAll('text,use,[data-studio-cap]')].filter(el=>!el.closest('defs')&&!el.closest('[id^="legend_"]')&&!dataGeometry(el))];
     const titles=new Map(objects.filter(el=>el.localName==='text'&&el.getAttribute('data-role')==='other'&&!el.closest('[id^="axes_"]')).map(el=>[el,physical.multiply(globalMatrix(el)).transformPoint({x:parseFloat(el.getAttribute('x'))||0,y:parseFloat(el.getAttribute('y'))||0})]));
     const titleLeft=Math.min(...[...titles.values()].map(p=>p.x)),titleBottom=Math.max(...[...titles.values()].map(p=>p.y));
     // Anchor positions follow the new axes. Glyphs and marker symbols retain physical size.
@@ -6102,13 +6107,19 @@ if (typeof document !== 'undefined') (async () => {
         for(const a of state().overlays||[])if(a.type==='text'&&a.text)found.push({target:{annotation:a.id},text:a.text,locked:!!a.locked,statistical:false,rich:!!a.richText});
         return found;
       },
-      textPlan(edits){
+      textPlan(edits,{scripts=false}={}){
         const token=t=>t.annotation?'a/'+t.annotation:t.panel+'/'+t.variant+'/'+t.key,available=new Map(reviewHost.texts().map(item=>[token(item.target),item])),next=copy(state()),changed=[];let skipped=0;
         for(const {target,from,to}of edits){
           const item=available.get(token(target));
           if(!item||item.locked||item.statistical||item.rich||from!==undefined&&item.text!==from||typeof to!=='string'||!to.trim()||!target.annotation&&!validValue('text',to)||to.length>2000){skipped++;continue;}
           if(to===item.text)continue;
-          if(target.annotation)next.overlays.find(a=>a.id===target.annotation).text=to;else setEdit(next,target.panel,target.variant,target.key,'text',to);
+          const scripted=scripts?StudioFigureQuality.scriptRuns(to):{text:to,runs:[]};
+          let record=null;
+          for(const run of scripted.runs)record=StudioRichText.format(record,scripted.text,run.start,run.end,'script',run.script);
+          const edit=target.annotation?{kind:'overlay',id:target.annotation}:{kind:'element',id:target.panel,vi:target.variant,key:target.key};
+          if(record)saveRichText(next,edit,record,scripted.text);
+          else if(target.annotation)next.overlays.find(a=>a.id===target.annotation).text=to;
+          else setEdit(next,target.panel,target.variant,target.key,'text',to);
           changed.push({target,from:item.text,to});
         }
         validateState(next,project);return {next,changed,skipped};
