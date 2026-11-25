@@ -461,7 +461,7 @@ jobs:
           NODE_PATH: ${{ github.workspace }}/.cache/mobile-local-spike/node_modules
           STUDIO_TIFF_BROWSER: chromium
         run: |
-          python skills/make-sci-data-figures/scripts/figure_workbench.py generate scripts/fixtures/discovery/independent.csv --group group --value value --design independent --unit unit --order Control,Treatment --outcome-type continuous --font Arial --outdir .cache/figure-lens-ci/bundle
+          python skills/make-sci-data-figures/scripts/figure_workbench.py generate scripts/fixtures/discovery/independent.csv --group group --value value --design independent --unit unit --order Control,Treatment --outcome-type continuous --font "DejaVu Sans" --outdir .cache/figure-lens-ci/bundle
           python sci_figures.py studio .cache/figure-lens-ci/bundle --out .cache/figure-lens-ci/editor.html
           node scripts/test_studio_figure_lens_browser.cjs .cache/figure-lens-ci/editor.html .cache/figure-lens-ci/browser
       - name: Preview, save, reopen and undo reference label alignment

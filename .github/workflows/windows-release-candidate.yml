@@ -57,7 +57,7 @@ jobs:
         run: ./desktop/verify_windows.ps1
       - name: Prepare the data-bound figure review fixture
         run: |
-          python skills/make-sci-data-figures/scripts/figure_workbench.py generate scripts/fixtures/discovery/independent.csv --group group --value value --design independent --unit unit --order Control,Treatment --outcome-type continuous --font Arial --outdir .cache/figure-lens-candidate/bundle
+          python skills/make-sci-data-figures/scripts/figure_workbench.py generate scripts/fixtures/discovery/independent.csv --group group --value value --design independent --unit unit --order Control,Treatment --outcome-type continuous --font "DejaVu Sans" --outdir .cache/figure-lens-candidate/bundle
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python sci_figures.py studio .cache/figure-lens-candidate/bundle --out .cache/figure-lens-candidate/editor.html --project-out .cache/figure-lens-candidate/project.json
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
