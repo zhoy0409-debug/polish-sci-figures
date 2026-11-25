@@ -10,7 +10,7 @@ The question, sample type and assay fields stay local. In the separate literatur
 
 ## Shared CLI and Skill
 
-From the source suite with Python 3.10–3.12, normal requirements and Node.js 18+:
+From the source suite with Python 3.10–3.14, normal requirements and Node.js 18+:
 
 ```sh
 python sci_figures.py discover measurements.csv --json

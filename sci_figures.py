@@ -9,7 +9,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parent
 SKILLS = ROOT / "skills"
 MAKE, STANDARDIZE, POLISH = (SKILLS / n for n in ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures"))
-SUPPORTED_PYTHON = ((3, 10), (3, 12))
+SUPPORTED_PYTHON = ((3, 10), (3, 14))
 CORE = {"matplotlib": "matplotlib", "numpy": "numpy", "openpyxl": "openpyxl", "pandas": "pandas", "Pillow": "PIL", "scipy": "scipy"}
 OPTIONAL = {"PyMuPDF": "fitz", "python-docx": "docx", "python-pptx": "pptx", "tifffile": "tifffile"}
 

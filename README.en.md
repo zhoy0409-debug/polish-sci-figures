@@ -246,7 +246,7 @@ Existing validation records cover input contracts, actual redraws, data replacem
 These records do not mean every template, dataset, label length, imported SVG, or browser has received visual approval. Automated bounds checks do not replace inspection of readability, legend meaning, overlap, and journal requirements at the intended output size. A common exact plotting frame applies only to explicitly supported templates. Other assets keep their existing canvas or geometry to avoid unequal stretching.
 
 - **Desktop runtime:** Windows 10/11 x64 distribution target with a frozen CPython 3.12 runtime; the release record identifies the environments actually tested.
-- **Skills and CLI:** CI is configured for Python 3.10 / 3.12 on Windows / macOS / Ubuntu. Consult the check link above for the final run status; a configured matrix is not itself evidence that the tests passed.
+- **Skills and CLI:** CI is configured for Python 3.10 / 3.12 / 3.14 on Windows / macOS / Ubuntu. Consult the check link above for the final run status; a configured matrix is not itself evidence that the tests passed.
 - **Output:** Studio currently exports SVG, PNG, TIFF, and project JSON. PDF can be produced by suitable original plotting workflows; the editor does not yet have a PDF export button.
 - **Image input:** Text inside a regular PNG/JPEG does not automatically become an editable object. SVG import accepts a restricted static subset and does not execute scripts or external resources.
 - **Analysis:** Repeated measures, hierarchical data, covariate adjustment, and complex prediction models need an explicit specialist workflow. The interface does not invent statistical results from a chart's appearance.
