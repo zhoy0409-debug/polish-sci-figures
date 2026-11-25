@@ -14,7 +14,12 @@ const localUrl=/^http:\/\/127\.0\.0\.1:\d+\/$/.test(htmlArg),html=localUrl?htmlA
   const pixel=async()=>(await page.locator('#artboard').screenshot()).toString('base64');
   try{
     await page.goto(localUrl?html:pathToFileURL(html).href);await page.waitForFunction(()=>!document.body.inert&&document.querySelector('#artboard svg'));
-    if(process.env.STUDIO_LENS_PROJECT){await page.locator('#projectFile').setInputFiles(process.env.STUDIO_LENS_PROJECT);await page.waitForFunction(()=>document.querySelector('#artboard text[data-key]'));}
+    if(process.env.STUDIO_LENS_PROJECT){
+      const restored=page.waitForEvent('dialog');
+      await page.locator('#projectFile').setInputFiles(process.env.STUDIO_LENS_PROJECT);
+      const dialog=await restored;assert.equal(dialog.type(),'confirm');await dialog.accept();
+      await page.waitForFunction(()=>document.querySelector('#status')?.textContent.includes('工程已恢复')&&document.querySelector('#artboard text[data-key]'));
+    }
     const before=await save('before.json'),normal=await pixel();
     // Colour-vision lens: pixels change, nothing that can be saved does.
     await page.locator('#openQualityWorkspace').click();await page.locator('#figureLens > summary').click();
