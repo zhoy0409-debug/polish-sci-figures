@@ -4,7 +4,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),{createRequire}=require('node:module');
 const directory=path.resolve(__dirname,'../skills/polish-sci-figures/assets/figure-studio'),source=fs.readFileSync(path.join(directory,'studio.js'),'utf8'),studio=require(path.join(directory,'studio.js')),clone=x=>JSON.parse(JSON.stringify(x));
 const fixtureFile=path.resolve(__dirname,'test_studio_workspace_selection.cjs'),fixtureSource=fs.readFileSync(fixtureFile,'utf8'),fixtureContext={require:createRequire(fixtureFile),console};
-vm.createContext(fixtureContext);vm.runInContext(fixtureSource.slice(0,fixtureSource.indexOf('// Gray origin'))+'\nglobalThis.makeHarness=harness;globalThis.makeElement=el;',fixtureContext);
+vm.createContext(fixtureContext);require('./helpers/studio-object-group-fixture.cjs')(fixtureContext);vm.runInContext(fixtureSource.slice(0,fixtureSource.indexOf('// Gray origin'))+'\nglobalThis.makeHarness=harness;globalThis.makeElement=el;',fixtureContext);
 const extract=(start,end)=>{const a=source.indexOf(start),b=source.indexOf(end,a+start.length);assert.ok(a>=0&&b>a,start);return source.slice(a,b);};
 let checks=0;const test=(name,fn)=>{fn();checks++;console.log('PASS '+name);};
 function harness(){
@@ -17,7 +17,7 @@ function harness(){
   const query=h.svg.querySelector.bind(h.svg);h.svg.querySelector=selector=>selector.endsWith(' > :first-child')?query(selector.slice(0,-' > :first-child'.length))?.children[0]||null:query(selector);
   for(const id of ['panelLabel','panelLabelControls','font'])h.fields[id]={value:'',scrollIntoView(){},focus(){},select(){}};
   h.fields.artboard=h.svg;h.ctx.editsFor=(id,vi)=>h.s.panels[id].edits[vi]||{};h.ctx.editableSource=id=>h.svg.querySelector(`[data-panel="${id}"]`);
-  vm.runInContext(extract('  function selectPanelLabel(','  function setEdit(')+extract('  function quickSelectedObjects(){','  function quickObjectTarget(')+extract('function objectGroupToken(','function validateState(')+extract('  function selectionCommandInfo(){','  function renderQuickToolbar(){')+extract('  function deleteSelectedObjects(){','  function renderLabelControls(){'),h.ctx);
+  vm.runInContext(extract('  function selectPanelLabel(','  function setEdit(')+extract('  function quickSelectedObjects(){','  function quickObjectTarget(')+extract('  function selectionCommandInfo(){','  function renderQuickToolbar(){')+extract('  function deleteSelectedObjects(){','  function renderLabelControls(){'),h.ctx);
   return {...h,labels,details:()=>clone(vm.runInContext('({groups:selectionGroups(),labels:selectedLabelIds(),annotations:selectedAnnotations})',h.ctx)),select(groups,labelIds=[]){h.ctx.inputGroups=groups;h.ctx.inputLabels=labelIds;vm.runInContext('setElementSelection(inputGroups);setLabelSelection(inputLabels);',h.ctx);},marquee(){h.drag(60,90,550,320);h.finish(550,320);}};
 }
 test('marquee includes both panel labels, native objects and inserted annotation in one shared selection',()=>{
@@ -57,7 +57,7 @@ test('production resize host supplies all selected labels with their own lock fl
 });
 // Reuse the established real-DOM controller fixture, then drive real handles.
 const resizeFile=path.resolve(__dirname,'test_studio_selection_resize_integration.cjs'),resizeSource=fs.readFileSync(resizeFile,'utf8'),resizeContext={require:createRequire(resizeFile),console,global:globalThis};
-vm.createContext(resizeContext);vm.runInContext(resizeSource.slice(0,resizeSource.indexOf("test('actual eight handles"))+'\nglobalThis.makeResizeFixture=fixture;',resizeContext);
+vm.createContext(resizeContext);require('./helpers/studio-object-group-fixture.cjs')(resizeContext);vm.runInContext(resizeSource.slice(0,resizeSource.indexOf("test('actual eight handles"))+'\nglobalThis.makeResizeFixture=fixture;',resizeContext);
 test('real SVG resize gesture scales native geometry and two panel labels together with one commit',()=>{
   const f=resizeContext.makeResizeFixture();try{
     const items=[f.item()];for(const [id,x]of [['p1',20],['p2',310]]){const label=f.doc.createElementNS('http://www.w3.org/2000/svg','text');label.setAttribute('x',x);label.setAttribute('y',30);label.setAttribute('font-size',12);label.setAttribute('data-test-box',`${x},30,20,10`);label.textContent=id;f.svg.append(label);items.push({kind:'label',id,el:label});}

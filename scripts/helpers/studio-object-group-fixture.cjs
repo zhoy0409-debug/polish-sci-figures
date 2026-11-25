@@ -6,7 +6,7 @@ const slice=(a,b)=>source.slice(source.indexOf(a),source.indexOf(b,source.indexO
 module.exports=function install(ctx){
  if(!vm.isContext(ctx))vm.createContext(ctx);
  if(vm.runInContext('typeof objectGroupToken',ctx)==='undefined')vm.runInContext(slice('function objectGroupToken(','function validateState('),ctx);
- if(vm.runInContext('typeof selectionGroups',ctx)==='undefined')vm.runInContext('function selectionGroups(){return [];}',ctx);
+ if(vm.runInContext('typeof selectionGroups',ctx)==='undefined')ctx.selectionGroups=()=>[];
  if(vm.runInContext('typeof appendArrowheads',ctx)==='undefined')vm.runInContext(slice('  function appendArrowheads(','  function overlayNode('),ctx);
  if(vm.runInContext('typeof objectSelectionRefs',ctx)==='undefined')vm.runInContext(slice('  function objectSelectionRefs(','  const sizeNames='),ctx);
  else if(vm.runInContext('typeof objectGroupAtTarget',ctx)==='undefined')vm.runInContext(slice('  function objectGroupAtTarget(','  function selectObjectGroup('),ctx);

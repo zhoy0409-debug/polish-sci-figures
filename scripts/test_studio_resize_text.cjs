@@ -18,7 +18,7 @@ const helpers=[
   drawDeclaration,
   chunk('  function isVisibleObject(el) {','  function keysToObjects(svg)'),
   chunk('  let labelSelections=[];','  const sizeNames='),
-  chunk('function objectGroupToken(','function validateState(')+chunk('  function selectionCommandInfo(){','  function renderSelectionCommands(){'),
+  chunk('  function selectionCommandInfo(){','  function renderSelectionCommands(){'),
   chunk('function validPresentationMatrix(','function heatmapCellInfo('),
   chunk('  function textPointSize(','  async function ensureReflows('),
   chunk('  function paint(el, prop)','  function statisticalAnalysisFor('),
@@ -51,7 +51,7 @@ function harness(body,{width=400,viewWidth=400,scale=1,keys=['e1'],edits={},cont
     conditionMatrixHeight:()=>0,addStatisticalHitAreas:()=>{},zoomView:null,categorySpacingFactor:()=>1,categorySpacingMessage:()=>'',
     commit(next){main.validateState(next,project);history.commit(next);current=copy(next);render();return true;},renderCanvas:next=>render(next||current)
   };
-  vm.createContext(ctx);vm.runInContext(helpers,ctx);
+  vm.createContext(ctx);require('./helpers/studio-object-group-fixture.cjs')(ctx);vm.runInContext(helpers,ctx);
   ctx.editableSource=(id,vi,s=current)=>{const svg=ctx.editedSvg(id,vi,s);svg.setAttribute('data-editable-source','true');return svg;};ctx.editableSourceSnapshot=ctx.editableSource;
   function render(s=current){const root=ctx.composite(false,false,s);$('artboard').replaceChildren(root);return root;}
   $('scope').value='element';render();
