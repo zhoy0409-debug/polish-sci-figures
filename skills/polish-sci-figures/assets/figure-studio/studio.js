@@ -3992,7 +3992,9 @@ if (typeof document !== 'undefined') (async () => {
         const response=await engineFetch(localEngine.endpoint,{method:'POST',signal,headers:{'Content-Type':'application/json','X-Studio-Token':localEngine.token},body:JSON.stringify(candidate.rendering)});
         if(!response.ok)throw Error('render contract rejected');return (await response.json()).panel;
       },
-      apply:applyDiscoveredAsset,previewCandidate:previewDiscoveredCandidate,commitCandidate:commitDiscoveredCandidate,cancelPreview:reason=>cancelResourcePreview('discovery',reason),dockContainer:document.querySelector('aside.inspector'),reveal:()=>{if(mobileWorkspace?.enabled)mobileWorkspace.showTab('adjustments');}
+      apply:applyDiscoveredAsset,previewCandidate:previewDiscoveredCandidate,commitCandidate:commitDiscoveredCandidate,cancelPreview:reason=>cancelResourcePreview('discovery',reason),
+      dockContainer:$('drawerDiscovery')||document.querySelector('aside.inspector'),
+      reveal:()=>{experienceTools?.workbench?.openTool('discovery');if(mobileWorkspace?.enabled)mobileWorkspace.showTab('adjustments');}
     });
     if(snapshot)figureDiscovery.restore?.(snapshot);
     figureDiscovery.open();
