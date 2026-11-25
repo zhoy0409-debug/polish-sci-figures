@@ -68,16 +68,22 @@ def main():
 
     # Windows and the skill suite move together. Published previews have their
     # own release cadence and download URLs.
-    mac_preview = ("v1.6.0", "0.2.1")
+    mac_preview = (VERSION, app_version)
     notes = f"docs/release-notes-{VERSION}.md"
     documents = ["README.md", "README.en.md", "README.zh-CN.md",
                  "desktop/QUICKSTART.en.md", "desktop/QUICKSTART.zh-CN.md",
-                 "docs/local-device-trial.md", notes]
+                 "docs/local-device-trial.md", "docs/platform-installation.md",
+                 "docs/platform-installation.en.md", "adapters/portable-skill/SKILL.md",
+                 "skills/polish-sci-figures/references/studio_handoff.md", notes]
     setup = f"/releases/download/{VERSION}/polish-sci-figures-Studio-{app_version}-Setup-x64.exe"
     for name in ("README.md", "README.en.md", "README.zh-CN.md", notes):
         assert setup in (ROOT / name).read_text(encoding="utf-8").splitlines()[2], name
     for name in documents:
         text = (ROOT / name).read_text(encoding="utf-8")
+        for studio, suite in re.findall(r"Figure Studio ([\d.]+) · Suite v?([\d.]+)", text):
+            assert (studio, suite) == (app_version, VERSION.removeprefix("v")), (name, studio, suite)
+        for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-(v[\d.]+)-skill\.zip", text):
+            assert tag == version == VERSION, (name, tag, version)
         for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-(?:Setup-x64\.exe|Portable-x64\.zip)", text):
             assert (tag, version) == (VERSION, app_version), (name, tag, version)
         for tag, version in re.findall(r"/releases/download/([^/]+)/polish-sci-figures-Studio-([\d.]+)-macOS-[^/)]+", text):

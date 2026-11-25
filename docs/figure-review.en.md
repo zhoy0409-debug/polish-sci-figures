@@ -32,3 +32,12 @@ For projects above 1000 elements, palette cards display swatches immediately and
 See the [audit and acceptance record](windows-next-stable-audit.md) for the actual Windows installation, upgrade and performance scope.
 
 Under **Submission size and export → Submission profiles…**, save researcher-declared dimensions and review thresholds, preview on the actual canvas, then Keep or Cancel. **Review kept figure** uses the same measured-SVG rules and reports excess height and settings changed after the profile was kept. Sources are never fetched automatically; general defaults do not certify journal requirements. See the [profile workflow and scope](figure-studio-submission-profiles.md).
+
+## Colour vision, notation and find/replace
+
+These features ship with Figure Studio 0.2.4.
+
+- **Colour-vision preview** shows red-, green- and blue-blind and grayscale views on screen only. A badge stays visible; projects and exports keep their colours.
+- **Review current figure** also lists colours that merge in those views, mixed fonts, and baseline notation such as IC50, cm^2 or 1e-05. It does not decide whether colour carries group meaning. More than 24 chromatic colours is treated as a continuous scale.
+- **Preview notation fixes** changes plain display text only, with one undo. Check journal and font support for scripts.
+- **Find and replace text** (Ctrl/Cmd + H) matches literally across panels and text annotations. Locked, statistical and character-formatted text is listed but not replaced in bulk.

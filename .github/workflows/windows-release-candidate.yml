@@ -2,7 +2,7 @@ name: Windows maintenance release candidate
 
 on:
   push:
-    branches: [codex/windows-stable-v1.6.2]
+    branches: [codex/windows-stable-v1.6.2, codex/windows-stable-v1.6.3]
   workflow_dispatch:
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
           $signature = Get-AuthenticodeSignature $installer
           if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'Pyrsys B.V.') { throw 'Official Inno Setup signature mismatch' }
           $inno = Join-Path $env:RUNNER_TEMP 'studio-inno-7.1.1'
-          $install = Start-Process $installer -ArgumentList ('/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /DIR="' + $inno + '"') -PassThru -Wait
+          $install = Start-Process $installer -ArgumentList ('/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /DIR="' + $inno + '"') -WindowStyle Hidden -PassThru -Wait
           if ($install.ExitCode -ne 0) { throw 'Inno Setup installation failed' }
           "STUDIO_ISCC=$inno/ISCC.exe" >> $env:GITHUB_ENV
           npm install --prefix .cache/stable-upgrade --ignore-scripts --no-audit --no-fund --save-exact playwright@1.62.1
@@ -55,6 +55,12 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Verify installed files, isolated runtime, reinstall and uninstall
         run: ./desktop/verify_windows.ps1
+      - name: Prepare the data-bound figure review fixture
+        run: |
+          python skills/make-sci-data-figures/scripts/figure_workbench.py generate scripts/fixtures/discovery/independent.csv --group group --value value --design independent --unit unit --order Control,Treatment --outcome-type continuous --font "DejaVu Sans" --outdir .cache/figure-lens-candidate/bundle
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python sci_figures.py studio .cache/figure-lens-candidate/bundle --out .cache/figure-lens-candidate/editor.html --project-out .cache/figure-lens-candidate/project.json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Exercise the frozen application in real Chromium
         run: |
           $env:NODE_PATH = (Resolve-Path .cache/stable-upgrade/node_modules).Path
@@ -63,7 +69,7 @@ jobs:
           $data = Join-Path $proof 'profile'
           New-Item -ItemType Directory -Path $proof -Force | Out-Null
           $exe = (Resolve-Path 'dist/desktop/Figure Studio/Figure Studio.exe').Path
-          $app = Start-Process $exe -ArgumentList ('--no-open --data-dir "' + $data + '"') -PassThru
+          $app = Start-Process $exe -ArgumentList ('--no-open --data-dir "' + $data + '"') -WindowStyle Hidden -PassThru
           try {
             $instance = Join-Path $data 'instance.json'
             $deadline = (Get-Date).AddSeconds(60)
@@ -74,11 +80,19 @@ jobs:
             $record = Get-Content $instance -Raw | ConvertFrom-Json
             if ($record.pid -ne $app.Id) { throw 'Unexpected instance identity' }
             $url = "http://127.0.0.1:$($record.port)/"
-            foreach ($script in 'test_project_codec_browser','test_scientific_tiff_browser','test_scientific_tiff_derivative_browser','test_submission_profiles_browser','test_history_shortcuts_browser','test_studio_drawer_workspace_browser','test_studio_drawer_compact_browser','test_studio_support_browser','test_studio_text_content_browser','test_studio_wb_browser','test_studio_wb_advanced_browser','test_studio_core_workbench_browser','test_studio_statistics_report_browser') {
+            foreach ($script in 'test_project_codec_browser','test_scientific_tiff_browser','test_scientific_tiff_derivative_browser','test_submission_profiles_browser','test_history_shortcuts_browser','test_studio_drawer_workspace_browser','test_studio_drawer_compact_browser','test_studio_discovery_dock_browser','test_studio_support_browser','test_studio_text_content_browser','test_studio_wb_browser','test_studio_wb_advanced_browser','test_studio_core_workbench_browser','test_studio_statistics_report_browser') {
               node "scripts/$script.cjs" $url (Join-Path $proof $script)
               if ($LASTEXITCODE -ne 0) { throw "Frozen browser check failed: $script" }
             }
+            $env:STUDIO_LENS_PROJECT = (Resolve-Path .cache/figure-lens-candidate/project.json).Path
+            node scripts/test_studio_figure_lens_browser.cjs $url (Join-Path $proof 'figure-lens')
+            if ($LASTEXITCODE -ne 0) { throw 'Frozen colour-vision and text editing check failed.' }
+            $env:STUDIO_FILL_URL = $url
+            node scripts/test_studio_fill_alignment_browser.cjs (Join-Path $proof 'fill-alignment') python
+            if ($LASTEXITCODE -ne 0) { throw 'Frozen fill and marker alignment check failed.' }
           } finally {
+            Remove-Item Env:/STUDIO_LENS_PROJECT -ErrorAction SilentlyContinue
+            Remove-Item Env:/STUDIO_FILL_URL -ErrorAction SilentlyContinue
             if (-not $app.HasExited) { Stop-Process -Id $app.Id; $app.WaitForExit() }
           }
       - name: Download checksum-verified previous stable installer
@@ -86,16 +100,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           $prior = Join-Path $env:RUNNER_TEMP 'prior-stable'
-          gh release download v1.6.1 -R $env:GITHUB_REPOSITORY -D $prior -p 'polish-sci-figures-Studio-0.2.2-Setup-x64.exe' -p SHA256SUMS.txt
+          gh release download v1.6.2 -R $env:GITHUB_REPOSITORY -D $prior -p 'polish-sci-figures-Studio-0.2.3-Setup-x64.exe' -p SHA256SUMS.txt
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          $setup = Join-Path $prior 'polish-sci-figures-Studio-0.2.2-Setup-x64.exe'
+          $setup = Join-Path $prior 'polish-sci-figures-Studio-0.2.3-Setup-x64.exe'
           $digest = (Get-FileHash $setup).Hash.ToLowerInvariant()
-          if ((Get-Content (Join-Path $prior 'SHA256SUMS.txt')) -notcontains "$digest  polish-sci-figures-Studio-0.2.2-Setup-x64.exe") { throw 'Prior stable checksum mismatch' }
+          if ((Get-Content (Join-Path $prior 'SHA256SUMS.txt')) -notcontains "$digest  polish-sci-figures-Studio-0.2.3-Setup-x64.exe") { throw 'Prior stable checksum mismatch' }
           "PRIOR_SETUP=$setup" >> $env:GITHUB_ENV
       - name: Verify real stable upgrade, persisted project and PNG export
         run: |
           $env:NODE_PATH = (Resolve-Path .cache/stable-upgrade/node_modules).Path
-          node scripts/test_studio_windows_stable_upgrade.cjs $env:PRIOR_SETUP dist/desktop/polish-sci-figures-Studio-0.2.3-Setup-x64.exe 0.2.2 0.2.3 (Join-Path $env:RUNNER_TEMP 'studio-upgrade-proof')
+          node scripts/test_studio_windows_stable_upgrade.cjs $env:PRIOR_SETUP dist/desktop/polish-sci-figures-Studio-0.2.4-Setup-x64.exe 0.2.3 0.2.4 (Join-Path $env:RUNNER_TEMP 'studio-upgrade-proof')
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Build and check Skill archives
         run: |

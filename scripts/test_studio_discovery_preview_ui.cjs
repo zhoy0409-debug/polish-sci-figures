@@ -36,5 +36,34 @@ const filter=process.argv.find(value=>value.startsWith('--filter='))?.slice(9);l
  await test('non-text dock shortcuts bubble, text editing stays local and handled Escape is consumed',async()=>{const f=fixture();try{await f.recommend();await f.show(0);let undo=0,escapes=0;f.doc.addEventListener('keydown',event=>{if(event.key==='Escape')escapes++;if(event.ctrlKey&&event.key==='z')undo++;});const button=f.doc.querySelector('.discovery-preview');button.focus();button.dispatchEvent(new f.dom.window.KeyboardEvent('keydown',{key:'z',ctrlKey:true,bubbles:true,cancelable:true}));assert.equal(undo,1,'An eligible non-text button must not swallow editor Undo');f.field('research_question').focus();f.field('research_question').dispatchEvent(new f.dom.window.KeyboardEvent('keydown',{key:'z',ctrlKey:true,bubbles:true,cancelable:true}));assert.equal(undo,1,'Text editing shortcuts stay inside the local field');button.focus();const event=new f.dom.window.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true});button.dispatchEvent(event);assert.equal(event.defaultPrevented,true);assert.equal(escapes,0);assert.equal(f.ui.snapshot().activeChartId,null);}finally{f.close();}});
  await test('failed new file clears source, overview, roles and exclusions without falling back to old rows',async()=>{for(const mode of ['too-large','read-error','invalid-columns']){const f=fixture();try{await f.recommend();const oldDesign=f.field('design').value,renders=f.calls.render;f.context.rows=copy(rows);f.context.provenance='user-data';const input=f.doc.getElementById('discoveryFile'),file={name:'NEW-'+mode+'.csv',size:mode==='too-large'?2000001:100,text:async()=>{if(mode==='read-error')throw Error('Controlled local read failure');return 'same,same\n1,2';}};Object.defineProperty(input,'files',{configurable:true,value:[file]});await input.onchange();const saved=f.ui.snapshot();assert.equal(saved.rows,null,'A rejected new file cannot leave old measurements available');assert.equal(saved.profile,null);assert.equal(saved.assets.length,0);assert.equal(f.doc.querySelectorAll('.discovery-card').length,0);assert.equal(f.doc.querySelectorAll('#discoverySummary p').length,1);assert.doesNotMatch(f.doc.getElementById('discoverySummary').textContent,/Control|Treatment|6 rows/);assert.equal(f.doc.querySelectorAll('details>label').length,0);assert.equal(f.field('unit_confirmed').checked,false);assert.equal(f.field('design').value,oldDesign,'Human design draft is retained');assert.equal(f.doc.getElementById('discoveryRun').disabled,true);await f.doc.getElementById('discoveryRun').onclick();assert.equal(f.calls.render,renders);assert.equal(f.ui.snapshot().result,null);assert.equal(f.ui.snapshot().privateFilename,file.name);f.host.close();f.ui.open();assert.equal(f.ui.snapshot().rows,null,'Reopen cannot auto-import old project rows after a failed user file');f.remount(f.ui.snapshot());assert.equal(f.ui.snapshot().rows,null,'Language snapshot cannot auto-import old rows either');}finally{f.close();}}});
  await test('editing pasted source clears old scientific overview but keeps raw draft and design',async()=>{const f=fixture();try{await f.recommend();const design=f.field('design').value,paste=f.doc.getElementById('discoveryData');paste.value='unfinished header,';f.event(paste);assert.equal(f.ui.snapshot().rows,null);assert.equal(f.ui.snapshot().profile,null);assert.equal(f.ui.snapshot().paste,'unfinished header,');assert.equal(f.field('unit_confirmed').checked,false);assert.equal(f.field('design').value,design);assert.equal(f.doc.querySelectorAll('.discovery-card').length,0);assert.doesNotMatch(f.doc.getElementById('discoverySummary').textContent,/Control|Treatment|6 rows/);assert.equal(f.doc.getElementById('discoveryRun').disabled,true);}finally{f.close();}});
+ await test('optional background stays collapsed and retains its draft across language restore',async()=>{
+  const f=fixture();
+  try{
+   f.ui.open();
+   const background=f.doc.getElementById('discoveryBackground');
+   assert.equal(background.open,false);
+   assert.equal(f.field('data_level').closest('details'),null);
+   assert.equal(f.field('research_question').closest('details'),background);
+   assert(f.doc.getElementById('discoveryData').getAttribute('aria-label'));
+   assert(f.doc.getElementById('discoveryFile').getAttribute('aria-label'));
+   assert.equal(f.doc.querySelector('.discovery-preview-actions').hidden,true);
+   background.open=true;f.field('research_question').value='Retained local question';
+   f.remount(f.ui.snapshot());
+   assert.equal(f.doc.getElementById('discoveryBackground').open,true);
+   assert.equal(f.field('research_question').value,'Retained local question');
+  }finally{f.close();}
+ });
+ await test('pending recommendations disable duplicate clicks and become retryable after completion',async()=>{
+  const f=fixture();
+  try{
+   const render=f.api.render;let first=true,release;
+   f.api.render=async(...args)=>{if(first){first=false;await new Promise(resolve=>{release=resolve;});}return render(...args);};
+   const pending=f.recommend();await tick();
+   assert.equal(f.doc.getElementById('discoveryRun').disabled,true);
+   release();await pending;
+   assert.equal(f.doc.getElementById('discoveryRun').disabled,false);
+   assert(f.ui.snapshot().assets.length>=3);
+  }finally{f.close();}
+ });
  console.log('PASS '+passed+' controlled discovery dock/session groups. These tests do not prove browser rendering, literature accuracy or image-detection accuracy.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

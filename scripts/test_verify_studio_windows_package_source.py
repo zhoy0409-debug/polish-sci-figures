@@ -30,12 +30,12 @@ class BackendPackageBoundaryTests(unittest.TestCase):
 
     def test_all_sources_and_only_production_objects_are_distinguished(self):
         result = backend_package_boundary(self.freeze, self.compiled, self.allow)
-        self.assertEqual(result['count'], 28)
-        self.assertEqual(result['packagedProductionCount'], 24)
+        self.assertEqual(result['count'], 29)
+        self.assertEqual(result['packagedProductionCount'], 25)
         self.assertEqual(len(result['notPackagedTests']), 4)
         self.assertEqual({v['file'] for v in result['notPackagedTests']}, NOT_PACKAGED_BACKEND_TESTS)
-        self.assertEqual(len(result['files']), 28)
-        self.assertEqual(sum(v['packaged'] for v in result['files']), 24)
+        self.assertEqual(len(result['files']), 29)
+        self.assertEqual(sum(v['packaged'] for v in result['files']), 25)
         self.assertEqual({v['file']: v['sha256'] for v in result['files']}, self.freeze)
         self.assertTrue(all(v['compiledCodeObjectVerified'] is v['packaged'] for v in result['files']))
         self.assertNotIn('allPackagedCodeObjectsVerified', result)
@@ -88,7 +88,7 @@ class BackendPackageBoundaryTests(unittest.TestCase):
     def test_incomplete_freeze_is_rejected(self):
         value = copy.copy(self.freeze)
         value.pop('test_font_policy.py')
-        with self.assertRaisesRegex(ValueError, '28 backend sources'):
+        with self.assertRaisesRegex(ValueError, '29 backend sources'):
             backend_package_boundary(value, self.compiled, self.allow)
 
     def test_old_stage_identity_and_bounded_new_stage(self):
