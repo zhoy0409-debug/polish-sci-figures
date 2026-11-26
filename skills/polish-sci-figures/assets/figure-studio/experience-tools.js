@@ -1,6 +1,7 @@
 /* Discoverable workflow navigation and local command search; existing controls remain. */
 'use strict';
 const StudioExperienceTools=(()=>{
+  const taskGuide=typeof StudioUsageGuide!=='undefined'?StudioUsageGuide:typeof require==='function'?require('./usage-guide.js'):null;
   // Rearrange existing controls once. Never clone fields, rebuild a live draft,
   // touch project state, or add canvas reads to the selection hot path.
   function workspaceHierarchy(doc,language){
@@ -82,12 +83,14 @@ const StudioExperienceTools=(()=>{
     ]},
     {id:'labels',title:['组图与图号','Layouts & panel labels'],steps:[
       ['layout','打开排版与间距','Open layout & spacing','先确定小图的行列、尺寸和间距。','Set the rows, columns, sizes and spacing of the panels.'],
-      ['align','前往图号对齐','Go to panel-label alignment','先点参照图号 A，再按住 Shift 点 B 和 C。点击“按首选图号统一字号和基线”后预览。','Select reference label A, then Shift-click B and C. Choose Match font size and baseline to preview.']
+      ['align','练习图号磁吸','Try panel-label snapping','固定 A，直接拖 B 或 C 靠近 A 的文字基线；辅助线出现时对象同时贴齐。松手保留，Alt 临时跳过。不同字号也按基线对齐。','Keep A fixed and drag B or C near A’s text baseline. The label snaps as the guide appears; release to keep, or hold Alt to bypass. Different sizes also align by baseline.']
     ]},
     {id:'images',title:['处理科研图片','Work with scientific images'],steps:[
       ['import','导入原图','Import source images','选用原始图片或已保存的工程，便于核对来源。','Start from source images or a saved project so you can verify provenance.'],
+      ['tiff-import','导入科学 TIFF','Import scientific TIFF','从导入选择 TIF/TIFF，在科学 TIFF 窗口选平面与显示范围，预览后保留。','Import a TIF/TIFF, choose its plane and display range, preview, then keep.'],
       ['rectify','打开矫正工具','Open straightening tools','选中需要拉直的图，先比较预览，再保留调整。','Choose an image to straighten and compare the preview before keeping it.'],
       ['inset','打开局部放大工具','Open inset tools','选原图和放大区域；添加物理比例尺需要真实标定。','Choose the source image and region. A physical scale bar requires calibration.'],
+      ['calibrate','两点标定（任意角度）','Two-point calibration (any angle)','先选原图，再从已知距离的一端拖到另一端；输入真实长度和单位。','Select the source, drag across a known distance, then enter its actual length and unit.'],
       ['duplicates','打开图片查重','Open duplicate screening','核对检查范围，开始后逐项复核疑似重复。','Check the screening scope, then review any possible duplicates.']
     ]},
     {id:'ai',title:['让 AI 帮你精修','Refine with AI'],steps:[
@@ -98,7 +101,8 @@ const StudioExperienceTools=(()=>{
       ['review','打开图形质检','Open figure review','检查最终尺寸下的文字、线宽和遮挡，按结果定位。','Check text, line widths and overlaps at final size, then locate findings.'],
       ['export-settings','打开导出设置','Open export settings','先设置最终宽度和分辨率，核对图形实际尺寸。','Set the final width and resolution and check the resulting dimensions.'],
       ['export-menu','打开导出选项','Open export options','按投稿要求选择文件格式。保留工程备份，方便之后修改。','Choose the submission format and retain a project backup for later edits.']
-    ]}
+    ]},
+    {id:'all',title:['全部功能与操作步骤','All functions & steps'],steps:[]}
   ];
   function create(host){
     const doc=host.document||document,en=()=>host.language()==='en',t=(zh,eng)=>en()?eng:zh;
@@ -160,12 +164,13 @@ const StudioExperienceTools=(()=>{
       ['object-align','objectAlignmentPanel','对象对齐与等距分布','Align & distribute objects','对象对齐 等距 分布 左对齐 水平居中 align distribute objects']
     ])actions.push({id,zh,en:eng,terms,target,run:()=>{if(['fonts','paragraph','colour-lines'].includes(id))host.edit();hierarchy.reveal(target);const control=doc.getElementById(target);if(control?.disabled)host.say(control.title||t('请先在画布选中适用的对象。','Select an applicable object on the canvas first.'));}});
     if(typeof host.westernBlot==='function')actions.push({id:'western-blot',zh:'WB 条带处理与组图',en:'WB processing & composition',terms:'WB western blot 蛋白 条带 剪膜 整膜 曝光 裁切 拉正 marker kDa PPT PowerPoint',run:()=>host.westernBlot()});
+    if(typeof host.guideCalibration==='function')actions.push({id:'calibrate',zh:'两点标定（任意角度）',en:'Two-point calibration (any angle)',terms:'标定 斜线 垂直 比例尺 calibration diagonal vertical scale bar',run:()=>host.selectedImage?.()?host.guideCalibration():openImages('calibrate')});
     actions.push({id:'usage-guide',zh:'使用向导',en:'Usage guide',terms:'帮助 怎么用 找不到 入门 教程 开始 用法 walkthrough help how to onboarding start',run:()=>openGuide()});
     const categories=[
       ['data','数据与图表','Data & charts'],['style','文字与对象样式','Text & object style'],['image','图片处理','Image processing'],
       ['layout','排版与画布','Layout & canvas'],['annotation','标注与测量','Annotations & measurement'],['export','检查与导出','Review & export'],['project','工程与界面','Project & interface']
     ];
-    const categoryIds={data:['discovery','axes','statistics','data-table','category-spacing','chart-variants','marks','bars','heatmap','legend-style'],style:['edit','text-color','label-color','typography','border','fonts','paragraph','colour-lines','palette'],image:['images','rectify','color','western-blot'],layout:['layout','layers','canvas-tools','group','lock','clipboard','aspect','guides','object-align','panel-geometry'],annotation:['links','inset','scale-bar','panel-label','annotations','stat-annotation'],export:['export','review','submission-profile','duplicates'],project:['appearance','checkpoints','open-project','save-project','history-undo','history-redo','feedback','download-metrics','preferences']};
+    const categoryIds={data:['discovery','axes','statistics','data-table','category-spacing','chart-variants','marks','bars','heatmap','legend-style'],style:['edit','text-color','label-color','typography','border','fonts','paragraph','colour-lines','palette'],image:['images','rectify','color','western-blot'],layout:['layout','layers','canvas-tools','group','lock','clipboard','aspect','guides','object-align','panel-geometry'],annotation:['links','inset','scale-bar','calibrate','panel-label','annotations','stat-annotation'],export:['export','review','submission-profile','duplicates'],project:['appearance','checkpoints','open-project','save-project','history-undo','history-redo','feedback','download-metrics','preferences']};
     for(const action of actions)action.category=categories.find(([id])=>categoryIds[id].includes(action.id))?.[0]||'project';
     const nav=doc.createElement('nav');nav.id='workflowNavigation';nav.className='workflow-navigation';nav.setAttribute('aria-label','Figure Studio workflows');
     doc.querySelector('.workspace')?.before(nav);
@@ -186,6 +191,22 @@ const StudioExperienceTools=(()=>{
     const images=doc.createElement('dialog');images.id='imageToolsDialog';images.className='experience-dialog image-tools-dialog';doc.body.append(images);
     const guide=doc.createElement('dialog');guide.id='studioUsageGuide';guide.className='experience-dialog usage-guide';guide.setAttribute('aria-labelledby','studioUsageGuideTitle');doc.body.append(guide);
     let selectedTopic=guideTopics[0].id;
+    let guidedTask=null,coachLanguage=null,guideActionId=null;
+    const coach=doc.createElement('details'),coachTitle=doc.createElement('summary'),coachBody=doc.createElement('div'),coachSteps=doc.createElement('ol');
+    coach.id='studioTaskCoach';coach.className='studio-task-coach';coach.hidden=true;coach.open=true;
+    const coachHelp=button('',()=>openGuide(guidedTask?.id),'taskCoachHelp'),coachClose=button('',()=>{const anchor=host.captureViewAnchor?.();coach.hidden=true;guidedTask=null;host.restoreViewAnchor?.(anchor);},'taskCoachClose');
+    coachBody.append(coachSteps,coachHelp,coachClose);coach.append(coachTitle,coachBody);
+    doc.getElementById('viewport')?.before(coach);
+    function paintCoach(){
+      if(!guidedTask)return;
+      coachLanguage=host.language();coachTitle.textContent=t('操作提示：','Steps: ')+t(guidedTask.zh,guidedTask.en);
+      coachSteps.replaceChildren(...taskGuide.steps(guidedTask.id,host.language()).map(text=>{const li=doc.createElement('li');li.textContent=text;return li;}));
+      coachHelp.textContent=t('查看完整向导','Full guide');coachClose.textContent=t('收起提示','Dismiss tips');
+    }
+    function showCoach(id,zh,eng){
+      if(!taskGuide?.get(id))return;
+      const anchor=host.captureViewAnchor?.();pauseJourney();guidedTask={id,zh,en:eng};coach.hidden=false;coach.open=true;paintCoach();host.restoreViewAnchor?.(anchor);
+    }
     const journeyBar=doc.createElement('section'),journeyCopy=doc.createElement('div'),journeyTitle=doc.createElement('strong'),journeyHint=doc.createElement('span'),journeyActions=doc.createElement('div');
     journeyBar.id='studioFirstFigure';journeyBar.className='first-figure-guide';journeyBar.hidden=true;
     journeyTitle.setAttribute('role','status');journeyCopy.append(journeyTitle,journeyHint);
@@ -292,6 +313,7 @@ const StudioExperienceTools=(()=>{
       journeySkip.textContent=t('跳过，直接编辑','Skip to editing');journeySkip.hidden=journey.stage==='done';
     }
     function startJourney(){
+      guidedTask=null;coach.hidden=true;
       if(journey){journey.paused=false;paintJourney();journeyNext.focus();return;}
       journey={stage:'import',content:null,paused:false,owner:host.journeyOwner?.()};paintJourney();click('quickImportFiles');
     }
@@ -323,61 +345,86 @@ const StudioExperienceTools=(()=>{
       if(event==='reviewed'&&!journey.paused)
         reviewNext.scrollIntoView?.({block:'nearest'});
     }
-    function openGuide(){
-      if(guide.open)return;
+    function openGuide(actionId){
+      if(actionId){guideActionId=workbench?.menus.find(item=>item.id===actionId)?.action.id||actionId;selectedTopic='all';}
+      if(guide.open)guide.close();
       const heading=doc.createElement('div'),title=doc.createElement('h2');
       heading.className='command-heading';title.id='studioUsageGuideTitle';title.textContent=t('使用向导','Usage guide');
       const skip=button(t('跳过，直接编辑','Skip to editing'),()=>{
-        guide.close();
-        pauseJourney();
+        guide.close();pauseJourney();
         if(doc.getElementById('projectStart')?.hidden===false)doc.getElementById('dismissProjectStart')?.click();
       },'skipStudioGuide');
       heading.append(title,skip);
-      const body=doc.createElement('div'),topicNav=doc.createElement('nav'),details=doc.createElement('section');
+      const body=doc.createElement('div'),topicNav=doc.createElement('nav'),details=doc.createElement('section'),status=doc.createElement('p');
+      status.id='usageGuideStatus';status.setAttribute('role','status');
       body.className='usage-guide-body';topicNav.setAttribute('aria-label',t('选择任务','Choose a task'));
       details.className='usage-guide-steps';details.setAttribute('aria-labelledby','usageGuideTopicTitle');body.append(topicNav,details);
       const command=id=>{const found=actions.find(a=>a.id===id);if(found)launch(found);};
       const routes={
         journey:startJourney,
         open:()=>click('load'),import:()=>click('quickImportFiles'),save:()=>click('save'),
+        'tiff-import':()=>click('quickImportFiles'),
         discovery:()=>command('discovery'),
         templates:()=>{
           if(doc.getElementById('startTemplates')?.disabled){
-            host.say(t('可编辑模板需要本机绘图服务。你仍可打开工程或导入已有图件。','Editable templates need the local rendering engine. You can still open a project or import artwork.'));
-            return;
+            host.say(t('可编辑模板需要本地绘图引擎。仍可打开工程或导入现有图形。','Editable templates need the local rendering engine. You can still open a project or import artwork.'));return;
           }
           click('startTemplates');
         },
-        statistics:()=>click('methodConfigureStatistics'),
-        layout:()=>{
-          if(workbench){workbench.openTool('layout');const controls=doc.getElementById('workspaceLayout');if(controls)controls.open=true;}
-          else click('mobileTab-panels');
-          doc.getElementById('rows')?.focus();
-        },
-        align:()=>host.guideAlignment?.(),
-        rectify:()=>command('rectify'),inset:()=>openImages('inset'),duplicates:()=>host.duplicates('all'),
+        statistics:()=>command('statistics'),
+        layout:()=>{if(workbench){workbench.openTool('layout');const controls=doc.getElementById('workspaceLayout');if(controls)controls.open=true;}else click('mobileTab-panels');doc.getElementById('rows')?.focus();},
+        align:()=>host.guideMagnet?.()||doc.getElementById('viewport')?.focus(),
+        rectify:()=>command('rectify'),inset:()=>openImages('inset'),calibrate:()=>command('calibrate'),duplicates:()=>host.duplicates('all'),
+        arrow:()=>host.guideAnnotation?.('arrow'),
         handoff:()=>host.guideHandoff?.('request'),clipboard:()=>host.guideHandoff?.('clipboard'),
-        review:()=>command('review'),'export-settings':openExportSettings,
-        'export-menu':openExportMenu
+        review:()=>command('review'),'export-settings':openExportSettings,'export-menu':openExportMenu
       };
+      const routeGuide={open:'open-project',import:'images',save:'save-project',align:'object-align',handoff:'ai-request',clipboard:'ai-preview','export-settings':'export','export-menu':'export'};
+      function runTask(id,zh,eng,run){
+        if(host.canGuideNavigate?.()===false){status.textContent=t('请先保留或取消当前预览，再从向导打开其他工具。当前草稿仍在，尚未提交。','Keep or cancel the current preview before opening another tool. Your draft is still open.');return;}
+        guide.close();if(id==='journey'){guidedTask=null;coach.hidden=true;}else showCoach(id,zh,eng);run();
+      }
+      function directory(){
+        const name=doc.createElement('h3');name.id='usageGuideTopicTitle';name.textContent=t('全部功能与操作步骤','All functions & steps');
+        const query=doc.createElement('input');query.id='usageGuideQuery';query.type='search';query.placeholder=t('搜索：箭头、TIFF、空格、组合、磁吸…','Search: arrows, TIFF, spaces, grouping, snap…');query.setAttribute('aria-label',t('搜索功能用法','Search function instructions'));
+        const results=doc.createElement('div'),instructions=doc.createElement('section');results.className='usage-guide-directory';instructions.id='usageGuideInstructions';
+        const recipes=[
+          {id:'tiff-import',zh:'导入科学 TIFF',en:'Import scientific TIFF',terms:'tif tiff 16位 多页 导入 import page plane',run:routes['tiff-import']},
+          {id:'arrow',zh:'插入箭头与双向箭头',en:'Insert arrows and double arrows',terms:'箭头 双向 arrow line shape',run:routes.arrow},
+          {id:'ai-request',zh:'请 AI 检查当前图',en:'Ask AI to check this figure',terms:'AI Skill 交接 handoff',run:routes.handoff},
+          {id:'ai-preview',zh:'预览 AI 修改',en:'Preview AI changes',terms:'AI 预览 修改 clipboard preview',run:routes.clipboard}
+        ].filter(a=>a.id!=='arrow'||host.guideAnnotation);
+        const items=[...actions.filter(a=>a.id!=='usage-guide'&&taskGuide?.get(a.id)),...recipes];
+        function explain(a){
+          guideActionId=a.id;
+          for(const b of results.children)b.setAttribute('aria-pressed',String(b.dataset.guideAction===a.id));
+          const h=doc.createElement('h4'),ol=doc.createElement('ol');h.textContent=t(a.zh,a.en);
+          for(const text of taskGuide.steps(a.id,host.language())){const li=doc.createElement('li');li.textContent=text;ol.append(li);}
+          instructions.replaceChildren(h,ol,button(t('打开并保留操作提示','Open with on-canvas steps'),()=>runTask(a.id,a.zh,a.en,()=>launch(a)),'usageGuideLaunch'));
+        }
+        function paint(){
+          const words=query.value.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+          const found=items.filter(a=>words.every(word=>(a.zh+' '+a.en+' '+a.terms+' '+taskGuide.steps(a.id,host.language()).join(' ')).toLocaleLowerCase().includes(word)));
+          results.replaceChildren(...found.map(a=>{const b=button(t(a.zh,a.en),()=>explain(a));b.dataset.guideAction=a.id;return b;}));
+          if(!found.length){results.textContent=t('未找到。试试“箭头”“空格”“校色”或 Ctrl K 功能检索。','No matches. Try arrows, spaces, colour, or Ctrl K function search.');instructions.replaceChildren();}
+          else explain(found.find(a=>a.id===guideActionId)||found[0]);
+        }
+        query.oninput=paint;details.replaceChildren(name,query,results,instructions);paint();
+      }
       function show(topic){
         selectedTopic=topic.id;
         for(const item of topicNav.children)item.setAttribute('aria-pressed',String(item.dataset.guideTopic===selectedTopic));
+        if(topic.id==='all'){directory();return;}
         const name=doc.createElement('h3'),list=doc.createElement('ol');name.id='usageGuideTopicTitle';name.textContent=t(...topic.title);
-        for(const [route,zh,en,copy,english] of topic.steps){
-          const item=doc.createElement('li'),text=doc.createElement('p');
-          text.textContent=t(copy,english);
-          const caption=route==='journey'&&journey?t('继续首次流程','Resume first figure'):t(zh,en);
-          item.append(text,button(caption,()=>{guide.close();routes[route]();},'usageGuideStep-'+route));
-          list.append(item);
+        for(const [route,zh,eng,copy,english] of topic.steps){
+          const item=doc.createElement('li'),text=doc.createElement('p');text.textContent=t(copy,english);
+          const caption=route==='journey'&&journey?t('继续首次流程','Resume first figure'):t(zh,eng);
+          item.append(text,button(caption,()=>runTask(routeGuide[route]||route,zh,eng,routes[route]),'usageGuideStep-'+route));list.append(item);
         }
         details.replaceChildren(name,list);
       }
-      for(const topic of guideTopics){
-        const tab=button(t(...topic.title),()=>show(topic));tab.dataset.guideTopic=topic.id;topicNav.append(tab);
-      }
-      guide.replaceChildren(heading,body);
-      show(guideTopics.find(topic=>topic.id===selectedTopic));
+      for(const topic of guideTopics){const tab=button(t(...topic.title),()=>show(topic));tab.dataset.guideTopic=topic.id;topicNav.append(tab);}
+      guide.replaceChildren(heading,status,body);show(guideTopics.find(topic=>topic.id===selectedTopic)||guideTopics[0]);
       guide.showModal();topicNav.querySelector('[aria-pressed="true"]')?.focus();
     }
     function openCommands(){
@@ -416,13 +463,15 @@ const StudioExperienceTools=(()=>{
         ['rectify',t('一键矫正与微调','Auto straighten & refine'),t('自动识别边界、标尺拉正或四角微调，先在画布预览。保留原图，不生成内容。','Use automatic outlines, a ruler or four-corner refinement, then preview on canvas. The original is retained; no content is generated.'),selectedAction(()=>host.rectify?.()),!sources.length],
         ['color',t('图片颜色与显示 → 匹配参考图','Image display → Match reference'),t('单图手动显示／明场参考色；荧光保留共同显示参数，不用于替代信号定量。','Manual display / brightfield reference colour. Fluorescence uses shared display parameters, not signal normalization.'),selectedAction(()=>host.color()),!sources.length],
         ['links',t('关联总览与放大图','Link overview and detail'),t('仅尝试同源或重叠视野；预览原图坐标，无法定位时不猜框。','For shared or overlapping fields only. Review source coordinates; no guessed ROI after failure.'),()=>host.links(),sources.length<2],
+        ['calibrate',t('两点标定（任意角度）','Two-point calibration (any angle)'),t('在原图拖出已知距离，再输入真实长度与单位。','Drag a known distance on the source, then enter its actual length and unit.'),selectedAction(()=>host.guideCalibration?.()),!sources.length],
         ['inset',t('绘制局部放大／比例尺','Create inset / scale bar'),t('在当前图内选 ROI。物理比例尺需要真实采集标定。','Select an ROI in the image. Physical scale bars require acquisition calibration.'),selectedAction(()=>host.inset()),!sources.length]
       ];
-      for(const [id,title,description,run,unavailable]of entries.filter(row=>!workbench||!focus||row[0]===focus)){const card=doc.createElement('article'),b=doc.createElement('button');b.type='button';b.id='imageTool-'+id;b.textContent=title;b.onclick=()=>{if(unavailable){const note=card.querySelector('[role="status"]');note.textContent=id==='duplicates'||id==='links'?t('请先导入至少两张独立图片；查重也可从原入口添加本机文件或体验示例。','Import at least two images first. Duplicate screening also accepts local files or its built-in example.'):t('请先导入图片。','Import an image first.');if(id==='duplicates')launch(()=>host.duplicates('files'));return;}if(['rectify','color','inset'].includes(id)&&select.value===''){const note=card.querySelector('[role="status"]');note.textContent=t('请先选择目标图片。','Choose a target image first.');select.focus();return;}launch(run);};const p=doc.createElement('p');p.textContent=description;const status=doc.createElement('p');status.setAttribute('role','status');card.append(b,p,status);cards.append(card);}images.append(cards);
+      for(const [id,title,description,run,unavailable]of entries.filter(row=>!workbench||!focus||row[0]===focus)){const card=doc.createElement('article'),b=doc.createElement('button');b.type='button';b.id='imageTool-'+id;b.textContent=title;b.onclick=()=>{if(unavailable){const note=card.querySelector('[role="status"]');note.textContent=id==='duplicates'||id==='links'?t('请先导入至少两张独立图片；查重也可从原入口添加本机文件或体验示例。','Import at least two images first. Duplicate screening also accepts local files or its built-in example.'):t('请先导入图片。','Import an image first.');if(id==='duplicates')launch(()=>host.duplicates('files'));return;}if(['rectify','color','inset','calibrate'].includes(id)&&select.value===''){const note=card.querySelector('[role="status"]');note.textContent=t('请先选择目标图片。','Choose a target image first.');select.focus();return;}launch(run);};const p=doc.createElement('p');p.textContent=description;const status=doc.createElement('p');status.setAttribute('role','status');card.append(b,p,status);cards.append(card);}images.append(cards);
       const disclosure=doc.createElement('details');disclosure.open=false;const summary=doc.createElement('summary');summary.textContent=t('检查状态与限制','Screening state and limits');const status=host.duplicateStatus?.(),note=doc.createElement('p');const states={idle:t('未启动','Not started'),running:t('检查中','Running'),review:t('需人工复核','Needs review'),complete:t('已完成','Complete'),unavailable:t('不能检查','Unavailable')};note.textContent=(states[status?.state]||states.idle)+' · '+t('未检查不等于通过；压平组图计一张图。','Not checked does not mean passed. A flattened montage counts as one image.');disclosure.append(summary,note);images.append(disclosure);images.showModal();if(focus)doc.getElementById('imageTool-'+focus)?.focus();
     }
     function refresh(){
       hierarchy?.refresh();
+      if(guidedTask&&coachLanguage!==host.language())paintCoach();
       workbench?.refresh();
       if(journey&&journey.owner!==host.journeyOwner?.()){journey=null;paintJourney();}
       else if(journey&&journeyLanguage!==host.language())paintJourney();
@@ -445,7 +494,7 @@ const StudioExperienceTools=(()=>{
     }
     doc.addEventListener('keydown',event=>{if(!event.defaultPrevented&&!event.isComposing&&event.keyCode!==229&&(event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'&&!doc.querySelector('dialog[open]')){event.preventDefault();openCommands();}});
     const drawers=host.drawerWorkspace||(typeof StudioDrawerWorkspace!=='undefined'?StudioDrawerWorkspace:null);
-    if(hierarchy&&drawers)workbench=drawers.create({document:doc,language:host.language,hierarchy,actions,categories,legacyNavigation:nav,launch,syncPane:host.syncPane,captureViewAnchor:host.captureViewAnchor,restoreViewAnchor:host.restoreViewAnchor});
+    if(hierarchy&&drawers)workbench=drawers.create({document:doc,language:host.language,hierarchy,actions,categories,legacyNavigation:nav,launch,syncPane:host.syncPane,captureViewAnchor:host.captureViewAnchor,restoreViewAnchor:host.restoreViewAnchor,onGuide:openGuide});
     refresh();return {refresh,openImages,openCommands,openGuide,journeyEvent,guidingImport,actions,nav,workbench};
   }
   return {create,workspaceHierarchy};

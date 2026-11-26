@@ -59,7 +59,7 @@ The check runs in the host's Python environment and does not upload images to a 
 
 ## Deliver editable outputs
 
-For desktop editing, use [Figure Studio Setup for Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.4/polish-sci-figures-Studio-0.2.5-Setup-x64.exe). Double-click Setup and open Figure Studio from the desktop or Start menu to work offline. For help installing or invoking the AI package, use the [Claude and Codex guide](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.en.md).
+For desktop editing, use [Figure Studio Setup for Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.5/polish-sci-figures-Studio-0.2.6-Setup-x64.exe). Double-click Setup and open Figure Studio from the desktop or Start menu to work offline. For help installing or invoking the AI package, use the [Claude and Codex guide](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.en.md).
 
 Generate an editable project from the reviewed SVG or data bundle. In Figure Studio, choose **Project → Open project** and select the JSON. Add the standalone HTML when browser editing is also requested.
 
@@ -78,3 +78,9 @@ python suite/sci_figures.py studio-serve figure-studio.html
 A cloud execution environment's localhost is not the user's computer. In cloud hosts, provide downloadable SVG and applicable PDF/PNG outputs, the editing HTML, and the accompanying data/recipe/analysis JSON through the host's download mechanism. Do not promise that a cloud localhost page opens on the user's computer, or upload research data to another service merely to provide a preview.
 
 The complete suite retains its [MIT license](suite/LICENSE), Copyright (c) 2026 Wenting Zhou. Preserve original and applicable third-party notices. [Citation metadata](suite/CITATION.cff) accompanies the source.
+
+## Guide the editing handoff
+
+When returning a Figure Studio project, state the real next action: open the JSON from Project, select the target panel/object, then name the actual tool. Point new users to **Usage guide** on the welcome screen or **Guide → Usage guide → All functions & steps**; the tool title also has **How to use**. **Open with on-canvas steps** retains instructions during editing. Explain TIFF plane/display selection, arrow placement, mixed grouping or baseline snapping only when relevant to the task. Keep/cancel any active preview before switching tools.
+
+Use the same project for scoped AI edits and have the user preview before confirming. Do not claim a raster is element-editable or that an unavailable local engine ran. Verify the delivered project/HTML and the final visual agree; provide [the task guide](suite/docs/figure-studio-usage-guide.md) when a walkthrough is useful.
