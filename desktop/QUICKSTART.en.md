@@ -1,6 +1,6 @@
 # Getting started with Figure Studio
 
-**[Download Figure Studio editor | Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.5/polish-sci-figures-Studio-0.2.6-Setup-x64.exe)**. Double-click Setup, then open Figure Studio from the desktop or Start menu. Plot and edit offline.
+**[Download Figure Studio editor | Windows 10/11 x64](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.6/polish-sci-figures-Studio-0.2.7-Setup-x64.exe)**. Double-click Setup, then open Figure Studio from the desktop or Start menu. Plot and edit offline.
 
 **[Use the AI Skill in Claude / Codex](https://github.com/zhoy0409-debug/polish-sci-figures/blob/main/docs/platform-installation.en.md)**. Follow the instructions for your host, then select and invoke the skill in a conversation.
 
@@ -8,13 +8,13 @@ The clipped checkbox edge is fixed. The user confirmed intact controls and succe
 
 Start with **Usage guide** on the welcome screen or **Guide → Usage guide** in the header. **How to use** beside a tool title opens its instructions. Search **All functions & steps** for arrows, TIFF, spaces, grouping or snapping. **Open with on-canvas steps** keeps instructions above the canvas; collapse or dismiss them at any time. Keep or cancel active previews before opening another tool. [Task guide](../docs/figure-studio-usage-guide.md#english).
 
-**Figure Studio 0.2.6 · Suite 1.6.5**. The guide leads from import to export, with scanned PDF annotations, panel label alignment, and clipboard-based review. [Release notes](../docs/release-notes-v1.6.5.md#english) · [Windows acceptance](../docs/qa/daily-studio-roundtrip.md).
+**Figure Studio 0.2.7 · Suite 1.6.6**. The guide leads from import to export, with scanned PDF annotations, panel label alignment, and clipboard-based review. [Release notes](../docs/release-notes-v1.6.6.md#english) · [Windows acceptance](../docs/qa/daily-studio-roundtrip.md).
 
 The Windows installer workflow and genuine official 0.1.25 → 0.1.26 in-editor upgrade passed the listed checks. The [acceptance record](../docs/qa/photo-correction/windows-0.1.26/README.md) details data protection, performance results and remaining items.
 
-The update window keeps the simple companions and shows downloaded bytes with an outline heart and jade water. Download completion is followed by integrity verification; save and confirm before installation. Animation preferences and reduced motion retain readable progress. See the [release notes](../docs/release-notes-v1.6.5.md) and separate [historical 0.1.23 acceptance](../docs/release-notes-v1.4.23.md) for each version's scope.
+The update window keeps the simple companions and shows downloaded bytes with an outline heart and jade water. Download completion is followed by integrity verification; save and confirm before installation. Animation preferences and reduced motion retain readable progress. See the [release notes](../docs/release-notes-v1.6.6.md) and separate [historical 0.1.23 acceptance](../docs/release-notes-v1.4.23.md) for each version's scope.
 
-Version 0.2.6 retains local outline correction, ruler straightening and global colour controls. See the [photo guide](../docs/figure-studio-photo-correction.md) and [actual acceptance scope](../docs/figure-studio-photo-correction-validation.md).
+Version 0.2.7 retains local outline correction, ruler straightening and global colour controls. See the [photo guide](../docs/figure-studio-photo-correction.md) and [actual acceptance scope](../docs/figure-studio-photo-correction-validation.md).
 
 Figure Studio creates, edits and arranges scientific figures. The Windows desktop edition supports Windows 10/11, 64-bit. Once installed, it works offline without Codex, a separate Python installation or an API key.
 
@@ -24,7 +24,7 @@ Figure Studio is the **official companion editor for polish-sci-figures**. The [
 
 ## Install and open
 
-1. **Choose the Setup installer for first use:** download [polish-sci-figures-Studio-0.2.6-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.5/polish-sci-figures-Studio-0.2.6-Setup-x64.exe) from the [v1.6.5 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.5), then run it for your Windows user account. No extraction is needed.
+1. **Choose the Setup installer for first use:** download [polish-sci-figures-Studio-0.2.7-Setup-x64.exe](https://github.com/zhoy0409-debug/polish-sci-figures/releases/download/v1.6.6/polish-sci-figures-Studio-0.2.7-Setup-x64.exe) from the [v1.6.6 release](https://github.com/zhoy0409-debug/polish-sci-figures/releases/tag/v1.6.6), then run it for your Windows user account. No extraction is needed.
 2. Open **polish-sci-figures Studio** from the desktop or Start menu. When the small launcher window says **Editor is ready**, the editor opens in your default browser. You can also click **Open editor** in that window.
 
 The installer's **Shortcuts** page only chooses whether to create a desktop shortcut. It is optional. The Chinese wizard uses a CJK UI font and wrapped instructions without reducing the system text size.
@@ -62,9 +62,9 @@ Font-size changes preview on the canvas. Enter or moving focus keeps the edit; E
 
 The top-right **‹ Back** returns to the current category and focuses the tool you just used; the panel stays open. Only the category list offers **Hide panel**. The **Tools** button at the edge hides/restores the current page and settings. Selecting another canvas object retains the chosen tool. Search with **Ctrl + K**; aliases such as `text spacing` lead to one canonical text tool and focus the actual field. Selection requirements, locking, live-preview cancellation and one-step history remain in effect.
 
-Use **Help → Send feedback** to prepare and review text, then confirm public submission on GitHub. Basic version diagnostics are optional and off by default. No project, image or measurement data are automatically attached. The deployed issue route assigns the maintainer; notifications depend on the account's existing GitHub/email settings. A prepared draft is not a submitted issue.
+Use **Guide → Send feedback** to prepare and review text, then confirm public submission on GitHub. Basic version diagnostics are optional and off by default. No project, image or measurement data are automatically attached. The deployed issue route assigns the maintainer; notifications depend on the account's existing GitHub/email settings. A prepared draft is not a submitted issue.
 
-**Help → Downloads excluding QA** fetches public metadata only after an explicit click. It counts new stable Windows Setup/Portable downloads after the accounting baseline, subtracting registered QA. Lifetime net downloads remain unknown; downloads are not users. No usage telemetry is collected. An unpublished/unavailable ledger or inconsistent counters yields an unreconciled result. See the [workflow and accounting details](../docs/figure-studio-workspace-and-feedback.md).
+**Guide → Downloads excluding QA** fetches public metadata only after an explicit click. It counts new stable Windows Setup/Portable downloads after the accounting baseline, subtracting registered QA. Lifetime net downloads remain unknown; downloads are not users. No usage telemetry is collected. An unpublished/unavailable ledger or inconsistent counters yields an unreconciled result. See the [workflow and accounting details](../docs/figure-studio-workspace-and-feedback.md).
 
 ## Adjust directly on the canvas
 
@@ -112,9 +112,9 @@ Closing a browser tab leaves the local service running. To stop it, choose **Qui
 
 **Upgrading from 0.1.8 or earlier:** save a project JSON, close Figure Studio, then run the current Setup installer. The older update entry only opens a download; it cannot install this upgrade for you.
 
-**Already using Studio 0.2.1?** Open **Updates** in the installed edition, or save your project, close Figure Studio and run the 0.2.6 Setup above.
+**Already using Studio 0.2.1?** Open **Updates** in the installed edition, or save your project, close Figure Studio and run the 0.2.7 Setup above.
 
-**Already using installed 0.1.9–0.1.25?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.2.6 installer manually. Version 0.2.6 retains the long-path fix introduced in 0.1.10.
+**Already using installed 0.1.9–0.1.25?** You can use its in-app update flow. If 0.1.9 cannot prepare the update because a path is too long, save your project, close Figure Studio and run the linked 0.2.7 installer manually. Version 0.2.7 retains the long-path fix introduced in 0.1.10.
 
 **Future updates from the installed edition:** open **Updates**, choose **Download and prepare update**, and wait for the download and integrity check. Save your project, confirm that you are ready to close the editor, then choose **Install and reopen**. The installer keeps the supported application location and reopens Figure Studio on success; you do not need to extract or replace files. Installation is never started without confirmation, and Windows security prompts are not bypassed.
 
@@ -139,7 +139,7 @@ Use the five workflow shortcuts or the categorized **Find function** directory a
 
 This release adds **Image processing → WB processing & composition** (Ctrl+K: WB). Import retained originals, crop/straighten, confirm lane/source mappings and keep editable canvas objects. Suspend preserves a working draft. Original 16-bit TIFF and 8-bit display derivatives remain distinct; no densitometry is provided. See the bundled [workflow guide](../docs/figure-studio-western-blot.zh-CN.md).
 
-## Common editing actions (0.2.6)
+## Common editing actions (0.2.7)
 
 1. Select an image → Image processing → Image insets and scale bars → Calibrate source scale. Trace a real scale bar horizontally, vertically or diagonally, then enter its physical length.
 2. Annotations and measurement → Insert text, lines and shapes → Arrow / Double arrow. Drag to draw; drag endpoints to refine. Existing lines also offer arrowhead controls.

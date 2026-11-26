@@ -3,10 +3,21 @@ from __future__ import annotations
 import argparse,base64,binascii,csv,io,json,math,secrets,sys,tempfile,threading,time
 from pathlib import Path
 from http.server import ThreadingHTTPServer,BaseHTTPRequestHandler
+from socketserver import TCPServer
 from urllib.parse import urlsplit
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'make-sci-data-figures/scripts'))
 from figure_studio import panel_from_path, inspect_svg_bytes
 LOCK=threading.Lock()
+
+
+class LoopbackHTTPServer(ThreadingHTTPServer):
+    """A numeric local identity needs no DNS or Bonjour lookup."""
+    def server_bind(self):
+        if self.server_address[0] != '127.0.0.1':
+            raise ValueError('Figure Studio requires an IPv4 loopback address')
+        TCPServer.server_bind(self)
+        self.server_name = '127.0.0.1'
+        self.server_port = self.server_address[1]
 
 
 def import_pdf(payload):
@@ -268,7 +279,7 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('html',type=Path);p.add_argument('--port',type=int,default=8767);a=p.parse_args()
-    server=ThreadingHTTPServer(('127.0.0.1',a.port),Handler);server.page=a.html.resolve();server.token=secrets.token_urlsafe(32);server.address=f'127.0.0.1:{a.port}'
+    server=LoopbackHTTPServer(('127.0.0.1',a.port),Handler);server.page=a.html.resolve();server.token=secrets.token_urlsafe(32);server.address=f'127.0.0.1:{server.server_port}'
     from studio_updates import UpdateChecker,installation_info
     server.update_checker=UpdateChecker(installation_info(),Path.home()/'.cache'/'figure-studio'/'update-check.json')
     print(f'Figure Studio local data engine: http://{server.address}/',flush=True);server.serve_forever()

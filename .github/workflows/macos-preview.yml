@@ -34,6 +34,13 @@ jobs:
       OMP_NUM_THREADS: "1"
     steps:
       - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install headed browser acceptance runtime
+        run: |
+          npm install --prefix .cache/mac-browser --ignore-scripts --no-audit --no-fund --save-exact playwright@1.62.1
+          node .cache/mac-browser/node_modules/playwright/cli.js install chromium webkit
       - name: Install native Python and matching Tk
         shell: bash
         run: |
@@ -54,6 +61,15 @@ jobs:
           .venv-macos/bin/python desktop/test_figure_studio_app.py
       - name: Build bundle, audit native libraries, run frozen local self-test, and zip
         run: .venv-macos/bin/python desktop/build_macos.py --arch ${{ matrix.arch }}
+      - name: Validate unexpected-permission detector with the retained 0.2.6 screenshot
+        run: |
+          swift scripts/macos_window_probe.swift --image scripts/fixtures/macos-local-network-prompt.png > .cache/mac-browser/prompt-detector.json
+          .venv-macos/bin/python -c 'import json; assert json.load(open(".cache/mac-browser/prompt-detector.json"))["localNetworkPromptDetected"]'
+      - name: Native window and headed editing, save/reopen, undo and repeated movement latency
+        env:
+          NODE_PATH: ${{ github.workspace }}/.cache/mac-browser/node_modules
+        run: |
+          .venv-macos/bin/python scripts/run_macos_browser_acceptance.py --app "dist/macos/${{ matrix.arch }}/Figure Studio.app" --out ".cache/desktop-macos-${{ matrix.arch }}/gui"
       - name: Collect preview only after successful checks
         uses: actions/upload-artifact@v4
         with:
@@ -75,3 +91,10 @@ jobs:
             .cache/desktop-macos-${{ matrix.arch }}/*.log
             .cache/desktop-macos-${{ matrix.arch }}/native-audit.json
             .cache/desktop-macos-${{ matrix.arch }}/self-test-output/
+            .cache/desktop-macos-${{ matrix.arch }}/gui/result.json
+            .cache/desktop-macos-${{ matrix.arch }}/gui/native-window.*
+            .cache/desktop-macos-${{ matrix.arch }}/gui/macos-desktop.png
+            .cache/desktop-macos-${{ matrix.arch }}/gui/*.log
+            .cache/desktop-macos-${{ matrix.arch }}/gui/test_*/
+            .cache/desktop-macos-${{ matrix.arch }}/gui/move-*/
+            .cache/desktop-macos-${{ matrix.arch }}/gui/webkit-*/
