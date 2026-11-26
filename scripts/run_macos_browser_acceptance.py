@@ -70,6 +70,8 @@ def main():
             (out/(name+'.log')).write_bytes(result.stdout)
             report['checks'].append({'script': name, 'exitCode': result.returncode})
             (out/'result.json').write_text(json.dumps(report, indent=2)+'\n')
+            print(f'{name}: exit {result.returncode}', flush=True)
+            if result.returncode: print(result.stdout.decode('utf-8', errors='replace')[-4000:], flush=True)
             assert result.returncode == 0, f'Mac headed editor check failed: {name}'
         if not args.probe:
             for round_number in (1, 2, 3):
@@ -78,6 +80,8 @@ def main():
                     result = subprocess.run(['node', str(ROOT/'scripts/test_studio_move_performance_browser.cjs'), url, str(out/name), 'candidate', str(count)], cwd=ROOT, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=180)
                     (out/(name+'.log')).write_bytes(result.stdout)
                     report['checks'].append({'script': name, 'exitCode': result.returncode})
+                    print(f'{name}: exit {result.returncode}', flush=True)
+                    if result.returncode: print(result.stdout.decode('utf-8', errors='replace')[-4000:], flush=True)
                     assert result.returncode == 0, 'Mac pointer-up correctness/latency gate failed'
             env['STUDIO_MAC_ENGINE'] = 'webkit'
             for name in ['test_studio_guided_tasks_browser.cjs', 'test_studio_feedback_five_browser.cjs',
@@ -86,7 +90,9 @@ def main():
                 result = subprocess.run(['node', str(ROOT/'scripts'/name), url, str(dest)], cwd=ROOT, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=180)
                 (out/('webkit-'+name+'.log')).write_bytes(result.stdout)
                 report['checks'].append({'script': 'webkit-'+name, 'exitCode': result.returncode})
-                assert result.returncode == 0, 'Mac WebKit headed editing failed'
+                print(f'webkit-{name}: exit {result.returncode}', flush=True)
+                if result.returncode: print(result.stdout.decode('utf-8', errors='replace')[-4000:], flush=True)
+            assert all(item['exitCode'] == 0 for item in report['checks']), 'Mac WebKit headed editing failed'
             report['browserEngines'] = ['chromium', 'webkit']
         report['passed'] = True
         return 0
