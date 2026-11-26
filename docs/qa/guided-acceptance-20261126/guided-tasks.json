@@ -1,0 +1,29 @@
+{
+  "author": "a",
+  "scope": "Actual Chrome, synthetic artwork, real user controls; no physical Mac UI claim",
+  "rounds": [
+    {
+      "width": 1440,
+      "height": 900,
+      "lang": "zh-CN",
+      "documentedCommands": 57,
+      "passed": true
+    },
+    {
+      "width": 910,
+      "height": 512,
+      "lang": "en",
+      "documentedCommands": 57,
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "lang": "zh-CN",
+      "documentedCommands": 57,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

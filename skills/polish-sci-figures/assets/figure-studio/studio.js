@@ -1218,6 +1218,10 @@ if (typeof document !== 'undefined') (async () => {
         return true;
       },
       journeyOwner:()=>history,
+      canGuideNavigate:()=>!previewSessions?.active,
+      guideMagnet:()=>{const viewport=$('viewport');if(!viewport.hasAttribute('tabindex'))viewport.tabIndex=-1;viewport.focus();say(StudioI18n.language==='en'?'Keep A fixed. Drag B or C near A’s baseline; hold Alt to bypass snapping.':'固定 A，直接拖 B 或 C 靠近 A 的文字基线；Alt 临时跳过磁吸。');return true;},
+      guideCalibration:()=>{experienceTools?.workbench?.openTool('inset');showPane('detail');const choice=insetSelection();if(choice.source)imageInsets?.startCalibration(choice.source);else say(StudioI18n.language==='en'?'Select a source image first.':'请先选中原图。');},
+      guideAnnotation:type=>{experienceTools?.workbench?.openTool('annotations');armOverlayPlacement(type);},
       guideHandoff:destination=>{
         if($('qualityWorkspace')?.hidden)$('openQualityWorkspace')?.click();
         const collaboration=$('qualityCollaboration');

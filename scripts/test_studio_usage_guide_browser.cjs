@@ -26,7 +26,7 @@ async function main(){
     await page.locator('#startStudioGuide').waitFor();
     const initial=await H.save(page);
     await page.locator('#startStudioGuide').click();
-    assert.equal(await guide.locator('[data-guide-topic]').count(),7);
+    assert.equal(await guide.locator('[data-guide-topic]').count(),8);
     await guide.getByRole('button',{name:'跳过，直接编辑',exact:true}).click();
     assert.equal(await guide.isVisible(),false);
     assert.equal(await page.locator('#projectStart').isVisible(),false);
@@ -59,7 +59,8 @@ async function main(){
     await label(c).click({modifiers:['Shift']});
     await open('labels');
     await step('align');
-    await page.locator('[data-alignment-action="match-labels"]').waitFor();
+    assert.equal(await focused(),'viewport');
+    assert.match(await page.locator('#studioTaskCoach').innerText(),/Alt/);
     await page.keyboard.press('Escape');
 
     await open('images');
@@ -145,7 +146,7 @@ async function main(){
 
     assert.deepEqual(errors,[]);
     assert.deepEqual(remote,[]);
-    const result={browser:browser.version(),route:'local-loopback',topics:7,firstRunSkip:true,
+    const result={browser:browser.version(),route:'local-loopback',topics:8,firstRunSkip:true,
       skipWhilePreviewing:true,projectUnchanged:true,selectionPreserved:true,compactWidths:[910,390],
       verifiedRoutes:['open','discovery','layout','align','rectify','handoff','clipboard','export-settings','export-menu','command-search']};
     fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(result,null,2));

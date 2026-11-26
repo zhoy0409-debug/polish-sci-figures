@@ -11,12 +11,13 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "v1.6.4"
+VERSION = "v1.6.5"
 SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
 ROOT_FILES = ("sci_figures.py", "requirements.txt", "requirements-optional.txt", "README.md", "CHANGELOG.md", "LICENSE", "CITATION.cff")
 SUPPORT_FILES = (
+    'docs/figure-studio-usage-guide.md',
     'docs/qa/windows-next-stable/installed-collaborative-20261101.md',
     'docs/qa/windows-next-stable/installed-collaborative-20261101.json',
     'docs/qa/windows-next-stable/installer-checkbox-20261101.md',
@@ -32,6 +33,7 @@ SUPPORT_FILES = (
     'docs/qa/windows-next-stable/wb-compact-20261031.png',
     'docs/qa/windows-next-stable/wb-workflow-20261031.webm',
 
+    'docs/release-notes-v1.6.5.md',
     'docs/release-notes-v1.6.4.md',
     'docs/release-notes-v1.6.3.md',
     'docs/qa/feedback-five-20261126/README.md',

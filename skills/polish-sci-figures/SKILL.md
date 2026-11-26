@@ -148,3 +148,9 @@ qa/              original_vs_new.png  final_montage.png  rendered_pages/
 ```
 
 For a slide series, name editable files in reading order, for example `01_S12_A_marker_distribution.svg`; keep that identifier out of the artwork. Keep failed variants and debug renders outside the delivery folder. Return final files first and state only material scientific, source, or editability limitations.
+
+## Guide the editing handoff
+
+When returning a Figure Studio project, state the real next action: open the JSON from Project, select the target panel/object, then name the actual tool. Point new users to **Usage guide** on the welcome screen or **Guide → Usage guide → All functions & steps**; the tool title also has **How to use**. **Open with on-canvas steps** retains instructions during editing. Explain TIFF plane/display selection, arrow placement, mixed grouping or baseline snapping only when relevant to the task. Keep/cancel any active preview before switching tools.
+
+Use the same project for scoped AI edits and have the user preview before confirming. Do not claim a raster is element-editable or that an unavailable local engine ran. Verify the delivered project/HTML and the final visual agree; provide [the task guide](../../docs/figure-studio-usage-guide.md) when a walkthrough is useful.

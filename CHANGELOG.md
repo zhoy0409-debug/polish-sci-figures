@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## v1.6.5 — Figure Studio 0.2.6
+
+- Add searchable bilingual instructions for every exposed command, contextual How to use and collapsible on-canvas task steps.
+- Route two-point calibration directly to the measurement tool, and explain direct A/B/C baseline snapping, arrows, TIFF and mixed grouping.
+- Protect unfinished previews when navigating from help. Keep guide state out of scientific project and undo history.
+- Repeat source, offline and frozen Windows user-path checks; synchronize editor and Skill guidance.
+
 ## v1.6.4 — Figure Studio 0.2.5
 
 - Measure source scale traces along horizontal, vertical or diagonal lines using original pixel axes.

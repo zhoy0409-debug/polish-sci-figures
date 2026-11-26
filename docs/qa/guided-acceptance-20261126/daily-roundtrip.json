@@ -1,0 +1,30 @@
+{
+  "browser": "158.0.8127.88",
+  "observations": 6,
+  "retainedVariants": 5,
+  "priorManualEdits": 0,
+  "originalSha256": "fde913b010bcf9a9c56a68fd0ccb71cdac5c79087dcf38f31cd92b2fb9991297",
+  "measurements": {
+    "dragToOpenedMs": 97,
+    "finalSizeReviewMs": 63,
+    "prepareTaskMs": 48,
+    "pasteToPreviewMs": 41,
+    "reopenMs": 73
+  },
+  "fileHandoffs": 0,
+  "reportSummary": {
+    "objects": 31,
+    "texts": 8,
+    "issues": 1,
+    "reportedIssues": 1,
+    "overlapComplete": true
+  },
+  "history": {
+    "before": 0,
+    "after": 1
+  },
+  "exports": {
+    "svg": 14360,
+    "png": 221247
+  }
+}

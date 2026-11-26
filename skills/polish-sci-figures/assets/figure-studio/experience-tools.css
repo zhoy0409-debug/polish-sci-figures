@@ -23,7 +23,7 @@
 .studio-support-dialog pre{max-height:32vh;overflow:auto;border:1px solid var(--fs-stroke-subtle);white-space:pre-wrap}
 #studioDownloadMetrics table{width:100%;margin-top:var(--fs-space-4)}
 .usage-guide{box-sizing:border-box;width:min(760px,calc(100vw - 24px));max-height:84vh}
-.usage-guide .command-heading{align-items:center;margin-bottom:var(--fs-space-4)}
+.usage-guide .command-heading{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:var(--fs-space-4)}
 .usage-guide .command-heading h2{margin:0}
 .usage-guide-body{display:grid;grid-template-columns:minmax(9rem,30%) minmax(0,1fr);gap:var(--fs-space-5)}
 .usage-guide-body nav{display:grid;align-content:start;gap:var(--fs-space-1)}
@@ -35,6 +35,18 @@
 .usage-guide-steps li+li{margin-top:var(--fs-space-3)}
 .usage-guide-steps p{margin:0;line-height:1.55;color:var(--fs-text-secondary)}
 .usage-guide-steps button{margin:var(--fs-space-1) 0 0}
+.usage-guide-steps input[type=search]{box-sizing:border-box;width:100%;margin-block:var(--fs-space-3)}
+.usage-guide-directory{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;max-height:24vh;overflow:auto;overscroll-behavior:contain}
+.usage-guide-directory button{white-space:normal;text-align:start;margin:0;line-height:1.4}
+.usage-guide-directory button[aria-pressed=true]{border-color:var(--fs-accent-text);background:var(--fs-hover)}
+#usageGuideInstructions h4{margin-block:var(--fs-space-3) var(--fs-space-1)}
+#usageGuideStatus:empty{display:none}
+.studio-task-coach{flex:none;max-height:24vh;overflow:auto;padding:6px 12px;border-block-end:1px solid var(--fs-stroke-subtle);background:var(--fs-surface-1);font-size:var(--fs-font-xs);line-height:1.5}
+.studio-task-coach[hidden]{display:none}
+.studio-task-coach summary{cursor:pointer;color:var(--fs-accent-text);font-weight:650}
+.studio-task-coach ol{margin:4px 0;padding-inline-start:20px}
+.studio-task-coach button{margin:2px 8px 2px 0}
+#drawerToolHelp{flex:none;margin-inline-start:auto;font-size:var(--fs-font-xs)}
 .first-figure-guide{flex:none;display:flex;align-items:center;justify-content:space-between;gap:var(--fs-space-3);margin:0;padding:var(--fs-space-2) var(--fs-space-4);background:var(--fs-surface-1);border-block-end:1px solid var(--fs-stroke-subtle)}
 .first-figure-guide[hidden],.first-figure-actions button[hidden]{display:none}
 .quality-first-figure-actions:not([hidden]){display:flex;flex-wrap:wrap;gap:var(--fs-space-2);margin:var(--fs-space-2) 0}
