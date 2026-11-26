@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## v1.6.6 — Figure Studio 0.2.7
+
+- Retain the validated canvas after pure object/label translation instead of rebuilding the entire SVG and inspector on pointer-up. Structural/dependent graphics retain canonical rendering.
+- Keep final-pointer sampling, original sources, one undo, cancellation, resize and canonical save/reopen geometry. Refresh state-dependent axis-resize metadata on retained canvases.
+- Bind the known numeric loopback identity without reverse DNS; retain Windows exclusive-address and HTTP authorization guards.
+- Gate macOS arm64/x86_64 assets on visible native windows, unexpected-permission detection and headed Chromium/WebKit workflows. Repeat 5000/10000-object correctness and latency gates.
+
 ## v1.6.5 — Figure Studio 0.2.6
 
 - Add searchable bilingual instructions for every exposed command, contextual How to use and collapsible on-canvas task steps.

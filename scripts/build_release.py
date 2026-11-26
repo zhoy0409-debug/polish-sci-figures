@@ -11,7 +11,7 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "v1.6.5"
+VERSION = "v1.6.6"
 SKILL_NAMES = ("make-sci-data-figures", "standardize-sci-images", "polish-sci-figures")
 EXCLUDED_PARTS = {"examples", "__pycache__"}
 EXCLUDED_FILES = {"make_example_data.py"}
@@ -33,6 +33,7 @@ SUPPORT_FILES = (
     'docs/qa/windows-next-stable/wb-compact-20261031.png',
     'docs/qa/windows-next-stable/wb-workflow-20261031.webm',
 
+    'docs/release-notes-v1.6.6.md',
     'docs/release-notes-v1.6.5.md',
     'docs/release-notes-v1.6.4.md',
     'docs/release-notes-v1.6.3.md',

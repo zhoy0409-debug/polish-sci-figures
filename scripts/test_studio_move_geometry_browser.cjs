@@ -1,0 +1,17 @@
+'use strict';
+const {chromium}=require('playwright'),H=require('./test_studio_carbon_helpers.cjs');
+const {assert,fs,path}=H,[,,url,outArg]=process.argv,out=path.resolve(outArg);assert(!fs.existsSync(out));fs.mkdirSync(out,{recursive:true});
+const png=fs.readFileSync(path.join(__dirname,'fixtures/feedback-five-image.png')).toString('base64');
+const fixture=`<svg xmlns="http://www.w3.org/2000/svg" width="500pt" height="350pt" viewBox="0 0 500 350"><defs><clipPath id="pictureClip"><rect x="0" y="0" width="120" height="70"/></clipPath></defs><g transform="translate(80 55) rotate(17) scale(1.3 .8)"><rect id="nestedRect" x="0" y="0" width="70" height="40" fill="#4477aa"/></g><text id="nestedText" x="220" y="80" transform="rotate(-12 220 80)" font-family="Arial" font-size="20">Nested <tspan baseline-shift="super" font-size="12">2</tspan></text><g transform="translate(80 170) rotate(-8)" clip-path="url(#pictureClip)"><image id="nestedImage" x="0" y="0" width="120" height="70" href="data:image/png;base64,${png}"/></g><rect id="untouched" x="400" y="240" width="32" height="22" fill="#bb5566"/></svg>`;
+const near=(a,b,n)=>{for(const k of ['x','y','width','height'])assert(Math.abs(a[k]-b[k])<.25,n+' '+k+': '+a[k]+' / '+b[k]);};
+(async()=>{const b=await chromium.launch({channel:'chrome',headless:true}),{page:p,context,errors,remote}=await H.browserPage(b),report={author:'a',platform:process.platform,cases:[]};
+try{
+ await p.goto(url);await H.newProject(p,'SYNTHETIC transformed movement');await H.loadSvg(p,fixture);await p.locator('#zoom').selectOption('1');
+ for(const id of ['nestedRect','nestedText','nestedImage']){
+  const target=p.locator(`#artboard [id$="${id}"][data-key]`),other=p.locator('#artboard [id$="untouched"][data-key]');await target.click();const before=await H.save(p),unselected=await other.boundingBox(),root=await p.locator('#artboard>svg').elementHandle(),box=await target.boundingBox();
+  await p.keyboard.down('Alt');await p.mouse.move(box.x+box.width*.4,box.y+box.height*.45);await p.mouse.down();await p.mouse.move(box.x+box.width*.4+23,box.y+box.height*.45+11,{steps:4});await p.mouse.up();await p.keyboard.up('Alt');
+  const moved=await target.boundingBox(),saved=await H.save(p);assert.equal(saved.history.index,before.history.index+1);assert(Math.abs(moved.x-box.x)>10);near(await other.boundingBox(),unselected,'Unselected object');assert.deepEqual(saved.project.panels,before.project.panels);assert(await root.evaluate(n=>n.isConnected),'Supported translation keeps the root');
+  await H.loadProject(p,saved);near(await target.boundingBox(),moved,'Canonical reopened '+id);assert.deepEqual((await H.save(p)).state,saved.state);await p.locator('#undo').click();assert.deepEqual((await H.save(p)).state,before.state);near(await target.boundingBox(),box,'Undo '+id);await H.loadProject(p,saved);report.cases.push({id,canonicalGeometry:true,oneUndo:true,sourceUnchanged:true});
+ }
+ assert.deepEqual(errors,[]);assert.deepEqual(remote,[]);report.passed=true;await p.screenshot({path:path.join(out,'transformed-objects.png')});
+}catch(e){report.error=e.stack;await p.screenshot({path:path.join(out,'failure.png')});throw e;}finally{report.errors=errors;fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(report,null,2));await context.close();await b.close();}console.log(JSON.stringify(report));})().catch(e=>{console.error(e);process.exitCode=1;});

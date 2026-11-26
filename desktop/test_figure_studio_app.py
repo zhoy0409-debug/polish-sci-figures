@@ -43,6 +43,19 @@ class LauncherTests(unittest.TestCase):
         with mock.patch.dict(app.os.environ, {'LOCALAPPDATA': str(self.root)}), mock.patch.object(app.sys, 'platform', 'win32'):
             self.assertEqual(app.default_data_dir(), self.root / 'Figure Studio')
 
+    def test_numeric_loopback_bind_never_resolves_dns(self):
+        handler = app.make_handler(ROOT)
+        from studio_server import LoopbackHTTPServer
+        for server_type in (app.LocalServer, LoopbackHTTPServer):
+            with self.subTest(server=server_type.__name__):
+                with mock.patch.object(socket, 'getfqdn', side_effect=AssertionError('No reverse DNS at startup')):
+                    with server_type(('127.0.0.1', 0), handler) as server:
+                        self.assertEqual(server.server_name, '127.0.0.1')
+                        self.assertGreater(server.server_port, 0)
+                        self.assertEqual(server.socket.getsockname(), ('127.0.0.1', server.server_port))
+                with self.assertRaises(ValueError):
+                    server_type(('0.0.0.0', 0), handler)
+
     def test_native_tiff_self_check_uses_real_binary_routes_and_known_samples(self):
         service = self.start()
         result = app._self_test_native_tiff(service)

@@ -80,9 +80,13 @@ jobs:
             $record = Get-Content $instance -Raw | ConvertFrom-Json
             if ($record.pid -ne $app.Id) { throw 'Unexpected instance identity' }
             $url = "http://127.0.0.1:$($record.port)/"
-            foreach ($script in 'test_project_codec_browser','test_scientific_tiff_browser','test_scientific_tiff_derivative_browser','test_submission_profiles_browser','test_history_shortcuts_browser','test_studio_drawer_workspace_browser','test_studio_drawer_compact_browser','test_studio_discovery_dock_browser','test_studio_support_browser','test_studio_text_content_browser','test_studio_wb_browser','test_studio_wb_advanced_browser','test_studio_core_workbench_browser','test_studio_statistics_report_browser','test_studio_feedback_five_browser','test_studio_guided_tasks_browser') {
+            foreach ($script in 'test_project_codec_browser','test_scientific_tiff_browser','test_scientific_tiff_derivative_browser','test_submission_profiles_browser','test_history_shortcuts_browser','test_studio_drawer_workspace_browser','test_studio_drawer_compact_browser','test_studio_discovery_dock_browser','test_studio_support_browser','test_studio_text_content_browser','test_studio_wb_browser','test_studio_wb_advanced_browser','test_studio_core_workbench_browser','test_studio_statistics_report_browser','test_studio_feedback_five_browser','test_studio_guided_tasks_browser','test_studio_move_geometry_browser') {
               node "scripts/$script.cjs" $url (Join-Path $proof $script)
               if ($LASTEXITCODE -ne 0) { throw "Frozen browser check failed: $script" }
+            }
+            foreach ($count in 5000,10000) {
+              node scripts/test_studio_move_performance_browser.cjs $url (Join-Path $proof "move-$count") candidate $count
+              if ($LASTEXITCODE -ne 0) { throw "Frozen movement latency/correctness failed: $count" }
             }
             $env:STUDIO_LENS_PROJECT = (Resolve-Path .cache/figure-lens-candidate/project.json).Path
             node scripts/test_studio_figure_lens_browser.cjs $url (Join-Path $proof 'figure-lens')
@@ -100,16 +104,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           $prior = Join-Path $env:RUNNER_TEMP 'prior-stable'
-          gh release download v1.6.4 -R $env:GITHUB_REPOSITORY -D $prior -p 'polish-sci-figures-Studio-0.2.5-Setup-x64.exe' -p SHA256SUMS.txt
+          gh release download v1.6.5 -R $env:GITHUB_REPOSITORY -D $prior -p 'polish-sci-figures-Studio-0.2.6-Setup-x64.exe' -p SHA256SUMS.txt
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          $setup = Join-Path $prior 'polish-sci-figures-Studio-0.2.5-Setup-x64.exe'
+          $setup = Join-Path $prior 'polish-sci-figures-Studio-0.2.6-Setup-x64.exe'
           $digest = (Get-FileHash $setup).Hash.ToLowerInvariant()
-          if ((Get-Content (Join-Path $prior 'SHA256SUMS.txt')) -notcontains "$digest  polish-sci-figures-Studio-0.2.5-Setup-x64.exe") { throw 'Prior stable checksum mismatch' }
+          if ((Get-Content (Join-Path $prior 'SHA256SUMS.txt')) -notcontains "$digest  polish-sci-figures-Studio-0.2.6-Setup-x64.exe") { throw 'Prior stable checksum mismatch' }
           "PRIOR_SETUP=$setup" >> $env:GITHUB_ENV
       - name: Verify real stable upgrade, persisted project and PNG export
         run: |
           $env:NODE_PATH = (Resolve-Path .cache/stable-upgrade/node_modules).Path
-          node scripts/test_studio_windows_stable_upgrade.cjs $env:PRIOR_SETUP dist/desktop/polish-sci-figures-Studio-0.2.6-Setup-x64.exe 0.2.5 0.2.6 (Join-Path $env:RUNNER_TEMP 'studio-upgrade-proof')
+          node scripts/test_studio_windows_stable_upgrade.cjs $env:PRIOR_SETUP dist/desktop/polish-sci-figures-Studio-0.2.7-Setup-x64.exe 0.2.6 0.2.7 (Join-Path $env:RUNNER_TEMP 'studio-upgrade-proof')
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Build and check Skill archives
         run: |

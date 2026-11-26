@@ -1,0 +1,26 @@
+{
+  "author": "a",
+  "platform": "win32",
+  "cases": [
+    {
+      "id": "nestedRect",
+      "canonicalGeometry": true,
+      "oneUndo": true,
+      "sourceUnchanged": true
+    },
+    {
+      "id": "nestedText",
+      "canonicalGeometry": true,
+      "oneUndo": true,
+      "sourceUnchanged": true
+    },
+    {
+      "id": "nestedImage",
+      "canonicalGeometry": true,
+      "oneUndo": true,
+      "sourceUnchanged": true
+    }
+  ],
+  "passed": true,
+  "errors": []
+}

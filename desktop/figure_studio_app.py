@@ -270,13 +270,21 @@ class LocalServer(ThreadingHTTPServer):
     block_on_close = True
 
     def server_bind(self):
+        if self.server_address[0] != '127.0.0.1':
+            raise ValueError('Figure Studio requires an IPv4 loopback address')
         # Windows SO_REUSEADDR can allow another listener on the same address.
         # Exclusive binding also makes the persisted-origin conflict explicit.
         if os.name == 'nt':
             import socket
             self.allow_reuse_address = False
             self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
-        return super().server_bind()
+        # HTTPServer also performs a reverse DNS lookup here. This service has
+        # a literal loopback identity; resolving a local hostname is unnecessary
+        # and can trigger macOS local-network privacy during startup.
+        from socketserver import TCPServer
+        TCPServer.server_bind(self)
+        self.server_name = '127.0.0.1'
+        self.server_port = self.server_address[1]
 
 
 class RunningService:

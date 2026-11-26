@@ -644,6 +644,7 @@ const StudioI18n = (() => {
     '缓存版本无效':'Invalid cached versions',
     '界面语言已切换；图内文字、数据和编辑历史保持不变。':'Interface language changed. Figure text, data and edit history are unchanged.'
   };
+  Object.assign(en,{'编辑目标已变化，请重试。':'The editing target changed. Please try again.'});
   Object.assign(en,{'固定 A，直接拖 B 或 C 靠近 A 的文字基线；Alt 临时跳过磁吸。':'Keep A fixed. Drag B or C near A’s baseline; hold Alt to bypass snapping.'});
   Object.assign(en,{
   '重新读取保留的原生平面，在独立显示中微调；保留现有图片和编辑。':'Adjust the retained native plane in a separate display. Existing images and edits are preserved.',
